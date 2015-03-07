@@ -23,7 +23,7 @@
 private class sample_TEST {
 
     static testMethod void myUnitTest() {
-        Contact contact = new Contact(FirstName='John', LastName='Smith');
+        Contact contact = new Contact(FirstName='John', LastName='Smithz');
         insert contact;
         System.assert(contact.Id != null);
     }
