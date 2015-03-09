@@ -85,35 +85,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Home&quot;),
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Last_Donation_Date__c</fullName>
-        <description>Formula:  The Last Donation Date of the Account where this Contact is the One to One Contact.   This has been superseded by the &apos;Last Gift Date&apos; field in the Households package.</description>
-        <externalId>false</externalId>
-        <formula>if( Account.One2OneContact__c = Id ,
-Account.LastDonationDate__c,
-null
-)</formula>
-        <inlineHelpText>WARNING - This field may not accurately reflect the donation history. Please use the Last Gift Date field instead.</inlineHelpText>
-        <label>Last Transaction Date</label>
-        <required>false</required>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Lifetime_Giving_History_Amount__c</fullName>
-        <description>Formula:  The Lifetime Donation Amount of the Account where this Contact is the One to One Contact.  This field has been superseded by the &apos;Total Amount&apos; field in the Households package.</description>
-        <externalId>false</externalId>
-        <formula>IF( Account.One2OneContact__c = Id ,
-Account.LifetimeDonationHistory_Amount__c,
-null
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>WARNING- This field may not accurately reflect donation histories. Please use the Total Amount field on the Contact record instead.</inlineHelpText>
-        <label>Lifetime Transaction Total</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>Organization_Type__c</fullName>
         <description>Formula: In order of preference, the SYSTEM_AccountType field, the Account Type field, and &quot;Organization&quot;.</description>
         <externalId>false</externalId>

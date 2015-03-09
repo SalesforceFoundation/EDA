@@ -83,8 +83,6 @@
     <members>Contact.HomeEmail__c</members>
     <members>Contact.Home_Address__c</members>
     <members>Contact.is_Address_Override__c</members>
-    <members>Contact.Last_Donation_Date__c</members>
-    <members>Contact.Lifetime_Giving_History_Amount__c</members>
     <members>Contact.Organization_Type__c</members>
     <members>Contact.Other_Address__c</members>
     <members>Contact.PreferredPhone__c</members>
