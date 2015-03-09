@@ -69,10 +69,10 @@
     <members>Affiliation__c.Description__c</members>
     <members>Affiliation__c.EndDate__c</members>
     <members>Affiliation__c.Organization__c</members>
+    <members>Affiliation__c.Primary__c</members>
     <members>Affiliation__c.Role__c</members>
     <members>Affiliation__c.StartDate__c</members>
     <members>Affiliation__c.Status__c</members>
-    <members>Affiliation__c.Primary__c</members>
     <members>Affiliations_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Contact.AlternateEmail__c</members>
     <members>Contact.HomeEmail__c</members>
