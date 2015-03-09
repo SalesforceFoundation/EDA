@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">
   <fullName>HEDAP</fullName>
   <types>
+    <members>AFFL_Affiliations_TDTM</members>
+    <members>AFFL_Affiliations_TEST</members>
+    <members>CAO_Constants</members>
     <members>ERR_Handler</members>
-    <members>ERR_Handler_CTRL_TEST</members>
     <members>ERR_Handler_TEST</members>
     <members>ERR_Notifier</members>
     <members>REL_ProcessControl</members>
@@ -22,6 +24,7 @@
     <members>UTIL_Debug</members>
     <members>UTIL_Describe</members>
     <members>UTIL_Namespace</members>
+    <members>UTIL_UnitTestData_TEST</members>
     <name>ApexClass</name>
   </types>
   <types>
@@ -66,7 +69,28 @@
     <members>Affiliation__c.Role__c</members>
     <members>Affiliation__c.StartDate__c</members>
     <members>Affiliation__c.Status__c</members>
+    <members>Affiliation__c.Primary__c</members>
     <members>Affiliations_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
+    <members>Contact.AlternateEmail__c</members>
+    <members>Contact.HomeEmail__c</members>
+    <members>Contact.Home_Address__c</members>
+    <members>Contact.Last_Donation_Date__c</members>
+    <members>Contact.Lifetime_Giving_History_Amount__c</members>
+    <members>Contact.Organization_Type__c</members>
+    <members>Contact.Other_Address__c</members>
+    <members>Contact.PreferredPhone__c</members>
+    <members>Contact.Preferred_Email__c</members>
+    <members>Contact.Primary_Address_Type__c</members>
+    <members>Contact.Primary_Affiliation__c</members>
+    <members>Contact.Primary_Contact__c</members>
+    <members>Contact.Private__c</members>
+    <members>Contact.Secondary_Address_Type__c</members>
+    <members>Contact.SystemAccountProcessor__c</members>
+    <members>Contact.SystemIsIndividual__c</members>
+    <members>Contact.Type_of_Account__c</members>
+    <members>Contact.WorkEmail__c</members>
+    <members>Contact.WorkPhone__c</members>
+    <members>Contact.Work_Address__c</members>
     <members>Contacts_And_Orgs_Settings__c.Account_Processor__c</members>
     <members>Contacts_And_Orgs_Settings__c.DISABLE_IndividualAccounts_trigger__c</members>
     <members>Contacts_And_Orgs_Settings__c.DISABLE_OpportunityAccount_trigger__c</members>
@@ -101,6 +125,7 @@
     <members>Error__c.Posted_in_Chatter__c</members>
     <members>Error__c.Record_URL__c</members>
     <members>Error__c.Stack_Trace__c</members>
+    <members>Opportunity.Contact_Id_for_Role__c</members>
     <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
     <members>Relationship_Auto_Create__c.Field__c</members>
     <members>Relationship_Auto_Create__c.Object__c</members>
@@ -136,12 +161,15 @@
     <name>CustomField</name>
   </types>
   <types>
+    <members>Account</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>
     <members>Affiliations_Settings__c</members>
+    <members>Contact</members>
     <members>Contacts_And_Orgs_Settings__c</members>
     <members>Error_Settings__c</members>
     <members>Error__c</members>
+    <members>Opportunity</members>
     <members>Relationship_Auto_Create__c</members>
     <members>Relationship_Lookup__c</members>
     <members>Relationship_Settings__c</members>

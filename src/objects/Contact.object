@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>AlternateEmail__c</fullName>
+        <description>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</inlineHelpText>
+        <label>Alternate Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HomeEmail__c</fullName>
+        <description>See Preferred Email field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>See Preferred Email field.</inlineHelpText>
+        <label>Personal Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Home_Address__c</fullName>
+        <description>Formula: Uses primary address type field to determine Home Address from Mailing or Other address.</description>
+        <externalId>false</externalId>
+        <formula>if(
+  ISPICKVAL(Primary_Address_Type__c,&quot;Home&quot;),
+  if(LEN(MailingStreet)&gt;0, MailingStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
+  if(LEN(MailingCity)&gt;0, MailingCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
+  if(LEN(MailingState)&gt;0, MailingState &amp; &quot; &quot; , &quot;&quot; )&amp; 
+  if(LEN(MailingPostalCode)&gt;0, MailingPostalCode,&quot;&quot;) &amp; 
+  If(LEN( MailingCountry ) &gt;0, &quot;, &quot; &amp;MailingCountry,&quot;&quot;)
+,
+if(ISPICKVAL(Secondary_Address_Type__c,&quot;Home&quot;),
+  if(LEN(OtherStreet)&gt;0, OtherStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
+  if(LEN(OtherCity)&gt;0, OtherCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
+  if(LEN(OtherState)&gt;0, OtherState &amp; &quot; &quot; , &quot;&quot; )&amp; 
+  if(LEN(OtherPostalCode)&gt;0, OtherPostalCode,&quot;&quot;) &amp; 
+  If(LEN(OtherCountry ) &gt;0, &quot;, &quot; &amp; OtherCountry,&quot;&quot;)
+  ,&quot;&quot;
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula: Uses primary address type field to determine Home Address from Mailing or Other address.</inlineHelpText>
+        <label>Home Address</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Donation_Date__c</fullName>
+        <description>Formula:  The Last Donation Date of the Account where this Contact is the One to One Contact.   This has been superseded by the &apos;Last Gift Date&apos; field in the Households package.</description>
+        <externalId>false</externalId>
+        <formula>if( Account.One2OneContact__c = Id ,
+Account.LastDonationDate__c,
+null
+)</formula>
+        <inlineHelpText>WARNING - This field may not accurately reflect the donation history. Please use the Last Gift Date field instead.</inlineHelpText>
+        <label>Last Transaction Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Lifetime_Giving_History_Amount__c</fullName>
+        <description>Formula:  The Lifetime Donation Amount of the Account where this Contact is the One to One Contact.  This field has been superseded by the &apos;Total Amount&apos; field in the Households package.</description>
+        <externalId>false</externalId>
+        <formula>IF( Account.One2OneContact__c = Id ,
+Account.LifetimeDonationHistory_Amount__c,
+null
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>WARNING- This field may not accurately reflect donation histories. Please use the Total Amount field on the Contact record instead.</inlineHelpText>
+        <label>Lifetime Transaction Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Organization_Type__c</fullName>
+        <description>Formula: In order of preference, the SYSTEM_AccountType field, the Account Type field, and &quot;Organization&quot;.</description>
+        <externalId>false</externalId>
+        <formula>NULLVALUE(IF( Account.SYSTEM_AccountType__c==&quot;&quot;, TEXT(Account.Type),Account.SYSTEM_AccountType__c),&quot;Organization&quot; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula: In order of preference, the SYSTEM_AccountType field, the Account Type field, and &quot;Organization&quot;.</inlineHelpText>
+        <label>Organization Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Address__c</fullName>
+        <description>Formula: If the Primary Address Type is Other, the Mailing Address.  If the Secondary Address Type is Other, the Other Address.</description>
+        <externalId>false</externalId>
+        <formula>if(
+  ISPICKVAL(Primary_Address_Type__c,&quot;Other&quot;),
+  if(LEN(MailingStreet)&gt;0, MailingStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
+  if(LEN(MailingCity)&gt;0, MailingCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
+  if(LEN(MailingState)&gt;0, MailingState &amp; &quot; &quot; , &quot;&quot; )&amp; 
+  if(LEN(MailingPostalCode)&gt;0, MailingPostalCode,&quot;&quot;) &amp; 
+  If(LEN( MailingCountry ) &gt;0, &quot;, &quot; &amp;MailingCountry,&quot;&quot;)
+,
+if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
+  if(LEN(OtherStreet)&gt;0, OtherStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
+  if(LEN(OtherCity)&gt;0, OtherCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
+  if(LEN(OtherState)&gt;0, OtherState &amp; &quot; &quot; , &quot;&quot; )&amp; 
+  if(LEN(OtherPostalCode)&gt;0, OtherPostalCode,&quot;&quot;) &amp; 
+  If(LEN(OtherCountry ) &gt;0, &quot;, &quot; &amp; OtherCountry,&quot;&quot;)
+  ,&quot;&quot;
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula: If the Primary Address Type is Other, the Mailing Address.  If the Secondary Address Type is Other, the Other Address.</inlineHelpText>
+        <label>Other Address</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PreferredPhone__c</fullName>
+        <description>Which phone number should be used for most communications involving this Contact?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Which phone number should be used for most communications involving this Contact?</inlineHelpText>
+        <label>Preferred Phone</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Home</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Preferred_Email__c</fullName>
+        <description>Which email should be used for most communications involving this Contact?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Which email should be used for most communications involving this Contact?</inlineHelpText>
+        <label>Preferred Email</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Personal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Alternate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Address_Type__c</fullName>
+        <description>Which type of address is the mailing address?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Which type of address is the mailing address?</inlineHelpText>
+        <label>Primary Address Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Home</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Affiliation__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to track the account of the contact&apos;s Organization Affiliation record that is marked primary.</inlineHelpText>
+        <label>Primary Affiliation</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Do Not Use.  Use Organization Affiliations.</relationshipLabel>
+        <relationshipName>PrimaryAffiliatedContacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <description>Automatically checked if the Contact is the Primary Contact on their Account.</description>
+        <externalId>false</externalId>
+        <formula>Account.One2OneContact__c = Id</formula>
+        <inlineHelpText>This is is checked if the user is the Primary Contact on their Account.  The Primary Contact can be edited on the Account.</inlineHelpText>
+        <label>Primary Contact</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Private__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Excludes this Contact from One to One or Bucket account processing.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Excludes this Contact from One to One or Bucket account processing.</inlineHelpText>
+        <label>Private</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Secondary_Address_Type__c</fullName>
+        <description>What type of address is the other address?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What type of address is the other address?</inlineHelpText>
+        <label>Secondary Address Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Home</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SystemAccountProcessor__c</fullName>
+        <description>Hidden system field: do not change.  Updated by automatic processes.  See Contacts &amp; Organization settings.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates which model drives Account relationship behavior: Individual (Bucket) or One-to-One</inlineHelpText>
+        <label>_SYSTEM: ACCOUNT PROCESSOR</label>
+        <picklist>
+            <picklistValues>
+                <fullName>One-to-One</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Individual</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SystemIsIndividual__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Deprecated field.  Do not use.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is no longer used and should not be referenced. It has been replaced by Type_of_Account__c</inlineHelpText>
+        <label>_SYSTEM: IsIndividual - DEPRECATED</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type_of_Account__c</fullName>
+        <description>Formula: &quot;Individual&quot; or &quot;Organization&quot; depending on Account setting.</description>
+        <externalId>false</externalId>
+        <formula>IF(Account.SYSTEMIsIndividual__c,&quot;Individual&quot;,&quot;Organization&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula: &quot;Individual&quot; or &quot;Organization&quot; depending on Account setting.</inlineHelpText>
+        <label>Type of Account</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WorkEmail__c</fullName>
+        <description>See Preferred Email field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>See Preferred Email field.</inlineHelpText>
+        <label>Work Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WorkPhone__c</fullName>
+        <description>See &apos;Preferred Phone&apos; field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>See &apos;Preferred Phone&apos; field.</inlineHelpText>
+        <label>Work Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Work_Address__c</fullName>
+        <description>Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.</description>
+        <externalId>false</externalId>
+        <formula>if(
+  ISPICKVAL(Primary_Address_Type__c,&quot;Work&quot;),
+  if(LEN(MailingStreet)&gt;0, MailingStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
+  if(LEN(MailingCity)&gt;0, MailingCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
+  if(LEN(MailingState)&gt;0, MailingState &amp; &quot; &quot; , &quot;&quot; )&amp; 
+  if(LEN(MailingPostalCode)&gt;0, MailingPostalCode,&quot;&quot;) &amp; 
+  If(LEN( MailingCountry ) &gt;0, &quot;, &quot; &amp;MailingCountry,&quot;&quot;)
+,
+if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
+  if(LEN(OtherStreet)&gt;0, OtherStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
+  if(LEN(OtherCity)&gt;0, OtherCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
+  if(LEN(OtherState)&gt;0, OtherState &amp; &quot; &quot; , &quot;&quot; )&amp; 
+  if(LEN(OtherPostalCode)&gt;0, OtherPostalCode,&quot;&quot;) &amp; 
+  If(LEN(OtherCountry ) &gt;0, &quot;, &quot; &amp; OtherCountry,&quot;&quot;)
+  ,&quot;&quot; 
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.</inlineHelpText>
+        <label>Work Address</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>AllContacts</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>BirthdaysThisMonth</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.BIRTHDATE</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>Birthdays This Month</label>
+    </listViews>
+    <listViews>
+        <fullName>MyContacts</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>NewLastWeek</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_WEEK</value>
+        </filters>
+        <label>New Last Week</label>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+    </listViews>
+</CustomObject>
