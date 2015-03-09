@@ -189,6 +189,10 @@
     <name>Layout</name>
   </types>
   <types>
+    <members>Trigger_Handler__c.All</members>
+    <name>ListView</name>
+  </types>
+  <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>
     <name>ValidationRule</name>
   </types>
