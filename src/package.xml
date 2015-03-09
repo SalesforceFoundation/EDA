@@ -37,6 +37,9 @@
     <name>ApexTrigger</name>
   </types>
   <types>
+    <members>Account.One2OneContact__c</members>
+    <members>Account.SYSTEMIsIndividual__c</members>
+    <members>Account.SYSTEM_AccountType__c</members>
     <members>Address__c.API_Response__c</members>
     <members>Address__c.Address_Type__c</members>
     <members>Address__c.Administrative_Area__c</members>
@@ -184,10 +187,6 @@
     <members>Relationship__c-Relationship Layout</members>
     <members>Trigger_Handler__c-Trigger Handler Layout</members>
     <name>Layout</name>
-  </types>
-  <types>
-    <members>Trigger_Handler__c.All</members>
-    <name>ListView</name>
   </types>
   <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>

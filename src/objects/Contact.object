@@ -342,44 +342,4 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <listViews>
-        <fullName>AllContacts</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All Contacts</label>
-    </listViews>
-    <listViews>
-        <fullName>BirthdaysThisMonth</fullName>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CONTACT.BIRTHDATE</field>
-            <operation>equals</operation>
-            <value>THIS_MONTH</value>
-        </filters>
-        <label>Birthdays This Month</label>
-    </listViews>
-    <listViews>
-        <fullName>MyContacts</fullName>
-        <filterScope>Mine</filterScope>
-        <label>My Contacts</label>
-    </listViews>
-    <listViews>
-        <fullName>NewLastWeek</fullName>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CONTACT.CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_WEEK</value>
-        </filters>
-        <label>New Last Week</label>
-    </listViews>
-    <listViews>
-        <fullName>NewThisWeek</fullName>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CONTACT.CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>THIS_WEEK</value>
-        </filters>
-        <label>New This Week</label>
-    </listViews>
 </CustomObject>
