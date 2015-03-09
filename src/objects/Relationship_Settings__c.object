@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Allows people to chose between different types of relationship hierarchies.</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Allow_AutoCreated_Duplicates__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Auto-created Relationships are automatically deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable that behavior and allow multiple Relationships of the same Type to be created between Contacts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</inlineHelpText>
+        <label>Allow Auto-Created Duplicates</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DISABLE_RelationshipCM_trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>DISABLES the RelationshipCampaignMembers.trigger (CampaignMember, after insert, after update) 
+- checking this box will disable a trigger. This can cause erratic and unpredictable behavior in your NPSP. FOR ADVANCED CONSULTANTS AND DEVELOPERS ONLY.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DISABLES the RelationshipCampaignMembers.trigger (CampaignMember, after insert, after update) 
+- checking this box will disable a trigger. This can cause erratic and unpredictable behavior in your NPSP. FOR ADVANCED CONSULTANTS AND DEVELOPERS ONLY.</inlineHelpText>
+        <label>DISABLE_RelationshipCM_trigger</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DISABLE_RelationshipContacts_trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>DISABLES the RelationshipContacts.trigger (Contact, after delete)
+- checking this box will disable a trigger.  This can cause erratic and unpredictable behavior in your NPSP.  FOR ADVANCED CONSULTANT AND DEVELOPERS ONLY.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DISABLES the RelationshipContacts.trigger (Contact, after delete)
+- checking this box will disable a trigger.  This can cause erratic and unpredictable behavior in your NPSP.  FOR ADVANCED CONSULTANT AND DEVELOPERS ONLY.</inlineHelpText>
+        <label>DISABLE_RelationshipContacts_trigger</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DISABLE_Relationships_trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>DISABLES the Relationships.trigger (Relationship__c, before insert, before update, before delete, after insert, after update, after delete, after undelete)
+- checking this box will disable a trigger.  This can cause erratic and unpredictable behavior in your NPSP.  FOR ADVANCED CONSULTANT AND DEVELOPERS ONLY.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DISABLES the Relationships.trigger (Relationship__c, before insert, before update, before delete, after insert, after update, after delete, after undelete)
+- checking this box will disable a trigger. This can cause erratic and unpredictable behavior in y</inlineHelpText>
+        <label>DISABLE_Relationships_trigger</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Force_Synchronous_Auto_Create__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Forces the Relationships package to synchronously process the auto creation of relationships for auto-create functionality</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Forces the Relationships package to synchronously process the auto creation of relationships for auto-create functionality</inlineHelpText>
+        <label>Force Synchronous Auto Create</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gender_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The custom field used to define the gender of a Contact for determining reciprocal relationships</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The custom field used to define the gender of a Contact for determining reciprocal relationships</inlineHelpText>
+        <label>Gender Field</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reciprocal_Method__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
+        <label>Reciprocal Method</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Name_Field_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The ID of the Name field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button.  Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
+        <label>Relationship Name Field Id</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Name_Id_Field_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The ID of the Name Id field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button. Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
+        <label>Relationship Name Id Field Id</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Relationship Settings</label>
+</CustomObject>
