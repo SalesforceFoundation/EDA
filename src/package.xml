@@ -41,6 +41,10 @@
     <name>ApexTrigger</name>
   </types>
   <types>
+    <members>HEDAP</members>
+    <name>CustomApplication</name>
+  </types>
+  <types>
     <members>Account.One2OneContact__c</members>
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
@@ -183,6 +187,12 @@
     <members>Relationship__c</members>
     <members>Trigger_Handler__c</members>
     <name>CustomObject</name>
+  </types>
+  <types>
+    <members>Address__c</members>
+    <members>Affiliation__c</members>
+    <members>Relationship__c</members>
+    <name>CustomTab</name>
   </types>
   <types>
     <members>Address__c-Address Layout</members>
