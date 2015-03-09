@@ -7,10 +7,10 @@
     <fields>
         <fullName>Automatic_Affiliation_Creation_Turned_On__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Create Affiliations for all Contacts connected to Accounts</inlineHelpText>
         <label>Automatic Affiliation Creation Turned On</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <label>Affiliations Settings</label>

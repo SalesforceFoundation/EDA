@@ -7,173 +7,102 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Account_Processor__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Setting for the Account model. Should be &quot;One-to-one&quot; or &quot;Individual&quot;. Replaces the custom field Contact.SystemAccountProcessor__c</inlineHelpText>
         <label>Account Processor</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>DISABLE_IndividualAccounts_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>!!WARNING!!
 DISABLES the IndividualAccounts.trigger (Contact, before i/u, after i/u/d)
 - checking this box will disable a trigger. This can cause erratic and unpredictable behavior in your NPSP. FOR ADVANCED CONSULTANTS AND DEVELOPERS ONLY.</inlineHelpText>
         <label>DISABLE_IndividualAccounts_trigger</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>DISABLE_OpportunityAccount_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>!!WARNING!!
 DISABLES the OpportunityAccount.trigger (Opportunity, before insert)
 - checking this box will disable a trigger. This can cause erratic and unpredictable behavior in your NPSP. FOR ADVANCED CONSULTANTS AND DEVELOPERS ONLY.</inlineHelpText>
         <label>DISABLE_OpportunityAccount_trigger</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>DISABLE_OpportunityContactRoles_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>!!WARNING!!
 DISABLES the OpportunityContactRoles.trigger (Opportunity, after insert)
 - checking this box will disable a trigger. This can cause erratic and unpredictable behavior in your NPSP. FOR ADVANCED CONSULTANTS AND DEVELOPERS ONLY.</inlineHelpText>
         <label>DISABLE_OpportunityContactRoles_trigger</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>DISABLE_OpportunityPayments_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>!!WARNING!!
 DISABLES the OpportunityPayments.trigger (Opportunity, after insert, after update)
 - checking this box will disable a trigger. This can cause erratic and unpredictable behavior in your NPSP. FOR ADVANCED CONSULTANTS AND DEVELOPERS ONLY.</inlineHelpText>
         <label>DISABLE_OpportunityPayments_trigger</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Default_Opp_on_Convert__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Opp on Convert</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Disable_Account_Model_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Check this to turn off the Account Model trigger. Accounts will no longer be automatically created for Contacts. Only use this if you understand the ramifications. Turning off the account model could get your data into an inconsistent state.</inlineHelpText>
         <label>Disable Account Model Trigger</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Enable_Opportunity_Contact_Role_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Check this to turn on the automatic creation of Opportunity Contact Roles for newly created Opportunities in the One-to-One model.</inlineHelpText>
         <label>Enable Opportunity Contact Role Trigger</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Enable_Update_Check__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>Controls if the package automatically checks for new updates and versions.</inlineHelpText>
         <label>Enable Update Check</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Has_Package_Update__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Has Package Update</label>
         <length>40</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Last_Update_Check__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>The date/time of the last callout to check for new versions of the NPSP packages.</inlineHelpText>
-        <label>Last Update Check</label>
-        <required>false</required>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>Max_Package_Version__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Max Package Version</label>
-        <length>10</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>One_to_One_RecordTypeID__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>The ID of the record type to be used for 1x1 accounts. If none is selected, the account will default to the user&apos;s default account selection.</inlineHelpText>
-        <label>One-to-One RecordTypeID</label>
-        <length>18</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Opportunity_Contact_Role_Default_role__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>Default role for the primary Opportunity Contact Role</inlineHelpText>
-        <label>Opportunity Contact Role Default role</label>
-        <length>255</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Package_Update_URL__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Package Update URL</label>
-        <required>false</required>
-        <type>Url</type>
-    </fields>
-    <fields>
-        <fullName>Payments_Enabled__c</fullName>
-        <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>Enables automatic payments for new Opportunities/Donations.</inlineHelpText>
-        <label>Payments Enabled</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Update_Check_Interval__c</fullName>
-        <defaultValue>90</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>The number of days between NPSP callouts to check for new versions of this package. The default value is 90 days.</inlineHelpText>
-        <label>Update Check Interval</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -187,12 +116,70 @@ DISABLES the OpportunityPayments.trigger (Opportunity, after insert, after updat
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Last_Update_Check__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The date/time of the last callout to check for new versions of the NPSP packages.</inlineHelpText>
+        <label>Last Update Check</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Max_Package_Version__c</fullName>
+        <externalId>false</externalId>
+        <label>Max Package Version</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>One_to_One_RecordTypeID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The ID of the record type to be used for 1x1 accounts. If none is selected, the account will default to the user&apos;s default account selection.</inlineHelpText>
+        <label>One-to-One RecordTypeID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Contact_Role_Default_role__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Default role for the primary Opportunity Contact Role</inlineHelpText>
+        <label>Opportunity Contact Role Default role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Organizational_Account_Addresses_Enabled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Enables Address management for Organizational Accounts when selected.</description>
         <externalId>false</externalId>
         <inlineHelpText>Enables Address management for Organizational Accounts when selected.</inlineHelpText>
         <label>Organizational Account Addresses Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Package_Update_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Package Update URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Payments_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Enables automatic payments for new Opportunities/Donations.</inlineHelpText>
+        <label>Payments Enabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -205,6 +192,19 @@ DISABLES the OpportunityPayments.trigger (Opportunity, after insert, after updat
         <label>Simple Address Change Treated as Update</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Update_Check_Interval__c</fullName>
+        <defaultValue>90</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of days between NPSP callouts to check for new versions of this package. The default value is 90 days.</inlineHelpText>
+        <label>Update Check Interval</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <label>Contacts And Orgs Settings</label>
 </CustomObject>

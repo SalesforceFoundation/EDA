@@ -45,7 +45,7 @@
         <type>Default</type>
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Custom object for storing additional addresses for Household Accounts in the Nonprofit Starter Pack.</description>
+    <description>Custom object for storing additional addresses.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
