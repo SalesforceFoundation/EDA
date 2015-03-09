@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <enableFeeds>true</enableFeeds>
     <fields>
         <fullName>Contact_Id_for_Role__c</fullName>
-        <deprecated>false</deprecated>
         <description>System field updated automatically.  Do not use.</description>
         <externalId>false</externalId>
         <inlineHelpText>Hidden field for passing a Contact Id for Contact Role creation.</inlineHelpText>
@@ -11,6 +9,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
