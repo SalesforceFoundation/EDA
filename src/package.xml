@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">
   <fullName>HEDAP</fullName>
   <types>
+    <members>ADDR_Account_TDTM</members>
+    <members>ADDR_Addresses_TDTM</members>
+    <members>ADDR_Addresses_TEST</members>
+    <members>ADDR_Contact_TDTM</members>
     <members>AFFL_Affiliations_TDTM</members>
     <members>AFFL_Affiliations_TEST</members>
     <members>CAO_Constants</members>
@@ -75,8 +79,10 @@
     <members>Affiliation__c.Status__c</members>
     <members>Affiliations_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Contact.AlternateEmail__c</members>
+    <members>Contact.Current_Address__c</members>
     <members>Contact.HomeEmail__c</members>
     <members>Contact.Home_Address__c</members>
+    <members>Contact.is_Address_Override__c</members>
     <members>Contact.Last_Donation_Date__c</members>
     <members>Contact.Lifetime_Giving_History_Amount__c</members>
     <members>Contact.Organization_Type__c</members>
