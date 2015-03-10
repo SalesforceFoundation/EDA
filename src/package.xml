@@ -21,7 +21,6 @@
     <members>TDTM_DefaultConfig</members>
     <members>TDTM_ObjectDataGateway</members>
     <members>TDTM_Runnable</members>
-    <members>TDTM_Runnable_TEST</members>
     <members>TDTM_TriggerActionHelper</members>
     <members>TDTM_TriggerHandler</members>
     <members>TDTM_TriggerScaffolds_TEST</members>
