@@ -33,6 +33,14 @@
         <value>Unable to retrieve a valid Id for Relationship auto-creation.  Please check the settings under the Relationships Settings tab for valid fields and try again.</value>
     </labels>
     <labels>
+        <fullName>DefaultHouseholdName</fullName>
+        <categories>Households, Household Naming</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DefaultHouseholdName</shortDescription>
+        <value>Household</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>

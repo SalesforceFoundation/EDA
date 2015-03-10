@@ -201,6 +201,36 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Exclude_from_Household_Formal_Greeting__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checking this box will exclude this contact from the Household Formal Greeting.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this box will exclude this contact from the Household Formal Greeting.</inlineHelpText>
+        <label>Exclude from Household Formal Greeting</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_from_Household_Informal_Greeting__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checking this box will exclude this contact from the Household Informal Greeting.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this box will exclude this contact from the Household Informal Greeting.</inlineHelpText>
+        <label>Exclude from Household Informal Greeting</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_from_Household_Name__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checking this box will exclude this contact from the Household Name.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checking this box will exclude this contact from the Household Name.</inlineHelpText>
+        <label>Exclude from Household Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>HHId__c</fullName>
         <externalId>false</externalId>
         <formula>if(Account.SYSTEM_AccountType__c==&apos;Household Account&apos;,CASESAFEID(AccountId),null)</formula>
@@ -209,6 +239,31 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Naming_Exclusions__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines which household names this contact is NOT included as part of.</inlineHelpText>
+        <label>Naming Exclusions</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Household__c.Name</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Household__c.Formal_Greeting__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Household__c.Informal_Greeting__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Primary_Affiliation__c</fullName>
