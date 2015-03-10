@@ -3,10 +3,10 @@
     <customSettingsType>List</customSettingsType>
     <customSettingsVisibility>Public</customSettingsVisibility>
     <description>Automatically generates a Relationship between a Contact and another Contact or a Contact and a Contact/Campaign Member based on a custom lookup field.</description>
-    <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Campaign_Types__c</fullName>
+        <deprecated>false</deprecated>
         <description>List of eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create)</description>
         <externalId>false</externalId>
         <inlineHelpText>Eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create)</inlineHelpText>
@@ -17,6 +17,7 @@
     </fields>
     <fields>
         <fullName>Field__c</fullName>
+        <deprecated>false</deprecated>
         <description>The field insert or update that triggers the creation of this Relationship</description>
         <externalId>false</externalId>
         <inlineHelpText>The field insert or update that triggers the creation of this Relationship</inlineHelpText>
@@ -29,6 +30,7 @@
     </fields>
     <fields>
         <fullName>Object__c</fullName>
+        <deprecated>false</deprecated>
         <description>The object this Auto-Relationship is associated with</description>
         <externalId>false</externalId>
         <inlineHelpText>The object this Auto-Relationship is associated with</inlineHelpText>
@@ -41,6 +43,7 @@
     </fields>
     <fields>
         <fullName>Relationship_Type__c</fullName>
+        <deprecated>false</deprecated>
         <description>The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available.</inlineHelpText>

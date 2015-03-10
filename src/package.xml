@@ -172,6 +172,22 @@
     <name>CustomField</name>
   </types>
   <types>
+    <members>AutoCreateFieldError</members>
+    <members>Female</members>
+    <members>Male</members>
+    <members>Relationship_Explanation_Connector</members>
+    <members>Relationship_Split</members>
+    <members>RelationshipsAutoDescription</members>
+    <members>RelationshipsCustomFieldOverload</members>
+    <members>RelationshipsErrorsDescription</members>
+    <members>RelationshipsLookupDescription</members>
+    <members>RelationshipsSettingsDescription</members>
+    <name>CustomLabel</name>
+  </types>
+  <types>
+    <name>CustomLabel</name>
+  </types>
+  <types>
     <members>Account</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>

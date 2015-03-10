@@ -46,15 +46,14 @@
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Contact__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
@@ -69,6 +68,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -79,6 +79,7 @@
     </fields>
     <fields>
         <fullName>EndDate__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -88,6 +89,7 @@
     </fields>
     <fields>
         <fullName>Organization__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Organization</label>
         <referenceTo>Account</referenceTo>
@@ -103,6 +105,7 @@
     <fields>
         <fullName>Primary__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>If checked, the Affiliation&apos;s Organization will be stored on the Contact record.</inlineHelpText>
         <label>Primary</label>
@@ -112,6 +115,7 @@
     </fields>
     <fields>
         <fullName>Role__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Role</label>
         <length>255</length>
@@ -123,6 +127,7 @@
     </fields>
     <fields>
         <fullName>StartDate__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -132,6 +137,7 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>

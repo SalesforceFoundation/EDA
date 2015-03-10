@@ -46,15 +46,14 @@
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Contact__c</fullName>
+        <deprecated>false</deprecated>
         <description>Related Contact is this Contact&apos;s ______.</description>
         <externalId>false</externalId>
         <inlineHelpText>Related Contact is this Contact&apos;s ______.</inlineHelpText>
@@ -71,6 +70,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
         <description>Additional information about this Relationship</description>
         <externalId>false</externalId>
         <inlineHelpText>Additional information about this Relationship</inlineHelpText>
@@ -84,6 +84,7 @@
     <fields>
         <fullName>ReciprocalRelationship__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
         <description>System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.</description>
         <externalId>false</externalId>
         <inlineHelpText>System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.</inlineHelpText>
@@ -99,6 +100,7 @@
     <fields>
         <fullName>RelatedContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Related Contact</label>
         <referenceTo>Contact</referenceTo>
@@ -111,23 +113,12 @@
     </fields>
     <fields>
         <fullName>Relationship_Explanation__c</fullName>
+        <deprecated>false</deprecated>
         <description>Text formula that constructs a sentence explaining the relationship between the two Contacts</description>
         <externalId>false</externalId>
-        <formula>IF( $Setup.Relationship_Settings__c.Reciprocal_Method__c = &quot;Value Inversion&quot;
-&amp;&amp; CONTAINS(TEXT(Type__c), &quot;Relationship_Split&quot;),
-
-
-TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
-+ &quot;  &quot;  +  IF(ISPICKVAL(Status__c, &quot;Former&quot;), &apos;was&apos;, &quot;Relationship_Explanation_Connector&quot;) + &quot; &quot; + 
-TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + RIGHT(TEXT(Type__c), LEN(TEXT(Type__c))-FIND(&quot;Relationship_Split&quot;,TEXT(Type__c))), 
-
-
-TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
-+ &quot;  &quot;  +  IF(ISPICKVAL(Status__c, &quot;Former&quot;), &apos;was&apos;, &quot;Relationship_Explanation_Connector&quot;) + &quot; &quot; + 
-TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + TEXT(Type__c)
-
-
-)</formula>
+        <formula>TEXT(RelatedContact__r.Salutation) + &quot; &quot; + RelatedContact__r.FirstName + &quot; &quot; + RelatedContact__r.LastName
++ &quot;  &quot;  +  $Label.Relationship_Explanation_Connector + &quot; &quot; + 
+TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quot; + Contact__r.LastName + &quot;&apos;s &quot; + TEXT(Type__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Text formula that constructs a sentence explaining the relationship between the two Contacts</inlineHelpText>
         <label>Relationship Explanation</label>
@@ -140,6 +131,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     <fields>
         <fullName>SYSTEM_SystemCreated__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <description>System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.</description>
         <externalId>false</externalId>
         <inlineHelpText>System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.</inlineHelpText>
@@ -150,6 +142,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     </fields>
     <fields>
         <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
         <description>Status of the Relationship.</description>
         <externalId>false</externalId>
         <inlineHelpText>Status of the Relationship.</inlineHelpText>
@@ -171,6 +164,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
         <description>Field that describes how the Related Contact is connected to the Contact.</description>
         <externalId>false</externalId>
         <inlineHelpText>Field that describes how the Related Contact is connected to the Contact.</inlineHelpText>

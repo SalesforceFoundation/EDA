@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AutoCreateFieldError</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AutoCreateFieldError</shortDescription>
+        <value>Unable to retrieve a valid Id for Relationship auto-creation.  Please check the settings under the Relationships Settings tab for valid fields and try again.</value>
+    </labels>
+    <labels>
+        <fullName>Female</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Female</shortDescription>
+        <value>Female</value>
+    </labels>
+    <labels>
+        <fullName>Male</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Male</shortDescription>
+        <value>Male</value>
+    </labels>
+    <labels>
+        <fullName>Relationship_Explanation_Connector</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Relationship Explanation Connector</shortDescription>
+        <value>is</value>
+    </labels>
+    <labels>
+        <fullName>Relationship_Split</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Relationship Split</shortDescription>
+        <value>-</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsAutoDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsAutoDescription</shortDescription>
+        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. 
+
+
+
+Note that this feature is not available for Leads or Campaign Member objects that reference Leads.</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsCustomFieldOverload</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsCustomFieldOverload</shortDescription>
+        <value>FieldsDescribes Limit has been exceeded, may not be able to show all available fields.  
+
+
+
+There are more than 100 custom fields defined on the Contact or Campaign Member object. If the field you wish to use is not shown, you may need to enter this Auto-Create record manually.  Go to Setup-&gt;Develop-&gt;Custom Settings and click &apos;Manage&apos; next to &apos;Relationship Auto-Create&apos;, then click &apos;New&apos; to enter a new record manually.  Use API names (not the field label) to identify the fields that should trigger a new Relationship record.</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsErrorsDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsErrorsDescription</shortDescription>
+        <value>Errors can occur during the normal operation of your Relationships Package.  They can be caused by things such as improperly constructed validation rules, required fields, security/permissions, and other reasons.  This tab provides information about errors that may have occurred, when, and why they occurred.</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsLookupDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsLookupDescription</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father.  You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.  Gender determinations are based on Salutation if possible, or a custom gender field you can define on the Relationships Setting tab. 
+
+
+
+
+
+(NOTE: You may need to add the Type to your Relationships object to make it available for use. You can do so by going to: Setup|Customize|Create|Objects Click on &apos;Relationship&apos;, &apos;Type&apos;, and then &apos;New&apos; under the &apos;Picklist Values&apos; list.)</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsSettingsDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsSettingsDescription</shortDescription>
+        <value>Settings that control the behavior of Relationships. Changing these will change how the Relationships records behave.</value>
+    </labels>
+</CustomLabels>
