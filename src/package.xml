@@ -5,6 +5,7 @@
     <members>ADDR_Addresses_TDTM</members>
     <members>ADDR_Addresses_TEST</members>
     <members>ADDR_Contact_TDTM</members>
+    <members>ADDR_Seasonal_SCHED</members>
     <members>AFFL_Affiliations_TDTM</members>
     <members>AFFL_Affiliations_TEST</members>
     <members>CAO_Constants</members>
@@ -92,6 +93,7 @@
     <members>Contact.PreferredPhone__c</members>
     <members>Contact.Preferred_Email__c</members>
     <members>Contact.Primary_Address_Type__c</members>
+    <members>Contact.HHId__c</members>
     <members>Contact.Primary_Affiliation__c</members>
     <members>Contact.Primary_Contact__c</members>
     <members>Contact.Private__c</members>
@@ -172,6 +174,9 @@
     <name>CustomField</name>
   </types>
   <types>
+    <members>addrSeasonalOverlap</members>
+    <members>addrSeasonalPartial</members>
+    <members>addrHHAccountOnly</members>
     <members>AutoCreateFieldError</members>
     <members>Female</members>
     <members>Male</members>

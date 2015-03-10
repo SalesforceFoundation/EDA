@@ -84,7 +84,8 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
             // we only support address management with HH Accounts being used
             if (con.AccountId == null)
                 continue;
-                
+            if (!isBefore && (con.HHId__c != con.AccountId))
+                continue;
             if (isBefore) {
                 Account a = mapAccountIdAccount.get(con.AccountId);
                 if (a.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_TYPE)

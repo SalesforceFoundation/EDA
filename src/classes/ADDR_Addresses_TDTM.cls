@@ -582,13 +582,13 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         for (Address__c addr : listAddr) {
             if (addr.Household_Account__c == null) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
-                addr.addError('addrHHAccountOnly');
+                addr.addError(Label.addrHHAccountOnly);
             } else {
                 Account acc = mapAccIdAcc.get(addr.Household_Account__c);
                 if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_TYPE) &&
                     (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getContactsSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
-                    addr.addError('addrHHAccountOnly');
+                    addr.addError(Label.addrHHAccountOnly);
                 }
             }
         }    	
@@ -608,7 +608,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
             if (isSeasonalAddr(addr)) {
                 listAddrS.add(addr);
             } else if (isPartialSeasonalAddr(addr)) {
-                addr.addError('addrSeasonalPartial');                
+                addr.addError(Label.addrSeasonalPartial);                
             }
     	}      
     	
@@ -624,7 +624,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 if (addr.Household_Account__c != addr2.Household_Account__c)
                     continue;  
                 if (isSeasonalOverlap(addr, addr2)) {
-                    addr.addError('addrSeasonalOverlap');
+                    addr.addError(Label.addrSeasonalOverlap);
                 }
             }
         }
@@ -641,7 +641,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
             	if (addr.id == addr2.id)
             	   continue;
                 if (isSeasonalOverlap(addr, addr2)) {
-                    addr.addError('addrSeasonalOverlap');
+                    addr.addError(Label.addrSeasonalOverlap);
                     break;
                 }
             }

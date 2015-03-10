@@ -201,6 +201,16 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>HHId__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(Account.SYSTEM_AccountType__c==&apos;Household Account&apos;,CASESAFEID(AccountId),null)</formula>
+        <inlineHelpText>holds the ID of the current  Household Account.</inlineHelpText>
+        <label>HHId</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Primary_Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
