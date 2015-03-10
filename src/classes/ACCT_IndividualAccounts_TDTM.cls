@@ -116,8 +116,6 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     
                     // BEFORE INSERT
                     if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                    	// always clear this deprecated field to avoid confusing users.
-                    	c.SystemAccountProcessor__c = null;
                     	
                         /* HH Account should be created if:
                             1. The account isn't set by the user
@@ -175,8 +173,6 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         
                     // BEFORE UPDATE
                     if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                        // always clear this deprecated field to avoid confusing users.
-                        c.SystemAccountProcessor__c = null;
 
                         /* HH account should be created if:
                             1. The account has been blanked out by the user

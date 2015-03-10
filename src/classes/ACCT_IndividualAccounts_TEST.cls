@@ -170,7 +170,7 @@ private class ACCT_IndividualAccounts_TEST {
     
     private static void insertOneToOneTriggerOffProcessor(string strProcessor) {
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = strProcessor,Disable_Account_Model_Trigger__c=true));
+            new Contacts_and_Orgs_Settings__c (Account_Processor__c = strProcessor));
         
         // turn off all TDTM triggers for this component
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();

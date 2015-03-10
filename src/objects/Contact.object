@@ -322,36 +322,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>SystemAccountProcessor__c</fullName>
-        <description>Hidden system field: do not change.  Updated by automatic processes.  See Contacts &amp; Organization settings.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates which model drives Account relationship behavior: Individual (Bucket) or One-to-One</inlineHelpText>
-        <label>_SYSTEM: ACCOUNT PROCESSOR</label>
-        <picklist>
-            <picklistValues>
-                <fullName>One-to-One</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Individual</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>SystemIsIndividual__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Deprecated field.  Do not use.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This field is no longer used and should not be referenced. It has been replaced by Type_of_Account__c</inlineHelpText>
-        <label>_SYSTEM: IsIndividual - DEPRECATED</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Type_of_Account__c</fullName>
         <description>Formula: &quot;Individual&quot; or &quot;Organization&quot; depending on Account setting.</description>
         <externalId>false</externalId>

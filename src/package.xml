@@ -106,32 +106,20 @@
     <members>Contact.Primary_Contact__c</members>
     <members>Contact.Private__c</members>
     <members>Contact.Secondary_Address_Type__c</members>
-    <members>Contact.SystemAccountProcessor__c</members>
-    <members>Contact.SystemIsIndividual__c</members>
     <members>Contact.Type_of_Account__c</members>
     <members>Contact.WorkEmail__c</members>
     <members>Contact.WorkPhone__c</members>
     <members>Contact.Work_Address__c</members>
     <members>Contacts_And_Orgs_Settings__c.Account_Processor__c</members>
-    <members>Contacts_And_Orgs_Settings__c.DISABLE_IndividualAccounts_trigger__c</members>
-    <members>Contacts_And_Orgs_Settings__c.DISABLE_OpportunityAccount_trigger__c</members>
-    <members>Contacts_And_Orgs_Settings__c.DISABLE_OpportunityContactRoles_trigger__c</members>
-    <members>Contacts_And_Orgs_Settings__c.DISABLE_OpportunityPayments_trigger__c</members>
     <members>Contacts_And_Orgs_Settings__c.Default_Opp_on_Convert__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Disable_Account_Model_Trigger__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Enable_Opportunity_Contact_Role_Trigger__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Enable_Update_Check__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Has_Package_Update__c</members>
+    <members>Contacts_And_Orgs_Settings__c.HH_Account_RecordTypeID__c</members>
     <members>Contacts_And_Orgs_Settings__c.Household_Account_Addresses_Disabled__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Last_Update_Check__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Max_Package_Version__c</members>
     <members>Contacts_And_Orgs_Settings__c.One_to_One_RecordTypeID__c</members>
     <members>Contacts_And_Orgs_Settings__c.Opportunity_Contact_Role_Default_role__c</members>
     <members>Contacts_And_Orgs_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
     <members>Contacts_And_Orgs_Settings__c.Package_Update_URL__c</members>
     <members>Contacts_And_Orgs_Settings__c.Payments_Enabled__c</members>
     <members>Contacts_And_Orgs_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Update_Check_Interval__c</members>
     <members>Error_Settings__c.Disable_Error_Handling__c</members>
     <members>Error_Settings__c.Enable_Debug__c</members>
     <members>Error_Settings__c.Error_Notifications_On__c</members>

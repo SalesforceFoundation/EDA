@@ -227,9 +227,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         //create our own based on what's passed in from the test
         contactsSettings.One_to_One_RecordTypeID__c = mySettings.One_to_One_RecordTypeID__c;
         contactsSettings.Account_Processor__c = mySettings.Account_Processor__c;
-        contactsSettings.Enable_Opportunity_Contact_Role_Trigger__c = mySettings.Enable_Opportunity_Contact_Role_Trigger__c;
         contactsSettings.Opportunity_Contact_Role_Default_role__c = mySettings.Opportunity_Contact_Role_Default_role__c;
-        contactsSettings.Disable_Account_Model_Trigger__c = mySettings.Disable_Account_Model_Trigger__c;
         contactsSettings.Payments_Enabled__c = mySettings.Payments_Enabled__c;
         contactsSettings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
         contactsSettings.Household_Account_Addresses_Disabled__c = mySettings.Household_Account_Addresses_Disabled__c;
