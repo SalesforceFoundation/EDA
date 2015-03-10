@@ -1,0 +1,10 @@
+{
+  'pre': [
+    { 'bundle': 'Account Record Types',
+      'description': 'Creates the Household Account and Organization record types and the Household Account list view on Account',
+      'path': 'pre/account_record_types',
+    }
+  ],
+
+  'post': []    
+}

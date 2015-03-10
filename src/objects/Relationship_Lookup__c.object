@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Provides table of gendered and gender-neutral reciprocal relationships for various relationship types (ie. Father-Son, Father-Daughter, Father-Child)</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Indicates if this reciprocal lookup is active.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates if this reciprocal lookup is active.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Female__c</fullName>
+        <description>The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s salutation indicates gender.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s Salutation indicates gender.</inlineHelpText>
+        <label>Female</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Male__c</fullName>
+        <description>The value used if the Contact&apos;s gender field matches the values in the Male Custom Label or the Contact&apos;s salutation indicates gender.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value used if the Contact&apos;s gender field matches the values in the Male Custom Label or the Contact&apos;s Salutation indicates gender.</inlineHelpText>
+        <label>Male</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Neutral__c</fullName>
+        <description>The value used if the Contact&apos;s gender field does not match either the Male or Female Custom Labels, and the Contact&apos;s salutation does not infer gender.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value used if the Contact&apos;s gender field does not match either the Male or Female Custom Labels, and the Contact&apos;s Salutation does not infer gender.</inlineHelpText>
+        <label>Neutral</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Relationship Lookup</label>
+</CustomObject>

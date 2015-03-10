@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores which classes to run in response to DML performed on an object.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Indicates that this module is active</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that this module is active</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Asynchronous__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates that this module should be run asynchronously in this transaction</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that this module should be run asynchronously in this transaction</inlineHelpText>
+        <label>Asynchronous</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Class__c</fullName>
+        <description>Name of the class to be run</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the class to be run</inlineHelpText>
+        <label>Class</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Load_Order__c</fullName>
+        <description>Order in which this module should be run, helps maintain dependencies in the modules and data.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Order in which this module should be run, helps maintain dependencies in the modules and data.</inlineHelpText>
+        <label>Load Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <description>Name of the object this handler should be run for</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the object this handler should be run for</inlineHelpText>
+        <label>Object</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Trigger_Action__c</fullName>
+        <description>Trigger Action in which this module should fire</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Trigger Action in which this module should fire</inlineHelpText>
+        <label>Trigger Action</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BeforeInsert</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BeforeUpdate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BeforeDelete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AfterInsert</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AfterUpdate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AfterDelete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AfterUndelete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>User_Managed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>The record is managed by the user and updates won&apos;t be pushed to it.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record.</inlineHelpText>
+        <label>User Managed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Trigger Handler</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Trigger Handler Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Trigger Handlers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

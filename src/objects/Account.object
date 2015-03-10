@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>One2OneContact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>_SYSTEM: One2OneContact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Account</relationshipLabel>
+        <relationshipName>Organizations</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SYSTEMIsIndividual__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Hidden system field: do not change.  Updated by automatic processes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether or not this Account is an Individual (true) or Organization (false).</inlineHelpText>
+        <label>_SYSTEM: IsIndividual</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SYSTEM_AccountType__c</fullName>
+        <description>Hidden system field: do not change.  Updated by automatic processes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates which model drives Contact relationship behavior: Individual (Bucket) or One-to-One</inlineHelpText>
+        <label>_SYSTEM: AccountType</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SYSTEM_CUSTOM_NAMING__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>For Household Accounts, specifies which name related fields should not be automatically populated by the Householding code.</inlineHelpText>
+        <label>_SYSTEM: CUSTOM NAMING</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Name</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Formal_Greeting__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Informal_Greeting__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+</CustomObject>
