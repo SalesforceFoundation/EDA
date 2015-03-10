@@ -8,7 +8,6 @@
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
-        <deprecated>false</deprecated>
         <description>Indicates if this reciprocal lookup is active.</description>
         <externalId>false</externalId>
         <inlineHelpText>Indicates if this reciprocal lookup is active.</inlineHelpText>
@@ -18,7 +17,6 @@
     </fields>
     <fields>
         <fullName>Female__c</fullName>
-        <deprecated>false</deprecated>
         <description>The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s salutation indicates gender.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value used if the Contact&apos;s gender field matches the values in the Female Custom Label or the Contact&apos;s Salutation indicates gender.</inlineHelpText>
@@ -31,7 +29,6 @@
     </fields>
     <fields>
         <fullName>Male__c</fullName>
-        <deprecated>false</deprecated>
         <description>The value used if the Contact&apos;s gender field matches the values in the Male Custom Label or the Contact&apos;s salutation indicates gender.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value used if the Contact&apos;s gender field matches the values in the Male Custom Label or the Contact&apos;s Salutation indicates gender.</inlineHelpText>
@@ -44,7 +41,6 @@
     </fields>
     <fields>
         <fullName>Neutral__c</fullName>
-        <deprecated>false</deprecated>
         <description>The value used if the Contact&apos;s gender field does not match either the Male or Female Custom Labels, and the Contact&apos;s salutation does not infer gender.</description>
         <externalId>false</externalId>
         <inlineHelpText>The value used if the Contact&apos;s gender field does not match either the Male or Female Custom Labels, and the Contact&apos;s Salutation does not infer gender.</inlineHelpText>

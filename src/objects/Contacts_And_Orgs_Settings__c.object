@@ -26,7 +26,6 @@
     </fields>
     <fields>
         <fullName>HH_Account_RecordTypeID__c</fullName>
-        <deprecated>false</deprecated>
         <description>The ID of the Account Record Type to be used for Household Accounts. If none is selected, the Account will default to the user&apos;s default Account Record Type.</description>
         <externalId>false</externalId>
         <inlineHelpText>The ID of the Account Record Type to be used for Household Accounts. If none is selected, the Account will default to the user&apos;s default Account Record Type.</inlineHelpText>

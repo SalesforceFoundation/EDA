@@ -8,7 +8,6 @@
     <fields>
         <fullName>Allow_AutoCreated_Duplicates__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <description>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</description>
         <externalId>false</externalId>
         <inlineHelpText>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</inlineHelpText>
@@ -19,7 +18,6 @@
     <fields>
         <fullName>DISABLE_RelationshipCM_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <description>DEPRECATED. Trigger behavior now controlled in the Trigger Configuration page of NPSP Settings.</description>
         <externalId>false</externalId>
         <inlineHelpText>DEPRECATED. Trigger behavior now controlled in the Trigger Configuration page of NPSP Settings.</inlineHelpText>
@@ -30,7 +28,6 @@
     <fields>
         <fullName>DISABLE_RelationshipContacts_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <description>DEPRECATED. Trigger behavior now controlled in the Trigger Configuration page of NPSP Settings.</description>
         <externalId>false</externalId>
         <inlineHelpText>DEPRECATED. Trigger behavior now controlled in the Trigger Configuration page of NPSP Settings.</inlineHelpText>
@@ -41,7 +38,6 @@
     <fields>
         <fullName>DISABLE_Relationships_trigger__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <description>DEPRECATED. Trigger behavior now controlled in the Trigger Configuration page of NPSP Settings.</description>
         <externalId>false</externalId>
         <inlineHelpText>DEPRECATED. Trigger behavior now controlled in the Trigger Configuration page of NPSP Settings.</inlineHelpText>
@@ -52,7 +48,6 @@
     <fields>
         <fullName>Force_Synchronous_Auto_Create__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <description>DEPRECATED.  This setting is not used.</description>
         <externalId>false</externalId>
         <inlineHelpText>DEPRECATED.  This setting is not used.</inlineHelpText>
@@ -62,7 +57,6 @@
     </fields>
     <fields>
         <fullName>Gender_Field__c</fullName>
-        <deprecated>false</deprecated>
         <description>The custom field used to define the gender of a Contact for determining reciprocal relationships</description>
         <externalId>false</externalId>
         <inlineHelpText>The custom field used to define the gender of a Contact for determining reciprocal relationships</inlineHelpText>
@@ -75,7 +69,6 @@
     </fields>
     <fields>
         <fullName>Reciprocal_Method__c</fullName>
-        <deprecated>false</deprecated>
         <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
         <inlineHelpText>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
@@ -88,7 +81,6 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Field_Id__c</fullName>
-        <deprecated>false</deprecated>
         <description>The ID of the Name field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button.  Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
         <externalId>false</externalId>
         <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
@@ -101,7 +93,6 @@
     </fields>
     <fields>
         <fullName>Relationship_Name_Id_Field_Id__c</fullName>
-        <deprecated>false</deprecated>
         <description>The ID of the Name Id field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button. Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
         <externalId>false</externalId>
         <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>

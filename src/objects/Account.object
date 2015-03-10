@@ -36,7 +36,6 @@
     </fields>
     <fields>
         <fullName>SYSTEM_CUSTOM_NAMING__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <inlineHelpText>For Household Accounts, specifies which name related fields should not be automatically populated by the Householding code.</inlineHelpText>
         <label>_SYSTEM: CUSTOM NAMING</label>
