@@ -57,7 +57,7 @@ public with sharing class REL_Relationships_Con_TDTM extends TDTM_Runnable {
                             //get the id from the field                        
                             relatedContactId = (Id)c.get(rac.Field__c);
                         }catch(Exception e){
-                            c.addError('AutoCreateFieldError');
+                            c.addError(system.Label.AutoCreateFieldError);
                         }    
                         
                         if(triggerAction == TDTM_Runnable.Action.afterInsert && relatedContactId != null) {                        

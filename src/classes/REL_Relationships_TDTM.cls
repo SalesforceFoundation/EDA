@@ -289,8 +289,8 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
             
                 if (rlMap.containsKey(r.Type__c)){
                     
-                    List<String> malelist = new String[] {'Male'};                                                                                                        
-                    List<String> femalelist = new String[] {'Female'};
+                    List<String> malelist = system.label.Male.split(',');                                                                                                        
+                    List<String> femalelist = system.label.Female.split(',');
                     
                     Set<String> maleset = new Set<String>();
                     Set<String> femaleset = new Set<String>();
@@ -353,10 +353,10 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
         else if(rs.Reciprocal_Method__c == 'Value Inversion'){
             for (Relationship__c r : rList){                           
                 //instead lets split the type
-                List<string> splitrelationship = r.Type__c.split('Relationship_Split');
+                List<string> splitrelationship = r.Type__c.split(system.label.Relationship_Split);
                 String newstring = '';
                 if (splitrelationship.size() > 1)
-                    newstring = splitrelationship[1] + 'Relationship_Split' + splitrelationship[0];
+                    newstring = splitrelationship[1] + system.label.Relationship_Split + splitrelationship[0];
                 else
                     newstring = r.Type__c;
             
