@@ -23,7 +23,6 @@
                 <behavior>Edit</behavior>
                 <field>Phone</field>
             </layoutItems>
-
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Website</field>
