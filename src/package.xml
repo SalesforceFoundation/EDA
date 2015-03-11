@@ -240,8 +240,10 @@
     <members>Contact.New_Affiliation</members>
     <members>Contact.New_Relationship</members>
     <members>Contact.Quick_Update</members>
+    <members>LogACall</members>
     <members>NewAccount</members>
     <members>NewContact</members>
+    <members>NewTask</members>
     <members>New_Campaign</members>
     <name>QuickAction</name>
   </types>
