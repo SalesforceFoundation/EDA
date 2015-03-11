@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>addrSeasonalOverlap</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>addrSeasonalOverlap</shortDescription>
-        <value>Seasonal addresses cannot overlap with any other seasonal address in the Household.</value>
-    </labels>
-    <labels>
-        <fullName>addrSeasonalPartial</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>addrSeasonalPartial</shortDescription>
-        <value>An address must have all or none of its Seasonal fields set.</value>
-    </labels>
-    <labels>
-        <fullName>addrHHAccountOnly</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>addrHHAccountOnly</shortDescription>
-        <value>Address objects are only supported on Household Accounts and Organizational Accounts (if enabled).</value>
-    </labels>
-    <labels>
         <fullName>AutoCreateFieldError</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -125,5 +101,29 @@ There are more than 100 custom fields defined on the Contact or Campaign Member 
         <protected>false</protected>
         <shortDescription>RelationshipsSettingsDescription</shortDescription>
         <value>Settings that control the behavior of Relationships. Changing these will change how the Relationships records behave.</value>
+    </labels>
+    <labels>
+        <fullName>addrHHAccountOnly</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrHHAccountOnly</shortDescription>
+        <value>Address objects are only supported on Household Accounts and Organizational Accounts (if enabled).</value>
+    </labels>
+    <labels>
+        <fullName>addrSeasonalOverlap</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addrSeasonalOverlap</shortDescription>
+        <value>Seasonal addresses cannot overlap with any other seasonal address in the Household.</value>
+    </labels>
+    <labels>
+        <fullName>addrSeasonalPartial</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addrSeasonalPartial</shortDescription>
+        <value>An address must have all or none of its Seasonal fields set.</value>
     </labels>
 </CustomLabels>

@@ -89,19 +89,18 @@
     <members>Affiliations_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Contact.AlternateEmail__c</members>
     <members>Contact.Current_Address__c</members>
+    <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
+    <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
+    <members>Contact.Exclude_from_Household_Name__c</members>
+    <members>Contact.HHId__c</members>
     <members>Contact.HomeEmail__c</members>
     <members>Contact.Home_Address__c</members>
-    <members>Contact.is_Address_Override__c</members>
+    <members>Contact.Naming_Exclusions__c</members>
     <members>Contact.Organization_Type__c</members>
     <members>Contact.Other_Address__c</members>
     <members>Contact.PreferredPhone__c</members>
     <members>Contact.Preferred_Email__c</members>
     <members>Contact.Primary_Address_Type__c</members>
-    <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
-    <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
-    <members>Contact.Exclude_from_Household_Name__c</members>
-    <members>Contact.HHId__c</members>
-    <members>Contact.Naming_Exclusions__c</members>
     <members>Contact.Primary_Affiliation__c</members>
     <members>Contact.Primary_Contact__c</members>
     <members>Contact.Private__c</members>
@@ -110,6 +109,7 @@
     <members>Contact.WorkEmail__c</members>
     <members>Contact.WorkPhone__c</members>
     <members>Contact.Work_Address__c</members>
+    <members>Contact.is_Address_Override__c</members>
     <members>Contacts_And_Orgs_Settings__c.Account_Processor__c</members>
     <members>Contacts_And_Orgs_Settings__c.Default_Opp_on_Convert__c</members>
     <members>Contacts_And_Orgs_Settings__c.HH_Account_RecordTypeID__c</members>
@@ -170,9 +170,6 @@
     <name>CustomField</name>
   </types>
   <types>
-    <members>addrSeasonalOverlap</members>
-    <members>addrSeasonalPartial</members>
-    <members>addrHHAccountOnly</members>
     <members>AutoCreateFieldError</members>
     <members>DefaultHouseholdName</members>
     <members>Female</members>
@@ -184,6 +181,9 @@
     <members>RelationshipsErrorsDescription</members>
     <members>RelationshipsLookupDescription</members>
     <members>RelationshipsSettingsDescription</members>
+    <members>addrHHAccountOnly</members>
+    <members>addrSeasonalOverlap</members>
+    <members>addrSeasonalPartial</members>
     <name>CustomLabel</name>
   </types>
   <types>
@@ -223,6 +223,11 @@
   <types>
     <members>Trigger_Handler__c.All</members>
     <name>ListView</name>
+  </types>
+  <types>
+    <members>Account.HH_Account</members>
+    <members>Account.Organization</members>
+    <name>RecordType</name>
   </types>
   <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>
