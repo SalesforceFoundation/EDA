@@ -17,14 +17,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Default_Opp_on_Convert__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Default Opp on Convert</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>HH_Account_RecordTypeID__c</fullName>
         <description>The ID of the Account Record Type to be used for Household Accounts. If none is selected, the Account will default to the user&apos;s default Account Record Type.</description>
         <externalId>false</externalId>
@@ -75,23 +67,6 @@
         <externalId>false</externalId>
         <inlineHelpText>Enables Address management for Organizational Accounts when selected.</inlineHelpText>
         <label>Organizational Account Addresses Enabled</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Package_Update_URL__c</fullName>
-        <externalId>false</externalId>
-        <label>Package Update URL</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Url</type>
-    </fields>
-    <fields>
-        <fullName>Payments_Enabled__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <inlineHelpText>Enables automatic payments for new Opportunities/Donations.</inlineHelpText>
-        <label>Payments Enabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
