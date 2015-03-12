@@ -141,10 +141,6 @@
     <members>Relationship_Lookup__c.Male__c</members>
     <members>Relationship_Lookup__c.Neutral__c</members>
     <members>Relationship_Settings__c.Allow_AutoCreated_Duplicates__c</members>
-    <members>Relationship_Settings__c.DISABLE_RelationshipCM_trigger__c</members>
-    <members>Relationship_Settings__c.DISABLE_RelationshipContacts_trigger__c</members>
-    <members>Relationship_Settings__c.DISABLE_Relationships_trigger__c</members>
-    <members>Relationship_Settings__c.Force_Synchronous_Auto_Create__c</members>
     <members>Relationship_Settings__c.Gender_Field__c</members>
     <members>Relationship_Settings__c.Reciprocal_Method__c</members>
     <members>Relationship_Settings__c.Relationship_Name_Field_Id__c</members>
