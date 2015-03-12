@@ -236,7 +236,6 @@
     <members>Account.New_Affiliation</members>
     <members>Account.Quick_Household_Update</members>
     <members>Account.Quick_Organization_Update</members>
-    <members>Address__c.Update_Address</members>
     <members>Contact.New_Affiliation</members>
     <members>Contact.New_Relationship</members>
     <members>Contact.Quick_Update</members>
