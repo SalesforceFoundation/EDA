@@ -225,10 +225,6 @@
     <name>ListView</name>
   </types>
   <types>
-    <members>HEDAP_default</members>
-    <name>PermissionSet</name>
-  </types>
-  <types>
     <members>Account.New_Address</members>
     <members>Account.New_Affiliation</members>
     <members>Account.Quick_Household_Update</members>
