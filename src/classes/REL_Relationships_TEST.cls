@@ -251,7 +251,7 @@ private class REL_Relationships_TEST {
     static testMethod void testAutoCreateCampaignMemberInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsertSynch') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Force_Synchronous_Auto_Create__c = true));
+        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
         
         //reset the process controller to mimic a second user action
         //Relationships_ProcessControl.hasRun = false;
@@ -318,7 +318,7 @@ private class REL_Relationships_TEST {
     static testMethod void testAutoCreateContactInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsertSynch') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Force_Synchronous_Auto_Create__c = true));
+        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
         
         //reset the process controller to mimic a second user action
         //Relationships_ProcessControl.hasRun = false;
