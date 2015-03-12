@@ -111,14 +111,11 @@
     <members>Contact.Work_Address__c</members>
     <members>Contact.is_Address_Override__c</members>
     <members>Contacts_And_Orgs_Settings__c.Account_Processor__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Default_Opp_on_Convert__c</members>
     <members>Contacts_And_Orgs_Settings__c.HH_Account_RecordTypeID__c</members>
     <members>Contacts_And_Orgs_Settings__c.Household_Account_Addresses_Disabled__c</members>
     <members>Contacts_And_Orgs_Settings__c.One_to_One_RecordTypeID__c</members>
     <members>Contacts_And_Orgs_Settings__c.Opportunity_Contact_Role_Default_role__c</members>
     <members>Contacts_And_Orgs_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Package_Update_URL__c</members>
-    <members>Contacts_And_Orgs_Settings__c.Payments_Enabled__c</members>
     <members>Contacts_And_Orgs_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
     <members>Error_Settings__c.Disable_Error_Handling__c</members>
     <members>Error_Settings__c.Enable_Debug__c</members>
