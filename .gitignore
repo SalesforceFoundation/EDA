@@ -1,6 +1,7 @@
 .externalToolBuilders
 .project
 .settings
+.gitignore
 build.properties
 salesforce.schema
 Referenced Packages
