@@ -210,8 +210,11 @@
     <name>CustomTab</name>
   </types>
   <types>
+    <members>Account-Household Layout</members>
+    <members>Account-Organization Layout</members>
     <members>Address__c-Address Layout</members>
     <members>Affiliation__c-Affiliation Layout</members>
+    <members>Contact-Contact Layout</members>
     <members>Error__c-Error Layout</members>
     <members>Relationship__c-Relationship Layout</members>
     <members>Trigger_Handler__c-Trigger Handler Layout</members>
@@ -220,6 +223,26 @@
   <types>
     <members>Trigger_Handler__c.All</members>
     <name>ListView</name>
+  </types>
+  <types>
+    <members>HEDAP_default</members>
+    <name>PermissionSet</name>
+  </types>
+  <types>
+    <members>Account.New_Address</members>
+    <members>Account.New_Affiliation</members>
+    <members>Account.Quick_Household_Update</members>
+    <members>Account.Quick_Organization_Update</members>
+    <members>Contact.New_Affiliation</members>
+    <members>Contact.New_Relationship</members>
+    <members>Contact.Quick_Update</members>
+    <members>LogACall</members>
+    <members>NewAccount</members>
+    <members>NewContact</members>
+    <members>NewNote</members>
+    <members>NewTask</members>
+    <members>New_Campaign</members>
+    <name>QuickAction</name>
   </types>
   <types>
     <members>Account.HH_Account</members>
