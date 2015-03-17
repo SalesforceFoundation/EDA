@@ -413,34 +413,6 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description utility to return the recordtypeId for a new account, given the account model. 
-    * @return Id. if none is explicitly specified, returns null.
-    */ 
-    /*public static ID rtIdForNewAccount() {
-    	return rtIdForAccountModel(CAO_Constants.isHHAccountModel());
-    }*/
-
-    /*******************************************************************************************************
-    * @description utility to return the recordtypeId for a new account, given the account model. 
-    * @param isHHAccountModel whether we are using the Household Account Model
-    * @return Id. recordtype Id to use, or null if none is specified for the account model.
-    */ 
-    /*public static ID rtIdForAccountModel(boolean isHHAccountModel) {
-        ContactsSettings = UTIL_CustomSettingsFacade.getContactsSettings();
-        Schema.Recordtypeinfo rtById = null;
-        // check if recordtypes are enabled, and if it matches the existing setting
-        // we go thru describe to validate that it is a valid recordType ID.
-        ID rtId = isHHAccountModel ? ContactsSettings.HH_Account_RecordTypeID__c : ContactsSettings.One_to_One_RecordTypeID__c;
-        if (rtId != null) {
-            Schema.DescribeSObjectResult R = Account.SObjectType.getDescribe();
-            Map<Id,Schema.RecordTypeInfo> rtMapById = r.getRecordTypeInfosById();
-            rtById = rtMapById.get(rtId);
-            return (rtById == null ? null : rtById.getRecordTypeID());            
-        }
-        return null;
-    }*/
-
-    /*******************************************************************************************************
     * @description Inserts a new 1:1 or HH Account for an Individual Contact
     * @param contacts the list of Contacts that need updating.
     * @param dmlWrapper to hold the Contacts that need updating.

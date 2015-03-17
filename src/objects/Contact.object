@@ -268,15 +268,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Primary_Contact__c</fullName>
-        <description>Automatically checked if the Contact is the Primary Contact on their Account.</description>
-        <externalId>false</externalId>
-        <formula>Account.One2OneContact__c = Id</formula>
-        <inlineHelpText>This is is checked if the user is the Primary Contact on their Account.  The Primary Contact can be edited on the Account.</inlineHelpText>
-        <label>Primary Contact</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Private__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Excludes this Contact from One to One or Bucket account processing.</description>
