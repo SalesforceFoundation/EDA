@@ -24,15 +24,8 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				System.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimaries.size());
 				
 				//Query all the primary affiliation lookup fields on the contact
-				String dynamicQuery = 'select ID';
-				for(Schema.SObjectField primaryField : primaryAfflFields) {
-					dynamicQuery = dynamicQuery + ', ' + primaryField; 	
-				}
-				dynamicQuery += ' from Contact where ID = \''+ affl.Contact__c + '\'';
-				System.debug('****MRT: Dynamic query: ' + dynamicQuery);
-				Contact relatedContact = (Contact)Database.query(dynamicQuery)[0];
+				Contact relatedContact = queryAfflLookupFields(primaryAfflFields, affl);
 				System.debug('****MRT: Related contact: ' + relatedContact.ID);
-            	
             	
             	System.debug('****MRT: primary: ' + affl.Primary__c + ' - Contact: ' + affl.Contact__c + ' - Account: ' + affl.Organization__c); 
                 if (affl.Primary__c && affl.Contact__c != null && affl.Organization__c != null) {
@@ -73,9 +66,29 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return dmlWrapper;  	
     }
     
+    private Contact queryAfflLookupFields(List<Schema.SObjectField> primaryAfflFields, Affiliation__c affl) {
+    	String dynamicQuery = 'select ID';
+		for(Schema.SObjectField primaryField : primaryAfflFields) {
+			dynamicQuery = dynamicQuery + ', ' + primaryField; 	
+		}
+		dynamicQuery += ' from Contact where ID = \''+ affl.Contact__c + '\'';
+		System.debug('****MRT: Dynamic query: ' + dynamicQuery);
+		return (Contact)Database.query(dynamicQuery)[0];
+    }
+    
     private List<Schema.SObjectField> getContactPrimaryAfflFields() {
 		List<Schema.SObjectField> primaryAfflFields = new List<Schema.SObjectField>();
-		List<Schema.SObjectField> fieldsList = Contact.sObjectType.getDescribe().fields.getMap().values();
+		Map<String, Schema.SObjectField> fieldsMap = Contact.sObjectType.getDescribe().fields.getMap();
+		
+		//Doing our own sorting, because if we call sort on the list we get an exception. Apparently someone forgot to implement
+		//Comparable on SObjectField.
+		List<String> keys = new List<String>(fieldsMap.keySet());
+		keys.sort();
+		List<Schema.SObjectField> fieldsList = new List<Schema.SObjectField>();
+		for(String key : keys) {
+			fieldsList.add(fieldsMap.get(key));
+		}
+		
 		for(Schema.SObjectField field : fieldsList) {
 			if(field.getDescribe().getLabel().startsWith('Primary Affiliation')) {
 				primaryAfflFields.add(field);
