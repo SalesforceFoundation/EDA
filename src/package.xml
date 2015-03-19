@@ -162,6 +162,8 @@
   </types>
   <types>
     <members>AutoCreateFieldError</members>
+    <members>DefaultCurrentStatus</members>
+    <members>DefaultFormerStatus</members>
     <members>DefaultHouseholdName</members>
     <members>Female</members>
     <members>Male</members>

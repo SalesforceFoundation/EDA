@@ -341,7 +341,7 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
                     Affiliation__c a = new Affiliation__c();
                     a.Contact__c = contactId;
                     a.Organization__c = accountId;
-                    a.Status__c = 'DefaultCurrentStatus';
+                    a.Status__c = Label.DefaultCurrentStatus;
                     a.StartDate__c = System.Today();
                     a.Role__c = ao.strRole;
                     a.Primary__c = ao.fPrimary;
@@ -359,7 +359,7 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
                     a = new Affiliation__c();
                     a.Contact__c = contactId;
                     a.Organization__c = accountId;
-                    a.Status__c = 'DefaultCurrentStatus';
+                    a.Status__c = Label.DefaultCurrentStatus;
                     a.StartDate__c = System.Today();
                     a.Role__c = ao.strRole;
                     a.Primary__c = true;
@@ -375,7 +375,7 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
                
                if (ao.fFormer) {
                     //flag it as former ending today
-                    a.Status__c = 'DefaultFormerStatus';
+                    a.Status__c = Label.DefaultFormerStatus;
                     a.EndDate__c = System.Today();                
                }
                if (ao.fUnprimary) {
