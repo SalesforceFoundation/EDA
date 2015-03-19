@@ -55,18 +55,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>API_Response__c</fullName>
-        <description>Contains the raw response or an error message.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Contains the raw response or an error message.</inlineHelpText>
-        <label>API Response</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>6</visibleLines>
-    </fields>
-    <fields>
         <fullName>Address_Type__c</fullName>
         <externalId>false</externalId>
         <label>Address Type</label>
@@ -105,17 +93,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Ambiguous__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Indicates whether more than on valid address was found when attempting to validate it through an external service.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates whether more than on valid address was found when attempting to validate it through an external service.</inlineHelpText>
-        <label>Ambiguous</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Congressional_District__c</fullName>
@@ -680,30 +657,6 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Verification_Status__c</fullName>
-        <description>Status of the address verification.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>If this address requires verification, click the Verify Address button at the top of this page. Consult the Help documentation in the Power of Us Hub for more information.</inlineHelpText>
-        <label>Verification Status</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Verified__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Indicates whether the address has been verified by an external address verification service.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates whether the address has been verified by an external address verification service.</inlineHelpText>
-        <label>Verified</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <label>Address</label>
     <nameField>

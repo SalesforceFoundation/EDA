@@ -10,6 +10,7 @@
     <members>ADDR_Seasonal_SCHED</members>
     <members>AFFL_Affiliations_TDTM</members>
     <members>AFFL_Affiliations_TEST</members>
+    <members>AFFL_MultiRecordType_TDTM</members>
     <members>CAO_Constants</members>
     <members>ERR_Handler</members>
     <members>ERR_Handler_TEST</members>
@@ -53,10 +54,8 @@
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
     <members>Account.SYSTEM_CUSTOM_NAMING__c</members>
-    <members>Address__c.API_Response__c</members>
     <members>Address__c.Address_Type__c</members>
     <members>Address__c.Administrative_Area__c</members>
-    <members>Address__c.Ambiguous__c</members>
     <members>Address__c.Congressional_District__c</members>
     <members>Address__c.County_Name__c</members>
     <members>Address__c.Default_Address__c</members>
@@ -76,8 +75,7 @@
     <members>Address__c.Seasonal_End_Month__c</members>
     <members>Address__c.Seasonal_Start_Day__c</members>
     <members>Address__c.Seasonal_Start_Month__c</members>
-    <members>Address__c.Verification_Status__c</members>
-    <members>Address__c.Verified__c</members>
+    <members>Affiliation__c.Affiliation_Type__c</members>
     <members>Affiliation__c.Contact__c</members>
     <members>Affiliation__c.Description__c</members>
     <members>Affiliation__c.EndDate__c</members>

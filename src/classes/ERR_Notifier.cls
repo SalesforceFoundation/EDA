@@ -144,8 +144,8 @@ public with sharing class ERR_Notifier {
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         mail.setUseSignature(false);
         mail.setReplyTo('donotreply@salesforcefoundation.org');
-        mail.setSenderDisplayName('Nonprofit Starter Pack');
-        mail.setSubject('NPSP Error');
+        mail.setSenderDisplayName('HEDAP App');
+        mail.setSubject('HEDAP Error');
         string bodyString = '';
         bodyString += '\n\nErrors:';
         Integer i = 1;
@@ -174,7 +174,7 @@ public with sharing class ERR_Notifier {
                 List<SObject> postsToInsert = new List<SObject>();
                 for(Error__c error : errors) {
                     SObject post = (SObject)System.Type.forName('FeedItem').newInstance();
-                    post.put('Title', 'NPSP Error');
+                    post.put('Title', 'HEDAP Error');
                     String body = getErrorMessageBody(error);
                     post.put('Body', body);
                     post.put('ParentId', collaborationGroup.Id);
