@@ -255,6 +255,42 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Primary_Affiliation_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Affiliation 1</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contacts (Primary Affiliation 1)</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Affiliation_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Affiliation 2</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contacts (Primary Affiliation 2)</relationshipLabel>
+        <relationshipName>Contacts2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Affiliation_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Affiliation 3</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contacts (Primary Affiliation 3)</relationshipLabel>
+        <relationshipName>Contacts3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Primary_Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
