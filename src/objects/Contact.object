@@ -291,9 +291,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Lookup</type>
     </fields>
     <fields>
-        <externalId>false</externalId>
-    </fields>
-    <fields>
         <fullName>Private__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Excludes this Contact from One to One or Bucket account processing.</description>
