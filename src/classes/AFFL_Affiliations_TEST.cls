@@ -215,7 +215,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) 
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1  
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1  
             
         insert listCon;
         
@@ -265,7 +265,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) 
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1  
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1  
             
         insert listCon;
         
@@ -325,7 +325,7 @@ public class AFFL_Affiliations_TEST {
         AFFL_Affiliations_TDTM.hasRunForContacts = false;
         // now update our contacts with a Primary Affiliation
         for (Contact con : listCon) 
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1  
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1  
         update listCon;            
         Test.stopTest();
         
@@ -387,7 +387,7 @@ public class AFFL_Affiliations_TEST {
         // now update our contacts with a Primary Affiliation and a different account
         for (Contact con : listCon) {
             con.AccountId = listAcc[4].Id; // Org1  
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1
         }  
         update listCon;            
         Test.stopTest();
@@ -442,7 +442,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) {
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1
         }  
         insert listCon;
 
@@ -517,7 +517,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) {
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1
         }  
         insert listCon;
 
@@ -530,7 +530,7 @@ public class AFFL_Affiliations_TEST {
         AFFL_Affiliations_TDTM.hasRunForContacts = false;
         // now clear our primary affilation
         for (Contact con : listCon) {
-            con.Primary_Affiliation__c = null; 
+            con.Primary_Affiliation_1__c = null; 
         }  
         update listCon;
         Test.stopTest();
@@ -600,10 +600,10 @@ public class AFFL_Affiliations_TEST {
         insert listAffl;
         
         // make sure primary affiliation set on Contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
         system.assertEquals(8, listCon.size());        
         for (Contact con : listCon) {
-        	system.assertEquals(listAcc[4].Id, con.Primary_Affiliation__c);
+        	system.assertEquals(listAcc[4].Id, con.Primary_Affiliation_1__c);
         }
 
         // test2, let's clear the primary flags.
@@ -615,10 +615,10 @@ public class AFFL_Affiliations_TEST {
         update listAffl;
         
         // make sure cleared on the contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
         system.assertEquals(8, listCon.size());        
         for (Contact con : listCon) {
-            system.assertEquals(null, con.Primary_Affiliation__c);
+            system.assertEquals(null, con.Primary_Affiliation_1__c);
         }
         
    }
@@ -678,10 +678,10 @@ public class AFFL_Affiliations_TEST {
         insert listAffl;
         
         // make sure primary affiliation set on Contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
-        system.assertEquals(8, listCon.size());        
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
+        system.assertEquals(8, listCon.size());     
         for (Contact con : listCon) {
-            system.assertEquals(listAcc[4].Id, con.Primary_Affiliation__c);
+            system.assertEquals(listAcc[4].Id, con.Primary_Affiliation_1__c);
         }
 
         // now set a new primary affiliations record for each
@@ -694,6 +694,7 @@ public class AFFL_Affiliations_TEST {
             affl.Primary__c = true;
             affl.Status__c = Label.DefaultCurrentStatus;
             listAffl.add(affl);
+            System.debug('****Affiliation type: ' + affl.Affiliation_Type__c);
         }
         // must manually clear this, since our context is still active
         AFFL_Affiliations_TDTM.hasRunForAffiliations = false;
@@ -701,10 +702,10 @@ public class AFFL_Affiliations_TEST {
         insert listAffl;
                 
         // make sure primary affiliation set on Contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
         system.assertEquals(8, listCon.size());        
         for (Contact con : listCon) {
-            system.assertEquals(listAcc[5].Id, con.Primary_Affiliation__c);
+            system.assertEquals(listAcc[5].Id, con.Primary_Affiliation_1__c);
         }
         
         // make sure other affiliations are not primary

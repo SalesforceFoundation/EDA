@@ -291,17 +291,7 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Primary_Affiliation__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>Used to track the account of the contact&apos;s Organization Affiliation record that is marked primary.</inlineHelpText>
-        <label>Primary Affiliation</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Do Not Use.  Use Organization Affiliations.</relationshipLabel>
-        <relationshipName>PrimaryAffiliatedContacts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Private__c</fullName>
