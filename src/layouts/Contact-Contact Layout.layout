@@ -242,7 +242,7 @@
         <relatedContentItems>
             <layoutItem>
                 <behavior>Readonly</behavior>
-                <field>Primary_Affiliation__c</field>
+                <field>Primary_Affiliation_1__c</field>
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
