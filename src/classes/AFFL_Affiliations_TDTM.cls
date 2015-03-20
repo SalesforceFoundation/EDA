@@ -116,10 +116,10 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
                         ao.strRole = contact.Title;
                         mapStrComboKeyAfflOps.put(strComboKey, ao);
                     }
-                    if (contact.Primary_Affiliation_1__c != null) {
-                        string strComboKey = strComboKeyFromContactIdAccountId(contact.Id, contact.Primary_Affiliation_1__c);                     
+                    if (contact.Primary_Household__c != null) {
+                        string strComboKey = strComboKeyFromContactIdAccountId(contact.Id, contact.Primary_Household__c);                     
                         AfflOps ao = mapStrComboKeyAfflOps.get(strComboKey);
-                        if (ao == null) ao = new AfflOps(contact.Id, contact.Primary_Affiliation_1__c);
+                        if (ao == null) ao = new AfflOps(contact.Id, contact.Primary_Household__c);
                         ao.fPrimary = true;
                         ao.strRole = contact.Title;
                         mapStrComboKeyAfflOps.put(strComboKey, ao);
@@ -148,19 +148,19 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
                         }
                     }
     
-                    if (contact.Primary_Affiliation_1__c != oldContact.Primary_Affiliation_1__c) {
-                        if (contact.Primary_Affiliation_1__c != null) {
-                            string strComboKey = strComboKeyFromContactIdAccountId(contact.Id, contact.Primary_Affiliation_1__c);                     
+                    if (contact.Primary_Household__c != oldContact.Primary_Household__c) {
+                        if (contact.Primary_Household__c != null) {
+                            string strComboKey = strComboKeyFromContactIdAccountId(contact.Id, contact.Primary_Household__c);                     
                             AfflOps ao = mapStrComboKeyAfflOps.get(strComboKey);
-                            if (ao == null) ao = new AfflOps(contact.Id, contact.Primary_Affiliation_1__c);
+                            if (ao == null) ao = new AfflOps(contact.Id, contact.Primary_Household__c);
                             ao.fPrimary = true;
                             ao.strRole = contact.Title;
                             mapStrComboKeyAfflOps.put(strComboKey, ao);
                         }
-                        if (oldContact.Primary_Affiliation_1__c != null) {
-                            string strComboKey = strComboKeyFromContactIdAccountId(oldContact.Id, oldContact.Primary_Affiliation_1__c);                     
+                        if (oldContact.Primary_Household__c != null) {
+                            string strComboKey = strComboKeyFromContactIdAccountId(oldContact.Id, oldContact.Primary_Household__c);                     
                             AfflOps ao = mapStrComboKeyAfflOps.get(strComboKey);
-                            if (ao == null) ao = new AfflOps(oldContact.Id, oldContact.Primary_Affiliation_1__c);
+                            if (ao == null) ao = new AfflOps(oldContact.Id, oldContact.Primary_Household__c);
                             ao.fFormer = true;
                             ao.fUnprimary = true;
                             mapStrComboKeyAfflOps.put(strComboKey, ao);
@@ -445,12 +445,12 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
         list<Contact> listCon = new list<Contact>();
         for (Id contactId : mapConIdAccIdPrimary.keySet()) {
             Contact con = new Contact(Id = contactId);
-            con.Primary_Affiliation_1__c = mapConIdAccIdPrimary.get(contactId);
+            con.Primary_Household__c = mapConIdAccIdPrimary.get(contactId);
             listCon.add(con);
         }
         for (Id contactId : mapConIdAccIdUnprimary.keySet()) {
             Contact con = new Contact(Id = contactId);
-            con.Primary_Affiliation_1__c = null;
+            con.Primary_Household__c = null;
             listCon.add(con);
         }
     
