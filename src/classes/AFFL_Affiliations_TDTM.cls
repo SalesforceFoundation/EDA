@@ -56,13 +56,15 @@ public class AFFL_Affiliations_TDTM extends TDTM_Runnable {
             
         // dispatch to the correct handler
         if (objResult.getsObjectType() == Contact.sObjectType && !hasRunForContacts) {
-            DmlWrapper wrapper = runContactTriggerHandler(newlist, oldlist, triggerAction, objResult);
+            //DmlWrapper wrapper = runContactTriggerHandler(newlist, oldlist, triggerAction, objResult);
             hasRunForContacts = true;
-            return wrapper;
+            //return wrapper;
+            return null;
         } else if (objResult.getsObjectType() == Affiliation__c.sObjectType && !hasRunForAffiliations) {
-            DmlWrapper wrapper = runAfflTriggerHandler(newlist, oldlist, triggerAction, objResult);
+            //DmlWrapper wrapper = runAfflTriggerHandler(newlist, oldlist, triggerAction, objResult);
             hasRunForAffiliations = true;
-            return wrapper;
+            //return wrapper;
+             return null;
         } else if (objResult.getsObjectType() == Account.sObjectType && !hasRunForAccounts) {
             DmlWrapper wrapper = runAccountTriggerHandler(newlist, oldlist, triggerAction, objResult);
             hasRunForAccounts = true;
