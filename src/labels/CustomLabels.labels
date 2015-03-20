@@ -9,6 +9,20 @@
         <value>Unable to retrieve a valid Id for Relationship auto-creation.  Please check the settings under the Relationships Settings tab for valid fields and try again.</value>
     </labels>
     <labels>
+        <fullName>DefaultCurrentStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DefaultCurrentStatus</shortDescription>
+        <value>Current</value>
+    </labels>
+    <labels>
+        <fullName>DefaultFormerStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DefaultFormerStatus</shortDescription>
+        <value>Former</value>
+    </labels>
+    <labels>
         <fullName>DefaultHouseholdName</fullName>
         <categories>Households, Household Naming</categories>
         <language>en_US</language>

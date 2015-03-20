@@ -225,8 +225,6 @@ public without sharing class UTIL_CustomSettingsFacade {
             contactsSettings = new Contacts_And_Orgs_Settings__c();
 
         //create our own based on what's passed in from the test
-        contactsSettings.One_to_One_RecordTypeID__c = mySettings.One_to_One_RecordTypeID__c;
-        contactsSettings.HH_Account_RecordTypeID__c = mySettings.HH_Account_RecordTypeID__c;
         contactsSettings.Account_Processor__c = mySettings.Account_Processor__c;
         contactsSettings.Organizational_Account_Addresses_Enabled__c = mySettings.Organizational_Account_Addresses_Enabled__c;
         contactsSettings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;

@@ -255,26 +255,40 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Primary_Affiliation__c</fullName>
+        <fullName>Primary_Affiliation_1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>Used to track the account of the contact&apos;s Organization Affiliation record that is marked primary.</inlineHelpText>
-        <label>Primary Affiliation</label>
+        <label>Primary Affiliation 1</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Do Not Use.  Use Organization Affiliations.</relationshipLabel>
-        <relationshipName>PrimaryAffiliatedContacts</relationshipName>
+        <relationshipLabel>Contacts (Primary Affiliation 1)</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Primary_Contact__c</fullName>
-        <description>Automatically checked if the Contact is the Primary Contact on their Account.</description>
+        <fullName>Primary_Affiliation_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <formula>Account.One2OneContact__c = Id</formula>
-        <inlineHelpText>This is is checked if the user is the Primary Contact on their Account.  The Primary Contact can be edited on the Account.</inlineHelpText>
-        <label>Primary Contact</label>
-        <type>Checkbox</type>
+        <label>Primary Affiliation 2</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contacts (Primary Affiliation 2)</relationshipLabel>
+        <relationshipName>Contacts2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Affiliation_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Affiliation 3</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contacts (Primary Affiliation 3)</relationshipLabel>
+        <relationshipName>Contacts3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Private__c</fullName>

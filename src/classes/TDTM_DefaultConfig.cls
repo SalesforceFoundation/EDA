@@ -62,10 +62,15 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'AFFL_Affiliations_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate'));
                     
-        // Affiliations on Affiliation
+        //Affiliations on Affiliation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_Affiliations_TDTM', Load_Order__c = 1, Object__c = 'Affiliation__c', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+        
+        //Multi Account Record Type support on Affiliations      
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'AFFL_MultiRecordType_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
+              Trigger_Action__c = 'BeforeInsert;AfterUpdate;AfterDelete'));
                     
         // Relationships on CampaignMember
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 

@@ -23,6 +23,10 @@
                 <behavior>Edit</behavior>
                 <field>Primary__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Affiliation_Type__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

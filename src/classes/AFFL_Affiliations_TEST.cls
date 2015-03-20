@@ -63,7 +63,7 @@ public class AFFL_Affiliations_TEST {
         Id firstAffiliationId = createdAffiliations[0].Id; //storing the id for later use
         
         System.assertEquals(1, createdAffiliations.size());
-        system.assertEquals('DefaultCurrentStatus', createdAffiliations[0].Status__c);
+        system.assertEquals(Label.DefaultCurrentStatus, createdAffiliations[0].Status__c);
         system.assertEquals(title, createdAffiliations[0].Role__c);
         system.assertEquals(System.Today(), createdAffiliations[0].StartDate__c);
         
@@ -81,7 +81,7 @@ public class AFFL_Affiliations_TEST {
             where Contact__c =:contact.id AND Organization__c = :acc2.id];        
         
         System.assertEquals(1, createdAffiliations2.size());
-        system.assertEquals('DefaultCurrentStatus', createdAffiliations2[0].Status__c);
+        system.assertEquals(Label.DefaultCurrentStatus, createdAffiliations2[0].Status__c);
         system.assertEquals(title, createdAffiliations2[0].Role__c);
         system.assertEquals(System.Today(), createdAffiliations2[0].StartDate__c);
         
@@ -89,7 +89,7 @@ public class AFFL_Affiliations_TEST {
             EndDate__c, Contact__c from Affiliation__c where id=:firstAffiliationId];
         
         System.assertEquals(1, createdAffiliations.size());
-        system.assertEquals('DefaultFormerStatus', createdAffiliations[0].Status__c);
+        system.assertEquals(Label.DefaultFormerStatus, createdAffiliations[0].Status__c);
         system.assertEquals(System.Today(), createdAffiliations[0].EndDate__c);
     }
     
@@ -175,7 +175,7 @@ public class AFFL_Affiliations_TEST {
         
         createdAffiliations2 = [select id, Status__c, StartDate__c, Role__c, Organization__c, EndDate__c, 
             Contact__c from Affiliation__c where Contact__c=:con.id AND Organization__c = :acc2.id];
-        system.assertEquals('DefaultCurrentStatus', createdAffiliations2[0].Status__c);        
+        system.assertEquals(Label.DefaultCurrentStatus, createdAffiliations2[0].Status__c);        
     }
 
     private static Contact getContact(Id accountId, String title) {
@@ -215,7 +215,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) 
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1  
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1  
             
         insert listCon;
         
@@ -224,7 +224,7 @@ public class AFFL_Affiliations_TEST {
         
         System.assertEquals(9, listAffl.size());
         for (Affiliation__c affl : listAffl) {
-            system.assertEquals('DefaultCurrentStatus', affl.Status__c);
+            system.assertEquals(Label.DefaultCurrentStatus, affl.Status__c);
             system.assertEquals(System.Today(), affl.StartDate__c);
             if (affl.Organization__c == listAcc[5].Id) 
                 system.assertEquals(false, affl.Primary__c);
@@ -265,7 +265,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) 
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1  
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1  
             
         insert listCon;
         
@@ -274,7 +274,7 @@ public class AFFL_Affiliations_TEST {
         
         System.assertEquals(9, listAffl.size());
         for (Affiliation__c affl : listAffl) {
-            system.assertEquals('DefaultCurrentStatus', affl.Status__c);
+            system.assertEquals(Label.DefaultCurrentStatus, affl.Status__c);
             system.assertEquals(System.Today(), affl.StartDate__c);
             if (affl.Organization__c == listAcc[5].Id) 
                 system.assertEquals(false, affl.Primary__c);
@@ -325,7 +325,7 @@ public class AFFL_Affiliations_TEST {
         AFFL_Affiliations_TDTM.hasRunForContacts = false;
         // now update our contacts with a Primary Affiliation
         for (Contact con : listCon) 
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1  
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1  
         update listCon;            
         Test.stopTest();
         
@@ -334,7 +334,7 @@ public class AFFL_Affiliations_TEST {
         
         System.assertEquals(9, listAffl.size());
         for (Affiliation__c affl : listAffl) {
-            system.assertEquals('DefaultCurrentStatus', affl.Status__c);
+            system.assertEquals(Label.DefaultCurrentStatus, affl.Status__c);
             system.assertEquals(System.Today(), affl.StartDate__c);
             if (affl.Organization__c == listAcc[5].Id) 
                 system.assertEquals(false, affl.Primary__c);
@@ -387,7 +387,7 @@ public class AFFL_Affiliations_TEST {
         // now update our contacts with a Primary Affiliation and a different account
         for (Contact con : listCon) {
             con.AccountId = listAcc[4].Id; // Org1  
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1
         }  
         update listCon;            
         Test.stopTest();
@@ -401,10 +401,10 @@ public class AFFL_Affiliations_TEST {
             if (affl.Organization__c == listAcc[5].Id) { 
                 system.assertEquals(false, affl.Primary__c);
                 system.assertEquals(System.Today(), affl.EndDate__c);
-                system.assertEquals('DefaultFormerStatus', affl.Status__c);
+                system.assertEquals(Label.DefaultFormerStatus, affl.Status__c);
             } else {
                 system.assertEquals(true, affl.Primary__c);
-                system.assertEquals('DefaultCurrentStatus', affl.Status__c);
+                system.assertEquals(Label.DefaultCurrentStatus, affl.Status__c);
             }
         }
     }
@@ -442,7 +442,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) {
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1
         }  
         insert listCon;
 
@@ -470,12 +470,12 @@ public class AFFL_Affiliations_TEST {
         integer cOrg2 = 0;
         for (Affiliation__c affl : listAffl) {
             system.assertEquals(System.Today(), affl.StartDate__c);
-            if (affl.Status__c == 'DefaultFormerStatus') { 
+            if (affl.Status__c == Label.DefaultFormerStatus) { 
                 system.assertEquals(true, affl.Primary__c);
                 system.assertEquals(System.Today(), affl.EndDate__c);
-                system.assertEquals('DefaultFormerStatus', affl.Status__c);
+                system.assertEquals(Label.DefaultFormerStatus, affl.Status__c);
             } else {
-                system.assertEquals('DefaultCurrentStatus', affl.Status__c);
+                system.assertEquals(Label.DefaultCurrentStatus, affl.Status__c);
             }
             if (affl.Organization__c == listAcc[4].id) cOrg1++;
             if (affl.Organization__c == listAcc[5].id) cOrg2++;            
@@ -517,7 +517,7 @@ public class AFFL_Affiliations_TEST {
         listCon[7].AccountId = listAcc[6].Id;   // Bucket account
         
         for (Contact con : listCon) {
-            con.Primary_Affiliation__c = listAcc[4].Id; // Org1
+            con.Primary_Affiliation_1__c = listAcc[4].Id; // Org1
         }  
         insert listCon;
 
@@ -530,7 +530,7 @@ public class AFFL_Affiliations_TEST {
         AFFL_Affiliations_TDTM.hasRunForContacts = false;
         // now clear our primary affilation
         for (Contact con : listCon) {
-            con.Primary_Affiliation__c = null; 
+            con.Primary_Affiliation_1__c = null; 
         }  
         update listCon;
         Test.stopTest();
@@ -592,7 +592,7 @@ public class AFFL_Affiliations_TEST {
         	affl.Organization__c = listAcc[4].Id;
         	affl.StartDate__c = System.Today();
         	affl.Primary__c = true;
-        	affl.Status__c = 'DefaultCurrentStatus';
+        	affl.Status__c = Label.DefaultCurrentStatus;
         	listAffl.add(affl);
         }
         // must manually clear this, since our context is still active
@@ -600,10 +600,10 @@ public class AFFL_Affiliations_TEST {
         insert listAffl;
         
         // make sure primary affiliation set on Contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
         system.assertEquals(8, listCon.size());        
         for (Contact con : listCon) {
-        	system.assertEquals(listAcc[4].Id, con.Primary_Affiliation__c);
+        	system.assertEquals(listAcc[4].Id, con.Primary_Affiliation_1__c);
         }
 
         // test2, let's clear the primary flags.
@@ -615,10 +615,10 @@ public class AFFL_Affiliations_TEST {
         update listAffl;
         
         // make sure cleared on the contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
         system.assertEquals(8, listCon.size());        
         for (Contact con : listCon) {
-            system.assertEquals(null, con.Primary_Affiliation__c);
+            system.assertEquals(null, con.Primary_Affiliation_1__c);
         }
         
    }
@@ -670,7 +670,7 @@ public class AFFL_Affiliations_TEST {
             affl.Organization__c = listAcc[4].Id;
             affl.StartDate__c = System.Today();
             affl.Primary__c = true;
-            affl.Status__c = 'DefaultCurrentStatus';
+            affl.Status__c = Label.DefaultCurrentStatus;
             listAffl.add(affl);
         }
         // must manually clear this, since our context is still active
@@ -678,10 +678,10 @@ public class AFFL_Affiliations_TEST {
         insert listAffl;
         
         // make sure primary affiliation set on Contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
-        system.assertEquals(8, listCon.size());        
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
+        system.assertEquals(8, listCon.size());     
         for (Contact con : listCon) {
-            system.assertEquals(listAcc[4].Id, con.Primary_Affiliation__c);
+            system.assertEquals(listAcc[4].Id, con.Primary_Affiliation_1__c);
         }
 
         // now set a new primary affiliations record for each
@@ -692,8 +692,9 @@ public class AFFL_Affiliations_TEST {
             affl.Organization__c = listAcc[5].Id;
             affl.StartDate__c = System.Today();
             affl.Primary__c = true;
-            affl.Status__c = 'DefaultCurrentStatus';
+            affl.Status__c = Label.DefaultCurrentStatus;
             listAffl.add(affl);
+            System.debug('****Affiliation type: ' + affl.Affiliation_Type__c);
         }
         // must manually clear this, since our context is still active
         AFFL_Affiliations_TDTM.hasRunForAffiliations = false;
@@ -701,10 +702,10 @@ public class AFFL_Affiliations_TEST {
         insert listAffl;
                 
         // make sure primary affiliation set on Contacts
-        listCon = [Select Id, Primary_Affiliation__c, AccountId from Contact];
+        listCon = [Select Id, Primary_Affiliation_1__c, AccountId from Contact];
         system.assertEquals(8, listCon.size());        
         for (Contact con : listCon) {
-            system.assertEquals(listAcc[5].Id, con.Primary_Affiliation__c);
+            system.assertEquals(listAcc[5].Id, con.Primary_Affiliation_1__c);
         }
         
         // make sure other affiliations are not primary
@@ -745,7 +746,7 @@ public class AFFL_Affiliations_TEST {
             where Organization__c = :acc.id];
         
         System.assertEquals(1, queryAffl.size(), 'An affiliation should be created.');
-        system.assertEquals('DefaultCurrentStatus', queryAffl[0].Status__c, 'The affiliation\'s status should be set to the default current status.');
+        system.assertEquals(Label.DefaultCurrentStatus, queryAffl[0].Status__c, 'The affiliation\'s status should be set to the default current status.');
         system.assertEquals(listcon[0].title, queryAffl[0].Role__c, 'The affiliation\'s role should match the first contact\'s title.');
         system.assertEquals(System.Today(), queryAffl[0].StartDate__c, 'The affiliation\'s start date should be today.');
         
@@ -759,8 +760,8 @@ public class AFFL_Affiliations_TEST {
             where Organization__c = :acc.id ORDER BY Contact__r.LastName];        
         
         System.assertEquals(2, queryAffl.size(), 'Two affiliations should exist.');
-        system.assertEquals('DefaultCurrentStatus', queryAffl[0].Status__c, 'The existing affiliation\'s status should be unchanged.');
-        system.assertEquals('DefaultCurrentStatus', queryAffl[1].Status__c, 'The new affiliation\'s status should be set to the default current status.');
+        system.assertEquals(Label.DefaultCurrentStatus, queryAffl[0].Status__c, 'The existing affiliation\'s status should be unchanged.');
+        system.assertEquals(Label.DefaultCurrentStatus, queryAffl[1].Status__c, 'The new affiliation\'s status should be set to the default current status.');
         system.assertEquals(listcon[1].title, queryAffl[1].Role__c, 'The new affiliation\'s role should match the second contact\'s title.');
         system.assertEquals(System.Today(), queryAffl[0].StartDate__c, 'The affiliation\'s start date should be today.');
 

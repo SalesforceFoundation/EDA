@@ -10,6 +10,7 @@
     <members>ADDR_Seasonal_SCHED</members>
     <members>AFFL_Affiliations_TDTM</members>
     <members>AFFL_Affiliations_TEST</members>
+    <members>AFFL_MultiRecordType_TDTM</members>
     <members>CAO_Constants</members>
     <members>ERR_Handler</members>
     <members>ERR_Handler_TEST</members>
@@ -53,10 +54,8 @@
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
     <members>Account.SYSTEM_CUSTOM_NAMING__c</members>
-    <members>Address__c.API_Response__c</members>
     <members>Address__c.Address_Type__c</members>
     <members>Address__c.Administrative_Area__c</members>
-    <members>Address__c.Ambiguous__c</members>
     <members>Address__c.Congressional_District__c</members>
     <members>Address__c.County_Name__c</members>
     <members>Address__c.Default_Address__c</members>
@@ -76,8 +75,7 @@
     <members>Address__c.Seasonal_End_Month__c</members>
     <members>Address__c.Seasonal_Start_Day__c</members>
     <members>Address__c.Seasonal_Start_Month__c</members>
-    <members>Address__c.Verification_Status__c</members>
-    <members>Address__c.Verified__c</members>
+    <members>Affiliation__c.Affiliation_Type__c</members>
     <members>Affiliation__c.Contact__c</members>
     <members>Affiliation__c.Description__c</members>
     <members>Affiliation__c.EndDate__c</members>
@@ -101,8 +99,9 @@
     <members>Contact.PreferredPhone__c</members>
     <members>Contact.Preferred_Email__c</members>
     <members>Contact.Primary_Address_Type__c</members>
-    <members>Contact.Primary_Affiliation__c</members>
-    <members>Contact.Primary_Contact__c</members>
+    <members>Contact.Primary_Affiliation_1__c</members>
+    <members>Contact.Primary_Affiliation_2__c</members>
+    <members>Contact.Primary_Affiliation_3__c</members>
     <members>Contact.Private__c</members>
     <members>Contact.Secondary_Address_Type__c</members>
     <members>Contact.Type_of_Account__c</members>
@@ -111,9 +110,7 @@
     <members>Contact.Work_Address__c</members>
     <members>Contact.is_Address_Override__c</members>
     <members>Contacts_And_Orgs_Settings__c.Account_Processor__c</members>
-    <members>Contacts_And_Orgs_Settings__c.HH_Account_RecordTypeID__c</members>
     <members>Contacts_And_Orgs_Settings__c.Household_Account_Addresses_Disabled__c</members>
-    <members>Contacts_And_Orgs_Settings__c.One_to_One_RecordTypeID__c</members>
     <members>Contacts_And_Orgs_Settings__c.Opportunity_Contact_Role_Default_role__c</members>
     <members>Contacts_And_Orgs_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
     <members>Contacts_And_Orgs_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
@@ -164,6 +161,8 @@
   </types>
   <types>
     <members>AutoCreateFieldError</members>
+    <members>DefaultCurrentStatus</members>
+    <members>DefaultFormerStatus</members>
     <members>DefaultHouseholdName</members>
     <members>Female</members>
     <members>Male</members>

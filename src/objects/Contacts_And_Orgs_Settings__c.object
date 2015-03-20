@@ -17,18 +17,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>HH_Account_RecordTypeID__c</fullName>
-        <description>The ID of the Account Record Type to be used for Household Accounts. If none is selected, the Account will default to the user&apos;s default Account Record Type.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The ID of the Account Record Type to be used for Household Accounts. If none is selected, the Account will default to the user&apos;s default Account Record Type.</inlineHelpText>
-        <label>Household Account Record Type</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Household_Account_Addresses_Disabled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Disables Address management for Household Accounts when selected.</description>
@@ -37,17 +25,6 @@
         <label>Household Account Addresses Disabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>One_to_One_RecordTypeID__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>The ID of the record type to be used for 1x1 accounts. If none is selected, the account will default to the user&apos;s default account selection.</inlineHelpText>
-        <label>One-to-One RecordTypeID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Opportunity_Contact_Role_Default_role__c</fullName>

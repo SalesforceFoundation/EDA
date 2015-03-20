@@ -29,10 +29,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Primary_Affiliation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Title</field>
             </layoutItems>
         </layoutColumns>
@@ -196,6 +192,29 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Key Affiliations</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Primary_Affiliation_1__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Primary_Affiliation_2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Primary_Affiliation_3__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
     <quickActionList>
         <quickActionListItems>
             <quickActionName>Contact.New_Relationship</quickActionName>
@@ -223,7 +242,7 @@
         <relatedContentItems>
             <layoutItem>
                 <behavior>Readonly</behavior>
-                <field>Primary_Affiliation__c</field>
+                <field>Primary_Affiliation_1__c</field>
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
@@ -238,10 +257,13 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Account.NAME</fields>
+        <fields>Affiliation_Type__c</fields>
+        <fields>Account.ACC_TYPE</fields>
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
+        <fields>Primary__c</fields>
         <relatedList>Affiliation__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -282,7 +304,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hi0000004q6U0</masterLabel>
+        <masterLabel>00hj0000002mixi</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
