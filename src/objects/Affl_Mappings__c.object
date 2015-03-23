@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Account_Record_Type__c</fullName>
+        <description>The Account Record Type label.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Account Record Type label.</inlineHelpText>
+        <label>Account Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Affl_Field__c</fullName>
+        <description>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</inlineHelpText>
+        <label>Primary Affl Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Affl Mappings</label>
+</CustomObject>

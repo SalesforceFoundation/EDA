@@ -188,6 +188,7 @@
     <members>Address__c</members>
     <members>Affiliation__c</members>
     <members>Affiliations_Settings__c</members>
+    <members>Affl_Mappings__c</members>
     <members>Contact</members>
     <members>Contacts_And_Orgs_Settings__c</members>
     <members>Error_Settings__c</members>
