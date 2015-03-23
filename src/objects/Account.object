@@ -65,9 +65,9 @@
         <label>Household Account</label>
     </recordTypes>
     <recordTypes>
-        <fullName>Organization</fullName>
+        <fullName>Business_Organization</fullName>
         <active>true</active>
-        <description>An Account representing an organization</description>
-        <label>Organization</label>
+        <description>An Account representing a business organization</description>
+        <label>Business Organization</label>
     </recordTypes>
 </CustomObject>

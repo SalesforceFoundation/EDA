@@ -255,37 +255,25 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Primary_Affiliation_1__c</fullName>
+        <fullName>Primary_Household__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Primary Affiliation 1</label>
+        <label>Primary Household</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Affiliation 1)</relationshipLabel>
-        <relationshipName>Contacts</relationshipName>
+        <relationshipLabel>Contacts (Primary Household)</relationshipLabel>
+        <relationshipName>Household_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Primary_Affiliation_2__c</fullName>
+        <fullName>Primary_Organization__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Primary Affiliation 2</label>
+        <label>Primary Business Organization</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Affiliation 2)</relationshipLabel>
-        <relationshipName>Contacts2</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Affiliation_3__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Affiliation 3</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Affiliation 3)</relationshipLabel>
-        <relationshipName>Contacts3</relationshipName>
+        <relationshipLabel>Contacts (Primary Organization)</relationshipLabel>
+        <relationshipName>Organization_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>

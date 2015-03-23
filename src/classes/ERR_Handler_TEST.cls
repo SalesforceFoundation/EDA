@@ -94,7 +94,8 @@ public with sharing class ERR_Handler_TEST {
     }
     
     /** Test using the default configuration of classes that implement TDTM_Runnable **/
-    public testmethod static void errorStoredInDbTdtmStandardConfig() {
+    @isTest
+    public static void errorStoredInDbTdtmStandardConfig() {
     	if (strTestOnly != '*' && strTestOnly != 'errorStoredInDbTdtmStandardConfig') return;
     
         setupWithChatterNotifications();
@@ -141,7 +142,8 @@ public with sharing class ERR_Handler_TEST {
     
     /** This is the same test called testErrorRecordCreation in the REL_Relationships_TEST class, but
         using simple insert instead of Database.insert ***/
-    static testMethod void errorStoredInDatabaseFromInsert() {
+    @isTest 
+    public static void errorStoredInDatabaseFromInsert() {
         if (strTestOnly != '*' && strTestOnly != 'errorStoredInDatabaseFromInsert') return;
         
         setupWithChatterNotifications();

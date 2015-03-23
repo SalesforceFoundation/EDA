@@ -147,7 +147,8 @@ private with sharing class ADDR_Addresses_TEST {
         N household billing address fields updated
         M contact Mailing address fields updated
     **********************************************************************************************************/            
-    static testMethod void newDefaultAddr() {
+    @isTest
+    public static void newDefaultAddr() {
         if (strTestOnly != '*' && strTestOnly != 'newDefaultAddr') return;
         
         // this creates a default Address for each HH
@@ -174,7 +175,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact address lookup updated to new address
         the contact gets the new Address
     **********************************************************************************************************/            
-    static testMethod void insertContactWithAddress() {
+    @isTest
+    public static void insertContactWithAddress() {
         if (strTestOnly != '*' && strTestOnly != 'insertContactWithAddress') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
@@ -206,7 +208,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact address lookup updated to new address
         the contact gets the new Address
     **********************************************************************************************************/            
-    static testMethod void insertContactWithAddressOverride() {
+    @isTest
+    public static void insertContactWithAddressOverride() {
         if (strTestOnly != '*' && strTestOnly != 'insertContactWithAddressOverride') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
@@ -240,7 +243,8 @@ private with sharing class ADDR_Addresses_TEST {
         household billing address fields updated
         contact Mailing address fields updated
     **********************************************************************************************************/            
-    static testMethod void updateDefaultAddr() {
+    @isTest 
+    public static void updateDefaultAddr() {
         if (strTestOnly != '*' && strTestOnly != 'updateDefaultAddr') return;
         
         // this creates a default Address for each HH
@@ -277,7 +281,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         no change to HH and contact addresses
     **********************************************************************************************************/            
-    static testMethod void updateNonDefaultAddr() {
+    @isTest
+    public static void updateNonDefaultAddr() {
         if (strTestOnly != '*' && strTestOnly != 'updateNonDefaultAddr') return;
         
         // this creates a default Address for each HH
@@ -315,7 +320,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         contact's address matches override
     **********************************************************************************************************/            
-    static testMethod void setConAddrOverride() {
+    @isTest
+    public static void setConAddrOverride() {
         if (strTestOnly != '*' && strTestOnly != 'setConAddrOverride') return;
         
         // this creates a default Address for each HH
@@ -375,7 +381,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         contact's address updated, but not override
     **********************************************************************************************************/            
-    static testMethod void setConAddrNoOverride() {
+    @isTest
+    public static void setConAddrNoOverride() {
         if (strTestOnly != '*' && strTestOnly != 'setConAddrNoOverride') return;
         
         // this creates a default Address for each HH
@@ -439,7 +446,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address matches new default
         old default addresses no longer marked default
     **********************************************************************************************************/            
-    static testMethod void insertNewDefaultAddr() {
+    @isTest
+    public static void insertNewDefaultAddr() {
         if (strTestOnly != '*' && strTestOnly != 'insertNewDefaultAddr') return;
         
         // this creates a default Address for each HH
@@ -495,7 +503,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address matches original default
         new default addresses no longer marked default
     **********************************************************************************************************/            
-    static testMethod void insertNewDefaultAddrAndReset() {
+    @isTest
+    public static void insertNewDefaultAddrAndReset() {
         if (strTestOnly != '*' && strTestOnly != 'insertNewDefaultAddrAndReset') return;
         
         // this creates a default Address for each HH
@@ -562,7 +571,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         contacts' Mailing address fields updated to the Address Override's fields.
     **********************************************************************************************************/            
-    static testMethod void updateAddrOverride() {
+    @isTest
+    public static void updateAddrOverride() {
         if (strTestOnly != '*' && strTestOnly != 'updateAddrOverride') return;
         
         // this creates a default Address for each HH
@@ -627,7 +637,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         contacts' Mailing address fields updated to the HH default address
     **********************************************************************************************************/            
-    static testMethod void clearAddrOverride() {
+    @isTest
+    public static void clearAddrOverride() {
         if (strTestOnly != '*' && strTestOnly != 'clearAddrOverride') return;
         
         // this creates a default Address for each HH
@@ -695,7 +706,8 @@ private with sharing class ADDR_Addresses_TEST {
         new Default Address created
         HH and Contacts get new Address
     **********************************************************************************************************/            
-    static testMethod void updateConAddrNew() {
+    @isTest
+    public static void updateConAddrNew() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrNew') return;
         
         // this creates a default Address for each HH
@@ -760,7 +772,8 @@ private with sharing class ADDR_Addresses_TEST {
         HH sticks with default Address
         contact gets new address
     **********************************************************************************************************/            
-    static testMethod void updateConAddrMarkOverride() {
+    @isTest
+    public static void updateConAddrMarkOverride() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrMarkOverride') return;
         
         // this creates a default Address for each HH
@@ -810,7 +823,8 @@ private with sharing class ADDR_Addresses_TEST {
         existing Default Address updated
         HH and Contacts get updated Address
     **********************************************************************************************************/            
-    static testMethod void updateConAddrExisting() {
+    @isTest
+    public static void updateConAddrExisting() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrExisting') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
@@ -877,7 +891,8 @@ private with sharing class ADDR_Addresses_TEST {
         existing Default Address updated
         HH and Contacts get updated Address
     **********************************************************************************************************/            
-    static testMethod void updateConAddrExistingCaseOnly() {
+    @isTest
+    public static void updateConAddrExistingCaseOnly() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrExistingCaseOnly') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
@@ -978,7 +993,8 @@ private with sharing class ADDR_Addresses_TEST {
         new Default Address created
         HH and Contacts get new Address
     **********************************************************************************************************/            
-    static testMethod void updateAccAddrNew() {
+    @isTest
+    public static void updateAccAddrNew() {
         if (strTestOnly != '*' && strTestOnly != 'updateAccAddrNew') return;
         
         // this creates a default Address for each HH
@@ -1040,7 +1056,8 @@ private with sharing class ADDR_Addresses_TEST {
         existing Default Address updated
         HH and Contacts get updated Address
     **********************************************************************************************************/            
-    static testMethod void updateAccAddrExisting() {
+    @isTest
+    public static void updateAccAddrExisting() {
         if (strTestOnly != '*' && strTestOnly != 'updateAccAddrExisting') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
@@ -1104,7 +1121,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         runtime error
     **********************************************************************************************************/            
-    static testMethod void newAddrNoAccount() {
+    @isTest
+    public static void newAddrNoAccount() {
         if (strTestOnly != '*' && strTestOnly != 'newAddrNoAccount') return;
         
         initTestAddr(cHH);
@@ -1128,7 +1146,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         runtime error
     **********************************************************************************************************/            
-    static testMethod void newAddrNotHHAccount() {
+    @isTest
+    public static void newAddrNotHHAccount() {
         if (strTestOnly != '*' && strTestOnly != 'newAddrNotHHAccount') return;
         
         listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cHH, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE);
@@ -1164,7 +1183,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address matches new seasonal
         old default addresses still marked default
     **********************************************************************************************************/            
-    static testMethod void insertNewSeasonalAddr() {
+    @isTest
+    public static void insertNewSeasonalAddr() {
         if (strTestOnly != '*' && strTestOnly != 'insertNewSeasonalAddr') return;
         
         // this creates a default Address for each HH
@@ -1217,7 +1237,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address stay with default
         old default addresses still marked default
     **********************************************************************************************************/            
-    static testMethod void insertNewSeasonalAddrNotCurrent() {
+    @isTest
+    public static void insertNewSeasonalAddrNotCurrent() {
         if (strTestOnly != '*' && strTestOnly != 'insertNewSeasonalAddrNotCurrent') return;
         
         // this creates a default Address for each HH
@@ -1270,7 +1291,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address updated to seasonal address
         old default addresses still marked default
     **********************************************************************************************************/            
-    static testMethod void updateSeasonalAddr() {
+    @isTest
+    public static void updateSeasonalAddr() {
         if (strTestOnly != '*' && strTestOnly != 'updateSeasonalAddr') return;
         
         // this creates a default Address for each HH
@@ -1329,7 +1351,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         overlap detected, seasonal addresses don't save
     **********************************************************************************************************/            
-    static testMethod void insertSeasonalAddrWithOverlap() {
+    @isTest
+    public static void insertSeasonalAddrWithOverlap() {
         if (strTestOnly != '*' && strTestOnly != 'insertSeasonalAddrWithOverlap') return;
         
         // this creates a default Address for each HH
@@ -1373,7 +1396,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         overlap detected
     **********************************************************************************************************/            
-    static testMethod void testSeasonalAddrOverlapLogic() {
+    @isTest
+    public static void testSeasonalAddrOverlapLogic() {
         if (strTestOnly != '*' && strTestOnly != 'testSeasonalAddrOverlapLogic') return;
         
         Address__c a1 = new Address__c();
@@ -1484,7 +1508,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         overlap detected, seasonal addresses don't save
     **********************************************************************************************************/            
-    static testMethod void insertSeasonalAddrOverlapExisting() {
+    @isTest
+    public static void insertSeasonalAddrOverlapExisting() {
         if (strTestOnly != '*' && strTestOnly != 'insertSeasonalAddrOverlapExisting') return;
         
         // this creates a default Address for each HH
@@ -1534,7 +1559,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         partial seasonal detected, seasonal addresses don't save
     **********************************************************************************************************/            
-    static testMethod void insertPartialSeasonalAddr() {
+    @isTest
+    public static void insertPartialSeasonalAddr() {
         if (strTestOnly != '*' && strTestOnly != 'insertPartialSeasonalAddr') return;
         
         // this creates a default Address for each HH
@@ -1568,7 +1594,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address matches new seasonal
         old default addresses still marked default
     **********************************************************************************************************/            
-    static testMethod void scheduleSeasonalAddrUpdate() {
+    @isTest
+    public static void scheduleSeasonalAddrUpdate() {
         if (strTestOnly != '*' && strTestOnly != 'scheduleSeasonalAddrUpdate') return;
         
         // this creates a default Address for each HH
@@ -1631,7 +1658,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         duplicates not created
     **********************************************************************************************************/            
-    static testMethod void newDupeAccountAddr() {
+    @isTest
+    public static void newDupeAccountAddr() {
         if (strTestOnly != '*' && strTestOnly != 'newDupeAccountAddr') return;
         
         // this creates a default Address for each HH
@@ -1660,7 +1688,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         duplicates not created
     **********************************************************************************************************/            
-    static testMethod void newDupeContactAddr() {
+    @isTest
+    public static void newDupeContactAddr() {
         if (strTestOnly != '*' && strTestOnly != 'newDupeContactAddr') return;
         
         // this creates a default Address for each HH
@@ -1692,7 +1721,8 @@ private with sharing class ADDR_Addresses_TEST {
         duplicates not created
         found match becomes Default
     **********************************************************************************************************/            
-    static testMethod void newDupeAccountAddrNonDefault() {
+    @isTest
+    public static void newDupeAccountAddrNonDefault() {
         if (strTestOnly != '*' && strTestOnly != 'newDupeAccountAddrNonDefault') return;
         
         // this creates a default Address for each HH
@@ -1753,7 +1783,8 @@ private with sharing class ADDR_Addresses_TEST {
         duplicates not created
         found match becomes Default
     **********************************************************************************************************/            
-    static testMethod void newDupeContactAddrNonDefault() {
+    @isTest
+    public static void newDupeContactAddrNonDefault() {
         if (strTestOnly != '*' && strTestOnly != 'newDupeContactAddrNonDefault') return;
         
         // this creates a default Address for each HH
@@ -1817,7 +1848,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact override updated to new address
         only the contact gets the new Address
     **********************************************************************************************************/            
-    static testMethod void updateConAddrWithOverride() {
+    @isTest
+    public static void updateConAddrWithOverride() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrWithOverride') return;
         
         // this creates a default Address for each HH
@@ -1901,7 +1933,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         new contacts get the default hh address
     **********************************************************************************************************/            
-    static testMethod void insertConWithNoAddrToExistingHH() {
+    @isTest
+    public static void insertConWithNoAddrToExistingHH() {
         if (strTestOnly != '*' && strTestOnly != 'insertConWithNoAddrToExistingHH') return;
         
         // this creates a default Address for each HH
@@ -1935,7 +1968,8 @@ private with sharing class ADDR_Addresses_TEST {
     verify:
         all contacts and hh get the new default hh address from the new contacts
     **********************************************************************************************************/            
-    static testMethod void insertConWithAddrToExistingHH() {
+    @isTest
+    public static void insertConWithAddrToExistingHH() {
         if (strTestOnly != '*' && strTestOnly != 'insertConWithAddrToExistingHH') return;
         
         // this creates a default Address for each HH
@@ -1979,7 +2013,8 @@ private with sharing class ADDR_Addresses_TEST {
         no new addresses created
         new contacts point at the default address
     **********************************************************************************************************/            
-    static testMethod void insertConWithDefaultAddrToExistingHH() {
+    @isTest
+    public static void insertConWithDefaultAddrToExistingHH() {
         if (strTestOnly != '*' && strTestOnly != 'insertConWithDefaultAddrToExistingHH') return;
         
         // this creates a default Address for each HH
@@ -2026,7 +2061,8 @@ private with sharing class ADDR_Addresses_TEST {
         new default Address created and the street address is broken up into street and street2
         the HH Account gets the new multiline address
     **********************************************************************************************************/            
-    static testMethod void insertContactWithMultilineStreetAddress() {
+    @isTest
+    public static void insertContactWithMultilineStreetAddress() {
         if (strTestOnly != '*' && strTestOnly != 'insertContactWithMultilineStreetAddress') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
@@ -2066,7 +2102,8 @@ private with sharing class ADDR_Addresses_TEST {
         contact's && hh address matches new default
         street & street2 combined into contact and account single street field
     **********************************************************************************************************/            
-    static testMethod void insertNewDefaultMultilineStreetAddr() {
+    @isTest
+    public static void insertNewDefaultMultilineStreetAddr() {
         if (strTestOnly != '*' && strTestOnly != 'insertNewDefaultMultilineStreetAddr') return;
         
         // this creates a default Address for each HH
@@ -2108,7 +2145,8 @@ private with sharing class ADDR_Addresses_TEST {
         HH and Contacts get new Address
         new Addresss has multiline street split into Street and Street2 fields
     **********************************************************************************************************/            
-    static testMethod void updateAccMultilineStreetAddr() {
+    @isTest
+    public static void updateAccMultilineStreetAddr() {
         if (strTestOnly != '*' && strTestOnly != 'updateAccMultilineStreetAddr') return;
         
         // this creates a default Address for each HH
@@ -2156,7 +2194,8 @@ private with sharing class ADDR_Addresses_TEST {
         N addresses created
         account address matches address object address
     **********************************************************************************************************/            
-    static testMethod void newOrgAccounts() {
+    @isTest
+    public static void newOrgAccounts() {
         if (strTestOnly != '*' && strTestOnly != 'newOrgAccounts') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
@@ -2197,7 +2236,8 @@ private with sharing class ADDR_Addresses_TEST {
         account addresses updated
         contact addresses not updated
     **********************************************************************************************************/            
-    static testMethod void updateOrgAccounts() {
+    @isTest
+    public static void updateOrgAccounts() {
         if (strTestOnly != '*' && strTestOnly != 'updateOrgAccounts') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
@@ -2255,7 +2295,8 @@ private with sharing class ADDR_Addresses_TEST {
         account addresses updated
         contact addresses not updated
     **********************************************************************************************************/            
-    static testMethod void newAddrForOrgAccounts() {
+    @isTest
+    public static void newAddrForOrgAccounts() {
         if (strTestOnly != '*' && strTestOnly != 'newAddrForOrgAccounts') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
@@ -2315,7 +2356,8 @@ private with sharing class ADDR_Addresses_TEST {
         HH Account addresses set
         Contact addresses set
     **********************************************************************************************************/            
-    static testMethod void testDisabledHHAccountAddr() {
+    @isTest
+    public static void testDisabledHHAccountAddr() {
         if (strTestOnly != '*' && strTestOnly != 'testDisabledHHAccountAddr') return;
         
         Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
