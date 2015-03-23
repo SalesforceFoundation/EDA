@@ -40,17 +40,31 @@ public class AFFL_Affiliations_TEST {
     // if you only want to run one test in this class, fill in its name here.
     // if you want to run all tests, then use '*'
     private static string strTestOnly = '*';
-            
+    
+    private static ID orgRecTypeID;
+    private static ID householdRecTypeID;
+    
+    private static testMethod void createAfflMappins() {
+    	List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+    	mappings.add(new Affl_Mappings__c(Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
+    	mappings.add(new Affl_Mappings__c(Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+    	insert mappings;
+    	
+    	orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+    	householdRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
+    }
+    
     /*******************************************************************************************************
     * @description Creates a new contact with an organizational account. Verifies an affiliation was created.
     */
     static testMethod void newContactOnOrgAccount() {
         if (strTestOnly != '*' && strTestOnly != 'newContactOnOrgAccount') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
         
-        Account acc = new Account(Name='test77');
+        Account acc = new Account(Name='test77', RecordTypeId = orgRecTypeID);
         insert acc;
         
         String title = 'CEO';
@@ -67,7 +81,7 @@ public class AFFL_Affiliations_TEST {
         system.assertEquals(title, createdAffiliations[0].Role__c);
         system.assertEquals(System.Today(), createdAffiliations[0].StartDate__c);
         
-        Account acc2 = new Account(Name='test88');
+        Account acc2 = new Account(Name='test88', RecordTypeId = orgRecTypeID);
         insert acc2;
         
         Test.startTest();
@@ -101,10 +115,11 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newContactOnOrgAccountAutoOff() {
         if (strTestOnly != '*' && strTestOnly != 'newContactOnOrgAccountAutoOff') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = false));
         
-        Account acc = new Account(Name='test77');
+        Account acc = new Account(Name='test77', RecordTypeId = orgRecTypeID);
         insert acc;
         
         Contact con = getContact(acc.Id, 'CEO');
@@ -115,7 +130,7 @@ public class AFFL_Affiliations_TEST {
         Affiliation__c[] createdAffiliations = [select id, Status__c, StartDate__c, Role__c, Organization__c, 
             EndDate__c, Contact__c from Affiliation__c where Contact__c=:con.id AND Organization__c = :acc.id];
         
-        system.assertEquals(0, createdAffiliations.size());        
+        system.assertEquals(0, createdAffiliations.size());
     }
 
 
@@ -125,10 +140,11 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newContactOnIndividualAccount() {
         if (strTestOnly != '*' && strTestOnly != 'newContactOnIndividualAccount') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
         
-        Account acc = new Account(Name='my bucket account', SYSTEMIsIndividual__c=true);
+        Account acc = new Account(Name='my bucket account', SYSTEMIsIndividual__c=true, RecordTypeId = orgRecTypeID);
         insert acc;
         
         Contact con = getContact(acc.Id, 'CEO');
@@ -147,11 +163,12 @@ public class AFFL_Affiliations_TEST {
     static testMethod void contactWithMultipleAffiliations_v2() {
         if (strTestOnly != '*' && strTestOnly != 'contactWithMultipleAffiliations_v2') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
         
-        Account acc = new Account(Name='test77');        
-        Account acc2 = new Account(Name='test88');
+        Account acc = new Account(Name='test77', RecordTypeId = orgRecTypeID);        
+        Account acc2 = new Account(Name='test88', RecordTypeId = orgRecTypeID);
         insert new Account[] {acc, acc2};
         
         Contact con = getContact(acc.ID, 'CEO');
@@ -189,6 +206,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newContactsWithPrimaryAffiliation() {
         if (strTestOnly != '*' && strTestOnly != 'newContactsWithPrimaryAffiliation') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -199,10 +217,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -239,6 +257,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newContactsWithPrimaryAffiliationOnetoOne() {
         if (strTestOnly != '*' && strTestOnly != 'newContactsWithPrimaryAffiliationOnetoOne') return;
         
+		createAfflMappins();        
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -249,10 +268,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -289,6 +308,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void updateContactsWithPrimaryAffiliation() {
         if (strTestOnly != '*' && strTestOnly != 'updateContactsWithPrimaryAffiliation') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -299,10 +319,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -350,6 +370,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void updateContactsWithPrimaryAffiliationAndAccount() {
         if (strTestOnly != '*' && strTestOnly != 'updateContactsWithPrimaryAffiliationAndAccount') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -360,10 +381,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -416,6 +437,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void updateContactsWithPrimaryAffiliationToDiffAccount() {
         if (strTestOnly != '*' && strTestOnly != 'updateContactsWithPrimaryAffiliationToDiffAccount') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -426,10 +448,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -491,6 +513,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void updateContactsWithPrimaryAffiliationClearPrimary() {
         if (strTestOnly != '*' && strTestOnly != 'updateContactsWithPrimaryAffiliationClearPrimary') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -501,10 +524,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -554,6 +577,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newPrimaryAffiliations() {
         if (strTestOnly != '*' && strTestOnly != 'newPrimaryAffiliations') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -564,10 +588,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -631,6 +655,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newPrimaryAffiliationsFromAffl() {
         if (strTestOnly != '*' && strTestOnly != 'newPrimaryAffiliationsFromAffl') return;
         
+        createAfflMappins();
         Affiliations_Settings__c affiliationsSettingsForTests = UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
             new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
             
@@ -641,10 +666,10 @@ public class AFFL_Affiliations_TEST {
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(8);
         system.assertEquals(null, listCon[0].AccountId); 
         
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE);
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null));
-        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE));
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.HH_ACCOUNT_TYPE, orgRecTypeID);
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, null, orgRecTypeID));
+        listAcc.addAll(UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(1, CAO_Constants.BUCKET_ORGANIZATION_TYPE, orgRecTypeID));
         insert listAcc;
         
         listCon[0].AccountId = listAcc[0].Id;   // HH account
@@ -729,6 +754,7 @@ public class AFFL_Affiliations_TEST {
     static testMethod void newAccountNewAffl() {
         if (strTestOnly != '*' && strTestOnly != 'newAccountNewAffl') return;
         
+        createAfflMappins();
         UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
         
         list<contact> listCon = new list<Contact>();
@@ -738,7 +764,7 @@ public class AFFL_Affiliations_TEST {
 
         test.StartTest();
         AFFL_Affiliations_TDTM.hasRunForAccounts = false;
-        Account acc = new Account(Name='foo', One2OneContact__c=listCon[0].id, SYSTEMIsIndividual__c=false);
+        Account acc = new Account(Name='foo', One2OneContact__c=listCon[0].id, SYSTEMIsIndividual__c=false, RecordTypeId = orgRecTypeID);
         insert acc;
         
         list<Affiliation__c> queryAffl = [select id, Status__c, StartDate__c, Role__c, 
