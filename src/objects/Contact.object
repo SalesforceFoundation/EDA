@@ -255,30 +255,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Primary_Department__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Department</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Department)</relationshipLabel>
-        <relationshipName>Department_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Educational_Institution__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Educational Institution</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Educational Institution)</relationshipLabel>
-        <relationshipName>Institution_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Primary_Household__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -298,18 +274,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts (Primary Organization)</relationshipLabel>
         <relationshipName>Organization_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Sports_Organization__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Sports Organization</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Sports Organization)</relationshipLabel>
-        <relationshipName>Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>

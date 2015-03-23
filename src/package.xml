@@ -238,12 +238,8 @@
     <name>QuickAction</name>
   </types>
   <types>
-    <members>Account.Administrative</members>
-    <members>Account.Business_Organization</members>
-    <members>Account.Educational_Institution</members>
     <members>Account.HH_Account</members>
-    <members>Account.Sports_Organization</members>
-    <members>Account.University_Department</members>
+    <members>Account.Business_Organization</members>
     <name>RecordType</name>
   </types>
   <types>
