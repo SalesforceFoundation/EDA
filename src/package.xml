@@ -8,7 +8,6 @@
     <members>ADDR_Addresses_TEST</members>
     <members>ADDR_Contact_TDTM</members>
     <members>ADDR_Seasonal_SCHED</members>
-    <members>AFFL_Affiliations_TDTM</members>
     <members>AFFL_MultiRecordType_TDTM</members>
     <members>AFFL_MultiRecordType_TEST</members>
     <members>CAO_Constants</members>

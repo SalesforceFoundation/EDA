@@ -45,7 +45,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description tests default contructor
     */
-    private static testMethod void ACCT_IndividualAccounts_TEST() {
+    @isTest private static void ACCT_IndividualAccounts_TEST() {
     	if (strTestOnly != '*' && strTestOnly != 'ACCT_IndividualAccounts_TEST') return;
         ACCT_IndividualAccounts_TDTM testIndividualAccounts = new ACCT_IndividualAccounts_TDTM();
     }
@@ -53,7 +53,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for inserting a Contact that should get no account 
     */
-    private static testMethod void insertPrivate() {
+    @isTest private static void insertPrivate() {
     	if (strTestOnly != '*' && strTestOnly != 'insertPrivate') return;
         insertPrivateProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
         insertPrivateProcessor(CAO_Constants.BUCKET_PROCESSOR);
@@ -85,7 +85,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test changing the account model from one-to-one account to household account.  
     */
-    private static testMethod void changeFromOneToOneToHouseholdAccount() {
+    @isTest private static void changeFromOneToOneToHouseholdAccount() {
     	if (strTestOnly != '*' && strTestOnly != 'changeFromOneToOneToHouseholdAccount') return;
             
     	//Set Individual (Bucket) settings
@@ -120,7 +120,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Create a contact, and change it to private, against all three account models.  
     */
-    private static testMethod void insertOneToOneChangeToPrivate() {
+    @isTest private static void insertOneToOneChangeToPrivate() {
     	if (strTestOnly != '*' && strTestOnly != 'insertOneToOneChangeToPrivate') return;
     	
         insertOneToOneChangeToPrivateProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);	
@@ -162,7 +162,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Create a Contact with TDTM triggers off, for both 1:1 and Household account models.  
     */
-    private static testMethod void insertOneToOneTriggerOff() {
+    @isTest private static void insertOneToOneTriggerOff() {
     	if (strTestOnly != '*' && strTestOnly != 'insertOneToOneTriggerOff') return;
         insertOneToOneTriggerOffProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
         insertOneToOneTriggerOffProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);    
@@ -212,7 +212,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for inserting and updating a Contact in the One-to-One model 
     */
-    private static testMethod void insertUpdateOneToOne() {
+    @isTest private static void insertUpdateOneToOne() {
     	if (strTestOnly != '*' && strTestOnly != 'insertUpdateOneToOne') return;
     	insertUpdateOneToOneProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
     }
@@ -220,7 +220,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for inserting and updating a Contact in the Household Account model 
     */
-    private static testMethod void insertUpdateOneToOneHouseholds() {
+    @isTest private static void insertUpdateOneToOneHouseholds() {
         if (strTestOnly != '*' && strTestOnly != 'insertUpdateOneToOneHouseholds') return;
         insertUpdateOneToOneProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR); 
     }
@@ -293,7 +293,7 @@ private class ACCT_IndividualAccounts_TEST {
         }        
     }
     /*
-    private static testMethod void testDefault()
+    @isTest private static void testDefault()
     {
        
         boolean aDefaultIsSelected = false;
@@ -312,7 +312,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for separating a Contact from it's One-to-One account, in 1:1 and Household Account models.
     */
-    private static testMethod void detachOneToOne() {
+    @isTest private static void detachOneToOne() {
     	if (strTestOnly != '*' && strTestOnly != 'detachOneToOne') return;
         detachOneToOneProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
         detachOneToOneProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);
@@ -356,7 +356,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for editing a contact while it is being detached from it's One-to-One Account. This was a bug (#37)
     */
-    private static testMethod void editContactDuringDetachOneToOne() {
+    @isTest private static void editContactDuringDetachOneToOne() {
     	if (strTestOnly != '*' && strTestOnly != 'editContactDuringDetachOneToOne') return;
         editContactDuringDetachOneToOneProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
         editContactDuringDetachOneToOneProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);	
@@ -418,7 +418,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for a new Contact in the Bucket Individual model 
     */
-    private static testMethod void attachToIndividualAccount() {
+    @isTest private static void attachToIndividualAccount() {
     	if (strTestOnly != '*' && strTestOnly != 'attachToIndividualAccount') return;
         attachToIndividualAccountProcessor(CAO_Constants.BUCKET_PROCESSOR);
         attachToIndividualAccountProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR); 
@@ -456,7 +456,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for detaching a Contact from the bucket individual account  
     */
-    private static testMethod void detachIndividualAccount() {
+    @isTest private static void detachIndividualAccount() {
     	if (strTestOnly != '*' && strTestOnly != 'detachIndividualAccount') return;
     	detachIndividualAccountProcessor(CAO_Constants.BUCKET_PROCESSOR);
         detachIndividualAccountProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);
@@ -504,7 +504,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for detaching a Contact from a normal account. It should land in the bucket account.
     */
-    private static testMethod void detachFromNormalAccountToBucket() {
+    @isTest private static void detachFromNormalAccountToBucket() {
     	if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToBucket') return;
         detachFromNormalAccountToBucketProcessor(CAO_Constants.BUCKET_PROCESSOR);
     }
@@ -512,7 +512,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for detaching a Contact from a normal account. It should land in the bucket account.
     */
-    private static testMethod void detachFromNormalAccountToBucketAccountProcessor() {
+    @isTest private static void detachFromNormalAccountToBucketAccountProcessor() {
         if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToBucketAccountProcessor') return;
         detachFromNormalAccountToBucketProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);
     }
@@ -563,7 +563,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Add a contact to an existing 1:1 or Household Account
     */
-    private static testMethod void contactAddedToExistingOneToOne() {
+    @isTest private static void contactAddedToExistingOneToOne() {
     	if (strTestOnly != '*' && strTestOnly != 'contactAddedToExistingOneToOne') return;
         contactAddedToExistingOneToOneProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
         contactAddedToExistingOneToOneProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);   
@@ -604,12 +604,12 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Update a contact to an existing 1:1 or Household Account
     */
-    private static testMethod void contactUpdatedToExistingOneToOne() {
+    @isTest private static void contactUpdatedToExistingOneToOne() {
     	if (strTestOnly != '*' && strTestOnly != 'contactUpdatedToExistingOneToOne') return;
         contactUpdatedToExistingOneToOneProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
     }
     
-    private static testMethod void contactUpdatedToExistingOneToOneHH() {
+    @isTest private static void contactUpdatedToExistingOneToOneHH() {
         if (strTestOnly != '*' && strTestOnly != 'contactUpdatedToExistingOneToOneHH') return;
         contactUpdatedToExistingOneToOneProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);   
     }
@@ -652,7 +652,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Update a contact's Lastname in the 1:1 and Household Account models
     */
-    private static testMethod void contactInNormalOrgNameChange() {
+    @isTest private static void contactInNormalOrgNameChange() {
     	if (strTestOnly != '*' && strTestOnly != 'contactInNormalOrgNameChange') return;
         contactInNormalOrgNameChangeProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
         contactInNormalOrgNameChangeProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);
@@ -699,7 +699,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for detaching a Contact from an org account. It should land in a one-to-one account. 
     */
-    private static testMethod void detachFromNormalAccountToOneToOne() {
+    @isTest private static void detachFromNormalAccountToOneToOne() {
     	if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToOneToOne') return;
     	detachFromNormalAccountToOneToOneProcessor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
     }
@@ -707,7 +707,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Test Method for detaching a Contact from an org account. It should land in Household account. 
     */
-    private static testMethod void detachFromNormalAccountToOneToOneHousehold() {
+    @isTest private static void detachFromNormalAccountToOneToOneHousehold() {
         if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToOneToOneHousehold') return;
         detachFromNormalAccountToOneToOneProcessor(CAO_Constants.HH_ACCOUNT_PROCESSOR);
     }
@@ -904,7 +904,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Rename a Contact's firstname to null and make sure the 1:1 Account's name gets updated
     */
-    private static testMethod void ghIssue16a(){
+    @isTest private static void ghIssue16a(){
     	if (strTestOnly != '*' && strTestOnly != 'ghIssue16a') return;
         ghIssue16Processor(CAO_Constants.ONE_TO_ONE_PROCESSOR);
     }
@@ -912,7 +912,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Rename a Contact's firstname to null and make sure the Household Account's name gets updated
     */
-    private static testMethod void ghIssue16b(){
+    @isTest private static void ghIssue16b(){
     	if (strTestOnly != '*' && strTestOnly != 'ghIssue16b') return;
         ghIssue16Processor(CAO_Constants.HH_ACCOUNT_PROCESSOR);
     }

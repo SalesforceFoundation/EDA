@@ -81,7 +81,7 @@ private class REL_Relationships_TEST {
     
     /// <name> TestContactRel </name>
     /// <summary> test method for relationships and the mirroring </summary>
-    static testMethod void testContactRel() {
+    @isTest static void testContactRel() {
     	if (strTestOnly != '*' && strTestOnly != 'testContactRel') return;
              
         setupRelationshipTestData(null);     
@@ -149,7 +149,7 @@ private class REL_Relationships_TEST {
     }
     /// <name> TestOrphanedRelDelete </name>
     /// <summary> test method for relationships and deleting the mirror record </summary>
-    static testMethod void testOrphanedRelDelete() {
+    @isTest static void testOrphanedRelDelete() {
     	if (strTestOnly != '*' && strTestOnly != 'testOrphanedRelDelete') return;
     	    
         setupRelationshipTestData(null);
@@ -179,7 +179,7 @@ private class REL_Relationships_TEST {
     }
     
     //deleting the original should delete the reciprocal
-    static testMethod void testRelationshipDelete(){
+    @isTest static void testRelationshipDelete(){
     	if (strTestOnly != '*' && strTestOnly != 'testRelationshipDelete') return;
     	
         setupRelationshipTestData(null);
@@ -213,7 +213,7 @@ private class REL_Relationships_TEST {
         system.assertEquals(0, [select count() from Relationship__c where id = :crel_mirror.id]);
     }
     
-    static testMethod void testAutoCreateCampaignMemberInsert(){
+    @isTest static void testAutoCreateCampaignMemberInsert(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsert') return;
     	
         setupRelationshipTestData(null);
@@ -248,7 +248,7 @@ private class REL_Relationships_TEST {
     }  
      
     //test the synchronous process as well
-    static testMethod void testAutoCreateCampaignMemberInsertSynch(){
+    @isTest static void testAutoCreateCampaignMemberInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsertSynch') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
@@ -272,7 +272,7 @@ private class REL_Relationships_TEST {
     }
     
     //can't do a true test as ContactId is not updatable, but we'll hit the update for coverage
-    static testMethod void testAutoCreateCampaignMemberUpdate(){
+    @isTest static void testAutoCreateCampaignMemberUpdate(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberUpdate') return;
     	
         setupRelationshipTestData(null);        
@@ -291,7 +291,7 @@ private class REL_Relationships_TEST {
         update cm;
         Test.stopTest();        
     }
-    static testMethod void testAutoCreateContactInsert(){
+    @isTest static void testAutoCreateContactInsert(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsert') return;
     	
         setupRelationshipTestData(null);
@@ -315,7 +315,7 @@ private class REL_Relationships_TEST {
         system.assertEquals(c.id, recRel.RelatedContact__c);
     }
     
-    static testMethod void testAutoCreateContactInsertSynch(){
+    @isTest static void testAutoCreateContactInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsertSynch') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
@@ -339,7 +339,7 @@ private class REL_Relationships_TEST {
         system.assertEquals(c.id, recRel.RelatedContact__c);
     }
     
-    static testMethod void testAutoCreateContactUpdate(){
+    @isTest static void testAutoCreateContactUpdate(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactUpdate') return;
     	
         setupRelationshipTestData(null);
@@ -362,7 +362,7 @@ private class REL_Relationships_TEST {
         system.assertEquals(c2.id, rel.RelatedContact__c);
     }
     
-    static testMethod void testInversionSettingsHaveType(){
+    @isTest static void testInversionSettingsHaveType(){
     	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsHaveType') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
@@ -389,7 +389,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('Friends-Buddies', crel_mirror.Type__c);        
     }
     
-    static testMethod void testInversionSettingsNoType(){
+    @isTest static void testInversionSettingsNoType(){
     	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsNoType') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
@@ -416,7 +416,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('BuddiesFriends', crel_mirror.Type__c);
     }
     
-    static testMethod void testNoValidSettingsConfig(){
+    @isTest static void testNoValidSettingsConfig(){
     	if (strTestOnly != '*' && strTestOnly != 'testNoValidSettingsConfig') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
@@ -443,7 +443,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('BuddiesFriends', crel_mirror.Type__c);
     }
     
-    static testMethod void testMaleSalutationReciprocal(){
+    @isTest static void testMaleSalutationReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testMaleSalutationReciprocal') return;
     	
         setupRelationshipTestData(null);
@@ -461,7 +461,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestMaleType', recRel.Type__c);
     }
     
-    static testMethod void testFemaleSalutationReciprocal(){
+    @isTest static void testFemaleSalutationReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testFemaleSalutationReciprocal') return;
     	
         setupRelationshipTestData(null);
@@ -479,7 +479,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestFemaleType', recRel.Type__c);
     }
     
-    static testMethod void testNeutralSalutationReciprocal(){
+    @isTest static void testNeutralSalutationReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testNeutralSalutationReciprocal') return;
     	
         setupRelationshipTestData(null);
@@ -497,7 +497,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestNeutralType', recRel.Type__c);
     }
     
-    static testMethod void testNeutralGenderFieldReciprocal(){
+    @isTest static void testNeutralGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testNeutralGenderFieldReciprocal') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
@@ -517,7 +517,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestNeutralType', recRel.Type__c);
     }
     
-    static testMethod void testMaleGenderFieldReciprocal(){
+    @isTest static void testMaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testMaleGenderFieldReciprocal') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
@@ -537,7 +537,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestMaleType', recRel.Type__c);
     }
     
-    static testMethod void testFemaleGenderFieldReciprocal(){
+    @isTest static void testFemaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testFemaleGenderFieldReciprocal') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
@@ -558,7 +558,7 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestFemaleType', recRel.Type__c);
     }
     
-    static testMethod void testErrorRecordCreation() {
+    @isTest static void testErrorRecordCreation() {
     	if (strTestOnly != '*' && strTestOnly != 'testErrorRecordCreation') return;
     	
     	UTIL_CustomSettingsFacade.getErrorSettings();
@@ -587,7 +587,7 @@ private class REL_Relationships_TEST {
         system.assertEquals(1, [select count() from Error__c]);
     }
     
-    static testMethod void testExceptionRecordCreation(){
+    @isTest static void testExceptionRecordCreation(){
     	if (strTestOnly != '*' && strTestOnly != 'testExceptionRecordCreation') return;
     	
         setupRelationshipTestData(null);
@@ -598,7 +598,7 @@ private class REL_Relationships_TEST {
         System.assertEquals('TestException', errors[0].Full_Message__c);       
     }
     
-    static testMethod void testAutoCreateDupePrevention(){
+    @isTest static void testAutoCreateDupePrevention(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateDupePrevention') return;
     	
         setupRelationshipTestData(null);
@@ -623,7 +623,7 @@ private class REL_Relationships_TEST {
         system.assertEquals(rel.size(), 1);     
     }
     
-    static testMethod void testRelationshipUTILS(){
+    @isTest static void testRelationshipUTILS(){
     	if (strTestOnly != '*' && strTestOnly != 'testRelationshipUTILS') return;
     	
         //to test the Relationship_Utils class      
@@ -635,7 +635,7 @@ private class REL_Relationships_TEST {
         }
     }  
     
-    static testmethod void test2Rels1Transaction_v2() {
+    @isTest static void test2Rels1Transaction_v2() {
     	if (strTestOnly != '*' && strTestOnly != 'test2Rels1Transaction_v2') return;
     	
          // Create three contacts
@@ -673,7 +673,7 @@ private class REL_Relationships_TEST {
 
 /*********************************************************
     // TEST METHODS from STTG_Relationships_CTRL 
-    static testMethod void STTG_Relationships_CTRL_TEST(){
+    @isTest static void STTG_Relationships_CTRL_TEST(){
         if (strTestOnly != '*' && strTestOnly != 'STTG_Relationships_CTRL_TEST') return;
         
         //test auto relationship creation
@@ -766,7 +766,7 @@ private class REL_Relationships_TEST {
         rsCTRL.editGeneralSettings();       
     }
     
-    static testmethod void testSettingsObjectWithJustOrgDefaults() {
+    @isTest static void testSettingsObjectWithJustOrgDefaults() {
     	if (strTestOnly != '*' && strTestOnly != 'testSettingsObjectWithJustOrgDefaults') return;
     	
         Relationship_Settings__c newRS;
