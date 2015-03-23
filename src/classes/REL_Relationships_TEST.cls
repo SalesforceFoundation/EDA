@@ -33,7 +33,7 @@
 * @description Testing for the Relationships class
 */
 @isTest
-private class REL_Relationships_TEST {
+public class REL_Relationships_TEST {
 	
 	// if you only want to run one test in this class, fill in its name here.
     // if you want to run all tests, then use '*'
@@ -81,7 +81,8 @@ private class REL_Relationships_TEST {
     
     /// <name> TestContactRel </name>
     /// <summary> test method for relationships and the mirroring </summary>
-    @isTest static void testContactRel() {
+    @isTest 
+    public static void testContactRel() {
     	if (strTestOnly != '*' && strTestOnly != 'testContactRel') return;
              
         setupRelationshipTestData(null);     
@@ -149,7 +150,8 @@ private class REL_Relationships_TEST {
     }
     /// <name> TestOrphanedRelDelete </name>
     /// <summary> test method for relationships and deleting the mirror record </summary>
-    @isTest static void testOrphanedRelDelete() {
+    @isTest 
+    public static void testOrphanedRelDelete() {
     	if (strTestOnly != '*' && strTestOnly != 'testOrphanedRelDelete') return;
     	    
         setupRelationshipTestData(null);
@@ -179,7 +181,8 @@ private class REL_Relationships_TEST {
     }
     
     //deleting the original should delete the reciprocal
-    @isTest static void testRelationshipDelete(){
+    @isTest 
+    public static void testRelationshipDelete(){
     	if (strTestOnly != '*' && strTestOnly != 'testRelationshipDelete') return;
     	
         setupRelationshipTestData(null);
@@ -213,7 +216,8 @@ private class REL_Relationships_TEST {
         system.assertEquals(0, [select count() from Relationship__c where id = :crel_mirror.id]);
     }
     
-    @isTest static void testAutoCreateCampaignMemberInsert(){
+    @isTest 
+    public static void testAutoCreateCampaignMemberInsert(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsert') return;
     	
         setupRelationshipTestData(null);
@@ -248,7 +252,8 @@ private class REL_Relationships_TEST {
     }  
      
     //test the synchronous process as well
-    @isTest static void testAutoCreateCampaignMemberInsertSynch(){
+    @isTest 
+    public static void testAutoCreateCampaignMemberInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsertSynch') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
@@ -272,7 +277,8 @@ private class REL_Relationships_TEST {
     }
     
     //can't do a true test as ContactId is not updatable, but we'll hit the update for coverage
-    @isTest static void testAutoCreateCampaignMemberUpdate(){
+    @isTest 
+    public static void testAutoCreateCampaignMemberUpdate(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberUpdate') return;
     	
         setupRelationshipTestData(null);        
@@ -291,7 +297,8 @@ private class REL_Relationships_TEST {
         update cm;
         Test.stopTest();        
     }
-    @isTest static void testAutoCreateContactInsert(){
+    @isTest 
+    public static void testAutoCreateContactInsert(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsert') return;
     	
         setupRelationshipTestData(null);
@@ -315,7 +322,8 @@ private class REL_Relationships_TEST {
         system.assertEquals(c.id, recRel.RelatedContact__c);
     }
     
-    @isTest static void testAutoCreateContactInsertSynch(){
+    @isTest 
+    public static void testAutoCreateContactInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsertSynch') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
@@ -339,7 +347,8 @@ private class REL_Relationships_TEST {
         system.assertEquals(c.id, recRel.RelatedContact__c);
     }
     
-    @isTest static void testAutoCreateContactUpdate(){
+    @isTest 
+    public static void testAutoCreateContactUpdate(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactUpdate') return;
     	
         setupRelationshipTestData(null);
@@ -362,7 +371,8 @@ private class REL_Relationships_TEST {
         system.assertEquals(c2.id, rel.RelatedContact__c);
     }
     
-    @isTest static void testInversionSettingsHaveType(){
+    @isTest 
+    public static void testInversionSettingsHaveType(){
     	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsHaveType') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
@@ -389,7 +399,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('Friends-Buddies', crel_mirror.Type__c);        
     }
     
-    @isTest static void testInversionSettingsNoType(){
+    @isTest 
+    public static void testInversionSettingsNoType(){
     	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsNoType') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
@@ -416,7 +427,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('BuddiesFriends', crel_mirror.Type__c);
     }
     
-    @isTest static void testNoValidSettingsConfig(){
+    @isTest 
+    public static void testNoValidSettingsConfig(){
     	if (strTestOnly != '*' && strTestOnly != 'testNoValidSettingsConfig') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
@@ -443,7 +455,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('BuddiesFriends', crel_mirror.Type__c);
     }
     
-    @isTest static void testMaleSalutationReciprocal(){
+    @isTest 
+    public static void testMaleSalutationReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testMaleSalutationReciprocal') return;
     	
         setupRelationshipTestData(null);
@@ -461,7 +474,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestMaleType', recRel.Type__c);
     }
     
-    @isTest static void testFemaleSalutationReciprocal(){
+    @isTest 
+    public static void testFemaleSalutationReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testFemaleSalutationReciprocal') return;
     	
         setupRelationshipTestData(null);
@@ -479,7 +493,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestFemaleType', recRel.Type__c);
     }
     
-    @isTest static void testNeutralSalutationReciprocal(){
+    @isTest 
+    public static void testNeutralSalutationReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testNeutralSalutationReciprocal') return;
     	
         setupRelationshipTestData(null);
@@ -497,7 +512,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestNeutralType', recRel.Type__c);
     }
     
-    @isTest static void testNeutralGenderFieldReciprocal(){
+    @isTest 
+    public static void testNeutralGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testNeutralGenderFieldReciprocal') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
@@ -517,7 +533,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestNeutralType', recRel.Type__c);
     }
     
-    @isTest static void testMaleGenderFieldReciprocal(){
+    @isTest 
+    public static void testMaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testMaleGenderFieldReciprocal') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
@@ -537,7 +554,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestMaleType', recRel.Type__c);
     }
     
-    @isTest static void testFemaleGenderFieldReciprocal(){
+    @isTest 
+    public static void testFemaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testFemaleGenderFieldReciprocal') return;
     	
         setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
@@ -558,7 +576,8 @@ private class REL_Relationships_TEST {
         system.assertEquals('TestFemaleType', recRel.Type__c);
     }
     
-    @isTest static void testErrorRecordCreation() {
+    @isTest 
+    public static void testErrorRecordCreation() {
     	if (strTestOnly != '*' && strTestOnly != 'testErrorRecordCreation') return;
     	
     	UTIL_CustomSettingsFacade.getErrorSettings();
@@ -587,7 +606,8 @@ private class REL_Relationships_TEST {
         system.assertEquals(1, [select count() from Error__c]);
     }
     
-    @isTest static void testExceptionRecordCreation(){
+    @isTest 
+    public static void testExceptionRecordCreation(){
     	if (strTestOnly != '*' && strTestOnly != 'testExceptionRecordCreation') return;
     	
         setupRelationshipTestData(null);
@@ -598,7 +618,8 @@ private class REL_Relationships_TEST {
         System.assertEquals('TestException', errors[0].Full_Message__c);       
     }
     
-    @isTest static void testAutoCreateDupePrevention(){
+    @isTest 
+    public static void testAutoCreateDupePrevention(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateDupePrevention') return;
     	
         setupRelationshipTestData(null);
@@ -623,7 +644,8 @@ private class REL_Relationships_TEST {
         system.assertEquals(rel.size(), 1);     
     }
     
-    @isTest static void testRelationshipUTILS(){
+    @isTest 
+    public static void testRelationshipUTILS(){
     	if (strTestOnly != '*' && strTestOnly != 'testRelationshipUTILS') return;
     	
         //to test the Relationship_Utils class      
@@ -635,7 +657,8 @@ private class REL_Relationships_TEST {
         }
     }  
     
-    @isTest static void test2Rels1Transaction_v2() {
+    @isTest 
+    public static void test2Rels1Transaction_v2() {
     	if (strTestOnly != '*' && strTestOnly != 'test2Rels1Transaction_v2') return;
     	
          // Create three contacts
@@ -670,120 +693,4 @@ private class REL_Relationships_TEST {
     }  
   
     public class MyException extends Exception{}
-
-/*********************************************************
-    // TEST METHODS from STTG_Relationships_CTRL 
-    @isTest static void STTG_Relationships_CTRL_TEST(){
-        if (strTestOnly != '*' && strTestOnly != 'STTG_Relationships_CTRL_TEST') return;
-        
-        //test auto relationship creation
-        Relationship_Auto_Create__c newAC = new Relationship_Auto_Create__c(Name = 'TESTACAUTO', Object__c = 'Contact', Field__c = 'Description', Relationship_Type__c = 'NewType', Campaign_Types__c = 'Other;');
-        insert newAC;
-        
-        //test relationship lookup creation
-        Relationship_Lookup__c newRL = new Relationship_Lookup__c(Name='TESTRL', Male__c='Male', Female__c='Female', Neutral__c='Neutral');
-        insert newRL;
-        //insert an error so the controller posts a message
-        Error__c re = new Error__c(
-           Error_Type__c = 'MyType',
-           DateTime__c = system.now(),
-           Full_Message__c = 'FullTextErrorMessage'
-        );
-        insert re;
-        
-        //create a new instance of the controller
-        STTG_Relationships_CTRL rsCTRL = new STTG_Relationships_CTRL();
-        rsCTRL.getSettingsFirstTime();
-        system.assertNotEquals(null, rsCTRL.relSettings);
-        system.assertNotEquals(null, rsCTRL.relACMap);
-        system.assertNotEquals(null, rsCTRL.relLookupMap);
-        system.assertEquals('general_settings', rsCTRL.active_tab);
-        
-        //test behavior of uncovered getters
-        List<SelectOption> genderList;
-        genderList = rsCTRL.genderFieldOptions;
-        system.assertEquals('-None-', genderList[0].getLabel());        
-        
-        //test auto relationship behavior
-        system.assert(rsCTRL.relACMap.keySet().size() > 0);
-        system.assert(rsCTRL.relAutoCreateList.size() == rsCTRL.relACMap.keySet().size());
-        rsCTRL.selectedACName = 'TESTACAUTO';
-        rsCTRL.editAC();
-        system.assertEquals('TESTACAUTO', rsCTRL.activeAC.Name);
-        rsCTRL.activeAC.Name = 'TESTACAUTO2';           
-        rsCTRL.saveAC();
-        system.assert(rsCTRL.relACMap.keySet().size() > 0);
-        system.assert(rsCTRL.relACMap.containsKey('TESTACAUTO2'));
-        List<SelectOption> acList;
-        acList = rsCTRL.ACFieldOptions;
-        system.assertEquals('-None-', acList[0].getLabel());    
-        
-        rsCTRL.selectedACName = 'TESTACAUTO2';
-        rsCTRL.deleteAC();
-        system.assert(!rsCTRL.relACMap.containsKey('TESTACAUTO2'));
-        rsCTRL.addAC();
-        rsCTRL.cTypeOptions = new List<String>{'Other', 'Email'};
-        rsCTRL.activeAC.Object__c = 'CampaignMember';
-        rsCTRL.activeAC.Field__c = 'TestField__c';
-        rsCTRL.activeAC.Relationship_Type__c = 'Whatever';
-        rsCTRL.saveAC();
-        system.assert(rsCTRL.relACMap.keySet().size() > 0);     
-        acList = rsCTRL.ACFieldOptions;
-        system.assertEquals('-None-', acList[0].getLabel());
-        
-        //test relationships lookup behavior
-        system.assert(rsCTRL.relLookupMap.keySet().size() > 0);
-        system.assert(rsCTRL.setCon.getResultSize() == rsCTRL.relLookupMap.keySet().size());
-        rsCTRL.selectedRLName = 'TESTRL';
-        rsCTRL.editLookup();
-        system.assertEquals('TESTRL', rsCTRL.activeRL.Name);
-        rsCTRL.activeRL.Name = 'TESTRL2';
-        rsCTRL.saveLookup();
-        system.assert(rsCTRL.relLookupMap.keySet().size() > 0);
-        system.assert(rsCTRL.relLookupMap.containsKey('TESTRL2'));
-        system.assert(rsCTRL.relLookupList.size() > 0);
-        rsCTRL.addLookup();
-        rsCTRL.activeRL.Name = 'TESTRLName3';
-        rsCTRL.activeRL.Male__c = 'Male';
-        rsCTRL.activeRL.Female__c = 'Female';
-        rsCTRL.activeRL.Neutral__c = 'Neutral';
-        rsCTRL.saveLookup();
-        system.assert(rsCTRL.relLookupMap.containsKey('TESTRLName3'));           
-        rsCTRL.selectedRLName = 'TESTRLName3';
-        rsCTRL.deleteLookup();  
-        system.assert(!rsCTRL.relLookupMap.containsKey('TESTRLName3'));
-        rsCTRL.activeRL = rsCTRL.relLookupMap.get('TESTRL');
-        rsCTRL.cancel();
-        system.assertNotEquals('TESTRL', rsCTRL.activeRL.Name);
-        
-        //use the getter
-        Integer i = rsCTRL.pageCountRL;
-        List<SelectOption> campaignOptionList = rsCTRL.ACCampaignTypeOptions;
-        
-        //other methods for coverage
-        rsCTRL.deleteErrors();
-        rsCTRL.saveGeneralSettings();
-        rsCTRL.editGeneralSettings();       
-    }
-    
-    @isTest static void testSettingsObjectWithJustOrgDefaults() {
-    	if (strTestOnly != '*' && strTestOnly != 'testSettingsObjectWithJustOrgDefaults') return;
-    	
-        Relationship_Settings__c newRS;
-        newRS = UTIL_CustomSettingsFacade.getRelationshipSettings();
-        system.assertNotEquals(null, newRS);
-        system.assertEquals(null, newRS.Id);   
-        system.assertEquals(null, newRS.Reciprocal_Method__c);  
-        newRS.Reciprocal_Method__c = 'List Settings';
-        insert newRS;
-        system.assertNotEquals(null, newRS.Id);
-        
-        //create a new instance of the controller
-        STTG_Relationships_CTRL rsCTRL = new STTG_Relationships_CTRL();
-        rsCTRL.getSettingsFirstTime();
-        system.assertNotEquals(null, rsCTRL.relSettings);
-        system.assertNotEquals(null, rsCtrl.relSettings.Id);    
-    }
-**************************************************/
-    
 }
