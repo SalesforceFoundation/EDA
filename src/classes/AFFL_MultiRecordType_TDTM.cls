@@ -128,15 +128,15 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 	                    }
 	                    System.debug('****MRT: Number of lookups of this type:' + oldLookups.size());
 	                    
-	                    //If there is no affiliation lookup of this type, look for a mapping. If a mapping exists, populate the lookup field
+	                    //If there is no affiliation lookup of this type and we have a mapping, populate the lookup field
 	                    //defined in the mapping. 
 	                    if((oldLookups.size() == 0 || oldLookups.size() == 1) && !String.isBlank(lookupFieldName)) {
+	                    	System.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
 							relatedContact.put(lookupFieldName, affl.Organization__c);
 		                    dmlWrapper.objectsToUpdate.add(relatedContact); 
 	                    //If there's more than one, throw an error.
 	                    } else if(oldLookups.size() > 1) {
 	                    	affl.addError('Multiple primary affiliations of the same type to the same contact exist. Leave only one before proceeding.');
-	                    	return dmlWrapper;
 	                    }
 	                }
 	            }
