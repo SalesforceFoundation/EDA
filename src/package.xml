@@ -115,6 +115,8 @@
     <members>Contact.Private__c</members>
     <members>Contact.Program_of_Study__c</members>
     <members>Contact.Secondary_Address_Type__c</members>
+    <members>Contact.Social_Security_Number__c</members>
+    <members>Contact.Start_Date__c</members>
     <members>Contact.Type_of_Account__c</members>
     <members>Contact.WorkEmail__c</members>
     <members>Contact.WorkPhone__c</members>

@@ -429,6 +429,24 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Social_Security_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Social Security Number</label>
+        <length>12</length>
+        <maskChar>X</maskChar>
+        <maskType>ssn</maskType>
+        <required>false</required>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Type_of_Account__c</fullName>
         <description>Formula: &quot;Individual&quot; or &quot;Organization&quot; depending on Account setting.</description>
         <externalId>false</externalId>
