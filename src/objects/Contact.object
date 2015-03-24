@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <fullName>Admission_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Admission Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>AlternateEmail__c</fullName>
         <description>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</description>
         <externalId>false</externalId>
@@ -9,6 +17,54 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class_Standing__c</fullName>
+        <externalId>false</externalId>
+        <label>Class Standing</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Freshman</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sophomore</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Junior</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senior</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Credits_Attempted__c</fullName>
+        <externalId>false</externalId>
+        <label>Credits Attempted</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credits_Earned__c</fullName>
+        <externalId>false</externalId>
+        <label>Credits Earned</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -34,6 +90,14 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Eligible_to_Enroll__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Eligible to Enroll</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Exclude_from_Household_Formal_Greeting__c</fullName>
@@ -66,6 +130,33 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FERPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>FERPA</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Financial_Aid_Applicant__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Financial Aid Applicant</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>GPA__c</fullName>
+        <externalId>false</externalId>
+        <label>GPA</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>HHId__c</fullName>
         <externalId>false</externalId>
         <formula>if(Account.SYSTEM_AccountType__c==&apos;Household Account&apos;,CASESAFEID(AccountId),null)</formula>
@@ -74,6 +165,23 @@
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HIPPA_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>HIPPA Detail</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>HIPPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>HIPPA</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>HomeEmail__c</fullName>

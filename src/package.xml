@@ -86,12 +86,22 @@
     <members>Affiliations_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Affl_Mappings__c.Account_Record_Type__c</members>
     <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
+    <members>Contact.Admission_Date__c</members>
     <members>Contact.AlternateEmail__c</members>
+    <members>Contact.Class_Standing__c</members>
+    <members>Contact.Credits_Attempted__c</members>
+    <members>Contact.Credits_Earned__c</members>
     <members>Contact.Current_Address__c</members>
+    <members>Contact.Eligible_to_Enroll__c</members>
     <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Name__c</members>
+    <members>Contact.FERPA__c</members>
+    <members>Contact.Financial_Aid_Applicant__c</members>
+    <members>Contact.GPA__c</members>
     <members>Contact.HHId__c</members>
+    <members>Contact.HIPPA_Detail__c</members>
+    <members>Contact.HIPPA__c</members>
     <members>Contact.HomeEmail__c</members>
     <members>Contact.Home_Address__c</members>
     <members>Contact.Naming_Exclusions__c</members>
