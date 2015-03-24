@@ -397,6 +397,14 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Program_of_Study__c</fullName>
+        <externalId>false</externalId>
+        <label>Program of Study</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Secondary_Address_Type__c</fullName>
         <description>What type of address is the other address?</description>
         <externalId>false</externalId>
