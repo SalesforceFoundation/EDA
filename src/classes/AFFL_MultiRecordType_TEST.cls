@@ -2,7 +2,9 @@
 public with sharing class AFFL_MultiRecordType_TEST {
 	
 	@isTest
-	public static void createPrimaryAffl() {    
+	public static void createPrimaryAffl() {
+		UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
+		
 		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
     	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
     	mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
@@ -13,6 +15,15 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
+    	
+    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+    	
+    	//Verify default household account has been created for the contact
+    	System.assertNotEquals(null, contact.Account.ID);
+    	
+    	//Verify the primary household field was populated
+    	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
+    	
     	Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert acc1;
     	

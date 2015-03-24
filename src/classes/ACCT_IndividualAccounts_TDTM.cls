@@ -469,6 +469,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }*/               
                 a.Type = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_TYPE : '';
                 a.SYSTEMISINDIVIDUAL__c = true;
+                
                 accountInserts.add(a);
                 listContactNewAcct.add(c);
             }
@@ -485,6 +486,11 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             for (Contact c : listContactNewAcct) {
                 // for each success, write the new AccountId to the Contact.
                 c.AccountId = accountInserts[i].Id;
+                
+                //Populate the primary household lookup field
+                System.debug('****Populating the primary household field');
+                c.Primary_Household__c = accountInserts[i].Id;
+                
                 /**** 
                 if (lsr[i].isSuccess() == true) {
                     c.AccountId = lsr[i].getId();
@@ -493,6 +499,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     // DJH:UNDONE - need to use error class to log DML errors
                 }
                 *****/
+
                 i += 1;
             }
         }
