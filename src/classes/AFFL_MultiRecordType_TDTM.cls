@@ -88,72 +88,95 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 //WARNING: NOT BULK SAFE! WE'LL NEED TO OPTIMIZE IT, IF WE GO FOR THIS DESIGN!
 			 
 			 Integer i = 0;
-	    	 for (SObject so : newlist) {
-	            Affiliation__c affl = (Affiliation__c)so;
-
-	            //BEFORE INSERT - so we don't get the affiliation we just created when we query for affls of the same type
-	            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-	            	
+			 if(newlist != null && newlist.size() > 0) {
+		    	 for (SObject so : newlist) {
+		            Affiliation__c affl = (Affiliation__c)so;
+					
 					System.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
 					String lookupFieldLabel = mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
 					System.debug('****MRT: lookup field label: ' + lookupFieldLabel);
 					String lookupFieldName = contactLabelNames.get(lookupFieldLabel);
-					System.debug('****MRT: lookup field nane: ' + lookupFieldName);
-				
-	            	List<Affiliation__c> otherPrimaries;
-	            	
-	            	//If the account doesn't have a record type, find any other primary affiliations with no record type for this contact.
-	            	if(affl.Affiliation_Type__c == null) {
-						otherPrimaries = [select ID, Organization__c, Primary__c from Affiliation__c 
-														where Affiliation_Type__c = null 
-														and Contact__c = :affl.Contact__c and Primary__c = true];
-	            	//If the account has a record type, find any other primary affiliations of this record type for this contact.
-	            	} else {
-						otherPrimaries = [select ID, Organization__c, Primary__c from Affiliation__c 
-														where Affiliation_Type__c = :affl.Affiliation_Type__c 
-														and Contact__c = :affl.Contact__c and Primary__c = true];
-	            	}
-					System.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimaries.size());
+					System.debug('****MRT: lookup field name: ' + lookupFieldName);
 					
 					//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 					Contact relatedContact = queryAfflLookupFields(affl);
-	            	
-	                if (affl.Primary__c && affl.Contact__c != null && affl.Organization__c != null) {
-	                    List<ID> oldLookups = new List<ID>();
-	                    //If the newly created affiliation is the primary, uncheck other primary affiliations of the same type.
-	                    for(Affiliation__c otherAffl : otherPrimaries) {
-	                		otherAffl.Primary__c = false;
-	                		dmlWrapper.objectsToUpdate.add(otherAffl);
-	                		oldLookups.add(otherAffl.Organization__c);
-	                    }
-	                    System.debug('****MRT: Number of lookups of this type:' + oldLookups.size());
-	                    
-	                    //If there is no affiliation lookup of this type and we have a mapping, populate the lookup field
-	                    //defined in the mapping. 
-	                    if((oldLookups.size() == 0 || oldLookups.size() == 1) && !String.isBlank(lookupFieldName)) {
-	                    	System.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
-							relatedContact.put(lookupFieldName, affl.Organization__c);
-		                    dmlWrapper.objectsToUpdate.add(relatedContact); 
-	                    //If there's more than one, throw an error.
-	                    } else if(oldLookups.size() > 1) {
-	                    	affl.addError('Multiple primary affiliations of the same type to the same contact exist. Leave only one before proceeding.');
-	                    }
-	                }
-	            }
-	            
-	            // AFTER UPDATE
-	            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-	                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
-	                if (affl.Primary__c != afflOld.Primary__c) {
-	                                       
-	                }
-	            }
-	            
-	            //AFTER DELETE - delete lookup relationship, if necessary
-	            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-	            	
-	            }         
-	        	i++;
+						
+		            //BEFORE INSERT - so we don't get the affiliation we just created when we query for affls of the same type
+		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+		            	
+		            	List<Affiliation__c> otherPrimaries;
+		            	
+		            	//If the account doesn't have a record type, find any other primary affiliations with no record type for this contact.
+		            	if(affl.Affiliation_Type__c == null) {
+							otherPrimaries = [select ID, Organization__c, Primary__c from Affiliation__c 
+															where Affiliation_Type__c = null 
+															and Contact__c = :affl.Contact__c and Primary__c = true];
+		            	//If the account has a record type, find any other primary affiliations of this record type for this contact.
+		            	} else {
+							otherPrimaries = [select ID, Organization__c, Primary__c from Affiliation__c 
+															where Affiliation_Type__c = :affl.Affiliation_Type__c 
+															and Contact__c = :affl.Contact__c and Primary__c = true];
+		            	}
+						System.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimaries.size());
+						
+		                if (affl.Primary__c && affl.Contact__c != null && affl.Organization__c != null) {
+		                    List<ID> oldLookups = new List<ID>();
+		                    //If the newly created affiliation is the primary, uncheck other primary affiliations of the same type.
+		                    for(Affiliation__c otherAffl : otherPrimaries) {
+		                		otherAffl.Primary__c = false;
+		                		dmlWrapper.objectsToUpdate.add(otherAffl);
+		                		oldLookups.add(otherAffl.Organization__c);
+		                    }
+		                    System.debug('****MRT: Number of lookups of this type:' + oldLookups.size());
+		                    
+		                    //If there is no affiliation lookup of this type and we have a mapping, populate the lookup field
+		                    //defined in the mapping. 
+		                    if((oldLookups.size() == 0 || oldLookups.size() == 1) && !String.isBlank(lookupFieldName)) {
+		                    	System.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
+								relatedContact.put(lookupFieldName, affl.Organization__c);
+			                    dmlWrapper.objectsToUpdate.add(relatedContact); 
+		                    //If there's more than one, throw an error.
+		                    } else if(oldLookups.size() > 1) {
+		                    	affl.addError('Multiple primary affiliations of the same type to the same contact exist. Leave only one before proceeding.');
+		                    }
+		                }
+		            }
+		            
+		            // AFTER UPDATE
+		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+		                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
+		                if (affl.Primary__c != afflOld.Primary__c) {
+		                                       
+		                }
+		            }      
+		        	i++;
+		    	 }
+			 }
+	    	 
+	    	 if(oldlist != null && oldlist.size() > 0) {
+		    	 for(SObject so : oldlist) {
+		    	 	Affiliation__c affl = (Affiliation__c)so;
+		    	 	
+		    	 	System.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
+					String lookupFieldLabel = mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
+					System.debug('****MRT: lookup field label: ' + lookupFieldLabel);
+					String lookupFieldName = contactLabelNames.get(lookupFieldLabel);
+					System.debug('****MRT: lookup field name: ' + lookupFieldName);
+					
+		    	 	//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+					Contact relatedContact = queryAfflLookupFields(affl);
+					
+		    	 	//AFTER DELETE - delete lookup relationship, if necessary
+		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+		            	System.debug('****MRT: after delete');
+		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
+		            	if(affl.Primary__c && relatedContact.get(lookupFieldName) == affl.Organization__c) {
+		            		System.debug('****MRT: clearing lookup field');
+		            		relatedContact.put(lookupFieldName, null);
+		            		dmlWrapper.objectsToUpdate.add(relatedContact);
+		            	}
+		            }
+		    	 }
 	    	 }
 	    	 afflMultiHasRun = true;  
         } 

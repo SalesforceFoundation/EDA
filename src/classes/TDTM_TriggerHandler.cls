@@ -118,6 +118,7 @@ public with sharing class TDTM_TriggerHandler {
 	        }
 	    } catch(Exception e) {
 	    	UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
+	    	UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
             if(!UTIL_CustomSettingsFacade.getErrorSettings().Disable_Error_Handling__c) {
                 Database.rollback(sp);
                 //Store error record and send error email notification
