@@ -120,32 +120,6 @@ public class UTIL_UnitTestData_TEST {
         
         return ContactsToAdd;
     }
-    /*
-    public static List<Contact> CreateMultipleTestContactsInHouseholds (List<Contact> firstContactList) {
-        
-        List<contact> ContactsToAdd = New List<contact> ();
-        
-        for (integer i=0;i<firstContactList.size();i++) {
-            Contact newCon = New Contact (
-                FirstName= CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS + i,
-                LastName= CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-                Private__c=false,
-                WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS, 
-                Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-                WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-                PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS,
-                OtherCity = 'Seattle',
-                Household__c = firstContactList[i].Household__c
-            );
-            ContactsToAdd.add (newCon);
-        }
-        
-        // testing doing the insert in the calling code - will maybe reinstate this
-        //insert ContactsToAdd;
-        
-        return ContactsToAdd;
-    }
-    */
 
     public static List<Opportunity> OppsForContactList (List<Contact> Cons, id CampId, string Stage, date Close, double Amt, string rectype, string oppType) {
      
@@ -203,8 +177,6 @@ public class UTIL_UnitTestData_TEST {
             );
             if (strType != null) {
             	newAcct.SYSTEMIsIndividual__c = true;
-            	if (strType == CAO_Constants.BUCKET_ORGANIZATION_TYPE)
-            	   newAcct.name = CAO_Constants.BUCKET_ACCOUNT_NAME;
             }
             AcctsToAdd.add (newAcct);
         }
