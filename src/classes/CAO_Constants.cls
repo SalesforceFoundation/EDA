@@ -36,31 +36,6 @@
 public with sharing class CAO_Constants {
 
     /*******************************************************************************************************
-    * @description One-to-One value for system processor field
-    */ 
-    public static final String ONE_TO_ONE_PROCESSOR = 'One-to-One';
-
-    /*******************************************************************************************************
-    * @description One-to-One org type value
-    */ 
-    public static final String ONE_TO_ONE_ORGANIZATION_TYPE = 'One-to-One Individual';
-
-    /*******************************************************************************************************
-    * @description Individual Bucket value for system processor field
-    */ 
-    public static final String BUCKET_PROCESSOR = 'Individual';
-
-    /*******************************************************************************************************
-    * @description Individual Bucket org type value
-    */ 
-    public static final String BUCKET_ORGANIZATION_TYPE = 'Bucket Individual';
-
-    /*******************************************************************************************************
-    * @description Individual Bucket Account name
-    */ 
-    public static String BUCKET_ACCOUNT_NAME = 'Individual';
-
-    /*******************************************************************************************************
     * @description Household Account value for system processor field
     */ 
     public static final String HH_ACCOUNT_PROCESSOR = 'Household Account';
@@ -111,83 +86,10 @@ public with sharing class CAO_Constants {
     public static  string INDIVIDUAL_ACCOUNT_NAME_FOR_TESTS = 'IndividualAccountNameForTests';
 
     /*******************************************************************************************************
-    * @description Returns whether we are in the One-to-One Account Model
-    * @return  boolean
-    */ 
-    public static boolean isOneToOne() {
-        //if no settings exist, create defaults
-        if (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c==ONE_TO_ONE_PROCESSOR) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /*******************************************************************************************************
-    * @description Returns whether we are in the Individual Bucket Account Model
-    * @return  boolean
-    */ 
-    public static boolean isBucketModel() {
-        return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == BUCKET_PROCESSOR);
-    }
-
-    /*******************************************************************************************************
     * @description Returns whether we are in the Household Account Model
     * @return  boolean
     */ 
     public static boolean isHHAccountModel() {
         return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR);
-    }    
-
-    /*******************************************************************************************************
-    * @description The Salesforce Id of the Individual Bucket Account
-    */ 
-    public static Id IndividualAccountId;
-
-    /*******************************************************************************************************
-    * @description The name of the Individual Bucket Account
-    */ 
-    private static String IndividualAccountName = CAO_Constants.BUCKET_ACCOUNT_NAME;
-
-    /*******************************************************************************************************
-    * @description returns the Salesforce Id of the Individual Bucket Account
-    * @return  Id
-    */ 
-    public static id getIndividualAccountId () {
-    
-        // look up the ID if we haven't already done it
-        if ( IndividualAccountId == null ) {
-            List<Account> acct = [select id,SYSTEMISINDIVIDUAL__c,SYSTEM_AccountType__c from account where Name =:IndividualAccountName LIMIT 1];
-            if(acct.size()>0){
-                if(acct[0].SYSTEMISINDIVIDUAL__c==false || acct[0].SYSTEM_AccountType__c<>CAO_Constants.BUCKET_ORGANIZATION_TYPE){
-                    acct[0].SYSTEMISINDIVIDUAL__c = true;
-                    acct[0].SYSTEM_AccountType__c = CAO_Constants.BUCKET_ORGANIZATION_TYPE;
-                    update acct[0];
-                }
-                IndividualAccountId = acct[0].id;
-            }
-        }
-        return IndividualAccountId;
-    }
-
-    /*******************************************************************************************************
-    * @description Creates an Individual Bucket Account, for use in test code.
-    * @return  Id of the Individual Bucket Account
-    */ 
-    public static Id setIndividualAccountForTests(String accountName) {
-        //create a fake Individual Account for tests
-
-        Account individualAccountForTests = new Account(
-            Name=accountName,
-            SYSTEMISINDIVIDUAL__c = true,
-            SYSTEM_AccountType__c = CAO_Constants.BUCKET_ORGANIZATION_TYPE
-        );
-        
-        insert individualAccountForTests;
-
-        CAO_Constants.BUCKET_ACCOUNT_NAME = accountName;
-        IndividualAccountName = accountName;
-
-        return individualAccountForTests.id;
     }
 }
