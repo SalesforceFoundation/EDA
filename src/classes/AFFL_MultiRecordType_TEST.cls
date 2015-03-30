@@ -93,7 +93,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		
 		Test.startTest();
 		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
-		System.debug('****About to delete affiliation.');
+		UTIL_Debug.debug('****About to delete affiliation.');
 		delete affl1;
 		Test.stopTest();
 		

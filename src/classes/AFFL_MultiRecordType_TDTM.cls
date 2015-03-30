@@ -24,15 +24,15 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		
 		//Affiliation Account-record-type-to-Contact-field mappings.
 		mappingsRecTypesToLabels = getPrimaryAfflMappings();
-		System.debug('****MRT: primaryAfflMappings: ' + JSON.serializePretty(mappingsRecTypesToLabels)); 
+		UTIL_Debug.debug('****MRT: primaryAfflMappings: ' + JSON.serializePretty(mappingsRecTypesToLabels)); 
 		
 		//List of primary affiliation lookup fields names.
 		List<String> primaryAfflFieldLabels = mappingsRecTypesToLabels.values();
-		System.debug('****MRT: primaryAfflFieldLabels: ' + JSON.serializePretty(primaryAfflFieldLabels));
+		UTIL_Debug.debug('****MRT: primaryAfflFieldLabels: ' + JSON.serializePretty(primaryAfflFieldLabels));
 		
 		//List of primary affiliation Contact fields.
 		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
-		System.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
+		UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
     
     private Map<String, String> getContactLabelsNamesMap(List<SObjectField> cf) {
@@ -75,7 +75,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			dynamicQuery = dynamicQuery + ', ' + primaryField; 	
 		}
 		dynamicQuery += ' from Contact where ID = \''+ affl.Contact__c + '\'';
-		System.debug('****MRT: Dynamic query: ' + dynamicQuery);
+		UTIL_Debug.debug('****MRT: Dynamic query: ' + dynamicQuery);
 		return (Contact)Database.query(dynamicQuery)[0];
     }
     
@@ -92,11 +92,11 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
 					
-					System.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
+					UTIL_Debug.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
 					String lookupFieldLabel = mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
-					System.debug('****MRT: lookup field label: ' + lookupFieldLabel);
+					UTIL_Debug.debug('****MRT: lookup field label: ' + lookupFieldLabel);
 					String lookupFieldName = contactLabelNames.get(lookupFieldLabel);
-					System.debug('****MRT: lookup field name: ' + lookupFieldName);
+					UTIL_Debug.debug('****MRT: lookup field name: ' + lookupFieldName);
 					
 					//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 					Contact relatedContact = queryAfflLookupFields(affl);
@@ -117,7 +117,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 															where Affiliation_Type__c = :affl.Affiliation_Type__c 
 															and Contact__c = :affl.Contact__c and Primary__c = true];
 		            	}
-						System.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimaries.size());
+						UTIL_Debug.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimaries.size());
 						
 		                if (affl.Primary__c && affl.Contact__c != null && affl.Organization__c != null) {
 		                    List<ID> oldLookups = new List<ID>();
@@ -127,12 +127,12 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                		dmlWrapper.objectsToUpdate.add(otherAffl);
 		                		oldLookups.add(otherAffl.Organization__c);
 		                    }
-		                    System.debug('****MRT: Number of lookups of this type:' + oldLookups.size());
+		                    UTIL_Debug.debug('****MRT: Number of lookups of this type:' + oldLookups.size());
 		                    
 		                    //If there is no affiliation lookup of this type and we have a mapping, populate the lookup field
 		                    //defined in the mapping. 
 		                    if((oldLookups.size() == 0 || oldLookups.size() == 1) && !String.isBlank(lookupFieldName)) {
-		                    	System.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
+		                    	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
 								relatedContact.put(lookupFieldName, affl.Organization__c);
 			                    dmlWrapper.objectsToUpdate.add(relatedContact); 
 		                    //If there's more than one, throw an error.
@@ -157,21 +157,21 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		    	 for(SObject so : oldlist) {
 		    	 	Affiliation__c affl = (Affiliation__c)so;
 		    	 	
-		    	 	System.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
+		    	 	UTIL_Debug.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
 					String lookupFieldLabel = mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
-					System.debug('****MRT: lookup field label: ' + lookupFieldLabel);
+					UTIL_Debug.debug('****MRT: lookup field label: ' + lookupFieldLabel);
 					String lookupFieldName = contactLabelNames.get(lookupFieldLabel);
-					System.debug('****MRT: lookup field name: ' + lookupFieldName);
+					UTIL_Debug.debug('****MRT: lookup field name: ' + lookupFieldName);
 					
 		    	 	//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 					Contact relatedContact = queryAfflLookupFields(affl);
 					
 		    	 	//AFTER DELETE - delete lookup relationship, if necessary
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-		            	System.debug('****MRT: after delete');
+		            	UTIL_Debug.debug('****MRT: after delete');
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
 		            	if(affl.Primary__c && relatedContact.get(lookupFieldName) == affl.Organization__c) {
-		            		System.debug('****MRT: clearing lookup field');
+		            		UTIL_Debug.debug('****MRT: clearing lookup field');
 		            		relatedContact.put(lookupFieldName, null);
 		            		dmlWrapper.objectsToUpdate.add(relatedContact);
 		            	}
