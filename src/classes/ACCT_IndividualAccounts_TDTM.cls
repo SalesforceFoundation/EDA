@@ -118,9 +118,9 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         // AFTER DELETE
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             for (Contact c : oldContacts)
-                listContactAccountDelete.add(c);                     
+                listContactAccountDelete.add(c);
         } else {               
-            Integer i = 0; // used to index into oldContacts when needed                    
+            Integer i = 0; // used to index into oldContacts when needed
             for (Contact c : contacts) {
                 
                 // BEFORE INSERT
@@ -133,7 +133,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     */
                     if (CAO_Constants.isHHAccountModel() && c.AccountId == null && c.Private__c != true) {
                         listContactNeedAccount.add(c);
-                    }                                                 
+                    }
                 }
     
                 // AFTER INSERT
@@ -143,98 +143,97 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         2. The Contact is flagged as an individual
                         3. we are in the one-to-one or HH Account model
                     */
-                        if (c.AccountId != null && c.Private__c != true && 
-                            c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
-                            c.Account.SYSTEMIsIndividual__c &&
-                            c.Account.One2OneContact__c == null) { 
-                            // contacts are connected to Accounts, make the connection in the other direction
-                            mapAccountIdContactId.put(c.AccountId, c.Id);
+                    if (c.AccountId != null && c.Private__c != true && 
+                        c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
+                        c.Account.SYSTEMIsIndividual__c &&
+                        c.Account.One2OneContact__c == null) { 
+                        // contacts are connected to Accounts, make the connection in the other direction
+                        mapAccountIdContactId.put(c.AccountId, c.Id);
+                    }
+
+	                // HHAccount renaming needs to be called to set various HH naming fields like greeting.
+	                if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE)
+	                   listAccountIdHHToRename.add(c.AccountId);    
+	            }
+        
+                // BEFORE UPDATE
+                if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+
+	                /* HH account should be created if:
+	                1. The account has been blanked out by the user
+	                2. The Private__c checkbox isn't set by the user
+	                3. The Account Model is set to Household Account
+	                */
+	                if (CAO_Constants.isHHAccountModel() && c.AccountId == null && c.Private__c != true) {
+	                    listContactNeedAccount.add(c);
+	                }
+
+                    // for contacts marked private after they have been created, break the relationship from their account (any model)
+                    if (c.AccountId != null && c.Private__c == true) {
+                        c.AccountId = null;
+                    } 
+                }
+        
+                // AFTER UPDATE
+                if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                    
+                    // if the account (any type) has changed
+                    if (c.AccountId != oldContacts[i].AccountId) {
+                        
+                        // need to update any HH Accounts, both rollups and naming
+                        if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                            listAccountIdHHToUpdate.add(c.AccountId);
+                            mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
                         }
-                        // there is no after insert processing for the bucket account model.
-
-                        // HHAccount renaming needs to be called to set various HH naming fields like greeting.
-                        if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE)
-                           listAccountIdHHToRename.add(c.AccountId);    
-                    }
-        
-                    // BEFORE UPDATE
-                    if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-
-                        /* HH account should be created if:
-                        1. The account has been blanked out by the user
-                        2. The Private__c checkbox isn't set by the user
-                        3. The Account Model is set to Household Account
-                    */
-                        if (CAO_Constants.isHHAccountModel() && c.AccountId == null && c.Private__c != true) {
-                            listContactNeedAccount.add(c);
-                        }          
-
-                        // for contacts marked private after they have been created, break the relationship from their account (any model)
-                        if (c.AccountId != null && c.Private__c == true) {
-                            c.AccountId = null;
-                        } 
-                    }
-        
-                    // AFTER UPDATE
-                    if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                         
-                        // if the account (any type) has changed
-                        if (c.AccountId != oldContacts[i].AccountId) {
-                            
-                            // need to update any HH Accounts, both rollups and naming
-                            if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {
-                                listAccountIdHHToUpdate.add(c.AccountId);
-                                mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
-                            }
-                            
-                            // old account should be checked for deletion (if it wasn't private)
-                            if (c.Private__c != true && oldContacts[i].Private__c != true)
-                                listContactAccountDelete.add(oldContacts[i]);
-                            
-                            // old HH Accounts that don't get deleted still need to have name and rollups redone
-                            if (oldContacts[i].Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {    
-                                listAccountIdHHToUpdate.add(oldContacts[i].AccountId);
-                                mapContactIdAccountIdOldMoveOpps.put(c.Id, oldContacts[i].AccountId);
-                            }
-                                                                                 
-                           // HH Account didn't change, but it still might need renaming
-                        } else if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE && needsHHAccountRename(c, oldContacts[i])) {
-                           listAccountIdHHToRename.add(c.AccountId);    
-                        }  
+                        // old account should be checked for deletion (if it wasn't private)
+                        if (c.Private__c != true && oldContacts[i].Private__c != true)
+                            listContactAccountDelete.add(oldContacts[i]);
                         
-                        // check for ownership changes
-                        if (c.OwnerId != oldContacts[i].OwnerId) {
-                        	mapContactIdContactOwnerChange.put(c.Id, c);
-                        }                     
-                    }
-                    i += 1;
-                }               
-            }    
+                        // old HH Accounts that don't get deleted still need to have name and rollups redone
+                        if (oldContacts[i].Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {    
+                            listAccountIdHHToUpdate.add(oldContacts[i].AccountId);
+                            mapContactIdAccountIdOldMoveOpps.put(c.Id, oldContacts[i].AccountId);
+                        }
+                                                                             
+                       // HH Account didn't change, but it still might need renaming
+                    } else if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE && needsHHAccountRename(c, oldContacts[i])) {
+                       listAccountIdHHToRename.add(c.AccountId);    
+                    }  
+                    
+                    // check for ownership changes
+                    if (c.OwnerId != oldContacts[i].OwnerId) {
+                    	mapContactIdContactOwnerChange.put(c.Id, c);
+                    }                     
+                }
+                i += 1;
+            }               
+        }    
 
-            // now done going thru all contacts, do our DML logic based on our lists
-            
-            if (listContactNeedAccount.size() > 0) {
-                //add the newly created or updated Contacts that need a new individual account
-                insertContactAccount(listContactNeedAccount, dmlWrapper);
-            }
-            if (mapAccountIdContactId.size() > 0) {
-                //update Accounts that have newly created Contacts connected to them
-                updateAccountPrimaryContact(mapAccountIdContactId, dmlWrapper);
-            }
-            if (mapContactIdAccountIdNewMoveOpps.size() > 0) {
-            	moveOppsToContactHHAccount(mapContactIdAccountIdNewMoveOpps, mapContactIdAccountIdOldMoveOpps, dmlWrapper);
-            }
-            if (listAccountIdHHToUpdate.size() > 0) {
-                updateHHAccount(listAccountIdHHToUpdate, dmlWrapper);
-            }
-            if (mapContactIdContactOwnerChange.size() > 0) {
-            	updateOwners(mapContactIdContactOwnerChange, dmlWrapper);
-            }
-            if (listContactAccountDelete.size() > 0) {
-                // check all old accounts to delete is they are left hanging around
-                deleteContactAccountsIfEmpty(listContactAccountDelete, dmlWrapper);
-            }
-            
+        // now done going thru all contacts, do our DML logic based on our lists
+        
+        if (listContactNeedAccount.size() > 0) {
+            //add the newly created or updated Contacts that need a new individual account
+            insertContactAccount(listContactNeedAccount, dmlWrapper);
+        }
+        if (mapAccountIdContactId.size() > 0) {
+            //update Accounts that have newly created Contacts connected to them
+            updateAccountPrimaryContact(mapAccountIdContactId, dmlWrapper);
+        }
+        if (mapContactIdAccountIdNewMoveOpps.size() > 0) {
+        	moveOppsToContactHHAccount(mapContactIdAccountIdNewMoveOpps, mapContactIdAccountIdOldMoveOpps, dmlWrapper);
+        }
+        if (listAccountIdHHToUpdate.size() > 0) {
+            updateHHAccount(listAccountIdHHToUpdate, dmlWrapper);
+        }
+        if (mapContactIdContactOwnerChange.size() > 0) {
+        	updateOwners(mapContactIdContactOwnerChange, dmlWrapper);
+        }
+        if (listContactAccountDelete.size() > 0) {
+            // check all old accounts to delete is they are left hanging around
+            deleteContactAccountsIfEmpty(listContactAccountDelete, dmlWrapper);
+        }
+
     	return dmlWrapper;
     }
 
