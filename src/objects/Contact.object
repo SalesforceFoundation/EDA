@@ -387,16 +387,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Private__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Excludes this Contact from One to One or Bucket account processing.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Excludes this Contact from One to One or Bucket account processing.</inlineHelpText>
-        <label>Private</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Program_of_Study__c</fullName>
         <externalId>false</externalId>
         <label>Program of Study</label>

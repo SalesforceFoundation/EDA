@@ -50,7 +50,7 @@ public without sharing class TDTM_DefaultConfig {
 		// Account Management on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete'));
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
         //Multi Account Record Type support on Affiliations      
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 

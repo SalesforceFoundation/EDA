@@ -2227,14 +2227,19 @@ private with sharing class ADDR_Addresses_TEST {
             acc.BillingCity = 'Seattle';
         }
         Test.startTest();
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         update listAcc;
         Test.stopTest();
 
         // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account order by Account.Name];
+        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry 
+        			from Account order by Account.Name];
         system.assertEquals(cAcc, listAcc.size());
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Household_Account__r.Name];
+        
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+        							from Address__c order by Household_Account__r.Name];
         system.assertEquals(cAcc, listAddr.size());
+        
         listCon = [select Id, AccountId, Name, Current_Address__c, MailingStreet, MailingCity from Contact order by Account.Name];
         system.assertEquals(cAcc, listCon.size());        
         

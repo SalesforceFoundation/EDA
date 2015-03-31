@@ -586,6 +586,7 @@ public class REL_Relationships_TEST {
         Relationship__c[] relationships = new Relationship__c[]{
             new Relationship__c(contact__c = c2.id, Type__c='TestLookupType')
         };
+        TDTM_TriggerHandler.isPropogateErrorsFromTrigger = false;
         Database.SaveResult[] insertResults = Database.insert(relationships, false);
         //assert an error - Required fields are missing: [Contact__c]
         //Contact__c is missing from the reciprocal relationship that gets automatically created.

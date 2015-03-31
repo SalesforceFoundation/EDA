@@ -54,6 +54,7 @@
     <enableReports>false</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -167,6 +168,15 @@
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Main_Fields</fullName>
+        <columns>NAME</columns>
+        <columns>Class__c</columns>
+        <columns>Object__c</columns>
+        <columns>Trigger_Action__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All - Main Fields</label>
     </listViews>
     <nameField>
         <label>Trigger Handler Name</label>
