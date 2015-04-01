@@ -78,8 +78,9 @@ public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
                 Account accOld = (Account)listOld[i];
                 // note that we detect whether the address change is coming from the address trigger,
                 // in which case we don't want to create a new address.
-                if (ADDR_Addresses_TDTM.hasRunAddrTrigger)
+                if (ADDR_Addresses_TDTM.hasRunAddrTrigger) {
                     continue;
+                }
                 // we only support address management with HH Accounts and Organizational Accounts (if enabled)
                 if ((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE && 
                 		!UTIL_CustomSettingsFacade.getContactsSettings().Household_Account_Addresses_Disabled__c) ||
@@ -142,7 +143,8 @@ public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
             isChanged = 
 	            !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
 	            !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
-        }    
+        }
+        UTIL_Debug.debug('****Address changed: ' + isChanged);
         return isChanged;   
 
     }

@@ -20,6 +20,8 @@
     <members>REL_Relationships_TDTM</members>
     <members>REL_Relationships_TEST</members>
     <members>REL_Utils</members>
+    <members>STG_InstallScript</members>
+    <members>STG_InstallScript_TEST</members>
     <members>TDTM_DefaultConfig</members>
     <members>TDTM_ObjectDataGateway</members>
     <members>TDTM_Runnable</members>
@@ -112,7 +114,6 @@
     <members>Contact.Primary_Address_Type__c</members>
     <members>Contact.Primary_Household__c</members>
     <members>Contact.Primary_Organization__c</members>
-    <members>Contact.Private__c</members>
     <members>Contact.Program_of_Study__c</members>
     <members>Contact.Secondary_Address_Type__c</members>
     <members>Contact.Social_Security_Number__c</members>
@@ -231,6 +232,7 @@
   </types>
   <types>
     <members>Trigger_Handler__c.All</members>
+    <members>Trigger_Handler__c.All_Main_Fields</members>
     <name>ListView</name>
   </types>
   <types>
@@ -248,11 +250,6 @@
     <members>NewTask</members>
     <members>New_Campaign</members>
     <name>QuickAction</name>
-  </types>
-  <types>
-    <members>Account.HH_Account</members>
-    <members>Account.Business_Organization</members>
-    <name>RecordType</name>
   </types>
   <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>

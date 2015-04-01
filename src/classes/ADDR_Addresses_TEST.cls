@@ -1139,43 +1139,6 @@ private with sharing class ADDR_Addresses_TEST {
         system.assert(false); //we shouldn't get here!
     }
 
-
-    /*********************************************************************************************************
-    @description
-        create an Address with a NON-Household Account 
-    verify:
-        runtime error
-    **********************************************************************************************************/            
-    @isTest
-    public static void newAddrNotHHAccount() {
-        if (strTestOnly != '*' && strTestOnly != 'newAddrNotHHAccount') return;
-        
-        listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cHH, CAO_Constants.ONE_TO_ONE_ORGANIZATION_TYPE);
-        insert listAccT;
- 
-        initTestAddr(cHH);
-        for (integer i = 0; i < cHH; i++) {
-            system.assertEquals(null, listAddrT[i].Household_Account__c);
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
-        }
-        
-        try {
-        	Test.startTest();
-            insert listAddrT;
-            Test.stopTest();
-        } catch (Exception ex) {
-            system.assert(ex.getMessage().contains(Label.addrHHAccountOnly));
-        }
-        Integer insertedAddrCount = [select count() from Address__c];
-        System.assertEquals(0, insertedAddrCount);
-        
-        /* We cannot verify error record was created because the usage of addError causes the whole transaction
-        to be rolled back. 
-        List<Error__c> errors = [select Id, Full_Message__c, Stack_Trace__c, Email_Sent__c from Error__c];
-        UTIL_Debug.debug('****Errors: ' + JSON.serializePretty(errors));
-        System.assertEquals(1, errors.size());*/
-    }
-
     /*********************************************************************************************************
     @description
         insert new seasonal addresses to HH w/ existing default addresses  
@@ -2264,14 +2227,19 @@ private with sharing class ADDR_Addresses_TEST {
             acc.BillingCity = 'Seattle';
         }
         Test.startTest();
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         update listAcc;
         Test.stopTest();
 
         // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account order by Account.Name];
+        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry 
+        			from Account order by Account.Name];
         system.assertEquals(cAcc, listAcc.size());
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Household_Account__r.Name];
+        
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+        							from Address__c order by Household_Account__r.Name];
         system.assertEquals(cAcc, listAddr.size());
+        
         listCon = [select Id, AccountId, Name, Current_Address__c, MailingStreet, MailingCity from Contact order by Account.Name];
         system.assertEquals(cAcc, listCon.size());        
         

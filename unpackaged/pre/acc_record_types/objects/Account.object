@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+	<recordTypes>
+        <fullName>Administrative</fullName>
+        <active>true</active>
+        <description>Contains that Contac&apos;s administrative information.</description>
+        <label>Administrative</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Business_Organization</fullName>
+        <active>true</active>
+        <description>An Account representing a business organization</description>
+        <label>Business Organization</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Educational_Institution</fullName>
+        <active>true</active>
+        <label>Educational Institution</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HH_Account</fullName>
+        <active>true</active>
+        <description>An Account representing a Household containing one or more individuals</description>
+        <label>Household Account</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sports_Organization</fullName>
+        <active>true</active>
+        <label>Sports Organization</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>University_Department</fullName>
+        <active>true</active>
+        <description>A Department in the University.</description>
+        <label>University Department</label>
+    </recordTypes>
+</CustomObject>

@@ -45,7 +45,7 @@ public with sharing class UTIL_Debug {
     */
     public static void debug (string message) {
         if (enabled) {
-            system.debug(message);
+            System.debug(message);
         }
     }
 
@@ -58,7 +58,7 @@ public with sharing class UTIL_Debug {
     */
     public static void debug (System.LoggingLevel level, string message) {
         if (enabled) {
-            system.debug(level, message);
+            System.debug(level, message);
         }
     }
 
@@ -70,7 +70,7 @@ public with sharing class UTIL_Debug {
     */
     public static void debugWithInfo (string message) {
         if (enabled) {
-            system.debug(
+            System.debug(
                 message + 
                 ' Heap:' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize() +
                 ' CPU:' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime() + 
@@ -89,7 +89,7 @@ public with sharing class UTIL_Debug {
     */
     public static void debugWithInfo (System.LoggingLevel level, string message) {
         if (enabled) {
-            system.debug(
+            System.debug(
                 level,
                 message + 
                 ' Heap:' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize() +

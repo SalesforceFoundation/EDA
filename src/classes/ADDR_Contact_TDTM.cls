@@ -35,6 +35,8 @@
 */
 public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
 
+	public static Boolean contactsUpdatedAfterInsert = false;
+	
     /*******************************************************************************************************
     * @description Trigger Handler on Contact that handles Address Management.
     * 	Rules:
@@ -54,7 +56,6 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
         list<Contact> listConCreateAddr = new list<Contact>();
         map<Id, boolean> mapAddrIdIsOverride = new map<Id, boolean>();
         list<Contact> listConAddrReset = new list<Contact>();
-        Map<Id,Account> mapAccountIdAccount = null;
         
 		// bail out if address mgmt turned off.
         if (UTIL_CustomSettingsFacade.getContactsSettings().Household_Account_Addresses_Disabled__c)
@@ -73,7 +74,6 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
                 if (con.AccountId != null)
                     setAccountId.add(con.AccountId);
             }
-            mapAccountIdAccount = new Map<Id,Account>([select Id, SYSTEM_AccountType__c from Account where Id IN :setAccountId]);
         }        
        
         integer i = -1;        
@@ -83,14 +83,7 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
 
             // we only support address management with HH Accounts being used
             if (con.AccountId == null)
-                continue;
-            if (!isBefore && (con.HHId__c != con.AccountId))
-                continue;
-            if (isBefore) {
-                Account a = mapAccountIdAccount.get(con.AccountId);
-                if (a.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_TYPE)
-                   continue;
-            }                
+                continue;               
 
             // BEFORE INSERT
             if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
@@ -234,6 +227,14 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
     * @return boolean. true if the Mailing Address fields have changed 
     ********************************************************************************************************/
     private boolean isContactAddressChanged(Contact con1, Contact con2) {
+    	UTIL_Debug.debug('****con1: ' + JSON.serializePretty(con1));
+    	UTIL_Debug.debug('****con2: ' + JSON.serializePretty(con2));
+    	
+    	if(contactsUpdatedAfterInsert) {
+    		UTIL_Debug.debug('****Contacts were updated after insert');
+    		return true;
+    	}
+    	
     	// if both null, no change
         if (con1 == null && con2 == null) 
            return false;
@@ -260,6 +261,7 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
                 !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(con1.get('MailingStateCode')), string.valueOf(con2.get('MailingStateCode'))) || 
                 !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(con1.get('MailingCountryCode')), string.valueOf(con2.get('MailingCountryCode')));
         }    
+        UTIL_Debug.debug('****Address changed: ' + isChanged);
         return isChanged;   
     }
     

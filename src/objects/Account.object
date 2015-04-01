@@ -58,16 +58,4 @@
         <type>MultiselectPicklist</type>
         <visibleLines>3</visibleLines>
     </fields>
-    <recordTypes>
-        <fullName>HH_Account</fullName>
-        <active>true</active>
-        <description>An Account representing a Household containing one or more individuals</description>
-        <label>Household Account</label>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Business_Organization</fullName>
-        <active>true</active>
-        <description>An Account representing a business organization</description>
-        <label>Business Organization</label>
-    </recordTypes>
 </CustomObject>
