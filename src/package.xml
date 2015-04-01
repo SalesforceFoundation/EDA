@@ -250,11 +250,6 @@
     <name>QuickAction</name>
   </types>
   <types>
-    <members>Account.HH_Account</members>
-    <members>Account.Business_Organization</members>
-    <name>RecordType</name>
-  </types>
-  <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>
     <name>ValidationRule</name>
   </types>
