@@ -336,6 +336,11 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 a.Type = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_TYPE : '';
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
+                //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
+                ID recordTypeID = Schema.SObjectType.Account.RecordTypeInfosByName.get(
+                							UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c).getRecordTypeId();
+                a.RecordTypeId = recordTypeID;
+                
                 accountInserts.add(a);
                 listContactNewAcct.add(c);
             }
