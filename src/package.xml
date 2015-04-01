@@ -20,6 +20,8 @@
     <members>REL_Relationships_TDTM</members>
     <members>REL_Relationships_TEST</members>
     <members>REL_Utils</members>
+    <members>STG_InstallScript</members>
+    <members>STG_InstallScript_TEST</members>
     <members>TDTM_DefaultConfig</members>
     <members>TDTM_ObjectDataGateway</members>
     <members>TDTM_Runnable</members>
