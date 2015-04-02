@@ -41,11 +41,6 @@ public with sharing class CAO_Constants {
     public static final String HH_ACCOUNT_PROCESSOR = 'Household Account';
 
     /*******************************************************************************************************
-    * @description Household Account org type value
-    */ 
-    public static final String HH_ACCOUNT_TYPE = 'Household Account';
-
-    /*******************************************************************************************************
     * @description Household Account value for the standard Type field
     */ 
     public static final string HH_TYPE = 'Household';

@@ -246,7 +246,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         set<Id> setHHId =  mapAccIdAddr.keySet();
         list<Contact> listCon = [select Id, is_Address_Override__c, Current_Address__c, AccountId 
             from Contact where 
-                (Account.SYSTEM_AccountType__c = :CAO_Constants.HH_ACCOUNT_TYPE and AccountId != null and AccountId in :setHHId)];
+                (Account.SYSTEM_AccountType__c = :CAO_Constants.HH_ACCOUNT_PROCESSOR and AccountId != null and AccountId in :setHHId)];
         for (Contact con : listCon) {
             list<Contact> listConHH = mapAccIdListCon.get(con.AccountId);
             if (listConHH == null) {
@@ -585,7 +585,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr.addError(Label.addrHHAccountOnly);
             } else {
                 Account acc = mapAccIdAcc.get(addr.Household_Account__c);
-                if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_TYPE) &&
+                if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR) &&
                     (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getContactsSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrHHAccountOnly);

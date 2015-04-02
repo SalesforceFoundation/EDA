@@ -134,7 +134,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     }
 
 	                // HHAccount renaming needs to be called to set various HH naming fields like greeting.
-	                if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE)
+	                if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR)
 	                   listAccountIdHHToRename.add(c.AccountId);    
 	            }
         
@@ -151,19 +151,19 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != oldContacts[i].AccountId) {
                         
                         // need to update any HH Accounts, both rollups and naming
-                        if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                        if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                             listAccountIdHHToUpdate.add(c.AccountId);
                             mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
                         }
                         
                         // old HH Accounts that don't get deleted still need to have name and rollups redone
-                        if (oldContacts[i].Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {    
+                        if (oldContacts[i].Organization_Type__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {    
                             listAccountIdHHToUpdate.add(oldContacts[i].AccountId);
                             mapContactIdAccountIdOldMoveOpps.put(c.Id, oldContacts[i].AccountId);
                         }
                                                                              
                        // HH Account didn't change, but it still might need renaming
-                    } else if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE && needsHHAccountRename(c, oldContacts[i])) {
+                    } else if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && needsHHAccountRename(c, oldContacts[i])) {
                        listAccountIdHHToRename.add(c.AccountId);    
                     }  
                     
@@ -311,7 +311,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && CAO_Constants.isHHAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+            if (acc != null && CAO_Constants.isHHAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
@@ -332,7 +332,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
-                a.SYSTEM_AccountType__c = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_ACCOUNT_TYPE : '';              
+                a.SYSTEM_AccountType__c = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
                 a.Type = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_TYPE : '';
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
@@ -392,12 +392,12 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account thisAccount : accountsOnContacts) {
                 //if the legacy or current type field show it's not a HH Account record, don't delete the account
-                if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                     
                     // if there are no Opportunities for this Account, add it for deletion
                     if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                         accountsForDeletion.add(thisAccount);
-                    } else if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                    } else if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                         listAccountIdUpdate.add(thisAccount.Id);
                     }
                 }   
@@ -430,7 +430,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account acc : listAcc) {
                 // only consider HH Accounts
-                if (acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {                    
+                if (acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {                    
                     // if there is only 1 contact associated with this account
                     if (acc.Contacts.size() == 1 && acc.One2OneContact__c != null) {
                     	Contact c = mapContactIdContactOwnerChange.get(acc.One2OneContact__c);

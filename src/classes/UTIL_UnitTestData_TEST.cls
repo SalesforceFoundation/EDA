@@ -33,7 +33,7 @@
 * @group Utilities
 * @description Provides automated generation of unit test data for tests throughout the org 
 */
-
+@isTest
 public class UTIL_UnitTestData_TEST { 
 
 // create data for use in unit tests

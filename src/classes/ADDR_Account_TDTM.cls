@@ -82,7 +82,7 @@ public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
                     continue;
                 }
                 // we only support address management with HH Accounts and Organizational Accounts (if enabled)
-                if ((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE && 
+                if ((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
                 		!UTIL_CustomSettingsFacade.getContactsSettings().Household_Account_Addresses_Disabled__c) ||
                     (!acc.SYSTEMIsIndividual__c && 
                     	UTIL_CustomSettingsFacade.getContactsSettings().Organizational_Account_Addresses_Enabled__c)) {

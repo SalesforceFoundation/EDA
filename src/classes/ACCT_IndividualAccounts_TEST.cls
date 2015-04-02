@@ -128,7 +128,7 @@ private class ACCT_IndividualAccounts_TEST {
         
         //the account should have the right type   
         if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)    
-            system.assertEquals(CAO_Constants.HH_ACCOUNT_TYPE,insertedcontacts[0].Organization_Type__c);
+            system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR,insertedcontacts[0].Organization_Type__c);
         
         //the account should be flagged as an individual
         system.assertEquals(true,insertedcontacts[0].Account.SYSTEMIsIndividual__c );
@@ -158,48 +158,6 @@ private class ACCT_IndividualAccounts_TEST {
         
         //addresses should be sync'd
         system.assertEquals(newContactMailingStreet,updatedContacts[0].MailingStreet);       
-    }
-    
-    /*********************************************************************************************************
-    * @description Test Method for separating a Contact from it's One-to-One account, in 1:1 and Household Account models.
-    */
-    @isTest
-    public static void detachContact() {
-    	if (strTestOnly != '*' && strTestOnly != 'detachContact') return;
-
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-        
-        Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
-        );
-        insert con;
-        
-        Contact[] insertedContacts = [Select AccountId from Contact where id=:con.id];      
-        
-        Id originalAccountId = insertedContacts[0].AccountId;
-        UTIL_Debug.debug('****originalAccountId: ' + originalAccountId);
-        
-        String updatedContactLastName = 'Contact_forTestsChange';
-        
-        con.AccountId = null;
-        con.LastName = updatedContactLastName;
-        update con;
-        
-        Contact[] updatedContacts = [Select FirstName, LastName, AccountId,Account.Name,Account.One2OneContact__c from Contact where id=:con.id];
-        
-        //Original Account should still be there
-        Account[] originalAccount = [Select id from Account where Id=:originalAccountId];
-        UTIL_Debug.debug('****originalAccountId after update: ' + JSON.serializePretty(originalAccount));      
-        system.assertEquals(1, originalAccount.size());
-        
-        //AccountId of updated contact should match the original Account
-        //system.assertEquals(originalAccountId,updatedContacts[0].AccountId);
     }
 
     /*********************************************************************************************************
@@ -231,13 +189,13 @@ private class ACCT_IndividualAccounts_TEST {
         
         //the contact should have the right type
         if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
-            system.assertEquals(CAO_Constants.HH_ACCOUNT_TYPE, insertedcontact.Organization_Type__c);
+            system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR, insertedcontact.Organization_Type__c);
             system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);      
         }  
     }
     
     /*********************************************************************************************************
-    * @description Add a contact to an existing 1:1 or Household Account
+    * @description Add a contact to an existing or Household Account
     */
     @isTest
     public static void contactAddedToExisting() {
@@ -399,7 +357,7 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Delete a Contact and verify its One-to-One or Household Account is deleted.
+    * @description Delete a Contact and verify its Household Account is deleted.
     */
      public static testMethod void deleteContactNoOpp() {
      	if (strTestOnly != '*' && strTestOnly != 'deleteContactNoOpp') return;
@@ -435,7 +393,7 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Delete a Contact with Opps and verify its One-to-One or Household Account is not deleted.
+    * @description Delete a Contact with Opps and verify its Household Account is not deleted.
     */
     public static testMethod void deleteContactWithOpp() {
     	if (strTestOnly != '*' && strTestOnly != 'deleteContactWithOpp') return;
