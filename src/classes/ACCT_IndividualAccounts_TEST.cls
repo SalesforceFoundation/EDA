@@ -58,8 +58,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void insertContactTriggerOff() {
     	if (strTestOnly != '*' && strTestOnly != 'insertContactTriggerOff') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         // turn off all TDTM triggers for this component
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
@@ -103,8 +102,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void insertUpdateContactHouseholds() {
         if (strTestOnly != '*' && strTestOnly != 'insertUpdateContactHouseholds') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         String newContactMailingStreet = '123 Elm St';
 
@@ -119,23 +117,20 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet,Account.BillingStreet,Organization_Type__c,Account.SYSTEMIsIndividual__c  from Contact where id=:con.id];
-        UTIL_Debug.debug('****' +insertedContacts);
-        UTIL_Debug.debug('****' +insertedcontacts[0].id);
-        UTIL_Debug.debug('****' +insertedContacts);
+        Contact[] insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet, 
+        				Account.BillingStreet,Organization_Type__c,Account.SYSTEMIsIndividual__c  from Contact where id=:con.id];
+
         //one contact should have been created
         system.assertEquals(1,insertedContacts.size());
         
         //the account should have the right type   
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)    
-            system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR,insertedcontacts[0].Organization_Type__c);
+        system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR,insertedcontacts[0].Organization_Type__c);
         
         //the account should be flagged as an individual
         system.assertEquals(true,insertedcontacts[0].Account.SYSTEMIsIndividual__c );
         
         //the account should have been named correctly
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)
-            system.assertEquals(CAO_Constants.CONTACT_LASTNAME_FOR_TESTS + ' Household',insertedcontacts[0].Account.Name);        
+        system.assertEquals(CAO_Constants.CONTACT_LASTNAME_FOR_TESTS + ' Household',insertedcontacts[0].Account.Name);        
         
         //relationship should be bi-directional
         system.assertEquals(insertedcontacts[0].id,insertedcontacts[0].Account.One2OneContact__c);
@@ -151,7 +146,8 @@ private class ACCT_IndividualAccounts_TEST {
         con.AccountId = insertedContacts[0].AccountId;
         update con;
         
-        Contact[] updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet,OtherCity,Account.BillingStreet,Account.ShippingCity from Contact where id=:con.id];
+        Contact[] updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet,OtherCity, 
+        							Account.BillingStreet,Account.ShippingCity from Contact where id=:con.id];
 
         //relationship should be bi-directional
         system.assertEquals(updatedContacts[0].id,updatedContacts[0].Account.One2OneContact__c);
@@ -167,8 +163,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void attachToIndividualAccount() {
     	if (strTestOnly != '*' && strTestOnly != 'attachToIndividualAccount') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
             FirstName = CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
@@ -188,10 +183,8 @@ private class ACCT_IndividualAccounts_TEST {
         System.debug('****Inserted contact Org Type: ' + insertedContact.Organization_Type__c);
         
         //the contact should have the right type
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
-            system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR, insertedcontact.Organization_Type__c);
-            system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);      
-        }  
+        system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR, insertedcontact.Organization_Type__c);
+        system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);  
     }
     
     /*********************************************************************************************************
@@ -201,8 +194,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactAddedToExisting() {
     	if (strTestOnly != '*' && strTestOnly != 'contactAddedToExisting') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
@@ -215,17 +207,13 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
         
         Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
-        
         Id accountId = insertedContacts[0].AccountId;
         
         Contact con2 = new Contact(FirstName='John', LastName='Smith',AccountId=accountId);
-        
         insert con2;
         
-        Contact[] insertedContact = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con2.id];
-        
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)
-            system.assertEquals(accountId,insertedContact[0].AccountId);        
+        Contact[] insertedContact = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con2.id];       
+        system.assertEquals(accountId,insertedContact[0].AccountId);        
     }
     
     /*********************************************************************************************************
@@ -235,8 +223,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactUpdatedToExistingHH() {
         if (strTestOnly != '*' && strTestOnly != 'contactUpdatedToExistingHH') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
@@ -249,7 +236,6 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
         
         Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
-        
         Id accountId = insertedContacts[0].AccountId;
         
         Contact con2 = new Contact(FirstName='John', LastName='Smith',AccountId=null);       
@@ -261,8 +247,7 @@ private class ACCT_IndividualAccounts_TEST {
         
         Contact[] insertedContact = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con2.id];
         
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)
-            system.assertEquals(accountId,insertedContact[0].AccountId);        
+        system.assertEquals(accountId,insertedContact[0].AccountId);        
     }
 
     /*********************************************************************************************************
@@ -272,8 +257,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactInNormalOrgNameChange() {
     	if (strTestOnly != '*' && strTestOnly != 'contactInNormalOrgNameChange') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                         
         String acctName = 'Test Account 876';
         Account acct = new Account(Name=acctName);
@@ -293,17 +277,13 @@ private class ACCT_IndividualAccounts_TEST {
         Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
         
         //the contact should be connected to the account
-        system.assertEquals(acct.id,insertedContacts[0].AccountId);
-        
+        system.assertEquals(acct.id,insertedContacts[0].AccountId);      
         system.assertEquals(acctName,insertedContacts[0].Account.Name);
-        
-        
+               
         Contact con2 = new Contact(id=con.id, LastName='Smith');
-        
         update con2;
         
         Contact[] updatedContacts = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con.id];
-        
         system.assertEquals(acctName,updatedContacts[0].Account.Name);         
     }
     
@@ -314,14 +294,12 @@ private class ACCT_IndividualAccounts_TEST {
     public static void detachFromNormalAccountToeHousehold() {
         if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToeHousehold') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                 
         Account acct = new Account(Name='Test Account 876');
         insert acct;
         
         Account[] insertedAccount = [select SystemIsIndividual__c from Account where id = :acct.id];
-        
         //the account should not be an individual one
         system.assert(!insertedAccount[0].SystemIsIndividual__c);
 
@@ -336,8 +314,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
-        
+        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id]; 
         //the contact should be connected to the account
         system.assertEquals(acct.id,insertedContacts[0].AccountId);
         //the account should not be an individual account
@@ -362,8 +339,7 @@ private class ACCT_IndividualAccounts_TEST {
      public static testMethod void deleteContactNoOpp() {
      	if (strTestOnly != '*' && strTestOnly != 'deleteContactNoOpp') return;
 
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         String newContactMailingStreet = '123 Elm St';
 
@@ -383,7 +359,9 @@ private class ACCT_IndividualAccounts_TEST {
         Contact[] insertedContacts = [Select FirstName, LastName, AccountId  from Contact where id=:contactId];
         Id createdAccountId = insertedContacts[0].AccountId;
         
+        Test.startTest();
         delete con;
+        Test.stopTest();
         
         insertedContacts = [Select FirstName, LastName, AccountId  from Contact where id=:contactId];
         system.assertEquals(0,insertedContacts.size());
@@ -398,8 +376,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static testMethod void deleteContactWithOpp() {
     	if (strTestOnly != '*' && strTestOnly != 'deleteContactWithOpp') return;
         
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));        
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));       
                       
         String newContactMailingStreet = '123 Elm St';
 
@@ -429,7 +406,9 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert opp;
         
+        Test.startTest();
         delete con;
+        Test.stopTest();
         
         Account[] missingAccount = [select id from Account where id=:createdAccountId];
         system.assertEquals(1,missingAccount.size());
@@ -441,8 +420,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static testMethod void deleteContactNormalAccountHouseholdAcc() {
         if (strTestOnly != '*' && strTestOnly != 'deleteContactNormalAccountHouseholdAcc') return;
               
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Account orgAccount = new Account(
             Name='Fake account'
@@ -464,10 +442,11 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
         
         Contact[] insertedContacts = [Select FirstName, LastName, AccountId  from Contact where id=:con.id];
-        
         Id createdAccountId = insertedContacts[0].AccountId;
-            
+          
+        Test.startTest();  
         delete con;
+        Test.stopTest();
         
         Account[] missingAccount = [select id from Account where id=:createdAccountId];
         system.assertEquals(1,missingAccount.size());
@@ -477,13 +456,12 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Rename a Contact's firstname to null and make sure the Household Account's name gets updated
     */
     @isTest
-    public static void ghIssue16b(){
+    public static void firstNameToNull(){
     	if (strTestOnly != '*' && strTestOnly != 'ghIssue16b') return;
 
         // Set value of Account name to blank when first name is blank, not null
         
-        Contacts_and_Orgs_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
-            new Contacts_and_Orgs_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
@@ -498,8 +476,7 @@ private class ACCT_IndividualAccounts_TEST {
         con = [select AccountId from Contact where id = :con.Id];
         Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
         
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)            
-            system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' Household');
+        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' Household');
         
         //set name to null
         con.FirstName = null;
@@ -509,7 +486,6 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        if (CAO_Constants.HH_ACCOUNT_PROCESSOR == CAO_Constants.HH_ACCOUNT_PROCESSOR)            
-            system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' Household');
+        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' Household');
     }
 }
