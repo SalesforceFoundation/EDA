@@ -333,7 +333,6 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
                 a.SYSTEM_AccountType__c = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
-                a.Type = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_TYPE : '';
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings

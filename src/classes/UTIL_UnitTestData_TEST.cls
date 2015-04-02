@@ -55,21 +55,7 @@ public class UTIL_UnitTestData_TEST {
         
         return closedWonStage;
     }
-    /*
-    public static String getClosedLostStage(){
-        if (closedLostStage == null){
-            List<OpportunityStage> closedLostStages = [select masterlabel from opportunitystage where isActive = true and iswon = false and isClosed = true];
-            
-            if(closedLostStages.size()>0){
-                closedLostStage = closedLostStages[0].masterlabel;
-            } else {
-                closedLostStage = '';
-            }
-        }
-        
-        return closedLostStage;
-    }
-    */
+
     public static String getOpenStage(){
         if (openStage == null){
             List<OpportunityStage> openStages = [select masterlabel from opportunitystage where isActive = true and iswon = false];
