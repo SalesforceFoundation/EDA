@@ -94,6 +94,28 @@ private class ACCT_IndividualAccounts_TEST {
         //contact should have no AccountId
         system.assertEquals(null,insertedContacts[0].AccountId);
     }
+    
+    /*********************************************************************************************************
+    * @description Test Method for a new Contact, with Household Account selected as default Acc Record Type
+    */
+    @isTest
+    public static void newContactHouseholdModel() {
+    	if (strTestOnly != '*' && strTestOnly != 'newContactHouseholdModel') return;
+
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+        
+        Test.startTest();
+        insert con;
+        Test.stopTest();
+        
+        Contact insertedContact = [Select Account.Name, AccountId, Organization_Type__c from Contact where id=:con.id];
+        
+        //the contact should have the right type
+        system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR, insertedcontact.Organization_Type__c);
+        system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);  
+    }
 
     /*********************************************************************************************************
     * @description Test Method for inserting and updating a Contact in the Household Account model 
@@ -154,37 +176,6 @@ private class ACCT_IndividualAccounts_TEST {
         
         //addresses should be sync'd
         system.assertEquals(newContactMailingStreet,updatedContacts[0].MailingStreet);       
-    }
-
-    /*********************************************************************************************************
-    * @description Test Method for a new Contact
-    */
-    @isTest
-    public static void attachToIndividualAccount() {
-    	if (strTestOnly != '*' && strTestOnly != 'attachToIndividualAccount') return;
-
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-        
-        Contact con = new Contact(
-            FirstName = CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName = CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
-        );
-        
-        Test.startTest();
-        insert con;
-        Test.stopTest();
-        
-        Contact insertedContact = [Select Account.Name, AccountId, Organization_Type__c from Contact where id=:con.id];
-        System.debug('****Inserted contact Account Name: ' + insertedContact.Account.Name);
-        System.debug('****Inserted contact Org Type: ' + insertedContact.Organization_Type__c);
-        
-        //the contact should have the right type
-        system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR, insertedcontact.Organization_Type__c);
-        system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);  
     }
     
     /*********************************************************************************************************
@@ -458,8 +449,6 @@ private class ACCT_IndividualAccounts_TEST {
     @isTest
     public static void firstNameToNull(){
     	if (strTestOnly != '*' && strTestOnly != 'ghIssue16b') return;
-
-        // Set value of Account name to blank when first name is blank, not null
         
         UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
