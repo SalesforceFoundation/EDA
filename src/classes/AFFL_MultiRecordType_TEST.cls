@@ -79,6 +79,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
     	System.assertEquals(contact.Account.ID, affls[0].Organization__c);
     	
+    	//Craete account of Business Organization record type
     	Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert bizOrg1;
     	
@@ -130,30 +131,103 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Verify the primary household field was populated
     	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
     	
-    	//Verify key houehold affiliation has been automatically created
+    	//Verify key household affiliation has been automatically created
     	List<Affiliation__c> affls = [select Affiliation_Type__c, Organization__c from Affiliation__c where Contact__c = :contact.ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
     	System.assertEquals(contact.Account.ID, affls[0].Organization__c);
     	
+    	//Craete account of Business Organization record type
     	Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert acc1;
     	
-    	//Create primary affiliation
+    	//Create primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc1.ID, Primary__c = true);
 		Test.startTest();
 		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
 		insert affl1;
     	Test.stopTest();
     	
+    	//Verify Primary Organization lookup field points to the account we just created
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 		
+		//Delete Business affiliation
 		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
-		UTIL_Debug.debug('****About to delete affiliation.');
 		delete affl1;
 		
+		//Verify Primary Organization lookup field has been cleared
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(null, Contact.Primary_Organization__c);
+	}
+	
+	@isTest
+	public static void makePrimaryAfflNonPrimary() {
+		if (strTestOnly != '*' && strTestOnly != 'makePrimaryAfflNonPrimary') return;
+		
+		setup();
+
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	//Verify default household account has been created for the contact
+    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+    	System.assertNotEquals(null, contact.Account.ID);
+    	ID parentAccountId = contact.Account.ID;
+    	
+    	//Verify the primary household field was populated
+    	System.assertEquals(parentAccountId, contact.Primary_Household__c);
+    	
+    	//Verify key household affiliation has been automatically created
+    	List<Affiliation__c> affls = [select Affiliation_Type__c, Organization__c, Primary__c from Affiliation__c where Contact__c = :contact.ID];
+    	System.assertEquals(1, affls.size());
+    	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
+    	System.assertEquals(contact.Account.ID, affls[0].Organization__c);
+    	System.assertEquals(true, affls[0].Primary__c);
+    	
+    	//Make the affiliation not primary
+    	affls[0].Primary__c = false;
+    	Test.startTest();
+    	AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+    	update affls[0];
+    	Test.stopTest();
+    	
+    	//Verify Primary_Household__c field has been cleared
+    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+    	System.assertEquals(null, contact.Primary_Household__c);
+    	
+    	//Verify the contact is still the child of the same account
+    	System.assertEquals(parentAccountId, contact.Account.ID);
+	}
+	
+	@isTest
+	public static void changePrimaryAffiliationRecordType() {
+		if (strTestOnly != '*' && strTestOnly != 'changePrimaryAffiliationRecordType') return;
+		
+		setup();
+
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	//Verify default household account has been created for the contact
+    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+    	System.assertNotEquals(null, contact.Account.ID);
+    	
+    	//Verify the primary household field was populated
+    	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
+    	
+    	Account acc = [select RecordTypeId from Account where ID=:contact.Account.ID];
+    	//Change the account record type to Business Organization
+    	acc.RecordTypeId = orgRecTypeID;
+    	Test.startTest();
+    	AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+    	update acc;
+    	Test.stopTest();
+    	
+    	contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
+    	//Verify primary household field has been cleared
+    	System.assertEquals(null, contact.Primary_Household__c);
+    	//Verify primary business organization field has been populated
+    	System.assertEquals(acc.ID, contact.Primary_Organization__c);
 	}
 }

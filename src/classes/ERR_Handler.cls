@@ -228,7 +228,7 @@ public with sharing class ERR_Handler {
 		//Putting it into a local string to see if that helps storing the stack trace when we
 		//are in a managed package.
 		String stackTrace = e.getStackTraceString();
-		UTIL_Debug.debug('****Stack trace: ' + stackTrace);
+		UTIL_Debug.debug('****Stack trace: \n' + stackTrace);
 		String message;
 		if(String.isBlank(stackTrace) || stackTrace == '('+UTIL_Namespace.getNamespace()+')' || stackTrace == UTIL_Namespace.getNamespace()) {
 			message = 'No stacktrace available at the time of saving the record. ';

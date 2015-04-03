@@ -115,9 +115,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
 		 if(!afflMultiHasRun) {
 			 //WARNING: MAY NOT BE BULK SAFE/NEED OPTIMIZATION!
-			 
-			 Integer i = 0;
+
 			 if(newlist != null && newlist.size() > 0) {
+			 	 Integer i = 0;
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
 					UTIL_Debug.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
@@ -140,16 +140,12 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            // AFTER UPDATE
 		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 		                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
-		                //If a primary affiliation is updated to point to a different account, the key affiliation field on the contact 
-		                //will need to be updated.
-		                if (affl.Primary__c && affl.Organization__c != afflOld.Organization__c) {
-		                	   
-		                }
-		                
-		                //If a primary affiliation is updated to point to a different contact, the old contact will need to have its key affl 
-		                //field cleared, and the new one populated.
-		                if (affl.Primary__c && affl.Contact__c != afflOld.Contact__c) {
-		                	   
+
+		                //If a primary affiliation is updated to be nonprimary the key affiliation field on the contact 
+		                //will need to be cleared.
+		                if (afflOld.Primary__c && !affl.Primary__c) {
+		                	relatedContact.put(lookupFieldName, null);
+		                	dmlWrapper.objectsToUpdate.add(relatedContact);
 		                }
 		            }      
 		        	i++;
@@ -158,22 +154,23 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 	    	 
 	    	 if(oldlist != null && oldlist.size() > 0) {
 		    	 for(SObject so : oldlist) {
-		    	 	Affiliation__c affl = (Affiliation__c)so;
-		    	 	
-		    	 	UTIL_Debug.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
-					String lookupFieldLabel = mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
-					UTIL_Debug.debug('****MRT: lookup field label: ' + lookupFieldLabel);
+		    	 	Affiliation__c afflOld = (Affiliation__c)so;
+		    	 	UTIL_Debug.debug('****MRT: old affl type: ' + afflOld.Affiliation_Type__c);
+		    	 						
+					String lookupFieldLabel = mappingsRecTypesToLabels.get(afflOld.Affiliation_Type__c);
+					UTIL_Debug.debug('****MRT: old lookup field label: ' + lookupFieldLabel);
+					
 					String lookupFieldName = contactLabelNames.get(lookupFieldLabel);
 					UTIL_Debug.debug('****MRT: lookup field name: ' + lookupFieldName);
 					
 		    	 	//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
-					Contact relatedContact = queryAfflLookupFields(affl);
+					Contact relatedContact = queryAfflLookupFields(afflOld);
 					
 		    	 	//AFTER DELETE - delete lookup relationship, if necessary
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
 		            	UTIL_Debug.debug('****MRT: after delete');
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
-		            	if(affl.Primary__c && relatedContact.get(lookupFieldName) == affl.Organization__c) {
+		            	if(afflOld.Primary__c && relatedContact.get(lookupFieldName) == afflOld.Organization__c) {
 		            		UTIL_Debug.debug('****MRT: clearing lookup field');
 		            		relatedContact.put(lookupFieldName, null);
 		            		dmlWrapper.objectsToUpdate.add(relatedContact);
