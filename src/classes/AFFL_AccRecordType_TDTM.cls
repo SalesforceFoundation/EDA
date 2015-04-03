@@ -35,6 +35,21 @@ public with sharing class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
     	 
+    	 if(newlist != null && newlist.size() > 0) {
+    	 	Integer i = 0;
+    	 	for (SObject so : newlist) {
+    	 		if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+	    	 		Account acc = (Account)so;
+			        Account oldAcc = (Account)oldList[i];
+			        //When a user changes the record type of an Account, if that account was part of any primary affiliation, other primary 
+			        //affiliations of the same type need to be unchecked, and the key affl lookup field on the contacts needs to be updated.
+			        if(acc.RecordTypeId != oldAcc.RecordTypeId) {
+			        	
+			        }
+    	 		}
+		    }
+		    i++;
+    	 }
     	 return dmlWrapper;
     }
 }
