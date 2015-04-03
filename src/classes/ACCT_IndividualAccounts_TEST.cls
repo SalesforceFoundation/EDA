@@ -185,7 +185,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactAddedToExisting() {
     	if (strTestOnly != '*' && strTestOnly != 'contactAddedToExisting') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+       AFFL_MultiRecordType_TEST.setup();
         
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
@@ -197,14 +197,24 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
-        Id accountId = insertedContacts[0].AccountId;
+        con = [select AccountId from Contact where id=:con.id];
+        Id accountId = con.AccountId;
         
-        Contact con2 = new Contact(FirstName='John', LastName='Smith',AccountId=accountId);
+        Contact con2 = new Contact(FirstName='John', LastName='Smith', AccountId = accountId);
+        
+        Test.startTest();
+        AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
         insert con2;
+        Test.stopTest();
         
-        Contact[] insertedContact = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con2.id];       
-        system.assertEquals(accountId,insertedContact[0].AccountId);        
+        con2 = [select AccountId, Primary_Household__c from Contact where id=:con2.id];       
+        system.assertEquals(accountId, con2.AccountId);  
+        
+        List<Affiliation__c> con2affls = [select Primary__c from Affiliation__c where Contact__c =:con2.Id and Organization__c =:accountId];
+        system.assertEquals(1, con2affls.size());
+        system.assertEquals(true, con2affls[0].Primary__c);
+        
+        system.assertEquals(accountId, con2.Primary_Household__c);
     }
     
     /*********************************************************************************************************

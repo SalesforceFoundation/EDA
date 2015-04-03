@@ -43,7 +43,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // if you want to run all tests, then use '*'
     private static string strTestOnly = '*';
     
-	private static void setup() {
+	public static void setup() {
 		UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
             
 		UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));

@@ -127,8 +127,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     //    1. If the contact is connected to an Account
                     //    2. The Contact is flagged as an individual
                     //    3. we are in the one-to-one or HH Account model
-                    if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
-                        c.Account.SYSTEMIsIndividual__c && c.Account.One2OneContact__c == null) { 
+                    if (c.AccountId != null) { 
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
                     }
@@ -181,11 +180,14 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (listContactNeedAccount.size() > 0) {
         	UTIL_Debug.debug('****Number of contacts that need accounts created: ' + listContactNeedAccount.size());
             //add the newly created or updated Contacts that need a new individual account
-            insertContactAccount(listContactNeedAccount);
+            insertContactAccount(listContactNeedAccount, dmlWrapper);
         }
         if (mapAccountIdContactId.size() > 0) {
             //update Accounts that have newly created Contacts connected to them
             updateAccountPrimaryContact(mapAccountIdContactId, dmlWrapper);
+            //we also need to create affiliations for those contacts that have been created as children of existing accounts, 
+            //and we have to populate the key affiliation field on thse contacts
+            createAfflsToExistingAccs(mapAccountIdContactId, dmlWrapper);
         }
         if (mapContactIdAccountIdNewMoveOpps.size() > 0) {
         	moveOppsToContactHHAccount(mapContactIdAccountIdNewMoveOpps, mapContactIdAccountIdOldMoveOpps, dmlWrapper);
@@ -206,7 +208,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Updates Accounts with the primary Individual Contact Id. Used for 1:1 and HH Accounts.
+    * @description Updates Accounts with the primary Individual Contact Id. Used for HH Accounts.
     * @param mapAccountIdContactId a map of AccountId's to ContactId's which specifies which accounts need updating.
     * @param dmlWrapper to hold the Accounts that need updating.
     * @return void
@@ -219,8 +221,23 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         if (listAccount.size() > 0) {
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccount);
-            //Database.SaveResult[] lsr = Database.update(listAccount, false);
         }      
+    }
+    
+    /*******************************************************************************************************
+    * @description Creates affiliations for those contacts that have been created as children of existing accounts, 
+    * and populates the key affiliation field on thse contacts.
+    * @param mapAccountIdContactId a map of AccountId's to ContactId's which specifies which accounts need updating.
+    * @param dmlWrapper to hold the Accounts that need updating.
+    * @return void
+    */
+    private void createAfflsToExistingAccs(Map<Id, Id> mapAccountIdContactId, DmlWrapper dmlWrapper) {
+    	List<SObject> afflsToInsert = new List<Affiliation__c>();
+    	for(ID accountId : mapAccountIdContactId.keySet()) {
+    		afflsToInsert.add(new Affiliation__c(Contact__c =  mapAccountIdContactId.get(accountId), Organization__c = accountId, 
+								Primary__c = true, Status__c = 'Current'));
+    	}
+    	dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }
 
     /*******************************************************************************************************
@@ -288,7 +305,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Contacts that need updating.
     * @return void
     */ 
-    private void insertContactAccount(Contact[] contacts) {
+    private void insertContactAccount(Contact[] contacts, DmlWrapper dmlWrapper) {
     	
         List<Id> contactIds = new List<Id>();
         Map<Id,Account> mapContactIdAccount = new Map<Id,Account>();  
@@ -346,7 +363,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         
         List<Contact> contactsToUpdate = new List<Contact>();
-        List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
+        List<SObject> afflsToInsert = new List<Affiliation__c>();
         if (accountInserts.size() > 0) {
         	UTIL_Debug.debug('****Number of accounts to insert: ' + accountInserts.size());
             // we can't use dmlWrapper because we need to get the new AccountID's into the Contacts.
@@ -367,7 +384,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         ADDR_Contact_TDTM.contactsUpdatedAfterInsert = true;
         update contactsToUpdate;
-        insert afflsToInsert;
+        dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }
     
     /*******************************************************************************************************
