@@ -54,7 +54,7 @@ public with sharing class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 			        	String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
 			        	
 			        	//Find all contacts where that field was pointing to this account
-			        	List<Contact> relatedContacts = Database.query('select ID from Contact where ' + keyAfflFieldNewType + '=\'' + acc.ID + '\'');
+			        	List<Contact> relatedContacts = Database.query('select ID from Contact where ' + keyAfflFieldOldType + '=\'' + acc.ID + '\'');
 			        	
 			        	for(Contact contact : relatedContacts) {
 			        		contact.put(keyAfflFieldOldType, null);
