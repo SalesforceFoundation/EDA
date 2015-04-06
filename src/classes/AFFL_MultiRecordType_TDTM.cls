@@ -39,7 +39,8 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
 		 if(!afflMultiHasRun) {
 			 
-			 //WARNING: MAY NOT BE BULK SAFE/NEED OPTIMIZATION!
+			 //WARNING: MAY NOT BE BULK SAFE/NEED OPTIMIZATION! Specially because of the call to queryAfflLookupFields
+			 //inside the loop.
 			 
 			 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
@@ -68,11 +69,16 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 		                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
-		                //If a primary affiliation is updated to be nonprimary the key affiliation field on the contact 
-		                //will need to be cleared.
+		                //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
 		                if (afflOld.Primary__c && !affl.Primary__c) {
 		                	relatedContact.put(lookupFieldName, null);
 		                	dmlWrapper.objectsToUpdate.add(relatedContact);
+		                }
+		                
+		                //If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
+		                //an any other primary affiliation of the same type needs to be made non-primary.
+		                if (affl.Primary__c && !afflOld.Primary__c) {
+		                	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
 		            }      
 		        	i++;
