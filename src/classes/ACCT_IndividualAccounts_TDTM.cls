@@ -127,14 +127,13 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     //    1. If the contact is connected to an Account
                     //    2. The Contact is flagged as an individual
                     //    3. we are in the one-to-one or HH Account model
-                    if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
-                        c.Account.SYSTEMIsIndividual__c && c.Account.One2OneContact__c == null) { 
+                    if (c.AccountId != null) { 
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
                     }
 
 	                // HHAccount renaming needs to be called to set various HH naming fields like greeting.
-	                if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE)
+	                if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR)
 	                   listAccountIdHHToRename.add(c.AccountId);    
 	            }
         
@@ -151,19 +150,19 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != oldContacts[i].AccountId) {
                         
                         // need to update any HH Accounts, both rollups and naming
-                        if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                        if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                             listAccountIdHHToUpdate.add(c.AccountId);
                             mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
                         }
                         
                         // old HH Accounts that don't get deleted still need to have name and rollups redone
-                        if (oldContacts[i].Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE) {    
+                        if (oldContacts[i].Organization_Type__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {    
                             listAccountIdHHToUpdate.add(oldContacts[i].AccountId);
                             mapContactIdAccountIdOldMoveOpps.put(c.Id, oldContacts[i].AccountId);
                         }
                                                                              
                        // HH Account didn't change, but it still might need renaming
-                    } else if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_TYPE && needsHHAccountRename(c, oldContacts[i])) {
+                    } else if (c.Organization_Type__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && needsHHAccountRename(c, oldContacts[i])) {
                        listAccountIdHHToRename.add(c.AccountId);    
                     }  
                     
@@ -181,11 +180,14 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (listContactNeedAccount.size() > 0) {
         	UTIL_Debug.debug('****Number of contacts that need accounts created: ' + listContactNeedAccount.size());
             //add the newly created or updated Contacts that need a new individual account
-            insertContactAccount(listContactNeedAccount);
+            insertContactAccount(listContactNeedAccount, dmlWrapper);
         }
         if (mapAccountIdContactId.size() > 0) {
             //update Accounts that have newly created Contacts connected to them
             updateAccountPrimaryContact(mapAccountIdContactId, dmlWrapper);
+            //we also need to create affiliations for those contacts that have been created as children of existing accounts, 
+            //and we have to populate the key affiliation field on thse contacts
+            createAfflsToExistingAccs(mapAccountIdContactId, dmlWrapper);
         }
         if (mapContactIdAccountIdNewMoveOpps.size() > 0) {
         	moveOppsToContactHHAccount(mapContactIdAccountIdNewMoveOpps, mapContactIdAccountIdOldMoveOpps, dmlWrapper);
@@ -206,7 +208,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Updates Accounts with the primary Individual Contact Id. Used for 1:1 and HH Accounts.
+    * @description Updates Accounts with the primary Individual Contact Id. Used for HH Accounts.
     * @param mapAccountIdContactId a map of AccountId's to ContactId's which specifies which accounts need updating.
     * @param dmlWrapper to hold the Accounts that need updating.
     * @return void
@@ -219,8 +221,23 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         if (listAccount.size() > 0) {
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccount);
-            //Database.SaveResult[] lsr = Database.update(listAccount, false);
         }      
+    }
+    
+    /*******************************************************************************************************
+    * @description Creates affiliations for those contacts that have been created as children of existing accounts, 
+    * and populates the key affiliation field on thse contacts.
+    * @param mapAccountIdContactId a map of AccountId's to ContactId's which specifies which accounts need updating.
+    * @param dmlWrapper to hold the Accounts that need updating.
+    * @return void
+    */
+    private void createAfflsToExistingAccs(Map<Id, Id> mapAccountIdContactId, DmlWrapper dmlWrapper) {
+    	List<SObject> afflsToInsert = new List<Affiliation__c>();
+    	for(ID accountId : mapAccountIdContactId.keySet()) {
+    		afflsToInsert.add(new Affiliation__c(Contact__c =  mapAccountIdContactId.get(accountId), Organization__c = accountId, 
+								Primary__c = true, Status__c = 'Current'));
+    	}
+    	dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }
 
     /*******************************************************************************************************
@@ -288,7 +305,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Contacts that need updating.
     * @return void
     */ 
-    private void insertContactAccount(Contact[] contacts) {
+    private void insertContactAccount(Contact[] contacts, DmlWrapper dmlWrapper) {
     	
         List<Id> contactIds = new List<Id>();
         Map<Id,Account> mapContactIdAccount = new Map<Id,Account>();  
@@ -311,7 +328,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && CAO_Constants.isHHAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+            if (acc != null && CAO_Constants.isHHAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
@@ -332,8 +349,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
-                a.SYSTEM_AccountType__c = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_ACCOUNT_TYPE : '';              
-                a.Type = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_TYPE : '';
+                a.SYSTEM_AccountType__c = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
@@ -347,7 +363,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         
         List<Contact> contactsToUpdate = new List<Contact>();
-        List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
+        List<SObject> afflsToInsert = new List<Affiliation__c>();
         if (accountInserts.size() > 0) {
         	UTIL_Debug.debug('****Number of accounts to insert: ' + accountInserts.size());
             // we can't use dmlWrapper because we need to get the new AccountID's into the Contacts.
@@ -368,7 +384,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         ADDR_Contact_TDTM.contactsUpdatedAfterInsert = true;
         update contactsToUpdate;
-        insert afflsToInsert;
+        dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }
     
     /*******************************************************************************************************
@@ -392,12 +408,12 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account thisAccount : accountsOnContacts) {
                 //if the legacy or current type field show it's not a HH Account record, don't delete the account
-                if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                     
                     // if there are no Opportunities for this Account, add it for deletion
                     if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                         accountsForDeletion.add(thisAccount);
-                    } else if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {
+                    } else if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                         listAccountIdUpdate.add(thisAccount.Id);
                     }
                 }   
@@ -430,7 +446,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account acc : listAcc) {
                 // only consider HH Accounts
-                if (acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_TYPE) {                    
+                if (acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {                    
                     // if there is only 1 contact associated with this account
                     if (acc.Contacts.size() == 1 && acc.One2OneContact__c != null) {
                     	Contact c = mapContactIdContactOwnerChange.get(acc.One2OneContact__c);

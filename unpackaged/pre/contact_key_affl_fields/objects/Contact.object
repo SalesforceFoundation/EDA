@@ -43,7 +43,7 @@
         <label>Primary Business Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts (Primary Organization)</relationshipLabel>
-        <relationshipName>Organization_Members</relationshipName>
+        <relationshipName>Biz_Organization_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
@@ -55,7 +55,7 @@
         <label>Primary Sports Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts (Primary Sports Organization)</relationshipLabel>
-        <relationshipName>Members</relationshipName>
+        <relationshipName>Team_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>

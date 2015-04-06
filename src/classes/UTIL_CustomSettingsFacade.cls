@@ -196,6 +196,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      **/
     private static void configContactsSettings(Contacts_And_Orgs_Settings__c cs) {
 		cs.Account_Processor__c = 'Household Account';
+		cs.Organizational_Account_Addresses_Enabled__c = true;
     }
 
     private static void configRelationshipsSettings(Relationship_Settings__c rs) {
