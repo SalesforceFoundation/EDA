@@ -9,6 +9,7 @@
     <members>ADDR_Contact_TDTM</members>
     <members>ADDR_Seasonal_SCHED</members>
     <members>AFFL_AccRecordType_TDTM</members>
+    <members>AFFL_MultiRecordTypeMapper</members>
     <members>AFFL_MultiRecordType_TDTM</members>
     <members>AFFL_MultiRecordType_TEST</members>
     <members>CAO_Constants</members>
