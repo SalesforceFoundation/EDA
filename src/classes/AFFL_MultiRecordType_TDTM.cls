@@ -119,8 +119,8 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			while(i < newlist.size()) {
 				Affiliation__c affl = (Affiliation__c)newlist[i];
 		        contactIDs += ', \'' + affl.Contact__c + '\'';
+		        i++;
 			}
-			i++;
 			contactIDs += ')';
 			
 			//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
