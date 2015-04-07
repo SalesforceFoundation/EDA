@@ -201,6 +201,40 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
+	public static void makeNonPrimaryAfflPrimary() {
+		if (strTestOnly != '*' && strTestOnly != 'makeNonPrimaryAfflPrimary') return;
+		
+		setup();
+
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	//Create account of Business Organization record type
+    	Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc1;
+    	
+    	//Create non-primary Business affiliation
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc1.ID, Primary__c = false);
+		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		insert affl1;
+		
+		//Verify Primary Organization lookup field is blank
+    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+		System.assertEquals(null, Contact.Primary_Organization__c);
+		
+		//Made the business affiliation primary
+		affl1.Primary__c = true;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		Test.startTest();
+		update affl1;
+		Test.stopTest();
+		
+		//Verify key affl field has been populated
+    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+	}
+	
+	@isTest
 	public static void changePrimaryAffiliationRecordType() {
 		if (strTestOnly != '*' && strTestOnly != 'changePrimaryAffiliationRecordType') return;
 		

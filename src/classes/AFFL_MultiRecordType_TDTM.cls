@@ -39,25 +39,26 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
 		 if(!afflMultiHasRun) {
 			 
-			 //WARNING: MAY NOT BE BULK SAFE/NEED OPTIMIZATION!
-			 
 			 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
-			 if(newlist != null && newlist.size() > 0) {
+			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+			 Map<ID, Contact> relatedContactsMap;
+			 if(newlist != null) {
+			 	relatedContactsMap = queryAfflLookupFields(newlist, afflMapper);
+			 } else if(oldlist != null) {
+			 	relatedContactsMap = queryAfflLookupFields(oldlist, afflMapper);
+			 }
+				 
+			 if(newlist != null && newlist.size() > 0) { 
 			 	 Integer i = 0;
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
-					UTIL_Debug.debug('****MRT: affl type: ' + affl.Affiliation_Type__c);
-					
 					String lookupFieldLabel = afflMapper.mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
-					UTIL_Debug.debug('****MRT: lookup field label: ' + lookupFieldLabel);
-					
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
-					UTIL_Debug.debug('****MRT: lookup field name: ' + lookupFieldName);
 					
 					//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
-					Contact relatedContact = queryAfflLookupFields(affl, afflMapper);
-						
+					Contact relatedContact = relatedContactsMap.get(affl.Contact__c);
+					
 		            //BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for 
 		            //affls of the same type.
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
@@ -68,11 +69,16 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 		                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
-		                //If a primary affiliation is updated to be nonprimary the key affiliation field on the contact 
-		                //will need to be cleared.
+		                //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
 		                if (afflOld.Primary__c && !affl.Primary__c) {
 		                	relatedContact.put(lookupFieldName, null);
 		                	dmlWrapper.objectsToUpdate.add(relatedContact);
+		                }
+		                
+		                //If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
+		                //an any other primary affiliation of the same type needs to be made non-primary.
+		                if (affl.Primary__c && !afflOld.Primary__c) {
+		                	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
 		            }      
 		        	i++;
@@ -82,23 +88,15 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 	    	 if(oldlist != null && oldlist.size() > 0) {
 		    	 for(SObject so : oldlist) {
 		    	 	Affiliation__c afflOld = (Affiliation__c)so;
-		    	 	UTIL_Debug.debug('****MRT: old affl type: ' + afflOld.Affiliation_Type__c);
-		    	 						
 					String lookupFieldLabel = afflMapper.mappingsRecTypesToLabels.get(afflOld.Affiliation_Type__c);
-					UTIL_Debug.debug('****MRT: old lookup field label: ' + lookupFieldLabel);
-					
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
-					UTIL_Debug.debug('****MRT: lookup field name: ' + lookupFieldName);
-					
-		    	 	//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
-					Contact relatedContact = queryAfflLookupFields(afflOld, afflMapper);
+
+					Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);
 					
 		    	 	//AFTER DELETE - delete lookup relationship, if necessary
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-		            	UTIL_Debug.debug('****MRT: after delete');
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
 		            	if(afflOld.Primary__c && relatedContact.get(lookupFieldName) == afflOld.Organization__c) {
-		            		UTIL_Debug.debug('****MRT: clearing lookup field');
 		            		relatedContact.put(lookupFieldName, null);
 		            		dmlWrapper.objectsToUpdate.add(relatedContact);
 		            	}
@@ -110,14 +108,34 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return dmlWrapper;  	
     }
     
-    private Contact queryAfflLookupFields(Affiliation__c affl, AFFL_MultiRecordTypeMapper afflMapper) {
-    	String dynamicQuery = 'select ID';
-		for(String primaryField : afflMapper.primaryAfflFieldNames) {
-			dynamicQuery = dynamicQuery + ', ' + primaryField; 	
+    private Map<ID, Contact> queryAfflLookupFields(List<SObject> newlist, AFFL_MultiRecordTypeMapper afflMapper) {
+    	//Query the primary affiliation fields for all contacts at once
+		String contactIDs = '(';
+		Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
+		if(newlist != null && newlist.size() > 0) {
+			Affiliation__c firstAffl = (Affiliation__c)newlist[0];
+			contactIDs += '\'' + firstAffl.Contact__c + '\'';
+			Integer i = 1;
+			while(i < newlist.size()) {
+				Affiliation__c affl = (Affiliation__c)newlist[i];
+		        contactIDs += ', \'' + affl.Contact__c + '\'';
+		        i++;
+			}
+			contactIDs += ')';
+			
+			//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+			String dynamicQuery = 'select ID';
+			for(String primaryField : afflMapper.primaryAfflFieldNames) {
+				dynamicQuery = dynamicQuery + ', ' + primaryField; 	
+			}
+			dynamicQuery += ' from Contact where ID IN '+ contactIDs;
+			UTIL_Debug.debug('****MRT: Dynamic query: ' + dynamicQuery);
+			List<Contact> relatedContactsList = Database.query(dynamicQuery);
+			for(Contact contact : relatedContactsList) {
+			 	relatedContactsMap.put(contact.ID, contact);
+			}
 		}
-		dynamicQuery += ' from Contact where ID = \''+ affl.Contact__c + '\'';
-		UTIL_Debug.debug('****MRT: Dynamic query: ' + dynamicQuery);
-		return (Contact)Database.query(dynamicQuery)[0];
+		return relatedContactsMap;
     }
     
     private void uncheckOtherPrimariesPopulateKeyAffls(Affiliation__c affl, String lookupFieldName, Contact relatedContact, DmlWrapper dmlWrapper) {
