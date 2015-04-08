@@ -13,6 +13,8 @@
     <members>AFFL_MultiRecordType_TDTM</members>
     <members>AFFL_MultiRecordType_TEST</members>
     <members>CAO_Constants</members>
+    <members>CON_DoNotContact_TDTM</members>
+    <members>CON_DoNotContact_TEST</members>
     <members>ERR_Handler</members>
     <members>ERR_Handler_TEST</members>
     <members>ERR_Notifier</members>
@@ -96,6 +98,8 @@
     <members>Contact.Credits_Attempted__c</members>
     <members>Contact.Credits_Earned__c</members>
     <members>Contact.Current_Address__c</members>
+    <members>Contact.Deceased__c</members>
+    <members>Contact.Do_Not_Contact__c</members>
     <members>Contact.Eligible_to_Enroll__c</members>
     <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>

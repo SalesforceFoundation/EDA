@@ -92,6 +92,26 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Deceased__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When selected, this option marks the contact as deceased, and excludes them from household naming, emails, and phone calls.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When selected, this option marks the contact as deceased, and excludes them from household naming, emails, and phone calls.</inlineHelpText>
+        <label>Deceased</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Do_Not_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When selected, this option excludes the contact from emails and phone calls.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When selected, this option excludes the contact from emails and phone calls.</inlineHelpText>
+        <label>Do Not Contact</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Eligible_to_Enroll__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
