@@ -143,45 +143,25 @@ global abstract class TDTM_Runnable {
         * @return List<SObject> A list with the records passed as parameters ordered by type. Duplicates removed.
         */
         private List<SObject> groupSObjects(List<SObject> sobjects) {
-        	//First remove duplicates to avoid the "Duplicate id in list" error
-        	sobjects = new List<SObject>(new Set<SObject>(sobjects));
-        	        	
-        	List<SObject> sorted = new List<SObject>();
-        	
-        	List<SObject> accounts = new List<SObject>();
-            List<SObject> contacts = new List<SObject>();
-            List<SObject> opps = new List<SObject>();
-            List<SObject> addresses = new List<SObject>();
-            List<SObject> affiliations = new List<SObject>();
-            List<SObject> relationships = new List<SObject>();
-            List<SObject> unknown = new List<SObject>();
-            
-            for(SObject o : sobjects) {
-                if(o instanceof Account) {
-                	accounts.add(o);
-                } else if(o instanceof Contact) {
-                	contacts.add(o);
-                } else if(o instanceof Opportunity) {
-                	opps.add(o);
-                } else if(o instanceof Address__c) {
-                    addresses.add(o);
-                } else if(o instanceof Affiliation__c) {
-                    affiliations.add(o);
-                } else if(o instanceof Relationship__c) {
-                    relationships.add(o);
+        	map<string,list<SObject>> mapNameToListSObject = new map<string,list<SObject>>();
+            list<SObject> sorted = new list<SObject>();
+
+            //First remove duplicates to avoid the "Duplicate id in list" error
+            sobjects = new list<SObject>(new set<SObject>(sobjects));
+
+            for (SObject SObj : sobjects) {
+                string objName = SObj.getSObjectType().getDescribe().getName();
+                if (mapNameToListSObject.containsKey(objName)) {
+                    mapNameToListSObject.get(objName).add(SObj);
                 } else {
-                	UTIL_Debug.debug(LoggingLevel.WARN, '****Not one of our basic object types');
-                	unknown.add(o);
+                    mapNameToListSObject.put(objName, new list<SObject>{SObj});
                 }
             }
-            sorted.addAll(accounts);
-            sorted.addAll(contacts);
-            sorted.addAll(opps);
-            sorted.addAll(addresses);
-            sorted.addAll(affiliations);
-            sorted.addAll(relationships);
-            sorted.addAll(unknown);
-            
+
+
+            for (list<SObject> groupedObjects : mapNameToListSObject.values())
+                sorted.addAll(groupedObjects);
+
             return sorted;
         }
     }
