@@ -118,8 +118,8 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 	
                 	// HH Account should be created if:
                     //    1. The account isn't set by the user
-                    //    2. The Account Model is set to Household Account
-                    if (CAO_Constants.isHHAccountModel() && c.AccountId == null) {
+                    //    2. The Account Model is set to Household or Administrative Account
+                    if (CAO_Constants.isHhOrAdmAccountModel() && c.AccountId == null) {
                         listContactNeedAccount.add(c);
                     }
                     
@@ -141,8 +141,8 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     // HH account should be created if:
 	                //   1. The account has been blanked out by the user
-	                //   2. The Account Model is set to Household Account
-	                if (CAO_Constants.isHHAccountModel() && c.AccountId == null) {
+	                //   2. The Account Model is set to Household or Administrative Account
+	                if (CAO_Constants.isHhOrAdmAccountModel() && c.AccountId == null) {
 	                    listContactNeedAccount.add(c);
 	                }
                     
@@ -328,7 +328,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && CAO_Constants.isHHAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
+            if (acc != null && CAO_Constants.isHhOrAdmAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
@@ -338,9 +338,12 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account();
                 
                 // construct the Account name
-                a.Name = CAO_Constants.isHHAccountModel() ? strNameHHAccountForContact(c) : '';
+                if(CAO_Constants.isHHAccountModel())
+                	a.Name = strNameHHAccountForContact(c);
+                else if(CAO_Constants.isAdmAccountModel())
+                	a.Name = strNameAdmAccountForContact(c);
                 
-                //connect the Account to the Contact for 1:1 and HHAccount
+                //connect the Account to the Contact for HHAccount
                 if (c.Id != null) {
                     a.One2OneContact__c = c.Id;
                 }
@@ -349,7 +352,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
-                a.SYSTEM_AccountType__c = CAO_Constants.isHHAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
+                a.SYSTEM_AccountType__c = CAO_Constants.isHhOrAdmAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
@@ -519,5 +522,9 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */ 
     public static String strNameHHAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultHouseholdName;
+    }
+    
+    public static String strNameAdmAccountForContact(Contact con) {
+        return con.LastName + ' ' + system.label.DefaultAdminName;
     }
 }
