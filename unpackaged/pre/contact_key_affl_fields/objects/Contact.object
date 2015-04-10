@@ -37,30 +37,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Primary_Household__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Household</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Household)</relationshipLabel>
-        <relationshipName>Household_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Organization__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Business Organization</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Organization)</relationshipLabel>
-        <relationshipName>Organization_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Primary_Sports_Organization__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
