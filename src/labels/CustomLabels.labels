@@ -9,6 +9,14 @@
         <value>Unable to retrieve a valid Id for Relationship auto-creation.  Please check the settings under the Relationships Settings tab for valid fields and try again.</value>
     </labels>
     <labels>
+        <fullName>DefaultAdminName</fullName>
+        <categories>Account Naming</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default Administrative Account Name</shortDescription>
+        <value>Administrative Acc</value>
+    </labels>
+    <labels>
         <fullName>DefaultCurrentStatus</fullName>
         <language>en_US</language>
         <protected>false</protected>

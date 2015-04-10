@@ -181,6 +181,7 @@
   </types>
   <types>
     <members>AutoCreateFieldError</members>
+    <members>DefaultAdminName</members>
     <members>DefaultCurrentStatus</members>
     <members>DefaultFormerStatus</members>
     <members>DefaultHouseholdName</members>

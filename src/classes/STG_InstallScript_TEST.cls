@@ -41,7 +41,7 @@ public with sharing class STG_InstallScript_TEST {
 		//Run the install script
         Test.testInstall(new STG_InstallScript(), null); 
         List<Affl_Mappings__c> mappings = [select Account_Record_Type__c, Primary_Affl_Field__c from Affl_Mappings__c];
-        System.assertEquals(5, mappings.size());
+        System.assertEquals(6, mappings.size());
 	}
 	
 	//If the handlers in our default TDTM config are different from what it's in the org (either action or load order),

@@ -36,10 +36,14 @@
 public with sharing class CAO_Constants {
 
     /*******************************************************************************************************
-    * @description Household Account value for system processor field
+    * @description Household Account value for system processor field.
     */ 
     public static final String HH_ACCOUNT_PROCESSOR = 'Household Account';
 
+	/*******************************************************************************************************
+    * @description Administrative Account value for system processor field.
+    */ 
+    public static final String ADM_ACCOUNT_PROCESSOR = 'Administrative';
 
     /*******************************************************************************************************
     * @description A contact's firstname to use in test code.
@@ -82,5 +86,14 @@ public with sharing class CAO_Constants {
     */ 
     public static boolean isHHAccountModel() {
         return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR);
+    }
+    
+    public static boolean isAdmAccountModel() {
+        return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == ADM_ACCOUNT_PROCESSOR);
+    }
+    
+    public static boolean isHhOrAdmAccountModel() {
+    	return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR ||
+        		UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == ADM_ACCOUNT_PROCESSOR);
     }
 }

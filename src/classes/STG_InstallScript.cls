@@ -53,6 +53,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     global static void insertMappings() {
     	List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c];
     	if(mappings.size() == 0) {
+    		mappings.add(new Affl_Mappings__c(Name = 'Administrative', Account_Record_Type__c = 'Administrative', Primary_Affl_Field__c = 'Primary Administrative Account'));
 	    	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
 	    	mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
 	    	mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational Institution', Primary_Affl_Field__c = 'Primary Educational Institution'));

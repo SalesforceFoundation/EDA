@@ -195,7 +195,8 @@ public without sharing class UTIL_CustomSettingsFacade {
      * Private methods that will configure the default org-level custom settings.
      **/
     private static void configContactsSettings(Contacts_And_Orgs_Settings__c cs) {
-		cs.Account_Processor__c = 'Household Account';
+		//cs.Account_Processor__c = 'Household Account';
+		cs.Account_Processor__c = 'Administrative';
 		cs.Organizational_Account_Addresses_Enabled__c = true;
     }
 
