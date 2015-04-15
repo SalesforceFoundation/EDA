@@ -110,7 +110,6 @@
     <members>Contact.HHId__c</members>
     <members>Contact.HIPPA_Detail__c</members>
     <members>Contact.HIPPA__c</members>
-    <members>Contact.HomeEmail__c</members>
     <members>Contact.Home_Address__c</members>
     <members>Contact.Naming_Exclusions__c</members>
     <members>Contact.Organization_Type__c</members>
@@ -125,6 +124,7 @@
     <members>Contact.Social_Security_Number__c</members>
     <members>Contact.Start_Date__c</members>
     <members>Contact.Type_of_Account__c</members>
+    <members>Contact.UniversityEmail__c</members>
     <members>Contact.WorkEmail__c</members>
     <members>Contact.WorkPhone__c</members>
     <members>Contact.Work_Address__c</members>

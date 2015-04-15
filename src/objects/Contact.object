@@ -204,17 +204,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>HomeEmail__c</fullName>
-        <description>See Preferred Email field.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>See Preferred Email field.</inlineHelpText>
-        <label>Personal Email</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Home_Address__c</fullName>
         <description>Formula: Uses primary address type field to determine Home Address from Mailing or Other address.</description>
         <externalId>false</externalId>
@@ -466,6 +455,17 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <label>Type of Account</label>
         <required>false</required>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UniversityEmail__c</fullName>
+        <description>Official University email address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Official University email address.</inlineHelpText>
+        <label>University Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
         <unique>false</unique>
     </fields>
     <fields>

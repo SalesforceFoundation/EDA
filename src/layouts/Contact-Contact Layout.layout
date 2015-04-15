@@ -170,7 +170,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HomeEmail__c</field>
+                <field>UniversityEmail__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
