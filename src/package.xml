@@ -110,6 +110,7 @@
     <members>Contact.HHId__c</members>
     <members>Contact.HIPPA_Detail__c</members>
     <members>Contact.HIPPA__c</members>
+    <members>Contact.HomeEmail__c</members>
     <members>Contact.Home_Address__c</members>
     <members>Contact.Naming_Exclusions__c</members>
     <members>Contact.Organization_Type__c</members>

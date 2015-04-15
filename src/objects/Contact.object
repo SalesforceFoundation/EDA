@@ -204,6 +204,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>HomeEmail__c</fullName>
+        <description>See Preferred Email field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>See Preferred Email field.</inlineHelpText>
+        <label>DEPRECATED-Personal Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Home_Address__c</fullName>
         <description>Formula: Uses primary address type field to determine Home Address from Mailing or Other address.</description>
         <externalId>false</externalId>
