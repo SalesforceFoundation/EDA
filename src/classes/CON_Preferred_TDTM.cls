@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.com Foundation
+    Copyright (c) 2009, Salesforce.com Foundation
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -29,52 +29,48 @@
 */
 /**
 * @author Salesforce.com Foundation
-* @date 2015
-* @group Affiliations
-* @description Supports changing the record type of an account.
+* @date 2011 (1.x)
+* @group Contacts
+* @description Populates default email and phone fields according to user preferences.
 */
-public with sharing class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
-	
+public with sharing class CON_Preferred_TDTM extends TDTM_Runnable {
+
 	/*******************************************************************************************************
-    * @description Updates key affiliation lookups on contact, and any other primary affiliation of the new type.
+    * @description Updates default email and phone fields based to the preferred email and preferred phone values.
     * @return dmlWrapper
     ********************************************************************************************************/
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-    
-    	 DmlWrapper dmlWrapper = new DmlWrapper();
-    	 
-    	 if(newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
-    	 	Integer i = 0;
-    	 	for (SObject so : newlist) {
-    	 		if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-	    	 		Account acc = (Account)so;
-			        Account oldAcc = (Account)oldList[i];
-			        
-			        //When a user changes the record type of an Account, if that account was part of any primary affiliation, other primary 
-			        //affiliations of the same type need to be unchecked, and the key affl lookup field on the contacts needs to be updated.
-			        if(acc.RecordTypeId != oldAcc.RecordTypeId) {
-			        	AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper(); 
-			        	
-			        	//Find the lookup field that matches the old record type
-			        	String keyAfflFieldOldType = afflMapper.getKeyAfflFieldByAccRecordType(oldAcc.RecordTypeId);
-			        	
-			        	//Find the lookup field that matches the new record type
-			        	String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
-			        	
-			        	//Find all contacts where that field was pointing to this account
-			        	List<Contact> relatedContacts = Database.query('select ID from Contact where ' + keyAfflFieldOldType + '=\'' + acc.ID + '\'');
-			        	
-			        	for(Contact contact : relatedContacts) {
-			        		contact.put(keyAfflFieldOldType, null);
-			        		contact.put(keyAfflFieldNewType, acc.Id);
-			        		dmlWrapper.objectsToUpdate.add(contact);
-			        	}
-			        }
-    	 		}
-		    }
-		    i++;
+        	 
+    	 if((triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
+    	 	
+    	 	for(SObject so : newlist) {
+    	 		Contact contact = (Contact)so;
+    	 	
+	    	 	if(!String.isBlank(contact.Preferred_Email__c)) {
+	    	 		if(contact.Preferred_Email__c == 'University') {
+	    	 			contact.Email = contact.UniversityEmail__c;
+	    	 		} else if(contact.Preferred_Email__c == 'Work') {
+	    	 			contact.Email = contact.WorkEmail__c;
+	    	 		} else if(contact.Preferred_Email__c == 'Alternate') {
+	    	 			contact.Email = contact.AlternateEmail__c;
+	    	 		}
+	    	 	}
+	    	 	
+	    	 	if(!String.isBlank(contact.PreferredPhone__c)) {
+	    	 		if(contact.PreferredPhone__c == 'Home') {
+	    	 			contact.Phone = contact.HomePhone;
+	    	 		} else if(contact.PreferredPhone__c == 'Work') {
+	    	 			contact.Phone = contact.WorkPhone__c;
+	    	 		} else if(contact.PreferredPhone__c == 'Mobile') {
+	    	 			contact.Phone = contact.MobilePhone;
+	    	 		} else if(contact.PreferredPhone__c == 'Other') {
+	    	 			contact.Phone = contact.OtherPhone;
+	    	 		}
+	    	 	}
+    	 	}
     	 }
-    	 return dmlWrapper;
-    }
+    	 
+    	 return null;
+   	}
 }

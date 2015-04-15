@@ -31,7 +31,7 @@
 * @author Salesforce.com Foundation
 * @date 2011 (1.x)
 * @group Accounts
-* @description Implements one of three account models, 1x1 or bucket or HH - controls syncing within the model 
+* @description Implements Household or Administrative account model - controls syncing within the model 
 */
 public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
