@@ -342,7 +342,7 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <label>Preferred Email</label>
         <picklist>
             <picklistValues>
-                <fullName>Personal</fullName>
+                <fullName>University</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
