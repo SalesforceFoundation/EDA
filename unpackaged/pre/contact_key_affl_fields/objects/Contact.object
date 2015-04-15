@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
 	<fields>
+        <fullName>Primary_Administrative_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Administrative Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Contacts (Primary Administrative Account)</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+	<fields>
         <fullName>Primary_Department__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -20,30 +32,6 @@
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts (Primary Educational Institution)</relationshipLabel>
         <relationshipName>Institution_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Household__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Household</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Household)</relationshipLabel>
-        <relationshipName>Household_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Primary_Organization__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Business Organization</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Organization)</relationshipLabel>
-        <relationshipName>Organization_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>

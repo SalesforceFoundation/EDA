@@ -96,7 +96,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		    	 	//AFTER DELETE - delete lookup relationship, if necessary
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
-		            	if(afflOld.Primary__c && relatedContact.get(lookupFieldName) == afflOld.Organization__c) {
+		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Organization__c) {
 		            		relatedContact.put(lookupFieldName, null);
 		            		dmlWrapper.objectsToUpdate.add(relatedContact);
 		            	}
