@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2009, Salesforce.com Foundation
+    Copyright (c) 2015, Salesforce.com Foundation
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -29,8 +29,8 @@
 */
 /**
 * @author Salesforce.com Foundation
-* @date 2011 (2.0)
-* @description Handles creation, deleting and moving of Households between Contacts 
+* @date 2015
+* @description
 */
 public with sharing class CON_DoNotContact_TDTM extends TDTM_Runnable {
     

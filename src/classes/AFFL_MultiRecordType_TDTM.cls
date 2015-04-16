@@ -27,11 +27,27 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
+/**
+* @author Salesforce.com Foundation
+* @date 2015
+* @group Affiliations
+* @description Handles affiliations of different record types, with one primary per type. 
+*/
 public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
-	//Static flags to prevent recursive call.
+	/*******************************************************************************************************
+    * @description Static flags to prevent recursive call.
+    ********************************************************************************************************/
     public static boolean afflMultiHasRun = false;
 
+	/*******************************************************************************************************
+    * @description Handles Affiliation management.
+    * @param listNew the list of Accounts from trigger new. 
+    * @param listOld the list of Accounts from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Accounts 
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
