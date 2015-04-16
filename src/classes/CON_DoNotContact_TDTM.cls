@@ -34,6 +34,14 @@
 */
 public with sharing class CON_DoNotContact_TDTM extends TDTM_Runnable {
     
+    /*******************************************************************************************************
+    * @description Handles deceased and do not contact fields.
+    * @param listNew the list of Accounts from trigger new. 
+    * @param listOld the list of Accounts from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Accounts 
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
@@ -63,6 +71,11 @@ public with sharing class CON_DoNotContact_TDTM extends TDTM_Runnable {
         return new DmlWrapper();
 	}
     
+    /*******************************************************************************************************
+    * @description Toggles additional Contact fields as necessary when a contact is flagged as deceased. 
+    * @param con The Contact record.
+    * @return void.  
+    ********************************************************************************************************/
     public void markContactDeceased(Contact con) {
 
         con.Do_Not_Contact__c = con.Deceased__c;
@@ -75,6 +88,11 @@ public with sharing class CON_DoNotContact_TDTM extends TDTM_Runnable {
         copyNamingExclusionsFromCheckboxes(con);
     }
 
+	/*******************************************************************************************************
+    * @description Toggles additional Contact fields as necessary when a contact is flagged as "do not contact". 
+    * @param con The Contact record.
+    * @return void.  
+    ********************************************************************************************************/
     public void markContactDoNotContact(Contact con) {
 
         con.HasOptedOutOfEmail = con.Do_Not_Contact__c;
