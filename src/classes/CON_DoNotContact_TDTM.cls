@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.com Foundation
 * @date 2015
-* @description
+* @description Handles changes to the deceased and do not contact fields on Contact.
 */
 public with sharing class CON_DoNotContact_TDTM extends TDTM_Runnable {
     

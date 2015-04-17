@@ -146,7 +146,8 @@ public with sharing class ERR_Notifier {
         mail.setReplyTo('donotreply@salesforcefoundation.org');
         mail.setSenderDisplayName('HEDAP App');
         mail.setSubject('HEDAP Error');
-        string bodyString = '';
+        string bodyString = 'Organization: ' + UserInfo.getOrganizationName() + '(' + UserInfo.getOrganizationId() + ')\n';
+        bodyString += 'User: ' + UserInfo.getUserName() + '(' + UserInfo.getUserId() + ')';
         bodyString += '\n\nErrors:';
         Integer i = 1;
         for (Error__c error : errorList){
