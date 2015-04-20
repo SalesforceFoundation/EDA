@@ -57,6 +57,7 @@
     <name>CustomApplication</name>
   </types>
   <types>
+    <members>Academic_Record__c.Affiliation__c</members>
     <members>Account.One2OneContact__c</members>
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
@@ -93,6 +94,7 @@
     <members>Affiliation__c.Status__c</members>
     <members>Affiliations_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Affl_Mappings__c.Account_Record_Type__c</members>
+    <members>Affl_Mappings__c.Auto_Academic_Record__c</members>
     <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
     <members>Contact.Admission_Date__c</members>
     <members>Contact.AlternateEmail__c</members>
@@ -206,6 +208,7 @@
     <name>CustomLabel</name>
   </types>
   <types>
+    <members>Academic_Record__c</members>
     <members>Account</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>
@@ -230,6 +233,7 @@
     <name>CustomTab</name>
   </types>
   <types>
+    <members>Academic_Record__c-Academics Layout</members>
     <members>Account-Household Layout</members>
     <members>Account-Organization Layout</members>
     <members>Address__c-Address Layout</members>
@@ -244,6 +248,9 @@
     <members>Trigger_Handler__c.All</members>
     <members>Trigger_Handler__c.All_Main_Fields</members>
     <name>ListView</name>
+  </types>
+  <types>
+    <name>PermissionSet</name>
   </types>
   <types>
     <members>Account.New_Address</members>
