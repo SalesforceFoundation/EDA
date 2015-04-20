@@ -293,7 +293,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//Verify Academic Record has been created
-		List<Academic_Record__c> academicRecords = [select ID from Academic_Record__c where Affiliation__c = :affl.ID];
+		List<Academic_Record__c> academicRecords = [select ID, Contact__c from Academic_Record__c where Affiliation__c = :affl.ID];
 		System.assertEquals(1, academicRecords.size());
+		System.assertEquals(contact.ID, academicRecords[0].Contact__c);
 	}
 }

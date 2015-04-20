@@ -217,7 +217,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     	if(affl != null && affl.Affiliation_Type__c != null) {
 	    	Boolean needsAcademicRecord = afflMapper.needsAcademicRecord(affl.Affiliation_Type__c);
 	    	if(needsAcademicRecord != null && needsAcademicRecord) {
-	    		Academic_Record__c acadRec = new Academic_Record__c(Affiliation__c = affl.ID);
+	    		Academic_Record__c acadRec = new Academic_Record__c(Affiliation__c = affl.ID, Contact__c = affl.Contact__c);
 	    		dmlWrapper.objectsToInsert.add(acadRec);
 	    	}
     	}

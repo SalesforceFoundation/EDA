@@ -55,6 +55,14 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Admission_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Admission Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>The Contact-Account relationship this academic information is related to.</description>
@@ -66,25 +74,6 @@
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Admission_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Admission Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>AlternateEmail__c</fullName>
-        <description>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</inlineHelpText>
-        <label>Alternate Email</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Email</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Class_Standing__c</fullName>
@@ -109,8 +98,22 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The parent Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The parent Contact.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Academic Records</relationshipLabel>
+        <relationshipName>Academic_Records</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
@@ -119,7 +122,7 @@
         <precision>5</precision>
         <required>false</required>
         <scale>3</scale>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -130,7 +133,7 @@
         <precision>5</precision>
         <required>false</required>
         <scale>3</scale>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -139,7 +142,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Eligible to Enroll</label>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -147,7 +150,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>FERPA</label>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -155,7 +158,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Financial Aid Applicant</label>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -165,7 +168,7 @@
         <precision>3</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -174,7 +177,7 @@
         <externalId>false</externalId>
         <label>HIPPA Detail</label>
         <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
     </fields>
@@ -183,7 +186,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>HIPPA</label>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <label>Academic Record</label>
