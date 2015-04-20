@@ -85,7 +85,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create abother key affiliation, this time to a biz org
 		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = bizOrg1.ID, Primary__c = true);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false; 
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false; 
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
@@ -103,7 +103,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		
 		//Create second primary affiliation
 		Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Organization__c = bizOrg2.ID, Primary__c = true);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert bizAffl2;
 		
 		//The previous affiliation should not be the primary any more
@@ -144,7 +144,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Create primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc1.ID, Primary__c = true);
 		Test.startTest();
-		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
     	Test.stopTest();
     	
@@ -153,7 +153,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 		
 		//Delete Business affiliation
-		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		delete affl1;
 		
 		//Verify Primary Organization lookup field has been cleared
@@ -188,7 +188,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Make the affiliation not primary
     	affls[0].Primary__c = false;
     	Test.startTest();
-    	AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+    	AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
     	update affls[0];
     	Test.stopTest();
     	
@@ -215,7 +215,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create non-primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc1.ID, Primary__c = false);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
 		
 		//Verify Primary Organization lookup field is blank
@@ -224,7 +224,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		
 		//Made the business affiliation primary
 		affl1.Primary__c = true;
-		AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		Test.startTest();
 		update affl1;
 		Test.stopTest();
@@ -254,7 +254,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Change the account record type to Business Organization
     	acc.RecordTypeId = orgRecTypeID;
     	Test.startTest();
-    	AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+    	AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
     	update acc;
     	Test.stopTest();
     	
@@ -263,5 +263,37 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(null, contact.Primary_Household__c);
     	//Verify primary business organization field has been populated
     	System.assertEquals(acc.ID, contact.Primary_Organization__c);
+	}
+	
+	@isTest
+	public static void autoCreateAcademicRecord() {
+		if (strTestOnly != '*' && strTestOnly != 'autoCreateAcademicRecord') return;
+		
+		setup();
+		
+		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
+		Affl_Mappings__c bizOrgMapping = [select Auto_Academic_Record__c from Affl_Mappings__c where Name = 'Business Organization'];
+		bizOrgMapping.Auto_Academic_Record__c = true;
+		update bizOrgMapping;
+
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+	
+		//Craete account of Business Organization record type
+    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc;
+    	
+    	//Create Business affiliation
+		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc.ID);
+		Test.startTest();
+		UTIL_Debug.debug('****Creating affiliation that should auto-create Academic Record');
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
+		insert affl;
+		Test.stopTest();
+		
+		//Verify Academic Record has been created
+		List<Academic_Record__c> academicRecords = [select ID from Academic_Record__c where Affiliation__c = :affl.ID];
+		System.assertEquals(1, academicRecords.size());
 	}
 }

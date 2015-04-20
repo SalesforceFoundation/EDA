@@ -44,7 +44,12 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
     * @description Affiliation Account-record-type-to-Contact-field mappings.
     ********************************************************************************************************/
-    public Map<String, String> mappingsRecTypesToLabels;
+    public Map<String, String> mapAccRecTypeToContactLabel;
+    
+    /*******************************************************************************************************
+    * @description Affiliation Account-record-type-to-Academic-auto-create-field mappings.
+    ********************************************************************************************************/
+    public Map<String, Boolean> mapAccRecTypeToAcadAutoCreate;
     
     /*******************************************************************************************************
     * @description List of primary affiliation lookup fields names on Contact.
@@ -65,11 +70,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		List<String> contactFieldNames = contactLabelNames.values();
 		
 		//Affiliation Account-record-type-to-Contact-field mappings.
-		mappingsRecTypesToLabels = getPrimaryAfflMappings();
-		UTIL_Debug.debug('****MRT: primaryAfflMappings: ' + JSON.serializePretty(mappingsRecTypesToLabels)); 
+		populateMaps();
+		UTIL_Debug.debug('****MRT: primaryAfflMappings: ' + JSON.serializePretty(mapAccRecTypeToContactLabel)); 
 		
 		//List of primary affiliation lookup fields labels.
-		List<String> primaryAfflFieldLabels = mappingsRecTypesToLabels.values();
+		List<String> primaryAfflFieldLabels = mapAccRecTypeToContactLabel.values();
 		UTIL_Debug.debug('****MRT: primaryAfflFieldLabels: ' + JSON.serializePretty(primaryAfflFieldLabels));
 		
 		//List of primary affiliation Contact fields.
@@ -85,17 +90,18 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		return labelsnames;
     }
     
-    private Map<String, String> getPrimaryAfflMappings() {
-		Map<String, String> mappings = new Map<String, String>();
-		//Get the affiliation Account-record-type-to-Contact-field mappings.
-		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c from Affl_Mappings__c];
+    private void populateMaps() {
+    	mapAccRecTypeToContactLabel = new Map<String, String>();
+    	mapAccRecTypeToAcadAutoCreate = new Map<String, Boolean>();
+		//Get the affiliation mappings.
+		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Academic_Record__c from Affl_Mappings__c];
 		//Put them in a map.
 		for(Affl_Mappings__c mapping : primaryAfflMappings) {
 			if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
-				mappings.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
+				mapAccRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
+				mapAccRecTypeToAcadAutoCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Academic_Record__c);
 			}
 		}
-		return mappings;
 	}
 	
 	/*******************************************************************************************************
@@ -123,14 +129,26 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @return String The name of the key affiliation Contact field.
     ********************************************************************************************************/
 	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
-		for(String recTypeName : mappingsRecTypesToLabels.keySet()) {
+		for(String recTypeName : mapAccRecTypeToContactLabel.keySet()) {
     		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
     		if(rcId == recordTypeId) {
-    			String fieldLabel = mappingsRecTypesToLabels.get(recTypeName);
+    			String fieldLabel = mapAccRecTypeToContactLabel.get(recTypeName);
     			String fieldName = contactLabelNames.get(fieldLabel);
     			return fieldName;
     		}
 		}
 		return null;
+    }
+    
+    /*******************************************************************************************************
+    * @description Tells caller if Account record type needs Academic Record auto-creation.
+    * @param accountRecordType The name of the Account record type as entered in the Affiliation Mappings.
+    * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
+    ********************************************************************************************************/
+    public Boolean needsAcademicRecord(String accountRecordType) {
+    	if(accountRecordType != null) {
+    		return mapAccRecTypeToAcadAutoCreate.get(accountRecordType);
+    	}
+    	return false;
     }
 }
