@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2009, Salesforce.com Foundation
+    Copyright (c) 2015, Salesforce.com Foundation
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.com Foundation
-* @date 2011 (1.x)
+* @date 2015
 * @group Contacts
 * @description Populates default email and phone fields according to user preferences.
 */

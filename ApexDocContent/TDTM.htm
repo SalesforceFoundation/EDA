@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <h2>Table-Driven Trigger Management (TDTM) Classes</h2>
+        <p>These are the classes that support our table-driven trigger management approach, where only on trigger exists 
+        per object, and the information on which classes to run upon the creation or modification of a record is stored 
+        in the database. </p>       
+    <ul>
+        <li>TDTM_DefaultConfig - stores the default TDTM configuration, and the mapping between the old NPSP
+               settings and the new ones.</li>
+        <li>TDTM_ObjectDataGateway - class that queries custom object to retrieve classes to call for creation or modification 
+        of a record of a specific object type.</li>
+        <li>TDTM_Runnable - abstract class that classes to be run from a trigger, according to the TDTM design, 
+        need to extend.</li>
+        <li>TDTM_TriggerActionHelper - class that contains helper methods for the TDTM Trigger Handler logic.</li>
+        <li>TDTM_TriggerHandler - class called from each of the triggers (only one per object) that follow the TDTM design. 
+        It's in charge of figuring out which of the classes that do the actual work need to be called, and calling them.</li>
+    </ul>
+    </body>
+</html>

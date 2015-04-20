@@ -27,17 +27,33 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
+/**
+* @author Salesforce.com Foundation
+* @date 2015
+* @group Affiliations
+* @description Helps with the mapping of Account record types to Account lookup fields on Contact defined
+*				in the Affiliation Mapping custom settings. 
+*/
 public with sharing class AFFL_MultiRecordTypeMapper {
 
-	//Map of Contact field names to Contact field labels.
+	/*******************************************************************************************************
+    * @description Map of Contact field names to Contact field labels.
+    ********************************************************************************************************/
 	public Map<String, String> contactLabelNames;
 		
-    //Affiliation Account-record-type-to-Contact-field mappings.
+    /*******************************************************************************************************
+    * @description Affiliation Account-record-type-to-Contact-field mappings.
+    ********************************************************************************************************/
     public Map<String, String> mappingsRecTypesToLabels;
     
-    //List of primary affiliation lookup fields names on Contact.
+    /*******************************************************************************************************
+    * @description List of primary affiliation lookup fields names on Contact.
+    ********************************************************************************************************/
     public List<String> primaryAfflFieldNames;
     
+    /*******************************************************************************************************
+    * @description Constructor that initializes class properties.
+    ********************************************************************************************************/
     public AFFL_MultiRecordTypeMapper() {
     	//List of Contact field names.
 		List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
@@ -52,7 +68,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		mappingsRecTypesToLabels = getPrimaryAfflMappings();
 		UTIL_Debug.debug('****MRT: primaryAfflMappings: ' + JSON.serializePretty(mappingsRecTypesToLabels)); 
 		
-		//List of primary affiliation lookup fields names.
+		//List of primary affiliation lookup fields labels.
 		List<String> primaryAfflFieldLabels = mappingsRecTypesToLabels.values();
 		UTIL_Debug.debug('****MRT: primaryAfflFieldLabels: ' + JSON.serializePretty(primaryAfflFieldLabels));
 		
@@ -82,6 +98,12 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		return mappings;
 	}
 	
+	/*******************************************************************************************************
+    * @description Returns those fields from the provided list that are in the provided list of lables. 
+    * @param cf List of fields.
+    * @param primaryAfflFieldLabels List of field labels.
+    * @return List<SObjectField> List of fields in object that are in the provided list of labels.
+    ********************************************************************************************************/
 	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> cf, List<String> primaryAfflFieldLabels) {
 		Set<String> primaryAfflFieldLabelsSet = new Set<String>(primaryAfflFieldLabels);
 		List<SObjectField> primaryFields = new List<SObjectField>();
@@ -95,6 +117,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		return primaryFields;
 	}
 	
+	/*******************************************************************************************************
+    * @description Returns the name of the key affiliation Contact field that matches the Account record type provided.
+    * @param recordTypeId The ID of an Account record type.
+    * @return String The name of the key affiliation Contact field.
+    ********************************************************************************************************/
 	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
 		for(String recTypeName : mappingsRecTypesToLabels.keySet()) {
     		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
