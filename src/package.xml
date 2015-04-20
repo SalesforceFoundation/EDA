@@ -58,6 +58,17 @@
   </types>
   <types>
     <members>Academic_Record__c.Affiliation__c</members>
+    <members>Academic_Record__c.Admission_Date__c</members>
+    <members>Academic_Record__c.AlternateEmail__c</members>
+    <members>Academic_Record__c.Class_Standing__c</members>
+    <members>Academic_Record__c.Credits_Attempted__c</members>
+    <members>Academic_Record__c.Credits_Earned__c</members>
+    <members>Academic_Record__c.Eligible_to_Enroll__c</members>
+    <members>Academic_Record__c.FERPA__c</members>
+    <members>Academic_Record__c.Financial_Aid_Applicant__c</members>
+    <members>Academic_Record__c.GPA__c</members>
+    <members>Academic_Record__c.HIPPA_Detail__c</members>
+    <members>Academic_Record__c.HIPPA__c</members>
     <members>Account.One2OneContact__c</members>
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
