@@ -203,7 +203,7 @@ private class ACCT_IndividualAccounts_TEST {
         Contact con2 = new Contact(FirstName='John', LastName='Smith', AccountId = accountId);
         
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMultiHasRun = false;
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         insert con2;
         Test.stopTest();
         

@@ -38,8 +38,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 	/*******************************************************************************************************
     * @description Static flags to prevent recursive call.
     ********************************************************************************************************/
-    public static boolean afflMultiHasRun = false;
-
+    public static boolean afflMultiHasRunBefore = false;
+	public static boolean afflMultiHasRunAfter = false;
+	
 	/*******************************************************************************************************
     * @description Handles Affiliation management.
     * @param listNew the list of Accounts from trigger new. 
@@ -52,10 +53,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
-
-		 if(!afflMultiHasRun) {
-			 
-			 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+		 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+		 
+		 if(!afflMultiHasRunBefore) {
 
 			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 			 Map<ID, Contact> relatedContactsMap;
@@ -64,12 +64,12 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 } else if(oldlist != null) {
 			 	relatedContactsMap = queryAfflLookupFields(oldlist, afflMapper);
 			 }
-				 
-			 if(newlist != null && newlist.size() > 0) { 
+			 
+			 if(newlist != null && newlist.size() > 0) {
 			 	 Integer i = 0;
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
-					String lookupFieldLabel = afflMapper.mappingsRecTypesToLabels.get(affl.Affiliation_Type__c);
+					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
 					
 					//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
@@ -80,7 +80,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
 		            	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		            }
-		            
+
 		            // AFTER UPDATE
 		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 		                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
@@ -100,11 +100,11 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		        	i++;
 		    	 }
 			 }
-	    	 
+
 	    	 if(oldlist != null && oldlist.size() > 0) {
 		    	 for(SObject so : oldlist) {
 		    	 	Affiliation__c afflOld = (Affiliation__c)so;
-					String lookupFieldLabel = afflMapper.mappingsRecTypesToLabels.get(afflOld.Affiliation_Type__c);
+					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
 
 					Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);
@@ -119,8 +119,20 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            }
 		    	 }
 	    	 }
-	    	 afflMultiHasRun = true;  
-        } 
+	    	 afflMultiHasRunBefore = true;  
+        }
+        
+        //AFTER INSERT
+        if(!afflMultiHasRunAfter && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+			 if(newlist != null && newlist.size() > 0) {
+		    	 for (SObject so : newlist) {
+		            Affiliation__c affl = (Affiliation__c)so;
+					createAcademicRecordIfNecessary(affl, dmlWrapper, afflMapper);
+		    	 }
+			 }
+			 afflMultiHasRunAfter = true;
+		}
+			 
         return dmlWrapper;  	
     }
     
@@ -199,5 +211,15 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         UTIL_Debug.debug('****MRT: Number of lookups of this type:' + oldLookupsSameType.size());
         
         return oldLookupsSameType.size();
+    }
+    
+    private void createAcademicRecordIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
+    	if(affl != null && affl.Affiliation_Type__c != null) {
+	    	Boolean needsAcademicRecord = afflMapper.needsAcademicRecord(affl.Affiliation_Type__c);
+	    	if(needsAcademicRecord != null && needsAcademicRecord) {
+	    		Academic_Record__c acadRec = new Academic_Record__c(Affiliation__c = affl.ID);
+	    		dmlWrapper.objectsToInsert.add(acadRec);
+	    	}
+    	}
     }
 }

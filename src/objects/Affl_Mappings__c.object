@@ -16,6 +16,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Auto_Academic_Record__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, an Academic record will be automatically created when the user creates an Affiliation to an Account of this type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, an Academic record will be automatically created when the user creates an Affiliation to an Account of this type.</inlineHelpText>
+        <label>Auto Academic Record</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Primary_Affl_Field__c</fullName>
         <description>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</description>
         <externalId>false</externalId>
