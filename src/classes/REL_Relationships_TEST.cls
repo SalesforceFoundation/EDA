@@ -44,7 +44,7 @@ public class REL_Relationships_TEST {
     private static Contact c3;//unknown
     
     //helper for test methods
-    private static void setupRelationshipTestData(Relationship_Settings__c rs){
+    private static void setupRelationshipTestData(Hierarchy_Settings__c rs){
         
         //set running user to avoid dml issue            
         System.runAs(new User(id = UserInfo.getUserId())){
@@ -52,7 +52,7 @@ public class REL_Relationships_TEST {
             if (rs != null)
                 UTIL_CustomSettingsFacade.getRelationshipsSettingsForTests(rs);
             else
-                UTIL_CustomSettingsFacade.getRelationshipsSettingsForTests(new Relationship_Settings__c(Reciprocal_Method__c = 
+                UTIL_CustomSettingsFacade.getRelationshipsSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 
                                                                                     'List Setting', Gender_Field__c = 'Description'));         
             
             //add autocreate settings for CMs 
@@ -256,7 +256,7 @@ public class REL_Relationships_TEST {
     public static void testAutoCreateCampaignMemberInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsertSynch') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         
         //reset the process controller to mimic a second user action
         //Relationships_ProcessControl.hasRun = false;
@@ -326,7 +326,7 @@ public class REL_Relationships_TEST {
     public static void testAutoCreateContactInsertSynch(){
     	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsertSynch') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         
         //reset the process controller to mimic a second user action
         //Relationships_ProcessControl.hasRun = false;
@@ -375,7 +375,7 @@ public class REL_Relationships_TEST {
     public static void testInversionSettingsHaveType(){
     	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsHaveType') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
         
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='Buddies-Friends')
@@ -403,7 +403,7 @@ public class REL_Relationships_TEST {
     public static void testInversionSettingsNoType(){
     	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsNoType') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
         
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='BuddiesFriends')
@@ -431,7 +431,7 @@ public class REL_Relationships_TEST {
     public static void testNoValidSettingsConfig(){
     	if (strTestOnly != '*' && strTestOnly != 'testNoValidSettingsConfig') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
         
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='BuddiesFriends')
@@ -516,7 +516,7 @@ public class REL_Relationships_TEST {
     public static void testNeutralGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testNeutralGenderFieldReciprocal') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c3.id, Relatedcontact__c = c2.id, Type__c='TestLookupType')
         };                
@@ -537,7 +537,7 @@ public class REL_Relationships_TEST {
     public static void testMaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testMaleGenderFieldReciprocal') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
         c1.Description = 'Male';
         update c1;
         Relationship__c[] crel = new Relationship__c[]{
@@ -558,7 +558,7 @@ public class REL_Relationships_TEST {
     public static void testFemaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testFemaleGenderFieldReciprocal') return;
     	
-        setupRelationshipTestData(new Relationship_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
         c2.Description = 'Female';
         update c2;
         
@@ -651,8 +651,8 @@ public class REL_Relationships_TEST {
     	
         //to test the Relationship_Utils class      
         System.runAs(new User(id = UserInfo.getUserId())){
-           delete [select id from Relationship_Settings__c];
-           Relationship_Settings__c rs = UTIL_CustomSettingsFacade.getRelationshipSettings();
+           delete [select id from Hierarchy_Settings__c];
+           Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getRelationshipSettings();
            Boolean cAuto = REL_Utils.hasContactAutoCreate;
            Boolean cmAuto = REL_Utils.hasCMAutoCreate;
         }

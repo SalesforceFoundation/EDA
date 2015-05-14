@@ -58,7 +58,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void insertContactTriggerOff() {
     	if (strTestOnly != '*' && strTestOnly != 'insertContactTriggerOff') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         // turn off all TDTM triggers for this component
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
@@ -102,7 +102,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void newContactHouseholdModel() {
     	if (strTestOnly != '*' && strTestOnly != 'newContactHouseholdModel') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = UTIL_UnitTestData_TEST.getContact();
         
@@ -124,7 +124,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void insertUpdateContactHouseholds() {
         if (strTestOnly != '*' && strTestOnly != 'insertUpdateContactHouseholds') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         String newContactMailingStreet = '123 Elm St';
 
@@ -224,7 +224,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactUpdatedToExistingHH() {
         if (strTestOnly != '*' && strTestOnly != 'contactUpdatedToExistingHH') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
@@ -258,7 +258,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactInNormalOrgNameChange() {
     	if (strTestOnly != '*' && strTestOnly != 'contactInNormalOrgNameChange') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                         
         String acctName = 'Test Account 876';
         Account acct = new Account(Name=acctName);
@@ -295,7 +295,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void detachFromNormalAccountToeHousehold() {
         if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToeHousehold') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                 
         Account acct = new Account(Name='Test Account 876');
         insert acct;
@@ -340,7 +340,7 @@ private class ACCT_IndividualAccounts_TEST {
      public static testMethod void deleteContactNoOpp() {
      	if (strTestOnly != '*' && strTestOnly != 'deleteContactNoOpp') return;
 
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         String newContactMailingStreet = '123 Elm St';
 
@@ -377,7 +377,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static testMethod void deleteContactWithOpp() {
     	if (strTestOnly != '*' && strTestOnly != 'deleteContactWithOpp') return;
         
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));       
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));       
                       
         String newContactMailingStreet = '123 Elm St';
 
@@ -421,7 +421,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static testMethod void deleteContactNormalAccountHouseholdAcc() {
         if (strTestOnly != '*' && strTestOnly != 'deleteContactNormalAccountHouseholdAcc') return;
               
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Account orgAccount = new Account(
             Name='Fake account'
@@ -460,7 +460,7 @@ private class ACCT_IndividualAccounts_TEST {
     public static void firstNameToNull(){
     	if (strTestOnly != '*' && strTestOnly != 'ghIssue16b') return;
         
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,

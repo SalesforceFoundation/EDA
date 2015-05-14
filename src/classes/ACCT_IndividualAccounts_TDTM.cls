@@ -38,7 +38,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description the current Contact Settings object
     */ 
-    private static Contacts_and_Orgs_Settings__c ContactsSettings;
+    private static Hierarchy_Settings__c ContactsSettings;
     
     /*******************************************************************************************************
     * @description a set of languages that require different naming conventions

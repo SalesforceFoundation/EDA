@@ -38,29 +38,29 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     //storing user-level custom settings in-memory to avoid trying to isert/update them
     //twice and thus trigger the "duplicate OwnerId" error
-    static Contacts_And_Orgs_Settings__c contactsSettings;
-    static Relationship_Settings__c relationshipsSettings;
-    static Affiliations_Settings__c affiliationsSettings;
-    static Error_Settings__c errorSettings;
+    static Hierarchy_Settings__c contactsSettings;
+    static Hierarchy_Settings__c relationshipsSettings;
+    static Hierarchy_Settings__c affiliationsSettings;
+    static Hierarchy_Settings__c errorSettings;
 
     //storing org-level custom settings in-memory to avoid slowing down the settings page
-    static Contacts_And_Orgs_Settings__c orgContactsSettings;
-    static Relationship_Settings__c orgRelationshipsSettings;
-    static Affiliations_Settings__c orgAffiliationsSettings;
-    static Error_Settings__c orgErrorSettings;
+    static Hierarchy_Settings__c orgContactsSettings;
+    static Hierarchy_Settings__c orgRelationshipsSettings;
+    static Hierarchy_Settings__c orgAffiliationsSettings;
+    static Hierarchy_Settings__c orgErrorSettings;
 
     /*******************************************************************************************************
     * @description Returns the default Contacts and Orgs settings.
-    * @return Contacts_And_Orgs_Settings__c Custom settings record for Contacts and Orgs configuration.
+    * @return Hierarchy_Settings__c Custom settings record for Contacts and Orgs configuration.
     * At the org level, if no user level settings are defined. The ID field should be checked to determine if
     * the returned record already exists or doesn't exist in the database.
     */
-    public static Contacts_And_Orgs_Settings__c getContactsSettings() {
+    public static Hierarchy_Settings__c getContactsSettings() {
         if(Test.isRunningTest() && contactsSettings == null) {
-        	contactsSettings = new Contacts_And_Orgs_Settings__c();
+        	contactsSettings = new Hierarchy_Settings__c();
         	configContactsSettings(contactsSettings);
         } else if (contactsSettings == null) {
-            contactsSettings = Contacts_And_Orgs_Settings__c.getInstance();
+            contactsSettings = Hierarchy_Settings__c.getInstance();
             if(contactsSettings.Id == null)
                 contactsSettings = getOrgContactsSettings();
         }
@@ -69,16 +69,16 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     /*******************************************************************************************************
     * @description Returns the default Relationships settings.
-    * @return Relationship_Settings__c Custom settings record for Relationships configuration. At the org level,
+    * @return Hierarchy_Settings__c Custom settings record for Relationships configuration. At the org level,
     * if no user level settings are defined. The ID field should be checked to determine if the returned record already
     * exists or doesn't exist in the database.
     */
-    public static Relationship_Settings__c getRelationshipSettings() {
+    public static Hierarchy_Settings__c getRelationshipSettings() {
         if(Test.isRunningTest() && relationshipsSettings == null) {
-            relationshipsSettings = new Relationship_Settings__c();
+            relationshipsSettings = new Hierarchy_Settings__c();
             configRelationshipsSettings(relationshipsSettings);
         } else if (relationshipsSettings == null) {
-            relationshipsSettings = Relationship_Settings__c.getInstance();
+            relationshipsSettings = Hierarchy_Settings__c.getInstance();
             if(relationshipsSettings.Id == null)
                 relationshipsSettings = getOrgRelationshipSettings();
         }
@@ -87,16 +87,16 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     /*******************************************************************************************************
     * @description Returns the default Affiliations settings.
-    * @return Affiliations_Settings__c Custom settings record for Affiliations configuration. At the org level,
+    * @return Hierarchy_Settings__c Custom settings record for Affiliations configuration. At the org level,
     * if no user level settings are defined. The ID field should be checked to determine if the returned record already
     * exists or doesn't exist in the database.
     */
-    public static Affiliations_Settings__c getAffiliationsSettings() {
+    public static Hierarchy_Settings__c getAffiliationsSettings() {
         if(Test.isRunningTest() && affiliationsSettings == null) {
-            affiliationsSettings = new Affiliations_Settings__c();
+            affiliationsSettings = new Hierarchy_Settings__c();
             configAffiliationsSettings(affiliationsSettings);
         } else if(affiliationsSettings == null) {
-            affiliationsSettings = Affiliations_Settings__c.getInstance();
+            affiliationsSettings = Hierarchy_Settings__c.getInstance();
             if(affiliationsSettings.Id == null)
                 affiliationsSettings = getOrgAffiliationsSettings();
         }
@@ -105,16 +105,16 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     /*******************************************************************************************************
     * @description Returns the default Error Handling settings.
-    * @return Error_Settings__c Custom settings record for Error Handling configuration. At the org level, if no user
+    * @return Hierarchy_Settings__c Custom settings record for Error Handling configuration. At the org level, if no user
     * level settings are defined. The ID field should be checked to determine if the returned record already
     * exists or doesn't exist in the database.
     */
-    public static Error_Settings__c getErrorSettings() {
+    public static Hierarchy_Settings__c getErrorSettings() {
         if(Test.isRunningTest() && errorSettings == null) {
-            errorSettings = new Error_Settings__c();
+            errorSettings = new Hierarchy_Settings__c();
             configErrorSettings(errorSettings, null);
         } else if(errorSettings == null) {
-            errorSettings = Error_Settings__c.getInstance();
+            errorSettings = Hierarchy_Settings__c.getInstance();
             if(errorSettings.Id == null)
                 errorSettings = getOrgErrorSettings();
         }
@@ -124,11 +124,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     /*******************************************************************************************************
     * @description Returns the org-level Contacts and Orgs settings. Default org-level settings will be created
     * if none exist. Meant to be called only from settings page and install script.
-    * @return Contacts_And_Orgs_Settings__c Org-level settings for Contacts and Orgs.
+    * @return Hierarchy_Settings__c Org-level settings for Contacts and Orgs.
     */
-    public static Contacts_And_Orgs_Settings__c getOrgContactsSettings() {
+    public static Hierarchy_Settings__c getOrgContactsSettings() {
         if(orgContactsSettings == null) {
-            orgContactsSettings = Contacts_And_Orgs_Settings__c.getOrgDefaults();
+            orgContactsSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgContactsSettings.Id == null) {
                 configContactsSettings(orgContactsSettings);
                 orgContactsSettings.Setupownerid = UserInfo.getOrganizationId();
@@ -142,11 +142,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     /*******************************************************************************************************
     * @description Returns the org-level Relationship settings. Default org-level settings will be created
     * if none exist. Meant to be called only from settings page and install script.
-    * @return Relationship_Settings__c Org-level settings for Relationships.
+    * @return Hierarchy_Settings__c Org-level settings for Relationships.
     */
-    public static Relationship_Settings__c getOrgRelationshipSettings() {
+    public static Hierarchy_Settings__c getOrgRelationshipSettings() {
         if(orgRelationshipsSettings == null) {
-            orgRelationshipsSettings = Relationship_Settings__c.getOrgDefaults();
+            orgRelationshipsSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgRelationshipsSettings.Id == null) {
                 configRelationshipsSettings(orgRelationshipsSettings);
                 if(!Test.isRunningTest())
@@ -159,11 +159,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     /*******************************************************************************************************
     * @description Returns the org-level Affiliation settings. Default org-level settings will be created
     * if none exist. Meant to be called only from settings page and install script.
-    * @return Affiliations_Settings__c Org-level settings for Affiliations.
+    * @return Hierarchy_Settings__c Org-level settings for Affiliations.
     */
-    public static Affiliations_Settings__c getOrgAffiliationsSettings() {
+    public static Hierarchy_Settings__c getOrgAffiliationsSettings() {
         if(orgAffiliationsSettings == null) {
-            orgAffiliationsSettings = Affiliations_Settings__c.getOrgDefaults();
+            orgAffiliationsSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgAffiliationsSettings.Id == null) {
                 configAffiliationsSettings(orgAffiliationsSettings);
                 if(!Test.isRunningTest())
@@ -176,11 +176,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     /*******************************************************************************************************
     * @description Returns the org-level Error settings. Default org-level settings will be created
     * if none exist. Meant to be called only from settings page and install script.
-    * @return Error_Settings__c Org-level settings for Errors.
+    * @return Hierarchy_Settings__c Org-level settings for Errors.
     */
-    public static Error_Settings__c getOrgErrorSettings() {
+    public static Hierarchy_Settings__c getOrgErrorSettings() {
         if(orgErrorSettings == null) {
-            orgErrorSettings = Error_Settings__c.getOrgDefaults();
+            orgErrorSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgErrorSettings.Id == null) {
                 configErrorSettings(orgErrorSettings, null);
                 if(!Test.isRunningTest())
@@ -194,21 +194,21 @@ public without sharing class UTIL_CustomSettingsFacade {
     /*******************************************************************************************************
      * Private methods that will configure the default org-level custom settings.
      **/
-    private static void configContactsSettings(Contacts_And_Orgs_Settings__c cs) {
+    private static void configContactsSettings(Hierarchy_Settings__c cs) {
 		//cs.Account_Processor__c = 'Household Account';
 		cs.Account_Processor__c = 'Administrative';
 		cs.Organizational_Account_Addresses_Enabled__c = true;
     }
 
-    private static void configRelationshipsSettings(Relationship_Settings__c rs) {
+    private static void configRelationshipsSettings(Hierarchy_Settings__c rs) {
         rs.Reciprocal_Method__c = 'List Settings';
     }
 
-    private static void configAffiliationsSettings(Affiliations_Settings__c afs) {
+    private static void configAffiliationsSettings(Hierarchy_Settings__c afs) {
         afs.Automatic_Affiliation_Creation_Turned_On__c = true;
     }
 
-    private static void configErrorSettings(Error_Settings__c es, String notificationsTo) {
+    private static void configErrorSettings(Hierarchy_Settings__c es, String notificationsTo) {
         es.Store_Errors_On__c = true;
         es.Error_Notifications_On__c = true;
         es.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
@@ -220,11 +220,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
     * as the configured settings.
     * @parameter mySettings Settings instance with the values to set.
-    * @return Contacts_And_Orgs_Settings__c The configured settings.
+    * @return Hierarchy_Settings__c The configured settings.
     **/
-    public static Contacts_And_Orgs_Settings__c getContactsSettingsForTests(Contacts_And_Orgs_Settings__c mySettings) {
+    public static Hierarchy_Settings__c getContactsSettingsForTests(Hierarchy_Settings__c mySettings) {
         if(contactsSettings == null)
-            contactsSettings = new Contacts_And_Orgs_Settings__c();
+            contactsSettings = new Hierarchy_Settings__c();
 
         //create our own based on what's passed in from the test
         contactsSettings.Account_Processor__c = mySettings.Account_Processor__c;
@@ -239,11 +239,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
     * as the configured settings.
     * @parameter mySettings Settings instance with the values to set.
-    * @return Relationship_Settings__c The configured settings.
+    * @return Hierarchy_Settings__c The configured settings.
     **/
-    public static Relationship_Settings__c getRelationshipsSettingsForTests(Relationship_Settings__c mySettings) {
+    public static Hierarchy_Settings__c getRelationshipsSettingsForTests(Hierarchy_Settings__c mySettings) {
         if(relationshipsSettings == null)
-            relationshipsSettings = new Relationship_Settings__c();
+            relationshipsSettings = new Hierarchy_Settings__c();
 
         relationshipsSettings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         relationshipsSettings.Gender_Field__c = mySettings.Gender_Field__c;
@@ -255,11 +255,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
     * as the configured settings.
     * @parameter mySettings Settings instance with the values to set.
-    * @return Affiliations_Settings__c The configured settings.
+    * @return Hierarchy_Settings__c The configured settings.
     **/
-    public static Affiliations_Settings__c getAffiliationsSettingsForTests(Affiliations_Settings__c mySettings) {
+    public static Hierarchy_Settings__c getAffiliationsSettingsForTests(Hierarchy_Settings__c mySettings) {
         if(affiliationsSettings == null)
-           affiliationsSettings = new Affiliations_Settings__c();
+           affiliationsSettings = new Hierarchy_Settings__c();
 
         affiliationsSettings.Automatic_Affiliation_Creation_Turned_On__c = mySettings.Automatic_Affiliation_Creation_Turned_On__c;
         orgAffiliationsSettings = affiliationsSettings;
@@ -270,11 +270,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
     * as the configured settings.
     * @parameter mySettings Settings instance with the values to set.
-    * @return Error_Settings__c The configured settings.
+    * @return Hierarchy_Settings__c The configured settings.
     **/
-    public static Error_Settings__c getErrorSettingsForTests(Error_Settings__c mySettings) {
+    public static Hierarchy_Settings__c getErrorSettingsForTests(Hierarchy_Settings__c mySettings) {
         if(errorSettings == null)
-           errorSettings = new Error_Settings__c();
+           errorSettings = new Hierarchy_Settings__c();
 
         errorSettings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         errorSettings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
