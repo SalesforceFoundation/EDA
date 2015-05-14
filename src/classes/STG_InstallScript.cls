@@ -42,7 +42,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
     global void onInstall(InstallContext context) {
     	if(context.previousVersion() == null) {
-    		UTIL_CustomSettingsFacade.getContactsSettings();
+    		UTIL_CustomSettingsFacade.getSettings();
     		insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
     	 } else if(context.isUpgrade() || context.isPush()) {
     	 	List<Trigger_Handler__c> defaultHandlers = TDTM_DefaultConfig.getDefaultRecords(); 

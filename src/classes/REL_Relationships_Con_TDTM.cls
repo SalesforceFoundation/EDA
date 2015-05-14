@@ -113,7 +113,7 @@ public with sharing class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         List<Relationship__c> existingRelationships = new List<Relationship__c>();
         Map<Id, List<Relationship__c>> relationshipsByContact = new Map<Id, List<Relationship__c>>();
         
-        if (!UTIL_CustomSettingsFacade.getRelationshipSettings().Allow_AutoCreated_Duplicates__c) {
+        if (!UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c) {
             
             existingRelationships = [select Id, Contact__c, RelatedContact__c, Type__c 
             from Relationship__c where Contact__c IN :ContactIds limit 2000];

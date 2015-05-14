@@ -50,9 +50,9 @@ public class REL_Relationships_TEST {
         System.runAs(new User(id = UserInfo.getUserId())){
                      
             if (rs != null)
-                UTIL_CustomSettingsFacade.getRelationshipsSettingsForTests(rs);
+                UTIL_CustomSettingsFacade.getSettingsForTests(rs);
             else
-                UTIL_CustomSettingsFacade.getRelationshipsSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 
+                UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 
                                                                                     'List Setting', Gender_Field__c = 'Description'));         
             
             //add autocreate settings for CMs 
@@ -580,7 +580,7 @@ public class REL_Relationships_TEST {
     public static void testErrorRecordCreation() {
     	if (strTestOnly != '*' && strTestOnly != 'testErrorRecordCreation') return;
     	
-    	UTIL_CustomSettingsFacade.getErrorSettings();
+    	UTIL_CustomSettingsFacade.getSettings();
     	
         setupRelationshipTestData(null);
         Relationship__c[] relationships = new Relationship__c[]{
@@ -652,7 +652,7 @@ public class REL_Relationships_TEST {
         //to test the Relationship_Utils class      
         System.runAs(new User(id = UserInfo.getUserId())){
            delete [select id from Hierarchy_Settings__c];
-           Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getRelationshipSettings();
+           Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
            Boolean cAuto = REL_Utils.hasContactAutoCreate;
            Boolean cmAuto = REL_Utils.hasCMAutoCreate;
         }

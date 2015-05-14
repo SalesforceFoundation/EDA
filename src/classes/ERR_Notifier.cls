@@ -56,7 +56,7 @@ public with sharing class ERR_Notifier {
     */
     public static void sendErrorNotifications(String context) {
 
-        Hierarchy_Settings__c errorSettings = UTIL_CustomSettingsFacade.getErrorSettings();
+        Hierarchy_Settings__c errorSettings = UTIL_CustomSettingsFacade.getSettings();
         String errorNotifRecipient = errorSettings.Error_Notifications_To__c;
             
         if (errorSettings.Error_Notifications_On__c == true && errorNotifRecipient != null) {

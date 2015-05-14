@@ -75,7 +75,7 @@ private with sharing class ADDR_Addresses_TEST {
     **********************************************************************************************************/
     private static void createHHTestData(integer cHHT, integer cConT) {
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettings();
             
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(cHHT * cConT);
         listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cHHT, CAO_Constants.HH_ACCOUNT_PROCESSOR);
@@ -179,7 +179,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void insertContactWithAddress() {
         if (strTestOnly != '*' && strTestOnly != 'insertContactWithAddress') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettings();
             
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(cCon);
         for (Contact con : listConT) {
@@ -212,7 +212,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void insertContactWithAddressOverride() {
         if (strTestOnly != '*' && strTestOnly != 'insertContactWithAddressOverride') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettings();
             
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(cCon);
         integer i = 1;
@@ -827,7 +827,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void updateConAddrExisting() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrExisting') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Simple_Address_Change_Treated_as_Update__c = true
@@ -895,7 +895,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void updateConAddrExistingCaseOnly() {
         if (strTestOnly != '*' && strTestOnly != 'updateConAddrExistingCaseOnly') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Simple_Address_Change_Treated_as_Update__c = true
@@ -1060,7 +1060,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void updateAccAddrExisting() {
         if (strTestOnly != '*' && strTestOnly != 'updateAccAddrExisting') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Simple_Address_Change_Treated_as_Update__c = true
@@ -2028,7 +2028,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void insertContactWithMultilineStreetAddress() {
         if (strTestOnly != '*' && strTestOnly != 'insertContactWithMultilineStreetAddress') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettings();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettings();
             
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(cCon);
         for (Contact con : listConT) {
@@ -2161,7 +2161,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void newOrgAccounts() {
         if (strTestOnly != '*' && strTestOnly != 'newOrgAccounts') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Organizational_Account_Addresses_Enabled__c = true
@@ -2203,7 +2203,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void updateOrgAccounts() {
         if (strTestOnly != '*' && strTestOnly != 'updateOrgAccounts') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Organizational_Account_Addresses_Enabled__c = true
@@ -2267,7 +2267,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void newAddrForOrgAccounts() {
         if (strTestOnly != '*' && strTestOnly != 'newAddrForOrgAccounts') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Organizational_Account_Addresses_Enabled__c = true
@@ -2328,7 +2328,7 @@ private with sharing class ADDR_Addresses_TEST {
     public static void testDisabledHHAccountAddr() {
         if (strTestOnly != '*' && strTestOnly != 'testDisabledHHAccountAddr') return;
         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getContactsSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Household_Account_Addresses_Disabled__c = true

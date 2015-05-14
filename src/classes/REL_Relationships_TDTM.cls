@@ -247,7 +247,7 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
     
     private static void addType(list<Relationship__c> rList, List<SObject> rCopy) {
         
-        Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getRelationshipSettings();
+        Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
         
         //used for tracking place in array
         integer counter = 0;            

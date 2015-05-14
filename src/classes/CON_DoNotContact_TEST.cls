@@ -31,7 +31,7 @@
 private class CON_DoNotContact_TEST {
 
     static testMethod void testDeceased() {
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));    
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));    
         
         Contact con = new Contact(LastName = CAO_Constants.CONTACT_LASTNAME_FOR_TESTS);
         insert con;
@@ -62,7 +62,7 @@ private class CON_DoNotContact_TEST {
     }
 
     static testMethod void testDoNotContact() {
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(LastName = CAO_Constants.CONTACT_LASTNAME_FOR_TESTS);
         insert con;

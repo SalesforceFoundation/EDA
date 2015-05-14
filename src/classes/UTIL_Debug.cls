@@ -36,7 +36,7 @@
 public with sharing class UTIL_Debug {
 
     //enable debug logs in all tests, otherwise get the setting
-    public static boolean enabled = test.isRunningTest() ? true : UTIL_CustomSettingsFacade.getErrorSettings().Enable_Debug__c;
+    public static boolean enabled = test.isRunningTest() ? true : UTIL_CustomSettingsFacade.getSettings().Enable_Debug__c;
 
     /*******************************************************************************************************
     * @description Prints a debug message to the debug log, if debugging is enabled or a test is being run.

@@ -73,7 +73,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         
         DmlWrapper dmlWrapper = new DmlWrapper();
     	   	
-        ContactsSettings = UTIL_CustomSettingsFacade.getContactsSettings();
+        ContactsSettings = UTIL_CustomSettingsFacade.getSettings();
             
         List<Contact> listContactNeedAccount = new List<Contact>();
         List<Contact> listContactNeedAccountUpdate = new List<Contact>();
@@ -357,7 +357,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
                 ID recordTypeID = Schema.SObjectType.Account.RecordTypeInfosByName.get(
-                							UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c).getRecordTypeId();
+                							UTIL_CustomSettingsFacade.getSettings().Account_Processor__c).getRecordTypeId();
                 a.RecordTypeId = recordTypeID;
                 
                 accountInserts.add(a);
