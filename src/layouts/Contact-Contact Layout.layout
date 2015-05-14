@@ -252,7 +252,7 @@
         <fields>Class_Standing__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>GPA__c</fields>
-        <relatedList>Academic_Record__c.Contact__c</relatedList>
+        <relatedList>Program_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

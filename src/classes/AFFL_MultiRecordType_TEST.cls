@@ -272,8 +272,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		setup();
 		
 		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
-		Affl_Mappings__c bizOrgMapping = [select Auto_Academic_Record__c from Affl_Mappings__c where Name = 'Business Organization'];
-		bizOrgMapping.Auto_Academic_Record__c = true;
+		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
+		bizOrgMapping.Auto_Program_Enrollment__c = true;
 		update bizOrgMapping;
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -293,7 +293,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//Verify Academic Record has been created
-		List<Academic_Record__c> academicRecords = [select ID, Contact__c from Academic_Record__c where Affiliation__c = :affl.ID];
+		List<Program_Enrollment__c> academicRecords = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
 		System.assertEquals(1, academicRecords.size());
 		System.assertEquals(contact.ID, academicRecords[0].Contact__c);
 	}
