@@ -52,8 +52,8 @@ public class REL_Relationships_TEST {
             if (rs != null)
                 UTIL_CustomSettingsFacade.getSettingsForTests(rs);
             else
-                UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 
-                                                                                    'List Setting', Gender_Field__c = 'Description'));         
+                UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', 
+                												Gender_Field__c = 'Description', Store_Errors_On__c = true));         
             
             //add autocreate settings for CMs 
             delete [select id from Relationship_Auto_Create__c];
@@ -579,15 +579,16 @@ public class REL_Relationships_TEST {
     @isTest 
     public static void testErrorRecordCreation() {
     	if (strTestOnly != '*' && strTestOnly != 'testErrorRecordCreation') return;
-    	
-    	UTIL_CustomSettingsFacade.getSettings();
-    	
+    	    	
         setupRelationshipTestData(null);
+        
         Relationship__c[] relationships = new Relationship__c[]{
             new Relationship__c(contact__c = c2.id, Type__c='TestLookupType')
         };
         TDTM_TriggerHandler.isPropogateErrorsFromTrigger = false;
+        Test.startTest();
         Database.SaveResult[] insertResults = Database.insert(relationships, false);
+        Test.stopTest();
         //assert an error - Required fields are missing: [Contact__c]
         //Contact__c is missing from the reciprocal relationship that gets automatically created.
         system.assertEquals(1, [select count() from Error__c]);
