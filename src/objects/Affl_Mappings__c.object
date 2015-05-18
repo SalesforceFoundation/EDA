@@ -16,12 +16,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Auto_Program_Enrollment_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Auto Program Enrollment Role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Auto_Program_Enrollment__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, an Academic record will be automatically created when the user creates an Affiliation to an Account of this type.</description>
+        <description>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, an Academic record will be automatically created when the user creates an Affiliation to an Account of this type.</inlineHelpText>
-        <label>Auto Academic Record</label>
+        <inlineHelpText>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</inlineHelpText>
+        <label>Auto Program Enrollment</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

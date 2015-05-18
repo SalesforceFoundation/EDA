@@ -127,7 +127,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 if(newlist != null && newlist.size() > 0) {
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
-					createAcademicRecordIfNecessary(affl, dmlWrapper, afflMapper);
+					createProgramEnrollmentIfNecessary(affl, dmlWrapper, afflMapper);
 		    	 }
 			 }
 			 afflMultiHasRunAfter = true;
@@ -213,10 +213,10 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return oldLookupsSameType.size();
     }
     
-    private void createAcademicRecordIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
+    private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
     	if(affl != null && affl.Affiliation_Type__c != null) {
-	    	Boolean needsAcademicRecord = afflMapper.needsAcademicRecord(affl.Affiliation_Type__c);
-	    	if(needsAcademicRecord != null && needsAcademicRecord) {
+	    	Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl.Affiliation_Type__c);
+	    	if(needsProgramEnrollment != null && needsProgramEnrollment) {
 	    		Program_Enrollment__c acadRec = new Program_Enrollment__c(Affiliation__c = affl.ID, Contact__c = affl.Contact__c);
 	    		dmlWrapper.objectsToInsert.add(acadRec);
 	    	}

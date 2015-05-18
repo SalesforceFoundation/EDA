@@ -265,8 +265,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-	public static void autoCreateAcademicRecord() {
-		if (strTestOnly != '*' && strTestOnly != 'autoCreateAcademicRecord') return;
+	public static void autoCreatProgramEnrollment() {
+		if (strTestOnly != '*' && strTestOnly != 'autoCreatProgramEnrollment') return;
 		
 		setup();
 		
@@ -292,8 +292,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//Verify Academic Record has been created
-		List<Program_Enrollment__c> academicRecords = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
-		System.assertEquals(1, academicRecords.size());
-		System.assertEquals(contact.ID, academicRecords[0].Contact__c);
+		List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+		System.assertEquals(1, programEnrollments.size());
+		System.assertEquals(contact.ID, programEnrollments[0].Contact__c);
 	}
 }

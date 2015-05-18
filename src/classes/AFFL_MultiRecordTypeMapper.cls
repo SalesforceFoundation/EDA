@@ -141,11 +141,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     }
     
     /*******************************************************************************************************
-    * @description Tells caller if Account record type needs Academic Record auto-creation.
+    * @description Tells caller if Account record type needs Program Enrollment auto-creation.
     * @param accountRecordType The name of the Account record type as entered in the Affiliation Mappings.
     * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
     ********************************************************************************************************/
-    public Boolean needsAcademicRecord(String accountRecordType) {
+    public Boolean needsProgramEnrollment(String accountRecordType) {
     	if(accountRecordType != null) {
     		return mapAccRecTypeToAcadAutoCreate.get(accountRecordType);
     	}
