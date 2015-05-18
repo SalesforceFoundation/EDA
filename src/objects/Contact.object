@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    </fields>
     <fields>
         <fullName>AlternateEmail__c</fullName>
         <description>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</description>
