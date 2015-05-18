@@ -67,7 +67,7 @@ public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
                 // on insert, we only need to create addresses for Org accounts.
                 // Household accounts are handled during the after update, which will always occur
                 // as they are being hooked up with their primary contact. 
-                if (!acc.SYSTEMIsIndividual__c && UTIL_CustomSettingsFacade.getContactsSettings().Organizational_Account_Addresses_Enabled__c) {
+                if (!acc.SYSTEMIsIndividual__c && UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c) {
                     if (isAccountAddressSpecified(acc))
                         listAccCreateAddr.add(acc);
                 }
@@ -83,9 +83,9 @@ public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
                 }
                 // we only support address management with HH Accounts and Organizational Accounts (if enabled)
                 if ((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
-                		!UTIL_CustomSettingsFacade.getContactsSettings().Household_Account_Addresses_Disabled__c) ||
+                		!UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Disabled__c) ||
                     (!acc.SYSTEMIsIndividual__c && 
-                    	UTIL_CustomSettingsFacade.getContactsSettings().Organizational_Account_Addresses_Enabled__c)) {
+                    	UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
 	                // if the address changed, remember the account we want to add a new address for    
 	                if (isAccountAddressChanged(acc, accOld)) 
 	                    listAccCreateAddr.add(acc);

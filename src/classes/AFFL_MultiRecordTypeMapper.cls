@@ -94,12 +94,12 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     	mapAccRecTypeToContactLabel = new Map<String, String>();
     	mapAccRecTypeToAcadAutoCreate = new Map<String, Boolean>();
 		//Get the affiliation mappings.
-		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Academic_Record__c from Affl_Mappings__c];
+		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c from Affl_Mappings__c];
 		//Put them in a map.
 		for(Affl_Mappings__c mapping : primaryAfflMappings) {
 			if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
 				mapAccRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
-				mapAccRecTypeToAcadAutoCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Academic_Record__c);
+				mapAccRecTypeToAcadAutoCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
 			}
 		}
 	}

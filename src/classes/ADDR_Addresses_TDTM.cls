@@ -586,7 +586,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
             } else {
                 Account acc = mapAccIdAcc.get(addr.Household_Account__c);
                 if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR) &&
-                    (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getContactsSettings().Organizational_Account_Addresses_Enabled__c)) {
+                    (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrHHAccountOnly);
                 }
@@ -710,7 +710,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         for (Address__c addr : listAddr)
            listAccId.add(addr.Household_Account__c);
         map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);
-        boolean tryFuzzy = UTIL_CustomSettingsFacade.getContactsSettings().Simple_Address_Change_Treated_as_Update__c;
+        boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
         
         // create our map for returning information in
         map<Address__c, Address__c> mapAddrDupAddr = new map<Address__c, Address__c>();

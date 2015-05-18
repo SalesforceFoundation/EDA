@@ -206,7 +206,7 @@ public with sharing class ERR_Handler {
 	            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, errorRecords[0].Full_Message__c));
 	    	}
 	                
-	    	if(UTIL_CustomSettingsFacade.getErrorSettings().Store_Errors_On__c) {
+	    	if(UTIL_CustomSettingsFacade.getSettings().Store_Errors_On__c) {
 	    	   UTIL_Debug.debug('**** Storing errorRecords: ' + errorRecords);
 	    	   Database.insert(errorRecords, false);
 	    	}

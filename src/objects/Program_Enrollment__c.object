@@ -46,12 +46,12 @@
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Stores academic information related to a Contact.</description>
+    <description>This is a generic template for Custom Object.  With this template, you may adjust the default elements and values and add new elements and values.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>true</enableReports>
+    <enableReports>false</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
@@ -70,7 +70,7 @@
         <inlineHelpText>The Contact-Account relationship this academic information is related to.</inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
-        <relationshipName>Academics</relationshipName>
+        <relationshipName>Program_Enrollment</relationshipName>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -109,8 +109,8 @@
         <inlineHelpText>The parent Contact.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Academic Records</relationshipLabel>
-        <relationshipName>Academic_Records</relationshipName>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -146,22 +146,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FERPA__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>FERPA</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Financial_Aid_Applicant__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Financial Aid Applicant</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>GPA__c</fullName>
         <externalId>false</externalId>
         <label>GPA</label>
@@ -172,30 +156,12 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>HIPPA_Detail__c</fullName>
-        <externalId>false</externalId>
-        <label>HIPPA Detail</label>
-        <length>32768</length>
-        <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>25</visibleLines>
-    </fields>
-    <fields>
-        <fullName>HIPPA__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>HIPPA</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <label>Academic Record</label>
+    <label>Program Enrollment</label>
     <nameField>
-        <displayFormat>AR-{0000}</displayFormat>
-        <label>Academic Record Number</label>
-        <type>AutoNumber</type>
+        <label>Custom Object Label Name</label>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Academic Records</pluralLabel>
+    <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

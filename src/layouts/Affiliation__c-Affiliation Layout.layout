@@ -88,7 +88,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Academic_Record__c.Affiliation__c</relatedList>
+        <relatedList>Program_Enrollment__c.Affiliation__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

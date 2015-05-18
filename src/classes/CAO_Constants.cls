@@ -85,15 +85,15 @@ public with sharing class CAO_Constants {
     * @return  boolean
     */ 
     public static boolean isHHAccountModel() {
-        return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR);
+        return (UTIL_CustomSettingsFacade.getSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR);
     }
     
     public static boolean isAdmAccountModel() {
-        return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == ADM_ACCOUNT_PROCESSOR);
+        return (UTIL_CustomSettingsFacade.getSettings().Account_Processor__c == ADM_ACCOUNT_PROCESSOR);
     }
     
     public static boolean isHhOrAdmAccountModel() {
-    	return (UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR ||
-        		UTIL_CustomSettingsFacade.getContactsSettings().Account_Processor__c == ADM_ACCOUNT_PROCESSOR);
+    	return (UTIL_CustomSettingsFacade.getSettings().Account_Processor__c == HH_ACCOUNT_PROCESSOR ||
+        		UTIL_CustomSettingsFacade.getSettings().Account_Processor__c == ADM_ACCOUNT_PROCESSOR);
     }
 }

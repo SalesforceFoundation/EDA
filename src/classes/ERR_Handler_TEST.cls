@@ -40,37 +40,27 @@ public with sharing class ERR_Handler_TEST {
     	// all these tests are about testing our error handling, so we can't let the assert interfere
     	TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;        
     	
-    	UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(
-            Account_Processor__c = 'Household Account'));
-    	//UTIL_CustomSettingsFacade.getHouseholdsSettingsForTests(new Households_Settings__c (
-        //    Household_Rules__c = HH_Households.ALL_PROCESSOR, Enable_Opp_Rollup_Triggers__c = true));
-    	
     	if(Schema.SObjectType.User.isFeedEnabled()) {
 	    	SObject chatterGroup = (SObject)System.Type.forName('CollaborationGroup').newInstance();
 	    	chatterGroup.put('Name', 'ChatterTestGroup');
 	    	chatterGroup.put('CollaborationType', 'Private');
 	    	insert chatterGroup;
 	    	chatterGroupId = chatterGroup.Id;
-	    	UTIL_CustomSettingsFacade.getErrorSettingsForTests(new Error_Settings__c(Error_Notifications_On__c = true, 
-	    	  Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true));
+	    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
+	    	  Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
     	} else {
-    		UTIL_CustomSettingsFacade.getErrorSettingsForTests(new Error_Settings__c(Error_Notifications_On__c = true, 
-    		  Error_Notifications_To__c = null, Store_Errors_On__c = true));
+    		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
+    		  Error_Notifications_To__c = null, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
     	}
     }
     
     private static void setupWithEmailNotifications() {
         // all these tests are about testing our error handling, so we can't let the assert interfere
         TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;        
-
-        UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(
-            Account_Processor__c = 'Household Account'));
-        //UTIL_CustomSettingsFacade.getHouseholdsSettingsForTests(new Households_Settings__c (
-        //    Household_Rules__c = HH_Households.ALL_PROCESSOR, Enable_Opp_Rollup_Triggers__c = true));
         
         User user = CreateNewUserForTests(System.now().getTime() + '@testerson.com');
-        UTIL_CustomSettingsFacade.getErrorSettingsForTests(new Error_Settings__c(Error_Notifications_On__c = true, 
-            Error_Notifications_To__c = user.Id, Store_Errors_On__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
+            Error_Notifications_To__c = user.Id, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
     }
     
     public static User CreateNewUserForTests(string strUsername) {
@@ -100,8 +90,8 @@ public with sharing class ERR_Handler_TEST {
     
         setupWithChatterNotifications();
         
-        UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(
-            new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
                     
         //Create account
         Account acc1 = new Account(Name='test1');

@@ -44,10 +44,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
     private static string strTestOnly = '*';
     
 	public static void setup() {
-		UTIL_CustomSettingsFacade.getContactsSettingsForTests(new Contacts_and_Orgs_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-            
-		UTIL_CustomSettingsFacade.getAffiliationsSettingsForTests(new Affiliations_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
-		
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR, 
+																				Automatic_Affiliation_Creation_Turned_On__c = true));
+        		
 		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
     	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
     	mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
@@ -272,8 +271,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		setup();
 		
 		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
-		Affl_Mappings__c bizOrgMapping = [select Auto_Academic_Record__c from Affl_Mappings__c where Name = 'Business Organization'];
-		bizOrgMapping.Auto_Academic_Record__c = true;
+		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
+		bizOrgMapping.Auto_Program_Enrollment__c = true;
 		update bizOrgMapping;
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -293,7 +292,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//Verify Academic Record has been created
-		List<Academic_Record__c> academicRecords = [select ID, Contact__c from Academic_Record__c where Affiliation__c = :affl.ID];
+		List<Program_Enrollment__c> academicRecords = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
 		System.assertEquals(1, academicRecords.size());
 		System.assertEquals(contact.ID, academicRecords[0].Contact__c);
 	}

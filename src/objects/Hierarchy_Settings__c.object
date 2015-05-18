@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>All hierarchy settings.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Automatic_Affiliation_Creation_Turned_On__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</inlineHelpText>
+        <label>Automatic Affiliation Management</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Account_Processor__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Setting for the Account model. Should be &quot;One-to-one&quot; or &quot;Individual&quot;. Replaces the custom field Contact.SystemAccountProcessor__c</inlineHelpText>
+        <label>Account Processor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Household_Account_Addresses_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disables Address management for Household Accounts when selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Disables Address management for Household Accounts when selected.</inlineHelpText>
+        <label>Household Account Addresses Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Contact_Role_Default_role__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Default role for the primary Opportunity Contact Role</inlineHelpText>
+        <label>Opportunity Contact Role Default role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organizational_Account_Addresses_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Enables Address management for Organizational Accounts when selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enables Address management for Organizational Accounts when selected.</inlineHelpText>
+        <label>Organizational Account Addresses Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</inlineHelpText>
+        <label>Simple Address Change Treated as Update</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Error_Handling__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, NPSP&apos;s error handling framework is disabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, NPSP&apos;s error handling framework is disabled.</inlineHelpText>
+        <label>Disable Error Handling</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_Debug__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Turn this on to enable debug statements in managed package code.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Turn this on to enable debug statements in managed package code.</inlineHelpText>
+        <label>Enable Debug</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Error_Notifications_On__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that determines whether to send error notifications.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like the system to post notifications for certain type of errors.</inlineHelpText>
+        <label>Error Notifications</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Error_Notifications_To__c</fullName>
+        <description>Who should receive error notifications.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the type of user to send notifications to.</inlineHelpText>
+        <label>Error Notification Recipients</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Store_Errors_On__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Flag that indicates whether errors are going to be stored in the database.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like errors to be stored in the database.</inlineHelpText>
+        <label>Store Errors</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Allow_AutoCreated_Duplicates__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</inlineHelpText>
+        <label>Allow Auto-Created Duplicate Relations</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gender_Field__c</fullName>
+        <description>The custom field used to define the gender of a Contact for determining reciprocal relationships</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The custom field used to define the gender of a Contact for determining reciprocal relationships</inlineHelpText>
+        <label>Gender Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reciprocal_Method__c</fullName>
+        <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
+        <label>Reciprocal Method</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Name_Field_Id__c</fullName>
+        <description>The ID of the Name field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button.  Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
+        <label>Relationship Name Field Id</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relationship_Name_Id_Field_Id__c</fullName>
+        <description>The ID of the Name Id field that is dynamically generated in this org, can be found via source view when creating a new Relationship or in the URL when using the &apos;New Relationships&apos; button. Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</inlineHelpText>
+        <label>Relationship Name Id Field Id</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Hierarchy Settings</label>
+</CustomObject>
