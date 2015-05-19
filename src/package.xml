@@ -92,27 +92,24 @@
     <members>Affiliation__c.StartDate__c</members>
     <members>Affiliation__c.Status__c</members>
     <members>Affl_Mappings__c.Account_Record_Type__c</members>
+    <members>Affl_Mappings__c.Auto_Program_Enrollment_Role__c</members>
     <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
     <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
-    <members>Contact.Admission_Date__c</members>
     <members>Contact.AlternateEmail__c</members>
-    <members>Contact.Class_Standing__c</members>
-    <members>Contact.Credits_Attempted__c</members>
-    <members>Contact.Credits_Earned__c</members>
     <members>Contact.Current_Address__c</members>
     <members>Contact.Deceased__c</members>
     <members>Contact.Do_Not_Contact__c</members>
-    <members>Contact.Eligible_to_Enroll__c</members>
     <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Name__c</members>
     <members>Contact.FERPA__c</members>
     <members>Contact.Financial_Aid_Applicant__c</members>
-    <members>Contact.GPA__c</members>
-    <members>Contact.HHId__c</members>
+    <members>Contact.Gender__c</members>
     <members>Contact.HIPPA_Detail__c</members>
     <members>Contact.HIPPA__c</members>
     <members>Contact.Home_Address__c</members>
+    <members>Contact.Military_Background__c</members>
+    <members>Contact.Military_Service__c</members>
     <members>Contact.Naming_Exclusions__c</members>
     <members>Contact.Organization_Type__c</members>
     <members>Contact.Other_Address__c</members>
@@ -121,11 +118,8 @@
     <members>Contact.Primary_Address_Type__c</members>
     <members>Contact.Primary_Household__c</members>
     <members>Contact.Primary_Organization__c</members>
-    <members>Contact.Program_of_Study__c</members>
     <members>Contact.Secondary_Address_Type__c</members>
     <members>Contact.Social_Security_Number__c</members>
-    <members>Contact.Start_Date__c</members>
-    <members>Contact.Type_of_Account__c</members>
     <members>Contact.UniversityEmail__c</members>
     <members>Contact.WorkEmail__c</members>
     <members>Contact.WorkPhone__c</members>
@@ -140,22 +134,22 @@
     <members>Error__c.Posted_in_Chatter__c</members>
     <members>Error__c.Record_URL__c</members>
     <members>Error__c.Stack_Trace__c</members>
-    <members>Hierarchy_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Hierarchy_Settings__c.Account_Processor__c</members>
-    <members>Hierarchy_Settings__c.Household_Account_Addresses_Disabled__c</members>
-    <members>Hierarchy_Settings__c.Opportunity_Contact_Role_Default_role__c</members>
-    <members>Hierarchy_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
-    <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
+    <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
+    <members>Hierarchy_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
     <members>Hierarchy_Settings__c.Enable_Debug__c</members>
     <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
     <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
-    <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
-    <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
     <members>Hierarchy_Settings__c.Gender_Field__c</members>
+    <members>Hierarchy_Settings__c.Household_Account_Addresses_Disabled__c</members>
+    <members>Hierarchy_Settings__c.Opportunity_Contact_Role_Default_role__c</members>
+    <members>Hierarchy_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
     <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
     <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
     <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
+    <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
+    <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
     <members>Opportunity.Contact_Id_for_Role__c</members>
     <members>Program_Enrollment__c.Admission_Date__c</members>
     <members>Program_Enrollment__c.Affiliation__c</members>

@@ -5,16 +5,6 @@
     <description>All hierarchy settings.</description>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Automatic_Affiliation_Creation_Turned_On__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</inlineHelpText>
-        <label>Automatic Affiliation Management</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Account_Processor__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Setting for the Account model. Should be &quot;One-to-one&quot; or &quot;Individual&quot;. Replaces the custom field Contact.SystemAccountProcessor__c</inlineHelpText>
@@ -26,43 +16,22 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Household_Account_Addresses_Disabled__c</fullName>
+        <fullName>Allow_AutoCreated_Duplicates__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Disables Address management for Household Accounts when selected.</description>
+        <description>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</description>
         <externalId>false</externalId>
-        <inlineHelpText>Disables Address management for Household Accounts when selected.</inlineHelpText>
-        <label>Household Account Addresses Disabled</label>
+        <inlineHelpText>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</inlineHelpText>
+        <label>Allow Auto-Created Duplicate Relations</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Opportunity_Contact_Role_Default_role__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Default role for the primary Opportunity Contact Role</inlineHelpText>
-        <label>Opportunity Contact Role Default role</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Organizational_Account_Addresses_Enabled__c</fullName>
+        <fullName>Automatic_Affiliation_Creation_Turned_On__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Enables Address management for Organizational Accounts when selected.</description>
+        <description>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Enables Address management for Organizational Accounts when selected.</inlineHelpText>
-        <label>Organizational Account Addresses Enabled</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</inlineHelpText>
-        <label>Simple Address Change Treated as Update</label>
+        <inlineHelpText>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</inlineHelpText>
+        <label>Automatic Affiliation Management</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -107,26 +76,6 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Store_Errors_On__c</fullName>
-        <defaultValue>true</defaultValue>
-        <description>Flag that indicates whether errors are going to be stored in the database.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Check this if you&apos;d like errors to be stored in the database.</inlineHelpText>
-        <label>Store Errors</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Allow_AutoCreated_Duplicates__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</inlineHelpText>
-        <label>Allow Auto-Created Duplicate Relations</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Gender_Field__c</fullName>
         <description>The custom field used to define the gender of a Contact for determining reciprocal relationships</description>
         <externalId>false</externalId>
@@ -137,6 +86,37 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Household_Account_Addresses_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disables Address management for Household Accounts when selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Disables Address management for Household Accounts when selected.</inlineHelpText>
+        <label>Household Account Addresses Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Contact_Role_Default_role__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Default role for the primary Opportunity Contact Role</inlineHelpText>
+        <label>Opportunity Contact Role Default role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organizational_Account_Addresses_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Enables Address management for Organizational Accounts when selected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enables Address management for Organizational Accounts when selected.</inlineHelpText>
+        <label>Organizational Account Addresses Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Reciprocal_Method__c</fullName>
@@ -173,6 +153,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</inlineHelpText>
+        <label>Simple Address Change Treated as Update</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Store_Errors_On__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Flag that indicates whether errors are going to be stored in the database.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like errors to be stored in the database.</inlineHelpText>
+        <label>Store Errors</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <label>Hierarchy Settings</label>
 </CustomObject>

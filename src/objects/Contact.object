@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
-        <fullName>Admission_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Admission Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>AlternateEmail__c</fullName>
         <description>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</description>
         <externalId>false</externalId>
@@ -17,54 +9,6 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Class_Standing__c</fullName>
-        <externalId>false</externalId>
-        <label>Class Standing</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Freshman</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sophomore</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Junior</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Senior</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Credits_Attempted__c</fullName>
-        <externalId>false</externalId>
-        <label>Credits Attempted</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Credits_Earned__c</fullName>
-        <externalId>false</externalId>
-        <label>Credits Earned</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -108,14 +52,6 @@
         <externalId>false</externalId>
         <inlineHelpText>When selected, this option excludes the contact from emails and phone calls.</inlineHelpText>
         <label>Do Not Contact</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Eligible_to_Enroll__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Eligible to Enroll</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -166,25 +102,22 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>GPA__c</fullName>
+        <fullName>Gender__c</fullName>
         <externalId>false</externalId>
-        <label>GPA</label>
-        <precision>3</precision>
-        <required>false</required>
-        <scale>2</scale>
+        <label>Gender</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>HHId__c</fullName>
-        <externalId>false</externalId>
-        <formula>if(Account.SYSTEM_AccountType__c==&apos;Household Account&apos;,CASESAFEID(AccountId),null)</formula>
-        <inlineHelpText>holds the ID of the current  Household Account.</inlineHelpText>
-        <label>HHId</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>HIPPA_Detail__c</fullName>
@@ -230,6 +163,23 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Home&quot;),
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Military_Background__c</fullName>
+        <externalId>false</externalId>
+        <label>Military Background</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Military_Service__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Military Service</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Naming_Exclusions__c</fullName>
@@ -396,14 +346,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Program_of_Study__c</fullName>
-        <externalId>false</externalId>
-        <label>Program of Study</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>Secondary_Address_Type__c</fullName>
         <description>What type of address is the other address?</description>
         <externalId>false</externalId>
@@ -436,26 +378,6 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Other&quot;),
         <maskType>ssn</maskType>
         <required>false</required>
         <type>EncryptedText</type>
-    </fields>
-    <fields>
-        <fullName>Start_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Start Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Type_of_Account__c</fullName>
-        <description>Formula: &quot;Individual&quot; or &quot;Organization&quot; depending on Account setting.</description>
-        <externalId>false</externalId>
-        <formula>IF(Account.SYSTEMIsIndividual__c,&quot;Individual&quot;,&quot;Organization&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Formula: &quot;Individual&quot; or &quot;Organization&quot; depending on Account setting.</inlineHelpText>
-        <label>Type of Account</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UniversityEmail__c</fullName>
