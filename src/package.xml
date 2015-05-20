@@ -86,7 +86,7 @@
     <members>Affiliation__c.Contact__c</members>
     <members>Affiliation__c.Description__c</members>
     <members>Affiliation__c.EndDate__c</members>
-    <members>Affiliation__c.Organization__c</members>
+    <members>Affiliation__c.Account__c</members>
     <members>Affiliation__c.Primary__c</members>
     <members>Affiliation__c.Role__c</members>
     <members>Affiliation__c.StartDate__c</members>

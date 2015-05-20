@@ -112,7 +112,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		    	 	//AFTER DELETE - delete lookup relationship, if necessary
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
-		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Organization__c) {
+		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
 		            		relatedContact.put(lookupFieldName, null);
 		            		dmlWrapper.objectsToUpdate.add(relatedContact);
 		            	}
@@ -168,14 +168,14 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     
     private void uncheckOtherPrimariesPopulateKeyAffls(Affiliation__c affl, String lookupFieldName, Contact relatedContact, DmlWrapper dmlWrapper) {
 
-        if (affl.Primary__c && affl.Contact__c != null && affl.Organization__c != null) {
+        if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
             Integer oldLookupsSameTypeCount = uncheckOtherPrimariesSameType(affl, dmlWrapper);
             
             //If there is no affiliation lookup of this type and we have a mapping, populate the lookup field
             //defined in the mapping. 
             if((oldLookupsSameTypeCount == 0 || oldLookupsSameTypeCount == 1) && !String.isBlank(lookupFieldName)) {
             	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
-				relatedContact.put(lookupFieldName, affl.Organization__c);
+				relatedContact.put(lookupFieldName, affl.Account__c);
                 dmlWrapper.objectsToUpdate.add(relatedContact); 
             //If there's more than one, throw an error.
             } else if(oldLookupsSameTypeCount > 1) {
@@ -189,12 +189,12 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            	
     	//If the account doesn't have a record type, find any other primary affiliations with no record type for this contact.
     	if(affl.Affiliation_Type__c == null) {
-			otherPrimariesSameType = [select ID, Organization__c, Primary__c from Affiliation__c 
+			otherPrimariesSameType = [select ID, Account__c, Primary__c from Affiliation__c 
 											where Affiliation_Type__c = null 
 											and Contact__c = :affl.Contact__c and Primary__c = true];
     	//If the account has a record type, find any other primary affiliations of this record type for this contact.
     	} else {
-			otherPrimariesSameType = [select ID, Organization__c, Primary__c from Affiliation__c 
+			otherPrimariesSameType = [select ID, Account__c, Primary__c from Affiliation__c 
 											where Affiliation_Type__c = :affl.Affiliation_Type__c 
 											and Contact__c = :affl.Contact__c and Primary__c = true];
     	}
@@ -206,7 +206,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         for(Affiliation__c otherAffl : otherPrimariesSameType) {
     		otherAffl.Primary__c = false;
     		dmlWrapper.objectsToUpdate.add(otherAffl);
-    		oldLookupsSameType.add(otherAffl.Organization__c);
+    		oldLookupsSameType.add(otherAffl.Account__c);
         }
         UTIL_Debug.debug('****MRT: Number of lookups of this type:' + oldLookupsSameType.size());
         

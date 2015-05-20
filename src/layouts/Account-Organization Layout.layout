@@ -121,7 +121,7 @@
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
-        <relatedList>Affiliation__c.Organization__c</relatedList>
+        <relatedList>Affiliation__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

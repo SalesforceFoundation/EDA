@@ -123,7 +123,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Affiliation__c.Organization__c</relatedList>
+        <relatedList>Affiliation__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

@@ -73,24 +73,24 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
     	
     	//Verify key houehold affiliation has been automatically created
-    	List<Affiliation__c> affls = [select Affiliation_Type__c, Organization__c from Affiliation__c where Contact__c = :contact.ID];
+    	List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
-    	System.assertEquals(contact.Account.ID, affls[0].Organization__c);
+    	System.assertEquals(contact.Account.ID, affls[0].Account__c);
     	
     	//Craete account of Business Organization record type
     	Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert bizOrg1;
     	
     	//Create abother key affiliation, this time to a biz org
-		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = bizOrg1.ID, Primary__c = true);
+		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false; 
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
 		
 		//The business organization lookup should point to the account that is part of the affiliation we created
-		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where Organization__c = :bizOrg1.ID];
+		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where Account__c = :bizOrg1.ID];
 		System.assertEquals('Business Organization', bizAffl1.Affiliation_Type__c);
 		
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
@@ -101,7 +101,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert bizOrg2;
 		
 		//Create second primary affiliation
-		Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Organization__c = bizOrg2.ID, Primary__c = true);
+		Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg2.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert bizAffl2;
 		
@@ -131,17 +131,17 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
     	
     	//Verify key household affiliation has been automatically created
-    	List<Affiliation__c> affls = [select Affiliation_Type__c, Organization__c from Affiliation__c where Contact__c = :contact.ID];
+    	List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
-    	System.assertEquals(contact.Account.ID, affls[0].Organization__c);
+    	System.assertEquals(contact.Account.ID, affls[0].Account__c);
     	
     	//Craete account of Business Organization record type
     	Account acc1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert acc1;
     	
     	//Create primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc1.ID, Primary__c = true);
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
 		Test.startTest();
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
@@ -178,10 +178,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(parentAccountId, contact.Primary_Household__c);
     	
     	//Verify key household affiliation has been automatically created
-    	List<Affiliation__c> affls = [select Affiliation_Type__c, Organization__c, Primary__c from Affiliation__c where Contact__c = :contact.ID];
+    	List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
-    	System.assertEquals(contact.Account.ID, affls[0].Organization__c);
+    	System.assertEquals(contact.Account.ID, affls[0].Account__c);
     	System.assertEquals(true, affls[0].Primary__c);
     	
     	//Make the affiliation not primary
@@ -213,7 +213,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert acc1;
     	
     	//Create non-primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc1.ID, Primary__c = false);
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = false);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
 		
@@ -283,7 +283,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert acc;
     	
     	//Create Business affiliation
-		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Organization__c = acc.ID);
+		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID);
 		Test.startTest();
 		UTIL_Debug.debug('****Creating affiliation that should auto-create Academic Record');
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
