@@ -126,7 +126,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Formula_MailingAddress__c</fields>
-        <relatedList>Address__c.Household_Account__c</relatedList>
+        <relatedList>Address__c.Parent_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

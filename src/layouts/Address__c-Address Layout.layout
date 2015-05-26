@@ -13,7 +13,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Household_Account__c</field>
+                <field>Parent_Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

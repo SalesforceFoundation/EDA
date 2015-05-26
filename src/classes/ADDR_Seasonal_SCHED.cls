@@ -50,7 +50,7 @@ public with sharing class ADDR_Seasonal_SCHED implements Database.Batchable<SObj
 	    	integer iMonth = system.today().month();
 	    	integer iDay = system.today().day();
 	        
-	        strQuery = 'select Id, Household_Account__c, Default_Address__c ' +
+	        strQuery = 'select Id, Parent_Account__c, Default_Address__c ' +
 	            ' from Address__c ' +
 	            ' where Seasonal_Start_Month__c = \'' + string.valueOf(iMonth) + '\'' +
 	            ' and Seasonal_Start_Day__c = \'' + string.valueOf(iDay) + '\'';
@@ -70,7 +70,7 @@ public with sharing class ADDR_Seasonal_SCHED implements Database.Batchable<SObj
     	integer iMonth = system.today().month();
 	    	integer iDay = system.today().day();
 	        
-        strQuery = 'select Id, Household_Account__c, Default_Address__c ' +
+        strQuery = 'select Id, Parent_Account__c, Default_Address__c ' +
             ' from Address__c ' +
             ' where Seasonal_Start_Month__c = \'' + string.valueOf(iMonth) + '\'' +
             ' and Seasonal_Start_Day__c = \'' + string.valueOf(iDay) + '\'';

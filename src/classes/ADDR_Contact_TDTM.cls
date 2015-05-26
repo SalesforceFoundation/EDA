@@ -322,7 +322,7 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
         for (Contact con : listConAll) {
             listCon.add(con);
         	Address__c addr = new Address__c();
-        	addr.Household_Account__c = con.AccountId;
+        	addr.Parent_Account__c = con.AccountId;
         	addr.Default_Address__c = !con.is_Address_Override__c;
         	addr.Latest_Start_Date__c = system.today();
         	addr.Latest_End_Date__c = null;        	

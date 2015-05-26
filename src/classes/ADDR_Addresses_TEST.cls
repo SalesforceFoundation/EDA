@@ -91,7 +91,7 @@ private with sharing class ADDR_Addresses_TEST {
 
         initTestAddr(cHHT);
         for (integer i = 0; i < cHHT; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = true;
         }
         // clear our triggers recursion prevention since we starting a new test
@@ -332,7 +332,7 @@ private with sharing class ADDR_Addresses_TEST {
         addrNew.MailingStreet__c = 'street override';
         addrNew.MailingCity__c = 'city override';
         addrNew.Default_Address__c = false;
-        addrNew.Household_Account__c = listAccT[0].Id;
+        addrNew.Parent_Account__c = listAccT[0].Id;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert addrNew;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
@@ -391,7 +391,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'not override' + i;
             listAddrT[i].MailingCity__c = 'not override' + i;
@@ -456,7 +456,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = true;
             listAddrT[i].MailingStreet__c = 'New Default Street' + i;
             listAddrT[i].MailingCity__c = 'New Default City' + i;
@@ -482,7 +482,7 @@ private with sharing class ADDR_Addresses_TEST {
         
         // verify the previous addresses got Default cleared.
         // and verify latest start date and latest end date appropriately set.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
         	boolean fNewDefault = (addr.MailingStreet__c.contains('New Default Street'));
@@ -514,7 +514,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = true;
             listAddrT[i].MailingStreet__c = 'New Default Street' + i;
             listAddrT[i].MailingCity__c = 'New Default City' + i;
@@ -551,7 +551,7 @@ private with sharing class ADDR_Addresses_TEST {
         
         // verify the previous addresses got Default cleared.
         // and verify latest start date and latest end date appropriately set.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fNewDefault = (addr.MailingStreet__c.contains('Original Default Street'));
@@ -581,7 +581,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'override' + i;
             listAddrT[i].MailingCity__c = 'override' + i;
@@ -647,7 +647,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'override' + i;
             listAddrT[i].MailingCity__c = 'override' + i;
@@ -755,7 +755,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
          // verify the previous addresses got Default cleared.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         // each set of edits created a new address object 
         system.assertEquals(cHH * 4, listAddr.size());
         for (Address__c addr : listAddr) {
@@ -808,7 +808,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
          // verify the previous addresses got Default cleared.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         system.assertEquals(cHH * cCon + cHH, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNewEdit = (addr.MailingStreet__c.contains('Direct Street Edit'));
@@ -877,7 +877,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
         // verify that no new address was created
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         system.assertEquals(cHH, listAddr.size());
         for (Address__c addr : listAddr) {
             system.assertEquals('direct street  edit', addr.MailingStreet__c);
@@ -950,7 +950,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
         // verify that no new address was created
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         system.assertEquals(cHH, listAddr.size());
         for (Address__c addr : listAddr) {
             system.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
@@ -977,7 +977,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
         // verify that no new address was created
-        listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         system.assertEquals(cHH, listAddr.size());
         for (Address__c addr : listAddr) {
             system.assert(addr.MailingStreet__c.equals('direct street  edit'));
@@ -1040,7 +1040,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
          // verify the previous addresses got Default cleared.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         // each set of edits created a new address object 
         system.assertEquals(cHH * 4, listAddr.size());
         for (Address__c addr : listAddr) {
@@ -1108,7 +1108,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
         // verify that no new address was created
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         system.assertEquals(cHH, listAddr.size());
         for (Address__c addr : listAddr) {
             system.assertEquals('direct street  edit', addr.MailingStreet__c);
@@ -1127,7 +1127,7 @@ private with sharing class ADDR_Addresses_TEST {
         
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-        	system.assertEquals(null, listAddrT[i].Household_Account__c);
+        	system.assertEquals(null, listAddrT[i].Parent_Account__c);
         }
         
         try {
@@ -1156,7 +1156,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
             listAddrT[i].Seasonal_Start_Day__c = '1';
@@ -1185,7 +1185,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
@@ -1210,7 +1210,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrT[i].Seasonal_Start_Day__c = '1';
@@ -1239,7 +1239,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
@@ -1264,7 +1264,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional seasonal addresses not current
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrT[i].Seasonal_Start_Day__c = '1';
@@ -1300,7 +1300,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
@@ -1326,13 +1326,13 @@ private with sharing class ADDR_Addresses_TEST {
         for (integer i = 0; i < cHH * 2; i++) {
         	integer iacc = i < cHH ? i : i-cHH;
         	if (math.mod(i, 2) == 0) {
-	            listAddrT[i].Household_Account__c = listAccT[iacc].Id;
+	            listAddrT[i].Parent_Account__c = listAccT[iacc].Id;
 	            listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
 	            listAddrT[i].Seasonal_Start_Day__c = '1';
 	            listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
 	            listAddrT[i].Seasonal_End_Day__c = '28';
         	} else {
-                listAddrT[i].Household_Account__c = listAccT[iacc-1].Id;
+                listAddrT[i].Parent_Account__c = listAccT[iacc-1].Id;
                 listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
                 listAddrT[i].Seasonal_Start_Day__c = '1';
                 listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
@@ -1481,7 +1481,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional seasonal addresses not current
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrT[i].Seasonal_Start_Day__c = '1';
             listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
@@ -1496,7 +1496,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional seasonal addresses that overlap existing seasonal addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(2).month());
             listAddrT[i].Seasonal_Start_Day__c = '1';
             listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(4).month());
@@ -1532,7 +1532,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional seasonal addresses not current
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrT[i].Seasonal_Start_Day__c = '1';
             listAddrT[i].Default_Address__c = false;
@@ -1567,7 +1567,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
             listAddrT[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
@@ -1607,7 +1607,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
@@ -1694,7 +1694,7 @@ private with sharing class ADDR_Addresses_TEST {
          // create additional non-default addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'New Street' + i;
             listAddrT[i].MailingCity__c = 'New City' + i;
@@ -1730,7 +1730,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
         
         // verify the new addresses still are Default and we don't have too many
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
@@ -1756,7 +1756,7 @@ private with sharing class ADDR_Addresses_TEST {
          // create additional non-default addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'New Street' + i;
             listAddrT[i].MailingCity__c = 'New City' + i;
@@ -1794,7 +1794,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
         
         // verify the new addresses still are Default and we don't have too many
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
@@ -1821,7 +1821,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'override' + i;
             listAddrT[i].MailingCity__c = 'override' + i;
@@ -1874,7 +1874,7 @@ private with sharing class ADDR_Addresses_TEST {
         }
  
          // verify the new overrides are not marked default, and that the contact points to them
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Household_Account__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         system.assertEquals(cHH * 3, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fOverride = (addr.MailingStreet__c.contains('Direct Street Edit'));
@@ -2075,7 +2075,7 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional addresses
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-            listAddrT[i].Household_Account__c = listAccT[i].Id;
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
             listAddrT[i].Default_Address__c = true;
             listAddrT[i].MailingStreet__c = 'New Default Street';
             listAddrT[i].MailingStreet2__c = 'Second Line';
@@ -2180,11 +2180,11 @@ private with sharing class ADDR_Addresses_TEST {
         // verify results
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
         system.assertEquals(cAcc, mapAccIdAcc.size());
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cAcc, listAddr.size());
         
         for (Address__c addr : listAddr) {
-            Account acc = mapAccIdAcc.get(addr.Household_Account__c);
+            Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
             system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
             system.assertEquals(acc.BillingCity, addr.MailingCity__c);
             system.assertEquals(true, addr.Default_Address__c);
@@ -2236,7 +2236,7 @@ private with sharing class ADDR_Addresses_TEST {
         			from Account order by Account.Name];
         system.assertEquals(cAcc, listAcc.size());
         
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
         							from Address__c order by Household_Account__r.Name];
         system.assertEquals(cAcc, listAddr.size());
         
@@ -2288,7 +2288,7 @@ private with sharing class ADDR_Addresses_TEST {
          // create addresses for the accounts
         initTestAddr(cAcc);
         for (integer i = 0; i < cAcc; i++) {
-            listAddrT[i].Household_Account__c = listAcc[i].Id;
+            listAddrT[i].Parent_Account__c = listAcc[i].Id;
             listAddrT[i].Default_Address__c = true;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
@@ -2298,7 +2298,7 @@ private with sharing class ADDR_Addresses_TEST {
         // verify results
         listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account order by Account.Name];
         system.assertEquals(cAcc, listAcc.size());
-        listAddrT = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Household_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Household_Account__r.Name];
+        listAddrT = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Household_Account__r.Name];
         system.assertEquals(cAcc, listAddrT.size());
         listCon = [select Id, AccountId, Name, Current_Address__c, MailingStreet, MailingCity from Contact order by Account.Name];
         system.assertEquals(cAcc, listCon.size());        

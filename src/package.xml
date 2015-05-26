@@ -66,7 +66,7 @@
     <members>Address__c.Formula_MailingAddress__c</members>
     <members>Address__c.Formula_MailingStreetAddress__c</members>
     <members>Address__c.Geolocation__c</members>
-    <members>Address__c.Household_Account__c</members>
+    <members>Address__c.Parent_Account__c</members>
     <members>Address__c.Latest_End_Date__c</members>
     <members>Address__c.Latest_Start_Date__c</members>
     <members>Address__c.MailingCity__c</members>
