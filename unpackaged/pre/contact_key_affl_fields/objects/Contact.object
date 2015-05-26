@@ -12,7 +12,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
-	<fields>
+	<!-- <fields>
         <fullName>Primary_Department__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -47,5 +47,5 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
-    </fields>
+    </fields> -->
 </CustomObject>
