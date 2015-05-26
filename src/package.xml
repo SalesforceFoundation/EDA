@@ -62,9 +62,6 @@
     <members>Account.SYSTEM_AccountType__c</members>
     <members>Account.SYSTEM_CUSTOM_NAMING__c</members>
     <members>Address__c.Address_Type__c</members>
-    <members>Address__c.Administrative_Area__c</members>
-    <members>Address__c.Congressional_District__c</members>
-    <members>Address__c.County_Name__c</members>
     <members>Address__c.Default_Address__c</members>
     <members>Address__c.Formula_MailingAddress__c</members>
     <members>Address__c.Formula_MailingStreetAddress__c</members>
