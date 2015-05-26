@@ -131,11 +131,11 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
     <fields>
         <fullName>Account__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The Household Account this Address is for.</inlineHelpText>
-        <label>Household Account</label>
+        <inlineHelpText>The Account this Address is for.</inlineHelpText>
+        <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Addresses</relationshipLabel>
-        <relationshipName>Addresses</relationshipName>
+        <relationshipName>Account Addresses</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
         <trackFeedHistory>false</trackFeedHistory>
