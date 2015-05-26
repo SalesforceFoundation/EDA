@@ -56,7 +56,7 @@
     <fields>
         <fullName>Affiliation_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>Organization__r.RecordType.Name</formula>
+        <formula>Account__r.RecordType.Name</formula>
         <label>Affiliation Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -69,8 +69,8 @@
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Organization Affiliations</relationshipLabel>
-        <relationshipName>Affiliations</relationshipName>
+        <relationshipLabel>Affiliated Contacts</relationshipLabel>
+        <relationshipName>Affiliated_Contacts</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
@@ -98,12 +98,12 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Organization__c</fullName>
+        <fullName>Account__c</fullName>
         <externalId>false</externalId>
         <label>Organization</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Affiliated Contacts</relationshipLabel>
-        <relationshipName>Affiliations</relationshipName>
+        <relationshipLabel>Affiliated Accounts</relationshipLabel>
+        <relationshipName>Affiliated_Accounts</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>

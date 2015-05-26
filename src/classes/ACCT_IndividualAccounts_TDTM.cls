@@ -234,7 +234,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void createAfflsToExistingAccs(Map<Id, Id> mapAccountIdContactId, DmlWrapper dmlWrapper) {
     	List<SObject> afflsToInsert = new List<Affiliation__c>();
     	for(ID accountId : mapAccountIdContactId.keySet()) {
-    		afflsToInsert.add(new Affiliation__c(Contact__c =  mapAccountIdContactId.get(accountId), Organization__c = accountId, 
+    		afflsToInsert.add(new Affiliation__c(Contact__c =  mapAccountIdContactId.get(accountId), Account__c = accountId, 
 								Primary__c = true, Status__c = 'Current'));
     	}
     	dmlWrapper.objectsToInsert.addAll(afflsToInsert);
@@ -379,7 +379,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 contactsToUpdate.add(c);
                 
                 //Creating affiliation
-				afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Organization__c = accountInserts[i].Id, 
+				afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Account__c = accountInserts[i].Id, 
 								Primary__c = true, Status__c = 'Current'));
 				
                 i += 1;

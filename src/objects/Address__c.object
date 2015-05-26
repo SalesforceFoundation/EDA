@@ -82,45 +82,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Administrative_Area__c</fullName>
-        <description>Depending on the country and area, could be a city, township, municipality or other civic region associated with this address.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Depending on the country and area, could be a city, township, municipality or other civic region associated with this address.</inlineHelpText>
-        <label>Administrative Area</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Congressional_District__c</fullName>
-        <description>The congressional district to which the address belongs pertains.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The congressional district to which the address belongs pertains.</inlineHelpText>
-        <label>Congressional District</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>County_Name__c</fullName>
-        <description>Name of the county the address is located at.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Name of the county the address is located at.</inlineHelpText>
-        <label>County Name</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Default_Address__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -168,7 +129,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Location</type>
     </fields>
     <fields>
-        <fullName>Household_Account__c</fullName>
+        <fullName>Parent_Account__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The Household Account this Address is for.</inlineHelpText>
         <label>Household Account</label>
@@ -668,13 +629,13 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
     <pluralLabel>Addresses</pluralLabel>
     <searchLayouts>
         <lookupDialogsAdditionalFields>Formula_MailingAddress__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Household_Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Parent_Account__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Address_Type__c</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Formula_MailingAddress__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Household_Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Parent_Account__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Address_Type__c</lookupPhoneDialogsAdditionalFields>
         <searchFilterFields>Formula_MailingAddress__c</searchFilterFields>
-        <searchFilterFields>Household_Account__c</searchFilterFields>
+        <searchFilterFields>Parent_Account__c</searchFilterFields>
         <searchFilterFields>Address_Type__c</searchFilterFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>

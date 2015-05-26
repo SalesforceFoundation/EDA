@@ -210,7 +210,7 @@ private class ACCT_IndividualAccounts_TEST {
         con2 = [select AccountId, Primary_Household__c from Contact where id=:con2.id];       
         system.assertEquals(accountId, con2.AccountId);  
         
-        List<Affiliation__c> con2affls = [select Primary__c from Affiliation__c where Contact__c =:con2.Id and Organization__c =:accountId];
+        List<Affiliation__c> con2affls = [select Primary__c from Affiliation__c where Contact__c =:con2.Id and Account__c =:accountId];
         system.assertEquals(1, con2affls.size());
         system.assertEquals(true, con2affls[0].Primary__c);
         

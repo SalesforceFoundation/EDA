@@ -21,7 +21,7 @@
         <lookupFilter>
             <active>true</active>
             <filterItems>
-                <field>Address__c.Household_Account__c</field>
+                <field>Address__c.Parent_Account__c</field>
                 <operation>equals</operation>
                 <valueField>$Source.AccountId</valueField>
             </filterItems>

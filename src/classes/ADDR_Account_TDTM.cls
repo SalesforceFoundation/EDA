@@ -160,7 +160,7 @@ public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
         list<Address__c> listAddr = new list<Address__c>();
         for (Account acc : listAcc) {
             Address__c addr = new Address__c();
-            addr.Household_Account__c = acc.Id;
+            addr.Parent_Account__c = acc.Id;
             addr.Default_Address__c = true;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;

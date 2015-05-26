@@ -120,7 +120,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
             	// a new address that is marked default or seasonal needs to propogate to the household
                 if (addr.Default_Address__c || isSeasonalAddr(addr)) 
-                    mapAccIdAddr.put(addr.Household_Account__c, addr);
+                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
             }
             
             // AFTER UPDATE
@@ -129,10 +129,10 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
                     // any seasonal address also need to be considered
                     || isSeasonalChanged(addr, addrOld)) {
-                    mapAccIdAddr.put(addr.Household_Account__c, addr);
+                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
                 } else if (isAddressChanged(addr, addrOld, true)) {
                     if (addr.Default_Address__c)
-                        mapAccIdAddr.put(addr.Household_Account__c, addr);
+                        mapAccIdAddr.put(addr.Parent_Account__c, addr);
                     else    // address changed, but not default, still need to update any contacts using it as an override
                         mapAddrIdAddr.put(addr.Id, addr);      
                 } 
@@ -404,16 +404,16 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
     */ 
     private static map<Id, list<Address__c>> getMapAccIdListAddrHH(list<Id> listAccId) {
         map<Id, list<Address__c>> mapAccIdListAddrHH = new map<Id, list<Address__c>>();  
-        list<Address__c> listAddrOther = [select Id, Default_Address__c, Household_Account__c, Address_Type__c,
+        list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Address_Type__c,
             MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
             Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, Seasonal_End_Day__c 
             from Address__c 
-            where Household_Account__c in :listAccId];
+            where Parent_Account__c in :listAccId];
         for (Address__c addr : listAddrOther) {
-            list<Address__c> listAddrHH = mapAccIdListAddrHH.get(addr.Household_Account__c);
+            list<Address__c> listAddrHH = mapAccIdListAddrHH.get(addr.Parent_Account__c);
             if (listAddrHH == null) {
                 listAddrHH = new list<Address__c>();
-                mapAccIdListAddrHH.put(addr.Household_Account__c, listAddrHH);
+                mapAccIdListAddrHH.put(addr.Parent_Account__c, listAddrHH);
             }
             listAddrHH.add(addr);
         }
@@ -573,18 +573,18 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
     private void verifyAddrHHAccOnly(list<Address__c> listAddr) {    	
     	set<Id> setAccId = new set<Id>();
     	for (Address__c addr : listAddr) {
-    		if (addr.Household_Account__c != null) {
-    			setAccId.add(addr.Household_Account__c);
+    		if (addr.Parent_Account__c != null) {
+    			setAccId.add(addr.Parent_Account__c);
     		}
     	}    	
     	map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, SYSTEM_AccountType__c, SYSTEMIsIndividual__c 
     	   from Account where Id in :setAccId]);
         for (Address__c addr : listAddr) {
-            if (addr.Household_Account__c == null) {
+            if (addr.Parent_Account__c == null) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                 addr.addError(Label.addrHHAccountOnly);
             } else {
-                Account acc = mapAccIdAcc.get(addr.Household_Account__c);
+                Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
                 if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR) &&
                     (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
@@ -621,7 +621,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
             for (Address__c addr2 : listAddrS) {
                 if (addr == addr2)
                     continue;
-                if (addr.Household_Account__c != addr2.Household_Account__c)
+                if (addr.Parent_Account__c != addr2.Parent_Account__c)
                     continue;  
                 if (isSeasonalOverlap(addr, addr2)) {
                     addr.addError(Label.addrSeasonalOverlap);
@@ -632,12 +632,12 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // now check for overlaps within each household's saved addresses
         list<Id> listAccId = new list<Id>();
         for (Address__c addr : listAddrS) {
-            listAccId.add(addr.Household_Account__c);
+            listAccId.add(addr.Parent_Account__c);
         }        
         map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);        
         
         for (Address__c addr : listAddrS) {
-            for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Household_Account__c)) {
+            for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Parent_Account__c)) {
             	if (addr.id == addr2.id)
             	   continue;
                 if (isSeasonalOverlap(addr, addr2)) {
@@ -658,7 +658,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         
         map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>();
         for (Address__c addr : listAddr) 
-            mapAccIdAddr.put(addr.Household_Account__c, addr);
+            mapAccIdAddr.put(addr.Parent_Account__c, addr);
         
         // must manually set our semaphore, so when we update contacts and households, they don't try to create additional addresses
         hasRunAddrTrigger = true;       
@@ -708,7 +708,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // for each address, create a map of HHId to lists of Addresses
         list<Id> listAccId = new list<Id>();
         for (Address__c addr : listAddr)
-           listAccId.add(addr.Household_Account__c);
+           listAccId.add(addr.Parent_Account__c);
         map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);
         boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
         
@@ -717,7 +717,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         
         // now compare our Addresses to the existing Addresses
         for (Address__c addr : listAddr) {
-            list<Address__c> listAddrHH = mapAccIdListAddrHH.get(addr.Household_Account__c);
+            list<Address__c> listAddrHH = mapAccIdListAddrHH.get(addr.Parent_Account__c);
             boolean hasMatch = false;
             if (listAddrHH != null) {
                 Address__c addrMatch = null;
