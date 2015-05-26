@@ -129,7 +129,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Location</type>
     </fields>
     <fields>
-        <fullName>Household_Account__c</fullName>
+        <fullName>Account__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The Household Account this Address is for.</inlineHelpText>
         <label>Household Account</label>
@@ -629,13 +629,13 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
     <pluralLabel>Addresses</pluralLabel>
     <searchLayouts>
         <lookupDialogsAdditionalFields>Formula_MailingAddress__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Household_Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Account__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Address_Type__c</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Formula_MailingAddress__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Household_Account__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Account__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Address_Type__c</lookupPhoneDialogsAdditionalFields>
         <searchFilterFields>Formula_MailingAddress__c</searchFilterFields>
-        <searchFilterFields>Household_Account__c</searchFilterFields>
+        <searchFilterFields>Account__c</searchFilterFields>
         <searchFilterFields>Address_Type__c</searchFilterFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>

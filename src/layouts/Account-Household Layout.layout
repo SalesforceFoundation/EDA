@@ -119,7 +119,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Address__c.Household_Account__c</relatedList>
+        <relatedList>Address__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
