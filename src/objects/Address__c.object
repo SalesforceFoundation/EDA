@@ -135,7 +135,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Addresses</relationshipLabel>
-        <relationshipName>Account Addresses</relationshipName>
+        <relationshipName>Account_Addresses</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
         <trackFeedHistory>false</trackFeedHistory>
