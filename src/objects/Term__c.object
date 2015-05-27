@@ -100,7 +100,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Custom Object Label Name</label>
+        <label>Term</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Terms</pluralLabel>

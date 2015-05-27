@@ -113,7 +113,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Custom Object Label Name</label>
+        <label>Course Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Courses</pluralLabel>
