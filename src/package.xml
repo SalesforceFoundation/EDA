@@ -68,7 +68,6 @@
     <members>Address__c.Formula_MailingAddress__c</members>
     <members>Address__c.Formula_MailingStreetAddress__c</members>
     <members>Address__c.Geolocation__c</members>
-    <members>Address__c.Parent_Account__c</members>
     <members>Address__c.Latest_End_Date__c</members>
     <members>Address__c.Latest_Start_Date__c</members>
     <members>Address__c.MailingCity__c</members>
@@ -77,15 +76,16 @@
     <members>Address__c.MailingState__c</members>
     <members>Address__c.MailingStreet2__c</members>
     <members>Address__c.MailingStreet__c</members>
+    <members>Address__c.Parent_Account__c</members>
     <members>Address__c.Seasonal_End_Day__c</members>
     <members>Address__c.Seasonal_End_Month__c</members>
     <members>Address__c.Seasonal_Start_Day__c</members>
     <members>Address__c.Seasonal_Start_Month__c</members>
+    <members>Affiliation__c.Account__c</members>
     <members>Affiliation__c.Affiliation_Type__c</members>
     <members>Affiliation__c.Contact__c</members>
     <members>Affiliation__c.Description__c</members>
     <members>Affiliation__c.EndDate__c</members>
-    <members>Affiliation__c.Account__c</members>
     <members>Affiliation__c.Primary__c</members>
     <members>Affiliation__c.Role__c</members>
     <members>Affiliation__c.StartDate__c</members>
@@ -124,6 +124,25 @@
     <members>Contact.WorkPhone__c</members>
     <members>Contact.Work_Address__c</members>
     <members>Contact.is_Address_Override__c</members>
+    <members>Course_Enrollment__c.Affiliation__c</members>
+    <members>Course_Enrollment__c.Contact__c</members>
+    <members>Course_Enrollment__c.Course_Offering__c</members>
+    <members>Course_Enrollment__c.Credits_Attempted__c</members>
+    <members>Course_Enrollment__c.Credits_Earned__c</members>
+    <members>Course_Enrollment__c.GPA__c</members>
+    <members>Course_Enrollment__c.Program_Enrollment__c</members>
+    <members>Course_Offering__c.Capacity__c</members>
+    <members>Course_Offering__c.Course_Name__c</members>
+    <members>Course_Offering__c.Course__c</members>
+    <members>Course_Offering__c.Department__c</members>
+    <members>Course_Offering__c.Faculty__c</members>
+    <members>Course_Offering__c.Section_ID__c</members>
+    <members>Course_Offering__c.Term__c</members>
+    <members>Course__c.Account__c</members>
+    <members>Course__c.Course_ID__c</members>
+    <members>Course__c.Credit_Hours__c</members>
+    <members>Course__c.Description__c</members>
+    <members>Course__c.Title__c</members>
     <members>Error__c.Context_Type__c</members>
     <members>Error__c.Datetime__c</members>
     <members>Error__c.Email_Sent__c</members>
@@ -174,6 +193,10 @@
     <members>Relationship__c.SYSTEM_SystemCreated__c</members>
     <members>Relationship__c.Status__c</members>
     <members>Relationship__c.Type__c</members>
+    <members>Term__c.Account__c</members>
+    <members>Term__c.End_Date__c</members>
+    <members>Term__c.Start_Date__c</members>
+    <members>Term__c.Title__c</members>
     <members>Trigger_Handler__c.Active__c</members>
     <members>Trigger_Handler__c.Asynchronous__c</members>
     <members>Trigger_Handler__c.Class__c</members>
@@ -221,9 +244,13 @@
     <name>CustomObject</name>
   </types>
   <types>
+    <members>Academic_Program__c</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>
+    <members>Course_Offering__c</members>
+    <members>Course__c</members>
     <members>Relationship__c</members>
+    <members>Term__c</members>
     <name>CustomTab</name>
   </types>
   <types>
@@ -244,6 +271,10 @@
     <name>Layout</name>
   </types>
   <types>
+    <members>Academic_Program__c.All</members>
+    <members>Course_Offering__c.All</members>
+    <members>Course__c.All</members>
+    <members>Term__c.All</members>
     <members>Trigger_Handler__c.All</members>
     <members>Trigger_Handler__c.All_Main_Fields</members>
     <name>ListView</name>

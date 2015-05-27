@@ -78,6 +78,11 @@
         <type>Lookup</type>
     </fields>
     <label>Academic Program</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Academic Program Name</label>
         <type>Text</type>

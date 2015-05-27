@@ -54,6 +54,10 @@
     <miniLayout>
         <fields>Affiliation__c</fields>
     </miniLayout>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Course_Enrollment__c.Program_Enrollment__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

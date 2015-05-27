@@ -129,21 +129,6 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Location</type>
     </fields>
     <fields>
-        <fullName>Parent_Account__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>The Household Account this Address is for.</inlineHelpText>
-        <label>Household Account</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Addresses</relationshipLabel>
-        <relationshipName>Addresses</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>true</writeRequiresMasterRead>
-    </fields>
-    <fields>
         <fullName>Latest_End_Date__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The most recent ending date that this Address was used for this Household.</inlineHelpText>
@@ -226,6 +211,21 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Account__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Household Account this Address is for.</inlineHelpText>
+        <label>Household Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Addresses</relationshipLabel>
+        <relationshipName>Addresses</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Seasonal_End_Day__c</fullName>

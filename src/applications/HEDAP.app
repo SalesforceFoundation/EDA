@@ -5,8 +5,8 @@
     <label>HEDAP</label>
     <tab>standard-Account</tab>
     <tab>standard-Contact</tab>
-    <tab>Address__c</tab>
-    <tab>Affiliation__c</tab>
-    <tab>Relationship__c</tab>
-    <tab>standard-Campaign</tab>
+    <tab>Academic_Program__c</tab>
+    <tab>Course__c</tab>
+    <tab>Term__c</tab>
+    <tab>Course_Offering__c</tab>
 </CustomApplication>
