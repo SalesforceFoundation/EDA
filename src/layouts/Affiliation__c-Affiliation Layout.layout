@@ -90,6 +90,10 @@
         <fields>NAME</fields>
         <relatedList>Program_Enrollment__c.Affiliation__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Course_Enrollment__c.Affiliation__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
