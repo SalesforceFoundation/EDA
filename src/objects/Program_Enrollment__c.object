@@ -103,7 +103,6 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <description>The parent Contact.</description>
         <externalId>false</externalId>
         <inlineHelpText>The parent Contact.</inlineHelpText>
@@ -111,9 +110,11 @@
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
@@ -163,5 +164,5 @@
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
