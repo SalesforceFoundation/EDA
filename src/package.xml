@@ -81,6 +81,7 @@
     <members>Address__c.Seasonal_End_Month__c</members>
     <members>Address__c.Seasonal_Start_Day__c</members>
     <members>Address__c.Seasonal_Start_Month__c</members>
+    <members>Affiliation__c.Academic_Program__c</members>
     <members>Affiliation__c.Account__c</members>
     <members>Affiliation__c.Affiliation_Type__c</members>
     <members>Affiliation__c.Contact__c</members>
