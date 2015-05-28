@@ -82,6 +82,17 @@
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
+        <fullName>Emergency_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this an emergency contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this an emergency contact.</inlineHelpText>
+        <label>Emergency Contact</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ReciprocalRelationship__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.</description>

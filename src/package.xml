@@ -81,6 +81,7 @@
     <members>Address__c.Seasonal_End_Month__c</members>
     <members>Address__c.Seasonal_Start_Day__c</members>
     <members>Address__c.Seasonal_Start_Month__c</members>
+    <members>Affiliation__c.Academic_Program__c</members>
     <members>Affiliation__c.Account__c</members>
     <members>Affiliation__c.Affiliation_Type__c</members>
     <members>Affiliation__c.Contact__c</members>
@@ -171,12 +172,18 @@
     <members>Opportunity.Contact_Id_for_Role__c</members>
     <members>Program_Enrollment__c.Admission_Date__c</members>
     <members>Program_Enrollment__c.Affiliation__c</members>
+    <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
     <members>Program_Enrollment__c.Class_Standing__c</members>
+    <members>Program_Enrollment__c.Class_Year__c</members>
     <members>Program_Enrollment__c.Contact__c</members>
     <members>Program_Enrollment__c.Credits_Attempted__c</members>
     <members>Program_Enrollment__c.Credits_Earned__c</members>
     <members>Program_Enrollment__c.Eligible_to_Enroll__c</members>
+    <members>Program_Enrollment__c.End_Date__c</members>
+    <members>Program_Enrollment__c.Enrollment_Status__c</members>
     <members>Program_Enrollment__c.GPA__c</members>
+    <members>Program_Enrollment__c.Program_of_Study__c</members>
+    <members>Program_Enrollment__c.Start_Date__c</members>
     <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
     <members>Relationship_Auto_Create__c.Field__c</members>
     <members>Relationship_Auto_Create__c.Object__c</members>
@@ -187,6 +194,7 @@
     <members>Relationship_Lookup__c.Neutral__c</members>
     <members>Relationship__c.Contact__c</members>
     <members>Relationship__c.Description__c</members>
+    <members>Relationship__c.Emergency_Contact__c</members>
     <members>Relationship__c.ReciprocalRelationship__c</members>
     <members>Relationship__c.RelatedContact__c</members>
     <members>Relationship__c.Relationship_Explanation__c</members>

@@ -19,6 +19,10 @@
                 <behavior>Readonly</behavior>
                 <field>Relationship_Explanation__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Emergency_Contact__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
