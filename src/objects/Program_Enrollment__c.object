@@ -76,6 +76,14 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Application_Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Submitted Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Class_Standing__c</fullName>
         <externalId>false</externalId>
         <label>Class Standing</label>

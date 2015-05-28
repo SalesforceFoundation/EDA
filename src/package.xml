@@ -172,6 +172,7 @@
     <members>Opportunity.Contact_Id_for_Role__c</members>
     <members>Program_Enrollment__c.Admission_Date__c</members>
     <members>Program_Enrollment__c.Affiliation__c</members>
+    <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
     <members>Program_Enrollment__c.Class_Standing__c</members>
     <members>Program_Enrollment__c.Contact__c</members>
     <members>Program_Enrollment__c.Credits_Attempted__c</members>
