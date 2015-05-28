@@ -188,6 +188,7 @@
     <members>Relationship_Lookup__c.Neutral__c</members>
     <members>Relationship__c.Contact__c</members>
     <members>Relationship__c.Description__c</members>
+    <members>Relationship__c.Emergency_Contact__c</members>
     <members>Relationship__c.ReciprocalRelationship__c</members>
     <members>Relationship__c.RelatedContact__c</members>
     <members>Relationship__c.Relationship_Explanation__c</members>
