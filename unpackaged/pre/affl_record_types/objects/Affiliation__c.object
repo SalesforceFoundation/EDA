@@ -7,6 +7,12 @@
         <label>Academic</label>
     </recordTypes>
     <label>Affiliation</label>
+    <nameField>
+        <displayFormat>AF-{000000}</displayFormat>
+        <label>Affiliation Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
     <pluralLabel>Affiliations</pluralLabel>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
