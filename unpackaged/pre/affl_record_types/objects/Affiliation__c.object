@@ -6,4 +6,7 @@
         <description>An academic affiliation.</description>
         <label>Academic</label>
     </recordTypes>
+    <label>Affiliation</label>
+    <pluralLabel>Affiliations</pluralLabel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
