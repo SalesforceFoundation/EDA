@@ -620,6 +620,11 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Picklist</type>
     </fields>
     <label>Address</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>A-{00000}</displayFormat>
         <label>Address ID</label>

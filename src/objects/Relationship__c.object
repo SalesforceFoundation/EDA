@@ -176,14 +176,6 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <label>Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Advisee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Advisor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Friend</fullName>
                 <default>false</default>
             </picklistValues>
@@ -275,6 +267,10 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                 <fullName>Employee</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Emergency Contact</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -282,6 +278,11 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <type>Picklist</type>
     </fields>
     <label>Relationship</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>R-{000000}</displayFormat>
         <label>Relationship Number</label>

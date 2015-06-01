@@ -176,6 +176,11 @@
         <type>Picklist</type>
     </fields>
     <label>Affiliation</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>AF-{000000}</displayFormat>
         <label>Affiliation Name</label>
