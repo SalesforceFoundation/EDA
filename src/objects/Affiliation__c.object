@@ -73,8 +73,8 @@
         <externalId>false</externalId>
         <label>Organization</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Affiliated Accounts</relationshipLabel>
-        <relationshipName>Affiliated_Accounts</relationshipName>
+        <relationshipLabel>Affiliated Contacts</relationshipLabel>
+        <relationshipName>Affiliated_Contacts</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
@@ -98,8 +98,8 @@
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Affiliated Contacts</relationshipLabel>
-        <relationshipName>Affiliated_Contacts</relationshipName>
+        <relationshipLabel>Affiliated Accounts</relationshipLabel>
+        <relationshipName>Affiliated_Accounts</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
