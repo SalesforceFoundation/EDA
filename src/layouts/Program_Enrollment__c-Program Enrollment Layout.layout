@@ -16,7 +16,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Contact__c</field>
+                <field>Student__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
