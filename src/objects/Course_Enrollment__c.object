@@ -136,6 +136,11 @@
         <type>Lookup</type>
     </fields>
     <label>Course Enrollment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Custom Object Label Name</label>
         <type>Text</type>

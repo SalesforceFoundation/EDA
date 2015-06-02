@@ -175,7 +175,7 @@
     <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
     <members>Program_Enrollment__c.Class_Standing__c</members>
     <members>Program_Enrollment__c.Class_Year__c</members>
-    <members>Program_Enrollment__c.Contact__c</members>
+    <members>Program_Enrollment__c.Student__c</members>
     <members>Program_Enrollment__c.Credits_Attempted__c</members>
     <members>Program_Enrollment__c.Credits_Earned__c</members>
     <members>Program_Enrollment__c.Eligible_to_Enroll__c</members>
@@ -255,8 +255,10 @@
     <members>Academic_Program__c</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>
+    <members>Course_Enrollment__c</members>
     <members>Course_Offering__c</members>
     <members>Course__c</members>
+    <members>Program_Enrollment__c</members>
     <members>Relationship__c</members>
     <members>Term__c</members>
     <name>CustomTab</name>
@@ -280,8 +282,13 @@
   </types>
   <types>
     <members>Academic_Program__c.All</members>
+    <members>Address__c.All</members>
+    <members>Affiliation__c.All</members>
+    <members>Course_Enrollment__c.All</members>
     <members>Course_Offering__c.All</members>
     <members>Course__c.All</members>
+    <members>Program_Enrollment__c.All</members>
+    <members>Relationship__c.All</members>
     <members>Term__c.All</members>
     <members>Trigger_Handler__c.All</members>
     <members>Trigger_Handler__c.All_Main_Fields</members>

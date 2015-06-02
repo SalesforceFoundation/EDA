@@ -121,7 +121,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>Student__c</fullName>
         <description>The parent Contact.</description>
         <externalId>false</externalId>
         <inlineHelpText>The parent Contact.</inlineHelpText>
@@ -227,6 +227,11 @@
         <type>Date</type>
     </fields>
     <label>Program Enrollment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Custom Object Label Name</label>
         <type>Text</type>
