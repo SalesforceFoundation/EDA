@@ -121,7 +121,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>Student__c</fullName>
         <description>The parent Contact.</description>
         <externalId>false</externalId>
         <inlineHelpText>The parent Contact.</inlineHelpText>
