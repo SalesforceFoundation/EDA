@@ -303,7 +303,7 @@
         <fields>Class_Standing__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>GPA__c</fields>
-        <relatedList>Program_Enrollment__c.Contact__c</relatedList>
+        <relatedList>Program_Enrollment__c.Student__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
