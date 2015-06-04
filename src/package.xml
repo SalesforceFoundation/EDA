@@ -57,8 +57,6 @@
     <name>CustomApplication</name>
   </types>
   <types>
-    <members>Academic_Program__c.Description__c</members>
-    <members>Academic_Program__c.Program_Director__c</members>
     <members>Account.One2OneContact__c</members>
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
@@ -81,7 +79,6 @@
     <members>Address__c.Seasonal_End_Month__c</members>
     <members>Address__c.Seasonal_Start_Day__c</members>
     <members>Address__c.Seasonal_Start_Month__c</members>
-    <members>Affiliation__c.Academic_Program__c</members>
     <members>Affiliation__c.Account__c</members>
     <members>Affiliation__c.Affiliation_Type__c</members>
     <members>Affiliation__c.Contact__c</members>
@@ -231,7 +228,6 @@
     <name>CustomLabel</name>
   </types>
   <types>
-    <members>Academic_Program__c</members>
     <members>Account</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>
@@ -268,6 +264,7 @@
     <members>Account-Household Layout</members>
     <members>Account-Organization Layout</members>
     <members>Address__c-Address Layout</members>
+    <members>Affiliation__c-Academic Layout</members>
     <members>Affiliation__c-Affiliation Layout</members>
     <members>Contact-Contact Layout</members>
     <members>Course_Enrollment__c-Course Enrollment Layout</members>
@@ -281,7 +278,6 @@
     <name>Layout</name>
   </types>
   <types>
-    <members>Academic_Program__c.All</members>
     <members>Address__c.All</members>
     <members>Affiliation__c.All</members>
     <members>Course_Enrollment__c.All</members>

@@ -211,7 +211,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Program of Study</label>
-        <referenceTo>Academic_Program__c</referenceTo>
+        <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
         <required>false</required>
