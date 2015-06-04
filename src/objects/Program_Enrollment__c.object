@@ -233,8 +233,9 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Custom Object Label Name</label>
-        <type>Text</type>
+        <displayFormat>PE-{0000}</displayFormat>
+        <label>Enrollment Number</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
