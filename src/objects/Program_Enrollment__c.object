@@ -128,7 +128,7 @@
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments</relationshipName>
+        <relationshipName>Program_Enrollments_2</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>

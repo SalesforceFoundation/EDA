@@ -73,7 +73,7 @@
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Course_Enrollments</relationshipName>
+        <relationshipName>Course_Enrollments_2</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
