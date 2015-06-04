@@ -309,6 +309,10 @@
     <name>QuickAction</name>
   </types>
   <types>
+    <members>Affiliation__c.Academic</members>
+    <name>RecordType</name>
+  </types>
+  <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>
     <name>ValidationRule</name>
   </types>

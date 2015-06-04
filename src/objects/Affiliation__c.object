@@ -189,6 +189,12 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Affiliations</pluralLabel>
+    <recordTypes>
+        <fullName>Academic</fullName>
+        <active>true</active>
+        <description>An academic affiliation.</description>
+        <label>Academic</label>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
