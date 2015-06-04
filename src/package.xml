@@ -248,7 +248,6 @@
     <name>CustomObject</name>
   </types>
   <types>
-    <members>Academic_Program__c</members>
     <members>Address__c</members>
     <members>Affiliation__c</members>
     <members>Course_Enrollment__c</members>
@@ -263,7 +262,6 @@
     <members>Account-Household Layout</members>
     <members>Account-Organization Layout</members>
     <members>Address__c-Address Layout</members>
-    <members>Affiliation__c-Academic Layout</members>
     <members>Affiliation__c-Affiliation Layout</members>
     <members>Contact-Contact Layout</members>
     <members>Course_Enrollment__c-Course Enrollment Layout</members>
@@ -307,10 +305,6 @@
     <members>NewTask</members>
     <members>New_Campaign</members>
     <name>QuickAction</name>
-  </types>
-  <types>
-    <members>Affiliation__c.Academic</members>
-    <name>RecordType</name>
   </types>
   <types>
     <members>Relationship__c.Related_Contact_Do_Not_Change</members>

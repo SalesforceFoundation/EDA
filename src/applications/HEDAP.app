@@ -5,7 +5,6 @@
     <label>HEDAP</label>
     <tab>standard-Account</tab>
     <tab>standard-Contact</tab>
-    <tab>Academic_Program__c</tab>
     <tab>Course__c</tab>
     <tab>Term__c</tab>
     <tab>Course_Offering__c</tab>

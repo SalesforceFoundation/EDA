@@ -212,8 +212,8 @@
         <externalId>false</externalId>
         <label>Program of Study</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments</relationshipName>
+        <relationshipLabel>Program of Study</relationshipLabel>
+        <relationshipName>Program_of_Study</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
