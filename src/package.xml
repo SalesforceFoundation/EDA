@@ -93,9 +93,12 @@
     <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
     <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
     <members>Contact.AlternateEmail__c</members>
+    <members>Contact.Citizenship__c</members>
+    <members>Contact.Country_of_Origin__c</members>
     <members>Contact.Current_Address__c</members>
     <members>Contact.Deceased__c</members>
     <members>Contact.Do_Not_Contact__c</members>
+    <members>Contact.Ethnicity__c</members>
     <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
     <members>Contact.Exclude_from_Household_Name__c</members>
@@ -115,6 +118,7 @@
     <members>Contact.Primary_Address_Type__c</members>
     <members>Contact.Primary_Household__c</members>
     <members>Contact.Primary_Organization__c</members>
+    <members>Contact.Religion__c</members>
     <members>Contact.Secondary_Address_Type__c</members>
     <members>Contact.Social_Security_Number__c</members>
     <members>Contact.UniversityEmail__c</members>

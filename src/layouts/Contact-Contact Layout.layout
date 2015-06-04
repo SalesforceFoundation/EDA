@@ -9,6 +9,7 @@
     <excludeButtons>EnablePrmSuperUser</excludeButtons>
     <excludeButtons>EnableSelfService</excludeButtons>
     <excludeButtons>RequestUpdate</excludeButtons>
+    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <excludeButtons>ViewPartnerPortalUser</excludeButtons>
@@ -45,6 +46,14 @@
                 <behavior>Edit</behavior>
                 <field>FERPA__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Citizenship__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Country_of_Origin__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -73,6 +82,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Financial_Aid_Applicant__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Ethnicity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Religion__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -351,7 +368,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00ho0000006c0YG</masterLabel>
+        <masterLabel>00ho0000006e26s</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
