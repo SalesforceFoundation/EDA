@@ -314,10 +314,6 @@
         <relatedList>Course_Offering__c.Faculty__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Academic_Program__c.Program_Director__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>CAMPAIGN.NAME</fields>
         <fields>CAMPAIGN.START_DATE</fields>
         <fields>CAMPAIGN.CAMPAIGN_TYPE</fields>

@@ -60,8 +60,8 @@
         <externalId>false</externalId>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Course_Enrollments</relationshipName>
+        <relationshipLabel>Course Enrollment</relationshipLabel>
+        <relationshipName>Course_Enrollment</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -84,8 +84,8 @@
         <externalId>false</externalId>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Course_Enrollments</relationshipName>
+        <relationshipLabel>Course Enrollment</relationshipLabel>
+        <relationshipName>Course_Enrollment</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>

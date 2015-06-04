@@ -267,10 +267,6 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
                 <fullName>Employee</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Emergency Contact</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
