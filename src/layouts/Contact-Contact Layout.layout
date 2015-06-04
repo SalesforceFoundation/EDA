@@ -9,7 +9,6 @@
     <excludeButtons>EnablePrmSuperUser</excludeButtons>
     <excludeButtons>EnableSelfService</excludeButtons>
     <excludeButtons>RequestUpdate</excludeButtons>
-    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <excludeButtons>ViewPartnerPortalUser</excludeButtons>
@@ -324,10 +323,17 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Credits_Attempted__c</fields>
+        <fields>Credits_Earned__c</fields>
+        <fields>GPA__c</fields>
         <relatedList>Course_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course_Name__c</fields>
+        <fields>Term__c</fields>
+        <fields>Capacity__c</fields>
         <relatedList>Course_Offering__c.Faculty__c</relatedList>
     </relatedLists>
     <relatedLists>
