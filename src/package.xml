@@ -172,7 +172,6 @@
     <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
     <members>Program_Enrollment__c.Class_Standing__c</members>
     <members>Program_Enrollment__c.Class_Year__c</members>
-    <members>Program_Enrollment__c.Student__c</members>
     <members>Program_Enrollment__c.Credits_Attempted__c</members>
     <members>Program_Enrollment__c.Credits_Earned__c</members>
     <members>Program_Enrollment__c.Eligible_to_Enroll__c</members>
@@ -181,6 +180,7 @@
     <members>Program_Enrollment__c.GPA__c</members>
     <members>Program_Enrollment__c.Program_of_Study__c</members>
     <members>Program_Enrollment__c.Start_Date__c</members>
+    <members>Program_Enrollment__c.Student__c</members>
     <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
     <members>Relationship_Auto_Create__c.Field__c</members>
     <members>Relationship_Auto_Create__c.Object__c</members>
