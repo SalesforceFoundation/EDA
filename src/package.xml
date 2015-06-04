@@ -260,7 +260,6 @@
     <name>CustomTab</name>
   </types>
   <types>
-    <members>Academic_Program__c-Academic Program Layout</members>
     <members>Account-Household Layout</members>
     <members>Account-Organization Layout</members>
     <members>Address__c-Address Layout</members>
