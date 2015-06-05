@@ -68,7 +68,7 @@
     <fields>
         <fullName>Course_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>Course__r.Title__c</formula>
+        <formula>Course__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Course Name</label>
         <required>false</required>

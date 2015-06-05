@@ -96,16 +96,6 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
-    <fields>
-        <fullName>Title__c</fullName>
-        <externalId>false</externalId>
-        <label>Title</label>
-        <length>255</length>
-        <required>true</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Course</label>
     <listViews>
         <fullName>All</fullName>

@@ -70,8 +70,9 @@
         <inlineHelpText>The Contact-Account relationship this academic information is related to.</inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollment</relationshipName>
-        <required>true</required>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -198,25 +199,13 @@
         <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
         <label>Program</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments (Program)</relationshipLabel>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>Program_of_Study__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Program of Study</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program of Study</relationshipLabel>
-        <relationshipName>Program_of_Study</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>

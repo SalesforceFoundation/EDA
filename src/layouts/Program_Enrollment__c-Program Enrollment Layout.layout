@@ -7,20 +7,16 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Program_of_Study__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Affiliation__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Student__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Program__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -41,10 +37,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Class_Year__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Program__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -79,11 +71,11 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>Affiliation__c</fields>
-    </miniLayout>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Account__c</fields>
+        <fields>GPA__c</fields>
         <relatedList>Course_Enrollment__c.Program_Enrollment__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
