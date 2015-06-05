@@ -70,8 +70,9 @@
         <inlineHelpText>The Contact-Account relationship this academic information is related to.</inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollment</relationshipName>
-        <required>true</required>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
