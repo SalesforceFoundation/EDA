@@ -182,6 +182,7 @@
     <members>Program_Enrollment__c.End_Date__c</members>
     <members>Program_Enrollment__c.Enrollment_Status__c</members>
     <members>Program_Enrollment__c.GPA__c</members>
+    <members>Program_Enrollment__c.Program__c</members>
     <members>Program_Enrollment__c.Program_of_Study__c</members>
     <members>Program_Enrollment__c.Start_Date__c</members>
     <members>Program_Enrollment__c.Student__c</members>

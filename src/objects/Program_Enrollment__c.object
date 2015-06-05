@@ -192,6 +192,21 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Program__c</fullName>
+        <description>The program the student is enrolled in.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
+        <label>Program</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Program Enrollments (Program)</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
         <fullName>Program_of_Study__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
