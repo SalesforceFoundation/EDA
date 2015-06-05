@@ -265,7 +265,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-	public static void autoCreatProgramEnrollment() {
+	public static void autoCreateProgramEnrollment() {
 		if (strTestOnly != '*' && strTestOnly != 'autoCreatProgramEnrollment') return;
 		
 		setup();
