@@ -145,7 +145,6 @@
     <members>Course__c.Course_ID__c</members>
     <members>Course__c.Credit_Hours__c</members>
     <members>Course__c.Description__c</members>
-    <members>Course__c.Title__c</members>
     <members>Error__c.Context_Type__c</members>
     <members>Error__c.Datetime__c</members>
     <members>Error__c.Email_Sent__c</members>
