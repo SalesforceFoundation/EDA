@@ -198,7 +198,7 @@
         <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
         <label>Program</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments (Program)</relationshipLabel>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
