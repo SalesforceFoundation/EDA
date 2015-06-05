@@ -55,6 +55,19 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Course Enrollments</relationshipLabel>
+        <relationshipName>Course_Enrollments</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -68,15 +81,18 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The student taking the course.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The student taking the course.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Course_Enrollments_2</relationshipName>
-        <required>false</required>
+        <relationshipName>Courses</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Course_Offering__c</fullName>
@@ -148,5 +164,5 @@
     </nameField>
     <pluralLabel>Course Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

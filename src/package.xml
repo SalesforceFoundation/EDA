@@ -126,6 +126,7 @@
     <members>Contact.WorkPhone__c</members>
     <members>Contact.Work_Address__c</members>
     <members>Contact.is_Address_Override__c</members>
+    <members>Course_Enrollment__c.Account__c</members>
     <members>Course_Enrollment__c.Affiliation__c</members>
     <members>Course_Enrollment__c.Contact__c</members>
     <members>Course_Enrollment__c.Course_Offering__c</members>
