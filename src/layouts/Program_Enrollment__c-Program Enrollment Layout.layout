@@ -73,6 +73,9 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Account__c</fields>
+        <fields>GPA__c</fields>
         <relatedList>Course_Enrollment__c.Program_Enrollment__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
