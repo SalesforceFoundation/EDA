@@ -7,7 +7,7 @@
         <label>Primary Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Students</relationshipLabel>
-        <relationshipName>Contacts</relationshipName>
+        <relationshipName>Academic_Program_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
@@ -19,7 +19,7 @@
         <label>Primary Administrative Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Contacts</relationshipLabel>
-        <relationshipName>Contacts</relationshipName>
+        <relationshipName>Admin_Account_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
@@ -55,7 +55,7 @@
         <label>Primary Sports Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Organization Members</relationshipLabel>
-        <relationshipName>Organization_Members</relationshipName>
+        <relationshipName>Sport_Organization_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
