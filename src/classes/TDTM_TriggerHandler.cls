@@ -214,9 +214,9 @@ public with sharing class TDTM_TriggerHandler {
         				}
         			}
         		}
+        		newList = filteredNewList;
+        		oldList = filteredOldList;
         	}
-        	newList = filteredNewList;
-        	oldList = filteredOldList;
     	} catch(Exception e) {
     		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
     	}
