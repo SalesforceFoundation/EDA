@@ -208,6 +208,8 @@
     <members>Trigger_Handler__c.Active__c</members>
     <members>Trigger_Handler__c.Asynchronous__c</members>
     <members>Trigger_Handler__c.Class__c</members>
+    <members>Trigger_Handler__c.Filter_Field__c</members>
+    <members>Trigger_Handler__c.Filter_Value__c</members>
     <members>Trigger_Handler__c.Load_Order__c</members>
     <members>Trigger_Handler__c.Object__c</members>
     <members>Trigger_Handler__c.Trigger_Action__c</members>

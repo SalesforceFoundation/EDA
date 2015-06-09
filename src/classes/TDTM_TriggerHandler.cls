@@ -65,8 +65,8 @@ public with sharing class TDTM_TriggerHandler {
     * @return void
     */
     public void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
-    Boolean isDelete, Boolean isUnDelete, List<Sobject> newList, List<Sobject> oldList, 
-    Schema.DescribeSobjectResult describeObj, TDTM_ObjectDataGateway dao) {
+    Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
+    Schema.DescribeSObjectResult describeObj, TDTM_ObjectDataGateway dao) {
     	if(newList != null)
     	   UTIL_Debug.debug(LoggingLevel.WARN, '****Trigger.new size: ' + newList.size());
     	// This solves the problem of not being able to save error records if everything gets rolled back. 
@@ -152,8 +152,8 @@ public with sharing class TDTM_TriggerHandler {
         }
     }
     
-    private TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<Sobject> newList, List<Sobject> oldList, 
-    TDTM_Runnable.Action thisAction, Schema.DescribeSobjectResult describeObj) {
+    private TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
     	        
         if(classToRunRecord != null) {
 	        String classToRunName = String.valueOf(classToRunRecord.get('Class__c'));
@@ -176,6 +176,9 @@ public with sharing class TDTM_TriggerHandler {
 			        	runAsync(classToRun, classToRunName, newList, oldList, thisAction, describeObj);
 			        } else {
 			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
+			        	
+			        	filterByFieldValue(describeObj, classToRunRecord, newList, oldList);
+
                         return classToRun.run(newlist, oldlist, thisAction, describeObj);
 			        }
 	        	} else {
@@ -190,11 +193,40 @@ public with sharing class TDTM_TriggerHandler {
         return null;
     }
     
-    private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<Sobject> newList, 
-    List<Sobject> oldList, TDTM_Runnable.Action thisAction, Schema.DescribeSobjectResult describeObj) {
-       Map<Id,Sobject> nm = new Map<Id,Sobject>(newlist);
+    private void filterByFieldValue(Schema.DescribeSObjectResult describeObj, SObject classToRunRecord, List<SObject> newList, 
+    List<SObject> oldList) {
+    	List<SObject> filteredNewList = new List<SObject>();
+    	List<SObject> filteredOldList = new List<SObject>();
+    	String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
+    	try {
+        	//get field type
+        	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
+        	Schema.SObjectField field = fieldMap.get(filterField);
+        	if(field != null) {
+        		//the field name is valid!
+        		Schema.DisplayType fieldType = Account.Industry.getDescribe().getType();
+        		if(fieldType == Schema.DisplayType.Boolean) {
+        			Boolean boolVal = Boolean.valueOf(classToRunRecord.get('Filter_Value__c'));
+        			//filter records by condition
+        			for(SObject o : newList) {
+        				if(o.get('filterField') != boolVal) {
+        					filteredNewList.add(o);
+        				}
+        			}
+        		}
+        	}
+        	newList = filteredNewList;
+        	oldList = filteredOldList;
+    	} catch(Exception e) {
+    		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
+    	}
+    }
+    
+    private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<SObject> newList, 
+    List<SObject> oldList, TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
+       Map<Id,SObject> nm = new Map<Id,SObject>(newlist);
        
-       Map<Id,Sobject> om;
+       Map<Id,SObject> om;
        if(oldlist != null) om = new Map<Id,SObject>(oldlist);
        else om = new Map<Id, SObject>();
        
