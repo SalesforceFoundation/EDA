@@ -29,6 +29,7 @@
     <members>STG_InstallScript</members>
     <members>STG_InstallScript_TEST</members>
     <members>TDTM_DefaultConfig</members>
+    <members>TDTM_Enhanced_TEST</members>
     <members>TDTM_ObjectDataGateway</members>
     <members>TDTM_Runnable</members>
     <members>TDTM_TriggerActionHelper</members>
