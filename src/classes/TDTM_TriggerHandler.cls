@@ -68,7 +68,7 @@ public with sharing class TDTM_TriggerHandler {
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj, TDTM_ObjectDataGateway dao) {
     	if(newList != null)
-    	   UTIL_Debug.debug(LoggingLevel.WARN, '****Trigger.new size: ' + newList.size());
+    	   UTIL_Debug.debug('****Trigger.new size: ' + newList.size());
     	// This solves the problem of not being able to save error records if everything gets rolled back. 
         // TDTM_TriggerHandler is taking care of saving error records if there is any error when performing 
         // DML operations. It also takes care of rolling everything back in that case, just so there are no 
@@ -92,13 +92,13 @@ public with sharing class TDTM_TriggerHandler {
 	        // Get the classes to run. Note that we are using the local object name, so it works for objects 
 	        // from Cumulus both in the package and unmanaged dev orgs.
 	        List<SObject> classesToCall = dao.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
-	        UTIL_Debug.debug(LoggingLevel.WARN, '****Classes To Call for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
+	        UTIL_Debug.debug('****Classes To Call for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
 	        
 	        if(classesToCall != null && classesToCall.size() > 0) {
 	            //Run the relevant classes
 	            for (SObject classToCall : classesToCall) {
 	                TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
-	                dmlWrapperLocal = runClass(classToCall, newList, OldList, thisAction, describeObj);
+	                dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
 	                if(dmlWrapperLocal != null) {
 	                	if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
 	                        dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
@@ -135,10 +135,10 @@ public with sharing class TDTM_TriggerHandler {
             // we don't know which object on the list caused the problem, so we just add the error to the first.
             // this should cause the ui to display one error message, rather than repeating the same error for each object.
             if (isPropogateErrorsFromTrigger) {
-                if (newlist != null && newlist.size() > 0)
-                    newlist[0].addError(e.getMessage());
-                else if (oldlist != null && oldlist.size() > 0)
-                    oldlist[0].addError(e.getMessage());
+                if (newList != null && newList.size() > 0)
+                    newList[0].addError(e.getMessage());
+                else if (oldList != null && oldList.size() > 0)
+                    oldList[0].addError(e.getMessage());
             }
             
             // but we do want our tests to fail if they encountered this error!
@@ -172,14 +172,14 @@ public with sharing class TDTM_TriggerHandler {
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
 			        if(async && action != 'BeforeInsert' && !System.isFuture() && !System.isBatch()) {
-			        	UTIL_Debug.debug(LoggingLevel.WARN, '****Calling asynchronously: ' + classToRunName);
+			        	UTIL_Debug.debug('****Calling asynchronously: ' + classToRunName);
 			        	runAsync(classToRun, classToRunName, newList, oldList, thisAction, describeObj);
 			        } else {
 			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
 			        	
 			        	filterByFieldValue(describeObj, classToRunRecord, newList, oldList);
-
-                        return classToRun.run(newlist, oldlist, thisAction, describeObj);
+						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(newList));
+                        return classToRun.run(newList, oldList, thisAction, describeObj);
 			        }
 	        	} else {
 	        		UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
@@ -195,27 +195,48 @@ public with sharing class TDTM_TriggerHandler {
     
     private void filterByFieldValue(Schema.DescribeSObjectResult describeObj, SObject classToRunRecord, List<SObject> newList, 
     List<SObject> oldList) {
-    	List<SObject> filteredNewList = new List<SObject>();
-    	List<SObject> filteredOldList = new List<SObject>();
+    	List<SObject> filterednewList = new List<SObject>();
+    	List<SObject> filteredoldList = new List<SObject>();
     	String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
+    	UTIL_Debug.debug('****Filter field: ' + filterField);
     	try {
         	//get field type
         	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
         	Schema.SObjectField field = fieldMap.get(filterField);
-        	if(field != null) {
-        		//the field name is valid!
-        		Schema.DisplayType fieldType = Account.Industry.getDescribe().getType();
+        	if(field != null) { //the field name is valid!	
+        		//let's find the field type
+        		Schema.DisplayType fieldType = field.getDescribe().getType();
+        		UTIL_Debug.debug('****Filter field type: ' + fieldType);
+        		
         		if(fieldType == Schema.DisplayType.Boolean) {
-        			Boolean boolVal = Boolean.valueOf(classToRunRecord.get('Filter_Value__c'));
+        			Boolean val = Boolean.valueOf(classToRunRecord.get('Filter_Value__c'));
+        			UTIL_Debug.debug('****Boolean filter field with value: ' + val);
         			//filter records by condition
         			for(SObject o : newList) {
-        				if(o.get('filterField') != boolVal) {
-        					filteredNewList.add(o);
+        				if(o.get(filterField) != val) {
+        					filterednewList.add(o);
+        				}
+        			}
+        		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
+        			String val;
+        			Object valNoCasting = classToRunRecord.get('Filter_Value__c');
+        			if(valNoCasting != null) {
+        				val = String.valueOf(valNoCasting);
+        			} else {
+        				UTIL_Debug.debug('****Filter value is null');
+        			}
+        			UTIL_Debug.debug('****Text/email filter field with value: ' + val);
+        			//filter records by condition
+        			for(SObject o : newList) {
+        				if(o.get(filterField) != val) {
+        					UTIL_Debug.debug('****Adding object back to list: ' + o);
+        					filterednewList.add(o);
         				}
         			}
         		}
-        		newList = filteredNewList;
-        		oldList = filteredOldList;
+        		UTIL_Debug.debug('****filterednewList: ' + JSON.serializePretty(filterednewList));
+        		newList = filterednewList;
+        		oldList = filteredoldList;
         	}
     	} catch(Exception e) {
     		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
@@ -224,10 +245,10 @@ public with sharing class TDTM_TriggerHandler {
     
     private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<SObject> newList, 
     List<SObject> oldList, TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
-       Map<Id,SObject> nm = new Map<Id,SObject>(newlist);
+       Map<Id,SObject> nm = new Map<Id,SObject>(newList);
        
        Map<Id,SObject> om;
-       if(oldlist != null) om = new Map<Id,SObject>(oldlist);
+       if(oldList != null) om = new Map<Id,SObject>(oldList);
        else om = new Map<Id, SObject>();
        
        classToRun.runFutureNonStatic(nm.keySet(), om.keySet(), thisAction.name(), describeObj.getName(), classToRunName);
