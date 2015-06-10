@@ -180,7 +180,11 @@ public with sharing class TDTM_TriggerHandler {
 			        	TDTM_Filter.FilteredLists filtered = TDTM_Filter.filter(classToRunRecord, newList, oldList, describeObj);
 						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(filtered.newList));
                         
-                        return classToRun.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                        if(filtered.newList.size() > 0) {
+                        	return classToRun.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                        } else {
+                        	return classToRun.run(newList, oldList, thisAction, describeObj);
+                        }
 			        }
 	        	} else {
 	        		UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');

@@ -3,9 +3,9 @@ public with sharing class TDTM_Filter {
     public static FilteredLists filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
     	FilteredLists filtered = new FilteredLists();
-    	String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
-    	UTIL_Debug.debug('****Filter field: ' + filterField);
     	try {
+    		String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
+    		UTIL_Debug.debug('****Filter field: ' + filterField);
         	//get field type
         	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
         	Schema.SObjectField field = fieldMap.get(filterField);
