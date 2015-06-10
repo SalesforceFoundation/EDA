@@ -35,8 +35,14 @@ public with sharing class TDTM_Filter {
         			//filter records by condition
         			for(SObject o : newList) {
         				if(o.get(filterField) != val) {
-        					UTIL_Debug.debug('****Adding object back to list: ' + o);
+        					UTIL_Debug.debug('****Adding object back to new list: ' + o);
         					filtered.newList.add(o);
+        				}
+        			}
+        			for(SObject o : oldList) {
+        				if(o.get(filterField) != val) {
+        					UTIL_Debug.debug('****Adding object back to old list: ' + o);
+        					filtered.oldList.add(o);
         				}
         			}
         		}
