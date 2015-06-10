@@ -177,9 +177,10 @@ public with sharing class TDTM_TriggerHandler {
 			        } else {
 			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
 			        	
-			        	filterByFieldValue(describeObj, classToRunRecord, newList, oldList);
-						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(newList));
-                        return classToRun.run(newList, oldList, thisAction, describeObj);
+			        	TDTM_Filter.FilteredLists filtered = TDTM_Filter.filter(classToRunRecord, newList, oldList, describeObj);
+						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(filtered.newList));
+                        
+                        return classToRun.run(filtered.newList, filtered.oldList, thisAction, describeObj);
 			        }
 	        	} else {
 	        		UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
@@ -191,56 +192,6 @@ public with sharing class TDTM_TriggerHandler {
         	UTIL_Debug.debug(LoggingLevel.WARN, '****ClassToCall was null');
         }
         return null;
-    }
-    
-    private void filterByFieldValue(Schema.DescribeSObjectResult describeObj, SObject classToRunRecord, List<SObject> newList, 
-    List<SObject> oldList) {
-    	List<SObject> filterednewList = new List<SObject>();
-    	List<SObject> filteredoldList = new List<SObject>();
-    	String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
-    	UTIL_Debug.debug('****Filter field: ' + filterField);
-    	try {
-        	//get field type
-        	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
-        	Schema.SObjectField field = fieldMap.get(filterField);
-        	if(field != null) { //the field name is valid!	
-        		//let's find the field type
-        		Schema.DisplayType fieldType = field.getDescribe().getType();
-        		UTIL_Debug.debug('****Filter field type: ' + fieldType);
-        		
-        		if(fieldType == Schema.DisplayType.Boolean) {
-        			Boolean val = Boolean.valueOf(classToRunRecord.get('Filter_Value__c'));
-        			UTIL_Debug.debug('****Boolean filter field with value: ' + val);
-        			//filter records by condition
-        			for(SObject o : newList) {
-        				if(o.get(filterField) != val) {
-        					filterednewList.add(o);
-        				}
-        			}
-        		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
-        			String val;
-        			Object valNoCasting = classToRunRecord.get('Filter_Value__c');
-        			if(valNoCasting != null) {
-        				val = String.valueOf(valNoCasting);
-        			} else {
-        				UTIL_Debug.debug('****Filter value is null');
-        			}
-        			UTIL_Debug.debug('****Text/email filter field with value: ' + val);
-        			//filter records by condition
-        			for(SObject o : newList) {
-        				if(o.get(filterField) != val) {
-        					UTIL_Debug.debug('****Adding object back to list: ' + o);
-        					filterednewList.add(o);
-        				}
-        			}
-        		}
-        		UTIL_Debug.debug('****filterednewList: ' + JSON.serializePretty(filterednewList));
-        		newList = filterednewList;
-        		oldList = filteredoldList;
-        	}
-    	} catch(Exception e) {
-    		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
-    	}
     }
     
     private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<SObject> newList, 
