@@ -31,6 +31,7 @@
     <members>TDTM_DefaultConfig</members>
     <members>TDTM_Enhanced_TEST</members>
     <members>TDTM_Filter</members>
+    <members>TDTM_Filter_TEST</members>
     <members>TDTM_ObjectDataGateway</members>
     <members>TDTM_Runnable</members>
     <members>TDTM_TriggerActionHelper</members>
