@@ -37,9 +37,15 @@
 @isTest
 public with sharing class TDTM_Filter_TEST {
 
-	public static testmethod void textField() {
+	// if you only want to run one test in this class, fill in its name here.
+    // if you want to run all tests, then use '*'
+    private static string strTestOnly = '*';
+    
+	public static testmethod void emailField() {
+		if (strTestOnly != '*' && strTestOnly != 'emailField') return;
+		
 		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId',Relationship_Type__c = 'TestType');
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
                                                     
 		//Creating filter condition.
 		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
@@ -52,6 +58,202 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', UniversityEmail__c = null);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', UniversityEmail__c = 'tt3@fake.edu');
 		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', UniversityEmail__c = 'tt4@fake.edu');
+		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+		insert contacts;
+		
+		//Adding lookups among the contacts. Relationships should be automatically created from them.
+		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+    	c1.ReportsToId = c2.Id;
+    	c2.ReportsToId = c3.Id;
+    	c3.ReportsToId = c4.Id;
+    	update contacts;
+    	
+    	//Only those from c1 and c3 should have had a relationship automatically created.
+    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(2, rels.size());
+	}
+	
+	public static testmethod void textField() {
+		if (strTestOnly != '*' && strTestOnly != 'textField') return;
+		
+		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+		//Creating filter condition.
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'AssistantName',
+              Filter_Value__c = 'Anne');
+		
+		//Creating three contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = 'Mary');
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
+		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+		insert contacts;
+		
+		//Adding lookups among the contacts. Relationships should be automatically created from them.
+		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+    	c1.ReportsToId = c2.Id;
+    	c2.ReportsToId = c3.Id;
+    	c3.ReportsToId = c4.Id;
+    	update contacts;
+    	
+    	//Only those from c1 and c3 should have had a relationship automatically created.
+    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(2, rels.size());
+	}
+	
+	public static testmethod void checkboxField() {
+		if (strTestOnly != '*' && strTestOnly != 'checkboxField') return;
+		
+		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+		//Creating filter condition.
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'HasOptedOutOfEmail',
+              Filter_Value__c = 'true');
+		
+		//Creating three contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', HasOptedOutOfEmail = true);
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', HasOptedOutOfEmail = false);
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', HasOptedOutOfEmail = true);
+		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+		insert contacts;
+		
+		//Adding lookups among the contacts. Relationships should be automatically created from them.
+		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+    	c1.ReportsToId = c2.Id;
+    	c2.ReportsToId = c3.Id;
+    	c3.ReportsToId = c4.Id;
+    	update contacts;
+    	
+    	//Only those from c1 and c3 should have had a relationship automatically created.
+    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(2, rels.size());
+	}
+	
+	public static testmethod void phoneField() {
+		if (strTestOnly != '*' && strTestOnly != 'phoneField') return;
+		
+		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+		//Creating filter condition.
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'MobilePhone',
+              Filter_Value__c = '5555-444-3322');
+		
+		//Creating three contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', MobilePhone = '5555-333-1111');
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', MobilePhone = '5555-444-3322');
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', MobilePhone = '5555-333-1111');
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', MobilePhone = '5555-333-1111');
+		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+		insert contacts;
+		
+		//Adding lookups among the contacts. Relationships should be automatically created from them.
+		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+    	c1.ReportsToId = c2.Id;
+    	c2.ReportsToId = c3.Id;
+    	c3.ReportsToId = c4.Id;
+    	update contacts;
+    	
+    	//Only those from c1 and c3 should have had a relationship automatically created.
+    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(2, rels.size());
+	}
+	
+	public static testmethod void dateField() {
+		if (strTestOnly != '*' && strTestOnly != 'dateField') return;
+		
+		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+		//Creating filter condition.
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Birthdate',
+              Filter_Value__c = '01/01/1990');
+		
+		//Creating three contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Birthdate = Date.parse('01/01/1989'));
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Birthdate = Date.parse('01/01/1990'));
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Birthdate = Date.parse('01/01/1991'));
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Birthdate = Date.parse('01/01/1992'));
+		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+		insert contacts;
+		
+		//Adding lookups among the contacts. Relationships should be automatically created from them.
+		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+    	c1.ReportsToId = c2.Id;
+    	c2.ReportsToId = c3.Id;
+    	c3.ReportsToId = c4.Id;
+    	update contacts;
+    	
+    	//Only those from c1 and c3 should have had a relationship automatically created.
+    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(2, rels.size());
+	}
+	
+	public static testmethod void picklistField() {
+		if (strTestOnly != '*' && strTestOnly != 'picklistField') return;
+		
+		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+		//Creating filter condition.
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Gender__c',
+              Filter_Value__c = 'Male');
+		
+		//Creating three contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Gender__c = 'Female');
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Gender__c = 'Male');
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Gender__c = 'Female');
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Gender__c = 'Female');
+		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+		insert contacts;
+		
+		//Adding lookups among the contacts. Relationships should be automatically created from them.
+		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+    	c1.ReportsToId = c2.Id;
+    	c2.ReportsToId = c3.Id;
+    	c3.ReportsToId = c4.Id;
+    	update contacts;
+    	
+    	//Only those from c1 and c3 should have had a relationship automatically created.
+    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(2, rels.size());
+	}
+	
+	public static testmethod void lookupField() {
+		if (strTestOnly != '*' && strTestOnly != 'lookupField') return;
+		
+		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+        
+        Account acc1 = new Account(Name = 'Acc1'); 
+		Account acc2 = new Account(Name = 'Acc2'); 
+		insert new Account[] {acc1, acc2};
+		                                            
+		//Creating filter condition.
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Account',
+              Filter_Value__c = acc2.Id);
+		
+		//Creating three contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = acc1);
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Account = acc2);
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Account = acc1);
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Account = acc1);
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
