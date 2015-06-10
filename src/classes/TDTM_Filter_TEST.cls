@@ -57,7 +57,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', UniversityEmail__c = null);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', UniversityEmail__c = 'tt3@fake.edu');
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', UniversityEmail__c = 'tt4@fake.edu');
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', UniversityEmail__c = '');
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
@@ -88,7 +88,7 @@ public with sharing class TDTM_Filter_TEST {
 		//Creating three contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
-		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = 'Mary');
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
 		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
@@ -121,7 +121,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', HasOptedOutOfEmail = true);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', HasOptedOutOfEmail = false);
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', HasOptedOutOfEmail = true);
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', HasOptedOutOfEmail = null);
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
@@ -153,7 +153,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', MobilePhone = '5555-333-1111');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', MobilePhone = '5555-444-3322');
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', MobilePhone = '5555-333-1111');
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', MobilePhone = '5555-333-1111');
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', MobilePhone = null);
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
@@ -185,7 +185,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Birthdate = Date.parse('01/01/1989'));
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Birthdate = Date.parse('01/01/1990'));
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Birthdate = Date.parse('01/01/1991'));
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Birthdate = Date.parse('01/01/1992'));
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Birthdate = null);
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
@@ -217,7 +217,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Gender__c = 'Female');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Gender__c = 'Male');
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Gender__c = 'Female');
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Gender__c = 'Female');
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Gender__c = null);
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
@@ -253,7 +253,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = acc1);
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Account = acc2);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Account = acc1);
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Account = acc1);
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Account = null);
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		

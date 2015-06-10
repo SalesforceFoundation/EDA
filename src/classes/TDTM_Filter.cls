@@ -23,6 +23,11 @@ public with sharing class TDTM_Filter {
         					filtered.newList.add(o);
         				}
         			}
+        			for(SObject o : oldList) {
+        				if(o.get(filterField) != val) {
+        					filtered.oldList.add(o);
+        				}
+        			}
         		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
         			String val;
         			Object valNoCasting = classToRunRecord.get('Filter_Value__c');
@@ -31,17 +36,14 @@ public with sharing class TDTM_Filter {
         			} else {
         				UTIL_Debug.debug('****Filter value is null');
         			}
-        			UTIL_Debug.debug('****Text/email filter field with value: ' + val);
         			//filter records by condition
         			for(SObject o : newList) {
         				if(o.get(filterField) != val) {
-        					UTIL_Debug.debug('****Adding object back to new list: ' + o);
         					filtered.newList.add(o);
         				}
         			}
         			for(SObject o : oldList) {
         				if(o.get(filterField) != val) {
-        					UTIL_Debug.debug('****Adding object back to old list: ' + o);
         					filtered.oldList.add(o);
         				}
         			}
