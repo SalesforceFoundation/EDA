@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.com Foundation
+    Copyright (c) 2015, Salesforce.com Foundation
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -253,7 +253,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = acc1);
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Account = acc2);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Account = acc1);
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Account = null);
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4');
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		
