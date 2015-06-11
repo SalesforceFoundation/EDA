@@ -62,16 +62,8 @@ public with sharing class TDTM_Filter {
         			Boolean val = Boolean.valueOf(classToRunRecord.get('Filter_Value__c'));
         			UTIL_Debug.debug('****Boolean filter field with value: ' + val);
         			//filter records by condition
-        			for(SObject o : newList) {
-        				if(o.get(filterField) != val) {
-        					filtered.newList.add(o);
-        				}
-        			}
-        			for(SObject o : oldList) {
-        				if(o.get(filterField) != val) {
-        					filtered.oldList.add(o);
-        				}
-        			}
+        			filterByCondition(newList, oldList, filterField, filtered, val);
+        			
         		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
         			String val;
         			Object valNoCasting = classToRunRecord.get('Filter_Value__c');
@@ -81,16 +73,7 @@ public with sharing class TDTM_Filter {
         				UTIL_Debug.debug('****Filter value is null');
         			}
         			//filter records by condition
-        			for(SObject o : newList) {
-        				if(o.get(filterField) != val) {
-        					filtered.newList.add(o);
-        				}
-        			}
-        			for(SObject o : oldList) {
-        				if(o.get(filterField) != val) {
-        					filtered.oldList.add(o);
-        				}
-        			}
+        			filterByCondition(newList, oldList, filterField, filtered, val);
         		}
         		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         	}
@@ -98,6 +81,19 @@ public with sharing class TDTM_Filter {
     		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
     	}
     	return filtered;
+    }
+    
+    private static void filterByCondition(List<SObject> newList, List<SObject> oldList, String filterField, FilteredLists filtered, Object val) {
+    	for(SObject o : newList) {
+			if(o.get(filterField) != val) {
+				filtered.newList.add(o);
+			}
+		}
+		for(SObject o : oldList) {
+			if(o.get(filterField) != val) {
+				filtered.oldList.add(o);
+			}
+		}
     }
     
     /*******************************************************************************************************
