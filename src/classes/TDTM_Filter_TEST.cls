@@ -53,7 +53,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'UniversityEmail__c',
               Filter_Value__c = null);
 		
-		//Creating three contacts. One of them is not a student, because he doesn't have a university email.
+		//Creating four contacts. two of them are not students, because they doesn't have a university email.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', UniversityEmail__c = null);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', UniversityEmail__c = 'tt3@fake.edu');
@@ -62,7 +62,7 @@ public with sharing class TDTM_Filter_TEST {
 		insert contacts;
 		
 		//Adding lookups among the contacts. Relationships should be automatically created from them.
-		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+		//Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
@@ -85,7 +85,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'AssistantName',
               Filter_Value__c = 'Anne');
 		
-		//Creating three contacts. The second one meets the filtering criteria.
+		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
@@ -94,7 +94,7 @@ public with sharing class TDTM_Filter_TEST {
 		insert contacts;
 		
 		//Adding lookups among the contacts. Relationships should be automatically created from them.
-		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+		//Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
@@ -117,7 +117,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'HasOptedOutOfEmail',
               Filter_Value__c = 'true');
 		
-		//Creating three contacts. The second one meets the filtering criteria.
+		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', HasOptedOutOfEmail = true);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', HasOptedOutOfEmail = false);
@@ -126,7 +126,7 @@ public with sharing class TDTM_Filter_TEST {
 		insert contacts;
 		
 		//Adding lookups among the contacts. Relationships should be automatically created from them.
-		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+		//Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
@@ -149,7 +149,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'MobilePhone',
               Filter_Value__c = '5555-444-3322');
 		
-		//Creating three contacts. The second one meets the filtering criteria.
+		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', MobilePhone = '5555-333-1111');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', MobilePhone = '5555-444-3322');
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', MobilePhone = '5555-333-1111');
@@ -158,7 +158,7 @@ public with sharing class TDTM_Filter_TEST {
 		insert contacts;
 		
 		//Adding lookups among the contacts. Relationships should be automatically created from them.
-		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
+		//Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
@@ -181,7 +181,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Birthdate',
               Filter_Value__c = '01/01/1990');
 		
-		//Creating three contacts. The second one meets the filtering criteria.
+		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Birthdate = Date.parse('01/01/1989'));
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Birthdate = Date.parse('01/01/1990'));
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Birthdate = Date.parse('01/01/1991'));

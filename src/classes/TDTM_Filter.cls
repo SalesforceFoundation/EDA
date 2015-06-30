@@ -62,10 +62,14 @@ public with sharing class TDTM_Filter {
         		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email || fieldType == Schema.DisplayType.Phone) {
         			filterByCondition(newList, oldList, filterField, filtered, val);
         		} else if(fieldType == Schema.DisplayType.Boolean) {
-        			if(val == 'true')
+        			if(val == 'true') {
         				filterByCondition(newList, oldList, filterField, filtered, true);
-        			else if(val == 'false')
+        			} else if(val == 'false') {
         				filterByCondition(newList, oldList, filterField, filtered, false);
+        			}
+    			} else if(fieldType == Schema.DisplayType.Date) {
+    				Date dateVal = Date.parse(val);
+    				filterByCondition(newList, oldList, filterField, filtered, dateVal); 
     			}
         		
         		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
