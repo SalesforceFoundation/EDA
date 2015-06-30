@@ -57,24 +57,18 @@ public with sharing class TDTM_Filter {
         		//let's find the field type
         		Schema.DisplayType fieldType = field.getDescribe().getType();
         		UTIL_Debug.debug('****Filter field type: ' + fieldType);
+        		Object valNoCasting = classToRunRecord.get('Filter_Value__c');
         		
-        		if(fieldType == Schema.DisplayType.Boolean) {
-        			Boolean val = Boolean.valueOf(classToRunRecord.get('Filter_Value__c'));
-        			UTIL_Debug.debug('****Boolean filter field with value: ' + val);
-        			//filter records by condition
-        			filterByCondition(newList, oldList, filterField, filtered, val);
-        			
-        		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
-        			String val;
-        			Object valNoCasting = classToRunRecord.get('Filter_Value__c');
-        			if(valNoCasting != null) {
-        				val = String.valueOf(valNoCasting);
-        			} else {
-        				UTIL_Debug.debug('****Filter value is null');
-        			}
-        			//filter records by condition
-        			filterByCondition(newList, oldList, filterField, filtered, val);
-        		}
+        		//if(valNoCasting != null) { We don't want to do this because null might actually be the filtering value.
+	        		if(fieldType == Schema.DisplayType.Boolean) {
+	        			Boolean val = Boolean.valueOf(valNoCasting);
+	        			filterByCondition(newList, oldList, filterField, filtered, val);
+	        		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
+	        			String val = String.valueOf(valNoCasting);
+	        			filterByCondition(newList, oldList, filterField, filtered, val);
+	        		}       		
+        		//}
+        		
         		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         	}
     	} catch(Exception e) {
