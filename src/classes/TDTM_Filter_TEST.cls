@@ -121,7 +121,7 @@ public with sharing class TDTM_Filter_TEST {
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', HasOptedOutOfEmail = true);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', HasOptedOutOfEmail = false);
-		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', HasOptedOutOfEmail = null);
+		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', HasOptedOutOfEmail = false); //fyi, null cannot be inserted as the value of a checkbox field
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
 		

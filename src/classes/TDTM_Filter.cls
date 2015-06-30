@@ -57,17 +57,16 @@ public with sharing class TDTM_Filter {
         		//let's find the field type
         		Schema.DisplayType fieldType = field.getDescribe().getType();
         		UTIL_Debug.debug('****Filter field type: ' + fieldType);
-        		Object valNoCasting = classToRunRecord.get('Filter_Value__c');
-        		
-        		//if(valNoCasting != null) { We don't want to do this because null might actually be the filtering value.
-	        		if(fieldType == Schema.DisplayType.Boolean) {
-	        			Boolean val = Boolean.valueOf(valNoCasting);
-	        			filterByCondition(newList, oldList, filterField, filtered, val);
-	        		} else if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
-	        			String val = String.valueOf(valNoCasting);
-	        			filterByCondition(newList, oldList, filterField, filtered, val);
-	        		}       		
-        		//}
+        		String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
+	        		
+        		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email) {
+        			filterByCondition(newList, oldList, filterField, filtered, val);
+        		} else if(fieldType == Schema.DisplayType.Boolean) {
+        			if(val == 'true')
+        				filterByCondition(newList, oldList, filterField, filtered, true);
+        			else if(val == 'false')
+        				filterByCondition(newList, oldList, filterField, filtered, false);
+    			}
         		
         		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         	}
