@@ -59,7 +59,8 @@ public with sharing class TDTM_Filter {
         		UTIL_Debug.debug('****Filter field type: ' + fieldType);
         		String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
 	        		
-        		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email || fieldType == Schema.DisplayType.Phone) {
+        		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email 
+        		|| fieldType == Schema.DisplayType.Phone || fieldType == Schema.DisplayType.Picklist) {
         			filterByCondition(newList, oldList, filterField, filtered, val);
         		} else if(fieldType == Schema.DisplayType.Boolean) {
         			if(val == 'true') {
