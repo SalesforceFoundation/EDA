@@ -239,15 +239,20 @@ public with sharing class TDTM_Filter_TEST {
 		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
                                                     Field__c='ReportsToId', Relationship_Type__c = 'TestType');
         
+        
+		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete');
+              
         Account acc1 = new Account(Name = 'Acc1'); 
 		Account acc2 = new Account(Name = 'Acc2'); 
 		insert new Account[] {acc1, acc2};
 		                                            
 		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Account',
-              Filter_Value__c = acc2.Id);
+		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];
+		handler.Filter_Field__c = 'Account';
+        handler.Filter_Value__c = acc2.Id;
+        update handler;
 		
 		//Creating three contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = acc1);
