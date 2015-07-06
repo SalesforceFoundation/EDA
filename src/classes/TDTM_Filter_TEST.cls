@@ -213,7 +213,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Gender__c',
               Filter_Value__c = 'Male');
 		
-		//Creating three contacts. The second one meets the filtering criteria.
+		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Gender__c = 'Female');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Gender__c = 'Male');
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Gender__c = 'Female');
@@ -237,8 +237,7 @@ public with sharing class TDTM_Filter_TEST {
 		if (strTestOnly != '*' && strTestOnly != 'lookupField') return;
 		
 		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-        
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');        
         
 		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
@@ -247,20 +246,24 @@ public with sharing class TDTM_Filter_TEST {
         Account acc1 = new Account(Name = 'Acc1'); 
 		Account acc2 = new Account(Name = 'Acc2'); 
 		insert new Account[] {acc1, acc2};
-		                                            
+		UTIL_Debug.debug('****Filter value in test: ' + acc2.Id);
+		
 		//Creating filter condition.
 		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];
-		handler.Filter_Field__c = 'Account';
+		handler.Filter_Field__c = 'AccountId'; //We have to append Id because that's what's in the map of fields!
         handler.Filter_Value__c = acc2.Id;
         update handler;
 		
-		//Creating three contacts. The second one meets the filtering criteria.
-		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = acc1);
-		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Account = acc2);
-		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Account = acc1);
+		//Creating four contacts. The second one meets the filtering criteria.
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = acc1.Id);
+		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AccountId = acc2.Id);
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AccountId = acc1.Id);
 		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4');
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
+		
+		Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	System.assertEquals(0, rels.size());
 		
 		//Adding lookups among the contacts. Relationships should be automatically created from them.
 		//Using the 'ReportsTo' field because is a standard lookup field from Contact to Contact.
@@ -270,7 +273,11 @@ public with sharing class TDTM_Filter_TEST {
     	update contacts;
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
-    	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	rels = [select Contact__c, RelatedContact__c from Relationship__c];
+    	for(Relationship__c rel : rels) {
+    		UTIL_Debug.debug('****Contact: ' + rel.Contact__c);
+    		UTIL_Debug.debug('****Related contact: ' + rel.RelatedContact__c);
+    	}
     	System.assertEquals(2, rels.size());
 	}
 }

@@ -50,33 +50,43 @@ public with sharing class TDTM_Filter {
     	try {
     		String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
     		UTIL_Debug.debug('****Filter field: ' + filterField);
-        	//get field type
-        	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
-        	Schema.SObjectField field = fieldMap.get(filterField);
-        	if(field != null) { //the field name is valid!	
-        		//let's find the field type
-        		Schema.DisplayType fieldType = field.getDescribe().getType();
-        		UTIL_Debug.debug('****Filter field type: ' + fieldType);
-        		String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
+    		if(filterField != null) {
+	        	//get field type
+	        	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
+	        	UTIL_Debug.debug('****Field map: ' + fieldMap);
+	        	Schema.SObjectField field = fieldMap.get(filterField);
+	        	if(field != null) { //the field name is valid!
+	        		UTIL_Debug.debug('****New list before filtering: ' + JSON.serializePretty(newList));
+	        		//let's find the field type
+	        		Schema.DisplayType fieldType = field.getDescribe().getType();
+	        		UTIL_Debug.debug('****Filter field type: ' + fieldType);
+	        		String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
+		        		
+	        		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email 
+	        		|| fieldType == Schema.DisplayType.Phone || fieldType == Schema.DisplayType.Picklist) {
+	        			filterByCondition(newList, oldList, filterField, filtered, val);
+	        		} else if(fieldType == Schema.DisplayType.Boolean) {
+	        			if(val == 'true') {
+	        				filterByCondition(newList, oldList, filterField, filtered, true);
+	        			} else if(val == 'false') {
+	        				filterByCondition(newList, oldList, filterField, filtered, false);
+	        			}
+	    			} else if(fieldType == Schema.DisplayType.Date) {
+	    				Date dateVal = Date.parse(val);
+	    				filterByCondition(newList, oldList, filterField, filtered, dateVal);
+	    			} else if(fieldType == Schema.DisplayType.Reference) {
+	    				UTIL_Debug.debug('****Filter Id val string: '  + val);
+	    				ID idVal = ID.valueOf(val);
+	    				filterByCondition(newList, oldList, filterField, filtered, idVal);
+	    			}
 	        		
-        		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email 
-        		|| fieldType == Schema.DisplayType.Phone || fieldType == Schema.DisplayType.Picklist) {
-        			filterByCondition(newList, oldList, filterField, filtered, val);
-        		} else if(fieldType == Schema.DisplayType.Boolean) {
-        			if(val == 'true') {
-        				filterByCondition(newList, oldList, filterField, filtered, true);
-        			} else if(val == 'false') {
-        				filterByCondition(newList, oldList, filterField, filtered, false);
-        			}
-    			} else if(fieldType == Schema.DisplayType.Date) {
-    				Date dateVal = Date.parse(val);
-    				filterByCondition(newList, oldList, filterField, filtered, dateVal); 
-    			}
-        		
-        		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
-        	}
+	        		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
+	        	}
+	    	}
     	} catch(Exception e) {
     		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
+    		UTIL_Debug.debug(LoggingLevel.WARN, '****Exception: ' + e.getMessage());
+    		UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
     	}
     	return filtered;
     }
@@ -87,9 +97,11 @@ public with sharing class TDTM_Filter {
 				filtered.newList.add(o);
 			}
 		}
-		for(SObject o : oldList) {
-			if(o.get(filterField) != val) {
-				filtered.oldList.add(o);
+		if(oldList != null && oldList.size() > 0) {
+			for(SObject o : oldList) {
+				if(o.get(filterField) != val) {
+					filtered.oldList.add(o);
+				}
 			}
 		}
     }

@@ -120,9 +120,9 @@
     </fields>
     <fields>
         <fullName>Reciprocal_Method__c</fullName>
-        <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
+        <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
+        <inlineHelpText>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</inlineHelpText>
         <label>Reciprocal Method</label>
         <length>255</length>
         <required>false</required>
