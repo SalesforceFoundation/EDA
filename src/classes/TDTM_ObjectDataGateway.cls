@@ -68,8 +68,9 @@ public with sharing class TDTM_ObjectDataGateway {
         	return toRun.classesToCall;
         } else {
             List<SObject> classesToCall =  [select Asynchronous__c, Class__c, Load_Order__c, Object__c, Active__c, 
-                Trigger_Action__c from Trigger_Handler__c where Active__c = true and Object__c = :objectName and 
-                Trigger_Action__c includes ( :action.name() ) order by Load_Order__c];
+                Trigger_Action__c, Filter_Field__c, Filter_Value__c from Trigger_Handler__c 
+                where Active__c = true and Object__c = :objectName and Trigger_Action__c includes ( :action.name() ) 
+                order by Load_Order__c];
             toRun = new ToRunOnObjectAction(objectName, action, classesToCall);
             classesQueried.add(toRun);
             return classesToCall;

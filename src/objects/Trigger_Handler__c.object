@@ -87,6 +87,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Filter_Field__c</fullName>
+        <description>Name of the field used for filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the field used for filtering.</inlineHelpText>
+        <label>Filter Field</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Filter_Value__c</fullName>
+        <description>Value of the field used for filtering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Value of the field used for filtering.</inlineHelpText>
+        <label>Filter Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Load_Order__c</fullName>
         <description>Order in which this module should be run, helps maintain dependencies in the modules and data.</description>
         <externalId>false</externalId>

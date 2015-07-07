@@ -65,10 +65,10 @@ public with sharing class TDTM_TriggerHandler {
     * @return void
     */
     public void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
-    Boolean isDelete, Boolean isUnDelete, List<Sobject> newList, List<Sobject> oldList, 
-    Schema.DescribeSobjectResult describeObj, TDTM_ObjectDataGateway dao) {
+    Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
+    Schema.DescribeSObjectResult describeObj, TDTM_ObjectDataGateway dao) {
     	if(newList != null)
-    	   UTIL_Debug.debug(LoggingLevel.WARN, '****Trigger.new size: ' + newList.size());
+    	   UTIL_Debug.debug('****Trigger.new size: ' + newList.size());
     	// This solves the problem of not being able to save error records if everything gets rolled back. 
         // TDTM_TriggerHandler is taking care of saving error records if there is any error when performing 
         // DML operations. It also takes care of rolling everything back in that case, just so there are no 
@@ -92,13 +92,13 @@ public with sharing class TDTM_TriggerHandler {
 	        // Get the classes to run. Note that we are using the local object name, so it works for objects 
 	        // from Cumulus both in the package and unmanaged dev orgs.
 	        List<SObject> classesToCall = dao.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
-	        UTIL_Debug.debug(LoggingLevel.WARN, '****Classes To Call for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
+	        UTIL_Debug.debug('****Classes To Call for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
 	        
 	        if(classesToCall != null && classesToCall.size() > 0) {
 	            //Run the relevant classes
 	            for (SObject classToCall : classesToCall) {
 	                TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
-	                dmlWrapperLocal = runClass(classToCall, newList, OldList, thisAction, describeObj);
+	                dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
 	                if(dmlWrapperLocal != null) {
 	                	if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
 	                        dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
@@ -135,10 +135,10 @@ public with sharing class TDTM_TriggerHandler {
             // we don't know which object on the list caused the problem, so we just add the error to the first.
             // this should cause the ui to display one error message, rather than repeating the same error for each object.
             if (isPropogateErrorsFromTrigger) {
-                if (newlist != null && newlist.size() > 0)
-                    newlist[0].addError(e.getMessage());
-                else if (oldlist != null && oldlist.size() > 0)
-                    oldlist[0].addError(e.getMessage());
+                if (newList != null && newList.size() > 0)
+                    newList[0].addError(e.getMessage());
+                else if (oldList != null && oldList.size() > 0)
+                    oldList[0].addError(e.getMessage());
             }
             
             // but we do want our tests to fail if they encountered this error!
@@ -152,8 +152,8 @@ public with sharing class TDTM_TriggerHandler {
         }
     }
     
-    private TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<Sobject> newList, List<Sobject> oldList, 
-    TDTM_Runnable.Action thisAction, Schema.DescribeSobjectResult describeObj) {
+    private TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
     	        
         if(classToRunRecord != null) {
 	        String classToRunName = String.valueOf(classToRunRecord.get('Class__c'));
@@ -172,11 +172,19 @@ public with sharing class TDTM_TriggerHandler {
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
 			        if(async && action != 'BeforeInsert' && !System.isFuture() && !System.isBatch()) {
-			        	UTIL_Debug.debug(LoggingLevel.WARN, '****Calling asynchronously: ' + classToRunName);
+			        	UTIL_Debug.debug('****Calling asynchronously: ' + classToRunName);
 			        	runAsync(classToRun, classToRunName, newList, oldList, thisAction, describeObj);
 			        } else {
 			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
-                        return classToRun.run(newlist, oldlist, thisAction, describeObj);
+			        	
+			        	TDTM_Filter.FilteredLists filtered = TDTM_Filter.filter(classToRunRecord, newList, oldList, describeObj);
+						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(filtered.newList));
+                        
+                        if(filtered.newList.size() > 0) {
+                        	return classToRun.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                        } else {
+                        	return classToRun.run(newList, oldList, thisAction, describeObj);
+                        }
 			        }
 	        	} else {
 	        		UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
@@ -190,12 +198,12 @@ public with sharing class TDTM_TriggerHandler {
         return null;
     }
     
-    private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<Sobject> newList, 
-    List<Sobject> oldList, TDTM_Runnable.Action thisAction, Schema.DescribeSobjectResult describeObj) {
-       Map<Id,Sobject> nm = new Map<Id,Sobject>(newlist);
+    private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<SObject> newList, 
+    List<SObject> oldList, TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
+       Map<Id,SObject> nm = new Map<Id,SObject>(newList);
        
-       Map<Id,Sobject> om;
-       if(oldlist != null) om = new Map<Id,SObject>(oldlist);
+       Map<Id,SObject> om;
+       if(oldList != null) om = new Map<Id,SObject>(oldList);
        else om = new Map<Id, SObject>();
        
        classToRun.runFutureNonStatic(nm.keySet(), om.keySet(), thisAction.name(), describeObj.getName(), classToRunName);

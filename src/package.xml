@@ -29,6 +29,8 @@
     <members>STG_InstallScript</members>
     <members>STG_InstallScript_TEST</members>
     <members>TDTM_DefaultConfig</members>
+    <members>TDTM_Filter</members>
+    <members>TDTM_Filter_TEST</members>
     <members>TDTM_ObjectDataGateway</members>
     <members>TDTM_Runnable</members>
     <members>TDTM_TriggerActionHelper</members>
@@ -208,6 +210,8 @@
     <members>Trigger_Handler__c.Active__c</members>
     <members>Trigger_Handler__c.Asynchronous__c</members>
     <members>Trigger_Handler__c.Class__c</members>
+    <members>Trigger_Handler__c.Filter_Field__c</members>
+    <members>Trigger_Handler__c.Filter_Value__c</members>
     <members>Trigger_Handler__c.Load_Order__c</members>
     <members>Trigger_Handler__c.Object__c</members>
     <members>Trigger_Handler__c.Trigger_Action__c</members>
