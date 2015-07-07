@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
 	<fields>
+        <fullName>Primary_Academic_Program__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Academic Program</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Students</relationshipLabel>
+        <relationshipName>Academic_Program_Members</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+	<fields>
         <fullName>Primary_Administrative_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Primary Administrative Account</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Administrative Account)</relationshipLabel>
-        <relationshipName>Contacts</relationshipName>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>Admin_Account_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
@@ -18,7 +30,7 @@
         <externalId>false</externalId>
         <label>Primary Department</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Department)</relationshipLabel>
+        <relationshipLabel>Department Members</relationshipLabel>
         <relationshipName>Department_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -30,7 +42,7 @@
         <externalId>false</externalId>
         <label>Primary Educational Institution</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Educational Institution)</relationshipLabel>
+        <relationshipLabel>Institution Members</relationshipLabel>
         <relationshipName>Institution_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -42,8 +54,8 @@
         <externalId>false</externalId>
         <label>Primary Sports Organization</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts (Primary Sports Organization)</relationshipLabel>
-        <relationshipName>Team_Members</relationshipName>
+        <relationshipLabel>Organization Members</relationshipLabel>
+        <relationshipName>Sport_Organization_Members</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
