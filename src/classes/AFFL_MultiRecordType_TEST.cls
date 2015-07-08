@@ -235,7 +235,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	
 	@isTest
 	public static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {
-		if (strTestOnly != '*' && strTestOnly != 'makeNonPrimaryAfflPrimary') return;
+		if (strTestOnly != '*' && strTestOnly != 'makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists') return;
 		
 		setup();
 
@@ -267,6 +267,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.startTest();
 		update affl2;
 		Test.stopTest();
+		
+		//The second affiliation should be the only primary
+		List<Affiliation__c> affls = [select Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID order by Account__r.Name];
+		System.assertEquals(affls[0].Account__c, acc1.ID);
+		System.assertEquals(affls[0].Primary__c, false);
+		System.assertEquals(affls[1].Account__c, acc2.ID);
+		System.assertEquals(affls[1].Primary__c, true);
 		
 		//Verify key affl field has been updated
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];

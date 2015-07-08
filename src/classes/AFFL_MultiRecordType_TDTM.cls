@@ -186,12 +186,14 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     	if(affl.Affiliation_Type__c == null) {
 			otherPrimariesSameType = [select ID, Account__c, Primary__c from Affiliation__c 
 											where Affiliation_Type__c = null 
-											and Contact__c = :affl.Contact__c and Primary__c = true];
+											and Contact__c = :affl.Contact__c and Primary__c = true
+											and ID != :affl.ID];
     	//If the account has a record type, find any other primary affiliations of this record type for this contact.
     	} else {
 			otherPrimariesSameType = [select ID, Account__c, Primary__c from Affiliation__c 
 											where Affiliation_Type__c = :affl.Affiliation_Type__c 
-											and Contact__c = :affl.Contact__c and Primary__c = true];
+											and Contact__c = :affl.Contact__c and Primary__c = true
+											and ID != :affl.ID];
     	}
 		UTIL_Debug.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimariesSameType.size());
 		        
@@ -199,7 +201,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         for(Affiliation__c otherAffl : otherPrimariesSameType) {
     		otherAffl.Primary__c = false;
     		dmlWrapper.objectsToUpdate.add(otherAffl);
-        }        
+        }
     }
     
     private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
