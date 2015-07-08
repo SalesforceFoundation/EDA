@@ -82,7 +82,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert bizOrg1;
     	
-    	//Create abother key affiliation, this time to a biz org
+    	//Create another key affiliation, this time to a biz org
 		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false; 
 		Test.startTest();
@@ -231,6 +231,53 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		//Verify key affl field has been populated
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+	}
+	
+	@isTest
+	public static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {
+		if (strTestOnly != '*' && strTestOnly != 'makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists') return;
+		
+		setup();
+
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	//Create 2 accounts of Business Organization record type
+    	Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
+    	Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+    	insert new Account[] {acc1, acc2};
+    	
+    	//Create primary Business affiliation
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		insert affl1;
+		
+		//Verify key affl field has been populated
+    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+		
+    	//Create non-primary Business affiliation
+		Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = false);
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		insert affl2;
+		
+		//Made the second business affiliation primary
+		affl2.Primary__c = true;
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		Test.startTest();
+		update affl2;
+		Test.stopTest();
+		
+		//The second affiliation should be the only primary
+		List<Affiliation__c> affls = [select Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID order by Account__r.Name];
+		System.assertEquals(affls[0].Account__c, acc1.ID);
+		System.assertEquals(affls[0].Primary__c, false);
+		System.assertEquals(affls[1].Account__c, acc2.ID);
+		System.assertEquals(affls[1].Primary__c, true);
+		
+		//Verify key affl field has been updated
+    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
 	}
 	
 	@isTest
