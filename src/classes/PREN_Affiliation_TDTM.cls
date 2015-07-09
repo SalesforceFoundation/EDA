@@ -48,19 +48,24 @@ public with sharing class PREN_Affiliation_TDTM extends TDTM_Runnable {
     
     	DmlWrapper dmlWrapper = new DmlWrapper();
         
+        List<Affiliation__c> affls = new List<Affiliation__c>();
         if(newlist != null && newlist.size() > 0) {
-        	Integer i = 0;
 	 		for (SObject so : newlist) {
         		Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
         		
         		if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
         			//Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
-	        		if(enrollment.Student__c != null && enrollment.Affiliation__c == null) {
+	        		if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
 	        			Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
-	        			dmlWrapper.objectsToInsert.add(affl);
-	        			enrollment.Affiliation__c = affl.ID;
+	        			affls.add(affl);
 	        		}
         		}
+	 		}
+	 		//We manuall insert the affiliations first because we need the IDs, in order to link the Program Enrollments with the Affls.
+	 		insert affls;
+	 		for(Integer i = 0; i < affls.size(); i++) {
+	 			Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
+	 			enrollment.Affiliation__c = affls[i].ID;
 	 		}
         }
         return dmlWrapper;

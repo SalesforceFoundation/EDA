@@ -59,14 +59,17 @@ public with sharing class PREN_Affiliation_TEST {
     	insert acc;
     	
     	//Create Program Enrollment
-    	Test.startTest();
     	Program_Enrollment__c enrollment = new Program_Enrollment__c(Student__c = contact.ID, Program__c = acc.ID);
+    	Test.startTest();
+    	insert enrollment;
     	Test.stopTest();
     	
-    	List<Affiliation__c> affls = [select Contact__c, Account__c from Affiliation__c];
+    	//An Affiliation should have been automatically created fron the Program Enrollment
+    	List<Affiliation__c> affls = [select Contact__c, Account__c from Affiliation__c where Account__r.ID = :acc.ID];
     	System.assertEquals(1, affls.size());
     	
-    	enrollment = [select Affiliation__c from Program_Enrollment__c where ID = :enrollment.ID];
+    	//The Program Enrollment record should be related to the Affiliation just created
+    	enrollment = [select Affiliation__r.ID from Program_Enrollment__c where ID = :enrollment.ID];
     	System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
     }
 }
