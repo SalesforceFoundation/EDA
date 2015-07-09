@@ -97,9 +97,14 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CON_DoNotContact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
-		// Do Not Contact and related operations on Contact object
+		// Preferred fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_Preferred_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
+              Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+        
+        // Affiliation management on Program Enrollment record creation
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'PREN_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Program_Enrollment__c', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
               
         return handlers;
