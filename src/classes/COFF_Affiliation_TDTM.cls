@@ -31,41 +31,48 @@
 * @author Salesforce.com Foundation
 * @date 2015
 * @group Program Enrollment
-* @description Keeps Program Enrollment and Affiliation records for a Contact in sync. 
+* @description Keeps Course Offering and Affiliation records for a Contact in sync. 
 */
-public with sharing class PREN_Affiliation_TDTM extends TDTM_Runnable {
-	
+public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
+
 	/*******************************************************************************************************
-    * @description Handles Affiliation management for Program Enrollment.
+    * @description Handles Affiliation management for Course Offering.
     * @param listNew the list of Accounts from trigger new. 
     * @param listOld the list of Accounts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Program Enrollment. 
+    * @param objResult the describe for Course Offering.
     * @return dmlWrapper.  
     ********************************************************************************************************/
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
-        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
-    	DmlWrapper dmlWrapper = new DmlWrapper();
+    	DmlWrapper dmlWrapper = new DmlWrapper(); 
         
-        List<Affiliation__c> affls = new List<Affiliation__c>();
-        if(newlist != null && newlist.size() > 0) {
+        if(triggerAction == TDTM_Runnable.Action.BeforeInsert && newlist != null && newlist.size() > 0) {	
+        	List<ID> termIDs = new List<ID>();
+        	List<Course_Offering__c> offeringsWithFaculty = new List<Course_Offering__c>();
+	 		
 	 		for (SObject so : newlist) {
-        		Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
-        		
-        		if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-        			//Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
-	        		if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
-	        			Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
-	        			affls.add(affl);
-	        		}
+        		Course_Offering__c offering = (Course_Offering__c)so;
+        		if(offering.Faculty__c != null) {
+        			offeringsWithFaculty.add(offering);
+        			//Storing the IDs so we can query fields in all related Term__c records in one query.
+        			termIDs.add(offering.Term__c);
         		}
+        		
 	 		}
-	 		//We manually insert the affiliations first because we need the IDs, in order to link the Program Enrollments with the Affls.
-	 		insert affls;
-	 		for(Integer i = 0; i < affls.size(); i++) {
-	 			Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
-	 			enrollment.Affiliation__c = affls[i].ID;
+	 		//We need to explicitly query the start and end date fields in term because the data isn't there otherwise.
+	 		List<Term__c> terms = new List<Term__c>();
+	 		if(termIDs.size() > 0) {
+	 			terms = [select Start_Date__c, End_Date__c from Term__c where ID in :termIDs];
+	 		}
+	 		
+	 		for(Integer i = 0 ; i < offeringsWithFaculty.size(); i++) {
+	 			Course_Offering__c offering = offeringsWithFaculty[i];
+				//Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created.
+    			dmlWrapper.objectsToInsert.add(new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Department__c,
+    											Role__c = 'Faculty', StartDate__c = terms[i].Start_Date__c, 
+    											EndDate__c = terms[i].End_Date__c));
 	 		}
         }
         return dmlWrapper;
