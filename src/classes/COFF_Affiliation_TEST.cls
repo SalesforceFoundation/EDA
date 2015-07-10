@@ -30,11 +30,11 @@
 /**
 * @author Salesforce.com Foundation
 * @date 2015
-* @group Program Enrollment
-* @description Tests specific to Progran Enrollment. 
+* @group Course Offering
+* @description Tests specific to Course Offering. 
 */
 @isTest
-public with sharing class PREN_Affiliation_TEST {
+public with sharing class COFF_Affiliation_TEST {
 
 	/*********************************************************************************************************
     * @description if you only want to run one test in this class, fill in its name here.
@@ -43,33 +43,32 @@ public with sharing class PREN_Affiliation_TEST {
     private static string strTestOnly = '*';
     
     /*********************************************************************************************************
-    * @description Verifies that an Affiliation is automatically created when a Program Enrollment record is 
-    * manually created from a Contact.
+    * @description Verifies that an Affiliation is automatically created when a Course Offering with a value
+    * in the Faculty field is created.
     */
     @isTest
-    public static void createAfflFromProgramEnrollment() {
+    public static void createAfflFromCourseOffering() {
+    	//Create faculty member
+    	Contact faculty = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert faculty;
     	
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
+    	//Create university
+    	Account university = new Account(Name = 'Advanced University');
+    	insert university;
     	
-    	ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+    	//Create department
+    	Account dpt = new Account(Name = 'Biology Department', Parent = university);
+    	insert dpt;
     	
-    	//Craete account of Business Organization record type
-    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-    	insert acc;
+    	//Create Course
+    	Course__c course = new Course(Course_ID__c = 'Biology 101', Account__c = dpt, Credit_Hours_c = 40, 
+    	Description__c = 'Intro to Biology');
+    	insert course;
     	
-    	//Create Program Enrollment
-    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Student__c = contact.ID, Program__c = acc.ID);
-    	Test.startTest();
-    	insert enrollment;
-    	Test.stopTest();
+    	//Create Term
     	
-    	//An Affiliation should have been automatically created fron the Program Enrollment
-    	List<Affiliation__c> affls = [select Contact__c, Account__c from Affiliation__c where Account__r.ID = :acc.ID];
-    	System.assertEquals(1, affls.size());
+    	//Create Course Offering with Faculty member
     	
-    	//The Program Enrollment record should be related to the Affiliation just created
-    	enrollment = [select Affiliation__r.ID from Program_Enrollment__c where ID = :enrollment.ID];
-    	System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
+    	
     }
 }

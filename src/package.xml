@@ -13,6 +13,8 @@
     <members>AFFL_MultiRecordType_TDTM</members>
     <members>AFFL_MultiRecordType_TEST</members>
     <members>CAO_Constants</members>
+    <members>COFF_Affiliation_TDTM</members>
+    <members>COFF_Affiliation_TEST</members>
     <members>CON_DoNotContact_TDTM</members>
     <members>CON_DoNotContact_TEST</members>
     <members>CON_Preferred_TDTM</members>
@@ -52,6 +54,7 @@
     <members>TDTM_Campaign</members>
     <members>TDTM_CampaignMember</members>
     <members>TDTM_Contact</members>
+    <members>TDTM_CourseOffering</members>
     <members>TDTM_Opportunity</members>
     <members>TDTM_ProgramEnrollment</members>
     <members>TDTM_Relationship</members>
