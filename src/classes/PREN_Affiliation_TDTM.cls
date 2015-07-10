@@ -36,11 +36,11 @@
 public with sharing class PREN_Affiliation_TDTM extends TDTM_Runnable {
 	
 	/*******************************************************************************************************
-    * @description Handles Affiliation management.
+    * @description Handles Affiliation management for Program Enrollment.
     * @param listNew the list of Accounts from trigger new. 
     * @param listOld the list of Accounts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Accounts 
+    * @param objResult the describe for Program Enrollment. 
     * @return dmlWrapper.  
     ********************************************************************************************************/
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 

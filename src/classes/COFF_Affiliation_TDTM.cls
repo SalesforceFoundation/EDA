@@ -36,28 +36,43 @@
 public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
 	/*******************************************************************************************************
-    * @description Handles Affiliation management.
+    * @description Handles Affiliation management for Course Offering.
     * @param listNew the list of Accounts from trigger new. 
     * @param listOld the list of Accounts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Accounts 
+    * @param objResult the describe for Course Offering.
     * @return dmlWrapper.  
     ********************************************************************************************************/
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
-        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
-    	DmlWrapper dmlWrapper = new DmlWrapper();
+    	DmlWrapper dmlWrapper = new DmlWrapper(); 
         
-        if(newlist != null && newlist.size() > 0) {
+        if(triggerAction == TDTM_Runnable.Action.BeforeInsert && newlist != null && newlist.size() > 0) {	
+        	List<ID> termIDs = new List<ID>();
+        	List<Course_Offering__c> offeringsWithFaculty = new List<Course_Offering__c>();
+	 		
 	 		for (SObject so : newlist) {
         		Course_Offering__c offering = (Course_Offering__c)so;
-        		
-        		if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-        			//Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created.
-	        		if(offering.Faculty__c != null) {
-	        			dmlWrapper.objectsToInsert.add(new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Department__c));
-	        		}
+        		if(offering.Faculty__c != null) {
+        			offeringsWithFaculty.add(offering);
+        			//Storing the IDs so we can query fields in all related Term__c records in one query.
+        			termIDs.add(offering.Term__c);
         		}
+        		
+	 		}
+	 		//We need to explicitly query the start and end date fields in term because the data isn't there otherwise.
+	 		List<Term__c> terms = new List<Term__c>();
+	 		if(termIDs.size() > 0) {
+	 			terms = [select Start_Date__c, End_Date__c from Term__c where ID in :termIDs];
+	 		}
+	 		
+	 		for(Integer i = 0 ; i < offeringsWithFaculty.size(); i++) {
+	 			Course_Offering__c offering = offeringsWithFaculty[i];
+				//Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created.
+    			dmlWrapper.objectsToInsert.add(new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Department__c,
+    											Role__c = 'Faculty', StartDate__c = terms[i].Start_Date__c, 
+    											EndDate__c = terms[i].End_Date__c));
 	 		}
         }
         return dmlWrapper;

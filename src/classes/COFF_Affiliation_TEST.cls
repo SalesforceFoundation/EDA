@@ -61,14 +61,27 @@ public with sharing class COFF_Affiliation_TEST {
     	insert dpt;
     	
     	//Create Course
-    	Course__c course = new Course(Course_ID__c = 'Biology 101', Account__c = dpt, Credit_Hours_c = 40, 
+    	Course__c course = new Course__c(Course_ID__c = 'Biology 101', Account__c = dpt.Id, Credit_Hours__c = 40, 
     	Description__c = 'Intro to Biology');
     	insert course;
     	
     	//Create Term
+    	Term__c term = new Term__c(Account__c = university.Id, Start_Date__c = System.today() + 5, End_Date__c = System.today() + 90);
+    	insert term;
     	
     	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, Department__c = dpt.Id, 
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Test.startTest();
+    	insert offering;
+    	Test.stopTest();
     	
-    	
+    	//An Affiliation should have been automatically created fron the faculty member
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	System.assertEquals('Faculty', affls[0].Role__c);
+    	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
+    	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     }
 }

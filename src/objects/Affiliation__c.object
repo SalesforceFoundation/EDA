@@ -138,6 +138,10 @@
                 <fullName>Applicant</fullName>
                 <default>false</default>
             </picklistValues>
+             <picklistValues>
+                <fullName>Faculty</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Employee</fullName>
                 <default>false</default>
