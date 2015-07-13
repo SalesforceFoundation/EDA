@@ -48,22 +48,22 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
     	DmlWrapper dmlWrapper = new DmlWrapper(); 
         
-        List<Course_Offering__c> offeringsWithFaculty = new List<Course_Offering__c>();
+        List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
         
         for (integer i=0; i<newlist.size(); i++) {
         	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
         	
 	        if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-	        	//Course Offering has been created
+	        	//Course Offering with Faculty has been created
         		if(newOff.Faculty__c != null) {
-        			offeringsWithFaculty.add(newOff);
+        			offsWithNewFaculty.add(newOff);
         		}
 	        } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
 	        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
 	        	
 	        	//Faculty member has been added to existing Course Offering --> create Affiliation
 	        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
-	        		offeringsWithFaculty.add(newOff);
+	        		offsWithNewFaculty.add(newOff);
 	        	
 	        	///Faculty member has been removed from existing Course Offering --> delete Affiliation
 	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
@@ -72,21 +72,21 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 	        	//Faculty member has been changed --> update Affiliation
 	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
 	        		dmlWrapper.objectsToDelete.add(new Affiliation__c(ID = oldOff.Affiliation__c));
-	        		offeringsWithFaculty.add(newOff);
+	        		offsWithNewFaculty.add(newOff);
 	        	}
 	        }
         }
         
-        if(offeringsWithFaculty.size() > 0) {
-        	createAffls(offeringsWithFaculty);
+        if(offsWithNewFaculty.size() > 0) {
+        	createAffls(offsWithNewFaculty);
         }
         
         return dmlWrapper;
     }
     
-    private void createAffls(List<Course_Offering__c> offeringsWithFaculty) {
+    private void createAffls(List<Course_Offering__c> offsWithNewFaculty) {
     	List<ID> termIDs = new List<ID>();
-    	for(Course_Offering__c offering : offeringsWithFaculty) {
+    	for(Course_Offering__c offering : offsWithNewFaculty) {
     		//Storing the IDs so we can query fields in all related Term__c records in one query.
         	termIDs.add(offering.Term__c);
     	}
@@ -99,8 +99,8 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
  		
  		//Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created.
  		List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
- 		for(Integer i = 0 ; i < offeringsWithFaculty.size(); i++) {
- 			Course_Offering__c offering = offeringsWithFaculty[i];
+ 		for(Integer i = 0 ; i < offsWithNewFaculty.size(); i++) {
+ 			Course_Offering__c offering = offsWithNewFaculty[i];
 			afflsToInsert.add(new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Department__c,
 											Role__c = 'Faculty', StartDate__c = terms[i].Start_Date__c, 
 											EndDate__c = terms[i].End_Date__c));
@@ -108,8 +108,8 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
  		insert afflsToInsert;
  		
  		//Update the Course Offering Affiliation lookup.
- 		for(Integer i = 0 ; i < offeringsWithFaculty.size(); i++) {
- 			offeringsWithFaculty[i].Affiliation__c = afflsToInsert[i].ID;
+ 		for(Integer i = 0 ; i < offsWithNewFaculty.size(); i++) {
+ 			offsWithNewFaculty[i].Affiliation__c = afflsToInsert[i].ID;
  		}
     }
 }
