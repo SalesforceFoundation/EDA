@@ -174,8 +174,30 @@ public with sharing class COFF_Affiliation_TEST {
     }
     
     @isTest
-    public static void deleteFaculty() {
-    	if (strTestOnly != '*' && strTestOnly != 'deleteFaculty') return;
+    public static void facultyMadeNull() {
+    	if (strTestOnly != '*' && strTestOnly != 'facultyMadeNull') return;
     	setup();
+    	
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+    	
+    	//An Affiliation should have been automatically created for the faculty member
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	
+    	//Update Offering
+    	offering.Faculty__c = null;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+    	
+    	//The lookup to Affiliation should have been cleared.
+    	System.assertEquals(null, offering.Affiliation__c);
+    	//The affiliation should have been deleted.
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+    	System.assertEquals(0, affls.size());
     }
 }

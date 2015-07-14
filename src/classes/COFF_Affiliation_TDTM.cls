@@ -51,6 +51,7 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
         List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
         List<ID> afflsToUpdateIDs = new List<ID>();
         List<ID> updatedFacultyIDs = new List<ID>();
+        List<ID> afflsToDeleteIDs = new List<ID>();
         
         for (integer i=0; i<newlist.size(); i++) {
         	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
@@ -67,16 +68,21 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 	        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
 	        		offsWithNewFaculty.add(newOff);
 	        	
-	        	///Faculty member has been removed from existing Course Offering --> delete Affiliation
+	        	//Faculty member has been removed from existing Course Offering - 1st part--> clear Affiliation lookups
 	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
-	        		dmlWrapper.objectsToDelete.add(new Affiliation__c(ID = oldOff.Affiliation__c));
+	        		newOff.Affiliation__c = null;
 	        		
 	        	//Faculty member has been changed --> update Affiliation
 	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
-	        		//dmlWrapper.objectsToDelete.add(new Affiliation__c(ID = oldOff.Affiliation__c));
-	        		//offsWithNewFaculty.add(newOff);
 	        		afflsToUpdateIDs.add(oldOff.Affiliation__c);
 	        		updatedFacultyIDs.add(newOff.Faculty__c);
+	        	}
+	        } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+	        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+	        	
+	        	//Faculty member has been removed from existing Course Offering - 2nd part --> colect Affiliation IDs
+	        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
+	        		afflsToDeleteIDs.add(oldOff.Affiliation__c);
 	        	}
 	        }
         }
@@ -88,6 +94,10 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
         
         if(afflsToUpdateIDs.size() > 0) {
         	dmlWrapper.objectsToUpdate.addAll(updateAffiliations(afflsToUpdateIDs, updatedFacultyIDs));
+        }
+        
+        if(afflsToDeleteIDs.size() > 0) {
+        	dmlWrapper.objectsToDelete.addAll((List<SObject>)[select ID from Affiliation__c where ID in :afflsTodeleteIDs]);
         }
         
         return dmlWrapper;
