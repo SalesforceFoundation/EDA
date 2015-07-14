@@ -42,46 +42,162 @@ public with sharing class COFF_Affiliation_TEST {
     */
     private static string strTestOnly = '*';
     
+    private static Account university;
+    private static Account dpt;
+    private static Course__c course;
+    private static Term__c term;
+    private static Contact faculty;
+    
+    private static void setup() {
+    	//Create university
+    	university = new Account(Name = 'Advanced University');
+    	insert university;
+    	
+    	//Create department
+    	dpt = new Account(Name = 'Biology Department', Parent = university);
+    	insert dpt;
+    	
+    	//Create Course
+    	course = new Course__c(Course_ID__c = 'Biology 101', Account__c = dpt.Id, Credit_Hours__c = 40, 
+    	Description__c = 'Intro to Biology');
+    	insert course;
+    	
+    	//Create Term
+    	term = new Term__c(Account__c = university.Id, Start_Date__c = System.today() + 5, End_Date__c = System.today() + 90);
+    	insert term;
+    	
+    	//Create faculty member
+    	faculty = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert faculty;
+    }
+    
     /*********************************************************************************************************
     * @description Verifies that an Affiliation is automatically created when a Course Offering with a value
     * in the Faculty field is created.
     */
     @isTest
     public static void createAfflFromCourseOffering() {
-    	//Create faculty member
-    	Contact faculty = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert faculty;
-    	
-    	//Create university
-    	Account university = new Account(Name = 'Advanced University');
-    	insert university;
-    	
-    	//Create department
-    	Account dpt = new Account(Name = 'Biology Department', Parent = university);
-    	insert dpt;
-    	
-    	//Create Course
-    	Course__c course = new Course__c(Course_ID__c = 'Biology 101', Account__c = dpt.Id, Credit_Hours__c = 40, 
-    	Description__c = 'Intro to Biology');
-    	insert course;
-    	
-    	//Create Term
-    	Term__c term = new Term__c(Account__c = university.Id, Start_Date__c = System.today() + 5, End_Date__c = System.today() + 90);
-    	insert term;
-    	
+    	if (strTestOnly != '*' && strTestOnly != 'createAfflFromCourseOffering') return;
+    	setup();
+
     	//Create Course Offering with Faculty member
-    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, Department__c = dpt.Id, 
-    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	Test.startTest();
     	insert offering;
     	Test.stopTest();
     	
-    	//An Affiliation should have been automatically created fron the faculty member
+    	//An Affiliation should have been automatically created for the faculty member
     	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
     	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
+    	
+    	//The course offering should now be linked to the Affiliation
+    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
+    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
+    }
+    
+    @isTest
+    public static void addFacultyToOffering() {
+    	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOffering') return;
+    	setup();
+    	List<Affiliation__c> affls = [select ID from Affiliation__c];
+    	Integer afflsSize1 = affls.size();
+    	
+    	//Create Course Offering without Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+    	
+    	//No affiliation should have been created
+    	affls = [select ID from Affiliation__c];
+    	System.assertEquals(afflsSize1, affls.size());
+    	
+    	//Add faculty to offering
+    	offering.Faculty__c = faculty.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+    	
+    	//An Affiliation should have been automatically created for the faculty member
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	System.assertEquals('Faculty', affls[0].Role__c);
+    	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
+    	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
+    	
+    	//The course offering should now be linked to the Affiliation
+    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
+    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
+    }
+    
+    @isTest
+    public static void changeFaculty() {
+    	if (strTestOnly != '*' && strTestOnly != 'changeFaculty') return;
+    	setup();
+    	
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+    	
+    	//Create second faculty member
+    	Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert faculty2;
+    	
+    	//Update Offering
+    	offering.Faculty__c = faculty2.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+    	
+    	//The affiliation to the first faculty member should have been deleted
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(0, affls.size());
+    	
+    	//An Affiliation should have been created for the second faculty member
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty2.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	System.assertEquals('Faculty', affls[0].Role__c);
+    	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
+    	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
+    	
+    	//The course offering should now be linked to the Affiliation
+    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
+    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
+    }
+    
+    @isTest
+    public static void facultyMadeNull() {
+    	if (strTestOnly != '*' && strTestOnly != 'facultyMadeNull') return;
+    	setup();
+    	
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+    	
+    	//An Affiliation should have been automatically created for the faculty member
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	
+    	//Update Offering
+    	offering.Faculty__c = null;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+    	
+    	//The lookup to Affiliation should have been cleared.
+    	System.assertEquals(null, offering.Affiliation__c);
+    	//The affiliation should have been deleted.
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+    	System.assertEquals(0, affls.size());
     }
 }
