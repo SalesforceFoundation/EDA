@@ -86,7 +86,7 @@
         <relationshipLabel>Affiliated Accounts</relationshipLabel>
         <relationshipName>Affiliated_Accounts</relationshipName>
         <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
@@ -138,7 +138,7 @@
                 <fullName>Applicant</fullName>
                 <default>false</default>
             </picklistValues>
-             <picklistValues>
+            <picklistValues>
                 <fullName>Faculty</fullName>
                 <default>false</default>
             </picklistValues>

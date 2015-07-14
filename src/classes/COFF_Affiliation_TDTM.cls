@@ -49,6 +49,8 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
     	DmlWrapper dmlWrapper = new DmlWrapper(); 
         
         List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
+        List<ID> afflsToUpdateIDs = new List<ID>();
+        List<ID> updatedFacultyIDs = new List<ID>();
         
         for (integer i=0; i<newlist.size(); i++) {
         	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
@@ -71,14 +73,21 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 	        		
 	        	//Faculty member has been changed --> update Affiliation
 	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
-	        		dmlWrapper.objectsToDelete.add(new Affiliation__c(ID = oldOff.Affiliation__c));
-	        		offsWithNewFaculty.add(newOff);
+	        		//dmlWrapper.objectsToDelete.add(new Affiliation__c(ID = oldOff.Affiliation__c));
+	        		//offsWithNewFaculty.add(newOff);
+	        		afflsToUpdateIDs.add(oldOff.Affiliation__c);
+	        		updatedFacultyIDs.add(newOff.Faculty__c);
 	        	}
 	        }
         }
         
         if(offsWithNewFaculty.size() > 0) {
+        	//We cannot add the new records to the DmlWrapper because we need to update the Course Offering records with the Affiliations just created.
         	createAffls(offsWithNewFaculty);
+        }
+        
+        if(afflsToUpdateIDs.size() > 0) {
+        	dmlWrapper.objectsToUpdate.addAll(updateAffiliations(afflsToUpdateIDs, updatedFacultyIDs));
         }
         
         return dmlWrapper;
@@ -111,5 +120,16 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
  		for(Integer i = 0 ; i < offsWithNewFaculty.size(); i++) {
  			offsWithNewFaculty[i].Affiliation__c = afflsToInsert[i].ID;
  		}
+    }
+    
+    private List<SObject> updateAffiliations(List<ID> afflsToUpdateIDs, List<ID> updatedFacultyIDs) {
+    	List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where ID in :afflsToUpdateIDs];
+    	Map<ID, Affiliation__c> afflsWithContactMap = new Map<ID, Affiliation__c>(afflsWithContact);
+    	//We have to make sure we are updating the correct Affiliations.
+    	for(Integer i = 0; i < afflsToUpdateIDs.size() ; i++) {
+    		Affiliation__c afflWithContact = afflsWithContactMap.get(afflsToUpdateIDs[i]);
+    		afflWithContact.Contact__c = updatedFacultyIDs[i];
+    	}
+    	return afflsWithContact;
     }
 }

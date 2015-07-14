@@ -139,6 +139,38 @@ public with sharing class COFF_Affiliation_TEST {
     public static void changeFaculty() {
     	if (strTestOnly != '*' && strTestOnly != 'changeFaculty') return;
     	setup();
+    	
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+    	
+    	//Create second faculty member
+    	Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert faculty2;
+    	
+    	//Update Offering
+    	offering.Faculty__c = faculty2.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+    	
+    	//The affiliation to the first faculty member should have been deleted
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(0, affls.size());
+    	
+    	//An Affiliation should have been created for the second faculty member
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty2.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	System.assertEquals('Faculty', affls[0].Role__c);
+    	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
+    	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
+    	
+    	//The course offering should now be linked to the Affiliation
+    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
+    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
     }
     
     @isTest
