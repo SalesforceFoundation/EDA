@@ -106,14 +106,7 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
  		List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
  		for(Integer i = 0 ; i < offsWithNewFaculty.size(); i++) {
  			Course_Offering__c offering = offsWithNewFaculty[i];
- 			List<Affiliation__c> facultyMemberAffls = facultyIDtoAffls.get(offering.Faculty__c);
- 			Boolean afflToDptExists = false;
- 			for(Affiliation__c affl : facultyMemberAffls) {
- 				if(affl.Account__c == offering.Department__c) {
- 					afflToDptExists = true;
- 					break;
- 				}
- 			}
+ 			Boolean afflToDptExists = afflToDptExists(offering, facultyIDtoAffls);
  			if(!afflToDptExists) {
 				afflsToInsert.add(new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Department__c,
 												Role__c = 'Faculty', StartDate__c = terms[i].Start_Date__c, 
@@ -149,25 +142,41 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
        return terms;
     }
     
-    private Map<ID, List<Affiliation__c>> getAfflsForContact(List<ID> newFacultyIDs) {
+    public Map<ID, List<Affiliation__c>> getAfflsForContact(List<ID> newFacultyIDs) {
     	//Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
         List<Affiliation__c> affls = [select Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs order by Contact__c];
-        //Set initial values, to compare against
-        Affiliation__c affl = affls[0];
-        ID contactID = affls[0].Contact__c;
-        List<Affiliation__c> facultyAffls = new Affiliation__c[] {affl};
-        facultyIDtoAffls.put(contactID, facultyAffls);
-        //Iterate through the other values
-        for(Integer i = 1; i < affls.size(); i++) { 
-            if(affls[i].Contact__c != contactID) {
-                facultyAffls = new List<Affiliation__c>();
-                facultyIDtoAffls.put(affls[i].Contact__c, facultyAffls);
-            } else {
-                facultyAffls.add(affls[i]);
-            }
-            contactID = affls[i].Contact__c;
+        if(affls.size() > 0) {
+	        //Set initial values, to compare against
+	        Affiliation__c affl = affls[0];
+	        ID contactID = affls[0].Contact__c;
+	        List<Affiliation__c> facultyAffls = new Affiliation__c[] {affl};
+	        facultyIDtoAffls.put(contactID, facultyAffls);
+	        //Iterate through the other values
+	        for(Integer i = 1; i < affls.size(); i++) { 
+	            if(affls[i].Contact__c != contactID) {
+	                facultyAffls = new List<Affiliation__c>();
+	                facultyIDtoAffls.put(affls[i].Contact__c, facultyAffls);
+	            } else {
+	                facultyAffls.add(affls[i]);
+	            }
+	            contactID = affls[i].Contact__c;
+	        }
         }
         return facultyIDtoAffls;
+    }
+    
+    public Boolean afflToDptExists(Course_Offering__c offering, Map<ID, List<Affiliation__c>> facultyIDtoAffls) {
+    	List<Affiliation__c> facultyMemberAffls = facultyIDtoAffls.get(offering.Faculty__c);
+        Boolean afflToDptExists = false;
+        if(facultyMemberAffls != null && facultyMemberAffls.size() > 0) {
+            for(Affiliation__c affl : facultyMemberAffls) {
+                if(affl.Account__c == offering.Department__c) {
+                    afflToDptExists = true;
+                    break;
+                }
+            }
+        }
+        return afflToDptExists;
     }
 }

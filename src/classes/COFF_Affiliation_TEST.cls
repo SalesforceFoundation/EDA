@@ -142,6 +142,11 @@ public with sharing class COFF_Affiliation_TEST {
     public static void addFacultyToOfferingPrevAffl() {
     	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOfferingPrevAffl') return;
     	setup();
+    	
+    	//Create affiliation from faculty member to dpt
+    	Affiliation__c affl = new Affiliation__c(Account__c = dpt.ID, Contact__c = faculty.ID);
+    	insert affl;
+    	
     	List<Affiliation__c> affls = [select ID from Affiliation__c];
     	Integer afflsSize1 = affls.size();
     	
@@ -224,5 +229,57 @@ public with sharing class COFF_Affiliation_TEST {
     	//The affiliation should have been deleted. - not anymore...
     	//affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
     	//System.assertEquals(0, affls.size());
+    }
+    
+    @isTest
+    public static void getAfflsForContact() {
+    	if (strTestOnly != '*' && strTestOnly != 'getAfflsForContact') return;
+    	setup();
+    	
+    	Contact faculty1 = new Contact(FirstName = 'Test', LastName = 'Testerson1');
+    	Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson2');
+    	Contact faculty3 = new Contact(FirstName = 'Test', LastName = 'Testerson3');
+    	Contact faculty4 = new Contact(FirstName = 'Test', LastName = 'Testerson4');
+    	insert new Contact[]{faculty1, faculty2, faculty3, faculty4};
+    	
+    	Account dpt1 = new Account(Name = 'English Department', Parent = university);
+    	Account dpt2 = new Account(Name = 'CS Department', Parent = university);
+    	Account dpt3 = new Account(Name = 'Math Department', Parent = university);
+    	Account dpt4 = new Account(Name = 'Law Department', Parent = university);
+    	insert new Account[]{dpt1, dpt2, dpt3, dpt4};
+    	
+    	Affiliation__c aff1 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt1.ID);
+    	Affiliation__c aff2 = new Affiliation__c(Contact__c = faculty4.ID, Account__c = dpt1.ID);
+    	Affiliation__c aff3 = new Affiliation__c(Contact__c = faculty2.ID, Account__c = dpt2.ID);
+    	Affiliation__c aff4 = new Affiliation__c(Contact__c = faculty4.ID, Account__c = dpt3.ID);
+    	Affiliation__c aff5 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt2.ID);
+    	Affiliation__c aff6 = new Affiliation__c(Contact__c = faculty3.ID, Account__c = dpt1.ID);
+    	Affiliation__c aff7 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt4.ID);
+    	Affiliation__c aff8 = new Affiliation__c(Contact__c = faculty2.ID, Account__c = dpt3.ID);
+    	insert new Affiliation__c[]{aff1, aff2, aff3, aff4, aff5, aff6, aff7, aff8};
+    	
+    	COFF_Affiliation_TDTM tdtm = new COFF_Affiliation_TDTM();
+    	Map<ID, List<Affiliation__c>> facultyIDtoAffls = tdtm.getAfflsForContact(new ID[]{faculty1.ID, faculty2.ID, faculty3.ID, faculty4.ID});
+    	
+    	Set<Affiliation__c> faculty1Affls = new Set<Affiliation__c>(facultyIDtoAffls.get(faculty1.ID));
+    	Set<Affiliation__c> faculty2Affls = new Set<Affiliation__c>(facultyIDtoAffls.get(faculty2.ID));
+    	Set<Affiliation__c> faculty3Affls = new Set<Affiliation__c>(facultyIDtoAffls.get(faculty3.ID));
+    	Set<Affiliation__c> faculty4Affls = new Set<Affiliation__c>(facultyIDtoAffls.get(faculty4.ID));
+    	System.assertEquals(true, faculty1Affls.contains(aff1));
+    	System.assertEquals(true, faculty1Affls.contains(aff5));
+    	System.assertEquals(true, faculty1Affls.contains(aff7));
+    	System.assertEquals(true, faculty2Affls.contains(aff3));
+    	System.assertEquals(true, faculty2Affls.contains(aff8));
+    	System.assertEquals(true, faculty3Affls.contains(aff6));
+    	System.assertEquals(true, faculty4Affls.contains(aff2));
+    	System.assertEquals(true, faculty4Affls.contains(aff4));
+    	
+    	//Create Course Offering with Faculty member
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+        Department__c = dpt3.Id, Faculty__c = faculty2.Id, Term__c = term.Id, Capacity__c = 200);
+        insert offering;
+        
+    	Boolean afflToDptExists = tdtm.afflToDptExists(offering, facultyIDtoAffls);
+    	System.assertEquals(true, afflToDptExists);
     }
 }
