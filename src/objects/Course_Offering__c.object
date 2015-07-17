@@ -55,20 +55,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Affiliation__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Contact-Account relationship that represents the Faculty member teaching this course offering.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The Contact-Account relationship that represents the Faculty member teaching this course offering.</inlineHelpText>
-        <label>Affiliation</label>
-        <referenceTo>Affiliation__c</referenceTo>
-        <relationshipLabel>Course Offerings</relationshipLabel>
-        <relationshipName>Course_Offering</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Capacity__c</fullName>
         <externalId>false</externalId>
         <label>Capacity</label>

@@ -72,8 +72,9 @@ public with sharing class COFF_Affiliation_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Verifies that an Affiliation is automatically created when a Course Offering with a value
-    * in the Faculty field is created.
+    * @description Verifies that an Affiliation to the Department is automatically created when a Course Offering 
+    * with a value in the Faculty field is created and that Contact did not already have an Affiliation to that
+    * Department.
     */
     @isTest
     public static void createAfflFromCourseOffering() {
@@ -95,14 +96,19 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
-    	//The course offering should now be linked to the Affiliation
-    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
-    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
+    	//If a new Course Offering is created under the same Department and is taught by the same Faculty member, no additional
+    	//Affiliation should be created.
+    	Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-101 Summer 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering2;
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
     }
     
     @isTest
-    public static void addFacultyToOffering() {
-    	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOffering') return;
+    public static void addFacultyToOfferingNoPrevAffl() {
+    	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOfferingNoPrevAffl') return;
     	setup();
     	List<Affiliation__c> affls = [select ID from Affiliation__c];
     	Integer afflsSize1 = affls.size();
@@ -122,17 +128,41 @@ public with sharing class COFF_Affiliation_TEST {
     	update offering;
     	Test.stopTest();
     	
-    	//An Affiliation should have been automatically created for the faculty member
+    	//An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Deparment 
+    	//alreadt existed.
     	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
     	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
+    }
+    
+    @isTest
+    public static void addFacultyToOfferingPrevAffl() {
+    	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOfferingPrevAffl') return;
+    	setup();
+    	List<Affiliation__c> affls = [select ID from Affiliation__c];
+    	Integer afflsSize1 = affls.size();
     	
-    	//The course offering should now be linked to the Affiliation
-    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
-    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
+    	//Create Course Offering without Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+    	Department__c = dpt.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+    	
+    	//No affiliation should have been created
+    	affls = [select ID from Affiliation__c];
+    	System.assertEquals(afflsSize1, affls.size());
+    	
+    	//Add faculty to offering
+    	offering.Faculty__c = faculty.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+    	
+    	//Still no Affl should have been created.
+    	affls = [select ID from Affiliation__c];
+    	System.assertEquals(afflsSize1, affls.size());
     }
     
     @isTest
@@ -155,22 +185,19 @@ public with sharing class COFF_Affiliation_TEST {
     	update offering;
     	Test.stopTest();
     	
-    	//The affiliation to the first faculty member should have been deleted
-    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
-    	System.assertEquals(0, affls.size());
+    	//The affiliation to the first faculty member should have been deleted - not really... should the date be changed? what
+    	//if the affl was created because of something else?
+    	//List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	//where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	//System.assertEquals(0, affls.size());
     	
     	//An Affiliation should have been created for the second faculty member
-    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
     	where Contact__r.Id = :faculty2.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
-    	
-    	//The course offering should now be linked to the Affiliation
-    	offering = [select Affiliation__c from Course_Offering__c where ID = :offering.ID];
-    	System.assertEquals(affls[0].ID, offering.Affiliation__c);
     }
     
     @isTest
@@ -194,10 +221,8 @@ public with sharing class COFF_Affiliation_TEST {
     	update offering;
     	Test.stopTest();
     	
-    	//The lookup to Affiliation should have been cleared.
-    	System.assertEquals(null, offering.Affiliation__c);
-    	//The affiliation should have been deleted.
-    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
-    	System.assertEquals(0, affls.size());
+    	//The affiliation should have been deleted. - not anymore...
+    	//affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+    	//System.assertEquals(0, affls.size());
     }
 }
