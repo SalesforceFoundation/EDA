@@ -49,9 +49,12 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
     	DmlWrapper dmlWrapper = new DmlWrapper(); 
         
         List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
+        
         List<ID> newFacultyIDs = new List<ID>();
-        List<ID> afflsToUpdateIDs = new List<ID>();
         List<ID> updatedFacultyIDs = new List<ID>();
+        List<ID> removedFacultyIDs = new List<ID>();
+        
+        List<ID> afflsToUpdateIDs = new List<ID>();
         List<ID> afflsToDeleteIDs = new List<ID>();
         
         List<Course_Enrollment__c> courseEnrllsToInsert = new List<Course_Enrollment__c>();
@@ -62,57 +65,63 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
         	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
         	
 	        if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-		        	//Course Offering with Faculty has been created 
-		        	//   --> create Affl if no other Affl to Dpt exists
-		        	//   --> create Course Enrollment
-	        		if(newOff.Faculty__c != null) {
-	        			newFacultyIDs.add(newOff.Faculty__c);
-	        			offsWithNewFaculty.add(newOff);
-	        			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
-	        			                                                    Course_Offering__c = newOff.Id));
-	        		}
+	        	//Course Offering with Faculty has been created 
+	        	//   --> create Affl if no other Affl to Dpt exists
+	        	//   --> create Course Enrollment
+	    		if(newOff.Faculty__c != null) {
+	    		    UTIL_Debug.debug('****Course Offering with Faculty has been created');
+	    			newFacultyIDs.add(newOff.Faculty__c);
+	    			offsWithNewFaculty.add(newOff);
+	    			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
+	    			                                                    Course_Offering__c = newOff.Id));
+	    		}
 	        } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-				    Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
-	        	
-		        	//Faculty member has been added to existing Course Offering 
-		        	//   --> create Affl if no other Affl to Dpt exists
-		        	//   --> create Course Enrollment
-		        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
-		        	    newFacultyIDs.add(newOff.Faculty__c);
-		        		offsWithNewFaculty.add(newOff);
-		        		courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
-		        		                                                    Course_Offering__c = newOff.Id));
-		        		
-		        	//Faculty member has been changed 
-		        	//   --> update Affiliation to Dpt
-		        	//   --> update Course Enrollment
-		        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
-		        		afflsToUpdateIDs.add(oldOff.Affiliation__c);
-		        		updatedFacultyIDs.add(newOff.Faculty__c);
-		        		//courseEnrllsToUpdate.add();
-		        	}
+			    Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+        	   UTIL_Debug.debug('****Old Affl ID in BeforeUpdate:' + oldOff.Affiliation__c);
+	        	//Faculty member has been added to existing Course Offering 
+	        	//   --> create Affl if no other Affl to Dpt exists
+	        	//   --> create Course Enrollment
+	        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
+	        	    UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
+	        	    newFacultyIDs.add(newOff.Faculty__c);
+	        		offsWithNewFaculty.add(newOff);
+	        		courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
+	        		                                                    Course_Offering__c = newOff.Id));
+	        		
+	        	//Faculty member has been changed 
+	        	//   --> update Affiliation to Dpt
+	        	//   --> update Course Enrollment
+	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
+	        		UTIL_Debug.debug('****Faculty member has been changed');
+	        		afflsToUpdateIDs.add(oldOff.Affiliation__c);
+	        		updatedFacultyIDs.add(newOff.Faculty__c);
+	        		//courseEnrllsToUpdate.add();
+	        	}
 	        } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-		        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
-		        	
-		        	//Faculty member has been removed from existing Course Offering 
-		        	//   --> what do we do with the Affiliation?
-		        	//   --> delete Course Enrollment
-		        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
-						//???
-						//courseEnrllsToDelete.add();
-		        	}
+	        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+	        	
+	        	//Faculty member has been removed from existing Course Offering 
+	        	//   --> delete related Affiliation
+	        	//   --> delete Course Enrollment
+	        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
+	        	    UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
+					UTIL_Debug.debug('****Old Affl ID in AfterUpdate:' + oldOff.Affiliation__c);
+					afflsToDeleteIDs.add(oldOff.Affiliation__c);
+					removedFacultyIDs.add(oldOff.Faculty__c);
+					//courseEnrllsToDelete.add();
+	        	}
 	        }
         }
         
-        if(offsWithNewFaculty.size() > 0) {
+        if(newFacultyIDs.size() > 0) {
         	   dmlWrapper.objectsToInsert.addAll(createAffls(offsWithNewFaculty, newFacultyIDs));
                dmlWrapper.objectsToInsert.addAll((List<SObject>)courseEnrllsToInsert);
         }   
-        if(afflsToUpdateIDs.size() > 0) {
+        if(updatedFacultyIDs.size() > 0) {
         	   dmlWrapper.objectsToUpdate.addAll(updateAffiliations(afflsToUpdateIDs, updatedFacultyIDs));
         	   dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseEnrllsToUpdate); 
         }
-        if(afflsToDeleteIDs.size() > 0) {
+        if(removedFacultyIDs.size() > 0) {
         	   dmlWrapper.objectsToDelete.addAll((List<SObject>)[select ID from Affiliation__c where ID in :afflsTodeleteIDs]);
         	   dmlWrapper.objectsToDelete.addAll((List<SObject>)courseEnrllsToDelete);
         }
@@ -142,29 +151,32 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
     }
     
     private List<SObject> updateAffiliations(List<ID> afflsToUpdateIDs, List<ID> updatedFacultyIDs) {
-	    	List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where ID in :afflsToUpdateIDs];
-	    	Map<ID, Affiliation__c> afflsWithContactMap = new Map<ID, Affiliation__c>(afflsWithContact);
-	    	//We have to make sure we are updating the correct Affiliations.
-	    	for(Integer i = 0; i < afflsToUpdateIDs.size() ; i++) {
-	    		Affiliation__c afflWithContact = afflsWithContactMap.get(afflsToUpdateIDs[i]);
-	    		afflWithContact.Contact__c = updatedFacultyIDs[i];
-	    	}
-	    	return afflsWithContact;
+        UTIL_Debug.debug('****Number of afflsToUpdateIDs: ' + afflsToUpdateIDs.size());
+        UTIL_Debug.debug('****Number of updatedFacultyIDs: ' + updatedFacultyIDs.size());
+    	List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where ID in :afflsToUpdateIDs];
+    	UTIL_Debug.debug('****Number of afflsWithContact: ' + afflsWithContact.size());
+    	Map<ID, Affiliation__c> afflsWithContactMap = new Map<ID, Affiliation__c>(afflsWithContact);
+    	//We have to make sure we are updating the correct Affiliations.
+    	for(Integer i = 0; i < afflsToUpdateIDs.size() ; i++) {
+    		Affiliation__c afflWithContact = afflsWithContactMap.get(afflsToUpdateIDs[i]);
+    		afflWithContact.Contact__c = updatedFacultyIDs[i];
+    	}
+    	return afflsWithContact;
     }
     
     private List<Term__c> queryTermDates(List<Course_Offering__c> offsWithNewFaculty) {
-    	   List<ID> termIDs = new List<ID>();
-       for(Course_Offering__c offering : offsWithNewFaculty) {
+        List<ID> termIDs = new List<ID>();
+        for(Course_Offering__c offering : offsWithNewFaculty) {
             //Storing the IDs so we can query fields in all related Term__c records in one query.
             termIDs.add(offering.Term__c);
-       }
+        }
     
-       //We need to explicitly query the start and end date fields in term because the data isn't there otherwise.
-       List<Term__c> terms = new List<Term__c>();
-       if(termIDs.size() > 0) {
+        //We need to explicitly query the start and end date fields in term because the data isn't there otherwise.
+        List<Term__c> terms = new List<Term__c>();
+        if(termIDs.size() > 0) {
             terms = [select Start_Date__c, End_Date__c from Term__c where ID in :termIDs];
-       }
-       return terms;
+        }
+        return terms;
     }
     
     public Map<ID, List<Affiliation__c>> getAfflsForContact(List<ID> newFacultyIDs) {
