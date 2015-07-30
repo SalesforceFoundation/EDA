@@ -279,9 +279,9 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
     
    /*******************************************************************************************************
     * @description Determins whether an Affiliation to the Department the Course Offering belongs to already
-    * exists for each faculty member.
+    * exists for each faculty member. Public only so it can be called from the tests.
     ********************************************************************************************************/
-    private Boolean afflToDptExists(Course_Offering__c offering, Map<ID, List<Affiliation__c>> facultyIDtoAffls) {
+    public Boolean afflToDptExists(Course_Offering__c offering, Map<ID, List<Affiliation__c>> facultyIDtoAffls) {
     	List<Affiliation__c> facultyMemberAffls = facultyIDtoAffls.get(offering.Faculty__c);
         Boolean afflToDptExists = false;
         if(facultyMemberAffls != null && facultyMemberAffls.size() > 0) {
