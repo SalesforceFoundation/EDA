@@ -40,7 +40,7 @@ public with sharing class COFF_Affiliation_TEST {
     * @description if you only want to run one test in this class, fill in its name here.
     * if you want to run all tests, then use '*'
     */
-    private static string strTestOnly = 'facultyMadeNull';
+    private static string strTestOnly = '*';
     
     private static Account university;
     private static Account dpt;
@@ -97,9 +97,11 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c from Course_Enrollment__c 
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
+        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
     	
     	//If a new Course Offering is created under the same Department and is taught by the same Faculty member, no additional
     	//Affiliation should be created.
@@ -143,9 +145,11 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c from Course_Enrollment__c 
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
+        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
     }
     
     @isTest
@@ -180,9 +184,11 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(afflsSize1, affls.size());
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c from Course_Enrollment__c 
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
+        //The Course Enrollment should not be linked to the Affiliation that already existed (and wasn't automatically created)
+        System.assertEquals(null, enrolls[0].Affiliation__c);
     }
     
     @isTest
@@ -199,6 +205,11 @@ public with sharing class COFF_Affiliation_TEST {
         List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
         where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
+        
+        //A Course Enrollment should have been automatically created
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
+        System.assertEquals(1, enrolls.size());
     	
     	//Create second faculty member
     	Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -218,10 +229,18 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
-    	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c from Course_Enrollment__c 
+    	//The Course Enrollment of the old Faculty member should have been deleted
+    	enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+    	System.assertEquals(0, enrolls.size());
+    	
+    	//A Course Enrollment should have been automatically created for the new Faculty
+        List<Course_Enrollment__c> newEnrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where Contact__r.Id = :faculty2.Id];
-        System.assertEquals(1, enrolls.size());
+        System.assertEquals(1, newEnrolls.size());
+        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].ID, newEnrolls[0].Affiliation__c);
+        
+        
     }
     
     @isTest
@@ -240,7 +259,7 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(1, affls.size());
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Affiliation__c, Course_Offering__c from Course_Enrollment__c 
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
@@ -277,9 +296,11 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(1, affls.size());
         
         //A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c from Course_Enrollment__c 
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
+        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
         
         Test.startTest();
         delete offering;
