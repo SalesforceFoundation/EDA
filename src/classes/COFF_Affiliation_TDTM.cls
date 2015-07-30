@@ -62,49 +62,69 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
         List<Course_Enrollment__c> courseEnrllsToUpdate = new List<Course_Enrollment__c>();
         List<Course_Enrollment__c> courseEnrllsToDelete = new List<Course_Enrollment__c>();
         
-        for (integer i=0; i<newlist.size(); i++) {
-        	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
-        	
-	        if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-	        	//Course Offering with Faculty has been created 
-	        	//   --> create Affl if no other Affl to Dpt exists
-	        	//   --> create Course Enrollment
-	    		if(newOff.Faculty__c != null) {
-	    		    UTIL_Debug.debug('****Course Offering with Faculty has been created');
-	    			newFacultyIDs.add(newOff.Faculty__c);
-	    			offsWithNewFaculty.add(newOff);
-	    			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
-	    			                                                    Course_Offering__c = newOff.Id));
-	    		}
-	        } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-			    Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
-	        	//Faculty member has been added to existing Course Offering 
-	        	//   --> create Affl if no other Affl to Dpt exists
-	        	//   --> create Course Enrollment
-	        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
-	        	    UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
-	        	    newFacultyIDs.add(newOff.Faculty__c);
-	        		offsWithNewFaculty.add(newOff);
-	        		courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
-	        		                                                    Course_Offering__c = newOff.Id));
-	        		
-	        	//Faculty member has been changed 
-	        	//   --> update Affiliation to Dpt to point it to the new Faculty
-	        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
-	        		UTIL_Debug.debug('****Faculty member has been changed');
-	        		outdatedFacultyIDs.add(oldOff.Faculty__c);
-	        		updatedFacultyIDs.add(newOff.Faculty__c);
-	        	}
-	        } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-	        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+        if(newlist != null) {
+	        for (integer i=0; i<newlist.size(); i++) {
+	        	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
 	        	
-	        	//Faculty member has been removed from existing Course Offering 
-	        	//   --> delete related Affiliation
-	        	//   --> delete Course Enrollment
-	        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
-	        	    UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
-					removedFacultyIDs.add(oldOff.Faculty__c);
-	        	}
+		        if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+		        	//Course Offering with Faculty has been created 
+		        	//   --> create Affl if no other Affl to Dpt exists
+		        	//   --> create Course Enrollment
+		    		if(newOff.Faculty__c != null) {
+		    		    UTIL_Debug.debug('****Course Offering with Faculty has been created');
+		    			newFacultyIDs.add(newOff.Faculty__c);
+		    			offsWithNewFaculty.add(newOff);
+		    			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
+		    			                                                    Course_Offering__c = newOff.Id));
+		    		}
+		        } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+				    Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+		        	
+		        	//Faculty member has been added to existing Course Offering 
+		        	//   --> create Affl if no other Affl to Dpt exists
+		        	//   --> create Course Enrollment
+		        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
+		        	    UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
+		        	    newFacultyIDs.add(newOff.Faculty__c);
+		        		offsWithNewFaculty.add(newOff);
+		        		courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
+		        		                                                    Course_Offering__c = newOff.Id));
+		        		
+		        	//Faculty member has been changed 
+		        	//   --> update Affiliation to Dpt to point it to the new Faculty
+		        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
+		        		UTIL_Debug.debug('****Faculty member has been changed');
+		        		outdatedFacultyIDs.add(oldOff.Faculty__c);
+		        		updatedFacultyIDs.add(newOff.Faculty__c);
+		        	}
+		        } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+		        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+		        	
+		        	//Faculty member has been removed from existing Course Offering 
+		        	//   --> delete related Affiliation
+		        	//   --> delete Course Enrollment
+		        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
+		        	    UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
+						removedFacultyIDs.add(oldOff.Faculty__c);
+		        	}
+		        }
+	        }
+        }
+        
+        if(oldlist != null) {
+	        for (integer i=0; i<oldlist.size(); i++) {
+	            Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+	            
+	            if(triggerAction == TDTM_Runnable.Action.AfterDelete) {             
+	                UTIL_Debug.debug('****Deleted Course Offering: ' + JSON.serializePretty(oldOff));
+	                //Course Offering has been deleted
+	                //     --> delete related Affiliation, if the faculty field had a value
+	                //     --> delete the Course Enrollment, if the faculty field had a value
+	                if(oldOff.Faculty__c != null) {
+	                    UTIL_Debug.debug('****Course Offering with faculty has been deleted');
+	                    removedFacultyIDs.add(oldOff.Faculty__c);
+	                }
+	            }
 	        }
         }
         
