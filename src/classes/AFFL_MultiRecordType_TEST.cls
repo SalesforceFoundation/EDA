@@ -72,13 +72,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Verify the primary household field was populated
     	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
     	
-    	//Verify key houehold affiliation has been automatically created
+    	//Verify key household affiliation has been automatically created
     	List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Household Account', affls[0].Affiliation_Type__c);
     	System.assertEquals(contact.Account.ID, affls[0].Account__c);
     	
-    	//Craete account of Business Organization record type
+    	//Create account of Business Organization record type
     	Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
     	insert bizOrg1;
     	
