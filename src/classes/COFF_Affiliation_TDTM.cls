@@ -78,7 +78,6 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 	    		}
 	        } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
 			    Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
-        	   UTIL_Debug.debug('****Old Affl ID in BeforeUpdate:' + oldOff.Affiliation__c);
 	        	//Faculty member has been added to existing Course Offering 
 	        	//   --> create Affl if no other Affl to Dpt exists
 	        	//   --> create Course Enrollment
@@ -104,10 +103,7 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
 	        	//   --> delete Course Enrollment
 	        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
 	        	    UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
-					UTIL_Debug.debug('****Old Affl ID in AfterUpdate:' + oldOff.Affiliation__c);
-					afflsToDeleteIDs.add(oldOff.Affiliation__c);
 					removedFacultyIDs.add(oldOff.Faculty__c);
-					//courseEnrllsToDelete.add();
 	        	}
 	        }
         }
@@ -121,8 +117,7 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
         	   updateEnrollments(outdatedFacultyIDs, updatedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
         }
         if(removedFacultyIDs.size() > 0) {
-        	   dmlWrapper.objectsToDelete.addAll((List<SObject>)[select ID from Affiliation__c where ID in :afflsTodeleteIDs]);
-        	   dmlWrapper.objectsToDelete.addAll((List<SObject>)courseEnrllsToDelete);
+               deleteAfflsEnrolls(removedFacultyIDs, dmlWrapper);
         }
         return dmlWrapper;
     }
@@ -195,6 +190,20 @@ public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
         }
         dmlWrapper.objectsToDelete.addAll((List<SObject>)oldEnrolls);
         dmlWrapper.objectsToInsert.addAll((List<SObject>)newEnrolls);
+    }
+    
+    /** 
+     * Delete the Affiliations that had been automatically created from the faculty Course Enrollments. Also delete the 
+     * Course Enrollments themselves.
+     */
+    private void deleteAfflsEnrolls(List<ID> removedFacultyIDs, DmlWrapper dmlWrapper) {
+        List<Course_Enrollment__c> oldEnrolls = [select ID, Affiliation__c from Course_Enrollment__c where Contact__c in :removedFacultyIDs];
+        List<ID> afflsToDeleteIDs = new List<ID>();
+        for(Course_Enrollment__c enroll : oldEnrolls) {
+            afflsToDeleteIDs.add(enroll.Affiliation__c);
+        }
+        dmlWrapper.objectsToDelete.addAll((List<SObject>)[select ID from Affiliation__c where ID in :afflsToDeleteIDs]);
+        dmlWrapper.objectsToDelete.addAll((List<SObject>)oldEnrolls);
     }
     
     private List<Term__c> queryTermDates(List<Course_Offering__c> offsWithNewFaculty) {
