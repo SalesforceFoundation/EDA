@@ -154,4 +154,13 @@ public with sharing class CON_PrimaryAffls_TEST {
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals(false, affls[0].Primary__c);
     }
+    
+    @isTest
+    public static void invalidFieldName() {
+        if (strTestOnly != '*' && strTestOnly != 'invalidFieldName') return;
+        
+        setup();
+        
+        
+    }
 }

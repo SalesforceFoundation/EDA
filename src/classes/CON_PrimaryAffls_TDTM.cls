@@ -48,14 +48,65 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         DmlWrapper dmlWrapper = new DmlWrapper();
         
+        List<Affiliation__c> afflsToInsert = new List<Affiliation__c>(); 
+        
         //Get the primary affiliation fields defined in the Affiliation Mappings
         List<String> primaryAfflFields = getPrimaryAfflFields();
         
-        for (integer i=0; i<newlist.size();i++) {
-            Contact con = (Contact)newlist[i];
-            
+        if(newlist != null) {
+            for (integer i=0; i<newlist.size(); i++) {
+                Contact newContact = (Contact)newlist[i];
+                
+                if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                    
+                    //If the Contact has been created with one of the Key Affiliation fields populated 
+                    //  --> Create a matching primary Affiliation for the Contact
+                    for(Integer i = 0; i < primaryAfflFields.size(); i++) {
+                        try {
+		                    if(newContact.get(primaryAfflFields[i]) != null) {
+		                        Affiliation__c affl = new Affiliation__c(Contact__c = newContact.ID, 
+		                                                      Account__c = newContact.get(primaryAfflFields[i]), Primary__c = true);
+		                    }
+                        } catch(Exception e) {
+                            newContact.addError('Field ' + primaryAfflFields[i] + ' does not exist in Contact. Please review the Affiliation Mappings settings.');
+                        }
+                    }
+                    
+                } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                    Course_Offering__c oldContact = (Course_Offering__c)oldlist[i];
+                    
+                    for(Integer i = 0; i < primaryAfflFields.size(); i++) {
+	                    try {
+		                    //If any Key Affiliation field has been set
+		                    //  --> Create a matching primary Affiliation for the Contact
+		                    if(newContact.get(primaryAfflFields[i]) != null && oldContact.get(primaryAfflFields[i]) == null) {
+		                        
+		                    }
+		                    
+		                    //If any Key Affiliation field has been changed to point to another Account
+		                    //  --> Make the old Affiliations non-primary
+		                    //  --> Create new primary Affiliations
+		                    if(newContact.get(primaryAfflFields[i]) != null && newContact.get(primaryAfflFields[i]) != oldContact.get(primaryAfflFields[i])) {
+                                
+                            }
+		                    
+		                    //If any Key Affiliation field has been cleared
+		                    //  --> Make the matching Affiliation non-primary
+	                        if(newContact.get(primaryAfflFields[i]) == null && oldContact.get(primaryAfflFields[i]) != null) {
+                                
+                            }
+                            
+	                    } catch(Exception e) {
+                            newContact.addError('Field ' + primaryAfflFields[i] + ' does not exist in Contact. Please review the Affiliation Mappings settings.');
+                        }
+                    }
+                }
+            }
         }
         
+        if(afflsToInsert.size() > 0) {
+            dmlWrapper.objectsToInsert.addAll(afflsToInsert);
+        }
         return dmlWrapper;
     }
     
