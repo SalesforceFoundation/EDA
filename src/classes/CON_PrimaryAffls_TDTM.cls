@@ -48,7 +48,9 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         DmlWrapper dmlWrapper = new DmlWrapper();
         
-        List<Affiliation__c> afflsToInsert = new List<Affiliation__c>(); 
+        List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
+        //Map of Contact ID to list of Account IDs that represent key Affl fields that have been cleared.
+        Map<ID, List<ID>> deletedContactAccsMap = new Map<ID, List<ID>>();
         
         //Get the primary affiliation fields defined in the Affiliation Mappings
         //List<String> afflMapper.primaryAfflFieldNames = getafflMapper.primaryAfflFieldNames();
@@ -66,9 +68,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                         try {
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
 		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, 
-		                        Account__c = accID, Primary__c = true));
-		                                                      
+		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?                            
 		                    }
                         } catch(Exception e) {
                             UTIL_Debug.debug('****Exception message: ' + e.getMessage());
@@ -86,13 +86,12 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //  --> Create a matching primary Affiliation for the Contact
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
 		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, 
-                                Account__c = accID, Primary__c = true));
+		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status? 
 		                    }
 		                    
 		                    //If any Key Affiliation field has been changed to point to another Account
 		                    //  --> Make the old Affiliations non-primary
-		                    //  --> Create new primary Affiliations, if no other to that Account exists. Otherwise make existing ones primary.
+		                    //  --> If an Affiliation to that Account exists, make it primary (what if more than 1 exists?). Create it if non exists.
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
                                 
                             }
@@ -100,7 +99,12 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
 	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
-                                
+                                List<ID> accIDs = deletedContactAccMap.get(newContact.ID);
+                                if(accIDs == null) {
+                                    accIDs = new List<ID>();
+                                }
+                                accIDs.add(oldContact.get(afflMapper.primaryAfflFieldNames[j]));
+                                deletedContactAccMap.put(newContact.ID, accIDs);
                             }
                             
 	                    } catch(Exception e) {
@@ -114,6 +118,16 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         if(afflsToInsert.size() > 0) {
             UTIL_Debug.debug('****Inserting ' + afflsToInsert.size() + ' affiliations.');
             dmlWrapper.objectsToInsert.addAll((List<SObject>)afflsToInsert);
+        }
+        if(deletedContactAccMap.size() > 0) {
+            for(ID contactID : deletedContactAccMap.keys()) {
+                clearedKeyAffls = deletedContactAccMap.get(contactID);
+                for(ID accID : clearedKeyAffls) {
+                    //Find all affiliations from this contact to this account --> NOT HERE, it needs to be bulk!!!
+                    
+                    //If one exists, make it non-primary
+                }
+            }
         }
         return dmlWrapper;
     }
