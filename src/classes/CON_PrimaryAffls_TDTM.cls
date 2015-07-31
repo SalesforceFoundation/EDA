@@ -51,53 +51,60 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         List<Affiliation__c> afflsToInsert = new List<Affiliation__c>(); 
         
         //Get the primary affiliation fields defined in the Affiliation Mappings
-        List<String> primaryAfflFields = getPrimaryAfflFields();
+        //List<String> afflMapper.primaryAfflFieldNames = getafflMapper.primaryAfflFieldNames();
+        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper(); 
         
         if(newlist != null) {
             for (integer i=0; i<newlist.size(); i++) {
                 Contact newContact = (Contact)newlist[i];
                 
-                if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
                     
                     //If the Contact has been created with one of the Key Affiliation fields populated 
                     //  --> Create a matching primary Affiliation for the Contact
-                    for(Integer i = 0; i < primaryAfflFields.size(); i++) {
+                    for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                         try {
-		                    if(newContact.get(primaryAfflFields[i]) != null) {
-		                        Affiliation__c affl = new Affiliation__c(Contact__c = newContact.ID, 
-		                                                      Account__c = newContact.get(primaryAfflFields[i]), Primary__c = true);
+		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
+		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, 
+		                        Account__c = accID, Primary__c = true));
+		                                                      
 		                    }
                         } catch(Exception e) {
-                            newContact.addError('Field ' + primaryAfflFields[i] + ' does not exist in Contact. Please review the Affiliation Mappings settings.');
+                            UTIL_Debug.debug('****Exception message: ' + e.getMessage());
+                            UTIL_Debug.debug('****Stack trace: \n' + e.getStackTraceString());
+                            //newContact.addError(e.getMessage());
                         }
                     }
                     
                 } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    Course_Offering__c oldContact = (Course_Offering__c)oldlist[i];
+                    Contact oldContact = (Contact)oldlist[i];
                     
-                    for(Integer i = 0; i < primaryAfflFields.size(); i++) {
+                    for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
 	                    try {
 		                    //If any Key Affiliation field has been set
 		                    //  --> Create a matching primary Affiliation for the Contact
-		                    if(newContact.get(primaryAfflFields[i]) != null && oldContact.get(primaryAfflFields[i]) == null) {
-		                        
+		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
+		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
+		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, 
+                                Account__c = accID, Primary__c = true));
 		                    }
 		                    
 		                    //If any Key Affiliation field has been changed to point to another Account
 		                    //  --> Make the old Affiliations non-primary
-		                    //  --> Create new primary Affiliations
-		                    if(newContact.get(primaryAfflFields[i]) != null && newContact.get(primaryAfflFields[i]) != oldContact.get(primaryAfflFields[i])) {
+		                    //  --> Create new primary Affiliations, if no other to that Account exists. Otherwise make existing ones primary.
+		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
                                 
                             }
 		                    
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
-	                        if(newContact.get(primaryAfflFields[i]) == null && oldContact.get(primaryAfflFields[i]) != null) {
+	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
                                 
                             }
                             
 	                    } catch(Exception e) {
-                            newContact.addError('Field ' + primaryAfflFields[i] + ' does not exist in Contact. Please review the Affiliation Mappings settings.');
+                            newContact.addError('Field ' + afflMapper.primaryAfflFieldNames[j] + ' does not exist in Contact. Please review the Affiliation Mappings settings.');
                         }
                     }
                 }
@@ -105,19 +112,20 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         }
         
         if(afflsToInsert.size() > 0) {
-            dmlWrapper.objectsToInsert.addAll(afflsToInsert);
+            UTIL_Debug.debug('****Inserting ' + afflsToInsert.size() + ' affiliations.');
+            dmlWrapper.objectsToInsert.addAll((List<SObject>)afflsToInsert);
         }
         return dmlWrapper;
     }
     
-    private List<String> getPrimaryAfflFields() {
+    /*private List<String> getafflMapper.primaryAfflFieldNames() {
         List<Affl_Mappings__c> mappings = [select Primary_Affl_Field__c from Affl_Mappings__c];
-        List<String> primaryAfflFields = new List<String>();
+        List<String> afflMapper.primaryAfflFieldNames = new List<String>();
         for(Affl_Mappings__c mapping : mappings) {
             if(mapping.Primary_Affl_Field__c != null) {
-                primaryAfflFields.add(mapping.Primary_Affl_Field__c);
+                afflMapper.primaryAfflFieldNames.add(mapping.Primary_Affl_Field__c);
             }
         }
-        return primaryAfflFields;
-    }
+        return afflMapper.primaryAfflFieldNames;
+    }*/
 }

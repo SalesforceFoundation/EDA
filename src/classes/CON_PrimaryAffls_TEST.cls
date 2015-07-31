@@ -38,8 +38,8 @@ public with sharing class CON_PrimaryAffls_TEST {
         Test.stopTest();
         
         //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals(true, affls[0].Primary__c);
@@ -61,7 +61,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         
         //No business affiliation should have been created
         List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         
         //Set primary affl field
@@ -70,8 +70,8 @@ public with sharing class CON_PrimaryAffls_TEST {
         Test.startTest();
         
         //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+        affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals(true, affls[0].Primary__c);
@@ -92,8 +92,8 @@ public with sharing class CON_PrimaryAffls_TEST {
         insert contact;
         
         //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         Affiliation__c affl1 = affls[0];
         System.assertEquals('Business Organization', affl1.Affiliation_Type__c);
@@ -110,15 +110,15 @@ public with sharing class CON_PrimaryAffls_TEST {
         Test.stopTest();
         
         //Verify previous Affiliation has been made non-primary
-        affl1 = [select Primary__c from Affiliation__c where ID = : affl1];
+        affl1 = [select Primary__c from Affiliation__c where ID = : affl1.ID];
         System.assertEquals(false, affl1.Primary__c);
         
         //Verify new Affiliation has been created and made primary
-        affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+        affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
-        System.assertEquals(true, affl[0].Primary__c);
+        System.assertEquals(true, affls[0].Primary__c);
     }
     
     @isTest
@@ -137,7 +137,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         
         //Verify key business affiliation has been automatically created
         List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         
@@ -148,8 +148,8 @@ public with sharing class CON_PrimaryAffls_TEST {
         Test.stopTest();
         
         //Verify key business affiliation has been changed to non-primary
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :contact.Primary_Organization__r.ID];
+        affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
+                                        and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals(false, affls[0].Primary__c);
@@ -159,8 +159,29 @@ public with sharing class CON_PrimaryAffls_TEST {
     public static void invalidFieldName() {
         if (strTestOnly != '*' && strTestOnly != 'invalidFieldName') return;
         
-        setup();
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR, 
+                                                                                Automatic_Affiliation_Creation_Turned_On__c = true));
+                
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', 
+                                            Primary_Affl_Field__c = 'Primary Invalid Field'));  
+        insert mappings;
         
+        orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
         
+        //Create account of Business Organization record type
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert bizOrg1;
+        
+        //Create contact with value in Primary Business Organization field
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID);
+        Test.startTest();
+        insert contact;
+        Test.stopTest();
+        
+        //Verify no key business affiliation has been automatically created
+        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
+                                        and Account__c = :bizOrg1.ID];
+        System.assertEquals(0, affls.size());
     }
 }
