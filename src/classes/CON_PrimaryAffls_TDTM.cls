@@ -73,7 +73,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                         } catch(Exception e) {
                             UTIL_Debug.debug('****Exception message: ' + e.getMessage());
                             UTIL_Debug.debug('****Stack trace: \n' + e.getStackTraceString());
-                            //newContact.addError(e.getMessage());
+                            newContact.addError(e.getMessage());
                         }
                     }
                     
@@ -117,15 +117,4 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         }
         return dmlWrapper;
     }
-    
-    /*private List<String> getafflMapper.primaryAfflFieldNames() {
-        List<Affl_Mappings__c> mappings = [select Primary_Affl_Field__c from Affl_Mappings__c];
-        List<String> afflMapper.primaryAfflFieldNames = new List<String>();
-        for(Affl_Mappings__c mapping : mappings) {
-            if(mapping.Primary_Affl_Field__c != null) {
-                afflMapper.primaryAfflFieldNames.add(mapping.Primary_Affl_Field__c);
-            }
-        }
-        return afflMapper.primaryAfflFieldNames;
-    }*/
 }

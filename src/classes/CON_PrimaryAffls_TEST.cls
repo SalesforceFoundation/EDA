@@ -62,12 +62,13 @@ public with sharing class CON_PrimaryAffls_TEST {
         //No business affiliation should have been created
         List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
                                         and Account__c = :bizOrg1.ID];
-        System.assertEquals(1, affls.size());
+        System.assertEquals(0, affls.size());
         
         //Set primary affl field
-        Test.startTest();
         contact.Primary_Organization__c = bizOrg1.ID;
         Test.startTest();
+        update contact;
+        Test.stopTest();
         
         //Verify key business affiliation has been automatically created
         affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
