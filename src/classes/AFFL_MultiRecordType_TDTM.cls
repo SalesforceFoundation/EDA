@@ -77,7 +77,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            //BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for 
 		            //affls of the same type.
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-		            	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
+		            	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper); //TODO --> this needs to be bulkified! We are doing the query inside a loop!
 		            }
 
 		            // AFTER UPDATE
