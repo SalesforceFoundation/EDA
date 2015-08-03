@@ -49,10 +49,9 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
         
         List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
-        //Map of Contact ID to list of Account IDs that represent key Affl fields that have been cleared.
-        Map<ID, List<ID>> deletedContactAccsMap = new Map<ID, List<ID>>();
-        //Map of Contact ID to Acc ID that is new primary. All other Affls of the same type for each Contact need to be made non-primary.
-        Map<ID, ID> contactIdPrimaryAccIdMap = new Map<ID, ID>();
+        //Map of Contact ID to list of Account IDs that represent key Affl fields that have been cleared or modified. 
+        //The old Affls need to be made non-primary.
+        Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
         
         //Get the primary affiliation fields defined in the Affiliation Mappings
         AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper(); 
@@ -63,11 +62,12 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                 
                 if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
                     
-                    //If the Contact has been created with one of the Key Affiliation fields populated 
+                    //If the Contact has been created with one of the Key Affiliation fields populated
                     //  --> Create a matching primary Affiliation for the Contact
                     for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                         try {
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+		                        UTIL_Debug.debug('****Contact has been created with one of the Key Affiliation fields populated');
 		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
 		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?                            
 		                    }
@@ -85,34 +85,50 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 	                    try {
 		                    //If any Key Affiliation field has been set
 		                    //  --> Create a matching primary Affiliation for the Contact
-		                    //  --> If another Affiliation to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
+		                    //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
+		                        UTIL_Debug.debug('****Key Affiliation field has been set');
 		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
 		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status? 
 		                    }
 		                    
 		                    //If any Key Affiliation field has been changed to point to another Account
-		                    //  --> Create new Affiliation (even if another one exists to the same Account - used should have made existing one primary if that was his intention)
-		                    //  --> Make the old Affiliations non-primary
-		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
-                                ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-                                afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status? 
-                                contactIdPrimaryAccIdMap.put(newContact.ID, accID);
+		                    //  --> Create new Affiliation (even if another one exists to the same Account - used should have made existing one primary if that 
+		                    //                              was his intention)
+		                    //  --> Make the old Affiliation non-primary. But this is AFFL_MultiRecordType_TDTM's responsibility.
+		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
+		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
+		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
+                                ID newAccID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
+                                if(newAccID != null) {
+                                    afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = newAccID, Primary__c = true)); //Role and Status? 
+                                }
+                                List<ID> accIDs = changedConToAccsMap.get(newContact.ID);
+                                if(accIDs == null) {
+                                    accIDs = new List<ID>();
+                                }
+                                accIDs.add((ID)oldContact.get(afflMapper.primaryAfflFieldNames[j]));
+                                UTIL_Debug.debug('****Adding contact ' + newContact.ID + ' and list of accs to map: ' + JSON.serializePretty(accIDs));
+                                changedConToAccsMap.put(newContact.ID, accIDs);
                             }
 		                    
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
 	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
-                                List<ID> accIDs = deletedContactAccsMap.get(newContact.ID);
+                                UTIL_Debug.debug('****Key Affiliation field has been cleared');
+                                List<ID> accIDs = changedConToAccsMap.get(newContact.ID);
                                 if(accIDs == null) {
                                     accIDs = new List<ID>();
                                 }
                                 accIDs.add((ID)oldContact.get(afflMapper.primaryAfflFieldNames[j]));
-                                deletedContactAccsMap.put(newContact.ID, accIDs);
+                                UTIL_Debug.debug('****Adding contact ' + newContact.ID + ' and list of accs to map: ' + JSON.serializePretty(accIDs));
+                                changedConToAccsMap.put(newContact.ID, accIDs);
                             }
                             
 	                    } catch(Exception e) {
-                            newContact.addError('Field ' + afflMapper.primaryAfflFieldNames[j] + ' does not exist in Contact. Please review the Affiliation Mappings settings.');
+                            UTIL_Debug.debug('****Exception message: ' + e.getMessage());
+                            UTIL_Debug.debug('****Stack trace: \n' + e.getStackTraceString());
+                            newContact.addError(e.getMessage());
                         }
                     }
                 }
@@ -123,21 +139,27 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             UTIL_Debug.debug('****Inserting ' + afflsToInsert.size() + ' affiliations.');
             dmlWrapper.objectsToInsert.addAll((List<SObject>)afflsToInsert);
         }
-        if(deletedContactAccsMap.size() > 0) {
-            for(ID contactID : deletedContactAccsMap.keySet()) {
-                List<ID> clearedKeyAfflsAccIDs = deletedContactAccsMap.get(contactID);
-                for(ID accID : clearedKeyAfflsAccIDs) {
-                    //Find primary affiliation from this contact to this account --> NOT HERE, it needs to be bulk!!!
-                    
-                    //If one exists, make it non-primary
+
+        if(changedConToAccsMap.size() > 0) {
+            //Find all the affiliations to make non-primary. 
+            List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
+            //Initially we get all possible matches.
+            List<Affiliation__c> afflsAll = [select Contact__c, Account__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
+            UTIL_Debug.debug('****All possible affls to make non-primary: ' + JSON.serializePretty(afflsAll));
+            //Then we refine the search
+            for(Affiliation__c affl : afflsAll) {
+                List<ID> contactAccIDs = changedConToAccsMap.get(affl.Contact__c);
+                for(ID changedAccID : contactAccIDs) {
+	                if(affl.Account__c == changedAccID) {
+	                    affl.Primary__c = false;
+	                    UTIL_Debug.debug('****Making affl ' + affl.ID + ' non-primary.');
+	                    afflsToMakeNonPrimary.add(affl);
+	                }
                 }
             }
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)afflsToMakeNonPrimary);
         }
-        if(contactIdPrimaryAccIdMap.size() > 0) {
-            //Find all the affiliations and make them non-primary
-            List<Affiliation__c> afflsToMakeNonPrimary = [select Primary__c from Affiliation__c where Contact__c in :contactIdPrimaryAccIdMap.keySet() 
-                                                            and Account__c in :contactIdPrimaryAccIdMap.values()];
-        }
+        
         return dmlWrapper;
     }
 }
