@@ -36,6 +36,9 @@
 */
 public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     
+    //Get the primary affiliation fields defined in the Affiliation Mappings
+    private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+     
     /*******************************************************************************************************
     * @description Handles primary affiliation fields.
     * @param listNew the list of Accounts from trigger new. 
@@ -52,9 +55,6 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         //Map of Contact ID to list of Account IDs that represent key Affl fields that have been cleared or modified. 
         //The old Affls need to be made non-primary.
         Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
-        
-        //Get the primary affiliation fields defined in the Affiliation Mappings
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper(); 
         
         if(newlist != null) {
             for (integer i=0; i<newlist.size(); i++) {
@@ -103,14 +103,14 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                                 ID newAccID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
                                 if(newAccID != null)
                                     afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = newAccID, Primary__c = true)); //Role and Status? 
-                                populateConToAccsMap();
+                                populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
 		                    
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
 	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
                                 UTIL_Debug.debug('****Key Affiliation field has been cleared');
-                                populateConToAccsMap();
+                                populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
                             
 	                    } catch(Exception e) {
@@ -151,7 +151,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         return dmlWrapper;
     }
     
-    private static void populateConToAccsMap() {
+    private static void populateConToAccsMap(Contact newContact, Contact oldContact, Map<ID, List<ID>> changedConToAccsMap, Integer j) {
         List<ID> accIDs = changedConToAccsMap.get(newContact.ID);
         if(accIDs == null) {
             accIDs = new List<ID>();
