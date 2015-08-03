@@ -116,7 +116,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         
         //Verify new Affiliation has been created and made primary
         affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID 
-                                        and Account__c = :bizOrg1.ID];
+                                        and Account__c = :bizOrg2.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals(true, affls[0].Primary__c);
