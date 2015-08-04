@@ -54,6 +54,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
 		 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+		 List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
 		 
 		 if(!afflMultiHasRunBefore) {
 		                  
@@ -77,7 +78,10 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            //BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for 
 		            //affls of the same type.
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-		            	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper); //TODO --> this needs to be bulkified! We are doing the query inside a loop!
+		                if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
+		            	    afflsMadePrimary.add(affl);
+		            	    populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
+		                }
 		            }
 
 		            // AFTER UPDATE
@@ -93,10 +97,16 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                //If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
 		                //an any other primary affiliation of the same type needs to be made non-primary.
 		                if (affl.Primary__c && !afflOld.Primary__c) {
-		                	uncheckOtherPrimariesPopulateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
+		                    if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
+		                        afflsMadePrimary.add(affl);
+                                populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
+		                    }
 		                }
-		            }      
+		            }
 		        	i++;
+		    	 }
+		    	 if(afflsMadePrimary.size() > 0) {
+		    	     uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
 		    	 }
 			 }
 
@@ -165,43 +175,48 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		return relatedContactsMap;
     }
     
-    private void uncheckOtherPrimariesPopulateKeyAffls(Affiliation__c affl, String lookupFieldName, Contact relatedContact, DmlWrapper dmlWrapper) {
-
-        if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
-            uncheckOtherPrimariesSameType(affl, dmlWrapper);
-            
-            //If we have a mapping, populate the lookup field defined in the mapping. 
-            if(!String.isBlank(lookupFieldName)) {
-            	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
-				relatedContact.put(lookupFieldName, affl.Account__c);
-                dmlWrapper.objectsToUpdate.add(relatedContact); 
-            }
+    private void populateKeyAffls(Affiliation__c affl, String lookupFieldName, Contact relatedContact, DmlWrapper dmlWrapper) {
+        
+        //If we have a mapping, populate the lookup field defined in the mapping. 
+        if(!String.isBlank(lookupFieldName)) {
+        	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
+			relatedContact.put(lookupFieldName, affl.Account__c);
+            dmlWrapper.objectsToUpdate.add(relatedContact); 
         }
     }
     
-    private void uncheckOtherPrimariesSameType(Affiliation__c affl, DmlWrapper dmlWrapper) {
-    	List<Affiliation__c> otherPrimariesSameType;
-		            	
-    	//If the account doesn't have a record type, find any other primary affiliations with no record type for this contact.
-    	if(affl.Affiliation_Type__c == null) {
-			otherPrimariesSameType = [select ID, Account__c, Primary__c from Affiliation__c 
-											where Affiliation_Type__c = null 
-											and Contact__c = :affl.Contact__c and Primary__c = true
-											and ID != :affl.ID];
-    	//If the account has a record type, find any other primary affiliations of this record type for this contact.
-    	} else {
-			otherPrimariesSameType = [select ID, Account__c, Primary__c from Affiliation__c 
-											where Affiliation_Type__c = :affl.Affiliation_Type__c 
-											and Contact__c = :affl.Contact__c and Primary__c = true
-											and ID != :affl.ID];
-    	}
-		UTIL_Debug.debug('****MRT: Number of existing primary affiliations with the same record type: ' + otherPrimariesSameType.size());
-		        
+    private void uncheckOtherPrimariesSameType(List<Affiliation__c> affls, DmlWrapper dmlWrapper) {
+    	Set<ID> newPrimaryAffls = new Set<ID>();
+    	Set<ID> afflContactIDs = new Set<ID>();
+    	Set<String> afflTypes = new Set<String>();
+		List<Affiliation__c> oldPrimaryAffls = new List<Affiliation__c>();
+		
+		for(Affiliation__c affl : affls) {
+		    newPrimaryAffls.add(affl.ID);
+		    afflContactIDs.add(affl.Contact__c);
+		    afflTypes.add(affl.Affiliation_Type__c);
+		}
+		
+		//Get all possible matches
+		List<Affiliation__c> otherPrimaryAffls = [select ID, Contact__c, Account__c, Affiliation_Type__c, Primary__c 
+		      from Affiliation__c where Affiliation_Type__c in :afflTypes and Contact__c in :afflContactIDs 
+		      and Primary__c = true and ID not in :newPrimaryAffls];
+		//Refine the result
+		for(Affiliation__c otherPrimaryAffl : otherPrimaryAffls) {
+		    //Any pre-existing Affl with the same Contact and the same Type as any new Affl should be added to oldPrimaryAffls
+		    for(Affiliation__c newAffl : affls) {
+		        if(otherPrimaryAffl.Contact__c == newAffl.Contact__c && otherPrimaryAffl.Affiliation_Type__c == newAffl.Affiliation_Type__c) {
+		            oldPrimaryAffls.add(otherPrimaryAffl);
+		            break;
+		        }
+		    }
+		}
+		
         //If the newly created affiliation is the primary, uncheck other primary affiliations of the same type.
-        for(Affiliation__c otherAffl : otherPrimariesSameType) {
-    		otherAffl.Primary__c = false;
-    		dmlWrapper.objectsToUpdate.add(otherAffl);
+        for(Affiliation__c otherAffl : oldPrimaryAffls) {
+    		otherAffl.Primary__c = false;	
         }
+        dmlWrapper.objectsToUpdate.addAll((List<SObject>)oldPrimaryAffls);
     }
     
     private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
