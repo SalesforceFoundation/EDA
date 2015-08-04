@@ -75,8 +75,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                         try {
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
 		                        UTIL_Debug.debug('****Contact has been created with one of the Key Affiliation fields populated');
-		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?                            
+		                        createAfflFromLookup(newContact, j, afflsToInsert);                           
 		                    }
                         } catch(Exception e) {
                             UTIL_Debug.debug('****Exception message: ' + e.getMessage());
@@ -96,8 +95,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
 		                        UTIL_Debug.debug('****Key Affiliation field has been set');
-		                        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-		                        afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status? 
+		                        createAfflFromLookup(newContact, j, afflsToInsert); 
 		                    }
 		                    
 		                    //If any Key Affiliation field has been changed to point to another Account
@@ -108,9 +106,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
 		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
 		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
-                                ID newAccID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-                                if(newAccID != null)
-                                    afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = newAccID, Primary__c = true)); //Role and Status? 
+                                createAfflFromLookup(newContact, j, afflsToInsert);
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
 		                    
@@ -138,26 +134,36 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         }
 
         if(changedConToAccsMap.size() > 0) {
-            //Find all the affiliations to make non-primary. 
-            List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
-            //Initially we get all possible matches.
-            List<Affiliation__c> afflsAll = [select Contact__c, Account__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
-            UTIL_Debug.debug('****All possible affls to make non-primary: ' + JSON.serializePretty(afflsAll));
-            //Then we refine the search
-            for(Affiliation__c affl : afflsAll) {
-                List<ID> contactAccIDs = changedConToAccsMap.get(affl.Contact__c);
-                for(ID changedAccID : contactAccIDs) {
-	                if(affl.Account__c == changedAccID) {
-	                    affl.Primary__c = false;
-	                    UTIL_Debug.debug('****Making affl ' + affl.ID + ' non-primary.');
-	                    afflsToMakeNonPrimary.add(affl);
-	                }
-                }
-            }
-            dmlWrapper.objectsToUpdate.addAll((List<SObject>)afflsToMakeNonPrimary);
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)makeOtherAfflsNotPrimary(changedConToAccsMap));
         }
         
         return dmlWrapper;
+    }
+    
+    private void createAfflFromLookup(Contact newContact, Integer j, List<Affiliation__c> afflsToInsert) {
+        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
+        if(accID != null)
+          afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
+    }
+    
+    private List<Affiliation__c> makeOtherAfflsNotPrimary(Map<ID, List<ID>> changedConToAccsMap) {
+        //Find all the affiliations to make non-primary. 
+        List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
+        //Initially we get all possible matches.
+        List<Affiliation__c> afflsAll = [select Contact__c, Account__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
+        UTIL_Debug.debug('****All possible affls to make non-primary: ' + JSON.serializePretty(afflsAll));
+        //Then we refine the search
+        for(Affiliation__c affl : afflsAll) {
+            List<ID> contactAccIDs = changedConToAccsMap.get(affl.Contact__c);
+            for(ID changedAccID : contactAccIDs) {
+                if(affl.Account__c == changedAccID) {
+                    affl.Primary__c = false;
+                    UTIL_Debug.debug('****Making affl ' + affl.ID + ' non-primary.');
+                    afflsToMakeNonPrimary.add(affl);
+                }
+            }
+        }
+        return afflsToMakeNonPrimary;
     }
     
     private static void populateConToAccsMap(Contact newContact, Contact oldContact, Map<ID, List<ID>> changedConToAccsMap, Integer j) {
