@@ -56,9 +56,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 		 
 		 if(!afflMultiHasRunBefore) {
-
-             CON_PrimaryAffls_TDTM.doesNotNeedToRun = true;
-             
+		                  
 			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 			 Map<ID, Contact> relatedContactsMap;
 			 if(newlist != null) {
