@@ -105,7 +105,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 	}
 	
 	/*******************************************************************************************************
-    * @description Returns those fields from the provided list that are in the provided list of lables. 
+    * @description Returns those fields from the provided list that are in the provided list of labels. 
     * @param cf List of fields.
     * @param primaryAfflFieldLabels List of field labels.
     * @return List<SObjectField> List of fields in object that are in the provided list of labels.
