@@ -229,7 +229,8 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     
     private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper) {
     	if(affl != null && affl.Affiliation_Type__c != null) {
-	    	Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl.Affiliation_Type__c);
+	    	Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl);
+	    	UTIL_Debug.debug('****needsProgramEnrollment: ' + needsProgramEnrollment);
 	    	if(needsProgramEnrollment != null && needsProgramEnrollment) {
 	    		Program_Enrollment__c acadRec = new Program_Enrollment__c(Affiliation__c = affl.ID, Student__c = affl.Contact__c, Program__c = affl.Account__c);
 	    		dmlWrapper.objectsToInsert.add(acadRec);

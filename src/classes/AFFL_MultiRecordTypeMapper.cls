@@ -49,7 +49,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
     * @description Affiliation Account-record-type-to-Academic-auto-create-field mappings.
     ********************************************************************************************************/
-    public Map<String, Boolean> mapAccRecTypeToAcadAutoCreate;
+    public Map<String, Boolean> accTypeToEnrollCreate;
+    public Map<String, String> accTypeToEnrollCreateRole;
+    public Map<String, String> accTypeToEnrollCreateStatus;
     
     /*******************************************************************************************************
     * @description List of primary affiliation lookup fields names on Contact.
@@ -92,14 +94,19 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     
     private void populateMaps() {
     	mapAccRecTypeToContactLabel = new Map<String, String>();
-    	mapAccRecTypeToAcadAutoCreate = new Map<String, Boolean>();
+    	accTypeToEnrollCreate = new Map<String, Boolean>();
+    	accTypeToEnrollCreateRole = new Map<String, String>();
+    	accTypeToEnrollCreateStatus = new Map<String, String>();
 		//Get the affiliation mappings.
-		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c from Affl_Mappings__c];
+		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
+		                                              Auto_Program_Enrollment_Status__c from Affl_Mappings__c];
 		//Put them in a map.
 		for(Affl_Mappings__c mapping : primaryAfflMappings) {
 			if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
 				mapAccRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
-				mapAccRecTypeToAcadAutoCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
+				accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
+				accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
+				accTypeToEnrollCreateStatus.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Status__c);
 			}
 		}
 	}
@@ -145,10 +152,13 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @param accountRecordType The name of the Account record type as entered in the Affiliation Mappings.
     * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
     ********************************************************************************************************/
-    public Boolean needsProgramEnrollment(String accountRecordType) {
-    	if(accountRecordType != null) {
-    		return mapAccRecTypeToAcadAutoCreate.get(accountRecordType);
-    	}
+    public Boolean needsProgramEnrollment(Affiliation__c affl) {
+        Boolean autoEnrollment = false;
+    	if(affl.Affiliation_Type__c != null)
+    	   autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
+    	if(autoEnrollment && affl.Role__c == accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c) 
+    	&& affl.Status__c == accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c))
+    	   return true;
     	return false;
     }
 }

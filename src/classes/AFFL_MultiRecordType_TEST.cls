@@ -313,13 +313,15 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	
 	@isTest
 	public static void autoCreateProgramEnrollment() {
-		if (strTestOnly != '*' && strTestOnly != 'autoCreatProgramEnrollment') return;
+		if (strTestOnly != '*' && strTestOnly != 'autoCreateProgramEnrollment') return;
 		
 		setup();
 		
 		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
 		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
 		bizOrgMapping.Auto_Program_Enrollment__c = true;
+		bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
+		bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
 		update bizOrgMapping;
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -330,17 +332,49 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert acc;
     	
     	//Create Business affiliation
-		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID);
+		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Student', Status__c = 'Current');
 		Test.startTest();
-		UTIL_Debug.debug('****Creating affiliation that should auto-create Academic Record');
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
 		insert affl;
 		Test.stopTest();
 		
-		//Verify Academic Record has been created
+		//Verify Progran Enrollment record has been created
 		List<Program_Enrollment__c> programEnrollments = [select ID, Student__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
 		System.assertEquals(1, programEnrollments.size());
 		System.assertEquals(contact.ID, programEnrollments[0].Student__c);
 	}
+	
+	@isTest
+    public static void autoCreateProgramEnrollmentDifferentRole() {
+        if (strTestOnly != '*' && strTestOnly != 'autoCreateProgramEnrollmentDifferentRole') return;
+        
+        setup();
+        
+        //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
+        Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
+        bizOrgMapping.Auto_Program_Enrollment__c = true;
+        bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
+        bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
+        update bizOrgMapping;
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+    
+        //Craete account of Business Organization record type
+        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert acc;
+        
+        //Create Business affiliation
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
+        Test.startTest();
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
+        insert affl;
+        Test.stopTest();
+        
+        //Verify Program Enrollment record has not been created
+        List<Program_Enrollment__c> programEnrollments = [select ID, Student__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+        System.assertEquals(0, programEnrollments.size());
+    }
 }
