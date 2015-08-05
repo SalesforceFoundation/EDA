@@ -35,6 +35,9 @@
 */
 public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
+    //Get the primary affiliation fields defined in the Affiliation Mappings
+    private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+    
 	/*******************************************************************************************************
     * @description Static flags to prevent recursive call.
     ********************************************************************************************************/
@@ -53,7 +56,6 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
-		 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 		 List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
 		 
 		 if(!afflMultiHasRunBefore) {
@@ -61,9 +63,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 			 Map<ID, Contact> relatedContactsMap;
 			 if(newlist != null) {
-			 	relatedContactsMap = queryAfflLookupFields(newlist, afflMapper);
+			 	relatedContactsMap = queryAfflLookupFields(newlist);
 			 } else if(oldlist != null) {
-			 	relatedContactsMap = queryAfflLookupFields(oldlist, afflMapper);
+			 	relatedContactsMap = queryAfflLookupFields(oldlist);
 			 }
 			 
 			 if(newlist != null && newlist.size() > 0) {
@@ -136,7 +138,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 if(newlist != null && newlist.size() > 0) {
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
-					createProgramEnrollmentIfNecessary(affl, dmlWrapper, afflMapper);
+					createProgramEnrollmentIfNecessary(affl, dmlWrapper);
 		    	 }
 			 }
 			 afflMultiHasRunAfter = true;
@@ -145,7 +147,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return dmlWrapper;  	
     }
     
-    private Map<ID, Contact> queryAfflLookupFields(List<SObject> newlist, AFFL_MultiRecordTypeMapper afflMapper) {
+    private Map<ID, Contact> queryAfflLookupFields(List<SObject> newlist) {
     	//Query the primary affiliation fields for all contacts at once
 		String contactIDs = '(';
 		Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
@@ -219,7 +221,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)oldPrimaryAffls);
     }
     
-    private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
+    private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper) {
     	if(affl != null && affl.Affiliation_Type__c != null) {
 	    	Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl.Affiliation_Type__c);
 	    	if(needsProgramEnrollment != null && needsProgramEnrollment) {
