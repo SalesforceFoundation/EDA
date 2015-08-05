@@ -38,6 +38,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+    public static Boolean keyAfflLookupUpdated = false;
     
     /*******************************************************************************************************
     * @description Static flags to prevent recursive call.
@@ -105,6 +106,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //        is not yet defined (and the formula will run later), we'll do it here.    
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
 		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
+		                        keyAfflLookupUpdated = true;
 		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
                                 createAfflFromLookup(newContact, j, afflsToInsert);
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
@@ -113,6 +115,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
 	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+	                            keyAfflLookupUpdated = true;
                                 UTIL_Debug.debug('****Key Affiliation field has been cleared');
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
@@ -149,10 +152,10 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     private List<Affiliation__c> makeOtherAfflsNotPrimary(Map<ID, List<ID>> changedConToAccsMap) {
         //Find all the affiliations to make non-primary. 
         List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
-        //Initially we get all possible matches.
+        //Initially we get all possible affiliations from those contacts.
         List<Affiliation__c> afflsAll = [select Contact__c, Account__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
         UTIL_Debug.debug('****All possible affls to make non-primary: ' + JSON.serializePretty(afflsAll));
-        //Then we refine the search
+        //Then we refine the search - changedConToAccsMap should contain only the Acc IDs of those key Affl lookups that have been modified.
         for(Affiliation__c affl : afflsAll) {
             List<ID> contactAccIDs = changedConToAccsMap.get(affl.Contact__c);
             for(ID changedAccID : contactAccIDs) {

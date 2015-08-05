@@ -35,6 +35,9 @@
 */
 public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
+    //Get the primary affiliation fields defined in the Affiliation Mappings
+    private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+    
 	/*******************************************************************************************************
     * @description Static flags to prevent recursive call.
     ********************************************************************************************************/
@@ -53,7 +56,6 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
-		 AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 		 List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
 		 
 		 if(!afflMultiHasRunBefore) {
@@ -61,9 +63,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 			 Map<ID, Contact> relatedContactsMap;
 			 if(newlist != null) {
-			 	relatedContactsMap = queryAfflLookupFields(newlist, afflMapper);
+			 	relatedContactsMap = queryAfflLookupFields(newlist);
 			 } else if(oldlist != null) {
-			 	relatedContactsMap = queryAfflLookupFields(oldlist, afflMapper);
+			 	relatedContactsMap = queryAfflLookupFields(oldlist);
 			 }
 			 
 			 if(newlist != null && newlist.size() > 0) {
@@ -91,7 +93,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
 		                if (afflOld.Primary__c && !affl.Primary__c) {
 		                	relatedContact.put(lookupFieldName, null);
-		                	dmlWrapper.objectsToUpdate.add(relatedContact);
+		                	if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+		                	     dmlWrapper.objectsToUpdate.add(relatedContact);
+		                	}
 		                }
 		                
 		                //If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
@@ -123,7 +127,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
 		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
 		            		relatedContact.put(lookupFieldName, null);
-		            		dmlWrapper.objectsToUpdate.add(relatedContact);
+		            		if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+		            		    dmlWrapper.objectsToUpdate.add(relatedContact);
+		            		}
 		            	}
 		            }
 		    	 }
@@ -136,7 +142,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 if(newlist != null && newlist.size() > 0) {
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
-					createProgramEnrollmentIfNecessary(affl, dmlWrapper, afflMapper);
+					createProgramEnrollmentIfNecessary(affl, dmlWrapper);
 		    	 }
 			 }
 			 afflMultiHasRunAfter = true;
@@ -145,7 +151,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return dmlWrapper;  	
     }
     
-    private Map<ID, Contact> queryAfflLookupFields(List<SObject> newlist, AFFL_MultiRecordTypeMapper afflMapper) {
+    private Map<ID, Contact> queryAfflLookupFields(List<SObject> newlist) {
     	//Query the primary affiliation fields for all contacts at once
 		String contactIDs = '(';
 		Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
@@ -181,7 +187,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         if(!String.isBlank(lookupFieldName)) {
         	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
 			relatedContact.put(lookupFieldName, affl.Account__c);
-            dmlWrapper.objectsToUpdate.add(relatedContact); 
+			if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+                dmlWrapper.objectsToUpdate.add(relatedContact);
+			} 
         }
     }
     
@@ -219,7 +227,7 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)oldPrimaryAffls);
     }
     
-    private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper, AFFL_MultiRecordTypeMapper afflMapper) {
+    private void createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper) {
     	if(affl != null && affl.Affiliation_Type__c != null) {
 	    	Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl.Affiliation_Type__c);
 	    	if(needsProgramEnrollment != null && needsProgramEnrollment) {
