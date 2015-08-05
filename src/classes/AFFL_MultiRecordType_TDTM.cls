@@ -93,7 +93,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
 		                if (afflOld.Primary__c && !affl.Primary__c) {
 		                	relatedContact.put(lookupFieldName, null);
-		                	dmlWrapper.objectsToUpdate.add(relatedContact);
+		                	if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+		                	     dmlWrapper.objectsToUpdate.add(relatedContact);
+		                	}
 		                }
 		                
 		                //If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
@@ -125,7 +127,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
 		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
 		            		relatedContact.put(lookupFieldName, null);
-		            		dmlWrapper.objectsToUpdate.add(relatedContact);
+		            		if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+		            		    dmlWrapper.objectsToUpdate.add(relatedContact);
+		            		}
 		            	}
 		            }
 		    	 }
@@ -183,7 +187,9 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         if(!String.isBlank(lookupFieldName)) {
         	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
 			relatedContact.put(lookupFieldName, affl.Account__c);
-            dmlWrapper.objectsToUpdate.add(relatedContact); 
+			if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+                dmlWrapper.objectsToUpdate.add(relatedContact);
+			} 
         }
     }
     

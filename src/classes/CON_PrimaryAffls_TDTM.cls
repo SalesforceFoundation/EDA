@@ -38,6 +38,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+    public static Boolean keyAfflLookupUpdated = false;
     
     /*******************************************************************************************************
     * @description Static flags to prevent recursive call.
@@ -105,6 +106,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //        is not yet defined (and the formula will run later), we'll do it here.    
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
 		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
+		                        keyAfflLookupUpdated = true;
 		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
                                 createAfflFromLookup(newContact, j, afflsToInsert);
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
@@ -113,6 +115,7 @@ public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
 	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+	                            keyAfflLookupUpdated = true;
                                 UTIL_Debug.debug('****Key Affiliation field has been cleared');
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
