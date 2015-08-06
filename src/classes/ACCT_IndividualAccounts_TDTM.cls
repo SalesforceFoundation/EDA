@@ -300,7 +300,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Inserts a new HH Account for an Individual Contact
+    * @description Inserts a new Account for an Individual Contact
     * @param contacts the list of Contacts that need updating.
     * @param dmlWrapper to hold the Contacts that need updating.
     * @return void
@@ -356,9 +356,15 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
-                ID recordTypeID = Schema.SObjectType.Account.RecordTypeInfosByName.get(
-                							UTIL_CustomSettingsFacade.getSettings().Account_Processor__c).getRecordTypeId();
-                a.RecordTypeId = recordTypeID;
+                String defaultAcc = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
+                if(defaultAcc != null) {
+                    try {
+                        ID recordTypeID = Schema.SObjectType.Account.RecordTypeInfosByName.get(defaultAcc).getRecordTypeId();
+                        a.RecordTypeId = recordTypeID;
+                    } catch(Exception e) {
+                        a.addError(Label.noAccRecType + defaultAcc);
+                    }
+                }
                 
                 accountInserts.add(a);
                 listContactNewAcct.add(c);

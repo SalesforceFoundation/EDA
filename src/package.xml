@@ -238,6 +238,7 @@
     <members>addrHHAccountOnly</members>
     <members>addrSeasonalOverlap</members>
     <members>addrSeasonalPartial</members>
+    <members>noAccRecType</members>
     <name>CustomLabel</name>
   </types>
   <types>
