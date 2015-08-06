@@ -80,4 +80,12 @@
         <shortDescription>addrSeasonalPartial</shortDescription>
         <value>An address must have all or none of its Seasonal fields set.</value>
     </labels>
+    <labels>
+        <fullName>noAccRecType</fullName>
+        <categories>Record Types</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>noAccRecType</shortDescription>
+        <value>The following account record type defined in the settings does not exist:</value>
+    </labels>
 </CustomLabels>
