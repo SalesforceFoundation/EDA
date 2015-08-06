@@ -232,8 +232,8 @@ public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 	    	Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl);
 	    	UTIL_Debug.debug('****needsProgramEnrollment: ' + needsProgramEnrollment);
 	    	if(needsProgramEnrollment != null && needsProgramEnrollment) {
-	    		Program_Enrollment__c acadRec = new Program_Enrollment__c(Affiliation__c = affl.ID, Student__c = affl.Contact__c, Program__c = affl.Account__c);
-	    		dmlWrapper.objectsToInsert.add(acadRec);
+	    		Program_Enrollment__c enroll = new Program_Enrollment__c(Affiliation__c = affl.ID, Student__c = affl.Contact__c, Program__c = affl.Account__c);
+	    		dmlWrapper.objectsToInsert.add(enroll);
 	    	}
     	}
     }

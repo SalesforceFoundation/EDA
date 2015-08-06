@@ -154,11 +154,18 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     ********************************************************************************************************/
     public Boolean needsProgramEnrollment(Affiliation__c affl) {
         Boolean autoEnrollment = false;
-    	if(affl.Affiliation_Type__c != null)
-    	   autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
-    	if(autoEnrollment && affl.Role__c == accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c) 
-    	&& affl.Status__c == accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c))
+        String autoRole, autoStatus;
+    	if(affl.Affiliation_Type__c != null) {
+    	    if(accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
+    	       autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
+    	    }
+    	    autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
+    	    autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
+    	}
+    	if(autoEnrollment && affl != null && affl.Role__c != null && autoRole == affl.Role__c && affl.Status__c != null 
+    	&& autoStatus == affl.Status__c) { 
     	   return true;
+    	}
     	return false;
     }
 }
