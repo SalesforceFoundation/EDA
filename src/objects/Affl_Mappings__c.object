@@ -18,7 +18,17 @@
     <fields>
         <fullName>Auto_Program_Enrollment_Role__c</fullName>
         <externalId>false</externalId>
-        <label>Auto Program Enrollment Role</label>
+        <label>Auto Enrollment Role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Auto_Program_Enrollment_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Auto Enrollment Status</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -31,7 +41,7 @@
         <description>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</description>
         <externalId>false</externalId>
         <inlineHelpText>If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type.</inlineHelpText>
-        <label>Auto Program Enrollment</label>
+        <label>Auto Enrollment</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

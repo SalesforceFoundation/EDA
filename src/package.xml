@@ -100,6 +100,7 @@
     <members>Affiliation__c.Status__c</members>
     <members>Affl_Mappings__c.Account_Record_Type__c</members>
     <members>Affl_Mappings__c.Auto_Program_Enrollment_Role__c</members>
+    <members>Affl_Mappings__c.Auto_Program_Enrollment_Status__c</members>
     <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
     <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
     <members>Contact.AlternateEmail__c</members>
