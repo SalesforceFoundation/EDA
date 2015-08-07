@@ -46,27 +46,16 @@ public with sharing class TDTM_Filter {
     */
     public static FilteredLists filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
-    	FilteredLists filtered = new FilteredLists();
     	UTIL_Debug.debug('****New list before filtering: ' + JSON.serializePretty(newList));
     	try {
     		String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
     		UTIL_Debug.debug('****Filter field: ' + filterField);
     		if(filterField != null) {
-	        	//get field type
-	        	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
-	        	
 	        	//If the field to filter on is made of relationships, recursively
 	        	if(filterField.contains('.')) {
-	        	    UTIL_Debug.debug('****Filter is a relationship!');   
+	        	    return filterByRelationship(filterField, classToRunRecord, newList, oldList, describeObj);
 	        	} else {
-		        	Schema.SObjectField field = fieldMap.get(filterField);
-		        	if(field != null) { //the field name is valid!
-		        		Object filter = getFilter(field, classToRunRecord);
-		    			filterByCondition(newList, oldList, filterField, filtered, filter);
-		        		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
-		        	} else {
-		        	    UTIL_Debug.debug('****The field name is invalid.');
-		        	}
+	        	    return filterByField(filterField, classToRunRecord, newList, oldList, describeObj);
 	        	}
 	    	}
     	} catch(Exception e) {
@@ -74,7 +63,50 @@ public with sharing class TDTM_Filter {
     		UTIL_Debug.debug(LoggingLevel.WARN, '****Exception: ' + e.getMessage());
     		UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
     	}
-    	return filtered;
+    	return new FilteredLists(); //To avoid returning null.
+    }
+    
+    private static FilteredLists filterByRelationship(String filterField, SObject classToRunRecord, List<SObject> newList, 
+    List<SObject> oldList, Schema.DescribeSObjectResult describeObj) {
+        FilteredLists filtered = new FilteredLists();
+        
+        //separate cross object references, i.e. account.name
+        list<string> splitField = (filterField.split('\\.', 0));
+        UTIL_Debug.debug('****Relationships chain: ' + JSON.serializePretty(splitField));
+        
+        //remove the field name itself to only include parent object references
+        String fieldName = splitField[splitField.size() - 1];
+        UTIL_Debug.debug('****Filter field name: ' + fieldName);
+        
+        String parentObjectName = splitField[splitField.size() - 2];
+        UTIL_Debug.debug('****Filter parent object: ' + parentObjectName);
+        
+        splitField.remove(splitField.size() - 1);
+        UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(splitField));
+        
+        Schema.DescribeSObjectResult describe = UTIL_Describe.getObjectDescribe(parentObjectName);
+        Map<String, Schema.SObjectField> fieldMap = describe.fields.getMap();
+        Schema.SObjectField field = fieldMap.get(fieldName);
+        UTIL_Debug.debug('****Field in object: ' + field);
+        
+        return filtered;
+    }
+    
+    private static FilteredLists filterByField(String filterField, SObject classToRunRecord, List<SObject> newList, 
+    List<SObject> oldList, Schema.DescribeSObjectResult describeObj) {
+        FilteredLists filtered = new FilteredLists();
+        
+        //get field type
+        Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
+        Schema.SObjectField field = fieldMap.get(filterField);
+        if(field != null) { //the field name is valid!
+            Object filter = getFilter(field, classToRunRecord);
+            filterByCondition(newList, oldList, filterField, filtered, filter);
+            UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
+        } else {
+            UTIL_Debug.debug('****The field name is invalid.');
+        }
+        return filtered;
     }
     
     private static Object getFilter(Schema.SObjectField field, SObject classToRunRecord) {
@@ -100,7 +132,8 @@ public with sharing class TDTM_Filter {
         return null;
     }
     
-    private static void filterByCondition(List<SObject> newList, List<SObject> oldList, String filterField, FilteredLists filtered, Object val) {
+    private static void filterByCondition(List<SObject> newList, List<SObject> oldList, String filterField, 
+    FilteredLists filtered, Object val) {
     	for(SObject o : newList) {
 			if(o.get(filterField) != val) {
 				filtered.newList.add(o);
