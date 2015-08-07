@@ -47,40 +47,26 @@ public with sharing class TDTM_Filter {
     public static FilteredLists filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
     	FilteredLists filtered = new FilteredLists();
+    	UTIL_Debug.debug('****New list before filtering: ' + JSON.serializePretty(newList));
     	try {
     		String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
     		UTIL_Debug.debug('****Filter field: ' + filterField);
     		if(filterField != null) {
 	        	//get field type
 	        	Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
-	        	UTIL_Debug.debug('****Field map: ' + fieldMap);
-	        	Schema.SObjectField field = fieldMap.get(filterField);
-	        	if(field != null) { //the field name is valid!
-	        		UTIL_Debug.debug('****New list before filtering: ' + JSON.serializePretty(newList));
-	        		//let's find the field type
-	        		Schema.DisplayType fieldType = field.getDescribe().getType();
-	        		UTIL_Debug.debug('****Filter field type: ' + fieldType);
-	        		String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
-		        		
-	        		if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email 
-	        		|| fieldType == Schema.DisplayType.Phone || fieldType == Schema.DisplayType.Picklist) {
-	        			filterByCondition(newList, oldList, filterField, filtered, val);
-	        		} else if(fieldType == Schema.DisplayType.Boolean) {
-	        			if(val == 'true') {
-	        				filterByCondition(newList, oldList, filterField, filtered, true);
-	        			} else if(val == 'false') {
-	        				filterByCondition(newList, oldList, filterField, filtered, false);
-	        			}
-	    			} else if(fieldType == Schema.DisplayType.Date) {
-	    				Date dateVal = Date.parse(val);
-	    				filterByCondition(newList, oldList, filterField, filtered, dateVal);
-	    			} else if(fieldType == Schema.DisplayType.Reference) {
-	    				UTIL_Debug.debug('****Filter Id val string: '  + val);
-	    				ID idVal = ID.valueOf(val);
-	    				filterByCondition(newList, oldList, filterField, filtered, idVal);
-	    			}
-	        		
-	        		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
+	        	
+	        	//If the field to filter on is made of relationships, recursively
+	        	if(filterField.contains('.')) {
+	        	    UTIL_Debug.debug('****Filter is a relationship!');   
+	        	} else {
+		        	Schema.SObjectField field = fieldMap.get(filterField);
+		        	if(field != null) { //the field name is valid!
+		        		Object filter = getFilter(field, classToRunRecord);
+		    			filterByCondition(newList, oldList, filterField, filtered, filter);
+		        		UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
+		        	} else {
+		        	    UTIL_Debug.debug('****The field name is invalid.');
+		        	}
 	        	}
 	    	}
     	} catch(Exception e) {
@@ -89,6 +75,29 @@ public with sharing class TDTM_Filter {
     		UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
     	}
     	return filtered;
+    }
+    
+    private static Object getFilter(Schema.SObjectField field, SObject classToRunRecord) {
+        //let's find the field type
+        Schema.DisplayType fieldType = field.getDescribe().getType();
+        UTIL_Debug.debug('****Filter field type: ' + fieldType);
+        String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
+            
+        if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email 
+        || fieldType == Schema.DisplayType.Phone || fieldType == Schema.DisplayType.Picklist) {
+            return val;
+        } else if(fieldType == Schema.DisplayType.Boolean) {
+            if(val == 'true') {
+                return true;
+            } else if(val == 'false') {
+                return false;
+            }
+        } else if(fieldType == Schema.DisplayType.Date) {
+            return Date.parse(val);
+        } else if(fieldType == Schema.DisplayType.Reference) {
+            return ID.valueOf(val);
+        }
+        return null;
     }
     
     private static void filterByCondition(List<SObject> newList, List<SObject> oldList, String filterField, FilteredLists filtered, Object val) {
