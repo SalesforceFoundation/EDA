@@ -36,24 +36,39 @@
 */
 public with sharing class TDTM_Filter {
 
-	/*******************************************************************************************************
-    * @description Filters records to process.
+    SObject classToRunRecord; 
+    List<SObject> newList;
+    List<SObject> oldList; 
+    Schema.DescribeSObjectResult describeObj;
+    
+    /*******************************************************************************************************
+    * @description Constructor. Sets properties.
     * @param classToRunRecord The class being run.
     * @param newList The records that were passed to the trigger as trigger.new.
     * @param oldList The records that were passed to the trigger as trigger.old.
     * @param describeObj The type of SObject the class runs for.
-    * @return Void
     */
-    public static FilteredLists filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    public TDTM_Filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
+        this.classToRunRecord = classToRunRecord;
+        this.newList = newList;
+        this.oldList = oldList;
+        this.describeObj = describeObj;
+    }
+    
+	/*******************************************************************************************************
+    * @description Filters records to process.
+    * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList.
+    */
+    public FilteredLists filter() {
     	UTIL_Debug.debug('****New list before filtering: ' + JSON.serializePretty(newList));
     	try {
     		String filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
     		if(filterField != null) {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
-	        	    return filterByRelationship(filterField, classToRunRecord, newList, oldList, describeObj);
+	        	    return filterByRelationship(filterField);
 	        	} else {
-	        	    return filterByField(filterField, classToRunRecord, newList, oldList, describeObj);
+	        	    return filterByField(filterField);
 	        	}
 	    	}
     	} catch(Exception e) {
@@ -64,12 +79,16 @@ public with sharing class TDTM_Filter {
     	return new FilteredLists(); //To avoid returning null.
     }
     
-    private static FilteredLists filterByRelationship(String filterField, SObject classToRunRecord, List<SObject> newList, 
-    List<SObject> oldList, Schema.DescribeSObjectResult describeObj) {
+    /*******************************************************************************************************
+    * @description Filters newList and oldList based on the value of a related field.
+    * @param filterField The field to filter on, including the whole relationship chain, i.e. "Account.Name".
+    * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList. 
+    */
+    private FilteredLists filterByRelationship(String filterField) {
         FilteredLists filtered = new FilteredLists();
         
-        List<SObject> newListRelatedFields = queryRelatedFields(filterField, newList, describeObj);
-        List<SObject> oldListRelatedFields = queryRelatedFields(filterField, oldList, describeObj);
+        List<SObject> newListRelatedFields = queryRelatedFields(filterField, newList);
+        List<SObject> oldListRelatedFields = queryRelatedFields(filterField, oldList);
         
         List<String> splitField = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
         String fieldName = splitField[splitField.size() - 1]; //get the field name itself
@@ -85,9 +104,8 @@ public with sharing class TDTM_Filter {
         UTIL_Debug.debug('****Field in object: ' + field);
         
         if(field != null) { //the field name is valid for the object at the top of the chain!
-            Object filterValue = getFilter(field, classToRunRecord);
-            filterByCondition(newList, oldList, newListRelatedFields, oldListRelatedFields, filterObjectChain, 
-                                fieldName, filtered, filterValue);
+            Object filterValue = getFilter(field);
+            filterByCondition(newListRelatedFields, oldListRelatedFields, filterObjectChain, fieldName, filtered, filterValue);
             UTIL_Debug.debug('****Filtered new list: \n ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
@@ -95,15 +113,23 @@ public with sharing class TDTM_Filter {
         return filtered;
     }
     
-    private static List<SObject> queryRelatedFields(String filterField, List<SObject> compList, 
-    Schema.DescribeSObjectResult describeObj) {
+    /*******************************************************************************************************
+    * @description Queries the fields that are part of the relationship filter, since these values are not initially
+    * present in the records the triggers acts on.
+    * @param filterField The field to filter on, including the whole relationship chain, i.e. "Account.Name".
+    * @param compList The list of records to query.
+    * @return List<SObject> A list of records pointing to the same records that are present in newList or oldList,
+    * but containing only the fields defined in the query condition. The returned list is also in the same order as 
+    * newList or oldList.
+    */
+    private List<SObject> queryRelatedFields(String filterField, List<SObject> compList) {
         Map<ID, SObject> compMap = new Map<ID, SObject>(compList);
         Set<ID> compListIDs = compMap.keySet();
         //query filter values, in case they are not in the trigger
         String dynamicQuery = 'select ' + filterField + ' from ' + describeObj.getName() +  ' where ID in :compListIDs';
-        UTIL_Debug.debug('****Dynamic query: ' + dynamicQuery);
+        UTIL_Debug.debug('****Relationship filter dynamic query: ' + dynamicQuery);
         Map<ID, SObject> withRelatedFieldsMap = new Map<ID, SObject>(Database.query(dynamicQuery));
-        List<SObject> withRelatedFields = new List<SObject>();
+        List<SObject> withRelatedFields = new List<SObject>(); //We don't want to modify the original list, but use a new one instead.
         //Let's make sure we return them in the same order the list passed as param
         for(SObject compRecord : compList) {
             withRelatedFields.add(withRelatedFieldsMap.get(compRecord.ID));
@@ -111,16 +137,20 @@ public with sharing class TDTM_Filter {
         return withRelatedFields;
     }
     
-    private static FilteredLists filterByField(String filterField, SObject classToRunRecord, List<SObject> newList, 
-    List<SObject> oldList, Schema.DescribeSObjectResult describeObj) {
+    /*******************************************************************************************************
+    * @description Filters newList and oldList based on the value of a field on the trigger records.
+    * @param filterField The field to filter on.
+    * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList. 
+    */
+    private FilteredLists filterByField(String filterField) {
         FilteredLists filtered = new FilteredLists();
         
         //get field type
         Map<String, Schema.SObjectField> fieldMap = describeObj.fields.getMap();
         Schema.SObjectField field = fieldMap.get(filterField);
         if(field != null) { //the field name is valid!
-            Object filter = getFilter(field, classToRunRecord);
-            filterByCondition(newList, oldList, null, null, null, filterField, filtered, filter);
+            Object filter = getFilter(field);
+            filterByCondition(null, null, null, filterField, filtered, filter);
             UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
@@ -128,7 +158,12 @@ public with sharing class TDTM_Filter {
         return filtered;
     }
     
-    private static Object getFilter(Schema.SObjectField field, SObject classToRunRecord) {
+    /*******************************************************************************************************
+    * @description Returns the value to compare against in the correct type.
+    * @param Field The SObjectField used in the filtering comparison.
+    * @return Object The value to compare against when filtering, already in the correct type. 
+    */
+    private Object getFilter(Schema.SObjectField field) {
         //let's find the field type
         Schema.DisplayType fieldType = field.getDescribe().getType();
         UTIL_Debug.debug('****Filter field type: ' + fieldType);
@@ -151,8 +186,19 @@ public with sharing class TDTM_Filter {
         return null;
     }
     
-    private static void filterByCondition(List<SObject> newList, List<SObject> oldList, List<SObject> newListRelatedFields, 
-    List<SObject>oldListRelatedFields, List<String> filterObjectChain, String filterField, FilteredLists filtered, Object val) {
+    /*******************************************************************************************************
+    * @description Filters newList and oldList based on the defined filtering criteria. 
+    * @param newListRelatedFields A list of records pointing to the same records that are present in newList, 
+    * but containing only the fields defined in the query condition. In the same order as newList.
+    * @param oldListRelatedFields A list of records pointing to the same records that are present in oldList, 
+    * but containing only the fields defined in the query condition. In the same order as newList.
+    * @param filterObjectChain
+    * @param filterField The field to filter on.
+    * @param val The value to compare against when filtering, already in the correct type. 
+    * @return void 
+    */
+    private void filterByCondition(List<SObject> newListRelatedFields, List<SObject> oldListRelatedFields, 
+    List<String> filterObjectChain, String filterField, FilteredLists filtered, Object val) {
         if(filterObjectChain == null) { //The field in in the same object the trigger fires on
 	    	filterList(newList, filterField, filtered.newList, val);
 			filterList(oldList, filterField, filtered.oldList, val);	
@@ -162,12 +208,11 @@ public with sharing class TDTM_Filter {
         }
     }
     
-    private static void filterListByRelatedField(List<SObject> listRelatedFields, List<SObject> originalList, 
+    private void filterListByRelatedField(List<SObject> listRelatedFields, List<SObject> originalList, 
     List<SObject> filteredList, List<String> filterObjectChain, String filterField, Object val) {
         if(listRelatedFields != null && listRelatedFields.size() > 0) {
             for(Integer i = 0; i < listRelatedFields.size(); i++) {
                 SObject o = listRelatedFields[i];
-                //SObject original = o; //I just want to keep a reference to the original object, to be able to filter on it.
                 UTIL_Debug.debug('****Object in trigger: ' + o);
                 //traverse parent relationships until the last one
                 if (o != null) {
@@ -187,7 +232,7 @@ public with sharing class TDTM_Filter {
         }
     }
     
-    private static void filterList(List<SObject> listToFilter, String filterField, List<SObject> filteredList, Object val) {
+    private void filterList(List<SObject> listToFilter, String filterField, List<SObject> filteredList, Object val) {
         if(listToFilter != null && listToFilter.size() > 0) {
             for(SObject o : listToFilter) {
                 if(o.get(filterField) != val) {
@@ -198,7 +243,8 @@ public with sharing class TDTM_Filter {
     }
     
     /*******************************************************************************************************
-    * @description Contains the filtered new and old lists of records, so we can return both from the filter method.
+    * @description Wrapper containing the filtered new and old lists of records, so we can return both simultaneously 
+    * from a method.
     */
     public class FilteredLists {
     	public List<SObject> newList;

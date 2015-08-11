@@ -177,7 +177,8 @@ public with sharing class TDTM_TriggerHandler {
 			        } else {
 			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
 			        	
-			        	TDTM_Filter.FilteredLists filtered = TDTM_Filter.filter(classToRunRecord, newList, oldList, describeObj);
+			        	TDTM_Filter filter = new TDTM_Filter(classToRunRecord, newList, oldList, describeObj);
+			        	TDTM_Filter.FilteredLists filtered = filter.filter();
 						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(filtered.newList));
                         
                         if(filtered.newList.size() > 0) {
