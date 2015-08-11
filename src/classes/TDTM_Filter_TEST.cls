@@ -53,7 +53,7 @@ public with sharing class TDTM_Filter_TEST {
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'UniversityEmail__c',
               Filter_Value__c = null);
 		
-		//Creating four contacts. two of them are not students, because they doesn't have a university email.
+		//Creating four contacts. two of them are not students, because they don't have a university email.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', UniversityEmail__c = null);
 		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', UniversityEmail__c = 'tt3@fake.edu');
@@ -270,7 +270,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -297,11 +299,11 @@ public with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = new Account(Name = 'ABC');
         insert new Account[] {accFiltered, accNotFiltered};
         
-        //Creating four contacts. two of them are not students, because they doesn't have a university email.
-        Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = accNotFiltered);
-        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Account = accFiltered);
-        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Account = accNotFiltered);
-        Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Account = accFiltered);
+        //Creating four contacts. two of them are not students, because they don't have a university email.
+        Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = accNotFiltered.Id);
+        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AccountId = accFiltered.Id);
+        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AccountId = accNotFiltered.Id);
+        Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AccountId = accFiltered.Id);
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
         insert contacts;
         
