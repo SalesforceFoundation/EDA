@@ -154,8 +154,8 @@ public with sharing class TDTM_Filter {
     private static void filterByCondition(List<SObject> newList, List<SObject> oldList, List<SObject> newListRelatedFields, 
     List<SObject>oldListRelatedFields, List<String> filterObjectChain, String filterField, FilteredLists filtered, Object val) {
         if(filterObjectChain == null) { //The field in in the same object the trigger fires on
-	    	filterList(newList, filterField, filtered, val);
-			filterList(oldList, filterField, filtered, val);	
+	    	filterList(newList, filterField, filtered.newList, val);
+			filterList(oldList, filterField, filtered.oldList, val);	
         } else { //The field is in a related object
             filterListByRelatedField(newListRelatedFields, newList, filtered.newList, filterObjectChain, filterField, val);
             filterListByRelatedField(oldListRelatedFields, oldList, filtered.oldList, filterObjectChain, filterField, val);
@@ -187,11 +187,11 @@ public with sharing class TDTM_Filter {
         }
     }
     
-    private static void filterList(List<SObject> listToFilter, String filterField, FilteredLists filtered, Object val) {
+    private static void filterList(List<SObject> listToFilter, String filterField, List<SObject> filteredList, Object val) {
         if(listToFilter != null && listToFilter.size() > 0) {
             for(SObject o : listToFilter) {
                 if(o.get(filterField) != val) {
-                    filtered.newList.add(o);
+                    filteredList.add(o);
                 }
             }
         } 
