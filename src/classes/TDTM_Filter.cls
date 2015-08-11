@@ -70,24 +70,49 @@ public with sharing class TDTM_Filter {
     List<SObject> oldList, Schema.DescribeSObjectResult describeObj) {
         FilteredLists filtered = new FilteredLists();
         
+        Map<ID, SObject> newMap = new Map<ID, SObject>(newList);
+        Set<ID> newListIDs = newMap.keySet();
+        //query filter values, in case they are not in the trigger
+        String dynamicQuery = 'select ' + filterField + ' from ' + describeObj.getName() +  ' where ID in :newListIDs';
+        UTIL_Debug.debug('****Dynamic query: ' + dynamicQuery);
+        List<SObject> withRelatedFields = Database.query(dynamicQuery);
+        //List<Contact> withRelatedFields = [select Account.Name from Contact where ID in :newListIDs];
+        //UTIL_Debug.debug('****withRelatedFields: ' + JSON.serializePretty(withRelatedFields)); 
+        
         //separate cross object references, i.e. account.name
-        list<string> splitField = (filterField.split('\\.', 0));
+        list<String> splitField = (filterField.split('\\.', 0));
         UTIL_Debug.debug('****Relationships chain: ' + JSON.serializePretty(splitField));
         
-        //remove the field name itself to only include parent object references
+        //get the field name itself
         String fieldName = splitField[splitField.size() - 1];
         UTIL_Debug.debug('****Filter field name: ' + fieldName);
         
+        //get the name of the field parent = last object in the chain
         String parentObjectName = splitField[splitField.size() - 2];
         UTIL_Debug.debug('****Filter parent object: ' + parentObjectName);
         
-        splitField.remove(splitField.size() - 1);
-        UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(splitField));
+        //remove the field, to have only the parent object chain
+        List<String> filterObjectChain = new List<String>();
+        for(Integer i = 0; i < (splitField.size() - 1); i++)
+            filterObjectChain.add(splitField[i]);
+        UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
         
         Schema.DescribeSObjectResult describe = UTIL_Describe.getObjectDescribe(parentObjectName);
         Map<String, Schema.SObjectField> fieldMap = describe.fields.getMap();
         Schema.SObjectField field = fieldMap.get(fieldName);
         UTIL_Debug.debug('****Field in object: ' + field);
+        
+        if(field != null) { //the field name is valid for the object at the top of the chain!
+            Object filterValue = getFilter(field, classToRunRecord);
+            UTIL_Debug.debug('****Relationship filter value: ' + filterValue);
+            UTIL_Debug.debug('****Relationship filter field: ' + fieldName);
+            //Now we have to somehow put back together the relationship chain and navigate it...
+            //filterByCondition(newList, oldList, filterObjectChain, fieldName, filtered, filterValue);
+            filterByCondition(withRelatedFields, oldList, filterObjectChain, fieldName, filtered, filterValue);
+            UTIL_Debug.debug('****Filtered new list: \n ' + JSON.serializePretty(filtered.newList));
+        } else {
+            UTIL_Debug.debug('****The field name is invalid.');
+        }
         
         return filtered;
     }
@@ -101,7 +126,7 @@ public with sharing class TDTM_Filter {
         Schema.SObjectField field = fieldMap.get(filterField);
         if(field != null) { //the field name is valid!
             Object filter = getFilter(field, classToRunRecord);
-            filterByCondition(newList, oldList, filterField, filtered, filter);
+            filterByCondition(newList, oldList, null, filterField, filtered, filter);
             UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
@@ -132,20 +157,47 @@ public with sharing class TDTM_Filter {
         return null;
     }
     
-    private static void filterByCondition(List<SObject> newList, List<SObject> oldList, String filterField, 
-    FilteredLists filtered, Object val) {
-    	for(SObject o : newList) {
-			if(o.get(filterField) != val) {
-				filtered.newList.add(o);
-			}
-		}
-		if(oldList != null && oldList.size() > 0) {
-			for(SObject o : oldList) {
-				if(o.get(filterField) != val) {
-					filtered.oldList.add(o);
-				}
-			}
-		}
+    private static void filterByCondition(List<SObject> newList, List<SObject> oldList, List<String> filterObjectChain, 
+    String filterField, FilteredLists filtered, Object val) {
+        if(filterObjectChain == null) { //The field in in the same object the trigger fires on
+	    	filterList(newList, filterField, filtered, val);
+			filterList(oldList, filterField, filtered, val);
+			
+        } else { //The field is in a related object
+            UTIL_Debug.debug('****The field is in a related object');
+            UTIL_Debug.debug('****filterObjectChain: ' + filterObjectChain); 
+            if(newList != null && newList.size() > 0) {
+                for(Integer i = 0; i < newList.size(); i++) {
+                    SObject o = newList[i];
+                    SObject original = o; //I just want to keep a reference to the original object, to be able to filter on it.
+                    UTIL_Debug.debug('****Object in trigger: ' + o);
+                    //traverse parent relationships until the last one
+		            if (o != null) {
+		                for (String parentObj : filterObjectChain) {
+		                    UTIL_Debug.debug('****Object to traverse: ' + parentObj);
+		                    o = o.getsObject(parentObj);
+		                    UTIL_Debug.debug('****Parent object: ' + o);
+		                }
+		            }
+		            //perform the filtering
+		            UTIL_Debug.debug('****Filtering by field ' + filterField + ', with value ' + val + ' on object ' + o);
+                    if(o != null && o.get(filterField) != val) {
+                        UTIL_Debug.debug('****Adding object ' + original + ' to filtered list.');    
+                        filtered.newList.add(original);
+                    }
+                }
+            }
+        }
+    }
+    
+    private static void filterList(List<SObject> listToFilter, String filterField, FilteredLists filtered, Object val) {
+        if(listToFilter != null && listToFilter.size() > 0) {
+            for(SObject o : listToFilter) {
+                if(o.get(filterField) != val) {
+                    filtered.newList.add(o);
+                }
+            }
+        } 
     }
     
     /*******************************************************************************************************
