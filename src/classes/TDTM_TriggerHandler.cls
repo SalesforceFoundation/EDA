@@ -179,9 +179,9 @@ public with sharing class TDTM_TriggerHandler {
 			        	
 			        	TDTM_Filter filter = new TDTM_Filter(classToRunRecord, newList, oldList, describeObj);
 			        	TDTM_Filter.FilteredLists filtered = filter.filter();
-						UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(filtered.newList));
                         
-                        if(filtered.newList.size() > 0) {
+                        if(filtered != null && filtered.newList.size() > 0) {
+                            UTIL_Debug.debug('****newList after filtering: ' + JSON.serializePretty(filtered.newList));
                         	return classToRun.run(filtered.newList, filtered.oldList, thisAction, describeObj);
                         } else {
                         	return classToRun.run(newList, oldList, thisAction, describeObj);
