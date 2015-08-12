@@ -218,6 +218,16 @@ public with sharing class TDTM_Filter {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Populates filteredList with the records from originalList that don't match the filtering
+    * criteria included in listRelatedFields. Used for filtering criteria based on a relationship.
+    * @param listRelatedFields A list of records pointing to the same records that are present in originalList, 
+    * but containing only the fields defined in the query condition. In the same order as originalList.
+    * @param originalList The original list whose records not matching the filter criteria will be added to 
+    * the resulting filtered list.
+    * @param filteredList The resulting filtered list.
+    * @return void 
+    */
     private void filterListByRelatedField(List<SObject> listRelatedFields, List<SObject> originalList, 
     List<SObject> filteredList) {
         if(listRelatedFields != null && listRelatedFields.size() > 0) {
@@ -242,6 +252,13 @@ public with sharing class TDTM_Filter {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Populates filteredList with the records from listToFilter that don't match the filtering
+    * criteria.
+    * @param listToFilter The list of records to filter.
+    * @param filteredList The resulting filtered list.
+    * @return void 
+    */
     private void filterList(List<SObject> listToFilter, List<SObject> filteredList) {
         if(listToFilter != null && listToFilter.size() > 0) {
             for(SObject o : listToFilter) {
