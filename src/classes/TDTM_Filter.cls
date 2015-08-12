@@ -109,13 +109,27 @@ public with sharing class TDTM_Filter {
         List<String> splitField = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
         fieldName = splitField[splitField.size() - 1]; //get the field name itself
         String parentObjectName = splitField[splitField.size() - 2]; //get the name of the field parent = last object in the chain      
+        UTIL_Debug.debug('****splitField: ' + splitField);
+        
+        //For the special Parent field on Account case
+        /*if(splitField.size() > 2 && splitField[splitField.size() - 3]  == 'Account' && splitField[splitField.size() - 2] == 'Parent') {
+            UTIL_Debug.debug('****The relationship is called "Parent", but the object is Account');
+            parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe in line 127.
+            //splitField[splitField.size() - 2] = 'Account'; //Exception: Invalid relationship Account for Account, from getsObject in line 254.
+            //splitField[splitField.size() - 2] = 'Parent'; //This is what is done by default, w no chnage - acc.getsObject('Parent') returns null in line 254.
+            //splitField[splitField.size() - 2] = 'parentId'; //Exception: Invalid relationship parentId for Account, from getsObject in line 254. But this is the actual field name in the map.
+        }*/
         
         //remove the field, to have only the parent object chain
         for(Integer i = 0; i < (splitField.size() - 1); i++)
             filterObjectChain.add(splitField[i]);
         UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
         
-        Schema.SObjectField field = UTIL_Describe.getObjectDescribe(parentObjectName).fields.getMap().get(fieldName);
+        Map<String, Schema.SObjectField> fieldsMap = UTIL_Describe.getObjectDescribe(parentObjectName).fields.getMap();
+        /*for(String fn : fieldsMap.keySet()) {
+            UTIL_Debug.debug('****Field name in map: ' + fn);
+        }*/
+        Schema.SObjectField field = fieldsMap.get(fieldName);
         UTIL_Debug.debug('****Field in object: ' + field);
         
         if(field != null) { //the field name is valid for the object at the top of the chain!
