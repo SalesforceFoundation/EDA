@@ -52,6 +52,9 @@ public with sharing class TDTM_Filter {
     Object filterValue;
     /* @description An instance of the wrapper object that contains the filtered newList and oldList. */
     FilteredLists filtered;
+    /* @description The chain of parent objects used in the filter, not including the object the class is running on. 
+    i.e., if the class runs on Contact this could be "Account", and if it runs on Opportunity "Contact.Account"*/
+    List<String> filterObjectChain;
     
     /*******************************************************************************************************
     * @description Constructor. Sets properties.
@@ -67,6 +70,7 @@ public with sharing class TDTM_Filter {
         this.oldList = oldList;
         this.describeObj = describeObj;
         filtered = new FilteredLists();
+        filterObjectChain = new List<String>();
     }
     
 	/*******************************************************************************************************
@@ -107,7 +111,6 @@ public with sharing class TDTM_Filter {
         String parentObjectName = splitField[splitField.size() - 2]; //get the name of the field parent = last object in the chain      
         
         //remove the field, to have only the parent object chain
-        List<String> filterObjectChain = new List<String>();
         for(Integer i = 0; i < (splitField.size() - 1); i++)
             filterObjectChain.add(splitField[i]);
         UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
@@ -118,7 +121,7 @@ public with sharing class TDTM_Filter {
         if(field != null) { //the field name is valid for the object at the top of the chain!
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
-            filterByCondition(newListRelatedFields, oldListRelatedFields, filterObjectChain);
+            filterByCondition(newListRelatedFields, oldListRelatedFields);
             UTIL_Debug.debug('****Filtered new list: \n ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
@@ -162,7 +165,7 @@ public with sharing class TDTM_Filter {
         if(field != null) { //the field name is valid!
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
-            filterByCondition(null, null, null);
+            filterByCondition(null, null);
             UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
@@ -203,22 +206,20 @@ public with sharing class TDTM_Filter {
     * but containing only the fields defined in the query condition. In the same order as newList.
     * @param oldListRelatedFields A list of records pointing to the same records that are present in oldList, 
     * but containing only the fields defined in the query condition. In the same order as newList.
-    * @param filterObjectChain
     * @return void 
     */
-    private void filterByCondition(List<SObject> newListRelatedFields, List<SObject> oldListRelatedFields, 
-    List<String> filterObjectChain) {
-        if(filterObjectChain == null) { //The field in in the same object the trigger fires on
+    private void filterByCondition(List<SObject> newListRelatedFields, List<SObject> oldListRelatedFields) {
+        if(filterObjectChain.size() == 0) { //The field in in the same object the trigger fires on
 	    	filterList(newList, filtered.newList);
 			filterList(oldList, filtered.oldList);	
         } else { //The field is in a related object
-            filterListByRelatedField(newListRelatedFields, newList, filtered.newList, filterObjectChain);
-            filterListByRelatedField(oldListRelatedFields, oldList, filtered.oldList, filterObjectChain);
+            filterListByRelatedField(newListRelatedFields, newList, filtered.newList);
+            filterListByRelatedField(oldListRelatedFields, oldList, filtered.oldList);
         }
     }
     
     private void filterListByRelatedField(List<SObject> listRelatedFields, List<SObject> originalList, 
-    List<SObject> filteredList, List<String> filterObjectChain) {
+    List<SObject> filteredList) {
         if(listRelatedFields != null && listRelatedFields.size() > 0) {
             for(Integer i = 0; i < listRelatedFields.size(); i++) {
                 SObject o = listRelatedFields[i];
