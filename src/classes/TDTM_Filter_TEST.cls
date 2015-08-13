@@ -323,8 +323,8 @@ public with sharing class TDTM_Filter_TEST {
         System.assertEquals(2, rels.size());
     }
     
-    public static testmethod void doubleRelationshipField() {
-        if (strTestOnly != '*' && strTestOnly != 'doubleRelationshipField') return;
+    public static testmethod void accountParentField() {
+        if (strTestOnly != '*' && strTestOnly != 'accountParentField') return;
         
         insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
                                                     Field__c='ReportsToId', Relationship_Type__c = 'TestType');
@@ -338,7 +338,7 @@ public with sharing class TDTM_Filter_TEST {
         Account topAccount = new Account(Name = 'top');
         insert topAccount;
               
-        Account accFiltered = new Account(Name = 'Acme', Parent = topAccount);
+        Account accFiltered = new Account(Name = 'Acme', ParentId = topAccount.Id);
         Account accNotFiltered = new Account(Name = 'ABC');
         insert new Account[] {accFiltered, accNotFiltered};
         
