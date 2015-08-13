@@ -333,13 +333,14 @@ public with sharing class TDTM_Filter_TEST {
         insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Account.Parent.Name',
-              Filter_Value__c = 'top');
+              Filter_Value__c = 'top1');
               
-        Account topAccount = new Account(Name = 'top');
-        insert topAccount;
+        Account topAccountFiltered = new Account(Name = 'top1');
+        Account topAccountNotFiltered = new Account(Name = 'top2');
+        insert new Account[] {topAccountFiltered, topAccountNotFiltered};
               
-        Account accFiltered = new Account(Name = 'Acme', ParentId = topAccount.Id);
-        Account accNotFiltered = new Account(Name = 'ABC');
+        Account accFiltered = new Account(Name = 'Acme', ParentId = topAccountFiltered.Id);
+        Account accNotFiltered = new Account(Name = 'ABC', ParentId = topAccountNotFiltered.Id);
         insert new Account[] {accFiltered, accNotFiltered};
         
         //Creating four contacts. two of them are not students, because they don't have a university email.

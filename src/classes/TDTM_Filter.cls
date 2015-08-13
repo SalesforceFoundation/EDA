@@ -112,13 +112,10 @@ public with sharing class TDTM_Filter {
         UTIL_Debug.debug('****splitField: ' + splitField);
         
         //For the special Parent field on Account case
-        /*if(splitField.size() > 2 && splitField[splitField.size() - 3]  == 'Account' && splitField[splitField.size() - 2] == 'Parent') {
+        if(splitField.size() > 2 && splitField[splitField.size() - 3]  == 'Account' && splitField[splitField.size() - 2] == 'Parent') {
             UTIL_Debug.debug('****The relationship is called "Parent", but the object is Account');
-            parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe in line 127.
-            //splitField[splitField.size() - 2] = 'Account'; //Exception: Invalid relationship Account for Account, from getsObject in line 254.
-            //splitField[splitField.size() - 2] = 'Parent'; //This is what is done by default, w no chnage - acc.getsObject('Parent') returns null in line 254.
-            //splitField[splitField.size() - 2] = 'parentId'; //Exception: Invalid relationship parentId for Account, from getsObject in line 254. But this is the actual field name in the map.
-        }*/
+            parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe below.
+        }
         
         //remove the field, to have only the parent object chain
         for(Integer i = 0; i < (splitField.size() - 1); i++)
@@ -126,9 +123,6 @@ public with sharing class TDTM_Filter {
         UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
         
         Map<String, Schema.SObjectField> fieldsMap = UTIL_Describe.getObjectDescribe(parentObjectName).fields.getMap();
-        /*for(String fn : fieldsMap.keySet()) {
-            UTIL_Debug.debug('****Field name in map: ' + fn);
-        }*/
         Schema.SObjectField field = fieldsMap.get(fieldName);
         UTIL_Debug.debug('****Field in object: ' + field);
         
@@ -159,8 +153,7 @@ public with sharing class TDTM_Filter {
 	        String dynamicQuery = 'select ' + filterField + ' from ' + describeObj.getName() +  ' where ID in :compListIDs';
 	        UTIL_Debug.debug('****Relationship filter dynamic query: ' + dynamicQuery);
 	        Map<ID, SObject> withRelatedFieldsMap = new Map<ID, SObject>(Database.query(dynamicQuery));
-	        
-	        //Let's make sure we return them in the same order the list passed as param
+	        //Let's make sure we return them in the same order as the list passed as param
 	        for(SObject compRecord : compList) {
 	            withRelatedFields.add(withRelatedFieldsMap.get(compRecord.ID));
 	        }
@@ -242,19 +235,22 @@ public with sharing class TDTM_Filter {
     * @param filteredList The resulting filtered list.
     * @return void 
     */
-    private void filterListByRelatedField(List<SObject> listRelatedFields, List<SObject> originalList, 
+    private void filterListByRelatedField(List<SObject> listWithRelatedFields, List<SObject> originalList, 
     List<SObject> filteredList) {
-        if(listRelatedFields != null && listRelatedFields.size() > 0) {
-            for(Integer i = 0; i < listRelatedFields.size(); i++) {
-                SObject o = listRelatedFields[i];
+        if(listWithRelatedFields != null && listWithRelatedFields.size() > 0) {
+            for(Integer i = 0; i < listWithRelatedFields.size(); i++) {
+                SObject o = listWithRelatedFields[i];
                 UTIL_Debug.debug('****Object in trigger: ' + o);
                 //traverse parent relationships until the last one
                 if (o != null) {
                     for (String parentObj : filterObjectChain) {
-                        UTIL_Debug.debug('****Object to traverse: ' + parentObj);
-                        o = o.getsObject(parentObj);
-                        UTIL_Debug.debug('****Parent object: ' + o);
+                        if(o != null) {
+	                        UTIL_Debug.debug('****Object to traverse: ' + parentObj);
+	                        o = o.getsObject(parentObj);
+	                        UTIL_Debug.debug('****Parent object: ' + o);
+                        }
                     }
+                    
                 }
                 //perform the filtering
                 UTIL_Debug.debug('****Filtering by field ' + fieldName + ', with value ' + filterValue + ' on object ' + o);
