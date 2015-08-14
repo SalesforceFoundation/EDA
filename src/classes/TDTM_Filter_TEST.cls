@@ -304,10 +304,6 @@ public with sharing class TDTM_Filter_TEST {
         Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AccountId = accFiltered.Id);
         Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AccountId = accNotFiltered.Id);
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AccountId = accFiltered.Id);
-        /*Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Account = accNotFiltered);
-        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Account = accFiltered);
-        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', Account = accNotFiltered);
-        Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Account = accFiltered);*/
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
         insert contacts;
         
@@ -341,12 +337,13 @@ public with sharing class TDTM_Filter_TEST {
               
         Account accFiltered = new Account(Name = 'Acme', ParentId = topAccountFiltered.Id);
         Account accNotFiltered = new Account(Name = 'ABC', ParentId = topAccountNotFiltered.Id);
-        insert new Account[] {accFiltered, accNotFiltered};
+        Account accNotFiltered2 = new Account(Name = 'XYC');
+        insert new Account[] {accFiltered, accNotFiltered, accNotFiltered2};
         
         //Creating four contacts. two of them are not students, because they don't have a university email.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = accNotFiltered.Id);
         Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AccountId = accFiltered.Id);
-        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AccountId = accNotFiltered.Id);
+        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AccountId = accNotFiltered2.Id);
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AccountId = accFiltered.Id);
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
         insert contacts;

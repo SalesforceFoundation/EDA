@@ -241,20 +241,30 @@ public with sharing class TDTM_Filter {
             for(Integer i = 0; i < listWithRelatedFields.size(); i++) {
                 SObject o = listWithRelatedFields[i];
                 UTIL_Debug.debug('****Object in trigger: ' + o);
+                Boolean addDirectly = false;
                 //traverse parent relationships until the last one
-                if (o != null) {
+                if (o != null) { //if the object at the bottom of the chain (the one in the trigger) isn't null
                     for (String parentObj : filterObjectChain) {
-                        if(o != null) {
+                        if(o != null) { //if each following object in the chain isn't null
 	                        UTIL_Debug.debug('****Object to traverse: ' + parentObj);
 	                        o = o.getsObject(parentObj);
 	                        UTIL_Debug.debug('****Parent object: ' + o);
+                        } else {
+                            UTIL_Debug.debug('****Object in the chain is null, we should add element directly to filteredList');
+                            addDirectly = true;
+                            break;
                         }
                     }
                     
                 }
+                //in case the topmost object in the chain is null
+                if(o == null) {
+                    UTIL_Debug.debug('****Top object in the chain is null, we should add element directly to filteredList');
+                    addDirectly = true;
+                }
                 //perform the filtering
                 UTIL_Debug.debug('****Filtering by field ' + fieldName + ', with value ' + filterValue + ' on object ' + o);
-                if(o != null && o.get(fieldName) != filterValue) {
+                if(addDirectly || (o != null && o.get(fieldName) != filterValue)) {
                     UTIL_Debug.debug('****Adding object ' + originalList[i] + ' to filtered list.');    
                     filteredList.add(originalList[i]);
                 }
