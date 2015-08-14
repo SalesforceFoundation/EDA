@@ -117,6 +117,12 @@ public with sharing class TDTM_Filter {
             parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe below.
         }
         
+        //For the Custom Object case
+        if(splitField.size() > 2 && (splitField[splitField.size() - 2]).endsWith('__r')) {
+            UTIL_Debug.debug('****The parent object is custom');
+            parentObjectName = parentObjectName.replace('__r', '__c');
+        }
+        
         //remove the field, to have only the parent object chain
         for(Integer i = 0; i < (splitField.size() - 1); i++)
             filterObjectChain.add(splitField[i]);
@@ -263,7 +269,7 @@ public with sharing class TDTM_Filter {
                 //perform the filtering
                 UTIL_Debug.debug('****Filtering by field ' + fieldName + ', with value ' + filterValue + ' on object ' + o);
                 if(addDirectly || (o != null && o.get(fieldName) != filterValue)) {
-                    UTIL_Debug.debug('****Adding object ' + originalList[i] + ' to filtered list.');    
+                    UTIL_Debug.debug('****Adding object to filtered list: ' + originalList[i]);    
                     filteredList.add(originalList[i]);
                 }
             }
