@@ -188,12 +188,8 @@ public with sharing class TDTM_Filter {
         //let's find the field type
         Schema.DisplayType fieldType = field.getDescribe().getType();
         UTIL_Debug.debug('****Filter field type: ' + fieldType);
-        String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));
-            
-        if(fieldType == Schema.DisplayType.String || fieldType == Schema.DisplayType.Email 
-        || fieldType == Schema.DisplayType.Phone || fieldType == Schema.DisplayType.Picklist) {
-            return val;
-        } else if(fieldType == Schema.DisplayType.Boolean) {
+        String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));    
+        if(fieldType == Schema.DisplayType.Boolean) {
             if(val == 'true') {
                 return true;
             } else if(val == 'false') {
@@ -203,6 +199,8 @@ public with sharing class TDTM_Filter {
             return Date.parse(val);
         } else if(fieldType == Schema.DisplayType.Reference) {
             return ID.valueOf(val);
+        } else { //We'll treat everything else as a string, including String, Email, Phone, and Picklist
+            return val;
         }
         return null;
     }
