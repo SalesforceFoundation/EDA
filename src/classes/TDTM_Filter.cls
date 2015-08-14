@@ -78,7 +78,6 @@ public with sharing class TDTM_Filter {
     * @return FilteredLists An instance of the wrapper object that contains the filtered newList and oldList.
     */
     public FilteredLists filter() {
-    	UTIL_Debug.debug('****New list before filtering: ' + JSON.serializePretty(newList));
     	try {
     		filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
     		if(filterField != null) {
@@ -117,7 +116,7 @@ public with sharing class TDTM_Filter {
             parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe below.
         }
         
-        //For the Custom Object case
+        //For the Custom Object at the top of the chain case
         if(splitField.size() > 2 && (splitField[splitField.size() - 2]).endsWith('__r')) {
             UTIL_Debug.debug('****The parent object is custom');
             parentObjectName = parentObjectName.replace('__r', '__c');
@@ -136,7 +135,6 @@ public with sharing class TDTM_Filter {
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
             filterByCondition(newListRelatedFields, oldListRelatedFields);
-            UTIL_Debug.debug('****Filtered new list: \n ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
         }       
@@ -179,7 +177,6 @@ public with sharing class TDTM_Filter {
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
             filterByCondition(null, null);
-            UTIL_Debug.debug('****Filtered new list: ' + JSON.serializePretty(filtered.newList));
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
         }
