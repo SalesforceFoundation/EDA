@@ -42,7 +42,7 @@ public with sharing class TDTM_Filter_TEST {
     private static string strTestOnly = '*';
     
 	public static testmethod void emailField() {
-		if (strTestOnly != '*' && strTestOnly != '*') return;
+		if (strTestOnly != '*' && strTestOnly != 'emailField') return;
 		
 		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
                                                     Field__c='ReportsToId', Relationship_Type__c = 'TestType');
