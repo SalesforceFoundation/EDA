@@ -127,7 +127,7 @@ public with sharing class TDTM_Filter {
             //Get the parent object of the object at the top of the chain. If there is only one object in the chain, the parent
             //is the object in the trigger.
             if(splitField.size() > 2) {
-                parentOfParent = splitField[-3];
+                parentOfParent = splitField[splitField.size() - 3];
             } else {
                 parentOfParent = describeObj.getName();
             }
