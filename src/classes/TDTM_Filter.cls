@@ -112,16 +112,17 @@ public with sharing class TDTM_Filter {
         UTIL_Debug.debug('****splitField: ' + splitField);
         
         //For the special Parent field on Account case
-        /*if(splitField.size() > 2 && splitField[splitField.size() - 3]  == 'Account' && splitField[splitField.size() - 2] == 'Parent') {
+        if(splitField.size() > 2 && splitField[splitField.size() - 3]  == 'Account' && splitField[splitField.size() - 2] == 'Parent') {
             UTIL_Debug.debug('****The relationship is called "Parent", but the object is Account');
             parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe below.
-        }*/
+        }
         
         //For the Custom Object at the top of the chain case
         if(splitField.size() >= 2 && (splitField[splitField.size() - 2]).endsWith('__r')) {
             UTIL_Debug.debug('****The parent object is custom');
             parentObjectName = parentObjectName.replace('__r', '__c');
             
+            //Getting the type of the object that is the parent of the filter field, even if it's custom.
             String parentOfParent;
             //Get the parent object of the object at the top of the chain. If there is only one object in the chain, the parent
             //is the object in the trigger.
@@ -132,16 +133,18 @@ public with sharing class TDTM_Filter {
             }
             UTIL_Debug.debug('****Parent of parent: ' + parentOfParent);
             
+            String objPointingTo;
             //Get the object type of the field. For example, the field might be called Current_Address__c, but the object is Address__c
             fieldsMap = UTIL_Describe.getObjectDescribe(parentOfParent).fields.getMap();
             Schema.DescribeFieldResult customObjParentDescribe = fieldsMap.get(parentObjectName).getDescribe();
             List <Schema.sObjectType> refs = customObjParentDescribe.getReferenceTo();
             if(refs != null && refs.size() == 1) {
-                String objPointingTo = refs[0].getDescribe().getName();
+                objPointingTo = refs[0].getDescribe().getName();
                 UTIL_Debug.debug('****Object with filter field is of type ' + objPointingTo);
             } else if(refs.size() > 1) {
                 UTIL_Debug.debug('****Field could be pointing to more than one type of object. We will have to iterate through each and see which one contains that field.');   
             }
+            parentObjectName = objPointingTo;
         }
         
         //remove the field, to have only the parent object chain
@@ -149,8 +152,7 @@ public with sharing class TDTM_Filter {
             filterObjectChain.add(splitField[i]);
         UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
         
-        if(fieldsMap == null)
-            fieldsMap = UTIL_Describe.getObjectDescribe(parentObjectName).fields.getMap();
+        fieldsMap = UTIL_Describe.getObjectDescribe(parentObjectName).fields.getMap();
         Schema.SObjectField field = fieldsMap.get(fieldName);
         UTIL_Debug.debug('****Field in object: ' + field);
         
