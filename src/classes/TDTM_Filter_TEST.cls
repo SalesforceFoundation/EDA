@@ -481,4 +481,43 @@ public with sharing class TDTM_Filter_TEST {
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
         System.assertEquals(2, rels.size());     
     }
+    
+    public static testmethod void customObjectOnlyOneInChain() {
+        if (strTestOnly != '*' && strTestOnly != 'customObjectOnlyOneInChain') return;
+        
+        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+        //Creating filter condition.
+        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Current_Address__r.Default_Address__c',
+              Filter_Value__c = 'true');
+
+        Account topAcc = new Account(Name = 'topAcc');
+        insert new Account[] {topAcc};
+        
+        Address__c addressFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = true);
+        Address__c addressNotFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = false);
+        insert new Address__c[] {addressFiltered, addressNotFiltered};
+        
+        //Creating four contacts. two of them are not students, because they don't have a university email.
+        Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Current_Address__c = addressNotFiltered.Id);
+        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Current_Address__c = addressFiltered.Id);
+        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3');
+        Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', Current_Address__c = addressFiltered.Id);
+        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        insert contacts;
+        
+        //Adding lookups among the contacts. Relationships should be automatically created from them.
+        //Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
+        c1.ReportsToId = c2.Id;
+        c2.ReportsToId = c3.Id;
+        c3.ReportsToId = c4.Id;
+        update contacts;
+        
+        //Only those from c1 and c3 should have had a relationship automatically created.
+        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        System.assertEquals(2, rels.size());     
+    }
 }
