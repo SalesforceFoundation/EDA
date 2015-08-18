@@ -128,9 +128,9 @@ public with sharing class TDTM_Filter {
         if(field == null) {
 	        //If the field is not valid, go down the object chain until we find one that is valid. Then go back up to find the object type
 	        //at each level, until we get to the type of the parent of the filter field.
-	        SObjectField topFirstValidField = findValidObjectInChain(filterObjectChain.size() - 1);
+	        ChainLink topFirstValidField = findValidObjectInChain(filterObjectChain.size() - 1);
 	        UTIL_Debug.debug('****topFirstValidField: ' + topFirstValidField);
-	        //Now go back up the chain...
+	        //Now go back up the chain. What we really want is the object type of the parent of the filter field.
         }
         if(field != null) { //the field name is valid for the object at the top of the chain!
             filterValue = getFilter(field);
@@ -141,53 +141,37 @@ public with sharing class TDTM_Filter {
         }       
     }
     
-    private SObjectField findValidObjectInChain(Integer objectChainIndex) {
+    private ChainLink findValidObjectInChain(Integer objectChainIndex) {
         UTIL_Debug.debug('****objectChainIndex: ' + objectChainIndex);
+        SObjectField field;
         if(objectChainIndex == 0) {
             UTIL_Debug.debug('****Top child: ' + filterObjectChain[objectChainIndex]);
             UTIL_Debug.debug('****Top parent: ' + describeObj.getName());
-            return getSOField(describeObj.getName(), filterObjectChain[objectChainIndex]);
+            field = getSOField(describeObj.getName(), filterObjectChain[objectChainIndex]);
+            String objectReferenced = getObjectTypeReferenced(describeObj.getName(), filterObjectChain[objectChainIndex]);
+            ChainLink link = new ChainLink(field, objectReferenced, describeObj.getName(), objectChainIndex);
+            return link;
         } else {
             String child = filterObjectChain[objectChainIndex];
             UTIL_Debug.debug('****Child: ' + child);
             String parent = filterObjectChain[objectChainIndex -1];
             UTIL_Debug.debug('****Parent: ' + parent);
-            String parentObjectName = getObjectTypeReferenced(parent, child);
-            UTIL_Debug.debug('****parentObjectName: ' + parentObjectName);
-            if(parentObjectName != null) {
-	            SObjectField field = getSOField(parentObjectName, child);
+            String objectReferenced = getObjectTypeReferenced(parent, child);
+            UTIL_Debug.debug('****objectReferenced: ' + objectReferenced);
+            if(parent != null) {
+	            field = getSOField(parent, child);
 	            UTIL_Debug.debug('****Field in findValidObjectInChain: ' + field);
 	            if(field == null) {
 	                return findValidObjectInChain(--objectChainIndex);
 	            } else {
-	                return field;
+	                ChainLink link = new ChainLink(field, objectReferenced, parent, objectChainIndex);
+	                return link;
 	            }
             } else {
                 return findValidObjectInChain(--objectChainIndex);
             }
         }
     }
-
-    /*******************************************************************************************************
-    * @description Getting the type of the object that is the parent of the filter field, even if it's custom.
-    */  
-    /*private String getTypeOfParentOfFilterField(String parentObjectName, List<String> filterObjectChain) {
-        //For the Custom Object at the top of the chain case
-        if(filterObjectChain.size() >= 1 && (filterObjectChain[filterObjectChain.size() - 1]).endsWith('__r')) {
-            UTIL_Debug.debug('****The parent object is custom');
-            parentObjectName = parentObjectName.replace('__r', '__c');
-        }
-        String parentOfParent;
-        //Get the parent object of the object at the top of the chain. If there is only one object in the chain, the parent
-        //is the object in the trigger.
-        if(filterObjectChain.size() > 1) {
-            parentOfParent = filterObjectChain[filterObjectChain.size() - 2];
-        } else {
-            parentOfParent = describeObj.getName();
-        }
-        UTIL_Debug.debug('****Parent of parent: ' + parentOfParent);
-        return getObjectTypeReferenced(parentOfParent, parentObjectName);
-    }*/
     
     /*******************************************************************************************************
     * @description Get the object type of the filter field. For example, the field might be called Current_Address__c, 
@@ -197,10 +181,8 @@ public with sharing class TDTM_Filter {
         String objPointingTo;
         DescribeSObjectResult objectDescribe;
         try {
-            if(parent.endsWith('__r'))
-                parent = parent.replace('__r', '__c');
-            if(child.endsWith('__r'))
-                child = child.replace('__r', '__c');
+            parent = fromRtoC(parent);
+            child = fromRtoC(child);
 	        objectDescribe = UTIL_Describe.getObjectDescribe(parent);
 	        if(objectDescribe != null) {
 		        Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
@@ -222,10 +204,8 @@ public with sharing class TDTM_Filter {
     }
     
     private SObjectField getSOField(String parentObjectName, String fieldName) {
-        if(parentObjectName.endsWith('__r'))
-            parentObjectName = parentObjectName.replace('__r', '__c');
-        if(fieldName.endsWith('__r'))
-            fieldName = fieldName.replace('__r', '__c');
+        parentObjectName = fromRtoC(parentObjectName);  
+        fieldName = fromRtoC(fieldName);
         UTIL_Debug.debug('****Parent in getSOField: ' + parentObjectName); 
         UTIL_Debug.debug('****Child in getSOField: ' + fieldName);
         try {
@@ -240,6 +220,13 @@ public with sharing class TDTM_Filter {
             UTIL_Debug.debug('****Invalid object name: ' + parentObjectName);
             return null;
         }
+    }
+    
+    private String fromRtoC(String fieldName) {
+        if(fieldName.endsWith('__r'))
+            return fieldName.replace('__r', '__c');
+        else
+            return fieldName;
     }
     
     /*******************************************************************************************************
@@ -404,5 +391,21 @@ public with sharing class TDTM_Filter {
     		newList = new List<SObject>();
     		oldList = new List<SObject>();
     	}
+    }
+    
+    public class ChainLink {
+        public SObjectField field;
+        public String fieldName;
+        public String objectReferenced;
+        public String parentName;
+        public Integer positionFromBackOfChain;
+        
+        public ChainLink(SObjectField field, String objectReferenced, String parentName, Integer positionFromBackOfChain) {
+            this.field = field;
+            this.fieldName = this.field.getDescribe().getName(); //TODO: optimize this to save describe calls.
+            this.objectReferenced = objectReferenced;
+            this.parentName = parentName;
+            this.positionFromBackOfChain = positionFromBackOfChain;
+        }
     }
 }
