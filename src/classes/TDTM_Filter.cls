@@ -43,7 +43,7 @@ public with sharing class TDTM_Filter {
     /* @description The records that were passed to the trigger as trigger.old. */
     List<SObject> oldList;
     /* @description The type of SObject the class runs for. */
-    Schema.DescribeSObjectResult describeObj;
+    DescribeSObjectResult describeObj;
     /* @description filterField The field to filter on, including the whole relationship chain, i.e. "Account.Name".*/
     String filterField;
     /* The field to filter on in the parent object, i.e. "Name". */
@@ -64,7 +64,7 @@ public with sharing class TDTM_Filter {
     * @param describeObj The type of SObject the class runs for.
     */
     public TDTM_Filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
-    Schema.DescribeSObjectResult describeObj) {
+    DescribeSObjectResult describeObj) {
         this.classToRunRecord = classToRunRecord;
         this.newList = newList;
         this.oldList = oldList;
@@ -104,58 +104,34 @@ public with sharing class TDTM_Filter {
     private void filterByRelationship() {        
         List<SObject> newListRelatedFields = queryRelatedFields(newList);
         List<SObject> oldListRelatedFields = queryRelatedFields(oldList);
-        Map<String, Schema.SObjectField> fieldsMap;
         
-        List<String> splitField = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
-        fieldName = splitField[splitField.size() - 1]; //get the field name itself
-        String parentObjectName = splitField[splitField.size() - 2]; //get the name of the field parent = last object in the chain      
-        UTIL_Debug.debug('****splitField: ' + splitField);
+        List<String> filterFullChain = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
+        fieldName = filterFullChain[filterFullChain.size() - 1]; //get the field name itself
+        String parentObjectName = filterFullChain[filterFullChain.size() - 2]; //get the name of the field parent = last object in the chain      
+        UTIL_Debug.debug('****filterFullChain: ' + filterFullChain);        
+        //remove the field, to have only the parent object chain
+        for(Integer i = 0; i < (filterFullChain.size() - 1); i++)
+            filterObjectChain.add(filterFullChain[i]);
+        UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
         
         //For the special Parent field on Account case
-        if(splitField.size() > 2 && splitField[splitField.size() - 3]  == 'Account' && splitField[splitField.size() - 2] == 'Parent') {
+        if(filterFullChain.size() > 2 && filterFullChain[filterFullChain.size() - 3]  == 'Account' && filterFullChain[filterFullChain.size() - 2] == 'Parent') {
             UTIL_Debug.debug('****The relationship is called "Parent", but the object is Account');
             parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe below.
         }
         
-        //For the Custom Object at the top of the chain case
-        if(splitField.size() >= 2 && (splitField[splitField.size() - 2]).endsWith('__r')) {
-            UTIL_Debug.debug('****The parent object is custom');
-            parentObjectName = parentObjectName.replace('__r', '__c');
-            
-            //Getting the type of the object that is the parent of the filter field, even if it's custom.
-            String parentOfParent;
-            //Get the parent object of the object at the top of the chain. If there is only one object in the chain, the parent
-            //is the object in the trigger.
-            if(splitField.size() > 2) {
-                parentOfParent = splitField[splitField.size() - 3];
-            } else {
-                parentOfParent = describeObj.getName();
-            }
-            UTIL_Debug.debug('****Parent of parent: ' + parentOfParent);
-            
-            String objPointingTo;
-            //Get the object type of the field. For example, the field might be called Current_Address__c, but the object is Address__c
-            fieldsMap = UTIL_Describe.getObjectDescribe(parentOfParent).fields.getMap();
-            Schema.DescribeFieldResult customObjParentDescribe = fieldsMap.get(parentObjectName).getDescribe();
-            List <Schema.sObjectType> refs = customObjParentDescribe.getReferenceTo();
-            if(refs != null && refs.size() == 1) {
-                objPointingTo = refs[0].getDescribe().getName();
-                UTIL_Debug.debug('****Object with filter field is of type ' + objPointingTo);
-            } else if(refs.size() > 1) {
-                UTIL_Debug.debug('****Field could be pointing to more than one type of object. We will have to iterate through each and see which one contains that field.');   
-            }
-            parentObjectName = objPointingTo;
-        }
-        
-        //remove the field, to have only the parent object chain
-        for(Integer i = 0; i < (splitField.size() - 1); i++)
-            filterObjectChain.add(splitField[i]);
-        UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
-        
-        fieldsMap = UTIL_Describe.getObjectDescribe(parentObjectName).fields.getMap();
-        Schema.SObjectField field = fieldsMap.get(fieldName);
+        UTIL_Debug.debug('****Bottom child: ' + fieldName);
+        UTIL_Debug.debug('****Bottom parent: ' + parentObjectName);
+        SObjectField field = getSOField(parentObjectName, fieldName);
         UTIL_Debug.debug('****Field in object: ' + field);
         
+        if(field == null) {
+	        //If the field is not valid, go down the object chain until we find one that is valid. Then go back up to find the object type
+	        //at each level, until we get to the type of the parent of the filter field.
+	        SObjectField topFirstValidField = findValidObjectInChain(filterObjectChain.size() - 1);
+	        UTIL_Debug.debug('****topFirstValidField: ' + topFirstValidField);
+	        //Now go back up the chain...
+        }
         if(field != null) { //the field name is valid for the object at the top of the chain!
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
@@ -163,6 +139,107 @@ public with sharing class TDTM_Filter {
         } else {
             UTIL_Debug.debug('****The field name is invalid.');
         }       
+    }
+    
+    private SObjectField findValidObjectInChain(Integer objectChainIndex) {
+        UTIL_Debug.debug('****objectChainIndex: ' + objectChainIndex);
+        if(objectChainIndex == 0) {
+            UTIL_Debug.debug('****Top child: ' + filterObjectChain[objectChainIndex]);
+            UTIL_Debug.debug('****Top parent: ' + describeObj.getName());
+            return getSOField(describeObj.getName(), filterObjectChain[objectChainIndex]);
+        } else {
+            String child = filterObjectChain[objectChainIndex];
+            UTIL_Debug.debug('****Child: ' + child);
+            String parent = filterObjectChain[objectChainIndex -1];
+            UTIL_Debug.debug('****Parent: ' + parent);
+            String parentObjectName = getObjectTypeReferenced(parent, child);
+            UTIL_Debug.debug('****parentObjectName: ' + parentObjectName);
+            if(parentObjectName != null) {
+	            SObjectField field = getSOField(parentObjectName, child);
+	            UTIL_Debug.debug('****Field in findValidObjectInChain: ' + field);
+	            if(field == null) {
+	                return findValidObjectInChain(--objectChainIndex);
+	            } else {
+	                return field;
+	            }
+            } else {
+                return findValidObjectInChain(--objectChainIndex);
+            }
+        }
+    }
+
+    /*******************************************************************************************************
+    * @description Getting the type of the object that is the parent of the filter field, even if it's custom.
+    */  
+    /*private String getTypeOfParentOfFilterField(String parentObjectName, List<String> filterObjectChain) {
+        //For the Custom Object at the top of the chain case
+        if(filterObjectChain.size() >= 1 && (filterObjectChain[filterObjectChain.size() - 1]).endsWith('__r')) {
+            UTIL_Debug.debug('****The parent object is custom');
+            parentObjectName = parentObjectName.replace('__r', '__c');
+        }
+        String parentOfParent;
+        //Get the parent object of the object at the top of the chain. If there is only one object in the chain, the parent
+        //is the object in the trigger.
+        if(filterObjectChain.size() > 1) {
+            parentOfParent = filterObjectChain[filterObjectChain.size() - 2];
+        } else {
+            parentOfParent = describeObj.getName();
+        }
+        UTIL_Debug.debug('****Parent of parent: ' + parentOfParent);
+        return getObjectTypeReferenced(parentOfParent, parentObjectName);
+    }*/
+    
+    /*******************************************************************************************************
+    * @description Get the object type of the filter field. For example, the field might be called Current_Address__c, 
+    but the object is Address__c.
+    */
+    private String getObjectTypeReferenced(String parent, String child) {
+        String objPointingTo;
+        DescribeSObjectResult objectDescribe;
+        try {
+            if(parent.endsWith('__r'))
+                parent = parent.replace('__r', '__c');
+            if(child.endsWith('__r'))
+                child = child.replace('__r', '__c');
+	        objectDescribe = UTIL_Describe.getObjectDescribe(parent);
+	        if(objectDescribe != null) {
+		        Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
+		        DescribeFieldResult customObjParentDescribe = fieldsMap.get(child).getDescribe();
+		        List <sObjectType> refs = customObjParentDescribe.getReferenceTo();
+		        if(refs != null && refs.size() == 1) {
+		            objPointingTo = refs[0].getDescribe().getName();
+		            UTIL_Debug.debug('****Child object is of type ' + objPointingTo);
+		        } else if(refs.size() > 1) {
+		            UTIL_Debug.debug('****Field could be pointing to more than one type of object. ' +
+		                             ' We should iterate through each and see which one contains that field.');   
+		        }
+	        }
+        } catch(UTIL_Describe.SchemaDescribeException e) {
+            UTIL_Debug.debug('****Invalid object name: ' + parent);
+            return null;
+        }
+        return objPointingTo;
+    }
+    
+    private SObjectField getSOField(String parentObjectName, String fieldName) {
+        if(parentObjectName.endsWith('__r'))
+            parentObjectName = parentObjectName.replace('__r', '__c');
+        if(fieldName.endsWith('__r'))
+            fieldName = fieldName.replace('__r', '__c');
+        UTIL_Debug.debug('****Parent in getSOField: ' + parentObjectName); 
+        UTIL_Debug.debug('****Child in getSOField: ' + fieldName);
+        try {
+            DescribeSObjectResult objectDescribe = UTIL_Describe.getObjectDescribe(parentObjectName);
+            if(objectDescribe != null) {
+                Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
+                return fieldsMap.get(fieldName);
+            } else {
+                return null;
+            }
+        } catch(UTIL_Describe.SchemaDescribeException e) {
+            UTIL_Debug.debug('****Invalid object name: ' + parentObjectName);
+            return null;
+        }
     }
     
     /*******************************************************************************************************
@@ -196,7 +273,7 @@ public with sharing class TDTM_Filter {
     */
     private void filterByField() {
         //get field type
-        Schema.SObjectField field = describeObj.fields.getMap().get(fieldName);
+        SObjectField field = describeObj.fields.getMap().get(fieldName);
         UTIL_Debug.debug('****Field in object: ' + field);
         if(field != null) { //the field name is valid!
             filterValue = getFilter(field);
@@ -212,20 +289,20 @@ public with sharing class TDTM_Filter {
     * @param Field The SObjectField used in the filtering comparison.
     * @return Object The value to compare against when filtering, already in the correct type. 
     */
-    private Object getFilter(Schema.SObjectField field) {
+    private Object getFilter(SObjectField field) {
         //let's find the field type
-        Schema.DisplayType fieldType = field.getDescribe().getType();
+        DisplayType fieldType = field.getDescribe().getType();
         UTIL_Debug.debug('****Filter field type: ' + fieldType);
         String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));    
-        if(fieldType == Schema.DisplayType.Boolean) {
+        if(fieldType == DisplayType.Boolean) {
             if(val == 'true') {
                 return true;
             } else if(val == 'false') {
                 return false;
             }
-        } else if(fieldType == Schema.DisplayType.Date) {
+        } else if(fieldType == DisplayType.Date) {
             return Date.parse(val);
-        } else if(fieldType == Schema.DisplayType.Reference) {
+        } else if(fieldType == DisplayType.Reference) {
             return ID.valueOf(val);
         } else { //We'll treat everything else as a string, including String, Email, Phone, and Picklist
             return val;
