@@ -128,9 +128,21 @@ public with sharing class TDTM_Filter {
         if(field == null) {
 	        //If the field is not valid, go down the object chain until we find one that is valid. Then go back up to find the object type
 	        //at each level, until we get to the type of the parent of the filter field.
-	        ChainLink topFirstValidField = findValidObjectInChain(filterObjectChain.size() - 1);
-	        UTIL_Debug.debug('****topFirstValidField: ' + topFirstValidField);
+	        ChainLink firstValidLink = findValidObjectInChain(filterObjectChain.size() - 1);
+	        UTIL_Debug.debug('****firstValidLink: ' + firstValidLink);
 	        //Now go back up the chain. What we really want is the object type of the parent of the filter field.
+	        ChainLink link = firstValidLink;
+	        for(Integer i = firstValidLink.objectChainIndex + 1; i < filterObjectChain.size(); i++) {
+	            UTIL_Debug.debug('****Object chain index: ' + i);
+	            UTIL_Debug.debug('****Parent object name: ' + link.objectReferenced);
+	            UTIL_Debug.debug('****filterObjectChain element: ' + filterObjectChain[i]);
+	            field = getSOField(link.objectReferenced, filterObjectChain[i]);
+	            UTIL_Debug.debug('****field back up the chain: ' + field);
+                String objectReferenced = getObjectTypeReferenced(link.objectReferenced, filterObjectChain[i]);
+                link = new ChainLink(field, objectReferenced, link.objectReferenced, i);
+                UTIL_Debug.debug('****Link: ' + Link);
+	        }
+	        field = getSOField(link.objectReferenced, fieldName);
         }
         if(field != null) { //the field name is valid for the object at the top of the chain!
             filterValue = getFilter(field);
@@ -182,7 +194,9 @@ public with sharing class TDTM_Filter {
         DescribeSObjectResult objectDescribe;
         try {
             parent = fromRtoC(parent);
+            UTIL_Debug.debug('****Parent in getObjectTypeReferenced: ' + parent);
             child = fromRtoC(child);
+            UTIL_Debug.debug('****Child in getObjectTypeReferenced: ' + child);
 	        objectDescribe = UTIL_Describe.getObjectDescribe(parent);
 	        if(objectDescribe != null) {
 		        Map<String, SObjectField> fieldsMap = objectDescribe.fields.getMap();
@@ -398,14 +412,14 @@ public with sharing class TDTM_Filter {
         public String fieldName;
         public String objectReferenced;
         public String parentName;
-        public Integer positionFromBackOfChain;
+        public Integer objectChainIndex;
         
-        public ChainLink(SObjectField field, String objectReferenced, String parentName, Integer positionFromBackOfChain) {
+        public ChainLink(SObjectField field, String objectReferenced, String parentName, Integer objectChainIndex) {
             this.field = field;
-            this.fieldName = this.field.getDescribe().getName(); //TODO: optimize this to save describe calls.
+            this.fieldName = this.field.getDescribe().getName(); //@TODO: optimize this to save describe calls.
             this.objectReferenced = objectReferenced;
             this.parentName = parentName;
-            this.positionFromBackOfChain = positionFromBackOfChain;
+            this.objectChainIndex = objectChainIndex;
         }
     }
 }
