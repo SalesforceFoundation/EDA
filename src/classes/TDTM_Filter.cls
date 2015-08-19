@@ -120,26 +120,8 @@ public with sharing class TDTM_Filter {
             //element in the map retrieved from the parent is ParentId.
         }
         
-        UTIL_Debug.debug('****Bottom child: ' + fieldName);
-        UTIL_Debug.debug('****Bottom parent: ' + parentObjectName);
-        SObjectField field = getSOField(parentObjectName, fieldName);
-        UTIL_Debug.debug('****Field in object: ' + field);
+        SObjectField field = getSObjectFilterField(parentObjectName);
         
-        if(field == null) {
-	        //If the field is not valid, go up the object chain until we find one that is valid. Then go back down to find the object type
-	        //at each level, until we get to the type of the parent of the filter field.
-	        ChainLink firstValidLink = findValidObjectInChain(filterObjectChain.size() - 1);
-	        //Now go back down the chain. What we really want is the object type of the parent of the filter field.
-	        ChainLink link = firstValidLink;
-	        for(Integer i = firstValidLink.objectChainIndex + 1; i < filterObjectChain.size(); i++) {
-	            UTIL_Debug.debug('****Parent object name: ' + link.objectReferenced);
-	            field = getSOField(link.objectReferenced, filterObjectChain[i]);
-	            UTIL_Debug.debug('****field back up the chain: ' + field);
-                String objectReferenced = getObjectTypeReferenced(link.objectReferenced, filterObjectChain[i]);
-                link = new ChainLink(field, objectReferenced, link.objectReferenced, i);
-	        }
-	        field = getSOField(link.objectReferenced, fieldName);
-        }
         if(field != null) { //the field name is valid for the object at the top of the chain!
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
@@ -149,6 +131,39 @@ public with sharing class TDTM_Filter {
         }       
     }
     
+    /*******************************************************************************************************
+    * @description We need the SObjectField to know the type of the filter field and determine if any manipulation is necessary.
+    * All the filter conditions are stored as strings, but some many need to be transformed to compare against the values in the
+    * trigger records. For example, is a filtering condition is stored as 'true' we'll need to transform it into the Boolean value
+    * true.
+    */
+    private SObjectField getSObjectFilterField(String parentObjectName) {
+        UTIL_Debug.debug('****Bottom child: ' + fieldName);
+        UTIL_Debug.debug('****Bottom parent: ' + parentObjectName);
+        SObjectField field = getSOField(parentObjectName, fieldName);
+        UTIL_Debug.debug('****Field in object: ' + field);
+        
+        if(field == null) {
+            //If the field is not valid, go up the object chain until we find one that is valid. Then go back down to find the object type
+            //at each level, until we get to the type of the parent of the filter field.
+            ChainLink firstValidLink = findValidObjectInChain(filterObjectChain.size() - 1);
+            //Now go back down the chain. What we really want is the object type of the parent of the filter field.
+            ChainLink link = firstValidLink;
+            for(Integer i = firstValidLink.objectChainIndex + 1; i < filterObjectChain.size(); i++) {
+                UTIL_Debug.debug('****Parent object name: ' + link.objectReferenced);
+                field = getSOField(link.objectReferenced, filterObjectChain[i]);
+                UTIL_Debug.debug('****field back up the chain: ' + field);
+                String objectReferenced = getObjectTypeReferenced(link.objectReferenced, filterObjectChain[i]);
+                link = new ChainLink(field, objectReferenced, link.objectReferenced, i);
+            }
+            field = getSOField(link.objectReferenced, fieldName);
+        }
+        return field;
+    }
+    
+    /*******************************************************************************************************
+    * @description Finds the first valid object in the chain
+    */
     private ChainLink findValidObjectInChain(Integer objectChainIndex) {
         SObjectField field;
         if(objectChainIndex == 0) {
