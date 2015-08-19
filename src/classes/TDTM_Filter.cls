@@ -132,10 +132,13 @@ public with sharing class TDTM_Filter {
     }
     
     /*******************************************************************************************************
-    * @description We need the SObjectField to know the type of the filter field and determine if any manipulation is necessary.
-    * All the filter conditions are stored as strings, but some many need to be transformed to compare against the values in the
-    * trigger records. For example, is a filtering condition is stored as 'true' we'll need to transform it into the Boolean value
-    * true.
+    * @description We need the SObjectField to know the type of the filter field and determine if any manipulation 
+    * is necessary. All the filter conditions are stored as strings, but some many need to be transformed to 
+    * compare against the values in the trigger records. For example, is a filtering condition is stored as 'true' 
+    * we'll need to transform it into the Boolean value true.
+    * @param parentObjectName The name of the object that is the parent of the filter field, as initally defined in the filtering
+    * condition.
+    * @return SObjectField The field to filter on as SObjectField.
     */
     private SObjectField getSObjectFilterField(String parentObjectName) {
         UTIL_Debug.debug('****Bottom child: ' + fieldName);
@@ -162,7 +165,10 @@ public with sharing class TDTM_Filter {
     }
     
     /*******************************************************************************************************
-    * @description Finds the first valid object in the chain
+    * @description Finds the first valid object in the chain, that is the first item in the chain built from the filtering
+    * condition where the name is an actual object name. If none of the items in the chain are an actual object, it will 
+    * go all the way back up to the object the class is running on.
+    * @objectChainIndex The index of the element in the chain to inspect.  
     */
     private ChainLink findValidObjectInChain(Integer objectChainIndex) {
         SObjectField field;
@@ -198,7 +204,10 @@ public with sharing class TDTM_Filter {
     
     /*******************************************************************************************************
     * @description Get the object type of the filter field. For example, the field might be called Current_Address__c, 
-    but the object is Address__c.
+    * but the object is Address__c.
+    * @param parent The parent object of the field.
+    * @param child The field for which we are trying to find the object type referenced.
+    * @return String The name of the object referenced by child, if any. 
     */
     private String getObjectTypeReferenced(String parent, String child) {
         String objPointingTo;
@@ -228,6 +237,12 @@ public with sharing class TDTM_Filter {
         return objPointingTo;
     }
     
+    /*******************************************************************************************************
+    * @description Gets the SObjectField for the fieldName field name in parentObjectName.
+    * @param parentObjectName The name of the object containing the field, as a string.
+    * @param fieldName The name of the field we are looking for, as a string.
+    * @return SObjectField The field we are looking for.
+    */
     private SObjectField getSOField(String parentObjectName, String fieldName) {
         parentObjectName = fromRtoC(parentObjectName);  
         fieldName = fromRtoC(fieldName);
@@ -247,6 +262,12 @@ public with sharing class TDTM_Filter {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Replaces __r with __c in the string passed, in case that's the only difference between the name
+    * used to query and the actual object named referenced.
+    * @param The relationship name.
+    * @return String The object name, if the name of a custom relationship was passed. 
+    */
     private String fromRtoC(String fieldName) {
         if(fieldName.endsWith('__r'))
             return fieldName.replace('__r', '__c');
@@ -417,6 +438,9 @@ public with sharing class TDTM_Filter {
     	}
     }
     
+    /*******************************************************************************************************
+    * @description Wrapper representing a link in the chain obtained from the filtering condition.
+    */
     public class ChainLink {
         public SObjectField field;
         public String fieldName;
@@ -426,7 +450,7 @@ public with sharing class TDTM_Filter {
         
         public ChainLink(SObjectField field, String objectReferenced, String parentName, Integer objectChainIndex) {
             this.field = field;
-            this.fieldName = this.field.getDescribe().getName(); //@TODO: optimize this to save describe calls.
+            this.fieldName = this.field.getDescribe().getName(); //@TODO: optimize this to save describe calls?
             this.objectReferenced = objectReferenced;
             this.parentName = parentName;
             this.objectChainIndex = objectChainIndex;
