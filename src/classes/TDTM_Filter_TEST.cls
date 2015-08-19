@@ -105,6 +105,34 @@ public with sharing class TDTM_Filter_TEST {
     	System.assertEquals(2, rels.size());
 	}
 	
+	public static testmethod void oneRecordOnly() {
+        if (strTestOnly != '*' && strTestOnly != 'oneRecordOnly') return;
+        
+        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+        //Creating filter condition.
+        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'AssistantName',
+              Filter_Value__c = 'Anne');
+        
+        //Creating two contacts. The second one meets the filtering criteria.
+        Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Anne');
+        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Nancy');
+        Contact[] contacts = new Contact[] {c1, c2};
+        insert contacts;
+        
+        //Adding lookups among the contacts. Relationships should be automatically created from them.
+        //Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
+        c1.ReportsToId = c2.Id;
+        update c1;
+        
+        //Since c1 should be filtered out, not relationship should be created.
+        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        System.assertEquals(0, rels.size());
+    }
+	
 	public static testmethod void checkboxField() {
 		if (strTestOnly != '*' && strTestOnly != 'checkboxField') return;
 		
