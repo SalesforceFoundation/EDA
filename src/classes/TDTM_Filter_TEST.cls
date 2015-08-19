@@ -250,7 +250,7 @@ public with sharing class TDTM_Filter_TEST {
 		
 		//Creating filter condition.
 		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];
-		handler.Filter_Field__c = 'AccountId'; //We have to append Id because that's what's in the map of fields!
+		handler.Filter_Field__c = 'Account.Id';
         handler.Filter_Value__c = acc2.Id;
         update handler;
 		
