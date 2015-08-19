@@ -109,15 +109,15 @@ public with sharing class TDTM_Filter {
         fieldName = filterFullChain[filterFullChain.size() - 1]; //get the field name itself
         String parentObjectName = filterFullChain[filterFullChain.size() - 2]; //get the name of the field parent = last object in the chain      
         UTIL_Debug.debug('****filterFullChain: ' + filterFullChain);        
+        
         //remove the field, to have only the parent object chain
         for(Integer i = 0; i < (filterFullChain.size() - 1); i++)
             filterObjectChain.add(filterFullChain[i]);
-        UTIL_Debug.debug('****Parent objects chain: ' + JSON.serializePretty(filterObjectChain));
         
-        //For the special Parent field on Account case
+        //For the special Parent field on Account case. The relationship is called "Parent", but the object is Account.
         if(filterFullChain.size() > 2 && filterFullChain[filterFullChain.size() - 3]  == 'Account' && filterFullChain[filterFullChain.size() - 2] == 'Parent') {
-            UTIL_Debug.debug('****The relationship is called "Parent", but the object is Account');
-            parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe below.
+            parentObjectName = 'Account'; //If we don't do this, we get "Exception: Invalid object name 'Parent'" when calling getObjectDescribe, because the 
+            //element in the map retrieved from the parent is ParentId.
         }
         
         UTIL_Debug.debug('****Bottom child: ' + fieldName);
@@ -126,21 +126,17 @@ public with sharing class TDTM_Filter {
         UTIL_Debug.debug('****Field in object: ' + field);
         
         if(field == null) {
-	        //If the field is not valid, go down the object chain until we find one that is valid. Then go back up to find the object type
+	        //If the field is not valid, go up the object chain until we find one that is valid. Then go back down to find the object type
 	        //at each level, until we get to the type of the parent of the filter field.
 	        ChainLink firstValidLink = findValidObjectInChain(filterObjectChain.size() - 1);
-	        UTIL_Debug.debug('****firstValidLink: ' + firstValidLink);
-	        //Now go back up the chain. What we really want is the object type of the parent of the filter field.
+	        //Now go back down the chain. What we really want is the object type of the parent of the filter field.
 	        ChainLink link = firstValidLink;
 	        for(Integer i = firstValidLink.objectChainIndex + 1; i < filterObjectChain.size(); i++) {
-	            UTIL_Debug.debug('****Object chain index: ' + i);
 	            UTIL_Debug.debug('****Parent object name: ' + link.objectReferenced);
-	            UTIL_Debug.debug('****filterObjectChain element: ' + filterObjectChain[i]);
 	            field = getSOField(link.objectReferenced, filterObjectChain[i]);
 	            UTIL_Debug.debug('****field back up the chain: ' + field);
                 String objectReferenced = getObjectTypeReferenced(link.objectReferenced, filterObjectChain[i]);
                 link = new ChainLink(field, objectReferenced, link.objectReferenced, i);
-                UTIL_Debug.debug('****Link: ' + Link);
 	        }
 	        field = getSOField(link.objectReferenced, fieldName);
         }
@@ -154,12 +150,12 @@ public with sharing class TDTM_Filter {
     }
     
     private ChainLink findValidObjectInChain(Integer objectChainIndex) {
-        UTIL_Debug.debug('****objectChainIndex: ' + objectChainIndex);
         SObjectField field;
         if(objectChainIndex == 0) {
             UTIL_Debug.debug('****Top child: ' + filterObjectChain[objectChainIndex]);
-            UTIL_Debug.debug('****Top parent: ' + describeObj.getName());
-            field = getSOField(describeObj.getName(), filterObjectChain[objectChainIndex]);
+            String topParent = describeObj.getName();
+            UTIL_Debug.debug('****Top parent: ' + topParent);
+            field = getSOField(topParent, filterObjectChain[objectChainIndex]);
             String objectReferenced = getObjectTypeReferenced(describeObj.getName(), filterObjectChain[objectChainIndex]);
             ChainLink link = new ChainLink(field, objectReferenced, describeObj.getName(), objectChainIndex);
             return link;
@@ -369,7 +365,6 @@ public with sharing class TDTM_Filter {
                 //perform the filtering
                 UTIL_Debug.debug('****Filtering by field ' + fieldName + ', with value ' + filterValue + ' on object ' + o);
                 if(addDirectly || (o != null && o.get(fieldName) != filterValue)) {
-                    UTIL_Debug.debug('****Adding object to filtered list: ' + originalList[i]);    
                     filteredList.add(originalList[i]);
                 }
             }
