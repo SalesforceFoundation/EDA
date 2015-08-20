@@ -120,7 +120,6 @@ public class UTIL_UnitTestData_TEST {
                 CloseDate = Close,
                 StageName = Stage,
                 CampaignId = CampId,
-                Contact_Id_for_Role__c = thisCon.Id,
                 type = oppType
             );
             oppsToAdd.add (newOpp);

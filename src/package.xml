@@ -181,7 +181,6 @@
     <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
     <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
     <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
-    <members>Opportunity.Contact_Id_for_Role__c</members>
     <members>Program_Enrollment__c.Admission_Date__c</members>
     <members>Program_Enrollment__c.Affiliation__c</members>
     <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
@@ -256,7 +255,6 @@
     <members>Course__c</members>
     <members>Error__c</members>
     <members>Hierarchy_Settings__c</members>
-    <members>Opportunity</members>
     <members>Program_Enrollment__c</members>
     <members>Relationship_Auto_Create__c</members>
     <members>Relationship_Lookup__c</members>
