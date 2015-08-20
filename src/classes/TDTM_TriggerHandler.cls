@@ -177,7 +177,7 @@ public with sharing class TDTM_TriggerHandler {
 			        } else {
 			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
 			        	
-			        	TDTM_Filter filter = new TDTM_Filter(classToRunRecord, newList, oldList, describeObj);
+			        	TDTM_Filter filter = new TDTM_Filter(classToRunName, classToRunRecord, newList, oldList, describeObj);
 			        	TDTM_Filter.FilteredLists filtered = filter.filter();
                         
                         if(filtered != null) {

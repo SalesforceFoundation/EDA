@@ -35,7 +35,9 @@
 * Those that do are taken out from the list of records to process. 
 */
 public with sharing class TDTM_Filter {
-
+    
+    /* @description  The name of the class being run.*/
+    String classToRunName;
     /* @description  An instance of the class being run.*/
     SObject classToRunRecord; 
     /* * @description The records that were passed to the trigger as trigger.new. */
@@ -63,8 +65,9 @@ public with sharing class TDTM_Filter {
     * @param oldList The records that were passed to the trigger as trigger.old.
     * @param describeObj The type of SObject the class runs for.
     */
-    public TDTM_Filter(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    public TDTM_Filter(String classToRunName, SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
     DescribeSObjectResult describeObj) {
+        this.classToRunName = classToRunName;
         this.classToRunRecord = classToRunRecord;
         this.newList = newList;
         this.oldList = oldList;
@@ -90,7 +93,6 @@ public with sharing class TDTM_Filter {
 	        	return filtered;
 	    	}
     	} catch(Exception e) {
-    		UTIL_Debug.debug(LoggingLevel.WARN, '****Invalid filtering condition');
     		UTIL_Debug.debug(LoggingLevel.WARN, '****Exception: ' + e.getMessage());
     		UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
     	}
@@ -108,7 +110,7 @@ public with sharing class TDTM_Filter {
         List<String> filterFullChain = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
         fieldName = filterFullChain[filterFullChain.size() - 1]; //get the field name itself
         String parentObjectName = filterFullChain[filterFullChain.size() - 2]; //get the name of the field parent = last object in the chain      
-        UTIL_Debug.debug('****filterFullChain: ' + filterFullChain);        
+        UTIL_Debug.debug('****filterFullChain: ' + filterFullChain);
         
         //remove the field, to have only the parent object chain
         for(Integer i = 0; i < (filterFullChain.size() - 1); i++)
@@ -127,8 +129,19 @@ public with sharing class TDTM_Filter {
             UTIL_Debug.debug('****Filter value: ' + filterValue);
             filterByCondition(newListRelatedFields, oldListRelatedFields);
         } else {
-            UTIL_Debug.debug('****The field name is invalid.');
+            addErrorToAll();
         }       
+    }
+    
+    /*******************************************************************************************************
+    * @description Adds an error message to all the records in the trigger.
+    * @return void
+    */
+    private void addErrorToAll() {
+        for(Integer i = 0; i < newList.size(); i++) {
+            newList[i].addError(Label.InvalidFilter + ' ' + classToRunName);
+            filtered.newList.add(newList[i]);
+        }
     }
     
     /*******************************************************************************************************
@@ -313,7 +326,7 @@ public with sharing class TDTM_Filter {
             UTIL_Debug.debug('****Filter value: ' + filterValue);
             filterByCondition(null, null);
         } else {
-            UTIL_Debug.debug('****The field name is invalid.');
+            addErrorToAll();
         }
     }
     

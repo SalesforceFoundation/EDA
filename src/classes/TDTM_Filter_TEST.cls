@@ -132,6 +132,33 @@ public with sharing class TDTM_Filter_TEST {
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
         System.assertEquals(0, rels.size());
     }
+    
+    public static testmethod void InvalidFilterField() {
+        if (strTestOnly != '*' && strTestOnly != 'InvalidFilterField') return;
+        
+        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+                                                    
+        //Creating filter condition.
+        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'InvalidField',
+              Filter_Value__c = 'Anne');
+        
+        //Creating four contacts. The second one meets the filtering criteria.
+        Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
+        Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
+        Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
+        Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
+        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        try {
+            insert contacts;
+            System.assertEquals('We should never get here.', 'We got here.');
+        } catch(System.DmlException e) {
+            System.assertEquals(true, e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
+            System.assertEquals(true, e.getMessage().contains(Label.InvalidFilter));
+        }
+    }
 	
 	public static testmethod void checkboxField() {
 		if (strTestOnly != '*' && strTestOnly != 'checkboxField') return;
