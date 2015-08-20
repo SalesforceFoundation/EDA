@@ -232,6 +232,7 @@
     <members>DefaultAdminName</members>
     <members>DefaultHouseholdName</members>
     <members>Female</members>
+    <members>InvalidFilter</members>
     <members>Male</members>
     <members>Relationship_Explanation_Connector</members>
     <members>Relationship_Split</members>

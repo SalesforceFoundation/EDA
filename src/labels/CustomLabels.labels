@@ -33,6 +33,14 @@
         <value>Female</value>
     </labels>
     <labels>
+        <fullName>InvalidFilter</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
+        <value>Invalid filtering field name defined on </value>
+    </labels>
+    <labels>
         <fullName>Male</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
