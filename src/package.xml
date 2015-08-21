@@ -165,7 +165,6 @@
     <members>Error__c.Stack_Trace__c</members>
     <members>Hierarchy_Settings__c.Account_Processor__c</members>
     <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
-    <members>Hierarchy_Settings__c.Automatic_Affiliation_Creation_Turned_On__c</members>
     <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
     <members>Hierarchy_Settings__c.Enable_Debug__c</members>
     <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>

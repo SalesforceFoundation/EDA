@@ -88,7 +88,6 @@ public without sharing class UTIL_CustomSettingsFacade {
 		hs.Organizational_Account_Addresses_Enabled__c = true;
 		hs.Household_Account_Addresses_Enabled__c = true;
 		hs.Reciprocal_Method__c = 'List Settings';
-        hs.Automatic_Affiliation_Creation_Turned_On__c = true;
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
@@ -113,7 +112,6 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Household_Account_Addresses_Enabled__c = mySettings.Household_Account_Addresses_Enabled__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         settings.Gender_Field__c = mySettings.Gender_Field__c;
-        settings.Automatic_Affiliation_Creation_Turned_On__c = mySettings.Automatic_Affiliation_Creation_Turned_On__c;
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         settings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;

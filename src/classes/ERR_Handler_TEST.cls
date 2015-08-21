@@ -89,9 +89,6 @@ public with sharing class ERR_Handler_TEST {
     	if (strTestOnly != '*' && strTestOnly != 'errorStoredInDbTdtmStandardConfig') return;
     
         setupWithChatterNotifications();
-        
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Automatic_Affiliation_Creation_Turned_On__c = true));
                     
         //Create account
         Account acc1 = new Account(Name='test1');

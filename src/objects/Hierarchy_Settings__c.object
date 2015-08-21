@@ -26,16 +26,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Automatic_Affiliation_Creation_Turned_On__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</inlineHelpText>
-        <label>Automatic Affiliation Management</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
         <description>If checked, NPSP&apos;s error handling framework is disabled.</description>

@@ -44,8 +44,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     private static string strTestOnly = '*';
     
 	public static void setup() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR, 
-																				Automatic_Affiliation_Creation_Turned_On__c = true));
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         		
 		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
     	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
