@@ -88,12 +88,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Household_Account_Addresses_Disabled__c</fullName>
+        <fullName>Household_Account_Addresses_Enabled__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Disables Address management for Household Accounts when selected.</description>
+        <description>Enables Address management for Household Accounts when selected.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Disables Address management for Household Accounts when selected.</inlineHelpText>
-        <label>Household Account Addresses Disabled</label>
+        <inlineHelpText>Enables Address management for Household Accounts when selected.</inlineHelpText>
+        <label>Household Account Addresses Enabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

@@ -58,7 +58,7 @@ public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
         list<Contact> listConAddrReset = new list<Contact>();
         
 		// bail out if address mgmt turned off.
-        if (UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Disabled__c)
+        if (!UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Enabled__c)
         	return dmlWrapper;
                 
         // Rules:
