@@ -26,16 +26,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Automatic_Affiliation_Creation_Turned_On__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Create or update Affiliations for Contacts connected to Organization Accounts when their Organization field or Primary Affiliation field is changed.</inlineHelpText>
-        <label>Automatic Affiliation Management</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
         <description>If checked, NPSP&apos;s error handling framework is disabled.</description>
@@ -88,25 +78,14 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Household_Account_Addresses_Disabled__c</fullName>
+        <fullName>Household_Account_Addresses_Enabled__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Disables Address management for Household Accounts when selected.</description>
+        <description>Enables Address management for Household Accounts when selected.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Disables Address management for Household Accounts when selected.</inlineHelpText>
-        <label>Household Account Addresses Disabled</label>
+        <inlineHelpText>Enables Address management for Household Accounts when selected.</inlineHelpText>
+        <label>Household Account Addresses Enabled</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Opportunity_Contact_Role_Default_role__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Default role for the primary Opportunity Contact Role</inlineHelpText>
-        <label>Opportunity Contact Role Default role</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Organizational_Account_Addresses_Enabled__c</fullName>
