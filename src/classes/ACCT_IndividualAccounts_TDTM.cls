@@ -90,7 +90,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
            
            // requery to get correct Account values (and all the other fields we will look at)
            string strSoql = 'select id,AccountId,Account.SYSTEMIsIndividual__c,' +
-                'Account.SYSTEM_AccountType__c,Account.One2OneContact__c,Account.Name,' +
+                'Account.One2OneContact__c,Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, ' + 
                 'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry,'; 
@@ -130,7 +130,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     }
 
 	                // HHAccount renaming needs to be called to set various HH naming fields like greeting.
-	                if (c.AccountId != null && c.Account.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR)
+	                if (c.AccountId != null)
 	                   listAccountIdHHToRename.add(c.AccountId);    
 	            }
         
@@ -305,7 +305,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }
         // get all the Accounts that are connected to the existing Contacts
-        for (Account acc : [Select Id, One2OneContact__c, SYSTEM_AccountType__c from Account where One2OneContact__c in :contactIds]) {
+        for (Account acc : [Select Id, One2OneContact__c from Account where One2OneContact__c in :contactIds]) {
             mapContactIdAccount.put(acc.One2OneContact__c, acc);
         }
         
@@ -315,7 +315,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && CAO_Constants.isHhOrAdmAccountModel() && acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
+            if (acc != null && CAO_Constants.isHhOrAdmAccountModel()) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
@@ -339,7 +339,6 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
-                a.SYSTEM_AccountType__c = CAO_Constants.isHhOrAdmAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
                 a.SYSTEMISINDIVIDUAL__c = true;
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
@@ -400,19 +399,15 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 accountIds.add(thisContact.accountId);
             }
 
-            accountsOnContacts = [Select Id, Type, SYSTEM_AccountType__c, (Select Id from Opportunities limit 1), (select Id from Contacts limit 1) from Account where Id IN :accountIds];
+            accountsOnContacts = [Select Id, Type, (Select Id from Opportunities limit 1), (select Id from Contacts limit 1) from Account where Id IN :accountIds];
             
-            for (Account thisAccount : accountsOnContacts) {
-                //if the legacy or current type field show it's not a HH Account record, don't delete the account
-                if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
-                    
-                    // if there are no Opportunities for this Account, add it for deletion
-                    if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
-                        accountsForDeletion.add(thisAccount);
-                    } else if (thisAccount.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {
-                        listAccountIdUpdate.add(thisAccount.Id);
-                    }
-                }   
+            for (Account thisAccount : accountsOnContacts) {                    
+                // if there are no Opportunities for this Account, add it for deletion
+                if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
+                    accountsForDeletion.add(thisAccount);
+                } else {
+                    listAccountIdUpdate.add(thisAccount.Id);
+                } 
             }        
         }
         // delete the accounts
@@ -437,22 +432,19 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             	setAccId.add(con.AccountId);
             }
                        
-            list<Account> listAcc = [Select Id, SYSTEM_AccountType__c, One2OneContact__c, OwnerId, (select Id from Contacts limit 2) from Account 
+            list<Account> listAcc = [Select Id, One2OneContact__c, OwnerId, (select Id from Contacts limit 2) from Account 
                 where Id IN :setAccId];
             
             for (Account acc : listAcc) {
-                // only consider HH Accounts
-                if (acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {                    
-                    // if there is only 1 contact associated with this account
-                    if (acc.Contacts.size() == 1 && acc.One2OneContact__c != null) {
-                    	Contact c = mapContactIdContactOwnerChange.get(acc.One2OneContact__c);
-                    	Id ownerIdContact = (c != null ? c.OwnerId : null);
-                    	if (acc.OwnerId != ownerIdContact) {
-                    		acc.OwnerId = ownerIdContact;
-                    		listAccToUpdate.add(acc);
-                    	}
-                    }
-                }   
+                // if there is only 1 contact associated with this account
+                if (acc.Contacts.size() == 1 && acc.One2OneContact__c != null) {
+                	Contact c = mapContactIdContactOwnerChange.get(acc.One2OneContact__c);
+                	Id ownerIdContact = (c != null ? c.OwnerId : null);
+                	if (acc.OwnerId != ownerIdContact) {
+                		acc.OwnerId = ownerIdContact;
+                		listAccToUpdate.add(acc);
+                	}
+                }
             }
             // add all accounts needing updating to our list
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);                        

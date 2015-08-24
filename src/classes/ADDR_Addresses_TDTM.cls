@@ -245,8 +245,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
         map<Id, list<Contact>> mapAccIdListCon = new map<Id, list<Contact>>(); 
         set<Id> setHHId =  mapAccIdAddr.keySet();
         list<Contact> listCon = [select Id, is_Address_Override__c, Current_Address__c, AccountId 
-            from Contact where 
-                (Account.SYSTEM_AccountType__c = :CAO_Constants.HH_ACCOUNT_PROCESSOR and AccountId != null and AccountId in :setHHId)];
+            from Contact where AccountId != null and AccountId in :setHHId];
         for (Contact con : listCon) {
             list<Contact> listConHH = mapAccIdListCon.get(con.AccountId);
             if (listConHH == null) {
@@ -577,7 +576,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
     			setAccId.add(addr.Parent_Account__c);
     		}
     	}    	
-    	map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, SYSTEM_AccountType__c, SYSTEMIsIndividual__c 
+    	map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, SYSTEMIsIndividual__c 
     	   from Account where Id in :setAccId]);
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c == null) {
@@ -585,8 +584,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr.addError(Label.addrHHAccountOnly);
             } else {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-                if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR) &&
-                    (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
+                if ((acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrHHAccountOnly);
                 }

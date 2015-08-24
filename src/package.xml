@@ -69,7 +69,6 @@
   <types>
     <members>Account.One2OneContact__c</members>
     <members>Account.SYSTEMIsIndividual__c</members>
-    <members>Account.SYSTEM_AccountType__c</members>
     <members>Account.SYSTEM_CUSTOM_NAMING__c</members>
     <members>Address__c.Address_Type__c</members>
     <members>Address__c.Default_Address__c</members>

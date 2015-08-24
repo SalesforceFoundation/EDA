@@ -23,18 +23,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>SYSTEM_AccountType__c</fullName>
-        <description>Hidden system field: do not change.  Updated by automatic processes.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates which model drives Contact relationship behavior: Individual (Bucket) or One-to-One</inlineHelpText>
-        <label>_SYSTEM: AccountType</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>SYSTEM_CUSTOM_NAMING__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>For Household Accounts, specifies which name related fields should not be automatically populated by the Householding code.</inlineHelpText>

@@ -150,20 +150,14 @@ public class UTIL_UnitTestData_TEST {
     }
 
     public static List<Account> CreateMultipleTestAccounts (integer n, string strType) {
-        
-        List<Account> AcctsToAdd = New List<Account> ();
+        List<Account> AcctsToAdd = New List<Account>();
         
         for (integer i=0;i<n;i++) {
-            Account newAcct = New Account (
-                Name = 'Yet Another Org ' + i,
-                SYSTEM_AccountType__c = strType
-            );
-            if (strType != null) {
+            Account newAcct = New Account (Name = 'Yet Another Org ' + i);
+            if (strType != null)
             	newAcct.SYSTEMIsIndividual__c = true;
-            }
             AcctsToAdd.add (newAcct);
         }
-        
         return AcctsToAdd;
     }
 

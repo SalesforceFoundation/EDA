@@ -324,8 +324,6 @@ private class ACCT_IndividualAccounts_TEST {
         
         Contact[] updatedContacts = [Select Account.Name,AccountId, Account.SystemIsIndividual__c from Contact where id=:con.id];
         
-        //the account should be an individual account
-        system.assert(updatedContacts[0].Account.SystemIsIndividual__c);
         //the account should not be the one we started with
         system.assertNotEquals(acct.id,updatedContacts[0].AccountId);        
     }
@@ -412,9 +410,9 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Delete a Contact from an Org Account and make sure the Account is not deleted.
+    * @description Delete a Contact from an Org Account and make sure the Account is deleted.
     */
-    public static testMethod void deleteContactNormalAccountHouseholdAcc() {
+    public static testMethod void deleteContactNormalAccount() {
         if (strTestOnly != '*' && strTestOnly != 'deleteContactNormalAccountHouseholdAcc') return;
               
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
@@ -438,7 +436,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select FirstName, LastName, AccountId  from Contact where id=:con.id];
+        Contact[] insertedContacts = [Select FirstName, LastName, AccountId from Contact where id=:con.id];
         Id createdAccountId = insertedContacts[0].AccountId;
           
         Test.startTest();  
@@ -446,7 +444,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         Account[] missingAccount = [select id from Account where id=:createdAccountId];
-        system.assertEquals(1,missingAccount.size());
+        system.assertEquals(0,missingAccount.size());
     }   
     
     /*********************************************************************************************************
