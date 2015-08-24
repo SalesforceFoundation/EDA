@@ -110,10 +110,9 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
         Test.stopTest();
         
-        Contact insertedContact = [Select Account.Name, AccountId, Organization_Type__c from Contact where id=:con.id];
+        Contact insertedContact = [Select Account.Name, AccountId from Contact where id=:con.id];
         
         //the contact should have the right type
-        system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR, insertedcontact.Organization_Type__c);
         system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);  
     }
 
@@ -140,14 +139,11 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
         
         Contact[] insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet, 
-        				Account.BillingStreet,Organization_Type__c,Account.SYSTEMIsIndividual__c  from Contact where id=:con.id];
+        				Account.BillingStreet, Account.SYSTEMIsIndividual__c  from Contact where id=:con.id];
 
         //one contact should have been created
         system.assertEquals(1,insertedContacts.size());
-        
-        //the account should have the right type   
-        system.assertEquals(CAO_Constants.HH_ACCOUNT_PROCESSOR,insertedcontacts[0].Organization_Type__c);
-        
+                
         //the account should be flagged as an individual
         system.assertEquals(true,insertedcontacts[0].Account.SYSTEMIsIndividual__c );
         
@@ -236,7 +232,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
+        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c, AccountId from Contact where id=:con.id];
         Id accountId = insertedContacts[0].AccountId;
         
         Contact con2 = new Contact(FirstName='John', LastName='Smith',AccountId=null);       
@@ -246,7 +242,7 @@ private class ACCT_IndividualAccounts_TEST {
         con2.AccountId = accountId;
         update con2;
         
-        Contact[] insertedContact = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con2.id];
+        Contact[] insertedContact = [Select Account.Name,AccountId, Account.SystemIsIndividual__c from Contact where id=:con2.id];
         
         system.assertEquals(accountId,insertedContact[0].AccountId);        
     }
@@ -275,7 +271,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id];
+        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c, AccountId from Contact where id=:con.id];
         
         //the contact should be connected to the account
         system.assertEquals(acct.id,insertedContacts[0].AccountId);      
@@ -284,7 +280,7 @@ private class ACCT_IndividualAccounts_TEST {
         Contact con2 = new Contact(id=con.id, LastName='Smith');
         update con2;
         
-        Contact[] updatedContacts = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con.id];
+        Contact[] updatedContacts = [Select Account.Name,AccountId, Account.SystemIsIndividual__c from Contact where id=:con.id];
         system.assertEquals(acctName,updatedContacts[0].Account.Name);         
     }
     
@@ -315,7 +311,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c,AccountId,Organization_Type__c from Contact where id=:con.id]; 
+        Contact[] insertedContacts = [Select Account.Name,Account.SystemIsIndividual__c, AccountId from Contact where id=:con.id]; 
         //the contact should be connected to the account
         system.assertEquals(acct.id,insertedContacts[0].AccountId);
         //the account should not be an individual account
@@ -326,7 +322,7 @@ private class ACCT_IndividualAccounts_TEST {
         update con;
         Test.stopTest();
         
-        Contact[] updatedContacts = [Select Account.Name,AccountId,Account.SystemIsIndividual__c,Organization_Type__c from Contact where id=:con.id];
+        Contact[] updatedContacts = [Select Account.Name,AccountId, Account.SystemIsIndividual__c from Contact where id=:con.id];
         
         //the account should be an individual account
         system.assert(updatedContacts[0].Account.SystemIsIndividual__c);

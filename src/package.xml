@@ -121,7 +121,6 @@
     <members>Contact.Military_Background__c</members>
     <members>Contact.Military_Service__c</members>
     <members>Contact.Naming_Exclusions__c</members>
-    <members>Contact.Organization_Type__c</members>
     <members>Contact.PreferredPhone__c</members>
     <members>Contact.Preferred_Email__c</members>
     <members>Contact.Primary_Address_Type__c</members>

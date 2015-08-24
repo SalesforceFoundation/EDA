@@ -224,18 +224,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Organization_Type__c</fullName>
-        <description>Formula: In order of preference, the SYSTEM_AccountType field, the Account Type field, and &quot;Organization&quot;.</description>
-        <externalId>false</externalId>
-        <formula>NULLVALUE(IF( Account.SYSTEM_AccountType__c==&quot;&quot;, TEXT(Account.Type),Account.SYSTEM_AccountType__c),&quot;Organization&quot; )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Formula: In order of preference, the SYSTEM_AccountType field, the Account Type field, and &quot;Organization&quot;.</inlineHelpText>
-        <label>Organization Type</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>PreferredPhone__c</fullName>
         <description>Which phone number should be used for most communications involving this Contact?</description>
         <externalId>false</externalId>
