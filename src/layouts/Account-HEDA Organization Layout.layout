@@ -109,9 +109,6 @@
         <quickActionListItems>
             <quickActionName>NewTask</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>NewNote</quickActionName>
-        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <fields>FULL_NAME</fields>
