@@ -91,7 +91,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
            // requery to get correct Account values (and all the other fields we will look at)
            string strSoql = 'select id,AccountId,' +
                 'Account.SYSTEM_AccountType__c,' +
-                'Account.One2OneContact__c,Account.Name,' +
+                'Account.Primary_Contact__c,Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, ' + 
                 'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry,'; 
@@ -204,7 +204,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void updateAccountPrimaryContact(Map<Id, Id> mapAccountIdContactId, DmlWrapper dmlWrapper) {
         List<Account> listAccount = new List<Account>(); 
         for (Id i : mapAccountIdContactId.keySet()) {
-            Account a = new Account(Id = i, One2OneContact__c = mapAccountIdContactId.get(i));
+            Account a = new Account(Id = i, Primary_Contact__c = mapAccountIdContactId.get(i));
             listAccount.add(a);
         }
         if (listAccount.size() > 0) {
@@ -249,7 +249,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         // for each account, we need a set of their contacts.
         map<Id, set<Id>> mapAccountIdSetContacts = new map<Id, set<Id>>();
         
-        list<Contact> listCon = [select Id, AccountId, Account.One2OneContact__c from Contact where AccountId in :listAccountId];
+        list<Contact> listCon = [select Id, AccountId, Account.Primary_Contact__c from Contact where AccountId in :listAccountId];
         for (Contact con : listCon) {
             set<Id> setContactId = mapAccountIdSetContacts.get(con.AccountId);
             if (setContactId == null) { 
@@ -260,12 +260,12 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         
         // now go thru each account and update their primary contact if the current one isn't valid
-        list<Account> listAcc = [select Id, One2OneContact__c from Account where Id in :listAccountId];
+        list<Account> listAcc = [select Id, Primary_Contact__c from Account where Id in :listAccountId];
         list<Account> listAccToUpdate = new list<Account>();
         for (Account acc : listAcc) {
             set<Id> setContactId = mapAccountIdSetContacts.get(acc.Id);
-            if (setContactId != null && !setContactId.contains(acc.One2OneContact__c)) {
-                acc.One2OneContact__c = firstIdFromSet(setContactId);
+            if (setContactId != null && !setContactId.contains(acc.Primary_Contact__c)) {
+                acc.Primary_Contact__c = firstIdFromSet(setContactId);
                 listAccToUpdate.add(acc);
             }    
         }
@@ -306,8 +306,8 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }
         // get all the Accounts that are connected to the existing Contacts
-        for (Account acc : [Select Id, One2OneContact__c, SYSTEM_AccountType__c from Account where One2OneContact__c in :contactIds]) {
-            mapContactIdAccount.put(acc.One2OneContact__c, acc);
+        for (Account acc : [Select Id, Primary_Contact__c, SYSTEM_AccountType__c from Account where Primary_Contact__c in :contactIds]) {
+            mapContactIdAccount.put(acc.Primary_Contact__c, acc);
         }
         
         List<Account> accountInserts = new List<Account>();
@@ -333,7 +333,7 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 
                 //connect the Account to the Contact for HHAccount
                 if (c.Id != null) {
-                    a.One2OneContact__c = c.Id;
+                    a.Primary_Contact__c = c.Id;
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
@@ -438,15 +438,15 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             	setAccId.add(con.AccountId);
             }
                        
-            list<Account> listAcc = [Select Id, SYSTEM_AccountType__c, One2OneContact__c, OwnerId, (select Id from Contacts limit 2) from Account 
+            list<Account> listAcc = [Select Id, SYSTEM_AccountType__c, Primary_Contact__c, OwnerId, (select Id from Contacts limit 2) from Account 
                 where Id IN :setAccId];
             
             for (Account acc : listAcc) {
                 // only consider HH Accounts
                 if (acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR) {                    
                     // if there is only 1 contact associated with this account
-                    if (acc.Contacts.size() == 1 && acc.One2OneContact__c != null) {
-                    	Contact c = mapContactIdContactOwnerChange.get(acc.One2OneContact__c);
+                    if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != null) {
+                    	Contact c = mapContactIdContactOwnerChange.get(acc.Primary_Contact__c);
                     	Id ownerIdContact = (c != null ? c.OwnerId : null);
                     	if (acc.OwnerId != ownerIdContact) {
                     		acc.OwnerId = ownerIdContact;

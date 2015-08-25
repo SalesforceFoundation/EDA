@@ -138,7 +138,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet, 
+        Contact[] insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet, 
         				Account.BillingStreet from Contact where id=:con.id];
 
         //one contact should have been created
@@ -148,7 +148,7 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(CAO_Constants.CONTACT_LASTNAME_FOR_TESTS + ' Household',insertedcontacts[0].Account.Name);        
         
         //relationship should be bi-directional
-        system.assertEquals(insertedcontacts[0].id,insertedcontacts[0].Account.One2OneContact__c);
+        system.assertEquals(insertedcontacts[0].id,insertedcontacts[0].Account.Primary_Contact__c);
         
         //addresses should be sync'd
         system.assertEquals(newContactMailingStreet,insertedcontacts[0].Account.BillingStreet);
@@ -161,11 +161,11 @@ private class ACCT_IndividualAccounts_TEST {
         con.AccountId = insertedContacts[0].AccountId;
         update con;
         
-        Contact[] updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.One2OneContact__c,MailingStreet,OtherCity, 
+        Contact[] updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,OtherCity, 
         							Account.BillingStreet,Account.ShippingCity from Contact where id=:con.id];
 
         //relationship should be bi-directional
-        system.assertEquals(updatedContacts[0].id,updatedContacts[0].Account.One2OneContact__c);
+        system.assertEquals(updatedContacts[0].id,updatedContacts[0].Account.Primary_Contact__c);
         
         //addresses should be sync'd
         system.assertEquals(newContactMailingStreet,updatedContacts[0].MailingStreet);       

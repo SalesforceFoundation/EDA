@@ -67,7 +67,7 @@
     <name>CustomApplication</name>
   </types>
   <types>
-    <members>Account.One2OneContact__c</members>
+    <members>Account.Primary_Contact__c</members>
     <members>Account.SYSTEMIsIndividual__c</members>
     <members>Account.SYSTEM_AccountType__c</members>
     <members>Account.SYSTEM_CUSTOM_NAMING__c</members>
