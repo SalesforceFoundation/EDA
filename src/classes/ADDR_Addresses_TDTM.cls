@@ -586,7 +586,7 @@ public with sharing class ADDR_Addresses_TDTM extends TDTM_Runnable {
             } else {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
                 if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR) &&
-                    (acc.SYSTEMIsIndividual__c || !UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
+                    (!UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrHHAccountOnly);
                 }

@@ -89,8 +89,9 @@ public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 		if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
            
            // requery to get correct Account values (and all the other fields we will look at)
-           string strSoql = 'select id,AccountId,Account.SYSTEMIsIndividual__c,' +
-                'Account.SYSTEM_AccountType__c,Account.One2OneContact__c,Account.Name,' +
+           string strSoql = 'select id,AccountId,' +
+                'Account.SYSTEM_AccountType__c,' +
+                'Account.One2OneContact__c,Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, ' + 
                 'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry,'; 
