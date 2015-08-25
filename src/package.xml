@@ -271,19 +271,19 @@
     <name>CustomTab</name>
   </types>
   <types>
-    <members>Account-Household Layout</members>
-    <members>Account-Organization Layout</members>
-    <members>Address__c-Address Layout</members>
-    <members>Affiliation__c-Affiliation Layout</members>
-    <members>Contact-Contact Layout</members>
-    <members>Course_Enrollment__c-Course Enrollment Layout</members>
-    <members>Course_Offering__c-Course Offering Layout</members>
-    <members>Course__c-Course Layout</members>
-    <members>Error__c-Error Layout</members>
-    <members>Program_Enrollment__c-Program Enrollment Layout</members>
-    <members>Relationship__c-Relationship Layout</members>
-    <members>Term__c-Term Layout</members>
-    <members>Trigger_Handler__c-Trigger Handler Layout</members>
+    <members>Account-HEDA Household Layout</members>
+    <members>Account-HEDA Organization Layout</members>
+    <members>Address__c-HEDA Address Layout</members>
+    <members>Affiliation__c-HEDA Affiliation Layout</members>
+    <members>Contact-HEDA Contact Layout</members>
+    <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
+    <members>Course_Offering__c-HEDA Course Offering Layout</members>
+    <members>Course__c-HEDA Course Layout</members>
+    <members>Error__c-HEDA Error Layout</members>
+    <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
+    <members>Relationship__c-HEDA Relationship Layout</members>
+    <members>Term__c-HEDA Term Layout</members>
+    <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
     <name>Layout</name>
   </types>
   <types>
@@ -298,9 +298,6 @@
     <members>Trigger_Handler__c.All</members>
     <members>Trigger_Handler__c.All_Main_Fields</members>
     <name>ListView</name>
-  </types>
-  <types>
-    <name>PermissionSet</name>
   </types>
   <types>
     <members>Account.New_Address</members>
