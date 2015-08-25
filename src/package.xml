@@ -267,6 +267,7 @@
     <members>Program_Enrollment__c</members>
     <members>Relationship__c</members>
     <members>Term__c</members>
+    <members>Trigger_Handler__c</members>
     <name>CustomTab</name>
   </types>
   <types>

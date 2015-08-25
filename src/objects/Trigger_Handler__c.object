@@ -197,7 +197,7 @@
         <columns>NAME</columns>
         <columns>Class__c</columns>
         <columns>Object__c</columns>
-        <columns>Trigger_Action__c</columns>
+        <columns>Active__c</columns>
         <filterScope>Everything</filterScope>
         <label>All - Main Fields</label>
     </listViews>
