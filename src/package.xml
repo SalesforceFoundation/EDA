@@ -312,7 +312,6 @@
     <members>LogACall</members>
     <members>NewAccount</members>
     <members>NewContact</members>
-    <members>NewNote</members>
     <members>NewTask</members>
     <members>New_Campaign</members>
     <name>QuickAction</name>
