@@ -50,6 +50,10 @@
     <name>ApexClass</name>
   </types>
   <types>
+    <members>STG_Settings</members>
+    <name>ApexPage</name>
+  </types>
+  <types>
     <members>TDTM_Account</members>
     <members>TDTM_Address</members>
     <members>TDTM_Affiliation</members>
@@ -264,6 +268,7 @@
     <members>Course_Enrollment__c</members>
     <members>Course_Offering__c</members>
     <members>Course__c</members>
+    <members>HEDA_Settings</members>
     <members>Program_Enrollment__c</members>
     <members>Relationship__c</members>
     <members>Term__c</members>
