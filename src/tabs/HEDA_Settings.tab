@@ -2,6 +2,6 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>HEDA Settings</label>
     <mobileReady>false</mobileReady>
-    <motif>Custom67: Gears</motif>
+    <motif>Custom64: Compass</motif>
     <page>STG_Settings</page>
 </CustomTab>

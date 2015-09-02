@@ -1,6 +1,18 @@
-<apex:page >
-<!-- Begin Default Content REMOVE THIS -->
-<h1>Congratulations</h1>
-This is your new Page
-<!-- End Default Content REMOVE THIS -->
+<apex:page standardStylesheets="true" showHeader="true">
+    <script src="/lightning/lightning.out.js"/>
+    
+    <h1>HEDAP Settings</h1>
+    
+    <div id="lightning"/>
+    
+    <script>
+        $Lightning.use("c:MyContactListApp", function() {
+            addContactList();
+        });
+        
+        function addContactList() {
+            $Lightning.createComponent("c:MyContactList", {}, "lightning");
+        }
+    </script>
+
 </apex:page>
