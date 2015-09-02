@@ -247,9 +247,6 @@
         <name>CustomLabel</name>
     </types>
     <types>
-        <name>CustomLabel</name>
-    </types>
-    <types>
         <members>Account</members>
         <members>Address__c</members>
         <members>Affiliation__c</members>
@@ -324,6 +321,12 @@
         <members>NewTask</members>
         <members>New_Campaign</members>
         <name>QuickAction</name>
+    </types>
+    <types>
+        <members>lds_css_min</members>
+        <members>lds_vf_css_min</members>
+        <members>lightning</members>
+        <name>StaticResource</name>
     </types>
     <types>
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>
