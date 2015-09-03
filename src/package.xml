@@ -326,8 +326,7 @@
         <name>QuickAction</name>
     </types>
     <types>
-        <members>lds_css_min</members>
-        <members>lds_vf_css_min</members>
+        <members>SLDS080</members>
         <name>StaticResource</name>
     </types>
     <types>

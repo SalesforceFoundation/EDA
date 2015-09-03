@@ -1,9 +1,12 @@
 <apex:page standardStylesheets="true" showHeader="true">
+
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
     <script src="/lightning/lightning.out.js"/>
-    
-    <h1>HEDAP Settings</h1>
-    
-    <div id="lightning"/>
+
+    <div class="slds">
+        <p class="slds-text-heading--label slds-m-bottom--small">HEDAP Settings</p>
+        <div id="lightning"/>
+    </div>
     
     <script>
         $Lightning.use("c:MyContactListApp", function() {
