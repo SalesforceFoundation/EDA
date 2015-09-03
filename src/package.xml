@@ -247,6 +247,9 @@
         <name>CustomLabel</name>
     </types>
     <types>
+        <name>CustomLabel</name>
+    </types>
+    <types>
         <members>Account</members>
         <members>Address__c</members>
         <members>Affiliation__c</members>
@@ -325,7 +328,6 @@
     <types>
         <members>lds_css_min</members>
         <members>lds_vf_css_min</members>
-        <members>lightning</members>
         <name>StaticResource</name>
     </types>
     <types>
