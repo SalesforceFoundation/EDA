@@ -1,14 +1,44 @@
 <apex:page standardStylesheets="true" showHeader="true">
 
-    <apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
-    <script src="/lightning/lightning.out.js"/>
+	<apex:stylesheet
+		value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+	<script src="/lightning/lightning.out.js" />
 
     <div class="slds">
-        <p class="slds-text-heading--label slds-m-bottom--small">HEDAP Settings</p>
-        <div id="lightning"/>
-    </div>
+		<!-- PAGE HEADER -->
+		<div class="slds-page-header" role="banner">
+	
+			<!-- LAYOUT GRID -->
+			<div class="slds-grid">
+	
+				<!-- GRID COL -->
+				<div class="slds-col">
+					<!-- HEADING AREA -->
+					<p class="slds-text-heading--label">HEDA Settings</p>
+					<h1 class="slds-text-heading--medium">Configuration</h1>
+					<!-- /HEADING AREA -->
+				</div>
+	
+				<!-- GRID COL -->
+				<div class="slds-col slds-no-flex slds-align-middle">
+					<div class="slds-button-group" role="group">
+						<button class="slds-button slds-button--neutral">Edit</button>
+					</div>
+				</div>
+				<!-- / GRID COL -->
+	
+			</div>
+			<!-- / LAYOUT GRID -->
+	
+			<p class="slds-text-body--small slds-m-top--x-small">App-wide Settings</p>
+	
+		</div>
+		<!-- / PAGE HEADER -->
+	
+	    <div id="lightning" />
+	</div>  
     
-    <script>
+	<script>
         $Lightning.use("c:MyContactListApp", function() {
             addContactList();
         });
