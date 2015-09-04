@@ -70,6 +70,7 @@
     <types>
         <members>MyContactList</members>
         <members>MyContactListApp</members>
+        <members>SettingsMenu</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
