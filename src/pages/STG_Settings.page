@@ -2,7 +2,14 @@
     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  
 	<apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
 	<script src="/lightning/lightning.out.js" />
-
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        $( "#tabs" ).tabs();
+    });
+    </script>
+  
 	<div class="slds">
 		<!-- PAGE HEADER -->
 		<div class="slds-page-header" role="banner">
@@ -43,30 +50,19 @@
 				Settings</p>
 		</div>
 		<!-- / PAGE HEADER -->
-		
-        <section>
-			<div class="slds-tabs--default">
-				<ul class="slds-tabs--default_nav slds-list--horizontal"
-					role="tablist">
-					<li class="slds-tabs__item slds-text-heading--label slds-active"><a>Affiliations</a></li>
-					<li class="slds-tabs__item slds-text-heading--label"><a>Relationships</a></li>
-					<li class="slds-tabs__item slds-text-heading--label"><a>Addresses</a></li>
-					<li class="slds-tabs__item slds-text-heading--label"><a>System</a></li>
-				</ul>
-				<div
-					class="site-code--content slds-scrollable--x slds-tabs__content slds-show"
-					role="tabpanel">Test1</div>
-				<div
-					class="site-code--content slds-scrollable--x slds-tabs__content slds-hide"
-					role="tabpanel">Test2</div>
-				<div
-					class="site-code--content slds-scrollable--x slds-tabs__content slds-hide"
-					role="tabpanel">Test3</div>
-				<div
-					class="site-code--content slds-scrollable--x slds-tabs__content slds-hide"
-					role="tabpanel">Test4</div>
-			</div>
-        </section>
+		<br/>
+		<div id="tabs" class="slds-tabs--default">
+			<ul class="slds-tabs--default__nav" role="tablist">
+				<li class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="presentation"><a href="#tabs-1" role="tab" tabindex="0" aria-selected="true">Affiliations</a></li>
+				<li class="slds-tabs__item slds-text-heading--label" title="Relationships" role="presentation"><a href="#tabs-2" role="tab" tabindex="-1" aria-selected="false">Relationships</a></li>
+				<li class="slds-tabs__item slds-text-heading--label" title="Addresses" role="presentation"><a href="#tabs-3" role="tab" tabindex="-1" aria-selected="false">Addresses</a></li>
+				<li class="slds-tabs__item slds-text-heading--label" title="System" role="presentation"><a href="#tabs-4" role="tab" tabindex="-1" aria-selected="false">System</a></li>
+			</ul>
+			<div id="tabs-1" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test1</div>
+			<div id="tabs-2" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test2</div>
+			<div id="tabs-3" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test3</div>
+			<div id="tabs-4" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test4</div>
+		</div>
         
         <div id="menu" />
         
