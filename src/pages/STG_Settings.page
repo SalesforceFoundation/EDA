@@ -1,4 +1,4 @@
-<apex:page standardStylesheets="true" showHeader="true">
+<apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  
 	<apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
 	<script src="/lightning/lightning.out.js" />
@@ -24,7 +24,7 @@
 					<div class="slds-media">
 						<div class="slds-media__figure">
 							<svg aria-hidden="true" class="slds-icon slds-icon--large slds-icon-standard-user">
-				            <use xlink:href="{!URLFOR($Resource.SLDS080, 'assets/icons/standard-sprite/svg/symbols.svg#user')}"></use>
+				            <use xlink:href="{!URLFOR($Resource.SLDS080, 'assets/icons/standard-sprite/svg/symbols.svg#custom')}"></use>
 				          </svg>
 						</div>
 
@@ -58,24 +58,31 @@
 				<li class="slds-tabs__item slds-text-heading--label" title="Addresses" role="presentation"><a href="#tabs-3" role="tab" tabindex="-1" aria-selected="false">Addresses</a></li>
 				<li class="slds-tabs__item slds-text-heading--label" title="System" role="presentation"><a href="#tabs-4" role="tab" tabindex="-1" aria-selected="false">System</a></li>
 			</ul>
-			<div id="tabs-1" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test1</div>
-			<div id="tabs-2" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test2</div>
-			<div id="tabs-3" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test3</div>
-			<div id="tabs-4" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">Test4</div>
+			
+			<div id="tabs-1" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel"><div id="afflSettings"/></div>
+			<div id="tabs-2" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel"><div id="relSettings"/></div>
+			<div id="tabs-3" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel"><div id="addrSettings"/></div>
+			<div id="tabs-4" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel"><div id="sysSettings"/></div>
 		</div>
         
+        <br/>
         <div id="menu" />
         
+        <br/>
 		<div id="lightning" />
 	</div>
 
     <script>
-        $Lightning.use("c:MyContactListApp", function() {
-            addContactList();
+        $Lightning.use("c:SettingsApp", function() {
+            loadComponents();
         });
         
-        function addContactList() {
-            $Lightning.createComponent("c:SettingsMenu", {}, "menu");
+        function loadComponents() {
+            $Lightning.createComponent("c:AfflSettings", {}, "afflSettings");
+            $Lightning.createComponent("c:RelSettings", {}, "relSettings");
+            $Lightning.createComponent("c:AddrSettings", {}, "addrSettings");
+            $Lightning.createComponent("c:SysSettings", {}, "sysSettings");
+            //$Lightning.createComponent("c:SettingsMenu", {}, "menu");
             //$Lightning.createComponent("c:MyContactList", {}, "lightning");
         }
     </script>

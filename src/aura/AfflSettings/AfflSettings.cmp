@@ -1,0 +1,18 @@
+<aura:component>
+    <table>
+         <tr>
+             <th>Account Record Type</th>
+             <th>Contact Primary Affl Field</th>
+             <th>Auto-Enrollment</th>
+             <th>Auto-Enrollment Status</th>
+             <th>Auto-Enrollment Role</th>
+         </tr>
+         <tr>
+             <td><ui:outputText value="Educational Institution"/></td>
+             <td><ui:outputText value="Primary Educational Institution"/></td>
+             <td><ui:outputCheckbox value="true"/></td>
+             <td><ui:outputText value="Active"/></td>
+             <td><ui:outputText value="Student"/></td>
+         </tr>
+     </table>
+</aura:component>

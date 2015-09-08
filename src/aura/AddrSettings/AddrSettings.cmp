@@ -1,0 +1,3 @@
+<aura:component>
+    <h1>Address Settings</h1>
+</aura:component>
