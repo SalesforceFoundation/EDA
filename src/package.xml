@@ -68,9 +68,13 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>AddrSettings</members>
+        <members>AfflSettings</members>
         <members>MyContactList</members>
-        <members>MyContactListApp</members>
+        <members>RelSettings</members>
+        <members>SettingsApp</members>
         <members>SettingsMenu</members>
+        <members>SysSettings</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

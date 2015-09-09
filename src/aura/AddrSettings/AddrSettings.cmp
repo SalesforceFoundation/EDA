@@ -1,3 +1,12 @@
 <aura:component>
-    <h1>Address Settings</h1>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size--1-of-2">Organization Addresses Enabled:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+
+        <div class="slds-col slds-size--1-of-2">Household Addresses Enabled:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+
+        <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div> 
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+    </div>
 </aura:component>

@@ -1,3 +1,18 @@
 <aura:component>
-    <h1>System Settings</h1>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size--1-of-2">Account Processor:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputText value="Administrative"/></div>
+        
+        <div class="slds-col slds-size--1-of-2">Store Errors:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+        
+        <div class="slds-col slds-size--1-of-2">Send Error Notifications:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+
+        <div class="slds-col slds-size--1-of-2">Error Notification Recipients:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputText value="System Administrators"/></div>
+
+        <div class="slds-col slds-size--1-of-2">Enable Debug:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+    </div>
 </aura:component>

@@ -1,18 +1,33 @@
 <aura:component>
-    <table>
-         <tr>
-             <th>Account Record Type</th>
-             <th>Contact Primary Affl Field</th>
-             <th>Auto-Enrollment</th>
-             <th>Auto-Enrollment Status</th>
-             <th>Auto-Enrollment Role</th>
-         </tr>
-         <tr>
-             <td><ui:outputText value="Educational Institution"/></td>
-             <td><ui:outputText value="Primary Educational Institution"/></td>
-             <td><ui:outputCheckbox value="true"/></td>
-             <td><ui:outputText value="Active"/></td>
-             <td><ui:outputText value="Student"/></td>
-         </tr>
-     </table>
+    <div class="slds-grid slds-wrap">
+	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Account Record Type</span></div>
+	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Contact Primary Affl Field</span></div>
+	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Auto-Enrollment</span></div>
+	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Auto-Enrollment Status</span></div>
+	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Auto-Enrollment Role</span></div>
+	
+	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Educational Institution"/></div>
+	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Educational Institution"/></div>
+	     <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="false"/></div>
+	     <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+	     <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+	     
+	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="University Department"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Department"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="true"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Active"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Student"/></div>
+         
+	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Organization"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Organization"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="false"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+         
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Household"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Household"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="false"/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+     </div>
 </aura:component>
