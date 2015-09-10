@@ -334,11 +334,12 @@
     </types>
     <types>
         <members>SLDS080</members>
+        <members>SLDS090</members>
         <name>StaticResource</name>
     </types>
     <types>
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>
         <name>ValidationRule</name>
     </types>
-    <version>32.0</version>
+    <version>34.0</version>
 </Package>
