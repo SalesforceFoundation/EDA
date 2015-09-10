@@ -68,13 +68,15 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>AddrSettings</members>
-        <members>AfflSettings</members>
         <members>MyContactList</members>
-        <members>RelSettings</members>
-        <members>SettingsApp</members>
-        <members>SettingsMenu</members>
-        <members>SysSettings</members>
+        <members>STG_Addr</members>
+        <members>STG_Affl</members>
+        <members>STG_App</members>
+        <members>STG_Header</members>
+        <members>STG_Menu</members>
+        <members>STG_Rel</members>
+        <members>STG_System</members>
+        <members>svgIcon</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

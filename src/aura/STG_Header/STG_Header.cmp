@@ -1,0 +1,38 @@
+<aura:component>
+    <!-- PAGE HEADER -->
+    <div class="slds-page-header" role="banner">
+
+        <!-- LAYOUT GRID -->
+        <div class="slds-grid">
+
+            <!-- GRID COL -->
+            <div class="slds-col">
+                <!-- HEADING AREA -->
+                <!-- MEDIA OBJECT = FIGURE + BODY -->
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <!-- <svg></svg> -->
+                    </div>
+
+                    <div class="slds-media__body">
+                        <p class="slds-text-heading--label">HEDA Settings</p>
+                        <h1 class="slds-text-heading--medium">Configuration</h1>
+                    </div>
+
+                </div>
+                <!-- / MEDIA OBJECT -->
+                <!-- HEADING AREA -->
+            </div>
+            <!-- GRID COL -->
+            <div class="slds-col slds-no-flex slds-align-middle">
+                <div class="slds-button-group" role="group">
+                    <button class="slds-button slds-button--neutral">Edit</button>
+                </div>
+            </div>
+            <!-- / GRID COL -->
+        </div>
+        <!-- / LAYOUT GRID -->
+        <p class="slds-text-body--small slds-m-top--x-small">App-wideSettings</p>
+    </div>
+    <!-- / PAGE HEADER -->
+</aura:component>

@@ -1,6 +1,6 @@
 <apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
-    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  
-	<apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<apex:stylesheet value="{!URLFOR($Resource.SLDS090, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
 	<script src="/lightning/lightning.out.js" />
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -11,45 +11,7 @@
     </script>
   
 	<div class="slds">
-		<!-- PAGE HEADER -->
-		<div class="slds-page-header" role="banner">
-
-			<!-- LAYOUT GRID -->
-			<div class="slds-grid">
-
-				<!-- GRID COL -->
-				<div class="slds-col">
-					<!-- HEADING AREA -->
-					<!-- MEDIA OBJECT = FIGURE + BODY -->
-					<div class="slds-media">
-						<div class="slds-media__figure">
-							<svg aria-hidden="true" class="slds-icon slds-icon--large slds-icon-standard-user">
-				            <use xlink:href="{!URLFOR($Resource.SLDS080, 'assets/icons/standard-sprite/svg/symbols.svg#custom')}"></use>
-				          </svg>
-						</div>
-
-						<div class="slds-media__body">
-							<p class="slds-text-heading--label">HEDA Settings</p>
-							<h1 class="slds-text-heading--medium">Configuration</h1>
-						</div>
-
-					</div>
-					<!-- / MEDIA OBJECT -->
-					<!-- HEADING AREA -->
-				</div>
-				<!-- GRID COL -->
-				<div class="slds-col slds-no-flex slds-align-middle">
-					<div class="slds-button-group" role="group">
-						<button class="slds-button slds-button--neutral">Edit</button>
-					</div>
-				</div>
-				<!-- / GRID COL -->
-			</div>
-			<!-- / LAYOUT GRID -->
-			<p class="slds-text-body--small slds-m-top--x-small">App-wide
-				Settings</p>
-		</div>
-		<!-- / PAGE HEADER -->
+		<div id="stgHeader"/>
 		<br/>
 		<div id="tabs" class="slds-tabs--default">
 			<ul class="slds-tabs--default__nav" role="tablist">
@@ -66,26 +28,22 @@
 		</div>
         
         <br/>
-        <div id="menu" />
-        
-        <br/>
-		<div id="lightning" />
+		<div id="contactList" />
 	</div>
 
     <script>
-        $Lightning.use("c:SettingsApp", function() {
+        $Lightning.use("c:STG_App", function() {
             loadComponents();
         });
         
         function loadComponents() {
-            $Lightning.createComponent("c:AfflSettings", {}, "afflSettings");
-            $Lightning.createComponent("c:RelSettings", {}, "relSettings");
-            $Lightning.createComponent("c:AddrSettings", {}, "addrSettings");
-            $Lightning.createComponent("c:SysSettings", {}, "sysSettings");
-            //$Lightning.createComponent("c:SettingsMenu", {}, "menu");
-            //$Lightning.createComponent("c:MyContactList", {}, "lightning");
+            $Lightning.createComponent("c:STG_Header", {}, "stgHeader");
+            $Lightning.createComponent("c:STG_Affl", {}, "afflSettings");
+            $Lightning.createComponent("c:STG_Rel", {}, "relSettings");
+            $Lightning.createComponent("c:STG_Addr", {}, "addrSettings");
+            $Lightning.createComponent("c:STG_System", {}, "sysSettings");
+            //$Lightning.createComponent("c:MyContactList", {}, "contactList");
         }
     </script>
-
     </html>
 </apex:page>
