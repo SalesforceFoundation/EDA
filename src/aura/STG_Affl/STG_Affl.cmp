@@ -1,10 +1,10 @@
 <aura:component>
     <div class="slds-grid slds-wrap">
-	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Account Record Type</span></div>
-	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Contact Primary Affl Field</span></div>
-	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Auto-Enrollment</span></div>
-	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Auto-Enrollment Status</span></div>
-	     <div class="slds-col slds-size--1-of-5"><span class="slds-badge slds-theme--shade">Auto-Enrollment Role</span></div>
+	     <div class="slds-col slds-size--1-of-5"><strong>Account Record Type</strong></div>
+	     <div class="slds-col slds-size--1-of-5"><strong>Contact Primary Affl Field</strong></div>
+	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment</strong></div>
+	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment Status</strong></div>
+	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment Role</strong></div>
 	
 	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Educational Institution"/></div>
 	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Educational Institution"/></div>

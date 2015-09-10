@@ -15,16 +15,16 @@
 		<div id="tabs" class="slds-tabs--default">
 			<ul class="slds-tabs--default__nav" role="tablist">
 				<li class="slds-tabs__item slds-text-heading--label slds-active" tile="Affiliations" role="presentation">
-				    <a href="#tabs-1" role="tab" tabindex="0" aria-selected="true">Affiliations</a>
+				    <a href="#tabs-1" role="tab">Affiliations</a>
 				</li>
 				<li class="slds-tabs__item slds-text-heading--label" title="Relationships" role="presentation">
-				    <a href="#tabs-2" role="tab" tabindex="-1" aria-selected="false">Relationships</a>
+				    <a href="#tabs-2" role="tab">Relationships</a>
 				</li>
 				<li class="slds-tabs__item slds-text-heading--label" title="Addresses" role="presentation">
-				    <a href="#tabs-3" role="tab" tabindex="-1" aria-selected="false">Addresses</a>
+				    <a href="#tabs-3" role="tab">Addresses</a>
 				</li>
 				<li class="slds-tabs__item slds-text-heading--label" title="System" role="presentation">
-				    <a href="#tabs-4" role="tab" tabindex="-1" aria-selected="false">System</a>
+				    <a href="#tabs-4" role="tab">System</a>
 				</li>
 			</ul>
 			
@@ -32,7 +32,8 @@
 			    <div id="afflSettings"/>
 			</div>
 			<div id="tabs-2" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-			    <div id="relSettings"/></div>
+			    <div id="relSettings"/>
+			</div>
 			<div id="tabs-3" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
 			    <div id="addrSettings"/>
 		    </div>
