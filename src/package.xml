@@ -73,9 +73,9 @@
         <members>STG_Affl</members>
         <members>STG_App</members>
         <members>STG_Header</members>
-        <members>STG_Menu</members>
         <members>STG_Rel</members>
         <members>STG_System</members>
+        <members>STG_Tabs</members>
         <members>svgIcon</members>
         <name>AuraDefinitionBundle</name>
     </types>
