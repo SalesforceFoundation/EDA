@@ -1,49 +1,14 @@
 <apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
 	<apex:stylesheet value="{!URLFOR($Resource.SLDS090, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
 	<script src="/lightning/lightning.out.js" />
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script>
-    $(function() {
-        $( "#tabs" ).tabs();
-    });
-    </script>
-  
+
 	<div class="slds">
+		
 		<div id="headSettings"/>
 		<br/>
-		<div id="tabs" class="slds-tabs--default">
-			<ul class="slds-tabs--default__nav" role="tablist">
-				<li class="slds-tabs__item slds-text-heading--label slds-active" tile="Affiliations" role="presentation">
-				    <a href="#tabs-1" role="tab">Affiliations</a>
-				</li>
-				<li class="slds-tabs__item slds-text-heading--label" title="Relationships" role="presentation">
-				    <a href="#tabs-2" role="tab">Relationships</a>
-				</li>
-				<li class="slds-tabs__item slds-text-heading--label" title="Addresses" role="presentation">
-				    <a href="#tabs-3" role="tab">Addresses</a>
-				</li>
-				<li class="slds-tabs__item slds-text-heading--label" title="System" role="presentation">
-				    <a href="#tabs-4" role="tab">System</a>
-				</li>
-			</ul>
-			
-			<div id="tabs-1" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-			    <div id="afflSettings"/>
-			</div>
-			<div id="tabs-2" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-			    <div id="relSettings"/>
-			</div>
-			<div id="tabs-3" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-			    <div id="addrSettings"/>
-		    </div>
-			<div id="tabs-4" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-			    <div id="sysSettings"/>
-			</div>
-		</div>
-        
+		
+		<div id="tabSettings"/>
         <br/>
-		<div id="contactList" />
 	</div>
 
     <script>
@@ -53,11 +18,7 @@
         
         function loadComponents() {
             $Lightning.createComponent("c:STG_Header", {}, "headSettings");
-            $Lightning.createComponent("c:STG_Affl", {}, "afflSettings");
-            $Lightning.createComponent("c:STG_Rel", {}, "relSettings");
-            $Lightning.createComponent("c:STG_Addr", {}, "addrSettings");
-            $Lightning.createComponent("c:STG_System", {}, "sysSettings");
-            //$Lightning.createComponent("c:MyContactList", {}, "contactList");
+            $Lightning.createComponent("c:STG_Tabs", {}, "tabSettings");
         }
     </script>
 </apex:page>
