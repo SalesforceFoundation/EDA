@@ -1,24 +1,26 @@
 <aura:component>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">
-			<li class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
-				<a href="#tab-scoped-1" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1">Settings</a>
+			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
+				<ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" />
 			</li>
-			<li class="slds-tabs__item slds-text-heading--label" title="Item Two" role="presentation">
-				<a href="#tab-scoped-2" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2">Reciprocal Settings</a>
+			<li aura:id="recSettsTab" class="slds-tabs__item slds-text-heading--label" title="Item Two" role="presentation">
+				<ui:outputURL value="#" label="Reciprocal Settings" click="{!c.recSettsLinkClicked}" />
 			</li>
-			<li class="slds-tabs__item slds-text-heading--label" title="Item Three" role="presentation">
-				<a href="#tab-scoped-3" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-3">Autocreation</a>
+			<li aura:id="autocTab" class="slds-tabs__item slds-text-heading--label" title="Item Three" role="presentation">
+				<ui:outputURL value="#" label="Autocreation" click="{!c.autocLinkClicked}" />
 			</li>
 		</ul>
 		
-		<div id="tab-scoped-1" class="slds-tabs__content" role="tabpanel">
+		<div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
 			<h2>Item One Content</h2>
 		</div>
-		<div id="tab-scoped-2" class="slds-tabs__content" role="tabpanel">
+		<div aura:id="recSettsTabContent" class="slds-tabs__content" role="tabpanel">
 			<h2>Item Two Content</h2>
 		</div>
-		<div id="tab-scoped-3" class="slds-tabs__content" role="tabpanel">
+		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
 			<h2>Item Three Content</h2>
 		</div>
 	</div>
