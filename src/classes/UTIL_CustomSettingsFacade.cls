@@ -49,6 +49,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     * At the org level, if no user level settings are defined. The ID field should be checked to determine if
     * the returned record already exists or doesn't exist in the database.
     */
+    @AuraEnabled
     public static Hierarchy_Settings__c getSettings() {
         if(Test.isRunningTest() && settings == null) {
         	settings = new Hierarchy_Settings__c();

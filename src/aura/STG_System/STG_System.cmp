@@ -1,18 +1,20 @@
-<aura:component>
+<aura:component controller="UTIL_CustomSettingsFacade">
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputText value="Administrative"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputText value="{!v.hierarchySettings.Account_Processor__c}"/></div>
         
         <div class="slds-col slds-size--1-of-2">Store Errors:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
         
         <div class="slds-col slds-size--1-of-2">Send Error Notifications:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}"/></div>
 
         <div class="slds-col slds-size--1-of-2">Error Notification Recipients:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputText value="System Administrators"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}"/></div>
 
         <div class="slds-col slds-size--1-of-2">Enable Debug:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="true"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Enable_Debug__c}"/></div>
     </div>
 </aura:component>
