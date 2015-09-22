@@ -1,4 +1,6 @@
-<aura:component>
+<aura:component controller="UTIL_CustomSettingsFacade">
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
     <div class="slds-grid slds-wrap">
 	     <div class="slds-col slds-size--1-of-5"><strong>Account Record Type</strong></div>
 	     <div class="slds-col slds-size--1-of-5"><strong>Contact Primary Affl Field</strong></div>
@@ -6,28 +8,13 @@
 	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment Status</strong></div>
 	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment Role</strong></div>
 	
-	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Educational Institution"/></div>
-	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Educational Institution"/></div>
-	     <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="false"/></div>
-	     <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
-	     <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
-	     
-	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="University Department"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Department"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="true"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Active"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Student"/></div>
-         
-	     <div class="slds-col slds-size--1-of-5"><ui:outputText value="Organization"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Organization"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="false"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
-         
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Household"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value="Primary Household"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="false"/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
-         <div class="slds-col slds-size--1-of-5"><ui:outputText value=""/></div>
+	     <aura:iteration items="{!v.afflMappings}" var="afflMapping">
+	         <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!afflMapping.Account_Record_Type__c}"/></div>
+	         <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!afflMapping.Primary_Affl_Field__c}"/></div>
+	         <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}"/></div>
+	         <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}"/></div>
+	         <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}"/></div>
+	     </aura:iteration>
+
      </div>
 </aura:component>

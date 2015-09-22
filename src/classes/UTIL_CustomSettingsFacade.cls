@@ -120,4 +120,14 @@ public without sharing class UTIL_CustomSettingsFacade {
         orgSettings = settings;
         return settings;
     }
+    
+    /*******************************************************************************************************
+    * @description Retrieves the existing Affiliation Mappings custom settings.
+    * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
+    **/
+    @AuraEnabled
+    public static List<Affl_Mappings__c> getAfflMappings() {
+        return [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
+                                                      Auto_Program_Enrollment_Status__c from Affl_Mappings__c];
+    }
 }
