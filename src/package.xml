@@ -24,7 +24,6 @@
         <members>ERR_Handler</members>
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>
-        <members>MyContactListController</members>
         <members>PREN_Affiliation_TDTM</members>
         <members>PREN_Affiliation_TEST</members>
         <members>REL_ProcessControl</members>
@@ -68,7 +67,6 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>MyContactList</members>
         <members>STG_Addr</members>
         <members>STG_Affl</members>
         <members>STG_App</members>

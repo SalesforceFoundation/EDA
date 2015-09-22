@@ -1,4 +1,6 @@
 <aura:component>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
     <!-- PAGE HEADER -->
     <div class="slds-page-header" role="banner">
 
@@ -27,7 +29,12 @@
             <!-- GRID COL -->
             <div class="slds-col slds-no-flex slds-align-middle">
                 <div class="slds-button-group" role="group">
-                    <button class="slds-button slds-button--neutral">Edit</button>
+                    <aura:if isTrue="{!v.edit}">
+                        <ui:button class="slds-button slds-button--neutral" label="Edit" press="{!c.edit}"/>
+                    <aura:set attribute="else">
+                        <ui:button class="slds-button slds-button--neutral" label="Save" press="{!c.save}"/>
+                    </aura:set>
+                    </aura:if>
                 </div>
             </div>
             <!-- / GRID COL -->

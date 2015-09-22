@@ -6,6 +6,5 @@
            component.set("v.hierarchySettings", data.getReturnValue());
        });
        $A.enqueueAction(action);
-
    }
 })
