@@ -5,6 +5,27 @@
 		   $A.util.addClass(component.find("settsTabContent"), "slds-show");
 		   $A.util.addClass(component.find("recSettsTabContent"), "slds-hide");
 		   $A.util.addClass(component.find("autocTabContent"), "slds-hide");
+		   
+		   //Load Relationship hierarchy settings
+		   var relSettingsAction = component.get("c.getSettings");
+		   relSettingsAction.setCallback(this, function(data) {
+	           component.set("v.relSettings", data.getReturnValue());
+	       });
+	       $A.enqueueAction(relSettingsAction);
+	       
+	       //Load Relationship Reciprocal list settings
+	       var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
+	       reciprocalSettingsAction.setCallback(this, function(data) {
+	           component.set("v.reciprocalSettings", data.getReturnValue());
+	       });
+	       $A.enqueueAction(reciprocalSettingsAction);
+	       
+	       //Load Relationship Auto-Create list settings
+	       var autoCreateSettingsAction = component.get("c.getAutoCreateSettings");
+	       autoCreateSettingsAction.setCallback(this, function(data) {
+	           component.set("v.autoCreateSettings", data.getReturnValue());
+	       });
+	       $A.enqueueAction(autoCreateSettingsAction);
 	    },
 
 	    settsLinkClicked : function(component, event, helper) {

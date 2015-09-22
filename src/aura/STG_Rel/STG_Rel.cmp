@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component controller="UTIL_CustomSettingsFacade">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
 	<div id="relTabs" class="slds-tabs--scoped">
@@ -15,13 +15,48 @@
 		</ul>
 		
 		<div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
-			<h2>Item One Content</h2>
+			<div class="slds-grid slds-wrap">
+			    <div class="slds-col slds-size--1-of-2">Reciprocal Method:</div>
+			    <div class="slds-col slds-size--1-of-2"><ui:outputText value="{!v.hierarchySettings.Account_Processor__c}"/></div>
+			    
+			    <div class="slds-col slds-size--1-of-2">Gender Field:</div>
+			    <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
+			    
+			    <div class="slds-col slds-size--1-of-2">Allow Auto-Created Duplicate Relations:</div>
+			    <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/></div>
+			</div>
 		</div>
 		<div aura:id="recSettsTabContent" class="slds-tabs__content" role="tabpanel">
-			<h2>Item Two Content</h2>
+			<div class="slds-grid slds-wrap">
+			    <div class="slds-col slds-size--1-of-5"><strong>Name</strong></div>
+			    <div class="slds-col slds-size--1-of-5"><strong>Female</strong></div>
+			    <div class="slds-col slds-size--1-of-5"><strong>Male</strong></div>
+			    <div class="slds-col slds-size--1-of-5"><strong>Neutral</strong></div>
+			    <div class="slds-col slds-size--1-of-5"><strong>Active</strong></div>
+			
+			    <aura:iteration items="{!v.reciprocalSettings}" var="recSetting">
+			        <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!recSetting.Name}"/></div>
+			        <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!recSetting.Female__c}"/></div>
+			        <div class="slds-col slds-size--1-of-5"><ui:outputCheckbox value="{!recSetting.Male__c}"/></div>
+			        <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!recSetting.Neutral__c}"/></div>
+			        <div class="slds-col slds-size--1-of-5"><ui:outputText value="{!recSetting.Active__c}"/></div>
+			    </aura:iteration>
+			</div>
 		</div>
 		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
-			<h2>Item Three Content</h2>
+			<div class="slds-grid slds-wrap"> 
+			    <div class="slds-col slds-size--1-of-4"><strong>Object</strong></div>              
+                <div class="slds-col slds-size--1-of-4"><strong>Field</strong></div>
+                <div class="slds-col slds-size--1-of-4"><strong>Relationship Type</strong></div>
+                <div class="slds-col slds-size--1-of-4"><strong>Campaign Types</strong></div>
+            
+                <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting">
+                    <div class="slds-col slds-size--1-of-4"><ui:outputCheckbox value="{!autocSetting.Object__c}"/></div>
+                    <div class="slds-col slds-size--1-of-4"><ui:outputText value="{!autocSetting.Field__c}"/></div>
+                    <div class="slds-col slds-size--1-of-4"><ui:outputText value="{!autocSetting.Relationship_Type__c}"/></div>
+                    <div class="slds-col slds-size--1-of-4"><ui:outputText value="{!autocSetting.Campaign_Types__c}"/></div>
+                </aura:iteration>
+            </div>
 		</div>
 	</div>
 </aura:component>
