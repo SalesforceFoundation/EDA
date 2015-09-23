@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component controller="UTIL_CustomSettingsFacade">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <div id="tabs" class="slds-tabs--default">
@@ -21,13 +21,13 @@
              <c:STG_Affl />
          </div>
          <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_Rel />
+             <c:STG_Rel hierarchySettings="{!v.hierarchySettings}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_Addr />
+             <c:STG_Addr hierarchySettings="{!v.hierarchySettings}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_System />
+             <c:STG_System hierarchySettings="{!v.hierarchySettings}" />
          </div>
      </div>
 </aura:component>

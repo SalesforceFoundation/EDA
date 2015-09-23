@@ -1,5 +1,6 @@
-<aura:component controller="UTIL_CustomSettingsFacade">
+<aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
     
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>

@@ -6,6 +6,12 @@
 		$A.util.addClass(component.find("relTabContent"), "slds-hide");
 		$A.util.addClass(component.find("addrTabContent"), "slds-hide");
 		$A.util.addClass(component.find("systemTabContent"), "slds-hide");
+		
+		var action = component.get("c.getSettings");
+	    action.setCallback(this, function(data) {
+	        component.set("v.hierarchySettings", data.getReturnValue());
+	    });
+	    $A.enqueueAction(action);
 	},
 
 	afflLinkClicked : function(component, event, helper) {

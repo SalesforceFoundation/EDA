@@ -6,13 +6,6 @@
 		$A.util.addClass(component.find("recSettsTabContent"), "slds-hide");
 		$A.util.addClass(component.find("autocTabContent"), "slds-hide");
 
-		//Load Relationship hierarchy settings
-		var relSettingsAction = component.get("c.getSettings");
-		relSettingsAction.setCallback(this, function(data) {
-			component.set("v.relSettings", data.getReturnValue());
-		});
-		$A.enqueueAction(relSettingsAction);
-
 		//Load Relationship Reciprocal list settings
 		var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
 		reciprocalSettingsAction.setCallback(this, function(data) {
