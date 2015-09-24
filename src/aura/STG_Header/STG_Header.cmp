@@ -1,5 +1,6 @@
 <aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:registerEvent name="editEvent" type="c:editEvent" />
     
     <!-- PAGE HEADER -->
     <div class="slds-page-header" role="banner">
@@ -29,7 +30,7 @@
             <!-- GRID COL -->
             <div class="slds-col slds-no-flex slds-align-middle">
                 <div class="slds-button-group" role="group">
-                    <aura:if isTrue="{!v.edit}">
+                    <aura:if isTrue="{!v.isView}">
                         <ui:button class="slds-button slds-button--neutral" label="Edit" press="{!c.edit}"/>
                     <aura:set attribute="else">
                         <ui:button class="slds-button slds-button--neutral" label="Save" press="{!c.save}"/>
