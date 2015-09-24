@@ -74,7 +74,7 @@
         <members>STG_Rel</members>
         <members>STG_System</members>
         <members>STG_Tabs</members>
-        <members>editEvent</members>
+        <members>STG_editEvent</members>
         <members>svgIcon</members>
         <name>AuraDefinitionBundle</name>
     </types>

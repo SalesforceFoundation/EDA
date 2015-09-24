@@ -10,7 +10,6 @@
    },
    
    toggleIsView : function(component, event, helper) {
-	   console.log('reading edit/save event');
 	   component.set("v.isView", event.getParam("isView"));
    }
 })

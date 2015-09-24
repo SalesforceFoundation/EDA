@@ -5,17 +5,11 @@
 	
 	edit : function(component, event, helper) {
 		component.set("v.isView", false);
-		console.log('firing edit');
-		var editEvent = $A.get("e.c:editEvent");
-		console.log(JSON.parse(JSON.stringify(editEvent)));
-		editEvent.setParams({"isView": false});
-		console.log(JSON.parse(JSON.stringify(editEvent)));
-		editEvent.fire();
+		$A.get("e.c:STG_editEvent").setParams({"isView": false}).fire();
 	},
 	
 	save : function(component, event, helper) {
 		component.set("v.isView", true);
-		console.log('firing save');
-		$A.get("e.c:editEvent").setParams({"isView": true}).fire();
+		$A.get("e.c:STG_editEvent").setParams({"isView": true}).fire();
 	}
 })
