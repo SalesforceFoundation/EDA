@@ -1,6 +1,6 @@
 <aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <aura:registerEvent name="STG_editEvent" type="c:STG_editEvent" />
+    <aura:registerEvent name="STG_EVT_Edit" type="c:STG_EVT_Edit" />
     
     <!-- PAGE HEADER -->
     <div class="slds-page-header" role="banner">

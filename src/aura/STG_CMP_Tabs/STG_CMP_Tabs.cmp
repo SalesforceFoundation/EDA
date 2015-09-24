@@ -18,16 +18,16 @@
          </ul>
          
          <div aura:id="afflTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_Affl />
+             <c:STG_CMP_Affl />
          </div>
          <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_Rel hierarchySettings="{!v.hierarchySettings}" />
+             <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_Addr hierarchySettings="{!v.hierarchySettings}" />
+             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_System hierarchySettings="{!v.hierarchySettings}" />
+             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" />
          </div>
      </div>
 </aura:component>

@@ -17,8 +17,8 @@
         });
         
         function loadComponents() {
-            $Lightning.createComponent("c:STG_Header", {}, "headSettings");
-            $Lightning.createComponent("c:STG_Tabs", {}, "tabSettings");
+            $Lightning.createComponent("c:STG_CMP_Header", {}, "headSettings");
+            $Lightning.createComponent("c:STG_CMP_Tabs", {}, "tabSettings");
         }
     </script>
 </apex:page>

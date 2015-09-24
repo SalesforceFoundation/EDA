@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION" description="Event fired from the Edit/Save button in the STG_Header component." >
-    <aura:attribute name="isView" type="Boolean"/>
-</aura:event>

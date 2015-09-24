@@ -67,14 +67,14 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>STG_Addr</members>
-        <members>STG_Affl</members>
         <members>STG_App</members>
-        <members>STG_Header</members>
-        <members>STG_Rel</members>
-        <members>STG_System</members>
-        <members>STG_Tabs</members>
-        <members>STG_editEvent</members>
+        <members>STG_CMP_Addr</members>
+        <members>STG_CMP_Affl</members>
+        <members>STG_CMP_Header</members>
+        <members>STG_CMP_Rel</members>
+        <members>STG_CMP_System</members>
+        <members>STG_CMP_Tabs</members>
+        <members>STG_EVT_Edit</members>
         <members>svgIcon</members>
         <name>AuraDefinitionBundle</name>
     </types>
