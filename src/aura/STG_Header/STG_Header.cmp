@@ -34,6 +34,7 @@
                         <ui:button class="slds-button slds-button--neutral" label="Edit" press="{!c.edit}"/>
                     <aura:set attribute="else">
                         <ui:button class="slds-button slds-button--neutral" label="Save" press="{!c.save}"/>
+                        <ui:button class="slds-button slds-button--neutral" label="Cancel" press="{!c.cancel}"/>
                     </aura:set>
                     </aura:if>
                 </div>

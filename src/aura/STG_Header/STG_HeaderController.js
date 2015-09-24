@@ -11,5 +11,10 @@
 	save : function(component, event, helper) {
 		component.set("v.isView", true);
 		$A.get("e.c:STG_editEvent").setParams({"isView": true}).fire();
+	},
+	
+	cancel : function(component, event, helper) {
+		component.set("v.isView", true);
+		$A.get("e.c:STG_editEvent").setParams({"isView": true}).fire();
 	}
 })

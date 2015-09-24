@@ -1,21 +1,23 @@
 <aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
+    <aura:attribute name="isView" type="Boolean" default="true"/>
+    <aura:handler event="c:STG_editEvent" action="{!c.toggleIsView}"/>
     
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputText value="{!v.hierarchySettings.Account_Processor__c}"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Account_Processor__c}"/></div>
         
         <div class="slds-col slds-size--1-of-2">Store Errors:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
         
         <div class="slds-col slds-size--1-of-2">Send Error Notifications:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Error_Notifications_On__c}"/></div>
 
         <div class="slds-col slds-size--1-of-2">Error Notification Recipients:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Error_Notifications_To__c}"/></div>
 
         <div class="slds-col slds-size--1-of-2">Enable Debug:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:outputCheckbox value="{!v.hierarchySettings.Enable_Debug__c}"/></div>
+        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Enable_Debug__c}"/></div>
     </div>
 </aura:component>

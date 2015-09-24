@@ -73,5 +73,9 @@
 		var autocTabContent = component.find("autocTabContent");
 		$A.util.removeClass(autocTabContent, "slds-hide");
 		$A.util.addClass(autocTabContent, "slds-show");
+	},
+	
+	toggleIsView : function(component, event, helper) {
+		component.set("v.isView", event.getParam("isView"));
 	}
 })
