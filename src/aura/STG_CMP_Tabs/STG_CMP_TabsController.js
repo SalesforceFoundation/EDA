@@ -17,10 +17,11 @@
 	
 	saveSettings : function(component, event, helper) {
 		var saveAction = component.get("c.saveHierarchySettings");
-		saveAction.setParams({settings : component.get("v.hierarchySettings")});
+		saveAction.setParams({hierarchySettings : component.get("v.hierarchySettings")});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
-				component.set("v.sucessMessage", "Saved");
+				$A.util.removeClass(component.find("successMessage"), "slds-hide");
+				component.set("v.successMessage", "Saved");
 			} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
 				if (errors) {
