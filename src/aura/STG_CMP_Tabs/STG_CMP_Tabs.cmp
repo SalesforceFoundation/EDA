@@ -7,17 +7,6 @@
     <aura:attribute name="save" type="Boolean" default="true"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
     
-    <div aura:id="successMessage" class="slds-notify-container slds-hide">
-        <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture" role="alert">
-            <span class="slds-assistive-text">{!v.successMessage}</span>
-            <button class="slds-button slds-notify__close">
-                <c:svgIcon svgPath="/resource/SLDS090/assets/icons/action-sprite/svg/symbols.svg#close" class="slds-button__icon slds-button__icon--inverse"/>
-                <span class="slds-assistive-text">Close</span>
-            </button>
-            <h2 class="slds-text-heading--small">{!v.successMessage}</h2>
-        </div>
-    </div>
-    
     <div id="tabs" class="slds-tabs--default">
          <ul class="slds-tabs--default__nav" role="tablist">
              <li aura:id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="presentation">
