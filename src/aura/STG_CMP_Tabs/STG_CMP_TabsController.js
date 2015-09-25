@@ -20,9 +20,9 @@
 		saveAction.setParams({hierarchySettings : component.get("v.hierarchySettings")});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
-				$A.util.removeClass(component.find("successMessage"), "slds-hide");
-				component.set("v.successMessage", "Saved");
+				component.set("v.isView", true);
 			} else if(response.getState() === "ERROR") {
+				component.set("v.isView", false);
 				var errors = response.getError();
 				if (errors) {
 					if (errors[0] && errors[0].message) {
