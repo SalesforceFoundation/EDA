@@ -4,6 +4,7 @@
     
     <aura:attribute name="isView" type="Boolean" default="true"/>
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.toggleIsView}"/>
     
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">

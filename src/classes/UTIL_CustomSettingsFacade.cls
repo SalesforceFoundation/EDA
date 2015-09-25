@@ -61,6 +61,11 @@ public without sharing class UTIL_CustomSettingsFacade {
         }
         return settings;
     }
+    
+    @AuraEnabled
+    public static void saveHierarchySettings(Hierarchy_Settings__c hierarchySettings) {
+        upsert hierarchySettings;
+    }
 
     /*******************************************************************************************************
     * @description Returns the org-level settings. Default org-level settings will be created

@@ -75,6 +75,7 @@
         <members>STG_CMP_System</members>
         <members>STG_CMP_Tabs</members>
         <members>STG_EVT_Edit</members>
+        <members>STG_EVT_Save</members>
         <members>svgIcon</members>
         <name>AuraDefinitionBundle</name>
     </types>
