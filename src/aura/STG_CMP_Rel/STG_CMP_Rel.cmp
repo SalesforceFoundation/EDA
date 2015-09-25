@@ -2,9 +2,12 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
     
+    <aura:attribute name="reciprocalSettings" type="Relationship_Lookup__c[]" />
+    <aura:attribute name="autoCreateSettings" type="Relationship_Auto_Create__c[]" />
+    
     <aura:attribute name="isView" type="Boolean" default="true"/>
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-    <aura:handler event="c:STG_EVT_Save" action="{!c.toggleIsView}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
     
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">

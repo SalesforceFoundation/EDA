@@ -77,5 +77,45 @@
 	
 	toggleIsView : function(component, event, helper) {
 		component.set("v.isView", event.getParam("isView"));
+	}, 
+	   
+	saveRelSettings : function(component, event, helper) {
+		var saveRecSettingsAction = component.get("c.saveReciprocalSettings");
+		saveRecSettingsAction.setParams({reciprocalSettings : component.get("v.reciprocalSettings")});
+		saveRecSettingsAction.setCallback(this, function(response) {
+			if(response.getState() === "SUCCESS") {
+				//component.set("v.isView", true);
+			} else if(response.getState() === "ERROR") {
+				//component.set("v.isView", false);
+				var errors = response.getError();
+				if (errors) {
+					if (errors[0] && errors[0].message) {
+						$A.error("Error message: " + errors[0].message);
+					}
+				} else {
+					$A.error("Unknown error");
+				}
+			}
+		});
+		$A.enqueueAction(saveRecSettingsAction);
+		
+		var saveAutoCreateSettingsAction = component.get("c.saveAutoCreateSettings");
+		saveAutoCreateSettingsAction.setParams({autoCreateSettings : component.get("v.autoCreateSettings")});
+		saveAutoCreateSettingsAction.setCallback(this, function(response) {
+			if(response.getState() === "SUCCESS") {
+				//component.set("v.isView", true);
+			} else if(response.getState() === "ERROR") {
+				//component.set("v.isView", false);
+				var errors = response.getError();
+				if (errors) {
+					if (errors[0] && errors[0].message) {
+						$A.error("Error message: " + errors[0].message);
+					}
+				} else {
+					$A.error("Unknown error");
+				}
+			}
+		});
+		$A.enqueueAction(saveAutoCreateSettingsAction);
 	}
 })

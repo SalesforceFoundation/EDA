@@ -1,6 +1,7 @@
 <aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
+    
     <aura:attribute name="isView" type="Boolean" default="true"/>
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     

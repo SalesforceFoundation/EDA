@@ -61,11 +61,6 @@ public without sharing class UTIL_CustomSettingsFacade {
         }
         return settings;
     }
-    
-    @AuraEnabled
-    public static void saveHierarchySettings(Hierarchy_Settings__c hierarchySettings) {
-        upsert hierarchySettings;
-    }
 
     /*******************************************************************************************************
     * @description Returns the org-level settings. Default org-level settings will be created
@@ -152,5 +147,74 @@ public without sharing class UTIL_CustomSettingsFacade {
     @AuraEnabled
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
         return [select Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c];
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Hierarchy Settings passed from the client.
+    * @return void
+    **/    
+    @AuraEnabled
+    public static void saveHierarchySettings(Hierarchy_Settings__c hierarchySettings) {
+        upsert hierarchySettings;
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Affiliation Mappings passed from the client.
+    * @return void
+    **/  
+    @AuraEnabled
+    public static void saveAfflMappings(List<Affl_Mappings__c> afflMappings) {
+        //upsert afflMappings; We cannot do this because apparently the type information gets lost when called from the client.
+        List<Affl_Mappings__c> toInsert = new List<Affl_Mappings__c>();
+        List<Affl_Mappings__c> toUpdate = new List<Affl_Mappings__c>();
+        for(Affl_Mappings__c setting : afflMappings) {
+            if(setting.ID == null) {
+                toInsert.add(setting);
+            } else {
+                toUpdate.add(setting);
+            }
+        }
+        insert toInsert;
+        update toUpdate;
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Reciprocal Settings passed from the client.
+    * @return void
+    **/  
+    @AuraEnabled
+    public static void saveReciprocalSettings(List<Relationship_Lookup__c> reciprocalSettings) {
+        //upsert reciprocalSettings; We cannot do this because apparently the type information gets lost when called from the client.
+        List<Relationship_Lookup__c> toInsert = new List<Relationship_Lookup__c>();
+        List<Relationship_Lookup__c> toUpdate = new List<Relationship_Lookup__c>();
+        for(Relationship_Lookup__c setting : reciprocalSettings) {
+            if(setting.ID == null) {
+                toInsert.add(setting);
+            } else {
+                toUpdate.add(setting);
+            }
+        }
+        insert toInsert;
+        update toUpdate;
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Auto-Create Settings passed from the client.
+    * @return void
+    **/  
+    @AuraEnabled
+    public static void saveAutoCreateSettings(List<Relationship_Auto_Create__c> autoCreateSettings) {
+        //upsert autoCreateSettings; We cannot do this because apparently the type information gets lost when called from the client.
+        List<Relationship_Auto_Create__c> toInsert = new List<Relationship_Auto_Create__c>();
+        List<Relationship_Auto_Create__c> toUpdate = new List<Relationship_Auto_Create__c>();
+        for(Relationship_Auto_Create__c setting : autoCreateSettings) {
+            if(setting.ID == null) {
+                toInsert.add(setting);
+            } else {
+                toUpdate.add(setting);
+            }
+        }
+        insert toInsert;
+        update toUpdate;
     }
 }
