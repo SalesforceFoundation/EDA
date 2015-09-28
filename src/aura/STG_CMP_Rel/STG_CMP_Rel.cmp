@@ -45,11 +45,31 @@
 			    <aura:iteration items="{!v.reciprocalSettings}" var="recSetting">
 			        <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Name}"/></div>
 			        <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Female__c}"/></div>
-			        <div class="slds-col slds-size--1-of-5"><ui:inputCheckbox disabled="{!v.isView}" value="{!recSetting.Male__c}"/></div>
+			        <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Male__c}"/></div>
 			        <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Neutral__c}"/></div>
-			        <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Active__c}"/></div>
+			        <div class="slds-col slds-size--1-of-5"><ui:inputCheckbox disabled="{!v.isView}" value="{!recSetting.Active__c}"/></div>
 			    </aura:iteration>
 			</div>
+			<div class="newrecsetting">
+			  <div aria-labelledby="newrecsettingform">
+			    <fieldset class="slds-box slds-theme--default slds-container--medium">
+			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New reciprocal setting </legend>
+			        <div class="slds-form--inline slds-form-element">
+			          <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name"/></div>
+                      <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newFemale" placeholder="Female"/></div>
+                      <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newMale" placeholder="Male"/></div>
+                      <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newNeutral" placeholder="Neutral"/></div>
+                      <label class="slds-form-element__label" for="name">&nbsp;Active:</label>
+                      <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive"/></div>
+			        </div>
+			        <button class="slds-button slds-button--brand slds-m-top--medium" type="button" onClick="createAccount()">Add Setting</button>
+			    </fieldset>
+			  </div>
+            </div>
 		</div>
 		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
 			<div class="slds-grid slds-wrap"> 
