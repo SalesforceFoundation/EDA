@@ -53,7 +53,7 @@
 			<div class="newrecsetting">
 			  <div aria-labelledby="newrecsettingform">
 			    <fieldset class="slds-box slds-theme--default slds-container--medium">
-			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New reciprocal setting </legend>
+			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting </legend>
 			        <div class="slds-form--inline slds-form-element">
 			          <label class="slds-form-element__label" for="accountName">&nbsp;</label>
 			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name"/></div>
@@ -66,7 +66,7 @@
                       <label class="slds-form-element__label" for="name">&nbsp;Active:</label>
                       <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive"/></div>
 			        </div>
-			        <button class="slds-button slds-button--brand slds-m-top--medium" type="button" onClick="createAccount()">Add Setting</button>
+			        <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newReciprocalStg}">Add Setting</ui:button>
 			    </fieldset>
 			  </div>
             </div>

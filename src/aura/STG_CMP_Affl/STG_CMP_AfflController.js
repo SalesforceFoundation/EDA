@@ -15,7 +15,7 @@
    
    saveAfflSettings : function(component, event, helper) {
 		var saveAction = component.get("c.saveAfflMappings");
-		saveAction.setParams({afflMappings : component.get("v.afflMappings")});
+		saveAction.setParams({"afflMappings" : component.get("v.afflMappings")});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				//component.set("v.isView", true);

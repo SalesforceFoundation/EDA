@@ -17,7 +17,7 @@
 	
 	saveSettings : function(component, event, helper) {
 		var saveAction = component.get("c.saveHierarchySettings");
-		saveAction.setParams({hierarchySettings : component.get("v.hierarchySettings")});
+		saveAction.setParams({"hierarchySettings" : component.get("v.hierarchySettings")});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				component.set("v.isView", true);

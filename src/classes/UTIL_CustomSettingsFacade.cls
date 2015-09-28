@@ -217,4 +217,11 @@ public without sharing class UTIL_CustomSettingsFacade {
         insert toInsert;
         update toUpdate;
     }
+    
+    @AuraEnabled
+    public static void newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
+        Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male, 
+                                                                        Neutral__c = neutral, Active__c = active);
+        insert newSetting;
+    }
 }

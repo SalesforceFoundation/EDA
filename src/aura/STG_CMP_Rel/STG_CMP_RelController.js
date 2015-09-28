@@ -81,7 +81,7 @@
 	   
 	saveRelSettings : function(component, event, helper) {
 		var saveRecSettingsAction = component.get("c.saveReciprocalSettings");
-		saveRecSettingsAction.setParams({reciprocalSettings : component.get("v.reciprocalSettings")});
+		saveRecSettingsAction.setParams({"reciprocalSettings" : component.get("v.reciprocalSettings")});
 		saveRecSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				//component.set("v.isView", true);
@@ -100,7 +100,7 @@
 		$A.enqueueAction(saveRecSettingsAction);
 		
 		var saveAutoCreateSettingsAction = component.get("c.saveAutoCreateSettings");
-		saveAutoCreateSettingsAction.setParams({autoCreateSettings : component.get("v.autoCreateSettings")});
+		saveAutoCreateSettingsAction.setParams({"autoCreateSettings" : component.get("v.autoCreateSettings")});
 		saveAutoCreateSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				//component.set("v.isView", true);
@@ -117,5 +117,33 @@
 			}
 		});
 		$A.enqueueAction(saveAutoCreateSettingsAction);
+	},
+	
+	newReciprocalStg : function(component, event, helper) {
+		var name = component.find("newName").get("v.value");
+		var female = component.find("newFemale").get("v.value");
+		var male = component.find("newMale").get("v.value");
+		var neutral = component.find("newNeutral").get("v.value");
+		var active = component.find("newActive").get("v.value");
+		
+		var newStgAction = component.get("c.newReciprocalSetting");
+		newStgAction.setParams({ "name" : name, "female" : female, "male" : male, "neutral" : neutral, "active" : active });
+		newStgAction.setCallback(this, function(response) {
+			if(response.getState() === "SUCCESS") {
+				var reciprocalSettings = component.get("v.reciprocalSettings");
+				reciprocalSettings.push({ "Name" : name, "Female__c" : female, "Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
+				component.set("v.reciprocalSettings", reciprocalSettings);
+			} else if(response.getState() === "ERROR") {
+				var errors = response.getError();
+				if (errors) {
+					if (errors[0] && errors[0].message) {
+						$A.error("Error message: " + errors[0].message);
+					}
+				} else {
+					$A.error("Unknown error");
+				}
+			}
+		});
+		$A.enqueueAction(newStgAction);
 	}
 })
