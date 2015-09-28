@@ -224,4 +224,11 @@ public without sharing class UTIL_CustomSettingsFacade {
                                                                         Neutral__c = neutral, Active__c = active);
         insert newSetting;
     }
+    
+    @AuraEnabled
+    public static void newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
+        Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
+                        Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
+        insert newSetting;
+    }
 }

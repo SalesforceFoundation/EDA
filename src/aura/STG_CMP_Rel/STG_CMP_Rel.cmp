@@ -53,17 +53,17 @@
 			<div class="newrecsetting">
 			  <div aria-labelledby="newrecsettingform">
 			    <fieldset class="slds-box slds-theme--default slds-container--medium">
-			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting </legend>
+			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting</legend>
 			        <div class="slds-form--inline slds-form-element">
-			          <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
 			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name"/></div>
-                      <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+                      <label class="slds-form-element__label" for="Female">&nbsp;</label>
                       <div class="slds-form-element__control"><ui:inputText aura:id="newFemale" placeholder="Female"/></div>
-                      <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+                      <label class="slds-form-element__label" for="Male">&nbsp;</label>
                       <div class="slds-form-element__control"><ui:inputText aura:id="newMale" placeholder="Male"/></div>
-                      <label class="slds-form-element__label" for="accountName">&nbsp;</label>
+                      <label class="slds-form-element__label" for="Neutral">&nbsp;</label>
                       <div class="slds-form-element__control"><ui:inputText aura:id="newNeutral" placeholder="Neutral"/></div>
-                      <label class="slds-form-element__label" for="name">&nbsp;Active:</label>
+                      <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
                       <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive"/></div>
 			        </div>
 			        <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newReciprocalStg}">Add Setting</ui:button>
@@ -79,11 +79,29 @@
                 <div class="slds-col slds-size--1-of-4"><strong>Campaign Types</strong></div>
             
                 <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting">
-                    <div class="slds-col slds-size--1-of-4"><ui:inputCheckbox disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
+                    <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
                     <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
                     <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
-                    <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
+                    <div class="slds-col slds-size--1-of-4"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
                 </aura:iteration>
+            </div>
+            <div class="newautocsetting">
+              <div aria-labelledby="newautocsettingform">
+                <fieldset class="slds-box slds-theme--default slds-container--medium">
+                  <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
+                    <div class="slds-form--inline slds-form-element">
+                      <label class="slds-form-element__label" for="Object">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newObject" placeholder="Object"/></div>
+                      <label class="slds-form-element__label" for="Field">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newField" placeholder="Field"/></div>
+                      <label class="slds-form-element__label" for="Relationship Type">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newRelType" placeholder="Relationship Type"/></div>
+                      <label class="slds-form-element__label" for="Campaign Types">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types"/></div>
+                    </div>
+                    <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAutoCreateStg}">Add Setting</ui:button>
+                </fieldset>
+              </div>
             </div>
 		</div>
 	</div>
