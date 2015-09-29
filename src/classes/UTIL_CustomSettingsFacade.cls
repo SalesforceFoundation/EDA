@@ -151,6 +151,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     
     /*******************************************************************************************************
     * @description Saves the Hierarchy Settings passed from the client.
+    * @param hierarchySettings The Hierarchy_Settings__c record to upsert.
     * @return void
     **/    
     @AuraEnabled
@@ -160,6 +161,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     
     /*******************************************************************************************************
     * @description Saves the Affiliation Mappings passed from the client.
+    * @param afflMappings The list of Affl_Mappings__c records to updsert.
     * @return void
     **/  
     @AuraEnabled
@@ -180,6 +182,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     
     /*******************************************************************************************************
     * @description Saves the Reciprocal Settings passed from the client.
+    * @param reciprocalSettings The list of Relationship_Lookup__c records to upsert.
     * @return void
     **/  
     @AuraEnabled
@@ -200,6 +203,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     
     /*******************************************************************************************************
     * @description Saves the Auto-Create Settings passed from the client.
+    * @param autoCreateSettings The list of Relationship_Auto_Create__c records to upsert.
     * @return void
     **/  
     @AuraEnabled
@@ -218,6 +222,15 @@ public without sharing class UTIL_CustomSettingsFacade {
         update toUpdate;
     }
     
+    /*******************************************************************************************************
+    * @description Creates a new Reciprocal List Setting.
+    * @param name The value of the Name field in the Relationship_Lookup__c record to create.
+    * @param male The value of the Male__c field in the Relationship_Lookup__c record to create.
+    * @param female The value of the Female__c field in the Relationship_Lookup__c record to create.
+    * @param neutral The value of the Neutral__c field in the Relationship_Lookup__c record to create.
+    * @param active The value of the Active__c field in the Relationship_Lookup__c record to create.
+    * @return void
+    **/ 
     @AuraEnabled
     public static void newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
         Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male, 
@@ -225,6 +238,14 @@ public without sharing class UTIL_CustomSettingsFacade {
         insert newSetting;
     }
     
+    /*******************************************************************************************************
+    * @description Creates a new Auto-Create List Setting..
+    * @param obj The value of the Object__c field in the Relationship_Auto_Create__c record to create.
+    * @param field The value of the Field__c field in the Relationship_Auto_Create__c record to create.
+    * @param relType The value of the Relationship_Type__c field in the Relationship_Auto_Create__c record to create.
+    * @param campaigns The value of the Campaign_Types__c field in the Relationship_Auto_Create__c record to create.
+    * @return void
+    **/ 
     @AuraEnabled
     public static void newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
         Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
