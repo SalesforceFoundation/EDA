@@ -73,16 +73,19 @@
 		</div>
 		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
 			<div class="slds-grid slds-wrap"> 
-			    <div class="slds-col slds-size--1-of-4"><strong>Object</strong></div>              
-                <div class="slds-col slds-size--1-of-4"><strong>Field</strong></div>
-                <div class="slds-col slds-size--1-of-4"><strong>Relationship Type</strong></div>
-                <div class="slds-col slds-size--1-of-4"><strong>Campaign Types</strong></div>
+			    <div class="slds-col slds-size--1-of-5"><strong>Object</strong></div>              
+                <div class="slds-col slds-size--1-of-5"><strong>Field</strong></div>
+                <div class="slds-col slds-size--1-of-5"><strong>Relationship Type</strong></div>
+                <div class="slds-col slds-size--1-of-5"><strong>Campaign Types</strong></div>
+                <div class="slds-col slds-size--1-of-5">&nbsp;</div>
             
                 <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting">
-                    <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
-                    <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
-                    <div class="slds-col slds-size--1-of-4"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
-                    <div class="slds-col slds-size--1-of-4"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
+                        category="standard" size="small" name="user" /></div>
                 </aura:iteration>
             </div>
             <div class="newautocsetting">
