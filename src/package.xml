@@ -43,6 +43,7 @@
         <members>TDTM_TriggerHandler</members>
         <members>TDTM_TriggerScaffolds_TEST</members>
         <members>UTIL_CustomSettingsFacade</members>
+        <members>UTIL_CustomSettingsFacade_TEST</members>
         <members>UTIL_Debug</members>
         <members>UTIL_Describe</members>
         <members>UTIL_Namespace</members>
