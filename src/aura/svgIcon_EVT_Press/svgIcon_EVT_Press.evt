@@ -1,3 +1,3 @@
 <aura:event type="COMPONENT" description="Event fired when clicking an svgIcon component." >
-    <aura:attribute name="id" type="String"/>
+    <aura:attribute name="Id" type="String"/>
 </aura:event>
