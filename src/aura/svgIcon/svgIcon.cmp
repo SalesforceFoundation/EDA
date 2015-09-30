@@ -1,4 +1,6 @@
 <aura:component>
+    <aura:registerEvent name="svgIcon_EVT_Press" type="c:svgIcon_EVT_Press" />
+    
 	<aura:attribute name="svgPath"        default="" type="String" description="the path for the icon in the static resource, this will be use in a SVG use tag" />
 	<aura:attribute name="name"           default="" type="String" description="Symbol name of icon" />
 	<aura:attribute name="class"          default="" type="String" description="the class of this SVG tag, can be use for CSS purpose" />
@@ -6,6 +8,8 @@
 	<aura:attribute name="category"       default="" type="String" description="Category of icon- action, standard, utility etc." />
 	<aura:attribute name="size"           default="" type="String" description="Size of icon-- small, medium, large" />
 	<aura:attribute name="assistiveText"  default="" type="String" description="Description name of icon" />
+	<aura:attribute name="press"          default="" type="String" description="Name of method to call" />
+	<aura:attribute name="id"             default="" type="String" description="Record ID" />
 	<span aura:id="container" class="{!v.containerClass}">
 	   <span aura:id="assistiveText" class="slds-assistive-text">{!v.assistiveText}</span>
 	</span>

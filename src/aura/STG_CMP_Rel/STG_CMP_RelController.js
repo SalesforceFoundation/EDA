@@ -173,5 +173,9 @@
 			}
 		});
 		$A.enqueueAction(newStgAction);
+	},
+	
+	deleteRow : function(component, event, helper) {
+		console.log("deleting row");
 	}
 })

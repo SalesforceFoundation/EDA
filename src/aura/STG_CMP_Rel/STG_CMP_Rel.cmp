@@ -9,6 +9,8 @@
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
     
+    <aura:handler name="svgIcon_EVT_Press" event="c:svgIcon_EVT_Press" action="{!c.deleteRow}"/>
+    
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">
 			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
@@ -85,7 +87,7 @@
                     <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
-                        category="utility" size="small" name="delete" class="slds-theme--inverse" /></div>
+                        category="utility" size="small" name="delete" class="slds-theme--inverse" press="deleteRow" Id="{!autocSetting.Object__c.Id}" /></div>
                 </aura:iteration>
             </div>
             <div class="newautocsetting">

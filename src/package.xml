@@ -78,6 +78,7 @@
         <members>STG_EVT_Edit</members>
         <members>STG_EVT_Save</members>
         <members>svgIcon</members>
+        <members>svgIcon_EVT_Press</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
