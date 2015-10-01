@@ -1,24 +1,6 @@
 ({
 	init : function(component, event, helper) {
-		$A.util.addClass(component.find("settsTab"), "slds-active");
-
-		$A.util.addClass(component.find("settsTabContent"), "slds-show");
-		$A.util.addClass(component.find("recSettsTabContent"), "slds-hide");
-		$A.util.addClass(component.find("autocTabContent"), "slds-hide");
-
-		//Load Relationship Reciprocal list settings
-		var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
-		reciprocalSettingsAction.setCallback(this, function(data) {
-			component.set("v.reciprocalSettings", data.getReturnValue());
-		});
-		$A.enqueueAction(reciprocalSettingsAction);
-
-		//Load Relationship Auto-Create list settings
-		var autoCreateSettingsAction = component.get("c.getAutoCreateSettings");
-		autoCreateSettingsAction.setCallback(this, function(data) {
-			component.set("v.autoCreateSettings", data.getReturnValue());
-		});
-		$A.enqueueAction(autoCreateSettingsAction);
+		helper.init(component);
 	},
 
 	settsLinkClicked : function(component, event, helper) {
@@ -233,5 +215,10 @@
 			}
 		});
 		$A.enqueueAction(action);
+	},
+	
+	resetSettings : function(component, event, helper) {
+		helper.loadReciprocalSettings(component);
+		helper.loadRelAutoCreateSettings(component);
 	}
 })

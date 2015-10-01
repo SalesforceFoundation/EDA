@@ -6,6 +6,7 @@
     <aura:attribute name="isView" type="Boolean" default="true"/>
     <aura:attribute name="save" type="Boolean" default="true"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
+    <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
     
     <div id="tabs" class="slds-tabs--default">
          <ul class="slds-tabs--default__nav" role="tablist">

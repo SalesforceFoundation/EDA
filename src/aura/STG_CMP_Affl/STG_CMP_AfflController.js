@@ -1,12 +1,6 @@
 ({
    init : function(component, event, helper) {
-	   component.set("v.isView", true);
-	   
-	   var action = component.get("c.getAfflMappings");
-	   action.setCallback(this, function(data) {
-           component.set("v.afflMappings", data.getReturnValue());
-       });
-       $A.enqueueAction(action);
+	   helper.init(component);
    },
    
    toggleIsView : function(component, event, helper) {
@@ -32,5 +26,9 @@
 			}
 		});
 		$A.enqueueAction(saveAction);
+	},
+	
+	resetSettings : function(component, event, helper) {
+		helper.resetSettings(component);
 	}
 })
