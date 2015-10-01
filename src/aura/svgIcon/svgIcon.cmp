@@ -9,6 +9,7 @@
 	<aura:attribute name="size"           default="" type="String" description="Size of icon-- small, medium, large" />
 	<aura:attribute name="assistiveText"  default="" type="String" description="Description name of icon" />
 	<aura:attribute name="id"             default="" type="String" description="Record ID" />
+	<aura:attribute name="position"       default="" type="String" description="Position of the element in the list, if any" />
 	<span aura:id="container" class="{!v.containerClass}" onclick="{!c.pressIcon}">
 	   <span aura:id="assistiveText" class="slds-assistive-text">{!v.assistiveText}</span>
 	</span>

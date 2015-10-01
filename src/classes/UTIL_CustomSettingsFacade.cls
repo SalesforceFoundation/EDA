@@ -137,7 +137,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Lookup__c> getReciprocalSettings() {
-        return [select Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c];
+        return [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c];
     }
     
     /*******************************************************************************************************
@@ -146,7 +146,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
-        return [select Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c];
+        return [select Id, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c];
     }
     
     /*******************************************************************************************************
@@ -251,5 +251,11 @@ public without sharing class UTIL_CustomSettingsFacade {
         Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
                         Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
         insert newSetting;
+    }
+    
+    @AuraEnabled
+    public static void deleteAutoCreateRecord(String idString) {
+        ID idType = ID.valueOf(IdString);
+        delete [select Id from Relationship_Auto_Create__c where Id = :idType];
     }
 }

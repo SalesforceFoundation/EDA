@@ -174,8 +174,35 @@
 		});
 		$A.enqueueAction(newStgAction);
 	},
-	
+
 	deleteRow : function(component, event, helper) {
 		console.log("deleting row");
+		var deleteIcon = component.find("deleteAutoC");
+		var id = deleteIcon.get("v.id");
+		console.log("Id to delete: " + id);
+		var position = deleteIcon.get("v.position");
+		console.log("Position: " + position);
+
+		var action = component.get("c.deleteRecord");
+		action.setParams({
+			"idString" : id
+		});
+		action.setCallback(this, function(response) {
+			if (response.getState() === "SUCCESS") {
+				var autoCreateSettings = component.get("v.autoCreateSettings");
+				autoCreateSettings.splice(position, 1);
+				component.set("v.autoCreateSettings", autoCreateSettings);
+			} else if (response.getState() === "ERROR") {
+				var errors = response.getError();
+				if (errors) {
+					if (errors[0] && errors[0].message) {
+						$A.error("Error message: " + errors[0].message);
+					}
+				} else {
+					$A.error("Unknown error");
+				}
+			}
+		});
+		$A.enqueueAction(action);
 	}
 })
