@@ -176,16 +176,11 @@
 	},
 
 	deleteRow : function(component, event) {
-		console.log("deleting row");
 		var id = event.getParam("id");
-		console.log("Id to delete: " + id);
 		var position = event.getParam("position");
-		console.log("Position: " + position);
 
-		var action = component.get("c.deleteRecord");
-		action.setParams({
-			"idString" : id
-		});
+		var action = component.get("c.deleteAutoCreateRecord");
+		action.setParams({ "idString" : id });
 		action.setCallback(this, function(response) {
 			if (response.getState() === "SUCCESS") {
 				var autoCreateSettings = component.get("v.autoCreateSettings");

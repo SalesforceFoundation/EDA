@@ -10,9 +10,7 @@
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
     
     <aura:attribute name="Id" type="String" />
-    
-    <aura:attribute name="autoCreatePos" type="Integer" default="0"/>
-    
+       
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">
 			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
@@ -83,7 +81,7 @@
                 <div class="slds-col slds-size--1-of-5"><strong>Campaign Types</strong></div>
                 <div class="slds-col slds-size--1-of-5">&nbsp;</div>
             
-                <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting">
+                <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting" indexVar="position">
                     <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
@@ -91,7 +89,7 @@
                     <div class="slds-col slds-size--1-of-5"><c:svgIcon aura:id="deleteAutoC" 
                         svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
                         category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRow}" 
-                        id="{!autocSetting.Id}" position="{!v.autoCreatePos}" /></div>
+                        id="{!autocSetting.Id}" position="{!position}" /></div>
                 </aura:iteration>
             </div>
             <div class="newautocsetting">
