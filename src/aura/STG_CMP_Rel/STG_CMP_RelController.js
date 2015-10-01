@@ -134,6 +134,11 @@
 				reciprocalSettings.push({ "Id" : response.getReturnValue(), "Name" : name, "Female__c" : female, 
 										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
 				component.set("v.reciprocalSettings", reciprocalSettings);
+				component.find("newName").set("v.value", "");
+				component.find("newFemale").set("v.value", "");
+				component.find("newMale").set("v.value", "");
+				component.find("newNeutral").set("v.value", "");
+				component.find("newActive").set("v.value", "");
 			} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
 				if (errors) {
@@ -162,6 +167,10 @@
 				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
 											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
 				component.set("v.autoCreateSettings", autoCreateSettings);
+				component.find("newObject").set("v.value", "");
+				component.find("newField").set("v.value", "");
+				component.find("newRelType").set("v.value", "");
+				component.find("newCpgTypes").set("v.value", "");
 			} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
 				if (errors) {
