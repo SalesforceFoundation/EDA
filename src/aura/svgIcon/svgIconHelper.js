@@ -7,9 +7,6 @@
     var name = component.get("v.name");
     var classname = component.get("v.class");
     var category = component.get("v.category");
-    
-    var id = component.get("v.id");
-    var position = component.get("v.position"); 
 
     var containerClassName = [
         prefix+"icon__container",
@@ -23,9 +20,6 @@
     svgroot.setAttribute("aria-hidden", "true");
     svgroot.setAttribute("class", iconClassName);
     svgroot.setAttribute("name", name);
-
-    svgroot.setAttribute("id", id);
-    svgroot.setAttribute("position", position);
     
     // Add an "href" attribute (using the "xlink" namespace)
     var shape = document.createElementNS(svgns, "use");

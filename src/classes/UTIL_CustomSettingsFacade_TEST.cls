@@ -131,7 +131,7 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     }
     
     @isTest
-    public static void newReciprocalSetting() {
+    public static void newDeleteReciprocalSetting() {
         Test.startTest();
         UTIL_CustomSettingsFacade.newReciprocalSetting('test' + system.now(), 'husband', 'wife', 'spouse', true);
         Test.stopTest();
@@ -140,10 +140,14 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         System.assertEquals(1, settings.size());
         System.assertEquals('husband', settings[0].Male__c);
         System.assertEquals('wife', settings[0].Female__c);
+        
+        UTIL_CustomSettingsFacade.deleteRecSettingRecord(settings[0].Id);
+        settings = [select Id from Relationship_Lookup__c where Id = :settings[0].Id];
+        System.assertEquals(0, settings.size());
     }
     
     @isTest
-    public static void newAutoCreateSetting() {   
+    public static void newDeleteAutoCreateSetting() {   
         Test.startTest();
         UTIL_CustomSettingsFacade.newAutoCreateSetting('Contact', 'coworker__c', 'coworker', '');
         Test.stopTest();
@@ -153,5 +157,9 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         System.assertEquals(1, settings.size());
         System.assertEquals('Contact', settings[0].Object__c);
         System.assertEquals('coworker__c', settings[0].Field__c);
+        
+        UTIL_CustomSettingsFacade.deleteAutoCreateRecord(settings[0].Id);
+        settings = [select Id from Relationship_Auto_Create__c where Id = :settings[0].Id];
+        System.assertEquals(0, settings.size());
     }
 }

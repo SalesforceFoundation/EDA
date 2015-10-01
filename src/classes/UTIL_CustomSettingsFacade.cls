@@ -223,7 +223,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
     
     /*******************************************************************************************************
-    * @description Creates a new Reciprocal List Setting.
+    * @description Creates a new Reciprocal List Setting record.
     * @param name The value of the Name field in the Relationship_Lookup__c record to create.
     * @param male The value of the Male__c field in the Relationship_Lookup__c record to create.
     * @param female The value of the Female__c field in the Relationship_Lookup__c record to create.
@@ -240,7 +240,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
     
     /*******************************************************************************************************
-    * @description Creates a new Auto-Create List Setting..
+    * @description Creates a new Auto-Create List Setting record.
     * @param obj The value of the Object__c field in the Relationship_Auto_Create__c record to create.
     * @param field The value of the Field__c field in the Relationship_Auto_Create__c record to create.
     * @param relType The value of the Relationship_Type__c field in the Relationship_Auto_Create__c record to create.
@@ -255,6 +255,20 @@ public without sharing class UTIL_CustomSettingsFacade {
         return newSetting.Id;
     }
     
+    /*******************************************************************************************************
+    * @description Deletes a Relationship Lookup List Setting record.
+    * @return void
+    */
+    @AuraEnabled
+    public static void deleteRecSettingRecord(String idString) {
+        ID idType = ID.valueOf(IdString);
+        delete [select Id from Relationship_Lookup__c where Id = :idType];
+    }
+    
+    /*******************************************************************************************************
+    * @description Deletes an Auto-Create List Setting record.
+    * @return void
+    */
     @AuraEnabled
     public static void deleteAutoCreateRecord(String idString) {
         ID idType = ID.valueOf(IdString);

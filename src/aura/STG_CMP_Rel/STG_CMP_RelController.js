@@ -131,7 +131,8 @@
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				var reciprocalSettings = component.get("v.reciprocalSettings");
-				reciprocalSettings.push({ "Name" : name, "Female__c" : female, "Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
+				reciprocalSettings.push({ "Id" : response.getReturnValue(), "Name" : name, "Female__c" : female, 
+										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
 				component.set("v.reciprocalSettings", reciprocalSettings);
 			} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
@@ -173,6 +174,31 @@
 			}
 		});
 		$A.enqueueAction(newStgAction);
+	},
+	
+	deleteRecSettingRow : function(component, event) {
+		var id = event.getParam("id");
+		var position = event.getParam("position");
+
+		var action = component.get("c.deleteRecSettingRecord");
+		action.setParams({ "idString" : id });
+		action.setCallback(this, function(response) {
+			if (response.getState() === "SUCCESS") {
+				var reciprocalSettings = component.get("v.reciprocalSettings");
+				reciprocalSettings.splice(position, 1);
+				component.set("v.reciprocalSettings", reciprocalSettings);
+			} else if (response.getState() === "ERROR") {
+				var errors = response.getError();
+				if (errors) {
+					if (errors[0] && errors[0].message) {
+						$A.error("Error message: " + errors[0].message);
+					}
+				} else {
+					$A.error("Unknown error");
+				}
+			}
+		});
+		$A.enqueueAction(action);
 	},
 
 	deleteAutoCreateRow : function(component, event) {
