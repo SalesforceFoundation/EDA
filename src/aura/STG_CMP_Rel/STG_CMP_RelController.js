@@ -175,12 +175,11 @@
 		$A.enqueueAction(newStgAction);
 	},
 
-	deleteRow : function(component, event, helper) {
+	deleteRow : function(component, event) {
 		console.log("deleting row");
-		var deleteIcon = component.find("deleteAutoC");
-		var id = deleteIcon.get("v.id");
+		var id = event.getParam("id");
 		console.log("Id to delete: " + id);
-		var position = deleteIcon.get("v.position");
+		var position = event.getParam("position");
 		console.log("Position: " + position);
 
 		var action = component.get("c.deleteRecord");

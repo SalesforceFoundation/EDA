@@ -10,9 +10,8 @@
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
     
     <aura:attribute name="Id" type="String" />
-    <aura:handler name="pressIcon" event="c:svgIcon_EVT_Press" action="default"/>
     
-    <aura:attribute name="autoCreatePos" type="Integer" default="-1"/>
+    <aura:attribute name="autoCreatePos" type="Integer" default="0"/>
     
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">
@@ -92,7 +91,7 @@
                     <div class="slds-col slds-size--1-of-5"><c:svgIcon aura:id="deleteAutoC" 
                         svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
                         category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRow}" 
-                        id="{!autocSetting.Id}" position="{!v.autoCreatePos + 1}" /></div>
+                        id="{!autocSetting.Id}" position="{!v.autoCreatePos}" /></div>
                 </aura:iteration>
             </div>
             <div class="newautocsetting">
