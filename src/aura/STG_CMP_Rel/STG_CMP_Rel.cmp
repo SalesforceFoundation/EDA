@@ -88,7 +88,7 @@
                     <div class="slds-col slds-size--1-of-5"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><c:svgIcon aura:id="deleteAutoC" 
                         svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
-                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRow}" 
+                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
                         id="{!autocSetting.Id}" position="{!position}" /></div>
                 </aura:iteration>
             </div>

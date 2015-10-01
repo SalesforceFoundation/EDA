@@ -229,13 +229,14 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @param female The value of the Female__c field in the Relationship_Lookup__c record to create.
     * @param neutral The value of the Neutral__c field in the Relationship_Lookup__c record to create.
     * @param active The value of the Active__c field in the Relationship_Lookup__c record to create.
-    * @return void
+    * @return String The Id of the record that has just been created, as a String.
     **/ 
     @AuraEnabled
-    public static void newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
+    public static String newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
         Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male, 
                                                                         Neutral__c = neutral, Active__c = active);
         insert newSetting;
+        return newSetting.Id;
     }
     
     /*******************************************************************************************************
@@ -244,13 +245,14 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @param field The value of the Field__c field in the Relationship_Auto_Create__c record to create.
     * @param relType The value of the Relationship_Type__c field in the Relationship_Auto_Create__c record to create.
     * @param campaigns The value of the Campaign_Types__c field in the Relationship_Auto_Create__c record to create.
-    * @return void
+    * @return String The Id of the record that has just been created, as a String.
     **/ 
     @AuraEnabled
-    public static void newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
+    public static String newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
         Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
                         Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
         insert newSetting;
+        return newSetting.Id;
     }
     
     @AuraEnabled

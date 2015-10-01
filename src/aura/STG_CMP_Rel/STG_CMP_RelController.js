@@ -158,8 +158,8 @@
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				var autoCreateSettings = component.get("v.autoCreateSettings");
-				autoCreateSettings.push({ "Object__c" : object, "Field__c" : field, "Relationship_Type__c" : relType, 
-										"Campaign_Types__c" : campaigns });
+				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
+											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
 				component.set("v.autoCreateSettings", autoCreateSettings);
 			} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
@@ -175,7 +175,7 @@
 		$A.enqueueAction(newStgAction);
 	},
 
-	deleteRow : function(component, event) {
+	deleteAutoCreateRow : function(component, event) {
 		var id = event.getParam("id");
 		var position = event.getParam("position");
 
