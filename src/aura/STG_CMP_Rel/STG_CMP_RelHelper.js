@@ -99,14 +99,7 @@
 		action.setParams(params);
 		action.setCallback(this, function(response) {
 			if(response.getState() === "ERROR") {
-				var errors = response.getError();
-				if (errors) {
-					if (errors[0] && errors[0].message) {
-						$A.error("Error message: " + errors[0].message);
-					}
-				} else {
-					$A.error("Unknown error");
-				}
+				this.displayError(response);
 			}
 		});
 		$A.enqueueAction(action);
@@ -127,24 +120,71 @@
 				reciprocalSettings.push({ "Id" : response.getReturnValue(), "Name" : name, "Female__c" : female, 
 										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
 				component.set("v.reciprocalSettings", reciprocalSettings);
-				this.clearNewSettingBoxes(component);
+				this.clearNewStgBoxes(component, ["newName", "newFemale", "newMale", "newNeutral", "newActive"]);
 			} else if(response.getState() === "ERROR") {
-				var errors = response.getError();
-				if (errors && errors[0] && errors[0].message) {
-					$A.error("Error message: " + errors[0].message);
-				} else {
-					$A.error("Unknown error");
-				}
+				this.displayError(response);
 			}
 		});
 		$A.enqueueAction(newStgAction);
 	},
 	
-	clearNewSettingBoxes : function(component) {
-		component.find("newName").set("v.value", "");
-		component.find("newFemale").set("v.value", "");
-		component.find("newMale").set("v.value", "");
-		component.find("newNeutral").set("v.value", "");
-		component.find("newActive").set("v.value", "");
+	newAutoCreateStg : function(component) {
+		var object = component.find("newObject").get("v.value");
+		var field = component.find("newField").get("v.value");
+		var relType = component.find("newRelType").get("v.value");
+		var campaigns = component.find("newCpgTypes").get("v.value");
+		
+		var newStgAction = component.get("c.newAutoCreateSetting");
+		newStgAction.setParams({ "obj" : object, "field" : field, "relType" : relType, "campaigns" : campaigns });
+		newStgAction.setCallback(this, function(response) {
+			if(response.getState() === "SUCCESS") {
+				var autoCreateSettings = component.get("v.autoCreateSettings");
+				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
+											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
+				component.set("v.autoCreateSettings", autoCreateSettings);
+				this.clearNewStgBoxes(component, ["newObject", "newField", "newRelType", "newCpgTypes"]);
+			} else if(response.getState() === "ERROR") {
+				this.displayError(response);
+			}
+		});
+		$A.enqueueAction(newStgAction);
+	},
+	
+	clearNewStgBoxes : function(component, fields) {
+		for(var key in fields) {
+			component.find(fields[key]).set("v.value", "");
+		}
+	},
+	
+	deleteRecSettingRow : function(component, id, position) {		
+		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position);
+	},
+	
+	deleteAutoCreateRow : function(component, id, position) {
+		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position);
+	},
+	
+	deleteRow : function(component, serverMethod, stgsUiElement, id, position) {
+		var action = component.get(serverMethod);
+		action.setParams({ "idString" : id });
+		action.setCallback(this, function(response) {
+			if (response.getState() === "SUCCESS") {
+				var settings = component.get(stgsUiElement);
+				settings.splice(position, 1);
+				component.set(stgsUiElement, settings);
+			} else if (response.getState() === "ERROR") {
+				this.displayError(response);
+			}
+		});
+		$A.enqueueAction(action);
+	},
+	
+	displayError : function(response) {
+		var errors = response.getError();
+		if (errors && errors[0] && errors[0].message) {
+			$A.error("Error message: " + errors[0].message);
+		} else {
+			$A.error("Unknown error");
+		}
 	}
 })
