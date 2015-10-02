@@ -41,8 +41,8 @@
         <members>TDTM_Runnable</members>
         <members>TDTM_TriggerActionHelper</members>
         <members>TDTM_TriggerHandler</members>
-        <members>TDTM_TriggerHandler_TDTM</members>
         <members>TDTM_TriggerScaffolds_TEST</members>
+        <members>THAN_Filter_TDTM</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_Debug</members>
         <members>UTIL_Describe</members>

@@ -119,7 +119,7 @@ public without sharing class TDTM_DefaultConfig {
         
         // Validation on Trigger Handler record manipulation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'TDTM_TriggerHandler_TDTM', Load_Order__c = 1, Object__c = 'Trigger_Handler__c', 
+              Class__c = 'THAN_Filter_TDTM', Load_Order__c = 1, Object__c = 'Trigger_Handler__c', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
                     
         return handlers;
