@@ -43,11 +43,11 @@ public with sharing class TDTM_TriggerHandler {
     * rather than just logged.  This allows DML to produce errors that get displayed in the standard ui, rather 
     * than just logged.
     */
-    public static boolean isPropogateErrorsFromTrigger = false;
+    public static Boolean isPropogateErrorsFromTrigger = false;
     
     private static Boolean defaultRecordsInserted = false;
     
-    public static boolean suppressDebugAssertAfterErrorLogging = false;
+    public static Boolean suppressDebugAssertAfterErrorLogging = false;
     
     /*******************************************************************************************************
     * @description Method to be called from each of the triggers (only one per object) that follow the TDTM 
@@ -84,9 +84,9 @@ public with sharing class TDTM_TriggerHandler {
 	        
 	        // If there are no records, insert the defaults.
 	        if(!defaultRecordsInserted && dao.isEmpty()) {
+	            defaultRecordsInserted = true;
 	        	List<Trigger_Handler__c> defaultConfig = TDTM_DefaultConfig.getDefaultRecords();
 	        	insert defaultConfig;
-	        	defaultRecordsInserted = true;
 	        }
 	        
 	        // Get the classes to run. Note that we are using the local object name, so it works for objects 

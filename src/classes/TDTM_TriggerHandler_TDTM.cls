@@ -47,11 +47,20 @@ public with sharing class TDTM_TriggerHandler_TDTM extends TDTM_Runnable {
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         
         if(newlist != null) {
+            //newList should be a short list of records. There should be no duplicates. That is, you shouldn't have two entries
+            //for AFFL_MultiRecordType_TDTM running on Affiliation__c. Thus we are not going to try to optimize that case.
             for (integer i=0; i<newlist.size(); i++) {
-                Trigger_Handler__c handler = (Course_Offering__c)Trigger_Handler__c[i];
+                Trigger_Handler__c handler = (Trigger_Handler__c)newlist[i];
                 
                 if(triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    
+                    try {
+                        String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
+                        String obj = String.escapeSingleQuotes(handler.Object__c);
+                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
+                        List<SObject> records =  Database.query(dynamicQuery);
+                    } catch(QueryException e) {
+                        handler.addError('Invalid relationship defined in Filter Field.');
+                    }
                 }
             }
         }
