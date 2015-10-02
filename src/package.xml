@@ -242,6 +242,7 @@
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>noAccRecType</members>
+        <members>invalidTdtmFilterField</members>
         <name>CustomLabel</name>
     </types>
     <types>

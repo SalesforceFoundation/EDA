@@ -59,7 +59,7 @@ public with sharing class TDTM_TriggerHandler_TDTM extends TDTM_Runnable {
                         String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
                         List<SObject> records =  Database.query(dynamicQuery);
                     } catch(QueryException e) {
-                        handler.addError('Invalid relationship defined in Filter Field.');
+                        handler.addError(Label.invalidTdtmFilterField);
                     }
                 }
             }

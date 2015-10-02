@@ -96,4 +96,12 @@
         <shortDescription>noAccRecType</shortDescription>
         <value>The following account record type defined in the settings does not exist:</value>
     </labels>
+    <labels>
+        <fullName>invalidTdtmFilterField</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>invalidTdtmFilterField</shortDescription>
+        <value>Invalid relationship defined in Filter Field.</value>
+    </labels>
 </CustomLabels>
