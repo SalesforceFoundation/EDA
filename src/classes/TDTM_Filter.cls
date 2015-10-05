@@ -302,7 +302,7 @@ public with sharing class TDTM_Filter {
 	        Map<ID, SObject> compMap = new Map<ID, SObject>(compList);
 	        Set<ID> compListIDs = compMap.keySet();
 	        //query filter values, in case they are not in the trigger
-	        String dynamicQuery = 'select ' + filterField + ' from ' + describeObj.getName() +  ' where ID in :compListIDs';
+	        String dynamicQuery = 'select ' + String.escapeSingleQuotes(filterField) + ' from ' + describeObj.getName() +  ' where ID in :compListIDs';
 	        UTIL_Debug.debug('****Relationship filter dynamic query: ' + dynamicQuery);
 	        Map<ID, SObject> withRelatedFieldsMap = new Map<ID, SObject>(Database.query(dynamicQuery));
 	        //Let's make sure we return them in the same order as the list passed as param
