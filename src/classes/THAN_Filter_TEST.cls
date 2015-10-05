@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2009,2015, Salesforce.com Foundation
+    Copyright (c) 2014, Salesforce.com Foundation
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -27,17 +27,38 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
-trigger TDTM_TriggerHandler on Trigger_Handler__c (after delete, after insert, after undelete, 
-after update, before delete, before insert, before update) {
+/**
+* @author Salesforce.com Foundation
+* @date 2015
+* @group Affiliation Management
+* @description Tests for the THAN_Filter_TDTM class. 
+*/
+@isTest
+public with sharing class THAN_Filter_TEST {
     
-    TDTM_TriggerHandler handler = new TDTM_TriggerHandler();
+    public static void insertHandlers() {
+        insert TDTM_DefaultConfig.getDefaultRecords();
+    }
     
-    //To avoid having the default TDTM config automatically inserted when we manually insert it. If 
-    //the handlers table is empty when inserting a record, getting the count from that table in the 
-    //same transaction will return 0.
-    TDTM_TriggerHandler.defaultRecordsInserted = true; 
-     
-    handler.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
-        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Trigger_Handler__c, 
-        new TDTM_ObjectDataGateway());
+    @isTest
+    public static void invalidRelationship() { 
+        insertHandlers();       
+        Trigger_Handler__c handler = [select Filter_Field__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];        
+        handler.Filter_Field__c = 'Account.Parent.Nonsense';
+        Test.startTest();
+        try {
+            update handler;
+            System.assertEquals('We should never get here.', 'We got here.');
+        } catch(DmlException e) {
+            System.AssertEquals(true, e.getMessage().contains(Label.InvalidFilter));
+        } 
+        Test.stopTest();
+        
+        //Transaction should have been rolled back
+        handler = [select Filter_Field__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];
+        System.assertEquals(null, handler.Filter_Field__c);
+    }
+    
+    //Testing that saving valid relationships does not throw an error is done in TDTM_Filter_TEST.
+
 }

@@ -45,7 +45,7 @@ public with sharing class TDTM_TriggerHandler {
     */
     public static Boolean isPropogateErrorsFromTrigger = false;
     
-    private static Boolean defaultRecordsInserted = false;
+    public static Boolean defaultRecordsInserted = false;
     
     public static Boolean suppressDebugAssertAfterErrorLogging = false;
     

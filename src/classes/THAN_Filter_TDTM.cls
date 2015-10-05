@@ -53,13 +53,15 @@ public with sharing class THAN_Filter_TDTM extends TDTM_Runnable {
                 Trigger_Handler__c handler = (Trigger_Handler__c)newlist[i];
                 
                 if(triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    try {
-                        String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
-                        String obj = String.escapeSingleQuotes(handler.Object__c);
-                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
-                        List<SObject> records =  Database.query(dynamicQuery);
-                    } catch(QueryException e) {
-                        handler.addError(Label.invalidTdtmFilterField);
+                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
+                    String obj = String.escapeSingleQuotes(handler.Object__c);
+                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
+	                    try {
+	                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
+	                        List<SObject> records =  Database.query(dynamicQuery);
+	                    } catch(QueryException e) {
+	                        handler.addError(Label.InvalidFilter + handler.Class__c);
+	                    }
                     }
                 }
             }
