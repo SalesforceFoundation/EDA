@@ -86,8 +86,12 @@ public with sharing class TDTM_Filter {
     		if(filterField != null) {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
-	        	} else {
-	        	    fieldName = filterField; //No need to break down the field condition
+	        	} else { //No need to break down the field condition
+	        	    if(filterField.endsWith('__c')) {
+	        	        fieldName = UTIL_Namespace.StrTokenNSPrefix(filterField); 
+	        	    } else {
+	        	          fieldName = filterField;
+	        	    }
 	        	    filterByField();
 	        	}
 	        	return filtered;
