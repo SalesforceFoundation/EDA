@@ -41,17 +41,32 @@ public with sharing class TDTM_Filter_TEST {
     // if you want to run all tests, then use '*'
     private static string strTestOnly = '*';
     
+    public static List<Trigger_Handler__c> setup() {
+        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
+                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+        List<Trigger_Handler__c> handlers = TDTM_DefaultConfig.getDefaultRecords();
+        
+        //Disabling class that creates reciprocal relationships
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_TDTM') {
+                handler.Active__c = false;
+            }
+        }
+        return handlers;
+    }
+    
 	public static testmethod void emailField() {
 		if (strTestOnly != '*' && strTestOnly != 'emailField') return;
-		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'UniversityEmail__c',
-              Filter_Value__c = null);
+        List<Trigger_Handler__c> handlers = setup();
+        
+		//Creating filter condition
+		for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+		        handler.Filter_Field__c = 'UniversityEmail__c';
+                handler.Filter_Value__c = null;
+            }
+		}
+        insert handlers;
 		
 		//Creating four contacts. two of them are not students, because they don't have a university email.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu');
@@ -66,7 +81,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -75,15 +92,16 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void textField() {
 		if (strTestOnly != '*' && strTestOnly != 'textField') return;
-		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'AssistantName',
-              Filter_Value__c = 'Anne');
+		List<Trigger_Handler__c> handlers = setup();
+                                             
+        //Creating filter condition.
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'AssistantName';
+                handler.Filter_Value__c = 'Anne';
+            }
+        }
+		insert handlers;
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
@@ -98,7 +116,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -107,15 +127,16 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void oneRecordOnly() {
         if (strTestOnly != '*' && strTestOnly != 'oneRecordOnly') return;
-        
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
+        List<Trigger_Handler__c> handlers = setup();
+                                             
         //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'AssistantName',
-              Filter_Value__c = 'Anne');
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'AssistantName';
+                handler.Filter_Value__c = 'Anne';
+            }
+        }
+        insert handlers;
         
         //Creating two contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Anne');
@@ -126,7 +147,9 @@ public with sharing class TDTM_Filter_TEST {
         //Adding lookups among the contacts. Relationships should be automatically created from them.
         //Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
         c1.ReportsToId = c2.Id;
+        Test.startTest();
         update c1;
+        Test.stopTest();
         
         //Since c1 should be filtered out, not relationship should be created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -135,15 +158,24 @@ public with sharing class TDTM_Filter_TEST {
     
     public static testmethod void InvalidFilterField() {
         if (strTestOnly != '*' && strTestOnly != 'InvalidFilterField') return;
+        List<Trigger_Handler__c> handlers = setup();
+                                             
         
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-        //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'InvalidField',
-              Filter_Value__c = 'Anne');
+        for(Trigger_Handler__c handler : handlers) {
+            //Creating filter condition.
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'InvalidField';
+                handler.Filter_Value__c = 'Anne';
+            }
+            //Disabling THAN_Filter_TDTM, which validates that relationship defined in a Trigger Handler
+            //is valid.
+            else if(handler.Class__c == 'THAN_Filter_TDTM') {
+                handler.Active__c = false;
+            }
+        }
+        insert handlers;
+        
+        TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;
         
         //Creating four contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
@@ -154,7 +186,7 @@ public with sharing class TDTM_Filter_TEST {
         try {
             insert contacts;
             System.assertEquals('We should never get here.', 'We got here.');
-        } catch(System.DmlException e) {
+        } catch(DmlException e) {
             System.assertEquals(true, e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
             System.assertEquals(true, e.getMessage().contains(Label.InvalidFilter));
         }
@@ -162,15 +194,16 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void checkboxField() {
 		if (strTestOnly != '*' && strTestOnly != 'checkboxField') return;
-		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'HasOptedOutOfEmail',
-              Filter_Value__c = 'true');
+		List<Trigger_Handler__c> handlers = setup();
+                                             
+        //Creating filter condition.
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'HasOptedOutOfEmail';
+                handler.Filter_Value__c = 'true';
+            }
+        }
+		insert handlers;
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
@@ -185,7 +218,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -194,15 +229,16 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void phoneField() {
 		if (strTestOnly != '*' && strTestOnly != 'phoneField') return;
-		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'MobilePhone',
-              Filter_Value__c = '5555-444-3322');
+		List<Trigger_Handler__c> handlers = setup();
+                                             
+        //Creating filter condition.
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'MobilePhone';
+                handler.Filter_Value__c = '5555-444-3322';
+            }
+        }
+		insert handlers;
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', MobilePhone = '5555-333-1111');
@@ -217,7 +253,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -226,15 +264,16 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void dateField() {
 		if (strTestOnly != '*' && strTestOnly != 'dateField') return;
+		List<Trigger_Handler__c> handlers = setup();
 		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Birthdate',
-              Filter_Value__c = '01/01/1990');
+        //Creating filter condition.
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Birthdate';
+                handler.Filter_Value__c = '01/01/1990';
+            }
+        }
+		insert handlers;
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Birthdate = Date.parse('01/01/1989'));
@@ -249,7 +288,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -258,15 +299,16 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void picklistField() {
 		if (strTestOnly != '*' && strTestOnly != 'picklistField') return;
-		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-		//Creating filter condition.
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Gender__c',
-              Filter_Value__c = 'Male');
+		List<Trigger_Handler__c> handlers = setup();
+                                             
+        //Creating filter condition.
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Gender__c';
+                handler.Filter_Value__c = 'Male';
+            }
+        }
+        insert handlers;
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Gender__c = 'Female');
@@ -281,7 +323,9 @@ public with sharing class TDTM_Filter_TEST {
     	c1.ReportsToId = c2.Id;
     	c2.ReportsToId = c3.Id;
     	c3.ReportsToId = c4.Id;
+    	Test.startTest();
     	update contacts;
+    	Test.stopTest();
     	
     	//Only those from c1 and c3 should have had a relationship automatically created.
     	Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -290,22 +334,18 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void lookupField() {
 		if (strTestOnly != '*' && strTestOnly != 'lookupField') return;
-		
-		insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');        
+		List<Trigger_Handler__c> handlers = setup();
+        insert handlers;
         
-		insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete');
-              
         Account acc1 = new Account(Name = 'Acc1'); 
 		Account acc2 = new Account(Name = 'Acc2'); 
 		insert new Account[] {acc1, acc2};
 		UTIL_Debug.debug('****Filter value in test: ' + acc2.Id);
 		
 		//Creating filter condition.
-		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];
-		handler.Filter_Field__c = 'Account.Id';
+		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c 
+		                                      where Class__c = 'REL_Relationships_Con_TDTM'];
+        handler.Filter_Field__c = 'Account.Id';
         handler.Filter_Value__c = acc2.Id;
         update handler;
 		
@@ -340,16 +380,17 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void relationshipField() {
         if (strTestOnly != '*' && strTestOnly != 'relationshipField') return;
-        
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
+        List<Trigger_Handler__c> handlers = setup();
+                                             
         //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Account.Name',
-              Filter_Value__c = 'Acme');
-              
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Account.Name';
+                handler.Filter_Value__c = 'Acme';
+            }
+        }
+        insert handlers;
+        
         Account accFiltered = new Account(Name = 'Acme');
         Account accNotFiltered = new Account(Name = 'ABC');
         insert new Account[] {accFiltered, accNotFiltered};
@@ -367,7 +408,9 @@ public with sharing class TDTM_Filter_TEST {
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
+        Test.startTest();
         update contacts;
+        Test.stopTest();
         
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -376,16 +419,16 @@ public with sharing class TDTM_Filter_TEST {
     
     public static testmethod void accountParentField() {
         if (strTestOnly != '*' && strTestOnly != 'accountParentField') return;
+        List<Trigger_Handler__c> handlers = setup();
+                                             
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Account.Parent.Name';
+                handler.Filter_Value__c = 'top1';
+            }
+        }
+        insert handlers;
         
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
-        //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Account.Parent.Name',
-              Filter_Value__c = 'top1');
-              
         Account topAccountFiltered = new Account(Name = 'top1');
         Account topAccountNotFiltered = new Account(Name = 'top2');
         insert new Account[] {topAccountFiltered, topAccountNotFiltered};
@@ -408,7 +451,9 @@ public with sharing class TDTM_Filter_TEST {
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
+        Test.startTest();
         update contacts;
+        Test.stopTest();
         
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -417,16 +462,17 @@ public with sharing class TDTM_Filter_TEST {
     
     public static testmethod void recordTypeRelationship() {
         if (strTestOnly != '*' && strTestOnly != 'recordTypeRelationship') return;
-        
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
+        List<Trigger_Handler__c> handlers = setup();
+                                             
         //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Account.RecordType.Name',
-              Filter_Value__c = 'Business Organization');
-              
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Account.RecordType.Name';
+                handler.Filter_Value__c = 'Business Organization';
+            }
+        }
+        insert handlers;
+        
         ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
@@ -447,7 +493,9 @@ public with sharing class TDTM_Filter_TEST {
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
+        Test.startTest();
         update contacts;
+        Test.stopTest();
         
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -456,16 +504,17 @@ public with sharing class TDTM_Filter_TEST {
     
     public static testmethod void customObject() {
         if (strTestOnly != '*' && strTestOnly != 'customObject') return;
-        
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
+        List<Trigger_Handler__c> handlers = setup();
+
         //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Current_Address__r.Parent_Account__r.RecordType.Name',
-              Filter_Value__c = 'Business Organization');
-              
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Current_Address__r.Parent_Account__r.RecordType.Name';
+                handler.Filter_Value__c = 'Business Organization';
+            }
+        }
+        insert handlers;
+        
         ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
@@ -490,7 +539,9 @@ public with sharing class TDTM_Filter_TEST {
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
+        Test.startTest();
         update contacts;
+        Test.stopTest();
         
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -499,16 +550,17 @@ public with sharing class TDTM_Filter_TEST {
     
     public static testmethod void customObjectTopOfChain() {
         if (strTestOnly != '*' && strTestOnly != 'customObjectTopOfChain') return;
-        
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
+        List<Trigger_Handler__c> handlers = setup();
+                                             
         //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Current_Address__r.Parent_Account__r.Name',
-              Filter_Value__c = 'topAcc');
-
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Current_Address__r.Parent_Account__r.Name';
+                handler.Filter_Value__c = 'topAcc';
+            }
+        }
+        insert handlers;
+        
         Account accFiltered = new Account(Name = 'topAcc');
         Account accNotFiltered = new Account(Name = 'ABC');
         insert new Account[] {accFiltered, accNotFiltered};
@@ -530,7 +582,9 @@ public with sharing class TDTM_Filter_TEST {
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
+        Test.startTest();
         update contacts;
+        Test.stopTest();
         
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
@@ -539,16 +593,17 @@ public with sharing class TDTM_Filter_TEST {
     
     public static testmethod void customObjectOnlyOneInChain() {
         if (strTestOnly != '*' && strTestOnly != 'customObjectOnlyOneInChain') return;
-        
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-                                                    
+        List<Trigger_Handler__c> handlers = setup();
+                                             
         //Creating filter condition.
-        insert new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Filter_Field__c = 'Current_Address__r.Default_Address__c',
-              Filter_Value__c = 'true');
-
+        for(Trigger_Handler__c handler : handlers) {
+            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                handler.Filter_Field__c = 'Current_Address__r.Default_Address__c';
+                handler.Filter_Value__c = 'true';
+            }
+        }
+        insert handlers;
+        
         Account topAcc = new Account(Name = 'topAcc');
         insert new Account[] {topAcc};
         
@@ -569,7 +624,9 @@ public with sharing class TDTM_Filter_TEST {
         c1.ReportsToId = c2.Id;
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
+        Test.startTest();
         update contacts;
+        Test.stopTest();
         
         //Only those from c1 and c3 should have had a relationship automatically created.
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
