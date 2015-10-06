@@ -86,8 +86,12 @@ public with sharing class TDTM_Filter {
     		if(filterField != null) {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
-	        	} else {
-	        	    fieldName = filterField; //No need to break down the field condition
+	        	} else { //No need to break down the field condition
+	        	    if(filterField.endsWith('__c')) {
+	        	        fieldName = UTIL_Namespace.StrTokenNSPrefix(filterField); 
+	        	    } else {
+	        	        fieldName = filterField;
+	        	    }
 	        	    filterByField();
 	        	}
 	        	return filtered;
@@ -277,11 +281,29 @@ public with sharing class TDTM_Filter {
     
     /*******************************************************************************************************
     * @description Replaces __r with __c in the string passed, in case that's the only difference between the name
-    * used to query and the actual object named referenced.
+    * used to query and the actual object named referenced. It also adds the package prefix, if necessary.
     * @param The relationship name.
     * @return String The object name, if the name of a custom relationship was passed. 
     */
     private String fromRtoC(String fieldName) {
+        //Remove custom field/object suffix
+        if(fieldName.endsWith('__r') || fieldName.endsWith('__c')) {
+            String suffix;
+            if(fieldName.endsWith('__r')) {
+                suffix = '__r';
+                fieldName = fieldName.removeEnd('__r');
+            }
+            else if(fieldName.endsWith('__c')) {
+                suffix = '__c';
+                fieldName = fieldName.removeEnd('__c');
+            }
+            //Add prefix ONLY IF it hasn't already been added
+            if(!fieldName.contains('__'))
+                fieldName = UTIL_Namespace.StrTokenNSPrefix(fieldName);
+            //Put suffix back
+            fieldName = fieldName + suffix;
+        }
+        
         if(fieldName.endsWith('__r'))
             return fieldName.replace('__r', '__c');
         else
