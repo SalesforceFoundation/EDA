@@ -31,7 +31,7 @@
 * @author Salesforce.com Foundation
 * @description Implements relationships behavior 
 */
-public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
+public class REL_Relationships_TDTM extends TDTM_Runnable {
 
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -71,7 +71,6 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
         for(Relationship__c r : newlist) {
             // AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.afterInsert) {
-            	UTIL_Debug.debug('****Running REL_Relationships on Relationship__c after insert');
                 if (r.ReciprocalRelationship__c == null) {
                     relationshipsToCreate.add(r);
                 }
@@ -82,7 +81,6 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
             
             // AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.afterUpdate) {   
-            	UTIL_Debug.debug('****Running REL_Relationships on Relationship__c after update');            
                 if (r.ReciprocalRelationship__c == oldlist[i].ReciprocalRelationship__c 
                 && r.RelatedContact__c != null) {
                     relationshipsToUpdate.add(r);
@@ -95,7 +93,6 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
 
             // AFTER DELETE
             if (triggerAction == TDTM_Runnable.Action.afterDelete) {
-            	UTIL_Debug.debug('****Running REL_Relationships on Relationship__c after delete');
                 if (r.ReciprocalRelationship__c != null) {
                     relationshipsToDelete.add(r);
                 }
@@ -117,11 +114,6 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
             DmlWrapper wrapper = reciprocate(reciprocalsToUpdate);
             mainWrapper.objectsToUpdate.addAll(wrapper.objectsToUpdate);
             
-        }
-        //@TODO: Why are we doing this twice? Is it a bug?
-        if (relationshipsToUpdate.size() > 0 ) {
-            DmlWrapper wrapper = updateRelationship(relationshipsToUpdate, origRelationships);
-            mainWrapper.objectsToUpdate.addAll(wrapper.objectsToUpdate);
         }
         if (relationshipsToDelete.size() > 0 ) {
             DmlWrapper wrapper = deleteRelationships(relationshipsToDelete);
@@ -213,6 +205,7 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
     	
         List<Relationship__c> originalRelationships = new List<Relationship__c>();
         List<SObject> relationshipsToUpdate = new List<SObject>();
+        List<SObject> reciprocalsToUpdate = new List<SObject>();
         Integer counter = 0;                                            // processing counter       
 
         for(Relationship__c r : Relationships) {
@@ -231,21 +224,31 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
                 }
                 copy.Status__c = r.Status__c;
                 copy.Description__c = r.Description__c;
-                relationshipsToUpdate.add(copy);
-                originalRelationships.add(r);
+                
+                //only recalculate type on reciprocal if the original type has changed
+                if (r.Type__c != oldRelationships[counter].Type__c) {
+                    relationshipsTypesToUpdate.add(copy);
+                    originalRelationships.add(r);
+                } else {
+                    reciprocalsToUpdate.add(copy);
+                }
+
             }
             counter++;
         }
-        //add type info as needed
-        if (!originalRelationships.isEmpty() && !relationshipsToUpdate.isEmpty()) {
-            addType(originalRelationships, relationshipstoUpdate);
-            dmlWrapper.objectsToUpdate.addAll(relationshipsToUpdate);        
-            //inspectSaveResults(sr, relationshipsToUpdate);
+        //add type info as needed and update
+        if (!originalRelationships.isEmpty() && !relationshipsTypesToUpdate.isEmpty()) {
+            addType(originalRelationships, relationshipsTypesToUpdate);
+            dmlWrapper.objectsToUpdate.addAll(relationshipsTypesToUpdate);
+        }
+        //update reciprocals without type change
+        if (!reciprocalsToUpdate.isEmpty()){
+            dmlWrapper.objectsToUpdate.addAll(reciprocalsToUpdate);
         }
         return dmlWrapper;
     }
     
-    private static void addType(list<Relationship__c> rList, List<SObject> rCopy) {
+    public static void addType(list<Relationship__c> rList, List<SObject> rCopy) {
         
         Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
         
@@ -257,7 +260,8 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
         
             //remove inactive values
             for (string s : rlMap.keySet()){
-                if (rlMap.get(s).Active__c != true){
+                Relationship_Lookup__c thisRl = rlMap.get(s);
+                if (thisRl.Active__c != true){
                     rlMap.remove(s);
                 }
             }
@@ -287,8 +291,7 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
 
                 Contact relatedContact = cMap.get(r.Contact__c);
             
-                if (rlMap.containsKey(r.Type__c)){
-                    
+                if (rlMap.containsKey(r.Type__c)){                    
                     List<String> malelist = system.label.Male.split(',');                                                                                                        
                     List<String> femalelist = system.label.Female.split(',');
                     
@@ -338,8 +341,9 @@ public with sharing class REL_Relationships_TDTM extends TDTM_Runnable {
                     }
                     
                     //can't match up gender, bad field or otherwise
-                    else{                       
-                        copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
+                    else {
+                        if (copy.npe4__Type__c==null)          
+                            copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
                     }          
                 }                            
                 //no matching custom list setting, use provided type
