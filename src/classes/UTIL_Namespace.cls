@@ -35,7 +35,7 @@
 * such as detecting whether we are in a managed package, and some string helpers.
 */
 
-public without sharing class UTIL_Namespace { 
+public with sharing class UTIL_Namespace { 
 
     /******************************************************************************************************
     * @description String helper property for getNamespace() method.
@@ -84,14 +84,16 @@ public without sharing class UTIL_Namespace {
     * @description If we are in a managed package, tokens in dynamic SOQL must include the package namespace
     * prefix, bit field describes don't include namespace prefix fields within the package. This method can
     * be used in our describe code to remove an incorrect namespace prefix.
-    * Removes NPSP__ prefix, then removes dynamic prefix if one is detected.
+    * Removes package prefix, then removes dynamic prefix if one is detected.
     * @param str token name 
     * @return token name, with namespace prefix removed, if present.
     ********************************************************************************************************/
     public static string StrTokenRemoveNSPrefix(string str) {
-        str = str.replace('npsp__', '');
-        if (getNamespace() != '') 
-            str = str.replace(getNamespace() + '__', '');
+        String namespace = getNamespace();
+        if(str.startsWith(namespace + '__'))
+            str = str.replaceFirst(namespace + '__', '');
+        if (namespace != '' && str.startsWith(namespace + '__'))
+            str = str.replaceFirst(namespace + '__', '');
         return str;
     }
     
