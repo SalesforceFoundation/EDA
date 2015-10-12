@@ -342,7 +342,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                     
                     //can't match up gender, bad field or otherwise
                     else {
-                        if (copy.npe4__Type__c==null)          
+                        if (copy.Type__c==null)          
                             copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
                     }          
                 }                            

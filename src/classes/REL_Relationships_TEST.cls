@@ -633,7 +633,7 @@ public class REL_Relationships_TEST {
     static testMethod void testNoGenderManualRel(){
         if (strTestOnly != '*' && strTestOnly != 'testNoGenderManualRel') return;
 
-        setupRelationshipTestData(new npe4__Relationship_Settings__c(npe4__Reciprocal_Method__c = 'List Setting'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
             new Contact(LastName='foo'),
@@ -641,19 +641,19 @@ public class REL_Relationships_TEST {
         };
         insert conList;
 
-        npe4__Relationship__c[] crel = new npe4__Relationship__c[]{
-            new npe4__Relationship__c(npe4__contact__c = conList[0].id, npe4__Relatedcontact__c = conList[1].id, npe4__Type__c='TestLookupType')
+        Relationship__c[] crel = new Relationship__c[]{
+            new Relationship__c(contact__c = conList[0].id, Relatedcontact__c = conList[1].id, Type__c='TestLookupType')
         };
 
         Test.startTest();
         insert crel;
         Test.stopTest();      
 
-        npe4__Relationship__c recRel = [select id, npe4__Type__c from npe4__Relationship__c where npe4__ReciprocalRelationship__c = :crel[0].id];
-        system.assertEquals('TestNeutralType', recRel.npe4__Type__c);
+        Relationship__c recRel = [select id, Type__c from Relationship__c where ReciprocalRelationship__c = :crel[0].id];
+        system.assertEquals('TestNeutralType', recRel.Type__c);
 
-        recRel = [select id, npe4__Type__c from npe4__Relationship__c where id = :crel[0].id];
-        system.assertEquals('TestLookupType', recRel.npe4__Type__c);
+        recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
+        system.assertEquals('TestLookupType', recRel.Type__c);
     }
     
     /*********************************************************************************************************
@@ -663,7 +663,7 @@ public class REL_Relationships_TEST {
     static testMethod void testNoGenderManualRelStatusChange(){
         if (strTestOnly != '*' && strTestOnly != 'testNoGenderManualRelStatusChange') return;
 
-        setupRelationshipTestData(new npe4__Relationship_Settings__c(npe4__Reciprocal_Method__c = 'List Setting'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
             new Contact(LastName='foo'),
@@ -671,34 +671,34 @@ public class REL_Relationships_TEST {
         };
         insert conList;
 
-        npe4__Relationship__c[] crel = new npe4__Relationship__c[]{
-            new npe4__Relationship__c(npe4__contact__c = conList[0].id, npe4__Relatedcontact__c = conList[1].id, npe4__Type__c='TestMaleType')
+        Relationship__c[] crel = new Relationship__c[]{
+            new Relationship__c(contact__c = conList[0].id, Relatedcontact__c = conList[1].id, Type__c='TestMaleType')
         };
 
         Test.startTest();
         insert crel;
         Test.stopTest();
 
-        npe4__Relationship__c recRel = [select id, npe4__Type__c from npe4__Relationship__c where id = :crel[0].id];
-        system.assertEquals('TestMaleType', recRel.npe4__Type__c);
+        Relationship__c recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
+        system.assertEquals('TestMaleType', recRel.Type__c);
 
-        crel[0].npe4__Status__c = 'Former';
+        crel[0].Status__c = 'Former';
         update crel;
 
-        recRel = [select id, npe4__Type__c from npe4__Relationship__c where id = :crel[0].id];
-        system.assertEquals('TestMaleType', recRel.npe4__Type__c);
+        recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
+        system.assertEquals('TestMaleType', recRel.Type__c);
 
-        recRel = [select id, npe4__Status__c from npe4__Relationship__c where npe4__ReciprocalRelationship__c = :crel[0].id];
-        system.assertEquals('Former', recRel.npe4__Status__c);
+        recRel = [select id, Status__c from Relationship__c where ReciprocalRelationship__c = :crel[0].id];
+        system.assertEquals('Former', recRel.Status__c);
 
-        crel[0].npe4__Status__c = 'Current';
+        crel[0].Status__c = 'Current';
         update crel;
 
-        recRel = [select id, npe4__Type__c from npe4__Relationship__c where id = :crel[0].id];
-        system.assertEquals('TestMaleType', recRel.npe4__Type__c);
+        recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
+        system.assertEquals('TestMaleType', recRel.Type__c);
 
-        recRel = [select id, npe4__Status__c from npe4__Relationship__c where npe4__ReciprocalRelationship__c = :crel[0].id];
-        system.assertEquals('Current', recRel.npe4__Status__c);
+        recRel = [select id, Status__c from Relationship__c where ReciprocalRelationship__c = :crel[0].id];
+        system.assertEquals('Current', recRel.Status__c);
     }
     
     /*********************************************************************************************************
@@ -709,7 +709,7 @@ public class REL_Relationships_TEST {
     static testMethod void testGenderChange(){
         if (strTestOnly != '*' && strTestOnly != 'testGenderChange') return;
 
-        setupRelationshipTestData(new npe4__Relationship_Settings__c(npe4__Reciprocal_Method__c = 'List Setting', npe4__Gender_Field__c = 'Description'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
 
         list<Contact> conList = new list<Contact>{
             new Contact(LastName='foo', Description='Female'),
@@ -717,26 +717,26 @@ public class REL_Relationships_TEST {
         };
         insert conList;
 
-        npe4__Relationship__c[] crel = new npe4__Relationship__c[]{
-            new npe4__Relationship__c(npe4__contact__c = conList[0].id, npe4__Relatedcontact__c = conList[1].id, npe4__Type__c='TestLookupType')
+        Relationship__c[] crel = new Relationship__c[]{
+            new Relationship__c(contact__c = conList[0].id, Relatedcontact__c = conList[1].id, Type__c='TestLookupType')
         };
 
         insert crel;
 
-        npe4__Relationship__c recRel = [select id, npe4__Type__c from npe4__Relationship__c where id = :crel[0].id];
-        system.assertEquals('TestLookupType', recRel.npe4__Type__c);
+        Relationship__c recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
+        system.assertEquals('TestLookupType', recRel.Type__c);
 
-        recRel = [select id, npe4__Type__c from npe4__Relationship__c where npe4__ReciprocalRelationship__c = :crel[0].id];
-        system.assertEquals('TestFemaleType', recRel.npe4__Type__c);
+        recRel = [select id, Type__c from Relationship__c where ReciprocalRelationship__c = :crel[0].id];
+        system.assertEquals('TestFemaleType', recRel.Type__c);
 
         conList[1].Description='Female';
         update conList[1];
 
-        recRel = [select id, npe4__Type__c from npe4__Relationship__c where id = :crel[0].id];
-        system.assertEquals('TestFemaleType', recRel.npe4__Type__c);
+        recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
+        system.assertEquals('TestFemaleType', recRel.Type__c);
 
-        recRel = [select id, npe4__Type__c from npe4__Relationship__c where npe4__ReciprocalRelationship__c = :crel[0].id];
-        system.assertEquals('TestFemaleType', recRel.npe4__Type__c);
+        recRel = [select id, Type__c from Relationship__c where ReciprocalRelationship__c = :crel[0].id];
+        system.assertEquals('TestFemaleType', recRel.Type__c);
     }
 
     /*********************************************************************************************************
