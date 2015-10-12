@@ -33,7 +33,7 @@
 * @group Program Enrollment
 * @description Keeps Course Offering and Affiliation records for a Contact in sync. 
 */
-public with sharing class COFF_Affiliation_TDTM extends TDTM_Runnable {
+public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
     * @description Handles Affiliation management for Course Offering.

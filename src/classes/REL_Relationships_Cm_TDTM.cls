@@ -31,7 +31,7 @@
 * @author Salesforce.com Foundation
 * @description Implements relationships behavior 
 */
-public with sharing class REL_Relationships_Cm_TDTM extends TDTM_Runnable {
+public class REL_Relationships_Cm_TDTM extends TDTM_Runnable {
 
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {

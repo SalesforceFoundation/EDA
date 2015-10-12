@@ -33,7 +33,7 @@
 * @group Contacts
 * @description Populates default email and phone fields according to user preferences.
 */
-public with sharing class CON_Preferred_TDTM extends TDTM_Runnable {
+public class CON_Preferred_TDTM extends TDTM_Runnable {
 
 	/*******************************************************************************************************
     * @description Updates default email and phone fields based to the preferred email and preferred phone values.
