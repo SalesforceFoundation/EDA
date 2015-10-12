@@ -204,7 +204,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
     	DmlWrapper dmlWrapper = new DmlWrapper();
     	
         List<Relationship__c> originalRelationships = new List<Relationship__c>();
-        List<SObject> relationshipsToUpdate = new List<SObject>();
+        List<SObject> relationshipsTypesToUpdate = new List<SObject>();
         List<SObject> reciprocalsToUpdate = new List<SObject>();
         Integer counter = 0;                                            // processing counter       
 
