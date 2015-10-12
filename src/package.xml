@@ -47,12 +47,11 @@
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_Debug</members>
         <members>UTIL_Describe</members>
+        <members>UTIL_Describe_TEST</members>
         <members>UTIL_Namespace</members>
+        <members>UTIL_Namespace_TEST</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
-    </types>
-    <types>
-        <name>ApexPage</name>
     </types>
     <types>
         <members>TDTM_Account</members>
@@ -67,9 +66,6 @@
         <members>TDTM_Relationship</members>
         <members>TDTM_TriggerHandler</members>
         <name>ApexTrigger</name>
-    </types>
-    <types>
-        <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>HEDAP</members>
