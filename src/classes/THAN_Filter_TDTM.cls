@@ -33,7 +33,7 @@
 * @group TDTM
 * @description Validates Trigger Handler fields data. 
 */
-public with sharing class THAN_Filter_TDTM extends TDTM_Runnable {
+public class THAN_Filter_TDTM extends TDTM_Runnable {
     
     /*******************************************************************************************************
     * @description Validates Trigger Handler fields data.

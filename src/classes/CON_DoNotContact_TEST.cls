@@ -27,9 +27,21 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
+/**
+* @author Salesforce.com Foundation
+* @date 2015
+* @group Contacts
+* @group-content ../../ApexDocContent/Contacts.htm
+* @description Handles changes to the deceased and do not contact fields on Contact.
+*/
 @isTest
 private class CON_DoNotContact_TEST {
 
+    /*******************************************************************************************************
+    * @description Marks a contact as Deceased, verifies DoNotCall, HasOptedOutOfEmail, and naming 
+    * exclusions are set. Removes deceased flag, verifies DoNotCall, HasOptedOutOfEmail, and naming 
+    * exclusion have been removed.
+    */
     static testMethod void testDeceased() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));    
         
@@ -61,6 +73,10 @@ private class CON_DoNotContact_TEST {
         system.assert(!queryCon[0].HasOptedOutOfEmail, 'Contact should not be opted out of email.');
     }
 
+    /*******************************************************************************************************
+    * @description Marks a contact as Do Not Contact, verifies DoNotCall and HasOptedOutOfEmail are set.
+    * Removes Do Not Contact flag, verifies DoNotCall and HasOptedOutOfEmail are no longer set.
+    */
     static testMethod void testDoNotContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         

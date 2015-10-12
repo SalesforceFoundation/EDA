@@ -33,7 +33,7 @@
 * @group Affiliations
 * @description Handles affiliations of different record types, with one primary per type. 
 */
-public with sharing class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
+public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();

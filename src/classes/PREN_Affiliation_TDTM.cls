@@ -33,7 +33,7 @@
 * @group Program Enrollment
 * @description Keeps Program Enrollment and Affiliation records for a Contact in sync. 
 */
-public with sharing class PREN_Affiliation_TDTM extends TDTM_Runnable {
+public class PREN_Affiliation_TDTM extends TDTM_Runnable {
 	
 	/*******************************************************************************************************
     * @description Handles Affiliation management for Program Enrollment.
