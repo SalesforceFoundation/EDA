@@ -34,7 +34,7 @@
 * @description Creates Affiliations when the user manually populates
 * any of the primary affiliation lookup fields. 
 */
-public with sharing class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
+public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();

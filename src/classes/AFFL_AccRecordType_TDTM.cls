@@ -33,7 +33,7 @@
 * @group Affiliations
 * @description Supports changing the record type of an account.
 */
-public with sharing class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
+public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 	
 	/*******************************************************************************************************
     * @description Updates key affiliation lookups on contact, and any other primary affiliation of the new type.

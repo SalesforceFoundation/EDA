@@ -33,7 +33,7 @@
 * @group Address Management
 * @description Trigger Handler on Account for Address management 
 */
-public with sharing class ADDR_Account_TDTM extends TDTM_Runnable {
+public class ADDR_Account_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Trigger Handler on Account that handles Address management.

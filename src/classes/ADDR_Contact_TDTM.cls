@@ -33,7 +33,7 @@
 * @group Address Management
 * @description Trigger Handler on Contact for Address management 
 */
-public with sharing class ADDR_Contact_TDTM extends TDTM_Runnable {
+public class ADDR_Contact_TDTM extends TDTM_Runnable {
 
 	public static Boolean contactsUpdatedAfterInsert = false;
 	

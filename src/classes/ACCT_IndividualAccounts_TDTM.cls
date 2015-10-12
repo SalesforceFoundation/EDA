@@ -33,7 +33,7 @@
 * @group Accounts
 * @description Implements Household or Administrative account model - controls syncing within the model 
 */
-public with sharing class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
+public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description the current Contact Settings object
