@@ -55,7 +55,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         List<Id> ReciprocalIds = new List<Id>();
         List<String> Types = new List<String>();
         
-        string genderField = UTIL_CustomSettingsFacade.getRelationshipSettings().Gender_Field__c;
+        string genderField = UTIL_CustomSettingsFacade.getSettings().Gender_Field__c;
         Set<Id> changedGender = new set<Id>();        
         
         if(newlist != null && newlist.size() > 0) {
