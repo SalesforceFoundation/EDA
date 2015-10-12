@@ -48,7 +48,9 @@
         <members>UTIL_CustomSettingsFacade_TEST</members>
         <members>UTIL_Debug</members>
         <members>UTIL_Describe</members>
+        <members>UTIL_Describe_TEST</members>
         <members>UTIL_Namespace</members>
+        <members>UTIL_Namespace_TEST</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
     </types>
