@@ -141,7 +141,6 @@ public with sharing class ERR_Handler_TEST {
         Relationship__c[] relationships = new Relationship__c[]{
             new Relationship__c(contact__c = contact1.id, Type__c='TestLookupType') };
         
-        TDTM_TriggerHandler.isPropogateErrorsFromTrigger = false;
         insert relationships;
         //assert an error record was created - Required fields are missing: [Contact__c]
         //Contact__c is missing from the reciprocal relationship that gets automatically created.

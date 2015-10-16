@@ -37,13 +37,6 @@
 * charge of figuring out which of the classes that do the actual work need to be called, and calling them.
 */
 public with sharing class TDTM_TriggerHandler {
-
-    /**
-    * A public flag to allow code to specify that they want errors propogated from the trigger to Salesforce, 
-    * rather than just logged.  This allows DML to produce errors that get displayed in the standard ui, rather 
-    * than just logged.
-    */
-    public static Boolean isPropogateErrorsFromTrigger = false;
     
     public static Boolean defaultRecordsInserted = false;
     
@@ -130,17 +123,6 @@ public with sharing class TDTM_TriggerHandler {
             // for us (IF they are part of the DML performed in our processDML method). If we mark it with an error the transaction 
             // will be rolled back by the platform, and our error record won't be saved or error notifications sent.
             
-            // Some code may want the DML to be rolled back!  eg, an Address object update, than then needs
-            // to propogate to the household account and contacts, but may fail due to State & Country picklists.
-            // we don't know which object on the list caused the problem, so we just add the error to the first.
-            // this should cause the ui to display one error message, rather than repeating the same error for each object.
-            if (isPropogateErrorsFromTrigger) {
-                if (newList != null && newList.size() > 0)
-                    newList[0].addError(e.getMessage());
-                else if (oldList != null && oldList.size() > 0)
-                    oldList[0].addError(e.getMessage());
-            }
-            
             // but we do want our tests to fail if they encountered this error!
             // we do need to allow some specific tests that are testing our error handling
             // to avoid the assert, because by allowing it to throw an exception within our catch, it
@@ -216,6 +198,16 @@ public with sharing class TDTM_TriggerHandler {
     * @return void
     */
     public static void processDML(TDTM_Runnable.DmlWrapper dmlWrapper) {
+        processDMLWithRollback(dmlWrapper, true);
+    }
+    /*******************************************************************************************************
+    * @description Performs pending DML operations, on the records stored in the DMLWrapper that it gets as parameter.
+    * We want this method to be static so that it can be called from the future method in TDTM_Runnable.
+    * @param dmlWrapper The class that contains the records that need to have DML performed on.
+    * @param withRollback True if errors should cause rollback, false if not.
+    * @return Errors Object with list of Error objects
+    */
+    public static ERR_Handler.Errors processDMLWithRollback(TDTM_Runnable.DmlWrapper dmlWrapper, boolean withRollback) {
         //Create transaction
         Savepoint sp = Database.setSavepoint();
         
@@ -238,9 +230,12 @@ public with sharing class TDTM_TriggerHandler {
             
         if(errors.errorsExist) {
             if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                Database.rollback(sp);
-                ERR_Handler.processErrors(errors.errorRecords, ERR_Handler.Context.TDTM.name());
+                if(withRollback) {
+                	Database.rollback(sp);
+	                ERR_Handler.processErrors(errors.errorRecords, ERR_Handler.Context.TDTM.name());
+    			}
             }
         }
+        return errors;
     }
 }

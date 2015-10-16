@@ -26,7 +26,7 @@
         <fullName>SYSTEM_AccountType__c</fullName>
         <description>Hidden system field: do not change.  Updated by automatic processes.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates which model drives Contact relationship behavior: Individual (Bucket) or One-to-One</inlineHelpText>
+        <inlineHelpText>Indicates which model drives Contact relationship behavior: Administrative (One-to-One) or Household</inlineHelpText>
         <label>_SYSTEM: AccountType</label>
         <length>100</length>
         <required>false</required>
