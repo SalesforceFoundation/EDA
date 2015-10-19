@@ -153,4 +153,5 @@
         <type>Checkbox</type>
     </fields>
     <label>Hierarchy Settings</label>
+    <visibility>Public</visibility>
 </CustomObject>

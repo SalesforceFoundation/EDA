@@ -97,11 +97,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     	accTypeToEnrollCreate = new Map<String, Boolean>();
     	accTypeToEnrollCreateRole = new Map<String, String>();
     	accTypeToEnrollCreateStatus = new Map<String, String>();
-		//Get the affiliation mappings.
-		List<Affl_Mappings__c> primaryAfflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
-		                                              Auto_Program_Enrollment_Status__c from Affl_Mappings__c];
-		//Put them in a map.
-		for(Affl_Mappings__c mapping : primaryAfflMappings) {
+
+		//Put affl mappings in a map.
+		for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
 			if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
 				mapAccRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
 				accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);

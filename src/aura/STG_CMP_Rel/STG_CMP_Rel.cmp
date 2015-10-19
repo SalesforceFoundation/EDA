@@ -1,0 +1,119 @@
+<aura:component controller="UTIL_CustomSettingsFacade">
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
+    
+    <aura:attribute name="reciprocalSettings" type="Relationship_Lookup__c[]" />
+    <aura:attribute name="autoCreateSettings" type="Relationship_Auto_Create__c[]" />
+    
+    <aura:attribute name="isView" type="Boolean" default="true"/>
+    <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
+    <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
+    
+    <aura:attribute name="Id" type="String" />
+       
+	<div id="relTabs" class="slds-tabs--scoped">
+		<ul class="slds-tabs--scoped__nav" role="tablist">
+			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
+				<ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" />
+			</li>
+			<li aura:id="recSettsTab" class="slds-tabs__item slds-text-heading--label" title="Item Two" role="presentation">
+				<ui:outputURL value="#" label="Reciprocal Settings" click="{!c.recSettsLinkClicked}" />
+			</li>
+			<li aura:id="autocTab" class="slds-tabs__item slds-text-heading--label" title="Item Three" role="presentation">
+				<ui:outputURL value="#" label="Autocreation" click="{!c.autocLinkClicked}" />
+			</li>
+		</ul>
+		
+		<div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
+			<div class="slds-grid slds-wrap">
+			    <div class="slds-col slds-size--1-of-2">Reciprocal Method:</div>
+			    <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Account_Processor__c}"/></div>
+			    
+			    <div class="slds-col slds-size--1-of-2">Gender Field:</div>
+			    <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
+			    
+			    <div class="slds-col slds-size--1-of-2">Allow Auto-Created Duplicate Relations:</div>
+			    <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/></div>
+			</div>
+		</div>
+		<div aura:id="recSettsTabContent" class="slds-tabs__content" role="tabpanel">
+			<div class="slds-grid slds-wrap">
+			    <div class="slds-col slds-size--1-of-6"><strong>Name</strong></div>
+			    <div class="slds-col slds-size--1-of-6"><strong>Female</strong></div>
+			    <div class="slds-col slds-size--1-of-6"><strong>Male</strong></div>
+			    <div class="slds-col slds-size--1-of-6"><strong>Neutral</strong></div>
+			    <div class="slds-col slds-size--1-of-6"><strong>Active</strong></div>
+			    <div class="slds-col slds-size--1-of-6">&nbsp;</div>
+			
+			    <aura:iteration items="{!v.reciprocalSettings}" var="recSetting" indexVar="position">
+			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Name}"/></div>
+			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Female__c}"/></div>
+			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Male__c}"/></div>
+			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Neutral__c}"/></div>
+			        <div class="slds-col slds-size--1-of-6"><ui:inputCheckbox disabled="{!v.isView}" value="{!recSetting.Active__c}"/></div>
+			        <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
+                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRecSettingRow}" 
+                        id="{!recSetting.Id}" position="{!position}" /></div>
+			    </aura:iteration>
+			</div>
+			<div class="newrecsetting">
+			  <div aria-labelledby="newrecsettingform">
+			    <fieldset class="slds-box slds-theme--default slds-container--medium">
+			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting</legend>
+			        <div class="slds-form--inline slds-form-element">
+			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
+			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name"/></div>
+                      <label class="slds-form-element__label" for="Female">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newFemale" placeholder="Female"/></div>
+                      <label class="slds-form-element__label" for="Male">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newMale" placeholder="Male"/></div>
+                      <label class="slds-form-element__label" for="Neutral">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newNeutral" placeholder="Neutral"/></div>
+                      <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
+                      <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive"/></div>
+			        </div>
+			        <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newReciprocalStg}">Add Setting</ui:button>
+			    </fieldset>
+			  </div>
+            </div>
+		</div>
+		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
+			<div class="slds-grid slds-wrap"> 
+			    <div class="slds-col slds-size--1-of-5"><strong>Object</strong></div>              
+                <div class="slds-col slds-size--1-of-5"><strong>Field</strong></div>
+                <div class="slds-col slds-size--1-of-5"><strong>Relationship Type</strong></div>
+                <div class="slds-col slds-size--1-of-5"><strong>Campaign Types</strong></div>
+                <div class="slds-col slds-size--1-of-5">&nbsp;</div>
+            
+                <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting" indexVar="position">
+                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="/resource/SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete" 
+                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
+                        id="{!autocSetting.Id}" position="{!position}" /></div>
+                </aura:iteration>
+            </div>
+            <div class="newautocsetting">
+              <div aria-labelledby="newautocsettingform">
+                <fieldset class="slds-box slds-theme--default slds-container--medium">
+                  <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
+                    <div class="slds-form--inline slds-form-element">
+                      <label class="slds-form-element__label" for="Object">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newObject" placeholder="Object"/></div>
+                      <label class="slds-form-element__label" for="Field">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newField" placeholder="Field"/></div>
+                      <label class="slds-form-element__label" for="Relationship Type">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newRelType" placeholder="Relationship Type"/></div>
+                      <label class="slds-form-element__label" for="Campaign Types">&nbsp;</label>
+                      <div class="slds-form-element__control"><ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types"/></div>
+                    </div>
+                    <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAutoCreateStg}">Add Setting</ui:button>
+                </fieldset>
+              </div>
+            </div>
+		</div>
+	</div>
+</aura:component>

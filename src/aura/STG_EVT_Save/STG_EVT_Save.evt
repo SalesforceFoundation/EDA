@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event fired from the Save button in the STG_CMP_Header component." >
+    <aura:attribute name="isView" type="Boolean"/>
+    <aura:attribute name="save" type="Boolean"/>
+</aura:event>

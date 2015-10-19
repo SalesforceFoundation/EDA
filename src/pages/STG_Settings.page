@@ -1,0 +1,24 @@
+<apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
+	<apex:stylesheet value="{!URLFOR($Resource.SLDS090, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+	<script src="/lightning/lightning.out.js" />
+
+	<div class="slds">
+		
+		<div id="headSettings"/>
+		<br/>
+		
+		<div id="tabSettings"/>
+        <br/>
+	</div>
+
+    <script>
+        $Lightning.use("c:STG_App", function() {
+            loadComponents();
+        });
+        
+        function loadComponents() {
+            $Lightning.createComponent("c:STG_CMP_Header", {}, "headSettings");
+            $Lightning.createComponent("c:STG_CMP_Tabs", {}, "tabSettings");
+        }
+    </script>
+</apex:page>
