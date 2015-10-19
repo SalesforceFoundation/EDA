@@ -51,4 +51,5 @@
         <unique>false</unique>
     </fields>
     <label>Relationship Lookup</label>
+    <visibility>Public</visibility>
 </CustomObject>

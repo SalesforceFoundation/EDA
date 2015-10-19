@@ -49,6 +49,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     * At the org level, if no user level settings are defined. The ID field should be checked to determine if
     * the returned record already exists or doesn't exist in the database.
     */
+    @AuraEnabled
     public static Hierarchy_Settings__c getSettings() {
         if(Test.isRunningTest() && settings == null) {
         	settings = new Hierarchy_Settings__c();
@@ -118,5 +119,159 @@ public without sharing class UTIL_CustomSettingsFacade {
         
         orgSettings = settings;
         return settings;
+    }
+    
+    /*******************************************************************************************************
+    * @description Retrieves the existing Affiliation Mappings list custom settings.
+    * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
+    **/
+    @AuraEnabled
+    public static List<Affl_Mappings__c> getAfflMappings() {
+        return [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
+                                                      Auto_Program_Enrollment_Status__c from Affl_Mappings__c];
+    }
+    
+    /*******************************************************************************************************
+    * @description Retrieves the existing Relationship Reciprocal list custom settings.
+    * @return List<Relationship_Lookup__c> Existing Relationship Reciprocal custom settings in a list.
+    **/
+    @AuraEnabled
+    public static List<Relationship_Lookup__c> getReciprocalSettings() {
+        return [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c];
+    }
+    
+    /*******************************************************************************************************
+    * @description Retrieves the existing Relationship Auto-Create list custom settings.
+    * @return List<Relationship_Auto_Create__c> Existing Relationship Auto-Create custom settings in a list.
+    **/
+    @AuraEnabled
+    public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
+        return [select Id, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c];
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Hierarchy Settings passed from the client.
+    * @param hierarchySettings The Hierarchy_Settings__c record to upsert.
+    * @return void
+    **/    
+    @AuraEnabled
+    public static void saveHierarchySettings(Hierarchy_Settings__c hierarchySettings) {
+        upsert hierarchySettings;
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Affiliation Mappings passed from the client.
+    * @param afflMappings The list of Affl_Mappings__c records to updsert.
+    * @return void
+    **/  
+    @AuraEnabled
+    public static void saveAfflMappings(List<Affl_Mappings__c> afflMappings) {
+        //upsert afflMappings; We cannot do this because apparently the type information gets lost when called from the client.
+        List<Affl_Mappings__c> toInsert = new List<Affl_Mappings__c>();
+        List<Affl_Mappings__c> toUpdate = new List<Affl_Mappings__c>();
+        for(Affl_Mappings__c setting : afflMappings) {
+            if(setting.ID == null) {
+                toInsert.add(setting);
+            } else {
+                toUpdate.add(setting);
+            }
+        }
+        insert toInsert;
+        update toUpdate;
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Reciprocal Settings passed from the client.
+    * @param reciprocalSettings The list of Relationship_Lookup__c records to upsert.
+    * @return void
+    **/  
+    @AuraEnabled
+    public static void saveReciprocalSettings(List<Relationship_Lookup__c> reciprocalSettings) {
+        //upsert reciprocalSettings; We cannot do this because apparently the type information gets lost when called from the client.
+        List<Relationship_Lookup__c> toInsert = new List<Relationship_Lookup__c>();
+        List<Relationship_Lookup__c> toUpdate = new List<Relationship_Lookup__c>();
+        for(Relationship_Lookup__c setting : reciprocalSettings) {
+            if(setting.ID == null) {
+                toInsert.add(setting);
+            } else {
+                toUpdate.add(setting);
+            }
+        }
+        insert toInsert;
+        update toUpdate;
+    }
+    
+    /*******************************************************************************************************
+    * @description Saves the Auto-Create Settings passed from the client.
+    * @param autoCreateSettings The list of Relationship_Auto_Create__c records to upsert.
+    * @return void
+    **/  
+    @AuraEnabled
+    public static void saveAutoCreateSettings(List<Relationship_Auto_Create__c> autoCreateSettings) {
+        //upsert autoCreateSettings; We cannot do this because apparently the type information gets lost when called from the client.
+        List<Relationship_Auto_Create__c> toInsert = new List<Relationship_Auto_Create__c>();
+        List<Relationship_Auto_Create__c> toUpdate = new List<Relationship_Auto_Create__c>();
+        for(Relationship_Auto_Create__c setting : autoCreateSettings) {
+            if(setting.ID == null) {
+                toInsert.add(setting);
+            } else {
+                toUpdate.add(setting);
+            }
+        }
+        insert toInsert;
+        update toUpdate;
+    }
+    
+    /*******************************************************************************************************
+    * @description Creates a new Reciprocal List Setting record.
+    * @param name The value of the Name field in the Relationship_Lookup__c record to create.
+    * @param male The value of the Male__c field in the Relationship_Lookup__c record to create.
+    * @param female The value of the Female__c field in the Relationship_Lookup__c record to create.
+    * @param neutral The value of the Neutral__c field in the Relationship_Lookup__c record to create.
+    * @param active The value of the Active__c field in the Relationship_Lookup__c record to create.
+    * @return String The Id of the record that has just been created, as a String.
+    **/ 
+    @AuraEnabled
+    public static String newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
+        Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male, 
+                                                                        Neutral__c = neutral, Active__c = active);
+        insert newSetting;
+        return newSetting.Id;
+    }
+    
+    /*******************************************************************************************************
+    * @description Creates a new Auto-Create List Setting record.
+    * @param obj The value of the Object__c field in the Relationship_Auto_Create__c record to create.
+    * @param field The value of the Field__c field in the Relationship_Auto_Create__c record to create.
+    * @param relType The value of the Relationship_Type__c field in the Relationship_Auto_Create__c record to create.
+    * @param campaigns The value of the Campaign_Types__c field in the Relationship_Auto_Create__c record to create.
+    * @return String The Id of the record that has just been created, as a String.
+    **/ 
+    @AuraEnabled
+    public static String newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
+        Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
+                        Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
+        insert newSetting;
+        return newSetting.Id;
+    }
+    
+    /*******************************************************************************************************
+    * @description Deletes a Relationship Lookup List Setting record.
+    * @return void
+    */
+    @AuraEnabled
+    public static void deleteRecSettingRecord(String idString) {
+        ID idType = ID.valueOf(IdString);
+        delete [select Id from Relationship_Lookup__c where Id = :idType];
+    }
+    
+    /*******************************************************************************************************
+    * @description Deletes an Auto-Create List Setting record.
+    * @return void
+    */
+    @AuraEnabled
+    public static void deleteAutoCreateRecord(String idString) {
+        ID idType = ID.valueOf(IdString);
+        delete [select Id from Relationship_Auto_Create__c where Id = :idType];
     }
 }

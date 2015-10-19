@@ -57,4 +57,5 @@
         <unique>false</unique>
     </fields>
     <label>Affl Mappings</label>
+    <visibility>Public</visibility>
 </CustomObject>

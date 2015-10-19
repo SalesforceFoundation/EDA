@@ -45,6 +45,7 @@
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
         <members>UTIL_CustomSettingsFacade</members>
+        <members>UTIL_CustomSettingsFacade_TEST</members>
         <members>UTIL_Debug</members>
         <members>UTIL_Describe</members>
         <members>UTIL_Describe_TEST</members>
@@ -52,6 +53,10 @@
         <members>UTIL_Namespace_TEST</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>STG_Settings</members>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>TDTM_Account</members>
@@ -66,6 +71,21 @@
         <members>TDTM_Relationship</members>
         <members>TDTM_TriggerHandler</members>
         <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>STG_App</members>
+        <members>STG_CMP_Addr</members>
+        <members>STG_CMP_Affl</members>
+        <members>STG_CMP_Header</members>
+        <members>STG_CMP_Rel</members>
+        <members>STG_CMP_System</members>
+        <members>STG_CMP_Tabs</members>
+        <members>STG_EVT_Cancel</members>
+        <members>STG_EVT_Edit</members>
+        <members>STG_EVT_Save</members>
+        <members>svgIcon</members>
+        <members>svgIcon_EVT_Press</members>
+        <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>HEDAP</members>
@@ -269,6 +289,7 @@
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>HEDA_Settings</members>
         <members>Program_Enrollment__c</members>
         <members>Relationship__c</members>
         <members>Term__c</members>
@@ -320,6 +341,7 @@
         <name>QuickAction</name>
     </types>
     <types>
+        <members>SLDS090</members>
         <name>StaticResource</name>
     </types>
     <types>

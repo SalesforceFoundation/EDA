@@ -50,4 +50,5 @@
         <unique>false</unique>
     </fields>
     <label>Relationship Auto-Create</label>
+    <visibility>Public</visibility>
 </CustomObject>
