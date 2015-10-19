@@ -93,7 +93,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 	// remember which contacts will need their address set
                     listConAddrSet.add(con);
                     if (con.is_Address_Override__c)
-                        // track which address's need their dates updated
+                        // track which addresses need their dates updated
                         mapAddrIdIsOverride.put(con.Current_Address__c, true);
                 } else if (isContactAddressEmpty(con)) {
                 	// if the contact has no address specified, pick up the hh default.
