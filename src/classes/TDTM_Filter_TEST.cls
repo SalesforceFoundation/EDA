@@ -183,7 +183,10 @@ public with sharing class TDTM_Filter_TEST {
         Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        
+        Test.startTest();
         insert contacts;
+        Test.stopTest();
         
         List<Error__c> errors = [select Id, Full_Message__c, Stack_Trace__c from Error__c];
         UTIL_Debug.debug('****ERROR: ' + JSON.serializePretty(errors));

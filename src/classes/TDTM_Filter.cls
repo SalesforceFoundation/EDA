@@ -143,6 +143,7 @@ public with sharing class TDTM_Filter {
     */
     private void addErrorToAll() {
         for(Integer i = 0; i < newList.size(); i++) {
+            UTIL_Debug.debug('****Invalid filter error added in TDTM_Filter');
             newList[i].addError(Label.InvalidFilter + ' ' + classToRunName);
             filtered.newList.add(newList[i]);
         }
