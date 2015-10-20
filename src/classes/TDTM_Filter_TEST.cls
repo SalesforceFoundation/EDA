@@ -183,13 +183,13 @@ public with sharing class TDTM_Filter_TEST {
         Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
-        try {
-            insert contacts;
-            System.assertEquals('We should never get here.', 'We got here.');
-        } catch(DmlException e) {
-            System.assertEquals(true, e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
-            System.assertEquals(true, e.getMessage().contains(Label.InvalidFilter));
-        }
+        insert contacts;
+        
+        List<Error__c> errors = [select Id, Full_Message__c, Stack_Trace__c from Error__c];
+        UTIL_Debug.debug('****ERROR: ' + JSON.serializePretty(errors));
+        System.assertEquals(1, errors.size());
+        System.assertEquals(true, errors[0].Full_Message__c.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
+        System.assertEquals(true, errors[0].Full_Message__c.contains(Label.InvalidFilter));
     }
 	
 	public static testmethod void checkboxField() {
