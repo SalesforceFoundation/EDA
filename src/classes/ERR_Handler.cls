@@ -149,13 +149,7 @@ public with sharing class ERR_Handler {
 	                
 	                //Displaying an error message to the user
 	                if(ApexPages.currentPage() != null)
-	                   ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, err.Full_Message__c)); 
-	                
-	                //Bubbling the exception, if necessary.   
-                    if (TDTM_TriggerHandler.isPropogateErrorsFromTrigger) {
-                        UTIL_Debug.debug('**** isPropogateErrorsFromTrigger is true, so wanted to addError to: ' + sObjects[i]);
-                        throw new PropogateException(err.Full_Message__c);
-                    }
+	                   ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, err.Full_Message__c));
 	        	}
 	        }
     	}
@@ -290,6 +284,18 @@ public with sharing class ERR_Handler {
             recordURL = recordURL.replaceFirst('http:', 'https:');
             
         return recordURL;
+    }
+    
+    /*******************************************************************************************************
+    * @description Returns the ID of the object the error is about if available.
+    * @param error. The Error object.
+    * @return ID the object's Id if available, otherwise null.
+    */
+    public static ID getErrorObjectId(Error__c error) {
+        if (error.Record_URL__c != null) {
+            return error.Record_URL__c.substringAfterLast('/');
+        }
+        return null;
     }
     
     /*******************************************************************************************************

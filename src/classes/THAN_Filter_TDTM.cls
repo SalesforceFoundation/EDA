@@ -60,6 +60,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 	                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
 	                        List<SObject> records =  Database.query(dynamicQuery);
 	                    } catch(QueryException e) {
+	                        UTIL_Debug.debug('****Invalid filter error added in THAN_Filter_TDTM');
 	                        handler.addError(Label.InvalidFilter + handler.Class__c);
 	                    }
                     }

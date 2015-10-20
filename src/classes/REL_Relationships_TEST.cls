@@ -751,7 +751,7 @@ public class REL_Relationships_TEST {
         Relationship__c[] relationships = new Relationship__c[]{
             new Relationship__c(contact__c = c2.id, Type__c='TestLookupType')
         };
-        TDTM_TriggerHandler.isPropogateErrorsFromTrigger = false;
+
         Test.startTest();
         Database.SaveResult[] insertResults = Database.insert(relationships, false);
         Test.stopTest();

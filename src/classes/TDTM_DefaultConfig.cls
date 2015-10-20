@@ -80,7 +80,7 @@ public without sharing class TDTM_DefaultConfig {
         // Addresses on Address object - copies address from Address__c to Contact and Account
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ADDR_Addresses_TDTM', Load_Order__c = 1, Object__c = 'Address__c', 
-              Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
+              Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete'));
                     
         // Addresses on Contact object - creates Address__c record from Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 

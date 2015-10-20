@@ -82,12 +82,12 @@ private with sharing class ADDR_Addresses_TEST {
         insert listAccT;
         
         for (integer i = 0; i < cHHT; i++) {
-        	for (integer j = 0; j < cConT; j++) {
-        		listConT[ (i * cHHT) + j].AccountId = listAccT[i].Id;
-        	}
+            for (integer j = 0; j < cConT; j++) {
+                listConT[ (i * cConT) + j].AccountId = listAccT[i].Id;
+            }
         }        
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listConT;    	
+        insert listConT;        
 
         initTestAddr(cHHT);
         for (integer i = 0; i < cHHT; i++) {
@@ -114,17 +114,19 @@ private with sharing class ADDR_Addresses_TEST {
     * @return  void
     **********************************************************************************************************/
     private static void initTestAddr(integer cAddr) {
-    	listAddrT = new list<Address__c>();
-    	for (integer i = 0; i < cAddr; i++) {
-    		Address__c addr = new Address__c();
-    		addr.Address_Type__c = 'Home';
-    		addr.MailingStreet__c = 'Street' + i;
-    		addr.MailingCity__c = 'City' + i;
+        listAddrT = new list<Address__c>();
+        for (integer i = 0; i < cAddr; i++) {
+            Address__c addr = new Address__c();
+            addr.Address_Type__c = 'Home';
+            addr.MailingStreet__c = 'Street' + i;
+            addr.MailingCity__c = 'City' + i;
             addr.MailingState__c = 'Washington';
             addr.MailingPostalCode__c = 'Zip' + i;
             addr.MailingCountry__c = 'United States';
-            listAddrT.add(addr);    		
-    	}
+            addr.Geolocation__Latitude__s = 47.6097 + i;
+            addr.Geolocation__Longitude__s = -122.3331 + i;
+            listAddrT.add(addr);            
+        }
     }
     
     /*********************************************************************************************************
@@ -132,11 +134,16 @@ private with sharing class ADDR_Addresses_TEST {
     * @return  boolean 
     **********************************************************************************************************/
     private static boolean isMatchAddressAccCon(Account acc, Contact con) {
+        UTIL_Debug.debug('****Account in isMatchAddressAccCon: ' + JSON.serializePretty(acc));
+        UTIL_Debug.debug('****Contact in isMatchAddressAccCon: ' + JSON.serializePretty(con));
         return (acc.BillingStreet == con.MailingStreet &&          
             acc.BillingCity == con.MailingCity &&          
             acc.BillingState == con.MailingState &&         
             acc.BillingPostalCode == con.MailingPostalCode &&          
-            acc.BillingCountry == con.MailingCountry);                
+            acc.BillingCountry == con.MailingCountry &&
+            acc.BillingLatitude == con.MailingLatitude &&
+            acc.BillingLongitude == con.MailingLongitude
+        );                
     }
         
     /*********************************************************************************************************
@@ -156,8 +163,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
 
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -189,8 +196,8 @@ private with sharing class ADDR_Addresses_TEST {
         insert listConT;        
 
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -225,8 +232,8 @@ private with sharing class ADDR_Addresses_TEST {
         insert listConT;        
 
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -252,17 +259,17 @@ private with sharing class ADDR_Addresses_TEST {
         
         // now let's update the Addresses
         for (integer i = 0; i < cHH; i++) {
-        	Address__c addr = listAddrT[i];
-        	addr.MailingStreet__c = 'New Street' + i;
-        	addr.MailingCity__c = 'New City' + i;
+            Address__c addr = listAddrT[i];
+            addr.MailingStreet__c = 'New Street' + i;
+            addr.MailingCity__c = 'New City' + i;
         }
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
         update listAddrT;
         Test.stopTest();
     
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -300,8 +307,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
     
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -354,24 +361,24 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-        	if (con.is_Address_Override__c) {
-        		system.assertEquals(con.Current_Address__c, addrNew.Id);
-	            system.assertEquals(false, isMatchAddressAccCon(acc, con));
-	            system.assert(!con.MailingStreet.contains('New Street'));
-	            system.assert(!con.MailingCity.contains('New City'));        		
-        	} else {
-	            system.assertEquals(true, isMatchAddressAccCon(acc, con));
-	            system.assert(con.MailingStreet.contains('New Street'));
-	            system.assert(con.MailingCity.contains('New City'));
-	            system.assertEquals(false, con.is_Address_Override__c);
-	            system.assertNotEquals(null, con.Current_Address__c);
-        	}
+            if (con.is_Address_Override__c) {
+                system.assertEquals(con.Current_Address__c, addrNew.Id);
+                system.assertEquals(false, isMatchAddressAccCon(acc, con));
+                system.assert(!con.MailingStreet.contains('New Street'));
+                system.assert(!con.MailingCity.contains('New City'));               
+            } else {
+                system.assertEquals(true, isMatchAddressAccCon(acc, con));
+                system.assert(con.MailingStreet.contains('New Street'));
+                system.assert(con.MailingCity.contains('New City'));
+                system.assertEquals(false, con.is_Address_Override__c);
+                system.assertNotEquals(null, con.Current_Address__c);
+            }
         }
     }
 
@@ -414,8 +421,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address, except for the contacts we modified
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, Current_Address__r.Default_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, Current_Address__r.Default_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         integer cNotOverride = 0;
         for (Contact con : listCon) {
@@ -467,8 +474,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
 
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -485,14 +492,14 @@ private with sharing class ADDR_Addresses_TEST {
         list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cHH * 2, listAddr.size());
         for (Address__c addr : listAddr) {
-        	boolean fNewDefault = (addr.MailingStreet__c.contains('New Default Street'));
-       		system.assertEquals(fNewDefault, addr.Default_Address__c);
-       		if (fNewDefault) {
-       		   system.assertEquals(system.today(), addr.Latest_Start_Date__c);
-       		   system.assertEquals(null, addr.Latest_End_Date__c);
-       		} else {
-               system.assertEquals(system.today(), addr.Latest_End_Date__c);       			
-       		}
+            boolean fNewDefault = (addr.MailingStreet__c.contains('New Default Street'));
+            system.assertEquals(fNewDefault, addr.Default_Address__c);
+            if (fNewDefault) {
+               system.assertEquals(system.today(), addr.Latest_Start_Date__c);
+               system.assertEquals(null, addr.Latest_End_Date__c);
+            } else {
+               system.assertEquals(system.today(), addr.Latest_End_Date__c);                
+            }
         }        
     }
     
@@ -536,8 +543,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
 
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -593,7 +600,7 @@ private with sharing class ADDR_Addresses_TEST {
         // set the contacts' address overrides
         list<Contact> listCon = new list<Contact>();
         for (integer i = 0; i < cHH; i++) {
-        	Contact con = listConT[i*cHH + i];
+            Contact con = listConT[i*cHH + i];
             con.Current_Address__c = listAddrT[i].Id;
             con.is_Address_Override__c = true;
             listCon.add(con);
@@ -603,8 +610,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -617,8 +624,8 @@ private with sharing class ADDR_Addresses_TEST {
                 system.assertEquals(true, isMatchAddressAccCon(acc, con));
                 system.assert(con.MailingStreet.contains('Street'));
                 system.assert(con.MailingCity.contains('City'));
-	            system.assertEquals(false, con.is_Address_Override__c);
-	            system.assertNotEquals(null, con.Current_Address__c);
+                system.assertEquals(false, con.is_Address_Override__c);
+                system.assertNotEquals(null, con.Current_Address__c);
             }
         }
 
@@ -678,8 +685,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -742,8 +749,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -793,8 +800,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts do not share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -866,8 +873,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -940,8 +947,8 @@ private with sharing class ADDR_Addresses_TEST {
         update listCon;
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -960,15 +967,15 @@ private with sharing class ADDR_Addresses_TEST {
         
         // now test that changing the case from the account updates all addresses
         for (integer i = 0; i < cHH; i++) {
-        	Account acc = listAccT[i];
-        	acc.BillingStreet = 'direct street  edit';
+            Account acc = listAccT[i];
+            acc.BillingStreet = 'direct street  edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         update listAccT;
         
         // verify that the HH and Contacts share the same address
-        mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1029,8 +1036,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1098,8 +1105,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1130,11 +1137,11 @@ private with sharing class ADDR_Addresses_TEST {
         
         initTestAddr(cHH);
         for (integer i = 0; i < cHH; i++) {
-        	system.assertEquals(null, listAddrT[i].Parent_Account__c);
+            system.assertEquals(null, listAddrT[i].Parent_Account__c);
         }
         
         try {
-        	insert listAddrT;
+            insert listAddrT;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrHHAccountOnly));
             return;
@@ -1174,8 +1181,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -1228,8 +1235,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -1289,8 +1296,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -1327,20 +1334,20 @@ private with sharing class ADDR_Addresses_TEST {
         // create additional seasonal addresses not current
         initTestAddr(cHH * 2);
         for (integer i = 0; i < cHH * 2; i++) {
-        	integer iacc = i < cHH ? i : i-cHH;
-        	if (math.mod(i, 2) == 0) {
-	            listAddrT[i].Parent_Account__c = listAccT[iacc].Id;
-	            listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
-	            listAddrT[i].Seasonal_Start_Day__c = '1';
-	            listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
-	            listAddrT[i].Seasonal_End_Day__c = '28';
-        	} else {
+            integer iacc = i < cHH ? i : i-cHH;
+            if (math.mod(i, 2) == 0) {
+                listAddrT[i].Parent_Account__c = listAccT[iacc].Id;
+                listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+                listAddrT[i].Seasonal_Start_Day__c = '1';
+                listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
+                listAddrT[i].Seasonal_End_Day__c = '28';
+            } else {
                 listAddrT[i].Parent_Account__c = listAccT[iacc-1].Id;
                 listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
                 listAddrT[i].Seasonal_Start_Day__c = '1';
                 listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
-                listAddrT[i].Seasonal_End_Day__c = '28';        	
-        	}
+                listAddrT[i].Seasonal_End_Day__c = '28';            
+            }
             listAddrT[i].Default_Address__c = false;
             listAddrT[i].MailingStreet__c = 'New Seasonal Street' + i;
             listAddrT[i].MailingCity__c = 'New Seasonal City' + i;
@@ -1598,8 +1605,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -1635,7 +1642,7 @@ private with sharing class ADDR_Addresses_TEST {
 
         // create additional addresses thru the account.
         for (integer i = 0; i < cHH; i++) {
-        	listAccT[i].BillingStreet = listAddrT[i].MailingStreet__c;
+            listAccT[i].BillingStreet = listAddrT[i].MailingStreet__c;
             listAccT[i].BillingCity = listAddrT[i].MailingCity__c;
             listAccT[i].BillingState = listAddrT[i].MailingState__c;
             listAccT[i].BillingPostalCode = listAddrT[i].MailingPostalCode__c;
@@ -1665,13 +1672,13 @@ private with sharing class ADDR_Addresses_TEST {
 
         // create additional addresses thru the contact.
         for (integer i = 0; i < cHH; i++) {
-        	for (integer j = 0; j < cCon; j++) {
-	            listConT[(i * cHH) + j].MailingStreet = listAddrT[i].MailingStreet__c;
-	            listConT[(i * cHH) + j].MailingCity = listAddrT[i].MailingCity__c;
-	            listConT[(i * cHH) + j].MailingState = listAddrT[i].MailingState__c;
-	            listConT[(i * cHH) + j].MailingPostalCode = listAddrT[i].MailingPostalCode__c;
-	            listConT[(i * cHH) + j].MailingCountry = listAddrT[i].MailingCountry__c;
-        	}
+            for (integer j = 0; j < cCon; j++) {
+                listConT[(i * cHH) + j].MailingStreet = listAddrT[i].MailingStreet__c;
+                listConT[(i * cHH) + j].MailingCity = listAddrT[i].MailingCity__c;
+                listConT[(i * cHH) + j].MailingState = listAddrT[i].MailingState__c;
+                listConT[(i * cHH) + j].MailingPostalCode = listAddrT[i].MailingPostalCode__c;
+                listConT[(i * cHH) + j].MailingCountry = listAddrT[i].MailingCountry__c;
+            }
         }        
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         update listConT;
@@ -1721,8 +1728,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -1785,8 +1792,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -1857,24 +1864,24 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             if (con.is_Address_Override__c == false) {
                 system.assertNotEquals(null, con.Current_Address__c);
-	            system.assertEquals(true, isMatchAddressAccCon(acc, con));
-	            system.assert(!con.MailingStreet.contains('Direct Street Edit'));
-	            system.assert(!con.MailingCity.contains('Direct City Edit'));
+                system.assertEquals(true, isMatchAddressAccCon(acc, con));
+                system.assert(!con.MailingStreet.contains('Direct Street Edit'));
+                system.assert(!con.MailingCity.contains('Direct City Edit'));
                 system.assert(!con.MailingStreet.contains('override'));
                 system.assert(!con.MailingCity.contains('override'));
             } else {
                 system.assertEquals(false, isMatchAddressAccCon(acc, con));
                 system.assert(con.MailingStreet.contains('Direct Street Edit'));
                 system.assert(con.MailingCity.contains('Direct City Edit'));
-	            system.assertEquals(true, con.is_Address_Override__c);
-	            system.assertNotEquals(null, con.Current_Address__c);
+                system.assertEquals(true, con.is_Address_Override__c);
+                system.assertNotEquals(null, con.Current_Address__c);
             }
         }
  
@@ -1919,8 +1926,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1946,11 +1953,11 @@ private with sharing class ADDR_Addresses_TEST {
         // insert new contacts to the HH with new addresses
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(cHH);
         for (integer i = 0; i < cHH; i++) {
-        	listCon[i].AccountId = listAccT[i].Id;
+            listCon[i].AccountId = listAccT[i].Id;
             listCon[i].MailingStreet = 'New Mailing Street' + i;
-        	listCon[i].MailingCity = 'New Mailing City' + i;
-        	listCon[i].MailingState = 'California';
-        	listCon[i].MailingCountry = 'United States';
+            listCon[i].MailingCity = 'New Mailing City' + i;
+            listCon[i].MailingState = 'California';
+            listCon[i].MailingCountry = 'United States';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert listCon;         
@@ -1958,8 +1965,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1989,7 +1996,7 @@ private with sharing class ADDR_Addresses_TEST {
         createHHTestData(cHH, cCon);
         
         // reload accounts to get their default addresses
-        listAccT = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account];
+        listAccT = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account];
         system.assertEquals(cHH, listAccT.size());
         
         // insert new contacts to the HH with the current default addresses
@@ -2000,7 +2007,9 @@ private with sharing class ADDR_Addresses_TEST {
             listCon[i].MailingCity = listAccT[i].BillingCity;
             listCon[i].MailingState = listAccT[i].BillingState;
             listCon[i].MailingPostalCode = listAccT[i].BillingPostalCode;
-            listCon[i].MailingCountry = listAccT[i].BillingCountry;            
+            listCon[i].MailingCountry = listAccT[i].BillingCountry;
+            listCon[i].MailingLatitude = listAccT[i].BillingLatitude;
+            listCon[i].MailingLongitude = listAccT[i].BillingLongitude;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert listCon;         
@@ -2008,8 +2017,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * (cCon + 1), listCon.size());
         
         integer cAddr = [select count() from Address__c];
@@ -2051,8 +2060,8 @@ private with sharing class ADDR_Addresses_TEST {
         }
 
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -2092,8 +2101,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
 
         // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         system.assertEquals(cHH * cCon, listCon.size());
         
         for (Contact con : listCon) {
@@ -2131,8 +2140,8 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -2146,11 +2155,11 @@ private with sharing class ADDR_Addresses_TEST {
         // verify the Address objects split street.
         list<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c, Default_Address__c from Address__c];
         for (Address__c addr : listAddr) {
-        	if (addr.Default_Address__c) {
-	            system.assertEquals('Direct Street Edit', addr.MailingStreet__c);
-	            system.assertEquals('Second Line', addr.MailingStreet2__c);
-	            system.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
-        	}
+            if (addr.Default_Address__c) {
+                system.assertEquals('Direct Street Edit', addr.MailingStreet__c);
+                system.assertEquals('Second Line', addr.MailingStreet2__c);
+                system.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
+            }
         }
 
     }
@@ -2183,7 +2192,7 @@ private with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
 
         // verify results
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         system.assertEquals(cAcc, mapAccIdAcc.size());
         list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
         system.assertEquals(cAcc, listAddr.size());
@@ -2238,11 +2247,11 @@ private with sharing class ADDR_Addresses_TEST {
 
         // verify results
         listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry 
-        			from Account order by Account.Name];
+                    from Account order by Account.Name];
         system.assertEquals(cAcc, listAcc.size());
         
         list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
-        							from Address__c order by Parent_Account__r.Name];
+                                    from Address__c order by Parent_Account__r.Name];
         system.assertEquals(cAcc, listAddr.size());
         
         listCon = [select Id, AccountId, Name, Current_Address__c, MailingStreet, MailingCity from Contact order by Account.Name];
@@ -2301,7 +2310,7 @@ private with sharing class ADDR_Addresses_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         
         // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account order by Account.Name];
+        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account order by Account.Name];
         system.assertEquals(cAcc, listAcc.size());
         listAddrT = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Parent_Account__r.Name];
         system.assertEquals(cAcc, listAddrT.size());
@@ -2347,8 +2356,8 @@ private with sharing class ADDR_Addresses_TEST {
         insert listConT;        
 
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);

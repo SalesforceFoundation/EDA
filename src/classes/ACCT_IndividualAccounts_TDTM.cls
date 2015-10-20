@@ -93,8 +93,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 'Account.SYSTEM_AccountType__c,' +
                 'Account.Primary_Contact__c,Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
-                'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, ' + 
-                'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry,'; 
+                'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' + 
+                'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, '; 
             
             if (ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled)
                 strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
