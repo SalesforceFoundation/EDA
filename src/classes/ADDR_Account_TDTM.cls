@@ -149,7 +149,6 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 
     }
 
-    // 
     /*******************************************************************************************************
     * @description for each Account, create a new default address and add it to dmlWrapper
     * @param listAcc a list of Accounts
@@ -164,10 +163,11 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             addr.Default_Address__c = true;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;
-            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(acc, 'Billing', addr);            
+            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(acc, 'Billing', addr, null);            
             listAddr.add(addr);         
         }
-        ADDR_Addresses_TDTM.createNonDuplicateAddresses(listAddr, dmlWrapper);
+        // since coming from an account address, there is no Address Type, so exclude it from the match testing.
+        ADDR_Addresses_TDTM.createNonDuplicateAddresses(listAddr, dmlWrapper, false);
     }
 
 }
