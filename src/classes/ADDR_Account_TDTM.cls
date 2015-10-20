@@ -83,12 +83,12 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
                 }
                 // we only support address management with HH Accounts and Organizational Accounts (if enabled)
                 if ((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
-                		UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Enabled__c) ||
+                        UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Enabled__c) ||
                     (!acc.SYSTEMIsIndividual__c && 
-                    	UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
-	                // if the address changed, remember the account we want to add a new address for    
-	                if (isAccountAddressChanged(acc, accOld)) 
-	                    listAccCreateAddr.add(acc);
+                        UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
+                    // if the address changed, remember the account we want to add a new address for    
+                    if (isAccountAddressChanged(acc, accOld)) 
+                        listAccCreateAddr.add(acc);
                 }
             }                
         }
@@ -141,14 +141,15 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 
         if (!isChanged && ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled) {
             isChanged = 
-	            !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
-	            !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
+                !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
+                !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
         }
         UTIL_Debug.debug('****Address changed: ' + isChanged);
         return isChanged;   
 
     }
- 
+
+    // 
     /*******************************************************************************************************
     * @description for each Account, create a new default address and add it to dmlWrapper
     * @param listAcc a list of Accounts
@@ -163,11 +164,10 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             addr.Default_Address__c = true;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;
-            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(acc, 'Billing', addr, null);            
+            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(acc, 'Billing', addr);            
             listAddr.add(addr);         
         }
-        // since coming from an account address, there is no Address Type, so exclude it from the match testing.
-        ADDR_Addresses_TDTM.createNonDuplicateAddresses(listAddr, dmlWrapper, false);
+        ADDR_Addresses_TDTM.createNonDuplicateAddresses(listAddr, dmlWrapper);
     }
 
 }
