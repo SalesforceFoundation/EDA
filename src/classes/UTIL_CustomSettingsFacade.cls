@@ -87,7 +87,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     private static void configSettings(Hierarchy_Settings__c hs) {
 		hs.Account_Processor__c = 'Administrative';
 		hs.Organizational_Account_Addresses_Enabled__c = true;
-		hs.Household_Account_Addresses_Enabled__c = true;
+		hs.Household_Adm_Acct_Addresses_Enabled__c = true;
 		hs.Reciprocal_Method__c = 'List Settings';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
@@ -110,7 +110,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Account_Processor__c = mySettings.Account_Processor__c;
         settings.Organizational_Account_Addresses_Enabled__c = mySettings.Organizational_Account_Addresses_Enabled__c;
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
-        settings.Household_Account_Addresses_Enabled__c = mySettings.Household_Account_Addresses_Enabled__c;
+        settings.Household_Adm_Acct_Addresses_Enabled__c = mySettings.Household_Adm_Acct_Addresses_Enabled__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         settings.Gender_Field__c = mySettings.Gender_Field__c;
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;

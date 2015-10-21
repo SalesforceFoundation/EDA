@@ -77,7 +77,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Household_Account_Addresses_Enabled__c</fullName>
+        <fullName>Household_Adm_Acct_Addresses_Enabled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Enables Address management for Household Accounts when selected.</description>
         <externalId>false</externalId>

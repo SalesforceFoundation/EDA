@@ -13,16 +13,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>SYSTEMIsIndividual__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Hidden system field: do not change.  Updated by automatic processes.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Indicates whether or not this Account is an Individual (true) or Organization (false).</inlineHelpText>
-        <label>_SYSTEM: IsIndividual</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>SYSTEM_AccountType__c</fullName>
         <description>Hidden system field: do not change.  Updated by automatic processes.</description>
         <externalId>false</externalId>

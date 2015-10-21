@@ -56,9 +56,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         list<Contact> listConCreateAddr = new list<Contact>();
         map<Id, boolean> mapAddrIdIsOverride = new map<Id, boolean>();
         list<Contact> listConAddrReset = new list<Contact>();
+        Map<Id,Account> mapAccountIdAccount = null;
         
         // bail out if address mgmt turned off.
-        if (!UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Enabled__c)
+        if (!UTIL_CustomSettingsFacade.getSettings().Household_Adm_Acct_Addresses_Enabled__c)
             return dmlWrapper;
                 
         // Rules:
@@ -74,6 +75,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 if (con.AccountId != null)
                     setAccountId.add(con.AccountId);
             }
+            mapAccountIdAccount = new Map<Id,Account>([select Id, SYSTEM_AccountType__c from Account where Id IN :setAccountId]);
         }        
        
         integer i = -1;        
@@ -215,7 +217,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             Address__c addr = mapAddrIdAddr.get(con.Current_Address__c);
             if (addr != null) {
                 con.Primary_Address_Type__c = addr.Address_Type__c;
-                ADDR_Addresses_TDTM.copyAddressAddrSObj(addr, con, 'Mailing');
+                ADDR_Addresses_TDTM.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c');
             }
         }       
     }
@@ -326,8 +328,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             addr.Default_Address__c = !con.is_Address_Override__c;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;         
-            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(con, 'Mailing', addr);
-            addr.Address_Type__c = con.Primary_Address_Type__c;
+            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(con, 'Mailing', addr, con.Primary_Address_Type__c);
             mapConAddr.put(con, addr);
         }
 
@@ -443,7 +444,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 if (addr != null) {
                     con.Primary_Address_Type__c = addr.Address_Type__c;
                     con.Current_Address__c = addr.Id;
-                    ADDR_Addresses_TDTM.copyAddressAddrSObj(addr, con, 'Mailing');
+                    ADDR_Addresses_TDTM.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c');
                 }              
             }
         }         

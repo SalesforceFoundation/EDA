@@ -65,12 +65,12 @@
         <value>-</value>
     </labels>
     <labels>
-        <fullName>addrHHAccountOnly</fullName>
+        <fullName>addrHhAdmAccountOnly</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHHAccountOnly</shortDescription>
-        <value>Address objects are only supported on Household Accounts and Organizational Accounts (if enabled).</value>
+        <shortDescription>addrHhAdmAccountOnly</shortDescription>
+        <value>Address objects are only supported on Household, Administrative, and Organizational Accounts (if enabled).</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
