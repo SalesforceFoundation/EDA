@@ -64,10 +64,9 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             
             // AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                // on insert, we only need to create addresses for Org accounts.
-                // Household accounts are handled during the after update, which will always occur
-                // as they are being hooked up with their primary contact. 
-                if (!acc.SYSTEMIsIndividual__c && UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c) {
+                // for new accounts that are using address management, create the address object.
+                if (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR && acc.SYSTEM_AccountType__c != CAO_Constants.ADM_ACCOUNT_PROCESSOR && 
+                UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c) {
                     if (isAccountAddressSpecified(acc))
                         listAccCreateAddr.add(acc);
                 }
@@ -82,10 +81,10 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
                     continue;
                 }
                 // we only support address management with HH Accounts and Organizational Accounts (if enabled)
-                if ((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR && 
-                        UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Enabled__c) ||
-                    (!acc.SYSTEMIsIndividual__c && 
-                        UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
+                if (((acc.SYSTEM_AccountType__c == CAO_Constants.HH_ACCOUNT_PROCESSOR || acc.SYSTEM_AccountType__c == CAO_Constants.ADM_ACCOUNT_PROCESSOR) && 
+                UTIL_CustomSettingsFacade.getSettings().Household_Adm_Acct_Addresses_Enabled__c) || 
+                (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR && acc.SYSTEM_AccountType__c != CAO_Constants.ADM_ACCOUNT_PROCESSOR && 
+                UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // if the address changed, remember the account we want to add a new address for    
                     if (isAccountAddressChanged(acc, accOld)) 
                         listAccCreateAddr.add(acc);

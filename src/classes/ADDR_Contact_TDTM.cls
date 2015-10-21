@@ -59,7 +59,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         Map<Id,Account> mapAccountIdAccount = null;
         
         // bail out if address mgmt turned off.
-        if (!UTIL_CustomSettingsFacade.getSettings().Household_Account_Addresses_Enabled__c)
+        if (!UTIL_CustomSettingsFacade.getSettings().Household_Adm_Acct_Addresses_Enabled__c)
             return dmlWrapper;
                 
         // Rules:

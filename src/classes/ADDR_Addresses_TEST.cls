@@ -838,7 +838,7 @@ private with sharing class ADDR_Addresses_TEST {
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Simple_Address_Change_Treated_as_Update__c = true,
-                Household_Account_Addresses_Enabled__c = true
+                Household_Adm_Acct_Addresses_Enabled__c = true
         ));
                 
         // this creates a default Address for each HH
@@ -907,7 +907,7 @@ private with sharing class ADDR_Addresses_TEST {
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Simple_Address_Change_Treated_as_Update__c = true,
-                Household_Account_Addresses_Enabled__c = true
+                Household_Adm_Acct_Addresses_Enabled__c = true
         ));
                 
         // this creates a default Address for each HH
@@ -1073,7 +1073,7 @@ private with sharing class ADDR_Addresses_TEST {
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
                 Simple_Address_Change_Treated_as_Update__c = true,
-                Household_Account_Addresses_Enabled__c = true
+                Household_Adm_Acct_Addresses_Enabled__c = true
         ));
         
         // this creates a default Address for each HH
@@ -1143,7 +1143,7 @@ private with sharing class ADDR_Addresses_TEST {
         try {
             insert listAddrT;
         } catch (Exception ex) {
-            system.assert(ex.getMessage().contains(Label.addrHHAccountOnly));
+            system.assert(ex.getMessage().contains(Label.addrHhAdmAccountOnly));
             return;
         }
         system.assert(false); //we shouldn't get here!
@@ -2345,7 +2345,7 @@ private with sharing class ADDR_Addresses_TEST {
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
-                Household_Account_Addresses_Enabled__c = false
+                Household_Adm_Acct_Addresses_Enabled__c = false
         ));
  
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(cCon);

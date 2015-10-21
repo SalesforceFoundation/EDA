@@ -340,8 +340,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
-                a.SYSTEM_AccountType__c = CAO_Constants.isHhOrAdmAccountModel() ? CAO_Constants.HH_ACCOUNT_PROCESSOR : '';              
-                a.SYSTEMISINDIVIDUAL__c = true;
+                if(CAO_Constants.isHHAccountModel()) {
+                    a.SYSTEM_AccountType__c = CAO_Constants.HH_ACCOUNT_PROCESSOR;   
+                } else if(CAO_Constants.isAdmAccountModel()) {
+                    a.SYSTEM_AccountType__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR;
+                }
                 
                 //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
                 String defaultAcc = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;

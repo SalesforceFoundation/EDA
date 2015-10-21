@@ -255,8 +255,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                         Date dtToday = system.today();
                         if (dtToday >= dtStart && dtToday < dtEnd) {
                             hhinfo.addrSeasonal = addrHH;
-                        }                        
-                    }      
+                        }
+                    }
                 }
             }
         
@@ -329,7 +329,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                // and if so clear any override flag so it will get the default address.
 	                if (con.Current_Address__c == null)
 	                   con.is_Address_Override__c = false;
-                    if (con.is_Address_Override__c == false || con.Current_Address__c == addr.Id) {
+                    if (con.is_Address_Override__c == false || con.Current_Address__c == addr.Id) {  
                         con.Current_Address__c = addr.Id;
                         copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c');
                         listConUpdate.add(con);
@@ -621,13 +621,13 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c == null) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
-                addr.addError(Label.addrHHAccountOnly);
+                addr.addError(Label.addrHhAdmAccountOnly);
             } else {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-                if ( (acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR) &&
+                if ((acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR && acc.SYSTEM_AccountType__c != CAO_Constants.ADM_ACCOUNT_PROCESSOR) &&
                     (!UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
-                    addr.addError(Label.addrHHAccountOnly);
+                    addr.addError(Label.addrHhAdmAccountOnly);
                 }
             }
         }       

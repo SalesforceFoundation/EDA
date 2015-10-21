@@ -9,8 +9,8 @@
         <div class="slds-col slds-size--1-of-2">Organization Addresses Enabled:</div>
         <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Organizational_Account_Addresses_Enabled__c}"/></div>
 
-        <div class="slds-col slds-size--1-of-2">Household Addresses Enabled:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Household_Account_Addresses_Enabled__c}"/></div>
+        <div class="slds-col slds-size--1-of-2">Household and Administrative Addresses Enabled:</div>
+        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Household_Adm_Acct_Addresses_Enabled__c}"/></div>
 
         <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div> 
         <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"/></div>
