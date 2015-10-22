@@ -34,32 +34,32 @@
 * @description Tests for ACCT_IndividualAccounts_TDTM
 */
 @isTest
-private class ACCT_IndividualAccounts_TEST {    
-
-    /*********************************************************************************************************
-    * @description if you only want to run one test in this class, fill in its name here.
-    * if you want to run all tests, then use '*'
-    */
-    private static string strTestOnly = '*';
+private class ACCT_IndividualAccounts_TEST {
     
     /*********************************************************************************************************
     * @description tests default contructor
     */
     @isTest
     public static void ACCT_IndividualAccounts_TEST() {
-    	if (strTestOnly != '*' && strTestOnly != 'ACCT_IndividualAccounts_TEST') return;
         ACCT_IndividualAccounts_TDTM testIndividualAccounts = new ACCT_IndividualAccounts_TDTM();
     }
     
     /*********************************************************************************************************
-    * @description Create a Contact with TDTM triggers off, for both 1:1 and Household account models.  
+    * @description Create a Contact with TDTM triggers off  
     */
     @isTest
-    public static void insertContactTriggerOff() {
-    	if (strTestOnly != '*' && strTestOnly != 'insertContactTriggerOff') return;
-
+    public static void insertContactTriggerOffHH() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-        
+        insertContactTriggerOff();
+    }
+    
+    @isTest
+    public static void insertContactTriggerOffAdm() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        insertContactTriggerOff();
+    }
+    
+    public static void insertContactTriggerOff() {        
         // turn off all TDTM triggers for this component
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
         handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
@@ -87,7 +87,9 @@ private class ACCT_IndividualAccounts_TEST {
             WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
             PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
         );
+        Test.startTest();
         insert con;
+        Test.stopTest();
         
         Contact[] insertedContacts = [Select FirstName, LastName, AccountId  from Contact where id=:con.id];
 
@@ -96,12 +98,10 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Test Method for a new Contact, with Household Account selected as default Acc Record Type
+    * @description Test Method for a new Contact
     */
     @isTest
-    public static void newContactHouseholdModel() {
-    	if (strTestOnly != '*' && strTestOnly != 'newContactHouseholdModel') return;
-
+    public static void newContactHH() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = UTIL_UnitTestData_TEST.getContact();
@@ -113,18 +113,41 @@ private class ACCT_IndividualAccounts_TEST {
         Contact insertedContact = [Select Account.Name, AccountId from Contact where id=:con.id];
         
         //the contact should have the right type
-        system.assertEquals(con.LastName + ' Household', insertedcontact.Account.Name);  
+        system.assertEquals(con.LastName + ' ' + Label.DefaultHouseholdName, insertedcontact.Account.Name); 
+    }
+    
+    @isTest
+    public static void newContactAdm() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+        
+        Test.startTest();
+        insert con;
+        Test.stopTest();
+        
+        Contact insertedContact = [Select Account.Name, AccountId from Contact where id=:con.id];
+        
+        //the contact should have the right type
+        system.assertEquals(con.LastName + ' ' + Label.DefaultAdminName, insertedcontact.Account.Name); 
     }
 
     /*********************************************************************************************************
-    * @description Test Method for inserting and updating a Contact in the Household Account model 
+    * @description Test Method for inserting and updating a Contact 
     */
     @isTest
-    public static void insertUpdateContactHouseholds() {
-        if (strTestOnly != '*' && strTestOnly != 'insertUpdateContactHouseholds') return;
-
+    public static void insertUpdateContactHH() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-        
+        insertUpdateContact();
+    }
+    
+    @isTest
+    public static void insertUpdateContactAdm() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        insertUpdateContact();
+    }
+    
+    public static void insertUpdateContact() {        
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
@@ -142,10 +165,7 @@ private class ACCT_IndividualAccounts_TEST {
         				Account.BillingStreet from Contact where id=:con.id];
 
         //one contact should have been created
-        system.assertEquals(1,insertedContacts.size());
-        
-        //the account should have been named correctly
-        system.assertEquals(CAO_Constants.CONTACT_LASTNAME_FOR_TESTS + ' Household',insertedcontacts[0].Account.Name);        
+        system.assertEquals(1,insertedContacts.size());       
         
         //relationship should be bi-directional
         system.assertEquals(insertedcontacts[0].id,insertedcontacts[0].Account.Primary_Contact__c);
@@ -172,14 +192,33 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Add a contact to an existing or Household Account
+    * @description Add a contact to an existing Account
     */
     @isTest
-    public static void contactAddedToExisting() {
-    	if (strTestOnly != '*' && strTestOnly != 'contactAddedToExisting') return;
-
-       AFFL_MultiRecordType_TEST.setup();
+    public static void contactAddedToExistingHH() {
+       UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+                
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+        insert mappings;
         
+        contactAddedToExisting();       
+    }
+    
+    @isTest
+    public static void contactAddedToExistingAdm() {
+       UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+                
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+        insert mappings;
+        
+        contactAddedToExisting();       
+    }
+    
+    public static void contactAddedToExisting() {        
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
             LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
@@ -207,18 +246,26 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(1, con2affls.size());
         system.assertEquals(true, con2affls[0].Primary__c);
         
-        system.assertEquals(accountId, con2.Primary_Household__c);
+        //system.assertEquals(accountId, con2.Primary_Household__c); In this case the field is not populated because we are dealing with Administrative accounts.
     }
     
     /*********************************************************************************************************
-    * @description Update a contact to an existing Household Account
+    * @description Update a contact to an existing Account
     */
     @isTest
     public static void contactUpdatedToExistingHH() {
-        if (strTestOnly != '*' && strTestOnly != 'contactUpdatedToExistingHH') return;
-
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        contactUpdatedToExisting();
+    }
+    
+    @isTest
+    public static void contactUpdatedToExistingAdm() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        contactUpdatedToExisting();
         
+    }
+    
+    public static void contactUpdatedToExisting() {        
         Contact con = new Contact(
             FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
             LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
@@ -245,14 +292,21 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Update a contact's Lastname in the Household Account models
+    * @description Update a contact's Lastname in the Account
     */
     @isTest
-    public static void contactInNormalOrgNameChange() {
-    	if (strTestOnly != '*' && strTestOnly != 'contactInNormalOrgNameChange') return;
-
+    public static void contactInNormalOrgNameChangeHH() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-                        
+        contactInNormalOrgNameChange();   
+    }
+    
+    @isTest
+    public static void contactInNormalOrgNameChangeAdm() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        contactInNormalOrgNameChange();
+    }
+    
+    public static void contactInNormalOrgNameChange() {                        
         String acctName = 'Test Account 876';
         Account acct = new Account(Name=acctName);
         insert acct;
@@ -285,11 +339,22 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Test Method for detaching a Contact from an org account. It should land in Household account. 
     */
     @isTest
-    public static void detachFromNormalAccountToeHousehold() {
-        if (strTestOnly != '*' && strTestOnly != 'detachFromNormalAccountToeHousehold') return;
-
+    public static void detachFromNormalAccountToHousehold() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-                
+        detachFromNormalAccount();
+    }
+    
+    /*********************************************************************************************************
+    * @description Test Method for detaching a Contact from an org account. It should land in Administrative account. 
+    */
+    @isTest
+    public static void detachFromNormalAccountToAdministrative() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        detachFromNormalAccount();
+    }
+    
+    @isTest
+    public static void detachFromNormalAccount() {                
         Account acct = new Account(Name='Test Account 876');
         insert acct;
 
@@ -320,13 +385,21 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Delete a Contact and verify its Household Account is deleted.
+    * @description Delete a Contact and verify its parent Account is deleted.
     */
-     public static testMethod void deleteContactNoOpp() {
-     	if (strTestOnly != '*' && strTestOnly != 'deleteContactNoOpp') return;
-
+     @isTest
+     public static void deleteContactNoOppHH() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-        
+        deleteContactNoOpp();
+     }
+     
+     @isTest
+     public static void deleteContactNoOppAdm() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        deleteContactNoOpp();
+     }
+     
+     public static void deleteContactNoOpp() {        
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
@@ -357,13 +430,21 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Delete a Contact with Opps and verify its Household Account is not deleted.
+    * @description Delete a Contact with Opps and verify its parent Account is not deleted.
     */
-    public static testMethod void deleteContactWithOpp() {
-    	if (strTestOnly != '*' && strTestOnly != 'deleteContactWithOpp') return;
-        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));       
-                      
+    @isTest
+    public static void deleteContactWithOppHH() {        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        deleteContactWithOpp(); 
+    }
+    
+    @isTest
+    public static void deleteContactWithOppAdm() {        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        deleteContactWithOpp(); 
+    }
+    
+    public static void deleteContactWithOpp() {                      
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
@@ -403,14 +484,20 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Delete a Contact from an Org Account and make sure the Account is not deleted.
     */
-    public static testMethod void deleteContactNormalAccountHouseholdAcc() {
-        if (strTestOnly != '*' && strTestOnly != 'deleteContactNormalAccountHouseholdAcc') return;
-              
+    @isTest
+    public static void deleteContactNormalAccountHouseholdAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
-        
-        Account orgAccount = new Account(
-            Name='Fake account'
-        );
+        deleteContactNormalAccount();
+    }
+    
+    @isTest
+    public static void deleteContactNormalAccountAdministrativeAcc() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        deleteContactNormalAccount();
+    }
+
+    public static void deleteContactNormalAccount() {        
+        Account orgAccount = new Account(Name='Fake account');
         insert orgAccount;
                
         String newContactMailingStreet = '123 Elm St';
@@ -439,12 +526,10 @@ private class ACCT_IndividualAccounts_TEST {
     }   
     
     /*********************************************************************************************************
-    * @description Rename a Contact's firstname to null and make sure the Household Account's name gets updated
+    * @description Rename a Contact's firstname to null and make sure the Account's name gets updated
     */
     @isTest
-    public static void firstNameToNull(){
-    	if (strTestOnly != '*' && strTestOnly != 'ghIssue16b') return;
-        
+    public static void firstNameToNullHH() { 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
         
         Contact con = new Contact(
@@ -460,7 +545,7 @@ private class ACCT_IndividualAccounts_TEST {
         con = [select AccountId from Contact where id = :con.Id];
         Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
         
-        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' Household');
+        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultHouseholdName);
         
         //set name to null
         con.FirstName = null;
@@ -470,6 +555,36 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' Household');
+        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultHouseholdName);
+    }
+    
+    @isTest
+    public static void firstNameToNullAdm() { 
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        
+        Contact con = new Contact(
+            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
+            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
+            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
+            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
+            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+        );
+        insert con;
+        
+        con = [select AccountId from Contact where id = :con.Id];
+        Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
+        
+        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultAdminName);
+        
+        //set name to null
+        con.FirstName = null;
+        
+        Test.startTest();
+        update con;
+        Test.stopTest();
+        
+        newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
+        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultAdminName);
     }
 }
