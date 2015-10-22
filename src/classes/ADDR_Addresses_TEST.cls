@@ -345,6 +345,112 @@ private with sharing class ADDR_Addresses_TEST {
             system.assertNotEquals(null, con.Current_Address__c);
         }
     }
+    
+    /*********************************************************************************************************
+    @description
+        delete existing default Addresses  
+    verify:
+        household billing address fields cleared
+        contact Mailing address fields cleared
+    **********************************************************************************************************/            
+    @isTest
+    static void deleteDefaultAddrHH() {        
+        // this creates a default Address for each Account
+        createHHTestData(parentAccs, cCon);
+        deleteDefaultAddr();
+    }
+    
+    @isTest
+    static void deleteDefaultAddrAdm() {        
+        // this creates a default Address for each Account
+        createAdmTestData(parentAccs, cCon);
+        deleteDefaultAddr();
+    }
+    
+    static void deleteDefaultAddr() {        
+        // now let's delete the Addresses
+        system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
+        delete listAddrT;
+        Test.stopTest();
+    
+        // verify that the HH and Contacts' address fields are cleared
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        system.assertEquals(parentAccs * cCon, listCon.size());
+        
+        for (Contact con : listCon) {
+            Account acc = mapAccIdAcc.get(con.AccountId);
+            system.assertEquals(true, isMatchAddressAccCon(acc, con));
+            system.assertEquals(null, con.MailingStreet);
+            system.assertEquals(null, con.MailingCity);
+            system.assertEquals(false, con.is_Address_Override__c);
+            system.assertEquals(null, con.Current_Address__c);
+            system.assertEquals(null, acc.BillingStreet);
+            system.assertEquals(null, acc.BillingCity);
+        }
+    }
+
+    /*********************************************************************************************************
+    @description
+        delete existing non-default override Addresses  
+    verify:
+        household billing address fields not changed
+        contact Mailing address fields reset to default
+    **********************************************************************************************************/            
+    @isTest
+    static void deleteNonDefaultOverrideAddrHH() {        
+        createHHTestData(parentAccs, cCon);
+        deleteNonDefaultOverrideAddr();
+    }
+    
+    @isTest
+    static void deleteNonDefaultOverrideAddrAdm() {        
+        createAdmTestData(parentAccs, cCon);
+        deleteNonDefaultOverrideAddr();
+    }
+    
+    static void deleteNonDefaultOverrideAddr() { 
+        // create additional addresses
+        initTestAddr(parentAccs);
+        for (integer i = 0; i < parentAccs; i++) {
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
+            listAddrT[i].Default_Address__c = false;
+            listAddrT[i].MailingStreet__c = 'override' + i;
+            listAddrT[i].MailingCity__c = 'override' + i;
+        }
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert listAddrT;
+        
+        // set the contacts' address overrides
+        list<Contact> listCon = new list<Contact>();
+        for (integer i = 0; i < parentAccs; i++) {
+            Contact con = listConT[i*parentAccs + i];
+            con.Current_Address__c = listAddrT[i].Id;
+            con.is_Address_Override__c = true;
+            listCon.add(con);
+        }
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        update listCon;        
+        
+        // now let's delete the override Addresses
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        delete listAddrT;
+        Test.stopTest();
+    
+        // verify that the HH and Contacts' address fields the default
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        system.assertEquals(parentAccs * cCon, listCon.size());
+        
+        for (Contact con : listCon) {
+            Account acc = mapAccIdAcc.get(con.AccountId);
+            system.assertEquals(true, isMatchAddressAccCon(acc, con));
+            system.assertEquals(false, con.is_Address_Override__c);
+            system.assertNotEquals(null, con.Current_Address__c);
+            system.assert(con.MailingStreet.contains('Street'));
+            system.assert(con.MailingCity.contains('City'));            
+        }
+    }
 
     /*********************************************************************************************************
     @description
