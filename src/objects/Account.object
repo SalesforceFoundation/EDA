@@ -24,28 +24,4 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>SYSTEM_CUSTOM_NAMING__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>For Household Accounts, specifies which name related fields should not be automatically populated by the Householding code.</inlineHelpText>
-        <label>_SYSTEM: CUSTOM NAMING</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Name</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Formal_Greeting__c</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Informal_Greeting__c</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>MultiselectPicklist</type>
-        <visibleLines>3</visibleLines>
-    </fields>
 </CustomObject>
