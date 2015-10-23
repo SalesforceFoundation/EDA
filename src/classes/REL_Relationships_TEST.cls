@@ -51,14 +51,14 @@ public class REL_Relationships_TEST {
     */
     private static void setupRelationshipTestData(Hierarchy_Settings__c rs){
         
-        //set running user to avoid dml issue            
+        //set running user to avoid dml issue
         System.runAs(new User(id = UserInfo.getUserId())){
                      
             if (rs != null)
                 UTIL_CustomSettingsFacade.getSettingsForTests(rs);
             else
                 UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', 
-                												Gender_Field__c = 'Description', Store_Errors_On__c = true));         
+                												                        Store_Errors_On__c = true));         
             
             //add autocreate settings for CMs 
             delete [select id from Relationship_Auto_Create__c];
@@ -560,11 +560,11 @@ public class REL_Relationships_TEST {
     public static void testNeutralGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testNeutralGenderFieldReciprocal') return;
     	
-        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c3.id, Relatedcontact__c = c2.id, Type__c='TestLookupType')
         };                
-        c3.Description = 'Neutral';
+        c3.Gender__c = 'Neutral';
         update c3;
         //reset the process controller to mimic a second user action
         //Relationships_ProcessControl.hasRun = false;        
@@ -584,8 +584,8 @@ public class REL_Relationships_TEST {
     public static void testMaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testMaleGenderFieldReciprocal') return;
     	
-        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
-        c1.Description = 'Male';
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
+        c1.Gender__c = 'Male';
         update c1;
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='TestLookupType')
@@ -608,8 +608,8 @@ public class REL_Relationships_TEST {
     public static void testFemaleGenderFieldReciprocal(){
     	if (strTestOnly != '*' && strTestOnly != 'testFemaleGenderFieldReciprocal') return;
     	
-        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
-        c2.Description = 'Female';
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
+        c2.Gender__c = 'Female';
         update c2;
         
         Relationship__c[] crel = new Relationship__c[]{
@@ -709,11 +709,11 @@ public class REL_Relationships_TEST {
     static testMethod void testGenderChange(){
         if (strTestOnly != '*' && strTestOnly != 'testGenderChange') return;
 
-        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Gender_Field__c = 'Description'));
+        setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
-            new Contact(LastName='foo', Description='Female'),
-            new Contact(LastName='foo2', Description='Male')
+            new Contact(LastName='foo', Gender__c='Female'),
+            new Contact(LastName='foo2', Gender__c='Male')
         };
         insert conList;
 
@@ -729,8 +729,11 @@ public class REL_Relationships_TEST {
         recRel = [select id, Type__c from Relationship__c where ReciprocalRelationship__c = :crel[0].id];
         system.assertEquals('TestFemaleType', recRel.Type__c);
 
-        conList[1].Description='Female';
+        conList[1].Gender__c='Female';
+        
+        Test.startTest();
         update conList[1];
+        Test.stopTest();
 
         recRel = [select id, Type__c from Relationship__c where id = :crel[0].id];
         system.assertEquals('TestFemaleType', recRel.Type__c);

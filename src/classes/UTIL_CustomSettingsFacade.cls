@@ -112,7 +112,6 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
         settings.Household_Adm_Acct_Addresses_Enabled__c = mySettings.Household_Adm_Acct_Addresses_Enabled__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
-        settings.Gender_Field__c = mySettings.Gender_Field__c;
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         settings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;

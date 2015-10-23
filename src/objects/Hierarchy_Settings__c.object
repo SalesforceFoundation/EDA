@@ -65,18 +65,6 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Gender_Field__c</fullName>
-        <description>The custom field used to define the gender of a Contact for determining reciprocal relationships</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The custom field used to define the gender of a Contact for determining reciprocal relationships</inlineHelpText>
-        <label>Gender Field</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Household_Adm_Acct_Addresses_Enabled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Enables Address management for Household Accounts when selected.</description>
