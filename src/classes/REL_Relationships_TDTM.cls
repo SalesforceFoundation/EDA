@@ -273,15 +273,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                 rIDs.add(r.Contact__c);
             }            
             
-            String query_string = 'select id, Salutation';            
-            String gender_field = '';
-            
-            if (rs.Gender_Field__c != null){
-                gender_field = rs.Gender_Field__c;
-                query_string += ', ' + gender_field;                
-            }
-            
-            query_string += ' from Contact where Id IN :rIDs';                         
+            String query_string = 'select id, Salutation, Gender__c from Contact where Id IN :rIDs';                         
             
             map<id, Contact> cMap = new map<id,Contact>((List<Contact>)database.query(query_string));
             
@@ -301,14 +293,12 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                     femaleset.addAll(femalelist);                    
                                         
                     //was a gender field defined? 
-                    if (gender_field != null && gender_field != '' && relatedContact.get(gender_field) != null){                        
-                        
-                        String contact_gender = (String)relatedContact.get(gender_field);                                               
+                    if (relatedContact.Gender__c != null){
                         String match_type = '';                        
                         
                         //try male
                         for (String s : malelist){
-                            if (contact_gender.toLowerCase() == s.toLowerCase().trim()){
+                            if (relatedContact.Gender__c.toLowerCase() == s.toLowerCase().trim()){
                                 match_type = 'male';
                                 break;
                             }
@@ -316,7 +306,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                         //if we haven't found it, try female
                         if(match_type == ''){
                             for (String s : femalelist){
-                                if (contact_gender.toLowerCase() == s.toLowerCase().trim()){
+                                if (relatedContact.Gender__c.toLowerCase() == s.toLowerCase().trim()){
                                     match_type = 'female';
                                     break;
                                 }

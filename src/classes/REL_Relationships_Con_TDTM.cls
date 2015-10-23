@@ -55,7 +55,6 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         List<Id> ReciprocalIds = new List<Id>();
         List<String> Types = new List<String>();
         
-        string genderField = UTIL_CustomSettingsFacade.getSettings().Gender_Field__c;
         Set<Id> changedGender = new set<Id>();        
         
         if(newlist != null && newlist.size() > 0) {
@@ -86,8 +85,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
                 }
                 
                 //handle updates to the gender field if we have one
-                if (triggerAction == TDTM_Runnable.Action.afterUpdate && genderField!=null) {
-                    if (c.get(genderField) != oldMap.get(c.id).get(genderField)) {
+                if (triggerAction == TDTM_Runnable.Action.afterUpdate && c.Gender__c!=null) {
+                    if (c.Gender__c != oldMap.get(c.id).Gender__c) {
                         changedGender.add(c.id);
                     }
                 }           
