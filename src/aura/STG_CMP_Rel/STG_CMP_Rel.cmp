@@ -28,11 +28,8 @@
 		<div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
 			<div class="slds-grid slds-wrap">
 			    <div class="slds-col slds-size--1-of-2">Reciprocal Method:</div>
-			    <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Account_Processor__c}"/></div>
-			    
-			    <div class="slds-col slds-size--1-of-2">Gender Field:</div>
-			    <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
-			    
+			    <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Reciprocal_Method__c}"/></div>
+
 			    <div class="slds-col slds-size--1-of-2">Allow Auto-Created Duplicate Relations:</div>
 			    <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/></div>
 			</div>
