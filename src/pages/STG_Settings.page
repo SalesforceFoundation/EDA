@@ -1,6 +1,8 @@
 <apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
     <apex:stylesheet value="{!URLFOR($Resource.SLDS090, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
-    <script src="/lightning/lightning.out.js" />
+    <script src="/soap/ajax/35.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/35.0/apex.js" type="text/javascript"></script>
+    <script src="/lightning/lightning.out.js" type="text/javascript"></script>
 
     <div class="slds">
         
@@ -12,13 +14,27 @@
     </div>
 
     <script>
-        $Lightning.use("c:STG_App", function() {
+        //Because sometimes the session ID is not set correctly
+        sforce.connection.sessionId = "{!$Api.Session_ID}";
+        
+        var namespace = '';
+        //This would work with any class. We are just using the one with the shortest name.
+        var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'REL_Utils' LIMIT 1"); 
+        var getname = gettingnamespace.getArray("records");
+		if(getname.length > 0) { 
+		        namespace = getname[0].NamespacePrefix; 
+		}
+        if(!namespace || namespace.length === 0) {
+            namespace = "c";
+        }
+        
+        $Lightning.use(namespace + ":STG_App", function() {
             loadComponents();
         });
         
         function loadComponents() {
-            $Lightning.createComponent("c:STG_CMP_Header", {}, "headSettings");
-            $Lightning.createComponent("c:STG_CMP_Tabs", {}, "tabSettings");
+            $Lightning.createComponent(namespace + ":STG_CMP_Header", {}, "headSettings");
+            $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {}, "tabSettings");
         }
     </script>
 </apex:page>
