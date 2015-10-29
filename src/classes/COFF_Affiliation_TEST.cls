@@ -83,7 +83,7 @@ public with sharing class COFF_Affiliation_TEST {
 
     	//Create Course Offering with Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	Test.startTest();
     	insert offering;
     	Test.stopTest();
@@ -106,7 +106,7 @@ public with sharing class COFF_Affiliation_TEST {
     	//If a new Course Offering is created under the same Department and is taught by the same Faculty member, no additional
     	//Affiliation should be created.
     	Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-101 Summer 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering2;
     	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
     	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
@@ -122,7 +122,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering without Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Term__c = term.Id, Capacity__c = 200);
+    	Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//No affiliation should have been created
@@ -166,7 +166,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering without Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Term__c = term.Id, Capacity__c = 200);
+    	Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//No affiliation should have been created
@@ -198,7 +198,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering with Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
@@ -250,7 +250,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering with Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//An Affiliation should have been automatically created for the faculty member
@@ -287,7 +287,7 @@ public with sharing class COFF_Affiliation_TEST {
         
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-        Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
         
         //An Affiliation should have been automatically created for the faculty member
@@ -360,7 +360,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-        Department__c = dpt3.Id, Faculty__c = faculty2.Id, Term__c = term.Id, Capacity__c = 200);
+        Faculty__c = faculty2.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
         
     	Boolean afflToDptExists = tdtm.afflToDptExists(offering, facultyIDtoAffls);

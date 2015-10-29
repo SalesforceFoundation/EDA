@@ -56,12 +56,16 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         List<ID> removedFacultyIDs = new List<ID>();
                 
         List<Course_Enrollment__c> courseEnrllsToInsert = new List<Course_Enrollment__c>();
-        
+            
         if(newlist != null) {
+            if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                //Query the related Course__r.Account__c, since the field is not available in the trigger
+                newList = [select Course__c, Course__r.Account__c, Term__c, Faculty__c from Course_Offering__c where ID in :newlist];
+            }
 	        for (integer i=0; i<newlist.size(); i++) {
 	        	Course_Offering__c newOff = (Course_Offering__c)newlist[i];
 	        	
-		        if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+		        if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
 		        	//Course Offering with Faculty has been created 
 		        	//   --> create Affl if no other Affl to Dpt exists
 		        	//   --> create Course Enrollment
@@ -69,36 +73,34 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 		    		    UTIL_Debug.debug('****Course Offering with Faculty has been created');
 		    			newFacultyIDs.add(newOff.Faculty__c);
 		    			offsWithNewFaculty.add(newOff);
-		    			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
+		    			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Course__r.Account__c, 
 		    			                                                    Course_Offering__c = newOff.Id));
 		    		}
-		        } else if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-				    Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
 		        	
-		        	//Faculty member has been added to existing Course Offering 
-		        	//   --> create Affl if no other Affl to Dpt exists
-		        	//   --> create Course Enrollment
-		        	if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
-		        	    UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
-		        	    newFacultyIDs.add(newOff.Faculty__c);
-		        		offsWithNewFaculty.add(newOff);
-		        		courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Department__c, 
-		        		                                                    Course_Offering__c = newOff.Id));
-		        		
-		        	//Faculty member has been changed 
-		        	//   --> update Affiliation to Dpt to point it to the new Faculty
-		        	} else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
-		        		UTIL_Debug.debug('****Faculty member has been changed');
-		        		outdatedFacultyIDs.add(oldOff.Faculty__c);
-		        		updatedFacultyIDs.add(newOff.Faculty__c);
-		        	}
 		        } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 		        	Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
 		        	
+		        	//Faculty member has been added to existing Course Offering 
+                    //   --> create Affl if no other Affl to Dpt exists
+                    //   --> create Course Enrollment
+                    if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
+                        UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
+                        newFacultyIDs.add(newOff.Faculty__c);
+                        offsWithNewFaculty.add(newOff);
+                        courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Course__r.Account__c, 
+                                                                            Course_Offering__c = newOff.Id));
+                        
+                    //Faculty member has been changed 
+                    //   --> update Affiliation to Dpt to point it to the new Faculty
+                    } else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
+                        UTIL_Debug.debug('****Faculty member has been changed');
+                        outdatedFacultyIDs.add(oldOff.Faculty__c);
+                        updatedFacultyIDs.add(newOff.Faculty__c);
+                    
 		        	//Faculty member has been removed from existing Course Offering 
 		        	//   --> delete related Affiliation
 		        	//   --> delete Course Enrollment
-		        	if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
+                    } else if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
 		        	    UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
 						removedFacultyIDs.add(oldOff.Faculty__c);
 		        	}
@@ -157,7 +159,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
  			Boolean afflToDptExists = afflToDptExists(offering, facultyIDtoAffls);
  			UTIL_Debug.debug('****Affl to Dpt already exists: ' + afflToDptExists);
  			if(!afflToDptExists) {
- 			    Affiliation__c afflToInsert = new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Department__c,
+ 			    Affiliation__c afflToInsert = new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Course__r.Account__c,
                                          Role__c = 'Faculty', StartDate__c = terms[i].Start_Date__c, EndDate__c = terms[i].End_Date__c);
 				afflsToInsert.add(afflToInsert);
 				afflsTemp.add(afflToInsert);
@@ -286,7 +288,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         Boolean afflToDptExists = false;
         if(facultyMemberAffls != null && facultyMemberAffls.size() > 0) {
             for(Affiliation__c affl : facultyMemberAffls) {
-                if(affl.Account__c == offering.Department__c) {
+                if(affl.Account__c == offering.Course__r.Account__c) {
                     afflToDptExists = true;
                     break;
                 }
