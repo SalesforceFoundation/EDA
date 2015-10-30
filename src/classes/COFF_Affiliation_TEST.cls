@@ -83,7 +83,7 @@ public with sharing class COFF_Affiliation_TEST {
 
     	//Create Course Offering with Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	Test.startTest();
     	insert offering;
     	Test.stopTest();
@@ -106,7 +106,7 @@ public with sharing class COFF_Affiliation_TEST {
     	//If a new Course Offering is created under the same Department and is taught by the same Faculty member, no additional
     	//Affiliation should be created.
     	Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-101 Summer 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering2;
     	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
     	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
@@ -122,7 +122,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering without Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Term__c = term.Id, Capacity__c = 200);
+    	Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//No affiliation should have been created
@@ -166,7 +166,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering without Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Term__c = term.Id, Capacity__c = 200);
+    	Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//No affiliation should have been created
@@ -198,7 +198,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering with Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
@@ -250,7 +250,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Create Course Offering with Faculty member
     	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-    	Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering;
     	
     	//An Affiliation should have been automatically created for the faculty member
@@ -287,7 +287,7 @@ public with sharing class COFF_Affiliation_TEST {
         
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-        Department__c = dpt.Id, Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
         
         //An Affiliation should have been automatically created for the faculty member
@@ -316,7 +316,7 @@ public with sharing class COFF_Affiliation_TEST {
     }
     
     @isTest
-    public static void getAfflsForContact() {
+    public static void testGetAfflsForContact() {
     	if (strTestOnly != '*' && strTestOnly != 'getAfflsForContact') return;
     	setup();
     	
@@ -357,13 +357,25 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(true, faculty3Affls.contains(aff6));
     	System.assertEquals(true, faculty4Affls.contains(aff2));
     	System.assertEquals(true, faculty4Affls.contains(aff4));
-    	
-    	//Create Course Offering with Faculty member
+    }
+    
+    @isTest
+    public static void testAfflToDptExists() {
+        setup();
+        
+        //dpt is the parent Account of course
+        insert new Affiliation__c(Contact__c = faculty.ID, Account__c = dpt.ID);
+        
+        //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
-        Department__c = dpt3.Id, Faculty__c = faculty2.Id, Term__c = term.Id, Capacity__c = 200);
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
         
-    	Boolean afflToDptExists = tdtm.afflToDptExists(offering, facultyIDtoAffls);
-    	System.assertEquals(true, afflToDptExists);
+        //An Affiliation from the faculty member to the Department should already exist
+        offering = [select Faculty__c, Course__r.Account__c from Course_Offering__c where ID = :offering.ID];
+        COFF_Affiliation_TDTM tdtm = new COFF_Affiliation_TDTM();
+        Map<ID, List<Affiliation__c>> facultyIDtoAffls = tdtm.getAfflsForContact(new ID[]{faculty.ID});
+        Boolean afflToDptExists = tdtm.afflToDptExists(offering, facultyIDtoAffls);
+        System.assertEquals(true, afflToDptExists);
     }
 }

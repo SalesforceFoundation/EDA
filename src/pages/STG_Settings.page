@@ -22,7 +22,7 @@
         var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'REL_Utils' LIMIT 1"); 
         var getname = gettingnamespace.getArray("records");
 		if(getname.length > 0) { 
-		        namespace = getname[0].NamespacePrefix; 
+		    namespace = getname[0].NamespacePrefix; 
 		}
         if(!namespace || namespace.length === 0) {
             namespace = "c";
