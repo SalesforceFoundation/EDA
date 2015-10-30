@@ -36,7 +36,7 @@
     var getname = gettingnamespace.getArray("records");
 	if(getname.length > 0 && getname[0] && getname[0].length > 0) { 
 		namespace = getname[0].NamespacePrefix + "__";
-		svgPath.replace('/resource/', '/resource/' + namespace);
+		svgPath = svgPath.replace('/resource/', '/resource/' + namespace);
 		console.log("svgPath after manipulation: " + svgPath);
 	}
     component.set("v.svgPath", svgPath);
