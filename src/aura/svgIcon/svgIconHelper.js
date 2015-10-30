@@ -21,14 +21,6 @@
     svgroot.setAttribute("class", iconClassName);
     svgroot.setAttribute("name", name);
     
-    // Add an "href" attribute (using the "xlink" namespace)
-    var shape = document.createElementNS(svgns, "use");
-    shape.setAttributeNS(xlinkns, "href", component.get("v.svgPath"));
-    svgroot.appendChild(shape);
-
-    var container = component.find("container").getElement();
-    container.insertBefore(svgroot, container.firstChild);
-    
     var svgPath = component.get("v.svgPath");
     var namespace = "";
     //This would work with any class. We are just using the one with the shortest name.
@@ -40,5 +32,13 @@
 		console.log("svgPath after manipulation: " + svgPath);
 	}
     component.set("v.svgPath", svgPath);
+    
+    // Add an "href" attribute (using the "xlink" namespace)
+    var shape = document.createElementNS(svgns, "use");
+    shape.setAttributeNS(xlinkns, "href", svgPath);
+    svgroot.appendChild(shape);
+
+    var container = component.find("container").getElement();
+    container.insertBefore(svgroot, container.firstChild);
   }
 })
