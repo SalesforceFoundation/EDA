@@ -34,9 +34,11 @@
     //This would work with any class. We are just using the one with the shortest name.
     var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'REL_Utils' LIMIT 1"); 
     var getname = gettingnamespace.getArray("records");
-	if(getname.length > 0) { 
-		namespace = getname[0].NamespacePrefix + "__"; 
+	if(getname.length > 0 && getname[0] && getname[0].length > 0) { 
+		namespace = getname[0].NamespacePrefix + "__";
+		svgPath = svgPath.replace('/resource/', '/resource/' + namespace);
+		console.log("svgPath after manipulation: " + svgPath);
 	}
-    component.set("v.svgPath", namespace + svgPath);
+    component.set("v.svgPath", svgPath);
   }
 })
