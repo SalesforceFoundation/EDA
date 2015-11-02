@@ -6,11 +6,14 @@
 
     <div class="slds">
         
-        <div id="headSettings"/>
+        <div id="headSettings"></div>
         <br/>
         
-        <div id="tabSettings"/>
+        <div id="tabSettings"></div>
         <br/>
+        
+        <div id="namespace_prefix" style="display: none;"></div>
+        
     </div>
 
     <script>
@@ -18,11 +21,15 @@
         sforce.connection.sessionId = "{!$Api.Session_ID}";
         
         var namespace = '';
+        var namespace_prefix = '';
         //This would work with any class. We are just using the one with the shortest name.
         var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'REL_Utils' LIMIT 1"); 
         var getname = gettingnamespace.getArray("records");
 		if(getname.length > 0) { 
-		    namespace = getname[0].NamespacePrefix; 
+		    namespace = getname[0].NamespacePrefix;
+		    if(namespace && namespace.length > 0) {
+		      namespace_prefix = namespace + '__';
+		    }
 		}
         if(!namespace || namespace.length === 0) {
             namespace = "c";
@@ -30,6 +37,9 @@
         
         $Lightning.use(namespace + ":STG_App", function() {
             loadComponents();
+            $Lightning.createComponent("aura:text", { value: namespace_prefix }, "namespace_prefix", function(auraTextComponent, status, statusMessagesList) {
+                console.log("Namespace in Settings page: " + namespace_prefix);
+            });
         });
         
         function loadComponents() {
