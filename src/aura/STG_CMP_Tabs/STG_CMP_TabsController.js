@@ -1,6 +1,9 @@
 ({
 	init : function(component, event, helper) {
 		helper.init(component);
+		var namespace_prefix = document.getElementById("namespace_prefix").value;
+		console.log("Namespace read in Tabs component: " + namespace_prefix);
+		component.set("v.namespace_prefix", namespace_prefix);
 	},
 	
 	saveSettings : function(component, event, helper) {
