@@ -13,9 +13,16 @@
 	
 	getHierarchySettings : function(component) {
 		var action = component.get("c.getSettings");
+		var namespace_prefix = component.get("v.namespace_prefix");
 	    action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
-	    		component.set("v.hierarchySettings", response.getReturnValue());
+	    		var settings = response.getReturnValue();
+	    		var settings_w_prefix = {};
+	    		for(var key in settings) {
+	    			console.log('Setting ' + namespace_prefix + key + ' to ' + settings[key]);
+	    			settings_w_prefix[namespace_prefix + key] = settings[key];
+	    		}
+	    		component.set("v.hierarchySettings", settings_w_prefix);
 	    	} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
 				if (errors) {
