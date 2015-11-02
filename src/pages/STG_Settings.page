@@ -36,10 +36,10 @@
         }
         
         $Lightning.use(namespace + ":STG_App", function() {
-            loadComponents();
             $Lightning.createComponent("aura:text", { value: namespace_prefix }, "namespace_prefix", function(auraTextComponent, status, statusMessagesList) {
                 console.log("Namespace in Settings page: " + namespace_prefix);
             });
+            loadComponents();
         });
         
         function loadComponents() {
