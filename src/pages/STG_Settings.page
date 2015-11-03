@@ -12,7 +12,7 @@
         <div id="tabSettings"></div>
         <br/>
         
-        <div id="namespace_prefix" style="display: none;"></div>
+        <!-- <div id="namespace_prefix" style="display: none;"></div> -->
         
     </div>
 
@@ -36,15 +36,15 @@
         }
         
         $Lightning.use(namespace + ":STG_App", function() {
-            $Lightning.createComponent("aura:text", { value: namespace_prefix }, "namespace_prefix", function(auraTextComponent, status, statusMessagesList) {
+            /*$Lightning.createComponent("aura:text", { value: namespace_prefix }, "namespace_prefix", function(auraTextComponent, status, statusMessagesList) {
                 console.log("Namespace in Settings page: " + namespace_prefix);
-            });
-            loadComponents();
+            });*/
+            loadComponents(namespace_prefix);
         });
         
-        function loadComponents() {
-            $Lightning.createComponent(namespace + ":STG_CMP_Header", {}, "headSettings");
-            $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {}, "tabSettings");
+        function loadComponents(namespace_prefix) {
+            $Lightning.createComponent(namespace + ":STG_CMP_Header", {namespace_prefix : namespace_prefix}, "headSettings");
+            $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {namespace_prefix : namespace_prefix}, "tabSettings");
         }
     </script>
 </apex:page>
