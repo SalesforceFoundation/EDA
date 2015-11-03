@@ -15,7 +15,7 @@
 		var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
 		reciprocalSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
-				if(namespace_prefix && namespace_prefix.length > 0) {
+				if(namespacePrefix && namespacePrefix.length > 0) {
 					component.set("v.reciprocalSettings", this.removePrefix(response.getReturnValue()));
 				} else {
 					component.set("v.reciprocalSettings", response.getReturnValue());
@@ -31,7 +31,7 @@
 		var autoCreateSettingsAction = component.get("c.getAutoCreateSettings");
 		autoCreateSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
-				if(namespace_prefix && namespace_prefix.length > 0) {
+				if(namespacePrefix && namespacePrefix.length > 0) {
 					component.set("v.autoCreateSettings", this.removePrefix(response.getReturnValue()));
 				} else {
 					component.set("v.autoCreateSettings", response.getReturnValue());
@@ -48,7 +48,7 @@
 		//Remove package prefix from each custom field
 		for(var key in settings) {
 			if(key.endsWith('__c')) {
-				var key_no_prefix = key.replace(namespace_prefix, '');
+				var key_no_prefix = key.replace(namespacePrefix, '');
     			settings_no_prefix[key_no_prefix] = settings[key];
 			} else {
 				settings_no_prefix[key] = settings[key];
@@ -62,7 +62,7 @@
 		//Add package prefix to each custom field
 		for(var key in settings) {
 			if(key.endsWith('__c')) {
-				var key_w_prefix = namespace_prefix + key;
+				var key_w_prefix = namespacePrefix + key;
     			settings_w_prefix[key_w_prefix] = settings[key];
 			} else {
 				settings_w_prefix[key] = settings[key];
@@ -225,7 +225,7 @@
 	
 	displayError : function(response) {
 		var errors = response.getError();
-		if (errors && errors[0] && errors[0].message) {
+		if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
 			$A.error("Error message: " + errors[0].message);
 		} else {
 			$A.error("Unknown error");

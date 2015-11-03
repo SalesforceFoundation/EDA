@@ -13,14 +13,14 @@
 	
 	getHierarchySettings : function(component) {
 		var action = component.get("c.getSettings");
-		var namespace_prefix = component.get("v.namespace_prefix");
+		var namespacePrefix = component.get("v.namespacePrefix");
 	    action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
 	    		var settings = response.getReturnValue();
 	    		var settings_no_prefix = {};
 	    		for(var key in settings) {
 	    			if(key.endsWith('__c')) {
-	    				var key_no_prefix = key.replace(namespace_prefix, '');
+	    				var key_no_prefix = key.replace(namespacePrefix, '');
 		    			settings_no_prefix[key_no_prefix] = settings[key];
 	    			}
 	    		}
@@ -28,7 +28,7 @@
 	    	} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
 				if (errors) {
-					if (errors[0] && errors[0].message) {
+					if (errors[0] && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
 						$A.error("Error message: " + errors[0].message);
 					}
 				} else {

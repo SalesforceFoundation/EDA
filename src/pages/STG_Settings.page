@@ -19,14 +19,14 @@
         sforce.connection.sessionId = "{!$Api.Session_ID}";
         
         var namespace = '';
-        var namespace_prefix = '';
+        var namespacePrefix = '';
         //This would work with any class. We are just using the one with the shortest name.
         var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'REL_Utils' LIMIT 1"); 
         var getname = gettingnamespace.getArray("records");
 		if(getname.length > 0) { 
 		    namespace = getname[0].NamespacePrefix;
 		    if(namespace && namespace.length > 0) {
-		      namespace_prefix = namespace + '__';
+		      namespacePrefix = namespace + '__';
 		    }
 		}
         if(!namespace || namespace.length === 0) {
@@ -34,12 +34,12 @@
         }
         
         $Lightning.use(namespace + ":STG_App", function() {
-            loadComponents(namespace_prefix);
+            loadComponents(namespacePrefix);
         });
         
-        function loadComponents(namespace_prefix) {
-            $Lightning.createComponent(namespace + ":STG_CMP_Header", {namespace_prefix : namespace_prefix}, "headSettings");
-            $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {namespace_prefix : namespace_prefix}, "tabSettings");
+        function loadComponents(namespacePrefix) {
+            $Lightning.createComponent(namespace + ":STG_CMP_Header", {namespacePrefix : namespacePrefix}, "headSettings");
+            $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {namespacePrefix : namespacePrefix}, "tabSettings");
         }
     </script>
 </apex:page>
