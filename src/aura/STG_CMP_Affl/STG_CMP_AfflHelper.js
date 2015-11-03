@@ -38,17 +38,21 @@
 	saveAfflSettings : function(component) {
 		var saveAction = component.get("c.saveAfflMappings");
 		var settings = component.get("v.afflMappings");
-		var settings_w_prefix = {};
-		//Add package prefix to each custom field
-		for(var key in settings) {
-			if(key.endsWith('__c')) {
-				var key_w_prefix = namespace_prefix + key;
-    			settings_w_prefix[key_w_prefix] = settings[key];
-			} else {
-				settings_w_prefix[key] = settings[key];
+		if(namespace_prefix && namespace_prefix.length > 0) {
+			var settings_w_prefix = {};
+			//Add package prefix to each custom field
+			for(var key in settings) {
+				if(key.endsWith('__c')) {
+					var key_w_prefix = namespace_prefix + key;
+	    			settings_w_prefix[key_w_prefix] = settings[key];
+				} else {
+					settings_w_prefix[key] = settings[key];
+				}
 			}
+			saveAction.setParams({"afflMappings" : settings_w_prefix});
+		} else {
+			saveAction.setParams({"afflMappings" : settings});
 		}
-		saveAction.setParams({"afflMappings" : settings_w_prefix});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "ERROR") {
 				this.displayError(response);
