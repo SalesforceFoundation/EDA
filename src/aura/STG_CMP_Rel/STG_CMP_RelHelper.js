@@ -13,18 +13,62 @@
 	
 	loadReciprocalSettings : function(component, event, helper) {
 		var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
-		reciprocalSettingsAction.setCallback(this, function(data) {
-			component.set("v.reciprocalSettings", data.getReturnValue());
+		reciprocalSettingsAction.setCallback(this, function(response) {
+			if(response.getState() === "SUCCESS") {
+				if(namespace_prefix && namespace_prefix.length > 0) {
+					component.set("v.reciprocalSettings", this.removePrefix(response.getReturnValue()));
+				} else {
+					component.set("v.reciprocalSettings", response.getReturnValue());
+				}
+	    	} else if(response.getState() === "ERROR") {
+	    		this.displayError(response);
+	    	}
 		});
 		$A.enqueueAction(reciprocalSettingsAction);
 	},
 	
 	loadRelAutoCreateSettings : function(component) {
 		var autoCreateSettingsAction = component.get("c.getAutoCreateSettings");
-		autoCreateSettingsAction.setCallback(this, function(data) {
-			component.set("v.autoCreateSettings", data.getReturnValue());
+		autoCreateSettingsAction.setCallback(this, function(response) {
+			if(response.getState() === "SUCCESS") {
+				if(namespace_prefix && namespace_prefix.length > 0) {
+					component.set("v.autoCreateSettings", this.removePrefix(response.getReturnValue()));
+				} else {
+					component.set("v.autoCreateSettings", response.getReturnValue());
+				}
+	    	} else if(response.getState() === "ERROR") {
+	    		this.displayError(response);
+	    	}
 		});
 		$A.enqueueAction(autoCreateSettingsAction);
+	},
+	
+	removePrefix : function(settings) {
+		var settings_no_prefix = {};
+		//Remove package prefix from each custom field
+		for(var key in settings) {
+			if(key.endsWith('__c')) {
+				var key_no_prefix = key.replace(namespace_prefix, '');
+    			settings_no_prefix[key_no_prefix] = settings[key];
+			} else {
+				settings_no_prefix[key] = settings[key];
+			}
+		}
+		return settings_no_prefix;
+	},
+	
+	addPrefix : function(settings) {
+		var settings_w_prefix = {};
+		//Add package prefix to each custom field
+		for(var key in settings) {
+			if(key.endsWith('__c')) {
+				var key_w_prefix = namespace_prefix + key;
+    			settings_w_prefix[key_w_prefix] = settings[key];
+			} else {
+				settings_w_prefix[key] = settings[key];
+			}
+		}
+		return settings_w_prefix;
 	},
 	
 	settsLinkClicked : function(component) {
