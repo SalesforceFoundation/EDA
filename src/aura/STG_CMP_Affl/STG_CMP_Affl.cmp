@@ -1,9 +1,10 @@
 <aura:component controller="UTIL_CustomSettingsFacade">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
-    <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />
-    
+    <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />  
+    <aura:attribute name="namespacePrefix" type="String" />
     <aura:attribute name="isView" type="Boolean" default="true"/>
+    
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveAfflSettings}"/>
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>

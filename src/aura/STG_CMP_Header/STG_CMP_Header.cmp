@@ -1,7 +1,7 @@
 <aura:component>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
-    <aura:attribute name="namespace_prefix" type="String" />
+    <aura:attribute name="namespacePrefix" type="String" />
     
     <aura:registerEvent name="STG_EVT_Edit" type="c:STG_EVT_Edit" />
     <aura:registerEvent name="STG_EVT_Save" type="c:STG_EVT_Save" />
@@ -19,7 +19,7 @@
                 <!-- MEDIA OBJECT = FIGURE + BODY -->
                 <div class="slds-media">
                     <div class="slds-media__figure">
-                        <c:svgIcon svgPath="{! '/resource/' + v.namespace_prefix + 'SLDS090/assets/icons/standard-sprite/svg/symbols.svg#custom' }" 
+                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS090/assets/icons/standard-sprite/svg/symbols.svg#custom' }" 
                         category="standard" size="large" name="user" />
                     </div>
 

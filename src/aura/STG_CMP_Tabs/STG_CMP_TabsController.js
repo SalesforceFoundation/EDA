@@ -13,8 +13,8 @@
 				component.set("v.isView", false);
 				var errors = response.getError();
 				if (errors) {
-					if (errors[0] && errors[0].message) {
-						$A.error("Error message: " + errors[0].message);
+					if (errors[0] && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
+						$A.error("Error message: " + errors[0].pageErrors[0].message);
 					}
 				} else {
 					$A.error("Unknown error");
