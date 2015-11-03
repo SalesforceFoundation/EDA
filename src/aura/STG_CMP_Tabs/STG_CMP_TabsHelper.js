@@ -17,12 +17,14 @@
 	    action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
 	    		var settings = response.getReturnValue();
-	    		var settings_w_prefix = {};
+	    		var settings_no_prefix = {};
 	    		for(var key in settings) {
-	    			console.log('Setting ' + namespace_prefix + key + ' to ' + settings[key]);
-	    			settings_w_prefix[namespace_prefix + key] = settings[key];
+	    			if(key.endsWith('__c')) {
+	    				key_no_prefix = key.replace(namespace_prefix, '');
+		    			settings_no_prefix[key_no_prefix] = settings[key];
+	    			}
 	    		}
-	    		component.set("v.hierarchySettings", settings_w_prefix);
+	    		component.set("v.hierarchySettings", settings_no_prefix);
 	    	} else if(response.getState() === "ERROR") {
 				var errors = response.getError();
 				if (errors) {
