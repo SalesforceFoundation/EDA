@@ -19,7 +19,7 @@
 	    		var settings = response.getReturnValue();
 	    		if(namespacePrefix && namespacePrefix.length > 0) {
 		    		var settings_no_prefix = {};
-		    		//Add package prefix to each custom field
+		    		//Remove package prefix from each custom field
 		    		for(var key in settings) {
 		    			if(key.endsWith('__c')) {
 		    				var key_no_prefix = key.replace(namespacePrefix, '');
