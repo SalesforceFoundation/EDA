@@ -20,7 +20,8 @@
 	    		var settings_no_prefix = {};
 	    		for(var key in settings) {
 	    			if(key.endsWith('__c')) {
-	    				key_no_prefix = key.replace(namespace_prefix, '');
+	    				var key_no_prefix = key.replace(namespace_prefix, '');
+	    				console.log('Repacing ' + key + ' with ' + key_no_prefix);
 		    			settings_no_prefix[key_no_prefix] = settings[key];
 	    			}
 	    		}
