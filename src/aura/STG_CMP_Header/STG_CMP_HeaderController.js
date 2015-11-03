@@ -9,7 +9,7 @@
 	},
 	
 	save : function(component, event, helper) {
-		//component.set("v.isView", true);
+		component.set("v.isView", true);
 		$A.get("e.c:STG_EVT_Save").setParams({"save": true}).fire();
 	},
 	
