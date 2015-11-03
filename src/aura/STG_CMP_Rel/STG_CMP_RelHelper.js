@@ -46,12 +46,15 @@
 	removePrefix : function(settings) {
 		var settings_no_prefix = {};
 		//Remove package prefix from each custom field
-		for(var key in settings) {
-			if(key.endsWith('__c')) {
-				var key_no_prefix = key.replace(namespacePrefix, '');
-    			settings_no_prefix[key_no_prefix] = settings[key];
-			} else {
-				settings_no_prefix[key] = settings[key];
+		for(var key in settings) { //Iterate over each row
+			settings_no_prefix[key] = {};
+			for(var key2 in settings[key]) { //Iterate over each field in each row
+    			if(key2.endsWith('__c')) { 
+    				var key2_no_prefix = key2.replace(namespacePrefix, '');
+    				settings_no_prefix[key][key2_no_prefix] = settings[key][key2];
+    			} else {
+    				settings_no_prefix[key][key2] = settings[key][key2];
+    			}
 			}
 		}
 		return settings_no_prefix;

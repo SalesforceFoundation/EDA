@@ -20,10 +20,12 @@
 	    		if(namespacePrefix && namespacePrefix.length > 0) {
 		    		var settings_no_prefix = {};
 		    		//Remove package prefix from each custom field
-		    		for(var key in settings) {
+		    		for(var key in settings) { //Iterate over each row
 		    			if(key.endsWith('__c')) {
 		    				var key_no_prefix = key.replace(namespacePrefix, '');
 			    			settings_no_prefix[key_no_prefix] = settings[key];
+		    			} else {
+		    				settings_no_prefix[key] = settings[key];
 		    			}
 		    		}
 		    		component.set("v.hierarchySettings", settings_no_prefix);
