@@ -1,5 +1,5 @@
 ({
-	getProcessedListSettings : function(settings, namespacePrefix) {
+	removePrefixListSettings : function(settings, namespacePrefix) {
 		if(namespacePrefix && namespacePrefix.length > 0) {
 			//We need to end up with an array of objects, because the settings param is an array of objects
     		var settings_no_prefix = []; //create array
@@ -17,6 +17,42 @@
     			settings_no_prefix.push(obj);
     		}
     		return settings_no_prefix;
+		} else {
+			return settings;
+		}
+	},
+	
+	removePrefixHierarchySettings : function(settings, namespacePrefix) {
+		if(namespacePrefix && namespacePrefix.length > 0) {
+    		var settings_no_prefix = {};
+    		//Remove package prefix from each custom field
+    		for(var key in settings) { //Iterate over each row
+    			if(key.endsWith('__c')) {
+    				var key_no_prefix = key.replace(namespacePrefix, '');
+	    			settings_no_prefix[key_no_prefix] = settings[key];
+    			} else {
+    				settings_no_prefix[key] = settings[key];
+    			}
+    		}
+    		return settings_no_prefix;
+		} else {
+			return settings;
+		}
+	},
+	
+	addPrefixListSettings : function(settings, namespacePrefix) {
+		if(namespacePrefix && namespacePrefix.length > 0) {
+			var settings_w_prefix = {};
+			//Add package prefix to each custom field
+			for(var key in settings) {
+				if(key.endsWith('__c')) {
+					var key_w_prefix = namespacePrefix + key;
+	    			settings_w_prefix[key_w_prefix] = settings[key];
+				} else {
+					settings_w_prefix[key] = settings[key];
+				}
+			}
+			return settings_w_prefix;
 		} else {
 			return settings;
 		}
