@@ -1,9 +1,7 @@
-<aura:component controller="UTIL_CustomSettingsFacade">
+<aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
-    <aura:attribute name="isView" type="Boolean" default="true"/>
-    <aura:attribute name="namespacePrefix" type="String" />
     <aura:attribute name="save" type="Boolean" default="true"/>
     
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
@@ -26,16 +24,16 @@
          </ul>
          
          <div aura:id="afflTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Affl isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_Affl isView="{!v.isView}" />
          </div>
          <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
          </div>
      </div>
 </aura:component>

@@ -13,6 +13,7 @@
 	
 	loadReciprocalSettings : function(component, event, helper) {
 		var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
+		var namespacePrefix = component.get("v.namespacePrefix");
 		reciprocalSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				if(namespacePrefix && namespacePrefix.length > 0) {
@@ -29,6 +30,7 @@
 	
 	loadRelAutoCreateSettings : function(component) {
 		var autoCreateSettingsAction = component.get("c.getAutoCreateSettings");
+		var namespacePrefix = component.get("v.namespacePrefix");
 		autoCreateSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				if(namespacePrefix && namespacePrefix.length > 0) {
@@ -44,6 +46,7 @@
 	},
 	
 	removePrefix : function(settings) {
+		var namespacePrefix = component.get("v.namespacePrefix");
 		var settings_no_prefix = {};
 		//Remove package prefix from each custom field
 		for(var key in settings) { //Iterate over each row
@@ -224,14 +227,5 @@
 			}
 		});
 		$A.enqueueAction(action);
-	},
-	
-	displayError : function(response) {
-		var errors = response.getError();
-		if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
-			$A.error("Error message: " + errors[0].message);
-		} else {
-			$A.error("Unknown error");
-		}
 	}
 })
