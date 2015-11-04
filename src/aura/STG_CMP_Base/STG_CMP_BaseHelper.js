@@ -40,6 +40,7 @@
 		}
 	},
 	
+	//Not used right now! It seems like you don't need to add the prefix for saving.
 	addPrefixListSettings : function(settings, namespacePrefix) {
 		if(namespacePrefix && namespacePrefix.length > 0) {
 			var settings_w_prefix = {};
