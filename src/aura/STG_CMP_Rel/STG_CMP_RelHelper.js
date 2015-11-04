@@ -126,6 +126,7 @@
 		newStgAction.setParams({ "name" : name, "female" : female, "male" : male, "neutral" : neutral, "active" : active });
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
+				component.set("v.namespacePrefix", namespacePrefix);
 				var reciprocalSettings = component.get("v.reciprocalSettings");
 				reciprocalSettings.push({ "Id" : response.getReturnValue(), "Name" : name, "Female__c" : female, 
 										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
@@ -148,6 +149,7 @@
 		newStgAction.setParams({ "obj" : object, "field" : field, "relType" : relType, "campaigns" : campaigns });
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
+				component.set("v.namespacePrefix", namespacePrefix);
 				var autoCreateSettings = component.get("v.autoCreateSettings");
 				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
 											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
