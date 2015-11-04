@@ -19,18 +19,20 @@
 	
 	getProcessedSettings : function(settings) {
 		if(namespacePrefix && namespacePrefix.length > 0) {
-    		var settings_no_prefix = [];
+			//We need to end up with an array of objects, because the settings param is an array of objects
+    		var settings_no_prefix = []; //create array
     		//Remove package prefix from each custom field
     		for(var key in settings) { //Iterate over each row - key is just a numeric index here
-    			settings_no_prefix[key] = {};
+    			var obj = {}; //create object
     			for(var key2 in settings[key]) { //Iterate over each field in each row - key2 is the actual field name
     				if(key2.endsWith('__c')) { 
 	    				var key2_no_prefix = key2.replace(namespacePrefix, '');
-	    				settings_no_prefix[key].key2_no_prefix = settings[key][key2];
+	    				obj[key2_no_prefix] = settings[key][key2];
 	    			} else {
-	    				settings_no_prefix[key].key2 = settings[key][key2];
+	    				obj[key2] = settings[key][key2];
 	    			}
     			}
+    			settings_no_prefix.push(obj);
     		}
     		return settings_no_prefix;
 		} else {
