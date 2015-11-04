@@ -81,6 +81,8 @@
 		var errors = response.getError();
 		if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
 			$A.error("Error message: " + errors[0].pageErrors[0].message);
+		} else if(errors && errors[0].fieldErrors && errors[0].fieldErrors.Name[0] && errors[0].fieldErrors.Name[0].message) {
+			$A.error("Error message: " + errors[0].fieldErrors[0].Name[0].message);
 		} else {
 			$A.error("Unknown error");
 		}
