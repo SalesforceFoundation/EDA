@@ -9,29 +9,33 @@
 		action.setCallback(this, function(response) {		
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
-				if(namespacePrefix && namespacePrefix.length > 0) {
-		    		var settings_no_prefix = {};
-		    		//Remove package prefix from each custom field
-		    		for(var key in settings) { //Iterate over each row
-		    			settings_no_prefix[key] = {};
-		    			for(var key2 in settings[key]) { //Iterate over each field in each row
-			    			if(key2.endsWith('__c')) { 
-			    				var key2_no_prefix = key2.replace(namespacePrefix, '');
-			    				settings_no_prefix[key][key2_no_prefix] = settings[key][key2];
-			    			} else {
-			    				settings_no_prefix[key][key2] = settings[key][key2];
-			    			}
-		    			}
-		    		}
-		    		component.set("v.afflMappings", settings_no_prefix);
-				} else {
-					component.set("v.afflMappings", response.getReturnValue());
-				}
+				component.set("v.afflMappings", this.getProcessedSettings(settings));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 	    	}	
 		});
 		$A.enqueueAction(action);
+	},
+	
+	getProcessedSettings : function(settings) {
+		if(namespacePrefix && namespacePrefix.length > 0) {
+    		var settings_no_prefix = [];
+    		//Remove package prefix from each custom field
+    		for(var key in settings) { //Iterate over each row - key is just a numeric index here
+    			settings_no_prefix[key] = {};
+    			for(var key2 in settings[key]) { //Iterate over each field in each row - key2 is the actual field name
+    				if(key2.endsWith('__c')) { 
+	    				var key2_no_prefix = key2.replace(namespacePrefix, '');
+	    				settings_no_prefix[key].key2_no_prefix = settings[key][key2];
+	    			} else {
+	    				settings_no_prefix[key].key2 = settings[key][key2];
+	    			}
+    			}
+    		}
+    		return settings_no_prefix;
+		} else {
+			return settings;
+		}
 	},
 	
 	resetSettings : function(component) {
