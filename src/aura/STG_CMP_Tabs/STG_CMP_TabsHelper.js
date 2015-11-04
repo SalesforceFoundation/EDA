@@ -26,7 +26,8 @@
 	
 	saveSettings : function(component) {
 		var saveAction = component.get("c.saveHierarchySettings");
-		saveAction.setParams({"hierarchySettings" : component.get("v.hierarchySettings")});
+		var hierarchySettings = this.addPrefixHierarchySettings(component.get("v.hierarchySettings"), namespacePrefix);
+		saveAction.setParams({"hierarchySettings" : hierarchySettings});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				component.set("v.isView", true);
