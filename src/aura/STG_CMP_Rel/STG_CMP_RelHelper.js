@@ -6,6 +6,8 @@
 		$A.util.addClass(component.find("recSettsTabContent"), "slds-hide");
 		$A.util.addClass(component.find("autocTabContent"), "slds-hide");
 
+		component.set("v.namespacePrefix", namespacePrefix);
+		
 		//Load list settings
 		this.loadReciprocalSettings(component);
 		this.loadRelAutoCreateSettings(component);
@@ -99,10 +101,12 @@
 	
 	saveRelSettings : function(component) {
 		var saveRecSettingsAction = component.get("c.saveReciprocalSettings");
-		this.callServerVoidMethod(saveRecSettingsAction, {"reciprocalSettings" : component.get("v.reciprocalSettings")});
+		var settings = this.addPrefixListSettings(component.get("v.reciprocalSettings"), namespacePrefix);
+		this.callServerVoidMethod(saveRecSettingsAction, {"reciprocalSettings" : settings});
 		
-		var saveAutoCreateSettingsAction = component.get("c.saveAutoCreateSettings");		
-		this.callServerVoidMethod(saveAutoCreateSettingsAction, {"autoCreateSettings" : component.get("v.autoCreateSettings")});
+		var saveAutoCreateSettingsAction = component.get("c.saveAutoCreateSettings");
+		var settings = this.addPrefixListSettings(component.get("v.autoCreateSettings"), namespacePrefix);
+		this.callServerVoidMethod(saveAutoCreateSettingsAction, {"autoCreateSettings" : settings});
 	},
 	
 	callServerVoidMethod : function(action, params) {
@@ -126,7 +130,6 @@
 		newStgAction.setParams({ "name" : name, "female" : female, "male" : male, "neutral" : neutral, "active" : active });
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
-				component.set("v.namespacePrefix", namespacePrefix);
 				var reciprocalSettings = component.get("v.reciprocalSettings");
 				reciprocalSettings.push({ "Id" : response.getReturnValue(), "Name" : name, "Female__c" : female, 
 										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
@@ -149,7 +152,6 @@
 		newStgAction.setParams({ "obj" : object, "field" : field, "relType" : relType, "campaigns" : campaigns });
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
-				component.set("v.namespacePrefix", namespacePrefix);
 				var autoCreateSettings = component.get("v.autoCreateSettings");
 				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
 											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
