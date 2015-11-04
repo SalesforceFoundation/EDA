@@ -152,6 +152,7 @@
 				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
 											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
 				component.set("v.autoCreateSettings", autoCreateSettings);
+				component.set("v.namespacePrefix", namespacePrefix);
 				this.clearNewStgBoxes(component, ["newObject", "newField", "newRelType", "newCpgTypes"]);
 			} else if(response.getState() === "ERROR") {
 				this.displayError(response);

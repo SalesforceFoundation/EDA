@@ -62,7 +62,7 @@
 	displayError : function(response) {
 		var errors = response.getError();
 		if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
-			$A.error("Error message: " + errors[0].message);
+			$A.error("Error message: " + errors[0].pageErrors[0].message);
 		} else {
 			$A.error("Unknown error");
 		}
