@@ -75,7 +75,7 @@ public without sharing class TDTM_DefaultConfig {
         // Relationships on Relationship__c
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'REL_Relationships_TDTM', Load_Order__c = 1, Object__c = 'Relationship__c', 
-              Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete'));
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
           
         // Addresses on Address object - copies address from Address__c to Contact and Account
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
