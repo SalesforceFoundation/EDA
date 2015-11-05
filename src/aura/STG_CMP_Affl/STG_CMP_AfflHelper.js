@@ -23,8 +23,8 @@
 	
 	saveAfflMappings : function(component) {
 		var saveAction = component.get("c.saveAfflMappings");
-		var settings = component.get("v.afflMappings");
-		saveAction.setParams({"afflMappings" : this.addPrefixListSettings(settings, namespacePrefix)});
+		var settings = this.addPrefixListSettings(component.get("v.afflMappings"), namespacePrefix);
+		saveAction.setParams({"afflMappings" : settingsWithPrefix});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "ERROR") {
 				this.displayError(response);
