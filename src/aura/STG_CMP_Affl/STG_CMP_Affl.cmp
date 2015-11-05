@@ -4,7 +4,7 @@
     <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />  
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-    <aura:handler event="c:STG_EVT_Save" action="{!c.saveAfflMappings}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}"/>
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
     
     <div class="slds-grid slds-wrap">
