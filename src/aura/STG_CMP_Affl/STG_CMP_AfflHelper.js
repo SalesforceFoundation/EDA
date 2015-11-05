@@ -21,7 +21,7 @@
 		this.loadAfflMappings(component);
 	},
 	
-	saveAfflSettings : function(component) {
+	saveAfflMappings : function(component) {
 		var saveAction = component.get("c.saveAfflMappings");
 		var settings = component.get("v.afflMappings");
 		saveAction.setParams({"afflMappings" : this.addPrefixListSettings(settings, namespacePrefix)});

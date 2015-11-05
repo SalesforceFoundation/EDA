@@ -8,7 +8,7 @@
     			var obj = {}; //create object
     			for(var key2 in settings[key]) { //Iterate over each field in each row - key2 is the actual field name
     				if(key2.endsWith('__c')) { 
-	    				var key2_w_prefix = namespacePrefix + key;
+	    				var key2_w_prefix = namespacePrefix + key2;
 	    				obj[key2_w_prefix] = settings[key][key2];
 	    			} else {
 	    				obj[key2] = settings[key][key2];

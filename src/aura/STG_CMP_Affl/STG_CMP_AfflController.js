@@ -7,8 +7,8 @@
 	   component.set("v.isView", event.getParam("isView"));
    }, 
    
-   saveAfflSettings : function(component, event, helper) {
-		helper.saveAfflSettings(component);
+   saveAfflMappings : function(component, event, helper) {
+		helper.saveAfflMappings(component);
 	},
 	
 	resetSettings : function(component, event, helper) {
