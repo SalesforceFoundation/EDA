@@ -92,7 +92,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Term</label>
+        <label>Term Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Terms</pluralLabel>

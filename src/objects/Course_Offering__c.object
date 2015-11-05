@@ -133,7 +133,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Name</label>
+        <label>Course Offering Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Course Offerings</pluralLabel>
