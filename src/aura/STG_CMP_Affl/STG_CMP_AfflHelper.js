@@ -24,7 +24,7 @@
 	saveAfflSettings : function(component) {
 		var saveAction = component.get("c.saveAfflMappings");
 		var settings = component.get("v.afflMappings");
-		saveAction.setParams({"afflMappings" : this.addPrefixHierarchySettings(settings, namespacePrefix)});
+		saveAction.setParams({"afflMappings" : this.addPrefixListSettings(settings, namespacePrefix)});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "ERROR") {
 				this.displayError(response);
