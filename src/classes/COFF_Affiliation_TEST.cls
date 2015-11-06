@@ -35,12 +35,6 @@
 */
 @isTest
 public with sharing class COFF_Affiliation_TEST {
-
-	/*********************************************************************************************************
-    * @description if you only want to run one test in this class, fill in its name here.
-    * if you want to run all tests, then use '*'
-    */
-    private static string strTestOnly = '*';
     
     private static Account university;
     private static Account dpt;
@@ -78,7 +72,6 @@ public with sharing class COFF_Affiliation_TEST {
     */
     @isTest
     public static void newCourseOffering() {
-    	if (strTestOnly != '*' && strTestOnly != 'newCourseOffering') return;
     	setup();
 
     	//Create Course Offering with Faculty member
@@ -115,7 +108,6 @@ public with sharing class COFF_Affiliation_TEST {
     
     @isTest
     public static void addFacultyToOfferingNoPrevAffl() {
-    	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOfferingNoPrevAffl') return;
     	setup();
     	List<Affiliation__c> affls = [select ID from Affiliation__c];
     	Integer afflsSize1 = affls.size();
@@ -154,7 +146,6 @@ public with sharing class COFF_Affiliation_TEST {
     
     @isTest
     public static void addFacultyToOfferingPrevAffl() {
-    	if (strTestOnly != '*' && strTestOnly != 'addFacultyToOfferingPrevAffl') return;
     	setup();
     	
     	//Create affiliation from faculty member to dpt
@@ -193,7 +184,6 @@ public with sharing class COFF_Affiliation_TEST {
     
     @isTest
     public static void changeFaculty() {
-    	if (strTestOnly != '*' && strTestOnly != 'changeFaculty') return;
     	setup();
     	
     	//Create Course Offering with Faculty member
@@ -245,7 +235,6 @@ public with sharing class COFF_Affiliation_TEST {
     
     @isTest
     public static void facultyMadeNull() {
-    	if (strTestOnly != '*' && strTestOnly != 'facultyMadeNull') return;
     	setup();
     	
     	//Create Course Offering with Faculty member
@@ -282,7 +271,6 @@ public with sharing class COFF_Affiliation_TEST {
     
     @isTest
     public static void deleteCourseOffering() {
-        if (strTestOnly != '*' && strTestOnly != 'deleteCourseOffering') return;
         setup();
         
         //Create Course Offering with Faculty member
@@ -317,7 +305,6 @@ public with sharing class COFF_Affiliation_TEST {
     
     @isTest
     public static void testGetAfflsForContact() {
-    	if (strTestOnly != '*' && strTestOnly != 'getAfflsForContact') return;
     	setup();
     	
     	Contact faculty1 = new Contact(FirstName = 'Test', LastName = 'Testerson1');
@@ -377,5 +364,40 @@ public with sharing class COFF_Affiliation_TEST {
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = tdtm.getAfflsForContact(new ID[]{faculty.ID});
         Boolean afflToDptExists = tdtm.afflToDptExists(offering, facultyIDtoAffls);
         System.assertEquals(true, afflToDptExists);
+    }
+    
+    @isTest
+    public static void newCourseOfferingNoDates() {
+        setup();
+
+        //Create Course Offering
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        Test.startTest();
+        insert offering;
+        Test.stopTest();
+        
+        //Since no dates were entered for the Course Offering, the dates from the parent term should have been copied
+        offering = [select Start_Date__c, End_Date__c from Course_Offering__c where ID = :offering.ID];
+        System.assertEquals(System.today() + 5, offering.Start_Date__c);
+        System.assertEquals(System.today() + 90, offering.End_Date__c);
+    }
+    
+    @isTest
+    public static void newCourseOfferingWithDates() {
+        setup();
+
+        //Create Course Offering
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200, Start_Date__c = System.today() + 10, 
+        End_Date__c = System.today() + 100);
+        Test.startTest();
+        insert offering;
+        Test.stopTest();
+        
+        //The dates entered when creating the Course Offering should not have been overridden
+        offering = [select Start_Date__c, End_Date__c from Course_Offering__c where ID = :offering.ID];
+        System.assertEquals(System.today() + 10, offering.Start_Date__c);
+        System.assertEquals(System.today() + 100, offering.End_Date__c);
     }
 }
