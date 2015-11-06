@@ -33,33 +33,16 @@
 * @group Address Management
 * @description Supports the automatic scheduling of Seasonal Address updates  
 */ 
-public with sharing class ADDR_Seasonal_SCHED implements Database.Batchable<SObject> {
-
-    /*******************************************************************************************************
-    * @description holds the soql string that queries all Addresses in the current month and day
-    */
-    public String strQuery { get; set; }
+public with sharing class ADDR_Seasonal_SCHED implements Database.Batchable<SObject>, Schedulable {
     
     /*******************************************************************************************************
-    * @description executes the batch job
-    * @return boolean. true if the batch runs, false if the batch cannot run.  
+    * @description execute method for the Schedulable interface. It executes the batch job
+    * @return void
     ********************************************************************************************************/
-    /*public Boolean executeReturnStatus() { 
+    public void execute(SchedulableContext ctx) {
     	//call the batch job, processing 10 at a time
-        if(UTIL_JobScheduler.canRunBatch()) {
-	    	integer iMonth = system.today().month();
-	    	integer iDay = system.today().day();
-	        
-	        strQuery = 'select Id, Parent_Account__c, Default_Address__c ' +
-	            ' from Address__c ' +
-	            ' where Seasonal_Start_Month__c = \'' + string.valueOf(iMonth) + '\'' +
-	            ' and Seasonal_Start_Day__c = \'' + string.valueOf(iDay) + '\'';
-        
-            Id batchInstanceId = Database.executeBatch(this, 10);
-            return true;
-        }
-        return false;
-    }*/
+        Id batchInstanceId = Database.executeBatch(this, 10);
+    }
 
     /*******************************************************************************************************
     * @description start Method for the Database.Batchable interface
@@ -68,12 +51,12 @@ public with sharing class ADDR_Seasonal_SCHED implements Database.Batchable<SObj
     ********************************************************************************************************/
     public database.Querylocator start(Database.BatchableContext bc){ 
     	integer iMonth = system.today().month();
-	    	integer iDay = system.today().day();
+	    integer iDay = system.today().day();
 	        
-        strQuery = 'select Id, Parent_Account__c, Default_Address__c ' +
+        String strQuery = 'select Id, Parent_Account__c, Default_Address__c ' +
             ' from Address__c ' +
-            ' where Seasonal_Start_Month__c = \'' + string.valueOf(iMonth) + '\'' +
-            ' and Seasonal_Start_Day__c = \'' + string.valueOf(iDay) + '\'';
+            ' where Seasonal_Start_Month__c = \'' + String.valueOf(iMonth) + '\'' +
+            ' and Seasonal_Start_Day__c = \'' + String.valueOf(iDay) + '\'';
 	                  
         return Database.getQueryLocator(strQuery);      
     }
