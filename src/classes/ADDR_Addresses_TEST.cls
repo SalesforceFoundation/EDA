@@ -1902,10 +1902,22 @@ private with sharing class ADDR_Addresses_TEST {
         insert listAddrT;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
 
+        //Schedule the job just for test coverage purposes. But we still have to manually run the
+        //batch, as batch jobs run from a scheduled job don't actually run after stopTest, as described
+        //at https://salesforce.stackexchange.com/questions/36806/does-test-stoptest-ensure-a-system-schedule-database-batchable-completes-in-a
+        String jobId= System.schedule('Seasonal Addresses Update', '0 15 0 * * ?', new ADDR_Seasonal_SCHED());
+        // Get the information from the CronTrigger API object
+        CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE id = :jobId];
+        // Verify the expressions are the same
+        System.assertEquals('0 15 0 * * ?', ct.CronExpression);
+        // Verify the job has not run
+        System.assertEquals(0, ct.TimesTriggered);
+        // Verify the next time the job will run
+        System.assert(String.valueOf(ct.NextFireTime).contains('00:15:00'));
+        
         // run the scheduled batch directly
         ADDR_Seasonal_SCHED sch = new ADDR_Seasonal_SCHED();
         //Test.startTest(); already called by createHHTestData() 
-        //sch.executeReturnStatus();
         Database.executeBatch(sch, 10);
         UTIL_Debug.debug('DJH**** about to call stopTest!');
         Test.stopTest();
