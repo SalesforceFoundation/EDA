@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.com Foundation
+    Copyright (c) 2015, Salesforce.com Foundation
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.com Foundation
 * @date 2015
-* @group Program Enrollment
+* @group Term
 * @description Copies start and end date from a Term to all children Course Offerings that don't 
 * have values in those fields. 
 */

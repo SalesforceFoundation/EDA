@@ -43,6 +43,7 @@
         <members>TDTM_TriggerHandler</members>
         <members>TDTM_TriggerScaffolds_TEST</members>
         <members>TERM_CourseOff_TDTM</members>
+        <members>TERM_CourseOff_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
         <members>UTIL_CustomSettingsFacade</members>

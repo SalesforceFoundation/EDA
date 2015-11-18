@@ -38,7 +38,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Invalid filter field value defined for&nbsp;</value>
+        <value>Invalid filter field value defined for&#160;</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
