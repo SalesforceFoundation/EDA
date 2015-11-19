@@ -167,7 +167,6 @@
         <members>Course_Enrollment__c.GPA__c</members>
         <members>Course_Enrollment__c.Program_Enrollment__c</members>
         <members>Course_Offering__c.Capacity__c</members>
-        <members>Course_Offering__c.Course_Name__c</members>
         <members>Course_Offering__c.Course__c</members>
         <members>Course_Offering__c.End_Date__c</members>
         <members>Course_Offering__c.Faculty__c</members>
