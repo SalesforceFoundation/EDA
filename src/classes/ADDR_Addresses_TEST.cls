@@ -1916,10 +1916,9 @@ private with sharing class ADDR_Addresses_TEST {
         System.assert(String.valueOf(ct.NextFireTime).contains('00:15:00'));
         
         // run the scheduled batch directly
-        ADDR_Seasonal_SCHED sch = new ADDR_Seasonal_SCHED();
+        ADDR_Seasonal_BATCH batch = new ADDR_Seasonal_BATCH();
         //Test.startTest(); already called by createHHTestData() 
-        Database.executeBatch(sch, 10);
-        UTIL_Debug.debug('DJH**** about to call stopTest!');
+        Database.executeBatch(batch);
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
