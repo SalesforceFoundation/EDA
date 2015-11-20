@@ -328,7 +328,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Course_Name__c</fields>
         <fields>Term__c</fields>
         <fields>Capacity__c</fields>
         <relatedList>Course_Offering__c.Faculty__c</relatedList>

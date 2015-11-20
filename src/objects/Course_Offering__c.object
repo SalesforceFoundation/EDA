@@ -68,17 +68,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Course_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>Course__r.Name</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Course Name</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Course__c</fullName>
         <externalId>false</externalId>
         <label>Course</label>

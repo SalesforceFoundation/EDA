@@ -33,10 +33,6 @@
                 <field>Term__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Course_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>End_Date__c</field>
             </layoutItems>
