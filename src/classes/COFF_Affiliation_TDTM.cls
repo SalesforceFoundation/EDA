@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.com Foundation
 * @date 2015
-* @group Program Enrollment
+* @group Course Offering
 * @description Keeps Course Offering and Affiliation records for a Contact in sync. 
 */
 public class COFF_Affiliation_TDTM extends TDTM_Runnable {
