@@ -6,7 +6,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AutoCreateFieldError</shortDescription>
-        <value>Unable to retrieve a valid Id for Relationship auto-creation.  Please check the settings under the Relationships Settings tab for valid fields and try again.</value>
+        <value>Unable to find valid autocreation Relationship settings. Please check the settings under HEDA Settings | Relationships | Autocreation for valid fields and try again.</value>
     </labels>
     <labels>
         <fullName>DefaultAdminName</fullName>
@@ -14,14 +14,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Default Administrative Account Name</shortDescription>
-        <value>Administrative Acc</value>
+        <value>Administrative Account</value>
     </labels>
     <labels>
         <fullName>DefaultHouseholdName</fullName>
         <categories>Households, Household Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>DefaultHouseholdName</shortDescription>
+        <shortDescription>Default Household Name</shortDescription>
         <value>Household</value>
     </labels>
     <labels>
@@ -38,7 +38,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Invalid filtering field name defined on</value>
+        <value>Invalid filter field value defined for&#160;</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -70,7 +70,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address objects are only supported on Household, Administrative, and Organizational Accounts (if enabled).</value>
+        <value>Address Management is only supported on Household, Administrative, and Organizational Accounts (if enabled).</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
@@ -78,7 +78,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>addrSeasonalOverlap</shortDescription>
-        <value>Seasonal addresses cannot overlap with any other seasonal address in the Household.</value>
+        <value>Date ranges for Seasonal Addresses cannot overlap.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalPartial</fullName>
@@ -86,7 +86,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>addrSeasonalPartial</shortDescription>
-        <value>An address must have all or none of its Seasonal fields set.</value>
+        <value>An address must have all or none of its seasonal fields set.</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>
@@ -94,6 +94,6 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>noAccRecType</shortDescription>
-        <value>The following account record type defined in the settings does not exist:</value>
+        <value>The defined account record type does not exist:</value>
     </labels>
 </CustomLabels>

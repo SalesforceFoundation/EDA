@@ -112,7 +112,7 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'PREN_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Program_Enrollment__c', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
         
-        // Affiliation management on Course Offering record creation
+        // Affiliation and Date management on Course Offering record creation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'COFF_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering__c', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
@@ -121,6 +121,11 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'THAN_Filter_TDTM', Load_Order__c = 1, Object__c = 'Trigger_Handler__c', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              
+        // Default dates from Term to Course Offerings
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'TERM_CourseOff_TDTM', Load_Order__c = 1, Object__c = 'Term__c', 
+              Trigger_Action__c = 'AfterUpdate'));
                     
         return handlers;
     }

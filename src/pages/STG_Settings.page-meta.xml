@@ -3,6 +3,5 @@
     <apiVersion>35.0</apiVersion>
     <availableInTouch>true</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description></description>
     <label>Settings</label>
 </ApexPage>
