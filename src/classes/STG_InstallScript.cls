@@ -53,7 +53,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
     
     global static void insertMappings() {
-    	List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c];
+    	List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c where Account_Record_Type__c != null AND Primary_Affl_Field__c != null];
     	if(mappings.size() == 0) {
 			mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic Program', Primary_Affl_Field__c = 'Primary Academic Program'));
     		mappings.add(new Affl_Mappings__c(Name = 'Administrative', Account_Record_Type__c = 'Administrative', Primary_Affl_Field__c = 'Primary Administrative Account'));
@@ -74,7 +74,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
     public static void insertTdtmDefaults(List<Trigger_Handler__c> defaultHandlers) {
         List<Trigger_Handler__c> existingHandlers = [select Class__c, Object__c, Load_Order__c, Trigger_Action__c, User_Managed__c 
-                                                       from Trigger_Handler__c];
+                                                       from Trigger_Handler__c where Class__c != null];
 
         List<Trigger_Handler__c> handlersToInsert = new List<Trigger_Handler__c>();
         List<Trigger_Handler__c> handlersToUpdate = new List<Trigger_Handler__c>();

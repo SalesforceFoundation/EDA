@@ -58,29 +58,9 @@ public with sharing class ERR_Handler_TEST {
         // all these tests are about testing our error handling, so we can't let the assert interfere
         TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;        
         
-        User user = CreateNewUserForTests(System.now().getTime() + '@testerson.com');
+        User user = UTIL_UnitTestData_TEST.CreateNewUserForTests(System.now().getTime() + '@testerson.com');
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
             Error_Notifications_To__c = user.Id, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
-    }
-    
-    public static User CreateNewUserForTests(string strUsername) {
-
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
-        UserRole r = [SELECT Id FROM UserRole WHERE Name='COO'];
-        User u;	
-        // to work around mixed DML errors during tests, you must
-        // create user account in its own transaction.  got this
-        // hack from the web.
-        System.runAs ( new User(Id = UserInfo.getUserId()) ) {        
-	        u = new User(alias = 'jsmith', email='jsmith@acme.com', 
-	            emailencodingkey='UTF-8', lastname='Smith', 
-	            languagelocalekey='en_US', 
-	            localesidkey='en_US', profileid = p.Id, userroleid = r.Id,
-	            timezonesidkey='America/Los_Angeles', 
-	            username=strUsername);
-	        insert u;
-        }
-        return u;
     }
     
     /** Test using the default configuration of classes that implement TDTM_Runnable **/
@@ -88,7 +68,7 @@ public with sharing class ERR_Handler_TEST {
     public static void errorStoredInDbTdtmStandardConfig() {
     	if (strTestOnly != '*' && strTestOnly != 'errorStoredInDbTdtmStandardConfig') return;
     
-        setupWithChatterNotifications();
+        setupWithEmailNotifications();
                     
         //Create account
         Account acc1 = new Account(Name='test1');
