@@ -34,7 +34,7 @@
 * @description Allows running TDTM class only for those records that do not meet the filtering criteria.
 * Those that do are taken out from the list of records to process. 
 */
-public with sharing class TDTM_Filter {
+public class TDTM_Filter {
     
     /* @description  The name of the class being run.*/
     String classToRunName;
