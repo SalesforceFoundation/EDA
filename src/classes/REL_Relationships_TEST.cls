@@ -311,7 +311,9 @@ public class REL_Relationships_TEST {
         cm.Status = 'SomethingDifferentForUpdate';        
         Test.startTest();        
         update cm;
-        Test.stopTest();        
+        Test.stopTest();
+        
+        System.assertNotEquals('We got here', 'Exception thrown on update');
     }
     
     /*********************************************************************************************************
@@ -834,6 +836,8 @@ public class REL_Relationships_TEST {
            Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
            Boolean cAuto = REL_Utils.hasContactAutoCreate;
            Boolean cmAuto = REL_Utils.hasCMAutoCreate;
+           System.assertEquals(false, cAuto);
+           System.assertEquals(false, cmAuto);
         }
     }  
     

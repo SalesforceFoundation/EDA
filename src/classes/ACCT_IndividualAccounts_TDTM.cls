@@ -68,8 +68,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         
-        list<Contact> contacts = newlist;
-        list<Contact> oldContacts = oldlist;
+        list<Contact> contacts = (list<Contact>)newlist;
+        list<Contact> oldContacts = (list<Contact>)oldlist;
         
         DmlWrapper dmlWrapper = new DmlWrapper();
     	   	

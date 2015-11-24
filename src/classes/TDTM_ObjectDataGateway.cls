@@ -47,7 +47,7 @@ public with sharing class TDTM_ObjectDataGateway {
      */
     public Boolean isEmpty() {
     	if(rowCount == null) {
-	    	List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c];
+	    	List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c where Class__c != null];
 	    	rowCount = (Integer)result[0].get('rowCount');
     	}
     	if(rowCount == 0)

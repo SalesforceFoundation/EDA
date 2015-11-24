@@ -35,40 +35,6 @@
 */
 @isTest
 public class UTIL_UnitTestData_TEST { 
-
-// create data for use in unit tests
-// should not be referenced by production code
-    public static string closedWonStage;
-    public static string closedLostStage;
-    public static string openStage;
-    
-    public static String getClosedWonStage(){
-        if (closedWonStage == null){
-            List<OpportunityStage> closedWonStages = [select masterlabel from opportunitystage where isActive = true and iswon = true];
-            
-            if(closedWonStages.size()>0){
-                closedWonStage = closedWonStages[0].masterlabel;
-            } else {
-                closedWonStage = '';
-            }
-        }
-        
-        return closedWonStage;
-    }
-
-    public static String getOpenStage(){
-        if (openStage == null){
-            List<OpportunityStage> openStages = [select masterlabel from opportunitystage where isActive = true and iswon = false];
-            
-            if(openStages.size()>0){
-                openStage = openStages[0].masterlabel;
-            } else {
-                openStage = '';
-            }
-        }
-        
-        return openStage;
-    }
     
     public static Contact getContact() {
     	return new Contact (
@@ -103,50 +69,6 @@ public class UTIL_UnitTestData_TEST {
         //insert ContactsToAdd;
         
         return ContactsToAdd;
-    }
-
-    public static List<Opportunity> OppsForContactList (List<Contact> Cons, id CampId, string Stage, date Close, double Amt, string rectype, string oppType) {
-     
-        // given a List of Contacts,
-        // add one Opp per contact w/ the specified data
-        // TBD should allow specifying rectype (optional)
-    
-        List<Opportunity> OppsToAdd = new List<Opportunity> ();
-
-        for ( Contact thisCon : Cons ) {
-            Opportunity newOpp = New Opportunity (
-                Name = 'Test Opp ' + thisCon.FirstName + thisCon.LastName,
-                Amount = Amt,
-                CloseDate = Close,
-                StageName = Stage,
-                CampaignId = CampId,
-                type = oppType
-            );
-            oppsToAdd.add (newOpp);
-        }
-        return oppsToAdd;
-    }
-    
-    public static List<Opportunity> OppsForAccountList (List<Account> listAcc, id CampId, string Stage, date Close, double Amt, string rectype, string oppType) {
-     
-        // given a List of Accounts,
-        // add one Opp per Account w/ the specified data
-    
-        List<Opportunity> OppsToAdd = new List<Opportunity> ();
-
-        for (Account acc : listAcc) {
-            Opportunity newOpp = New Opportunity (
-                Name = 'Test Opp ' + acc.Name,
-                AccountId = acc.Id,
-                Amount = Amt,
-                CloseDate = Close,
-                StageName = Stage,
-                CampaignId = CampId,
-                type = oppType
-            );
-            oppsToAdd.add (newOpp);
-        }
-        return oppsToAdd;
     }
 
     public static List<Account> CreateMultipleTestAccounts (integer n, string strType) {
