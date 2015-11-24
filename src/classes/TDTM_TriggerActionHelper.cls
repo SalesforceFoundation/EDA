@@ -35,7 +35,7 @@
 * @group-content ../../ApexDocContent/TDTM.htm
 * @description Class that contains helper methods for the TDTM Trigger Handler logic.
 */
-public with sharing class TDTM_TriggerActionHelper {
+public class TDTM_TriggerActionHelper {
     
     /*******************************************************************************************************
     * @description Determines which TDTM action applies, based on the trigger environment.

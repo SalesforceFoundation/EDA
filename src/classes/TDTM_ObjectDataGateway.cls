@@ -36,7 +36,7 @@
  * @description Class that queries custom object to retrieve classes to call for creation or modification
  * of a record of a specific object type.
  */
-public with sharing class TDTM_ObjectDataGateway {
+public class TDTM_ObjectDataGateway {
     
     private static List<ToRunOnObjectAction> classesQueried = new List<ToRunOnObjectAction>();
     private static Integer rowCount;

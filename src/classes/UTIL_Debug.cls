@@ -33,7 +33,7 @@
 * @group Utilities
 * @description Utility class for debug statements to turn them off in a managed context, as well as to display relevant performance information.
 */
-public with sharing class UTIL_Debug {
+public class UTIL_Debug {
 
     //enable debug logs in all tests, otherwise get the setting
     public static boolean enabled = test.isRunningTest() ? true : UTIL_CustomSettingsFacade.getSettings().Enable_Debug__c;
