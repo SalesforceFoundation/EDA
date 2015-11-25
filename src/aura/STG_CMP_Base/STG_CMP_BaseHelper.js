@@ -81,6 +81,12 @@
 		}
 	},
 	
+	clearNewStgBoxes : function(component, fields) {
+		for(var key in fields) {
+			component.find(fields[key]).set("v.value", "");
+		}
+	},
+	
 	displayError : function(response) {
 		var errors = response.getError();
 		if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {

@@ -164,12 +164,6 @@
 		$A.enqueueAction(newStgAction);
 	},
 	
-	clearNewStgBoxes : function(component, fields) {
-		for(var key in fields) {
-			component.find(fields[key]).set("v.value", "");
-		}
-	},
-	
 	deleteRecSettingRow : function(component, id, position) {		
 		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position);
 	},

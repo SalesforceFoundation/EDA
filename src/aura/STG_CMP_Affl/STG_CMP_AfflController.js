@@ -13,5 +13,9 @@
 	
 	resetSettings : function(component, event, helper) {
 		helper.resetSettings(component);
-	}
+	},
+	
+	newAfflMapping : function(component, event, helper) {
+		helper.newAfflMapping(component);
+	},
 })

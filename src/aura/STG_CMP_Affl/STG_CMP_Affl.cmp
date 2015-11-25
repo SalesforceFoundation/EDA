@@ -21,6 +21,27 @@
 	         <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Status__c}"/></div>
 	         <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Role__c}"/></div>
 	     </aura:iteration>
-
      </div>
+     
+     <div class="newafflmapping">
+        <div aria-labelledby="newafflmappingform">
+          <fieldset class="slds-box slds-theme--default slds-container--medium">
+            <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
+              <div class="slds-form--inline slds-form-element">
+                <label class="slds-form-element__label" for="accRecType">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="accRecType" placeholder="Account Record Type"/></div>
+                <label class="slds-form-element__label" for="primaryField">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="primaryField" placeholder="Primary Affl Field"/></div>
+                <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment:</label>
+                <div class="slds-form-element__control"><ui:inputCheckbox aura:id="autoEnroll"/></div>
+                <label class="slds-form-element__label" for="autoEnrollStatus">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollStatus" placeholder="Status"/></div>
+                <label class="slds-form-element__label" for="autoEnrollRole">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollRole" placeholder="Role"/></div>
+              </div>
+              <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAfflMapping}">Add Mapping</ui:button>
+          </fieldset>
+        </div>
+      </div>
+            
 </aura:component>
