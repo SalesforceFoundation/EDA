@@ -57,4 +57,8 @@
 		});
 		$A.enqueueAction(newMappingAction);
 	},
+	
+	deleteAfflMappingRow : function(component, id, position) {
+		this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position);
+	}
 })

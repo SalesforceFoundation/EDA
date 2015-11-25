@@ -274,6 +274,16 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
     
     /*******************************************************************************************************
+    * @description Deletes an Auto-Create List Setting record.
+    * @return void
+    */
+    @AuraEnabled
+    public static void deleteAfflMappingRecord(String idString) {
+        ID idType = ID.valueOf(IdString);
+        delete [select Id from Affl_Mappings__c where Id = :idType];
+    }
+    
+    /*******************************************************************************************************
     * @description Deletes a Relationship Lookup List Setting record.
     * @return void
     */

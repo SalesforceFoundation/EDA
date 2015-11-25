@@ -18,4 +18,10 @@
 	newAfflMapping : function(component, event, helper) {
 		helper.newAfflMapping(component);
 	},
+	
+	deleteAfflMappingRow : function(component, event, helper) {
+		var id = event.getParam("id");
+		var position = event.getParam("position");
+		helper.deleteAfflMappingRow(component, id, position);
+	}
 })
