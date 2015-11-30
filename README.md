@@ -1,6 +1,6 @@
 # HEDAP
 
-HEDAP, the Higher Education Data Architecture App, is released under the open source [BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
+HEDAP, the Higher Education Data Architecture Package, is released under the open source [BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
 
 Salesforce is designed for business organizations that operate based on opportunities, leads, and all the other sales-related concepts. HEDAP sits on top of Salesforce to make it Higher Ed-specific.
 
