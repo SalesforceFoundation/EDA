@@ -35,7 +35,7 @@
 * such as detecting whether we are in a managed package, and some string helpers.
 */
 
-public with sharing class UTIL_Namespace { 
+public class UTIL_Namespace { 
 
     /******************************************************************************************************
     * @description String helper property for getNamespace() method.

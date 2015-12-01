@@ -36,7 +36,7 @@
 * @group ErrorHandling
 * @group-content ../../ApexDocContent/ErrorHandling.htm
 */
-public with sharing class ERR_Handler {
+public class ERR_Handler {
 	
 	public enum Context {
     	/* @description Address context. */

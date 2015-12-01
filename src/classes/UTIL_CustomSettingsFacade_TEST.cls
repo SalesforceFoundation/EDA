@@ -109,10 +109,15 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     @isTest
     public static void saveReciprocalSettings() {
         List<Relationship_Lookup__c> reciprocalSettings = new List<Relationship_Lookup__c>();
+        reciprocalSettings.add(new Relationship_Lookup__c(Name='LookupType', Male__c='MaleType', Female__c='FemaleType',Neutral__c='NeutralType'));
+        reciprocalSettings.add(new Relationship_Lookup__c(Name='LookupType2', Male__c='MaleType2',Female__c='FemaleType2',Neutral__c='NeutralType2'));  
         
         Test.startTest();
         UTIL_CustomSettingsFacade.saveReciprocalSettings(reciprocalSettings);
         Test.stopTest();
+        
+        reciprocalSettings = [select ID from Relationship_Lookup__c];
+        System.assertEquals(2, reciprocalSettings.size());
     }
  
     @isTest

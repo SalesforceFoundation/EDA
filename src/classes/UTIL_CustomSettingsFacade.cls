@@ -127,7 +127,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     @AuraEnabled
     public static List<Affl_Mappings__c> getAfflMappings() {
         return [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
-                                                      Auto_Program_Enrollment_Status__c from Affl_Mappings__c];
+               Auto_Program_Enrollment_Status__c from Affl_Mappings__c limit 50000];
     }
     
     /*******************************************************************************************************
@@ -136,7 +136,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Lookup__c> getReciprocalSettings() {
-        return [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c];
+        return [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c limit 50000];
     }
     
     /*******************************************************************************************************
@@ -145,7 +145,8 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
-        return [select Id, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c];
+        return [select Id, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c
+                limit 50000];
     }
     
     /*******************************************************************************************************

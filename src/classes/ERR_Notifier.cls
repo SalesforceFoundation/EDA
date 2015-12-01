@@ -34,7 +34,7 @@
 * @group ErrorHandling
 * @group-content ../../ApexDocContent/ErrorHandling.htm
 */
-public with sharing class ERR_Notifier {
+public class ERR_Notifier {
 
     public static NotificationOptions notificationOptions = new NotificationOptions();
     

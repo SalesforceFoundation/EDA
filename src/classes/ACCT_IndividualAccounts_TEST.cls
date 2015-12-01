@@ -37,14 +37,6 @@
 private class ACCT_IndividualAccounts_TEST {
     
     /*********************************************************************************************************
-    * @description tests default contructor
-    */
-    @isTest
-    public static void ACCT_IndividualAccounts_TEST() {
-        ACCT_IndividualAccounts_TDTM testIndividualAccounts = new ACCT_IndividualAccounts_TDTM();
-    }
-    
-    /*********************************************************************************************************
     * @description Create a Contact with TDTM triggers off  
     */
     @isTest

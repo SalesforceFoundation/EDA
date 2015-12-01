@@ -36,7 +36,7 @@
  * @description Class that queries custom object to retrieve classes to call for creation or modification
  * of a record of a specific object type.
  */
-public with sharing class TDTM_ObjectDataGateway {
+public class TDTM_ObjectDataGateway {
     
     private static List<ToRunOnObjectAction> classesQueried = new List<ToRunOnObjectAction>();
     private static Integer rowCount;
@@ -47,7 +47,7 @@ public with sharing class TDTM_ObjectDataGateway {
      */
     public Boolean isEmpty() {
     	if(rowCount == null) {
-	    	List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c];
+	    	List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c where Class__c != null];
 	    	rowCount = (Integer)result[0].get('rowCount');
     	}
     	if(rowCount == 0)
