@@ -38,63 +38,47 @@
  */
 public class TDTM_ObjectDataGateway {
     
-    private static List<ToRunOnObjectAction> classesQueried = new List<ToRunOnObjectAction>();
+    /*******************************************************************************************************
+     * @description Holds the trigger handlers cached in a list, to avoid repetitive soql calls.
+     */
+    private static List<Trigger_Handler__c> triggerHandlers;
+    
+    /*******************************************************************************************************
+     * @description Number of Trigger Handlers records.
+     */
     private static Integer rowCount;
     
     /*******************************************************************************************************
-     * @description Checks is any TDTM records exist.
+     * @description Checks if any TDTM records exist.
      * @return Boolean True is there are no TDTM records. False otherwise.
      */
     public Boolean isEmpty() {
-    	if(rowCount == null) {
-	    	List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c where Class__c != null];
-	    	rowCount = (Integer)result[0].get('rowCount');
-    	}
-    	if(rowCount == 0)
+        if(rowCount == null) {
+            List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c];
+            rowCount = (Integer)result[0].get('rowCount');
+        }
+        if(rowCount == 0)
             return true;    
         return false;
     }
     
     /*******************************************************************************************************
-     * @description Returns the classes that will be called for the specified ojbect and action. Returned list 
+     * @description Returns the classes that will be called for the specified object and action. Returned list 
      *              is sorted by load order.
      * @param objectName The name of the object.
      * @param action The action (before insert, after insert,...). 
      * @return List<SObject> List of classes to call, sorted by load order.
      **/
-    public List<SObject> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {   
-        ToRunOnObjectAction toRun = objectActionQueried(objectName, action);
-        if(toRun != null) {
-        	return toRun.classesToCall;
-        } else {
-            List<SObject> classesToCall =  [select Asynchronous__c, Class__c, Load_Order__c, Object__c, Active__c, 
-                Trigger_Action__c, Filter_Field__c, Filter_Value__c from Trigger_Handler__c 
-                where Active__c = true and Object__c = :objectName and Trigger_Action__c includes ( :action.name() ) 
-                order by Load_Order__c];
-            toRun = new ToRunOnObjectAction(objectName, action, classesToCall);
-            classesQueried.add(toRun);
-            return classesToCall;
+    public List<SObject> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {
+        if(triggerHandlers == null || triggerHandlers.size() == 0) {
+             triggerHandlers = [select Asynchronous__c, Class__c, Load_Order__c, Object__c, Active__c, Trigger_Action__c 
+             from Trigger_Handler__c where Active__c = true order by Load_Order__c];
         }
-    }
-    
-    private static ToRunOnObjectAction objectActionQueried(String objectName, TDTM_Runnable.Action action) {
-    	for(ToRunOnObjectAction toRun : classesQueried) {
-    		if(toRun.objectName == objectName && toRun.action == action) {
-    		  return toRun;
-    		}
-    	}
-    	return null;
-    }
-    
-    private class ToRunOnObjectAction {
-    	private String objectName;
-    	private TDTM_Runnable.Action action;
-    	private List<SObject> classesToCall;
-    	
-    	ToRunOnObjectAction(String objectName, TDTM_Runnable.Action action, List<SObject> classesToCall) {
-    		this.objectName = objectName;
-    		this.action = action;
-    		this.classesToCall = classesToCall;
-    	}
+        List<SObject> listClasses = new List<Sobject>();
+        for (Trigger_Handler__c th : triggerHandlers) {
+            if (th.Object__c == objectName && th.Trigger_Action__c.contains(action.Name())) 
+                listClasses.add(th);
+        }
+        return listClasses;
     }
 }
