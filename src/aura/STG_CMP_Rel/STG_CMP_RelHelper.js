@@ -164,32 +164,11 @@
 		$A.enqueueAction(newStgAction);
 	},
 	
-	clearNewStgBoxes : function(component, fields) {
-		for(var key in fields) {
-			component.find(fields[key]).set("v.value", "");
-		}
-	},
-	
 	deleteRecSettingRow : function(component, id, position) {		
 		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position);
 	},
 	
 	deleteAutoCreateRow : function(component, id, position) {
 		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position);
-	},
-	
-	deleteRow : function(component, serverMethod, stgsUiElement, id, position) {
-		var action = component.get(serverMethod);
-		action.setParams({ "idString" : id });
-		action.setCallback(this, function(response) {
-			if (response.getState() === "SUCCESS") {
-				var settings = component.get(stgsUiElement);
-				settings.splice(position, 1);
-				component.set(stgsUiElement, settings);
-			} else if (response.getState() === "ERROR") {
-				this.displayError(response);
-			}
-		});
-		$A.enqueueAction(action);
 	}
 })

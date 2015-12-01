@@ -8,19 +8,44 @@
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
     
     <div class="slds-grid slds-wrap">
-	     <div class="slds-col slds-size--1-of-5"><strong>Account Record Type</strong></div>
-	     <div class="slds-col slds-size--1-of-5"><strong>Contact Primary Affl Field</strong></div>
-	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment</strong></div>
-	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment Status</strong></div>
-	     <div class="slds-col slds-size--1-of-5"><strong>Auto-Enrollment Role</strong></div>
+	     <div class="slds-col slds-size--1-of-6"><strong>Account Record Type</strong></div>
+	     <div class="slds-col slds-size--1-of-6"><strong>Contact Primary Affl Field</strong></div>
+	     <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment</strong></div>
+	     <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment Status</strong></div>
+	     <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment Role</strong></div>
+	     <div class="slds-col slds-size--1-of-6">&nbsp;</div>
 	
-	     <aura:iteration items="{!v.afflMappings}" var="afflMapping">
-	         <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Account_Record_Type__c}"/></div>
-	         <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Primary_Affl_Field__c}"/></div>
-	         <div class="slds-col slds-size--1-of-5"><ui:inputCheckbox disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment__c}"/></div>
-	         <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Status__c}"/></div>
-	         <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Role__c}"/></div>
+	     <aura:iteration items="{!v.afflMappings}" var="afflMapping" indexVar="position">
+	         <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Account_Record_Type__c}"/></div>
+	         <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Primary_Affl_Field__c}"/></div>
+	         <div class="slds-col slds-size--1-of-6"><ui:inputCheckbox disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment__c}"/></div>
+	         <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Status__c}"/></div>
+	         <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Role__c}"/></div>
+	         <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAfflMappingRow}" 
+                        id="{!afflMapping.Id}" position="{!position}" /></div>
 	     </aura:iteration>
-
      </div>
+     
+     <div class="newafflmapping">
+        <div aria-labelledby="newafflmappingform">
+          <fieldset class="slds-box slds-theme--default slds-container--medium">
+            <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
+              <div class="slds-form--inline slds-form-element">
+                <label class="slds-form-element__label" for="accRecType">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="accRecType" placeholder="Account Record Type"/></div>
+                <label class="slds-form-element__label" for="primaryField">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="primaryField" placeholder="Primary Affl Field"/></div>
+                <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment:</label>
+                <div class="slds-form-element__control"><ui:inputCheckbox aura:id="autoEnroll"/></div>
+                <label class="slds-form-element__label" for="autoEnrollStatus">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollStatus" placeholder="Status"/></div>
+                <label class="slds-form-element__label" for="autoEnrollRole">&nbsp;</label>
+                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollRole" placeholder="Role"/></div>
+              </div>
+              <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAfflMapping}">Add Mapping</ui:button>
+          </fieldset>
+        </div>
+      </div>
+            
 </aura:component>

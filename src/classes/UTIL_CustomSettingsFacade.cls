@@ -223,6 +223,25 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
     
     /*******************************************************************************************************
+    * @description Creates a new Affiliation Mapping List Setting record.
+    * @param accRecType The value of the Account_Record_Type__c field in the Affl_Mappings__c record to create.
+    * @param primaryField The value of the Primary_Affl_Field__c field in the Affl_Mappings__c record to create.
+    * @param autoEnroll The value of the Auto_Program_Enrollment__c field in the Affl_Mappings__c record to create.
+    * @param autoEnrollStatus The value of the Auto_Program_Enrollment_Status__c field in the Affl_Mappings__c record to create.
+    * @param autoEnrollRole The value of the Auto_Program_Enrollment_Role__c field in the Affl_Mappings__c record to create.
+    * @return String The Id of the record that has just been created, as a String.
+    **/ 
+    @AuraEnabled
+    public static String newAfflMpg(String accRecType, String primaryField, Boolean autoEnroll, String autoEnrollStatus, 
+    String autoEnrollRole) {
+        Affl_Mappings__c newMapping = new Affl_Mappings__c(Name = accRecType, Account_Record_Type__c = accRecType, 
+        Auto_Program_Enrollment__c = autoEnroll, Auto_Program_Enrollment_Role__c = autoEnrollRole, 
+        Auto_Program_Enrollment_Status__c = autoEnrollStatus, Primary_Affl_Field__c = primaryField);
+        insert newMapping;
+        return newMapping.Id;
+    }
+    
+    /*******************************************************************************************************
     * @description Creates a new Reciprocal List Setting record.
     * @param name The value of the Name field in the Relationship_Lookup__c record to create.
     * @param male The value of the Male__c field in the Relationship_Lookup__c record to create.
@@ -253,6 +272,16 @@ public without sharing class UTIL_CustomSettingsFacade {
                         Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
         insert newSetting;
         return newSetting.Id;
+    }
+    
+    /*******************************************************************************************************
+    * @description Deletes an Auto-Create List Setting record.
+    * @return void
+    */
+    @AuraEnabled
+    public static void deleteAfflMappingRecord(String idString) {
+        ID idType = ID.valueOf(IdString);
+        delete [select Id from Affl_Mappings__c where Id = :idType];
     }
     
     /*******************************************************************************************************
