@@ -20,8 +20,10 @@
 	},
 	
 	deleteAfflMappingRow : function(component, event, helper) {
-		var id = event.getParam("id");
-		var position = event.getParam("position");
-		helper.deleteAfflMappingRow(component, id, position);
+		if(confirm("Are you sure you want to delete this row?")) {
+			var id = event.getParam("id");
+			var position = event.getParam("position");
+			helper.deleteAfflMappingRow(component, id, position);
+		}
 	}
 })

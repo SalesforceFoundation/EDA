@@ -32,15 +32,19 @@
 	},
 	
 	deleteRecSettingRow : function(component, event, helper) {
-		var id = event.getParam("id");
-		var position = event.getParam("position");
-		helper.deleteRecSettingRow(component, id, position);
+		if(confirm("Are you sure you want to delete this row?")) {
+			var id = event.getParam("id");
+			var position = event.getParam("position");
+			helper.deleteRecSettingRow(component, id, position);
+		}
 	},
 
 	deleteAutoCreateRow : function(component, event, helper) {
-		var id = event.getParam("id");
-		var position = event.getParam("position");
-		helper.deleteAutoCreateRow(component, id, position);
+		if(confirm("Are you sure you want to delete this row?")) {
+			var id = event.getParam("id");
+			var position = event.getParam("position");
+			helper.deleteAutoCreateRow(component, id, position);
+		}
 		
 	},
 	
