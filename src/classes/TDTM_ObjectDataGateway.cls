@@ -71,8 +71,8 @@ public class TDTM_ObjectDataGateway {
      **/
     public List<SObject> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {
         if(triggerHandlers == null || triggerHandlers.size() == 0) {
-             triggerHandlers = [select Asynchronous__c, Class__c, Load_Order__c, Object__c, Active__c, Trigger_Action__c 
-             from Trigger_Handler__c where Active__c = true order by Load_Order__c];
+             triggerHandlers = [select Asynchronous__c, Class__c, Load_Order__c, Object__c, Active__c, Trigger_Action__c,
+             Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Active__c = true order by Load_Order__c];
         }
         List<SObject> listClasses = new List<Sobject>();
         for (Trigger_Handler__c th : triggerHandlers) {
