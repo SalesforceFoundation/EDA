@@ -81,4 +81,11 @@ public class TDTM_ObjectDataGateway {
         }
         return listClasses;
     }
+    
+    /*******************************************************************************************************
+     * @description to allow test code to modify the saved trigger handlers and have them reread into the cache.
+     */ 
+    public static void clearCachedTriggerHandlersForTest() {
+        triggerHandlers = null;
+    }
 }

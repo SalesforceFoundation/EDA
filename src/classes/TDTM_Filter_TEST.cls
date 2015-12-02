@@ -351,6 +351,8 @@ public with sharing class TDTM_Filter_TEST {
         handler.Filter_Field__c = 'Account.Id';
         handler.Filter_Value__c = acc2.Id;
         update handler;
+        
+        TDTM_ObjectDataGateway.clearCachedTriggerHandlersForTest();
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = acc1.Id);
