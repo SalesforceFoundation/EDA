@@ -193,7 +193,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         }
     }
     
-    private void uncheckOtherPrimariesSameType(List<Affiliation__c> affls, DmlWrapper dmlWrapper) {
+    public void uncheckOtherPrimariesSameType(List<Affiliation__c> affls, DmlWrapper dmlWrapper) {
     	Set<ID> newPrimaryAffls = new Set<ID>();
     	Set<ID> afflContactIDs = new Set<ID>();
     	Set<String> afflTypes = new Set<String>();

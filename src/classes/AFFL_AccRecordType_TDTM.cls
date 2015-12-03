@@ -44,11 +44,10 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
     	 List<AccWithTypes> accsWithTypes = new List<AccWithTypes>();
-    	 //List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
-    	 
+ 
     	 //When a user changes the record type of an Account, if that account was part of any primary affiliation:
          //   --> the key affl lookup field on the contacts needs to be updated
-        //   --> other primary affiliations of the same NEW type need to be unchecked
+         //   --> other primary affiliations of the same NEW type need to be changed to not primary
                     
     	 if(newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
     	 	for (Integer i = 0; i < newlist.size(); i++) {
@@ -78,7 +77,7 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 		        String relatedContactsQuery = 'select ID from Contact where ';
 		        relatedContactsQuery += accsWithTypes[0].oldType + ' != null';
 		        for(Integer i = 1; i < accsWithTypes.size(); i++) {
-		            relatedContactsQuery += ',' + accsWithTypes[i].oldType + ' != null';
+		            relatedContactsQuery += ' OR ' + accsWithTypes[i].oldType + ' != null';
                 }
                 UTIL_Debug.debug('****relatedContactsQuery: ' + relatedContactsQuery);
                 relatedContacts = Database.query(relatedContactsQuery);
@@ -86,16 +85,30 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 
             //Replace primary affiliation fields in all contacts that need it.
             if(relatedContacts != null && relatedContacts.size() > 0) {
-			    for(Contact contact : relatedContacts) {
+                List<ID> contactIDs = new List<ID>();
+                List<ID> accountIDs = new List<ID>();
+                
+			    for(Contact contact : relatedContacts) {			        
 			        for(AccWithTypes accWithTypes : accsWithTypes) {
-	                   contact.put(accWithTypes.oldType, null);
+			            if(!containsNew(accsWithTypes, accWithTypes.oldType))
+	                       contact.put(accWithTypes.oldType, null);
 	                   contact.put(accWithTypes.newType, accWithTypes.accId);
 	                   dmlWrapper.objectsToUpdate.add(contact);
+	                   
+	                   //Save the Contact ID and the Account ID of the Affiliation that has been made
+	                   //primary so we can update all others of the same type for the same Contact and
+	                   //make them not primary.
+	                   contactIds.add(contact.ID);
+	                   accountIds.add(accWithTypes.accId);
 			        }
 	            }
-            }
-		    
-		    //AFFL_MultiRecordType_TDTM.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
+	            //Change all affiliations that are not primary any more
+	            List<Affiliation__c> afflsMadePrimary = [select Contact__c, Account__c, Affiliation_Type__c 
+	                      from Affiliation__c where Contact__c IN :contactIds and Account__c IN :accountIds];
+	            UTIL_Debug.debug('****AfflsMadePrimary: ' + JSON.serializePretty(afflsMadePrimary));
+	            AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM();
+	            afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
+            } 
     	 }
     	 return dmlWrapper;
     }
@@ -110,5 +123,13 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
             this.oldType = oldType;
             this.newType = newType;
         }
+    }
+    
+    boolean containsNew(List<AccWithTypes> accWithTypes, String oldType) {
+        for(AccWithTypes acc : accWithTypes) {
+            if(acc.newType == oldType)
+                return true;
+        }
+        return false;
     }
 }

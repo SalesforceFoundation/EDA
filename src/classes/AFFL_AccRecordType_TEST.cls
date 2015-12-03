@@ -82,7 +82,48 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
     
     @isTest
-    public static void OtherPrimaryNewType() {        
+    public static void changePrimaryAffiliationRecordTypeTwoAccs() {        
+        setup();
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+        
+        //Verify default household account has been created for the contact
+        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Account.ID);
+        
+        //Verify the primary household field was populated
+        System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
+        
+        //Create primary Affl to a Business Organization
+        Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
+        insert bizOrg;
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        insert bizAffl;
+        
+        //Verify the primary business organization field was populated
+        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
+        System.assertEquals(bizOrg.ID, contact.Primary_Organization__c);
+        
+        Account household = [select RecordTypeId from Account where ID=:contact.Account.ID];
+        //Change the account record type of the household to Business Organization, and of the biz org to Household
+        household.RecordTypeId = orgRecTypeID;
+        bizOrg.RecordTypeId = householdRecTypeID;
+        Test.startTest();
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        update new Account[]{household, bizOrg};
+        Test.stopTest();
+        
+        contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
+        //Verify primary household field has changed to the biz org
+        System.assertEquals(bizOrg.ID, contact.Primary_Household__c);
+        //Verify primary business organization field has changed to the household
+        System.assertEquals(household.ID, contact.Primary_Organization__c);
+    }
+    
+    @isTest
+    public static void OtherPrimaryNotPrimary() {        
         setup();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -101,13 +142,17 @@ public with sharing class AFFL_AccRecordType_TEST {
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         insert bizAffl;
+        
+        //Verify the primary business organization field was populated
+        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
+        System.assertEquals(bizOrg.ID, contact.Primary_Organization__c);
          
         //Change the account record type of parent Household to Business Organization
-        Account acc = [select RecordTypeId from Account where ID=:contact.Account.ID];
-        acc.RecordTypeId = orgRecTypeID;
+        Account household = [select RecordTypeId from Account where ID=:contact.Account.ID];
+        household.RecordTypeId = orgRecTypeID;
         Test.startTest();
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-        update acc;
+        update household;
         Test.stopTest();
         
         contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
