@@ -52,6 +52,7 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
     	 if(newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
     	 	for (Integer i = 0; i < newlist.size(); i++) {
     	 	    SObject so = newlist[i];
+    	 	    //AFTER UPDATE
     	 		if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 	    	 		Account acc = (Account)so;
 			        Account oldAcc = (Account)oldList[i];
@@ -90,8 +91,11 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
                 
 			    for(Contact contact : relatedContacts) {			        
 			        for(AccWithTypes accWithTypes : accsWithTypes) {
-			            if(!containsNew(accsWithTypes, accWithTypes.oldType))
-	                       contact.put(accWithTypes.oldType, null);
+			            if(!containsNew(accsWithTypes, accWithTypes.oldType)) {
+			                UTIL_Debug.debug('****Setting primary field of type ' + accWithTypes.oldType + ' to null');
+	                        contact.put(accWithTypes.oldType, null);
+			            }
+	                   UTIL_Debug.debug('****Setting primary field of type ' + accWithTypes.newType + ' to ' + accWithTypes.accId);
 	                   contact.put(accWithTypes.newType, accWithTypes.accId);
 	                   dmlWrapper.objectsToUpdate.add(contact);
 	                   
@@ -105,14 +109,20 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 	            //Change all affiliations that are not primary any more
 	            List<Affiliation__c> afflsMadePrimary = [select Contact__c, Account__c, Affiliation_Type__c 
 	                      from Affiliation__c where Contact__c IN :contactIds and Account__c IN :accountIds];
-	            UTIL_Debug.debug('****AfflsMadePrimary: ' + JSON.serializePretty(afflsMadePrimary));
 	            AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM();
+	            //We don't want AFFL_MultiRecordType_TDTM to run after calling uncheckOtherPrimariesSameType,
+	            //or it will clear the primary affiliation field on Contact.
+	            AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = true; 
 	            afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
             } 
     	 }
     	 return dmlWrapper;
     }
     
+    /*******************************************************************************************************
+    * @description Class used to store an Account ID, its old record type, and its new record type. Used to 
+    * track those Accounts whose record type has changed.
+    ********************************************************************************************************/
     class AccWithTypes {
         ID accId;
         String oldType;
@@ -125,11 +135,20 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         }
     }
     
+    
+    /*******************************************************************************************************
+    * @description Tells the caller if the oldType account record type has become the new type of any of the 
+    * accounts that have changed record type.
+    * @return Boolean
+    ********************************************************************************************************/
     boolean containsNew(List<AccWithTypes> accWithTypes, String oldType) {
         for(AccWithTypes acc : accWithTypes) {
-            if(acc.newType == oldType)
+            if(acc.newType == oldType) {
+                UTIL_Debug.debug('****Some other Account has been changed to type ' + oldType);
                 return true;
+            }
         }
+        UTIL_Debug.debug('****No other account has been set to record type ' + oldType);
         return false;
     }
 }

@@ -130,7 +130,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contact;
         
         //Verify default household account has been created for the contact
-        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Account.ID);
         
         //Verify the primary household field was populated
@@ -139,6 +139,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Create primary Affl to a Business Organization
         Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
         insert bizOrg;
+        UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         insert bizAffl;
@@ -146,9 +147,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Verify the primary business organization field was populated
         contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
         System.assertEquals(bizOrg.ID, contact.Primary_Organization__c);
-         
-        //Change the account record type of parent Household to Business Organization
+        
         Account household = [select RecordTypeId from Account where ID=:contact.Account.ID];
+        UTIL_Debug.debug('****Household ID: ' + household.ID);
+        //Change the account record type of parent Household to Business Organization
         household.RecordTypeId = orgRecTypeID;
         Test.startTest();
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
