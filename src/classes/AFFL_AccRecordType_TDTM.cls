@@ -43,16 +43,20 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
     	 DmlWrapper dmlWrapper = new DmlWrapper();
+    	 List<AccWithTypes> accsWithTypes = new List<AccWithTypes>();
+    	 //List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
     	 
+    	 //When a user changes the record type of an Account, if that account was part of any primary affiliation:
+         //   --> the key affl lookup field on the contacts needs to be updated
+        //   --> other primary affiliations of the same NEW type need to be unchecked
+                    
     	 if(newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
-    	 	Integer i = 0;
-    	 	for (SObject so : newlist) {
+    	 	for (Integer i = 0; i < newlist.size(); i++) {
+    	 	    SObject so = newlist[i];
     	 		if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 	    	 		Account acc = (Account)so;
 			        Account oldAcc = (Account)oldList[i];
-			        
-			        //When a user changes the record type of an Account, if that account was part of any primary affiliation, other primary 
-			        //affiliations of the same type need to be unchecked, and the key affl lookup field on the contacts needs to be updated.
+
 			        if(acc.RecordTypeId != oldAcc.RecordTypeId) {
 			        	AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper(); 
 			        	
@@ -62,19 +66,49 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 			        	//Find the lookup field that matches the new record type
 			        	String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
 			        	
-			        	//Find all contacts where that field was pointing to this account
-			        	List<Contact> relatedContacts = Database.query('select ID from Contact where ' + keyAfflFieldOldType + '=\'' + acc.ID + '\'');
-			        	
-			        	for(Contact contact : relatedContacts) {
-			        		contact.put(keyAfflFieldOldType, null);
-			        		contact.put(keyAfflFieldNewType, acc.Id);
-			        		dmlWrapper.objectsToUpdate.add(contact);
-			        	}
+			        	accsWithTypes.add(new AccWithTypes(acc.ID, keyAfflFieldOldType, keyAfflFieldNewType));
 			        }
     	 		}
 		    }
-		    i++;
+		    
+		    //Find all contacts that had a value in one of the primary affiliation fields of the type of the
+            //accounts that have changed.
+		    List<Contact> relatedContacts;
+		    if(accsWithTypes.size() > 0) {
+		        String relatedContactsQuery = 'select ID from Contact where ';
+		        relatedContactsQuery += accsWithTypes[0].oldType + ' != null';
+		        for(Integer i = 1; i < accsWithTypes.size(); i++) {
+		            relatedContactsQuery += ',' + accsWithTypes[i].oldType + ' != null';
+                }
+                UTIL_Debug.debug('****relatedContactsQuery: ' + relatedContactsQuery);
+                relatedContacts = Database.query(relatedContactsQuery);
+		    }
+
+            //Replace primary affiliation fields in all contacts that need it.
+            if(relatedContacts != null && relatedContacts.size() > 0) {
+			    for(Contact contact : relatedContacts) {
+			        for(AccWithTypes accWithTypes : accsWithTypes) {
+	                   contact.put(accWithTypes.oldType, null);
+	                   contact.put(accWithTypes.newType, accWithTypes.accId);
+	                   dmlWrapper.objectsToUpdate.add(contact);
+			        }
+	            }
+            }
+		    
+		    //AFFL_MultiRecordType_TDTM.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
     	 }
     	 return dmlWrapper;
+    }
+    
+    class AccWithTypes {
+        ID accId;
+        String oldType;
+        String newType;
+        
+        AccWithTypes(ID accId, String oldType, String newType) {
+            this.accId = accId;
+            this.oldType = oldType;
+            this.newType = newType;
+        }
     }
 }
