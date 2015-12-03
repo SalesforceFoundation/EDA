@@ -123,7 +123,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
     
     @isTest
-    public static void OtherPrimaryNotPrimary() {        
+    public static void otherPrimaryNotPrimary() {        
         setup();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -158,8 +158,9 @@ public with sharing class AFFL_AccRecordType_TEST {
         contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
         //Verify primary household field has been cleared
         System.assertEquals(null, contact.Primary_Household__c);
-        //Verify primary business organization field has been populated
-        System.assertEquals(acc.ID, contact.Primary_Organization__c);
+        //Verify primary business organization field has changed to the household
+        System.assertEquals(household.ID, contact.Primary_Organization__c);
+
         //Verify the old primary business affiliation is not primary now
         bizAffl = [select Primary__c from Affiliation__c where ID = :bizAffl.ID];
         System.assertEquals(false, bizAffl.Primary__c);
