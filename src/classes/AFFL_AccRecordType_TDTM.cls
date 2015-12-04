@@ -110,9 +110,6 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 	            List<Affiliation__c> afflsMadePrimary = [select Contact__c, Account__c, Affiliation_Type__c 
 	                      from Affiliation__c where Contact__c IN :contactIds and Account__c IN :accountIds];
 	            AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM();
-	            //We don't want AFFL_MultiRecordType_TDTM to run after calling uncheckOtherPrimariesSameType,
-	            //or it will clear the primary affiliation field on Contact.
-	            AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = true; 
 	            afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
             } 
     	 }
