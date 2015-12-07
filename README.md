@@ -8,15 +8,11 @@ HEDA is built from industry-wide best practices used across higher education and
 
 You can install HEDA utilizing our custom application installer into any Developer Edition, Sandbox or Enterprise Edition Salesforce org.
 
-Custom HEDA Installer
-
 * <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/heda" target="_blank">HEDA Installer</a>
 
 #### For Developers
 
 The Higher Education Data Architecture is released under the open source BSD license (see link below for additional license information).  Contributions (code and otherwise) are welcome and encouraged.  You can fork this repository and deploy the unmanaged version of the code into a Salesforce org of your choice.  
-
-Full ApexDoc code documentation can be found here: <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">HEDA ApexDoc</a>
 
 * Fork the repository by clicking on the "Fork" button in the upper-righthand corner.  This creates your own copy of HEDA for your Github user.
 * Clone your fork to your local machine via the command line
@@ -38,6 +34,8 @@ sf.maxPoll = 20
 $ cd hedap
 $ ant deploy -buildfile PATH_TO_YOUR_BUILDFILE
 ```
+
+* Full ApexDoc code documentation can be found <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">here</a>.
 
 #### Meta
 
