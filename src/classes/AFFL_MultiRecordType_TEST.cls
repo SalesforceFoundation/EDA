@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.org
+    Copyright (c) 2015, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -277,37 +277,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		//Verify key affl field has been updated
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
-	}
-	
-	@isTest
-	public static void changePrimaryAffiliationRecordType() {
-		if (strTestOnly != '*' && strTestOnly != 'changePrimaryAffiliationRecordType') return;
-		
-		setup();
-
-    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-    	insert contact;
-    	
-    	//Verify default household account has been created for the contact
-    	contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
-    	System.assertNotEquals(null, contact.Account.ID);
-    	
-    	//Verify the primary household field was populated
-    	System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
-    	
-    	Account acc = [select RecordTypeId from Account where ID=:contact.Account.ID];
-    	//Change the account record type to Business Organization
-    	acc.RecordTypeId = orgRecTypeID;
-    	Test.startTest();
-    	AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-    	update acc;
-    	Test.stopTest();
-    	
-    	contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
-    	//Verify primary household field has been cleared
-    	System.assertEquals(null, contact.Primary_Household__c);
-    	//Verify primary business organization field has been populated
-    	System.assertEquals(acc.ID, contact.Primary_Organization__c);
 	}
 	
 	@isTest
