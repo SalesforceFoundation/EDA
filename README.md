@@ -1,11 +1,44 @@
-# HEDAP
+![Salesforce Higher Education Data Architecture](https://cloud.githubusercontent.com/assets/926530/11634976/b4c9814a-9ce1-11e5-98bb-ebd84ce6a0de.png "Salesforce Higher Education Data Architecture")
 
-HEDAP, the Higher Education Data Architecture Package, is released under the open source [BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
+The Salesforce Higher Education Data Architecture (HEDA) Project (HEDAP) provides an HED-specific platform for growth for organizations utilizing Salesforce.  HEDA utilizes a Salesforce managed package and some light unmanaged customization to give HED users a familiar nomenclature and data model for many higher education applications.  In addition, HED developers and administrators can utilize HEDA's advanced trigger management capabilities, robust error handling and pluggable framework to better manage and coordinate the data in their Salesforce instance.
 
-Salesforce is designed for business organizations that operate based on opportunities, leads, and all the other sales-related concepts. HEDAP sits on top of Salesforce to make it Higher Ed-specific.
+HEDA is built from industry-wide best practices used across higher education and the Salesforce ecosystem and we welcome feedback and contributions for the project. See below for more information on how to get involved.
 
-The biggest challenge to having a successful Salesforce Higher Ed ecosystem is that institutions are re-inventing the wheel, and creating those objects that need to be common to all in order for 3rd party apps to work across implementations. HEDAP is the foundational layer that is aimed to cover those areas common to the whole student lifecycle. 
+#### Try it out
 
-HEDAP is built from the best practices used across the industry.
+You can install HEDA utilizing our custom application installer into any Developer Edition, Sandbox or Enterprise Edition Salesforce org.
 
-HEDAP installer: https://mrbelvedere.salesforcefoundation.org/mpinstaller/heda.
+Custom HEDA Installer
+
+* <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/heda" target="_blank">HEDA Installer</a>
+
+#### For Developers
+
+The Higher Education Data Architecture is released under the open source BSD license (see link below for additional license information).  Contributions (code and otherwise) are welcome and encouraged.  You can fork this repository and deploy the unmanaged version of the code into a Salesforce org of your choice.  
+
+Full ApexDoc code documentation can be found here: <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">HEDA ApexDoc</a>
+
+* Fork the repository by clicking on the "Fork" button in the upper-righthand corner.  This creates your own copy of HEDA for your Github user.
+* Clone your fork to your local machine via the command line
+```sh
+$ git clone https://github.com/YOUR-USERNAME/hedap.git
+```
+* You now have a local copy on your machine.  HEDAP has some built-in scripts to make deploying to your Salesforce org easier.  Utilizing ant and the Force.com Migration tool, you can push your local copy of HEDAP to the org of your choice.  You'll need to provide a build.properties to tell ant where to deploy.  An example file might look like:
+
+```
+sf.username= YOUR_ORG_USERNAME
+sf.password = YOUR_ORG_PASSWORD
+sf.serverurl = https://login.salesforce.com ##or test.salesforce.com for sandbox environments
+sf.maxPoll = 20
+```
+
+* Now deploy to your org utilizing ant (note: you may need to deploy CumulusCI to your local machine to utilize the built-in scripts)
+
+```sh
+$ cd hedap
+$ ant deploy -buildfile PATH_TO_YOUR_BUILDFILE
+```
+
+#### Meta
+
+Released under the [BSD 3-Clause License](http://www.opensource.org/licenses/BSD-3-Clause).
