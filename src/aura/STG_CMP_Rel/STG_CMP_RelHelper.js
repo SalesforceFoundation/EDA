@@ -48,9 +48,8 @@
 		$A.util.removeClass(settsTabContent, "slds-hide");
 		$A.util.addClass(settsTabContent, "slds-show");
 
-		this.hideRecSettsTabContent(component);
-
-		this.hideAutoCTabContent(component);
+		this.hideTabContent(component, "recSettsTabContent");
+		this.hideTabContent(component, "autocTabContent");
 	},
 	
 	recSettsLinkClicked : function(component) {
@@ -58,13 +57,13 @@
 		$A.util.addClass(component.find("recSettsTab"), "slds-active");
 		$A.util.removeClass(component.find("autocTab"), "slds-active");
 
-		this.hideSettsTabContent(component);
+		this.hideTabContent(component, "settsTabContent");
 
 		var recSettsTabContent = component.find("recSettsTabContent");
 		$A.util.removeClass(recSettsTabContent, "slds-hide");
 		$A.util.addClass(recSettsTabContent, "slds-show");
 
-		this.hideAutoCTabContent(component);
+		this.hideTabContent(component, "autocTabContent");
 	},
 
 	autocLinkClicked : function(component) {
@@ -72,33 +71,14 @@
 		$A.util.removeClass(component.find("recSettsTab"), "slds-active");
 		$A.util.addClass(component.find("autocTab"), "slds-active");
 
-		this.hideSettsTabContent(component);
-
-		this.hideRecSettsTabContent(component);
+		this.hideTabContent(component, "settsTabContent");
+		this.hideTabContent(component, "recSettsTabContent");
 
 		var autocTabContent = component.find("autocTabContent");
 		$A.util.removeClass(autocTabContent, "slds-hide");
 		$A.util.addClass(autocTabContent, "slds-show");
 	},
-	
-	hideSettsTabContent : function(component) {
-		var settsTabContent = component.find("settsTabContent");
-		$A.util.removeClass(settsTabContent, "slds-show");
-		$A.util.addClass(settsTabContent, "slds-hide");
-	},
-	
-	hideRecSettsTabContent : function(component) {
-		var recSettsTabContent = component.find("recSettsTabContent");
-		$A.util.removeClass(recSettsTabContent, "slds-show");
-		$A.util.addClass(recSettsTabContent, "slds-hide");
-	},
-	
-	hideAutoCTabContent : function(component) {
-		var autocTabContent = component.find("autocTabContent");
-		$A.util.removeClass(autocTabContent, "slds-show");
-		$A.util.addClass(autocTabContent, "slds-hide");
-	},
-	
+
 	saveRelSettings : function(component) {
 		var saveRecSettingsAction = component.get("c.saveReciprocalSettings");
 		var settings = this.addPrefixListSettings(component.get("v.reciprocalSettings"), namespacePrefix);

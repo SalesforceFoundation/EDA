@@ -111,5 +111,11 @@
 			}
 		});
 		$A.enqueueAction(action);
-	}
+	},
+	
+	hideTabContent : function(component, element) {
+		var autocTabContent = component.find(element);
+		$A.util.removeClass(autocTabContent, "slds-show");
+		$A.util.addClass(autocTabContent, "slds-hide");
+	},
 })

@@ -1,6 +1,12 @@
 ({
 	init : function(component) {
 		component.set("v.isView", true);
+		
+		$A.util.addClass(component.find("settsTab"), "slds-active");
+
+		$A.util.addClass(component.find("settsTabContent"), "slds-show");
+		$A.util.addClass(component.find("mappingsTabContent"), "slds-hide");
+		
 		this.loadAfflMappings(component);		
 	},
 
@@ -15,6 +21,28 @@
 	    	}	
 		});
 		$A.enqueueAction(action);
+	},
+	
+	settsLinkClicked : function(component) {
+		$A.util.addClass(component.find("settsTab"), "slds-active");
+		$A.util.removeClass(component.find("mappingsTab"), "slds-active");
+
+		var settsTabContent = component.find("settsTabContent");
+		$A.util.removeClass(settsTabContent, "slds-hide");
+		$A.util.addClass(settsTabContent, "slds-show");
+
+		this.hideTabContent(component, "mappingsTabContent");
+	},
+	
+	mappingsLinkClicked : function(component) {
+		$A.util.removeClass(component.find("settsTab"), "slds-active");
+		$A.util.addClass(component.find("mappingsTab"), "slds-active");
+
+		this.hideTabContent(component, "settsTabContent");
+
+		var mappingsTabContent = component.find("mappingsTabContent");
+		$A.util.removeClass(mappingsTabContent, "slds-hide");
+		$A.util.addClass(mappingsTabContent, "slds-show");
 	},
 	
 	resetSettings : function(component) {

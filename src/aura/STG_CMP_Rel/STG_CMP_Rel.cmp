@@ -32,6 +32,7 @@
 			    <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/></div>
 			</div>
 		</div>
+		
 		<div aura:id="recSettsTabContent" class="slds-tabs__content" role="tabpanel">
 			<div class="slds-grid slds-wrap">
 			    <div class="slds-col slds-size--1-of-6"><strong>Name</strong></div>
