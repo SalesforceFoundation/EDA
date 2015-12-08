@@ -94,6 +94,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
         hs.Disable_Error_Handling__c = false;
         hs.Enable_Debug__c = false;
+        hs.Affl_ProgEnroll_Deletion__c = false;
     }
 
     /*******************************************************************************************************
@@ -115,6 +116,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         settings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;
+        settings.Affl_ProgEnroll_Deletion__c = mySettings.Affl_ProgEnroll_Deletion__c;
         
         orgSettings = settings;
         return settings;

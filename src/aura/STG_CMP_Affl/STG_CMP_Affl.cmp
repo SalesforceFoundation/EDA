@@ -1,6 +1,7 @@
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
+    <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
     <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />  
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
@@ -21,12 +22,14 @@
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size--1-of-1">Related Affiliation deleted when Program Enrollment deleted:</div>
                 <div class="slds-col slds-size--1-of-1">
-                    <ui:inputRadio disabled="{!v.isView}" name="affldel" label="Yes." 
-                         value="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}"/>
-                </div>
-                <div class="slds-col slds-size--1-of-1">
-                    <ui:inputRadio disabled="{!v.isView}" name="affldel" label="No. Change Status to former."
-                                                value="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}"/>
+                    <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}">
+                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="Yes: " value="true"/>
+                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="No, just change Status to former: " value="false"/>
+                    <aura:set attribute="else">
+                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="Yes: " value="false"/>
+                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="No, just change Status to former: " value="true"/>
+                    </aura:set>
+                    </aura:if>
                 </div>
             </div>
         </div>
