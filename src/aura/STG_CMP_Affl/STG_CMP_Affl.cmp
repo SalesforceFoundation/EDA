@@ -23,11 +23,19 @@
                 <div class="slds-col slds-size--1-of-1">Related Affiliation deleted when Program Enrollment deleted:</div>
                 <div class="slds-col slds-size--1-of-1">
                     <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}">
-                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="Yes: " value="true"/>
-                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="No, just change Status to former: " value="false"/>
+                        Yes: 
+                        <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="true" text="true" label="true" labelClass="slds-hide"
+                                       change="{!c.setAfflProgEnrollDel}" />
+                        No, just change Status to former: 
+                        <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="false" text="false" label="fase" labelClass="slds-hide"
+                                       change="{!c.setAfflProgEnrollDel}" />
                     <aura:set attribute="else">
-                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="Yes: " value="false"/>
-                        <ui:inputRadio disabled="{!v.isView}" name="affldel" label="No, just change Status to former: " value="true"/>
+                        Yes:
+                        <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="false" text="true" label="true" labelClass="slds-hide"
+                                       change="{!c.setAfflProgEnrollDel}" />
+                        No, just change Status to former: 
+                        <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="true" text="false" label="false" labelClass="slds-hide"
+                                       change="{!c.setAfflProgEnrollDel}" />
                     </aura:set>
                     </aura:if>
                 </div>

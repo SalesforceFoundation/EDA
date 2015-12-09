@@ -3,6 +3,14 @@
 		helper.init(component);
 	},
 	
+	setAfflProgEnrollDel : function(component, event, helper) {
+		var elem = event.getSource().getElement();
+		var selected = elem.children[0].innerText;
+		var hierarchySettings = component.get("v.hierarchySettings");
+		hierarchySettings.Affl_ProgEnroll_Deletion__c = selected;
+		
+	},
+	
 	settsLinkClicked : function(component, event, helper) {
 		helper.settsLinkClicked(component);
 	},
