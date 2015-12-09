@@ -30,7 +30,7 @@
                         <div class="slds-col slds-size--1-of-2">No, just change Status to former:</div> 
                         <div class="slds-col slds-size--1-of-2">
                             <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="false" text="false" 
-                                label="fase" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" /></div>
+                                label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" /></div>
                     <aura:set attribute="else">
                         <div class="slds-col slds-size--1-of-2">Yes:</div>
                         <div class="slds-col slds-size--1-of-2">
