@@ -48,7 +48,9 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
     
     	DmlWrapper dmlWrapper = new DmlWrapper();
         
-        List<Affiliation__c> affls = new List<Affiliation__c>();
+        List<Affiliation__c> newAffls = new List<Affiliation__c>();
+        List<ID> afflsToUpdateDelIDs = new List<ID>();
+        
         if(newlist != null && newlist.size() > 0) {
 	 		for (SObject so : newlist) {
         		Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
@@ -57,15 +59,32 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         			//Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
 	        		if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
 	        			Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
-	        			affls.add(affl);
+	        			newAffls.add(affl);
 	        		}
+        		} else if(triggerAction == TDTM_Runnable.Action.AfterDelete && enrollment.Affiliation__c != null) {
+        		    //Get related Affls ids
+        		    afflsToUpdateDelIDs.add(enrollment.Affiliation__c);
         		}
 	 		}
+	 		
 	 		//We manually insert the affiliations first because we need the IDs, in order to link the Program Enrollments with the Affls.
-	 		insert affls;
-	 		for(Integer i = 0; i < affls.size(); i++) {
+	 		insert newAffls;
+	 		for(Integer i = 0; i < newAffls.size(); i++) {
 	 			Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
-	 			enrollment.Affiliation__c = affls[i].ID;
+	 			enrollment.Affiliation__c = newAffls[i].ID;
+	 		}
+	 		
+	 		List<Affiliation__c> afflsToUpdateDel = new List<Affiliation__c>();
+	 		if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Deletion__c) {
+	 		    for(ID id : afflsToUpdateDelIDs) {
+	 		        afflsToUpdateDel.add(new Affiliation__c(ID = id));
+	 		    }
+	 		} else {
+	 		    afflsToUpdateDel = [select Status__c from Affiliation__c where ID in :afflsToUpdateDelIDs];
+	 		    for(Affiliation__c affl : afflsToUpdateDel) {
+	 		        affl.Status__c = 'Former';
+	 		    }
+	 		    update afflsToUpdateDel;
 	 		}
         }
         return dmlWrapper;

@@ -21,21 +21,25 @@
         <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size--1-of-1">Related Affiliation deleted when Program Enrollment deleted:</div>
-                <div class="slds-col slds-size--1-of-1">
+                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
                     <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}">
-                        Yes: 
-                        <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="true" text="true" label="true" labelClass="slds-hide"
-                                       change="{!c.setAfflProgEnrollDel}" />
-                        No, just change Status to former: 
-                        <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="false" text="false" label="fase" labelClass="slds-hide"
-                                       change="{!c.setAfflProgEnrollDel}" />
+                        <div class="slds-col slds-size--1-of-2">Yes:</div> 
+                        <div class="slds-col slds-size--1-of-2">
+                            <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="true" text="true" 
+                                label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" /></div>
+                        <div class="slds-col slds-size--1-of-2">No, just change Status to former:</div> 
+                        <div class="slds-col slds-size--1-of-2">
+                            <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="false" text="false" 
+                                label="fase" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" /></div>
                     <aura:set attribute="else">
-                        Yes:
-                        <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="false" text="true" label="true" labelClass="slds-hide"
-                                       change="{!c.setAfflProgEnrollDel}" />
-                        No, just change Status to former: 
-                        <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="true" text="false" label="false" labelClass="slds-hide"
-                                       change="{!c.setAfflProgEnrollDel}" />
+                        <div class="slds-col slds-size--1-of-2">Yes:</div>
+                        <div class="slds-col slds-size--1-of-2">
+                            <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="false" text="true" 
+                                label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" /></div>
+                        <div class="slds-col slds-size--1-of-2">No, just change Status to former:</div> 
+                        <div class="slds-col slds-size--1-of-2">
+                            <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="true" text="false" 
+                            label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" /></div>
                     </aura:set>
                     </aura:if>
                 </div>

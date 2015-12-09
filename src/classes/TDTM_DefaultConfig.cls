@@ -110,7 +110,7 @@ public without sharing class TDTM_DefaultConfig {
         // Affiliation management on Program Enrollment record creation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'PREN_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Program_Enrollment__c', 
-              Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterDelete'));
         
         // Affiliation and Date management on Course Offering record creation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 

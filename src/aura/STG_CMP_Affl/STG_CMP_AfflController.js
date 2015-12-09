@@ -8,6 +8,7 @@
 		var selected = elem.children[0].innerText;
 		var hierarchySettings = component.get("v.hierarchySettings");
 		hierarchySettings.Affl_ProgEnroll_Deletion__c = selected;
+		component.set("v.hierarchySettings", hierarchySettings);
 		
 	},
 	
