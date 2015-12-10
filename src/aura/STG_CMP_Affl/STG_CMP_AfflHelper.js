@@ -18,7 +18,7 @@
 				component.set("v.afflMappings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
-	    	}	
+	    	}
 		});
 		$A.enqueueAction(action);
 	},
