@@ -48,7 +48,7 @@
 			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Male__c}"/></div>
 			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Neutral__c}"/></div>
 			        <div class="slds-col slds-size--1-of-6"><ui:inputCheckbox disabled="{!v.isView}" value="{!recSetting.Active__c}"/></div>
-			        <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+			        <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS012/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
                         category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRecSettingRow}" 
                         id="{!recSetting.Id}" position="{!position}" /></div>
 			    </aura:iteration>
@@ -87,7 +87,7 @@
                     <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
                     <div class="slds-col slds-size--1-of-5"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
-                    <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS090/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+                    <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS012/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
                         category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
                         id="{!autocSetting.Id}" position="{!position}" /></div>
                 </aura:iteration>
