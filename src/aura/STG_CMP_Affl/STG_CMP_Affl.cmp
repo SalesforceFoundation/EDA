@@ -25,7 +25,7 @@
                     
                     <div class="slds-col slds-size--1-of-2">Yes:</div> 
                     <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}">
+                        <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
                             <ui:inputRadio aura:id="affl_del_yes" disabled="{!v.isView}" name="affldel" value="true" 
                                 label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
                         <aura:set attribute="else">
@@ -35,9 +35,16 @@
                         </aura:if>
                     </div>
                             
-                    <div class="slds-col slds-size--1-of-2">No, just change Status to former:</div> 
                     <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Deletion__c}">
+                         <div class="slds-col slds-grid slds-wrap">
+                            <div class="slds-col slds-size--1-of-2">No, just change Status to:</div>
+                            <div class="slds-col slds-size--1-of-2">
+                                <ui:inputText aura:id="ProgEnrollDel" disabled="{!v.isView}" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"/>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                        <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
                             <ui:inputRadio aura:id="affl_del_no" disabled="{!v.isView}" name="affldel" value="false"
                                 label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
                         <aura:set attribute="else">

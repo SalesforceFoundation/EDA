@@ -75,7 +75,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
 	 		}
 	 		
 	 		List<Affiliation__c> afflsToUpdateDel = new List<Affiliation__c>();
-	 		if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Deletion__c) {
+	 		if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del__c) {
 	 		    for(ID id : afflsToUpdateDelIDs) {
 	 		        afflsToUpdateDel.add(new Affiliation__c(ID = id));
 	 		    }
