@@ -23,6 +23,14 @@
 		$A.enqueueAction(action);
 	},
 	
+	setAfflProgEnrollDel : function(component, event) {
+		var elem = event.getSource().getElement();
+		var selected = elem.children[0].innerText;
+		var hierarchySettings = component.get("v.hierarchySettings");
+		hierarchySettings.Affl_ProgEnroll_Del__c = selected;
+		component.set("v.hierarchySettings", hierarchySettings);
+	},
+	
 	settsLinkClicked : function(component) {
 		$A.util.addClass(component.find("settsTab"), "slds-active");
 		$A.util.removeClass(component.find("mappingsTab"), "slds-active");

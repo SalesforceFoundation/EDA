@@ -4,11 +4,7 @@
 	},
 	
 	setAfflProgEnrollDel : function(component, event, helper) {
-		var elem = event.getSource().getElement();
-		var selected = elem.children[0].innerText;
-		var hierarchySettings = component.get("v.hierarchySettings");
-		hierarchySettings.Affl_ProgEnroll_Del__c = selected;
-		component.set("v.hierarchySettings", hierarchySettings);
+		helper.setAfflProgEnrollDel(component, event);
 		
 	},
 	
