@@ -47,37 +47,40 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
     	DmlWrapper dmlWrapper = new DmlWrapper();
-        
-        List<Affiliation__c> newAffls = new List<Affiliation__c>();
-        
+
         if(newlist != null && newlist.size() > 0) {
-	 		for (SObject so : newlist) {
-        		Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
-        		
-        		if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-        			//Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
-	        		if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
-	        			Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
-	        			newAffls.add(affl);
-	        		}
-        		}
-	 		}
-	 		
-	 		if(newAffls.size() > 0) {
-	 		    //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
-		 		insert newAffls;
-		 		for(Integer i = 0; i < newAffls.size(); i++) {
-		 			Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
-		 			enrollment.Affiliation__c = newAffls[i].ID;
-		 		}
-		 		//We don't need to add these enrollment records to dmlWrapper because we are in BeforeInsert.
-	 		}
+	 		createRelatedAffls(newlist, triggerAction);
         }
         
         if(oldlist != null && oldlist.size() > 0) {
-	 		updateDeleterelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), dmlWrapper);
+	 		updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), dmlWrapper);
         }
         return dmlWrapper;
+    }
+    
+    private void createRelatedAffls(List<SObject> newlist, TDTM_Runnable.Action triggerAction) {
+        List<Affiliation__c> newAffls = new List<Affiliation__c>();
+        for (SObject so : newlist) {
+            Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
+            
+            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                //Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
+                if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
+                    Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
+                    newAffls.add(affl);
+                }
+            }
+        }
+        
+        if(newAffls.size() > 0) {
+            //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
+            insert newAffls;
+            for(Integer i = 0; i < newAffls.size(); i++) {
+                Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
+                enrollment.Affiliation__c = newAffls[i].ID;
+            }
+            //We don't need to add these enrollment records to dmlWrapper because we are in BeforeInsert.
+        }
     }
     
     private List<ID> getDeletedPEsAfflIDs(List<SObject> oldlist, TDTM_Runnable.Action triggerAction) {
