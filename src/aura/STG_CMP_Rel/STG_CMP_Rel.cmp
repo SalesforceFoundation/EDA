@@ -59,15 +59,15 @@
 			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting</legend>
 			        <div class="slds-form--inline slds-form-element">
 			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
-			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name"/></div>
+			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name" label="Name" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Female">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newFemale" placeholder="Female"/></div>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newFemale" placeholder="Female" label="Female" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Male">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newMale" placeholder="Male"/></div>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newMale" placeholder="Male" label="Male" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Neutral">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newNeutral" placeholder="Neutral"/></div>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newNeutral" placeholder="Neutral" label="Neutral" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
-                      <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive"/></div>
+                      <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive" label="Active" labelClass="slds-hide"/></div>
 			        </div>
 			        <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newReciprocalStg}">Add Setting</ui:button>
 			    </fieldset>
