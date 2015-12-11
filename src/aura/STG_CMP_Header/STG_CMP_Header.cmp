@@ -19,7 +19,7 @@
                 <!-- MEDIA OBJECT = FIGURE + BODY -->
                 <div class="slds-media">
                     <div class="slds-media__figure">
-                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS012/assets/icons/standard-sprite/svg/symbols.svg#custom' }" 
+                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/standard-sprite/svg/symbols.svg#custom' }" 
                         category="standard" size="large" name="user" />
                     </div>
 
