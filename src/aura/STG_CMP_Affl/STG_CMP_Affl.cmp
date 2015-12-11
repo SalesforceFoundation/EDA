@@ -81,7 +81,7 @@
 		     <div class="newafflmapping">
 		        <div aria-labelledby="newafflmappingform">
 		          <fieldset class="slds-box slds-theme--default slds-container--medium">
-		            <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
+		            <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
 		              <div class="slds-form--inline slds-form-element">
 		                <label class="slds-form-element__label" for="accRecType">&nbsp;</label>
 		                <div class="slds-form-element__control"><ui:inputText aura:id="accRecType" placeholder="Account Record Type"/></div>
