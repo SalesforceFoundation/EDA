@@ -17,9 +17,9 @@
     <fields>
         <fullName>Affl_ProgEnroll_Del__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Determines is an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</description>
+        <description>Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines is an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</inlineHelpText>
+        <inlineHelpText>Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</inlineHelpText>
         <label>Affiliation Program Enrollment deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
