@@ -47,27 +47,71 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
     	DmlWrapper dmlWrapper = new DmlWrapper();
-        
-        List<Affiliation__c> affls = new List<Affiliation__c>();
+
         if(newlist != null && newlist.size() > 0) {
-	 		for (SObject so : newlist) {
-        		Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
-        		
-        		if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-        			//Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
-	        		if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
-	        			Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
-	        			affls.add(affl);
-	        		}
-        		}
-	 		}
-	 		//We manually insert the affiliations first because we need the IDs, in order to link the Program Enrollments with the Affls.
-	 		insert affls;
-	 		for(Integer i = 0; i < affls.size(); i++) {
-	 			Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
-	 			enrollment.Affiliation__c = affls[i].ID;
-	 		}
+	 		createRelatedAffls(newlist, triggerAction);
+        }
+        
+        if(oldlist != null && oldlist.size() > 0) {
+	 		updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), dmlWrapper);
         }
         return dmlWrapper;
+    }
+    
+    private void createRelatedAffls(List<SObject> newlist, TDTM_Runnable.Action triggerAction) {
+        List<Affiliation__c> newAffls = new List<Affiliation__c>();
+        for (SObject so : newlist) {
+            Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
+            
+            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                //Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
+                if(enrollment.Student__c != null && enrollment.Program__c != null && enrollment.Affiliation__c == null) {
+                    Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Student__c, Account__c = enrollment.Program__c);
+                    newAffls.add(affl);
+                }
+            }
+        }
+        
+        if(newAffls.size() > 0) {
+            //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
+            insert newAffls;
+            for(Integer i = 0; i < newAffls.size(); i++) {
+                Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
+                enrollment.Affiliation__c = newAffls[i].ID;
+            }
+            //We don't need to add these enrollment records to dmlWrapper because we are in BeforeInsert.
+        }
+    }
+    
+    private List<ID> getDeletedPEsAfflIDs(List<SObject> oldlist, TDTM_Runnable.Action triggerAction) {
+        List<ID> afflsToUpdateDelIDs = new List<ID>();
+        for (SObject so : oldlist) {
+            Program_Enrollment__c oldEnrollment = (Program_Enrollment__c)so;
+            
+            if(triggerAction == TDTM_Runnable.Action.AfterDelete) {   
+                if(oldEnrollment.Affiliation__c != null) {
+                    //Get related Affls ids
+                    afflsToUpdateDelIDs.add(oldEnrollment.Affiliation__c);
+                }
+            }
+        }
+        return afflsToUpdateDelIDs;
+    }
+    
+    private void updateDeleteRelatedAffls(List<ID> afflsToUpdateDelIDs, DmlWrapper dmlWrapper) {
+        //Delete or update related affiliations when Program Enrollment records are deleted.
+        List<Affiliation__c> afflsToUpdateDel = new List<Affiliation__c>();
+        if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del__c) {
+            for(ID id : afflsToUpdateDelIDs) {
+                afflsToUpdateDel.add(new Affiliation__c(ID = id));
+            }
+            dmlWrapper.objectsToDelete.addAll((List<SObject>)afflsToUpdateDel);
+        } else {
+            afflsToUpdateDel = [select Status__c from Affiliation__c where ID in :afflsToUpdateDelIDs];
+            for(Affiliation__c affl : afflsToUpdateDel) {
+                affl.Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
+            }
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)afflsToUpdateDel);
+        }
     }
 }

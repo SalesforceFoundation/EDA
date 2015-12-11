@@ -192,6 +192,8 @@
         <members>Error__c.Record_URL__c</members>
         <members>Error__c.Stack_Trace__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
@@ -344,7 +346,7 @@
         <name>QuickAction</name>
     </types>
     <types>
-        <members>SLDS090</members>
+        <members>SLDS012</members>
         <name>StaticResource</name>
     </types>
     <types>

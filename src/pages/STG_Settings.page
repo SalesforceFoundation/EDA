@@ -1,5 +1,5 @@
 <apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
-    <apex:stylesheet value="{!URLFOR($Resource.SLDS090, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS012, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
     <script src="/soap/ajax/35.0/connection.js" type="text/javascript"></script>
     <script src="/soap/ajax/35.0/apex.js" type="text/javascript"></script>
     <script src="/lightning/lightning.out.js" type="text/javascript"></script>

@@ -15,6 +15,28 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Affl_ProgEnroll_Del__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</inlineHelpText>
+        <label>Affiliation Program Enrollment deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</inlineHelpText>
+        <label>Affl status on Prog Enrollment deletion</label>
+        <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Allow_AutoCreated_Duplicates__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</description>
