@@ -72,7 +72,7 @@
 			         <div class="slds-col slds-size--1-of-6"><ui:inputCheckbox disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment__c}"/></div>
 			         <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Status__c}"/></div>
 			         <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!afflMapping.Auto_Program_Enrollment_Role__c}"/></div>
-			         <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS012/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+			         <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
 		                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAfflMappingRow}" 
 		                        id="{!afflMapping.Id}" position="{!position}" /></div>
 			     </aura:iteration>
