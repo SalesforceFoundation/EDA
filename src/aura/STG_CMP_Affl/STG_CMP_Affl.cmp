@@ -84,15 +84,15 @@
 		            <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
 		              <div class="slds-form--inline slds-form-element">
 		                <label class="slds-form-element__label" for="accRecType">&nbsp;</label>
-		                <div class="slds-form-element__control"><ui:inputText aura:id="accRecType" placeholder="Account Record Type"/></div>
+		                <div class="slds-form-element__control"><ui:inputText aura:id="accRecType" placeholder="Account Record Type" label="Account Record Type" labelClass="slds-hide"/></div>
 		                <label class="slds-form-element__label" for="primaryField">&nbsp;</label>
-		                <div class="slds-form-element__control"><ui:inputText aura:id="primaryField" placeholder="Primary Affl Field"/></div>
+		                <div class="slds-form-element__control"><ui:inputText aura:id="primaryField" placeholder="Primary Affl Field" label="Primary Affl Field" labelClass="slds-hide"/></div>
 		                <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment:</label>
-		                <div class="slds-form-element__control"><ui:inputCheckbox aura:id="autoEnroll"/></div>
+		                <div class="slds-form-element__control"><ui:inputCheckbox aura:id="autoEnroll" label="Auto-Enroll" labelClass="slds-hide"/></div>
 		                <label class="slds-form-element__label" for="autoEnrollStatus">&nbsp;</label>
-		                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollStatus" placeholder="Status"/></div>
+		                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollStatus" placeholder="Status" label="Status" labelClass="slds-hide"/></div>
 		                <label class="slds-form-element__label" for="autoEnrollRole">&nbsp;</label>
-		                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollRole" placeholder="Role"/></div>
+		                <div class="slds-form-element__control"><ui:inputText aura:id="autoEnrollRole" placeholder="Role" label="Role" labelClass="slds-hide"/></div>
 		              </div>
 		              <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAfflMapping}">Add Mapping</ui:button>
 		          </fieldset>

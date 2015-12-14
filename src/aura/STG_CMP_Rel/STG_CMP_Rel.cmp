@@ -98,13 +98,13 @@
                   <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
                     <div class="slds-form--inline slds-form-element">
                       <label class="slds-form-element__label" for="Object">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newObject" placeholder="Object"/></div>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newObject" placeholder="Object" label="Object" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Field">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newField" placeholder="Field"/></div>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newField" placeholder="Field" label="Field" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Relationship Type">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newRelType" placeholder="Relationship Type"/></div>
+                      <div class="slds-form-element__control"><ui:inputText aura:id="newRelType" placeholder="Relationship Type" label="Relationship Type" labelClass="slds-hide"/></div>
                       <label class="slds-form-element__label" for="Campaign Types">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types"/></div>
+                      <div class="slds-form-element__control"><ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types" label="Campaign Types" labelClass="slds-hide"/></div>
                     </div>
                     <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAutoCreateStg}">Add Setting</ui:button>
                 </fieldset>
