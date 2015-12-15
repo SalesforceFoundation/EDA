@@ -26,21 +26,11 @@
                     <div class="slds-col slds-size--1-of-2">Yes:</div> 
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
-                             <aura:if isTrue="{!v.isView}">
-                                 <ui:radioMenuItem aura:id="affl_del_yes" selected="true" />
-                             <aura:set attribute="else">
-                                 <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="true" 
+                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="true" disabled="{!v.isView}" 
                                      label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
-                             </aura:set>
-                             </aura:if>
                          <aura:set attribute="else">
-                             <aura:if isTrue="{!v.isView}">
-                                 <ui:radioMenuItem aura:id="affl_del_yes" selected="false" />
-                             <aura:set attribute="else">
-                                 <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" 
+                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" disabled="{!v.isView}"
                                      label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
-                             </aura:set>
-                             </aura:if>
                          </aura:set>
                          </aura:if>
                     </div>
@@ -60,21 +50,11 @@
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
-                             <aura:if isTrue="{!v.isView}">
-                                 <ui:radioMenuItem aura:id="affl_del_no" selected="false" />
-                             <aura:set attribute="else">
-                                 <ui:inputRadio aura:id="affl_del_no" name="affldel" value="false"
+                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="false" disabled="{!v.isView}"
                                      label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
-                             </aura:set>
-                             </aura:if>
                          <aura:set attribute="else">
-                             <aura:if isTrue="{!v.isView}">
-                                 <ui:radioMenuItem aura:id="affl_del_no" selected="true" />
-                             <aura:set attribute="else">
-                                 <ui:inputRadio aura:id="affl_del_no" name="affldel" value="true" 
+                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="true" disabled="{!v.isView}" 
                                      label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
-                             </aura:set>
-                             </aura:if>
                          </aura:set>
                          </aura:if>
                     </div>
