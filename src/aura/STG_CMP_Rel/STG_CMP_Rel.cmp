@@ -26,10 +26,24 @@
 		<div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
 			<div class="slds-grid slds-wrap">
 			    <div class="slds-col slds-size--1-of-2">Reciprocal Method:</div>
-			    <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Reciprocal_Method__c}"/></div>
+			    <div class="slds-col slds-size--1-of-2">
+			         <aura:if isTrue="{!v.isView}">
+			             <ui:outputText value="{!v.hierarchySettings.Reciprocal_Method__c}"/>
+			         <aura:set attribute="else">
+			             <ui:inputText value="{!v.hierarchySettings.Reciprocal_Method__c}"/>
+			         </aura:set>
+                     </aura:if>
+			    </div>
 
 			    <div class="slds-col slds-size--1-of-2">Allow Auto-Created Duplicate Relations:</div>
-			    <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/></div>
+			    <div class="slds-col slds-size--1-of-2">
+			         <aura:if isTrue="{!v.isView}">
+			             <ui:outputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/>
+			         <aura:set attribute="else">
+			             <ui:inputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/>
+			         </aura:set>
+                     </aura:if>
+			    </div>
 			</div>
 		</div>
 		
@@ -43,14 +57,51 @@
 			    <div class="slds-col slds-size--1-of-6">&nbsp;</div>
 			
 			    <aura:iteration items="{!v.reciprocalSettings}" var="recSetting" indexVar="position">
-			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Name}"/></div>
-			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Female__c}"/></div>
-			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Male__c}"/></div>
-			        <div class="slds-col slds-size--1-of-6"><ui:inputText disabled="{!v.isView}" value="{!recSetting.Neutral__c}"/></div>
-			        <div class="slds-col slds-size--1-of-6"><ui:inputCheckbox disabled="{!v.isView}" value="{!recSetting.Active__c}"/></div>
-			        <div class="slds-col slds-size--1-of-6"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+			        <div class="slds-col slds-size--1-of-6">
+			             <aura:if isTrue="{!v.isView}">
+			                 <ui:outputText value="{!recSetting.Name}"/>
+			             <aura:set attribute="else">
+			                 <ui:inputText value="{!recSetting.Name}"/>
+			             </aura:set>
+                         </aura:if>
+			        </div>
+			        <div class="slds-col slds-size--1-of-6">
+			             <aura:if isTrue="{!v.isView}">
+			                 <ui:outputText value="{!recSetting.Female__c}"/>
+			             <aura:set attribute="else">
+			                 <ui:inputText value="{!recSetting.Female__c}"/>
+			             </aura:set>
+                         </aura:if>
+			        </div>
+			        <div class="slds-col slds-size--1-of-6">
+			             <aura:if isTrue="{!v.isView}">
+			                 <ui:outputText value="{!recSetting.Male__c}"/>
+			             <aura:set attribute="else">
+			                 <ui:inputText value="{!recSetting.Male__c}"/>
+			             </aura:set>
+                         </aura:if>
+			        </div>
+			        <div class="slds-col slds-size--1-of-6">
+			             <aura:if isTrue="{!v.isView}">
+			                 <ui:outputText value="{!recSetting.Neutral__c}"/>
+			             <aura:set attribute="else">
+			                 <ui:inputText value="{!recSetting.Neutral__c}"/>
+			             </aura:set>
+                         </aura:if>
+			        </div>
+			        <div class="slds-col slds-size--1-of-6">
+			             <aura:if isTrue="{!v.isView}">
+			                 <ui:outputCheckbox value="{!recSetting.Active__c}"/>
+			             <aura:set attribute="else">
+			                 <ui:inputCheckbox value="{!recSetting.Active__c}"/>
+			             </aura:set>
+                         </aura:if>
+			        </div>
+			        <div class="slds-col slds-size--1-of-6">
+			            <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
                         category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRecSettingRow}" 
-                        id="{!recSetting.Id}" position="{!position}" /></div>
+                        id="{!recSetting.Id}" position="{!position}" />
+                    </div>
 			    </aura:iteration>
 			</div>
 			<div class="newrecsetting">
@@ -83,13 +134,42 @@
                 <div class="slds-col slds-size--1-of-5">&nbsp;</div>
             
                 <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting" indexVar="position">
-                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Object__c}"/></div>
-                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Field__c}"/></div>
-                    <div class="slds-col slds-size--1-of-5"><ui:inputText disabled="{!v.isView}" value="{!autocSetting.Relationship_Type__c}"/></div>
-                    <div class="slds-col slds-size--1-of-5"><ui:inputTextArea disabled="{!v.isView}" value="{!autocSetting.Campaign_Types__c}"/></div>
+                    <div class="slds-col slds-size--1-of-5">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText value="{!autocSetting.Object__c}"/>
+                        <aura:set attribute="else">
+                            <ui:inputText value="{!autocSetting.Object__c}"/>
+                        </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-5">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText value="{!autocSetting.Field__c}"/>
+                        <aura:set attribute="else">
+                            <ui:inputText value="{!autocSetting.Field__c}"/>
+                        </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-5">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText value="{!autocSetting.Relationship_Type__c}"/>
+                        <aura:set attribute="else">
+                            <ui:inputText value="{!autocSetting.Relationship_Type__c}"/>
+                        </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-5">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputTextArea value="{!autocSetting.Campaign_Types__c}"/>
+                        <aura:set attribute="else">
+                            <ui:inputTextArea value="{!autocSetting.Campaign_Types__c}"/>
+                        </aura:set>
+                        </aura:if>
+                    </div>
                     <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
                         category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
-                        id="{!autocSetting.Id}" position="{!position}" /></div>
+                        id="{!autocSetting.Id}" position="{!position}" />
+                    </div>
                 </aura:iteration>
             </div>
             <div class="newautocsetting">

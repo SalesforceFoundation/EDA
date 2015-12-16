@@ -115,7 +115,8 @@
                      <div class="slds-col slds-size--1-of-6">
                          <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
                              category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAfflMappingRow}" 
-                             id="{!afflMapping.Id}" position="{!position}" /></div>
+                             id="{!afflMapping.Id}" position="{!position}" />
+                     </div>
                  </aura:iteration>
              </div>
              <div class="newafflmapping">
