@@ -130,23 +130,19 @@
                   <fieldset class="slds-box slds-theme--default slds-container--medium">
                     <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
                       <div class="slds-form--inline slds-form-element">
-                        <label class="slds-form-element__label" for="accRecType">&nbsp;</label>
                         <div class="slds-form-element__control">
-                            <ui:inputText aura:id="accRecType" placeholder="Account Record Type" label="Account Record Type" labelClass="slds-hide"/>
+                            <ui:inputText aura:id="accRecType" placeholder="Account Record Type" class="slds-m-right--medium" label="Account Record Type" labelClass="slds-hide"/>
                         </div>
-                        <label class="slds-form-element__label" for="primaryField">&nbsp;</label>
                         <div class="slds-form-element__control">
-                            <ui:inputText aura:id="primaryField" placeholder="Primary Affl Field" label="Primary Affl Field" labelClass="slds-hide"/>
+                            <ui:inputText aura:id="primaryField" placeholder="Primary Affl Field" class="slds-m-right--medium" label="Primary Affl Field" labelClass="slds-hide"/>
                         </div>
                         <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment:</label>
                         <div class="slds-form-element__control">
-                             <ui:inputCheckbox aura:id="autoEnroll" label="Auto-Enroll" labelClass="slds-hide"/>
+                             <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium" label="Auto-Enroll" labelClass="slds-hide"/>
                         </div>
-                        <label class="slds-form-element__label" for="autoEnrollStatus">&nbsp;</label>
                         <div class="slds-form-element__control">
-                             <ui:inputText aura:id="autoEnrollStatus" placeholder="Status" label="Status" labelClass="slds-hide"/>
+                             <ui:inputText aura:id="autoEnrollStatus" placeholder="Status" class="slds-m-right--medium" label="Status" labelClass="slds-hide"/>
                         </div>
-                        <label class="slds-form-element__label" for="autoEnrollRole">&nbsp;</label>
                         <div class="slds-form-element__control">
                             <ui:inputText aura:id="autoEnrollRole" placeholder="Role" label="Role" labelClass="slds-hide"/>
                         </div>

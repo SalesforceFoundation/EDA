@@ -113,19 +113,16 @@
 			        <div class="slds-form--inline slds-form-element">
 			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
 			          <div class="slds-form-element__control">
-			             <ui:inputText aura:id="newName" placeholder="Name" label="Name" labelClass="slds-hide"/>
+			             <ui:inputText aura:id="newName" placeholder="Name" class="slds-m-right--medium" label="Name" labelClass="slds-hide"/>
 			          </div>
-                      <label class="slds-form-element__label" for="Female">&nbsp;</label>
                       <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newFemale" placeholder="Female" label="Female" labelClass="slds-hide"/>
+                        <ui:inputText aura:id="newFemale" placeholder="Female" class="slds-m-right--medium" label="Female" labelClass="slds-hide"/>
                       </div>
-                      <label class="slds-form-element__label" for="Male">&nbsp;</label>
                       <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newMale" placeholder="Male" label="Male" labelClass="slds-hide"/>
+                        <ui:inputText aura:id="newMale" placeholder="Male" class="slds-m-right--medium" label="Male" labelClass="slds-hide"/>
                       </div>
-                      <label class="slds-form-element__label" for="Neutral">&nbsp;</label>
                       <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newNeutral" placeholder="Neutral" label="Neutral" labelClass="slds-hide"/>
+                        <ui:inputText aura:id="newNeutral" placeholder="Neutral" class="slds-m-right--medium" label="Neutral" labelClass="slds-hide"/>
                       </div>
                       <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
                       <div class="slds-form-element__control">
@@ -190,19 +187,15 @@
                 <fieldset class="slds-box slds-theme--default slds-container--medium">
                   <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
                     <div class="slds-form--inline slds-form-element">
-                      <label class="slds-form-element__label" for="Object">&nbsp;</label>
                       <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newObject" placeholder="Object" label="Object" labelClass="slds-hide"/>
+                        <ui:inputText aura:id="newObject" placeholder="Object" class="slds-m-right--medium" label="Object" labelClass="slds-hide"/>
                       </div>
-                      <label class="slds-form-element__label" for="Field">&nbsp;</label>
                       <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newField" placeholder="Field" label="Field" labelClass="slds-hide"/>
+                        <ui:inputText aura:id="newField" placeholder="Field" class="slds-m-right--medium" label="Field" labelClass="slds-hide"/>
                       </div>
-                      <label class="slds-form-element__label" for="Relationship Type">&nbsp;</label>
                       <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newRelType" placeholder="Relationship Type" label="Relationship Type" labelClass="slds-hide"/>
+                        <ui:inputText aura:id="newRelType" placeholder="Relationship Type" class="slds-m-right--medium" label="Relationship Type" labelClass="slds-hide"/>
                       </div>
-                      <label class="slds-form-element__label" for="Campaign Types">&nbsp;</label>
                       <div class="slds-form-element__control">
                         <ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types" label="Campaign Types" labelClass="slds-hide"/>
                       </div>
