@@ -30,7 +30,8 @@
 			         <aura:if isTrue="{!v.isView}">
 			             <ui:outputText value="{!v.hierarchySettings.Reciprocal_Method__c}"/>
 			         <aura:set attribute="else">
-			             <ui:inputText value="{!v.hierarchySettings.Reciprocal_Method__c}"/>
+			             <ui:inputText value="{!v.hierarchySettings.Reciprocal_Method__c}" 
+			                             label="{!'Reciprocal Method: ' + v.hierarchySettings.Reciprocal_Method__c}" labelClass="slds-hide"/>
 			         </aura:set>
                      </aura:if>
 			    </div>
@@ -40,7 +41,8 @@
 			         <aura:if isTrue="{!v.isView}">
 			             <ui:outputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/>
 			         <aura:set attribute="else">
-			             <ui:inputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"/>
+			             <ui:inputCheckbox value="{!v.hierarchySettings.Allow_AutoCreated_Duplicates__c}"
+			                     label="{!'Auto Create Duplicates: ' + v.hierarchySettings.Allow_AutoCreated_Duplicates__c}" labelClass="slds-hide"/>
 			         </aura:set>
                      </aura:if>
 			    </div>
@@ -61,7 +63,7 @@
 			             <aura:if isTrue="{!v.isView}">
 			                 <ui:outputText value="{!recSetting.Name}"/>
 			             <aura:set attribute="else">
-			                 <ui:inputText value="{!recSetting.Name}"/>
+			                 <ui:inputText value="{!recSetting.Name}" label="{!'Name: ' + recSetting.Name}" labelClass="slds-hide"/>
 			             </aura:set>
                          </aura:if>
 			        </div>
@@ -69,7 +71,7 @@
 			             <aura:if isTrue="{!v.isView}">
 			                 <ui:outputText value="{!recSetting.Female__c}"/>
 			             <aura:set attribute="else">
-			                 <ui:inputText value="{!recSetting.Female__c}"/>
+			                 <ui:inputText value="{!recSetting.Female__c}" label="{!'Female: ' + recSetting.Female__c}" labelClass="slds-hide"/>
 			             </aura:set>
                          </aura:if>
 			        </div>
@@ -77,7 +79,7 @@
 			             <aura:if isTrue="{!v.isView}">
 			                 <ui:outputText value="{!recSetting.Male__c}"/>
 			             <aura:set attribute="else">
-			                 <ui:inputText value="{!recSetting.Male__c}"/>
+			                 <ui:inputText value="{!recSetting.Male__c}" label="{!'Male: ' + recSetting.Male__c}" labelClass="slds-hide"/>
 			             </aura:set>
                          </aura:if>
 			        </div>
@@ -85,7 +87,7 @@
 			             <aura:if isTrue="{!v.isView}">
 			                 <ui:outputText value="{!recSetting.Neutral__c}"/>
 			             <aura:set attribute="else">
-			                 <ui:inputText value="{!recSetting.Neutral__c}"/>
+			                 <ui:inputText value="{!recSetting.Neutral__c}" label="{!'Neutral: ' + recSetting.Neutral__c}" labelClass="slds-hide"/>
 			             </aura:set>
                          </aura:if>
 			        </div>
@@ -93,7 +95,7 @@
 			             <aura:if isTrue="{!v.isView}">
 			                 <ui:outputCheckbox value="{!recSetting.Active__c}"/>
 			             <aura:set attribute="else">
-			                 <ui:inputCheckbox value="{!recSetting.Active__c}"/>
+			                 <ui:inputCheckbox value="{!recSetting.Active__c}" label="{!'Active: ' + recSetting.Active__c}" labelClass="slds-hide"/>
 			             </aura:set>
                          </aura:if>
 			        </div>
@@ -110,15 +112,25 @@
 			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting</legend>
 			        <div class="slds-form--inline slds-form-element">
 			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
-			          <div class="slds-form-element__control"><ui:inputText aura:id="newName" placeholder="Name" label="Name" labelClass="slds-hide"/></div>
+			          <div class="slds-form-element__control">
+			             <ui:inputText aura:id="newName" placeholder="Name" label="Name" labelClass="slds-hide"/>
+			          </div>
                       <label class="slds-form-element__label" for="Female">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newFemale" placeholder="Female" label="Female" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputText aura:id="newFemale" placeholder="Female" label="Female" labelClass="slds-hide"/>
+                      </div>
                       <label class="slds-form-element__label" for="Male">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newMale" placeholder="Male" label="Male" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputText aura:id="newMale" placeholder="Male" label="Male" labelClass="slds-hide"/>
+                      </div>
                       <label class="slds-form-element__label" for="Neutral">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newNeutral" placeholder="Neutral" label="Neutral" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputText aura:id="newNeutral" placeholder="Neutral" label="Neutral" labelClass="slds-hide"/>
+                      </div>
                       <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
-                      <div class="slds-form-element__control"><ui:inputCheckbox aura:id="newActive" label="Active" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputCheckbox aura:id="newActive" label="Active" labelClass="slds-hide"/>
+                      </div>
 			        </div>
 			        <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newReciprocalStg}">Add Setting</ui:button>
 			    </fieldset>
@@ -138,7 +150,7 @@
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputText value="{!autocSetting.Object__c}"/>
                         <aura:set attribute="else">
-                            <ui:inputText value="{!autocSetting.Object__c}"/>
+                            <ui:inputText value="{!autocSetting.Object__c}" label="{!'Object: ' + autocSetting.Object__c}" labelClass="slds-hide"/>
                         </aura:set>
                         </aura:if>
                     </div>
@@ -146,7 +158,7 @@
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputText value="{!autocSetting.Field__c}"/>
                         <aura:set attribute="else">
-                            <ui:inputText value="{!autocSetting.Field__c}"/>
+                            <ui:inputText value="{!autocSetting.Field__c}" label="{!'Field: ' + autocSetting.Field__c}" labelClass="slds-hide"/>
                         </aura:set>
                         </aura:if>
                     </div>
@@ -154,7 +166,7 @@
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputText value="{!autocSetting.Relationship_Type__c}"/>
                         <aura:set attribute="else">
-                            <ui:inputText value="{!autocSetting.Relationship_Type__c}"/>
+                            <ui:inputText value="{!autocSetting.Relationship_Type__c}" label="{!'Type: ' + autocSetting.Type__c}" labelClass="slds-hide"/>
                         </aura:set>
                         </aura:if>
                     </div>
@@ -162,13 +174,14 @@
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputTextArea value="{!autocSetting.Campaign_Types__c}"/>
                         <aura:set attribute="else">
-                            <ui:inputTextArea value="{!autocSetting.Campaign_Types__c}"/>
+                            <ui:inputTextArea value="{!autocSetting.Campaign_Types__c}" label="{!'Campaign Types: ' + autocSetting.Campaign_Types__c}" labelClass="slds-hide"/>
                         </aura:set>
                         </aura:if>
                     </div>
-                    <div class="slds-col slds-size--1-of-5"><c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
-                        id="{!autocSetting.Id}" position="{!position}" />
+                    <div class="slds-col slds-size--1-of-5">
+                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+                            category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
+                            id="{!autocSetting.Id}" position="{!position}" />
                     </div>
                 </aura:iteration>
             </div>
@@ -178,13 +191,21 @@
                   <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
                     <div class="slds-form--inline slds-form-element">
                       <label class="slds-form-element__label" for="Object">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newObject" placeholder="Object" label="Object" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputText aura:id="newObject" placeholder="Object" label="Object" labelClass="slds-hide"/>
+                      </div>
                       <label class="slds-form-element__label" for="Field">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newField" placeholder="Field" label="Field" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputText aura:id="newField" placeholder="Field" label="Field" labelClass="slds-hide"/>
+                      </div>
                       <label class="slds-form-element__label" for="Relationship Type">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputText aura:id="newRelType" placeholder="Relationship Type" label="Relationship Type" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputText aura:id="newRelType" placeholder="Relationship Type" label="Relationship Type" labelClass="slds-hide"/>
+                      </div>
                       <label class="slds-form-element__label" for="Campaign Types">&nbsp;</label>
-                      <div class="slds-form-element__control"><ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types" label="Campaign Types" labelClass="slds-hide"/></div>
+                      <div class="slds-form-element__control">
+                        <ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types" label="Campaign Types" labelClass="slds-hide"/>
+                      </div>
                     </div>
                     <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAutoCreateStg}">Add Setting</ui:button>
                 </fieldset>
