@@ -9,16 +9,16 @@
     
     <div id="tabs" class="slds-tabs--default">
          <ul class="slds-tabs--default__nav" role="tablist">
-             <li aura:id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="presentation">
+             <li aura:id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="tab">
                  <ui:outputURL value="#" label="Affiliations" click="{!c.afflLinkClicked}" />
              </li>
-             <li aura:id="relTab" class="slds-tabs__item slds-text-heading--label" title="Relationships" role="presentation">
+             <li aura:id="relTab" class="slds-tabs__item slds-text-heading--label" title="Relationships" role="tab">
                  <ui:outputURL value="#" label="Relationships" click="{!c.relLinkClicked}" />
              </li>
-             <li aura:id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Addresses" role="presentation">
+             <li aura:id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Addresses" role="tab">
                  <ui:outputURL value="#" label="Addresses" click="{!c.addrLinkClicked}" />
              </li>
-             <li aura:id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="presentation">
+             <li aura:id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="tab">
                  <ui:outputURL value="#" label="System" click="{!c.sysLinkClicked}" />
              </li>
          </ul>

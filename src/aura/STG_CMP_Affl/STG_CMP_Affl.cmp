@@ -10,10 +10,10 @@
     
     <div id="afflTabs" class="slds-tabs--scoped">
         <ul class="slds-tabs--scoped__nav" role="tablist">
-            <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
+            <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Settings" role="tab">
                 <ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" />
             </li>
-            <li aura:id="mappingsTab" class="slds-tabs__item slds-text-heading--label" title="Item Two" role="presentation">
+            <li aura:id="mappingsTab" class="slds-tabs__item slds-text-heading--label" title="Affiliation Mappings" role="tab">
                 <ui:outputURL value="#" label="Affiliation Mappings" click="{!c.mappingsLinkClicked}" />
             </li>
         </ul>

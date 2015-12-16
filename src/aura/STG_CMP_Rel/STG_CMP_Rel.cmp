@@ -12,13 +12,13 @@
        
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">
-			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Item One" role="presentation">
+			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Settings" role="tab">
 				<ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" />
 			</li>
-			<li aura:id="recSettsTab" class="slds-tabs__item slds-text-heading--label" title="Item Two" role="presentation">
+			<li aura:id="recSettsTab" class="slds-tabs__item slds-text-heading--label" title="Reciprocal Settings" role="tab">
 				<ui:outputURL value="#" label="Reciprocal Settings" click="{!c.recSettsLinkClicked}" />
 			</li>
-			<li aura:id="autocTab" class="slds-tabs__item slds-text-heading--label" title="Item Three" role="presentation">
+			<li aura:id="autocTab" class="slds-tabs__item slds-text-heading--label" title="Autocreation" role="tab">
 				<ui:outputURL value="#" label="Autocreation" click="{!c.autocLinkClicked}" />
 			</li>
 		</ul>
