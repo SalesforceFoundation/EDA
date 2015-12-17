@@ -18,6 +18,8 @@
 		reciprocalSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
+				if(settings.length == 0)
+					this.setLabel(component, "v.noRecSettings", "noRecSettings", namespacePrefix);
 				component.set("v.reciprocalSettings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);

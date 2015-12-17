@@ -58,6 +58,8 @@
 			    <div class="slds-col slds-size--1-of-6"><strong>Active</strong></div>
 			    <div class="slds-col slds-size--1-of-6">&nbsp;</div>
 			
+			    <ui:outputText value="{!v.noRecSettings}"/>
+			     
 			    <aura:iteration items="{!v.reciprocalSettings}" var="recSetting" indexVar="position">
 			        <div class="slds-col slds-size--1-of-6">
 			             <aura:if isTrue="{!v.isView}">

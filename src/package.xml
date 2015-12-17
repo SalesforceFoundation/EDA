@@ -264,6 +264,7 @@
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>noAccRecType</members>
+        <members>noRecSettings</members>
         <name>CustomLabel</name>
     </types>
     <types>

@@ -96,4 +96,12 @@
         <shortDescription>noAccRecType</shortDescription>
         <value>The defined account record type does not exist:</value>
     </labels>
+    <labels>
+        <fullName>noRecSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Reciprocal Settings</shortDescription>
+        <value>No Reciprocal Settings to display. Try creating new ones in the form below.</value>
+    </labels>
 </CustomLabels>
