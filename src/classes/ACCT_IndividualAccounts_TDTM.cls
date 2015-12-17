@@ -177,7 +177,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             //update Accounts that have newly created Contacts connected to them
             updateAccountPrimaryContact(mapAccountIdContactId, dmlWrapper);
             //we also need to create affiliations for those contacts that have been created as children of existing accounts, 
-            //and we have to populate the key affiliation field on thse contacts
+            //and we have to populate the key affiliation field on those contacts
             createAfflsToExistingAccs(mapAccountIdContactId, dmlWrapper);
         }
 

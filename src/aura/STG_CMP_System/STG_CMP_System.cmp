@@ -7,18 +7,55 @@
     
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Account_Processor__c}"/></div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.isView}">
+                <ui:outputText value="{!v.hierarchySettings.Account_Processor__c}"/>
+            <aura:set attribute="else">
+                <ui:inputText value="{!v.hierarchySettings.Account_Processor__c}" 
+                                label="{!'Account Processor: ' + v.hierarchySettings.Account_Processor__c}" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
         
         <div class="slds-col slds-size--1-of-2">Store Errors:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Store_Errors_On__c}"/></div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.isView}">
+                <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/>
+            <aura:set attribute="else">
+                <ui:inputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
         
         <div class="slds-col slds-size--1-of-2">Send Error Notifications:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Error_Notifications_On__c}"/></div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.isView}">
+                <ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}"/>
+            <aura:set attribute="else">
+                <ui:inputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" label="Error Notifications On" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
 
         <div class="slds-col slds-size--1-of-2">Error Notification Recipients:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:inputText disabled="{!v.isView}" value="{!v.hierarchySettings.Error_Notifications_To__c}"/></div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.isView}">
+                <ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}"/>
+            <aura:set attribute="else">
+                <ui:inputText value="{!v.hierarchySettings.Error_Notifications_To__c}"
+                                label="{!'Error Notifications To: ' + v.hierarchySettings.Error_Notifications_To__c}" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
 
         <div class="slds-col slds-size--1-of-2">Enable Debug:</div>
-        <div class="slds-col slds-size--1-of-2"><ui:inputCheckbox disabled="{!v.isView}" value="{!v.hierarchySettings.Enable_Debug__c}"/></div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.isView}">
+                <ui:outputCheckbox value="{!v.hierarchySettings.Enable_Debug__c}"/>
+            <aura:set attribute="else">
+                <ui:inputCheckbox value="{!v.hierarchySettings.Enable_Debug__c}" label="Enable Debug" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
     </div>
 </aura:component>
