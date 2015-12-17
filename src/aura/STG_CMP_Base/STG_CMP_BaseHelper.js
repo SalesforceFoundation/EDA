@@ -117,15 +117,5 @@
 		var autocTabContent = component.find(element);
 		$A.util.removeClass(autocTabContent, "slds-show");
 		$A.util.addClass(autocTabContent, "slds-hide");
-	},
-	
-	setLabel : function(component, element, label, namespacePrefix) {
-		var fullLabel;
-		if(!namespacePrefix) {
-			fullLabel = "$Label.c." + label;
-		} else {
-			fullLable = "$Label." + namespacePrefix + "." + label;
-		}
-		component.set(element, $A.get(fullLabel));
 	}
 })
