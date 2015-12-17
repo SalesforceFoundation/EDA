@@ -98,7 +98,7 @@
 		}
 	},
 	
-	deleteRow : function(component, serverMethod, stgsUiElement, id, position) {
+	deleteRow : function(component, serverMethod, stgsUiElement, id, position, errorElement, errorLabel) {
 		var action = component.get(serverMethod);
 		action.setParams({ "idString" : id });
 		action.setCallback(this, function(response) {
@@ -106,6 +106,8 @@
 				var settings = component.get(stgsUiElement);
 				settings.splice(position, 1);
 				component.set(stgsUiElement, settings);
+				if(settings.length == 0)
+					component.set(errorElement, $A.get(errorLabel));
 			} else if (response.getState() === "ERROR") {
 				this.displayError(response);
 			}

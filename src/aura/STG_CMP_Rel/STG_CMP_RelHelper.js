@@ -112,6 +112,7 @@
 		newStgAction.setParams({ "name" : name, "female" : female, "male" : male, "neutral" : neutral, "active" : active });
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
+				component.set("v.noRecSettings", "");
 				var reciprocalSettings = component.get("v.reciprocalSettings");
 				reciprocalSettings.push({ "Id" : response.getReturnValue(), "Name" : name, "Female__c" : female, 
 										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
@@ -147,7 +148,7 @@
 	},
 	
 	deleteRecSettingRow : function(component, id, position) {		
-		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position);
+		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position, "v.noRecSettings", "$Label.c.noRecSettings");
 	},
 	
 	deleteAutoCreateRow : function(component, id, position) {
