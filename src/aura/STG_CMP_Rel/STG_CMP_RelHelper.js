@@ -33,6 +33,8 @@
 		autoCreateSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
+				if(settings.length == 0)
+					component.set("v.noAutoCreateSettings", $A.get("$Label.c.noAutoCreateSettings"));
 				component.set("v.autoCreateSettings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
@@ -135,6 +137,7 @@
 		newStgAction.setParams({ "obj" : object, "field" : field, "relType" : relType, "campaigns" : campaigns });
 		newStgAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
+				component.set("v.noAutoCreateSettings", "");
 				var autoCreateSettings = component.get("v.autoCreateSettings");
 				autoCreateSettings.push({ "Id" : response.getReturnValue(), "Object__c" : object, "Field__c" : field, 
 											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
@@ -148,10 +151,12 @@
 	},
 	
 	deleteRecSettingRow : function(component, id, position) {		
-		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position, "v.noRecSettings", "$Label.c.noRecSettings");
+		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position, "v.noRecSettings", 
+				"$Label.c.noRecSettings");
 	},
 	
 	deleteAutoCreateRow : function(component, id, position) {
-		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position);
+		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position, "v.noAutoCreateSettings", 
+				"$Label.c.noAutoCreateSettings");
 	}
 })

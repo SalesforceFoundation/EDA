@@ -97,6 +97,22 @@
         <value>The defined account record type does not exist:</value>
     </labels>
     <labels>
+        <fullName>noAfflMappings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Affiliation Mappings</shortDescription>
+        <value>No Affiliation Mappings to display. Try creating new ones in the form below.</value>
+    </labels>
+    <labels>
+        <fullName>noAutoCreateSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Auto Create Settings</shortDescription>
+        <value>No Auto-Create Settings to display. Try creating new ones in the form below.</value>
+    </labels>
+    <labels>
         <fullName>noRecSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

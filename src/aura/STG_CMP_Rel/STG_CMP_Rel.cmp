@@ -144,6 +144,8 @@
                 <div class="slds-col slds-size--1-of-5"><strong>Campaign Types</strong></div>
                 <div class="slds-col slds-size--1-of-5">&nbsp;</div>
             
+                <ui:outputText value="{!v.noAutoCreateSettings}"/>
+                
                 <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting" indexVar="position">
                     <div class="slds-col slds-size--1-of-5">
                         <aura:if isTrue="{!v.isView}">

@@ -72,6 +72,8 @@
                  <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment Role</strong></div>
                  <div class="slds-col slds-size--1-of-6">&nbsp;</div>
             
+                 <ui:outputText value="{!v.noAfflMappings}"/>
+                 
                  <aura:iteration items="{!v.afflMappings}" var="afflMapping" indexVar="position">
                      <div class="slds-col slds-size--1-of-6">
                          <aura:if isTrue="{!v.isView}">

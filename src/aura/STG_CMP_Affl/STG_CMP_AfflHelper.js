@@ -15,6 +15,8 @@
 		action.setCallback(this, function(response) {		
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
+				if(settings.length == 0)
+					component.set("v.noAfflMappings", $A.get("$Label.c.noAfflMappings"));
 				component.set("v.afflMappings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
@@ -81,6 +83,7 @@
 			"autoEnrollStatus" : autoEnrollStatus, "autoEnrollRole" : autoEnrollRole });
 		newMappingAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
+				component.set("v.noAfflMappings", "");
 				var afflMappings = component.get("v.afflMappings");
 				afflMappings.push({ "Id" : response.getReturnValue(), "Account_Record_Type__c" : accRecType, "Primary_Affl_Field__c" : primaryField, 
 								"Auto_Program_Enrollment__c" : autoEnroll, "Auto_Program_Enrollment_Status__c" : autoEnrollStatus, 
@@ -95,6 +98,6 @@
 	},
 	
 	deleteAfflMappingRow : function(component, id, position) {
-		this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position);
+		this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position, "v.noAfflMappings", "$Label.c.noAfflMappings");
 	}
 })
