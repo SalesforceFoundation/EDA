@@ -119,5 +119,16 @@
 		var autocTabContent = component.find(element);
 		$A.util.removeClass(autocTabContent, "slds-show");
 		$A.util.addClass(autocTabContent, "slds-hide");
+	},
+	
+	setMessageLabel : function(component, messageElement, namespacePrefix, label) {
+		var labels = $A.get("$Label");
+		var prefix;
+		if(!namespacePrefix || namespacePrefix.length == 0) {
+			prefix = "c";
+		} else {
+			prefix = namespacePrefix;
+		}
+		component.set(messageElement, labels[prefix][label]);
 	}
 })
