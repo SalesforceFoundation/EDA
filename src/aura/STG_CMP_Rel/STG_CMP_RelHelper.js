@@ -19,7 +19,7 @@
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length == 0)
-					this.setMessageLabel(component, "v.noRecSettings", namespacePrefix, 'noRecSettings');
+					this.setMessageLabel(component, "v.noRecSettings", namespacePrefix, "noRecSettings");
 				component.set("v.reciprocalSettings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
@@ -34,7 +34,7 @@
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length == 0)
-					component.set("v.noAutoCreateSettings", $A.get("$Label.c.noAutoCreateSettings"));
+					this.setMessageLabel(component, "v.noAutoCreateSettings", namespacePrefix, "noAutoCreateSettings");
 				component.set("v.autoCreateSettings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);

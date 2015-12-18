@@ -10,13 +10,13 @@
 		this.loadAfflMappings(component);		
 	},
 
-	loadAfflMappings : function(component) {
+	loadAfflMappings : function(component, event, helper) {
 		var action = component.get("c.getAfflMappings");
 		action.setCallback(this, function(response) {		
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length == 0)
-					component.set("v.noAfflMappings", $A.get("$Label.c.noAfflMappings"));
+					this.setMessageLabel(component, "v.noAfflMappings", namespacePrefix, "noAfflMappings");
 				component.set("v.afflMappings", this.removePrefixListSettings(settings, namespacePrefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
