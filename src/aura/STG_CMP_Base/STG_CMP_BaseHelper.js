@@ -98,7 +98,7 @@
 		}
 	},
 	
-	deleteRow : function(component, serverMethod, stgsUiElement, id, position, errorElement, errorLabel) {
+	deleteRow : function(component, serverMethod, stgsUiElement, id, position, errorElement, errorLabel, namespacePrefix) {
 		var action = component.get(serverMethod);
 		action.setParams({ "idString" : id });
 		action.setCallback(this, function(response) {
@@ -107,7 +107,7 @@
 				settings.splice(position, 1);
 				component.set(stgsUiElement, settings);
 				if(settings.length == 0)
-					component.set(errorElement, $A.get(errorLabel));
+					this.setMessageLabel(component, errorElement, namespacePrefix, errorLabel);
 			} else if (response.getState() === "ERROR") {
 				this.displayError(response);
 			}
@@ -130,5 +130,16 @@
 			prefix = namespacePrefix;
 		}
 		component.set(messageElement, labels[prefix][label]);
+	},
+	
+	//Any label referenced in any of the components will only be available if it's being called like this
+	//somewhere in the code. Note that this method isn't even called from anywhere.
+	hugeHack : function() {
+		$A.get("$Label.c.noAfflMappings");
+		$A.get("$Label.heda.noAfflMappings");
+		$A.get("$Label.c.noRecSettings");
+		$A.get("$Label.heda.noRecSettings");
+		$A.get("$Label.c.noAutoCreateSettings");
+		$A.get("$Label.heda.noAutoCreateSettings");
 	}
 })

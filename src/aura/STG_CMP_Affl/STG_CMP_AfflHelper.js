@@ -99,6 +99,7 @@
 	},
 	
 	deleteAfflMappingRow : function(component, id, position) {
-		this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position, "v.noAfflMappings", "$Label.c.noAfflMappings");
+		this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position, "v.noAfflMappings", "noAfflMappings", 
+				component.get("v.namespacePrefix"));
 	}
 })

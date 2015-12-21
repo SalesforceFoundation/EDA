@@ -153,11 +153,11 @@
 	
 	deleteRecSettingRow : function(component, id, position) {		
 		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position, "v.noRecSettings", 
-				"$Label.c.noRecSettings");
+				"noRecSettings", component.get("v.namespacePrefix"));
 	},
 	
 	deleteAutoCreateRow : function(component, id, position) {
 		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position, "v.noAutoCreateSettings", 
-				"$Label.c.noAutoCreateSettings");
+				"noAutoCreateSettings", component.get("v.namespacePrefix"));
 	}
 })
