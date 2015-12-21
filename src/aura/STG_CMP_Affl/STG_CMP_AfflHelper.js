@@ -11,13 +11,14 @@
 	},
 
 	loadAfflMappings : function(component, event, helper) {
+		var prefix = component.get("v.namespacePrefix");
 		var action = component.get("c.getAfflMappings");
 		action.setCallback(this, function(response) {		
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length == 0)
-					this.setMessageLabel(component, "v.noAfflMappings", namespacePrefix, "noAfflMappings");
-				component.set("v.afflMappings", this.removePrefixListSettings(settings, namespacePrefix));
+					this.setMessageLabel(component, "v.noAfflMappings", prefix, "noAfflMappings");
+				component.set("v.afflMappings", this.removePrefixListSettings(settings, prefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 	    	}
@@ -61,7 +62,7 @@
 	
 	saveMappings : function(component) {
 		var saveAction = component.get("c.saveAfflMappings");
-		var settings = this.addPrefixListSettings(component.get("v.afflMappings"), namespacePrefix);
+		var settings = this.addPrefixListSettings(component.get("v.afflMappings"), component.get("v.namespacePrefix"));
 		saveAction.setParams({"afflMappings" : settings});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "ERROR") {

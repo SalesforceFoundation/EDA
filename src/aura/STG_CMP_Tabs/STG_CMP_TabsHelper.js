@@ -12,11 +12,12 @@
 	},
 	
 	getHierarchySettings : function(component) {
+		var prefix = component.get("v.namespacePrefix")
 		var action = component.get("c.getSettings");
 	    action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
 	    		var settings = response.getReturnValue();
-	    		component.set("v.hierarchySettings", this.removePrefixHierarchySettings(settings, namespacePrefix));
+	    		component.set("v.hierarchySettings", this.removePrefixHierarchySettings(settings, prefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
@@ -26,7 +27,7 @@
 	
 	saveSettings : function(component) {
 		var saveAction = component.get("c.saveHierarchySettings");
-		var hierarchySettings = this.addPrefixHierarchySettings(component.get("v.hierarchySettings"), namespacePrefix);
+		var hierarchySettings = this.addPrefixHierarchySettings(component.get("v.hierarchySettings"), prefix);
 		saveAction.setParams({"hierarchySettings" : hierarchySettings});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
