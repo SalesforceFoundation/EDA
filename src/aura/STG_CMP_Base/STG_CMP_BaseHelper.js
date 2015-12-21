@@ -135,11 +135,14 @@
 	//Any label referenced in any of the components will only be available if it's being called like this
 	//somewhere in the code. Note that this method isn't even called from anywhere.
 	hugeHack : function() {
-		$A.get("$Label.c.noAfflMappings");
-		$A.get("$Label.heda.noAfflMappings");
-		$A.get("$Label.c.noRecSettings");
-		$A.get("$Label.heda.noRecSettings");
-		$A.get("$Label.c.noAutoCreateSettings");
-		$A.get("$Label.heda.noAutoCreateSettings");
+		try {
+			$A.get("$Label.heda.noAfflMappings");
+			$A.get("$Label.heda.noRecSettings");
+			$A.get("$Label.heda.noAutoCreateSettings");
+		} catch(e) {
+			$A.get("$Label.c.noAfflMappings");		
+			$A.get("$Label.c.noRecSettings");	
+			$A.get("$Label.c.noAutoCreateSettings");
+		}
 	}
 })
