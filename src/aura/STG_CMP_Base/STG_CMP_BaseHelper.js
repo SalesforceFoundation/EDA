@@ -98,7 +98,7 @@
 		}
 	},
 	
-	deleteRow : function(component, serverMethod, stgsUiElement, id, position) {
+	deleteRow : function(component, serverMethod, stgsUiElement, id, position, errorElement, errorLabel) {
 		var action = component.get(serverMethod);
 		action.setParams({ "idString" : id });
 		action.setCallback(this, function(response) {
@@ -106,6 +106,8 @@
 				var settings = component.get(stgsUiElement);
 				settings.splice(position, 1);
 				component.set(stgsUiElement, settings);
+				if(settings.length == 0)
+					component.set(errorElement, $A.get(errorLabel));
 			} else if (response.getState() === "ERROR") {
 				this.displayError(response);
 			}
@@ -118,4 +120,15 @@
 		$A.util.removeClass(autocTabContent, "slds-show");
 		$A.util.addClass(autocTabContent, "slds-hide");
 	},
+	
+	setMessageLabel : function(component, messageElement, namespacePrefix, label) {
+		var labels = $A.get("$Label");
+		var prefix;
+		if(!namespacePrefix || namespacePrefix.length == 0) {
+			prefix = "c";
+		} else {
+			prefix = namespacePrefix;
+		}
+		component.set(messageElement, labels[prefix][label]);
+	}
 })

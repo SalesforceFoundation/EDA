@@ -1,7 +1,6 @@
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
-    <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />  
     <aura:attribute name="reciprocalSettings" type="Relationship_Lookup__c[]" />
     <aura:attribute name="autoCreateSettings" type="Relationship_Auto_Create__c[]" />
     <aura:attribute name="Id" type="String" />
@@ -58,6 +57,8 @@
 			    <div class="slds-col slds-size--1-of-6"><strong>Active</strong></div>
 			    <div class="slds-col slds-size--1-of-6">&nbsp;</div>
 			
+			    <ui:outputText value="{!v.noRecSettings}"/>
+			     
 			    <aura:iteration items="{!v.reciprocalSettings}" var="recSetting" indexVar="position">
 			        <div class="slds-col slds-size--1-of-6">
 			             <aura:if isTrue="{!v.isView}">
@@ -142,6 +143,8 @@
                 <div class="slds-col slds-size--1-of-5"><strong>Campaign Types</strong></div>
                 <div class="slds-col slds-size--1-of-5">&nbsp;</div>
             
+                <ui:outputText value="{!v.noAutoCreateSettings}"/>
+                
                 <aura:iteration items="{!v.autoCreateSettings}" var="autocSetting" indexVar="position">
                     <div class="slds-col slds-size--1-of-5">
                         <aura:if isTrue="{!v.isView}">
