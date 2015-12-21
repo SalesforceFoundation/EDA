@@ -5,8 +5,6 @@
 		$A.util.addClass(component.find("settsTabContent"), "slds-show");
 		$A.util.addClass(component.find("recSettsTabContent"), "slds-hide");
 		$A.util.addClass(component.find("autocTabContent"), "slds-hide");
-
-		component.set("v.namespacePrefix", namespacePrefix);
 		
 		//Load list settings
 		this.loadReciprocalSettings(component);
@@ -14,13 +12,14 @@
 	},
 	
 	loadReciprocalSettings : function(component, event, helper) {
+		var prefix = component.get("v.namespacePrefix");
 		var reciprocalSettingsAction = component.get("c.getReciprocalSettings");
 		reciprocalSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length == 0)
-					this.setMessageLabel(component, "v.noRecSettings", namespacePrefix, "noRecSettings");
-				component.set("v.reciprocalSettings", this.removePrefixListSettings(settings, namespacePrefix));
+					this.setMessageLabel(component, "v.noRecSettings", prefix, "noRecSettings");
+				component.set("v.reciprocalSettings", this.removePrefixListSettings(settings, prefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 	    	}
@@ -29,13 +28,14 @@
 	},
 	
 	loadRelAutoCreateSettings : function(component) {
+		var prefix = component.get("v.namespacePrefix");
 		var autoCreateSettingsAction = component.get("c.getAutoCreateSettings");
 		autoCreateSettingsAction.setCallback(this, function(response) {
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length == 0)
-					this.setMessageLabel(component, "v.noAutoCreateSettings", namespacePrefix, "noAutoCreateSettings");
-				component.set("v.autoCreateSettings", this.removePrefixListSettings(settings, namespacePrefix));
+					this.setMessageLabel(component, "v.noAutoCreateSettings", prefix, "noAutoCreateSettings");
+				component.set("v.autoCreateSettings", this.removePrefixListSettings(settings, prefix));
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 	    	}
@@ -84,12 +84,13 @@
 	},
 
 	saveRelSettings : function(component) {
+		var prefix = component.get("v.namespacePrefix");
 		var saveRecSettingsAction = component.get("c.saveReciprocalSettings");
-		var settings = this.addPrefixListSettings(component.get("v.reciprocalSettings"), namespacePrefix);
+		var settings = this.addPrefixListSettings(component.get("v.reciprocalSettings"), prefix);
 		this.callServerVoidMethod(saveRecSettingsAction, {"reciprocalSettings" : settings});
 		
 		var saveAutoCreateSettingsAction = component.get("c.saveAutoCreateSettings");
-		var settings = this.addPrefixListSettings(component.get("v.autoCreateSettings"), namespacePrefix);
+		var settings = this.addPrefixListSettings(component.get("v.autoCreateSettings"), prefix);
 		this.callServerVoidMethod(saveAutoCreateSettingsAction, {"autoCreateSettings" : settings});
 	},
 	
@@ -152,11 +153,11 @@
 	
 	deleteRecSettingRow : function(component, id, position) {		
 		this.deleteRow(component, "c.deleteRecSettingRecord", "v.reciprocalSettings", id, position, "v.noRecSettings", 
-				"$Label.c.noRecSettings");
+				"noRecSettings", component.get("v.namespacePrefix"));
 	},
 	
 	deleteAutoCreateRow : function(component, id, position) {
 		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position, "v.noAutoCreateSettings", 
-				"$Label.c.noAutoCreateSettings");
+				"noAutoCreateSettings", component.get("v.namespacePrefix"));
 	}
 })
