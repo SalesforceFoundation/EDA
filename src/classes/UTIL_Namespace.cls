@@ -133,8 +133,8 @@ public class UTIL_Namespace {
     }
     
     public static void hack() {
-        Label.noAfflMappings;
-        Label.noAutoCreateSettings;
-        Label.noRecSettings;
+        String l1 = Label.noAfflMappings;
+        String l2 = Label.noAutoCreateSettings;
+        String l3 = Label.noRecSettings;
     }
 }
