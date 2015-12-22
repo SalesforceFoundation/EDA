@@ -68,11 +68,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HIPPA__c</field>
+                <field>HIPAA__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HIPPA_Detail__c</field>
+                <field>HIPAA_Detail__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -114,13 +114,14 @@
     </fields>
     <fields>
         <fullName>Class_Year__c</fullName>
+        <description>The expected graduation year from the program.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Class Year</label>
-        <precision>4</precision>
+        <length>250</length>
         <required>false</required>
-        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
