@@ -127,7 +127,7 @@
 		if(!namespacePrefix || namespacePrefix.length == 0) {
 			prefix = "c";
 		} else {
-			prefix = namespacePrefix;
+			prefix = namespacePrefix.replace('__', '');
 		}
 		component.set(messageElement, labels[prefix][label]);
 	},
