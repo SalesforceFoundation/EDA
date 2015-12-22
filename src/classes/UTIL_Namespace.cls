@@ -131,4 +131,10 @@ public class UTIL_Namespace {
         }
         return email;
     }
+    
+    public static void hack() {
+        String l1 = Label.noAfflMappings;
+        String l2 = Label.noAutoCreateSettings;
+        String l3 = Label.noRecSettings;
+    }
 }
