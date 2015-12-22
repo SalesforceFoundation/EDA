@@ -166,19 +166,19 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>HIPPA_Detail__c</fullName>
+        <fullName>HIPAA_Detail__c</fullName>
         <externalId>false</externalId>
-        <label>HIPPA Detail</label>
+        <label>HIPAA Detail</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
-        <fullName>HIPPA__c</fullName>
+        <fullName>HIPAA__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>HIPPA</label>
+        <label>HIPAA</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>

@@ -145,8 +145,8 @@
         <members>Contact.FERPA__c</members>
         <members>Contact.Financial_Aid_Applicant__c</members>
         <members>Contact.Gender__c</members>
-        <members>Contact.HIPPA_Detail__c</members>
-        <members>Contact.HIPPA__c</members>
+        <members>Contact.HIPAA_Detail__c</members>
+        <members>Contact.HIPAA__c</members>
         <members>Contact.Military_Background__c</members>
         <members>Contact.Military_Service__c</members>
         <members>Contact.Naming_Exclusions__c</members>
