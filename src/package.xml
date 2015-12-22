@@ -270,9 +270,6 @@
         <name>CustomLabel</name>
     </types>
     <types>
-        <name>CustomLabel</name>
-    </types>
-    <types>
         <members>Account</members>
         <members>Address__c</members>
         <members>Affiliation__c</members>
