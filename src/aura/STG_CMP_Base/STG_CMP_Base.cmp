@@ -1,6 +1,5 @@
 <aura:component abstract="true" extensible="true" controller="UTIL_CustomSettingsFacade">
-    
-    <aura:attribute name="namespacePrefix" type="String" />
+
     <aura:attribute name="isView" type="Boolean" default="true"/>
     <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
     
