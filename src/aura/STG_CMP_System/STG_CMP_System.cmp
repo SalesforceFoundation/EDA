@@ -1,7 +1,9 @@
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-        
+    
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
+    
+    <aura:attribute name="namespacePrefix" type="String" />
     
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>

@@ -1,10 +1,11 @@
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
+    <aura:attribute name="namespacePrefix" type="String" />
     <aura:attribute name="save" type="Boolean" default="true"/>
     
-    <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
-    <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
+    <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
     
     <div id="tabs" class="slds-tabs--default">
          <ul class="slds-tabs--default__nav" role="tablist">
@@ -23,16 +24,16 @@
          </ul>
          
          <div aura:id="afflTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Affl hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
+             <c:STG_CMP_Affl hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
+             <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
+             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" />
+             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
      </div>
 </aura:component>
