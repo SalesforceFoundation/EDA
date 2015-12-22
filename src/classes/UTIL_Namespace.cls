@@ -132,6 +132,11 @@ public class UTIL_Namespace {
         return email;
     }
     
+    /*******************************************************************************************************
+    * @description We need this method because labels that are nowhere in the codebase are now not included in
+    * the package, even if explicitly listed in package.xml.
+    * @return void.
+    ********************************************************************************************************/
     public static void hack() {
         String l1 = Label.noAfflMappings;
         String l2 = Label.noAutoCreateSettings;
