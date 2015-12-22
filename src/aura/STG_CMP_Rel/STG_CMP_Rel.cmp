@@ -102,9 +102,11 @@
                          </aura:if>
 			        </div>
 			        <div class="slds-col slds-size--1-of-6">
-			            <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRecSettingRow}" 
-                        id="{!recSetting.Id}" position="{!position}" />
+			            <aura:if isTrue="{!!v.isView}">
+				            <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+	                        category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteRecSettingRow}" 
+	                        id="{!recSetting.Id}" position="{!position}" />
+                        </aura:if>
                     </div>
 			    </aura:iteration>
 			</div>
@@ -180,9 +182,11 @@
                         </aura:if>
                     </div>
                     <div class="slds-col slds-size--1-of-5">
-                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-                            category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
-                            id="{!autocSetting.Id}" position="{!position}" />
+                        <aura:if isTrue="{!!v.isView}">
+	                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
+	                            category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAutoCreateRow}" 
+	                            id="{!autocSetting.Id}" position="{!position}" />
+                        </aura:if>
                     </div>
                 </aura:iteration>
             </div>
