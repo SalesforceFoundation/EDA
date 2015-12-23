@@ -178,7 +178,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             updateAccountPrimaryContact(mapAccountIdContactId, dmlWrapper);
             //we also need to create affiliations for those contacts that have been created as children of existing accounts, 
             //and we have to populate the key affiliation field on those contacts
-            createAfflsToExistingAccs(mapAccountIdContactId, dmlWrapper);
+            //createAfflsToExistingAccs(mapAccountIdContactId, dmlWrapper);
         }
 
         if (listAccountIdHHToUpdate.size() > 0) {
@@ -215,11 +215,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     
     /*******************************************************************************************************
     * @description Creates affiliations for those contacts that have been created as children of existing accounts, 
-    * and populates the key affiliation field on thse contacts.
+    * and populates the key affiliation field on those contacts.
     * @param mapAccountIdContactId a map of AccountId's to ContactId's which specifies which accounts need updating.
     * @param dmlWrapper to hold the Accounts that need updating.
     * @return void
-    */
+    *
+    * Functionality Change --> commenting out this method because we don't want an affiliation automatically created
+    * from a Contact to its parent Account. 
+    * 
     private void createAfflsToExistingAccs(Map<Id, Id> mapAccountIdContactId, DmlWrapper dmlWrapper) {
     	List<SObject> afflsToInsert = new List<Affiliation__c>();
     	for(ID accountId : mapAccountIdContactId.keySet()) {
@@ -227,7 +230,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 								Primary__c = true, Status__c = 'Current'));
     	}
     	dmlWrapper.objectsToInsert.addAll(afflsToInsert);
-    }
+    }*/
 
     /*******************************************************************************************************
     * @description Updates an Account's naming, primary contact, and rollups
@@ -377,9 +380,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 c.AccountId = accountInserts[i].Id;
                 contactsToUpdate.add(c);
                 
-                //Creating affiliation
-				afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Account__c = accountInserts[i].Id, 
-								Primary__c = true, Status__c = 'Current'));
+                //Creating affiliation - Functionality Change --> commenting out this code because we 
+                //don't want an affiliation automatically created from a Contact to its parent Account. 
+				//afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Account__c = accountInserts[i].Id, 
+				//				Primary__c = true, Status__c = 'Current'));
 				
                 i += 1;
             }
