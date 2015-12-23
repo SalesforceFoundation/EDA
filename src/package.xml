@@ -210,7 +210,6 @@
         <members>Program_Enrollment__c.Affiliation__c</members>
         <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
         <members>Program_Enrollment__c.Class_Standing__c</members>
-        <members>Program_Enrollment__c.Class_Year__c</members>
         <members>Program_Enrollment__c.Credits_Attempted__c</members>
         <members>Program_Enrollment__c.Credits_Earned__c</members>
         <members>Program_Enrollment__c.Eligible_to_Enroll__c</members>
