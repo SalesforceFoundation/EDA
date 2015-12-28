@@ -266,23 +266,27 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     	UTIL_Debug.debug('****Number of newly assigned faculty: ' + newFacultyIDs.size());
     	//Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
-        List<Affiliation__c> affls = [select Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs order by Contact__c];
+        List<Affiliation__c> affls = [select Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs 
+                                        order by Contact__c];
         UTIL_Debug.debug('****Number of affls for existing faculty: ' + affls.size());
+        
         if(affls.size() > 0) {
 	        //Set initial values, to compare against
 	        Affiliation__c affl = affls[0];
 	        ID contactID = affls[0].Contact__c;
 	        List<Affiliation__c> facultyAffls = new Affiliation__c[] {affl};
 	        facultyIDtoAffls.put(contactID, facultyAffls);
-	        //Iterate through the other values
+	        
+	        //Iterate through the rest of the affiliations
 	        for(Integer i = 1; i < affls.size(); i++) { 
-	            if(affls[i].Contact__c != contactID) {
-	                facultyAffls = new List<Affiliation__c>();
-	                facultyIDtoAffls.put(affls[i].Contact__c, facultyAffls);
+	            if(affls[i].Contact__c == contactID) {
+	                facultyAffls.add(affls[i]);   
 	            } else {
-	                facultyAffls.add(affls[i]);
+	                contactID = affls[i].Contact__c;
+                    facultyAffls = new List<Affiliation__c>();
+                    facultyAffls.add(affls[i]);
+                    facultyIDtoAffls.put(contactID, facultyAffls);
 	            }
-	            contactID = affls[i].Contact__c;
 	        }
         }
         return facultyIDtoAffls;
