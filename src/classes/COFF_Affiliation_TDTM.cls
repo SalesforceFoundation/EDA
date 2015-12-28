@@ -259,7 +259,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     }
     
    /*******************************************************************************************************
-    * @description Returns a map with each the Contact ID of each faculty member as the key, and all its Affiliations
+    * @description Returns a map with the Contact ID of each faculty member as the key, and all its Affiliations
     * as the values. Public only so it can be called from the tests.
     ********************************************************************************************************/
     public Map<ID, List<Affiliation__c>> getAfflsForContact(List<ID> newFacultyIDs) {
