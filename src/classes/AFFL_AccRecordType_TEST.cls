@@ -62,9 +62,14 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Verify default household account has been created for the contact
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Account.ID);
+        System.assertEquals(null, contact.Primary_Household__c);
         
+        //Manually create an Affiliation to the household, since we are not automatically doing so any more.
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+
         //Verify the primary household field was populated
-        System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Primary_Household__c);
         
         Account acc = [select RecordTypeId from Account where ID=:contact.Account.ID];
         //Change the account record type to Business Organization
@@ -91,9 +96,14 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Verify default household account has been created for the contact
         contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Account.ID);
+        System.assertEquals(null, contact.Primary_Household__c);
         
+        //Manually create an Affiliation to the household, since we are not automatically doing so any more.
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+
         //Verify the primary household field was populated
-        System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
         Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
@@ -132,9 +142,14 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Verify default household account has been created for the contact
         contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Account.ID);
+        System.assertEquals(null, contact.Primary_Household__c);
         
+        //Manually create an Affiliation to the household, since we are not automatically doing so any more
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+
         //Verify the primary household field was populated
-        System.assertEquals(contact.Account.ID, contact.Primary_Household__c);
+        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
         Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);

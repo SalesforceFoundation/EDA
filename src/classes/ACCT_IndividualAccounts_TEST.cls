@@ -234,9 +234,11 @@ private class ACCT_IndividualAccounts_TEST {
         con2 = [select AccountId, Primary_Household__c from Contact where id=:con2.id];       
         system.assertEquals(accountId, con2.AccountId);  
         
-        List<Affiliation__c> con2affls = [select Primary__c from Affiliation__c where Contact__c =:con2.Id and Account__c =:accountId];
-        system.assertEquals(1, con2affls.size());
-        system.assertEquals(true, con2affls[0].Primary__c);
+        //We changed the functionality so no Affiliation gets created when a Contact is created either as a child of an existing
+        //Account or by itself (in which case an Account is automatically created for it).
+        //List<Affiliation__c> con2affls = [select Primary__c from Affiliation__c where Contact__c =:con2.Id and Account__c =:accountId];
+        //system.assertEquals(1, con2affls.size());
+        //system.assertEquals(true, con2affls[0].Primary__c);
         
         //system.assertEquals(accountId, con2.Primary_Household__c); In this case the field is not populated because we are dealing with Administrative accounts.
     }
