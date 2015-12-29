@@ -38,6 +38,12 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
     
+    /*******************************************************************************************************
+    * @description Static flag to prevent CON_PrimaryAffls_TDTM from creating a new Affiliations when an existing
+    * Affiliation is made primary.
+    ********************************************************************************************************/
+    public static Boolean afflMadePrimary = false;
+    
 	/*******************************************************************************************************
     * @description Static flags to prevent recursive call.
     ********************************************************************************************************/
@@ -103,6 +109,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                //an any other primary affiliation of the same type needs to be made non-primary.
 		                if (affl.Primary__c && !afflOld.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
 	                        afflsMadePrimary.add(affl);
+	                        afflMadePrimary = true;
                             populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
 		            }

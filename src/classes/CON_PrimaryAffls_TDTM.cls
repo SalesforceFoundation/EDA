@@ -38,6 +38,11 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+    
+    /*******************************************************************************************************
+    * @description Static flag to prevent AFFL_MultiRecordType_TDTM from updating the primary affiliation fields
+    * when they are updated directly in the Contact.
+    ********************************************************************************************************/
     public static Boolean keyAfflLookupUpdated = false;
     
     /*******************************************************************************************************
@@ -95,8 +100,10 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //  --> Create a matching primary Affiliation for the Contact
 		                    //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
-		                        UTIL_Debug.debug('****Key Affiliation field has been set');
-		                        createAfflFromLookup(newContact, j, afflsToInsert); 
+		                        if(!AFFL_MultiRecordType_TDTM.afflMadePrimary) {
+		                          UTIL_Debug.debug('****Key Affiliation field has been set');
+		                          createAfflFromLookup(newContact, j, afflsToInsert);
+		                        }
 		                    }
 		                    
 		                    //If any Key Affiliation field has been changed to point to another Account
