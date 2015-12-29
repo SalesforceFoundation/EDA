@@ -13,18 +13,6 @@
         <type>Lookup</type>
     </fields>
 	<fields>
-        <fullName>Primary_Administrative_Account__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Primary Administrative Account</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Contacts</relationshipLabel>
-        <relationshipName>Admin_Account_Members</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-	<fields>
         <fullName>Primary_Department__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
