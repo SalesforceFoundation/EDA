@@ -12,7 +12,7 @@
 	},
 	
 	getHierarchySettings : function(component) {
-		var prefix = component.get("v.namespacePrefix")
+		var prefix = component.get("v.namespacePrefix");
 		var action = component.get("c.getSettings");
 	    action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
@@ -26,6 +26,7 @@
 	},
 	
 	saveSettings : function(component) {
+		var prefix = component.get("v.namespacePrefix");
 		var saveAction = component.get("c.saveHierarchySettings");
 		var hierarchySettings = this.addPrefixHierarchySettings(component.get("v.hierarchySettings"), prefix);
 		saveAction.setParams({"hierarchySettings" : hierarchySettings});
