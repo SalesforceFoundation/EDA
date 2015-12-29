@@ -104,7 +104,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //         was his intention)
 		                    //  --> Make the old Affiliation non-primary. Although this could be AFFL_MultiRecordType_TDTM's responsibility, since the Affl type
 		                    //        is not yet defined (and the formula will run later), we'll do it here.    
-		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
+		                    else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
 		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
 		                        keyAfflLookupUpdated = true;
 		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
@@ -114,7 +114,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
-	                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+	                        else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
 	                            keyAfflLookupUpdated = true;
                                 UTIL_Debug.debug('****Key Affiliation field has been cleared');
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);

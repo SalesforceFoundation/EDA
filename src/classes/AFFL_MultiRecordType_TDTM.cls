@@ -101,11 +101,9 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                
 		                //If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
 		                //an any other primary affiliation of the same type needs to be made non-primary.
-		                if (affl.Primary__c && !afflOld.Primary__c) {
-		                    if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
-		                        afflsMadePrimary.add(affl);
-                                populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
-		                    }
+		                if (affl.Primary__c && !afflOld.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
+	                        afflsMadePrimary.add(affl);
+                            populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
 		            }
 		        	i++;

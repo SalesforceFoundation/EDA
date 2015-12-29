@@ -33,10 +33,6 @@ public with sharing class CON_PrimaryAffls_TEST {
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
     
-    // if you only want to run one test in this class, fill in its name here.
-    // if you want to run all tests, then use '*'
-    private static string strTestOnly = '*';
-    
     public static void setup() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                 
@@ -50,9 +46,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void newContactWithPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'newContactWithPrimaryAfflField') return;
-        
+    public static void newContactWithPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -74,9 +68,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void addingValToExistingPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'addingValToExistingPrimaryAfflField') return;
-        
+    public static void addingValToExistingPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -109,9 +101,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void changingPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'changingPrimaryAfflField') return;
-        
+    public static void changingPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -155,9 +145,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void clearingPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'clearingPrimaryAfflField') return;
-        
+    public static void clearingPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -191,9 +179,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void invalidFieldName() {
-        if (strTestOnly != '*' && strTestOnly != 'invalidFieldName') return;
-        
+    public static void invalidFieldName() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -217,5 +203,40 @@ public with sharing class CON_PrimaryAffls_TEST {
         List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c from Affiliation__c where Contact__c = :contact.ID 
                                         and Account__c = :bizOrg1.ID];
         System.assertEquals(0, affls.size());
+    }
+    
+    @isTest
+    public static void makingExistingAfflPrimary() {        
+        setup();
+        
+        //Create account of Business Organization record type
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert bizOrg1;
+
+        //Create contact
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+        
+        //Create non primary affiliation to the biz org
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID);
+        insert affl;
+        
+        //Only the affiliation we just manually created should exist
+        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
+        System.assertEquals(1, affls.size());
+        
+        affl.Primary__c = true;
+        Test.startTest();
+        update affl;
+        Test.stopTest();
+        
+        //Primary business organization field should have been populated
+        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+        System.assertNotEquals(null, contact.Primary_Organization__c);
+        
+        //No other affiliation should have been created (bug W-008631)
+        affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
+        System.assertEquals(1, affls.size());
+        
     }
 }
