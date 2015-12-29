@@ -38,10 +38,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	
 	private static ID orgRecTypeID;
 	private static ID householdRecTypeID;
-	
-	// if you only want to run one test in this class, fill in its name here.
-    // if you want to run all tests, then use '*'
-    private static string strTestOnly = '*';
     
 	public static void setup() {
 		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
@@ -56,9 +52,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-	public static void createPrimaryAffl() {
-		if (strTestOnly != '*' && strTestOnly != 'createPrimaryAffl') return;
-		
+	public static void createPrimaryAffl() {		
 		setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -113,9 +107,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-	public static void deletePrimaryAffl() {
-		if (strTestOnly != '*' && strTestOnly != 'deletePrimaryAffl') return;
-		
+	public static void deletePrimaryAffl() {		
 		setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -158,9 +150,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-	public static void makePrimaryAfflNonPrimary() {
-		if (strTestOnly != '*' && strTestOnly != 'makePrimaryAfflNonPrimary') return;
-		
+	public static void makePrimaryAfflNonPrimary() {		
 		setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -197,8 +187,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	
 	@isTest
 	public static void makeNonPrimaryAfflPrimary() {
-		if (strTestOnly != '*' && strTestOnly != 'makeNonPrimaryAfflPrimary') return;
-		
 		setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -217,9 +205,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(null, Contact.Primary_Organization__c);
 		
-		//Made the business affiliation primary
+		//Make the business affiliation primary
 		affl1.Primary__c = true;
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
+		CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
 		Test.startTest();
 		update affl1;
 		Test.stopTest();
@@ -227,12 +217,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		//Verify key affl field has been populated
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
+		
+		//No other affiliation should have been created (bug W-008631)
+        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
+        System.assertEquals(1, affls.size());
 	}
 	
 	@isTest
-	public static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {
-		if (strTestOnly != '*' && strTestOnly != 'makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists') return;
-		
+	public static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {		
 		setup();
 
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -277,9 +269,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-	public static void autoCreateProgramEnrollment() {
-		if (strTestOnly != '*' && strTestOnly != 'autoCreateProgramEnrollment') return;
-		
+	public static void autoCreateProgramEnrollment() {		
 		setup();
 		
 		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
@@ -311,9 +301,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-    public static void autoCreateProgramEnrollmentDifferentRole() {
-        if (strTestOnly != '*' && strTestOnly != 'autoCreateProgramEnrollmentDifferentRole') return;
-        
+    public static void autoCreateProgramEnrollmentDifferentRole() {        
         setup();
         
         //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 

@@ -204,39 +204,4 @@ public with sharing class CON_PrimaryAffls_TEST {
                                         and Account__c = :bizOrg1.ID];
         System.assertEquals(0, affls.size());
     }
-    
-    @isTest
-    public static void makingExistingAfflPrimary() {        
-        setup();
-        
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
-
-        //Create contact
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
-        
-        //Create non primary affiliation to the biz org
-        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID);
-        insert affl;
-        
-        //Only the affiliation we just manually created should exist
-        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
-        System.assertEquals(1, affls.size());
-        
-        affl.Primary__c = true;
-        Test.startTest();
-        update affl;
-        Test.stopTest();
-        
-        //Primary business organization field should have been populated
-        contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
-        System.assertNotEquals(null, contact.Primary_Organization__c);
-        
-        //No other affiliation should have been created (bug W-008631)
-        affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
-        System.assertEquals(1, affls.size());
-        
-    }
 }
