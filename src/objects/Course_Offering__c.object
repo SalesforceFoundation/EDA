@@ -79,7 +79,8 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields><fields>
+    </fields>
+    <fields>
         <fullName>End_Date__c</fullName>
         <externalId>false</externalId>
         <label>End Date</label>
