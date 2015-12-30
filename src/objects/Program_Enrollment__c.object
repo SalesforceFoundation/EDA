@@ -113,18 +113,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Graduation_Year__c</fullName>
-        <description>The expected graduation year from the program.</description>
-        <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
-        <label>Class Year</label>
-        <length>250</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Credits_Attempted__c</fullName>
         <externalId>false</externalId>
         <label>Credits Attempted</label>
@@ -193,6 +181,17 @@
         <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Graduation_Year__c</fullName>
+        <description>The expected graduation year from the program.</description>
+        <externalId>false</externalId>
+        <label>Class Year</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
