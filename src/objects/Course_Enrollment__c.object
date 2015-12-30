@@ -45,7 +45,16 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>HEDA_Course_Enrollment_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Course_Enrollment_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Program_Enrollment__c</fields>
+        <fields>GPA__c</fields>
+        <label>HEDA Course Enrollment Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This is a generic template for Custom Object.  With this template, you may adjust the default elements and values and add new elements and values.</description>
     <enableActivities>false</enableActivities>

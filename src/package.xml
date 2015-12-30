@@ -96,7 +96,15 @@
     </types>
     <types>
         <members>Account.HEDA_Account_Compact_Layout</members>
+        <members>Address__c.HEDA_Address_Compact_Layout</members>
+        <members>Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
         <members>Contact.HEDA_Contact_Compact_Layout</members>
+        <members>Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
+        <members>Course_Offering__c.HEDA_Course_Offering_Compact_Layout</members>
+        <members>Course__c.HEDA_Course_Compact_Layout</members>
+        <members>Program_Enrollment__c.HEDA_Program_Enrollment_Compact_Layout</members>
+        <members>Relationship__c.HEDA_Relationship_Compact_Layout</members>
+        <members>Term__c.HEDA_Term_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
