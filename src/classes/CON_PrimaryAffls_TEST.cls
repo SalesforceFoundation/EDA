@@ -33,10 +33,6 @@ public with sharing class CON_PrimaryAffls_TEST {
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
     
-    // if you only want to run one test in this class, fill in its name here.
-    // if you want to run all tests, then use '*'
-    private static string strTestOnly = '*';
-    
     public static void setup() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                 
@@ -50,9 +46,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void newContactWithPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'newContactWithPrimaryAfflField') return;
-        
+    public static void newContactWithPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -74,9 +68,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void addingValToExistingPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'addingValToExistingPrimaryAfflField') return;
-        
+    public static void addingValToExistingPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -109,9 +101,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void changingPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'changingPrimaryAfflField') return;
-        
+    public static void changingPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -155,9 +145,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void clearingPrimaryAfflField() {
-        if (strTestOnly != '*' && strTestOnly != 'clearingPrimaryAfflField') return;
-        
+    public static void clearingPrimaryAfflField() {        
         setup();
         
         //Create account of Business Organization record type
@@ -191,9 +179,7 @@ public with sharing class CON_PrimaryAffls_TEST {
     }
     
     @isTest
-    public static void invalidFieldName() {
-        if (strTestOnly != '*' && strTestOnly != 'invalidFieldName') return;
-        
+    public static void invalidFieldName() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
                 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
