@@ -183,6 +183,9 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(false, bizAffl.Primary__c);
     }
     
+    //WARNING: this test will fail is the default Account record type for the system administrator profile (which is the
+    //one the test runs under) is Business Organization, as the bizOrg record will be of that type even if we don't assign
+    //it explicitly.
     @isTest
     public static void addRecordTypeToAcc() {        
         setup();
