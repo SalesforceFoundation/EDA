@@ -94,6 +94,11 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Account.HEDA_Account_Compact_Layout</members>
+        <members>Contact.HEDA_Contact_Compact_Layout</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
         <members>HEDAP</members>
         <name>CustomApplication</name>
     </types>
