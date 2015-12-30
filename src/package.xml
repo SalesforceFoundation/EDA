@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>HEDAP</fullName>
     <types>
         <members>ACCT_IndividualAccounts_TDTM</members>
@@ -192,8 +193,8 @@
         <members>Error__c.Record_URL__c</members>
         <members>Error__c.Stack_Trace__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
-        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
@@ -210,13 +211,13 @@
         <members>Program_Enrollment__c.Affiliation__c</members>
         <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
         <members>Program_Enrollment__c.Class_Standing__c</members>
-        <members>Program_Enrollment__c.Graduation_Year__c</members>
         <members>Program_Enrollment__c.Credits_Attempted__c</members>
         <members>Program_Enrollment__c.Credits_Earned__c</members>
         <members>Program_Enrollment__c.Eligible_to_Enroll__c</members>
         <members>Program_Enrollment__c.End_Date__c</members>
         <members>Program_Enrollment__c.Enrollment_Status__c</members>
         <members>Program_Enrollment__c.GPA__c</members>
+        <members>Program_Enrollment__c.Graduation_Year__c</members>
         <members>Program_Enrollment__c.Program__c</members>
         <members>Program_Enrollment__c.Start_Date__c</members>
         <members>Program_Enrollment__c.Student__c</members>
