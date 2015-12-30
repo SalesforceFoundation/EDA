@@ -100,6 +100,9 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                if (afflOld.Primary__c && !affl.Primary__c && relatedContact.get(lookupFieldName) == affl.Account__c) {
 		                    UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
 		                	relatedContact.put(lookupFieldName, null);
+		                	//We are using the "keyAfflLookupUpdated" flag for all the records in the transaction, even though it'd be possible 
+                            //that in a bulk operation some  Contacts have one or more of their primary affiliation fields set and others don't. 
+                            //However, it seems too much work to implement a solution for this edge case.
 		                	if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
 		                	     dmlWrapper.objectsToUpdate.add(relatedContact);
 		                	}
@@ -133,6 +136,9 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
 		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
 		            		relatedContact.put(lookupFieldName, null);
+		            		//We are using the "keyAfflLookupUpdated" flag for all the records in the transaction, even though it'd be possible 
+                            //that in a bulk operation some  Contacts have one or more of their primary affiliation fields set and others don't. 
+                            //However, it seems too much work to implement a solution for this edge case.
 		            		if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
 		            		    dmlWrapper.objectsToUpdate.add(relatedContact);
 		            		}
@@ -193,6 +199,9 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         if(!String.isBlank(lookupFieldName)) {
         	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
 			relatedContact.put(lookupFieldName, affl.Account__c);
+			//We are using the "keyAfflLookupUpdated" flag for all the records in the transaction, even though it'd be possible 
+            //that in a bulk operation some  Contacts have one or more of their primary affiliation fields set and others don't. 
+            //However, it seems too much work to implement a solution for this edge case.
 			if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
                 dmlWrapper.objectsToUpdate.add(relatedContact);
 			} 

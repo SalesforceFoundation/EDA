@@ -100,6 +100,9 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //  --> Create a matching primary Affiliation for the Contact
 		                    //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
+		                        //We are using the "afflMadePrimary" flag for all the records in the transaction, even though it'd be possible that in a bulk 
+		                        //operation some  Affiliations are changed to primary and otheres aren't. However, it seems too much work to implement a solution 
+		                        //for this edge case.
 		                        if(!AFFL_MultiRecordType_TDTM.afflMadePrimary) {
 		                          UTIL_Debug.debug('****Key Affiliation field has been set');
 		                          createAfflFromLookup(newContact, j, afflsToInsert);
