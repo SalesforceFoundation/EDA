@@ -9,7 +9,6 @@
     <excludeButtons>EnablePrmSuperUser</excludeButtons>
     <excludeButtons>EnableSelfService</excludeButtons>
     <excludeButtons>RequestUpdate</excludeButtons>
-    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <excludeButtons>ViewPartnerPortalUser</excludeButtons>
@@ -289,7 +288,6 @@
         <fields>NAME</fields>
         <fields>Account.NAME</fields>
         <fields>Affiliation_Type__c</fields>
-        <fields>Account.ACC_TYPE</fields>
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
@@ -301,15 +299,15 @@
         <fields>NAME</fields>
         <fields>RelatedContact__c</fields>
         <fields>Type__c</fields>
-        <fields>Relationship_Explanation__c</fields>
         <fields>Status__c</fields>
+        <fields>Relationship_Explanation__c</fields>
         <relatedList>Relationship__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Affiliation__c</fields>
         <fields>Eligible_to_Enroll__c</fields>
         <fields>Admission_Date__c</fields>
+        <fields>Start_Date__c</fields>
         <fields>Class_Standing__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>GPA__c</fields>
@@ -325,7 +323,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course__c</fields>
         <fields>Term__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
         <fields>Capacity__c</fields>
         <relatedList>Course_Offering__c.Faculty__c</relatedList>
     </relatedLists>
