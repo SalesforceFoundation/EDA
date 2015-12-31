@@ -112,9 +112,10 @@
     </quickActionList>
     <relatedLists>
         <fields>FULL_NAME</fields>
-        <fields>CONTACT.TITLE</fields>
-        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.BIRTHDATE</fields>
+        <fields>FERPA__c</fields>
         <fields>CONTACT.PHONE1</fields>
+        <fields>UniversityEmail__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -125,6 +126,7 @@
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
+        <fields>Primary__c</fields>
         <relatedList>Affiliation__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -139,14 +141,27 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course_ID__c</fields>
+        <fields>Credit_Hours__c</fields>
+        <fields>Description__c</fields>
         <relatedList>Course__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Application_Submitted_Date__c</fields>
+        <fields>Eligible_to_Enroll__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>Credits_Attempted__c</fields>
+        <fields>Credits_Earned__c</fields>
+        <fields>GPA__c</fields>
         <relatedList>Program_Enrollment__c.Program__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Course_Offering__c</fields>
+        <fields>Credits_Attempted__c</fields>
+        <fields>Credits_Earned__c</fields>
+        <fields>GPA__c</fields>
         <relatedList>Course_Enrollment__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -180,7 +195,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00ho0000009xDFa</masterLabel>
+        <masterLabel>00ho000000Avd3n</masterLabel>
         <sizeX>1</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

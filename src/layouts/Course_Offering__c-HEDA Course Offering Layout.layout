@@ -77,6 +77,7 @@
         <fields>Contact__c</fields>
         <fields>Account__c</fields>
         <fields>Program_Enrollment__c</fields>
+        <fields>Credits_Attempted__c</fields>
         <relatedList>Course_Enrollment__c.Course_Offering__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -85,7 +86,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00ho0000009xDF3</masterLabel>
+        <masterLabel>00ho000000Avd3B</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

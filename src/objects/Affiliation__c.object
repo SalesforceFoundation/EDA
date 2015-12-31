@@ -45,7 +45,17 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>HEDA_Affiliation_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Affiliation_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Account__c</fields>
+        <fields>Primary__c</fields>
+        <fields>Status__c</fields>
+        <fields>Role__c</fields>
+        <label>HEDA Affiliation Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>

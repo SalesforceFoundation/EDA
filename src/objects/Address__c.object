@@ -45,7 +45,16 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>HEDA_Address_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Address_Compact_Layout</fullName>
+        <fields>Formula_MailingAddress__c</fields>
+        <fields>Seasonal_Start_Day__c</fields>
+        <fields>Seasonal_Start_Month__c</fields>
+        <fields>Seasonal_End_Day__c</fields>
+        <fields>Seasonal_End_Month__c</fields>
+        <label>HEDA Address Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Custom object for storing additional addresses.</description>
     <enableActivities>false</enableActivities>

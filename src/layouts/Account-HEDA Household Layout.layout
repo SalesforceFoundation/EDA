@@ -109,9 +109,10 @@
     </quickActionList>
     <relatedLists>
         <fields>FULL_NAME</fields>
-        <fields>CONTACT.TITLE</fields>
-        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.BIRTHDATE</fields>
+        <fields>FERPA__c</fields>
         <fields>CONTACT.PHONE1</fields>
+        <fields>UniversityEmail__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -122,6 +123,7 @@
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
+        <fields>Primary__c</fields>
         <relatedList>Affiliation__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
