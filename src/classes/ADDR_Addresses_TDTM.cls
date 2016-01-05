@@ -370,15 +370,17 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * @return Date
     */ 
     private static Date dtStartOrEndOfAddrSeasonal(Address__c addr, boolean fStart) {    
+        integer startYear = integer.valueOf(addr.Seasonal_Start_Year__c);
         integer startMonth = integer.valueOf(addr.Seasonal_Start_Month__c);
         integer startDay = integer.valueOf(addr.Seasonal_Start_Day__c);
+        integer endYear = integer.valueOf(addr.Seasonal_End_Year__c);
         integer endMonth = integer.valueOf(addr.Seasonal_End_Month__c);
         integer endDay = integer.valueOf(addr.Seasonal_End_Day__c);
         Date dtStart;
         Date dtEnd;
         Date dtToday = system.today();
         //seasonal address is contained within a single year
-        if (startMonth <= endMonth) { 
+        if (startYear == endYear && startMonth <= endMonth) { 
             dtStart = date.newInstance(dtToday.year(), startMonth, startDay);
             dtEnd = date.newInstance(dtToday.year(), endMonth, endDay);
         //seasonal address overlaps the year, and this month is past the start month
@@ -440,7 +442,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     private static map<Id, list<Address__c>> getMapAccIdListAddrHH(list<Id> listAccId) {
         map<Id, list<Address__c>> mapAccIdListAddrHH = new map<Id, list<Address__c>>();  
         list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Address_Type__c,
-            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
+            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, Seasonal_Start_Year__c, Seasonal_End_Year__c,
             Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, Seasonal_End_Day__c, Geolocation__Latitude__s, Geolocation__Longitude__s
             from Address__c 
             where Parent_Account__c in :listAccId
@@ -466,6 +468,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (addrNew == null || addrOld == null) 
            return false;        
         return (
+           addrNew.Seasonal_Start_Year__c != addrOld.Seasonal_Start_Year__c ||
+           addrNew.Seasonal_End_Year__c != addrOld.Seasonal_End_Year__c ||
            addrNew.Seasonal_Start_Month__c != addrOld.Seasonal_Start_Month__c ||
            addrNew.Seasonal_Start_Day__c != addrOld.Seasonal_Start_Day__c ||
            addrNew.Seasonal_End_Month__c != addrOld.Seasonal_End_Month__c ||
@@ -516,7 +520,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     */     
     private static boolean isAddressMatchFuzzy(Address__c addrNew, Address__c addrOld, boolean includeAddressType) {
         if (addrNew == null || addrOld == null) 
-           return false;     
+           return false;
            
         integer cChange = 0;
         if (strCleanup(addrNew.MailingStreet__c) != strCleanup(addrOld.MailingStreet__c) && addrOld.MailingStreet__c != null)

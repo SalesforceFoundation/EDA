@@ -1462,6 +1462,74 @@ private with sharing class ADDR_Addresses_TEST {
             system.assertEquals(!fSeasonal, addr.Default_Address__c);
         }        
     }
+    
+    /*********************************************************************************************************
+    @description
+        insert new seasonal addresses to HH w/ existing default addresses  
+    verify:
+        contact's && hh address matches new seasonal
+        old default addresses still marked default
+    **********************************************************************************************************/            
+    @isTest
+    public static void insertNewSeasonalAddrHHWithYear() {
+        // this creates a default Address for each Account
+        createHHTestData(parentAccs, cCon);
+        insertNewSeasonalAddrWithYear();
+    }
+    
+    @isTest
+    public static void insertNewSeasonalAddrAdmWithYear() {
+        // this creates a default Address for each Account
+        createAdmTestData(parentAccs, cCon);
+        insertNewSeasonalAddrWithYear();
+    }
+    
+    public static void insertNewSeasonalAddrWithYear() {
+        // create additional addresses
+        initTestAddr(parentAccs);
+        for (Integer i = 0; i < parentAccs; i++) {
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
+            listAddrT[i].Default_Address__c = false;
+            
+            listAddrT[i].Seasonal_Start_Year__c = System.today().addYears(-1).year();
+            listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            listAddrT[i].Seasonal_Start_Day__c = '1';
+            
+            listAddrT[i].Seasonal_End_Year__c = System.today().addYears(1).year();
+            listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrT[i].Seasonal_End_Day__c = '28';
+            
+            listAddrT[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrT[i].MailingCity__c = 'New Seasonal City' + i;
+        }
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert listAddrT;
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.stopTest();
+        
+        // verify that the HH and Contacts share the same address and it's new!
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        system.assertEquals(parentAccs * cCon, listCon.size());
+        
+        for (Contact con : listCon) {
+            Account acc = mapAccIdAcc.get(con.AccountId);
+            system.assertEquals(true, isMatchAddressAccCon(acc, con));
+            system.assert(con.MailingStreet.contains('New Seasonal Street'));
+            system.assert(con.MailingCity.contains('New Seasonal City'));
+            system.assertEquals(false, con.is_Address_Override__c);
+            system.assertNotEquals(null, con.Current_Address__c);
+        }
+        
+        // verify the previous addresses still are Default
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        system.assertEquals(parentAccs * 2, listAddr.size());
+        for (Address__c addr : listAddr) {
+            boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
+            UTIL_Debug.debug('****Is seasonal: ' + fSeasonal);
+            system.assertEquals(!fSeasonal, addr.Default_Address__c);
+        }        
+    }
 
     /*********************************************************************************************************
     @description
@@ -1471,7 +1539,7 @@ private with sharing class ADDR_Addresses_TEST {
         old default addresses still marked default
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewSeasonalAddrNotCurrentHH() {        
+    public static void insertNewSeasonalAddrNotCurrentHH() {
         // this creates a default Address for each Account
         createHHTestData(parentAccs, cCon);
         insertNewSeasonalAddrNotCurrent();
