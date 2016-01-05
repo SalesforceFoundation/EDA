@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2014
 * @group Settings
-* @description Install Script for the HEDAP package. 
+* @description Install Script for the HEDA package. 
 */
 global without sharing class STG_InstallScript implements InstallHandler {
 
