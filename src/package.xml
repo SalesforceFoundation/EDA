@@ -130,8 +130,10 @@
         <members>Address__c.Parent_Account__c</members>
         <members>Address__c.Seasonal_End_Day__c</members>
         <members>Address__c.Seasonal_End_Month__c</members>
+        <members>Address__c.Seasonal_End_Year__c</members>
         <members>Address__c.Seasonal_Start_Day__c</members>
         <members>Address__c.Seasonal_Start_Month__c</members>
+        <members>Address__c.Seasonal_Start_Year__c</members>
         <members>Affiliation__c.Account__c</members>
         <members>Affiliation__c.Affiliation_Type__c</members>
         <members>Affiliation__c.Contact__c</members>
