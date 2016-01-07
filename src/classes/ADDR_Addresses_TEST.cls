@@ -1928,6 +1928,54 @@ private with sharing class ADDR_Addresses_TEST {
         system.assert(false); //we shouldn't get here!
         
     }
+    
+    /*********************************************************************************************************
+    @description
+        create multiple seasonal address with only either start or end year
+    verify:
+        partial seasonal detected, seasonal addresses don't save
+    **********************************************************************************************************/            
+    @isTest
+    public static void insertPartialSeasonalYearAddrHH() {        
+        // this creates a default Address for each Account
+        createHHTestData(parentAccs, cCon);
+        insertPartialSeasonalYearAddr();
+    }
+    
+    @isTest
+    public static void insertPartialSeasonalYearAddrAdm() {        
+        // this creates a default Address for each Account
+        createAdmTestData(parentAccs, cCon);
+        insertPartialSeasonalYearAddr();
+    }
+    public static void insertPartialSeasonalYearAddr() {
+        // create additional seasonal addresses not current
+        initTestAddr(parentAccs);
+        for (Integer i = 0; i < parentAccs; i++) {
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
+            listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrT[i].Seasonal_Start_Day__c = '1';
+            if(math.mod(i, 2) == 0) {
+                listAddrT[i].Seasonal_Start_Year__c = Decimal.valueOf(system.today().year());
+            } else {
+                listAddrT[i].Seasonal_End_Year__c = Decimal.valueOf(system.today().year());
+            }
+            listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            listAddrT[i].Seasonal_End_Day__c = '20';
+            listAddrT[i].Default_Address__c = false;
+            listAddrT[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrT[i].MailingCity__c = 'New Seasonal City' + i;
+        }
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        try {
+            insert listAddrT;
+        } catch (Exception ex) {
+            system.assert(ex.getMessage().contains(Label.addrSeasonalPartialYear));
+            return;
+        }
+        system.assert(false); //we shouldn't get here!
+        
+    }
 
     /*********************************************************************************************************
     @description
