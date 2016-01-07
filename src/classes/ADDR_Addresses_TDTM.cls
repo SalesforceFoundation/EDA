@@ -250,10 +250,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                        hhinfo.addrDefault = addrHH;
                     
                     if (isSeasonalAddr(addrHH)) {
-                        Date dtStart = getStartOrEndDateOfAddrSeasonal(addrHH, true);
-                        Date dtEnd = getStartOrEndDateOfAddrSeasonal(addrHH, false);
+                        Date startDate = getStartOrEndDateOfAddrSeasonal(addrHH, true);
+                        Date endDate = getStartOrEndDateOfAddrSeasonal(addrHH, false);
                         Date dtToday = system.today();
-                        if (dtToday >= dtStart && dtToday < dtEnd) {
+                        if (dtToday >= startDate && dtToday < endDate) {
                             hhinfo.addrSeasonal = addrHH;
                         }
                     }
@@ -366,10 +366,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description utility to return the current StartDate or EndDate of a Seasonal Address
     * @param addr the Address to look at
-    * @param fStart whether to return the StartDate or EndDate
+    * @param returnStartDate whether to return the StartDate or EndDate
     * @return Date
     */ 
-    private static Date getStartOrEndDateOfAddrSeasonal(Address__c addr, boolean fStart) {    
+    private static Date getStartOrEndDateOfAddrSeasonal(Address__c addr, boolean returnStartDate) {    
         integer startYear = integer.valueOf(addr.Seasonal_Start_Year__c);
         integer startMonth = integer.valueOf(addr.Seasonal_Start_Month__c);
         integer startDay = integer.valueOf(addr.Seasonal_Start_Day__c);
@@ -378,32 +378,32 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         integer endMonth = integer.valueOf(addr.Seasonal_End_Month__c);
         integer endDay = integer.valueOf(addr.Seasonal_End_Day__c);
         
-        Date dtStart;
-        Date dtEnd;
+        Date startDate;
+        Date endDate;
         Date dtToday = system.today();
         
         //start and end year have been provided (we don't allow providing only start or only end - addrSeasonalPartialYear error)
         if(startYear != null && endYear != null) {
-            dtStart = date.newInstance(startYear, startMonth, startDay);
-            dtEnd = date.newInstance(endYear, endMonth, endDay);
+            startDate = date.newInstance(startYear, startMonth, startDay);
+            endDate = date.newInstance(endYear, endMonth, endDay);
         //start and end year have not been provided
         } else {
 	        //seasonal address is contained within a single year
-	        if (startMonth <= endMonth) { 
-	            dtStart = date.newInstance(dtToday.year(), startMonth, startDay);
-	            dtEnd = date.newInstance(dtToday.year(), endMonth, endDay);
-	        //seasonal address overlaps the year, and this month is past the start month
+	        if (startMonth <= endMonth && startDay <= endDay) { 
+	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
+	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
+	        //seasonal address overlaps the year, and current month is past the start month
 	        } else if (startMonth <= dtToday.month()){
-	            dtStart = date.newInstance(dtToday.year(), startMonth, startDay);
-	            dtEnd = date.newInstance(dtToday.year()+1, endMonth, endDay);
-	        //seasonal address overlaps the year, and this month is before the start month
+	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
+	            endDate = date.newInstance(dtToday.year()+1, endMonth, endDay);
+	        //seasonal address overlaps the year, and current month is before the start month
 	        } else {
-	            dtStart = date.newInstance(dtToday.year()-1, startMonth, startDay);
-	            dtEnd = date.newInstance(dtToday.year(), endMonth, endDay);
+	            startDate = date.newInstance(dtToday.year()-1, startMonth, startDay);
+	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
 	        }
         }
         //to return the start or end date, depending on the second parameter passed to the method
-        return (fStart ? dtStart : dtEnd);
+        return (returnStartDate ? startDate : endDate);
     }
     
     /*******************************************************************************************************
@@ -596,7 +596,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         Decimal StartYear1 = addr1.Seasonal_Start_Year__c;
         Decimal EndYear1 = addr1.Seasonal_End_Year__c;
         Decimal StartYear2 = addr2.Seasonal_Start_Year__c;
-        Decimal EndYEar2 = addr2.Seasonal_End_Year__c;
+        Decimal EndYear2 = addr2.Seasonal_End_Year__c;
         
         //If only one of the addresses has start and end year but the other one doesn't,we can safely remove the 
         //start and end year from the one that has them for the seasonal overlap comparison (we do not accept seasonal 
