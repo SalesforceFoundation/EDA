@@ -279,6 +279,7 @@
         <members>addrHhAdmAccountOnly</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
+        <members>addrSeasonalPartialYear</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
