@@ -484,7 +484,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
            addrNew.Seasonal_Start_Month__c != addrOld.Seasonal_Start_Month__c ||
            addrNew.Seasonal_Start_Day__c != addrOld.Seasonal_Start_Day__c ||
            addrNew.Seasonal_End_Month__c != addrOld.Seasonal_End_Month__c ||
-           addrNew.Seasonal_End_Day__c != addrOld.Seasonal_End_Day__c);
+           addrNew.Seasonal_End_Day__c != addrOld.Seasonal_End_Day__c || 
+           isAddressChanged(addrNew, addrOld, false));
     }
     
     /*******************************************************************************************************
@@ -498,6 +499,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (addrNew == null || addrOld == null) 
            return false;        
         return (
+            addrNew.Default_Address__c != addrOld.Default_Address__c ||
            !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
            !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
            !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||

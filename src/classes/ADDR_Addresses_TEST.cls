@@ -454,7 +454,7 @@ private with sharing class ADDR_Addresses_TEST {
 
     /*********************************************************************************************************
     @description
-        update existing non-default Addresses  
+        making an Address non-default. That is, the address is no longer the default one for the Account/Contact  
     verify:
         no change to HH and contact addresses
     **********************************************************************************************************/            
@@ -477,8 +477,6 @@ private with sharing class ADDR_Addresses_TEST {
         for (Integer i = 0; i < parentAccs; i++) {
             Address__c addr = listAddrT[i];
             addr.Default_Address__c = false;
-            addr.MailingStreet__c = 'New Street' + i;
-            addr.MailingCity__c = 'New City' + i;
         }
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
         update listAddrT;
@@ -492,10 +490,10 @@ private with sharing class ADDR_Addresses_TEST {
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             system.assertEquals(true, isMatchAddressAccCon(acc, con));
-            system.assert(!con.MailingStreet.contains('New Street'));
-            system.assert(!con.MailingCity.contains('New City'));
+            system.assertEquals(null, con.MailingStreet); //address information has been cleared because address is no longer the default
+            system.assertEquals(null, con.MailingCity); //address information has been cleared because address is no longer the default
             system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+            system.assertEquals(null, con.Current_Address__c); //contact no longer has a current address, since address is no longer the default
         }
     }
 
