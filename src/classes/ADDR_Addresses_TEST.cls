@@ -2902,4 +2902,100 @@ private with sharing class ADDR_Addresses_TEST {
         list<Address__c> listAddr = [select Id from Address__c];
         system.assertEquals(0, listAddr.size());
     }
+    
+    @isTest
+    public static void testSeasonalStartEndYearCurrent() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+              
+        //Create Contact with Address info
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
+        insert contact;
+        
+        //Parent Admin Account should have been created
+        contact = [select Account.ID from Contact where ID = :contact.ID];       
+        System.assertNotEquals(null, contact.Account.ID);
+                
+        //Address flagged as default should have been created
+        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.Account.ID];
+        System.assertEquals(true, defaultAddress.Default_Address__c);
+        
+        //Create seasonal Address with start and end year that include the current date
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().addYears(1).year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.startTest();
+        insert seasonalAddress;
+        Test.stopTest();
+        
+        //Seasonal Address should have been copied to the Contact and the Account
+        contact = [select Account.ID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
+        System.assertEquals('123 Seasonal', contact.MailingStreet);
+        System.assertEquals('Seattle', contact.MailingCity);
+        System.assertEquals('WA', contact.MailingState);
+        
+        Account acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.Account.ID];
+        System.assertEquals('123 Seasonal', acc.BillingStreet);
+        System.assertEquals('Seattle', acc.BillingCity);
+        System.assertEquals('WA', acc.BillingState);
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearUpdateInfo() {        
+        //Create Contact with Address info
+        
+        //Parent Admin Account should have been created
+        
+        //Address record flagged as default should have been created
+        
+        //Create seasonal Address with start and end year that include the current date
+        
+        //Seasonal Address should have been copied to the Contact and the Account
+        
+        //Modify seasonal Address info
+        
+        //Changes should have been copied to Contact and Account
+
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearUpdateDates() {        
+        //Create Contact with Address info
+        
+        //Parent Admin Account should have been created
+        
+        //Address record flagged as default should have been created
+        
+        //Create seasonal Address with start and end year that include the current date
+        
+        //Seasonal Address should have been copied to the Contact and the Account
+        
+        //Modify seasonal Address dates so it doesn't include today
+        
+        //Contact and Account should have reverted to default address
+
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearDelete() {        
+        //Create Contact with Address info
+        
+        //Parent Admin Account should have been created
+        
+        //Address record flagged as default should have been created
+        
+        //Create seasonal Address with start and end year that include the current date
+        
+        //Seasonal Address should have been copied to the Contact and the Account
+        
+        //Delete seasonal Address
+        
+        //Contact and Account should have reverted to default address
+
+    }
 }
