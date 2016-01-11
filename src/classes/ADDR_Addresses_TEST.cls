@@ -1726,9 +1726,9 @@ private with sharing class ADDR_Addresses_TEST {
 
         // test both increasing ranges, no overlap
         a1.Seasonal_Start_Month__c = '1';
-        a1.Seasonal_Start_Day__c = '1';
+        a1.Seasonal_Start_Day__c = '29';
         a1.Seasonal_End_Month__c = '3';
-        a1.Seasonal_End_Day__c = '28';
+        a1.Seasonal_End_Day__c = '28';     
         a2.Seasonal_Start_Month__c = '4';
         a2.Seasonal_Start_Day__c = '1';
         a2.Seasonal_End_Month__c = '6';

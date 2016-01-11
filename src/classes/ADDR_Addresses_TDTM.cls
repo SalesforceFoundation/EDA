@@ -389,7 +389,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         //start and end year have not been provided
         } else {
 	        //seasonal address is contained within a single year
-	        if (startMonth <= endMonth && startDay <= endDay) { 
+	        if (startMonth < endMonth ||(startMonth == endMonth && startDay <= endDay)) {
 	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
 	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
 	        //seasonal address overlaps the year, and current month is past the start month
