@@ -250,10 +250,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                        hhinfo.addrDefault = addrHH;
                     
                     if (isSeasonalAddr(addrHH)) {
-                        Date dtStart = dtStartOrEndOfAddrSeasonal(addrHH, true);
-                        Date dtEnd = dtStartOrEndOfAddrSeasonal(addrHH, false);
+                        Date startDate = getStartOrEndDateOfAddrSeasonal(addrHH, true);
+                        Date endDate = getStartOrEndDateOfAddrSeasonal(addrHH, false);
                         Date dtToday = system.today();
-                        if (dtToday >= dtStart && dtToday < dtEnd) {
+                        if (dtToday >= startDate && dtToday < endDate) {
                             hhinfo.addrSeasonal = addrHH;
                         }
                     }
@@ -366,31 +366,44 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description utility to return the current StartDate or EndDate of a Seasonal Address
     * @param addr the Address to look at
-    * @param fStart whether to return the StartDate or EndDate
+    * @param returnStartDate whether to return the StartDate or EndDate
     * @return Date
     */ 
-    private static Date dtStartOrEndOfAddrSeasonal(Address__c addr, boolean fStart) {    
+    private static Date getStartOrEndDateOfAddrSeasonal(Address__c addr, boolean returnStartDate) {    
+        integer startYear = integer.valueOf(addr.Seasonal_Start_Year__c);
         integer startMonth = integer.valueOf(addr.Seasonal_Start_Month__c);
         integer startDay = integer.valueOf(addr.Seasonal_Start_Day__c);
+        
+        integer endYear = integer.valueOf(addr.Seasonal_End_Year__c);
         integer endMonth = integer.valueOf(addr.Seasonal_End_Month__c);
         integer endDay = integer.valueOf(addr.Seasonal_End_Day__c);
-        Date dtStart;
-        Date dtEnd;
+        
+        Date startDate;
+        Date endDate;
         Date dtToday = system.today();
-        //seasonal address is contained within a single year
-        if (startMonth <= endMonth) { 
-            dtStart = date.newInstance(dtToday.year(), startMonth, startDay);
-            dtEnd = date.newInstance(dtToday.year(), endMonth, endDay);
-        //seasonal address overlaps the year, and this month is past the start month
-        } else if (startMonth <= dtToday.month()){
-            dtStart = date.newInstance(dtToday.year(), startMonth, startDay);
-            dtEnd = date.newInstance(dtToday.year()+1, endMonth, endDay);
-        //seasonal address overlaps the year, and this month is before the start month
+        
+        //start and end year have been provided (we don't allow providing only start or only end - addrSeasonalPartialYear error)
+        if(startYear != null && endYear != null) {
+            startDate = date.newInstance(startYear, startMonth, startDay);
+            endDate = date.newInstance(endYear, endMonth, endDay);
+        //start and end year have not been provided
         } else {
-            dtStart = date.newInstance(dtToday.year()-1, startMonth, startDay);
-            dtEnd = date.newInstance(dtToday.year(), endMonth, endDay);
+	        //seasonal address is contained within a single year
+	        if (startMonth < endMonth ||(startMonth == endMonth && startDay <= endDay)) {
+	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
+	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
+	        //seasonal address overlaps the year, and current month is past the start month
+	        } else if (startMonth <= dtToday.month()){
+	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
+	            endDate = date.newInstance(dtToday.year()+1, endMonth, endDay);
+	        //seasonal address overlaps the year, and current month is before the start month
+	        } else {
+	            startDate = date.newInstance(dtToday.year()-1, startMonth, startDay);
+	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
+	        }
         }
-        return (fStart ? dtStart : dtEnd);
+        //to return the start or end date, depending on the second parameter passed to the method
+        return (returnStartDate ? startDate : endDate);
     }
     
     /*******************************************************************************************************
@@ -440,7 +453,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     private static map<Id, list<Address__c>> getMapAccIdListAddrHH(list<Id> listAccId) {
         map<Id, list<Address__c>> mapAccIdListAddrHH = new map<Id, list<Address__c>>();  
         list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Address_Type__c,
-            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
+            MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, Seasonal_Start_Year__c, Seasonal_End_Year__c,
             Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, Seasonal_End_Day__c, Geolocation__Latitude__s, Geolocation__Longitude__s
             from Address__c 
             where Parent_Account__c in :listAccId
@@ -466,10 +479,13 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (addrNew == null || addrOld == null) 
            return false;        
         return (
+           addrNew.Seasonal_Start_Year__c != addrOld.Seasonal_Start_Year__c ||
+           addrNew.Seasonal_End_Year__c != addrOld.Seasonal_End_Year__c ||
            addrNew.Seasonal_Start_Month__c != addrOld.Seasonal_Start_Month__c ||
            addrNew.Seasonal_Start_Day__c != addrOld.Seasonal_Start_Day__c ||
            addrNew.Seasonal_End_Month__c != addrOld.Seasonal_End_Month__c ||
-           addrNew.Seasonal_End_Day__c != addrOld.Seasonal_End_Day__c);
+           addrNew.Seasonal_End_Day__c != addrOld.Seasonal_End_Day__c || 
+           isAddressChanged(addrNew, addrOld, false));
     }
     
     /*******************************************************************************************************
@@ -483,6 +499,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (addrNew == null || addrOld == null) 
            return false;        
         return (
+            addrNew.Default_Address__c != addrOld.Default_Address__c ||
            !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
            !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
            !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||
@@ -516,7 +533,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     */     
     private static boolean isAddressMatchFuzzy(Address__c addrNew, Address__c addrOld, boolean includeAddressType) {
         if (addrNew == null || addrOld == null) 
-           return false;     
+           return false;
            
         integer cChange = 0;
         if (strCleanup(addrNew.MailingStreet__c) != strCleanup(addrOld.MailingStreet__c) && addrOld.MailingStreet__c != null)
@@ -575,33 +592,38 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             return false;        
         if (!isSeasonalAddr(addr1) || !isSeasonalAddr(addr2))
             return false;
+           
+        //We temporarily store the start and end year, to then assign it back in case this method is called from
+        //before insert of before update.
+        Decimal StartYear1 = addr1.Seasonal_Start_Year__c;
+        Decimal EndYear1 = addr1.Seasonal_End_Year__c;
+        Decimal StartYear2 = addr2.Seasonal_Start_Year__c;
+        Decimal EndYear2 = addr2.Seasonal_End_Year__c;
+        
+        //If only one of the addresses has start and end year but the other one doesn't,we can safely remove the 
+        //start and end year from the one that has them for the seasonal overlap comparison (we do not accept seasonal 
+        //addresses with only start or only end year).
+        addr1.Seasonal_Start_Year__c = null;
+        addr1.Seasonal_End_Year__c = null;
+        addr2.Seasonal_Start_Year__c = null;
+        addr2.Seasonal_End_Year__c = null;
+        
+        Date start1 = getStartOrEndDateOfAddrSeasonal(addr1, true);
+        Date end1 = getStartOrEndDateOfAddrSeasonal(addr1, false);
+		Date start2 = getStartOrEndDateOfAddrSeasonal(addr2, true);
+		Date end2 = getStartOrEndDateOfAddrSeasonal(addr2, false);
+		
+		//putting back the start and end years, in case method is called from before insert or before update
+        addr1.Seasonal_Start_Year__c = StartYear1;
+        addr1.Seasonal_End_Year__c = EndYear1;
+        addr2.Seasonal_Start_Year__c = StartYear2;
+        addr2.Seasonal_End_Year__c = EndYear2;
             
-        // we don't need to know what year or month we are currently in, but
-        // we need to take into account days (since we could be in the same month).
-        // to make this easy to compare, we convert month & day to be a decimal of month.day.  
-        // eg., 3.01 for Feb 1st and 3.28 for Feb 28th.
-        decimal start1 = decimalOfMonthDay(addr1.Seasonal_Start_Month__c, addr1.Seasonal_Start_Day__c);
-        decimal end1 = decimalOfMonthDay(addr1.Seasonal_End_Month__c, addr1.Seasonal_End_Day__c);
-        decimal start2 = decimalOfMonthDay(addr2.Seasonal_Start_Month__c, addr2.Seasonal_Start_Day__c);
-        decimal end2 = decimalOfMonthDay(addr2.Seasonal_End_Month__c, addr2.Seasonal_End_Day__c);
-                
-        // now we see if the ranges are increasing (Jan '14 - March '14), or decreasing (Nov 14' - Feb '15),
-        boolean range1Increases = start1 < end1;
-        boolean range2Increases = start2 < end2;
-
-        // we can now tell if there is overlap simply by looking at three scenarios: 
-        // 1. both ranges increase, make sure start1 not in range2, and start2 not in range1.
-        if (range1Increases && range2Increases) {
-            return (start1 >= start2 && start1 <= end2) || (start2 >= start1 && start2 <= end1);
-        }    
-        // 2. one range increases, one range decreases, make sure end1 not in range2, and end2 not in range1.
-        else if (range1Increases != range2Increases) {
-            return (end1 >= start2 && end1 <= end2) || (end2 >= start1 && end2 <= end1);
-        }
-        // 3. both ranges decrease, always implies an overlap of the new year!
-        else {
-            return true;
-        }
+		if ((start1 >= start2 && start1 <= end2) || (start2 >= start1 && start2 <= end1)) {
+		    return true;
+		} else {
+		    return false;
+		}
     }
 
     /*******************************************************************************************************
@@ -644,6 +666,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // first get just the seasonal addresses
         list<Address__c> listAddrS = new list<Address__c>();
         for (Address__c addr : listAddr) {
+            //either both start and year year are set or neither are
+            if((addr.Seasonal_Start_Year__c != null && addr.Seasonal_End_Year__c == null) || (addr.Seasonal_Start_Year__c == null && addr.Seasonal_End_Year__c != null)) {
+                addr.addError(Label.addrSeasonalPartialYear);
+            }
             if (isSeasonalAddr(addr)) {
                 listAddrS.add(addr);
             } else if (isPartialSeasonalAddr(addr)) {
@@ -662,7 +688,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                     continue;
                 if (addr.Parent_Account__c != addr2.Parent_Account__c)
                     continue;  
-                if (isSeasonalOverlap(addr, addr2)) {
+                Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
+                UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
+                if (isSeasonalOverlap) {
                     addr.addError(Label.addrSeasonalOverlap);
                 }
             }
@@ -679,7 +707,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Parent_Account__c)) {
                 if (addr.id == addr2.id)
                    continue;
-                if (isSeasonalOverlap(addr, addr2)) {
+                Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
+                UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
+                if (isSeasonalOverlap) {
                     addr.addError(Label.addrSeasonalOverlap);
                     break;
                 }

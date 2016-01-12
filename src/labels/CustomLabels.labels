@@ -38,7 +38,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Invalid filter field value defined for&#160;</value>
+        <value>Invalid filter field value defined for </value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -86,7 +86,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>addrSeasonalPartial</shortDescription>
-        <value>An address must have all or none of its seasonal fields set.</value>
+        <value>An address must have all start and end day and month fields set or none of them.</value>
+    </labels>
+    <labels>
+        <fullName>addrSeasonalPartialYear</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addrSeasonalPartialYear</shortDescription>
+        <value>An address must have either both start and end year set or neither.</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>

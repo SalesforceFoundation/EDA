@@ -454,7 +454,7 @@ private with sharing class ADDR_Addresses_TEST {
 
     /*********************************************************************************************************
     @description
-        update existing non-default Addresses  
+        making an Address non-default. That is, the address is no longer the default one for the Account/Contact  
     verify:
         no change to HH and contact addresses
     **********************************************************************************************************/            
@@ -477,8 +477,6 @@ private with sharing class ADDR_Addresses_TEST {
         for (Integer i = 0; i < parentAccs; i++) {
             Address__c addr = listAddrT[i];
             addr.Default_Address__c = false;
-            addr.MailingStreet__c = 'New Street' + i;
-            addr.MailingCity__c = 'New City' + i;
         }
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
         update listAddrT;
@@ -492,10 +490,10 @@ private with sharing class ADDR_Addresses_TEST {
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             system.assertEquals(true, isMatchAddressAccCon(acc, con));
-            system.assert(!con.MailingStreet.contains('New Street'));
-            system.assert(!con.MailingCity.contains('New City'));
+            system.assertEquals(null, con.MailingStreet); //address information has been cleared because address is no longer the default
+            system.assertEquals(null, con.MailingCity); //address information has been cleared because address is no longer the default
             system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+            system.assertEquals(null, con.Current_Address__c); //contact no longer has a current address, since address is no longer the default
         }
     }
 
@@ -1462,6 +1460,74 @@ private with sharing class ADDR_Addresses_TEST {
             system.assertEquals(!fSeasonal, addr.Default_Address__c);
         }        
     }
+    
+    /*********************************************************************************************************
+    @description
+        insert new seasonal addresses to HH w/ existing default addresses  
+    verify:
+        contact's && hh address matches new seasonal
+        old default addresses still marked default
+    **********************************************************************************************************/            
+    @isTest
+    public static void insertNewSeasonalAddrHHWithYear() {
+        // this creates a default Address for each Account
+        createHHTestData(parentAccs, cCon);
+        insertNewSeasonalAddrWithYear();
+    }
+    
+    @isTest
+    public static void insertNewSeasonalAddrAdmWithYear() {
+        // this creates a default Address for each Account
+        createAdmTestData(parentAccs, cCon);
+        insertNewSeasonalAddrWithYear();
+    }
+    
+    public static void insertNewSeasonalAddrWithYear() {
+        // create additional addresses
+        initTestAddr(parentAccs);
+        for (Integer i = 0; i < parentAccs; i++) {
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
+            listAddrT[i].Default_Address__c = false;
+            
+            listAddrT[i].Seasonal_Start_Year__c = System.today().addYears(-1).year();
+            listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            listAddrT[i].Seasonal_Start_Day__c = '1';
+            
+            listAddrT[i].Seasonal_End_Year__c = System.today().addYears(1).year();
+            listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrT[i].Seasonal_End_Day__c = '28';
+            
+            listAddrT[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrT[i].MailingCity__c = 'New Seasonal City' + i;
+        }
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert listAddrT;
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.stopTest();
+        
+        // verify that the HH and Contacts share the same address and it's new!
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        system.assertEquals(parentAccs * cCon, listCon.size());
+        
+        for (Contact con : listCon) {
+            Account acc = mapAccIdAcc.get(con.AccountId);
+            system.assertEquals(true, isMatchAddressAccCon(acc, con));
+            system.assert(con.MailingStreet.contains('New Seasonal Street'));
+            system.assert(con.MailingCity.contains('New Seasonal City'));
+            system.assertEquals(false, con.is_Address_Override__c);
+            system.assertNotEquals(null, con.Current_Address__c);
+        }
+        
+        // verify the previous addresses still are Default
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        system.assertEquals(parentAccs * 2, listAddr.size());
+        for (Address__c addr : listAddr) {
+            boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
+            UTIL_Debug.debug('****Is seasonal: ' + fSeasonal);
+            system.assertEquals(!fSeasonal, addr.Default_Address__c);
+        }        
+    }
 
     /*********************************************************************************************************
     @description
@@ -1471,7 +1537,7 @@ private with sharing class ADDR_Addresses_TEST {
         old default addresses still marked default
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewSeasonalAddrNotCurrentHH() {        
+    public static void insertNewSeasonalAddrNotCurrentHH() {
         // this creates a default Address for each Account
         createHHTestData(parentAccs, cCon);
         insertNewSeasonalAddrNotCurrent();
@@ -1660,9 +1726,9 @@ private with sharing class ADDR_Addresses_TEST {
 
         // test both increasing ranges, no overlap
         a1.Seasonal_Start_Month__c = '1';
-        a1.Seasonal_Start_Day__c = '1';
+        a1.Seasonal_Start_Day__c = '29';
         a1.Seasonal_End_Month__c = '3';
-        a1.Seasonal_End_Day__c = '28';
+        a1.Seasonal_End_Day__c = '28';     
         a2.Seasonal_Start_Month__c = '4';
         a2.Seasonal_Start_Day__c = '1';
         a2.Seasonal_End_Month__c = '6';
@@ -1746,13 +1812,14 @@ private with sharing class ADDR_Addresses_TEST {
 
         // test one increasing range, one decreasing range in the same month, with overlap
         a1.Seasonal_Start_Month__c = '2';
-        a1.Seasonal_Start_Day__c = '1';
+        a1.Seasonal_Start_Day__c = '1'; 
         a1.Seasonal_End_Month__c = '2';
-        a1.Seasonal_End_Day__c = '10';
+        a1.Seasonal_End_Day__c = '10';  //Feb 1st - Feb 10th
+        
         a2.Seasonal_Start_Month__c = '2';
-        a2.Seasonal_Start_Day__c = '11';
+        a2.Seasonal_Start_Day__c = '11'; 
         a2.Seasonal_End_Month__c = '2';
-        a2.Seasonal_End_Day__c = '1';
+        a2.Seasonal_End_Day__c = '1';   //Feb 11th - Feb 1st
         system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
         system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
     }
@@ -1854,6 +1921,54 @@ private with sharing class ADDR_Addresses_TEST {
             insert listAddrT;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrSeasonalPartial));
+            return;
+        }
+        system.assert(false); //we shouldn't get here!
+        
+    }
+    
+    /*********************************************************************************************************
+    @description
+        create multiple seasonal address with only either start or end year
+    verify:
+        partial seasonal detected, seasonal addresses don't save
+    **********************************************************************************************************/            
+    @isTest
+    public static void insertPartialSeasonalYearAddrHH() {        
+        // this creates a default Address for each Account
+        createHHTestData(parentAccs, cCon);
+        insertPartialSeasonalYearAddr();
+    }
+    
+    @isTest
+    public static void insertPartialSeasonalYearAddrAdm() {        
+        // this creates a default Address for each Account
+        createAdmTestData(parentAccs, cCon);
+        insertPartialSeasonalYearAddr();
+    }
+    public static void insertPartialSeasonalYearAddr() {
+        // create additional seasonal addresses not current
+        initTestAddr(parentAccs);
+        for (Integer i = 0; i < parentAccs; i++) {
+            listAddrT[i].Parent_Account__c = listAccT[i].Id;
+            listAddrT[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrT[i].Seasonal_Start_Day__c = '1';
+            if(math.mod(i, 2) == 0) {
+                listAddrT[i].Seasonal_Start_Year__c = Decimal.valueOf(system.today().year());
+            } else {
+                listAddrT[i].Seasonal_End_Year__c = Decimal.valueOf(system.today().year());
+            }
+            listAddrT[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            listAddrT[i].Seasonal_End_Day__c = '20';
+            listAddrT[i].Default_Address__c = false;
+            listAddrT[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrT[i].MailingCity__c = 'New Seasonal City' + i;
+        }
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        try {
+            insert listAddrT;
+        } catch (Exception ex) {
+            system.assert(ex.getMessage().contains(Label.addrSeasonalPartialYear));
             return;
         }
         system.assert(false); //we shouldn't get here!
@@ -2784,5 +2899,189 @@ private with sharing class ADDR_Addresses_TEST {
         // verify no address objects created
         list<Address__c> listAddr = [select Id from Address__c];
         system.assertEquals(0, listAddr.size());
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearCurrent() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+              
+        //Create Contact with Address info
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
+        insert contact;
+        
+        //Parent Admin Account should have been created
+        contact = [select Account.ID from Contact where ID = :contact.ID];       
+        System.assertNotEquals(null, contact.Account.ID);
+                
+        //Address flagged as default should have been created
+        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.Account.ID];
+        System.assertEquals(true, defaultAddress.Default_Address__c);
+        
+        //Create seasonal Address with start and end year that include the current date
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().addYears(1).year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.startTest();
+        insert seasonalAddress;
+        Test.stopTest();
+        
+        //Seasonal Address should have been copied to the Contact and the Account
+        contact = [select Account.ID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
+        System.assertEquals('123 Seasonal', contact.MailingStreet);
+        System.assertEquals('Seattle', contact.MailingCity);
+        System.assertEquals('WA', contact.MailingState);
+        
+        Account acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.Account.ID];
+        System.assertEquals('123 Seasonal', acc.BillingStreet);
+        System.assertEquals('Seattle', acc.BillingCity);
+        System.assertEquals('WA', acc.BillingState);
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearUpdateInfo() {        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+              
+        //Create Contact with Address info
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
+        insert contact;
+        
+        //Parent Admin Account should have been created
+        contact = [select Account.ID from Contact where ID = :contact.ID];       
+        System.assertNotEquals(null, contact.Account.ID);
+                
+        //Address flagged as default should have been created
+        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.Account.ID];
+        System.assertEquals(true, defaultAddress.Default_Address__c);
+        
+        //Create seasonal Address with start and end year that include the current date
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().addYears(1).year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert seasonalAddress;
+        
+        //Modify seasonal Address info
+        seasonalAddress.MailingStreet__c = 'New Seasonal Address';
+        seasonalAddress.MailingCity__c = 'Portland';
+        seasonalAddress.MailingState__c = 'OR';
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.startTest();
+        update seasonalAddress;
+        Test.stopTest();
+        
+        //Changes should have been copied to Contact and Account
+        contact = [select Account.ID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
+        System.assertEquals('New Seasonal Address', contact.MailingStreet);
+        System.assertEquals('Portland', contact.MailingCity);
+        System.assertEquals('OR', contact.MailingState);
+        
+        Account acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.Account.ID];
+        System.assertEquals('New Seasonal Address', acc.BillingStreet);
+        System.assertEquals('Portland', acc.BillingCity);
+        System.assertEquals('OR', acc.BillingState);
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearUpdateDates() {        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+              
+        //Create Contact with Address info
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
+        insert contact;
+        
+        //Parent Admin Account should have been created
+        contact = [select Account.ID from Contact where ID = :contact.ID];       
+        System.assertNotEquals(null, contact.Account.ID);
+                
+        //Address flagged as default should have been created
+        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.Account.ID];
+        System.assertEquals(true, defaultAddress.Default_Address__c);
+        
+        //Create seasonal Address with start and end year that include the current date
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().addYears(1).year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert seasonalAddress;
+        
+        //Modify seasonal Address dates so it doesn't include today
+        seasonalAddress.Seasonal_Start_Year__c = system.today().addYears(1).year();
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.startTest();
+        update seasonalAddress;
+        Test.stopTest();
+        
+        //Contact and Account should have reverted to default address
+        contact = [select Account.ID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
+        System.assertEquals('123 Default', contact.MailingStreet);
+        System.assertEquals('Chicago', contact.MailingCity);
+        System.assertEquals('IL', contact.MailingState);
+        
+        Account acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.Account.ID];
+        System.assertEquals('123 Default', acc.BillingStreet);
+        System.assertEquals('Chicago', acc.BillingCity);
+        System.assertEquals('IL', acc.BillingState);
+    }
+    
+    @isTest
+    public static void testSeasonalStartEndYearDelete() {        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+              
+        //Create Contact with Address info
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
+        insert contact;
+        
+        //Parent Admin Account should have been created
+        contact = [select Account.ID from Contact where ID = :contact.ID];       
+        System.assertNotEquals(null, contact.Account.ID);
+                
+        //Address flagged as default should have been created
+        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.Account.ID];
+        System.assertEquals(true, defaultAddress.Default_Address__c);
+        
+        //Create seasonal Address with start and end year that include the current date
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().addYears(1).year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert seasonalAddress;
+        
+        //Delete seasonal Address
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.startTest();
+        delete seasonalAddress;
+        Test.stopTest();
+        
+        //Contact and Account should have reverted to default address
+        contact = [select Account.ID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
+        System.assertEquals('123 Default', contact.MailingStreet);
+        System.assertEquals('Chicago', contact.MailingCity);
+        System.assertEquals('IL', contact.MailingState);
+        
+        Account acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.Account.ID];
+        System.assertEquals('123 Default', acc.BillingStreet);
+        System.assertEquals('Chicago', acc.BillingCity);
+        System.assertEquals('IL', acc.BillingState);
     }
 }

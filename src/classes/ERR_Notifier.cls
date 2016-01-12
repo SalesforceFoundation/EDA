@@ -144,8 +144,8 @@ public class ERR_Notifier {
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         mail.setUseSignature(false);
         mail.setReplyTo('donotreply@salesforcefoundation.org');
-        mail.setSenderDisplayName('HEDAP App');
-        mail.setSubject('HEDAP Error');
+        mail.setSenderDisplayName('HEDA App');
+        mail.setSubject('HEDA Error');
         string bodyString = 'Organization: ' + UserInfo.getOrganizationName() + '(' + UserInfo.getOrganizationId() + ')\n';
         bodyString += 'User: ' + UserInfo.getUserName() + '(' + UserInfo.getUserId() + ')';
         bodyString += '\n\nErrors:';

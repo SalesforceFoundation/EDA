@@ -49,9 +49,9 @@
     <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, NPSP&apos;s error handling framework is disabled.</description>
+        <description>If checked, HEDA&apos;s error handling framework is disabled.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, NPSP&apos;s error handling framework is disabled.</inlineHelpText>
+        <inlineHelpText>If checked, HEDA&apos;s error handling framework is disabled.</inlineHelpText>
         <label>Disable Error Handling</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

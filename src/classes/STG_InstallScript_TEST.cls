@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2014
 * @group Settings
-* @description Test Class for the Install Script for the NPSP package. 
+* @description Test Class for the Install Script for the HEDA package. 
 */
 @isTest
 public with sharing class STG_InstallScript_TEST {

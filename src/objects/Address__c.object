@@ -435,6 +435,20 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Seasonal_End_Year__c</fullName>
+        <description>The year when this address no longer replaces the default address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The year when this address no longer replaces the default address.</inlineHelpText>
+        <label>Seasonal End Year</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Seasonal_Start_Day__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The day of the month when this address replaces the default address.</inlineHelpText>
@@ -629,6 +643,20 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Seasonal_Start_Year__c</fullName>
+        <description>The year when this address replaces the default address.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The year when this address replaces the default address.</inlineHelpText>
+        <label>Seasonal Start Year</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <label>Address</label>
     <listViews>
