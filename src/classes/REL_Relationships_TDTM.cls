@@ -287,7 +287,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
 
                 Contact relatedContact = cMap.get(r.Contact__c);
             
-                if (rlMap.containsKey(r.Type__c)){                                      
+                if (rlMap.containsKey(r.Type__c)){
                     List<String> maleList = system.label.Male.split(',');                                                                                                        
                     List<String> femaleList = system.label.Female.split(',');
                     
