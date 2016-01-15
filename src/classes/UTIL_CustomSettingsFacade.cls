@@ -42,6 +42,11 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     //storing org-level custom settings in-memory to avoid slowing down the settings page
     static Hierarchy_Settings__c orgSettings;
+    
+    //list settings
+    static List<Affl_Mappings__c> afflMappings;
+    static List<Relationship_Auto_Create__c> relationshipAutocreate;
+    static List<Relationship_Lookup__c> relationshipLookup;
 
     /*******************************************************************************************************
     * @description Returns the default settings.
@@ -88,7 +93,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 		hs.Account_Processor__c = 'Administrative';
 		hs.Organizational_Account_Addresses_Enabled__c = true;
 		hs.Household_Adm_Acct_Addresses_Enabled__c = true;
-		hs.Reciprocal_Method__c = 'List Settings';
+		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
@@ -130,8 +135,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Affl_Mappings__c> getAfflMappings() {
-        return [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
+        if(afflMappings == null) {
+        afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
                Auto_Program_Enrollment_Status__c from Affl_Mappings__c limit 50000];
+        }
+        return afflMappings;
     }
     
     /*******************************************************************************************************
@@ -140,7 +148,10 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Lookup__c> getReciprocalSettings() {
-        return [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c limit 50000];
+        if(relationshipLookup == null) {
+            relationshipLookup = [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c limit 50000];
+        }
+        return relationshipLookup;
     }
     
     /*******************************************************************************************************
@@ -149,8 +160,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
-        return [select Id, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c
+        if(relationshipAutocreate == null) {
+            relationshipAutocreate = [select Id, Name, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c
                 limit 50000];
+        }
+        return relationshipAutocreate;
     }
     
     /*******************************************************************************************************
@@ -169,11 +183,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return void
     **/  
     @AuraEnabled
-    public static void saveAfflMappings(List<Affl_Mappings__c> afflMappings) {
+    public static void saveAfflMappings(List<Affl_Mappings__c> mappings) {
         //upsert afflMappings; We cannot do this because apparently the type information gets lost when called from the client.
         List<Affl_Mappings__c> toInsert = new List<Affl_Mappings__c>();
         List<Affl_Mappings__c> toUpdate = new List<Affl_Mappings__c>();
-        for(Affl_Mappings__c setting : afflMappings) {
+        for(Affl_Mappings__c setting : mappings) {
             if(setting.ID == null) {
                 toInsert.add(setting);
             } else {
@@ -242,6 +256,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         Auto_Program_Enrollment__c = autoEnroll, Auto_Program_Enrollment_Role__c = autoEnrollRole, 
         Auto_Program_Enrollment_Status__c = autoEnrollStatus, Primary_Affl_Field__c = primaryField);
         insert newMapping;
+        if(afflMappings != null)
+            afflMappings.add(newMapping);
         return newMapping.Id;
     }
     
@@ -259,6 +275,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male, 
                                                                         Neutral__c = neutral, Active__c = active);
         insert newSetting;
+        if(relationshipLookup != null)
+            relationshipLookup.add(newSetting);
         return newSetting.Id;
     }
     
@@ -275,6 +293,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
                         Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
         insert newSetting;
+        if(relationshipAutoCreate != null)
+        relationshipAutoCreate.add(newSetting);
         return newSetting.Id;
     }
     
@@ -286,6 +306,14 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static void deleteAfflMappingRecord(String idString) {
         ID idType = ID.valueOf(IdString);
         delete [select Id from Affl_Mappings__c where Id = :idType];
+        if(AfflMappings != null) {
+	        for(Integer i = 0; i < AfflMappings.size(); i++) {
+	            if(AfflMappings[i].ID == idType) {
+	                AfflMappings.remove(i);
+	                break;
+	            }
+	        }
+        }
     }
     
     /*******************************************************************************************************
@@ -296,6 +324,14 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static void deleteRecSettingRecord(String idString) {
         ID idType = ID.valueOf(IdString);
         delete [select Id from Relationship_Lookup__c where Id = :idType];
+        if(relationshipLookup != null) {
+            for(Integer i = 0; i < relationshipLookup.size(); i++) {
+                if(relationshipLookup[i].ID == idType) {
+                    relationshipLookup.remove(i);
+                    break;
+                }
+            }
+        }
     }
     
     /*******************************************************************************************************
@@ -306,5 +342,13 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static void deleteAutoCreateRecord(String idString) {
         ID idType = ID.valueOf(IdString);
         delete [select Id from Relationship_Auto_Create__c where Id = :idType];
+        if(relationshipAutoCreate != null) {
+            for(Integer i = 0; i < relationshipAutoCreate.size(); i++) {
+                if(relationshipAutoCreate[i].ID == idType) {
+                    relationshipAutoCreate.remove(i);
+                    break;
+                }
+            }
+        }
     }
 }

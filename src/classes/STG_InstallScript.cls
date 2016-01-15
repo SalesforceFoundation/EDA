@@ -44,6 +44,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	if(context.previousVersion() == null) {
     		UTIL_CustomSettingsFacade.getSettings();
     		insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
+    		insertRelationshipLookups();
     		//Schedule Seasonal Addresses recurring job daily
     		System.schedule('Seasonal Addresses Update', '0 15 0 * * ?', new ADDR_Seasonal_SCHED());
     	 } else if(context.isUpgrade() || context.isPush()) {
@@ -101,5 +102,31 @@ global without sharing class STG_InstallScript implements InstallHandler {
         }    
         if(handlersToInsert.size() > 0) insert handlersToInsert;
         if(handlersToUpdate.size() > 0) update handlersToUpdate;
+    }
+    
+    global static void insertRelationshipLookups() {
+        Integer lookupCount = [select count() from Relationship_Lookup__c];
+        if(lookupCount == 0) {
+            List<Relationship_Lookup__c> lookups = new List<Relationship_Lookup__c>();
+            lookups.add(new Relationship_Lookup__c(Name = 'Father', Male__c = 'Son', Female__c = 'Daughter', Neutral__c = 'Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Mother', Male__c = 'Son', Female__c = 'Daughter', Neutral__c = 'Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Parent', Male__c = 'Son', Female__c = 'Daughter', Neutral__c = 'Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Son', Male__c = 'Father', Female__c = 'Mother', Neutral__c = 'Parent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Daughter', Male__c = 'Father', Female__c = 'Mother', Neutral__c = 'Parent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Child', Male__c = 'Father', Female__c = 'Mother', Neutral__c = 'Parent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Aunt', Male__c = 'Nephew', Female__c = 'Niece', Neutral__c = 'Sibling\'s Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Uncle', Male__c = 'Nephew', Female__c = 'Niece', Neutral__c = 'Sibling\'s Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Husband', Male__c = 'Husband', Female__c = 'Wife', Neutral__c = 'Spouse', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Wife', Male__c = 'Husband', Female__c = 'Wife', Neutral__c = 'Spouse', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Grandmother', Male__c = 'Grandson', Female__c = 'Granddaughter', Neutral__c = 'Grandchild', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Grandfather', Male__c = 'Grandson', Female__c = 'Granddaughter', Neutral__c = 'Grandchild', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Grandparent', Male__c = 'Grandson', Female__c = 'Granddaughter', Neutral__c = 'Grandchild', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Grandson', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Granddaughter', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Grandchild', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Employer', Male__c = 'Employee', Female__c = 'Employee', Neutral__c = 'Employee', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Employee', Male__c = 'Employer', Female__c = 'Employer', Neutral__c = 'Employer', Active__c = true));
+            insert lookups;
+        }
     }
 }
