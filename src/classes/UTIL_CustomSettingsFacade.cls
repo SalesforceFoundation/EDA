@@ -88,7 +88,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 		hs.Account_Processor__c = 'Administrative';
 		hs.Organizational_Account_Addresses_Enabled__c = true;
 		hs.Household_Adm_Acct_Addresses_Enabled__c = true;
-		hs.Reciprocal_Method__c = 'List Settings';
+		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;

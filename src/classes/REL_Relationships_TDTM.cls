@@ -254,7 +254,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         
         //used for tracking place in array
         integer counter = 0;            
-            
+        
         if (rs.Reciprocal_Method__c == 'List Setting'){ 
             List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings().clone();           
             Map<String, Relationship_Lookup__c> rlMap = new Map<String, Relationship_Lookup__c>();
@@ -287,7 +287,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
 
                 Contact relatedContact = cMap.get(r.Contact__c);
             
-                if (rlMap.containsKey(r.Type__c)){                    
+                if (rlMap.containsKey(r.Type__c)){                                      
                     List<String> maleList = system.label.Male.split(',');                                                                                                        
                     List<String> femaleList = system.label.Female.split(',');
                     
@@ -332,16 +332,14 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                     || femaleset.contains(relatedContact.Salutation)) && rlMap.get(r.Type__c).Female__c 
                     != null){
                         copy.Type__c = rlMap.get(r.Type__c).Female__c;
-                    }
                     
                     //can't match up gender, bad field or otherwise
-                    else {
+                    } else {
                         if (copy.Type__c==null)          
                             copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
-                    }          
-                }                            
+                    }                                     
                 //no matching custom List setting, use provided type
-                else{
+                } else {
                     copy.Type__c = r.Type__c;
                 }                
                 counter++;
