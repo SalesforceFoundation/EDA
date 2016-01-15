@@ -149,7 +149,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     @AuraEnabled
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
-        return [select Id, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c
+        return [select Id, Name, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c
                 limit 50000];
     }
     

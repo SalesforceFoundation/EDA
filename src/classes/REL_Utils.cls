@@ -34,12 +34,17 @@
 */
 public with sharing class REL_Utils {
 
-    private static Map<String, Relationship_Auto_Create__c> AutoCreateMap;
+    private static Map<String, Relationship_Auto_Create__c> autoCreateMap;
+    
     public static Map<String, Relationship_Auto_Create__c> getAutoCreateMap() {
         if(AutoCreateMap == null){
-            AutoCreateMap = Relationship_Auto_Create__c.getAll();
+            List<Relationship_Auto_Create__c> settings = UTIL_CustomSettingsFacade.getAutoCreateSettings();
+            AutoCreateMap = new Map<String, Relationship_Auto_Create__c>();
+            for(Relationship_Auto_Create__c setting : settings) {
+                autoCreateMap.put(setting.Name, setting);
+            }
         }
-        return AutoCreateMap;
+        return autoCreateMap;
     }
     
     private static Boolean contactAutoCreate;
