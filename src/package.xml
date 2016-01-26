@@ -269,6 +269,7 @@
     </types>
     <types>
         <members>AutoCreateFieldError</members>
+        <members>BothFieldAndValue</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
         <members>Female</members>

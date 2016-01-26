@@ -9,6 +9,14 @@
         <value>Unable to find valid autocreation Relationship settings. Please check the settings under HEDA Settings | Relationships | Autocreation for valid fields and try again.</value>
     </labels>
     <labels>
+        <fullName>BothFieldAndValue</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
+        <value>Please set both Filter Field and Filter Value, or neither.</value>
+    </labels>
+    <labels>
         <fullName>DefaultAdminName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>
