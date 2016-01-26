@@ -53,15 +53,20 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                 Trigger_Handler__c handler = (Trigger_Handler__c)newlist[i];
                 
                 if(triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
-                    String obj = String.escapeSingleQuotes(handler.Object__c);
-                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
-	                    try {
-	                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
-	                        List<SObject> records =  Database.query(dynamicQuery);
-	                    } catch(QueryException e) {
-	                        UTIL_Debug.debug('****Invalid filter error added in THAN_Filter_TDTM');
-	                        handler.addError(Label.InvalidFilter + handler.Class__c);
+                    if(handler.Filter_Field__c != null && handler.Filter_Value__c == null) {
+                        handler.addError(Label.BothFieldAndValue);
+                    } else if(handler.Filter_Field__c == null && handler.Filter_Value__c != null) {
+                        handler.addError(Label.BothFieldAndValue);
+                    } else if(handler.Filter_Field__c != null && handler.Filter_Value__c != null && handler.Object__c != null) {
+	                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
+	                    String obj = String.escapeSingleQuotes(handler.Object__c);
+	                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
+		                    try {
+		                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
+		                        List<SObject> records =  Database.query(dynamicQuery);
+		                    } catch(QueryException e) {
+		                        handler.addError(Label.InvalidFilter + handler.Class__c);
+		                    }
 	                    }
                     }
                 }
