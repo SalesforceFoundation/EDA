@@ -63,7 +63,7 @@
 	saveMappings : function(component) {
 		var saveAction = component.get("c.saveAfflMappings");
 		var settings = this.addPrefixListSettings(component.get("v.afflMappings"), component.get("v.namespacePrefix"));
-		saveAction.setParams({"afflMappings" : settings});
+		saveAction.setParams({"mappings" : settings});
 		saveAction.setCallback(this, function(response) {
 			if(response.getState() === "ERROR") {
 				this.displayError(response);
