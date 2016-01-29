@@ -56,6 +56,7 @@
         <label>HEDA Relationship Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Connection between two Contacts.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
