@@ -68,7 +68,7 @@
     <fields>
         <fullName>Account__c</fullName>
         <externalId>false</externalId>
-        <label>Deparment</label>
+        <label>Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
         <relationshipName>Course_Enrollments</relationshipName>

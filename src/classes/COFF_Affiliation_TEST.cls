@@ -127,7 +127,7 @@ public with sharing class COFF_Affiliation_TEST {
     	update offering;
     	Test.stopTest();
     	
-    	//An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Deparment 
+    	//An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Department 
     	//alreadt existed.
     	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
     	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
