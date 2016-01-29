@@ -305,6 +305,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Account.NAME</fields>
         <fields>Eligible_to_Enroll__c</fields>
         <fields>Admission_Date__c</fields>
         <fields>Start_Date__c</fields>
