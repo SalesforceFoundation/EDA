@@ -392,14 +392,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        if (startMonth < endMonth ||(startMonth == endMonth && startDay <= endDay)) {
 	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
 	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
-	        //seasonal address overlaps the year, and current month is past the start month
-	        } else if (startMonth <= dtToday.month()){
-	            startDate = date.newInstance(dtToday.year(), startMonth, startDay);
-	            endDate = date.newInstance(dtToday.year()+1, endMonth, endDay);
-	        //seasonal address overlaps the year, and current month is before the start month
+	        //seasonal address overlaps the year
 	        } else {
-	            startDate = date.newInstance(dtToday.year()-1, startMonth, startDay);
-	            endDate = date.newInstance(dtToday.year(), endMonth, endDay);
+                startDate = date.newInstance(dtToday.year()-1, startMonth, startDay);
+                endDate = date.newInstance(dtToday.year(), endMonth, endDay);
 	        }
         }
         //to return the start or end date, depending on the second parameter passed to the method
@@ -600,9 +596,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         Decimal StartYear2 = addr2.Seasonal_Start_Year__c;
         Decimal EndYear2 = addr2.Seasonal_End_Year__c;
         
-        //If only one of the addresses has start and end year but the other one doesn't,we can safely remove the 
+        //If only one of the addresses has start and end year but the other one doesn't, we can safely remove the 
         //start and end year from the one that has them for the seasonal overlap comparison (we do not accept seasonal 
-        //addresses with only start or only end year).
+        //addresses with only start or only end year). The one that doesn't have start and end year is valid every single
+        //year.
         addr1.Seasonal_Start_Year__c = null;
         addr1.Seasonal_End_Year__c = null;
         addr2.Seasonal_Start_Year__c = null;
