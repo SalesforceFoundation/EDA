@@ -52,7 +52,7 @@
         <fields>Contact__c</fields>
         <fields>Course_Offering__c</fields>
         <fields>Program_Enrollment__c</fields>
-        <fields>GPA__c</fields>
+        <fields>Grade__c</fields>
         <label>HEDA Course Enrollment Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -67,7 +67,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Account__c</fullName>
+        <description>The Academic Program the student is enrolled in.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Academic Program the student is enrolled in.</inlineHelpText>
         <label>Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
@@ -108,7 +110,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</inlineHelpText>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Course Enrollment</relationshipLabel>
@@ -140,9 +144,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>GPA__c</fullName>
+        <fullName>Grade__c</fullName>
         <externalId>false</externalId>
-        <label>GPA</label>
+        <label>Grade</label>
         <precision>6</precision>
         <required>false</required>
         <scale>2</scale>
@@ -153,7 +157,9 @@
     <fields>
         <fullName>Program_Enrollment__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Program the student is enrolled in. Links a student with an Academic Program.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Program the student is enrolled in. Links a student with an Academic Program.</inlineHelpText>
         <label>Program Enrollment</label>
         <referenceTo>Program_Enrollment__c</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>

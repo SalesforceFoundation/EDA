@@ -319,7 +319,7 @@
         <fields>Course_Offering__c</fields>
         <fields>Credits_Attempted__c</fields>
         <fields>Credits_Earned__c</fields>
-        <fields>GPA__c</fields>
+        <fields>Grade__c</fields>
         <relatedList>Course_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
