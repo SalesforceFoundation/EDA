@@ -20,10 +20,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Section_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Capacity__c</field>
             </layoutItems>
         </layoutColumns>
@@ -31,6 +27,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Term__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Section_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
