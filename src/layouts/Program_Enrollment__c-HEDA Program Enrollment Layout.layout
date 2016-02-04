@@ -20,6 +20,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Admission_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Start_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -43,6 +47,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Enrollment_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Class_Standing__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -90,6 +98,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Contact__c</fields>
         <fields>Course_Offering__c</fields>
         <fields>Account__c</fields>
         <fields>Grade__c</fields>
