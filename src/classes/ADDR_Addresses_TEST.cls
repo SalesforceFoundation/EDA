@@ -1809,17 +1809,79 @@ private with sharing class ADDR_Addresses_TEST {
         a2.Seasonal_End_Day__c = '28';
         system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
         system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
-
-        // test one increasing range, one decreasing range in the same month, with overlap
-        a1.Seasonal_Start_Month__c = '2';
-        a1.Seasonal_Start_Day__c = '1'; 
-        a1.Seasonal_End_Month__c = '2';
-        a1.Seasonal_End_Day__c = '10';  //Feb 1st - Feb 10th
+    }
+    
+    /*********************************************************************************************************
+    @description
+        create multiple seasonal address that overlap with eachother  
+    verify:
+        overlap detected
+    **********************************************************************************************************/            
+    @isTest
+    public static void testSeasonalAddrOverlapLogicCurrentMonth() {
+        Address__c a1 = new Address__c();
+        Address__c a2 = new Address__c();
         
-        a2.Seasonal_Start_Month__c = '2';
+        // test one increasing range, one decreasing range in the same month, with overlap
+        a1.Seasonal_Start_Month__c = String.valueOf(System.today().month());
+        a1.Seasonal_Start_Day__c = '1'; 
+        a1.Seasonal_End_Month__c = String.valueOf(System.today().month());
+        a1.Seasonal_End_Day__c = '10';  //1st of current month to 10th of current month
+        
+        a2.Seasonal_Start_Month__c = String.valueOf(System.today().month());
         a2.Seasonal_Start_Day__c = '11'; 
-        a2.Seasonal_End_Month__c = '2';
-        a2.Seasonal_End_Day__c = '1';   //Feb 11th - Feb 1st
+        a2.Seasonal_End_Month__c = String.valueOf(System.today().month());
+        a2.Seasonal_End_Day__c = '1';   //11th of current month to 1st of current month (overlaps year)
+        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+    }
+    
+    /*********************************************************************************************************
+    @description
+        create multiple seasonal address that overlap with eachother  
+    verify:
+        overlap detected
+    **********************************************************************************************************/            
+    @isTest
+    public static void testSeasonalAddrOverlapLogicNextMonth() {
+        Address__c a1 = new Address__c();
+        Address__c a2 = new Address__c();
+        
+        // test one increasing range, one decreasing range in the same month, with overlap
+        a1.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(1).month());
+        a1.Seasonal_Start_Day__c = '1'; 
+        a1.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month());
+        a1.Seasonal_End_Day__c = '10';  //1st of next month to 10th of next month
+        
+        a2.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(1).month());
+        a2.Seasonal_Start_Day__c = '11'; 
+        a2.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month());
+        a2.Seasonal_End_Day__c = '1';   //11th of next month to 1st of next month(overlaps year)
+        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+    }
+    
+    /*********************************************************************************************************
+    @description
+        create multiple seasonal address that overlap with eachother  
+    verify:
+        overlap detected
+    **********************************************************************************************************/            
+    @isTest
+    public static void testSeasonalAddrOverlapLogicPreviousMonth() {
+        Address__c a1 = new Address__c();
+        Address__c a2 = new Address__c();
+        
+        // test one increasing range, one decreasing range in the same month, with overlap
+        a1.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month());
+        a1.Seasonal_Start_Day__c = '1'; 
+        a1.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(-1).month());
+        a1.Seasonal_End_Day__c = '10';  //1st of previous month to 10th of previous month
+        
+        a2.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month());
+        a2.Seasonal_Start_Day__c = '11'; 
+        a2.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(-1).month());
+        a2.Seasonal_End_Day__c = '1';   //11th of previous month to 1st of previous month(overlaps year)
         system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
         system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
     }

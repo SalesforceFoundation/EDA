@@ -56,7 +56,7 @@
         <label>HEDA Address Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Custom object for storing additional addresses.</description>
+    <description>Stores address information. To support multiple and seasonal addresses.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>

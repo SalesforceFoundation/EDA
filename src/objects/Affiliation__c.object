@@ -57,6 +57,7 @@
         <label>HEDA Affiliation Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Connection between a Contact and an Account.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
