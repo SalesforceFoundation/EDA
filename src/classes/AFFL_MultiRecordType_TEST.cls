@@ -76,6 +76,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create another key affiliation, this time to a biz org
 		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
+		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
