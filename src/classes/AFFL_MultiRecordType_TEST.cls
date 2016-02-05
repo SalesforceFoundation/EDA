@@ -63,7 +63,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertNotEquals(null, contact.Account.ID);
     	System.assertEquals(null, contact.Primary_Household__c);
         
-        //Manually create an Affiliation to the household, since we are not automatically doing so any more.
+        //Manually create an Affiliation to the household, since we are not automatically doing so any more
         insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
@@ -76,7 +76,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create another key affiliation, this time to a biz org
 		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false; 
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
@@ -119,7 +118,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
@@ -134,7 +132,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
 		Test.startTest();
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-		CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
 		insert affl1;
     	Test.stopTest();
     	
@@ -166,7 +163,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         insert affl;
 
         //Verify the primary household field was populated
@@ -202,7 +198,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Create non-primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = false);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-		CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
 		insert affl1;
 		
 		//Verify Primary Organization lookup field is blank
@@ -213,7 +208,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		affl1.Primary__c = true;
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-		CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
 		Test.startTest();
 		update affl1;
 		Test.stopTest();

@@ -190,14 +190,12 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     private void populateKeyAffls(Affiliation__c affl, String lookupFieldName, Contact relatedContact, DmlWrapper dmlWrapper) {
         //If the reason why Affiliations have been made primary is that key affiliation fields on Contact have been populated,
         //we don't need to try populating them. In fact, this causes an error notification to be sent (W-009272).
-        if(!CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate) {
+        if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
 	        //If we have a mapping, populate the lookup field defined in the mapping. 
 	        if(!String.isBlank(lookupFieldName)) {
 	        	UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
 				relatedContact.put(lookupFieldName, affl.Account__c);
-				if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
-	                dmlWrapper.objectsToUpdate.add(relatedContact);
-				} 
+				dmlWrapper.objectsToUpdate.add(relatedContact);
 	        }
         }
     }
