@@ -75,7 +75,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                 
                 if(triggerAction == TDTM_Runnable.Action.AfterInsert && !alreadyRunAfterInsert) {
                     
-                    //If the Contact has been created with one of the Key Affiliation fields populated
+                    //If the Contact has been created with any of the Key Affiliation fields populated
                     //  --> Create a matching primary Affiliation for the Contact
                     for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                         try {

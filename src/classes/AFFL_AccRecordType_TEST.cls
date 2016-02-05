@@ -58,12 +58,14 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
+        //The insert causes ADDR_Contact_TDTM, CON_DoNotContact_TDTM, and CON_Preferred_TDTM, which then trigger an update on Contact.
+        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         
         //Verify default household account has been created for the contact
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Account.ID);
         System.assertEquals(null, contact.Primary_Household__c);
-        
+
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
@@ -92,6 +94,8 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
+        //The insert causes ADDR_Contact_TDTM, CON_DoNotContact_TDTM, and CON_Preferred_TDTM, which then trigger an update on Contact.
+        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         
         //Verify default household account has been created for the contact
         contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
@@ -110,6 +114,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert bizOrg;
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         insert bizAffl;
         
         //Verify the primary business organization field was populated
@@ -138,6 +143,8 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
+        //The insert causes ADDR_Contact_TDTM, CON_DoNotContact_TDTM, and CON_Preferred_TDTM, which then trigger an update on Contact.
+        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         
         //Verify default household account has been created for the contact
         contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
@@ -157,6 +164,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
         insert bizAffl;
         
         //Verify the primary business organization field was populated
