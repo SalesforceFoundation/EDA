@@ -224,7 +224,8 @@ public class ERR_Handler {
 		String stackTrace = e.getStackTraceString();
 		UTIL_Debug.debug('****Stack trace: \n' + stackTrace);
 		String message;
-		if(String.isBlank(stackTrace) || stackTrace == '('+UTIL_Namespace.getNamespace()+')' || stackTrace == UTIL_Namespace.getNamespace()) {
+		String namespace = UTIL_Namespace.getNamespace().deleteWhitespace();
+		if(String.isBlank(stackTrace) || stackTrace == '('+ namespace + ')' || stackTrace == namespace) {
 			message = 'No stacktrace available at the time of saving the record. ';
 		} else {
 			message = 'Stacktrace available at the time of saving the record - ';

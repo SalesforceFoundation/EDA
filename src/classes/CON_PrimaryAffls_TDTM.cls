@@ -75,7 +75,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                 
                 if(triggerAction == TDTM_Runnable.Action.AfterInsert && !alreadyRunAfterInsert) {
                     
-                    //If the Contact has been created with one of the Key Affiliation fields populated
+                    //If the Contact has been created with any of the Key Affiliation fields populated
                     //  --> Create a matching primary Affiliation for the Contact
                     for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                         try {
@@ -113,7 +113,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //        is not yet defined (and the formula will run later), we'll do it here.    
 		                    else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
 		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
-		                        keyAfflLookupUpdated = true;
 		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
                                 createAfflFromLookup(newContact, j, afflsToInsert);
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
@@ -122,7 +121,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //If any Key Affiliation field has been cleared
 		                    //  --> Make the matching Affiliation non-primary
 	                        else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
-	                            keyAfflLookupUpdated = true;
                                 UTIL_Debug.debug('****Key Affiliation field has been cleared');
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
@@ -154,6 +152,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
         if(accID != null)
           afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
+        keyAfflLookupUpdated = true;
     }
     
     private List<Affiliation__c> makeOtherAfflsNotPrimary(Map<ID, List<ID>> changedConToAccsMap) {

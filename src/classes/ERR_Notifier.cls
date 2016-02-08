@@ -201,7 +201,8 @@ public class ERR_Notifier {
             body += '\n' + error.Record_URL__c;
         if(error.Context_Type__c != null)
             body += '\nContext: ' + error.Context_Type__c;
-        body += '\n\nStack Trace:\n ' + error.Stack_Trace__c;
+        if(error.Stack_Trace__c != null)
+            body += '\n\nStack Trace:\n ' + error.Stack_Trace__c;
         return body;
     }
 }
