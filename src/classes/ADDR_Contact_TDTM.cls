@@ -103,12 +103,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             
             // BEFORE UPDATE
             if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                // there can be three different types of changes we need to consider
+                // there can be four different types of changes we need to consider
                 // A. changes to isAddressOverride
                 // B. changes to CurrentAddress
                 // C. changes to MailingAddress fields
+                // D. changes to Account (ie switching accounts)
                 //
-                // that leads to 8 permutations! 
+                // that leads to 16 permutations! 
                 // (it's actually more permutations, since we need to take into account what
                 // the change in isAddressOverride or CurrentAddress is).
                 //
@@ -120,32 +121,44 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 // !A,!B,C     update/new address object
                 // !A,B,!C     if (CurrentAddress) refill to it, else refill from Default Address
                 // !A,!B,!C    nothing!
+                // *,*,*,D     if no override, refill from Default Address, else update/new address object 
                 //
                 // simplifying this to some precedence rules:
+                //     - if Account changes && no override && no MailingAddress field changes, refill from Default Address
                 //     - if CurrentAddress changes to a new non-null value, refill to it.
                 //     - if isAddressOverride changes to false, refill from Default Address
                 //     - if MailingAddress field changes, update/new address object
                 
                 Contact conOld = (Contact)listOld[i];
                 
-                // highest priority. if they are changing to a new Current Address, refill from it.
-                if (con.Current_Address__c != conOld.Current_Address__c && con.Current_Address__c != null) {
-                    listConAddrSet.add(con);
-                    if (con.is_Address_Override__c)
-                        // track which address's need their dates updated
-                        mapAddrIdIsOverride.put(con.Current_Address__c, true);                    
-                }
-                
-                // second priority.  if they are clearing isAddressOverride, refill from the Default Address
-                if (con.is_Address_Override__c != conOld.is_Address_Override__c && !con.is_Address_Override__c) {
-                    listConAddrReset.add(con);
-                    if (conOld.Current_Address__c != null)
-                        // track which address's need their dates updated
-                        mapAddrIdIsOverride.put(conOld.Current_Address__c, false);
-                }
-                
-                // third priority.  if MailingAddress fields changed, update the existing address object or create a new one.
-                // this is handled in the next block, since we do it for both new contacts and updated contacts.                                
+                // new highest priority! if Account changes... 
+                if (conOld != null && con.AccountId != conOld.AccountId) {
+                    // if no override, refill from the Default Address
+                    if (!con.is_Address_Override__c && !isContactAddressChanged(con, conOld)) {
+                        listConAddrReset.add(con);
+                    } else { // create a new address on the account
+                        listConCreateAddr.add(con);    
+                    }
+                } else {    
+	                // highest priority. if they are changing to a new Current Address, refill from it.
+	                if (con.Current_Address__c != conOld.Current_Address__c && con.Current_Address__c != null) {
+	                    listConAddrSet.add(con);
+	                    if (con.is_Address_Override__c)
+	                        // track which address's need their dates updated
+	                        mapAddrIdIsOverride.put(con.Current_Address__c, true);                    
+	                }
+	                
+	                // second priority.  if they are clearing isAddressOverride, refill from the Default Address
+	                if (con.is_Address_Override__c != conOld.is_Address_Override__c && !con.is_Address_Override__c) {
+	                    listConAddrReset.add(con);
+	                    if (conOld.Current_Address__c != null)
+	                        // track which address's need their dates updated
+	                        mapAddrIdIsOverride.put(conOld.Current_Address__c, false);
+	                }
+	                
+	                // third priority.  if MailingAddress fields changed, update the existing address object or create a new one.
+	                // this is handled in the next block, since we do it for both new contacts and updated contacts.
+                }                             
             }
     
             // BEFORE UPDATE & AFTER UPDATE & BEFORE INSERT && AFTER INSERT
