@@ -3279,7 +3279,11 @@ private with sharing class ADDR_Addresses_TEST {
         account address matches address object address
         contact address matches address object address
     **********************************************************************************************************/            
-    static testMethod void updateOrgContactToHH() {        
+    static testMethod void updateOrgContactToHH() {
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+        
         Account acc = new Account(Name='Org Account');
         insert acc;
         Contact con = new Contact(Lastname='Testy', AccountId=acc.Id);
@@ -3288,12 +3292,15 @@ private with sharing class ADDR_Addresses_TEST {
         // now give the contact an address and change it to get a hh account
         con.AccountId = null;
         con.MailingStreet = '123 abc';
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
         update con;
         Test.stopTest();
 
         // verify results
         acc = [select Id, Name, BillingStreet from Account where Name like '%Testy%'];
+        UTIL_Debug.debug('****Parent account: ' + JSON.serializePretty(acc));
+        system.assertNotEquals(null, acc);
         list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c from Address__c];
         system.assertEquals(1, listAddr.size());
         con = [select Id, Lastname, MailingStreet, Current_Address__c from Contact];
