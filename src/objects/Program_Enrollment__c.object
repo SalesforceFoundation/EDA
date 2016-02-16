@@ -205,6 +205,7 @@
     </fields>
     <fields>
         <fullName>Program__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The program the student is enrolled in.</description>
         <externalId>false</externalId>
         <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
@@ -212,11 +213,9 @@
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
@@ -228,6 +227,7 @@
     </fields>
     <fields>
         <fullName>Student__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The parent Contact.</description>
         <externalId>false</externalId>
         <inlineHelpText>The parent Contact.</inlineHelpText>
@@ -235,11 +235,9 @@
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments_2</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <label>Program Enrollment</label>
     <listViews>
@@ -254,5 +252,5 @@
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

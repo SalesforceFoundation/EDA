@@ -286,7 +286,7 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Account.NAME</fields>
+        <fields>Account__c</fields>
         <fields>Affiliation_Type__c</fields>
         <fields>Role__c</fields>
         <fields>Status__c</fields>
@@ -305,7 +305,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Account.NAME</fields>
+        <fields>Program__c</fields>
         <fields>Eligible_to_Enroll__c</fields>
         <fields>Admission_Date__c</fields>
         <fields>Start_Date__c</fields>
