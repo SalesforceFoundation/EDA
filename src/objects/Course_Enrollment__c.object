@@ -67,6 +67,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The Academic Program the student is enrolled in.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Academic Program the student is enrolled in.</inlineHelpText>
@@ -74,11 +75,9 @@
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
         <relationshipName>Course_Enrollments</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Affiliation__c</fullName>
@@ -94,6 +93,7 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The student taking the course.</description>
         <externalId>false</externalId>
         <inlineHelpText>The student taking the course.</inlineHelpText>
@@ -101,11 +101,9 @@
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
         <relationshipName>Courses</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Course_Offering__c</fullName>
@@ -181,5 +179,5 @@
     </nameField>
     <pluralLabel>Course Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

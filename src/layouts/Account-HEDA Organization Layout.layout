@@ -120,8 +120,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact.CNTC_FIRST_NAME</fields>
-        <fields>Contact.NAME</fields>
+        <fields>Contact__c</fields>
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
