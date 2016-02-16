@@ -527,10 +527,10 @@ public with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = new Account(Name = 'ABC');
         insert new Account[] {accFiltered, accNotFiltered};
         
-        Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id);
-        Address__c addressNotFiltered = new Address__c(Parent_Account__c = accNotFiltered.Id);
+        Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id, MailingStreet__c = '123 Main St');
+        Address__c addressNotFiltered = new Address__c(Parent_Account__c = accNotFiltered.Id, MailingStreet__c = '123 Main St');
         insert new Address__c[] {addressFiltered, addressNotFiltered};
-        
+
         //Creating four contacts. two of them are not students, because they don't have a university email.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Current_Address__c = addressNotFiltered.Id);
         Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', Current_Address__c = addressFiltered.Id);
@@ -570,8 +570,8 @@ public with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = new Account(Name = 'ABC');
         insert new Account[] {accFiltered, accNotFiltered};
         
-        Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id);
-        Address__c addressNotFiltered = new Address__c(Parent_Account__c = accNotFiltered.Id);
+        Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id, MailingStreet__c = '123 Main St');
+        Address__c addressNotFiltered = new Address__c(Parent_Account__c = accNotFiltered.Id, MailingStreet__c = '123 Main St');
         insert new Address__c[] {addressFiltered, addressNotFiltered};
         
         //Creating four contacts. two of them are not students, because they don't have a university email.
@@ -612,8 +612,8 @@ public with sharing class TDTM_Filter_TEST {
         Account topAcc = new Account(Name = 'topAcc');
         insert new Account[] {topAcc};
         
-        Address__c addressFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = true);
-        Address__c addressNotFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = false);
+        Address__c addressFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = true, MailingStreet__c = '123 Main St');
+        Address__c addressNotFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = false, MailingStreet__c = '123 Main St');
         insert new Address__c[] {addressFiltered, addressNotFiltered};
         
         //Creating four contacts. two of them are not students, because they don't have a university email.
