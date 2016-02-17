@@ -187,7 +187,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
  			Boolean afflToDptExists = afflToDptExists(offering, facultyIDtoAffls);
  			UTIL_Debug.debug('****Affl to Dpt already exists: ' + afflToDptExists);
  			if(!afflToDptExists) {
- 			    Affiliation__c afflToInsert = new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Course__r.Account__c,
+ 			    Affiliation__c afflToInsert = new Affiliation__c(AfflContact__c = offering.Faculty__c, AfflAccount__c = offering.Course__r.Account__c,
                                          Role__c = 'Faculty', StartDate__c = offering.Term__r.Start_Date__c, EndDate__c = offering.Term__r.End_Date__c);
 				afflsToInsert.add(afflToInsert);
 				afflsTemp.add(afflToInsert);
@@ -209,7 +209,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * @description Sets each Affiliation pointing to the new Faculty member that is teaching the Course Offering. 
     ********************************************************************************************************/
     private List<SObject> getAfflsToUpdate(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs) {
-    	List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where Contact__r.ID in :outdatedFacultyIDs and Role__c = 'Faculty'];
+    	List<Affiliation__c> afflsWithContact = [select AfflContact__c from Affiliation__c where Contact__r.ID in :outdatedFacultyIDs and Role__c = 'Faculty'];
     	
     	Map<ID, Affiliation__c> oldFacultyToAfflMap = new Map<ID, Affiliation__c>();
     	for(Affiliation__c affl : afflsWithContact) {
@@ -230,8 +230,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * should be ok. 
     ********************************************************************************************************/
     private void updateEnrollments(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, DmlWrapper dmlWrapper) {
-        List<Course_Enrollment__c> oldEnrolls = [select Affiliation__c, Account__c, Course_Offering__c 
-                                                 from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs];
+        List<Course_Enrollment__c> oldEnrolls = [select Affiliation__c, ProgramAcc__c, Course_Offering__c 
+                                                 from Course_Enrollment__c where StudentContact__c in :outdatedFacultyIDs];
         UTIL_Debug.debug('****Number of old enrollments: ' + oldEnrolls.size()); 
         List<Course_Enrollment__c> newEnrolls = new List<Course_Enrollment__c>();
         for(Integer i = 0; i < oldEnrolls.size(); i++) {
@@ -249,7 +249,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * assigned Faculty members. Also deletes the Course Enrollments themselves.
     ********************************************************************************************************/
     private void deleteAfflsEnrolls(List<ID> removedFacultyIDs, DmlWrapper dmlWrapper) {
-        List<Course_Enrollment__c> oldEnrolls = [select ID, Affiliation__c from Course_Enrollment__c where Contact__c in :removedFacultyIDs];
+        List<Course_Enrollment__c> oldEnrolls = [select ID, Affiliation__c from Course_Enrollment__c where StudentContact__c in :removedFacultyIDs];
         List<ID> afflsToDeleteIDs = new List<ID>();
         for(Course_Enrollment__c enroll : oldEnrolls) {
             afflsToDeleteIDs.add(enroll.Affiliation__c);
@@ -266,7 +266,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     	UTIL_Debug.debug('****Number of newly assigned faculty: ' + newFacultyIDs.size());
     	//Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
-        List<Affiliation__c> affls = [select Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs 
+        List<Affiliation__c> affls = [select AfflAccount__c, AfflContact__c from Affiliation__c where Contact__c in :newFacultyIDs 
                                         order by Contact__c];
         UTIL_Debug.debug('****Number of affls for existing faculty: ' + affls.size());
         

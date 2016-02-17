@@ -213,7 +213,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		}
 		
 		//Get all possible matches
-		List<Affiliation__c> otherPrimaryAffls = [select ID, Contact__c, Account__c, Affiliation_Type__c, Primary__c 
+		List<Affiliation__c> otherPrimaryAffls = [select ID, AfflContact__c, AfflAccount__c, Affiliation_Type__c, Primary__c 
 		      from Affiliation__c where Affiliation_Type__c in :afflTypes and Contact__c in :afflContactIDs 
 		      and Primary__c = true and ID not in :newPrimaryAffls];
 		//Refine the result

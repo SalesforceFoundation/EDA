@@ -134,9 +134,9 @@
         <members>Address__c.Seasonal_Start_Day__c</members>
         <members>Address__c.Seasonal_Start_Month__c</members>
         <members>Address__c.Seasonal_Start_Year__c</members>
-        <members>Affiliation__c.Account__c</members>
+        <members>Affiliation__c.AfflAccount__c</members>
         <members>Affiliation__c.Affiliation_Type__c</members>
-        <members>Affiliation__c.Contact__c</members>
+        <members>Affiliation__c.AfflContact__c</members>
         <members>Affiliation__c.Description__c</members>
         <members>Affiliation__c.EndDate__c</members>
         <members>Affiliation__c.Primary__c</members>
@@ -179,9 +179,9 @@
         <members>Contact.WorkPhone__c</members>
         <members>Contact.Work_Address__c</members>
         <members>Contact.is_Address_Override__c</members>
-        <members>Course_Enrollment__c.Account__c</members>
+        <members>Course_Enrollment__c.ProgramAcc__c</members>
         <members>Course_Enrollment__c.Affiliation__c</members>
-        <members>Course_Enrollment__c.Contact__c</members>
+        <members>Course_Enrollment__c.StudentContact__c</members>
         <members>Course_Enrollment__c.Course_Offering__c</members>
         <members>Course_Enrollment__c.Credits_Attempted__c</members>
         <members>Course_Enrollment__c.Credits_Earned__c</members>
@@ -233,9 +233,9 @@
         <members>Program_Enrollment__c.Enrollment_Status__c</members>
         <members>Program_Enrollment__c.GPA__c</members>
         <members>Program_Enrollment__c.Graduation_Year__c</members>
-        <members>Program_Enrollment__c.Program__c</members>
+        <members>Program_Enrollment__c.ProgramAcc__c</members>
         <members>Program_Enrollment__c.Start_Date__c</members>
-        <members>Program_Enrollment__c.Student__c</members>
+        <members>Program_Enrollment__c.StudentContact__c</members>
         <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
         <members>Relationship_Auto_Create__c.Field__c</members>
         <members>Relationship_Auto_Create__c.Object__c</members>
