@@ -77,6 +77,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Create another key affiliation, this time to a biz org
 		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
@@ -105,6 +106,30 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(bizOrg2.ID, Contact.Primary_Organization__c);
 	}
+	
+	@isTest
+    public static void noDuplicateAffl() {
+        setup();
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+        
+        //Create account of Business Organization record type
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert bizOrg1;
+
+        //Create primary affiliation
+        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
+        Test.startTest();
+        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
+        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        insert bizAffl1;
+        Test.stopTest();
+        
+        //Verify only one Affiliation record to the business account. Github #159.
+        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID and Account__c = :bizOrg1.ID];
+        System.assertEquals(1, affls.size());
+    }
 	
 	@isTest
 	public static void deletePrimaryAffl() {		

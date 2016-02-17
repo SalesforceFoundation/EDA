@@ -88,6 +88,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
 		                if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
 		            	    afflsMadePrimary.add(affl);
+		            	    afflMadePrimary = true;
 		            	    populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
 		            }
