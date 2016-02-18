@@ -82,7 +82,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//The business organization lookup should point to the account that is part of the affiliation we created
-		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where Account__c = :bizOrg1.ID];
+		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where AfflAccount__c = :bizOrg1.ID];
 		System.assertEquals('Business Organization', bizAffl1.Affiliation_Type__c);
 		
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
@@ -256,10 +256,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//The second affiliation should be the only primary
-		List<Affiliation__c> affls = [select AfflAccount__c, Primary__c from Affiliation__c where Contact__c = :contact.ID order by Account__r.Name];
-		System.assertEquals(affls[0].Account__c, acc1.ID);
+		List<Affiliation__c> affls = [select AfflAccount__c, Primary__c from Affiliation__c where AfflContact__c = :contact.ID order by AfflAccount__r.Name];
+		System.assertEquals(affls[0].AfflAccount__c, acc1.ID);
 		System.assertEquals(affls[0].Primary__c, false);
-		System.assertEquals(affls[1].Account__c, acc2.ID);
+		System.assertEquals(affls[1].AfflAccount__c, acc2.ID);
 		System.assertEquals(affls[1].Primary__c, true);
 		
 		//Verify key affl field has been updated
@@ -296,7 +296,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		//Verify Progran Enrollment record has been created
 		List<Program_Enrollment__c> programEnrollments = [select ID, StudentContact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
 		System.assertEquals(1, programEnrollments.size());
-		System.assertEquals(contact.ID, programEnrollments[0].Student__c);
+		System.assertEquals(contact.ID, programEnrollments[0].StudentContact__c);
 	}
 	
 	@isTest

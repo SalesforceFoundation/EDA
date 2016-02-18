@@ -53,7 +53,7 @@ public with sharing class PREN_Affiliation_TEST {
     	insert acc;
     	
     	//Create Program Enrollment
-    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Student__c = contact.ID, Program__c = acc.ID);
+    	Program_Enrollment__c enrollment = new Program_Enrollment__c(StudentContact__c = contact.ID, ProgramAcc__c = acc.ID);
     	Test.startTest();
     	insert enrollment;
     	Test.stopTest();
@@ -85,7 +85,7 @@ public with sharing class PREN_Affiliation_TEST {
         insert acc;
         
         //Create Program Enrollment
-        Program_Enrollment__c enrollment = new Program_Enrollment__c(Student__c = contact.ID, Program__c = acc.ID);
+        Program_Enrollment__c enrollment = new Program_Enrollment__c(StudentContact__c = contact.ID, ProgramAcc__c = acc.ID);
         insert enrollment;
         
         //An Affiliation should have been automatically created fron the Program Enrollment
@@ -127,7 +127,7 @@ public with sharing class PREN_Affiliation_TEST {
         insert acc;
         
         //Create Program Enrollment
-        Program_Enrollment__c enrollment = new Program_Enrollment__c(Student__c = contact.ID, Program__c = acc.ID);
+        Program_Enrollment__c enrollment = new Program_Enrollment__c(StudentContact__c = contact.ID, ProgramAcc__c = acc.ID);
         insert enrollment;
         
         //An Affiliation should have been automatically created fron the Program Enrollment

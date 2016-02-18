@@ -159,13 +159,13 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         //Find all the affiliations to make non-primary. 
         List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
         //Initially we get all possible affiliations from those contacts.
-        List<Affiliation__c> afflsAll = [select AfflContact__c, AfflAccount__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
+        List<Affiliation__c> afflsAll = [select AfflContact__c, AfflAccount__c, Primary__c from Affiliation__c where AfflContact__c in :changedConToAccsMap.keySet()];
         UTIL_Debug.debug('****All possible affls to make non-primary: ' + JSON.serializePretty(afflsAll));
         //Then we refine the search - changedConToAccsMap should contain only the Acc IDs of those key Affl lookups that have been modified.
         for(Affiliation__c affl : afflsAll) {
-            List<ID> contactAccIDs = changedConToAccsMap.get(affl.Contact__c);
+            List<ID> contactAccIDs = changedConToAccsMap.get(affl.AfflContact__c);
             for(ID changedAccID : contactAccIDs) {
-                if(affl.Account__c == changedAccID) {
+                if(affl.AfflAccount__c == changedAccID) {
                     affl.Primary__c = false;
                     UTIL_Debug.debug('****Making affl ' + affl.ID + ' non-primary.');
                     afflsToMakeNonPrimary.add(affl);

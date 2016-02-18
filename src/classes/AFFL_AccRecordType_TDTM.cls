@@ -131,7 +131,7 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
             //A.2 - Change all affiliations that are not primary any more.
             if(contactIDs.size() > 0 && accountIDs.size() > 0) {
                 List<Affiliation__c> afflsMadePrimary = [select AfflContact__c, AfflAccount__c, Affiliation_Type__c 
-                          from Affiliation__c where Contact__c IN :contactIDs and Account__c IN :accountIDs];
+                          from Affiliation__c where AfflContact__c IN :contactIDs and AfflAccount__c IN :accountIDs];
                 AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM();
                 afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
             } 
@@ -157,10 +157,10 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
             //Populate the necessary primary field for each Contact
             List<Contact> contactsToUpdate = new List<Contact>();
             for(Affiliation__c affl : afflsAccsTypeAdded) {
-                Contact contact = new Contact(ID = affl.Contact__c);
+                Contact contact = new Contact(ID = affl.AfflContact__c);
                 //Iterate over the Contact primary fields
                 for(String primaryField : accsTypeAdded.values()) {
-                    contact.put(primaryField, affl.Account__c);
+                    contact.put(primaryField, affl.AfflAccount__c);
                     contactsToUpdate.add(contact);
                 }
             }

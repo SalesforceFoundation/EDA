@@ -83,7 +83,7 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
     	List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
@@ -101,8 +101,8 @@ public with sharing class COFF_Affiliation_TEST {
     	Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-101 Summer 16', Course__c = course.ID, 
     	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering2;
-    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     }
     
@@ -130,7 +130,7 @@ public with sharing class COFF_Affiliation_TEST {
     	//An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Department 
     	//alreadt existed.
     	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
@@ -193,12 +193,12 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
         List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-        where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
         
         //A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where Contact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where StudentContact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
     	
     	//Create second faculty member
@@ -212,15 +212,15 @@ public with sharing class COFF_Affiliation_TEST {
     	Test.stopTest();
     	
     	//The affiliation should have been updated to point to the second faculty member
-    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where Contact__r.Id = :faculty2.Id and Role__c = 'Faculty' and ID = :affls[0].ID];
+    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where AfflContact__r.Id = :faculty2.Id and Role__c = 'Faculty' and ID = :affls[0].ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
     	//The Course Enrollment of the old Faculty member should have been deleted
-    	enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+    	enrolls = [select ID from Course_Enrollment__c where StudentContact__r.Id = :faculty.Id];
     	System.assertEquals(0, enrolls.size());
     	
     	//A Course Enrollment should have been automatically created for the new Faculty
@@ -244,11 +244,11 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//An Affiliation should have been automatically created for the faculty member
     	List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
         where StudentContact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
@@ -261,11 +261,11 @@ public with sharing class COFF_Affiliation_TEST {
     	Test.stopTest();
     	
     	//The affiliation should have been deleted
-    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
     	System.assertEquals(0, affls.size());
     	
     	//The Course Enrollment should have been deleted
-        enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+        enrolls = [select ID from Course_Enrollment__c where StudentContact__r.Id = :faculty.Id];
         System.assertEquals(0, enrolls.size());
     }
     
@@ -280,7 +280,7 @@ public with sharing class COFF_Affiliation_TEST {
         
         //An Affiliation should have been automatically created for the faculty member
         List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-        where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
         
         //A Course Enrollment should have been automatically created
@@ -295,7 +295,7 @@ public with sharing class COFF_Affiliation_TEST {
         Test.stopTest();
         
         //The affiliation should have been deleted
-        affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+        affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
         System.assertEquals(0, affls.size());
         
         //The Course Enrollment should have been deleted

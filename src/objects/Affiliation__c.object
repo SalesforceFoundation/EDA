@@ -82,7 +82,7 @@
     <fields>
         <fullName>Affiliation_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>Account__r.RecordType.Name</formula>
+        <formula>AfflAccount__r.RecordType.Name</formula>
         <label>Affiliation Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
