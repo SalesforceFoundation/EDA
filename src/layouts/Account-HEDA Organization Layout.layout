@@ -104,7 +104,7 @@
             <quickActionName>NewContact</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Contact.New_Affiliation</quickActionName>
+            <quickActionName>Account.New_Affiliation</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>NewTask</quickActionName>

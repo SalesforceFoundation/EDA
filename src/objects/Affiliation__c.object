@@ -233,5 +233,5 @@
     </nameField>
     <pluralLabel>Affiliations</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

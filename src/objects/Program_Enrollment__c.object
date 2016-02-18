@@ -282,5 +282,5 @@
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
