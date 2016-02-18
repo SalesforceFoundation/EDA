@@ -120,13 +120,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
+        <fields>AfflContact__c</fields>
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
         <fields>Primary__c</fields>
-        <relatedList>Affiliation__c.Account__c</relatedList>
+        <relatedList>Affiliation__c.AfflAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -153,7 +153,7 @@
         <fields>Credits_Attempted__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>GPA__c</fields>
-        <relatedList>Program_Enrollment__c.Program__c</relatedList>
+        <relatedList>Program_Enrollment__c.ProgramAcc__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -161,7 +161,7 @@
         <fields>Credits_Attempted__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>Grade__c</fields>
-        <relatedList>Course_Enrollment__c.Account__c</relatedList>
+        <relatedList>Course_Enrollment__c.ProgramAcc__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

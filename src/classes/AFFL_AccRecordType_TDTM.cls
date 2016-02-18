@@ -130,8 +130,8 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
             }
             //A.2 - Change all affiliations that are not primary any more.
             if(contactIDs.size() > 0 && accountIDs.size() > 0) {
-                List<Affiliation__c> afflsMadePrimary = [select Contact__c, Account__c, Affiliation_Type__c 
-                          from Affiliation__c where Contact__c IN :contactIDs and Account__c IN :accountIDs];
+                List<Affiliation__c> afflsMadePrimary = [select AfflContact__c, AfflAccount__c, Affiliation_Type__c 
+                          from Affiliation__c where AfflContact__c IN :contactIDs and AfflAccount__c IN :accountIDs];
                 AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM();
                 afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
             } 
@@ -145,22 +145,22 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         //B - Find all Contacts with an Affiliation to an Account that didn't have a record type before, 
         //but that now has it. Update the matching primary affiliation field on Contact.
         if(accsTypeAdded.size() > 0) {
-            String childrenAccsTypeAddedQuery = 'select Account__c, Contact__c, Contact__r.' 
+            String childrenAccsTypeAddedQuery = 'select AfflAccount__c, AfflContact__c, AfflContact__r.' 
                                                               + accsTypeAdded.values()[0];
             for(Integer i = 1; i < accsTypeAdded.values().size(); i++) {
-                childrenAccsTypeAddedQuery += ', Contact__r.' + accsTypeAdded.values()[i];
+                childrenAccsTypeAddedQuery += ', AfflContact__r.' + accsTypeAdded.values()[i];
             }
             Set<ID> accsTypeAddedIDs = accsTypeAdded.keySet();
-            childrenAccsTypeAddedQuery += ' from Affiliation__c where Account__c IN :accsTypeAddedIDs';
+            childrenAccsTypeAddedQuery += ' from Affiliation__c where AfflAccount__c IN :accsTypeAddedIDs';
             List<Affiliation__c> afflsAccsTypeAdded = Database.query(childrenAccsTypeAddedQuery);
             
             //Populate the necessary primary field for each Contact
             List<Contact> contactsToUpdate = new List<Contact>();
             for(Affiliation__c affl : afflsAccsTypeAdded) {
-                Contact contact = new Contact(ID = affl.Contact__c);
+                Contact contact = new Contact(ID = affl.AfflContact__c);
                 //Iterate over the Contact primary fields
                 for(String primaryField : accsTypeAdded.values()) {
-                    contact.put(primaryField, affl.Account__c);
+                    contact.put(primaryField, affl.AfflAccount__c);
                     contactsToUpdate.add(contact);
                 }
             }

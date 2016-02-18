@@ -74,8 +74,8 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>Account__c</fields>
+        <fields>StudentContact__c</fields>
+        <fields>ProgramAcc__c</fields>
         <fields>Program_Enrollment__c</fields>
         <fields>Credits_Attempted__c</fields>
         <relatedList>Course_Enrollment__c.Course_Offering__c</relatedList>

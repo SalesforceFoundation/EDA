@@ -49,8 +49,8 @@
     <compactLayouts>
         <fullName>HEDA_Affiliation_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Account__c</fields>
+        <fields>AfflContact__c</fields>
+        <fields>AfflAccount__c</fields>
         <fields>Primary__c</fields>
         <fields>Status__c</fields>
         <fields>Role__c</fields>
@@ -67,13 +67,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>AfflAccount__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Affiliated Contacts</relationshipLabel>
-        <relationshipName>Affiliated_Contacts</relationshipName>
+        <relationshipName>Affl_Contacts</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -82,7 +82,7 @@
     <fields>
         <fullName>Affiliation_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>Account__r.RecordType.Name</formula>
+        <formula>AfflAccount__r.RecordType.Name</formula>
         <label>Affiliation Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -91,13 +91,13 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Contact__c</fullName>
+        <fullName>AfflContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Affiliated Accounts</relationshipLabel>
-        <relationshipName>Affiliated_Accounts</relationshipName>
+        <relationshipName>Affl_Accounts</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
