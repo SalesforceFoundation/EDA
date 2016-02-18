@@ -161,7 +161,7 @@
         <label>Program Enrollment</label>
         <referenceTo>Program_Enrollment__c</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Students_Course_Enrollments</relationshipName>
+        <relationshipName>Course_Enrollments</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
