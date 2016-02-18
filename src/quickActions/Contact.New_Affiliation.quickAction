@@ -10,7 +10,7 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Account__c</field>
+                <field>AfflAccount__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -42,6 +42,6 @@
         <quickActionLayoutColumns/>
     </quickActionLayout>
     <targetObject>Affiliation__c</targetObject>
-    <targetParentField>Contact__c</targetParentField>
+    <targetParentField>AfflContact__c</targetParentField>
     <type>Create</type>
 </QuickAction>
