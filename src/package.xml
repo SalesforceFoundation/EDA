@@ -355,21 +355,6 @@
         <name>ListView</name>
     </types>
     <types>
-        <members>Account.New_Address</members>
-        <members>Account.New_Affiliation</members>
-        <members>Account.Quick_Household_Update</members>
-        <members>Account.Quick_Organization_Update</members>
-        <members>Contact.New_Affiliation</members>
-        <members>Contact.New_Relationship</members>
-        <members>Contact.Quick_Update</members>
-        <members>LogACall</members>
-        <members>NewAccount</members>
-        <members>NewContact</members>
-        <members>NewTask</members>
-        <members>New_Campaign</members>
-        <name>QuickAction</name>
-    </types>
-    <types>
         <members>SLDS</members>
         <name>StaticResource</name>
     </types>
