@@ -82,16 +82,16 @@ public with sharing class COFF_Affiliation_TEST {
     	Test.stopTest();
     	
     	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
-    	List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
         System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
@@ -101,8 +101,8 @@ public with sharing class COFF_Affiliation_TEST {
     	Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-101 Summer 16', Course__c = course.ID, 
     	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
     	insert offering2;
-    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     }
     
@@ -129,16 +129,16 @@ public with sharing class COFF_Affiliation_TEST {
     	
     	//An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Department 
     	//alreadt existed.
-    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
         System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
@@ -149,7 +149,7 @@ public with sharing class COFF_Affiliation_TEST {
     	setup();
     	
     	//Create affiliation from faculty member to dpt
-    	Affiliation__c affl = new Affiliation__c(AfflAccount__c = dpt.ID, AfflContact__c = faculty.ID);
+    	Affiliation__c affl = new Affiliation__c(Account__c = dpt.ID, Contact__c = faculty.ID);
     	insert affl;
     	
     	List<Affiliation__c> affls = [select ID from Affiliation__c];
@@ -175,8 +175,8 @@ public with sharing class COFF_Affiliation_TEST {
     	System.assertEquals(afflsSize1, affls.size());
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should not be linked to the Affiliation that already existed (and wasn't automatically created)
         System.assertEquals(null, enrolls[0].Affiliation__c);
@@ -192,13 +192,13 @@ public with sharing class COFF_Affiliation_TEST {
     	insert offering;
     	
     	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
-        List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-        where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+        where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
         
         //A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
     	
     	//Create second faculty member
@@ -212,20 +212,20 @@ public with sharing class COFF_Affiliation_TEST {
     	Test.stopTest();
     	
     	//The affiliation should have been updated to point to the second faculty member
-    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where AfflContact__r.Id = :faculty2.Id and Role__c = 'Faculty' and ID = :affls[0].ID];
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty2.Id and Role__c = 'Faculty' and ID = :affls[0].ID];
     	System.assertEquals(1, affls.size());
     	System.assertEquals('Faculty', affls[0].Role__c);
     	System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
     	System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
     	
     	//The Course Enrollment of the old Faculty member should have been deleted
-    	enrolls = [select ID from Course_Enrollment__c where StudentContact__r.Id = :faculty.Id];
+    	enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
     	System.assertEquals(0, enrolls.size());
     	
     	//A Course Enrollment should have been automatically created for the new Faculty
-        List<Course_Enrollment__c> newEnrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty2.Id];
+        List<Course_Enrollment__c> newEnrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty2.Id];
         System.assertEquals(1, newEnrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
         System.assertEquals(affls[0].ID, newEnrolls[0].Affiliation__c);
@@ -243,13 +243,13 @@ public with sharing class COFF_Affiliation_TEST {
     	insert offering;
     	
     	//An Affiliation should have been automatically created for the faculty member
-    	List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-    	where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+    	where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
     	System.assertEquals(1, affls.size());
     	
     	//A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
         System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
@@ -261,11 +261,11 @@ public with sharing class COFF_Affiliation_TEST {
     	Test.stopTest();
     	
     	//The affiliation should have been deleted
-    	affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
     	System.assertEquals(0, affls.size());
     	
     	//The Course Enrollment should have been deleted
-        enrolls = [select ID from Course_Enrollment__c where StudentContact__r.Id = :faculty.Id];
+        enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
         System.assertEquals(0, enrolls.size());
     }
     
@@ -279,13 +279,13 @@ public with sharing class COFF_Affiliation_TEST {
         insert offering;
         
         //An Affiliation should have been automatically created for the faculty member
-        List<Affiliation__c> affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
-        where AfflContact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c 
+        where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
         
         //A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select StudentContact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
-        where StudentContact__r.Id = :faculty.Id];
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c 
+        where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
         System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
@@ -295,11 +295,11 @@ public with sharing class COFF_Affiliation_TEST {
         Test.stopTest();
         
         //The affiliation should have been deleted
-        affls = [select AfflContact__c, AfflAccount__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+        affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
         System.assertEquals(0, affls.size());
         
         //The Course Enrollment should have been deleted
-        enrolls = [select ID from Course_Enrollment__c where StudentContact__r.Id = :faculty.Id];
+        enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
         System.assertEquals(0, enrolls.size());
     }
     
@@ -319,14 +319,14 @@ public with sharing class COFF_Affiliation_TEST {
     	Account dpt4 = new Account(Name = 'Law Department', Parent = university);
     	insert new Account[]{dpt1, dpt2, dpt3, dpt4};
     	
-    	Affiliation__c aff1 = new Affiliation__c(AfflContact__c = faculty1.ID, AfflAccount__c = dpt1.ID);
-    	Affiliation__c aff2 = new Affiliation__c(AfflContact__c = faculty4.ID, AfflAccount__c = dpt1.ID);
-    	Affiliation__c aff3 = new Affiliation__c(AfflContact__c = faculty2.ID, AfflAccount__c = dpt2.ID);
-    	Affiliation__c aff4 = new Affiliation__c(AfflContact__c = faculty4.ID, AfflAccount__c = dpt3.ID);
-    	Affiliation__c aff5 = new Affiliation__c(AfflContact__c = faculty1.ID, AfflAccount__c = dpt2.ID);
-    	Affiliation__c aff6 = new Affiliation__c(AfflContact__c = faculty3.ID, AfflAccount__c = dpt1.ID);
-    	Affiliation__c aff7 = new Affiliation__c(AfflContact__c = faculty1.ID, AfflAccount__c = dpt4.ID);
-    	Affiliation__c aff8 = new Affiliation__c(AfflContact__c = faculty2.ID, AfflAccount__c = dpt3.ID);
+    	Affiliation__c aff1 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt1.ID);
+    	Affiliation__c aff2 = new Affiliation__c(Contact__c = faculty4.ID, Account__c = dpt1.ID);
+    	Affiliation__c aff3 = new Affiliation__c(Contact__c = faculty2.ID, Account__c = dpt2.ID);
+    	Affiliation__c aff4 = new Affiliation__c(Contact__c = faculty4.ID, Account__c = dpt3.ID);
+    	Affiliation__c aff5 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt2.ID);
+    	Affiliation__c aff6 = new Affiliation__c(Contact__c = faculty3.ID, Account__c = dpt1.ID);
+    	Affiliation__c aff7 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt4.ID);
+    	Affiliation__c aff8 = new Affiliation__c(Contact__c = faculty2.ID, Account__c = dpt3.ID);
     	insert new Affiliation__c[]{aff1, aff2, aff3, aff4, aff5, aff6, aff7, aff8};
     	
     	COFF_Affiliation_TDTM tdtm = new COFF_Affiliation_TDTM();
@@ -351,7 +351,7 @@ public with sharing class COFF_Affiliation_TEST {
         setup();
         
         //dpt is the parent Account of course
-        insert new Affiliation__c(AfflContact__c = faculty.ID, AfflAccount__c = dpt.ID);
+        insert new Affiliation__c(Contact__c = faculty.ID, Account__c = dpt.ID);
         
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID, 

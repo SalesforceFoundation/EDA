@@ -49,8 +49,8 @@
     <compactLayouts>
         <fullName>HEDA_Affiliation_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>AfflContact__c</fields>
-        <fields>AfflAccount__c</fields>
+        <fields>Contact__c</fields>
+        <fields>Account__c</fields>
         <fields>Primary__c</fields>
         <fields>Status__c</fields>
         <fields>Role__c</fields>
@@ -68,20 +68,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Account__c</fullName>
-        <externalId>false</externalId>
-        <label>Organization</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Affiliated Contacts</relationshipLabel>
-        <relationshipName>Affiliated_Contacts</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>AfflAccount__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Organization</label>
@@ -96,7 +82,7 @@
     <fields>
         <fullName>Affiliation_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>AfflAccount__r.RecordType.Name</formula>
+        <formula>Account__r.RecordType.Name</formula>
         <label>Affiliation Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -105,7 +91,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>AfflContact__c</fullName>
+        <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Contact</label>
@@ -116,20 +102,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Contact__c</fullName>
-        <externalId>false</externalId>
-        <label>Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Affiliated Accounts</relationshipLabel>
-        <relationshipName>Affiliated_Accounts</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
@@ -233,5 +205,5 @@
     </nameField>
     <pluralLabel>Affiliations</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

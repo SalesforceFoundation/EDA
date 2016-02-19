@@ -12,7 +12,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>StudentContact__c</field>
+                <field>Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -38,7 +38,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>ProgramAcc__c</field>
+                <field>Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -98,9 +98,9 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>StudentContact__c</fields>
+        <fields>Contact__c</fields>
         <fields>Course_Offering__c</fields>
-        <fields>ProgramAcc__c</fields>
+        <fields>Account__c</fields>
         <fields>Grade__c</fields>
         <relatedList>Course_Enrollment__c.Program_Enrollment__c</relatedList>
     </relatedLists>

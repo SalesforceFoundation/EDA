@@ -262,20 +262,6 @@
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
-    <quickActionList>
-        <quickActionListItems>
-            <quickActionName>Contact.New_Relationship</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Contact.New_Affiliation</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>LogACall</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>NewTask</quickActionName>
-        </quickActionListItems>
-    </quickActionList>
     <relatedContent>
         <relatedContentItems>
             <layoutItem>
@@ -286,14 +272,14 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>AfflAccount__c</fields>
+        <fields>Account__c</fields>
         <fields>Affiliation_Type__c</fields>
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <fields>StartDate__c</fields>
         <fields>EndDate__c</fields>
         <fields>Primary__c</fields>
-        <relatedList>Affiliation__c.AfflContact__c</relatedList>
+        <relatedList>Affiliation__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -305,14 +291,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ProgramAcc__c</fields>
+        <fields>Account__c</fields>
         <fields>Eligible_to_Enroll__c</fields>
         <fields>Admission_Date__c</fields>
         <fields>Start_Date__c</fields>
         <fields>Class_Standing__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>GPA__c</fields>
-        <relatedList>Program_Enrollment__c.StudentContact__c</relatedList>
+        <relatedList>Program_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -320,7 +306,7 @@
         <fields>Credits_Attempted__c</fields>
         <fields>Credits_Earned__c</fields>
         <fields>Grade__c</fields>
-        <relatedList>Course_Enrollment__c.StudentContact__c</relatedList>
+        <relatedList>Course_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

@@ -64,7 +64,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more
-        insert new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
@@ -75,14 +75,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert bizOrg1;
     	
     	//Create another key affiliation, this time to a biz org
-		Affiliation__c bizAffl1 = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = bizOrg1.ID, Primary__c = true);
+		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
 		
 		//The business organization lookup should point to the account that is part of the affiliation we created
-		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where AfflAccount__c = :bizOrg1.ID];
+		bizAffl1 = [select Affiliation_Type__c from Affiliation__c where Account__c = :bizOrg1.ID];
 		System.assertEquals('Business Organization', bizAffl1.Affiliation_Type__c);
 		
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
@@ -93,7 +93,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert bizOrg2;
 		
 		//Create second primary affiliation
-		Affiliation__c bizAffl2 = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = bizOrg2.ID, Primary__c = true);
+		Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg2.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert bizAffl2;
 		
@@ -119,7 +119,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        insert new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
@@ -130,7 +130,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert acc1;
     	
     	//Create primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = acc1.ID, Primary__c = true);
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
 		Test.startTest();
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
@@ -163,7 +163,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        Affiliation__c affl = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = contact.Account.ID, Primary__c = true);
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
         insert affl;
 
         //Verify the primary household field was populated
@@ -197,7 +197,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert acc1;
     	
     	//Create non-primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = acc1.ID, Primary__c = false);
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = false);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
 		
@@ -218,7 +218,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 		
 		//No other affiliation should have been created (bug W-008631)
-        List<Affiliation__c> affls = [select ID from Affiliation__c where AfflContact__c = :contact.ID];
+        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID];
         System.assertEquals(1, affls.size());
 	}
 	
@@ -235,7 +235,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert new Account[] {acc1, acc2};
     	
     	//Create primary Business affiliation
-		Affiliation__c affl1 = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = acc1.ID, Primary__c = true);
+		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl1;
 		
@@ -244,7 +244,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 		
     	//Create non-primary Business affiliation
-		Affiliation__c affl2 = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = acc2.ID, Primary__c = false);
+		Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = false);
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		insert affl2;
 		
@@ -256,10 +256,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//The second affiliation should be the only primary
-		List<Affiliation__c> affls = [select AfflAccount__c, Primary__c from Affiliation__c where AfflContact__c = :contact.ID order by AfflAccount__r.Name];
-		System.assertEquals(affls[0].AfflAccount__c, acc1.ID);
+		List<Affiliation__c> affls = [select Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID order by Account__r.Name];
+		System.assertEquals(affls[0].Account__c, acc1.ID);
 		System.assertEquals(affls[0].Primary__c, false);
-		System.assertEquals(affls[1].AfflAccount__c, acc2.ID);
+		System.assertEquals(affls[1].Account__c, acc2.ID);
 		System.assertEquals(affls[1].Primary__c, true);
 		
 		//Verify key affl field has been updated
@@ -286,7 +286,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	insert acc;
     	
     	//Create Business affiliation
-		Affiliation__c affl = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = acc.ID, Role__c = 'Student', Status__c = 'Current');
+		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Student', Status__c = 'Current');
 		Test.startTest();
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
 		AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
@@ -294,9 +294,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		Test.stopTest();
 		
 		//Verify Progran Enrollment record has been created
-		List<Program_Enrollment__c> programEnrollments = [select ID, StudentContact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+		List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
 		System.assertEquals(1, programEnrollments.size());
-		System.assertEquals(contact.ID, programEnrollments[0].StudentContact__c);
+		System.assertEquals(contact.ID, programEnrollments[0].Contact__c);
 	}
 	
 	@isTest
@@ -318,7 +318,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert acc;
         
         //Create Business affiliation
-        Affiliation__c affl = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
         Test.startTest();
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
@@ -326,7 +326,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Test.stopTest();
         
         //Verify Program Enrollment record has not been created
-        List<Program_Enrollment__c> programEnrollments = [select ID, StudentContact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+        List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
         System.assertEquals(0, programEnrollments.size());
     }
 }
