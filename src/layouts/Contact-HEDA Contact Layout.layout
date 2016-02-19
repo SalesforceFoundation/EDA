@@ -267,6 +267,9 @@
             <quickActionName>Contact.New_Relationship</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
+            <quickActionName>Contact.New_Affiliation</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>LogACall</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
