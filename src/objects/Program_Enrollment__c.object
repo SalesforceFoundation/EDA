@@ -218,42 +218,12 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Program__c</fullName>
-        <description>The program the student is enrolled in.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
-        <label>Program</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
         <fullName>Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Student__c</fullName>
-        <description>The parent Contact.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The parent Contact.</inlineHelpText>
-        <label>Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments_2</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>StudentContact__c</fullName>
@@ -282,5 +252,5 @@
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

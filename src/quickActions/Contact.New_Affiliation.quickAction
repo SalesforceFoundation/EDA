@@ -42,6 +42,6 @@
         <quickActionLayoutColumns/>
     </quickActionLayout>
     <targetObject>Affiliation__c</targetObject>
-    <targetParentField>Contact__c</targetParentField>
+    <targetParentField>AfflContact__c</targetParentField>
     <type>Create</type>
 </QuickAction>
