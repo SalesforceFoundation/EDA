@@ -67,6 +67,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>Related Contact is this Contact&apos;s ______.</description>
         <externalId>false</externalId>
         <inlineHelpText>Related Contact is this Contact&apos;s ______.</inlineHelpText>
@@ -74,12 +75,10 @@
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Relationships</relationshipLabel>
         <relationshipName>Relationships</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
@@ -299,7 +298,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     </nameField>
     <pluralLabel>Relationships</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Related_Contact_Do_Not_Change</fullName>
         <active>true</active>

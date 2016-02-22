@@ -66,6 +66,20 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The program the student is enrolled in.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
+        <label>Program</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Admission_Date__c</fullName>
         <externalId>false</externalId>
         <label>Admission Date</label>
@@ -120,6 +134,20 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The parent Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The parent Contact.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
@@ -204,40 +232,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Account__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The program the student is enrolled in.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
-        <label>Program</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The parent Contact.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The parent Contact.</inlineHelpText>
-        <label>Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <label>Program Enrollment</label>
     <listViews>

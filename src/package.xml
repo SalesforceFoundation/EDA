@@ -222,10 +222,12 @@
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
         <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
+        <members>Program_Enrollment__c.Account__c</members>
         <members>Program_Enrollment__c.Admission_Date__c</members>
         <members>Program_Enrollment__c.Affiliation__c</members>
         <members>Program_Enrollment__c.Application_Submitted_Date__c</members>
         <members>Program_Enrollment__c.Class_Standing__c</members>
+        <members>Program_Enrollment__c.Contact__c</members>
         <members>Program_Enrollment__c.Credits_Attempted__c</members>
         <members>Program_Enrollment__c.Credits_Earned__c</members>
         <members>Program_Enrollment__c.Eligible_to_Enroll__c</members>
@@ -233,9 +235,7 @@
         <members>Program_Enrollment__c.Enrollment_Status__c</members>
         <members>Program_Enrollment__c.GPA__c</members>
         <members>Program_Enrollment__c.Graduation_Year__c</members>
-        <members>Program_Enrollment__c.Account__c</members>
         <members>Program_Enrollment__c.Start_Date__c</members>
-        <members>Program_Enrollment__c.Contact__c</members>
         <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
         <members>Relationship_Auto_Create__c.Field__c</members>
         <members>Relationship_Auto_Create__c.Object__c</members>
