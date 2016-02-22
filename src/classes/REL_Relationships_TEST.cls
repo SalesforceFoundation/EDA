@@ -164,27 +164,26 @@ public class REL_Relationships_TEST {
     	    
         setupRelationshipTestData(null);
 
-        Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='Buddies')
-        };
+        Relationship__c crel = new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='Buddies');
         insert crel;
         
         // check that rel gets created
-        Relationship__c crel_original = [select id, Description__c,Type__c,reciprocalrelationship__c from Relationship__c where id=:crel[0].Id];
+        Relationship__c crel_original = [select id, Description__c,Type__c,reciprocalrelationship__c 
+                                        from Relationship__c where id=:crel.Id];
         //relationship should be set right
         System.assertEquals(crel_original.Type__c, 'Buddies');
 
         // check for mirror rel
-        Relationship__c crel_mirror = [select id, Description__c, reciprocalrelationship__c, Type__c from Relationship__c where reciprocalrelationship__c=:crel_original.Id];
+        Relationship__c crel_mirror = [select id, Description__c, reciprocalrelationship__c, Type__c 
+                                        from Relationship__c where reciprocalrelationship__c=:crel_original.Id];
         //mirror should reference the original
         System.assertEquals(crel_mirror.reciprocalrelationship__c, crel_original.Id);
-        Contact secondContactForDelete = [select id from contact where id=:c2.id];
         Test.startTest();
-        delete secondContactForDelete;
+        delete crel_mirror;
         Test.stopTest();
-        // test change to the rel
+        
+        //original relationship should have been automatically deleted
         Relationship__c[] orphanedCrel = [select id from Relationship__c where id = :crel_original.Id];
-        //original should have updated relationship
         System.assertEquals(0, orphanedCrel.size());
     }
     

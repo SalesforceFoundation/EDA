@@ -67,7 +67,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <deleteConstraint>Restrict</deleteConstraint>
         <description>Related Contact is this Contact&apos;s ______.</description>
         <externalId>false</externalId>
         <inlineHelpText>Related Contact is this Contact&apos;s ______.</inlineHelpText>
@@ -75,7 +75,7 @@
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Relationships</relationshipLabel>
         <relationshipName>Relationships</relationshipName>
-        <required>false</required>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
