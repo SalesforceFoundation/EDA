@@ -108,7 +108,7 @@
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>HEDA</members>
+        <members>HEDAP</members>
         <name>CustomApplication</name>
     </types>
     <types>
