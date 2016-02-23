@@ -193,8 +193,20 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                     UTIL_Debug.debug(LoggingLevel.WARN, '**** Address: ' + addr + ' message: ' + error.Full_Message__c);
                 }
             }
+            return null;
         }
         
+        // hack to detect empty addresses and delete them after we've propagated the change to all contacts and account
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+             List<Address__c> listAddr = new list<Address__c>();
+             for (SObject so : listNew) {
+                 Address__c addr = (Address__c)so;
+                 if (isAddressEmpty(addr))
+                    listAddr.add(new Address__c(Id = addr.Id));
+             }
+             if (listAddr.size() > 0)
+                delete listAddr; 
+        }
         return null;
     }
     
@@ -470,6 +482,23 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             listAddrHH.add(addr);
         }
         return mapAccIdListAddrHH;
+    }
+
+    /*******************************************************************************************************
+    * @description returns whether the Address's mailing fields are null
+    * @param addr the Address
+    * @return boolean. true if all of the Mailing fields are empty
+    */ 
+    public static boolean isAddressEmpty(Address__c addr) {
+        if (addr == null)
+           return false;        
+        return (
+           addr.MailingStreet__c == Null &&
+           addr.MailingStreet2__c == Null &&
+           addr.MailingCity__c == Null &&
+           addr.MailingState__c == Null &&
+           addr.MailingPostalCode__c == Null &&
+           addr.MailingCountry__c == Null);
     }
  
     /*******************************************************************************************************
@@ -968,6 +997,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                     // allow the invalid country to be placed in the country field, so Salesforce will generate the error.
                     sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
                 }
+            } else { // MailingCountry = null
+                sobjDst.put(strFieldPrefix + 'CountryCode', null);
+                sobjDst.put(strFieldPrefix + 'Country', null);
             }
             if (addr.MailingState__c != null) {             
                 if (validStatesByLabel.containsKey(addr.MailingState__c)) {
@@ -978,6 +1010,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                     // so we will just try to save any state that isn't a label as a code.
                     sobjDst.put(strFieldPrefix + 'StateCode', addr.MailingState__c.toUpperCase());
                 }
+            } else { // MailingState = null
+                sobjDst.put(strFieldPrefix + 'StateCode', null);
+                sobjDst.put(strFieldPrefix + 'State', null);   
             }
         }
         
