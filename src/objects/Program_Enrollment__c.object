@@ -49,8 +49,8 @@
     <compactLayouts>
         <fullName>HEDA_Program_Enrollment_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>StudentContact__c</fields>
-        <fields>ProgramAcc__c</fields>
+        <fields>Contact__c</fields>
+        <fields>Account__c</fields>
         <fields>Start_Date__c</fields>
         <fields>GPA__c</fields>
         <label>HEDA Program Enrollment Compact Layout</label>
@@ -65,6 +65,20 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The program the student is enrolled in.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
+        <label>Program</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>Admission_Date__c</fullName>
         <externalId>false</externalId>
@@ -120,6 +134,20 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The parent Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The parent Contact.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Credits_Attempted__c</fullName>
@@ -204,70 +232,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>ProgramAcc__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The program the student is enrolled in.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
-        <label>Program</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Students_Program_Enrollments</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Program__c</fullName>
-        <description>The program the student is enrolled in.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The program the student is enrolled in.</inlineHelpText>
-        <label>Program</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
         <fullName>Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Student__c</fullName>
-        <description>The parent Contact.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The parent Contact.</inlineHelpText>
-        <label>Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Program_Enrollments_2</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>StudentContact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The parent Contact.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The parent Contact.</inlineHelpText>
-        <label>Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Program Enrollments</relationshipLabel>
-        <relationshipName>Student_Program_Enrollments</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <label>Program Enrollment</label>
     <listViews>
@@ -282,5 +252,5 @@
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
