@@ -82,7 +82,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 			    		    UTIL_Debug.debug('****Course Offering with Faculty has been created');
 			    			newFacultyIDs.add(newOff.Faculty__c);
 			    			offsWithNewFaculty.add(newOff);
-			    			courseEnrllsToInsert.add(new Course_Enrollment__c(StudentContact__c = newOff.Faculty__c, ProgramAcc__c = newOff.Course__r.Account__c, 
+			    			courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Course__r.Account__c, 
 			    			                                                    Course_Offering__c = newOff.Id));
 			    		}
 			    		
@@ -115,7 +115,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 	                        UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
 	                        newFacultyIDs.add(newOff.Faculty__c);
 	                        offsWithNewFaculty.add(newOff);
-	                        courseEnrllsToInsert.add(new Course_Enrollment__c(StudentContact__c = newOff.Faculty__c, ProgramAcc__c = newOff.Course__r.Account__c, 
+	                        courseEnrllsToInsert.add(new Course_Enrollment__c(Contact__c = newOff.Faculty__c, Account__c = newOff.Course__r.Account__c, 
 	                                                                            Course_Offering__c = newOff.Id));
 	                        
 	                    //Faculty member has been changed 
@@ -186,7 +186,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
  			Boolean afflToDptExists = afflToDptExists(offering, facultyIDtoAffls);
  			UTIL_Debug.debug('****Affl to Dpt already exists: ' + afflToDptExists);
  			if(!afflToDptExists) {
- 			    Affiliation__c afflToInsert = new Affiliation__c(AfflContact__c = offering.Faculty__c, AfflAccount__c = offering.Course__r.Account__c,
+ 			    Affiliation__c afflToInsert = new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Course__r.Account__c,
                                          Role__c = 'Faculty', StartDate__c = offering.Term__r.Start_Date__c, EndDate__c = offering.Term__r.End_Date__c);
 				afflsToInsert.add(afflToInsert);
 				afflsTemp.add(afflToInsert);
@@ -208,17 +208,17 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * @description Sets each Affiliation pointing to the new Faculty member that is teaching the Course Offering. 
     ********************************************************************************************************/
     private List<SObject> getAfflsToUpdate(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs) {
-    	List<Affiliation__c> afflsWithContact = [select AfflContact__c from Affiliation__c where AfflContact__r.ID in :outdatedFacultyIDs and Role__c = 'Faculty'];
+    	List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where Contact__r.ID in :outdatedFacultyIDs and Role__c = 'Faculty'];
     	
     	Map<ID, Affiliation__c> oldFacultyToAfflMap = new Map<ID, Affiliation__c>();
     	for(Affiliation__c affl : afflsWithContact) {
-    	    oldFacultyToAfflMap.put(affl.AfflContact__c, affl);
+    	    oldFacultyToAfflMap.put(affl.Contact__c, affl);
     	}
     	
     	//We have to make sure we are updating the correct Affiliations.
     	for(Integer i = 0; i < outdatedFacultyIDs.size() ; i++) {
     		Affiliation__c oldAffl = oldFacultyToAfflMap.get(outdatedFacultyIDs[i]);
-    		oldAffl.AfflContact__c = updatedFacultyIDs[i];
+    		oldAffl.Contact__c = updatedFacultyIDs[i];
     	}
     	return afflsWithContact;
     }
@@ -229,12 +229,12 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * should be ok. 
     ********************************************************************************************************/
     private void updateEnrollments(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, DmlWrapper dmlWrapper) {
-        List<Course_Enrollment__c> oldEnrolls = [select Affiliation__c, ProgramAcc__c, Course_Offering__c 
-                                                 from Course_Enrollment__c where StudentContact__c in :outdatedFacultyIDs];
+        List<Course_Enrollment__c> oldEnrolls = [select Affiliation__c, Account__c, Course_Offering__c 
+                                                 from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs];
         UTIL_Debug.debug('****Number of old enrollments: ' + oldEnrolls.size()); 
         List<Course_Enrollment__c> newEnrolls = new List<Course_Enrollment__c>();
         for(Integer i = 0; i < oldEnrolls.size(); i++) {
-            newEnrolls.add(new Course_Enrollment__c(StudentContact__c = updatedFacultyIDs[i], ProgramAcc__c = oldEnrolls[i].ProgramAcc__c, 
+            newEnrolls.add(new Course_Enrollment__c(Contact__c = updatedFacultyIDs[i], Account__c = oldEnrolls[i].Account__c, 
                                                     Course_Offering__c = oldEnrolls[i].Course_Offering__c, 
                                                     Affiliation__c = oldEnrolls[i].Affiliation__c));   
         }
@@ -248,7 +248,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * assigned Faculty members. Also deletes the Course Enrollments themselves.
     ********************************************************************************************************/
     private void deleteAfflsEnrolls(List<ID> removedFacultyIDs, DmlWrapper dmlWrapper) {
-        List<Course_Enrollment__c> oldEnrolls = [select ID, Affiliation__c from Course_Enrollment__c where StudentContact__c in :removedFacultyIDs];
+        List<Course_Enrollment__c> oldEnrolls = [select ID, Affiliation__c from Course_Enrollment__c where Contact__c in :removedFacultyIDs];
         List<ID> afflsToDeleteIDs = new List<ID>();
         for(Course_Enrollment__c enroll : oldEnrolls) {
             afflsToDeleteIDs.add(enroll.Affiliation__c);
@@ -265,23 +265,23 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     	UTIL_Debug.debug('****Number of newly assigned faculty: ' + newFacultyIDs.size());
     	//Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
-        List<Affiliation__c> affls = [select AfflAccount__c, AfflContact__c from Affiliation__c where AfflContact__c in :newFacultyIDs 
-                                        order by AfflContact__c];
+        List<Affiliation__c> affls = [select Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs 
+                                        order by Contact__c];
         UTIL_Debug.debug('****Number of affls for existing faculty: ' + affls.size());
         
         if(affls.size() > 0) {
 	        //Set initial values, to compare against
 	        Affiliation__c affl = affls[0];
-	        ID contactID = affls[0].AfflContact__c;
+	        ID contactID = affls[0].Contact__c;
 	        List<Affiliation__c> facultyAffls = new Affiliation__c[] {affl};
 	        facultyIDtoAffls.put(contactID, facultyAffls);
 	        
 	        //Iterate through the rest of the affiliations
 	        for(Integer i = 1; i < affls.size(); i++) { 
-	            if(affls[i].AfflContact__c == contactID) {
+	            if(affls[i].Contact__c == contactID) {
 	                facultyAffls.add(affls[i]);   
 	            } else {
-	                contactID = affls[i].AfflContact__c;
+	                contactID = affls[i].Contact__c;
                     facultyAffls = new List<Affiliation__c>();
                     facultyAffls.add(affls[i]);
                     facultyIDtoAffls.put(contactID, facultyAffls);
@@ -300,7 +300,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         Boolean afflToDptExists = false;
         if(facultyMemberAffls != null && facultyMemberAffls.size() > 0) {
             for(Affiliation__c affl : facultyMemberAffls) {
-                if(affl.AfflAccount__c == offering.Course__r.Account__c) {
+                if(affl.Account__c == offering.Course__r.Account__c) {
                     afflToDptExists = true;
                     break;
                 }

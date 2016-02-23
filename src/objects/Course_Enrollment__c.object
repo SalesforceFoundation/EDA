@@ -49,7 +49,7 @@
     <compactLayouts>
         <fullName>HEDA_Course_Enrollment_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>StudentContact__c</fields>
+        <fields>Contact__c</fields>
         <fields>Course_Offering__c</fields>
         <fields>Program_Enrollment__c</fields>
         <fields>Grade__c</fields>
@@ -67,19 +67,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Account__c</fullName>
-        <externalId>false</externalId>
-        <label>Deparment</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Course_Enrollments</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>ProgramAcc__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Academic Program the student is enrolled in.</description>
         <externalId>false</externalId>
@@ -87,7 +74,7 @@
         <label>Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>All_Student_Course_Enrollments</relationshipName>
+        <relationshipName>Course_Enrollments</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -105,7 +92,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>StudentContact__c</fullName>
+        <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The student taking the course.</description>
         <externalId>false</externalId>
@@ -117,21 +104,6 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Contact__c</fullName>
-        <description>The student taking the course.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The student taking the course.</inlineHelpText>
-        <label>Contact</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
-        <relationshipName>Courses</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Course_Offering__c</fullName>
@@ -207,5 +179,5 @@
     </nameField>
     <pluralLabel>Course Enrollments</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

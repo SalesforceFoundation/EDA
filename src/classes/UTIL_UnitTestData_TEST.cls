@@ -55,7 +55,7 @@ public class UTIL_UnitTestData_TEST {
         for (integer i=0;i<n;i++) {
             Contact newCon = New Contact (
                 FirstName= CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS + i,
-                LastName= CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+                LastName= CAO_Constants.CONTACT_LASTNAME_FOR_TESTS + i,
                 WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS, 
                 Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
                 WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
