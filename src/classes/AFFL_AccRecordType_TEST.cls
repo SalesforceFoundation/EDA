@@ -65,7 +65,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(null, contact.Primary_Household__c);
 
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        insert new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
@@ -99,7 +99,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        insert new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
@@ -108,7 +108,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Create primary Affl to a Business Organization
         Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
         insert bizOrg;
-        Affiliation__c bizAffl = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = bizOrg.ID, Primary__c = true);
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         insert bizAffl;
         
@@ -145,7 +145,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more
-        insert new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
@@ -155,7 +155,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
         insert bizOrg;
         UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
-        Affiliation__c bizAffl = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = bizOrg.ID, Primary__c = true);
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         insert bizAffl;
         
@@ -196,7 +196,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Create primary Affl to Account without record type
         Account bizOrg = new Account(Name = 'BizOrg');
         insert bizOrg;
-        Affiliation__c bizAffl = new Affiliation__c(AfflContact__c = contact.ID, AfflAccount__c = bizOrg.ID, Primary__c = true);
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         insert bizAffl;
         

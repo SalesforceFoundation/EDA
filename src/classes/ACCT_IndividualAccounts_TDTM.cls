@@ -226,7 +226,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void createAfflsToExistingAccs(Map<Id, Id> mapAccountIdContactId, DmlWrapper dmlWrapper) {
     	List<SObject> afflsToInsert = new List<Affiliation__c>();
     	for(ID accountId : mapAccountIdContactId.keySet()) {
-    		afflsToInsert.add(new Affiliation__c(AfflContact__c =  mapAccountIdContactId.get(accountId), AfflAccount__c = accountId, 
+    		afflsToInsert.add(new Affiliation__c(Contact__c =  mapAccountIdContactId.get(accountId), Account__c = accountId, 
 								Primary__c = true, Status__c = 'Current'));
     	}
     	dmlWrapper.objectsToInsert.addAll(afflsToInsert);
@@ -382,7 +382,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 
                 //Creating affiliation - Functionality Change --> commenting out this code because we 
                 //don't want an affiliation automatically created from a Contact to its parent Account. 
-				//afflsToInsert.add(new Affiliation__c(AfflContact__c = c.Id, AfflAccount__c = accountInserts[i].Id, 
+				//afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Account__c = accountInserts[i].Id, 
 				//				Primary__c = true, Status__c = 'Current'));
 				
                 i += 1;
