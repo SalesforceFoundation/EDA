@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>HEDAP</fullName>
+    <fullName>HEDA</fullName>
     <types>
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
@@ -108,7 +108,7 @@
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>HEDAP</members>
+        <members>HEDA</members>
         <name>CustomApplication</name>
     </types>
     <types>
