@@ -52,9 +52,19 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
+        //Supports changing or deleting Account in existing Affiliation
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'AFFL_AccChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
+              Trigger_Action__c = 'BeforeUpdate'));
+        
+        //Supports changing or deleting Contact in existing Affiliation
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'AFFL_ContactChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
+              Trigger_Action__c = 'BeforeUpdate'));
+                    
         //Multi-Affiliation Type support on Affiliations - populates primary affl fields
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'AFFL_MultiRecordType_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
+              Class__c = 'AFFL_MultiRecordType_TDTM', Load_Order__c = 3, Object__c = 'Affiliation__c', 
               Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
         
         //Multi-Affiliation Type support on Account - supports account record type change

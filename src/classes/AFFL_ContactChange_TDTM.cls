@@ -1,0 +1,113 @@
+/*
+    Copyright (c) 2016, Salesforce.org
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Salesforce.org nor the names of
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+ 
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+/**
+* @author Salesforce.org
+* @date 2016
+* @group Affiliations
+* @description Handles the Contact in a primary Affiliation beeing changed or cleared. 
+*/
+public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
+
+    /*******************************************************************************************************
+    * @description Static flags to prevent recursive call.
+    ********************************************************************************************************/
+    public static boolean afflContactChangeAlreadyRun = false;
+    
+    /*******************************************************************************************************
+    * @description Handles Affiliation management.
+    * @param listNew the list of Accounts from trigger new. 
+    * @param listOld the list of Accounts from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Accounts 
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        
+        DmlWrapper dmlWrapper = new DmlWrapper();
+         
+        if(!afflContactChangeAlreadyRun) {
+                  
+            //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+	        Map<ID, Contact> newRelatedContactsMap;
+	        Map<ID, Contact> oldRelatedContactsMap;
+	        if(newlist != null)
+	           newRelatedContactsMap = AFFL_MultiRecordType_TDTM.queryAfflLookupFields(newlist);
+	        if(oldlist != null)
+	           oldRelatedContactsMap = AFFL_MultiRecordType_TDTM.queryAfflLookupFields(oldlist);
+	     
+	        UTIL_Debug.debug('****oldRelatedContactsMap: ' + JSON.serializePretty(oldRelatedContactsMap));
+	        
+	        if(newlist != null && newlist.size() > 0) {
+	            Integer i = 0;
+	            for (SObject so : newlist) {
+	               Affiliation__c affl = (Affiliation__c)so;
+	               Affiliation__c afflOld;
+	               if(oldlist[i] != null)
+	                   afflOld = (Affiliation__c)oldlist[i];
+	            
+	               String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+	               String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
+	            
+	               Contact newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
+	               Contact oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
+	            
+	               UTIL_Debug.debug('****oldRelatedContact: ' + JSON.serializePretty(oldRelatedContact));
+	               
+	               //BEFORE UPDATE
+	               if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+	                   //CONTACT FIELD CHANGED - if the Affiliation was primary, we need to clear the matching primary
+	                   //field in the old Contact and populate that same field in the new Contact.
+	                   if(affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null 
+	                   && affl.Contact__c != afflOld.Contact__c) {
+	                       //Clear matching primary affiliation field in old Contact
+	                       UTIL_Debug.debug('****Clearing field ' + lookupFieldName + ' in contact ' + oldRelatedContact.ID);
+	                       oldRelatedContact.put(lookupFieldName, null);
+	                       dmlWrapper.objectsToUpdate.add(oldRelatedContact);
+	                       //Populate matching primary affiliation field in new Contact
+	                       UTIL_Debug.debug('****Populating field ' + lookupFieldName + ' in contact ' + newRelatedContact.ID);
+	                       newRelatedContact.put(lookupFieldName, affl.Account__c);
+	                       dmlWrapper.objectsToUpdate.add(newRelatedContact);
+	                   }
+	                   //AFFL_MultiRecordType_TDTM.uncheckOtherPrimariesSameType(); --> we don't need to call this because 
+	                   //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
+	                
+	                   //CONTACT FIELD CLEARED - same as if the Affiliation was deleted.
+	                   if(affl.Primary__c && affl.Contact__c == null) {
+	                       AFFL_MultiRecordType_TDTM.processAfflDeleted(afflOld, oldRelatedContact, lookupFieldName, dmlWrapper);
+	                   }
+	               }
+	               i++;
+	           }
+	       }
+        }
+        return dmlWrapper;
+    }
+}
