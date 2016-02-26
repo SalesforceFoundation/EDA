@@ -55,33 +55,33 @@ public with sharing class AFFL_ContactAccChange_TEST {
     public static void changeContact() {
         setup();
 
-        Contact contact1 = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         Contact contact2 = new Contact(FirstName = 'Test2', LastName = 'Testerson2');
-        insert new Contact[] {contact1, contact2};
+        insert new Contact[] {contact, contact2};
         
         //Create account of Business Organization record type
         Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert bizOrg1;
 
         //Create primary affiliation
-        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact1.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
+        resetFlags();
         insert bizAffl1;
         
-        //Confirm Primary Business Organization field has been populated in contact1
-        contact1 = [select Primary_Organization__c from Contact where ID =:contact1.ID];
-        System.assertEquals(contact1.Primary_Organization__c, bizAffl1.Account__c);
+        //Confirm Primary Business Organization field has been populated in contact
+        contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
+        System.assertEquals(contact.Primary_Organization__c, bizAffl1.Account__c);
         
         //Update primary affiliation to point to a different contact
         bizAffl1.Contact__c = contact2.ID;
+        resetFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
         
-        //Confirm Primary Business Organization field has been cleared in contact1
-        contact1 = [select Primary_Organization__c from Contact where ID =:contact1.ID];
-        System.assertEquals(null, contact1.Primary_Organization__c);
+        //Confirm Primary Business Organization field has been cleared in contact
+        contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
+        System.assertEquals(null, contact.Primary_Organization__c);
         
         //Confirm Primary Business Organization field has been populated in contact2
         contact2 = [select Primary_Organization__c from Contact where ID =:contact2.ID];
@@ -101,27 +101,78 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        resetFlags();
         insert bizAffl1;
+        
+        //Clear contact
+        bizAffl1.Contact__c = null;
+        resetFlags();
+        Test.startTest();
+        update bizAffl1;
+        Test.stopTest();
+        
+        //Confirm Primary Business Organization field has been cleared in contact
+        contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
+        System.assertEquals(null, contact.Primary_Organization__c);
     }
     
     @isTest
-    public static void changeAccount() {
+    public static void changeAccountSameType() {
         setup();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
         
-        //Create account of Business Organization record type
+        //Create accounts of Business Organization record type
         Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        Account bizOrg2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        insert new Account[] {bizOrg1, bizOrg2};
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        resetFlags();
         insert bizAffl1;
+        
+        //Change affiliation account
+        bizAffl1.Account__c = bizOrg2.ID;
+        resetFlags();
+        Test.startTest();
+        update bizAffl1;
+        Test.stopTest();
+        
+        //Confirm primary field has been updated
+        contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
+        System.assertEquals(bizOrg2.ID, contact.Primary_Organization__c);
+    }
+    
+    @isTest
+    public static void changeAccountDifferentType() {
+        setup();
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+        
+        //Create accounts of Business Organization record type
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account householdOrg1 = new Account(Name='Acme2', RecordTypeId = householdRecTypeID);
+        insert new Account[] {bizOrg1, householdOrg1};
+
+        //Create primary affiliation
+        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
+        resetFlags();
+        insert bizAffl1;
+        
+        //Change affiliation account
+        bizAffl1.Account__c = householdOrg1.ID;
+        resetFlags();
+        Test.startTest();
+        update bizAffl1;
+        Test.stopTest();
+        
+        //Confirm primary field has been updated
+        contact = [select Primary_Organization__c, Primary_Household__c from Contact where ID =:contact.ID];
+        System.assertEquals(null, contact.Primary_Organization__c);
+        System.assertEquals(householdOrg1.ID, contact.Primary_Household__c);
     }
     
     @isTest
@@ -137,9 +188,31 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
+        resetFlags();
+        insert bizAffl1;
+        
+        //Clear affiliation account
+        bizAffl1.Account__c = null;
+        resetFlags();
+        Test.startTest();
+        update bizAffl1;
+        Test.stopTest();
+        
+        //Confirm primary field has been cleared
+        contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
+        System.assertEquals(null, contact.Primary_Organization__c);
+    }
+    
+    private static void resetFlags() {
+        AFFL_ContactChange_TDTM.afflContactChangeAlreadyRun = false;
+        
+        CON_PrimaryAffls_TDTM.keyAfflLookupUpdated = false;
         CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
         CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
-        insert bizAffl1;
+        
+        AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
     }
         
 }

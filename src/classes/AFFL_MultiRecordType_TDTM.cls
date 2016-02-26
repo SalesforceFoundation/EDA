@@ -152,7 +152,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return dmlWrapper;  	
     }
     
-    public static void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldName, DmlWrapper dmlWrapper) {
+    public void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldName, DmlWrapper dmlWrapper) {
         //If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
 	    if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
 	        if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
@@ -162,7 +162,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 	    }
     }
     
-    public static Map<ID, Contact> queryAfflLookupFields(List<SObject> afflsList) {
+    public Map<ID, Contact> queryAfflLookupFields(List<SObject> afflsList) {
     	//Query the primary affiliation fields for all contacts at once
 		String contactIDs = '(';
 		Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
