@@ -168,11 +168,13 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
 		if(afflsList != null && afflsList.size() > 0) {
 			Affiliation__c firstAffl = (Affiliation__c)afflsList[0];
-			contactIDs += '\'' + firstAffl.Contact__c + '\'';
+			if(firstAffl.Contact__c != null)
+			    contactIDs += '\'' + firstAffl.Contact__c + '\'';
 			Integer i = 1;
 			while(i < afflsList.size()) {
 				Affiliation__c affl = (Affiliation__c)afflsList[i];
-		        contactIDs += ', \'' + affl.Contact__c + '\'';
+				if(affl.Contact__c != null)
+		            contactIDs += ', \'' + affl.Contact__c + '\'';
 		        i++;
 			}
 			contactIDs += ')';
@@ -184,9 +186,11 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			}
 			dynamicQuery += ' from Contact where ID IN '+ contactIDs;
 			UTIL_Debug.debug('****MRT: Dynamic query: ' + dynamicQuery);
-			List<Contact> relatedContactsList = Database.query(dynamicQuery);
-			for(Contact contact : relatedContactsList) {
-			 	relatedContactsMap.put(contact.ID, contact);
+			if(contactIDs != '()') {
+				List<Contact> relatedContactsList = Database.query(dynamicQuery);
+				for(Contact contact : relatedContactsList) {
+				 	relatedContactsMap.put(contact.ID, contact);
+				}
 			}
 		}
 		return relatedContactsMap;

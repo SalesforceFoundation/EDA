@@ -56,17 +56,7 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
         if(!afflContactChangeAlreadyRun) {
             
             AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM(); 
-            
-            //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
-	        Map<ID, Contact> newRelatedContactsMap;
-	        Map<ID, Contact> oldRelatedContactsMap;
-	        if(newlist != null)
-	           newRelatedContactsMap = afflMulti.queryAfflLookupFields(newlist);
-	        if(oldlist != null)
-	           oldRelatedContactsMap = afflMulti.queryAfflLookupFields(oldlist);
-	     
-	        UTIL_Debug.debug('****oldRelatedContactsMap: ' + JSON.serializePretty(oldRelatedContactsMap));
-	        
+        
 	        if(newlist != null && newlist.size() > 0) {
 	            Integer i = 0;
 	            for (SObject so : newlist) {
@@ -77,15 +67,21 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	            
 	               String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 	               String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
-	            
-	               Contact newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
-	               Contact oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
-	            
-	               UTIL_Debug.debug('****oldRelatedContact: ' + JSON.serializePretty(oldRelatedContact));
-	               
+               
 	               //BEFORE UPDATE
 	               if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
 	                   
+	                   //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+    		           Map<ID, Contact> newRelatedContactsMap;
+		               Map<ID, Contact> oldRelatedContactsMap;
+		               if(newlist != null)
+		                  newRelatedContactsMap = afflMulti.queryAfflLookupFields(newlist);
+		               if(oldlist != null)
+		                  oldRelatedContactsMap = afflMulti.queryAfflLookupFields(oldlist);
+	                   
+	                   Contact newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
+                       Contact oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
+                   
 	                   //CONTACT FIELD CHANGED
 	                   if(affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null 
 	                   && affl.Contact__c != afflOld.Contact__c) {
@@ -111,6 +107,7 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	               i++;
 	           }
 	       }
+	       afflContactChangeAlreadyRun = true;
         }
         return dmlWrapper;
     }
