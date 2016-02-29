@@ -125,7 +125,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert bizAffl1;
         Test.stopTest();
         
-        //Verify only one Affiliation record to the business account. Github #159.
+        //Verify only one Affiliation record to the business account exists. Github #159.
         List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
     }
@@ -290,6 +290,36 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
 	}
+	
+	@isTest
+    public static void createPrimaryAfflWhenAnotherPrimaryExists() {        
+        setup();
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+        
+        //Create 2 accounts of Business Organization record type
+        Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
+        Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        insert new Account[] {acc1, acc2};
+        
+        //Create primary Business affiliation
+        Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl1;
+        
+        //Create second primary Business affiliation
+        Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        Test.startTest();
+        insert affl2;
+        Test.stopTest();
+        
+        //Verify only one Affiliation record to the second business account exists. Github #177.
+        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID and Account__c = :acc2.ID];
+        System.assertEquals(1, affls.size());
+
+    }
 	
 	@isTest
 	public static void autoCreateProgramEnrollment() {		
