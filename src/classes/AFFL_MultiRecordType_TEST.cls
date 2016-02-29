@@ -64,6 +64,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
 
         //Verify the primary household field was populated
@@ -76,8 +77,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create another key affiliation, this time to a biz org
 		Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-		CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags(); 
 		Test.startTest();
 		insert bizAffl1;
 		Test.stopTest();
@@ -95,7 +95,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		
 		//Create second primary affiliation
 		Affiliation__c bizAffl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg2.ID, Primary__c = true);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		insert bizAffl2;
 		
 		//The previous affiliation should not be the primary any more
@@ -121,12 +121,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
         Test.startTest();
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         insert bizAffl1;
         Test.stopTest();
         
-        //Verify only one Affiliation record to the business account. Github #159.
+        //Verify only one Affiliation record to the business account exists. Github #159.
         List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID and Account__c = :bizOrg1.ID];
         System.assertEquals(1, affls.size());
     }
@@ -157,7 +156,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Create primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
 		Test.startTest();
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		insert affl1;
     	Test.stopTest();
     	
@@ -166,7 +165,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(acc1.ID, Contact.Primary_Organization__c);
 		
 		//Delete Business affiliation
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		delete affl1;
 		
 		//Verify Primary Organization lookup field has been cleared
@@ -189,6 +188,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         insert affl;
 
         //Verify the primary household field was populated
@@ -198,7 +198,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Make the affiliation not primary
     	affl.Primary__c = false;
     	Test.startTest();
-    	AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+    	AFFL_ContactAccChange_TEST.resetAfflFlags();
     	update affl;
     	Test.stopTest();
     	
@@ -223,7 +223,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create non-primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = false);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		insert affl1;
 		
 		//Verify Primary Organization lookup field is blank
@@ -232,8 +232,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		
 		//Make the business affiliation primary
 		affl1.Primary__c = true;
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-		CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		Test.startTest();
 		update affl1;
 		Test.stopTest();
@@ -261,7 +260,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	
     	//Create primary Business affiliation
 		Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		insert affl1;
 		
 		//Verify key affl field has been populated
@@ -270,12 +269,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		
     	//Create non-primary Business affiliation
 		Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = false);
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		insert affl2;
 		
 		//Made the second business affiliation primary
 		affl2.Primary__c = true;
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		Test.startTest();
 		update affl2;
 		Test.stopTest();
@@ -291,6 +290,36 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
 	}
+	
+	@isTest
+    public static void createPrimaryAfflWhenAnotherPrimaryExists() {        
+        setup();
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+        
+        //Create 2 accounts of Business Organization record type
+        Account acc1 = new Account(Name='Acme1', RecordTypeId = orgRecTypeID);
+        Account acc2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        insert new Account[] {acc1, acc2};
+        
+        //Create primary Business affiliation
+        Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        insert affl1;
+        
+        //Create second primary Business affiliation
+        Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = true);
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
+        Test.startTest();
+        insert affl2;
+        Test.stopTest();
+        
+        //Verify only one Affiliation record to the second business account exists. Github #177.
+        List<Affiliation__c> affls = [select ID from Affiliation__c where Contact__c = :contact.ID and Account__c = :acc2.ID];
+        System.assertEquals(1, affls.size());
+
+    }
 	
 	@isTest
 	public static void autoCreateProgramEnrollment() {		
@@ -313,8 +342,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     	//Create Business affiliation
 		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Student', Status__c = 'Current');
 		Test.startTest();
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-		AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
 		insert affl;
 		Test.stopTest();
 		
@@ -345,8 +373,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         //Create Business affiliation
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         insert affl;
         Test.stopTest();
         

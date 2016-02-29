@@ -100,10 +100,8 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    //  --> Create a matching primary Affiliation for the Contact
 		                    //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
 		                    if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
-		                        if(!AFFL_MultiRecordType_TDTM.afflMadePrimary) {
-		                          UTIL_Debug.debug('****Key Affiliation field has been set');
-		                          createAfflFromLookup(newContact, j, afflsToInsert);
-		                        }
+	                           UTIL_Debug.debug('****Key Affiliation field has been set');
+	                           createAfflFromLookup(newContact, j, afflsToInsert);
 		                    }
 		                    
 		                    //If any Key Affiliation field has been changed to point to another Account
@@ -149,10 +147,12 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     }
     
     private void createAfflFromLookup(Contact newContact, Integer j, List<Affiliation__c> afflsToInsert) {
-        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-        if(accID != null)
-          afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
-        keyAfflLookupUpdated = true;
+        if(!AFFL_MultiRecordType_TDTM.afflMadePrimary) {
+	        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
+	        if(accID != null)
+	          afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
+	        keyAfflLookupUpdated = true;
+        }
     }
     
     private List<Affiliation__c> makeOtherAfflsNotPrimary(Map<ID, List<ID>> changedConToAccsMap) {

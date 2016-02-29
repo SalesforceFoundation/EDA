@@ -65,7 +65,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetFlags();
+        resetAfflFlags();
         insert bizAffl1;
         
         //Confirm Primary Business Organization field has been populated in contact
@@ -74,7 +74,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         //Update primary affiliation to point to a different contact
         bizAffl1.Contact__c = contact2.ID;
-        resetFlags();
+        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -101,12 +101,12 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetFlags();
+        resetAfflFlags();
         insert bizAffl1;
         
         //Clear contact
         bizAffl1.Contact__c = null;
-        resetFlags();
+        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -130,12 +130,12 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetFlags();
+        resetAfflFlags();
         insert bizAffl1;
         
         //Change affiliation account
         bizAffl1.Account__c = bizOrg2.ID;
-        resetFlags();
+        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -159,12 +159,12 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetFlags();
+        resetAfflFlags();
         insert bizAffl1;
         
         //Change affiliation account
         bizAffl1.Account__c = householdOrg1.ID;
-        resetFlags();
+        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -188,12 +188,12 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetFlags();
+        resetAfflFlags();
         insert bizAffl1;
         
         //Clear affiliation account
         bizAffl1.Account__c = null;
-        resetFlags();
+        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -203,7 +203,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         System.assertEquals(null, contact.Primary_Organization__c);
     }
     
-    private static void resetFlags() {
+    public static void resetAfflFlags() {
         AFFL_ContactChange_TDTM.afflContactChangeAlreadyRun = false;
         
         CON_PrimaryAffls_TDTM.keyAfflLookupUpdated = false;
@@ -213,6 +213,5 @@ public with sharing class AFFL_ContactAccChange_TEST {
         AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
-    }
-        
+    }    
 }

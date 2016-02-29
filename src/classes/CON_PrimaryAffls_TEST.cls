@@ -86,8 +86,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         
         //Set primary affl field
         contact.Primary_Organization__c = bizOrg1.ID;
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         Test.startTest();
         update contact;
         Test.stopTest();
@@ -126,8 +125,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         
         //update key Business Organization field in Contact
         contact.Primary_Organization__c = bizOrg2.ID;
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         Test.startTest();
         update contact;
         Test.stopTest();
@@ -164,8 +162,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         
         //update key Business Organization field in Contact
         contact.Primary_Organization__c = null;
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         Test.startTest();
         update contact;
         Test.stopTest();
