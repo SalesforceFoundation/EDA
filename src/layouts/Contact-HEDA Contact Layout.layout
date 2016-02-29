@@ -109,7 +109,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Key Affiliations</label>
+        <label>Primary Affiliations</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>

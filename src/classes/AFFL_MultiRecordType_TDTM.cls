@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.org
+    Copyright (c) 2015, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
 public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
     //Get the primary affiliation fields defined in the Affiliation Mappings
-    private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+    public static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
     
     /*******************************************************************************************************
     * @description Static flag to prevent CON_PrimaryAffls_TDTM from creating a new Affiliations when an existing
@@ -131,13 +131,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					
 		    	 	//AFTER DELETE - delete lookup relationship, if necessary
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-		            	//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
-		            	if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
-		            		relatedContact.put(lookupFieldName, null);
-		            		if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
-		            		    dmlWrapper.objectsToUpdate.add(relatedContact);
-		            		}
-		            	}
+		            	processAfflDeleted(afflOld, relatedContact, lookupFieldName, dmlWrapper);
 		            }
 		    	 }
 	    	 }
@@ -158,17 +152,29 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         return dmlWrapper;  	
     }
     
-    private Map<ID, Contact> queryAfflLookupFields(List<SObject> newlist) {
+    public void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldName, DmlWrapper dmlWrapper) {
+        //If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
+	    if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
+	        if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+	            relatedContact.put(lookupFieldName, null);
+	            dmlWrapper.objectsToUpdate.add(relatedContact);
+	        }
+	    }
+    }
+    
+    public Map<ID, Contact> queryAfflLookupFields(List<SObject> afflsList) {
     	//Query the primary affiliation fields for all contacts at once
 		String contactIDs = '(';
 		Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
-		if(newlist != null && newlist.size() > 0) {
-			Affiliation__c firstAffl = (Affiliation__c)newlist[0];
-			contactIDs += '\'' + firstAffl.Contact__c + '\'';
+		if(afflsList != null && afflsList.size() > 0) {
+			Affiliation__c firstAffl = (Affiliation__c)afflsList[0];
+			if(firstAffl.Contact__c != null)
+			    contactIDs += '\'' + firstAffl.Contact__c + '\'';
 			Integer i = 1;
-			while(i < newlist.size()) {
-				Affiliation__c affl = (Affiliation__c)newlist[i];
-		        contactIDs += ', \'' + affl.Contact__c + '\'';
+			while(i < afflsList.size()) {
+				Affiliation__c affl = (Affiliation__c)afflsList[i];
+				if(affl.Contact__c != null)
+		            contactIDs += ', \'' + affl.Contact__c + '\'';
 		        i++;
 			}
 			contactIDs += ')';
@@ -180,9 +186,11 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			}
 			dynamicQuery += ' from Contact where ID IN '+ contactIDs;
 			UTIL_Debug.debug('****MRT: Dynamic query: ' + dynamicQuery);
-			List<Contact> relatedContactsList = Database.query(dynamicQuery);
-			for(Contact contact : relatedContactsList) {
-			 	relatedContactsMap.put(contact.ID, contact);
+			if(contactIDs != '()') {
+				List<Contact> relatedContactsList = Database.query(dynamicQuery);
+				for(Contact contact : relatedContactsList) {
+				 	relatedContactsMap.put(contact.ID, contact);
+				}
 			}
 		}
 		return relatedContactsMap;
