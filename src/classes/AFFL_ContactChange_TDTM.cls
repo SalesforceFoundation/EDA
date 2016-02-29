@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2016
 * @group Affiliations
-* @description Handles the Contact in a primary Affiliation beeing changed or cleared. 
+* @description Handles the Contact in a primary Affiliation being changed or cleared. 
 */
 public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 
@@ -72,35 +72,35 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	               if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
 	                   
 	                   //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
-    		           Map<ID, Contact> newRelatedContactsMap;
-		               Map<ID, Contact> oldRelatedContactsMap;
-		               if(newlist != null)
+    		           Map<ID, Contact> newRelatedContactsMap, oldRelatedContactsMap;
+    		           Contact newRelatedContact, oldRelatedContact;
+		               if(newlist != null) {
 		                  newRelatedContactsMap = afflMulti.queryAfflLookupFields(newlist);
-		               if(oldlist != null)
+		                  newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
+		               }
+		               if(oldlist != null) {
 		                  oldRelatedContactsMap = afflMulti.queryAfflLookupFields(oldlist);
-	                   
-	                   Contact newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
-                       Contact oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
+		                  oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
+		               }
                    
 	                   //CONTACT FIELD CHANGED
 	                   if(affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null 
-	                   && affl.Contact__c != afflOld.Contact__c) {
+	                   && affl.Contact__c != afflOld.Contact__c && newRelatedContact != null && oldRelatedContact != null) {
 	                       
 	                       //Clear matching primary affiliation field in old Contact
-	                       UTIL_Debug.debug('****Clearing field ' + lookupFieldName + ' in contact ' + oldRelatedContact.ID);
 	                       oldRelatedContact.put(lookupFieldName, null);
 	                       dmlWrapper.objectsToUpdate.add(oldRelatedContact);
 	                       
 	                       //Populate same field in new Contact
-	                       UTIL_Debug.debug('****Populating field ' + lookupFieldName + ' in contact ' + newRelatedContact.ID);
 	                       newRelatedContact.put(lookupFieldName, affl.Account__c);
 	                       dmlWrapper.objectsToUpdate.add(newRelatedContact);
+	                       
+	                       //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because 
+                           //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
 	                   }
-	                   //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because 
-	                   //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
 	                
 	                   //CONTACT FIELD CLEARED - same as if the Affiliation was deleted.
-	                   if(affl.Primary__c && affl.Contact__c == null) {
+	                   if(affl.Primary__c && afflOld.Contact__c != null && affl.Contact__c == null) {
 	                       afflMulti.processAfflDeleted(afflOld, oldRelatedContact, lookupFieldName, dmlWrapper);
 	                   }
 	               }

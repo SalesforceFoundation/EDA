@@ -31,9 +31,89 @@
 * @author Salesforce.org
 * @date 2016
 * @group Affiliations
-* @description Handles the Account in a primary Affiliation beeing changed or cleared. 
+* @description Handles the Account in a primary Affiliation being changed or cleared. 
 */
-public with sharing class AFFL_AccChange_TDTM {
+public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
-    //BEFORE UPDATE
+    /*******************************************************************************************************
+    * @description Static flags to prevent recursive call.
+    ********************************************************************************************************/
+    public static boolean afflAccChangeAlreadyRun = false;    
+
+    /*******************************************************************************************************
+    * @description Handles Affiliation management.
+    * @param listNew the list of Accounts from trigger new. 
+    * @param listOld the list of Accounts from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Accounts 
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        
+        DmlWrapper dmlWrapper = new DmlWrapper();
+         
+        if(!afflAccChangeAlreadyRun) {
+            
+            AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM(); 
+        
+            if(newlist != null && newlist.size() > 0) {
+                Integer i = 0;
+                for (SObject so : newlist) {
+                   Affiliation__c affl = (Affiliation__c)so;
+                   String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+                   String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
+                   
+                   Affiliation__c afflOld;
+                   String lookupFieldLabelOld, lookupFieldNameOld;
+                   if(oldlist[i] != null) {
+                       afflOld = (Affiliation__c)oldlist[i];
+                       lookupFieldLabelOld = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
+                       lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
+                   }
+               
+                   //BEFORE UPDATE
+                   if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                       
+                       //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+                       Map<ID, Contact> relatedContactsMap;
+                       Contact relatedContact;
+                       if(newlist != null) {
+                          relatedContactsMap = afflMulti.queryAfflLookupFields(newlist);
+                          relatedContact = relatedContactsMap.get(affl.Contact__c);
+                       }
+                       
+                       //ACCOUNT FIELD CHANGED
+                       if(affl.Primary__c && affl.Account__c != null && afflOld.Account__c != null 
+                       && affl.Account__c != afflOld.Account__c) {
+                           
+                           if(affl.Affiliation_Type__c == afflOld.Affiliation_Type__c) {
+                               //If the primary affl now points to an Account of the same type, update the
+                               //same primary field in Contact.
+                               relatedContact.put(lookupFieldName, affl.Account__c);    
+                           } else { 
+                               //If the primary affl now points to an Account of different type, clear the old
+                               //primary field in Contact and populate the matching new field.
+                               relatedContact.put(lookupFieldNameOld, null);
+                               relatedContact.put(lookupFieldName, affl.Account__c);
+                           }
+                           dmlWrapper.objectsToUpdate.add(relatedContact);
+                           
+                           //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because 
+                           //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
+                       }
+                    
+                       //ACCOUNT FIELD CLEARED - the matching primary field in Contact needs to be cleared.
+                       if(affl.Primary__c && afflOld.Account__c != null && affl.Account__c == null) {
+                           relatedContact.put(lookupFieldNameOld, null);
+                           dmlWrapper.objectsToUpdate.add(relatedContact);
+                       }
+                   }
+                   i++;
+               }
+           }
+           afflAccChangeAlreadyRun = true;
+        }
+        return dmlWrapper;
+    }
 }
