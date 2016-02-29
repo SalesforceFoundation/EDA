@@ -100,8 +100,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
 		                if (afflOld.Primary__c && !affl.Primary__c && relatedContact.get(lookupFieldName) == affl.Account__c) {
 		                    UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
-		                	relatedContact.put(lookupFieldName, null);
 		                	if(CON_PrimaryAffls_TDTM.keyAfflLookupUpdated == false) {
+		                	     relatedContact.put(lookupFieldName, null);
 		                	     dmlWrapper.objectsToUpdate.add(relatedContact);
 		                	}
 		                }
