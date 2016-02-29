@@ -8,7 +8,8 @@ HEDA is built from industry-wide best practices used across higher education and
 
 You can install HEDA utilizing our custom application installer into any Developer Edition, Sandbox or Enterprise Edition Salesforce org.
 
-* <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/heda" target="_blank">HEDA Installer</a>
+* <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/hed" target="_blank">HEDA Installer</a>
+* <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/hed/beta" target="_blank">HEDA BETA Installer</a>
 
 #### For Developers
 
