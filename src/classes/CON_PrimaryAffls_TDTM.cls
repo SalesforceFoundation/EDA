@@ -114,7 +114,8 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 		                    else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
 		                    != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
 		                        UTIL_Debug.debug('****Key Affiliation field has been changed');
-                                createAfflFromLookup(newContact, j, afflsToInsert);
+		                        if(!AFFL_MultiRecordType_TDTM.afflMadePrimary)
+                                    createAfflFromLookup(newContact, j, afflsToInsert);
                                 populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                             }
 		                    
