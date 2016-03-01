@@ -1,4 +1,4 @@
-![Salesforce Higher Education Data Architecture](https://cloud.githubusercontent.com/assets/926530/11634976/b4c9814a-9ce1-11e5-98bb-ebd84ce6a0de.png "Salesforce Higher Education Data Architecture")
+![Salesforce Higher Education Data Architecture](https://cloud.githubusercontent.com/assets/1894238/13441500/13d366ec-dfbd-11e5-9df6-d9dee50ce87d.jpg "Salesforce Higher Education Data Architecture")
 
 The Salesforce Higher Education Data Architecture (HEDA) Project (HEDAP) provides an Higher-Ed-specific platform for growth for organizations utilizing Salesforce.  HEDA utilizes a Salesforce managed package and some light unmanaged customization to give Higher Education users a familiar nomenclature and data model for many higher education applications.  In addition, Higher Education developers and administrators can utilize HEDA's advanced trigger management capabilities, robust error handling and pluggable framework to better manage and coordinate the data in their Salesforce instance.
 
