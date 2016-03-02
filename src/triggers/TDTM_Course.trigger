@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2009, Salesforce.org
+    Copyright (c) 2016, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -13,7 +13,7 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
- 
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
@@ -27,11 +27,11 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
-/**
-* @author Salesforce.org
-* @date 2012 
-* @description Provides process control to prevent relationship creation recursion in triggers 
-*/
-public with sharing class REL_ProcessControl {
-    public static boolean hasRun = false;
+trigger TDTM_Course on Course__c (after delete, after insert, after undelete, 
+after update, before delete, before insert, before update) {
+
+    TDTM_TriggerHandler handler = new TDTM_TriggerHandler();  
+    handler.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
+        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Course__c, 
+        new TDTM_ObjectDataGateway());
 }

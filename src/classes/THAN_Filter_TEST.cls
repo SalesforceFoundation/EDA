@@ -30,7 +30,8 @@
 /**
 * @author Salesforce.org
 * @date 2015
-* @group Affiliation Management
+* @group TDTM
+* @group-content ../../ApexDocContent/TDTM.htm
 * @description Tests for the THAN_Filter_TDTM class. 
 */
 @isTest

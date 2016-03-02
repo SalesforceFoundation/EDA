@@ -31,7 +31,8 @@
 * @author Salesforce.org
 * @date 2015
 * @group Affiliations
-* @description Supports changing the record type of an account.
+* @group-content ../../ApexDocContent/Affiliations.htm
+* @description Supports changing the record type of an Account.
 */
 public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 	

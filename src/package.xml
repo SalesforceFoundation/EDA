@@ -32,7 +32,6 @@
         <members>ERR_Notifier</members>
         <members>PREN_Affiliation_TDTM</members>
         <members>PREN_Affiliation_TEST</members>
-        <members>REL_ProcessControl</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
@@ -73,6 +72,8 @@
         <members>TDTM_Campaign</members>
         <members>TDTM_CampaignMember</members>
         <members>TDTM_Contact</members>
+        <members>TDTM_Course</members>
+        <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
         <members>TDTM_Opportunity</members>
         <members>TDTM_ProgramEnrollment</members>

@@ -30,7 +30,8 @@
 /**
 * @author Salesforce.org
 * @date 2015
-* @group Program Enrollment
+* @group Contacts
+* @group-content ../../ApexDocContent/Contacts.htm
 * @description Creates Affiliations when the user manually populates
 * any of the primary affiliation lookup fields. 
 */

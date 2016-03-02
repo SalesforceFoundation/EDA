@@ -30,8 +30,9 @@
 /**
 * @author Salesforce.org
 * @date 2014
-* @group Address Management
-* @description Trigger Handler on Account for Address management 
+* @group Addresses
+* @group-content ../../ApexDocContent/Addresses.htm
+* @description Trigger Handler on Account for Address management. Creates Address__c record from Account.
 */
 public class ADDR_Account_TDTM extends TDTM_Runnable {
 

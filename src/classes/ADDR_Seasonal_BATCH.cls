@@ -30,8 +30,9 @@
 /**
 * @author Salesforce.com Foundation
 * @date 2015
-* @group Address Management
-* @description Updates seasonal addresses in batch. 
+* @group Addresses
+* @group-content ../../ApexDocContent/Addresses.htm
+* @description Updates seasonal addresses in batch.
 */ 
 public with sharing class ADDR_Seasonal_BATCH implements Database.Batchable<SObject> {
     

@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2014
 * @group Utilities
+* @group-content ../../ApexDocContent/Utilities.htm
 * @description Utility class for debug statements to turn them off in a managed context, as well as to display relevant performance information.
 */
 public class UTIL_Debug {

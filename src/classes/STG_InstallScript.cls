@@ -31,7 +31,8 @@
 * @author Salesforce.org
 * @date 2014
 * @group Settings
-* @description Install Script for the HEDA package. 
+* @group-content ../../ApexDocContent/Settings.htm
+* @description Installs Script for the HEDA package. 
 */
 global without sharing class STG_InstallScript implements InstallHandler {
 

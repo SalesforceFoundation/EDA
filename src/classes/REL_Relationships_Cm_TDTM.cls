@@ -29,7 +29,10 @@
 */
 /**
 * @author Salesforce.org
-* @description Implements relationships behavior 
+* @date 2013
+* @group Relationships
+* @group-content ../../ApexDocContent/Relationships.htm
+* @description Implements relationships behavior on CampaignMember.
 */
 public class REL_Relationships_Cm_TDTM extends TDTM_Runnable {
 

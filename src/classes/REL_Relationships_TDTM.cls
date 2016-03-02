@@ -29,10 +29,16 @@
 */
 /**
 * @author Salesforce.org
-* @description Implements relationships behavior 
+* @date 2013
+* @group Relationships
+* @group-content ../../ApexDocContent/Relationships.htm
+* @description Implements relationships behavior on Relationship__c.
 */
 public class REL_Relationships_TDTM extends TDTM_Runnable {
 
+    /* @description Provides process control to prevent relationship creation recursion in triggers. */ 
+    public static boolean hasRun = false;
+    
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     	
@@ -64,7 +70,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         List<Relationship__c> reciprocalsToUpdate = new List<Relationship__c>();
         
         if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
-            REL_ProcessControl.hasRun = true;
+            hasRun = true;
         }
         
         Integer i = 0;          // processing counter            
@@ -121,7 +127,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         }
 
         if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
-            REL_ProcessControl.hasRun = false;
+            hasRun = false;
         }
         return mainWrapper;
     }

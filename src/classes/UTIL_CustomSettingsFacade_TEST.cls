@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2015
 * @group Utilities
+* @group-content ../../ApexDocContent/Utilities.htm
 * @description Tests for UTIL_CustomSettingsFacade. Mainly for the @isTest 
 * methods, since the others were tested by other tests.
 */

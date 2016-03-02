@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2016
 * @group Affiliations
+* @group-content ../../ApexDocContent/Affiliations.htm
 * @description Tests specific to changing Contact or Account in an Affiliation.
 */
 @isTest

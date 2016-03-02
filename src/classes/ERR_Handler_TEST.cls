@@ -27,6 +27,13 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
+/**
+* @author Salesforce.org
+* @date 2014
+* @group ErrorHandling
+* @group-content ../../ApexDocContent/ErrorHandling.htm
+* @description Tests for error handling functionality.
+*/
 @isTest
 public with sharing class ERR_Handler_TEST {
 

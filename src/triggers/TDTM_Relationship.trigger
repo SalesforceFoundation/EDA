@@ -28,7 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 trigger TDTM_Relationship on Relationship__c (before insert, before update, before delete, 
-    after insert, after update, after delete, after undelete) {
+after insert, after update, after delete, after undelete) {
     
     TDTM_TriggerHandler handler = new TDTM_TriggerHandler();  
     handler.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 

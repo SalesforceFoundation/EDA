@@ -27,6 +27,13 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
+/**
+* @author Salesforce.org
+* @date 2015
+* @group Contacts
+* @group-content ../../ApexDocContent/Contacts.htm
+* @description Tests for the Preferred Contact functionality.
+*/
 @isTest
 public with sharing class CON_Preferred_TEST {
 

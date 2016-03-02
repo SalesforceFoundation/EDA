@@ -30,8 +30,9 @@
 /**
 * @author Salesforce.org
 * @date 2014
-* @group Address Management
-* @description Trigger Handler on Contact for Address management 
+* @group Addresses
+* @group-content ../../ApexDocContent/Addresses.htm
+* @description Trigger Handler on Contact for Address management. 
 */
 public class ADDR_Contact_TDTM extends TDTM_Runnable {
 

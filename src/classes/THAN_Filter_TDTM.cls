@@ -31,7 +31,8 @@
 * @author Salesforce.org
 * @date 2015
 * @group TDTM
-* @description Validates Trigger Handler fields data. 
+* @group-content ../../ApexDocContent/TDTM.htm
+* @description Validates Trigger Handler filtering condition. 
 */
 public class THAN_Filter_TDTM extends TDTM_Runnable {
     

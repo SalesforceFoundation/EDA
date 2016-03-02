@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2011 (1.x)
 * @group Utilities
+* @group-content ../../ApexDocContent/Utilities.htm
 * @description Provides automated generation of unit test data for tests throughout the org 
 */
 @isTest

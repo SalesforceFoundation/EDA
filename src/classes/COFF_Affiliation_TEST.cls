@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2015
 * @group Course Offering
+* @group-content ../../ApexDocContent/CourseOfferings.htm
 * @description Tests specific to Course Offering. 
 */
 @isTest

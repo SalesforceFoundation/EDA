@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2014 
 * @group Utilities
+* @group-content ../../ApexDocContent/Utilities.htm
 * @description Class which holds static methods for common utilities, 
 * such as detecting whether we are in a managed package, and some string helpers.
 */
