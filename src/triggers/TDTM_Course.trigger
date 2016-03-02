@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.org
+    Copyright (c) 2016, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -26,12 +26,12 @@
     LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
-*/ 
-trigger TDTM_Account on Account (after delete, after insert, after undelete, 
+*/
+trigger TDTM_Course on Course__c (after delete, after insert, after undelete, 
 after update, before delete, before insert, before update) {
 
     TDTM_TriggerHandler handler = new TDTM_TriggerHandler();  
     handler.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
-        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Account, 
+        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Course__c, 
         new TDTM_ObjectDataGateway());
 }
