@@ -30,7 +30,8 @@
 /**
 * @author Salesforce.org
 * @date 2013
-* @group Address Management
+* @group Addresses
+* @group-content ../../ApexDocContent/Addresses.htm
 * @description Tests specific to Address Management. 
 */
 

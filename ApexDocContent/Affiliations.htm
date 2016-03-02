@@ -1,11 +1,14 @@
 <html>
 	<body>
-		<h2>Affiliations Related Classes</h2>
-		<p>Affiliations management is made up of two trigger handler classes and a helper class.</p>
+		<h2>Affiliation Related Classes</h2>
+		<p>Classes involved with Affiliation management:</p>
 		<ul>
-			<li>AFFL_Affiliations_TDTM - Handles affiliation management for contact, account, and affiliation triggers.</li>
-			<li>AFFL_AccRecordType_TDTM - Supports changing the record type of an account.</li>
-			<li>AFFL_MultiRecordType_TDTM - Handles affiliations of different record types, with one primary per type.</li>
+		    <li>AFFL_AccChange_TDTM - Handles the Account in a primary Affiliation being changed or cleared.</li>
+		    <li>AFFL_AccRecordType_TDTM - Supports changing the record type of an Account.</li>
+		    <li>AFFL_ContactChange_TDTM - Handles the Contact in a primary Affiliation being changed or cleared.</li>
+		    <li>AFFL_MultiRecordType_TDTM - Handles Affiliations of different record types, with one primary per type.</li>
+		    <li>AFFL_MultiRecordTypeMapper - Helps with the mapping of Account record types to Account lookup fields on Contact defined in the Affiliation Mapping custom settings.</li> 
+			<li>AFFL_AccRecordType_TDTM - Supports changing the record type of an Account.</li>
 		</ul>
 	</body>
 </html>

@@ -31,8 +31,9 @@
 * @author Salesforce.org
 * @date 2015
 * @group Affiliations
+* @group-content ../../ApexDocContent/Affiliations.htm
 * @description Helps with the mapping of Account record types to Account lookup fields on Contact defined
-*				in the Affiliation Mapping custom settings. 
+*				in the Affiliation Mapping custom settings.
 */
 public with sharing class AFFL_MultiRecordTypeMapper {
 

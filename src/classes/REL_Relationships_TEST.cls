@@ -30,7 +30,9 @@
 /**
 * @author Salesforce.org
 * @date 2011,2012 
-* @description Testing for the Relationships class
+* @group Relationships
+* @group-content ../../ApexDocContent/Relationships.htm
+* @description Testing for the Relationships classes.
 */
 @isTest
 public class REL_Relationships_TEST {

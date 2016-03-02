@@ -30,7 +30,9 @@
 /**
 * @author Salesforce.org
 * @date 2011,2012
-* @description Enum for triggers and static utils for settings and collections
+* @group Relationships
+* @group-content ../../ApexDocContent/Relationships.htm
+* @description Relationships utilities.
 */
 public with sharing class REL_Utils {
 

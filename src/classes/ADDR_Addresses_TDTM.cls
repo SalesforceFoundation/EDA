@@ -30,9 +30,9 @@
 /**
 * @author Salesforce.org 
 * @date 2014 
-* @group Address Management
+* @group Addresses
 * @group-content ../../ApexDocContent/Addresses.htm
-* @description trigger handler on Address object to support propagating addresses 
+* @description Trigger handler on Address object to support propagating addresses.
 */
 public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 

@@ -30,6 +30,7 @@
 * @author Salesforce Foundation
 * @date 2014
 * @group Utilities
+* @group-content ../../ApexDocContent/Utilities.htm
 * @description This class allows easy access to object and field description information from within other classes.
 *
 * It is called statically, and therefore will supply the same information to all calls made from

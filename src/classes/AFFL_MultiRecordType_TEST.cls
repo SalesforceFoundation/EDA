@@ -30,7 +30,8 @@
 /**
 * @author Salesforce.org
 * @date 2015
-* @group Affiliation Management
+* @group Affiliations
+* @group-content ../../ApexDocContent/Affiliations.htm
 * @description Tests specific to Affiliation Management. 
 */
 @isTest

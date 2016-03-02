@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2011 (1.x)
 * @group Accounts
+* @group-content ../../ApexDocContent/Accounts.htm
 * @description Constants and helper methods used for common settings in npe01: account model, default contact role, etc. 
 */
 public with sharing class CAO_Constants {

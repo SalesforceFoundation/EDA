@@ -31,8 +31,9 @@
 * @author Salesforce.com Foundation
 * @date 2015
 * @group Term
+* @group-content ../../ApexDocContent/Terms.htm
 * @description Copies start and end date from a Term to all children Course Offerings that don't 
-* have values in those fields. 
+* have values in those fields.
 */
 public with sharing class TERM_CourseOff_TDTM extends TDTM_Runnable {
 

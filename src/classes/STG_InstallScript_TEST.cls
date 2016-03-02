@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2014
 * @group Settings
+* @group-content ../../ApexDocContent/Settings.htm
 * @description Test Class for the Install Script for the HEDA package. 
 */
 @isTest

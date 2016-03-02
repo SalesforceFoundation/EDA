@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2015
 * @group Program Enrollment
+* @group-content ../../ApexDocContent/ProgramEnrollments.htm
 * @description Tests specific to Progran Enrollment. 
 */
 @isTest

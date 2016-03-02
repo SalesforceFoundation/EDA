@@ -31,7 +31,8 @@
 * @author Salesforce.org
 * @date 2015
 * @group Program Enrollment
-* @description Keeps Program Enrollment and Affiliation records for a Contact in sync. 
+* @group-content ../../ApexDocContent/ProgramEnrollments.htm
+* @description Keeps Program Enrollment and Affiliation records for a Contact in sync.
 */
 public class PREN_Affiliation_TDTM extends TDTM_Runnable {
 	

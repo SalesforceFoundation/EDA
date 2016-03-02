@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2015
 * @group TDTM
+* @group-content ../../ApexDocContent/TDTM.htm
 * @description Testing the enhanced TDTM functionality, which applies only to certain records
 * depending on their field values. 
 */

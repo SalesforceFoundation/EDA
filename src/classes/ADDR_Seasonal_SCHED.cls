@@ -30,8 +30,9 @@
 /**
 * @author Salesforce.org
 * @date 2015
-* @group Address Management
-* @description Supports the automatic scheduling of Seasonal Address updates  
+* @group Addresses
+* @group-content ../../ApexDocContent/Addresses.htm
+* @description Supports the automatic scheduling of Seasonal Address updates. 
 */ 
 public with sharing class ADDR_Seasonal_SCHED implements Schedulable {
     

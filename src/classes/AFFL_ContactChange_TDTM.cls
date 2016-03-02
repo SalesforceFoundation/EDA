@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2016
 * @group Affiliations
+* @group-content ../../ApexDocContent/Affiliations.htm
 * @description Handles the Contact in a primary Affiliation being changed or cleared. 
 */
 public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {

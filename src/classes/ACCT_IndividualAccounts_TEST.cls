@@ -31,7 +31,8 @@
 * @author Salesforce.org
 * @date 2011 (1.x)
 * @group Accounts
-* @description Tests for ACCT_IndividualAccounts_TDTM
+* @group-content ../../ApexDocContent/Accounts.htm
+* @description Tests for ACCT_IndividualAccounts_TDTM.
 */
 @isTest
 private class ACCT_IndividualAccounts_TEST {

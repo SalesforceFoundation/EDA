@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2011 (1.x)
 * @group Accounts
+* @group-content ../../ApexDocContent/Accounts.htm
 * @description Implements Household or Administrative account model - controls syncing within the model 
 */
 public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {

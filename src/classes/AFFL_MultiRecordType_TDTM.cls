@@ -31,7 +31,8 @@
 * @author Salesforce.org
 * @date 2015
 * @group Affiliations
-* @description Handles affiliations of different record types, with one primary per type. 
+* @group-content ../../ApexDocContent/Affiliations.htm
+* @description Handles Affiliations of different record types, with one primary per type. 
 */
 public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 

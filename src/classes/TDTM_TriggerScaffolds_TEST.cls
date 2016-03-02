@@ -27,6 +27,14 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
+/**
+ * @author Salesforce.org
+ * @date 2014
+ * @group TDTM
+ * @group-content ../../ApexDocContent/TDTM.htm
+ * @description Tests that just verify exceptions aren't thrown for Objects where
+ * we don't have TDTM classese.
+ */
 @isTest
 public with sharing class TDTM_TriggerScaffolds_TEST {
 

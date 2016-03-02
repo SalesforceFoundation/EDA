@@ -7,16 +7,17 @@
 			<li>Seasonal Address support</li>
 		</ul>
 
-		<p>The classes involved with Address object support include the following trigger handlers:</p>
+		<p>Classes involved with Address object support:</p>
 		<ul>
-			<li>ADDR_Account_TDTM</li>
-			<li>ADDR_Addresses_TDTM</li>
-			<li>ADDR_Contact_TDTM</li>
+			<li>ADDR_Account_TDTM - Trigger Handler on Account for Address management. Creates Address__c record from Account.</li>
+			<li>ADDR_Addresses_TDTM - Trigger handler on Address object to support propagating addresses.</li>
+			<li>ADDR_Contact_TDTM - Creates Address__c record from Contact.</li>
 		</ul>
 
-		<p>The classes involved with Seasonal Address support include the following schedulable class</p>
+		<p>Classes involved with Seasonal Address support:</p>
 		<ul>
-			<li>ADDR_Seasonal_SCHED</li>
+			<li>ADDR_Seasonal_BATCH - Updates seasonal addresses in batch.</li>
+			<li>ADDR_Seasonal_SCHED - Supports the automatic scheduling of Seasonal Address updates.</li>
 		</ul>
 	</body>
 </html>

@@ -31,10 +31,10 @@
 /**
 * @author Salesforce.org
 * @date 2014
-* @description Helps determine if errors occurred during the DML operations performed during the transaction, and with 
-* the necessary storing and notification of these errors.
 * @group ErrorHandling
 * @group-content ../../ApexDocContent/ErrorHandling.htm
+* @description Helps determine if errors occurred during the DML operations performed during the transaction, and with 
+* the necessary storing and notification of these errors.
 */
 public class ERR_Handler {
 	

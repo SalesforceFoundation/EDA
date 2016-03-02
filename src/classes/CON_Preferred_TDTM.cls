@@ -31,6 +31,7 @@
 * @author Salesforce.org
 * @date 2015
 * @group Contacts
+* @group-content ../../ApexDocContent/Contacts.htm
 * @description Populates default email and phone fields according to user preferences.
 */
 public class CON_Preferred_TDTM extends TDTM_Runnable {
