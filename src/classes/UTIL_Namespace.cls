@@ -142,5 +142,6 @@ public class UTIL_Namespace {
         String l1 = Label.noAfflMappings;
         String l2 = Label.noAutoCreateSettings;
         String l3 = Label.noRecSettings;
+        String l4 = Label.stgHelpRelReciprocalMethod;
     }
 }
