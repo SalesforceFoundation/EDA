@@ -35,7 +35,7 @@
                      </aura:if>
                 </div>
                 <div class="slds-col slds-size--1-of-1">
-	                <aura:if isTrue="{!v.namespacePrefix == 'hed'}">
+	                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
 	                    <ui:outputText value="{!$Label.hed.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
 					<aura:set attribute="else">
 					    <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
