@@ -136,9 +136,9 @@
 	//somewhere in the code. Note that this method isn't even called from anywhere.
 	hugeHack : function() {
 		try {
-			$A.get("$Label.heda.noAfflMappings");
-			$A.get("$Label.heda.noRecSettings");
-			$A.get("$Label.heda.noAutoCreateSettings");
+			$A.get("$Label.hed.noAfflMappings");
+			$A.get("$Label.hed.noRecSettings");
+			$A.get("$Label.hed.noAutoCreateSettings");
 		} catch(e) {
 			$A.get("$Label.c.noAfflMappings");		
 			$A.get("$Label.c.noRecSettings");	
