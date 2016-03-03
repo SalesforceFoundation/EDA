@@ -136,4 +136,20 @@
         <shortDescription>No Reciprocal Settings</shortDescription>
         <value>No Reciprocal Settings to display. Try creating new ones in the form below.</value>
     </labels>
+    <labels>
+        <fullName>stgHelpRelAutoCreatedDup</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpRelAutoCreatedDup</shortDescription>
+        <value>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts. Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpRelReciprocalMethod</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpRelReciprocalMethod</shortDescription>
+        <value>Determines method used to generate the reciprocal relationship. Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;).</value>
+    </labels>
 </CustomLabels>
