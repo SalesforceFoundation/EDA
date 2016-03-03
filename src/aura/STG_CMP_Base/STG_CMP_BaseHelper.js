@@ -139,6 +139,7 @@
 			$A.get("$Label.hed.noAfflMappings");
 			$A.get("$Label.hed.noRecSettings");
 			$A.get("$Label.hed.noAutoCreateSettings");
+			$A.get("$Label.hed.stgHelpRelReciprocalMethod");
 		} catch(e) {
 			$A.get("$Label.c.noAfflMappings");		
 			$A.get("$Label.c.noRecSettings");	
