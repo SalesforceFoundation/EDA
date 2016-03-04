@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No Affiliation Mappings</shortDescription>
-        <value>No Affiliation Mappings to display. Try creating new ones in the form below.</value>
+        <value>No Affiliation Mappings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
         <fullName>noAutoCreateSettings</fullName>
@@ -126,7 +126,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No Auto Create Settings</shortDescription>
-        <value>No Auto-Create Settings to display. Try creating new ones in the form below.</value>
+        <value>No Auto-Create Settings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
         <fullName>noRecSettings</fullName>
@@ -134,7 +134,47 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No Reciprocal Settings</shortDescription>
-        <value>No Reciprocal Settings to display. Try creating new ones in the form below.</value>
+        <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsAutoDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsAutoDescription</shortDescription>
+        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsLookupDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsLookupDescription</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpOrgAccountAddressMgmt</shortDescription>
+        <value>Enables Address management for Administrative and Household Accounts when selected.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpOrgAccountAddressMgmt</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpOrgAccountAddressMgmt</shortDescription>
+        <value>Enables Address management for Organizational Accounts when selected.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpSimpleAddrChangeIsUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
+        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
     </labels>
     <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>

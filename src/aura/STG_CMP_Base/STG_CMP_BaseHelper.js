@@ -139,8 +139,16 @@
 			$A.get("$Label.hed.noAfflMappings");
 			$A.get("$Label.hed.noRecSettings");
 			$A.get("$Label.hed.noAutoCreateSettings");
-			$A.get("$Label.hed.stgHelpRelReciprocalMethod");
+			
+			/*$A.get("$Label.hed.stgHelpRelReciprocalMethod");
+			$A.get("$Label.hed.stgHelpRelAutoCreatedDup");
+			$A.get("$Label.hed.RelationshipsLookupDescription");
+			$A.get("$Label.hed.RelationshipsAutoDescription");
+			$A.get("$Label.hed.stgHelpOrgAccountAddressMgmt");
+			$A.get("$Label.hed.stgHelpHouseAdmAccountAddressMgmt");
+			$A.get("$Label.hed.stgHelpSimpleAddrChangeIsUpdate");*/
 		} catch(e) {
+			//Only these three are being build dynamically, and thus need to be referenced here. 
 			$A.get("$Label.c.noAfflMappings");		
 			$A.get("$Label.c.noRecSettings");	
 			$A.get("$Label.c.noAutoCreateSettings");

@@ -289,6 +289,11 @@
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
+        <members>RelationshipsAutoDescription</members>
+        <members>RelationshipsLookupDescription</members>
+        <members>stgHelpHouseAdmAccountAddressMgmt</members>
+        <members>stgHelpOrgAccountAddressMgmt</members>
+        <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
         <name>CustomLabel</name>
