@@ -137,6 +137,14 @@
         <value>No Reciprocal Settings to display. Try creating new ones in the form below.</value>
     </labels>
     <labels>
+        <fullName>RelationshipsLookupDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsLookupDescription</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

@@ -56,7 +56,7 @@
 				    </div>
 			    </div>
 			    <div class="slds-col slds-size--1-of-1">
-                    <aura:if isTrue="{!v.namespacePrefix != 'hed__'}">
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.stgHelpRelAutoCreatedDup}" class="slds-text-body--small" />
                     <aura:set attribute="else">
                         <ui:outputText value="{!$Label.c.stgHelpRelAutoCreatedDup}" class="slds-text-body--small" />
@@ -67,6 +67,14 @@
 		</div>
 		
 		<div aura:id="recSettsTabContent" class="slds-tabs__content" role="tabpanel">
+		    <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.RelationshipsLookupDescription}" class="slds-text-body--small" />
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.RelationshipsLookupDescription}" class="slds-text-body--small" />
+                </aura:set>
+                </aura:if>
+            </div>
 			<div class="slds-grid slds-wrap">
 			    <div class="slds-col slds-size--1-of-6"><strong>Name</strong></div>
 			    <div class="slds-col slds-size--1-of-6"><strong>Female</strong></div>

@@ -143,5 +143,7 @@ public class UTIL_Namespace {
         String l2 = Label.noAutoCreateSettings;
         String l3 = Label.noRecSettings;
         String l4 = Label.stgHelpRelReciprocalMethod;
+        String l5 = Label.stgHelpRelAutoCreatedDup;
+        String l6 = Label.RelationshipsLookupDescription;
     }
 }
