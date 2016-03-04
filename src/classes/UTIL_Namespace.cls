@@ -149,5 +149,10 @@ public class UTIL_Namespace {
         String l8 = Label.stgHelpOrgAccountAddressMgmt;
         String l9 = Label.stgHelpHouseAdmAccountAddressMgmt;
         String l10 = Label.stgHelpSimpleAddrChangeIsUpdate;
+        String l11 = Label.stgHelpAccountModel;
+        String l12 = Label.stgHelpStoreErrorsOn;
+        String l13 = Label.stgHelpErrorNotifyOn;
+        String l14 = Label.stgHelpErrorNotifyTo;
+        String l15 = Label.stgHelpErrorDisable;
     }
 }

@@ -291,9 +291,14 @@
         <members>noRecSettings</members>
         <members>RelationshipsAutoDescription</members>
         <members>RelationshipsLookupDescription</members>
+        <members>stgHelpErrorDisable</members>
+        <members>stgHelpErrorNotifyOn</members>
+        <members>stgHelpErrorNotifyTo</members>
+        <members>stgHelpAccountModel</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
+        <members>stgHelpStoreErrorsOn</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
         <name>CustomLabel</name>
