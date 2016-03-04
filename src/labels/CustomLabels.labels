@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No Affiliation Mappings</shortDescription>
-        <value>No Affiliation Mappings to display. Try creating new ones in the form below.</value>
+        <value>No Affiliation Mappings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
         <fullName>noAutoCreateSettings</fullName>
@@ -126,7 +126,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No Auto Create Settings</shortDescription>
-        <value>No Auto-Create Settings to display. Try creating new ones in the form below.</value>
+        <value>No Auto-Create Settings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
         <fullName>noRecSettings</fullName>
@@ -134,7 +134,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No Reciprocal Settings</shortDescription>
-        <value>No Reciprocal Settings to display. Try creating new ones in the form below.</value>
+        <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsAutoDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsAutoDescription</shortDescription>
+        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
     </labels>
     <labels>
         <fullName>RelationshipsLookupDescription</fullName>

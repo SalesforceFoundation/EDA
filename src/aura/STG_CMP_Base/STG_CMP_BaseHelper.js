@@ -143,6 +143,7 @@
 			$A.get("$Label.hed.stgHelpRelReciprocalMethod");
 			$A.get("$Label.hed.stgHelpRelAutoCreatedDup");
 			$A.get("$Label.hed.RelationshipsLookupDescription");
+			$A.get("$Label.hed.RelationshipsAutoDescription");
 		} catch(e) {
 			//Only these three are being build dynamically, and thus need to be referenced here. 
 			$A.get("$Label.c.noAfflMappings");		

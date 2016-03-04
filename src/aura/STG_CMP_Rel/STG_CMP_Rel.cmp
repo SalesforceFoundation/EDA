@@ -164,6 +164,14 @@
             </div>
 		</div>
 		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
+		    <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.RelationshipsAutoDescription}" class="slds-text-body--small" />
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.RelationshipsAutoDescription}" class="slds-text-body--small" />
+                </aura:set>
+                </aura:if>
+            </div>
 			<div class="slds-grid slds-wrap"> 
 			    <div class="slds-col slds-size--1-of-5"><strong>Object</strong></div>              
                 <div class="slds-col slds-size--1-of-5"><strong>Field</strong></div>
