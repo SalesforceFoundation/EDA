@@ -16,6 +16,14 @@
             </aura:set>
             </aura:if>
         </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpAccountModel}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpAccountModel}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
         
         <div class="slds-col slds-size--1-of-2">Store Errors:</div>
         <div class="slds-col slds-size--1-of-2">
@@ -23,6 +31,14 @@
                 <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/>
             <aura:set attribute="else">
                 <ui:inputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpStoreErrorsOn}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpStoreErrorsOn}" class="slds-text-body--small" />
             </aura:set>
             </aura:if>
         </div>
@@ -36,7 +52,15 @@
             </aura:set>
             </aura:if>
         </div>
-
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpErrorNotifyOn}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpErrorNotifyOn}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
+        
         <div class="slds-col slds-size--1-of-2">Error Notification Recipients:</div>
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.isView}">
@@ -47,13 +71,29 @@
             </aura:set>
             </aura:if>
         </div>
-
-        <div class="slds-col slds-size--1-of-2">Enable Debug:</div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpErrorNotifyTo}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpErrorNotifyTo}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size--1-of-2">Disable Error Handling:</div>
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.isView}">
-                <ui:outputCheckbox value="{!v.hierarchySettings.Enable_Debug__c}"/>
+                <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}"/>
             <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Enable_Debug__c}" label="Enable Debug" labelClass="slds-hide"/>
+                <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" label="Enable Debug" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpErrorDisable}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpErrorDisable}" class="slds-text-body--small" />
             </aura:set>
             </aura:if>
         </div>
