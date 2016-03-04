@@ -55,8 +55,13 @@
 	                     </aura:if>
 				    </div>
 			    </div>
-			    <div class="slds-grid slds-wrap slds-col slds-size--1-of-1">     
-                     <ui:outputText value="{!$Label.c.stgHelpRelAutoCreatedDup}" class="slds-text-body--small" />
+			    <div class="slds-col slds-size--1-of-1">
+                    <aura:if isTrue="{!v.namespacePrefix != 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgHelpRelAutoCreatedDup}" class="slds-text-body--small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgHelpRelAutoCreatedDup}" class="slds-text-body--small" />
+                    </aura:set>
+                    </aura:if>
                 </div>
 			</div>
 		</div>
