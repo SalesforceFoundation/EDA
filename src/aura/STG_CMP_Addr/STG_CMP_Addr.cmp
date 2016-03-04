@@ -13,6 +13,14 @@
             </aura:set>
             </aura:if>
         </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpOrgAccountAddressMgmt}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpOrgAccountAddressMgmt}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
 
         <div class="slds-col slds-size--1-of-2">Household and Administrative Addresses Enabled:</div>
         <div class="slds-col slds-size--1-of-2">
@@ -24,6 +32,14 @@
             </aura:set>
             </aura:if>
         </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpHouseAdmAccountAddressMgmt}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpHouseAdmAccountAddressMgmt}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
 
         <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div> 
         <div class="slds-col slds-size--1-of-2">
@@ -32,6 +48,14 @@
             <aura:set attribute="else">
                 <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
                                     label="Simple Address Change Treated as Update" labelClass="slds-hide"/>
+            </aura:set>
+            </aura:if>
+        </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpSimpleAddrChangeIsUpdate}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpSimpleAddrChangeIsUpdate}" class="slds-text-body--small" />
             </aura:set>
             </aura:if>
         </div>

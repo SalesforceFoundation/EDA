@@ -146,5 +146,8 @@ public class UTIL_Namespace {
         String l5 = Label.stgHelpRelAutoCreatedDup;
         String l6 = Label.RelationshipsLookupDescription;
         String l7 = Label.RelationshipsAutoDescription;
+        String l8 = Label.stgHelpOrgAccountAddressMgmt;
+        String l9 = Label.stgHelpHouseAdmAccountAddressMgmt;
+        String l10 = Label.stgHelpSimpleAddrChangeIsUpdate;
     }
 }
