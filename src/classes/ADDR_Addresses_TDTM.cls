@@ -728,18 +728,20 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         for (Address__c addr : listAddrS) {
             listAccId.add(addr.Parent_Account__c);
         }        
-        map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);        
+        map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);
         
         for (Address__c addr : listAddrS) {
-            for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Parent_Account__c)) {
-                if (addr.id == addr2.id)
-                   continue;
-                Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
-                UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
-                if (isSeasonalOverlap) {
-                    addr.addError(Label.addrSeasonalOverlap);
-                    break;
-                }
+            if(mapAccIdListAddrHH != null && mapAccIdListAddrHH.size() > 0) {
+	            for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Parent_Account__c)) {
+	                if (addr.id == addr2.id)
+	                   continue;
+	                Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
+	                UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
+	                if (isSeasonalOverlap) {
+	                    addr.addError(Label.addrSeasonalOverlap);
+	                    break;
+	                }
+	            }
             }
         }
     }
