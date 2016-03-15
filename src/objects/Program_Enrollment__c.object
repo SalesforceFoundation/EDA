@@ -153,7 +153,7 @@
         <fullName>Credits_Attempted__c</fullName>
         <externalId>false</externalId>
         <label>Credits Attempted</label>
-        <precision>5</precision>
+        <precision>6</precision>
         <required>false</required>
         <scale>3</scale>
         <trackTrending>false</trackTrending>
@@ -164,7 +164,7 @@
         <fullName>Credits_Earned__c</fullName>
         <externalId>false</externalId>
         <label>Credits Earned</label>
-        <precision>5</precision>
+        <precision>6</precision>
         <required>false</required>
         <scale>3</scale>
         <trackTrending>false</trackTrending>
