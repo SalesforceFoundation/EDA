@@ -146,9 +146,8 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         //B - Find all Contacts with an Affiliation to an Account that didn't have a record type before, 
         //but that now has it. Update the matching primary affiliation field on Contact.
         if(accsTypeAdded.size() > 0) {
-            String childrenAccsTypeAddedQuery = 'select Account__c, Contact__c, Contact__r.' 
-                                                              + accsTypeAdded.values()[0];
-            for(Integer i = 1; i < accsTypeAdded.values().size(); i++) {
+            String childrenAccsTypeAddedQuery = 'select Account__c, Contact__c';
+            for(Integer i = 0; i < accsTypeAdded.values().size(); i++) {
                 childrenAccsTypeAddedQuery += ', Contact__r.' + accsTypeAdded.values()[i];
             }
             Set<ID> accsTypeAddedIDs = accsTypeAdded.keySet();
