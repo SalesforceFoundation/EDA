@@ -3033,6 +3033,48 @@ private with sharing class ADDR_Addresses_TEST {
     }
     
     @isTest
+    public static void testSeasonalStartEndYearFromAcc() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 
+            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+              
+        //Create Contact without Address info
+        Contact contact = new Contact(LastName = 'Testerson');
+        insert contact;
+        
+        //Get the ID of the parent Administrative account that was automatically created.
+        contact = [select Account.ID from Contact where ID = :contact.ID];
+        
+        //Create seasonal Address with start and end year.
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert seasonalAddress; 
+        
+        //No NPE should have been thrown. Github #197.
+        
+        //Create second seasonal Address with start and end year.
+        Address__c seasonalAddress2 = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(1).year(), 
+            Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
+            Seasonal_End_Year__c = system.today().addYears(1).year());
+        
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        Test.startTest();
+        insert seasonalAddress2;
+        Test.stopTest();
+        
+        //Second address should have been successfully saved, without overlap error. Github #196.
+        List<Address__c> addrs = [select ID from Address__c where Parent_Account__c = :contact.Account.ID];
+        System.assertEquals(2, addrs.size());
+    }
+    
+    @isTest
     public static void testSeasonalStartEndYearUpdateInfo() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR, 

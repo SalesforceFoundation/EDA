@@ -630,10 +630,15 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         //start and end year from the one that has them for the seasonal overlap comparison (we do not accept seasonal 
         //addresses with only start or only end year). The one that doesn't have start and end year is valid every single
         //year.
-        Date start1 = Date.newInstance(System.today().year(), Integer.valueOf(addr1.Seasonal_Start_Month__c), Integer.valueOf(addr1.Seasonal_Start_Day__c));
-        Date end1 = Date.newInstance(System.today().year(), Integer.valueOf(addr1.Seasonal_End_Month__c), Integer.valueOf(addr1.Seasonal_End_Day__c));
-        Date start2 = Date.newInstance(System.today().year(), Integer.valueOf(addr2.Seasonal_Start_Month__c), Integer.valueOf(addr2.Seasonal_Start_Day__c));
-        Date end2 = Date.newInstance(System.today().year(), Integer.valueOf(addr2.Seasonal_End_Month__c), Integer.valueOf(addr2.Seasonal_End_Day__c));
+        Integer startYear1 = (addr1.Seasonal_Start_Year__c == null ? System.today().year() : Integer.valueOf(addr1.Seasonal_Start_Year__c));
+        Integer endYear1 = (addr1.Seasonal_End_Year__c == null ? System.today().year() : Integer.valueOf(addr1.Seasonal_End_Year__c));
+        Integer startYear2 = (addr2.Seasonal_Start_Year__c == null ? System.today().year() : Integer.valueOf(addr2.Seasonal_Start_Year__c));
+        Integer endYear2 = (addr2.Seasonal_End_Year__c == null ? System.today().year() : Integer.valueOf(addr2.Seasonal_End_Year__c));
+        
+        Date start1 = Date.newInstance(startYear1, Integer.valueOf(addr1.Seasonal_Start_Month__c), Integer.valueOf(addr1.Seasonal_Start_Day__c));
+        Date end1 = Date.newInstance(endYear1, Integer.valueOf(addr1.Seasonal_End_Month__c), Integer.valueOf(addr1.Seasonal_End_Day__c));
+        Date start2 = Date.newInstance(startYear2, Integer.valueOf(addr2.Seasonal_Start_Month__c), Integer.valueOf(addr2.Seasonal_Start_Day__c));
+        Date end2 = Date.newInstance(endYear2, Integer.valueOf(addr2.Seasonal_End_Month__c), Integer.valueOf(addr2.Seasonal_End_Day__c));
          
         UTIL_Debug.debug('****Start date 1: ' + start1);
         UTIL_Debug.debug('****End date 1: ' + end1);
@@ -728,18 +733,20 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         for (Address__c addr : listAddrS) {
             listAccId.add(addr.Parent_Account__c);
         }        
-        map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);        
+        map<Id, list<Address__c>> mapAccIdListAddrHH = getMapAccIdListAddrHH(listAccId);
         
         for (Address__c addr : listAddrS) {
-            for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Parent_Account__c)) {
-                if (addr.id == addr2.id)
-                   continue;
-                Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
-                UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
-                if (isSeasonalOverlap) {
-                    addr.addError(Label.addrSeasonalOverlap);
-                    break;
-                }
+            if(mapAccIdListAddrHH != null && mapAccIdListAddrHH.size() > 0) {
+	            for (Address__c addr2 : mapAccIdListAddrHH.get(addr.Parent_Account__c)) {
+	                if (addr.id == addr2.id)
+	                   continue;
+	                Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
+	                UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
+	                if (isSeasonalOverlap) {
+	                    addr.addError(Label.addrSeasonalOverlap);
+	                    break;
+	                }
+	            }
             }
         }
     }
