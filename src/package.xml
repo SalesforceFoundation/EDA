@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>HEDA</fullName>
     <types>
+        <members>ACCT_CannotDelete_TDTM</members>
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
@@ -21,6 +22,7 @@
         <members>CAO_Constants</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
+        <members>CON_CannotDelete_TDTM</members>
         <members>CON_DoNotContact_TDTM</members>
         <members>CON_DoNotContact_TEST</members>
         <members>CON_Preferred_TDTM</members>
@@ -276,6 +278,7 @@
         <members>BothFieldAndValue</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
+        <members>CannotDelete</members>
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
