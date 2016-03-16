@@ -341,7 +341,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Buddist</fullName>
+                <fullName>Buddhist</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -358,6 +358,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Muslim</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
