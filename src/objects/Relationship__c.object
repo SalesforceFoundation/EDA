@@ -292,7 +292,7 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     </listViews>
     <nameField>
         <displayFormat>R-{000000}</displayFormat>
-        <label>Relationship Number</label>
+        <label>Relationship Key</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
