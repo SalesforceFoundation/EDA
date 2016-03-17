@@ -3,6 +3,7 @@
     <fullName>HEDA</fullName>
     <types>
         <members>ACCT_CannotDelete_TDTM</members>
+        <members>ACCT_CannotDelete_TEST</members>
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>

@@ -40,8 +40,8 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Stops a Contact from being deleted if it has any Affiliation, 
     * Program Enrollment or Course Enrollment children.
-    * @param listNew the list of Accounts from trigger new. 
-    * @param listOld the list of Accounts from trigger old. 
+    * @param listNew the list of Contacts from trigger new. 
+    * @param listOld the list of Contacts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
     * @param objResult the describe for Accounts 
     * @return dmlWrapper.  

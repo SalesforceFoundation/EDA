@@ -35,6 +35,38 @@
 * @description Stops an Account from being deleted if it has any Affiliation, 
 * Program Enrollment or Course Enrollment children. 
 */
-public with sharing class ACCT_CannotDelete_TDTM {
+public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
 
+    /*******************************************************************************************************
+    * @description Stops an Account from being deleted if it has any Affiliation, 
+    * Program Enrollment or Course Enrollment children.
+    * @param listNew the list of Accounts from trigger new. 
+    * @param listOld the list of Accounts from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Accounts 
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+
+        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+        
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
+                        
+            for (Account a : [select ID, (select ID from Account.Affl_Contacts__r), 
+                                         (select ID from Account.Program_Enrollments__r), 
+                                         (select ID from Account.Course_Enrollments__r) 
+                                         from Account where ID in :oldlist]) {
+                
+                if(a.Affl_Contacts__r.size() > 0 || a.Program_Enrollments__r.size() > 0 
+                || a.Course_Enrollments__r.size() > 0) {
+
+                    Account accountInContext = (Account)oldmap.get(a.ID);
+                    accountInContext.addError(Label.CannotDelete);
+                }
+            }     
+        }
+        
+        return new DmlWrapper();
+    }
 }
