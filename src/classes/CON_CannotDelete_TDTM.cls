@@ -35,7 +35,7 @@
 * @description Stops a Contact from being deleted if it has any Affiliation, 
 * Program Enrollment or Course Enrollment children.
 */
-public with sharing class CON_DoNotDelete_TDTM extends TDTM_Runnable {
+public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Stops a Contact from being deleted if it has any Affiliation, 
@@ -49,16 +49,20 @@ public with sharing class CON_DoNotDelete_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
+        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+        
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            
+                        
             for (Contact c : [select ID, (select ID from Contact.Affl_Accounts__r), 
                                          (select ID from Contact.Program_Enrollments__r), 
                                          (select ID from Contact.Student_Course_Enrollments__r) 
-                                         from Contact where ID in :newlist]) {
+                                         from Contact where ID in :oldlist]) {
                 
                 if(c.Affl_Accounts__r.size() > 0 || c.Program_Enrollments__r.size() > 0 
                 || c.Student_Course_Enrollments__r.size() > 0) {
-                    c.addError(Label.CannotDelete);
+
+                    Contact contactInContext = (Contact)oldmap.get(c.ID);
+                    contactInContext.addError(Label.CannotDelete);
                 }
             }     
         }

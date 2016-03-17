@@ -23,6 +23,7 @@
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
+        <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
         <members>CON_DoNotContact_TEST</members>
         <members>CON_Preferred_TDTM</members>

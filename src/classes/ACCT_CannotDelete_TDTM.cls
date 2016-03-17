@@ -35,6 +35,6 @@
 * @description Stops an Account from being deleted if it has any Affiliation, 
 * Program Enrollment or Course Enrollment children. 
 */
-public with sharing class ACCT_DoNotDelete_TDTM {
+public with sharing class ACCT_CannotDelete_TDTM {
 
 }
