@@ -93,7 +93,7 @@
         <label>Credit Hours</label>
         <precision>6</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>3</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
