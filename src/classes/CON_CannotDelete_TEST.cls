@@ -71,5 +71,13 @@ public with sharing class CON_CannotDelete_TEST {
         //Verify only c4 was successfully deleted
         contacts = [select ID from Contact where ID in :contacts];
         System.assertEquals(3, contacts.size());
+        
+        System.assertEquals(false, results[0].success);
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+        System.assertEquals(false, results[1].success);
+        System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
+        System.assertEquals(false, results[2].success);
+        System.assertEquals(Label.CannotDelete, results[2].errors[0].message);
+        System.assertEquals(true, results[3].success);
     }
 }
