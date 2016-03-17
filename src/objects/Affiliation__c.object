@@ -199,7 +199,7 @@
     </listViews>
     <nameField>
         <displayFormat>AF-{000000}</displayFormat>
-        <label>Affiliation Name</label>
+        <label>Affiliation Key</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
