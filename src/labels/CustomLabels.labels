@@ -33,6 +33,14 @@
         <value>Household</value>
     </labels>
     <labels>
+        <fullName>CannotDelete</fullName>
+        <categories>Contacts, Accounts</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CannotDelete</shortDescription>
+        <value>Record cannot be deleted because children records exist. Delete children first.</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>

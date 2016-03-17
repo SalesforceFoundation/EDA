@@ -136,7 +136,17 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'TERM_CourseOff_TDTM', Load_Order__c = 1, Object__c = 'Term__c', 
               Trigger_Action__c = 'AfterUpdate'));
-                    
+        
+        // Stops a Contact from being deleted if it has any Affiliation, Program Enrollment or Course Enrollment children
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'CON_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Trigger_Action__c = 'BeforeDelete'));
+                     
+        // Stops a Account from being deleted if it has any Affiliation, Program Enrollment or Course Enrollment children
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'ACCT_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Account', 
+              Trigger_Action__c = 'BeforeDelete'));
+              
         return handlers;
     }
 }
