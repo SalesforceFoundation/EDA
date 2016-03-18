@@ -2,7 +2,7 @@
 
     <aura:attribute name="namespacePrefix" type="String" />
     <aura:attribute name="isView" type="Boolean" default="true"/>
-    <aura:attribute name="hierarchySettings" type="Hierarchy_Settings__c" />
+    <aura:attribute name="hierarchySettings" type="Object" />
     
     <div>{!v.body}</div>
     
