@@ -72,10 +72,10 @@ public class UTIL_UnitTestData_TEST {
         return ContactsToAdd;
     }
 
-    public static List<Account> CreateMultipleTestAccounts (integer n, string strType) {
+    public static List<Account> CreateMultipleTestAccounts (integer n, ID recTypeId) {
         List<Account> AcctsToAdd = New List<Account> ();    
         for (integer i=0;i<n;i++) {
-            AcctsToAdd.add(new Account(Name = 'Yet Another Org ' + i, SYSTEM_AccountType__c = strType));
+            AcctsToAdd.add(new Account(Name = 'Yet Another Org ' + i, RecordTypeId = recTypeId));
         }
         return AcctsToAdd;
     }

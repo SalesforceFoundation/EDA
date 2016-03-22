@@ -61,7 +61,17 @@ private with sharing class ADDR_Addresses_TEST {
     /*********************************************************************************************************
     * @description The list of created test Addresses.
     */
-    private static list<Address__c> listAddrT;           
+    private static list<Address__c> listAddrT;
+    
+    private static ID orgRecTypeID;
+    private static ID householdRecTypeID;
+    private static ID adminRecTypeID;
+    
+    public static void recTypesSetup() {
+        orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+        householdRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
+        adminRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
+    }        
 
     /*********************************************************************************************************
     * @description
@@ -73,7 +83,9 @@ private with sharing class ADDR_Addresses_TEST {
     * @param cConT the number of Contacts to create per Household
     * @return  void
     **********************************************************************************************************/
-    private static void createHHTestData(Integer parentAccsT, Integer cConT) {  
+    private static void createHHTestData(Integer parentAccsT, Integer cConT) {
+        recTypesSetup();
+        
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR;
         hs.Organizational_Account_Addresses_Enabled__c = true;
@@ -83,13 +95,15 @@ private with sharing class ADDR_Addresses_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
             
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(parentAccsT * cConT);
-        listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(parentAccsT, CAO_Constants.HH_ACCOUNT_PROCESSOR);
+        listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(parentAccsT, householdRecTypeID);
         insert listAccT;
         
         createTestData(parentAccsT, cConT);
     }
     
     private static void createAdmTestData(Integer parentAccsT, Integer cConT) {
+        recTypesSetup();
+        
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR;
         hs.Organizational_Account_Addresses_Enabled__c = true;
@@ -100,7 +114,7 @@ private with sharing class ADDR_Addresses_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(parentAccsT * cConT);
-        listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(parentAccsT, CAO_Constants.ADM_ACCOUNT_PROCESSOR);
+        listAccT = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(parentAccsT, adminRecTypeID);
         insert listAccT;
         
         createTestData(parentAccsT, cConT);
@@ -2786,7 +2800,9 @@ private with sharing class ADDR_Addresses_TEST {
         account address matches address object address
     **********************************************************************************************************/            
     @isTest
-    public static void newOrgAccounts() {        
+    public static void newOrgAccounts() {
+        recTypesSetup();
+            
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
@@ -2794,7 +2810,7 @@ private with sharing class ADDR_Addresses_TEST {
         ));
  
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, null);
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, orgRecTypeID);
         for (Account acc : listAcc) {
             acc.BillingStreet = '123 45th';
             acc.BillingCity = 'Seattle';
@@ -2826,7 +2842,9 @@ private with sharing class ADDR_Addresses_TEST {
         contact addresses not updated
     **********************************************************************************************************/            
     @isTest
-    public static void updateOrgAccounts() {        
+    public static void updateOrgAccounts() {
+        recTypesSetup();
+         
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
@@ -2835,7 +2853,7 @@ private with sharing class ADDR_Addresses_TEST {
  
         // create accounts without addresses
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, null);
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, orgRecTypeID);
         insert listAcc;
         
         // add a contact to each account.
@@ -2888,7 +2906,9 @@ private with sharing class ADDR_Addresses_TEST {
         contact addresses not updated
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrForOrgAccounts() {        
+    public static void newAddrForOrgAccounts() {
+        recTypesSetup();
+           
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR,
@@ -2897,7 +2917,7 @@ private with sharing class ADDR_Addresses_TEST {
  
         // create accounts without addresses
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, null);
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, orgRecTypeID);
         insert listAcc;
         
         // add a contact to each account.

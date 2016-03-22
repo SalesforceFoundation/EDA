@@ -121,7 +121,6 @@
     </types>
     <types>
         <members>Account.Primary_Contact__c</members>
-        <members>Account.SYSTEM_AccountType__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
         <members>Address__c.Formula_MailingAddress__c</members>
