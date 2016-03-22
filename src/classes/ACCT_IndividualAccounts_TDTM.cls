@@ -41,7 +41,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */ 
     private static Hierarchy_Settings__c ContactsSettings;
     
-    private static ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
     private static ID householdRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
     private static ID adminRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
     
