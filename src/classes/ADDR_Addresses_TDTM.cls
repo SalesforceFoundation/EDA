@@ -290,7 +290,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         set<Id> setHHId =  mapAccIdAddr.keySet();
         list<Contact> listCon = [select Id, is_Address_Override__c, Current_Address__c, AccountId 
             from Contact where 
-                (Account.SYSTEM_AccountType__c = :CAO_Constants.HH_ACCOUNT_PROCESSOR or Account.SYSTEM_AccountType__c = :CAO_Constants.ADM_ACCOUNT_PROCESSOR)
+                (Account.RecordType.Name = :CAO_Constants.HH_ACCOUNT_PROCESSOR or Account.RecordType.Name = :CAO_Constants.ADM_ACCOUNT_PROCESSOR)
                  and AccountId != null and AccountId in :setHHId];
         for (Contact con : listCon) {
             list<Contact> listConHH = mapAccIdListCon.get(con.AccountId);
@@ -671,14 +671,14 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 setAccId.add(addr.Parent_Account__c);
             }
         }       
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, SYSTEM_AccountType__c from Account where Id in :setAccId]);
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, RecordType.Name from Account where Id in :setAccId]);
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c == null) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                 addr.addError(Label.addrHhAdmAccountOnly);
             } else {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-                if ((acc.SYSTEM_AccountType__c != CAO_Constants.HH_ACCOUNT_PROCESSOR && acc.SYSTEM_AccountType__c != CAO_Constants.ADM_ACCOUNT_PROCESSOR) &&
+                if ((acc.RecordType.Name != CAO_Constants.HH_ACCOUNT_PROCESSOR && acc.RecordType.Name != CAO_Constants.ADM_ACCOUNT_PROCESSOR) &&
                     (!UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrHhAdmAccountOnly);
