@@ -47,7 +47,7 @@ public with sharing class PREN_Affiliation_TEST {
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
     	
-    	ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+    	ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
     	
     	//Craete account of Business Organization record type
     	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
@@ -79,7 +79,7 @@ public with sharing class PREN_Affiliation_TEST {
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
         
-        ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+        ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         
         //Craete account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
@@ -121,7 +121,7 @@ public with sharing class PREN_Affiliation_TEST {
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
         
-        ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+        ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         
         //Craete account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);

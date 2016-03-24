@@ -37,12 +37,9 @@
 public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description the current Contact Settings object
-    */ 
-    private static Hierarchy_Settings__c ContactsSettings;
-    
-    private static ID householdRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
-    private static ID adminRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
+    * @description The selected Account record type.
+    */     
+    private static ID defaultRecTypeID = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
     
     /*******************************************************************************************************
     * @description a set of languages that require different naming conventions
@@ -76,9 +73,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         list<Contact> oldContacts = (list<Contact>)oldlist;
         
         DmlWrapper dmlWrapper = new DmlWrapper();
-    	   	
-        ContactsSettings = UTIL_CustomSettingsFacade.getSettings();
-            
+    	            
         List<Contact> listContactNeedAccount = new List<Contact>();
         List<Contact> listContactNeedAccountUpdate = new List<Contact>();
         List<Contact> listContactAccountDelete = new List<Contact>();
@@ -93,9 +88,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 		if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
            
            // requery to get correct Account values (and all the other fields we will look at)
-           string strSoql = 'select id,AccountId,' +
-                'Account.RecordType.Name,' +
-                'Account.Primary_Contact__c,Account.Name,' +
+           string strSoql = 'select id, AccountId,' +
+                'Account.RecordType.Name, Account.RecordTypeID, ' +
+                'Account.Primary_Contact__c, Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' + 
                 'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, '; 
@@ -121,7 +116,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 	// HH Account should be created if:
                     //    1. The account isn't set by the user
                     //    2. The Account Model is set to Household or Administrative Account
-                    if (CAO_Constants.isHhOrAdmAccountModel() && c.AccountId == null) {
+                    if (c.AccountId == null && (defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID() 
+                    || defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())) {
                         listContactNeedAccount.add(c);
                     }
                     
@@ -132,12 +128,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != null) { 
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
-                    }
-
-	                // HHAccount renaming needs to be called to set various HH naming fields like greeting.
-	                if (c.AccountId != null && (c.Account.RecordType.Name == CAO_Constants.HH_ACCOUNT_PROCESSOR
-	                || c.Account.RecordType.Name == CAO_Constants.ADM_ACCOUNT_PROCESSOR))
-	                   listAccountIdHHToRename.add(c.AccountId);    
+                    }   
 	            }
         
                 // AFTER UPDATE
@@ -145,7 +136,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     // HH account should be created if:
 	                //   1. The account has been blanked out by the user
 	                //   2. The Account Model is set to Household or Administrative Account
-	                if (CAO_Constants.isHhOrAdmAccountModel() && c.AccountId == null) {
+	                if (c.AccountId == null && (defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID() 
+                    || defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())) {
 	                    listContactNeedAccount.add(c);
 	                }
                     
@@ -154,12 +146,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         listAccountIdHHToUpdate.add(c.AccountId);
                         
                         // old HH Accounts that don't get deleted still need to have name redone
-                        listAccountIdHHToUpdate.add(oldContacts[i].AccountId);
-                                                                             
-                       // HH Account didn't change, but it still might need renaming
-                    } else if (needsHHAccountRename(c, oldContacts[i])) {
-                       listAccountIdHHToRename.add(c.AccountId);    
-                    }  
+                        listAccountIdHHToUpdate.add(oldContacts[i].AccountId);                                                                             
+                    } 
                     
                     // check for ownership changes
                     if (c.OwnerId != oldContacts[i].OwnerId) {
@@ -324,20 +312,21 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && CAO_Constants.isHhOrAdmAccountModel() && (acc.RecordType.Name == 
-            CAO_Constants.HH_ACCOUNT_PROCESSOR || acc.RecordType.Name == CAO_Constants.ADM_ACCOUNT_PROCESSOR)) {
+            if (acc != null && (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() 
+            || acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID())) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
             } else {
             	UTIL_Debug.debug('****Creating new account');
+                
                 // construct the individul account for the Contact
                 Account a = new Account();
                 
                 // construct the Account name
-                if(CAO_Constants.isHHAccountModel())
+                if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
                 	a.Name = strNameHHAccountForContact(c);
-                else if(CAO_Constants.isAdmAccountModel())
+                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
                 	a.Name = strNameAdmAccountForContact(c);
                 
                 //connect the Account to the Contact for HHAccount
@@ -349,22 +338,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                 ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
-                if(CAO_Constants.isHHAccountModel() && householdRecTypeID != null) {
-                    a.RecordTypeID = householdRecTypeID;   
-                } else if(CAO_Constants.isAdmAccountModel() && adminRecTypeID != null) {
-                    a.RecordTypeID = adminRecTypeID;
-                }
-                
-                //Creating account of the record type defined in the Account_Processor__c field of the Contacts and Orgs custom settings
-                String defaultAcc = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
-                if(defaultAcc != null) {
-                    try {
-                        ID recordTypeID = Schema.SObjectType.Account.RecordTypeInfosByName.get(defaultAcc).getRecordTypeId();
-                        a.RecordTypeId = recordTypeID;
-                    } catch(Exception e) {
-                        a.addError(Label.noAccRecType + defaultAcc);
-                    }
-                }
+                //Give it the default record type selected in the settings. 
+                if(defaultRecTypeID != null)
+                    a.RecordTypeID = defaultRecTypeID;
                 
                 accountInserts.add(a);
                 listContactNewAcct.add(c);
@@ -419,14 +395,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account thisAccount : accountsOnContacts) {
                 //if the legacy or current type field show it's not a HH Account record, don't delete the account
-                if (thisAccount.RecordType.Name == CAO_Constants.HH_ACCOUNT_PROCESSOR || 
-                thisAccount.RecordType.Name == CAO_Constants.ADM_ACCOUNT_PROCESSOR) {
+                if (thisAccount.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
+                thisAccount.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
                     
                     // if there are no Opportunities for this Account, add it for deletion
                     if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                         accountsForDeletion.add(thisAccount);
-                    } else if (thisAccount.RecordType.Name == CAO_Constants.HH_ACCOUNT_PROCESSOR || 
-                    thisAccount.RecordType.Name == CAO_Constants.ADM_ACCOUNT_PROCESSOR) {
+                    } else if (thisAccount.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
+                    thisAccount.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
                         listAccountIdUpdate.add(thisAccount.Id);
                     }
                 }   
@@ -459,8 +435,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account acc : listAcc) {
                 // only consider HH Accounts
-                if (acc.RecordType.Name == CAO_Constants.HH_ACCOUNT_PROCESSOR || 
-                acc.RecordType.Name == CAO_Constants.ADM_ACCOUNT_PROCESSOR) {                    
+                if (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
+                acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {                    
                     // if there is only 1 contact associated with this account
                     if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != null) {
                     	Contact c = mapContactIdContactOwnerChange.get(acc.Primary_Contact__c);

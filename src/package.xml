@@ -20,7 +20,6 @@
         <members>AFFL_MultiRecordTypeMapper</members>
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
-        <members>CAO_Constants</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
@@ -289,7 +288,6 @@
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
-        <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>

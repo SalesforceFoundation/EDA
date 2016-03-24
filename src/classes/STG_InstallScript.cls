@@ -51,6 +51,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	 } else if(context.isUpgrade() || context.isPush()) {
     	 	List<Trigger_Handler__c> defaultHandlers = TDTM_DefaultConfig.getDefaultRecords(); 
             insertTdtmDefaults(defaultHandlers);
+    	 } else if(context.previousVersion().compareTo(new Version(1,8)) == 0) {
+    	     //Replace the value in the "Account Processor" field with the ID of the record type that was there
+    	     
     	 }
     }
     

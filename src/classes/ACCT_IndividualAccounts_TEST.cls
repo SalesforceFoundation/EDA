@@ -42,13 +42,15 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void insertContactTriggerOffHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         insertContactTriggerOff();
     }
     
     @isTest
     public static void insertContactTriggerOffAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         insertContactTriggerOff();
     }
     
@@ -73,12 +75,12 @@ private class ACCT_IndividualAccounts_TEST {
         insert handlers;
          
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            FirstName='Test',
+            LastName='Contact_forTests',
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         Test.startTest();
         insert con;
@@ -95,7 +97,8 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void newContactHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         
         Contact con = UTIL_UnitTestData_TEST.getContact();
         
@@ -111,7 +114,8 @@ private class ACCT_IndividualAccounts_TEST {
     
     @isTest
     public static void newContactAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         
         Contact con = UTIL_UnitTestData_TEST.getContact();
         
@@ -130,13 +134,14 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void insertUpdateContactHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         insertUpdateContact();
     }
     
     @isTest
     public static void insertUpdateContactAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         insertUpdateContact();
     }
     
@@ -144,13 +149,13 @@ private class ACCT_IndividualAccounts_TEST {
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            FirstName='Test',
+            LastName='Contact_forTests',
             MailingStreet = newContactMailingStreet,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
@@ -189,7 +194,8 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void contactAddedToExistingHH() {
-       UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+       UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
                 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
@@ -201,7 +207,7 @@ private class ACCT_IndividualAccounts_TEST {
     
     @isTest
     public static void contactAddedToExistingAdm() {
-       UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+       UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
                 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
@@ -213,12 +219,12 @@ private class ACCT_IndividualAccounts_TEST {
     
     public static void contactAddedToExisting() {        
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            FirstName='Test',
+            LastName='Contact_forTests',
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
@@ -249,25 +255,26 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void contactUpdatedToExistingHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         contactUpdatedToExisting();
     }
     
     @isTest
     public static void contactUpdatedToExistingAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         contactUpdatedToExisting();
         
     }
     
     public static void contactUpdatedToExisting() {        
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            FirstName='Test',
+            LastName='Contact_forTests',
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
@@ -291,13 +298,14 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void contactInNormalOrgNameChangeHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         contactInNormalOrgNameChange();   
     }
     
     @isTest
     public static void contactInNormalOrgNameChangeAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         contactInNormalOrgNameChange();
     }
     
@@ -307,13 +315,13 @@ private class ACCT_IndividualAccounts_TEST {
         insert acct;
 
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            FirstName='Test',
+            LastName='Contact_forTests',
             AccountId = acct.id,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
@@ -335,7 +343,8 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void detachFromNormalAccountToHousehold() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         detachFromNormalAccount();
     }
     
@@ -344,7 +353,7 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void detachFromNormalAccountToAdministrative() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         detachFromNormalAccount();
     }
     
@@ -354,13 +363,13 @@ private class ACCT_IndividualAccounts_TEST {
         insert acct;
 
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            FirstName='Test',
+            LastName='Contact_forTests',
             AccountId = acct.id,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
@@ -384,13 +393,14 @@ private class ACCT_IndividualAccounts_TEST {
     */
      @isTest
      public static void deleteContactNoOppHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         deleteContactNoOpp();
      }
      
      @isTest
      public static void deleteContactNoOppAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         deleteContactNoOpp();
      }
      
@@ -398,13 +408,13 @@ private class ACCT_IndividualAccounts_TEST {
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            FirstName='Test',
+            LastName='Contact_forTests',
             MailingStreet = newContactMailingStreet,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         Id contactId;
@@ -429,13 +439,14 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void deleteContactWithOppHH() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         deleteContactWithOpp(); 
     }
     
     @isTest
     public static void deleteContactWithOppAdm() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         deleteContactWithOpp(); 
     }
     
@@ -443,13 +454,13 @@ private class ACCT_IndividualAccounts_TEST {
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            FirstName='Test',
+            LastName='Contact_forTests',
             MailingStreet = newContactMailingStreet,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         Id contactId;
@@ -481,13 +492,14 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void deleteContactNormalAccountHouseholdAcc() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         deleteContactNormalAccount();
     }
     
     @isTest
     public static void deleteContactNormalAccountAdministrativeAcc() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         deleteContactNormalAccount();
     }
 
@@ -498,14 +510,14 @@ private class ACCT_IndividualAccounts_TEST {
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
+            FirstName='Test',
+            LastName='Contact_forTests',
             MailingStreet = newContactMailingStreet,
             AccountId=orgAccount.id,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
@@ -525,22 +537,23 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void firstNameToNullHH() { 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            FirstName='Test',
+            LastName='Contact_forTests',
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
         con = [select AccountId from Contact where id = :con.Id];
         Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
         
-        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultHouseholdName);
+        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultHouseholdName);
         
         //set name to null
         con.FirstName = null;
@@ -550,27 +563,27 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultHouseholdName);
+        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultHouseholdName);
     }
     
     @isTest
     public static void firstNameToNullAdm() { 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = CAO_Constants.ADM_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         
         Contact con = new Contact(
-            FirstName=CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-            LastName=CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-            WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS,
-            Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-            WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-            PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS
+            FirstName='Test',
+            LastName='Contact_forTests',
+            WorkEmail__c = 'junk@test.net',
+            Preferred_Email__c = 'Work',
+            WorkPhone__c = '206-777-8888',
+            PreferredPhone__c = 'Work'
         );
         insert con;
         
         con = [select AccountId from Contact where id = :con.Id];
         Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
         
-        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultAdminName);
+        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultAdminName);
         
         //set name to null
         con.FirstName = null;
@@ -580,6 +593,6 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        system.assertEquals(newAcc.Name, CAO_Constants.Contact_LASTNAME_FOR_TESTS + ' ' + Label.DefaultAdminName);
+        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultAdminName);
     }
 }

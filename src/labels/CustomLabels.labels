@@ -113,14 +113,6 @@
         <value>An address must have either both start and end year set or neither.</value>
     </labels>
     <labels>
-        <fullName>noAccRecType</fullName>
-        <categories>Record Types</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>noAccRecType</shortDescription>
-        <value>The defined account record type does not exist:</value>
-    </labels>
-    <labels>
         <fullName>noAfflMappings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

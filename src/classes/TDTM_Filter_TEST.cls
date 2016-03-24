@@ -479,7 +479,7 @@ public with sharing class TDTM_Filter_TEST {
         }
         insert handlers;
         
-        ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+        ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
         Account accFiltered = new Account(Name = 'Acme', RecordTypeId = orgRecTypeID);
@@ -521,7 +521,7 @@ public with sharing class TDTM_Filter_TEST {
         }
         insert handlers;
         
-        ID orgRecTypeID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Business Organization').getRecordTypeId();
+        ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
         Account accFiltered = new Account(Name = 'Acme', RecordTypeId = orgRecTypeID);

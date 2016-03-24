@@ -358,7 +358,7 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description utility to return a comma separated string of field names from a field set
+    * @description Returns a comma separated string of field names from a field set.
     * @param strObject the name of the object
     * @param strFS the name of the object's field set
     * @return a comma separated string of field names in the field set
@@ -370,4 +370,52 @@ public class UTIL_Describe {
         }
         return strFields.substring(0, strFields.length()-1);
     }
+
+    private static Map<String, Id> mapRecordTypes;
+    /**
+     * @description Returns a map of active, user-available RecordType IDs for a given SObjectType,
+     * keyed by each RecordType's unique, unchanging DeveloperName. 
+     */
+	public static Map<String, Id> getRecordTypeIdsByDeveloperName(String objectName) {	    
+	    if(mapRecordTypes == null) {
+	        mapRecordTypes = new Map<String, Id>();
+	    
+		    // Get the Describe Result
+		    fillMapsForObject(objectName);
+		    Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
+		
+		    // Obtain ALL Active Record Types for the given SObjectType objectType
+		    String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \'' 
+		                  + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+		    List<SObject> results;
+		    try {
+		        results = Database.query(soql);
+		    } catch (Exception ex) {
+		        results = new List<SObject>();
+		    }
+		
+		    // Obtain the RecordTypeInfos for this SObjectType objectType
+		    Map<Id,Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+		
+	        for (SObject rt : results) { 
+	            //check RecordType IS available for the running user 
+		        //if (recordTypeInfos.get(rt.Id).isAvailable()) {
+		            mapRecordTypes.put(String.valueOf(rt.get('DeveloperName')),rt.Id);
+		        //}
+		    }
+	    }
+	    return mapRecordTypes;
+	}
+	
+	public static String getAdminAccRecTypeID() {
+	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('Administrative');
+	}
+	
+	public static String getHhAccRecTypeID() {
+	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('HH_Account');
+	}
+	
+	public static String getBizAccRecTypeID() {
+	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('Business_Organization');
+	}
 }

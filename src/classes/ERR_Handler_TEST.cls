@@ -54,10 +54,12 @@ public with sharing class ERR_Handler_TEST {
 	    	insert chatterGroup;
 	    	chatterGroupId = chatterGroup.Id;
 	    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
-	    	  Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
+	    	  Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true, 
+	    	  Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
     	} else {
     		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
-    		  Error_Notifications_To__c = null, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
+    		  Error_Notifications_To__c = null, Store_Errors_On__c = true, 
+    		  Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
     	}
     }
     
@@ -67,7 +69,8 @@ public with sharing class ERR_Handler_TEST {
         
         User user = UTIL_UnitTestData_TEST.CreateNewUserForTests(System.now().getTime() + '@testerson.com');
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
-            Error_Notifications_To__c = user.Id, Store_Errors_On__c = true, Account_Processor__c = 'Household Account'));
+            Error_Notifications_To__c = user.Id, Store_Errors_On__c = true, 
+            Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
     }
     
     /** Test using the default configuration of classes that implement TDTM_Runnable **/
