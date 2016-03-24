@@ -371,10 +371,16 @@ public class UTIL_Describe {
         return strFields.substring(0, strFields.length()-1);
     }
 
+    /*******************************************************************************************************
+    * @description Cache for the record type DeveloperName-to-ID map.
+    */
     private static Map<String, Id> mapRecordTypes;
-    /**
+    
+    /*******************************************************************************************************
      * @description Returns a map of active, user-available RecordType IDs for a given SObjectType,
      * keyed by each RecordType's unique, unchanging DeveloperName. 
+     * @param objectName Name of the object to retrieve record types for.
+     * @return Map<String, Id> Map of DeveloperName-to-ID of available record types for object specified. 
      */
 	public static Map<String, Id> getRecordTypeIdsByDeveloperName(String objectName) {	    
 	    if(mapRecordTypes == null) {
@@ -398,23 +404,41 @@ public class UTIL_Describe {
 		    Map<Id,Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
 		
 	        for (SObject rt : results) { 
-	            //check RecordType IS available for the running user 
-		        //if (recordTypeInfos.get(rt.Id).isAvailable()) {
-		            mapRecordTypes.put(String.valueOf(rt.get('DeveloperName')),rt.Id);
-		        //}
+	            // Check RecordType IS available for the running user
+	            if (!Test.isRunningTest()) {
+			        if (recordTypeInfos.get(rt.Id).isAvailable()) {
+			            mapRecordTypes.put(String.valueOf(rt.get('DeveloperName')), rt.Id);
+			        }
+			    // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
+			    // might fail just because the user running them does not have certain record types assigned.
+	            } else {
+	                mapRecordTypes.put(String.valueOf(rt.get('DeveloperName')), rt.Id);
+	            }
 		    }
 	    }
 	    return mapRecordTypes;
 	}
 	
+	/*******************************************************************************************************
+     * @description Returns the ID of the Administrative Account record type, if it exists.
+     * @return String The ID of the Administrative Account record type as a String.
+     */
 	public static String getAdminAccRecTypeID() {
 	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('Administrative');
 	}
 	
+	/*******************************************************************************************************
+     * @description Returns the ID of the Household Account record type, if it exists.
+     * @return String The ID of the Household Account record type as a String.
+     */
 	public static String getHhAccRecTypeID() {
 	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('HH_Account');
 	}
 	
+	/*******************************************************************************************************
+     * @description Returns the ID of the Business Account record type, if it exists.
+     * @return String The ID of the Business Account record type as a String.
+     */
 	public static String getBizAccRecTypeID() {
 	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('Business_Organization');
 	}

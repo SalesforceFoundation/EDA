@@ -671,7 +671,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 setAccId.add(addr.Parent_Account__c);
             }
         }       
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, RecordType.Name from Account where Id in :setAccId]);
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, RecordTypeId from Account where Id in :setAccId]);
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c == null) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.

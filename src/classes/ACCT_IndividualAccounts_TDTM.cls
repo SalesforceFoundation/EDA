@@ -89,7 +89,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
            
            // requery to get correct Account values (and all the other fields we will look at)
            string strSoql = 'select id, AccountId,' +
-                'Account.RecordType.Name, Account.RecordTypeID, ' +
+                'Account.RecordTypeID, ' +
                 'Account.Primary_Contact__c, Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' + 
@@ -302,7 +302,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }
         // get all the Accounts that are connected to the existing Contacts
-        for (Account acc : [Select Id, Primary_Contact__c, RecordTypeId, RecordType.Name from Account where Primary_Contact__c in :contactIds]) {
+        for (Account acc : [Select Id, Primary_Contact__c, RecordTypeId from Account where Primary_Contact__c in :contactIds]) {
             mapContactIdAccount.put(acc.Primary_Contact__c, acc);
         }
         
@@ -390,7 +390,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 accountIds.add(thisContact.accountId);
             }
 
-            accountsOnContacts = [Select Id, Type, RecordTypeId, RecordType.Name, (Select Id from Opportunities limit 1), (select Id from Contacts limit 1) 
+            accountsOnContacts = [Select Id, Type, RecordTypeId, (Select Id from Opportunities limit 1), (select Id from Contacts limit 1) 
                                   from Account where Id IN :accountIds];
             
             for (Account thisAccount : accountsOnContacts) {
@@ -430,11 +430,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             	setAccId.add(con.AccountId);
             }
                        
-            list<Account> listAcc = [Select Id, RecordType.Name, Primary_Contact__c, OwnerId, (select Id from Contacts limit 2) from Account 
+            list<Account> listAcc = [Select Id, RecordTypeId, Primary_Contact__c, OwnerId, (select Id from Contacts limit 2) from Account 
                 where Id IN :setAccId];
             
             for (Account acc : listAcc) {
-                // only consider HH Accounts
+                // only consider HH and Admin Accounts
                 if (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
                 acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {                    
                     // if there is only 1 contact associated with this account
