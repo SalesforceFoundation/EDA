@@ -1,6 +1,6 @@
 ({
 	init : function(component) {
-		var action = component.get("c.getRecTypesMapByDevName");
+		var action = component.get("c.getRecTypesMapByName");
 		action.setParams({ "objectName" : 'Account'});
 		action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
