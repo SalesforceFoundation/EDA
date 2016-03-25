@@ -382,7 +382,8 @@ public class UTIL_Describe {
      * @param objectName Name of the object to retrieve record types for.
      * @return Map<String, Id> Map of DeveloperName-to-ID of available record types for object specified. 
      */
-	public static Map<String, Id> getRecordTypeIdsByDeveloperName(String objectName) {	    
+    @AuraEnabled
+    public static Map<String, Id> getRecTypesMapByDevName(String objectName) {	    
 	    if(mapRecordTypes == null) {
 	        mapRecordTypes = new Map<String, Id>();
 	    
@@ -424,7 +425,7 @@ public class UTIL_Describe {
      * @return String The ID of the Administrative Account record type as a String.
      */
 	public static String getAdminAccRecTypeID() {
-	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('Administrative');
+	    return UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
 	}
 	
 	/*******************************************************************************************************
@@ -432,7 +433,7 @@ public class UTIL_Describe {
      * @return String The ID of the Household Account record type as a String.
      */
 	public static String getHhAccRecTypeID() {
-	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('HH_Account');
+	    return UTIL_Describe.getRecTypesMapByDevName('Account').get('HH_Account');
 	}
 	
 	/*******************************************************************************************************
@@ -440,6 +441,6 @@ public class UTIL_Describe {
      * @return String The ID of the Business Account record type as a String.
      */
 	public static String getBizAccRecTypeID() {
-	    return UTIL_Describe.getRecordTypeIdsByDeveloperName('Account').get('Business_Organization');
+	    return UTIL_Describe.getRecTypesMapByDevName('Account').get('Business_Organization');
 	}
 }

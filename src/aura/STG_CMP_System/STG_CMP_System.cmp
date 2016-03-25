@@ -1,9 +1,10 @@
-<aura:component extends="c:STG_CMP_Base">
+<aura:component extends="c:STG_CMP_Base" controller="UTIL_Describe">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     
     <aura:attribute name="namespacePrefix" type="String" />
+    <aura:attribute name="accRecTypes" type="Map" />
     
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>
@@ -11,8 +12,11 @@
             <aura:if isTrue="{!v.isView}">
                 <ui:outputText value="{!v.hierarchySettings.Account_Processor__c}"/>
             <aura:set attribute="else">
-                <ui:inputText value="{!v.hierarchySettings.Account_Processor__c}" 
-                                label="{!'Account Processor: ' + v.hierarchySettings.Account_Processor__c}" labelClass="slds-hide"/>
+                <ui:inputSelect>
+                    <aura:iteration items="{!v.accRecTypes}" var="recType">
+                        <ui:inputSelectOption label="{!recType.devName}" text="{!recType.id}" />
+                    </aura:iteration>
+                </ui:inputSelect> 
             </aura:set>
             </aura:if>
         </div>
