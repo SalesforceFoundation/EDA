@@ -182,7 +182,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpAccountModel</shortDescription>
-        <value>Setting for the Account model. Should be &quot;Administrative&quot; or &quot;Household&quot;. &quot;Administrative&quot; is the recommended model.</value>
+        <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>

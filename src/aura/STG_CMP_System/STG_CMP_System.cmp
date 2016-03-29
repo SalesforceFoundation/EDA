@@ -16,7 +16,8 @@
             <aura:set attribute="else">
                 <ui:inputSelect aura:id="accRecTypes">
                     <aura:iteration items="{!v.accRecTypes}" var="recType">
-                        <ui:inputSelectOption label="{!recType.devName}" text="{!recType.id}" />
+                        <ui:inputSelectOption label="{!recType.devName}" text="{!recType.id}" 
+                            value="{!v.accRecTypeName == recType.devName ? true : false}" />
                     </aura:iteration>
                 </ui:inputSelect> 
             </aura:set>

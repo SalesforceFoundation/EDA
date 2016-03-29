@@ -16,9 +16,8 @@
 		var accRecTypes = component.get("v.accRecTypes");
 		//we do this because we cannot get the selected name from the drop-down, only the ID
 		for(var i = 0; i <accRecTypes.length; i++) {
-			var recType = accRecTypes[i];
-			if(recType.id == selectedAccRecTypeId) {
-				var selectedAccRecTypeName = recType.devName;
+			if(accRecTypes[i].id == selectedAccRecTypeId) {
+				var selectedAccRecTypeName = accRecTypes[i].devName;
 			}
 		}
 		component.set("v.accRecTypeName", selectedAccRecTypeName);
