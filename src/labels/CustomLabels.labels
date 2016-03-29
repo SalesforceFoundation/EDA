@@ -26,11 +26,19 @@
     </labels>
     <labels>
         <fullName>DefaultHouseholdName</fullName>
-        <categories>Households, Household Naming</categories>
+        <categories>Account Naming</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Default Household Name</shortDescription>
         <value>Household</value>
+    </labels>
+    <labels>
+        <fullName>DefaultAccountName</fullName>
+        <categories>Account Naming</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default Account Name</shortDescription>
+        <value>Account</value>
     </labels>
     <labels>
         <fullName>CannotDelete</fullName>

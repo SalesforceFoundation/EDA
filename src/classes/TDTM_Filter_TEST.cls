@@ -466,6 +466,9 @@ public with sharing class TDTM_Filter_TEST {
         System.assertEquals(2, rels.size());
     }
     
+    //WARNING: this test will fail is the default Account record type for the system administrator profile (which is the
+    //one the test runs under) is Business Organization, as the bizOrg record will be of that type even if we don't assign
+    //it explicitly.
     public static testmethod void recordTypeRelationship() {
         if (strTestOnly != '*' && strTestOnly != 'recordTypeRelationship') return;
         List<Trigger_Handler__c> handlers = setup();
@@ -508,6 +511,9 @@ public with sharing class TDTM_Filter_TEST {
         System.assertEquals(2, rels.size());
     }
     
+    //WARNING: this test will fail is the default Account record type for the system administrator profile (which is the
+    //one the test runs under) is Business Organization, as the bizOrg record will be of that type even if we don't assign
+    //it explicitly.
     public static testmethod void customObject() {
         if (strTestOnly != '*' && strTestOnly != 'customObject') return;
         List<Trigger_Handler__c> handlers = setup();

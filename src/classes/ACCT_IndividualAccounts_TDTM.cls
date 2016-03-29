@@ -115,16 +115,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 	
                 	// HH Account should be created if:
                     //    1. The account isn't set by the user
-                    //    2. The Account Model is set to Household or Administrative Account
-                    if (c.AccountId == null && (defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID() 
-                    || defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())) {
+                    //    2. The Account Model is not blank
+                    if (c.AccountId == null && defaultRecTypeID != null) {
                         listContactNeedAccount.add(c);
                     }
                     
-                    // grab the Accounts that need to have the newly assigned Contact Id to them if:
+                    // grab the Accounts that need to have the newly assigned Contact Id added to them if:
                     //    1. If the contact is connected to an Account
-                    //    2. The Contact is flagged as an individual
-                    //    3. we are in the one-to-one or HH Account model
                     if (c.AccountId != null) { 
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
@@ -135,9 +132,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     // HH account should be created if:
 	                //   1. The account has been blanked out by the user
-	                //   2. The Account Model is set to Household or Administrative Account
-	                if (c.AccountId == null && (defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID() 
-                    || defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())) {
+	                //   2. The Account Model is not blank
+	                if (c.AccountId == null && defaultRecTypeID != null) {
 	                    listContactNeedAccount.add(c);
 	                }
                     
@@ -189,7 +185,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description Updates Accounts with the primary Individual Contact Id. Used for HH Accounts.
+    * @description Updates Accounts with the primary Individual Contact Id.
     * @param mapAccountIdContactId a map of AccountId's to ContactId's which specifies which accounts need updating.
     * @param dmlWrapper to hold the Accounts that need updating.
     * @return void
@@ -268,7 +264,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         
         // now do the update
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
-        //update listAccToUpdate;
     }
         
     /*******************************************************************************************************
@@ -328,6 +323,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 	a.Name = strNameHHAccountForContact(c);
                 else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
                 	a.Name = strNameAdmAccountForContact(c);
+                else
+                    a.Name = strNameAccountForContact(c);
                 
                 //connect the Account to the Contact for HHAccount
                 if (c.Id != null) {
@@ -395,6 +392,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account thisAccount : accountsOnContacts) {
                 //if the legacy or current type field show it's not a HH Account record, don't delete the account
+                //TODO: this should be looking at a setting to determine which types can be deleted (W-009779)
                 if (thisAccount.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
                 thisAccount.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
                     
@@ -417,7 +415,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-    * @description contact's owner has changed.  consider updating related account owner.
+    * @description Contact's owner has changed. Consider updating related account owner.
     * @param mapContactIdContactOwnerChange a map of Contact Id to Contact, for the contacts to consider
     * @param dmlWrapper to hold the Contacts that need updating.
     * @return void
@@ -435,6 +433,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             
             for (Account acc : listAcc) {
                 // only consider HH and Admin Accounts
+                //TODO: use setting to determine if Account owner should be changed (W-009780)
                 if (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
                 acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {                    
                     // if there is only 1 contact associated with this account
@@ -449,7 +448,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }   
             }
             // add all accounts needing updating to our list
-            dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);                        
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
         }
     }
  
@@ -484,5 +483,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     
     public static String strNameAdmAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAdminName;
+    }
+    
+    public static String strNameAccountForContact(Contact con) {
+        return con.LastName + ' ' + system.label.DefaultAccountName;
     }
 }

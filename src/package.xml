@@ -278,6 +278,7 @@
         <members>BothFieldAndValue</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
+        <members>DefaultAccountName</members>
         <members>CannotDelete</members>
         <members>Female</members>
         <members>InvalidFilter</members>
