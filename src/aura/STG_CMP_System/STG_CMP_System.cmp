@@ -2,6 +2,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveAccRecType}"/>
     
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
@@ -11,9 +12,9 @@
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.isView}">
-                <ui:outputText value="{!v.accRecTypeName}"/>
+                <ui:outputText aura:id="recTypeName" value="{!v.accRecTypeName}"/>
             <aura:set attribute="else">
-                <ui:inputSelect>
+                <ui:inputSelect aura:id="accRecTypes">
                     <aura:iteration items="{!v.accRecTypes}" var="recType">
                         <ui:inputSelectOption label="{!recType.devName}" text="{!recType.id}" />
                     </aura:iteration>
@@ -35,7 +36,7 @@
             <aura:if isTrue="{!v.isView}">
                 <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/>
             <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
+                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
             </aura:set>
             </aura:if>
         </div>
