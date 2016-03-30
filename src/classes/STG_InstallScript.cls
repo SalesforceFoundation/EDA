@@ -54,7 +54,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	 }
     	 
     	 //Replace the value in the "Account Processor" field with the ID of the record type that was there
-    	 if(context.previousVersion().compareTo(new Version(1,7)) == 0) {
+    	 if(context.previousVersion() != null && context.previousVersion().compareTo(new Version(1,7)) == 0) {
     	     UTIL_Debug.debug('***Upgrading to version 1.7');
     	     Hierarchy_Settings__c settings = UTIL_CustomSettingsFacade.getSettings();
     	     String accModel = settings.Account_Processor__c;
