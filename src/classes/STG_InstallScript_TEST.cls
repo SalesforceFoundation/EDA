@@ -40,7 +40,7 @@ public with sharing class STG_InstallScript_TEST {
 	@isTest
 	public static void onInstall() {
 		//Run the install script
-        Test.testInstall(new STG_InstallScript(), null); 
+        Test.testInstall(new STG_InstallScript(), null);
         List<Affl_Mappings__c> mappings = [select Account_Record_Type__c, Primary_Affl_Field__c from Affl_Mappings__c];
         System.assertEquals(6, mappings.size());
 	}
@@ -141,5 +141,23 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals('REL_Relationships_Con_TDTM', newHandlers[2].Class__c); 
         System.assertEquals(2, newHandlers[2].Load_Order__c);     
         System.assertEquals('AfterInsert;AfterDelete', newHandlers[2].Trigger_Action__c);     
+    }
+    
+    @isTest
+    public static void storeAccRecTypeIdInsteadOfName() {
+        Hierarchy_Settings__c settings = UTIL_CustomSettingsFacade.getSettings();
+        settings.Account_Processor__c = 'Administrative';
+        upsert settings;
+        
+        String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
+        System.assertNotEquals(null, adminRecTypeId);
+        
+        //Simulate upgrading from version 1.6 to 1.7
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), new Version(1,7), true);
+        Test.stopTest();
+        
+        settings = [select Account_Processor__c from Hierarchy_Settings__c];
+        System.assertEquals(adminRecTypeId, settings.Account_Processor__c);
     }
 }

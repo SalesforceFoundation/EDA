@@ -456,7 +456,7 @@ public class UTIL_Describe {
      * @return String The ID of the Administrative Account record type as a String.
      */
 	public static String getAdminAccRecTypeID() {
-	    return UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
+	    return getRecTypesMapByDevName('Account').get('Administrative');
 	}
 	
 	/*******************************************************************************************************
@@ -464,7 +464,7 @@ public class UTIL_Describe {
      * @return String The ID of the Household Account record type as a String.
      */
 	public static String getHhAccRecTypeID() {
-	    return UTIL_Describe.getRecTypesMapByDevName('Account').get('HH_Account');
+	    return getRecTypesMapByDevName('Account').get('HH_Account');
 	}
 	
 	/*******************************************************************************************************
@@ -472,6 +472,6 @@ public class UTIL_Describe {
      * @return String The ID of the Business Account record type as a String.
      */
 	public static String getBizAccRecTypeID() {
-	    return UTIL_Describe.getRecTypesMapByDevName('Account').get('Business_Organization');
+	    return getRecTypesMapByDevName('Account').get('Business_Organization');
 	}
 }
