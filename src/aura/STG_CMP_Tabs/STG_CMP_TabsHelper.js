@@ -22,13 +22,25 @@
 	    		var settingsNoPrefix = this.removePrefixHierarchySettings(settings, prefix);
 	    		component.set("v.hierarchySettings", settingsNoPrefix);
 	    		//Even though this property is only used but the CMP_System component, we set it here
-	    		//because this method is called after the init of that component.
+	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
+	    		//Same thing here. We need to set this property because this method is called after the
+	    		//init method in STG_CMP_AddrController.
+	    		this.tokenizeAccsToDelete(component, settingsNoPrefix.Accounts_to_Delete__c);
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
 	    });
 	    $A.enqueueAction(action);
+	},
+	
+	tokenizeAccsToDelete : function(component, accsToDelete) {
+		var accsToDeleteArray = accsToDelete.split(';');
+		var accsToDeleteArrayTrim = [];
+		for(var i = 0; i < accsToDeleteArray.length; i++) {
+			accsToDeleteArrayTrim.push(accsToDeleteArray[i].trim());
+		}
+		component.set("v.accTypesToDelete", accsToDeleteArrayTrim);
 	},
 	
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action

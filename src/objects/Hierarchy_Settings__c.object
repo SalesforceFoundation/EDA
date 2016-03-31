@@ -15,6 +15,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Accounts_to_Delete__c</fullName>
+        <description>Record Types of those Accounts that should be deleted if all its children Contacts have been deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Record Types of those Accounts that should be deleted if all its children Contacts have been deleted.</inlineHelpText>
+        <label>Accounts to Delete</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
         <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
         <externalId>false</externalId>

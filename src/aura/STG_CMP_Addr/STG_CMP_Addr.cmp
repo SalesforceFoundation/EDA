@@ -1,7 +1,10 @@
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-            
+    
+    <aura:attribute name="accRecTypes" type="Map" />
+    <aura:attribute name="accTypesToDelete" type="String[]" />
+    
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Organization Addresses Enabled:</div>
         <div class="slds-col slds-size--1-of-2">
@@ -56,6 +59,19 @@
                 <ui:outputText value="{!$Label.hed.stgHelpSimpleAddrChangeIsUpdate}" class="slds-text-body--small" />
             <aura:set attribute="else">
                 <ui:outputText value="{!$Label.c.stgHelpSimpleAddrChangeIsUpdate}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size--1-of-2">Accounts without Contacts to Delete:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.isView}">
+                <ui:outputText aura:id="recTypeName" value="{!v.accRecTypeName}"/>
+            <aura:set attribute="else">
+	            <aura:iteration items="{!v.accRecTypes}" var="recType">
+	                <ui:inputCheckbox class="" label="{!recType.devName}" labelClass="slds-form-element__label" 
+	                   text="{!recType.id}" value="{!v.accRecTypeName == recType.devName ? true : false}" />
+	            </aura:iteration>
             </aura:set>
             </aura:if>
         </div>

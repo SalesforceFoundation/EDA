@@ -5,6 +5,7 @@
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
     <aura:attribute name="accRecTypeName" type="String" />
+    <aura:attribute name="accTypesToDelete" type="String[]" />
     
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
@@ -18,7 +19,7 @@
                  <ui:outputURL value="#" label="Relationships" click="{!c.relLinkClicked}" />
              </li>
              <li aura:id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Addresses" role="tab">
-                 <ui:outputURL value="#" label="Addresses" click="{!c.addrLinkClicked}" />
+                 <ui:outputURL value="#" label="Accounts and Contacts" click="{!c.addrLinkClicked}" />
              </li>
              <li aura:id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="tab">
                  <ui:outputURL value="#" label="System" click="{!c.sysLinkClicked}" />
@@ -32,7 +33,8 @@
              <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" accTypesToDelete="{!v.accTypesToDelete}" 
+             accRecTypes="{!v.accRecTypes}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" 
