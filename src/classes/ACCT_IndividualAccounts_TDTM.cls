@@ -113,7 +113,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 // AFTER INSERT
                 if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 	
-                	// HH Account should be created if:
+                	// Account should be created if:
                     //    1. The account isn't set by the user
                     //    2. The Account Model is not blank
                     if (c.AccountId == null && defaultRecTypeID != null) {
