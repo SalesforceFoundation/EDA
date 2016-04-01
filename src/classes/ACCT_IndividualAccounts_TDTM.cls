@@ -481,10 +481,20 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         return con.LastName + ' ' + system.label.DefaultHouseholdName;
     }
     
+    /*******************************************************************************************************
+    * @description returns the default name for a new Administrative Account.
+    * @param con the Contact
+    * @return string. the Household account name
+    */ 
     public static String strNameAdmAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAdminName;
     }
     
+    /*******************************************************************************************************
+    * @description returns the default name for a new generic Account.
+    * @param con the Contact
+    * @return string. the Household account name
+    */ 
     public static String strNameAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAccountName;
     }
