@@ -1,5 +1,4 @@
 <aura:component extends="c:STG_CMP_Base">
-    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveAccRecType}"/>
@@ -14,10 +13,10 @@
             <aura:if isTrue="{!v.isView}">
                 <ui:outputText aura:id="recTypeName" value="{!v.accRecTypeName}"/>
             <aura:set attribute="else">
-                <ui:inputSelect aura:id="accRecTypes">
+                <ui:inputSelect aura:id="accRecTypes" change="{!c.onSelectChange}">
                     <aura:iteration items="{!v.accRecTypes}" var="recType">
                         <ui:inputSelectOption label="{!recType.name}" text="{!recType.id}" 
-                            value="{!v.accRecTypeName == recType.name ? true : false}" />
+                            value="{!v.accRecTypeId == recType.id ? true : false}" />
                     </aura:iteration>
                 </ui:inputSelect> 
             </aura:set>

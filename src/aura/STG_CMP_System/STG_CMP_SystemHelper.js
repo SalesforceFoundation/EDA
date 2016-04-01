@@ -1,5 +1,8 @@
 ({
-	init : function(component) { },
+	onSelectChange : function(component) { 
+		var selectedVal = component.find("accRecTypes").get("v.value");
+		component.set("v.accRecTypeId", selectedVal);
+	},
 	
 	saveAccRecType : function(component, event) {
 		//Get selected value
@@ -12,7 +15,6 @@
 		component.set("v.hierarchySettings", hierarchySettings);
 		
 		//Set the value to display after save
-		component.set("v.accRecTypeId", selectedAccRecTypeId);
 		var accRecTypes = component.get("v.accRecTypes");
 		//we do this because we cannot get the selected name from the drop-down, only the ID
 		for(var i = 0; i <accRecTypes.length; i++) {

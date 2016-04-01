@@ -1,6 +1,6 @@
 ({
-   init : function(component, event, helper) {
-	   helper.init(component);
+	onSelectChange : function(component, event, helper) {
+	   helper.onSelectChange(component);
    },
 	
 	toggleIsView : function(component, event, helper) {
