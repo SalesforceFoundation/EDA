@@ -113,7 +113,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 // AFTER INSERT
                 if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 	
-                	// HH Account should be created if:
+                	// Account should be created if:
                     //    1. The account isn't set by the user
                     //    2. The Account Model is not blank
                     if (c.AccountId == null && defaultRecTypeID != null) {
@@ -481,10 +481,20 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         return con.LastName + ' ' + system.label.DefaultHouseholdName;
     }
     
+    /*******************************************************************************************************
+    * @description returns the default name for a new Administrative Account.
+    * @param con the Contact
+    * @return string. the Household account name
+    */ 
     public static String strNameAdmAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAdminName;
     }
     
+    /*******************************************************************************************************
+    * @description returns the default name for a new generic Account.
+    * @param con the Contact
+    * @return string. the Household account name
+    */ 
     public static String strNameAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAccountName;
     }
