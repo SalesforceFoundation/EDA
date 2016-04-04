@@ -358,7 +358,7 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description utility to return a comma separated string of field names from a field set
+    * @description Returns a comma separated string of field names from a field set.
     * @param strObject the name of the object
     * @param strFS the name of the object's field set
     * @return a comma separated string of field names in the field set
@@ -370,4 +370,108 @@ public class UTIL_Describe {
         }
         return strFields.substring(0, strFields.length()-1);
     }
+
+    /*******************************************************************************************************
+    * @description Cache for the record type DeveloperName-to-ID map.
+    */
+    private static Map<String, Id> mapRecordTypes;
+    
+    /*******************************************************************************************************
+     * @description Returns a map of active, user-available RecordType IDs for a given SObjectType,
+     * keyed by each RecordType's unique, unchanging DeveloperName. 
+     * @param objectName Name of the object to retrieve record types for.
+     * @return Map<String, Id> Map of DeveloperName-to-ID of available record types for object specified. 
+     */
+    public static Map<String, Id> getRecTypesMapByDevName(String objectName) {	    
+	    return getRecTypesMap(objectName, true);
+	}
+	
+	/*******************************************************************************************************
+     * @description Returns a map of active, user-available RecordType IDs for a given SObjectType,
+     * keyed by each RecordType's Name. 
+     * @param objectName Name of the object to retrieve record types for.
+     * @return Map<String, Id> Map of Name-to-ID of available record types for object specified. 
+     */
+    @AuraEnabled
+    public static Map<String, Id> getRecTypesMapByName(String objectName) {
+        return getRecTypesMap(objectName, false);
+    }
+    
+    /*******************************************************************************************************
+     * @description Returns a map of active, user-available RecordType IDs for a given SObjectType, keyed
+     * by either the RecordType's Name or the Developer Name, depending on the value of the second param. 
+     * @param objectName Name of the object to retrieve record types for.
+     * @param devName True if we want the key of the returned map to be the record type's developer name.
+     * False if we want it to be the friendly name.
+     * @return Map<String, Id> Map of Name-to-ID or DeveloperName-to-ID (depending on the second paramater), 
+     * of available record types for object specified. 
+     */
+    private static Map<String, Id> getRecTypesMap(String objectName, Boolean devName) {      
+        if(mapRecordTypes == null) {
+            mapRecordTypes = new Map<String, Id>();
+        
+            // Get the Describe Result
+            fillMapsForObject(objectName);
+            Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
+        
+            // Obtain ALL Active Record Types for the given SObjectType objectType
+            String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \'' 
+                          + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+            List<SObject> results;
+            try {
+                results = Database.query(soql);
+            } catch (Exception ex) {
+                results = new List<SObject>();
+            }
+        
+            // Obtain the RecordTypeInfos for this SObjectType objectType
+            Map<Id,Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+        
+            for (SObject rt : results) { 
+                // Check RecordType IS available for the running user
+                if (!Test.isRunningTest()) {
+                    if (recordTypeInfos.get(rt.Id).isAvailable()) {
+                        if(devName) {
+                            mapRecordTypes.put(String.valueOf(rt.get('DeveloperName')), rt.Id);
+                        } else {
+                            mapRecordTypes.put(String.valueOf(rt.get('Name')), rt.Id);
+                        }
+                    }
+                // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
+                // might fail just because the user running them does not have certain record types assigned.
+                } else {
+                    if(devName) {
+                        mapRecordTypes.put(String.valueOf(rt.get('DeveloperName')), rt.Id);
+                    } else {
+                        mapRecordTypes.put(String.valueOf(rt.get('Name')), rt.Id);
+                    }
+                }
+            }
+        }
+        return mapRecordTypes;
+    }
+	
+	/*******************************************************************************************************
+     * @description Returns the ID of the Administrative Account record type, if it exists.
+     * @return String The ID of the Administrative Account record type as a String.
+     */
+	public static String getAdminAccRecTypeID() {
+	    return getRecTypesMapByDevName('Account').get('Administrative');
+	}
+	
+	/*******************************************************************************************************
+     * @description Returns the ID of the Household Account record type, if it exists.
+     * @return String The ID of the Household Account record type as a String.
+     */
+	public static String getHhAccRecTypeID() {
+	    return getRecTypesMapByDevName('Account').get('HH_Account');
+	}
+	
+	/*******************************************************************************************************
+     * @description Returns the ID of the Business Account record type, if it exists.
+     * @return String The ID of the Business Account record type as a String.
+     */
+	public static String getBizAccRecTypeID() {
+	    return getRecTypesMapByDevName('Account').get('Business_Organization');
+	}
 }

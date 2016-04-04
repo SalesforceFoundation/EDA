@@ -39,12 +39,12 @@ public class UTIL_UnitTestData_TEST {
     
     public static Contact getContact() {
     	return new Contact (
-                FirstName = CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS,
-                LastName = CAO_Constants.CONTACT_LASTNAME_FOR_TESTS,
-                WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS, 
-                Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-                WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-                PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS,
+                FirstName = 'Test',
+                LastName = 'Contact_forTests',
+                WorkEmail__c = 'junk@test.net', 
+                Preferred_Email__c = 'Work',
+                WorkPhone__c = '206-777-8888',
+                PreferredPhone__c = 'Work',
                 OtherCity = 'Seattle'
             );
     }
@@ -55,12 +55,12 @@ public class UTIL_UnitTestData_TEST {
         
         for (integer i=0;i<n;i++) {
             Contact newCon = New Contact (
-                FirstName= CAO_Constants.CONTACT_FIRSTNAME_FOR_TESTS + i,
-                LastName= CAO_Constants.CONTACT_LASTNAME_FOR_TESTS + i,
-                WorkEmail__c = CAO_Constants.CONTACT_EMAIL_FOR_TESTS, 
-                Preferred_Email__c = CAO_Constants.CONTACT_PREFERRED_EMAIL_FOR_TESTS,
-                WorkPhone__c = CAO_Constants.CONTACT_PHONE_FOR_TESTS,
-                PreferredPhone__c = CAO_Constants.CONTACT_PREFERRED_PHONE_FOR_TESTS,
+                FirstName= 'Test' + i,
+                LastName= 'Contact_forTests' + i,
+                WorkEmail__c = 'junk@test.net', 
+                Preferred_Email__c = 'Work',
+                WorkPhone__c = '206-777-8888',
+                PreferredPhone__c = 'Work',
                 OtherCity = 'Seattle'
             );
             ContactsToAdd.add (newCon);

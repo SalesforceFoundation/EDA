@@ -2,17 +2,24 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveAccRecType}"/>
     
-    <aura:attribute name="namespacePrefix" type="String" />
+    <aura:attribute name="accRecTypes" type="Map" />
+    <aura:attribute name="accRecTypeId" type="String" />
+    <aura:attribute name="accRecTypeName" type="String" />
     
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">Account Processor:</div>
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.isView}">
-                <ui:outputText value="{!v.hierarchySettings.Account_Processor__c}"/>
+                <ui:outputText aura:id="recTypeName" value="{!v.accRecTypeName}"/>
             <aura:set attribute="else">
-                <ui:inputText value="{!v.hierarchySettings.Account_Processor__c}" 
-                                label="{!'Account Processor: ' + v.hierarchySettings.Account_Processor__c}" labelClass="slds-hide"/>
+                <ui:inputSelect aura:id="accRecTypes">
+                    <aura:iteration items="{!v.accRecTypes}" var="recType">
+                        <ui:inputSelectOption label="{!recType.devName}" text="{!recType.id}" 
+                            value="{!v.accRecTypeName == recType.devName ? true : false}" />
+                    </aura:iteration>
+                </ui:inputSelect> 
             </aura:set>
             </aura:if>
         </div>
@@ -30,7 +37,7 @@
             <aura:if isTrue="{!v.isView}">
                 <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/>
             <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
+                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
             </aura:set>
             </aura:if>
         </div>

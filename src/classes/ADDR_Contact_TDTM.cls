@@ -76,7 +76,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 if (con.AccountId != null)
                     setAccountId.add(con.AccountId);
             }
-            mapAccountIdAccount = new Map<Id,Account>([select Id, RecordType.Name from Account where Id IN :setAccountId]);
+            mapAccountIdAccount = new Map<Id,Account>([select Id, RecordTypeId from Account where Id IN :setAccountId]);
         }        
        
         integer i = -1;        

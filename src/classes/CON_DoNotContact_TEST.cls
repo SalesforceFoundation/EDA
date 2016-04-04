@@ -43,9 +43,9 @@ private class CON_DoNotContact_TEST {
     * exclusion have been removed.
     */
     static testMethod void testDeceased() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));    
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));    
         
-        Contact con = new Contact(LastName = CAO_Constants.CONTACT_LASTNAME_FOR_TESTS);
+        Contact con = new Contact(LastName = 'Contact_forTests');
         insert con;
 
         list<Contact> queryCon = [SELECT Id, HasOptedOutOfEmail, DoNotCall, Naming_Exclusions__c FROM Contact WHERE Id = :con.id];
@@ -78,9 +78,9 @@ private class CON_DoNotContact_TEST {
     * Removes Do Not Contact flag, verifies DoNotCall and HasOptedOutOfEmail are no longer set.
     */
     static testMethod void testDoNotContact() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = CAO_Constants.HH_ACCOUNT_PROCESSOR));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         
-        Contact con = new Contact(LastName = CAO_Constants.CONTACT_LASTNAME_FOR_TESTS);
+        Contact con = new Contact(LastName = 'Contact_forTests');
         insert con;
 
         list<Contact> queryCon = [SELECT Id, HasOptedOutOfEmail, DoNotCall, Naming_Exclusions__c FROM Contact WHERE Id = :con.id];

@@ -52,6 +52,20 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	 	List<Trigger_Handler__c> defaultHandlers = TDTM_DefaultConfig.getDefaultRecords(); 
             insertTdtmDefaults(defaultHandlers);
     	 }
+    	 
+    	 //Replace the value in the "Account Processor" field with the ID of the record type that was there
+    	 if(context.previousVersion() != null && context.previousVersion().compareTo(new Version(1,7)) == 0) {
+    	     UTIL_Debug.debug('***Upgrading to version 1.7');
+    	     Hierarchy_Settings__c settings = UTIL_CustomSettingsFacade.getSettings();
+    	     String accModel = settings.Account_Processor__c;
+    	     if(!String.isBlank(accModel)) {
+    	         String accRecTypeID = UTIL_Describe.getRecTypesMapByName('Account').get(accModel);
+    	         if(accRecTypeID != null) {
+    	             settings.Account_Processor__c = accRecTypeID;
+    	             update settings;
+    	         }
+    	     }
+    	 }
     }
     
     global static void insertMappings() {

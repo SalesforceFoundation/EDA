@@ -9,6 +9,8 @@
 		
 		//Retrieving hierarchy settings.
 		this.getHierarchySettings(component);
+		//Get account record types
+		this.getAccountRecordTypes(component);
 	},
 	
 	getHierarchySettings : function(component) {
@@ -17,7 +19,42 @@
 	    action.setCallback(this, function(response) {
 	    	if(response.getState() === "SUCCESS") {
 	    		var settings = response.getReturnValue();
-	    		component.set("v.hierarchySettings", this.removePrefixHierarchySettings(settings, prefix));
+	    		var settingsNoPrefix = this.removePrefixHierarchySettings(settings, prefix);
+	    		component.set("v.hierarchySettings", settingsNoPrefix);
+	    		//Even though this property is only used but the CMP_System component, we set it here
+	    		//because this method is called after the init of that component.
+	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
+	    	} else if(response.getState() === "ERROR") {
+	    		this.displayError(response);
+			}
+	    });
+	    $A.enqueueAction(action);
+	},
+	
+	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
+	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in 
+	//this helper. And we need the Account Processor value from HierarchySettings.
+	getAccountRecordTypes : function(component) {
+		//Get all available account record types
+		var action = component.get("c.getRecTypesMapByName");
+		action.setParams({ "objectName" : 'Account'});
+		action.setCallback(this, function(response) {
+	    	if(response.getState() === "SUCCESS") {
+	    		var recTypesObj = response.getReturnValue();
+	    		var accRecTypes = [];
+	    		for(var property in recTypesObj) {
+	    			if (recTypesObj.hasOwnProperty(property)) {
+	    				accRecTypes.push({devName: property, id: recTypesObj[property]});
+	    				//Find the name of the account record type that matches the stored ID
+	    				var accTypeId = component.get("v.accRecTypeId");
+	    				//We check if one string is contained in the other because in one case we have
+	    				//the 15 digit id, and in the other the 18 digit one.
+	    				if(recTypesObj[property].indexOf(accTypeId) > -1) {
+	    					component.set("v.accRecTypeName", property);
+	    				}
+	    			}
+	    		}
+	    		component.set("v.accRecTypes", accRecTypes);
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}

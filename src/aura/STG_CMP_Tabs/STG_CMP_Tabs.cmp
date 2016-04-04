@@ -1,7 +1,10 @@
-<aura:component extends="c:STG_CMP_Base">
+<aura:component extends="c:STG_CMP_Base" controller="UTIL_Describe">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:attribute name="save" type="Boolean" default="true"/>
+    <aura:attribute name="accRecTypes" type="Map" />
+    <aura:attribute name="accRecTypeId" type="String" />
+    <aura:attribute name="accRecTypeName" type="String" />
     
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
@@ -32,7 +35,8 @@
              <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" 
+             accRecTypeName="{!v.accRecTypeName}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
      </div>
 </aura:component>
