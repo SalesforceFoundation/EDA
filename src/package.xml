@@ -274,6 +274,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>noAccRecType</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
         <members>DefaultAdminName</members>
