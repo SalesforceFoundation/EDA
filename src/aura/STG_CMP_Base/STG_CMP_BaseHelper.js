@@ -132,6 +132,16 @@
 		component.set(messageElement, labels[prefix][label]);
 	},
 	
+	//The Account Record Types are stored as a comma-separated string in the settings. We need to tokenize it.
+	getTokenizedAccsToDelete : function(accsToDelete) {
+		var accsToDeleteArray = accsToDelete.split(';');
+		var accsToDeleteArrayTrim = [];
+		for(var i = 0; i < accsToDeleteArray.length; i++) {
+			accsToDeleteArrayTrim.push(accsToDeleteArray[i].trim());
+		}
+		return accsToDeleteArrayTrim;
+	},
+	
 	//Labels built dynamically will only be available if they are being referenced somewhere in the code. 
 	//Note that this method isn't even called from anywhere.
 	hugeHack : function() {

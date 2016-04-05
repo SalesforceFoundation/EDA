@@ -35,7 +35,7 @@
 	//marked as "Account types that can be deleted if they have no children" in the Accounts_to_Delete__c setting.
 	getAccRecTypesSelectdDel : function(component, accsToDelete, accRecTypes) {
 		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController
-		var accTypesToDelete = this.getTokenizedAccsToDelete(component, accsToDelete);
+		var accTypesToDelete = this.getTokenizedAccsToDelete(accsToDelete);
 		accTypesToDeleteSelected = [];
 		for(var i = 0; i < accRecTypes.length; i++) {
 			accTypeToDelete = {};
@@ -50,16 +50,6 @@
 			accTypesToDeleteSelected.push(accTypeToDelete);
 		}
 		component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
-	},
-	
-	//The Account Record Types are stored as a comma-separated string in the settings. We need to tokenize it.
-	getTokenizedAccsToDelete : function(component, accsToDelete) {
-		var accsToDeleteArray = accsToDelete.split(';');
-		var accsToDeleteArrayTrim = [];
-		for(var i = 0; i < accsToDeleteArray.length; i++) {
-			accsToDeleteArrayTrim.push(accsToDeleteArray[i].trim());
-		}
-		return accsToDeleteArrayTrim;
 	},
 	
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
