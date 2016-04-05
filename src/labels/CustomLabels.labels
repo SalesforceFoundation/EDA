@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+         <fullName>noAccRecType</fullName>
+         <categories>Record Types</categories>
+         <language>en_US</language>
+         <protected>false</protected>
+         <shortDescription>noAccRecType - DEPRECATED</shortDescription>
+         <value>The defined account record type does not exist:</value>
+     </labels>
+    <labels>
         <fullName>AutoCreateFieldError</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
