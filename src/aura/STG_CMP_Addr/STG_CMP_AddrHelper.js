@@ -7,9 +7,10 @@
 		for(var i = 0; i <= typesToDelete.length; i++) {
 			var checkbox = typesToDelete[i];
 			if(typeof checkbox != 'undefined') {
+				var checkboxLabel = checkbox.get("v.label");
 				var checkboxVal = checkbox.get("v.value");
 				if(checkboxVal == true) {
-					var checkboxText = checkbox.get("v.label");
+					var checkboxText = checkbox.get("v.text");
 					selectedAccsToDelete += checkboxText + '; ';
 				}
 			}

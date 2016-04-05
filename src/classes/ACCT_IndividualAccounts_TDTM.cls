@@ -387,16 +387,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 accountIds.add(thisContact.accountId);
             }
 
-            accountsOnContacts = [Select Id, Type, RecordTypeId, (Select Id from Opportunities limit 1), (select Id from Contacts limit 1) 
-                                  from Account where Id IN :accountIds];
+            accountsOnContacts = [Select Id, Type, RecordTypeId, (Select Id from Opportunities limit 1), 
+                                  (select Id from Contacts limit 1) from Account where Id IN :accountIds];
             
             for (Account thisAccount : accountsOnContacts) {
-                //if the legacy or current type field show it's not a HH Account record, don't delete the account
-                //TODO: this should be looking at a setting to determine which types can be deleted (W-009779)
-                if (thisAccount.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 
-                thisAccount.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
+                // Looking at a setting to determine which account types can be deleted (W-009779)
+                if (UTIL_CustomSettingsFacade.getSettings().Accounts_to_Delete__c.contains(thisAccount.RecordTypeId)) {
                     
-                    // if there are no Opportunities for this Account, add it for deletion
+                    // If there are no Opportunities for this Account, add it for deletion
                     if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                         accountsForDeletion.add(thisAccount);
                     } else if (thisAccount.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() || 

@@ -43,7 +43,7 @@
 			accTypeToDelete.id = accRecTypes[i].id;
 			accTypeToDelete.selected = false; //we set it to false initially
 			for(var j = 0; j < accTypesToDelete.length; j++) {
-				if(accRecTypes[i].name == accTypesToDelete[j]) {
+				if(accRecTypes[i].id == accTypesToDelete[j]) {
 					accTypeToDelete.selected = true;
 				}
 			}
