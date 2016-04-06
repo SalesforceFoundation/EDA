@@ -522,7 +522,7 @@ private class ACCT_IndividualAccounts_TEST {
             FirstName='Test',
             LastName='Contact_forTests',
             MailingStreet = newContactMailingStreet,
-            AccountId=orgAccount.id,
+            AccountId = orgAccount.id,
             WorkEmail__c = 'junk@test.net',
             Preferred_Email__c = 'Work',
             WorkPhone__c = '206-777-8888',
@@ -530,7 +530,7 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert con;
         
-        Contact[] insertedContacts = [Select FirstName, LastName, AccountId  from Contact where id=:con.id];
+        Contact[] insertedContacts = [Select FirstName, LastName, AccountId from Contact where id=:con.id];
         Id createdAccountId = insertedContacts[0].AccountId;
           
         Test.startTest();  
@@ -538,7 +538,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         Account[] missingAccount = [select id from Account where id=:createdAccountId];
-        system.assertEquals(1,missingAccount.size());
+        system.assertEquals(1, missingAccount.size());
     }   
     
     /*********************************************************************************************************
