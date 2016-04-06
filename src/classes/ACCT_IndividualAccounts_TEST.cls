@@ -393,14 +393,17 @@ private class ACCT_IndividualAccounts_TEST {
     */
      @isTest
      public static void deleteContactNoOppHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+                     Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                     Accounts_to_Delete__c = UTIL_Describe.getHhAccRecTypeID()));
         deleteContactNoOpp();
      }
      
      @isTest
      public static void deleteContactNoOppAdm() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+                    Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
+                    Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
         deleteContactNoOpp();
      }
      
@@ -439,14 +442,17 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void deleteContactWithOppHH() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+                                    Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                                    Accounts_to_Delete__c = UTIL_Describe.getHhAccRecTypeID()));
         deleteContactWithOpp(); 
     }
     
     @isTest
     public static void deleteContactWithOppAdm() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+                                    Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
+                                    Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
         deleteContactWithOpp(); 
     }
     
@@ -492,14 +498,17 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void deleteContactNormalAccountHouseholdAcc() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+                                    Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                                    Accounts_to_Delete__c = UTIL_Describe.getHhAccRecTypeID()));
         deleteContactNormalAccount();
     }
     
     @isTest
     public static void deleteContactNormalAccountAdministrativeAcc() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+                                    Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
+                                    Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
         deleteContactNormalAccount();
     }
 

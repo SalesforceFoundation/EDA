@@ -125,6 +125,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;
         settings.Affl_ProgEnroll_Del__c = mySettings.Affl_ProgEnroll_Del__c;
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
+        settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         
         orgSettings = settings;
         return settings;
