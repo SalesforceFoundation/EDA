@@ -65,15 +65,20 @@
         
         <div class="slds-col slds-size--1-of-2">Accounts without Contacts to Delete:</div>
         <div class="slds-col slds-size--1-of-2">
+   
+        <aura:iteration items="{!v.accTypesToDeleteSelected}" var="recType">
             <aura:if isTrue="{!v.isView}">
-                <ui:outputText aura:id="recTypeName" value="{!v.hierarchySettings.Accounts_to_Delete__c}"/>
+               <div class="uiInput uiInputCheckbox uiInput--default uiInput--checkbox">
+                   <span class="slds-form-element__label">{!recType.name}</span>
+                   <ui:outputCheckbox value="{!recType.selected}" />
+               </div>
             <aura:set attribute="else">
-	            <aura:iteration items="{!v.accTypesToDeleteSelected}" var="recType">
-	                <ui:inputCheckbox aura:id="accDel" class="" labelClass="slds-form-element__label" 
-	                   label="{!recType.name}" text="{!recType.id}" value="{!recType.selected}" />
-	            </aura:iteration>
+               <ui:inputCheckbox aura:id="accDel" class="" labelClass="slds-form-element__label" 
+                      label="{!recType.name}" text="{!recType.id}" value="{!recType.selected}" />
             </aura:set>
-            </aura:if>
+               </aura:if> 
+        </aura:iteration>
+            
         </div>
     </div>
 </aura:component>
