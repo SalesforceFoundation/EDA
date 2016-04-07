@@ -1,9 +1,8 @@
 ({
 	saveSettings : function(component) {
-		var accTypesCount = component.get("v.accTypesCount");
 		var selectedAccsToDelete = "";
 		var typesToDelete = component.find("accDel");
-		//starting loop at 1 because the indexVar property starts at 1 in the view
+
 		for(var i = 0; i <= typesToDelete.length; i++) {
 			var checkbox = typesToDelete[i];
 			if(typeof checkbox != 'undefined') {

@@ -86,6 +86,7 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>CMP_RecTypes</members>
         <members>STG_App</members>
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
