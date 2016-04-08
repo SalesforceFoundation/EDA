@@ -2079,17 +2079,17 @@ private with sharing class ADDR_Addresses_TEST {
     public static void scheduleSeasonalAddrUpdateHH() {        
         // this creates a default Address for each Account
         createHHTestData(parentAccs, cCon);
-        scheduleSeasonalAddrUpdate('HH');
+        scheduleSeasonalAddrUpdate();
     }
     
     @isTest
     public static void scheduleSeasonalAddrUpdateAdm() {        
         // this creates a default Address for each Account
         createAdmTestData(parentAccs, cCon);
-        scheduleSeasonalAddrUpdate('Adm');
+        scheduleSeasonalAddrUpdate();
     }
     
-    public static void scheduleSeasonalAddrUpdate(String suffix) { 
+    public static void scheduleSeasonalAddrUpdate() { 
         // create additional addresses
         initTestAddr(parentAccs);
         for (Integer i = 0; i < parentAccs; i++) {
@@ -2113,7 +2113,7 @@ private with sharing class ADDR_Addresses_TEST {
         //Schedule the job just for test coverage purposes. But we still have to manually run the
         //batch, as batch jobs run from a scheduled job don't actually run after stopTest, as described
         //at https://salesforce.stackexchange.com/questions/36806/does-test-stoptest-ensure-a-system-schedule-database-batchable-completes-in-a
-        String jobId= System.schedule('Seasonal Addresses Update' + suffix, '0 15 0 * * ?', new ADDR_Seasonal_SCHED());
+        String jobId = STG_InstallScript.scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
         // Get the information from the CronTrigger API object
         CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE id = :jobId];
         // Verify the expressions are the same
