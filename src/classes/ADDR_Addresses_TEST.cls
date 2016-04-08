@@ -2115,7 +2115,7 @@ private with sharing class ADDR_Addresses_TEST {
         //at https://salesforce.stackexchange.com/questions/36806/does-test-stoptest-ensure-a-system-schedule-database-batchable-completes-in-a
         STG_InstallScript.scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
         // Get the information from the CronTrigger API object
-        CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE Name = 'Seasonal Addresses Update'];
+        CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE CronJobDetail.Name = 'Seasonal Addresses Update'];
         // Verify the expressions are the same
         System.assertEquals('0 15 0 * * ?', ct.CronExpression);
         // Verify the job has not run
