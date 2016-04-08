@@ -47,7 +47,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     		insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
     		insertRelationshipLookups();
     		//Schedule Seasonal Addresses recurring job daily
-    		System.schedule('Seasonal Addresses Update', '0 15 0 * * ?', new ADDR_Seasonal_SCHED());
+    		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
     	 } else if(context.isUpgrade() || context.isPush()) {
     	 	List<Trigger_Handler__c> defaultHandlers = TDTM_DefaultConfig.getDefaultRecords(); 
             insertTdtmDefaults(defaultHandlers);
@@ -68,6 +68,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	 }
     }
     
+    /*******************************************************************************************************
+    * @description Inserts the default Affiliation Mappings.
+    * @return void
+    */
     global static void insertMappings() {
     	List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c where Account_Record_Type__c != null AND Primary_Affl_Field__c != null];
     	if(mappings.size() == 0) {
@@ -119,6 +123,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
         if(handlersToUpdate.size() > 0) update handlersToUpdate;
     }
     
+    /*******************************************************************************************************
+    * @description Inserts the default Relationship Lookup settings.
+    * @return void
+    */
     global static void insertRelationshipLookups() {
         Integer lookupCount = [select count() from Relationship_Lookup__c];
         if(lookupCount == 0) {
@@ -143,5 +151,31 @@ global without sharing class STG_InstallScript implements InstallHandler {
             lookups.add(new Relationship_Lookup__c(Name = 'Employee', Male__c = 'Employer', Female__c = 'Employer', Neutral__c = 'Employer', Active__c = true));
             insert lookups;
         }
+    }
+    
+    /*******************************************************************************************************
+    * @description Schedules a class that implements the Schedulable interface, if it's not already scheduled.
+    * @param JobName The name to give the scheduled job.
+    * @param frequency The frequency to schedule the job at.
+    * @param className The class to schedule. Should implement the Schedulable interface.
+    * @return The ID of the scheduled job.
+    */
+    public static String scheduleJobIfNotScheduled(String JobName, String frequency, String className) {
+        
+        //Check if the job is already scheduled - CronJobDetail is the parent and CronTrigger is the child
+        //Type '7' is for scheduled Apex
+        List<CronTrigger> scheduledJobs = [select Id, CronJobDetail.Id from CronTrigger 
+                    where CronJobDetail.Name = :JobName and CronJobDetail.JobType = '7'];
+        
+        if(scheduledJobs.size() == 0) {
+            Type classType = Type.forName(className);
+            
+            if(classType != null) {     
+               Object instance = classType.newInstance();
+               if(instance instanceof Schedulable)
+                   return System.schedule(JobName, frequency, (Schedulable)instance);
+            }
+        }
+        return null;
     }
 }
