@@ -37,7 +37,7 @@ $ ant deploy -buildfile PATH_TO_YOUR_BUILDFILE
 ```
 
 * Full ApexDoc code documentation can be found <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">here</a>.
-* Full Software Requirements specification can be found <a href="https://powerofus.force.com/servlet/fileField?retURL=%2Farticles%2FResource%2FHigher-Education-Data-Architecture-HEDA-Software-Requirements-Specification&entityId=ka080000000DdNUAA0&field=File__Body__s" target="_blank"> here</a>.
+* Full Software Requirements specification can be found <a href="https://powerofus.force.com/articles/Resource/Higher-Education-Data-Architecture-HEDA-Software-Requirements-Specification" target="_blank"> here</a>.
 
 #### Meta
 
