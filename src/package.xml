@@ -223,8 +223,7 @@
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
-        <members>Hierarchy_Settings__c.Household_Adm_Acct_Addresses_Enabled__c</members>
-        <members>Hierarchy_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
+        <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>

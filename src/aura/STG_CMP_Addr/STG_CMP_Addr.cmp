@@ -3,17 +3,13 @@
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     
     <aura:attribute name="accTypesToDeleteSelected" type="Object[]" />
+    <aura:attribute name="accTypesAddrSelected" type="Object[]" />
     
     <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size--1-of-2">Organization Addresses Enabled:</div>
+        <div class="slds-col slds-size--1-of-2">Account Types with Multi-Addresses Enabled:</div>
         <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputCheckbox value="{!v.hierarchySettings.Organizational_Account_Addresses_Enabled__c}"/>
-            <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Organizational_Account_Addresses_Enabled__c}"
-                                    label="Organizational Account Addresses Enabled" labelClass="slds-hide"/>
-            </aura:set>
-            </aura:if>
+            <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_Addresses_Enabled__c}" 
+                            recTypesSelected="{!v.accTypesAddrSelected}" isView="{!v.isView}" />
         </div>
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
@@ -62,10 +58,10 @@
             </aura:if>
         </div>
         
-        <div class="slds-col slds-size--1-of-2">Accounts without Contacts to Delete:</div>
+        <div class="slds-col slds-size--1-of-2">Account Types without Contacts to Delete:</div>
         <div class="slds-col slds-size--1-of-2">
-	        <c:CMP_RecTypes hierarchySettings="{!v.hierarchySettings}" accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" 
-	                           isView="{!v.isView}" />
+	        <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_to_Delete__c}" 
+	                        recTypesSelected="{!v.accTypesToDeleteSelected}" isView="{!v.isView}" />
         </div>
     </div>
 </aura:component>

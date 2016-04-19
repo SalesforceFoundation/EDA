@@ -5,7 +5,9 @@
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
     <aura:attribute name="accRecTypeName" type="String" />
+    
     <aura:attribute name="accTypesToDeleteSelected" type="String[]" />
+    <aura:attribute name="accTypesAddrSelected" type="Object[]" />
     
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
@@ -33,8 +35,8 @@
              <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" 
-             isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
+             accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" 

@@ -2,17 +2,17 @@
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
     
     <aura:attribute name="isView" type="Boolean" default="true"/>
-    <aura:attribute name="hierarchySettings" type="Object" />
+    <aura:attribute name="setting" type="Object" />
     <!-- 
-        Each element in the accTypesToDeleteSelected array represents a record type of an Object,
+        Each element in the recTypesSelected array represents a record type of an Object,
         and should have 3 fields:
         - name: the friendly name (label) of the record type
         - id: the internal ID of the record type
         - selected: whether the record type should be displayed as selected (checked checkbox)
      -->
-    <aura:attribute name="accTypesToDeleteSelected" type="Object[]" />
+    <aura:attribute name="recTypesSelected" type="Object[]" />
 
-    <aura:iteration items="{!v.accTypesToDeleteSelected}" var="recType">
+    <aura:iteration items="{!v.recTypesSelected}" var="recType">
         <span>
             <aura:if isTrue="{!v.isView}">
                <div class="uiInput uiInputCheckbox uiInput--default uiInput--checkbox">
@@ -20,7 +20,7 @@
                    <ui:outputCheckbox value="{!recType.selected}" />
                </div>
             <aura:set attribute="else">
-               <ui:inputCheckbox aura:id="accDel" class="" labelClass="slds-form-element__label" 
+               <ui:inputCheckbox aura:id="checkboxIds" class="" labelClass="slds-form-element__label" 
                       label="{!recType.name}" text="{!recType.id}" value="{!recType.selected}" />
             </aura:set>
             </aura:if>

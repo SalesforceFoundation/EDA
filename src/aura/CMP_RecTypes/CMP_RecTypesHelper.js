@@ -1,21 +1,21 @@
 ({
 	saveSettings : function(component) {
-		var selectedAccsToDelete = "";
-		var typesToDelete = component.find("accDel");
+		var selectedTypes = "";
+		var typeCheckboxes = component.find("checkboxIds");
 
-		for(var i = 0; i <= typesToDelete.length; i++) {
-			var checkbox = typesToDelete[i];
+		for(var i = 0; i <= typeCheckboxes.length; i++) {
+			var checkbox = typeCheckboxes[i];
 			if(typeof checkbox != 'undefined') {
 				var checkboxLabel = checkbox.get("v.label");
 				var checkboxVal = checkbox.get("v.value");
 				if(checkboxVal == true) {
 					var checkboxText = checkbox.get("v.text");
-					selectedAccsToDelete += checkboxText + '; ';
+					selectedTypes += checkboxText + '; ';
 				}
 			}
 		}
-		var hierarchySettings = component.get("v.hierarchySettings");
-		hierarchySettings.Accounts_to_Delete__c = selectedAccsToDelete;
-		component.set("v.hierarchySettings", hierarchySettings);
+		var setting = component.get("v.setting");
+		setting = selectedTypes;
+		component.set("v.setting", setting);
 	}
 })

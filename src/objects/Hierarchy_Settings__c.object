@@ -97,24 +97,14 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Household_Adm_Acct_Addresses_Enabled__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Enables Address management for Household Accounts when selected.</description>
+        <fullName>Accounts_Addresses_Enabled__c</fullName>
+        <description>Record Types of those Accounts that should have multi-addresses enabled.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Enables Address management for Household Accounts when selected.</inlineHelpText>
-        <label>Household Account Addresses Enabled</label>
+        <inlineHelpText>Record Types of those Accounts that should have multi-addresses enabled.</inlineHelpText>
+        <label>Multi-Address Accounts</label>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Organizational_Account_Addresses_Enabled__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Enables Address management for Organizational Accounts when selected.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Enables Address management for Organizational Accounts when selected.</inlineHelpText>
-        <label>Organizational Account Addresses Enabled</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Reciprocal_Method__c</fullName>

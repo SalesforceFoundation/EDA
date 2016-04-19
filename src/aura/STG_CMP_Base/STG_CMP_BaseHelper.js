@@ -133,13 +133,15 @@
 	},
 	
 	//The Account Record Types are stored as a comma-separated string in the settings. We need to tokenize it.
-	getTokenizedAccsToDelete : function(accsToDelete) {
-		var accsToDeleteArray = accsToDelete.split(';');
-		var accsToDeleteArrayTrim = [];
-		for(var i = 0; i < accsToDeleteArray.length; i++) {
-			accsToDeleteArrayTrim.push(accsToDeleteArray[i].trim());
+	getTokenized : function(setting) {
+		var settingArrayTrim = [];
+		if(setting) {
+			var settingArray = setting.split(';');
+			for(var i = 0; i < settingArray.length; i++) {
+				settingArrayTrim.push(settingArray[i].trim());
+			}
 		}
-		return accsToDeleteArrayTrim;
+		return settingArrayTrim;
 	},
 	
 	//Labels built dynamically will only be available if they are being referenced somewhere in the code. 

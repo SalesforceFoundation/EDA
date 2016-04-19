@@ -23,7 +23,8 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		//Get account record types
-	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c, settingsNoPrefix.Account_Processor__c);	    		
+	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c, 
+	    				settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c);	    		
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
@@ -33,9 +34,9 @@
 	
 	//We want to compare the list of all available Account Record Types with the list of those that have been
 	//marked as "Account types that can be deleted if they have no children" in the Accounts_to_Delete__c setting.
-	getAccRecTypesSelectdDel : function(component, accsToDelete, accRecTypes) {
+	getAccRecTypesSelectdDel : function(component, setting, accRecTypes) {
 		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController
-		var accTypesToDelete = this.getTokenizedAccsToDelete(accsToDelete);
+		var accTypesToDelete = this.getTokenized(setting);
 		accTypesToDeleteSelected = [];
 		for(var i = 0; i < accRecTypes.length; i++) {
 			accTypeToDelete = {};
@@ -52,10 +53,31 @@
 		component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
 	},
 	
+	//We want to compare the list of all available Account Record Types with the list of those that have been
+	//marked as having multi-addresses enabled in the Accounts_Addresses_Enabled__c setting.
+	getAccRecTypesAddr : function(component, setting, accRecTypes) {
+		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController
+		var accTypesAddr = this.getTokenized(setting);
+		accTypesAddrSelected = [];
+		for(var i = 0; i < accRecTypes.length; i++) {
+			accTypeAddr = {};
+			accTypeAddr.name = accRecTypes[i].name;
+			accTypeAddr.id = accRecTypes[i].id;
+			accTypeAddr.selected = false; //we set it to false initially
+			for(var j = 0; j < accTypesAddr.length; j++) {
+				if(accRecTypes[i].id == accTypesAddr[j]) {
+					accTypeAddr.selected = true;
+				}
+			}
+			accTypesAddrSelected.push(accTypeAddr);
+		}
+		component.set("v.accTypesAddrSelected", accTypesAddrSelected);
+	},
+	
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
 	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in 
 	//this helper. And we need the Account Processor value from HierarchySettings.
-	getAccountRecordTypes : function(component, accsToDelete, accTypeId) {
+	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId) {
 		//Get all available account record types
 		var action = component.get("c.getRecTypesMapByName");
 		action.setParams({ "objectName" : 'Account'});
@@ -75,8 +97,12 @@
 	    			}
 	    		}
 	    		component.set("v.accRecTypes", accRecTypes);
-	    		//Get record types of account that can be deleted if all their children have been deleted
+	    		
+	    		//Get record types of accounts that can be deleted if all their children have been deleted
 	    		this.getAccRecTypesSelectdDel(component, accsToDelete, accRecTypes);
+	    		//Get record types of accounts that have multi-address support enabled
+	    		this.getAccRecTypesAddr(component, accsMultiAddr, accRecTypes);
+	    		
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
