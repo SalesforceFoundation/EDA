@@ -205,7 +205,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpOrgAccountAddressMgmt</shortDescription>
+        <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Administrative and Household Accounts when selected.</value>
     </labels>
     <labels>
@@ -213,7 +213,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>stgHelpOrgAccountAddressMgmt</shortDescription>
+        <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Organizational Accounts when selected.</value>
     </labels>
     <labels>

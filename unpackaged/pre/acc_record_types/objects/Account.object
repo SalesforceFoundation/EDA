@@ -15,7 +15,7 @@
     <recordTypes>
         <fullName>Business_Organization</fullName>
         <active>true</active>
-        <description>An business organization.</description>
+        <description>A business organization.</description>
         <label>Business Organization</label>
     </recordTypes>
     <recordTypes>

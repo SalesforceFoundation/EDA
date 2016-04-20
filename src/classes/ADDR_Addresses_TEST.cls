@@ -88,8 +88,7 @@ private with sharing class ADDR_Addresses_TEST {
         
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = UTIL_Describe.getHhAccRecTypeID();
-        hs.Organizational_Account_Addresses_Enabled__c = true;
-        hs.Household_Adm_Acct_Addresses_Enabled__c = true;
+        hs.Accounts_Addresses_Enabled__c = orgRecTypeID + ';' + householdRecTypeID + ';' + adminRecTypeID + ';';
         hs.Reciprocal_Method__c = 'List Settings';
         hs.Simple_Address_Change_Treated_as_Update__c = true;
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
@@ -106,11 +105,9 @@ private with sharing class ADDR_Addresses_TEST {
         
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
-        hs.Organizational_Account_Addresses_Enabled__c = true;
-        hs.Household_Adm_Acct_Addresses_Enabled__c = true;
+        hs.Accounts_Addresses_Enabled__c = orgRecTypeID + ';' + householdRecTypeID + ';' + adminRecTypeID + ';';
         hs.Reciprocal_Method__c = 'List Settings';
         hs.Simple_Address_Change_Treated_as_Update__c = true;
-        hs.Household_Adm_Acct_Addresses_Enabled__c = true;
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
         listConT = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(parentAccsT * cConT);
@@ -226,18 +223,20 @@ private with sharing class ADDR_Addresses_TEST {
         the contact gets the new Address
     **********************************************************************************************************/            
     @isTest
-    public static void insertContactWithAddressHH() {        
+    public static void insertContactWithAddressHH() {
+        recTypesSetup();     
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         insertContactWithAddress();
     }
     
     @isTest
-    public static void insertContactWithAddressAdm() {        
+    public static void insertContactWithAddressAdm() {
+        recTypesSetup();        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         insertContactWithAddress();
     }
 
@@ -272,18 +271,20 @@ private with sharing class ADDR_Addresses_TEST {
         the contact gets the new Address
     **********************************************************************************************************/            
     @isTest
-    public static void insertContactWithAddressOverrideHH() {        
+    public static void insertContactWithAddressOverrideHH() {
+        recTypesSetup();        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         insertContactWithAddressOverride();
     }
     
     @isTest
-    public static void insertContactWithAddressOverrideAdm() {        
+    public static void insertContactWithAddressOverrideAdm() {
+        recTypesSetup();        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         insertContactWithAddressOverride();
     }
     
@@ -2637,17 +2638,19 @@ private with sharing class ADDR_Addresses_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void insertContactWithMultilineStreetAddressHH() {
+        recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         insertContactWithMultilineStreetAddress(); 
     }
     
     @isTest
     public static void insertContactWithMultilineStreetAddressAdm() {
+        recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         insertContactWithMultilineStreetAddress();
     }
     
@@ -2806,7 +2809,7 @@ private with sharing class ADDR_Addresses_TEST {
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-                Organizational_Account_Addresses_Enabled__c = true
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'
         ));
  
         Integer cAcc = 3;
@@ -2848,7 +2851,7 @@ private with sharing class ADDR_Addresses_TEST {
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-                Organizational_Account_Addresses_Enabled__c = true
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'
         ));
  
         // create accounts without addresses
@@ -2912,7 +2915,7 @@ private with sharing class ADDR_Addresses_TEST {
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c (
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-                Organizational_Account_Addresses_Enabled__c = true
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'
         ));
  
         // create accounts without addresses
@@ -2969,20 +2972,14 @@ private with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void testDisabledHHAccountAddr() {        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (
-                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-                Household_Adm_Acct_Addresses_Enabled__c = false
-        ));
+            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
         testDisabledAccountAddr();
     }
     
     @isTest
     public static void testDisabledAdmAccountAddr() {        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (
-                Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
-                Household_Adm_Acct_Addresses_Enabled__c = false
-        ));
+            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         testDisabledAccountAddr();
     }
     
@@ -3012,9 +3009,11 @@ private with sharing class ADDR_Addresses_TEST {
     
     @isTest
     public static void testSeasonalStartEndYearCurrent() {
+        recTypesSetup();
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+            Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';', 
+            Simple_Address_Change_Treated_as_Update__c = true));
               
         //Create Contact with Address info
         Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
@@ -3054,9 +3053,11 @@ private with sharing class ADDR_Addresses_TEST {
     
     @isTest
     public static void testSeasonalStartEndYearFromAcc() {
+        recTypesSetup();
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+            Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';', 
+            Simple_Address_Change_Treated_as_Update__c = true));
               
         //Create Contact without Address info
         Contact contact = new Contact(LastName = 'Testerson');
@@ -3095,10 +3096,12 @@ private with sharing class ADDR_Addresses_TEST {
     }
     
     @isTest
-    public static void testSeasonalStartEndYearUpdateInfo() {        
+    public static void testSeasonalStartEndYearUpdateInfo() {
+        recTypesSetup();    
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+            Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';', 
+            Simple_Address_Change_Treated_as_Update__c = true));
               
         //Create Contact with Address info
         Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
@@ -3144,10 +3147,12 @@ private with sharing class ADDR_Addresses_TEST {
     }
     
     @isTest
-    public static void testSeasonalStartEndYearUpdateDates() {        
+    public static void testSeasonalStartEndYearUpdateDates() {
+        recTypesSetup();       
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+            Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';', 
+            Simple_Address_Change_Treated_as_Update__c = true));
               
         //Create Contact with Address info
         Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
@@ -3191,10 +3196,12 @@ private with sharing class ADDR_Addresses_TEST {
     }
     
     @isTest
-    public static void testSeasonalStartEndYearDelete() {        
+    public static void testSeasonalStartEndYearDelete() {
+        recTypesSetup();   
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-            Household_Adm_Acct_Addresses_Enabled__c = true, Simple_Address_Change_Treated_as_Update__c = true));
+            Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';', 
+            Simple_Address_Change_Treated_as_Update__c = true));
               
         //Create Contact with Address info
         Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
@@ -3245,9 +3252,10 @@ private with sharing class ADDR_Addresses_TEST {
         HH and Contacts get updated to empty address fields
     **********************************************************************************************************/            
     static testMethod void clearConAddrExisting() {
+        recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
                 
         // this creates a default Address for each Account
         createHHTestData(parentAccs, cCon);
@@ -3343,9 +3351,10 @@ private with sharing class ADDR_Addresses_TEST {
         contact address matches address object address
     **********************************************************************************************************/            
     static testMethod void updateOrgContactToHH() {
+        recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-                                      Household_Adm_Acct_Addresses_Enabled__c = true));
+                Accounts_Addresses_Enabled__c = householdRecTypeID + ';' +adminRecTypeID + ';'));
         
         Account acc = new Account(Name='Org Account');
         insert acc;
