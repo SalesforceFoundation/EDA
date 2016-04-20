@@ -288,6 +288,7 @@
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>addrHhAdmAccountOnly</members>
+        <members>addrAccountTypeEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>

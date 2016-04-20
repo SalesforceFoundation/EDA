@@ -102,7 +102,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address Management is only supported on Household, Administrative, and Organizational Accounts (if enabled).</value>
+        <value>Address records should only be created as children of Account.</value>
+    </labels>
+    <labels>
+        <fullName>addrAccountTypeEnabled</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrHhAdmAccountOnly</shortDescription>
+        <value>Address management not enabled for this type of Account.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>

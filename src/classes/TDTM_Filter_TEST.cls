@@ -37,10 +37,16 @@
 */
 @isTest
 public with sharing class TDTM_Filter_TEST {
-
-	// if you only want to run one test in this class, fill in its name here.
-    // if you want to run all tests, then use '*'
-    private static string strTestOnly = '*';
+    
+    private static ID orgRecTypeID;
+    private static ID householdRecTypeID;
+    private static ID adminRecTypeID;
+    
+    public static void recTypesSetup() {
+        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+        adminRecTypeID = UTIL_Describe.getAdminAccRecTypeID();
+    } 
     
     public static List<Trigger_Handler__c> setup() {
         insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
@@ -57,7 +63,6 @@ public with sharing class TDTM_Filter_TEST {
     }
     
 	public static testmethod void emailField() {
-		if (strTestOnly != '*' && strTestOnly != 'emailField') return;
         List<Trigger_Handler__c> handlers = setup();
         
 		//Creating filter condition
@@ -92,7 +97,6 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void textField() {
-		if (strTestOnly != '*' && strTestOnly != 'textField') return;
 		List<Trigger_Handler__c> handlers = setup();
                                              
         //Creating filter condition.
@@ -127,7 +131,6 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void oneRecordOnly() {
-        if (strTestOnly != '*' && strTestOnly != 'oneRecordOnly') return;
         List<Trigger_Handler__c> handlers = setup();
                                              
         //Creating filter condition.
@@ -158,10 +161,8 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void InvalidFilterField() {
-        if (strTestOnly != '*' && strTestOnly != 'InvalidFilterField') return;
         List<Trigger_Handler__c> handlers = setup();
-                                             
-        
+        //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             //Creating filter condition.
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -197,9 +198,7 @@ public with sharing class TDTM_Filter_TEST {
     }
 	
 	public static testmethod void checkboxField() {
-		if (strTestOnly != '*' && strTestOnly != 'checkboxField') return;
-		List<Trigger_Handler__c> handlers = setup();
-                                             
+		List<Trigger_Handler__c> handlers = setup();                                             
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -232,9 +231,7 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void phoneField() {
-		if (strTestOnly != '*' && strTestOnly != 'phoneField') return;
-		List<Trigger_Handler__c> handlers = setup();
-                                             
+		List<Trigger_Handler__c> handlers = setup();                                             
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -267,9 +264,7 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void dateField() {
-		if (strTestOnly != '*' && strTestOnly != 'dateField') return;
 		List<Trigger_Handler__c> handlers = setup();
-		
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -302,9 +297,7 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void picklistField() {
-		if (strTestOnly != '*' && strTestOnly != 'picklistField') return;
-		List<Trigger_Handler__c> handlers = setup();
-                                             
+		List<Trigger_Handler__c> handlers = setup();           
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -337,7 +330,6 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void lookupField() {
-		if (strTestOnly != '*' && strTestOnly != 'lookupField') return;
 		List<Trigger_Handler__c> handlers = setup();
         insert handlers;
         
@@ -385,9 +377,7 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void relationshipField() {
-        if (strTestOnly != '*' && strTestOnly != 'relationshipField') return;
-        List<Trigger_Handler__c> handlers = setup();
-                                             
+        List<Trigger_Handler__c> handlers = setup();                                             
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -424,9 +414,7 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void accountParentField() {
-        if (strTestOnly != '*' && strTestOnly != 'accountParentField') return;
-        List<Trigger_Handler__c> handlers = setup();
-                                             
+        List<Trigger_Handler__c> handlers = setup();                                             
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
                 handler.Filter_Field__c = 'Account.Parent.Name';
@@ -465,14 +453,14 @@ public with sharing class TDTM_Filter_TEST {
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
         System.assertEquals(2, rels.size());
     }
-    
-    //WARNING: this test will fail is the default Account record type for the system administrator profile (which is the
-    //one the test runs under) is Business Organization, as the bizOrg record will be of that type even if we don't assign
-    //it explicitly.
+
     public static testmethod void recordTypeRelationship() {
-        if (strTestOnly != '*' && strTestOnly != 'recordTypeRelationship') return;
-        List<Trigger_Handler__c> handlers = setup();
-                                             
+        recTypesSetup();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';' + householdRecTypeID + ';'));
+                
+        List<Trigger_Handler__c> handlers = setup();                                             
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -482,11 +470,10 @@ public with sharing class TDTM_Filter_TEST {
         }
         insert handlers;
         
-        ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
         Account accFiltered = new Account(Name = 'Acme', RecordTypeId = orgRecTypeID);
-        Account accNotFiltered = new Account(Name = 'ABC');
+        Account accNotFiltered = new Account(Name = 'ABC', RecordTypeId = householdRecTypeID);
         insert new Account[] {accFiltered, accNotFiltered};
         
         //Creating four contacts. two of them are not students, because they don't have a university email.
@@ -510,14 +497,14 @@ public with sharing class TDTM_Filter_TEST {
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
         System.assertEquals(2, rels.size());
     }
-    
-    //WARNING: this test will fail is the default Account record type for the system administrator profile (which is the
-    //one the test runs under) is Business Organization, as the bizOrg record will be of that type even if we don't assign
-    //it explicitly.
-    public static testmethod void customObject() {
-        if (strTestOnly != '*' && strTestOnly != 'customObject') return;
-        List<Trigger_Handler__c> handlers = setup();
 
+    public static testmethod void customObject() {
+        recTypesSetup();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';' + householdRecTypeID + ';'));
+                
+        List<Trigger_Handler__c> handlers = setup();
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -527,11 +514,10 @@ public with sharing class TDTM_Filter_TEST {
         }
         insert handlers;
         
-        ID orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
         Account accFiltered = new Account(Name = 'Acme', RecordTypeId = orgRecTypeID);
-        Account accNotFiltered = new Account(Name = 'ABC');
+        Account accNotFiltered = new Account(Name = 'ABC', RecordTypeId = householdRecTypeID);
         insert new Account[] {accFiltered, accNotFiltered};
         
         Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id, MailingStreet__c = '123 Main St');
@@ -561,9 +547,12 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void customObjectTopOfChain() {
-        if (strTestOnly != '*' && strTestOnly != 'customObjectTopOfChain') return;
-        List<Trigger_Handler__c> handlers = setup();
-                                             
+        recTypesSetup();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'));
+                
+        List<Trigger_Handler__c> handlers = setup();                                      
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -573,8 +562,8 @@ public with sharing class TDTM_Filter_TEST {
         }
         insert handlers;
         
-        Account accFiltered = new Account(Name = 'topAcc');
-        Account accNotFiltered = new Account(Name = 'ABC');
+        Account accFiltered = new Account(Name = 'topAcc', RecordTypeId = orgRecTypeID);
+        Account accNotFiltered = new Account(Name = 'ABC', RecordTypeId = orgRecTypeID);
         insert new Account[] {accFiltered, accNotFiltered};
         
         Address__c addressFiltered = new Address__c(Parent_Account__c = accFiltered.Id, MailingStreet__c = '123 Main St');
@@ -604,9 +593,12 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void customObjectOnlyOneInChain() {
-        if (strTestOnly != '*' && strTestOnly != 'customObjectOnlyOneInChain') return;
-        List<Trigger_Handler__c> handlers = setup();
-                                             
+        recTypesSetup();
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'));
+                
+        List<Trigger_Handler__c> handlers = setup();                   
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
@@ -616,7 +608,7 @@ public with sharing class TDTM_Filter_TEST {
         }
         insert handlers;
         
-        Account topAcc = new Account(Name = 'topAcc');
+        Account topAcc = new Account(Name = 'topAcc', RecordTypeId = orgRecTypeID);
         insert new Account[] {topAcc};
         
         Address__c addressFiltered = new Address__c(Parent_Account__c = topAcc.Id, Default_Address__c = true, MailingStreet__c = '123 Main St');

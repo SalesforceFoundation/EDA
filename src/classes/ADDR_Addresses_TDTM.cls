@@ -152,8 +152,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        // BEFORE INSERT & BEFORE UPDATE
 	        if (triggerAction == TDTM_Runnable.Action.BeforeInsert ||
 	           triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-	            // enforce only HH Accounts are being used
-	            verifyAddrHHAccOnly((list<Address__c>)listNew);
+	            // enforce address records created only as children of Accounts
+	            verifyAddrAccChildOnly((list<Address__c>)listNew);
 	            
 	            // enforce Seasonal Addresses don't overlap
 	            verifyAddrSeasonalNoOverlap((list<Address__c>)listNew);
@@ -664,7 +664,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * @param listAddr a list of Addresses to verify
     * @return void. 
     */ 
-    private void verifyAddrHHAccOnly(list<Address__c> listAddr) {       
+    private void verifyAddrAccChildOnly(list<Address__c> listAddr) {       
         set<Id> setAccId = new set<Id>();
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c != null) {
@@ -680,7 +680,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
                 if (!UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
-                    addr.addError(Label.addrHhAdmAccountOnly);
+                    addr.addError(Label.addrAccountTypeEnabled);
                 }
             }
         }       
