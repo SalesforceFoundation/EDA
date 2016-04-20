@@ -1,28 +1,13 @@
 ({
 	addPrefixListSettings : function(settings, namespacePrefix) {
-		if(namespacePrefix && namespacePrefix.length > 0) {
-			//We need to end up with an array of objects, because the settings param is an array of objects
-    		var settings_w_prefix = []; //create array
-    		//Add package prefix to each custom field
-    		for(var key in settings) { //Iterate over each row - key is just a numeric index here
-    			var obj = {}; //create object
-    			for(var key2 in settings[key]) { //Iterate over each field in each row - key2 is the actual field name
-    				if(key2.endsWith('__c')) { 
-	    				var key2_w_prefix = namespacePrefix + key2;
-	    				obj[key2_w_prefix] = settings[key][key2];
-	    			} else {
-	    				obj[key2] = settings[key][key2];
-	    			}
-    			}
-    			settings_w_prefix.push(obj);
-    		}
-    		return settings_w_prefix;
-		} else {
-			return settings;
-		}
+		return this.processPrefixListSettings(settings, namespacePrefix, this.addPrefix);
 	},
 	
 	removePrefixListSettings : function(settings, namespacePrefix) {
+		return this.processPrefixListSettings(settings, namespacePrefix, this.removePrefix);
+	},
+	
+	processPrefixListSettings : function(settings, namespacePrefix, prefixHandlingFunc) {
 		if(namespacePrefix && namespacePrefix.length > 0) {
 			//We need to end up with an array of objects, because the settings param is an array of objects
     		var settings_no_prefix = []; //create array
@@ -31,7 +16,7 @@
     			var obj = {}; //create object
     			for(var key2 in settings[key]) { //Iterate over each field in each row - key2 is the actual field name
     				if(key2.endsWith('__c')) { 
-	    				var key2_no_prefix = key2.replace(namespacePrefix, '');
+	    				var key2_no_prefix = prefixHandlingFunc(namespacePrefix, key2);
 	    				obj[key2_no_prefix] = settings[key][key2];
 	    			} else {
 	    				obj[key2] = settings[key][key2];
@@ -46,30 +31,20 @@
 	},
 	
 	addPrefixHierarchySettings : function(settings, namespacePrefix) {
-		if(namespacePrefix && namespacePrefix.length > 0) {
-    		var settings_w_prefix = {};
-    		//Add package prefix to each custom field
-    		for(var key in settings) { //Iterate over each row
-    			if(key.endsWith('__c')) {
-    				var key_w_prefix = namespacePrefix + key;
-	    			settings_w_prefix[key_w_prefix] = settings[key];
-    			} else {
-    				settings_w_prefix[key] = settings[key];
-    			}
-    		}
-    		return settings_w_prefix;
-		} else {
-			return settings;
-		}
+		return this.processPrefixHierarchySettings(settings, namespacePrefix, this.addPrefix);
 	},
 	
 	removePrefixHierarchySettings : function(settings, namespacePrefix) {
+		return this.processPrefixHierarchySettings(settings, namespacePrefix, this.removePrefix);
+	},
+	
+	processPrefixHierarchySettings : function(settings, namespacePrefix, prefixHandlingFunc) {
 		if(namespacePrefix && namespacePrefix.length > 0) {
     		var settings_no_prefix = {};
-    		//Remove package prefix from each custom field
+    		//Remove or add package prefix from each custom field
     		for(var key in settings) { //Iterate over each row
     			if(key.endsWith('__c')) {
-    				var key_no_prefix = key.replace(namespacePrefix, '');
+    				var key_no_prefix = prefixHandlingFunc(namespacePrefix, key);
 	    			settings_no_prefix[key_no_prefix] = settings[key];
     			} else {
     				settings_no_prefix[key] = settings[key];
@@ -79,6 +54,14 @@
 		} else {
 			return settings;
 		}
+	},
+	
+	addPrefix : function(namespacePrefix, key) {
+		return namespacePrefix + key;
+	},
+	
+	removePrefix : function(namespacePrefix, key) {
+		return key.replace(namespacePrefix, '');
 	},
 	
 	clearNewStgBoxes : function(component, fields) {

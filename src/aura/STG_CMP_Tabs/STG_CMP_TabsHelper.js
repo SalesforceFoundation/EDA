@@ -32,26 +32,6 @@
 	    $A.enqueueAction(action);
 	},
 	
-	//We want to compare the list of all available Account Record Types with the list of those that have been
-	//marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
-	getRecTypesSelected : function(component, setting, recTypes) {
-		var settingArray = this.getTokenized(setting);
-		recTypesSelected = [];
-		for(var i = 0; i < recTypes.length; i++) {
-			recTypeSelected = {};
-			recTypeSelected.name = recTypes[i].name;
-			recTypeSelected.id = recTypes[i].id;
-			recTypeSelected.selected = false; //we set it to false initially
-			for(var j = 0; j < settingArray.length; j++) {
-				if(recTypes[i].id == settingArray[j]) {
-					recTypeSelected.selected = true;
-				}
-			}
-			recTypesSelected.push(recTypeSelected);
-		}
-		return recTypesSelected;
-	},
-	
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
 	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in 
 	//this helper. And we need the Account Processor value from HierarchySettings.
@@ -76,13 +56,13 @@
 	    		}
 	    		component.set("v.accRecTypes", accRecTypes);
 	    		
-	    		//Get record types of accounts that can be deleted if all their children have been deleted.
-	    		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController.
+	    		//Get record types of accounts that can be deleted if all their children have been deleted. We need to call this 
+	    		//method here because this logic is called after the init method in STG_CMP_AddrController.
 	    		var recTypesSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
 	    		component.set("v.accTypesToDeleteSelected", recTypesSelected);
 	    		
-	    		//Get record types of accounts that have multi-address support enabled.
-	    		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController.
+	    		//Get record types of accounts that have multi-address support enabled. We need to call this method here because this 
+	    		//logic is called after the init method in STG_CMP_AddrController.
 	    		var accTypesAddrSelected = this.getRecTypesSelected(component, accsMultiAddr, accRecTypes);
 	    		component.set("v.accTypesAddrSelected", accTypesAddrSelected);
 	    		
@@ -91,6 +71,26 @@
 			}
 	    });
 	    $A.enqueueAction(action);
+	},
+	
+	//We want to compare the list of all available Account Record Types with the list of those that have been
+	//marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
+	getRecTypesSelected : function(component, setting, recTypes) {
+		var settingArray = this.getTokenized(setting);
+		recTypesSelected = [];
+		for(var i = 0; i < recTypes.length; i++) {
+			recTypeSelected = {};
+			recTypeSelected.name = recTypes[i].name;
+			recTypeSelected.id = recTypes[i].id;
+			recTypeSelected.selected = false; //we set it to false initially
+			for(var j = 0; j < settingArray.length; j++) {
+				if(recTypes[i].id == settingArray[j]) {
+					recTypeSelected.selected = true;
+				}
+			}
+			recTypesSelected.push(recTypeSelected);
+		}
+		return recTypesSelected;
 	},
 	
 	saveSettings : function(component) {
