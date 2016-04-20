@@ -33,45 +33,23 @@
 	},
 	
 	//We want to compare the list of all available Account Record Types with the list of those that have been
-	//marked as "Account types that can be deleted if they have no children" in the Accounts_to_Delete__c setting.
-	getAccRecTypesSelectdDel : function(component, setting, accRecTypes) {
-		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController
-		var accTypesToDelete = this.getTokenized(setting);
-		accTypesToDeleteSelected = [];
-		for(var i = 0; i < accRecTypes.length; i++) {
-			accTypeToDelete = {};
-			accTypeToDelete.name = accRecTypes[i].name;
-			accTypeToDelete.id = accRecTypes[i].id;
-			accTypeToDelete.selected = false; //we set it to false initially
-			for(var j = 0; j < accTypesToDelete.length; j++) {
-				if(accRecTypes[i].id == accTypesToDelete[j]) {
-					accTypeToDelete.selected = true;
+	//marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
+	getRecTypesSelected : function(component, setting, recTypes) {
+		var settingArray = this.getTokenized(setting);
+		recTypesSelected = [];
+		for(var i = 0; i < recTypes.length; i++) {
+			recTypeSelected = {};
+			recTypeSelected.name = recTypes[i].name;
+			recTypeSelected.id = recTypes[i].id;
+			recTypeSelected.selected = false; //we set it to false initially
+			for(var j = 0; j < settingArray.length; j++) {
+				if(recTypes[i].id == settingArray[j]) {
+					recTypeSelected.selected = true;
 				}
 			}
-			accTypesToDeleteSelected.push(accTypeToDelete);
+			recTypesSelected.push(recTypeSelected);
 		}
-		component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
-	},
-	
-	//We want to compare the list of all available Account Record Types with the list of those that have been
-	//marked as having multi-addresses enabled in the Accounts_Addresses_Enabled__c setting.
-	getAccRecTypesAddr : function(component, setting, accRecTypes) {
-		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController
-		var accTypesAddr = this.getTokenized(setting);
-		accTypesAddrSelected = [];
-		for(var i = 0; i < accRecTypes.length; i++) {
-			accTypeAddr = {};
-			accTypeAddr.name = accRecTypes[i].name;
-			accTypeAddr.id = accRecTypes[i].id;
-			accTypeAddr.selected = false; //we set it to false initially
-			for(var j = 0; j < accTypesAddr.length; j++) {
-				if(accRecTypes[i].id == accTypesAddr[j]) {
-					accTypeAddr.selected = true;
-				}
-			}
-			accTypesAddrSelected.push(accTypeAddr);
-		}
-		component.set("v.accTypesAddrSelected", accTypesAddrSelected);
+		return recTypesSelected;
 	},
 	
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
@@ -98,10 +76,15 @@
 	    		}
 	    		component.set("v.accRecTypes", accRecTypes);
 	    		
-	    		//Get record types of accounts that can be deleted if all their children have been deleted
-	    		this.getAccRecTypesSelectdDel(component, accsToDelete, accRecTypes);
-	    		//Get record types of accounts that have multi-address support enabled
-	    		this.getAccRecTypesAddr(component, accsMultiAddr, accRecTypes);
+	    		//Get record types of accounts that can be deleted if all their children have been deleted.
+	    		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController.
+	    		var recTypesSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
+	    		component.set("v.accTypesToDeleteSelected", recTypesSelected);
+	    		
+	    		//Get record types of accounts that have multi-address support enabled.
+	    		//We need to call this method here because this logic is called after the init method in STG_CMP_AddrController.
+	    		var accTypesAddrSelected = this.getRecTypesSelected(component, accsMultiAddr, accRecTypes);
+	    		component.set("v.accTypesAddrSelected", accTypesAddrSelected);
 	    		
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);

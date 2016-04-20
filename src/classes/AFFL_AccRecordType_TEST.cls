@@ -195,24 +195,24 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contact;
        
         //Create primary Affl to Account without record type
-        Account bizOrg = new Account(Name = 'BizOrg');
-        insert bizOrg;
-        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
+        Account acc = new Account(Name = 'AccNoType');
+        insert acc;
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-        insert bizAffl;
+        insert affl;
         
         //Verify Primary Business Organization field was not populated
         contact = [select Primary_Organization__c from Contact where ID=:contact.Id];
         System.assertEquals(null, contact.Primary_Organization__c);
         
         //Give record type to that Account
-        bizOrg.RecordTypeId = orgRecTypeID;
+        acc.RecordTypeId = orgRecTypeID;
         Test.startTest();
-        update bizOrg;
+        update acc;
         Test.stopTest();
         
         //Verify Primary Business Organization field was populated
         contact = [select Primary_Organization__c from Contact where ID=:contact.Id];
-        System.assertEquals(bizOrg.ID, contact.Primary_Organization__c);
+        System.assertEquals(acc.ID, contact.Primary_Organization__c);
     }
 }
