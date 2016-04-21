@@ -33,12 +33,20 @@
         
         <div class="slds-col slds-size--1-of-2">Store Errors:</div>
         <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/>
-            <aura:set attribute="else">
-                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}" label="Store Erros On" labelClass="slds-hide"/>
-            </aura:set>
-            </aura:if>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+			            <aura:if isTrue="{!v.isView}">
+			                <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}"/>
+			            <aura:set attribute="else">
+			                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}" />
+			                <span class="slds-checkbox--faux"></span>
+			                <span class="slds-form-element__label"></span>
+			            </aura:set>
+			            </aura:if>
+			        </label>
+                </div>
+            </div>
         </div>
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
@@ -51,12 +59,20 @@
         
         <div class="slds-col slds-size--1-of-2">Send Error Notifications:</div>
         <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}"/>
-            <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" label="Error Notifications On" labelClass="slds-hide"/>
-            </aura:set>
-            </aura:if>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+			            <aura:if isTrue="{!v.isView}">
+			                <ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" />
+			            <aura:set attribute="else">
+			                <ui:inputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" />
+			                <span class="slds-checkbox--faux"></span>
+                            <span class="slds-form-element__label"></span>
+			            </aura:set>
+			            </aura:if>
+			        </label>
+                </div>
+            </div>
         </div>
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
@@ -88,12 +104,20 @@
         
         <div class="slds-col slds-size--1-of-2">Disable Error Handling:</div>
         <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}"/>
-            <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" label="Enable Debug" labelClass="slds-hide"/>
-            </aura:set>
-            </aura:if>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+				        <aura:if isTrue="{!v.isView}">
+			                <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}"/>
+			            <aura:set attribute="else">
+			                <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" />
+			                <span class="slds-checkbox--faux"></span>
+                            <span class="slds-form-element__label"></span>
+			            </aura:set>
+			            </aura:if>
+				    </label>
+                </div>
+            </div>
         </div>
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
