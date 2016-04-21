@@ -92,8 +92,8 @@ public without sharing class UTIL_CustomSettingsFacade {
      **/
     private static void configSettings(Hierarchy_Settings__c hs) {
 		hs.Account_Processor__c = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
-		hs.Organizational_Account_Addresses_Enabled__c = true;
-		hs.Household_Adm_Acct_Addresses_Enabled__c = true;
+		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getHhAccRecTypeID() 
+		                                  + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
 		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
@@ -116,15 +116,15 @@ public without sharing class UTIL_CustomSettingsFacade {
 
         //create our own based on what's passed in from the test
         settings.Account_Processor__c = mySettings.Account_Processor__c;
-        settings.Organizational_Account_Addresses_Enabled__c = mySettings.Organizational_Account_Addresses_Enabled__c;
+        settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
-        settings.Household_Adm_Acct_Addresses_Enabled__c = mySettings.Household_Adm_Acct_Addresses_Enabled__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         settings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;
         settings.Affl_ProgEnroll_Del__c = mySettings.Affl_ProgEnroll_Del__c;
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
+        settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         
         orgSettings = settings;
         return settings;

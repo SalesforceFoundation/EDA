@@ -66,9 +66,8 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             // AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 // for new accounts that are using address management, create the address object.
-                if (acc.RecordTypeId != UTIL_Describe.getHhAccRecTypeID() 
-                && acc.RecordTypeId != UTIL_Describe.getAdminAccRecTypeID() && 
-                UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c) {
+                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
                     if (isAccountAddressSpecified(acc))
                         listAccCreateAddr.add(acc);
                 }
@@ -82,12 +81,8 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
                 if (ADDR_Addresses_TDTM.hasRunAddrTrigger) {
                     continue;
                 }
-                // we only support address management with HH Accounts and Organizational Accounts (if enabled)
-                if (((acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() 
-                || acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) && 
-                UTIL_CustomSettingsFacade.getSettings().Household_Adm_Acct_Addresses_Enabled__c) || 
-                (acc.RecordTypeId != UTIL_Describe.getHhAccRecTypeID() && acc.RecordTypeId != UTIL_Describe.getAdminAccRecTypeID() && 
-                UTIL_CustomSettingsFacade.getSettings().Organizational_Account_Addresses_Enabled__c)) {
+                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
                     // if the address changed, remember the account we want to add a new address for    
                     if (isAccountAddressChanged(acc, accOld)) 
                         listAccCreateAddr.add(acc);

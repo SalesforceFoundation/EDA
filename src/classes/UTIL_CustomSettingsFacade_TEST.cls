@@ -38,6 +38,16 @@
 @isTest
 public with sharing class UTIL_CustomSettingsFacade_TEST {
     
+    private static ID orgRecTypeID;
+    private static ID householdRecTypeID;
+    private static ID adminRecTypeID;
+    
+    public static void recTypesSetup() {
+        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+        adminRecTypeID = UTIL_Describe.getAdminAccRecTypeID();
+    }
+    
     @isTest
     public static void getAfflMappings() {
         insert new Affl_Mappings__c(Name = 'edu', Account_Record_Type__c = 'educational institution', 
@@ -77,18 +87,19 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
    
     @isTest
     public static void saveHierarchySettings() {
+        recTypesSetup();
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = 'Administrative';
-        hs.Organizational_Account_Addresses_Enabled__c = true;
+        hs.Accounts_Addresses_Enabled__c = orgRecTypeID + ';';
         
         Test.startTest();
         UTIL_CustomSettingsFacade.saveHierarchySettings(hs);
         Test.stopTest();
         
-        List<Hierarchy_Settings__c> hss = [select Organizational_Account_Addresses_Enabled__c from Hierarchy_Settings__c 
+        List<Hierarchy_Settings__c> hss = [select Accounts_Addresses_Enabled__c from Hierarchy_Settings__c 
             where Account_Processor__c = 'Administrative'];
         System.assertEquals(1, hss.size());
-        System.assertEquals(true, hss[0].Organizational_Account_Addresses_Enabled__c);
+        System.assertEquals(true, hss[0].Accounts_Addresses_Enabled__c.contains(orgRecTypeID));
     }
   
     @isTest

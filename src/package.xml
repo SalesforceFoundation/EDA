@@ -86,6 +86,7 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>CMP_RecTypes</members>
         <members>STG_App</members>
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
@@ -214,6 +215,7 @@
         <members>Error__c.Record_URL__c</members>
         <members>Error__c.Stack_Trace__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
+        <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
@@ -221,8 +223,7 @@
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
-        <members>Hierarchy_Settings__c.Household_Adm_Acct_Addresses_Enabled__c</members>
-        <members>Hierarchy_Settings__c.Organizational_Account_Addresses_Enabled__c</members>
+        <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
@@ -287,6 +288,7 @@
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>addrHhAdmAccountOnly</members>
+        <members>addrAccountTypeEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
