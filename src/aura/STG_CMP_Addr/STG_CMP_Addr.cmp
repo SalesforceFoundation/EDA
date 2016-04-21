@@ -14,13 +14,20 @@
 
         <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div> 
         <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"/>
-            <aura:set attribute="else">
-                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
-                                    label="Simple Address Change Treated as Update" labelClass="slds-hide"/>
-            </aura:set>
-            </aura:if>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+			            <aura:if isTrue="{!v.isView}">
+			                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" />
+			            <aura:set attribute="else">
+			                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" />
+			                <span class="slds-checkbox--faux"></span>
+			                <span class="slds-form-element__label"></span>
+			            </aura:set>
+			            </aura:if>
+			        </label>
+                </div>
+            </div>
         </div>
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
