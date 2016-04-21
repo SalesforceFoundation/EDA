@@ -231,7 +231,7 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void phoneField() {
-		List<Trigger_Handler__c> handlers = setup();                                             
+		List<Trigger_Handler__c> handlers = setup();
         //Creating filter condition.
         for(Trigger_Handler__c handler : handlers) {
             if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
