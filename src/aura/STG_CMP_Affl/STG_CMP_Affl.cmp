@@ -20,7 +20,14 @@
         
         <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
             <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size--1-of-1">Related Affiliation deleted when Program Enrollment deleted:</div>
+                <div class="slds-col slds-size--1-of-1">
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.AfflProgEnrollDeleted + ' '}" />
+	                <aura:set attribute="else">
+	                    <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted + ' '}" />
+	                </aura:set>
+	                </aura:if>
+                </div>
                 <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
                     
                     <div class="slds-col slds-size--1-of-2">Yes:</div> 
@@ -64,6 +71,16 @@
         </div>
         
         <div aura:id="mappingsTabContent" class="slds-tabs__content" role="tabpanel">
+            <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.AfflMappingsDescription + ' '}" class="slds-text-body--small" />
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.AfflMappingsDescription + ' '}" class="slds-text-body--small" />
+                </aura:set>
+                </aura:if>
+                <ui:outputURL value="http://powerofus.force.com/HEDA_Affiliations" class="slds-text-body--small slds-type-focus" 
+                    label="HEDA documentation." target="_blank" />
+            </div>
             <div class="slds-grid slds-wrap">
                  <div class="slds-col slds-size--1-of-6"><strong>Account Record Type</strong></div>
                  <div class="slds-col slds-size--1-of-6"><strong>Contact Primary Affl Field</strong></div>
