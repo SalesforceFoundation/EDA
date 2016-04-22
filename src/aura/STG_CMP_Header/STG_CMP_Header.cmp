@@ -2,6 +2,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:attribute name="namespacePrefix" type="String" />
+    <aura:attribute name="isView" type="Boolean" default="true"/>
     
     <aura:registerEvent name="STG_EVT_Edit" type="c:STG_EVT_Edit" />
     <aura:registerEvent name="STG_EVT_Save" type="c:STG_EVT_Save" />
