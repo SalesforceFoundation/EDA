@@ -275,6 +275,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>AfflMappingsDescription</members>
         <members>noAccRecType</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
