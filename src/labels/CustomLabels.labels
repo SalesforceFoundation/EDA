@@ -9,6 +9,14 @@
         <value>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</value>
     </labels>
     <labels>
+        <fullName>AfflProgEnrollDeleted</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AfflProgEnrollDeleted</shortDescription>
+        <value>When a Program Enrollment is deleted, delete the related Affiliation.</value>
+    </labels>
+    <labels>
          <fullName>noAccRecType</fullName>
          <categories>Record Types</categories>
          <language>en_US</language>

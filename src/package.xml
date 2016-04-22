@@ -276,6 +276,7 @@
     </types>
     <types>
         <members>AfflMappingsDescription</members>
+        <members>AfflProgEnrollDeleted</members>
         <members>noAccRecType</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
