@@ -4,6 +4,8 @@
     <aura:attribute name="reciprocalSettings" type="Relationship_Lookup__c[]" />
     <aura:attribute name="autoCreateSettings" type="Relationship_Auto_Create__c[]" />
     <aura:attribute name="Id" type="String" />
+    <aura:attribute name="noRecSettings" type="String" />
+    <aura:attribute name="noAutoCreateSettings" type="String" />
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
