@@ -11,10 +11,10 @@
     <div id="afflTabs" class="slds-tabs--scoped">
         <ul class="slds-tabs--scoped__nav" role="tablist">
             <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Settings" role="tab">
-                <ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" />
+                <ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" class="affl-settings-menulink" />
             </li>
             <li aura:id="mappingsTab" class="slds-tabs__item slds-text-heading--label" title="Affiliation Mappings" role="tab">
-                <ui:outputURL value="#" label="Affiliation Mappings" click="{!c.mappingsLinkClicked}" />
+                <ui:outputURL value="#" label="Affiliation Mappings" click="{!c.mappingsLinkClicked}" class="affl-mappings-menulink"/>
             </li>
         </ul>
         
@@ -37,7 +37,7 @@
                                      label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
                          <aura:set attribute="else">
                             <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" disabled="{!v.isView}"
-                                     label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
+                                     label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
                          </aura:set>
                          </aura:if>
                     </div>
@@ -47,10 +47,12 @@
                             <div class="slds-col slds-size--1-of-2">No, just change Status to:</div>
                             <div class="slds-col slds-size--1-of-2">
                                 <aura:if isTrue="{!v.isView}">
-                                    <ui:outputText aura:id="ProgEnrollDel" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"/>
+                                    <ui:outputText aura:id="ProgEnrollDel" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
+                                                   class="progenroll-del-no-status" />
                                  <aura:set attribute="else">
                                     <ui:inputText aura:id="ProgEnrollDel" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
-                                        label="{!'Status: ' + v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}" labelClass="slds-hide" />
+                                        label="{!'Status: ' + v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}" labelClass="slds-hide" 
+                                        class="progenroll-del-no-status"/>
                                 </aura:set>
                                 </aura:if>
                             </div>
@@ -59,7 +61,7 @@
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
                             <ui:inputRadio aura:id="affl_del_no" name="affldel" value="false" disabled="{!v.isView}"
-                                     label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
+                                     label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
                          <aura:set attribute="else">
                             <ui:inputRadio aura:id="affl_del_no" name="affldel" value="true" disabled="{!v.isView}" 
                                      label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
@@ -94,18 +96,18 @@
                  <aura:iteration items="{!v.afflMappings}" var="afflMapping" indexVar="position">
                      <div class="slds-col slds-size--1-of-6">
                          <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Account_Record_Type__c}"/>
+                             <ui:outputText value="{!afflMapping.Account_Record_Type__c}" class="mapping-acc-rec-type" />
                          <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Account_Record_Type__c}" 
+                             <ui:inputText value="{!afflMapping.Account_Record_Type__c}" class="mapping-acc-rec-type" 
                                             label="{!'Acc Record Type: ' + afflMapping.Account_Record_Type__c}" labelClass="slds-hide"/>
                          </aura:set>
                          </aura:if>
                      </div>
                      <div class="slds-col slds-size--1-of-6">
                          <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Primary_Affl_Field__c}"/>
+                             <ui:outputText value="{!afflMapping.Primary_Affl_Field__c}" class="mapping-affl-field" />
                          <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Primary_Affl_Field__c}" 
+                             <ui:inputText value="{!afflMapping.Primary_Affl_Field__c}" class="mapping-affl-field" 
                                             label="{!'Primary Affl Field: ' + afflMapping.Primary_Affl_Field__c}" labelClass="slds-hide"/>
                          </aura:set>
                          </aura:if>
@@ -115,9 +117,9 @@
                             <div class="slds-form-element__control">
                                 <label class="slds-checkbox">
 			                         <aura:if isTrue="{!v.isView}">
-			                             <ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}"/>
+			                             <ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
 			                         <aura:set attribute="else">
-			                             <ui:inputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" />
+			                             <ui:inputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
 			                             <span class="slds-checkbox--faux"></span>
 			                             <span class="slds-form-element__label"></span>
 			                         </aura:set>
@@ -128,18 +130,18 @@
                      </div>
                      <div class="slds-col slds-size--1-of-6">
                          <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}"/>
+                             <ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}" class="mapping-enroll-status" />
                          <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}" 
+                             <ui:inputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}" class="mapping-enroll-status"
                                             label="{!'Status: ' + afflMapping.Auto_Program_Enrollment_Status__c}" labelClass="slds-hide"/>
                          </aura:set>
                          </aura:if>
                      </div>
                      <div class="slds-col slds-size--1-of-6">
                          <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}"/>
+                             <ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}" class="mapping-enroll-role" />
                          <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}" 
+                             <ui:inputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}" class="mapping-enroll-role" 
                                             label="{!'Role: ' + afflMapping.Auto_Program_Enrollment_Role__c}" labelClass="slds-hide"/>
                          </aura:set>
                          </aura:if>
@@ -147,8 +149,8 @@
                      <div class="slds-col slds-size--1-of-6">
                         <aura:if isTrue="{!!v.isView}">
 	                         <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-	                             category="utility" size="small" name="delete" class="slds-theme--inverse" pressIcon="{!c.deleteAfflMappingRow}" 
-	                             id="{!afflMapping.Id}" position="{!position}" />
+	                             category="utility" size="small" name="delete" class="slds-theme--inverse mapping-delete" 
+	                             pressIcon="{!c.deleteAfflMappingRow}" id="{!afflMapping.Id}" position="{!position}" />
                          </aura:if>
                      </div>
                  </aura:iteration>
@@ -159,27 +161,31 @@
                     <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
                       <div class="slds-form--inline slds-form-element">
                         <div class="slds-form-element__control">
-                            <ui:inputText aura:id="accRecType" placeholder="Account Record Type" class="slds-m-right--medium" label="Account Record Type" labelClass="slds-hide"/>
+                            <ui:inputText aura:id="accRecType" placeholder="Account Record Type" class="slds-m-right--medium acc-rec-type-new" 
+                                          label="Account Record Type" labelClass="slds-hide"/>
                         </div>
                         <div class="slds-form-element__control">
-                            <ui:inputText aura:id="primaryField" placeholder="Primary Affl Field" class="slds-m-right--medium" label="Primary Affl Field" labelClass="slds-hide"/>
+                            <ui:inputText aura:id="primaryField" placeholder="Primary Affl Field" class="slds-m-right--medium acc-rec-type-new" 
+                                          label="Primary Affl Field" labelClass="slds-hide"/>
                         </div>
                         <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment:</label>
                         <div class="slds-form-element__control">
                              <label class="slds-checkbox">
-	                             <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium" />
+	                             <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium auto-enroll-checkbox" />
 	                             <span class="slds-checkbox--faux"></span>
 	                             <span class="slds-form-element__label"></span>
 	                         </label>
                         </div>
                         <div class="slds-form-element__control">
-                             <ui:inputText aura:id="autoEnrollStatus" placeholder="Status" class="slds-m-right--medium" label="Status" labelClass="slds-hide"/>
+                             <ui:inputText aura:id="autoEnrollStatus" placeholder="Status" class="slds-m-right--medium auto-enroll-status-new" 
+                                           label="Status" labelClass="slds-hide"/>
                         </div>
                         <div class="slds-form-element__control">
-                            <ui:inputText aura:id="autoEnrollRole" placeholder="Role" label="Role" labelClass="slds-hide"/>
+                            <ui:inputText aura:id="autoEnrollRole" placeholder="Role" label="Role" labelClass="slds-hide" class="auto-enroll-role-new" />
                         </div>
                       </div>
-                      <ui:button class="slds-button slds-button--brand slds-m-top--medium" press="{!c.newAfflMapping}">Add Mapping</ui:button>
+                      <ui:button class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" 
+                                 press="{!c.newAfflMapping}">Add Mapping</ui:button>
                   </fieldset>
                 </div>
               </div>
