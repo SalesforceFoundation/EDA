@@ -18,9 +18,11 @@
                 <div class="slds-form-element__control">
                     <label class="slds-checkbox">
 			            <aura:if isTrue="{!v.isView}">
-			                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" />
+			                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" 
+			                                   class="addr-change-outputcheck" />
 			            <aura:set attribute="else">
-			                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" />
+			                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" 
+			                                  class="addr-change-inputcheck" />
 			                <span class="slds-checkbox--faux"></span>
 			                <span class="slds-form-element__label"></span>
 			            </aura:set>

@@ -18,10 +18,10 @@
                 <label class="slds-checkbox">
 		            <aura:if isTrue="{!v.isView}">
 		                <span style="margin-right: 8px">
-		                    <ui:outputCheckbox value="{!recType.selected}" class="slds-checkbox" />
+		                    <ui:outputCheckbox value="{!recType.selected}" class="slds-checkbox cmp-rectypes-outputcheck" />
 		                </span>
 		            <aura:set attribute="else">
-		                <ui:inputCheckbox value="{!recType.selected}" class="slds-checkbox" 
+		                <ui:inputCheckbox value="{!recType.selected}" class="slds-checkbox cmp-rectypes-inputcheck" 
 		                                  aura:id="checkboxIds" text="{!recType.id}"  />
 		                <span class="slds-checkbox--faux"></span>   
 		            </aura:set>
