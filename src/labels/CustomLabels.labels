@@ -193,6 +193,30 @@
         <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
     </labels>
     <labels>
+        <fullName>stgAccModelTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgAccModelTitle</shortDescription>
+        <value>Default Account Model:</value>
+    </labels>
+    <labels>
+        <fullName>stgDisableErrorHandlingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgDisableErrorHandlingTitle</shortDescription>
+        <value>Disable Error Handling:</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorNotifRecipientsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgErrorNotifRecipientsTitle</shortDescription>
+        <value>Error Notification Recipients:</value>
+    </labels>
+    <labels>
         <fullName>stgHelpErrorDisable</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -214,7 +238,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpErrorNotifyTo</shortDescription>
-        <value>Select the type of user to send notifications to.</value>
+        <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are 'All Sys Admins', the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>
@@ -271,5 +295,21 @@
         <protected>false</protected>
         <shortDescription>stgHelpRelReciprocalMethod</shortDescription>
         <value>Determines method used to generate the reciprocal relationship. Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;).</value>
+    </labels>
+    <labels>
+        <fullName>stgSendErrorsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgSendErrorsTitle</shortDescription>
+        <value>Send Error Notifications:</value>
+    </labels>
+    <labels>
+        <fullName>stgStoreErrorsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgStoreErrorsTitle</shortDescription>
+        <value>Store Errors:</value>
     </labels>
 </CustomLabels>

@@ -156,5 +156,10 @@ public class UTIL_Namespace {
         String l15 = Label.stgHelpErrorDisable;
         String l16 = Label.AfflMappingsDescription;
         String l17 = Label.AfflProgEnrollDeleted;
+        String l18 = Label.stgErrorNotifRecipientsTitle;
+        String l19 = Label.stgAccModelTitle;
+        String l20 = Label.stgStoreErrorsTitle;
+        String l21 = Label.stgSendErrorsTitle;
+        String l22 = Label.stgDisableErrorHandlingTitle;
     }
 }
