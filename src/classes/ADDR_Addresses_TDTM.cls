@@ -678,7 +678,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr.addError(Label.addrHhAdmAccountOnly);
             } else {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-                if (!UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c == null || 
+                !UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrAccountTypeEnabled);
                 }
