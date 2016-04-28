@@ -8,7 +8,14 @@
     <aura:attribute name="accRecTypeName" type="String" />
     
     <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size--1-of-2">Default Account Model:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgAccModelTitle}" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgAccModelTitle}" />
+            </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.isView}">
                 <ui:outputText aura:id="recTypeName" value="{!v.accRecTypeName}" class="acc-model"/>
@@ -31,7 +38,14 @@
             </aura:if>
         </div>
         
-        <div class="slds-col slds-size--1-of-2">Store Errors:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgStoreErrorsTitle}" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgStoreErrorsTitle}" />
+            </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
@@ -58,7 +72,14 @@
             </aura:if>
         </div>
         
-        <div class="slds-col slds-size--1-of-2">Send Error Notifications:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgSendErrorsTitle}" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgSendErrorsTitle}" />
+            </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
@@ -84,7 +105,14 @@
             </aura:if>
         </div>
         
-        <div class="slds-col slds-size--1-of-2">Error Notification Recipients:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgErrorNotifRecipientsTitle}" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgErrorNotifRecipientsTitle}" />
+            </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.isView}">
                 <ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}" class="errors-recepient" />
@@ -103,7 +131,14 @@
             </aura:if>
         </div>
         
-        <div class="slds-col slds-size--1-of-2">Disable Error Handling:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgDisableErrorHandlingTitle}" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgDisableErrorHandlingTitle}" />
+            </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">

@@ -299,6 +299,9 @@
         <members>noRecSettings</members>
         <members>RelationshipsAutoDescription</members>
         <members>RelationshipsLookupDescription</members>
+        <members>stgAccModelTitle</members>
+        <members>stgDisableErrorHandlingTitle</members>
+        <members>stgErrorNotifRecipientsTitle</members>
         <members>stgHelpErrorDisable</members>
         <members>stgHelpErrorNotifyOn</members>
         <members>stgHelpErrorNotifyTo</members>
@@ -309,6 +312,8 @@
         <members>stgHelpStoreErrorsOn</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
+        <members>stgSendErrorsTitle</members>
+        <members>stgStoreErrorsTitle</members>
         <name>CustomLabel</name>
     </types>
     <types>
