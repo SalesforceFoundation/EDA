@@ -2313,14 +2313,30 @@
         <label>Ethnicity</label>
         <picklist>
             <picklistValues>
-                <fullName>Caucasian</fullName>
+                <fullName>American Indian or Alaska Native</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Asian</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>Black or African American</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hispanic or Latino</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Native Hawaiian or Other Pacific Islander</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>White</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted> 
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
