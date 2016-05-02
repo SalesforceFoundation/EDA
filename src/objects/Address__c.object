@@ -238,6 +238,21 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Parent_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Contact this address is for.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact this address is for.</inlineHelpText>
+        <label>Parent Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Addresses</relationshipLabel>
+        <relationshipName>Addresses</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Seasonal_End_Day__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The day of the month when this address no longer replaces the default address.</inlineHelpText>
