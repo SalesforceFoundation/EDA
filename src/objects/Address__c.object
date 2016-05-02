@@ -96,7 +96,7 @@
         <fullName>Default_Address__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Is this the Default Address to use for the Household and its Contacts?</inlineHelpText>
+        <inlineHelpText>Is this the Default Address to use for the Account and its Contacts?</inlineHelpText>
         <label>Default Address</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -142,7 +142,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
     <fields>
         <fullName>Latest_End_Date__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The most recent ending date that this Address was used for this Household.</inlineHelpText>
+        <inlineHelpText>The most recent ending date this Address was used.</inlineHelpText>
         <label>Latest End Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -152,7 +152,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
     <fields>
         <fullName>Latest_Start_Date__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>The most recent starting date that this Address was used for this Household.</inlineHelpText>
+        <inlineHelpText>The most recent starting date this Address was used.</inlineHelpText>
         <label>Latest Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
