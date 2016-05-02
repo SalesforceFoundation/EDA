@@ -2336,7 +2336,7 @@
                 <fullName>White</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted> 
+            <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>

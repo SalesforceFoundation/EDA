@@ -15,6 +15,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Accounts_Addresses_Enabled__c</fullName>
+        <description>Record Types of those Accounts that should have multi-addresses enabled.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Record Types of those Accounts that should have multi-addresses enabled.</inlineHelpText>
+        <label>Multi-Address Accounts</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Accounts_to_Delete__c</fullName>
         <description>Record Types of those Accounts that should be deleted if all its children Contacts have been deleted.</description>
         <externalId>false</externalId>
@@ -92,16 +102,6 @@
         <externalId>false</externalId>
         <inlineHelpText>Select the type of user to send notifications to.</inlineHelpText>
         <label>Error Notification Recipients</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Accounts_Addresses_Enabled__c</fullName>
-        <description>Record Types of those Accounts that should have multi-addresses enabled.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Record Types of those Accounts that should have multi-addresses enabled.</inlineHelpText>
-        <label>Multi-Address Accounts</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
