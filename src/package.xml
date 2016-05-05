@@ -12,6 +12,7 @@
         <members>ADDR_Contact_TDTM</members>
         <members>ADDR_Seasonal_BATCH</members>
         <members>ADDR_Seasonal_SCHED</members>
+        <members>ADDR_Seasonal_TEST</members>
         <members>AFFL_AccChange_TDTM</members>
         <members>AFFL_AccRecordType_TDTM</members>
         <members>AFFL_AccRecordType_TEST</members>
@@ -120,7 +121,9 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
+        <members>Account.is_Address_Override__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
         <members>Address__c.Formula_MailingAddress__c</members>
@@ -281,38 +284,38 @@
         <members>noAccRecType</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
-        <members>CannotDelete</members>
-        <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
+        <members>DefaultAccountName</members>
+        <members>CannotDelete</members>
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
-        <members>RelationshipsAutoDescription</members>
-        <members>RelationshipsLookupDescription</members>
-        <members>addrAccountTypeEnabled</members>
         <members>addrHhAdmAccountOnly</members>
+        <members>addrAccountTypeEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
+        <members>RelationshipsAutoDescription</members>
+        <members>RelationshipsLookupDescription</members>
         <members>stgAccModelTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgErrorNotifRecipientsTitle</members>
-        <members>stgHelpAccountModel</members>
         <members>stgHelpErrorDisable</members>
         <members>stgHelpErrorNotifyOn</members>
         <members>stgHelpErrorNotifyTo</members>
+        <members>stgHelpAccountModel</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
-        <members>stgHelpRelAutoCreatedDup</members>
-        <members>stgHelpRelReciprocalMethod</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>
+        <members>stgHelpRelAutoCreatedDup</members>
+        <members>stgHelpRelReciprocalMethod</members>
         <members>stgSendErrorsTitle</members>
         <members>stgStoreErrorsTitle</members>
         <name>CustomLabel</name>
