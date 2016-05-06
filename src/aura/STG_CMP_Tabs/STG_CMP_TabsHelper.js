@@ -58,8 +58,8 @@
 	    		
 	    		//Get record types of accounts that can be deleted if all their children have been deleted. We need to call this 
 	    		//method here because this logic is called after the init method in STG_CMP_AddrController.
-	    		var recTypesSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
-	    		component.set("v.accTypesToDeleteSelected", recTypesSelected);
+	    		var accTypesToDeleteSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
+	    		component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
 	    		
 	    		//Get record types of accounts that have multi-address support enabled. We need to call this method here because this 
 	    		//logic is called after the init method in STG_CMP_AddrController.
@@ -77,9 +77,9 @@
 	//marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
 	getRecTypesSelected : function(component, setting, recTypes) {
 		var settingArray = this.getTokenized(setting);
-		recTypesSelected = [];
+		var recTypesSelected = [];
 		for(var i = 0; i < recTypes.length; i++) {
-			recTypeSelected = {};
+			var recTypeSelected = {};
 			recTypeSelected.name = recTypes[i].name;
 			recTypeSelected.id = recTypes[i].id;
 			recTypeSelected.selected = false; //we set it to false initially
