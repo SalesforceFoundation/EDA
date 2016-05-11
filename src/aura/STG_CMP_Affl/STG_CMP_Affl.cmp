@@ -33,11 +33,11 @@
                     <div class="slds-col slds-size--1-of-2">Yes:</div> 
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
-                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="true" disabled="{!v.isView}" 
-                                     label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
+                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="true" text="true" disabled="{!v.isView}" 
+                                     change="{!c.setAfflProgEnrollDel}" />
                          <aura:set attribute="else">
-                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" disabled="{!v.isView}"
-                                     label="true" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
+                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" text="true" disabled="{!v.isView}"
+                                     change="{!c.setAfflProgEnrollDel}" />
                          </aura:set>
                          </aura:if>
                     </div>
@@ -60,11 +60,11 @@
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
-                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="false" disabled="{!v.isView}"
-                                     label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
+                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="false" text="false" disabled="{!v.isView}"
+                                     change="{!c.setAfflProgEnrollDel}" ></ui:inputRadio>
                          <aura:set attribute="else">
-                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="true" disabled="{!v.isView}" 
-                                     label="false" labelClass="slds-hide" change="{!c.setAfflProgEnrollDel}" />
+                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="true" text="false" disabled="{!v.isView}" 
+                                     change="{!c.setAfflProgEnrollDel}" />
                          </aura:set>
                          </aura:if>
                     </div>
