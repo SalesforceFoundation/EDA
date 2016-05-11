@@ -27,8 +27,7 @@
 	},
 	
 	setAfflProgEnrollDel : function(component, event) {
-		var elem = event.getSource().getElement();
-		var selected = elem.textContent;
+		var selected = event.getSource().get("v.text");
 		var hierarchySettings = component.get("v.hierarchySettings");
 		hierarchySettings.Affl_ProgEnroll_Del__c = selected;
 		component.set("v.hierarchySettings", hierarchySettings);
