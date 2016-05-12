@@ -449,26 +449,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // add all accounts needing updating to our list
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
         }
-    }
- 
-    /*******************************************************************************************************
-    * @description returns whether changes in the contact require a rename of a HH Account 
-    * @param conNew the new version of the Contact
-    * @param conOld the old version of the Contact
-    * @return boolean
-    */ 
-    private boolean needsHHAccountRename(Contact conNew, Contact conOld) {          
-        if(conNew == null && conOld != null)
-            return true;
-        if(conNew != null && conOld == null)
-            return true;
-        if(conNew.FirstName == null) conNew.FirstName = '';
-        if(conNew.LastName == null) conNew.LastName = '';
-        
-        return (!conNew.Firstname.equals(conOld.Firstname) ||
-                !conNew.Lastname.equals(conOld.Lastname) ||
-                conNew.Salutation != conOld.Salutation);
-    }   
+    }  
 
     /*******************************************************************************************************
     * @description returns the default name for a new HH Account. Custom household naming will update this 
