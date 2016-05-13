@@ -112,9 +112,9 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
            acc1.BillingState != null ||
            acc1.BillingPostalCode != null ||
             // note that we decided to ignore country so that a default value won't create unnecessary address objects
-           (acc1.BillingCountry != null && !ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled) ||
+           (acc1.BillingCountry != null && !ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) ||
            // only test StateCode if picklists enabled.
-           (ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled && acc1.get('BillingStateCode') != null);
+           (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled && acc1.get('BillingStateCode') != null);
 
         return isSpecified;   
     }
@@ -130,16 +130,16 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
            return false;
         
         boolean isChanged = 
-           !ADDR_Addresses_TDTM.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
-           !ADDR_Addresses_TDTM.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
-           !ADDR_Addresses_TDTM.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
-           !ADDR_Addresses_TDTM.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
-           !ADDR_Addresses_TDTM.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
 
-        if (!isChanged && ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled) {
+        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged = 
-                !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
-                !ADDR_Addresses_TDTM.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
         }
         UTIL_Debug.debug('****Address changed: ' + isChanged);
         return isChanged;   
@@ -160,11 +160,11 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             addr.Default_Address__c = true;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;
-            ADDR_Addresses_TDTM.copyAddressStdSObjAddr(acc, 'Billing', addr, null);            
+            ADDR_Addresses_UTIL.copyAddressStdSObjAddr(acc, 'Billing', addr, null);            
             listAddr.add(addr);         
         }
         // since coming from an account address, there is no Address Type, so exclude it from the match testing.
-        ADDR_Addresses_TDTM.createNonDuplicateAddresses(listAddr, dmlWrapper, false);
+        ADDR_Addresses_UTIL.createNonDuplicateAddresses(listAddr, dmlWrapper, false);
     }
 
 }

@@ -97,7 +97,7 @@ public with sharing class ADDR_Addresses_TEST {
         
         //instantiate addresses
         initTestAddr(contactCount);
-        //link addresses with accounts and make them default
+        //link addresses with contacts and make them default
         for (Integer i = 0; i < contactCount; i++) {
             listAddrs[i].Parent_Contact__c = listContacts[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -130,28 +130,10 @@ public with sharing class ADDR_Addresses_TEST {
             listAddrs.add(addr);            
         }
     }
-    
-    /*********************************************************************************************************
-    * @description Returns whether an Account Billing address matches a Contact Mailing address
-    * @return  boolean 
-    **********************************************************************************************************/
-    public static boolean isMatchAddressAccCon(Account acc, Contact con) {
-        UTIL_Debug.debug('****Account in isMatchAddressAccCon: ' + JSON.serializePretty(acc));
-        UTIL_Debug.debug('****Contact in isMatchAddressAccCon: ' + JSON.serializePretty(con));
-        return (acc.BillingStreet == acc.BillingStreet &&          
-            acc.BillingCity == acc.BillingCity &&          
-            acc.BillingState == con.MailingState &&         
-            acc.BillingPostalCode == con.MailingPostalCode &&          
-            acc.BillingCountry == con.MailingCountry &&
-            acc.BillingLatitude == con.MailingLatitude &&
-            acc.BillingLongitude == con.MailingLongitude
-        );                
-    }
         
     /*********************************************************************************************************
     @description Update existing default Addresses.  
-    verify:
-        household billing address fields updated
+    verify: household billing address fields updated
     **********************************************************************************************************/            
     @isTest 
     public static void updateDefaultAddrAcc() {
@@ -169,7 +151,6 @@ public with sharing class ADDR_Addresses_TEST {
         update listAddrs;
         Test.stopTest();
     
-        // verify that the Account and Contacts don't share the same address and it's new for the Account!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c
         from Account]);
@@ -178,16 +159,15 @@ public with sharing class ADDR_Addresses_TEST {
             system.assert(acc.BillingStreet.contains('New Street'));
             system.assert(acc.BillingCity.contains('New City'));
             system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertEquals(null, acc.Current_Address__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
     }
     
     /*********************************************************************************************************
     @description Delete existing default Addresses.  
-    verify:
-        Account billing address fields cleared.
+    verify: Account billing address fields cleared.
     **********************************************************************************************************/            
-    @isTest
+    @isTest //PASS
     static void deleteDefaultAddrAcc() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
@@ -210,13 +190,14 @@ public with sharing class ADDR_Addresses_TEST {
 
     /*********************************************************************************************************
     @description Delete existing non-default override Addresses.  
-    verify:
-        Account billing address fields not changed.
+    verify: Account billing address fields not changed.
     **********************************************************************************************************/            
     @isTest
     static void deleteNonDefaultOverrideAddrAcc() {        
         createTestDataAccs(2);
-
+        Integer addrCount = [select count() from Address__c];
+        System.assertEquals(2, addrCount);
+        
         // create additional addresses
         initTestAddr(2);
         for (integer i = 0; i < listAccs.size(); i++) {
@@ -227,6 +208,9 @@ public with sharing class ADDR_Addresses_TEST {
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert listAddrs;
+        
+        addrCount = [select count() from Address__c];
+        System.assertEquals(4, addrCount);
         
         // set the accounts' address overrides
         for (integer i = 0; i < listAccs.size(); i++) {
@@ -248,10 +232,10 @@ public with sharing class ADDR_Addresses_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : listAccs) {
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
             system.assert(acc.BillingStreet.contains('Street'));
-            system.assert(acc.BillingCity.contains('City'));            
+            system.assert(acc.BillingCity.contains('City')); 
+            system.assertEquals(false, acc.is_Address_Override__c); //TODO: fails because is_Address_Override__c is a new field in Account
+            system.assertNotEquals(null, acc.Current_Address__c);   //TODO: fails because Current_Address__c is a new field in Account                 
         }
     }
 
@@ -1504,7 +1488,7 @@ public with sharing class ADDR_Addresses_TEST {
         for (integer i = 0; i < listAccs.size(); i++) {
             listAccs[i].BillingStreet = null;
             listAccs[i].BillingCity = null;
-            if (ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled) {
+            if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
                 listAccs[i].put('BillingStateCode', null);
                 listAccs[i].put('BillingCountryCode', null);
             }                

@@ -95,7 +95,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' + 
                 'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, '; 
             
-            if (ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled)
+            if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
                 strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
             
             strSoql += 'Phone, Fax from Contact where Id IN :contacts';
@@ -332,8 +332,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
-                ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
-                ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
+                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
+                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
                 //Give it the default record type selected in the settings. 
                 if(defaultRecTypeID != null)

@@ -9,10 +9,12 @@
         <members>ADDR_Account_TDTM</members>
         <members>ADDR_Addresses_TDTM</members>
         <members>ADDR_Addresses_TEST</members>
+        <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_Contact_TDTM</members>
         <members>ADDR_Seasonal_BATCH</members>
         <members>ADDR_Seasonal_SCHED</members>
         <members>ADDR_Seasonal_TEST</members>
+        <members>ADDR_Seasonal_UTIL</members>
         <members>AFFL_AccChange_TDTM</members>
         <members>AFFL_AccRecordType_TDTM</members>
         <members>AFFL_AccRecordType_TEST</members>

@@ -60,7 +60,7 @@ public with sharing class ADDR_Seasonal_BATCH implements Database.Batchable<SObj
     * @return void  
     ********************************************************************************************************/
     public void execute(Database.BatchableContext bc, Sobject[] listSobj) {
-        ADDR_Addresses_TDTM.batchSeasonalUpdate((list<Address__c>) listSobj);        
+        ADDR_Seasonal_UTIL.batchSeasonalUpdate((list<Address__c>) listSobj);        
     }
 
     /*******************************************************************************************************

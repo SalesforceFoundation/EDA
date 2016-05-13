@@ -40,7 +40,7 @@ private with sharing class ADDR_Seasonal_TEST {
     
         /*********************************************************************************************************
     @description
-        insert new seasonal addresses to HH w/ existing default addresses  
+        insert new seasonal addresses to Account w/ existing default addresses  
     verify:
         contact's && hh address matches new seasonal
         old default addresses still marked default
@@ -68,18 +68,14 @@ private with sharing class ADDR_Seasonal_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address and it's new!
+        // verify that address and it's new!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        system.assertEquals(2 * 2, listCon.size());
         
-        for (Contact con : listCon) {
-            Account acc = mapAccIdAcc.get(con.AccountId);
-            system.assertEquals(true, ADDR_Addresses_TEST.isMatchAddressAccCon(acc, con));
-            system.assert(con.MailingStreet.contains('New Seasonal Street'));
-            system.assert(con.MailingCity.contains('New Seasonal City'));
-            system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert(acc.BillingStreet.contains('New Seasonal Street'));
+            system.assert(acc.BillingCity.contains('New Seasonal City'));
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
@@ -126,22 +122,20 @@ private with sharing class ADDR_Seasonal_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        system.assertEquals(2 * 2, listCon.size());
+        // verify Account address is new!
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         
-        for (Contact con : listCon) {
-            Account acc = mapAccIdAcc.get(con.AccountId);
-            system.assertEquals(true, ADDR_Addresses_TEST.isMatchAddressAccCon(acc, con));
-            system.assert(con.MailingStreet.contains('New Seasonal Street'));
-            system.assert(con.MailingCity.contains('New Seasonal City'));
-            system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert(acc.BillingStreet.contains('New Seasonal Street'));
+            system.assert(acc.BillingCity.contains('New Seasonal City'));
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
+        Latest_End_Date__c from Address__c];
         system.assertEquals(2 * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
@@ -180,18 +174,15 @@ private with sharing class ADDR_Seasonal_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        system.assertEquals(2 * 2, listCon.size());
+        // verify Account address is new!
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         
-        for (Contact con : listCon) {
-            Account acc = mapAccIdAcc.get(con.AccountId);
-            system.assertEquals(true, ADDR_Addresses_TEST.isMatchAddressAccCon(acc, con));
-            system.assert(!con.MailingStreet.contains('New Seasonal Street'));
-            system.assert(!con.MailingCity.contains('New Seasonal City'));
-            system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert(!acc.BillingStreet.contains('New Seasonal Street'));
+            system.assert(!acc.BillingCity.contains('New Seasonal City'));
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
@@ -240,22 +231,20 @@ private with sharing class ADDR_Seasonal_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;                
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        system.assertEquals(2 * 2, listCon.size());
+        // verify Account address is new!
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         
-        for (Contact con : listCon) {
-            Account acc = mapAccIdAcc.get(con.AccountId);
-            system.assertEquals(true, ADDR_Addresses_TEST.isMatchAddressAccCon(acc, con));
-            system.assert(con.MailingStreet.contains('New Seasonal Street'));
-            system.assert(con.MailingCity.contains('New Seasonal City'));
-            system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert(acc.BillingStreet.contains('New Seasonal Street'));
+            system.assert(acc.BillingCity.contains('New Seasonal City'));
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
+        Latest_End_Date__c from Address__c];
         system.assertEquals(2 * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
@@ -326,14 +315,14 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '1';
         a2.Seasonal_End_Month__c = '6';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
         
         // test both increasing ranges, with overlap
         a2.Seasonal_Start_Month__c = '2';
         a2.Seasonal_End_Month__c = '6';
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
         
         // test one increasing range, one decreasing range, no overlap
         a1.Seasonal_Start_Month__c = '3';
@@ -344,16 +333,16 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '1';
         a2.Seasonal_End_Month__c = '2';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
 
         // test one increasing range, one decreasing range, with overlap
         a2.Seasonal_Start_Month__c = '11';
         a2.Seasonal_Start_Day__c = '1';
         a2.Seasonal_End_Month__c = '4';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
 
         // test both decreasing ranges, always overlap
         a1.Seasonal_Start_Month__c = '9';
@@ -364,8 +353,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '1';
         a2.Seasonal_End_Month__c = '3';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
         
         // test both increasing ranges in the same month, no overlap
         a1.Seasonal_Start_Month__c = '2';
@@ -376,8 +365,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '11';
         a2.Seasonal_End_Month__c = '2';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
 
         // test both increasing ranges in the same month, with overlap
         a1.Seasonal_Start_Month__c = '2';
@@ -388,8 +377,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '10';
         a2.Seasonal_End_Month__c = '2';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
 
         // test one increasing range, one decreasing range in the same month, no overlap
         a1.Seasonal_Start_Month__c = '2';
@@ -400,8 +389,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '11';
         a2.Seasonal_End_Month__c = '1';
         a2.Seasonal_End_Day__c = '28';
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(false, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(false, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
     }
     
     /*********************************************************************************************************
@@ -425,8 +414,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '11'; 
         a2.Seasonal_End_Month__c = String.valueOf(System.today().month());
         a2.Seasonal_End_Day__c = '1';   //11th of current month to 1st of current month (overlaps year)
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
     }
     
     /*********************************************************************************************************
@@ -450,8 +439,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '11'; 
         a2.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month());
         a2.Seasonal_End_Day__c = '1';   //11th of next month to 1st of next month(overlaps year)
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
     }
     
     /*********************************************************************************************************
@@ -475,8 +464,8 @@ private with sharing class ADDR_Seasonal_TEST {
         a2.Seasonal_Start_Day__c = '11'; 
         a2.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(-1).month());
         a2.Seasonal_End_Day__c = '1';   //11th of previous month to 1st of previous month(overlaps year)
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a1, a2));
-        system.assertEquals(true, ADDR_Addresses_TDTM.isSeasonalOverlap(a2, a1));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a1, a2));
+        system.assertEquals(true, ADDR_Seasonal_UTIL.isSeasonalOverlap(a2, a1));
     }
     
     /*********************************************************************************************************
@@ -652,22 +641,20 @@ private with sharing class ADDR_Seasonal_TEST {
         Database.executeBatch(batch);
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address and it's new!
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        system.assertEquals(2 * 2, listCon.size());
+        // verify Account address is new!
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         
-        for (Contact con : listCon) {
-            Account acc = mapAccIdAcc.get(con.AccountId);
-            system.assertEquals(true, ADDR_Addresses_TEST.isMatchAddressAccCon(acc, con));
-            system.assert(con.MailingStreet.contains('New Seasonal Street'));
-            system.assert(con.MailingCity.contains('New Seasonal City'));
-            system.assertEquals(false, con.is_Address_Override__c);
-            system.assertNotEquals(null, con.Current_Address__c);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert(acc.BillingStreet.contains('New Seasonal Street'));
+            system.assert(acc.BillingCity.contains('New Seasonal City'));
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
+        Latest_End_Date__c from Address__c];
         system.assertEquals(2 * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
