@@ -249,7 +249,7 @@ public with sharing class ADDR_Seasonal_UTIL {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = true;       
 
         TDTM_Runnable.Dmlwrapper dmlWrapper = new TDTM_Runnable.Dmlwrapper();
-        ADDR_Addresses_TDTM.refreshCurrentHHAddress(mapAccIdAddr, dmlWrapper, false);
+        ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, false);
         TDTM_TriggerHandler.processDML(dmlWrapper);
     }
 }

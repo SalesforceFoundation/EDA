@@ -79,6 +79,115 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
+    * @description compares two contacts' addresses
+    * @param con1 a Contact
+    * @param con2 a Contact
+    * @return Boolean. true if the Mailing Address fields have changed 
+    ********************************************************************************************************/
+    public static Boolean isContactAddressChanged(Contact con1, Contact con2, Boolean contactsUpdatedAfterInsert) {
+        if(contactsUpdatedAfterInsert) {
+            return true;
+        }
+        
+        // if both null, no change
+        if (con1 == null && con2 == null) 
+           return false;
+
+        // if one null, make sure other has at least one address field set
+        if (con1 == null || con2 == null) {
+            if (con1 == null) 
+               con1 = con2;
+            return (!isContactAddressEmpty(con1) ||
+               con1.Primary_Address_Type__c != null);
+        }
+        
+        // both provided, so look for at least one change between address fields
+        Boolean isChanged = 
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingStreet, con2.MailingStreet) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCity, con2.MailingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c);
+           
+        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+            isChanged = 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingStateCode')), string.valueOf(con2.get('MailingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingCountryCode')), string.valueOf(con2.get('MailingCountryCode')));
+        }    
+        UTIL_Debug.debug('****Address changed: ' + isChanged);
+        return isChanged;   
+    }
+    
+    /*******************************************************************************************************
+    * @description utility to compare two Accounts' (billing) addresses
+    * @param acc1 an Account
+    * @param acc2 an Account
+    * @return Boolean. true if there are any changes between the two accounts.
+    ********************************************************************************************************/
+    public static Boolean isAccountAddressChanged(Account acc1, Account acc2) {
+        if (acc1 == null || acc2 == null) 
+           return false;
+        
+        Boolean isChanged = 
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
+
+        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+            isChanged = 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
+        }
+        UTIL_Debug.debug('****Address changed: ' + isChanged);
+        return isChanged;   
+
+    }
+    
+    /*******************************************************************************************************
+    * @description returns whether the contact's mailing address is empty
+    * @param con1 a Contact
+    * @return Boolean. true if the Mailing Address fields are all empty 
+    ********************************************************************************************************/
+    private static Boolean isContactAddressEmpty(Contact con1) {
+        Boolean isEmpty = 
+            con1.MailingStreet == null &&
+            con1.MailingCity == null &&
+            con1.MailingState == null &&
+            con1.MailingPostalCode == null &&
+            // note that we decided to ignore country so that a default value won't create unnecessary address objects
+            (con1.MailingCountry == null || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
+            // only test StateCode if picklists enabled.
+            (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || con1.get('MailingStateCode') == null);
+        return isEmpty;   
+           
+    }
+    
+    /*******************************************************************************************************
+    * @description utility to see if an address is specified
+    * @param acc1 an Account
+    * @return Boolean.  true if an address is specified in any of the Account Billing fields
+    ********************************************************************************************************/
+    public static Boolean isAccountAddressSpecified(Account acc1) {
+        if (acc1 == null) 
+           return false;
+        
+        Boolean isSpecified = 
+           acc1.BillingStreet != null ||
+           acc1.BillingCity != null ||
+           acc1.BillingState != null ||
+           acc1.BillingPostalCode != null ||
+            // note that we decided to ignore country so that a default value won't create unnecessary address objects
+           (acc1.BillingCountry != null && !ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) ||
+           // only test StateCode if picklists enabled.
+           (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled && acc1.get('BillingStateCode') != null);
+
+        return isSpecified;   
+    }
+    
+    /*******************************************************************************************************
     * @description Returns whether two strings are equal, using a case sensitve comparison
     * @param str1 The first string
     * @param str2 The second string

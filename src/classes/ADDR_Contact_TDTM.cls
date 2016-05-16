@@ -57,10 +57,6 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         list<Contact> listConCreateAddr = new list<Contact>();
         map<Id, boolean> mapAddrIdIsOverride = new map<Id, boolean>();
         list<Contact> listConAddrReset = new list<Contact>();
-        
-        // bail out if address mgmt turned off.
-        if (String.isBlank(UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c))
-            return dmlWrapper;
                 
         // Rules:
         // inserting new contact - make their address a new default address, unless they say it is an override
@@ -136,11 +132,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             // which requires us to do the work in the AfterUpdate (or else we can't propagate the default address).
             // but if the contact has an address override, we are supposed to create (or match) a non default address override.
             // in order to update the contact with the new address override's Id, we have to do it in the BeforeUpdate.
-            if (triggerAction == TDTM_Runnable.Action.BeforeUpdate ||
-               triggerAction == TDTM_Runnable.Action.BeforeInsert ||  
-               triggerAction == TDTM_Runnable.Action.AfterInsert || 
-               triggerAction == TDTM_Runnable.Action.AfterUpdate
-               ) {
+            if (triggerAction == TDTM_Runnable.Action.BeforeUpdate || triggerAction == TDTM_Runnable.Action.BeforeInsert ||  
+               triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                 // note that we detect whether the address change is coming from the address trigger,
                 // in which case we don't want to create a new address.
                 if (ADDR_Addresses_TDTM.hasRunAddrTrigger) {
@@ -150,7 +143,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 
                 // if the address changed, remember the contact we want to add a new address for    
                 Contact conOld = (listOld != null ? (Contact)listOld[i] : null);
-                if (isContactAddressChanged(con, conOld)) 
+                if (ADDR_Addresses_UTIL.isContactAddressChanged(con, conOld, contactsUpdatedAfterInsert)) 
                     listConCreateAddr.add(con);
             }             
         }
@@ -197,70 +190,6 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             }
         }       
     }
-
-    /*******************************************************************************************************
-    * @description compares two contacts' addresses
-    * @param con1 a Contact
-    * @param con2 a Contact
-    * @return boolean. true if the Mailing Address fields have changed 
-    ********************************************************************************************************/
-    private boolean isContactAddressChanged(Contact con1, Contact con2) {
-        UTIL_Debug.debug('****con1: ' + JSON.serializePretty(con1));
-        UTIL_Debug.debug('****con2: ' + JSON.serializePretty(con2));
-        
-        if(contactsUpdatedAfterInsert) {
-            UTIL_Debug.debug('****Contacts were updated after insert');
-            return true;
-        }
-        
-        // if both null, no change
-        if (con1 == null && con2 == null) 
-           return false;
-
-        // if one null, make sure other has at least one address field set
-        if (con1 == null || con2 == null) {
-            if (con1 == null) 
-               con1 = con2;
-            return (!isContactAddressEmpty(con1) ||
-               con1.Primary_Address_Type__c != null);
-        }
-        
-        // both provided, so look for at least one change between address fields
-        boolean isChanged = 
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingStreet, con2.MailingStreet) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCity, con2.MailingCity) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c);
-           
-        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingStateCode')), string.valueOf(con2.get('MailingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingCountryCode')), string.valueOf(con2.get('MailingCountryCode')));
-        }    
-        UTIL_Debug.debug('****Address changed: ' + isChanged);
-        return isChanged;   
-    }
-    
-    /*******************************************************************************************************
-    * @description returns whether the contact's mailing address is empty
-    * @param con1 a Contact
-    * @return boolean. true if the Mailing Address fields are all empty 
-    ********************************************************************************************************/
-    private boolean isContactAddressEmpty(Contact con1) {
-        boolean isEmpty = 
-            con1.MailingStreet == null &&
-            con1.MailingCity == null &&
-            con1.MailingState == null &&
-            con1.MailingPostalCode == null &&
-            // note that we decided to ignore country so that a default value won't create unnecessary address objects
-            (con1.MailingCountry == null || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
-            // only test StateCode if picklists enabled.
-            (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || con1.get('MailingStateCode') == null);
-        return isEmpty;   
-           
-    }
        
     /*******************************************************************************************************
     * @description Creates a new address or matches an existing one, for each Contact.
@@ -300,7 +229,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         for (Contact con : listConAll) {
             listCon.add(con);
             Address__c addr = new Address__c();
-            addr.Parent_Account__c = con.AccountId; //TODO: do we still need this?
+            //addr.Parent_Account__c = con.AccountId; //TODO: do we still need this?
             addr.Default_Address__c = !con.is_Address_Override__c;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;         

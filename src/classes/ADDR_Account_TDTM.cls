@@ -54,21 +54,13 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         for (SObject so : listNew) {
             Account acc = (Account)so;
             i++;
-
-            // BEFORE INSERT
-            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-            }
-            
-            // BEFORE UPDATE
-            if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-            }
             
             // AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 // for new accounts that are using address management, create the address object.
                 if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                 && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-                    if (isAccountAddressSpecified(acc))
+                    if (ADDR_Addresses_UTIL.isAccountAddressSpecified(acc))
                         listAccCreateAddr.add(acc);
                 }
             }
@@ -84,7 +76,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
                 if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                 && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
                     // if the address changed, remember the account we want to add a new address for    
-                    if (isAccountAddressChanged(acc, accOld)) 
+                    if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) 
                         listAccCreateAddr.add(acc);
                 }
             }                
@@ -97,55 +89,6 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         return dmlWrapper;    
     }
     
-    /*******************************************************************************************************
-    * @description utility to see if an address is specified
-    * @param acc1 an Account
-    * @return boolean.  true if an address is specified in any of the Account Billing fields
-    ********************************************************************************************************/
-    private boolean isAccountAddressSpecified(Account acc1) {
-        if (acc1 == null) 
-           return false;
-        
-        boolean isSpecified = 
-           acc1.BillingStreet != null ||
-           acc1.BillingCity != null ||
-           acc1.BillingState != null ||
-           acc1.BillingPostalCode != null ||
-            // note that we decided to ignore country so that a default value won't create unnecessary address objects
-           (acc1.BillingCountry != null && !ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) ||
-           // only test StateCode if picklists enabled.
-           (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled && acc1.get('BillingStateCode') != null);
-
-        return isSpecified;   
-    }
-
-    /*******************************************************************************************************
-    * @description utility to compare two Accounts' (billing) addresses
-    * @param acc1 an Account
-    * @param acc2 an Account
-    * @return boolean. true if there are any changes between the two accounts.
-    ********************************************************************************************************/
-    private boolean isAccountAddressChanged(Account acc1, Account acc2) {
-        if (acc1 == null || acc2 == null) 
-           return false;
-        
-        boolean isChanged = 
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingStreet, acc2.BillingStreet) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCity, acc2.BillingCity) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
-           !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
-
-        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-            isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
-        }
-        UTIL_Debug.debug('****Address changed: ' + isChanged);
-        return isChanged;   
-
-    }
-
     /*******************************************************************************************************
     * @description for each Account, create a new default address and add it to dmlWrapper
     * @param listAcc a list of Accounts
