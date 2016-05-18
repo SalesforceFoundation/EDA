@@ -106,8 +106,30 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(acc, 'Billing', addr, null);            
             listAddr.add(addr);         
         }
-        // since coming from an account address, there is no Address Type, so exclude it from the match testing.
-        ADDR_Addresses_UTIL.createNonDuplicateAddresses(listAddr, dmlWrapper, false);
+        //since coming from an account address, there is no Address Type, so exclude it from the match testing.
+        List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(listAddr, dmlWrapper, false);
+        
+        //Match each Account with each new address
+        List<ID> accIDsToUpdate = new List<ID>();
+        Map<ID, Address__c> parentAccIdToAddrMap = new Map<ID, Address__c>();
+        for(Address__c addr : newAddrs) {
+            if(addr.Parent_Account__c != null) {
+	           accIDsToUpdate.add(addr.Parent_Account__c);
+	           parentAccIdToAddrMap.put(addr.Parent_Account__c, addr);  
+            }
+        }
+        
+        //We need to re-query before we are in the "after" part of the trigger. We cannot change it to before because
+        //we need the Account ID to have a value when populating the addr.Parent_Account__c field above.
+        List<Account> parentAccs = [select is_Address_Override__c, Current_Address__c from Account where ID in :accIDsToUpdate];
+        List<Account> accsToUpdate = new List<Account>();
+        for(Account acc : parentAccs) {
+            Address__c childAddr = parentAccIdToAddrMap.get(acc.Id);
+            if(childAddr != null && !acc.is_Address_Override__c) {
+                acc.Current_Address__c = childAddr.Id;
+                accsToUpdate.add(acc);
+            }
+        }
+        update accsToUpdate;
     }
-
 }

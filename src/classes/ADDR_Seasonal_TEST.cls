@@ -76,8 +76,8 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
@@ -132,8 +132,8 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
@@ -185,8 +185,8 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(!acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(!acc.BillingCity.contains('New Seasonal City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
@@ -243,8 +243,8 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default
@@ -654,8 +654,8 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses still are Default

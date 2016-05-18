@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address records should only be created as children of Account.</value>
+        <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
         <fullName>addrAccountTypeEnabled</fullName>

@@ -471,9 +471,10 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param includeAddressType whether to include comparing the AddressType field
     * @return void
     */ 
-    public static void createNonDuplicateAddresses(list<Address__c> listAddr, TDTM_Runnable.DmlWrapper dmlWrapper, 
+    public static List<Address__c> createNonDuplicateAddresses(list<Address__c> listAddr, TDTM_Runnable.DmlWrapper dmlWrapper, 
     Boolean includeAddressType) {  
         
+        List<Address__c> addrsToInsert = new List<Address__c>();
         map<Address__c, Address__c> mapAddrDupAddr= findDuplicateAddresses(listAddr);
         for (Address__c addrNew : listAddr) {
             Address__c addrDup = mapAddrDupAddr.get(addrNew);
@@ -488,10 +489,16 @@ public with sharing class ADDR_Addresses_UTIL {
                     addrDup.Default_Address__c = true;
                     dmlWrapper.objectsToUpdate.add(addrDup);
                }
-            } else {
-                dmlWrapper.objectsToInsert.add(addrNew);
-            }       
-        }   
+            } else { 
+                addrsToInsert.add(addrNew);
+            } 
+        }
+        //Inserting them directly because we need the IDs to populate the Current_Address__c field in Account
+        if(addrsToInsert.size() > 0) {
+            UTIL_Debug.debug('****addrsToInsert: ' + JSON.serializePretty(addrsToInsert));
+            insert addrsToInsert;
+        }
+        return addrsToInsert;
     }
     
     /*******************************************************************************************************

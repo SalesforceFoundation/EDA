@@ -158,8 +158,8 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Street'));
             system.assert(acc.BillingCity.contains('New City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c); //TODO: fails because Current_Address__c is a new field in Account 
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
     }
     
@@ -232,8 +232,8 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('Street'));
             system.assert(acc.BillingCity.contains('City')); 
-            //system.assertEquals(false, acc.is_Address_Override__c); //TODO: fails because is_Address_Override__c is a new field in Account
-            //system.assertNotEquals(null, acc.Current_Address__c);   //TODO: fails because Current_Address__c is a new field in Account                 
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);                
         }
     }
 
@@ -265,8 +265,8 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assertEquals(null, acc.BillingStreet); //address information has been cleared because address is no longer the default
             system.assertEquals(null, acc.BillingCity); //address information has been cleared because address is no longer the default
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertEquals(null, acc.Current_Address__c); //account no longer has a current address, since address is no longer the defaults
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertEquals(null, acc.Current_Address__c); //account no longer has a current address, since address is no longer the defaults
         }
     }
 
@@ -316,12 +316,12 @@ public with sharing class ADDR_Addresses_TEST {
             if (acc.is_Address_Override__c) { 
                 system.assert(!acc.BillingStreet.contains('street override'));
                 system.assert(!acc.BillingCity.contains('city override'));
-                //system.assertEquals(acc.Current_Address__c, addrNew.Id);            
+                system.assertEquals(acc.Current_Address__c, addrNew.Id);            
             // verify that the Account address is new
             } else { 
                 system.assert(acc.BillingStreet.contains('New Street'));
                 system.assert(acc.BillingCity.contains('New City'));
-                //system.assertNotEquals(null, acc.Current_Address__c);
+                system.assertNotEquals(null, acc.Current_Address__c);
             }
         }
     }
@@ -359,7 +359,7 @@ public with sharing class ADDR_Addresses_TEST {
             system.assert(acc.BillingStreet.contains('New Default Street'));
             system.assert(acc.BillingCity.contains('New Default City'));
             system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses got Default cleared.
@@ -482,7 +482,7 @@ public with sharing class ADDR_Addresses_TEST {
             system.assert(acc.BillingStreet.contains('Street'));
             system.assert(acc.BillingCity.contains('City'));
             system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
 
         // verify address overrides have latest start date and latest end date appropriately set.
@@ -536,7 +536,7 @@ public with sharing class ADDR_Addresses_TEST {
             system.assert(acc.BillingStreet.contains('final Street Edit'));
             system.assert(acc.BillingCity.contains('final City Edit'));
             system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
  
          // verify the previous addresses got Default cleared.
@@ -633,7 +633,7 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('direct street  edit'));
             system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
@@ -689,8 +689,8 @@ public with sharing class ADDR_Addresses_TEST {
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.equals('DIRECT STREET  EDIT'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
@@ -714,8 +714,8 @@ public with sharing class ADDR_Addresses_TEST {
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.equals('direct street  edit'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
@@ -766,8 +766,8 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('direct street  edit'));
             system.assert(acc.BillingStreet.contains('direct street  edit')); 
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
@@ -869,8 +869,8 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Street'));
             system.assert(acc.BillingCity.contains('New City'));
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the new addresses still are Default and we don't have too many
@@ -879,7 +879,7 @@ public with sharing class ADDR_Addresses_TEST {
         system.assertEquals(2 * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
-            //system.assertEquals(isNew, addr.Default_Address__c);
+            system.assertEquals(isNew, addr.Default_Address__c);
         }
     }
 
@@ -915,8 +915,8 @@ public with sharing class ADDR_Addresses_TEST {
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assertEquals('new street\r\nsecond line', acc.BillingStreet);
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
     }
 
@@ -987,8 +987,8 @@ public with sharing class ADDR_Addresses_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             system.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
             system.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify the Address objects split street.
@@ -1086,8 +1086,8 @@ public with sharing class ADDR_Addresses_TEST {
             system.assertEquals(acc.BillingCity, addr.MailingCity__c);
             system.assertNotEquals(null, acc.BillingStreet);
             system.assertNotEquals(null, acc.BillingCity);
-            //system.assertEquals(true, addr.Default_Address__c);
-            //system.assertNotEquals(null, acc.Current_Address__c);
+            system.assertEquals(true, addr.Default_Address__c);
+            system.assertNotEquals(null, acc.Current_Address__c);
         }
     }
     
@@ -1135,8 +1135,8 @@ public with sharing class ADDR_Addresses_TEST {
             system.assertEquals(acc.BillingCity, addr.MailingCity__c);
             system.assertNotEquals(null, acc.BillingStreet);
             system.assertNotEquals(null, acc.BillingCity);
-            //system.assertEquals(true, addr.Default_Address__c);
-            //system.assertEquals(null, acc.Current_Address__c);
+            system.assertEquals(true, addr.Default_Address__c);
+            system.assertEquals(null, acc.Current_Address__c);
         }
     }
 
@@ -1162,8 +1162,8 @@ public with sharing class ADDR_Addresses_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            //system.assertEquals(false, acc.is_Address_Override__c);
-            //system.assertEquals(null, acc.Current_Address__c);
+            system.assertEquals(false, acc.is_Address_Override__c);
+            system.assertEquals(null, acc.Current_Address__c);
         }
         
         // verify no address objects created
