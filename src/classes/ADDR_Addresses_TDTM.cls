@@ -63,12 +63,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (hasRunAddrTrigger) {
             return null;
         }
-
         // first go through all new/modified Addresses, and collect the list of  Accounts to consider.
-        map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>(); // map of Accounts, and their default Address 
-        map<Id, Address__c> mapAddrIdAddr = new map<Id, Address__c>(); // map of changed Addresses who need to only update any contact overrides     
+        // map of Accounts, and their default Address 
+        map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>(); 
 
-		if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+        // AFTER DELETE
+        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             for (SObject so : listOld) {
                 ID accId = ((Address__c)so).Parent_Account__c;
                 if (accId != null)
@@ -118,9 +118,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
 	                } else if (ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true)) {
 	                    if (addr.Default_Address__c)
-	                        mapAccIdAddr.put(addr.Parent_Account__c, addr);
-	                    else  // address changed, but not default, still need to update any contacts using it as an override
-	                        mapAddrIdAddr.put(addr.Id, addr);      
+	                        mapAccIdAddr.put(addr.Parent_Account__c, addr);     
 	                } 
 	            }
 	            // moving to the next item
@@ -147,14 +145,14 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (mapAccIdAddr.size() > 0)        
             refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, false);       
         
-        processDml(dmlWrapper, mapAccIdAddr, mapAddrIdAddr);
+        processDml(dmlWrapper, mapAccIdAddr);
         
         deleteEmptyAddrs(listNew, triggerAction);
         
         return null;
     }
     
-    private void processDml(DmlWrapper dmlWrapper, map<Id, Address__c> mapAccIdAddr, map<Id, Address__c> mapAddrIdAddr) {
+    private void processDml(DmlWrapper dmlWrapper, map<Id, Address__c> mapAccIdAddr) {
         // we must process dmlWrapper ourselves, so we can extract out the appropriate errors
         // that might occur updating contacts and accounts, and associating those errors with 
         // the correct addresses.
@@ -168,17 +166,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                     addr.addError(error.Full_Message__c);
                     UTIL_Debug.debug(LoggingLevel.WARN, '**** Address: ' + addr + ' message: ' + error.Full_Message__c);
                 }
-                else if (UTIL_Describe.isObjectIdThisType(objId, UTIL_Namespace.StrTokenNSPrefix('Address__c'))) {
-                    Address__c addr = mapAddrIdAddr.get(objId);
-                    addr.addError(error.Full_Message__c);
-                    UTIL_Debug.debug(LoggingLevel.WARN, '**** Address: ' + addr + ' message: ' + error.Full_Message__c);
-                }
             }
         }
     }
     
     private void deleteEmptyAddrs(List<SObject> listNew, TDTM_Runnable.Action triggerAction) {
-        // hack to detect empty addresses and delete them after we've propagated the change to all contacts and account
+        // hack to detect empty addresses and delete them after we've propagated the change to account
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
              List<Address__c> listAddr = new list<Address__c>();
              for (SObject so : listNew) {
@@ -192,9 +185,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     }
     
     /*******************************************************************************************************
-    * @description The main routine for finding the appropriate address to currently use for the
-    * account and its contacts.  Prioritizes the Optional mapped Address as the Default
-    * address, as well as checking to see if there is a seasonal address that should be used instead.
+    * @description The main routine for finding the appropriate address to currently use for the account.  
+    * Prioritizes the Optional mapped Address as the Default address, as well as checking to see if there 
+    *is a seasonal address that should be used instead.
     * @param mapAccIdAddr a map of Account Id to the Account's default Address.
     * @param dmlWrapper to hold the objects that get updated
     * @param isCalcAccInfoOnly if set, then this routine will return the map of AccId to AccInfo,
@@ -259,26 +252,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             }
         }
         
-        // some callers just need the AccInfo for each HH Account.
+        // some callers just need the AccInfo for each Account.
         if (isCalcAccInfoOnly)
             return mapAccIdAccInfo;
-
-        // get all Contacts by HH, that might need updating
-        // note that if we have an organizational account, our query will not pick up any contacts (by design!)
-        /*map<Id, list<Contact>> mapAccIdListCon = new map<Id, list<Contact>>(); 
-        set<Id> setHHId =  mapAccIdAddr.keySet();
-        list<Contact> listCon = [select Id, is_Address_Override__c, Current_Address__c, AccountId 
-            from Contact where 
-                (Account.RecordTypeId = :UTIL_Describe.getHhAccRecTypeID() or Account.RecordTypeId = :UTIL_Describe.getAdminAccRecTypeID())
-                 and AccountId != null and AccountId in :setHHId];
-        for (Contact con : listCon) {
-            list<Contact> listConHH = mapAccIdListCon.get(con.AccountId);
-            if (listConHH == null) {
-                listConHH = new list<Contact>();
-                mapAccIdListCon.put(con.AccountId, listConHH);
-            }
-            listConHH.add(con);
-        }*/
         
         // lists of objects to update
         list<Account> listAccUpdate = new list<Account>();
@@ -312,21 +288,6 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                     }   
                 }
             }
-
-            // check the Contacts on this household
-            /*if (mapAccIdListCon != null && mapAccIdListCon.size() > 0) {
-                for (Contact con : mapAccIdListCon.get(accId)) {
-                	// detect that the contact's current address was deleted.
-	                // and if so clear any override flag so it will get the default address.
-	                if (con.Current_Address__c == null)
-	                   con.is_Address_Override__c = false;
-                    if (con.is_Address_Override__c == false || con.Current_Address__c == addr.Id) {  
-                        con.Current_Address__c = addr.Id;
-                        ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c');
-                        listConUpdate.add(con);
-                    }   
-                }
-            }*/
         }  
                     
         if (listAccUpdate.size() > 0) {
