@@ -893,7 +893,7 @@ public with sharing class ADDR_Addresses_TEST {
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
                 Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';'));
     
-        listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getBizAccRecTypeID());
+        listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
         for (Account acc : listAccs) {
             acc.BillingStreet = 'new street\r\nsecond line';
             acc.BillingCity = 'new city';
@@ -904,6 +904,7 @@ public with sharing class ADDR_Addresses_TEST {
         
         // verify the Address objects split street.
         list<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c];
+        System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
             system.assertEquals('new street', addr.MailingStreet__c);
             system.assertEquals('second line', addr.MailingStreet2__c);
