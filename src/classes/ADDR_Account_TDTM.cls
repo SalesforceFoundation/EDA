@@ -70,21 +70,19 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             }
     
             // AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                Account accOld = (Account)listOld[i];
-                // note that we detect whether the address change is coming from the address trigger,
-                // in which case we don't want to create a new address.
-                if (ADDR_Addresses_TDTM.hasRunAddrTrigger) {
-                    continue;
-                }
-                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-                    // if the address info has been removed
-                    if(ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
-                        ListAccsAddrInfoCleared.add(acc);
-                    // if the address changed, remember the account we want to add a new address for    
-                    else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) 
-                        ListAccCreateAddr.add(acc);
+            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+                // if address change is coming from the address trigger we don't want to create a new address   
+                if (!ADDR_Addresses_TDTM.hasRunAddrTrigger) {
+	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+	                    Account accOld = (Account)listOld[i];
+	                    // if the address info has been removed
+	                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
+	                        ListAccsAddrInfoCleared.add(acc);
+	                    // if the address changed, remember the account we want to add a new address for    
+	                    else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) 
+	                        ListAccCreateAddr.add(acc);
+	                }
                 }
             }                
         }

@@ -207,9 +207,6 @@ public with sharing class ADDR_Addresses_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert listAddrs;
         
-        Integer addrCount = [select count() from Address__c];
-        System.assertEquals(4, addrCount);
-        
         // set the accounts' address overrides
         for (integer i = 0; i < listAccs.size(); i++) {
             Account acc = listAccs[i];
@@ -431,66 +428,6 @@ public with sharing class ADDR_Addresses_TEST {
             } else {
                system.assertEquals(system.today(), addr.Latest_End_Date__c);                
             }
-        }        
-    }
-        
-    /*********************************************************************************************************
-    @description Clear Accounts' Address Override  
-    verify: accounts' Mailing address fields updated to the default address
-    **********************************************************************************************************/            
-    @isTest
-    public static void clearAddrOverrideAcc() {        
-        // this creates a default Address for each Account
-        createTestDataAccs(4);
-
-        // create additional addresses
-        initTestAddr(4);
-        for (Integer i = 0; i < listAddrs.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = false;
-            listAddrs[i].MailingStreet__c = 'override' + i;
-            listAddrs[i].MailingCity__c = 'override' + i;
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        
-        // set the accounts' address overrides
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].Current_Address__c = listAddrs[i].Id;
-            listAccs[i].is_Address_Override__c = true;
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-
-        // now clear out the accounts' address overrides
-        for (Account acc : listAccs) {
-            acc.is_Address_Override__c = false;
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        Test.startTest();
-        update listAccs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        Test.stopTest();
-        
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
-        
-        // verify accounts reverted to the defaults
-        for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('Street'));
-            system.assert(acc.BillingCity.contains('City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
-        }
-
-        // verify address overrides have latest start date and latest end date appropriately set.
-        list<Address__c> listAddr = [select Id, Latest_Start_Date__c, Latest_End_Date__c from Address__c where Id in :listAddrs];
-        system.assertEquals(4, listAddr.size());
-        for (Address__c addr : listAddr) {
-           system.assertEquals(system.today(), addr.Latest_Start_Date__c);
-           system.assertEquals(system.today(), addr.Latest_End_Date__c);
         }        
     }
 
