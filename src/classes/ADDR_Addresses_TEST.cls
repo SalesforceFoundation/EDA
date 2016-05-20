@@ -1104,13 +1104,12 @@ public with sharing class ADDR_Addresses_TEST {
                 Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
-        Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(3, UTIL_Describe.getBizAccRecTypeID());
         insert listAcc;
 
          // create addresses for the accounts
-        initTestAddr(cAcc);
-        for (Integer i = 0; i < cAcc; i++) {
+        initTestAddr(listAcc.size());
+        for (Integer i = 0; i < listAcc.size(); i++) {
             listAddrs[i].Parent_Account__c = listAcc[i].Id;
             listAddrs[i].Default_Address__c = true;
         }
@@ -1122,13 +1121,13 @@ public with sharing class ADDR_Addresses_TEST {
         listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c 
         from Account order by Account.Name];
-        system.assertEquals(cAcc, listAcc.size());
+        system.assertEquals(3, listAcc.size());
         
         listAddrs = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
         Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Parent_Account__r.Name];
-        system.assertEquals(cAcc, listAddrs.size());
+        system.assertEquals(3, listAddrs.size());
         
-        for (Integer i = 0; i < cAcc; i++) {
+        for (Integer i = 0; i < listAcc.size(); i++) {
             Account acc = listAcc[i];
             Address__c addr = listAddrs[i];
             system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
@@ -1136,7 +1135,7 @@ public with sharing class ADDR_Addresses_TEST {
             system.assertNotEquals(null, acc.BillingStreet);
             system.assertNotEquals(null, acc.BillingCity);
             system.assertEquals(true, addr.Default_Address__c);
-            system.assertEquals(null, acc.Current_Address__c);
+            system.assertEquals(addr.Id, acc.Current_Address__c);
         }
     }
 
