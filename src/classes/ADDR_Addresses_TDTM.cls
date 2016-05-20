@@ -274,6 +274,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             // update Account's Billing address fields
             Account acc = new Account(Id = accId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
+            acc.is_Address_Override__c = false;
             listAccUpdate.add(acc);
             
             // check other addresses on this account that are no longer the default
