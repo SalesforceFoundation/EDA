@@ -138,7 +138,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static List<Affl_Mappings__c> getAfflMappings() {
         if(afflMappings == null) {
         afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
-               Auto_Program_Enrollment_Status__c from Affl_Mappings__c limit 50000];
+               Auto_Program_Enrollment_Status__c from Affl_Mappings__c order by Account_Record_Type__c limit 50000];
         }
         return afflMappings;
     }
