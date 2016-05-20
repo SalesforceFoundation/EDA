@@ -152,6 +152,9 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return Boolean. true if the Mailing Address fields are all empty 
     ********************************************************************************************************/
     private static Boolean isContactAddressEmpty(Contact con1) {
+        if(con1 == null)
+            return true;
+            
         Boolean isEmpty = 
             con1.MailingStreet == null &&
             con1.MailingCity == null &&
@@ -170,21 +173,20 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param acc1 an Account
     * @return Boolean.  true if an address is specified in any of the Account Billing fields
     ********************************************************************************************************/
-    public static Boolean isAccountAddressSpecified(Account acc1) {
+    public static Boolean isAccAddressEmpty(Account acc1) {
         if (acc1 == null) 
-           return false;
+           return true;
         
-        Boolean isSpecified = 
-           acc1.BillingStreet != null ||
-           acc1.BillingCity != null ||
-           acc1.BillingState != null ||
-           acc1.BillingPostalCode != null ||
+        Boolean isEmpty = 
+           acc1.BillingStreet == null &&
+           acc1.BillingCity == null &&
+           acc1.BillingState == null &&
+           acc1.BillingPostalCode == null &&
             // note that we decided to ignore country so that a default value won't create unnecessary address objects
-           (acc1.BillingCountry != null && !ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) ||
+           (acc1.BillingCountry == null || ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) &&
            // only test StateCode if picklists enabled.
-           (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled && acc1.get('BillingStateCode') != null);
-
-        return isSpecified;   
+           (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || acc1.get('BillingStateCode') == null);
+        return isEmpty;   
     }
     
     /*******************************************************************************************************
@@ -340,7 +342,8 @@ public with sharing class ADDR_Addresses_UTIL {
         sobjDst.put(strFieldPrefix + 'PostalCode', addr.MailingPostalCode__c);        
         sobjDst.put(strFieldPrefix + 'Latitude', addr.Geolocation__Latitude__s);
         sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s); 
-
+        sobjDst.put('Current_Address__c', addr.Id);
+        
         if (!isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
             sobjDst.put(strFieldPrefix + 'Country', addr.MailingCountry__c);
@@ -482,10 +485,13 @@ public with sharing class ADDR_Addresses_UTIL {
                 // if it is a fuzzy match, not exact, then we want to update the existing address.
                 if (isAddressChanged(addrNew, addrDup, includeAddressType)) {
                     copyAddressObj(addrNew, addrDup);
-                    if (addrNew.Default_Address__c)
+                    if (addrNew.Default_Address__c) {
+                        UTIL_Debug.debug('****Making address default in createNonDuplicateAddresses. Addr ID: ' + addrDup.ID);
                         addrDup.Default_Address__c = true;
+                    }
                     dmlWrapper.objectsToUpdate.add(addrDup);
                 } else if (addrNew.Default_Address__c && !addrDup.Default_Address__c) {
+                    UTIL_Debug.debug('****Making address default in createNonDuplicateAddresses. Addr ID: ' + addrDup.ID);
                     addrDup.Default_Address__c = true;
                     dmlWrapper.objectsToUpdate.add(addrDup);
                }

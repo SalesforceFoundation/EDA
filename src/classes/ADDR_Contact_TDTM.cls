@@ -230,7 +230,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             listCon.add(con);
             Address__c addr = new Address__c();
             //addr.Parent_Account__c = con.AccountId; //TODO: do we still need this?
-            addr.Default_Address__c = !con.is_Address_Override__c;
+            //addr.Default_Address__c = !con.is_Address_Override__c;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;         
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(con, 'Mailing', addr, con.Primary_Address_Type__c);
@@ -260,11 +260,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                     if (ADDR_Addresses_UTIL.isAddressChanged(addrNew, addrDup, false)) {
                         ADDR_Addresses_UTIL.copyAddressObj(addrNew, addrDup);
                         if (!con.is_Address_Override__c && !addrDup.Default_Address__c)
+                            UTIL_Debug.debug('****Making address default in ADDR_Contact_TDTM. Addr ID: ' + addrDup.ID);
                             addrDup.Default_Address__c = true;
-                        listAddrUpdateDefault.add(addrDup);
+                            listAddrUpdateDefault.add(addrDup);
                     }                  
                     // exact match. we aren't specifying override, so the address should become the new hh default address
                     else if (!con.is_Address_Override__c && !addrDup.Default_Address__c) {
+                        UTIL_Debug.debug('****Making address default in ADDR_Contact_TDTM. Addr ID: ' + addrDup.ID);
                         addrDup.Default_Address__c = true;
                         listAddrUpdateDefault.add(addrDup);
                     }
@@ -279,6 +281,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             
             // no match, not an override, make it a new default hh address
             else if (!isBefore) {
+                UTIL_Debug.debug('****Making address default in ADDR_Contact_TDTM. Addr ID: ' + addrDup.ID);
                 addrNew.Default_Address__c = true;
                 listAddrInsertDefault.add(addrNew);                
             }
