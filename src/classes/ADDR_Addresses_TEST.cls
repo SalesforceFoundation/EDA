@@ -38,9 +38,6 @@
 @isTest
 public with sharing class ADDR_Addresses_TEST {
 
-    /* @description The list of created test Contacts.*/
-    private static list<Contact> listContacts;
-
     /* @description The list of created test Accounts.*/
     public static list<Account> listAccs;
     
@@ -49,7 +46,6 @@ public with sharing class ADDR_Addresses_TEST {
     
     private static void configSettings() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
-        hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
         hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';';
         hs.Simple_Address_Change_Treated_as_Update__c = true;
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
@@ -70,36 +66,10 @@ public with sharing class ADDR_Addresses_TEST {
         
         //instantiate addresses
         initTestAddr(accCount);
+        
         //link addresses with accounts and make them default
         for (Integer i = 0; i < accCount; i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = true;
-        }
-        //insert addresses
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
-        
-        //clear our triggers recursion prevention since we are starting a new test
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-    }
-    
-    /*********************************************************************************************************
-    * @description Sets up common test data for Contact Addresses tests.
-    * @param contactCount Number of  Contacts to create.
-    * @return  void
-    **********************************************************************************************************/  
-    public static void createTestDataContacts(Integer contactCount) {
-        //instantiate contacts
-        listContacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(contactCount);
-        //insert contacts
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listContacts;
-        
-        //instantiate addresses
-        initTestAddr(contactCount);
-        //link addresses with contacts and make them default
-        for (Integer i = 0; i < contactCount; i++) {
-            listAddrs[i].Parent_Contact__c = listContacts[i].Id;
             listAddrs[i].Default_Address__c = true;
         }
         //insert addresses
@@ -115,9 +85,9 @@ public with sharing class ADDR_Addresses_TEST {
     * @param cAddr the number of Address objects to create
     * @return  void
     **********************************************************************************************************/
-    public static void initTestAddr(Integer cAddr) {
+    public static void initTestAddr(Integer addrCount) {
         listAddrs = new list<Address__c>();
-        for (Integer i = 0; i < cAddr; i++) {
+        for (Integer i = 0; i < addrCount; i++) {
             Address__c addr = new Address__c();
             addr.Address_Type__c = 'Home';
             addr.MailingStreet__c = 'Street' + i;
@@ -130,13 +100,51 @@ public with sharing class ADDR_Addresses_TEST {
             listAddrs.add(addr);            
         }
     }
+    
+    /*********************************************************************************************************
+    @description Create N new accounts with billing addresses 
+    verify:
+        N addresses created
+        account address matches address object address
+    **********************************************************************************************************/            
+    @isTest
+    public static void newRecordsWithAddrInfo() {            
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+                                                                      UTIL_Describe.getBizAccRecTypeID() + ';'));
+ 
+        Integer cAcc = 3;
+        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
+        for (Account acc : listAcc) {
+            acc.BillingStreet = '123 45th';
+            acc.BillingCity = 'Seattle';
+        }
+        Test.startTest();
+        insert listAcc;
+        Test.stopTest();
+
+        // verify results
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        system.assertEquals(cAcc, mapAccIdAcc.size());
+        
+        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
+        Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        system.assertEquals(cAcc, listAddr.size());
+        
+        for (Address__c addr : listAddr) {
+            Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
+            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
+            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
+            system.assertEquals(true, addr.Default_Address__c);
+        }
+    }
         
     /*********************************************************************************************************
     @description Update existing default Addresses.  
     verify: household billing address fields updated
     **********************************************************************************************************/            
     @isTest 
-    public static void updateDefaultAddrAcc() {
+    public static void updateDefaultAddr() {
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -167,8 +175,8 @@ public with sharing class ADDR_Addresses_TEST {
     @description Delete existing default Addresses.  
     verify: Account billing address fields cleared.
     **********************************************************************************************************/            
-    @isTest //PASS
-    static void deleteDefaultAddrAcc() {        
+    @isTest 
+    static void deleteDefaultAddr() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
        
@@ -193,7 +201,7 @@ public with sharing class ADDR_Addresses_TEST {
     verify: Account billing address fields not changed.
     **********************************************************************************************************/            
     @isTest
-    static void deleteNonDefaultOverrideAddrAcc() {        
+    static void deleteNonDefaultOverrideAddr() {        
         createTestDataAccs(2);
         
         // create additional addresses
@@ -225,7 +233,6 @@ public with sharing class ADDR_Addresses_TEST {
         // verify that the Account address fields went back to the default
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
-        UTIL_Debug.debug('****Accounts with updated addr info: ' + JSON.serializePretty(mapAccIdAcc.values()));
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('Street'));
@@ -237,11 +244,10 @@ public with sharing class ADDR_Addresses_TEST {
 
     /*********************************************************************************************************
     @description Making an Address non-default. That is, the address is no longer the default one for the Account.  
-    verify:
-        no change to account address
+    verify: no change to account address
     **********************************************************************************************************/            
     @isTest
-    public static void updateNonDefaultAddrAcc() { 
+    public static void updateNonDefaultAddr() { 
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -273,7 +279,7 @@ public with sharing class ADDR_Addresses_TEST {
     verify: account's address matches override
     **********************************************************************************************************/            
     @isTest
-    public static void setAddrOverrideAcc() {        
+    public static void setAddrOverride() {        
         // this creates a default Address for the Account
         createTestDataAccs(2);
 
@@ -331,7 +337,7 @@ public with sharing class ADDR_Addresses_TEST {
         old default addresses no longer marked default
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddrAcc() {        
+    public static void insertNewDefaultAddr() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
         
@@ -384,7 +390,7 @@ public with sharing class ADDR_Addresses_TEST {
         new default addresses no longer marked default
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddrAndResetAcc() {  
+    public static void insertNewDefaultAddrAndReset() {  
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -439,7 +445,7 @@ public with sharing class ADDR_Addresses_TEST {
         Accounts get new Address
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrNewAcc() {        
+    public static void updateAddrNew() {        
         // this creates a default Address for each Account
         createTestDataAccs(4);
 
@@ -495,7 +501,7 @@ public with sharing class ADDR_Addresses_TEST {
         original Addresses still default    
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrMarkOverrideAcc() {        
+    public static void updateAddrMarkOverride() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -532,64 +538,13 @@ public with sharing class ADDR_Addresses_TEST {
     }
 
     /*********************************************************************************************************
-    @description Update accounts' billing address to cause an update to default Address object  
+    @description Update Account's billing address with just a case change, to cause an update to default Address object  
     verify:
         existing Default Address updated
-        HH and Contacts get updated Address
+        Account has updated Address
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrExistingAcc() {        
-        // this creates a default Address for each Account
-        createTestDataAccs(2);
-
-        // modify some of the account addresses directly
-        // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'Direct Street Edit';
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
-
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingState = 'Washington';
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
-
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
-            listAccs[i].BillingState = 'Oregon';
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        Test.startTest();
-        update listAccs;
-        Test.stopTest();
-        
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
-        
-        for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('direct street  edit'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
-        }
- 
-        // verify that no new address was created
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        system.assertEquals(2, listAddr.size());
-        for (Address__c addr : listAddr) {
-            system.assertEquals('direct street  edit', addr.MailingStreet__c);
-        }                
-    }
-
-    /*********************************************************************************************************
-    @description Update contacts' mailing address with just a case change, to cause an update to default Address object  
-    verify:
-        existing Default Address updated
-        HH and Contacts get updated Address
-    **********************************************************************************************************/            
-    @isTest
-    public static void updateConAddrExistingCaseOnly() {    
+    public static void updateAddrExistingCaseOnly() {    
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -646,7 +601,7 @@ public with sharing class ADDR_Addresses_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         update listAccs;
         
-        // verify that the HH and Contacts share the same address
+        // verify that the Account address
         mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
@@ -671,7 +626,7 @@ public with sharing class ADDR_Addresses_TEST {
         Account get updated Address
     **********************************************************************************************************/            
     @isTest
-    public static void updateAccAddrExisting() {
+    public static void updateAddrExisting() {
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -703,7 +658,7 @@ public with sharing class ADDR_Addresses_TEST {
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('direct street  edit'));
-            system.assert(acc.BillingStreet.contains('direct street  edit')); 
+            system.assert(acc.BillingState.contains('Oregon')); 
             system.assertEquals(false, acc.is_Address_Override__c);
             system.assertNotEquals(null, acc.Current_Address__c);
         }
@@ -718,11 +673,10 @@ public with sharing class ADDR_Addresses_TEST {
 
     /*********************************************************************************************************
     @description Create an Address with no Account 
-    verify:
-        runtime error
+    verify: runtime error
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrNoAccount() {        
+    public static void newAddrNoParent() {        
         initTestAddr(2);
         for (Integer i = 0; i < listAddrs.size(); i++) {
             system.assertEquals(null, listAddrs[i].Parent_Account__c);
@@ -743,7 +697,7 @@ public with sharing class ADDR_Addresses_TEST {
         duplicates not created
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAccountAddr() {        
+    public static void newDupeAddr() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -772,7 +726,7 @@ public with sharing class ADDR_Addresses_TEST {
         found match becomes Default
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAccountAddrNonDefault() {        
+    public static void newDupeAddrNonDefault() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -826,10 +780,9 @@ public with sharing class ADDR_Addresses_TEST {
     verify: new default Address created and the street address is broken up into street and street2
     **********************************************************************************************************/            
     @isTest
-    public static void insertContactWithMultilineStreetAddress() {
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';'));
+    public static void insertMultilineStreetAddress() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+                                                                    UTIL_Describe.getAdminAccRecTypeID() + ';'));
     
         listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
         for (Account acc : listAccs) {
@@ -862,7 +815,7 @@ public with sharing class ADDR_Addresses_TEST {
     /*********************************************************************************************************
     @description Insert new default multiline street addresses w/ existing default addresses  
     verify:
-        contact's && hh address matches new default
+        Account address matches new default
         street & street2 combined into contact and account single street field
     **********************************************************************************************************/            
     @isTest
@@ -885,7 +838,7 @@ public with sharing class ADDR_Addresses_TEST {
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;        
         Test.stopTest();
 
-        // verify that the HH and Contacts share the same address and it's new!
+        // verify Account address is new
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
@@ -904,7 +857,7 @@ public with sharing class ADDR_Addresses_TEST {
         new Addresss has multiline street split into Street and Street2 fields
     **********************************************************************************************************/            
     @isTest
-    public static void updateAccMultilineStreetAddr() {        
+    public static void updateMultilineStreetAddr() {        
         // this creates a default Address for each Account
         createTestDataAccs(2);
 
@@ -919,7 +872,7 @@ public with sharing class ADDR_Addresses_TEST {
         update listAccs;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address
+        // verify Account address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
@@ -942,56 +895,15 @@ public with sharing class ADDR_Addresses_TEST {
     }
 
     /*********************************************************************************************************
-    @description
-        create N new organizational accounts with billing addresses 
-    verify:
-        N addresses created
-        account address matches address object address
-    **********************************************************************************************************/            
-    @isTest
-    public static void newOrgAccounts() {            
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
-                Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';'));
- 
-        Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
-        for (Account acc : listAcc) {
-            acc.BillingStreet = '123 45th';
-            acc.BillingCity = 'Seattle';
-        }
-        Test.startTest();
-        insert listAcc;
-        Test.stopTest();
-
-        // verify results
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
-        system.assertEquals(cAcc, mapAccIdAcc.size());
-        
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        system.assertEquals(cAcc, listAddr.size());
-        
-        for (Address__c addr : listAddr) {
-            Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertEquals(true, addr.Default_Address__c);
-        }
-    }
-
-    /*********************************************************************************************************
     @description Update N organizational accounts with billing addresses 
     verify:
         N addresses created
         account addresses updated
     **********************************************************************************************************/            
     @isTest
-    public static void updateOrgAccounts() {         
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
-                Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';'));
+    public static void updateRecordsWithAddrInfo() {         
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+                                                                            UTIL_Describe.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
         Integer cAcc = 3;
@@ -1031,16 +943,15 @@ public with sharing class ADDR_Addresses_TEST {
     }
     
     /*********************************************************************************************************
-    @description Update N organizational accounts with address objects 
+    @description Update N accounts with address objects 
     verify:
         account addresses updated
         contact addresses not updated
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrForOrgAccounts() {           
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
-                Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';'));
+    public static void newAddrForAccounts() {           
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+                                                                      UTIL_Describe.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
         list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(3, UTIL_Describe.getBizAccRecTypeID());
@@ -1085,9 +996,8 @@ public with sharing class ADDR_Addresses_TEST {
         Account addresses set
     **********************************************************************************************************/            
     @isTest
-    public static void testDisabledAddrAcc() {        
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+    public static void testDisabledAddr() {        
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
 
         listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
         for (Account acc : listAccs) {
@@ -1095,7 +1005,7 @@ public with sharing class ADDR_Addresses_TEST {
             acc.BillingCity = 'new city';
         }
 
-        // verify that the HH and Contacts share the same address
+        // verify Account address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
@@ -1116,9 +1026,8 @@ public with sharing class ADDR_Addresses_TEST {
         no new Address created
     **********************************************************************************************************/            
     static testMethod void clearAddrExisting() {
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+                                                                    UTIL_Describe.getAdminAccRecTypeID() + ';'));
                 
         // this creates a default Address for each Account
         createTestDataAccs(4);
@@ -1144,7 +1053,6 @@ public with sharing class ADDR_Addresses_TEST {
         // verify that no new address was created
         listAddrs = [select Default_Address__c from Address__c];
         system.assertEquals(4, listAddrs.size());
-        UTIL_Debug.debug('***All addresses: ' + JSON.serializePretty(listAddrs));
         
         // verify existing Default Address updated to be non-default
         for (Integer i = 0; i < listAddrs.size(); i++) {
