@@ -139,7 +139,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        hasRunAddrTrigger = true;
 	 
 	        if (mapAccIdAddr.size() > 0) {  
-	            DmlWrapper dmlWrapper = refreshCurrentAccAddress(mapAccIdAddr);
+	            DmlWrapper dmlWrapper = refreshCurrentAccAddress(mapAccIdAddr, triggerAction);
 	            processDml(dmlWrapper, mapAccIdAddr);
 	        }
 
@@ -190,7 +190,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * and not do any changes to dmlWrapper. 
     * @return map<Id, AccInfo> a map of Account Id to the AccInfo object for the account  
     ********************************************************************************************************/
-    public static DmlWrapper refreshCurrentAccAddress(map<Id, Address__c> mapAccIdAddr) {
+    public static DmlWrapper refreshCurrentAccAddress(map<Id, Address__c> mapAccIdAddr, TDTM_Runnable.Action triggerAction) {
         
         // assumptions:
         // called after all modifications saved to db
@@ -266,6 +266,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             // update Account's Billing address fields
             Account acc = new Account(Id = accId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
+            // If the address was deleted, it cannot be the override any more
+            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+                acc.is_Address_Override__c = false;
+            }
             listAccUpdate.add(acc);
             
             // check other addresses on this account that are no longer the default
