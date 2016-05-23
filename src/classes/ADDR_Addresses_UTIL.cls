@@ -486,12 +486,10 @@ public with sharing class ADDR_Addresses_UTIL {
                 if (isAddressChanged(addrNew, addrDup, includeAddressType)) {
                     copyAddressObj(addrNew, addrDup);
                     if (addrNew.Default_Address__c) {
-                        UTIL_Debug.debug('****Making address default in createNonDuplicateAddresses. Addr ID: ' + addrDup.ID);
                         addrDup.Default_Address__c = true;
                     }
                     dmlWrapper.objectsToUpdate.add(addrDup);
                 } else if (addrNew.Default_Address__c && !addrDup.Default_Address__c) {
-                    UTIL_Debug.debug('****Making address default in createNonDuplicateAddresses. Addr ID: ' + addrDup.ID);
                     addrDup.Default_Address__c = true;
                     dmlWrapper.objectsToUpdate.add(addrDup);
                }

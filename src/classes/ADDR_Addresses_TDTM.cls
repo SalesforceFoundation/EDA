@@ -50,9 +50,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> listNew, List<SObject> listOld, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-        
-        DmlWrapper dmlWrapper = new DmlWrapper();
-            
+   
         // STRATEGY
         // when an Address is created or modified, we need to consider three other objects we may need to update:
         // - the parent Account, if it is marked Default_Address__c
@@ -60,95 +58,93 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // - the parent Contact, if it is marked Default_Address__c
             
         // prevent recursion
-        if (hasRunAddrTrigger) {
-            return null;
-        }
-        // first go through all new/modified Addresses, and collect the list of  Accounts to consider.
-        // map of Accounts, and their default Address 
-        map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>(); 
-
-        // AFTER DELETE
-        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-            for (SObject so : listOld) {
-                ID accId = ((Address__c)so).Parent_Account__c;
-                if (accId != null)
-                    mapAccIdAddr.put(accId, null);
-            }
-        } else {
-	        integer i = 0;        
-	        for (SObject so : listNew) {
-	            Address__c addr = (Address__c)so;
-	            Address__c addrOld = (listOld != null) ? (Address__c)listOld[i] : null;
-	            
-	            // BEFORE INSERT
-	            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-	               // when an address is marked Default, we update its latest date fields
-	               if (addr.Default_Address__c) { 
-	                   addr.Latest_Start_Date__c = System.today();
-	                   addr.Latest_End_Date__c = null;
-	               }
-	            }
-	            
-	            // BEFORE UPDATE
-	            if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-	                if (addr.Default_Address__c != addrOld.Default_Address__c) {
-	                   // when an address changes Default, we update its latest date fields
-	                    if (addr.Default_Address__c) {
-	                       addr.Latest_Start_Date__c = System.today();
-	                       addr.Latest_End_Date__c = null;
-	                    } else {
-	                       addr.Latest_End_Date__c = System.today();                        
-	                    }
-	                }
-	            }
+        if (!hasRunAddrTrigger) {
+	        // first go through all new/modified Addresses, and collect the list of  Accounts to consider.
+	        // map of Accounts, and their default Address 
+	        map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>(); 
 	
-	            // AFTER INSERT
-	            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-	                // a new address that is marked default or seasonal needs to propogate to the account
-	                if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) 
-	                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
+	        // AFTER DELETE
+	        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+	            for (SObject so : listOld) {
+	                ID accId = ((Address__c)so).Parent_Account__c;
+	                if (accId != null)
+	                    mapAccIdAddr.put(accId, null);
 	            }
-	            
-	            // AFTER UPDATE
-	            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-	                // an address that is marked default needs to propogate to the account
-	                if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
-	                    // any seasonal address also need to be considered
-	                    || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) {
-	                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
-	                } else if (ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true)) {
-	                    if (addr.Default_Address__c)
-	                        mapAccIdAddr.put(addr.Parent_Account__c, addr);     
-	                } 
-	            }
-	            // moving to the next item
-	            i++;            
+	        } else {
+		        integer i = 0;        
+		        for (SObject so : listNew) {
+		            Address__c addr = (Address__c)so;
+		            Address__c addrOld = (listOld != null) ? (Address__c)listOld[i] : null;
+		            
+		            // BEFORE INSERT
+		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+		               // when an address is marked Default, we update its latest date fields
+		               if (addr.Default_Address__c) { 
+		                   addr.Latest_Start_Date__c = System.today();
+		                   addr.Latest_End_Date__c = null;
+		               }
+		            }
+		            
+		            // BEFORE UPDATE
+		            if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+		                if (addr.Default_Address__c != addrOld.Default_Address__c) {
+		                   // when an address changes Default, we update its latest date fields
+		                    if (addr.Default_Address__c) {
+		                       addr.Latest_Start_Date__c = System.today();
+		                       addr.Latest_End_Date__c = null;
+		                    } else {
+		                       addr.Latest_End_Date__c = System.today();                        
+		                    }
+		                }
+		            }
+		
+		            // AFTER INSERT
+		            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+		                // a new address that is marked default or seasonal needs to propogate to the account
+		                if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) 
+		                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
+		            }
+		            
+		            // AFTER UPDATE
+		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+		                // an address that is marked default needs to propogate to the account
+		                if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
+		                    // any seasonal address also need to be considered
+		                    || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) {
+		                    mapAccIdAddr.put(addr.Parent_Account__c, addr);
+		                } else if (ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true)) {
+		                    if (addr.Default_Address__c)
+		                        mapAccIdAddr.put(addr.Parent_Account__c, addr);     
+		                } 
+		            }
+		            // moving to the next item
+		            i++;            
+		        }
+		
+		        // BEFORE INSERT & BEFORE UPDATE
+		        if (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+		            
+		            // enforce address records created only as children of Accounts
+		            verifyAddrAccChildOnly((list<Address__c>)listNew);
+		            
+		            // enforce Seasonal Addresses don't overlap
+		            ADDR_Seasonal_UTIL.verifyAddrSeasonalNoOverlap((list<Address__c>)listNew);
+		            
+		            return null;    
+		        }
 	        }
 	
-	        // BEFORE INSERT & BEFORE UPDATE
-	        if (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-	            
-	            // enforce address records created only as children of Accounts
-	            verifyAddrAccChildOnly((list<Address__c>)listNew);
-	            
-	            // enforce Seasonal Addresses don't overlap
-	            ADDR_Seasonal_UTIL.verifyAddrSeasonalNoOverlap((list<Address__c>)listNew);
-	            
-	            return null;    
+	        // AFTER INSERT & AFTER UPDATE & AFTER DELETE
+	        // now we have which Accounts to consider, and which to only use for Address Override updates.
+	        hasRunAddrTrigger = true;
+	 
+	        if (mapAccIdAddr.size() > 0) {  
+	            DmlWrapper dmlWrapper = refreshCurrentAccAddress(mapAccIdAddr);
+	            processDml(dmlWrapper, mapAccIdAddr);
 	        }
-        }
 
-        // AFTER INSERT & AFTER UPDATE & AFTER DELETE
-        // now we have which Accounts to consider, and which to only use for Address Override updates.
-        hasRunAddrTrigger = true;
- 
-        if (mapAccIdAddr.size() > 0)        
-            refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, false);       
-        
-        processDml(dmlWrapper, mapAccIdAddr);
-        
-        deleteEmptyAddrs(listNew, triggerAction);
-        
+	        deleteEmptyAddrs(listNew, triggerAction);
+        }
         return null;
     }
     
@@ -194,8 +190,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * and not do any changes to dmlWrapper. 
     * @return map<Id, AccInfo> a map of Account Id to the AccInfo object for the account  
     ********************************************************************************************************/
-    public static map<Id, AccInfo> refreshCurrentAccAddress(map<Id, Address__c> mapAccIdAddr, DmlWrapper dmlWrapper, 
-    boolean isCalcAccInfoOnly) {
+    public static DmlWrapper refreshCurrentAccAddress(map<Id, Address__c> mapAccIdAddr) {
         
         // assumptions:
         // called after all modifications saved to db
@@ -209,6 +204,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // for each Acc, update its billing fields with seasonal current/default
         // for each Acc addr, clear its Default field if it isn't default
 
+        DmlWrapper dmlWrapper = new DmlWrapper();
+        
         // get all Addresses by Acc, that might need updating
         list<Id> listAccId = new list<Id>(mapAccIdAddr.keySet());
         map<Id, list<Address__c>> mapAccIdListAddrs = ADDR_Addresses_UTIL.getmapAccIdListAddrs(listAccId);
@@ -252,14 +249,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             }
         }
         
-        // some callers just need the AccInfo for each Account.
-        if (isCalcAccInfoOnly)
-            return mapAccIdAccInfo;
-        
         // lists of objects to update
         list<Account> listAccUpdate = new list<Account>();
         list<Address__c> listAddrUpdate = new list<Address__c>();
-        list<Contact> listConUpdate = new list<Contact>();
         
         // now go through each Account, and do all the work!
         for (Id accId : listAccId) {
@@ -274,15 +266,17 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             // update Account's Billing address fields
             Account acc = new Account(Id = accId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
-            acc.is_Address_Override__c = false;
             listAccUpdate.add(acc);
             
             // check other addresses on this account that are no longer the default
             if (mapAccIdListAddrs != null && mapAccIdListAddrs.size() > 0 && mapAccIdListAddrs.get(accId) != null) {
                 for (Address__c addrAcc : mapAccIdListAddrs.get(accId)) {
-                    if (addrAcc.Id == addrDefault.Id)
+                    if (addrAcc.Id == addrDefault.Id) {
+                        UTIL_Debug.debug('****Default_Address__c not set to false because this address is the new default.');
                         continue;
+                    }
                     if (addrAcc.Default_Address__c) {
+                        UTIL_Debug.debug('****Setting Default_Address__c to false.');
                         addrAcc.Default_Address__c = false;
                         addrAcc.Latest_End_Date__c = System.today();
                         listAddrUpdate.add(addrAcc);
@@ -292,19 +286,15 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }  
                     
         if (listAccUpdate.size() > 0) {
-            //UTIL_Debug.debug('DJH**** listAccUpdate: ' + listAccUpdate);
+            UTIL_Debug.debug('**** listAccUpdate: ' + listAccUpdate);
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccUpdate);
         }
         if (listAddrUpdate.size() > 0) {
-            //UTIL_Debug.debug('DJH**** listAddrUpdate: ' + listAddrUpdate);
+            UTIL_Debug.debug('**** listAddrUpdate: ' + listAddrUpdate);
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAddrUpdate);
         }
-        if (listConUpdate.size() > 0) {
-            //UTIL_Debug.debug('DJH**** listConUpdate: ' + listConUpdate);
-            dmlWrapper.objectsToUpdate.addAll((List<SObject>)listConUpdate);
-        }
         
-        return mapAccIdAccInfo;
+        return dmlWrapper;
     }
         
     /*******************************************************************************************************

@@ -198,7 +198,7 @@ public with sharing class ADDR_Addresses_TEST {
         
         // create additional addresses
         initTestAddr(2);
-        for (integer i = 0; i < listAccs.size(); i++) {
+        for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
             listAddrs[i].MailingStreet__c = 'override' + i;
@@ -208,7 +208,7 @@ public with sharing class ADDR_Addresses_TEST {
         insert listAddrs;
         
         // set the accounts' address overrides
-        for (integer i = 0; i < listAccs.size(); i++) {
+        for (Integer i = 0; i < listAccs.size(); i++) {
             Account acc = listAccs[i];
             acc.Current_Address__c = listAddrs[i].Id;
             acc.is_Address_Override__c = true;
@@ -225,6 +225,7 @@ public with sharing class ADDR_Addresses_TEST {
         // verify that the Account address fields went back to the default
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        UTIL_Debug.debug('****Accounts with updated addr info: ' + JSON.serializePretty(mapAccIdAcc.values()));
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('Street'));
@@ -1123,7 +1124,7 @@ public with sharing class ADDR_Addresses_TEST {
         createTestDataAccs(4);
 
         // clear addresses fields directly
-        for (integer i = 0; i < listAccs.size(); i++) {
+        for (Integer i = 0; i < listAccs.size(); i++) {
             listAccs[i].BillingStreet = null;
             listAccs[i].BillingCity = null;
             listAccs[i].BillingState = null;
@@ -1141,11 +1142,12 @@ public with sharing class ADDR_Addresses_TEST {
         Test.stopTest();
         
         // verify that no new address was created
-        list<Address__c> listAddr = [select Default_Address__c from Address__c];
-        system.assertEquals(4, listAddr.size());
+        listAddrs = [select Default_Address__c from Address__c];
+        system.assertEquals(4, listAddrs.size());
+        UTIL_Debug.debug('***All addresses: ' + JSON.serializePretty(listAddrs));
         
         // verify existing Default Address updated to be non-default
-        for (integer i = 0; i < listAddrs.size(); i++) {
+        for (Integer i = 0; i < listAddrs.size(); i++) {
             system.assertEquals(false, listAddrs[i].Default_Address__c);
         }              
     }
