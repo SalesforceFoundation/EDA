@@ -36,7 +36,7 @@
 */
 
 @isTest
-public with sharing class ADDR_Addresses_TEST {
+public with sharing class ADDR_Account_TEST {
 
     /* @description The list of created test Accounts.*/
     public static list<Account> listAccs;
