@@ -105,13 +105,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            // AFTER INSERT
 		            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
 		                // a new address that is marked default or seasonal needs to propogate to the parent
-		                if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
-		                    if(addr.Parent_Account__c != null) {
-		                        mapParentIdAddr.put(addr.Parent_Account__c, addr);
-		                    } else if(addr.Parent_Contact__c != null) {
-		                        mapParentIdAddr.put(addr.Parent_Contact__c, addr);
-		                    }
-		                }
+		                if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr))
+		                    putAddrInMap(addr, mapParentIdAddr);
 		            }
 		            
 		            // AFTER UPDATE
@@ -119,19 +114,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		                // an address that is marked default needs to propogate to the parent
 		                if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
 		                || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) { // any seasonal address also need to be considered
-		                    if(addr.Parent_Account__c != null) {
-                                mapParentIdAddr.put(addr.Parent_Account__c, addr);
-                            } else if(addr.Parent_Contact__c != null) {
-                                mapParentIdAddr.put(addr.Parent_Contact__c, addr);
-                            }
-		                } else if (ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true)) {
-		                    if (addr.Default_Address__c) {
-		                        if(addr.Parent_Account__c != null) {
-	                                mapParentIdAddr.put(addr.Parent_Account__c, addr);
-	                            } else if(addr.Parent_Contact__c != null) {
-	                                mapParentIdAddr.put(addr.Parent_Contact__c, addr);
-	                            }
-		                    }    
+		                    putAddrInMap(addr, mapParentIdAddr);
+		                } else if (ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true) && addr.Default_Address__c) {
+		                    putAddrInMap(addr, mapParentIdAddr);    
 		                } 
 		            }
 		            // moving to the next item
@@ -163,6 +148,14 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        deleteEmptyAddrs(listNew, triggerAction);
         }
         return null;
+    }
+    
+    private void putAddrInMap(Address__c addr, Map<Id, Address__c> mapParentIdAddr) {
+        if(addr.Parent_Account__c != null) {
+            mapParentIdAddr.put(addr.Parent_Account__c, addr);
+        } else if(addr.Parent_Contact__c != null) {
+            mapParentIdAddr.put(addr.Parent_Contact__c, addr);
+        }
     }
     
     private void processDml(DmlWrapper dmlWrapper, map<Id, Address__c> mapParentIdAddr) {
