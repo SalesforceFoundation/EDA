@@ -139,7 +139,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        // AFTER INSERT & AFTER UPDATE & AFTER DELETE
 	        // now we have which parents to consider, and which to only use for Address Override updates.
 	        hasRunAddrTrigger = true;
-	 
+	        
 	        if (mapParentIdAddr.size() > 0) {  
 	            DmlWrapper dmlWrapper = refreshCurrentAccAddress(mapParentIdAddr, triggerAction);
 	            processDml(dmlWrapper, mapParentIdAddr);
@@ -224,43 +224,20 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         map<Id, ParentInfo> mapParentIdParentInfo = new map<Id, ParentInfo>();
         for (Id parentId : listParentId) {
             // create a ParentInfo for each        
-            ParentInfo ParentInfo = new ParentInfo();
-            ParentInfo.parentId = parentId;
-            mapParentIdParentInfo.put(parentId, ParentInfo);
+            ParentInfo parentInfo = new ParentInfo();
+            parentInfo.parentId = parentId;
+            mapParentIdParentInfo.put(parentId, parentInfo);
 
             // if there is a provided Default address, use it over all other defaults.
             Address__c addr = mapParentIdAddr.get(parentId);
             if (addr != null && addr.Default_Address__c) 
-                ParentInfo.addrDefault = addr;
+                parentInfo.addrDefault = addr;
 
-            // go through the Acc addresses storing the default and any seasonal  
-            if (mapParentIdListAddrs.get(parentId) != null) {         
-                for (Address__c addrAcc : mapParentIdListAddrs.get(parentId)) { 
+            // go through the Acc addresses storing the default and any seasonal          
+            storeDefaultSeasonal(parentId, parentInfo, mapParentIdListAddrs);
                     
-                    if (ParentInfo.addrDefault == null && addrAcc.Default_Address__c)
-                       ParentInfo.addrDefault = addrAcc;
-                    
-                    if (ADDR_Seasonal_UTIL.isSeasonalAddr(addrAcc)) {
-                        Date startDate = ADDR_Seasonal_UTIL.getStartOrEndDateOfAddrSeasonal(addrAcc, true);
-                        Date endDate = ADDR_Seasonal_UTIL.getStartOrEndDateOfAddrSeasonal(addrAcc, false);
-                        Date dtToday = System.today();
-                        if (dtToday >= startDate && dtToday < endDate) {
-                            ParentInfo.addrSeasonal = addrAcc;
-                        }
-                    }
-                }
-            }
-        
         	// finally, if no default found, create an empty default
-            if (ParentInfo.addrDefault == null) {
-                Address__c addrEmpty = new Address__c();
-                if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
-                    addrEmpty.Parent_Account__c = parentId;
-                } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
-                    addrEmpty.Parent_Contact__c = parentId;
-                }
-                ParentInfo.addrDefault = addrEmpty;
-            }
+            createDefaultIfNoneExists(parentId, parentInfo);
         }
         
         // lists of objects to update
@@ -277,27 +254,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             if (addr == null) 
                 addr = addrDefault;
 
-            // update parent's Billing address fields
-            if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
-	            Account acc = new Account(Id = parentId);
-	            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
-	            // If the address was deleted, it cannot be the override any more
-	            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
-	                acc.is_Address_Override__c = false;
-	            }
-	            listParentUpdate.add(acc);
-            } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
-                Contact contact = new Contact(Id = parentId);
-                ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null);
-                // If the address was deleted, it cannot be the override any more
-                if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
-                    contact.is_Address_Override__c = false;
-                }
-                listParentUpdate.add(contact);
-            }
+            // update parent's address fields
+            updateParentsAddresses(parentId, addr, triggerAction, listParentUpdate);
             
             // check other addresses on this parent that are no longer the default
-            if (mapParentIdListAddrs != null && mapParentIdListAddrs.size() > 0 && mapParentIdListAddrs.get(parentId) != null) {
+            if (mapParentIdListAddrs != null && mapParentIdListAddrs.size() > 0 
+            && mapParentIdListAddrs.get(parentId) != null) {
                 for (Address__c childAddr : mapParentIdListAddrs.get(parentId)) {
                     if (childAddr.Id == addrDefault.Id) {
                         UTIL_Debug.debug('****Default_Address__c not set to false because this address is the new default.');
@@ -323,6 +285,59 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }
         
         return dmlWrapper;
+    }
+    
+    private static void storeDefaultSeasonal(ID parentId, ParentInfo parentInfo, 
+    Map<Id, List<Address__c>> mapParentIdListAddrs) {
+        if (mapParentIdListAddrs.get(parentId) != null) {
+	        for (Address__c addrAcc : mapParentIdListAddrs.get(parentId)) { 
+          
+	            if (ParentInfo.addrDefault == null && addrAcc.Default_Address__c)
+	               ParentInfo.addrDefault = addrAcc;
+	            
+	            if (ADDR_Seasonal_UTIL.isSeasonalAddr(addrAcc)) {
+	                Date startDate = ADDR_Seasonal_UTIL.getStartOrEndDateOfAddrSeasonal(addrAcc, true);
+	                Date endDate = ADDR_Seasonal_UTIL.getStartOrEndDateOfAddrSeasonal(addrAcc, false);
+	                Date dtToday = System.today();
+	                if (dtToday >= startDate && dtToday < endDate) {
+	                    parentInfo.addrSeasonal = addrAcc;
+	                }
+	            }
+	        }
+        }
+    }
+    
+    private static void createDefaultIfNoneExists(ID parentId, ParentInfo parentInfo) {
+        if (parentInfo.addrDefault == null) {
+            Address__c addrEmpty = new Address__c();
+            if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
+                addrEmpty.Parent_Account__c = parentId;
+            } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
+                addrEmpty.Parent_Contact__c = parentId;
+            }
+            ParentInfo.addrDefault = addrEmpty;
+        }
+    }
+    
+    private static void updateParentsAddresses(ID parentId, Address__c addr, TDTM_Runnable.Action triggerAction, 
+    list<SObject> listParentUpdate) {
+        if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
+            Account acc = new Account(Id = parentId);
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
+            // If the address was deleted, it cannot be the override any more
+            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+                acc.is_Address_Override__c = false;
+            }
+            listParentUpdate.add(acc);
+        } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
+            Contact contact = new Contact(Id = parentId);
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null);
+            // If the address was deleted, it cannot be the override any more
+            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+                contact.is_Address_Override__c = false;
+            }
+            listParentUpdate.add(contact);
+        }
     }
         
     /*******************************************************************************************************
