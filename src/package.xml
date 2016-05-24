@@ -11,6 +11,7 @@
         <members>ADDR_Addresses_TEST</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_Contact_TDTM</members>
+        <members>ADDR_Contact_TEST</members>
         <members>ADDR_Seasonal_BATCH</members>
         <members>ADDR_Seasonal_SCHED</members>
         <members>ADDR_Seasonal_TEST</members>
@@ -297,7 +298,9 @@
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>addrHhAdmAccountOnly</members>
+        <members>addrValidParentObjects</members>
         <members>addrAccountTypeEnabled</members>
+        <members>addrNotEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>

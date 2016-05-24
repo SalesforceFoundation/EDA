@@ -96,9 +96,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             addrInfoDeleted(ListAccsAddrInfoCleared, dmlWrapper);
         
         hasRunAddrTrigger = true;
-            
-        UTIL_Debug.debug('****dmlWrapper end of ADDR_Account_TDTM run method: ' + JSON.serializePretty(dmlWrapper)); 
-                    
+                            
         return dmlWrapper;    
     }
     
@@ -163,11 +161,8 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         }
         
         // clear Default_Address__c field from child addrs
-        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true 
-        and ID in :oldCurrentAddrIDs];
-        UTIL_Debug.debug('****Addresses to make non-default: ' + JSON.serializePretty(addrs));
+        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true  and ID in :oldCurrentAddrIDs];
         for(Address__c addr : addrs) {
-            UTIL_Debug.debug('****Making address non-default in addrInfoDeleted. Addr ID: ' + addr.ID);
             addr.Default_Address__c = false;
             dmlWrapper.objectsToUpdate.add(addr);
         }

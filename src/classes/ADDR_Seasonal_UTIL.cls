@@ -215,7 +215,7 @@ public with sharing class ADDR_Seasonal_UTIL {
         for (Address__c addr : listAddrS) {
             listAccId.add(addr.Parent_Account__c);
         }        
-        map<Id, list<Address__c>> mapAccIdListAddrs = ADDR_Addresses_UTIL.getmapAccIdListAddrs(listAccId);
+        map<Id, list<Address__c>> mapAccIdListAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(listAccId);
         
         for (Address__c addr : listAddrS) {
             if(mapAccIdListAddrs != null && mapAccIdListAddrs.size() > 0) {

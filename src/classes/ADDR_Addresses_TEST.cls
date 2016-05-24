@@ -684,7 +684,7 @@ public with sharing class ADDR_Addresses_TEST {
         try {
             insert listAddrs;
         } catch (Exception ex) {
-            system.assert(ex.getMessage().contains(Label.addrHhAdmAccountOnly));
+            system.assert(ex.getMessage().contains(Label.addrValidParentObjects));
             return;
         }
         system.assert(false); //we shouldn't get here!

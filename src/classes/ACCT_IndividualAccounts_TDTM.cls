@@ -365,7 +365,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 i += 1;
             }
         }
-        ADDR_Contact_TDTM.contactsUpdatedAfterInsert = true;
+        ADDR_Contact_TDTM.hasRunAddrTrigger = true;
         update contactsToUpdate;
         dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }

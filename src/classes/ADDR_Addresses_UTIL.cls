@@ -84,11 +84,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param con2 a Contact
     * @return Boolean. true if the Mailing Address fields have changed 
     ********************************************************************************************************/
-    public static Boolean isContactAddressChanged(Contact con1, Contact con2, Boolean contactsUpdatedAfterInsert) {
-        if(contactsUpdatedAfterInsert) {
-            return true;
-        }
-        
+    public static Boolean isContactAddressChanged(Contact con1, Contact con2) {
         // if both null, no change
         if (con1 == null && con2 == null) 
            return false;
@@ -151,7 +147,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param con1 a Contact
     * @return Boolean. true if the Mailing Address fields are all empty 
     ********************************************************************************************************/
-    private static Boolean isContactAddressEmpty(Contact con1) {
+    public static Boolean isContactAddressEmpty(Contact con1) {
         if(con1 == null)
             return true;
             
@@ -516,7 +512,7 @@ public with sharing class ADDR_Addresses_UTIL {
         list<Id> listAccId = new list<Id>();
         for (Address__c addr : listAddr)
            listAccId.add(addr.Parent_Account__c);
-        map<Id, list<Address__c>> mapAccIdListAddrs = getmapAccIdListAddrs(listAccId);
+        map<Id, list<Address__c>> mapAccIdListAddrs = getMapParentIdListAddrs(listAccId);
         Boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
         
         // create our map for returning information in
@@ -553,26 +549,38 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
-    * @description utility to create a map of HH Account Id to a list of Addresses in that HH, given a list of HH Account Id.
+    * @description utility to create a map of parent Id to a list of Addresses in that record, given a list of parent Ids.
     * @param listAccId the list of Account Id's
     * @return map<Id, list<Address__c>> map that contains the Addresses for each HH Account Id
     */ 
-    public static map<Id, list<Address__c>> getmapAccIdListAddrs(list<Id> listAccId) {
-        map<Id, list<Address__c>> mapAccIdListAddrs = new map<Id, list<Address__c>>();  
-        list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Address_Type__c,
+    public static map<Id, list<Address__c>> getMapParentIdListAddrs(list<Id> listParentId) {
+          
+        list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Parent_Contact__c, Address_Type__c,
             MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
             Seasonal_Start_Year__c, Seasonal_End_Year__c, Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, 
             Seasonal_End_Day__c, Geolocation__Latitude__s, Geolocation__Longitude__s from Address__c where Parent_Account__c 
-            IN :listAccId order by Default_Address__c desc, LastModifiedDate asc]; // ordering needed by cleanupAccountAddresses().
-            
-        for (Address__c addr : listAddrOther) {
-            list<Address__c> listAddrHH = mapAccIdListAddrs.get(addr.Parent_Account__c);
-            if (listAddrHH == null) {
-                listAddrHH = new list<Address__c>();
-                mapAccIdListAddrs.put(addr.Parent_Account__c, listAddrHH);
+            IN :listParentId or Parent_Contact__c in :listParentID order by Default_Address__c desc, LastModifiedDate asc]; // ordering needed by cleanupAccountAddresses().
+        
+        map<Id, list<Address__c>> mapParentIdListAddrs = new map<Id, list<Address__c>>();   
+        for (Address__c addr : listAddrOther) { 
+            if(addr.Parent_Account__c != null) {
+                list<Address__c> listAddrParentAccs = mapParentIdListAddrs.get(addr.Parent_Account__c);
+                if (listAddrParentAccs == null) {
+                    listAddrParentAccs = new List<Address__c>();
+                    mapParentIdListAddrs.put(addr.Parent_Account__c, listAddrParentAccs);
+                }
+                listAddrParentAccs.add(addr);
             }
-            listAddrHH.add(addr);
+            
+            if(addr.Parent_Contact__c != null) {
+                list<Address__c> listAddrParentContacts = mapParentIdListAddrs.get(addr.Parent_Contact__c);
+                if (listAddrParentContacts == null) {
+                    listAddrParentContacts = new List<Address__c>();
+                    mapParentIdListAddrs.put(addr.Parent_Contact__c, listAddrParentContacts);
+                }
+                listAddrParentContacts.add(addr);
+            } 
         }
-        return mapAccIdListAddrs;
+        return mapParentIdListAddrs;
     }
 }

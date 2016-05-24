@@ -117,7 +117,15 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly</shortDescription>
+        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
+    </labels>
+    <labels>
+        <fullName>addrValidParentObjects</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrValidParentObjects</shortDescription>
         <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
@@ -125,8 +133,16 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address management not enabled for this type of Account.</value>
+        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <value>Address management not enabled for this object type.</value>
+    </labels>
+    <labels>
+        <fullName>addrNotEnabled</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrNotEnabled</shortDescription>
+        <value>Address management not enabled for this object type in settings.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
