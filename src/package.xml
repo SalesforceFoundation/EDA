@@ -7,8 +7,8 @@
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
+        <members>ADDR_Account_TEST</members>
         <members>ADDR_Addresses_TDTM</members>
-        <members>ADDR_Addresses_TEST</members>
         <members>ADDR_Addresses_UTIL</members>
         <members>ADDR_Contact_TDTM</members>
         <members>ADDR_Contact_TEST</members>
