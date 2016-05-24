@@ -94,6 +94,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 		hs.Account_Processor__c = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
 		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getHhAccRecTypeID() 
 		                                  + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
+		hs.Contacts_Addresses_Enabled__c = true;
 		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
@@ -117,6 +118,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         //create our own based on what's passed in from the test
         settings.Account_Processor__c = mySettings.Account_Processor__c;
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
+        settings.Contacts_Addresses_Enabled__c = mySettings.Contacts_Addresses_Enabled__c;
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
