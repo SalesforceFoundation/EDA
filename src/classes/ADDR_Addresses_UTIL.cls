@@ -508,11 +508,16 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return map<Address__c, Address__c>
     */ 
     public static map<Address__c, Address__c> findDuplicateAddresses(list<Address__c> listAddr) {      
-        // for each address, create a map of HHId to lists of Addresses
-        list<Id> listAccId = new list<Id>();
-        for (Address__c addr : listAddr)
-           listAccId.add(addr.Parent_Account__c);
-        map<Id, list<Address__c>> mapAccIdListAddrs = getMapParentIdListAddrs(listAccId);
+        // for each address, create a map of Parent ID to lists of Addresses
+        list<Id> listParentId = new list<Id>();
+        for (Address__c addr : listAddr) {
+            if(addr.Parent_Account__c != null) {
+                listParentId.add(addr.Parent_Account__c);
+            } else if(addr.Parent_Contact__c != null) {
+                listParentId.add(addr.Parent_Contact__c);
+            }
+        }
+        map<Id, list<Address__c>> mapParentIdToAddrs = getMapParentIdListAddrs(listParentId);
         Boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
         
         // create our map for returning information in
@@ -520,20 +525,26 @@ public with sharing class ADDR_Addresses_UTIL {
         
         // now compare our Addresses to the existing Addresses
         for (Address__c addr : listAddr) {
-            list<Address__c> listAddrHH = mapAccIdListAddrs.get(addr.Parent_Account__c);
+            list<Address__c> childAddrs;
+            if(addr.Parent_Account__c != null) {
+                childAddrs = mapParentIdToAddrs.get(addr.Parent_Account__c);
+            } else if(addr.Parent_Contact__c != null) {
+                childAddrs = mapParentIdToAddrs.get(addr.Parent_Contact__c);
+            }
+            
             Boolean hasMatch = false;
-            if (listAddrHH != null) {
+            if (childAddrs != null) {
                 Address__c addrMatch = null;
-                for (Address__c addrHH : listAddrHH) {
+                for (Address__c childAddr : childAddrs) {
                     // only include address type in the test if the new one isn't empty.
-                    if (!isAddressChanged(addr, addrHH, addr.Address_Type__c != null)) {
+                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != null)) {
                         // found exact match, record it and bail out
-                        addrMatch = addrHH;
+                        addrMatch = childAddr;
                         break;
                     }
-                    if (tryFuzzy && isAddressMatchFuzzy(addr, addrHH, addr.Address_Type__c != null)) {
+                    if (tryFuzzy && isAddressMatchFuzzy(addr, childAddr, addr.Address_Type__c != null)) {
                         // found fuzzy match, remember it and continue searching
-                        addrMatch = addrHH;
+                        addrMatch = childAddr;
                         continue;
                     }
                 }

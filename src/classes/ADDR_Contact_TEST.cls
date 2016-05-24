@@ -54,6 +54,8 @@ public with sharing class ADDR_Contact_TEST {
     * @return  void
     **********************************************************************************************************/  
     public static List<Address__c> createTestDataContacts(Integer contactCount) {
+        configSettings();
+        
         //instantiate contacts
         contacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(contactCount);
         //insert contacts
