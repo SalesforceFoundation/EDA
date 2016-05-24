@@ -32,7 +32,7 @@
 * @date 2016
 * @group Addresses
 * @group-content ../../ApexDocContent/Addresses.htm
-* @description Tests specific to Address Management. 
+* @description Tests specific to Account Address Management. 
 */
 
 @isTest
@@ -41,13 +41,10 @@ public with sharing class ADDR_Addresses_TEST {
     /* @description The list of created test Accounts.*/
     public static list<Account> listAccs;
     
-    /* @description The list of created test Addresses.*/
-    public static list<Address__c> listAddrs;
-    
     private static void configSettings() {
-        Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
-        hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';';
-        hs.Simple_Address_Change_Treated_as_Update__c = true;
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
     }
 
@@ -56,7 +53,7 @@ public with sharing class ADDR_Addresses_TEST {
     * @param accCount Number of  Accounts to create.
     * @return  void
     **********************************************************************************************************/    
-    public static void createTestDataAccs(Integer accCount) {        
+    public static List<Address__c> createTestDataAccs(Integer accCount) {        
         configSettings();
         
         //instantiate accounts
@@ -65,7 +62,7 @@ public with sharing class ADDR_Addresses_TEST {
         insert listAccs;      
         
         //instantiate addresses
-        initTestAddr(accCount);
+        List<Address__c> listAddrs = initTestAddr(accCount);
         
         //link addresses with accounts and make them default
         for (Integer i = 0; i < accCount; i++) {
@@ -78,6 +75,8 @@ public with sharing class ADDR_Addresses_TEST {
         
         //clear our triggers recursion prevention since we are starting a new test
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        
+        return listAddrs;
     }
 
     /*********************************************************************************************************
@@ -85,8 +84,8 @@ public with sharing class ADDR_Addresses_TEST {
     * @param cAddr the number of Address objects to create
     * @return  void
     **********************************************************************************************************/
-    public static void initTestAddr(Integer addrCount) {
-        listAddrs = new list<Address__c>();
+    public static List<Address__c> initTestAddr(Integer addrCount) {
+        List<Address__c> listAddrs = new list<Address__c>();
         for (Integer i = 0; i < addrCount; i++) {
             Address__c addr = new Address__c();
             addr.Address_Type__c = 'Home';
@@ -99,6 +98,7 @@ public with sharing class ADDR_Addresses_TEST {
             addr.Geolocation__Longitude__s = -122.3331 + i;
             listAddrs.add(addr);            
         }
+        return listAddrs;
     }
     
     /*********************************************************************************************************
@@ -141,12 +141,12 @@ public with sharing class ADDR_Addresses_TEST {
         
     /*********************************************************************************************************
     @description Update existing default Addresses.  
-    verify: household billing address fields updated
+    verify: account billing address fields updated
     **********************************************************************************************************/            
     @isTest 
     public static void updateDefaultAddr() {
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // now let's update the Addresses
         for (Integer i = 0; i < listAddrs.size(); i++) {
@@ -178,7 +178,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest 
     static void deleteDefaultAddr() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
        
         // now let's delete the Addresses
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
@@ -202,10 +202,11 @@ public with sharing class ADDR_Addresses_TEST {
     **********************************************************************************************************/            
     @isTest
     static void deleteNonDefaultOverrideAddr() {        
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
         
         // create additional addresses
-        initTestAddr(2);
+        listAddrs = initTestAddr(2);
+        
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
@@ -249,7 +250,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void updateNonDefaultAddr() { 
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // now let's update the Addresses
         for (Integer i = 0; i < listAddrs.size(); i++) {
@@ -281,7 +282,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void setAddrOverride() {        
         // this creates a default Address for the Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // create new non-default address
         Address__c addrNew = new Address__c();
@@ -339,10 +340,10 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void insertNewDefaultAddr() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
         
         // create additional addresses
-        initTestAddr(2);
+        listAddrs = initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -392,12 +393,10 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void insertNewDefaultAddrAndReset() {  
         // this creates a default Address for each Account
-        createTestDataAccs(2);
-
-        list<Address__c> listAddrOriginal = listAddrs;
+        List<Address__c> listAddrOriginal = createTestDataAccs(2);
         
         // create additional addresses
-        initTestAddr(2);
+        List<Address__c> listAddrs = initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -447,7 +446,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void updateAddrNew() {        
         // this creates a default Address for each Account
-        createTestDataAccs(4);
+        List<Address__c> listAddrs = createTestDataAccs(4);
 
         // modify some of the Account addresses directly
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -503,7 +502,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void updateAddrMarkOverride() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // modify the account addresses directly, and set override
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -546,7 +545,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void updateAddrExistingCaseOnly() {    
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -628,7 +627,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void updateAddrExisting() {
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -677,7 +676,7 @@ public with sharing class ADDR_Addresses_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newAddrNoParent() {        
-        initTestAddr(2);
+        List<Address__c> listAddrs = initTestAddr(2);
         for (Integer i = 0; i < listAddrs.size(); i++) {
             system.assertEquals(null, listAddrs[i].Parent_Account__c);
         }
@@ -699,7 +698,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void newDupeAddr() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // create additional addresses thru the account.
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -728,10 +727,10 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void newDupeAddrNonDefault() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
          // create additional non-default addresses
-        initTestAddr(2);
+        listAddrs = initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
@@ -821,10 +820,10 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void insertNewDefaultMultilineStreetAddr() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // create additional addresses
-        initTestAddr(2);
+        listAddrs = initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -859,7 +858,7 @@ public with sharing class ADDR_Addresses_TEST {
     @isTest
     public static void updateMultilineStreetAddr() {        
         // this creates a default Address for each Account
-        createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestDataAccs(2);
 
         // modify some of the account addresses directly
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -958,7 +957,7 @@ public with sharing class ADDR_Addresses_TEST {
         insert listAcc;
 
          // create addresses for the accounts
-        initTestAddr(listAcc.size());
+        List<Address__c> listAddrs = initTestAddr(listAcc.size());
         for (Integer i = 0; i < listAcc.size(); i++) {
             listAddrs[i].Parent_Account__c = listAcc[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -1030,7 +1029,7 @@ public with sharing class ADDR_Addresses_TEST {
                                                                     UTIL_Describe.getAdminAccRecTypeID() + ';'));
                 
         // this creates a default Address for each Account
-        createTestDataAccs(4);
+        List<Address__c> listAddrs = createTestDataAccs(4);
 
         // clear addresses fields directly
         for (Integer i = 0; i < listAccs.size(); i++) {

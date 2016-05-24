@@ -48,23 +48,23 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertNewSeasonalAddr() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        insert ADDR_Addresses_TEST.listAddrs;
+        insert listAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.stopTest();
         
@@ -99,28 +99,28 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertNewSeasonalAddrWithYear() {
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Default_Address__c = false;
             
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Year__c = System.today().addYears(-1).year();
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Seasonal_Start_Year__c = System.today().addYears(-1).year();
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
             
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Year__c = System.today().addYears(1).year();
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].Seasonal_End_Year__c = System.today().addYears(1).year();
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
             
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        insert ADDR_Addresses_TEST.listAddrs;
+        insert listAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.stopTest();
         
@@ -157,23 +157,23 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertNewSeasonalAddrNotCurrent() {
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        insert ADDR_Addresses_TEST.listAddrs;
+        insert listAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.stopTest();
         
@@ -208,30 +208,30 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void updateSeasonalAddr() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
  
         // create additional seasonal addresses not current
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert ADDR_Addresses_TEST.listAddrs;
+        insert listAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         
         // now make them current
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
         }
         Test.startTest();
-        update ADDR_Addresses_TEST.listAddrs;
+        update listAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;                
         Test.stopTest();
         
@@ -266,32 +266,32 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertSeasonalAddrWithOverlap() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        ADDR_Addresses_TEST.initTestAddr(2 * 2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2 * 2);
         for (Integer i = 0; i < 2 * 2; i++) {
             Integer iacc = i < 2 ? i : i-2;
             if (math.mod(i, 2) == 0) {
-                ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[iacc].Id;
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
+                listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[iacc].Id;
+                listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+                listAddrs[i].Seasonal_Start_Day__c = '1';
+                listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
+                listAddrs[i].Seasonal_End_Day__c = '28';
             } else {
-                ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[iacc-1].Id;
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';            
+                listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[iacc-1].Id;
+                listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+                listAddrs[i].Seasonal_Start_Day__c = '1';
+                listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+                listAddrs[i].Seasonal_End_Day__c = '28';            
             }
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         try {
-            insert ADDR_Addresses_TEST.listAddrs;
+            insert listAddrs;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrSeasonalOverlap));
             return;
@@ -482,40 +482,40 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertSeasonalAddrOverlapExisting() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         Date dtTest = Date.newInstance(system.today().year(), 6, 1);
         
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(3).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(3).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert ADDR_Addresses_TEST.listAddrs;
+        insert listAddrs;
         
         // create additional seasonal addresses that overlap existing seasonal addresses
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(2).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(4).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(2).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(4).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         try {
-            insert ADDR_Addresses_TEST.listAddrs;
+            insert listAddrs;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrSeasonalOverlap));
             return;
@@ -533,21 +533,21 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertPartialSeasonalAddr() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         try {
-            insert ADDR_Addresses_TEST.listAddrs;
+            insert listAddrs;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrSeasonalPartial));
             return;
@@ -565,28 +565,28 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertPartialSeasonalYearAddr() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = '1';
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_Start_Day__c = '1';
             if(math.mod(i, 2) == 0) {
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Year__c = Decimal.valueOf(system.today().year());
+                listAddrs[i].Seasonal_Start_Year__c = Decimal.valueOf(system.today().year());
             } else {
-                ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Year__c = Decimal.valueOf(system.today().year());
+                listAddrs[i].Seasonal_End_Year__c = Decimal.valueOf(system.today().year());
             }
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '20';
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            listAddrs[i].Seasonal_End_Day__c = '20';
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         try {
-            insert ADDR_Addresses_TEST.listAddrs;
+            insert listAddrs;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrSeasonalPartialYear));
             return;
@@ -605,26 +605,26 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void scheduleSeasonalAddrUpdate() {        
         // this creates a default Address for each Account
-        ADDR_Addresses_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_Addresses_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        ADDR_Addresses_TEST.initTestAddr(2);
+        listAddrs = ADDR_Addresses_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            ADDR_Addresses_TEST.listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
-            ADDR_Addresses_TEST.listAddrs[i].Default_Address__c = false;
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
-            ADDR_Addresses_TEST.listAddrs[i].Seasonal_End_Day__c = '28';
-            ADDR_Addresses_TEST.listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            ADDR_Addresses_TEST.listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            listAddrs[i].Parent_Account__c = ADDR_Addresses_TEST.listAccs[i].Id;
+            listAddrs[i].Default_Address__c = false;
+            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
+            listAddrs[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
+            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            listAddrs[i].Seasonal_End_Day__c = '28';
+            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
+            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
         
         // Hack!  by setting our trigger handler as run,
         // we can insert the new seasonal addresses but not have them processed.
         // this way we can test the scheduled job!
         ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
-        insert ADDR_Addresses_TEST.listAddrs;
+        insert listAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
 
         //Schedule the job just for test coverage purposes. But we still have to manually run the
