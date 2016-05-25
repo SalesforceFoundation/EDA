@@ -79,6 +79,43 @@ public with sharing class ADDR_Contact_TEST {
         
         return listAddrs;
     }
+    
+    @isTest
+    public static void noPropagation() {
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Contacts_Addresses_Enabled__c = true,
+            Simple_Address_Change_Treated_as_Update__c = true);
+        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Main St', 
+        MailingCity = 'Chicago', MailingState = 'IL', MailingPostalcode = '60606', MailingCountry = 'USA');
+        Test.startTest();
+        insert contact;
+        Test.stopTest();
+        
+        //Verify parent account was automatically created
+        contact = [select AccountID from Contact where ID = :contact.ID];
+        System.assertNotEquals(null, contact.AccountID);
+        
+        //Verify parent account has no address info
+        Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
+        from Account where ID = :contact.AccountID];
+        System.assertEquals(null, acc.BillingStreet);
+        System.assertEquals(null, acc.BillingState);
+        System.assertEquals(null, acc.BillingPostalCode);
+        System.assertEquals(null, acc.BillingCountry);
+        
+        //Verify child address record was created
+        List<Address__c> addrs = [select Parent_Account__c from Address__c where Parent_Contact__c = :contact.ID]; 
+        System.assertEquals(1, addrs.size());
+        System.assertEquals(null, addrs[0].Parent_Account__c);
+        
+        //Verify no address record was created as child of the parent account
+        addrs = [select ID from Address__c where Parent_Account__c = :contact.AccountID];
+        System.assertEquals(0, addrs.size()); 
+    }
   
     /*********************************************************************************************************
     @description Create N new Contacts with Mailing addresses 
