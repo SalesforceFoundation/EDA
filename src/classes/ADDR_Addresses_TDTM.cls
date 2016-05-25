@@ -61,7 +61,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (!hasRunAddrTrigger) {
 	        // first go through all new/modified Addresses, and collect the list of parents to consider.
 	        // map of parents, and their default Address 
-	        map<Id, Address__c> mapParentIdAddr = new map<Id, Address__c>(); 
+	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>(); 
 	
 	        // AFTER DELETE
 	        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
@@ -127,10 +127,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		        if (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
 		            
 		            // enforce address records created only as children of parents
-		            verifyAddrAccContactChildOnly((list<Address__c>)listNew);
+		            verifyAddrAccContactChildOnly((List<Address__c>)listNew);
 		            
 		            // enforce Seasonal Addresses don't overlap
-		            ADDR_Seasonal_UTIL.verifyAddrSeasonalNoOverlap((list<Address__c>)listNew);
+		            ADDR_Seasonal_UTIL.verifyAddrSeasonalNoOverlap((List<Address__c>)listNew);
 		            
 		            return null;    
 		        }
@@ -158,7 +158,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }
     }
     
-    private void processDml(DmlWrapper dmlWrapper, map<Id, Address__c> mapParentIdAddr) {
+    private void processDml(DmlWrapper dmlWrapper, Map<Id, Address__c> mapParentIdAddr) {
         // we must process dmlWrapper ourselves, so we can extract out the appropriate errors
         // that might occur updating contacts and parents, and associating those errors with 
         // the correct addresses.
@@ -179,7 +179,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     private void deleteEmptyAddrs(List<SObject> listNew, TDTM_Runnable.Action triggerAction) {
         // hack to detect empty addresses and delete them after we've propagated the change to parent
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-             List<Address__c> listAddr = new list<Address__c>();
+             List<Address__c> listAddr = new List<Address__c>();
              for (SObject so : listNew) {
                  Address__c addr = (Address__c)so;
                  if (ADDR_Addresses_UTIL.isAddressEmpty(addr))
@@ -198,30 +198,28 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the objects that get updated
     * @param isCalcParentInfoOnly if set, then this routine will return the map of parentId to ParentInfo,
     * and not do any changes to dmlWrapper. 
-    * @return map<Id, ParentInfo> a map of parent Id to the ParentInfo object for the parent  
+    * @return Map<Id, ParentInfo> a map of parent Id to the ParentInfo object for the parent  
     ********************************************************************************************************/
-    public static DmlWrapper refreshCurrentAccAddress(map<Id, Address__c> mapParentIdAddr, TDTM_Runnable.Action triggerAction) {
+    public static DmlWrapper refreshCurrentAccAddress(Map<Id, Address__c> mapParentIdAddr, TDTM_Runnable.Action triggerAction) {
         
         // assumptions:
-        // called after all modifications saved to db
-        // so either from a scheduled job,
-        // or in the Address AfterUpdate trigger, AFTER any related objects updated
+        // called after all modifications saved to db, either from a scheduled job,
+        // or in the Address AfterUpdate trigger, AFTER any related objects updated.
         //
         // strategy:
         // for each parent, get all its addresses (query)
-        // for each parent, find all its contacts (query)
         // for each parent, find its current seasonal or default address (loop calculation)
-        // for each parent, update its billing fields with seasonal current/default
+        // for each parent, update its address fields with seasonal current/default
         // for each parent addr, clear its Default field if it isn't default
 
         DmlWrapper dmlWrapper = new DmlWrapper();
         
         // get all Addresses by parent, that might need updating
-        list<Id> listParentId = new list<Id>(mapParentIdAddr.keySet());
-        map<Id, list<Address__c>> mapParentIdListAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(listParentId);
+        List<Id> listParentId = new List<Id>(mapParentIdAddr.keySet());
+        Map<Id, List<Address__c>> mapParentIdListAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(listParentId);
        
         // for each parent, find the current address to use (seasonal vs default)
-        map<Id, ParentInfo> mapParentIdParentInfo = new map<Id, ParentInfo>();
+        Map<Id, ParentInfo> mapParentIdParentInfo = new Map<Id, ParentInfo>();
         for (Id parentId : listParentId) {
             // create a ParentInfo for each        
             ParentInfo parentInfo = new ParentInfo();
@@ -241,8 +239,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }
         
         // lists of objects to update
-        list<SObject> listParentUpdate = new list<SObject>();
-        list<Address__c> listAddrUpdate = new list<Address__c>();
+        List<SObject> listParentUpdate = new List<SObject>();
+        List<Address__c> listAddrUpdate = new List<Address__c>();
         
         // now go through each parent, and do all the work!
         for (Id parentId : listParentId) {
@@ -254,25 +252,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             if (addr == null) 
                 addr = addrDefault;
 
-            // update parent's address fields
+            // update parents' address fields
             updateParentsAddresses(parentId, addr, triggerAction, listParentUpdate);
             
             // check other addresses on this parent that are no longer the default
-            if (mapParentIdListAddrs != null && mapParentIdListAddrs.size() > 0 
-            && mapParentIdListAddrs.get(parentId) != null) {
-                for (Address__c childAddr : mapParentIdListAddrs.get(parentId)) {
-                    if (childAddr.Id == addrDefault.Id) {
-                        UTIL_Debug.debug('****Default_Address__c not set to false because this address is the new default.');
-                        continue;
-                    }
-                    if (childAddr.Default_Address__c) {
-                        UTIL_Debug.debug('****Setting Default_Address__c to false.');
-                        childAddr.Default_Address__c = false;
-                        childAddr.Latest_End_Date__c = System.today();
-                        listAddrUpdate.add(childAddr);
-                    }   
-                }
-            }
+            uncheckOldDefaultAddrs(parentId, mapParentIdListAddrs, addrDefault, listAddrUpdate);
         }  
                     
         if (listParentUpdate.size() > 0) {
@@ -320,7 +304,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     }
     
     private static void updateParentsAddresses(ID parentId, Address__c addr, TDTM_Runnable.Action triggerAction, 
-    list<SObject> listParentUpdate) {
+    List<SObject> listParentUpdate) {
         if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
             Account acc = new Account(Id = parentId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
@@ -339,6 +323,25 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             listParentUpdate.add(contact);
         }
     }
+    
+    private static void uncheckOldDefaultAddrs(Id parentId, Map<Id, List<Address__c>> mapParentIdListAddrs, 
+    Address__c addrDefault, List<Address__c> listAddrUpdate) {
+        if (mapParentIdListAddrs != null && mapParentIdListAddrs.size() > 0 
+        && mapParentIdListAddrs.get(parentId) != null) {
+            for (Address__c childAddr : mapParentIdListAddrs.get(parentId)) {
+                if (childAddr.Id == addrDefault.Id) {
+                    UTIL_Debug.debug('****Default_Address__c not set to false because this address is the new default.');
+                    continue;
+                }
+                if (childAddr.Default_Address__c) {
+                    UTIL_Debug.debug('****Setting Default_Address__c to false.');
+                    childAddr.Default_Address__c = false;
+                    childAddr.Latest_End_Date__c = System.today();
+                    listAddrUpdate.add(childAddr);
+                }   
+            }
+        }
+    }
         
     /*******************************************************************************************************
     * @description helper class to keep track of the default and seasonal address for a household
@@ -355,14 +358,14 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * @param listAddr a list of Addresses to verify
     * @return void. 
     */ 
-    private void verifyAddrAccContactChildOnly(list<Address__c> listAddr) {       
+    private void verifyAddrAccContactChildOnly(List<Address__c> listAddr) {       
         set<Id> setAccId = new set<Id>();
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c != null) {
                 setAccId.add(addr.Parent_Account__c);
             }
         }       
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, RecordTypeId from Account where Id in :setAccId]);
+        Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, RecordTypeId from Account where Id in :setAccId]);
         for (Address__c addr : listAddr) {
             if (addr.Parent_Account__c == null && addr.Parent_Contact__c == null) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
