@@ -6,6 +6,34 @@
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
     
     <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size--1-of-2">Contact Multi-Addresses Enabled:</div> 
+        <div class="slds-col slds-size--1-of-2">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}" 
+                                               class="contact-addr-enabled" />
+                        <aura:set attribute="else">
+                            <ui:inputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}" 
+                                              class="contact-addr-enabled" />
+                            <span class="slds-checkbox--faux"></span>
+                            <span class="slds-form-element__label"></span>
+                        </aura:set>
+                        </aura:if>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpContactAddrs}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpContactAddrs}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
+        </div>
+    
         <div class="slds-col slds-size--1-of-2">
             <div>Account Types with Multi-Addresses Enabled:</div>
             <div class="slds-text-body--small">All Account Record Types that support multiple address management.</div>

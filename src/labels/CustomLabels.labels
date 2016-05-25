@@ -265,6 +265,14 @@
         <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
     </labels>
     <labels>
+        <fullName>stgHelpContactAddrs</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpContactAddrs</shortDescription>
+        <value>Check this if you'd like multiple address management enabled for Contacts.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

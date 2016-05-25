@@ -316,6 +316,7 @@
         <members>stgHelpErrorNotifyOn</members>
         <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpAccountModel</members>
+        <members>stgHelpContactAddrs</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
