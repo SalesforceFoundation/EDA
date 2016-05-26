@@ -41,20 +41,10 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Create a Contact with TDTM triggers off  
     */
     @isTest
-    public static void insertContactTriggerOffHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        insertContactTriggerOff();
-    }
-    
-    @isTest
-    public static void insertContactTriggerOffAdm() {
+    public static void insertContactTriggerOff() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
-        insertContactTriggerOff();
-    }
-    
-    public static void insertContactTriggerOff() {        
+     
         // turn off all TDTM triggers for this component
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
         handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
@@ -96,24 +86,7 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Test Method for a new Contact
     */
     @isTest
-    public static void newContactHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        
-        Contact con = UTIL_UnitTestData_TEST.getContact();
-        
-        Test.startTest();
-        insert con;
-        Test.stopTest();
-        
-        Contact insertedContact = [Select Account.Name, AccountId from Contact where id=:con.id];
-        
-        //the contact should have the right type
-        system.assertEquals(con.LastName + ' ' + Label.DefaultHouseholdName, insertedcontact.Account.Name); 
-    }
-    
-    @isTest
-    public static void newContactAdm() {
+    public static void newContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
         
@@ -133,19 +106,9 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Test Method for inserting and updating a Contact 
     */
     @isTest
-    public static void insertUpdateContactHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        insertUpdateContact();
-    }
-    
-    @isTest
-    public static void insertUpdateContactAdm() {
+    public static void insertUpdateContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
-        insertUpdateContact();
-    }
-    
-    public static void insertUpdateContact() {        
+     
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
@@ -168,10 +131,6 @@ private class ACCT_IndividualAccounts_TEST {
         //relationship should be bi-directional
         system.assertEquals(insertedcontacts[0].id,insertedcontacts[0].Account.Primary_Contact__c);
         
-        //addresses should be sync'd
-        system.assertEquals(newContactMailingStreet,insertedcontacts[0].Account.BillingStreet);
-        system.assertEquals(insertedcontacts[0].MailingStreet,insertedcontacts[0].Account.BillingStreet);
-        
         String updatedContactLastName = 'Contact_forTestsChange';
         String updatedOtherCity = 'Seattle';
         con.LastName=updatedContactLastName;
@@ -179,45 +138,25 @@ private class ACCT_IndividualAccounts_TEST {
         con.AccountId = insertedContacts[0].AccountId;
         update con;
         
-        Contact[] updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,OtherCity, 
-        							Account.BillingStreet,Account.ShippingCity from Contact where id=:con.id];
+        Contact[] updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c
+                                     from Contact where id=:con.id];
 
         //relationship should be bi-directional
         system.assertEquals(updatedContacts[0].id,updatedContacts[0].Account.Primary_Contact__c);
-        
-        //addresses should be sync'd
-        system.assertEquals(newContactMailingStreet,updatedContacts[0].MailingStreet);       
     }
     
     /*********************************************************************************************************
     * @description Add a contact to an existing Account
     */
     @isTest
-    public static void contactAddedToExistingHH() {
-       UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-                
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
-        insert mappings;
-        
-        contactAddedToExisting();       
-    }
-    
-    @isTest
-    public static void contactAddedToExistingAdm() {
+    public static void contactAddedToExistingAcc() {
        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
                 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
         insert mappings;
-        
-        contactAddedToExisting();       
-    }
-    
-    public static void contactAddedToExisting() {        
+              
         Contact con = new Contact(
             FirstName='Test',
             LastName='Contact_forTests',
@@ -239,13 +178,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
         con2 = [select AccountId, Primary_Household__c from Contact where id=:con2.id];       
-        system.assertEquals(accountId, con2.AccountId);  
-        
-        //We changed the functionality so no Affiliation gets created when a Contact is created either as a child of an existing
-        //Account or by itself (in which case an Account is automatically created for it).
-        //List<Affiliation__c> con2affls = [select Primary__c from Affiliation__c where Contact__c =:con2.Id and Account__c =:accountId];
-        //system.assertEquals(1, con2affls.size());
-        //system.assertEquals(true, con2affls[0].Primary__c);
+        system.assertEquals(accountId, con2.AccountId);
         
         //system.assertEquals(accountId, con2.Primary_Household__c); In this case the field is not populated because we are dealing with Administrative accounts.
     }
@@ -254,20 +187,9 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Update a contact to an existing Account
     */
     @isTest
-    public static void contactUpdatedToExistingHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        contactUpdatedToExisting();
-    }
-    
-    @isTest
-    public static void contactUpdatedToExistingAdm() {
+    public static void contactUpdatedToExistingAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
-        contactUpdatedToExisting();
-        
-    }
-    
-    public static void contactUpdatedToExisting() {        
+      
         Contact con = new Contact(
             FirstName='Test',
             LastName='Contact_forTests',
@@ -297,19 +219,9 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Update a contact's Lastname in the Account
     */
     @isTest
-    public static void contactInNormalOrgNameChangeHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        contactInNormalOrgNameChange();   
-    }
-    
-    @isTest
-    public static void contactInNormalOrgNameChangeAdm() {
+    public static void contactInNormalOrgNameChangem() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
-        contactInNormalOrgNameChange();
-    }
-    
-    public static void contactInNormalOrgNameChange() {                        
+                      
         String acctName = 'Test Account 876';
         Account acct = new Account(Name=acctName);
         insert acct;
@@ -339,26 +251,12 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Test Method for detaching a Contact from an org account. It should land in Household account. 
-    */
-    @isTest
-    public static void detachFromNormalAccountToHousehold() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        detachFromNormalAccount();
-    }
-    
-    /*********************************************************************************************************
     * @description Test Method for detaching a Contact from an org account. It should land in Administrative account. 
     */
     @isTest
     public static void detachFromNormalAccountToAdministrative() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
-        detachFromNormalAccount();
-    }
-    
-    @isTest
-    public static void detachFromNormalAccount() {                
+               
         Account acct = new Account(Name='Test Account 876');
         insert acct;
 
@@ -392,22 +290,11 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Delete a Contact and verify its parent Account is deleted.
     */
      @isTest
-     public static void deleteContactNoOppHH() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-                     Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                     Accounts_to_Delete__c = UTIL_Describe.getHhAccRecTypeID()));
-        deleteContactNoOpp();
-     }
-     
-     @isTest
-     public static void deleteContactNoOppAdm() {
+     public static void deleteContactNoOpps() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
                     Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
                     Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
-        deleteContactNoOpp();
-     }
-     
-     public static void deleteContactNoOpp() {        
+       
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
@@ -439,24 +326,13 @@ private class ACCT_IndividualAccounts_TEST {
     
     /*********************************************************************************************************
     * @description Delete a Contact with Opps and verify its parent Account is not deleted.
-    */
-    @isTest
-    public static void deleteContactWithOppHH() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-                                    Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-                                    Accounts_to_Delete__c = UTIL_Describe.getHhAccRecTypeID()));
-        deleteContactWithOpp(); 
-    }
-    
+    */ 
     @isTest
     public static void deleteContactWithOppAdm() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
                                     Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
                                     Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
-        deleteContactWithOpp(); 
-    }
-    
-    public static void deleteContactWithOpp() {                      
+                     
         String newContactMailingStreet = '123 Elm St';
 
         Contact con = new Contact(
@@ -497,22 +373,11 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Delete a Contact from an Org Account and make sure the Account is not deleted.
     */
     @isTest
-    public static void deleteContactNormalAccountHouseholdAcc() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-                                    Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                                    Accounts_to_Delete__c = UTIL_Describe.getHhAccRecTypeID()));
-        deleteContactNormalAccount();
-    }
-    
-    @isTest
     public static void deleteContactNormalAccountAdministrativeAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
                                     Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
                                     Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
-        deleteContactNormalAccount();
-    }
-
-    public static void deleteContactNormalAccount() {        
+     
         Account orgAccount = new Account(Name='Fake account');
         insert orgAccount;
                
