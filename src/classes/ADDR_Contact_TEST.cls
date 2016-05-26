@@ -81,7 +81,7 @@ public with sharing class ADDR_Contact_TEST {
     }
     
     @isTest
-    public static void noPropagation() {
+    public static void noContactToAccPropagation() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
@@ -99,14 +99,6 @@ public with sharing class ADDR_Contact_TEST {
         contact = [select AccountID from Contact where ID = :contact.ID];
         System.assertNotEquals(null, contact.AccountID);
         
-        //Verify parent account has no address info
-        Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
-        from Account where ID = :contact.AccountID];
-        System.assertEquals(null, acc.BillingStreet);
-        System.assertEquals(null, acc.BillingState);
-        System.assertEquals(null, acc.BillingPostalCode);
-        System.assertEquals(null, acc.BillingCountry);
-        
         //Verify child address record was created
         List<Address__c> addrs = [select Parent_Account__c from Address__c where Parent_Contact__c = :contact.ID]; 
         System.assertEquals(1, addrs.size());
@@ -114,6 +106,60 @@ public with sharing class ADDR_Contact_TEST {
         
         //Verify no address record was created as child of the parent account
         addrs = [select ID from Address__c where Parent_Account__c = :contact.AccountID];
+        System.assertEquals(0, addrs.size()); 
+        
+        //Verify parent account has no address info
+        Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
+        from Account where ID = :contact.AccountID];
+        System.assertEquals(null, acc.BillingStreet);
+        System.assertEquals(null, acc.BillingState);
+        System.assertEquals(null, acc.BillingPostalCode);
+        System.assertEquals(null, acc.BillingCountry);
+    }
+    
+    @isTest
+    public static void noAccToContactPropagation() {
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Contacts_Addresses_Enabled__c = true,
+            Simple_Address_Change_Treated_as_Update__c = true);
+        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        
+        Contact contact = new Contact(LastName = 'Testerson');
+        insert contact;
+        
+        //Verify parent account was automatically created
+        contact = [select AccountID from Contact where ID = :contact.ID];
+        System.assertNotEquals(null, contact.AccountID);
+        
+        //Give address info to account
+        Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
+        from Account where ID = :contact.AccountID];
+        acc.BillingStreet = '123 main st';
+        acc.BillingState = 'IL';
+        acc.BillingPostalCode = '54545';
+        acc.BillingCountry = 'USA';
+
+        Test.startTest();
+        update acc;
+        Test.stopTest();
+        
+        //Verify child address record was created
+        List<Address__c> addrs = [select Parent_Contact__c from Address__c where Parent_Account__c = :acc.ID]; 
+        System.assertEquals(1, addrs.size());
+        System.assertEquals(null, addrs[0].Parent_Contact__c);
+        
+         //Verify child contact has no address info
+        contact = [select MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry
+        from Contact where ID = :contact.ID];
+        System.assertEquals(null, contact.MailingStreet);
+        System.assertEquals(null, contact.MailingState);
+        System.assertEquals(null, contact.MailingPostalCode);
+        System.assertEquals(null, contact.MailingCountry);
+        
+        //Verify no address record was created as child of the child contact
+        addrs = [select ID from Address__c where Parent_Contact__c = :contact.ID];
         System.assertEquals(0, addrs.size()); 
     }
   

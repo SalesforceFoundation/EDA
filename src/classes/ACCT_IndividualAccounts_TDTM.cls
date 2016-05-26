@@ -332,8 +332,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
-                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
-                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
 
                 //Give it the default record type selected in the settings. 
                 if(defaultRecTypeID != null)
@@ -356,12 +354,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 // for each success, write the new AccountId to the Contact.
                 c.AccountId = accountInserts[i].Id;
                 contactsToUpdate.add(c);
-                
-                //Creating affiliation - Functionality Change --> commenting out this code because we 
-                //don't want an affiliation automatically created from a Contact to its parent Account. 
-				//afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Account__c = accountInserts[i].Id, 
-				//				Primary__c = true, Status__c = 'Current'));
-				
                 i += 1;
             }
         }
