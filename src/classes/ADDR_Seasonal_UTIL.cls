@@ -242,8 +242,13 @@ public with sharing class ADDR_Seasonal_UTIL {
         if (listAddr == null || listAddr.size() == 0) return;
         
         map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>();
-        for (Address__c addr : listAddr) 
-            mapAccIdAddr.put(addr.Parent_Account__c, addr);
+        for (Address__c addr : listAddr) {
+            if(addr.Parent_Account__c != null) {
+                mapAccIdAddr.put(addr.Parent_Account__c, addr);
+            } else if(addr.Parent_Contact__c != null) {
+                mapAccIdAddr.put(addr.Parent_Contact__c, addr);
+            }
+        }
         
         // must manually set our semaphore, so when we update contacts and households, they don't try to create additional addresses
         ADDR_Addresses_TDTM.hasRunAddrTrigger = true;       

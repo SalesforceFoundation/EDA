@@ -605,26 +605,43 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void scheduleSeasonalAddrUpdate() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
-
-        // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        List<Address__c> accAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> conAddrs = ADDR_Contact_TEST.createTestDataContacts(2);
+        
+        // create additional Account addresses, with seasonal information
+        List<Address__c> accAddrs2 = ADDR_Account_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
-            listAddrs[i].Default_Address__c = false;
-            listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
-            listAddrs[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
-            listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
-            listAddrs[i].Seasonal_End_Day__c = '28';
-            listAddrs[i].MailingStreet__c = 'New Seasonal Street' + i;
-            listAddrs[i].MailingCity__c = 'New Seasonal City' + i;
+            accAddrs2[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            accAddrs2[i].Default_Address__c = false;
+            accAddrs2[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
+            accAddrs2[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
+            accAddrs2[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            accAddrs2[i].Seasonal_End_Day__c = '28';
+            accAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
+            accAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
         }
+        
+        // create additional Contact addresses, with seasonal information
+        List<Address__c> conAddrs2 = ADDR_Account_TEST.initTestAddr(2);
+        for (Integer i = 0; i < 2; i++) {
+            conAddrs2[i].Parent_Contact__c = ADDR_Contact_TEST.contacts[i].Id;
+            conAddrs2[i].Default_Address__c = false;
+            conAddrs2[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
+            conAddrs2[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
+            conAddrs2[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            conAddrs2[i].Seasonal_End_Day__c = '28';
+            conAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
+            conAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
+        }
+        
+        List<Address__c> allNewAddrs = new List<Address__c>(accAddrs2);
+        allNewAddrs.addAll(conAddrs2);
         
         // Hack!  by setting our trigger handler as run,
         // we can insert the new seasonal addresses but not have them processed.
         // this way we can test the scheduled job!
         ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
-        insert listAddrs;
+        insert allNewAddrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
 
         //Schedule the job just for test coverage purposes. But we still have to manually run the
@@ -659,10 +676,31 @@ private with sharing class ADDR_Seasonal_TEST {
         }
         
         // verify the previous addresses still are Default
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
-        Latest_End_Date__c from Address__c];
-        system.assertEquals(2 * 2, listAddr.size());
-        for (Address__c addr : listAddr) {
+        accAddrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c 
+                    from Address__c where ID in :accAddrs];
+        system.assertEquals(2, accAddrs.size());
+        for (Address__c addr : accAddrs) {
+            boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
+            system.assertEquals(!fSeasonal, addr.Default_Address__c);
+        }
+        
+        // verify Contact address is new!
+        map<Id, Contact> mapContactIdContact = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
+        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c 
+        from Contact]);
+        
+        for (Contact con : mapContactIdContact.values()) {
+            system.assert(con.MailingStreet.contains('New Seasonal Street'));
+            system.assert(con.MailingCity.contains('New Seasonal City'));
+            system.assertEquals(false, con.is_Address_Override__c);
+            system.assertNotEquals(null, con.Current_Address__c);
+        }
+        
+        // verify the previous addresses still are Default
+        conAddrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c 
+                    from Address__c where ID in :conAddrs];
+        system.assertEquals(2, conAddrs.size());
+        for (Address__c addr : conAddrs) {
             boolean fSeasonal = (addr.MailingStreet__c.contains('New Seasonal Street'));
             system.assertEquals(!fSeasonal, addr.Default_Address__c);
         }        

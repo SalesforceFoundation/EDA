@@ -39,7 +39,7 @@
 public with sharing class ADDR_Contact_TEST {
     
     /* @description The List of created test Contacts.*/
-    private static List<Contact> contacts;
+    public static List<Contact> contacts;
     
     private static void configSettings() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
