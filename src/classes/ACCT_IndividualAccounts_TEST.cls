@@ -370,10 +370,11 @@ private class ACCT_IndividualAccounts_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Delete a Contact from an Org Account and make sure the Account is not deleted.
+    * @description Specify only admin accounts with all child contacts deleted will be automatically deleted, 
+    * and delete a Contact from an Account without type. Make sure the Account is not deleted.
     */
     @isTest
-    public static void deleteContactNormalAccountAdministrativeAcc() {
+    public static void deleteContactNormalAccount() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
                                     Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
                                     Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
@@ -407,39 +408,8 @@ private class ACCT_IndividualAccounts_TEST {
     }   
     
     /*********************************************************************************************************
-    * @description Rename a Contact's firstname to null and make sure the Account's name gets updated
-    */
-    @isTest
-    public static void firstNameToNullHH() { 
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-        
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
-        insert con;
-        
-        con = [select AccountId from Contact where id = :con.Id];
-        Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        
-        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultHouseholdName);
-        
-        //set name to null
-        con.FirstName = null;
-        
-        Test.startTest();
-        update con;
-        Test.stopTest();
-        
-        newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultHouseholdName);
-    }
-    
+    * @description Rename a Contact's firstname to null and make sure the Account's name doesn't change.
+    */ 
     @isTest
     public static void firstNameToNullAdm() { 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
