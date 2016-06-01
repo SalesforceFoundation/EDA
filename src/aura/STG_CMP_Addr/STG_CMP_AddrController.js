@@ -1,5 +1,5 @@
 ({
-    toggleIsView : function(component, event, helper) {
+    toggleIsView : function(component, event) {
 		component.set("v.isView", event.getParam("isView"));
 	}
 })

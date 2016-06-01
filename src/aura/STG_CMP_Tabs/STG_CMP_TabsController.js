@@ -2,16 +2,16 @@
 	init : function(component, event, helper) {
 		helper.init(component);
 	},
-	
+
 	saveSettings : function(component, event, helper) {
 		helper.saveSettings(component);
 	},
-	
+
 	resetSettings : function(component, event, helper) {
 		helper.resetSettings(component);
 	},
 
-	afflLinkClicked : function(component, event, helper) {
+	afflLinkClicked : function(component) {
 		$A.util.addClass(component.find("afflTab"), "slds-active");
 		$A.util.removeClass(component.find("relTab"), "slds-active");
 		$A.util.removeClass(component.find("addrTab"), "slds-active");
@@ -34,7 +34,7 @@
 		$A.util.addClass(systemTabContent, "slds-hide");
 	},
 
-	relLinkClicked : function(component, event, helper) {
+	relLinkClicked : function(component) {
 		$A.util.removeClass(component.find("afflTab"), "slds-active");
 		$A.util.addClass(component.find("relTab"), "slds-active");
 		$A.util.removeClass(component.find("addrTab"), "slds-active");
@@ -57,7 +57,7 @@
 		$A.util.addClass(systemTabContent, "slds-hide");
 	},
 
-	addrLinkClicked : function(component, event, helper) {
+	addrLinkClicked : function(component) {
 		$A.util.removeClass(component.find("afflTab"), "slds-active");
 		$A.util.removeClass(component.find("relTab"), "slds-active");
 		$A.util.addClass(component.find("addrTab"), "slds-active");
@@ -80,7 +80,7 @@
 		$A.util.addClass(systemTabContent, "slds-hide");
 	},
 
-	sysLinkClicked : function(component, event, helper) {
+	sysLinkClicked : function(component) {
 		$A.util.removeClass(component.find("afflTab"), "slds-active");
 		$A.util.removeClass(component.find("relTab"), "slds-active");
 		$A.util.removeClass(component.find("addrTab"), "slds-active");

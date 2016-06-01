@@ -20,7 +20,7 @@
     svgroot.setAttribute("aria-hidden", "true");
     svgroot.setAttribute("class", iconClassName);
     svgroot.setAttribute("name", name);
-    
+
     var svgPath = component.get("v.svgPath");
     // Add an "href" attribute (using the "xlink" namespace)
     var shape = document.createElementNS(svgns, "use");
