@@ -2,12 +2,11 @@
 	init : function(component, event, helper) {
 		helper.init(component);
 	},
-	
+
 	setAfflProgEnrollDel : function(component, event, helper) {
 		helper.setAfflProgEnrollDel(component, event);
-		
 	},
-	
+
 	settsLinkClicked : function(component, event, helper) {
 		helper.settsLinkClicked(component);
 	},
@@ -16,7 +15,7 @@
 		helper.mappingsLinkClicked(component);
 	},
 
-	toggleIsView : function(component, event, helper) {
+	toggleIsView : function(component, event) {
 		component.set("v.isView", event.getParam("isView"));
 	},
 

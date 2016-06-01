@@ -6,11 +6,11 @@
 		$A.util.addClass(component.find("relTabContent"), "slds-hide");
 		$A.util.addClass(component.find("addrTabContent"), "slds-hide");
 		$A.util.addClass(component.find("systemTabContent"), "slds-hide");
-		
+
 		//Retrieving hierarchy settings
 		this.getHierarchySettings(component);
 	},
-	
+
 	getHierarchySettings : function(component) {
 		var prefix = component.get("v.namespacePrefix");
 		var action = component.get("c.getSettings");
@@ -23,17 +23,17 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		//Get account record types
-	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c, 
-	    				settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c);	    		
+	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
+	    				settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c);
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
 	    });
 	    $A.enqueueAction(action);
 	},
-	
+
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
-	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in 
+	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in
 	//this helper. And we need the Account Processor value from HierarchySettings.
 	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId) {
 		//Get all available account record types
@@ -55,36 +55,36 @@
 	    			}
 	    		}
 	    		component.set("v.accRecTypes", accRecTypes);
-	    		
-	    		//Get record types of accounts that can be deleted if all their children have been deleted. We need to call this 
+
+	    		//Get record types of accounts that can be deleted if all their children have been deleted. We need to call this
 	    		//method here because this logic is called after the init method in STG_CMP_AddrController.
 	    		var accTypesToDeleteSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
 	    		component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
-	    		
-	    		//Get record types of accounts that have multi-address support enabled. We need to call this method here because this 
+
+	    		//Get record types of accounts that have multi-address support enabled. We need to call this method here because this
 	    		//logic is called after the init method in STG_CMP_AddrController.
 	    		var accTypesAddrSelected = this.getRecTypesSelected(component, accsMultiAddr, accRecTypes);
 	    		component.set("v.accTypesAddrSelected", accTypesAddrSelected);
-	    		
+
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
 	    });
 	    $A.enqueueAction(action);
 	},
-	
+
 	//We want to compare the list of all available Account Record Types with the list of those that have been
 	//marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
 	getRecTypesSelected : function(component, setting, recTypes) {
 		var settingArray = this.getTokenized(setting);
 		var recTypesSelected = [];
-		for(var i = 0; i < recTypes.length; i++) {
+		for(var i = 0; i < recTypes.length; i += 1) {
 			var recTypeSelected = {};
 			recTypeSelected.name = recTypes[i].name;
 			recTypeSelected.id = recTypes[i].id;
 			recTypeSelected.selected = false; //we set it to false initially
-			for(var j = 0; j < settingArray.length; j++) {
-				if(recTypes[i].id == settingArray[j]) {
+			for(var j = 0; j < settingArray.length; j += 1) {
+				if(recTypes[i].id === settingArray[j]) {
 					recTypeSelected.selected = true;
 				}
 			}
@@ -92,7 +92,7 @@
 		}
 		return recTypesSelected;
 	},
-	
+
 	saveSettings : function(component) {
 		var prefix = component.get("v.namespacePrefix");
 		var saveAction = component.get("c.saveHierarchySettings");
@@ -108,7 +108,7 @@
 		});
 		$A.enqueueAction(saveAction);
 	},
-	
+
 	resetSettings : function(component) {
 		this.getHierarchySettings(component);
 	}
