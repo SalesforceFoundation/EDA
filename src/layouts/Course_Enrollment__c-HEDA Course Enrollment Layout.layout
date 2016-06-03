@@ -22,10 +22,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Account__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Program_Enrollment__c</field>
             </layoutItems>
             <layoutItems>
