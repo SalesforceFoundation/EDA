@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component >
     <aura:registerEvent name="pressIcon" type="c:svgIcon_EVT_Press" description="The controller method that runs when the button is clicked. For example, press=&quot;{!c.showMsg}&quot; references the showMsg method in the controller."/>
     
 	<aura:attribute name="svgPath"        default="" type="String" description="the path for the icon in the static resource, this will be use in a SVG use tag" />
