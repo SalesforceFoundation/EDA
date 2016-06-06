@@ -20,6 +20,8 @@
         <members>AFFL_MultiRecordTypeMapper</members>
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
+        <members>CENR_AcademicProgram_TDTM</members>
+        <members>CENR_AcademicProgram_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
         <members>CON_CannotDelete_TDTM</members>

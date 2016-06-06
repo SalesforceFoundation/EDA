@@ -71,7 +71,7 @@
         <description>The Academic Program the student is enrolled in.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Academic Program the student is enrolled in.</inlineHelpText>
-        <label>Academic Program</label>
+        <label>Contact&apos;s Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
         <relationshipName>Course_Enrollments</relationshipName>
@@ -155,10 +155,10 @@
     <fields>
         <fullName>Program_Enrollment__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Program the student is enrolled in. Links a student with an Academic Program.</description>
+        <description>The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Program the student is enrolled in. Links a student with an Academic Program.</inlineHelpText>
-        <label>Program Enrollment</label>
+        <inlineHelpText>The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.</inlineHelpText>
+        <label>Program Enrollment ID</label>
         <referenceTo>Program_Enrollment__c</referenceTo>
         <relationshipLabel>Course Enrollments</relationshipLabel>
         <relationshipName>Course_Enrollments</relationshipName>

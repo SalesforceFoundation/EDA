@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014, Salesforce.org
+    Copyright (c) 2015, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -38,6 +38,10 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 	
 	/*******************************************************************************************************
     * @description Updates key affiliation lookups on contact, and any other primary affiliation of the new type.
+    * @param listNew the list of Affiliations from trigger new. 
+    * @param listOld the list of Affiliations from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Affiliations.
     * @return dmlWrapper
     ********************************************************************************************************/
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
