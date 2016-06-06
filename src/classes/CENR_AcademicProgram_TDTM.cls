@@ -49,6 +49,7 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     
          DmlWrapper dmlWrapper = new DmlWrapper();
          
+         //To store the IDs of those Program Enrollments we need to get Academic Programs from.
          Set<Id> pEnrollIDsToQuery = new Set<Id>();
          
          if(newlist != null && newlist.size() > 0) {
@@ -59,16 +60,17 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
                 //BEFORE INSERT AND BEFORE UPDATE
                 if(triggerAction == TDTM_Runnable.Action.BeforeInsert 
                 || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    //set Academic Program if we can get it through Program Enrollment
+                    //Get the ID of each parent Program Enrollment
                     if(enroll.Program_Enrollment__c != null) {
                         pEnrollIDsToQuery.add(enroll.Program_Enrollment__c);
                     }
                 }
             }
             
+            //Query the parent Account (Academic Program) of each Program Enrollment, since that field
+            //wasn't in the trigger for being two levels up.
             List<Program_Enrollment__c> pEnrollments = [select Account__c from Program_Enrollment__c 
                                                     where Account__c != null and ID in :pEnrollIDsToQuery];
-
             Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(pEnrollments); 
             
             for (Integer i = 0; i < newlist.size(); i++) {
@@ -79,7 +81,8 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
                     //set Academic Program if we can get it through Program Enrollment
                     if(enroll.Program_Enrollment__c != null) {
                         Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-                        enroll.Account__c = pEnroll.Account__c; 
+                        if(pEnroll != null) //shouldn't really happen... we already queried for this...
+                            enroll.Account__c = pEnroll.Account__c; 
                     }
                 }
                 
@@ -89,7 +92,8 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
                     //set Academic Program if we can get it through Program Enrollment
                     if(oldEnroll.Program_Enrollment__c == null && enroll.Program_Enrollment__c != null) {
                         Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-                        enroll.Account__c = pEnroll.Account__c;
+                        if(pEnroll != null) //shouldn't really happen... we already queried for this...
+                            enroll.Account__c = pEnroll.Account__c;
                     }
                 }
             }
