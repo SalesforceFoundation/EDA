@@ -147,6 +147,11 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'ACCT_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Account', 
               Trigger_Action__c = 'BeforeDelete'));
               
+        // Automatically populates the Academic Program field in a Course Enrollment
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'CENR_AcademicProgram_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c', 
+              Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              
         return handlers;
     }
 }

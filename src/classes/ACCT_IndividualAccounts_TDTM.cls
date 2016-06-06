@@ -63,7 +63,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param listNew the list of Contacts from trigger new. 
     * @param listOld the list of Contacts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Contacts 
+    * @param objResult the describe for Contacts.
     * @return dmlWrapper.  
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
