@@ -83,7 +83,6 @@ public class UTIL_UnitTestData_TEST {
     public static User CreateNewUserForTests(string strUsername) {
 
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
-        UserRole r = [SELECT Id FROM UserRole WHERE Name='COO'];
         User u;	
         // to work around mixed DML errors during tests, you must
         // create user account in its own transaction.  got this
@@ -92,7 +91,7 @@ public class UTIL_UnitTestData_TEST {
 	        u = new User(alias = 'jsmith', email='jsmith@acme.com', 
 	            emailencodingkey='UTF-8', lastname='Smith', 
 	            languagelocalekey='en_US', 
-	            localesidkey='en_US', profileid = p.Id, userroleid = r.Id,
+	            localesidkey='en_US', profileid = p.Id,
 	            timezonesidkey='America/Los_Angeles', 
 	            username=strUsername);
 	        insert u;
