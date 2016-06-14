@@ -1,2 +1,2 @@
-<aura:event type="APPLICATION" description="Event fired from the Cancel button in the STG_CMP_Header component." >
+<aura:event type="APPLICATION" description="Event fired from the Cancel button in the STG_CMP_Heading component." >
 </aura:event>
