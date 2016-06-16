@@ -38,7 +38,7 @@
         });
         
         function loadComponents(namespacePrefix) {
-            $Lightning.createComponent(namespace + ":STG_CMP_Header", {namespacePrefix : namespacePrefix}, "headSettings");
+            $Lightning.createComponent(namespace + ":STG_CMP_Heading", {namespacePrefix : namespacePrefix}, "headSettings");
             $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {namespacePrefix : namespacePrefix}, "tabSettings");
         }
     </script>
