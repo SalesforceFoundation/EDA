@@ -93,7 +93,7 @@
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
         <members>STG_CMP_Base</members>
-        <members>STG_CMP_Heading</members>
+        <members>STG_CMP_Header</members>
         <members>STG_CMP_Rel</members>
         <members>STG_CMP_System</members>
         <members>STG_CMP_Tabs</members>
