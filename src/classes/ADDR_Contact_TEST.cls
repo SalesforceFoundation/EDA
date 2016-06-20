@@ -63,7 +63,7 @@ public with sharing class ADDR_Contact_TEST {
         insert contacts;
         
         //instantiate addresses
-        List<Address__c> listAddrs = ADDR_Account_TEST.initTestAddr(contactCount);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.initTestAddr(contactCount);
         
         //link addresses with contacts and make them default
         for (Integer i = 0; i < contactCount; i++) {
@@ -266,7 +266,7 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> listAddrs = createTestDataContacts(2);
         
         // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < contacts.size(); i++) {
             listAddrs[i].Parent_Contact__c = contacts[i].Id;
             listAddrs[i].Default_Address__c = false;
@@ -403,7 +403,7 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> listAddrs = createTestDataContacts(2);
         
         // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < contacts.size(); i++) {
             listAddrs[i].Parent_Contact__c = contacts[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -456,7 +456,7 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> ListAddrOriginal = createTestDataContacts(2);
         
         // create additional addresses
-        List<Address__c> listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < contacts.size(); i++) {
             listAddrs[i].Parent_Contact__c = contacts[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -736,7 +736,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newAddrNoParent() {        
-        List<Address__c> listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < listAddrs.size(); i++) {
             system.assertEquals(null, listAddrs[i].Parent_Contact__c);
         }
@@ -790,7 +790,7 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> listAddrs = createTestDataContacts(2);
 
          // create additional non-default addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < contacts.size(); i++) {
             listAddrs[i].Parent_Contact__c = contacts[i].Id;
             listAddrs[i].Default_Address__c = false;
@@ -882,7 +882,7 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> listAddrs = createTestDataContacts(2);
 
         // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < contacts.size(); i++) {
             listAddrs[i].Parent_Contact__c = contacts[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -1014,7 +1014,7 @@ public with sharing class ADDR_Contact_TEST {
         insert contacts;
 
          // create addresses for the Contacts
-        List<Address__c> listAddrs = ADDR_Account_TEST.initTestAddr(contacts.size());
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.initTestAddr(contacts.size());
         for (Integer i = 0; i < contacts.size(); i++) {
             listAddrs[i].Parent_Contact__c = contacts[i].Id;
             listAddrs[i].Default_Address__c = true;

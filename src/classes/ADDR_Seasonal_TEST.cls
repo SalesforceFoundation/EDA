@@ -48,12 +48,12 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertNewSeasonalAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
@@ -99,12 +99,12 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertNewSeasonalAddrWithYear() {
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
             
             listAddrs[i].Seasonal_Start_Year__c = System.today().addYears(-1).year();
@@ -157,12 +157,12 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertNewSeasonalAddrNotCurrent() {
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
@@ -208,12 +208,12 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void updateSeasonalAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
  
         // create additional seasonal addresses not current
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
@@ -266,20 +266,20 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertSeasonalAddrWithOverlap() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        listAddrs = ADDR_Account_TEST.initTestAddr(2 * 2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2 * 2);
         for (Integer i = 0; i < 2 * 2; i++) {
             Integer iacc = i < 2 ? i : i-2;
             if (math.mod(i, 2) == 0) {
-                listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[iacc].Id;
+                listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[iacc].Id;
                 listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
                 listAddrs[i].Seasonal_Start_Day__c = '1';
                 listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
                 listAddrs[i].Seasonal_End_Day__c = '28';
             } else {
-                listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[iacc-1].Id;
+                listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[iacc-1].Id;
                 listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
                 listAddrs[i].Seasonal_Start_Day__c = '1';
                 listAddrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
@@ -482,14 +482,14 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertSeasonalAddrOverlapExisting() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         Date dtTest = Date.newInstance(system.today().year(), 6, 1);
         
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(1).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
             listAddrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(3).month());
@@ -502,9 +502,9 @@ private with sharing class ADDR_Seasonal_TEST {
         insert listAddrs;
         
         // create additional seasonal addresses that overlap existing seasonal addresses
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(2).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
             listAddrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(4).month());
@@ -533,12 +533,12 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertPartialSeasonalAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
             listAddrs[i].Default_Address__c = false;
@@ -565,12 +565,12 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void insertPartialSeasonalYearAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> listAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
 
         // create additional seasonal addresses not current
-        listAddrs = ADDR_Account_TEST.initTestAddr(2);
+        listAddrs = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            listAddrs[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            listAddrs[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             listAddrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
             listAddrs[i].Seasonal_Start_Day__c = '1';
             if(math.mod(i, 2) == 0) {
@@ -605,13 +605,13 @@ private with sharing class ADDR_Seasonal_TEST {
     @isTest
     public static void scheduleSeasonalAddrUpdate() {        
         // this creates a default Address for each Account
-        List<Address__c> accAddrs = ADDR_Account_TEST.createTestDataAccs(2);
+        List<Address__c> accAddrs = ADDR_AdminAcc_TEST.createTestDataAccs(2);
         List<Address__c> conAddrs = ADDR_Contact_TEST.createTestDataContacts(2);
         
         // create additional Account addresses, with seasonal information
-        List<Address__c> accAddrs2 = ADDR_Account_TEST.initTestAddr(2);
+        List<Address__c> accAddrs2 = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
-            accAddrs2[i].Parent_Account__c = ADDR_Account_TEST.listAccs[i].Id;
+            accAddrs2[i].Parent_Account__c = ADDR_AdminAcc_TEST.listAccs[i].Id;
             accAddrs2[i].Default_Address__c = false;
             accAddrs2[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
             accAddrs2[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
@@ -622,7 +622,7 @@ private with sharing class ADDR_Seasonal_TEST {
         }
         
         // create additional Contact addresses, with seasonal information
-        List<Address__c> conAddrs2 = ADDR_Account_TEST.initTestAddr(2);
+        List<Address__c> conAddrs2 = ADDR_AdminAcc_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
             conAddrs2[i].Parent_Contact__c = ADDR_Contact_TEST.contacts[i].Id;
             conAddrs2[i].Default_Address__c = false;

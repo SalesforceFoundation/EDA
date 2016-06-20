@@ -98,4 +98,26 @@ public class UTIL_UnitTestData_TEST {
         }
         return u;
     }
+    
+    /*********************************************************************************************************
+    * @description Initializes (but not inserts) N new Address objects.
+    * @param cAddr the number of Address objects to create
+    * @return  void
+    **********************************************************************************************************/
+    public static List<Address__c> initTestAddr(Integer addrCount) {
+        List<Address__c> listAddrs = new list<Address__c>();
+        for (Integer i = 0; i < addrCount; i++) {
+            Address__c addr = new Address__c();
+            addr.Address_Type__c = 'Home';
+            addr.MailingStreet__c = 'Street' + i;
+            addr.MailingCity__c = 'City' + i;
+            addr.MailingState__c = 'Washington';
+            addr.MailingPostalCode__c = 'Zip' + i;
+            addr.MailingCountry__c = 'United States';
+            addr.Geolocation__Latitude__s = 47.6097 + i;
+            addr.Geolocation__Longitude__s = -122.3331 + i;
+            listAddrs.add(addr);            
+        }
+        return listAddrs;
+    }
 }

@@ -32,11 +32,11 @@
 * @date 2016
 * @group Addresses
 * @group-content ../../ApexDocContent/Addresses.htm
-* @description Tests specific to Account Address Management. 
+* @description Tests specific to Administrative Account Address Management. 
 */
 
 @isTest
-public with sharing class ADDR_Account_TEST {
+public with sharing class ADDR_AdminAcc_TEST {
 
     /* @description The list of created test Accounts.*/
     public static list<Account> listAccs;
@@ -53,7 +53,7 @@ public with sharing class ADDR_Account_TEST {
     * @param accCount Number of  Accounts to create.
     * @return  void
     **********************************************************************************************************/    
-    public static List<Address__c> createTestDataAccs(Integer accCount) {        
+    public static List<Address__c> createTestAdmAccsAddrs(Integer accCount) {        
         configSettings();
         
         //instantiate accounts
@@ -62,7 +62,7 @@ public with sharing class ADDR_Account_TEST {
         insert listAccs;      
         
         //instantiate addresses
-        List<Address__c> listAddrs = initTestAddr(accCount);
+        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(accCount);
         
         //link addresses with accounts and make them default
         for (Integer i = 0; i < accCount; i++) {
@@ -78,66 +78,6 @@ public with sharing class ADDR_Account_TEST {
         
         return listAddrs;
     }
-
-    /*********************************************************************************************************
-    * @description Initializes (but not inserts) N new Address objects.
-    * @param cAddr the number of Address objects to create
-    * @return  void
-    **********************************************************************************************************/
-    public static List<Address__c> initTestAddr(Integer addrCount) {
-        List<Address__c> listAddrs = new list<Address__c>();
-        for (Integer i = 0; i < addrCount; i++) {
-            Address__c addr = new Address__c();
-            addr.Address_Type__c = 'Home';
-            addr.MailingStreet__c = 'Street' + i;
-            addr.MailingCity__c = 'City' + i;
-            addr.MailingState__c = 'Washington';
-            addr.MailingPostalCode__c = 'Zip' + i;
-            addr.MailingCountry__c = 'United States';
-            addr.Geolocation__Latitude__s = 47.6097 + i;
-            addr.Geolocation__Longitude__s = -122.3331 + i;
-            listAddrs.add(addr);            
-        }
-        return listAddrs;
-    }
-    
-    /*********************************************************************************************************
-    @description Create N new accounts with billing addresses 
-    verify:
-        N addresses created
-        account address matches address object address
-    **********************************************************************************************************/            
-    @isTest
-    public static void newRecordsWithAddrInfo() {            
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      UTIL_Describe.getBizAccRecTypeID() + ';'));
- 
-        Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
-        for (Account acc : listAcc) {
-            acc.BillingStreet = '123 45th';
-            acc.BillingCity = 'Seattle';
-        }
-        Test.startTest();
-        insert listAcc;
-        Test.stopTest();
-
-        // verify results
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
-        system.assertEquals(cAcc, mapAccIdAcc.size());
-        
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        system.assertEquals(cAcc, listAddr.size());
-        
-        for (Address__c addr : listAddr) {
-            Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertEquals(true, addr.Default_Address__c);
-        }
-    }
         
     /*********************************************************************************************************
     @description Update existing default Addresses.  
@@ -146,7 +86,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest 
     public static void updateDefaultAddr() {
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // now let's update the Addresses
         for (Integer i = 0; i < listAddrs.size(); i++) {
@@ -178,7 +118,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest 
     static void deleteDefaultAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
        
         // now let's delete the Addresses
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
@@ -202,10 +142,10 @@ public with sharing class ADDR_Account_TEST {
     **********************************************************************************************************/            
     @isTest
     static void deleteNonDefaultOverrideAddr() {        
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
         
         // create additional addresses
-        listAddrs = initTestAddr(2);
+        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
@@ -250,7 +190,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void updateNonDefaultAddr() { 
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // now let's update the Addresses
         for (Integer i = 0; i < listAddrs.size(); i++) {
@@ -282,7 +222,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void setAddrOverride() {        
         // this creates a default Address for the Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // create new non-default address
         Address__c addrNew = new Address__c();
@@ -340,10 +280,10 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void insertNewDefaultAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
         
         // create additional addresses
-        listAddrs = initTestAddr(2);
+        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -393,10 +333,10 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void insertNewDefaultAddrAndReset() {  
         // this creates a default Address for each Account
-        List<Address__c> listAddrOriginal = createTestDataAccs(2);
+        List<Address__c> listAddrOriginal = createTestAdmAccsAddrs(2);
         
         // create additional addresses
-        List<Address__c> listAddrs = initTestAddr(2);
+        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -446,7 +386,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void updateAddrNew() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(4);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(4);
 
         // modify some of the Account addresses directly
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -502,7 +442,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void updateAddrMarkOverride() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // modify the account addresses directly, and set override
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -545,7 +485,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void updateAddrExistingCaseOnly() {    
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -627,7 +567,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void updateAddrExisting() {
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -676,7 +616,7 @@ public with sharing class ADDR_Account_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newAddrNoParent() {        
-        List<Address__c> listAddrs = initTestAddr(2);
+        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < listAddrs.size(); i++) {
             system.assertEquals(null, listAddrs[i].Parent_Account__c);
         }
@@ -698,7 +638,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void newDupeAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // create additional addresses thru the account.
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -727,10 +667,10 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void newDupeAddrNonDefault() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
          // create additional non-default addresses
-        listAddrs = initTestAddr(2);
+        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = false;
@@ -820,10 +760,10 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void insertNewDefaultMultilineStreetAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // create additional addresses
-        listAddrs = initTestAddr(2);
+        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < listAccs.size(); i++) {
             listAddrs[i].Parent_Account__c = listAccs[i].Id;
             listAddrs[i].Default_Address__c = true;
@@ -858,7 +798,7 @@ public with sharing class ADDR_Account_TEST {
     @isTest
     public static void updateMultilineStreetAddr() {        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(2);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
 
         // modify some of the account addresses directly
         for (Integer i = 0; i < listAccs.size(); i++) {
@@ -892,131 +832,6 @@ public with sharing class ADDR_Account_TEST {
             }
         }
     }
-
-    /*********************************************************************************************************
-    @description Update N organizational accounts with billing addresses 
-    verify:
-        N addresses created
-        account addresses updated
-    **********************************************************************************************************/            
-    @isTest
-    public static void updateRecordsWithAddrInfo() {         
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                            UTIL_Describe.getBizAccRecTypeID() + ';'));
- 
-        // create accounts without addresses
-        Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
-        insert listAcc;
-
-        // update the accounts' address
-        for (Account acc : listAcc) {
-            acc.BillingStreet = '123 45th';
-            acc.BillingCity = 'Seattle';
-        }
-        Test.startTest();
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAcc;
-        Test.stopTest();
-
-        // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, 
-                   Current_Address__c from Account order by Account.Name];
-        system.assertEquals(cAcc, listAcc.size());
-        
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
-        Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c 
-        order by Parent_Account__r.Name];
-        system.assertEquals(cAcc, listAddr.size());
-                
-        for (Integer i = 0; i < cAcc; i++) {
-            Account acc = listAcc[i];
-            Address__c addr = listAddr[i];
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertNotEquals(null, acc.BillingStreet);
-            system.assertNotEquals(null, acc.BillingCity);
-            system.assertEquals(true, addr.Default_Address__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
-        }
-    }
-    
-    /*********************************************************************************************************
-    @description Update N accounts with address objects 
-    verify:
-        account addresses updated
-        contact addresses not updated
-    **********************************************************************************************************/            
-    @isTest
-    public static void newAddrForAccounts() {           
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      UTIL_Describe.getBizAccRecTypeID() + ';'));
- 
-        // create accounts without addresses
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(3, UTIL_Describe.getBizAccRecTypeID());
-        insert listAcc;
-
-         // create addresses for the accounts
-        List<Address__c> listAddrs = initTestAddr(listAcc.size());
-        for (Integer i = 0; i < listAcc.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAcc[i].Id;
-            listAddrs[i].Default_Address__c = true;
-        }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        
-        // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c 
-        from Account order by Account.Name];
-        system.assertEquals(3, listAcc.size());
-        
-        listAddrs = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Parent_Account__r.Name];
-        system.assertEquals(3, listAddrs.size());
-        
-        for (Integer i = 0; i < listAcc.size(); i++) {
-            Account acc = listAcc[i];
-            Address__c addr = listAddrs[i];
-            system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
-            system.assertEquals(acc.BillingCity, addr.MailingCity__c);
-            system.assertNotEquals(null, acc.BillingStreet);
-            system.assertNotEquals(null, acc.BillingCity);
-            system.assertEquals(true, addr.Default_Address__c);
-            system.assertEquals(addr.Id, acc.Current_Address__c);
-        }
-    }
-
-    /*********************************************************************************************************
-    @description Create Accounts when the setting for Address Mgmt is off. 
-    verify:
-        no Address objects created
-        Account addresses set
-    **********************************************************************************************************/            
-    @isTest
-    public static void testDisabledAddr() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
-
-        listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
-        for (Account acc : listAccs) {
-            acc.BillingStreet = 'new street';
-            acc.BillingCity = 'new city';
-        }
-
-        // verify Account address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
-        
-        for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertEquals(null, acc.Current_Address__c);
-        }
-        
-        // verify no address objects created
-        list<Address__c> listAddr = [select Id from Address__c];
-        system.assertEquals(0, listAddr.size());
-    }
     
     /*********************************************************************************************************
     @description Update accounts' billing address fields to empty cause clearing the default address  
@@ -1029,7 +844,7 @@ public with sharing class ADDR_Account_TEST {
                                                                     UTIL_Describe.getAdminAccRecTypeID() + ';'));
                 
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestDataAccs(4);
+        List<Address__c> listAddrs = createTestAdmAccsAddrs(4);
 
         // clear addresses fields directly
         for (Integer i = 0; i < listAccs.size(); i++) {
