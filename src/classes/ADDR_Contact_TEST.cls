@@ -258,7 +258,7 @@ public with sharing class ADDR_Contact_TEST {
         // now let's delete the override Addresses
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        delete contactsAddrs.addrs;
+        delete addrs;
         Test.stopTest();
     
         // verify that the Contact address fields went back to the default
@@ -794,11 +794,11 @@ public with sharing class ADDR_Contact_TEST {
  
         // create additional addresses thru the Contact.
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].MailingStreet = contactsAddrs.addrs[i].MailingStreet__c;
-            contactsAddrs.contacts[i].MailingCity = contactsAddrs.addrs[i].MailingCity__c;
-            contactsAddrs.contacts[i].MailingState = contactsAddrs.addrs[i].MailingState__c;
-            contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
-            contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
+            contactsAddrs.contacts[i].MailingStreet = addrs[i].MailingStreet__c;
+            contactsAddrs.contacts[i].MailingCity = addrs[i].MailingCity__c;
+            contactsAddrs.contacts[i].MailingState = addrs[i].MailingState__c;
+            contactsAddrs.contacts[i].MailingPostalCode = addrs[i].MailingPostalCode__c;
+            contactsAddrs.contacts[i].MailingCountry = addrs[i].MailingCountry__c;
         }        
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
