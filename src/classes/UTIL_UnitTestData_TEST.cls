@@ -72,7 +72,7 @@ public class UTIL_UnitTestData_TEST {
         return ContactsToAdd;
     }
 
-    public static List<Account> CreateMultipleTestAccounts (integer n, ID recTypeId) {
+    public static List<Account> createMultipleTestAccounts (integer n, ID recTypeId) {
         List<Account> AcctsToAdd = New List<Account> ();    
         for (integer i=0;i<n;i++) {
             AcctsToAdd.add(new Account(Name = 'Yet Another Org ' + i, RecordTypeId = recTypeId));
@@ -105,7 +105,7 @@ public class UTIL_UnitTestData_TEST {
     * @return  void
     **********************************************************************************************************/
     public static List<Address__c> initTestAddr(Integer addrCount) {
-        List<Address__c> listAddrs = new list<Address__c>();
+        List<Address__c> addrs = new list<Address__c>();
         for (Integer i = 0; i < addrCount; i++) {
             Address__c addr = new Address__c();
             addr.Address_Type__c = 'Home';
@@ -116,8 +116,87 @@ public class UTIL_UnitTestData_TEST {
             addr.MailingCountry__c = 'United States';
             addr.Geolocation__Latitude__s = 47.6097 + i;
             addr.Geolocation__Longitude__s = -122.3331 + i;
-            listAddrs.add(addr);            
+            addrs.add(addr);            
         }
-        return listAddrs;
+        return addrs;
+    }
+    
+    /*********************************************************************************************************
+    * @description Sets up common test data for Account Addresses tests.
+    * @param accCount Number of  Accounts to create.
+    * @return  void
+    **********************************************************************************************************/    
+    public static AccsWithAddrs createTestAccsAddrs(Integer accCount, String recTypeID) {                
+        AccsWithAddrs accsAddrs = new AccsWithAddrs();
+        
+        //instantiate accounts
+        accsAddrs.accs = createMultipleTestAccounts(accCount, recTypeID);
+        //insert accounts
+        insert accsAddrs.accs;      
+        
+        //instantiate addresses
+        accsAddrs.addrs = initTestAddr(accCount);
+        
+        //link addresses with accounts and make them default
+        for (Integer i = 0; i < accCount; i++) {
+            accsAddrs.addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            accsAddrs.addrs[i].Default_Address__c = true;
+        }
+        //insert addresses
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert accsAddrs.addrs;
+        
+        //clear our triggers recursion prevention since we are starting a new test
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        
+        return accsAddrs;
+    }
+    
+    /*********************************************************************************************************
+    * @description Groups a list of Accounts and a list of Addresses so they can be returned from a method together.
+    **********************************************************************************************************/ 
+    public class AccsWithAddrs {
+        public List<Account> accs { public get; public set; }
+        public List<Address__c> addrs { public get; public set; }
+    }
+    
+    /*********************************************************************************************************
+    * @description Sets up common test data for Contact Addresses tests.
+    * @param contactCount Number of  Contacts to create.
+    * @return  void
+    **********************************************************************************************************/  
+    public static ContactsWithAddrs createTestContactsAddrs(Integer contactCount) {
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();
+        
+        //instantiate contacts
+        contactsAddrs.contacts = CreateMultipleTestContacts(contactCount);
+        //insert contacts
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert contactsAddrs.contacts;
+        
+        //instantiate addresses
+        contactsAddrs.addrs = initTestAddr(contactCount);
+        
+        //link addresses with contacts and make them default
+        for (Integer i = 0; i < contactCount; i++) {
+            contactsAddrs.addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
+            contactsAddrs.addrs[i].Default_Address__c = true;
+        }
+        //insert addresses
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        insert contactsAddrs.addrs;
+        
+        //clear our triggers recursion prevention since we are starting a new test
+        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        
+        return contactsAddrs;
+    }
+    
+    /*********************************************************************************************************
+    * @description Groups a list of Contacts and a list of Addresses so they can be returned from a method together.
+    **********************************************************************************************************/ 
+    public class ContactsWithAddrs {
+        public List<Contact> contacts { public get; public set; }
+        public List<Address__c> addrs { public get; public set; }
     }
 }

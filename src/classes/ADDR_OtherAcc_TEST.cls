@@ -141,13 +141,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         insert listAcc;
 
          // create addresses for the accounts
-        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(listAcc.size());
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(listAcc.size());
         for (Integer i = 0; i < listAcc.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAcc[i].Id;
-            listAddrs[i].Default_Address__c = true;
+            addrs[i].Parent_Account__c = listAcc[i].Id;
+            addrs[i].Default_Address__c = true;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
+        insert addrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         
         // verify results
@@ -156,13 +156,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         from Account order by Account.Name];
         system.assertEquals(3, listAcc.size());
         
-        listAddrs = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
+        addrs = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
         Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Parent_Account__r.Name];
-        system.assertEquals(3, listAddrs.size());
+        system.assertEquals(3, addrs.size());
         
         for (Integer i = 0; i < listAcc.size(); i++) {
             Account acc = listAcc[i];
-            Address__c addr = listAddrs[i];
+            Address__c addr = addrs[i];
             system.assertEquals(acc.BillingStreet, addr.MailingStreet__c);
             system.assertEquals(acc.BillingCity, addr.MailingCity__c);
             system.assertNotEquals(null, acc.BillingStreet);
@@ -182,8 +182,8 @@ public with sharing class ADDR_OtherAcc_TEST {
     public static void testDisabledAddr() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
 
-        List<Account> listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
-        for (Account acc : listAccs) {
+        List<Account> accs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        for (Account acc : accs) {
             acc.BillingStreet = 'new street';
             acc.BillingCity = 'new city';
         }

@@ -37,46 +37,12 @@
 
 @isTest
 public with sharing class ADDR_AdminAcc_TEST {
-
-    /* @description The list of created test Accounts.*/
-    public static list<Account> listAccs;
     
     private static void configSettings() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
-    }
-
-    /*********************************************************************************************************
-    * @description Sets up common test data for Account Addresses tests.
-    * @param accCount Number of  Accounts to create.
-    * @return  void
-    **********************************************************************************************************/    
-    public static List<Address__c> createTestAdmAccsAddrs(Integer accCount) {        
-        configSettings();
-        
-        //instantiate accounts
-        listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(accCount, UTIL_Describe.getAdminAccRecTypeID());
-        //insert accounts
-        insert listAccs;      
-        
-        //instantiate addresses
-        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(accCount);
-        
-        //link addresses with accounts and make them default
-        for (Integer i = 0; i < accCount; i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = true;
-        }
-        //insert addresses
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
-        
-        //clear our triggers recursion prevention since we are starting a new test
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        
-        return listAddrs;
     }
         
     /*********************************************************************************************************
@@ -85,18 +51,21 @@ public with sharing class ADDR_AdminAcc_TEST {
     **********************************************************************************************************/            
     @isTest 
     public static void updateDefaultAddr() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // now let's update the Addresses
-        for (Integer i = 0; i < listAddrs.size(); i++) {
-            Address__c addr = listAddrs[i];
+        for (Integer i = 0; i < addrs.size(); i++) {
+            Address__c addr = addrs[i];
             addr.MailingStreet__c = 'New Street' + i;
             addr.MailingCity__c = 'New City' + i;
         }
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
         Test.startTest();
-        update listAddrs;
+        update addrs;
         Test.stopTest();
     
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -116,14 +85,17 @@ public with sharing class ADDR_AdminAcc_TEST {
     verify: Account billing address fields cleared.
     **********************************************************************************************************/            
     @isTest 
-    static void deleteDefaultAddr() {        
+    static void deleteDefaultAddr() {
+        configSettings();
+            
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
        
         // now let's delete the Addresses
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
         Test.startTest();
-        delete listAddrs;
+        delete addrs;
         Test.stopTest();
     
         // verify that the Account address fields are cleared
@@ -141,34 +113,37 @@ public with sharing class ADDR_AdminAcc_TEST {
     verify: Account billing address fields not changed.
     **********************************************************************************************************/            
     @isTest
-    static void deleteNonDefaultOverrideAddr() {        
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
+    static void deleteNonDefaultOverrideAddr() {
+        configSettings();
+        
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = false;
-            listAddrs[i].MailingStreet__c = 'override' + i;
-            listAddrs[i].MailingCity__c = 'override' + i;
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            addrs[i].Default_Address__c = false;
+            addrs[i].MailingStreet__c = 'override' + i;
+            addrs[i].MailingCity__c = 'override' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
+        insert addrs;
         
         // set the accounts' address overrides
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            Account acc = listAccs[i];
-            acc.Current_Address__c = listAddrs[i].Id;
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            Account acc = accsAddrs.accs[i];
+            acc.Current_Address__c = addrs[i].Id;
             acc.is_Address_Override__c = true;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;        
+        update accsAddrs.accs;        
         
         // now let's delete the override Addresses
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        delete listAddrs;
+        delete addrs;
         Test.stopTest();
     
         // verify that the Account address fields went back to the default
@@ -188,18 +163,21 @@ public with sharing class ADDR_AdminAcc_TEST {
     verify: no change to account address
     **********************************************************************************************************/            
     @isTest
-    public static void updateNonDefaultAddr() { 
+    public static void updateNonDefaultAddr() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // now let's update the Addresses
-        for (Integer i = 0; i < listAddrs.size(); i++) {
-            Address__c addr = listAddrs[i];
+        for (Integer i = 0; i < addrs.size(); i++) {
+            Address__c addr = addrs[i];
             addr.Default_Address__c = false;
         }
         system.assertEquals(false, ADDR_Addresses_TDTM.hasRunAddrTrigger);
         Test.startTest();
-        update listAddrs;
+        update addrs;
         Test.stopTest();
     
         // verify that the Account and Contacts don't share the same address and it's new for the Account!
@@ -220,37 +198,40 @@ public with sharing class ADDR_AdminAcc_TEST {
     verify: account's address matches override
     **********************************************************************************************************/            
     @isTest
-    public static void setAddrOverride() {        
+    public static void setAddrOverride() {
+        configSettings();
+        
         // this creates a default Address for the Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // create new non-default address
         Address__c addrNew = new Address__c();
         addrNew.MailingStreet__c = 'street override';
         addrNew.MailingCity__c = 'city override';
         addrNew.Default_Address__c = false;
         // assign it to the second account
-        addrNew.Parent_Account__c = listAccs[1].Id;
+        addrNew.Parent_Account__c = accsAddrs.accs[1].Id;
         
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert addrNew;
         
         // set account's address override
-        listAccs[1].Current_Address__c = addrNew.Id;
-        listAccs[1].is_Address_Override__c = true;
+        accsAddrs.accs[1].Current_Address__c = addrNew.Id;
+        accsAddrs.accs[1].is_Address_Override__c = true;
         
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs[0];
+        update accsAddrs.accs[0];
     
         // now let's update the default Address for both accounts
-        listAddrs[0].MailingStreet__c = 'New Street';
-        listAddrs[0].MailingCity__c = 'New City';
-        listAddrs[1].MailingStreet__c = 'New Street';
-        listAddrs[1].MailingCity__c = 'New City';
+        addrs[0].MailingStreet__c = 'New Street';
+        addrs[0].MailingCity__c = 'New City';
+        addrs[1].MailingStreet__c = 'New Street';
+        addrs[1].MailingCity__c = 'New City';
 
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAddrs;
+        update addrs;
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -278,21 +259,24 @@ public with sharing class ADDR_AdminAcc_TEST {
         old default addresses no longer marked default
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddr() {        
+    public static void insertNewDefaultAddr() {
+        configSettings();
+          
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = true;
-            listAddrs[i].MailingStreet__c = 'New Default Street' + i;
-            listAddrs[i].MailingCity__c = 'New Default City' + i;
+        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            addrs[i].Default_Address__c = true;
+            addrs[i].MailingStreet__c = 'New Default Street' + i;
+            addrs[i].MailingCity__c = 'New Default City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        insert listAddrs;
+        insert addrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;        
         Test.stopTest();
 
@@ -331,25 +315,28 @@ public with sharing class ADDR_AdminAcc_TEST {
         new default addresses no longer marked default
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultAddrAndReset() {  
+    public static void insertNewDefaultAddrAndReset() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrOriginal = createTestAdmAccsAddrs(2);
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> listAddrOriginal = accsAddrs.addrs;
         
         // create additional addresses
-        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = true;
-            listAddrs[i].MailingStreet__c = 'New Default Street' + i;
-            listAddrs[i].MailingCity__c = 'New Default City' + i;
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            addrs[i].Default_Address__c = true;
+            addrs[i].MailingStreet__c = 'New Default Street' + i;
+            addrs[i].MailingCity__c = 'New Default City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
+        insert addrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         
         // go back to original default addresses
         // added this extra set to test fix where we didn't use the correct default
-        for (Integer i = 0; i < listAccs.size(); i++) {
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             listAddrOriginal[i].Default_Address__c = true;
             listAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
             listAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
@@ -384,32 +371,35 @@ public with sharing class ADDR_AdminAcc_TEST {
         Accounts get new Address
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrNew() {        
+    public static void updateAddrNew() {
+        configSettings();
+         
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(4);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // modify some of the Account addresses directly
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'Direct Street Edit';
-            listAccs[i].BillingCity = 'Direct City Edit';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
+            accsAddrs.accs[i].BillingCity = 'Direct City Edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'another Street Edit';
-            listAccs[i].BillingCity = 'another City Edit';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = 'another Street Edit';
+            accsAddrs.accs[i].BillingCity = 'another City Edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'final Street Edit';
-            listAccs[i].BillingCity = 'final City Edit';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = 'final Street Edit';
+            accsAddrs.accs[i].BillingCity = 'final City Edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -440,19 +430,22 @@ public with sharing class ADDR_AdminAcc_TEST {
         original Addresses still default    
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrMarkOverride() {        
+    public static void updateAddrMarkOverride() {
+        configSettings();
+             
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // modify the account addresses directly, and set override
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'Direct Street Edit';
-            listAccs[i].BillingCity = 'Direct City Edit';
-            listAccs[i].is_Address_Override__c = true;
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
+            accsAddrs.accs[i].BillingCity = 'Direct City Edit';
+            accsAddrs.accs[i].is_Address_Override__c = true;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -483,37 +476,40 @@ public with sharing class ADDR_AdminAcc_TEST {
         Account has updated Address
     **********************************************************************************************************/            
     @isTest
-    public static void updateAddrExistingCaseOnly() {    
+    public static void updateAddrExistingCaseOnly() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'Direct Street Edit';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingState = 'Washington';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingState = 'Washington';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
-            listAccs[i].BillingState = 'Oregon';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
+            accsAddrs.accs[i].BillingState = 'Oregon';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -533,12 +529,12 @@ public with sharing class ADDR_AdminAcc_TEST {
         }
         
         // now test that changing the case from the account updates all addresses
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            Account acc = listAccs[i];
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            Account acc = accsAddrs.accs[i];
             acc.BillingStreet = 'direct street  edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
         
         // verify that the Account address
         mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -566,30 +562,33 @@ public with sharing class ADDR_AdminAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void updateAddrExisting() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = 'Direct Street Edit';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingState = 'Washington';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingState = 'Washington';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        update listAccs;
+        update accsAddrs.accs;
 
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
-            listAccs[i].BillingState = 'Oregon';
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
+            accsAddrs.accs[i].BillingState = 'Oregon';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -615,14 +614,16 @@ public with sharing class ADDR_AdminAcc_TEST {
     verify: runtime error
     **********************************************************************************************************/            
     @isTest
-    public static void newAddrNoParent() {        
-        List<Address__c> listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
-        for (Integer i = 0; i < listAddrs.size(); i++) {
-            system.assertEquals(null, listAddrs[i].Parent_Account__c);
+    public static void newAddrNoParent() {
+        configSettings();
+        
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        for (Integer i = 0; i < addrs.size(); i++) {
+            system.assertEquals(null, addrs[i].Parent_Account__c);
         }
         
         try {
-            insert listAddrs;
+            insert addrs;
         } catch (Exception ex) {
             system.assert(ex.getMessage().contains(Label.addrValidParentObjects));
             return;
@@ -636,21 +637,24 @@ public with sharing class ADDR_AdminAcc_TEST {
         duplicates not created
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAddr() {        
+    public static void newDupeAddr() {
+        configSettings();
+         
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // create additional addresses thru the account.
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = listAddrs[i].MailingStreet__c;
-            listAccs[i].BillingCity = listAddrs[i].MailingCity__c;
-            listAccs[i].BillingState = listAddrs[i].MailingState__c;
-            listAccs[i].BillingPostalCode = listAddrs[i].MailingPostalCode__c;
-            listAccs[i].BillingCountry = listAddrs[i].MailingCountry__c;
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = addrs[i].MailingStreet__c;
+            accsAddrs.accs[i].BillingCity = addrs[i].MailingCity__c;
+            accsAddrs.accs[i].BillingState = addrs[i].MailingState__c;
+            accsAddrs.accs[i].BillingPostalCode = addrs[i].MailingPostalCode__c;
+            accsAddrs.accs[i].BillingCountry = addrs[i].MailingCountry__c;
         }        
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         // verify that we don't have new Addresses
@@ -665,33 +669,36 @@ public with sharing class ADDR_AdminAcc_TEST {
         found match becomes Default
     **********************************************************************************************************/            
     @isTest
-    public static void newDupeAddrNonDefault() {        
+    public static void newDupeAddrNonDefault() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
-         // create additional non-default addresses
-        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = false;
-            listAddrs[i].MailingStreet__c = 'New Street' + i;
-            listAddrs[i].MailingCity__c = 'New City' + i;
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
+        // create additional non-default addresses
+        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            addrs[i].Default_Address__c = false;
+            addrs[i].MailingStreet__c = 'New Street' + i;
+            addrs[i].MailingCity__c = 'New City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
-        insert listAddrs;
+        insert addrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;        
  
         // create additional addresses thru the account.
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = listAddrs[i].MailingStreet__c;
-            listAccs[i].BillingCity = listAddrs[i].MailingCity__c;
-            listAccs[i].BillingState = listAddrs[i].MailingState__c;
-            listAccs[i].BillingPostalCode = listAddrs[i].MailingPostalCode__c;
-            listAccs[i].BillingCountry = listAddrs[i].MailingCountry__c;
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = addrs[i].MailingStreet__c;
+            accsAddrs.accs[i].BillingCity = addrs[i].MailingCity__c;
+            accsAddrs.accs[i].BillingState = addrs[i].MailingState__c;
+            accsAddrs.accs[i].BillingPostalCode = addrs[i].MailingPostalCode__c;
+            accsAddrs.accs[i].BillingCountry = addrs[i].MailingCountry__c;
         }        
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -723,13 +730,13 @@ public with sharing class ADDR_AdminAcc_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                     UTIL_Describe.getAdminAccRecTypeID() + ';'));
     
-        listAccs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
-        for (Account acc : listAccs) {
+        List<Account> accs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        for (Account acc : accs) {
             acc.BillingStreet = 'new street\r\nsecond line';
             acc.BillingCity = 'new city';
         }
         Test.startTest();
-        insert listAccs; 
+        insert accs; 
         Test.stopTest();       
         
         // verify the Address objects split street.
@@ -758,22 +765,25 @@ public with sharing class ADDR_AdminAcc_TEST {
         street & street2 combined into contact and account single street field
     **********************************************************************************************************/            
     @isTest
-    public static void insertNewDefaultMultilineStreetAddr() {        
+    public static void insertNewDefaultMultilineStreetAddr() {
+        configSettings();
+             
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // create additional addresses
-        listAddrs = UTIL_UnitTestData_TEST.initTestAddr(2);
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAddrs[i].Parent_Account__c = listAccs[i].Id;
-            listAddrs[i].Default_Address__c = true;
-            listAddrs[i].MailingStreet__c = 'New Default Street';
-            listAddrs[i].MailingStreet2__c = 'Second Line';
-            listAddrs[i].MailingCity__c = 'New Default City' + i;
+        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            addrs[i].Default_Address__c = true;
+            addrs[i].MailingStreet__c = 'New Default Street';
+            addrs[i].MailingStreet2__c = 'Second Line';
+            addrs[i].MailingCity__c = 'New Default City' + i;
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        insert listAddrs;
+        insert addrs;
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;        
         Test.stopTest();
 
@@ -796,19 +806,22 @@ public with sharing class ADDR_AdminAcc_TEST {
         new Addresss has multiline street split into Street and Street2 fields
     **********************************************************************************************************/            
     @isTest
-    public static void updateMultilineStreetAddr() {        
+    public static void updateMultilineStreetAddr() {
+        configSettings();
+        
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(2);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // modify some of the account addresses directly
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            Account acc = listAccs[i];
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            Account acc = accsAddrs.accs[i];
             acc.BillingStreet = 'Direct Street Edit\r\nSecond Line';
             acc.BillingCity = 'Direct City Edit';
         }
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         // verify Account address
@@ -844,33 +857,35 @@ public with sharing class ADDR_AdminAcc_TEST {
                                                                     UTIL_Describe.getAdminAccRecTypeID() + ';'));
                 
         // this creates a default Address for each Account
-        List<Address__c> listAddrs = createTestAdmAccsAddrs(4);
-
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_Debug.debug('****accsAddrs: ' + JSON.serializePretty(accsAddrs));
+        List<Address__c> addrs = accsAddrs.addrs;
+        
         // clear addresses fields directly
-        for (Integer i = 0; i < listAccs.size(); i++) {
-            listAccs[i].BillingStreet = null;
-            listAccs[i].BillingCity = null;
-            listAccs[i].BillingState = null;
-            listAccs[i].BillingPostalCode = null;
-            listAccs[i].BillingCountry = null;
+        for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
+            accsAddrs.accs[i].BillingStreet = null;
+            accsAddrs.accs[i].BillingCity = null;
+            accsAddrs.accs[i].BillingState = null;
+            accsAddrs.accs[i].BillingPostalCode = null;
+            accsAddrs.accs[i].BillingCountry = null;
             if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
-                listAccs[i].put('BillingStateCode', null);
-                listAccs[i].put('BillingCountryCode', null);
+                accsAddrs.accs[i].put('BillingStateCode', null);
+                accsAddrs.accs[i].put('BillingCountryCode', null);
             }             
         }
 
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         Test.startTest();
-        update listAccs;
+        update accsAddrs.accs;
         Test.stopTest();
         
         // verify that no new address was created
-        listAddrs = [select Default_Address__c from Address__c];
-        system.assertEquals(4, listAddrs.size());
+        addrs = [select Default_Address__c from Address__c];
+        system.assertEquals(4, addrs.size());
         
         // verify existing Default Address updated to be non-default
-        for (Integer i = 0; i < listAddrs.size(); i++) {
-            system.assertEquals(false, listAddrs[i].Default_Address__c);
+        for (Integer i = 0; i < addrs.size(); i++) {
+            system.assertEquals(false, addrs[i].Default_Address__c);
         }              
     }
 }
