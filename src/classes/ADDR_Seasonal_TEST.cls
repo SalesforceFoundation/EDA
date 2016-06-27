@@ -56,9 +56,9 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = false;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
-            addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month());
             addrs[i].Seasonal_End_Day__c = '28';
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
@@ -110,11 +110,11 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].Default_Address__c = false;
             
             addrs[i].Seasonal_Start_Year__c = System.today().addYears(-1).year();
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
             
             addrs[i].Seasonal_End_Year__c = System.today().addYears(1).year();
-            addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month());
             addrs[i].Seasonal_End_Day__c = '28';
             
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
@@ -167,9 +167,9 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = false;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
-            addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(2).month());
             addrs[i].Seasonal_End_Day__c = '28';
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
@@ -219,9 +219,9 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = false;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
-            addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(2).month());
             addrs[i].Seasonal_End_Day__c = '28';
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
@@ -232,7 +232,7 @@ private with sharing class ADDR_Seasonal_TEST {
         
         // now make them current
         for (Integer i = 0; i < 2; i++) {
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
         }
         Test.startTest();
         update addrs;
@@ -279,15 +279,15 @@ private with sharing class ADDR_Seasonal_TEST {
             Integer iacc = i < 2 ? i : i-2;
             if (math.mod(i, 2) == 0) {
                 addrs[i].Parent_Account__c = accsAddrs.accs[iacc].Id;
-                addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+                addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(1).month());
                 addrs[i].Seasonal_Start_Day__c = '1';
-                addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(3).month());
+                addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(3).month());
                 addrs[i].Seasonal_End_Day__c = '28';
             } else {
                 addrs[i].Parent_Account__c = accsAddrs.accs[iacc-1].Id;
-                addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(-1).month());
+                addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
                 addrs[i].Seasonal_Start_Day__c = '1';
-                addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+                addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(2).month());
                 addrs[i].Seasonal_End_Day__c = '28';            
             }
             addrs[i].Default_Address__c = false;
@@ -496,9 +496,9 @@ private with sharing class ADDR_Seasonal_TEST {
         
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(dtTest.addMonths(1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
-            addrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(3).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(dtTest.addMonths(3).month());
             addrs[i].Seasonal_End_Day__c = '28';
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
@@ -511,9 +511,9 @@ private with sharing class ADDR_Seasonal_TEST {
         addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(dtTest.addMonths(2).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(dtTest.addMonths(2).month());
             addrs[i].Seasonal_Start_Day__c = '1';
-            addrs[i].Seasonal_End_Month__c = string.valueOf(dtTest.addMonths(4).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(dtTest.addMonths(4).month());
             addrs[i].Seasonal_End_Day__c = '28';
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
@@ -546,7 +546,7 @@ private with sharing class ADDR_Seasonal_TEST {
         addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
@@ -579,14 +579,14 @@ private with sharing class ADDR_Seasonal_TEST {
         addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
-            addrs[i].Seasonal_Start_Month__c = string.valueOf(system.today().addMonths(1).month());
+            addrs[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(1).month());
             addrs[i].Seasonal_Start_Day__c = '1';
             if(math.mod(i, 2) == 0) {
                 addrs[i].Seasonal_Start_Year__c = Decimal.valueOf(system.today().year());
             } else {
                 addrs[i].Seasonal_End_Year__c = Decimal.valueOf(system.today().year());
             }
-            addrs[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(2).month());
+            addrs[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(2).month());
             addrs[i].Seasonal_End_Day__c = '20';
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
@@ -611,7 +611,13 @@ private with sharing class ADDR_Seasonal_TEST {
         old default addresses still marked default
     **********************************************************************************************************/            
     @isTest
-    public static void scheduleSeasonalAddrUpdate() {        
+    public static void scheduleSeasonalAddrUpdate() {
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Contacts_Addresses_Enabled__c = true,
+            Simple_Address_Change_Treated_as_Update__c = true);
+        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
         List<Address__c> accAddrs = accsAddrs.addrs;
@@ -625,9 +631,9 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Integer i = 0; i < 2; i++) {
             accAddrs2[i].Parent_Account__c = accsAddrs.accs[i].Id;
             accAddrs2[i].Default_Address__c = false;
-            accAddrs2[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
-            accAddrs2[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
-            accAddrs2[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            accAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().month());
+            accAddrs2[i].Seasonal_Start_Day__c = String.valueOf(system.today().day());
+            accAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month());
             accAddrs2[i].Seasonal_End_Day__c = '28';
             accAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
             accAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
@@ -638,9 +644,9 @@ private with sharing class ADDR_Seasonal_TEST {
         for (Integer i = 0; i < 2; i++) {
             conAddrs2[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             conAddrs2[i].Default_Address__c = false;
-            conAddrs2[i].Seasonal_Start_Month__c = string.valueOf(system.today().month());
-            conAddrs2[i].Seasonal_Start_Day__c = string.valueOf(system.today().day());
-            conAddrs2[i].Seasonal_End_Month__c = string.valueOf(system.today().addMonths(1).month());
+            conAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().month());
+            conAddrs2[i].Seasonal_Start_Day__c = String.valueOf(system.today().day());
+            conAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month());
             conAddrs2[i].Seasonal_End_Day__c = '28';
             conAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
             conAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
