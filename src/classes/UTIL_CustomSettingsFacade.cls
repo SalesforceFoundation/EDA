@@ -95,6 +95,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getHhAccRecTypeID() 
 		                                  + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
 		hs.Contacts_Addresses_Enabled__c = true;
+		hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();
 		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;

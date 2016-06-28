@@ -22,9 +22,11 @@
 	    		//Even though this property is only used but the CMP_System component, we set it here
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
+	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
 	    		//Get account record types
 	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
-	    				settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c);
+	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c, 
+	    		        settingsNoPrefix.Household_Addresses_RecType__c);
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
@@ -35,7 +37,7 @@
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
 	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in
 	//this helper. And we need the Account Processor value from HierarchySettings.
-	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId) {
+	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId, householdTypeId) {
 		//Get all available account record types
 		var action = component.get("c.getRecTypesMapByName");
 		action.setParams({ "objectName" : 'Account'});
@@ -52,6 +54,9 @@
 	    				if(recTypesObj[property].indexOf(accTypeId) > -1) {
 	    					component.set("v.accRecTypeName", property);
 	    				}
+	    				if(recTypesObj[property].indexOf(householdTypeId) > -1) {
+                            component.set("v.householdRecTypeName", property);
+                        }
 	    			}
 	    		}
 	    		component.set("v.accRecTypes", accRecTypes);

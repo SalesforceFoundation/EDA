@@ -117,6 +117,18 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Household_Addresses_RecType__c</fullName>
+        <description>Account record type that supports Household Addresses behavior.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Account record type that supports Household Addresses behavior.</inlineHelpText>
+        <label>Household Addresses Acc Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Reciprocal_Method__c</fullName>
         <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
