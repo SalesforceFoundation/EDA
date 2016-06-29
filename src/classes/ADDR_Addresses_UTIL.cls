@@ -240,7 +240,7 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
-    * @description Utility to copy Address fields between to Address objects.
+    * @description Utility to copy Address fields between Address objects.
     * @param addrSrc the source Address
     * @param addrSrc the destination Address
     * @return void
@@ -256,6 +256,30 @@ public with sharing class ADDR_Addresses_UTIL {
         addrDst.Geolocation__Longitude__s = addrSrc.Geolocation__Longitude__s;
         if (addrSrc.Address_Type__c != null)
             addrDst.Address_Type__c = addrSrc.Address_Type__c;
+    }
+    
+     /*******************************************************************************************************
+    * @description Utility to copy Address fields between Contacts and Accounts (or vice-versa).
+    * Handles instances where State and Country picklists are enabled, and multiline street addresses.
+    * @param sobjSrc the source Contact or Account
+    * @param strFieldPrefixSrc the address fields to copy from, ie., Mailing, Other, Shipping, Billing
+    * @param sobjDst the destination Contact or Account
+    * @param strFieldPrefixDst the address fields to copy to, ie., Mailing, Other, Shipping, Billing
+    * @return void
+    */ 
+    public static void copyAddressStdSObj(sobject sobjSrc, string strFieldPrefixSrc, sobject sobjDst, string strFieldPrefixDst) {
+        sobjDst.put(strFieldPrefixDst + 'Street', sobjSrc.get(strFieldPrefixSrc + 'Street'));
+        sobjDst.put(strFieldPrefixDst + 'City', sobjSrc.get(strFieldPrefixSrc + 'City'));
+        sobjDst.put(strFieldPrefixDst + 'PostalCode', sobjSrc.get(strFieldPrefixSrc + 'PostalCode'));
+        sobjDst.put(strFieldPrefixDst + 'State', sobjSrc.get(strFieldPrefixSrc + 'State'));
+        sobjDst.put(strFieldPrefixDst + 'Country', sobjSrc.get(strFieldPrefixSrc + 'Country'));
+        sobjDst.put(strFieldPrefixDst + 'Latitude', sobjSrc.get(strFieldPrefixSrc + 'Latitude'));
+        sobjDst.put(strFieldPrefixDst + 'Longitude', sobjSrc.get(strFieldPrefixSrc + 'Longitude'));
+        
+        if (isStateCountryPicklistsEnabled) {
+            sobjDst.put(strFieldPrefixDst + 'StateCode', sobjSrc.get(strFieldPrefixSrc + 'StateCode'));
+            sobjDst.put(strFieldPrefixDst + 'CountryCode', sobjSrc.get(strFieldPrefixSrc + 'CountryCode'));
+        }    
     }
     
     /*******************************************************************************************************

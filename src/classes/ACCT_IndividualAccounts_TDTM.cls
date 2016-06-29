@@ -332,7 +332,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
-
+                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
+                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
+                
                 //Give it the default record type selected in the settings. 
                 if(defaultRecTypeID != null)
                     a.RecordTypeID = defaultRecTypeID;
