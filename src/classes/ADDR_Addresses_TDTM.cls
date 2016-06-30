@@ -141,7 +141,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        hasRunAddrTrigger = true;
 	        
 	        if (mapParentIdAddr.size() > 0) {  
-	            DmlWrapper dmlWrapper = refreshCurrentAccAddress(mapParentIdAddr, triggerAction);
+	            DmlWrapper dmlWrapper = new DmlWrapper();
+	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
 	            processDml(dmlWrapper, mapParentIdAddr);
 	        }
 
@@ -200,7 +201,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * and not do any changes to dmlWrapper. 
     * @return Map<Id, ParentInfo> a map of parent Id to the ParentInfo object for the parent  
     ********************************************************************************************************/
-    public static DmlWrapper refreshCurrentAccAddress(Map<Id, Address__c> mapParentIdAddr, TDTM_Runnable.Action triggerAction) {
+    public static void refreshCurrentAccAddress(Map<Id, Address__c> mapParentIdAddr, DmlWrapper dmlWrapper, 
+    TDTM_Runnable.Action triggerAction) {
         
         // assumptions:
         // called after all modifications saved to db, either from a scheduled job,
@@ -211,8 +213,6 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // for each parent, find its current seasonal or default address (loop calculation)
         // for each parent, update its address fields with seasonal current/default
         // for each parent addr, clear its Default field if it isn't default
-
-        DmlWrapper dmlWrapper = new DmlWrapper();
         
         // get all Addresses by parent, that might need updating
         List<Id> listParentId = new List<Id>(mapParentIdAddr.keySet());
@@ -253,7 +253,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr = addrDefault;
 
             // update parents' address fields
-            updateParentsAddresses(parentId, addr, triggerAction, listParentUpdate);
+            updateParentsAddresses(parentId, addr, listParentUpdate, triggerAction);
             
             // check other addresses on this parent that are no longer the default
             uncheckOldDefaultAddrs(parentId, mapParentIdListAddrs, addrDefault, listAddrUpdate);
@@ -267,8 +267,6 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             UTIL_Debug.debug('**** listAddrUpdate: ' + listAddrUpdate);
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAddrUpdate);
         }
-        
-        return dmlWrapper;
     }
     
     private static void storeDefaultSeasonal(ID parentId, ParentInfo parentInfo, 
@@ -303,27 +301,25 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }
     }
     
-    private static void updateParentsAddresses(ID parentId, Address__c addr, TDTM_Runnable.Action triggerAction, 
-    List<SObject> listParentUpdate) {
+    private static void updateParentsAddresses(ID parentId, Address__c addr, List<SObject> listParentUpdate, 
+    TDTM_Runnable.Action triggerAction) {
         if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
             Account acc = new Account(Id = parentId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
             // If the address was deleted, it cannot be the override any more
-            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
                 acc.is_Address_Override__c = false;
-            }
             listParentUpdate.add(acc);
         } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
             Contact contact = new Contact(Id = parentId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null);
             // If the address was deleted, it cannot be the override any more
-            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
                 contact.is_Address_Override__c = false;
-            }
             listParentUpdate.add(contact);
         }
     }
-    
+
     private static void uncheckOldDefaultAddrs(Id parentId, Map<Id, List<Address__c>> mapParentIdListAddrs, 
     Address__c addrDefault, List<Address__c> listAddrUpdate) {
         if (mapParentIdListAddrs != null && mapParentIdListAddrs.size() > 0 

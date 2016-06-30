@@ -267,7 +267,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param strFieldPrefixDst the address fields to copy to, ie., Mailing, Other, Shipping, Billing
     * @return void
     */ 
-    public static void copyAddressStdSObj(sobject sobjSrc, string strFieldPrefixSrc, sobject sobjDst, string strFieldPrefixDst) {
+    public static void copyAddressStdSObj(SObject sobjSrc, string strFieldPrefixSrc, SObject sobjDst, string strFieldPrefixDst) {
         sobjDst.put(strFieldPrefixDst + 'Street', sobjSrc.get(strFieldPrefixSrc + 'Street'));
         sobjDst.put(strFieldPrefixDst + 'City', sobjSrc.get(strFieldPrefixSrc + 'City'));
         sobjDst.put(strFieldPrefixDst + 'PostalCode', sobjSrc.get(strFieldPrefixSrc + 'PostalCode'));
@@ -291,7 +291,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param strAddrType if not null, copy to address.Address_Type__c
     * @return void
     */ 
-    public static void copyAddressStdSObjAddr(sobject sobjSrc, string strFieldPrefixSrc, Address__c addr, string strAddrType) {
+    public static void copyAddressStdSObjAddr(SObject sobjSrc, string strFieldPrefixSrc, Address__c addr, string strAddrType) {
         addr.MailingStreet__c = (string)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
         addr.MailingCity__c = (string)sobjSrc.get(strFieldPrefixSrc + 'City');
@@ -332,7 +332,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param strFieldAddrType an optional Address Type field on sobjDst to copy to 
     * @return void
     */ 
-    public static void copyAddressAddrSObj(Address__c addr, sobject sobjDst, string strFieldPrefix, string strFieldAddrType) {
+    public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, string strFieldPrefix, string strFieldAddrType) {
         sobjDst.put(strFieldPrefix + 'Street', getMultilineStreet(addr));
         sobjDst.put(strFieldPrefix + 'City', addr.MailingCity__c);
         sobjDst.put(strFieldPrefix + 'PostalCode', addr.MailingPostalCode__c);        
@@ -593,5 +593,26 @@ public with sharing class ADDR_Addresses_UTIL {
             } 
         }
         return mapParentIdListAddrs;
+    }
+    
+    /*******************************************************************************************************
+    * @description Updates the Latest date fields on any address overrides
+    * @param mapAddrIdIsOverride map of Address Id's to an isOverride boolean
+    * @param dmlWrapper to hold the Addresses that need updating 
+    * @return void  
+    ********************************************************************************************************/
+    public static void updateAddrIsOverride(Map<Id, boolean> mapAddrIdIsOverride, TDTM_Runnable.DmlWrapper dmlWrapper) {
+
+        for (ID id : mapAddrIdIsOverride.keySet()) {
+            Address__c addr = new Address__c();
+            addr.Id = id;
+            if (mapAddrIdIsOverride.get(id) == true) {
+                addr.Latest_Start_Date__c = system.today();
+                addr.Latest_End_Date__c = null;
+            } else {
+                addr.Latest_End_Date__c = system.today();
+            }
+            dmlWrapper.objectsToUpdate.add(addr);
+        }        
     }
 }

@@ -253,7 +253,8 @@ public with sharing class ADDR_Seasonal_UTIL {
         // must manually set our semaphore, so when we update contacts and households, they don't try to create additional addresses
         ADDR_Addresses_TDTM.hasRunAddrTrigger = true;       
 
-        TDTM_Runnable.Dmlwrapper dmlWrapper = ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, null);
+        TDTM_Runnable.Dmlwrapper dmlWrapper = new TDTM_Runnable.Dmlwrapper();
+        ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, null);
         TDTM_TriggerHandler.processDML(dmlWrapper);
     }
 }
