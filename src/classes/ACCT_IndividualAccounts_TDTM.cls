@@ -307,8 +307,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() 
-            || acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID())) {
+            if (acc != null && (acc.RecordTypeId == UTIL_CustomSettingsFacade.getSettings().Account_Processor__c)) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
@@ -319,9 +318,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account();
                 
                 // construct the Account name
-                if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
+                if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c)
                 	a.Name = strNameHHAccountForContact(c);
-                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
+                //TODO: we should not be asking for the record type directly, and instead let the use tell us which record type
+                //represents an Administrative account.
+                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID()) 
                 	a.Name = strNameAdmAccountForContact(c);
                 else
                     a.Name = strNameAccountForContact(c);
@@ -332,8 +333,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
-                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
-                ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
+                
+                if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
+                    ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
+                    ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
+                }
                 
                 //Give it the default record type selected in the settings. 
                 if(defaultRecTypeID != null)
