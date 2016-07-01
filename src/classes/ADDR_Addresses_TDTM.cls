@@ -143,6 +143,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        if (mapParentIdAddr.size() > 0) {  
 	            DmlWrapper dmlWrapper = new DmlWrapper();
 	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	            UTIL_Debug.debug('****DmlWrapper to process: ' + JSON.serializePretty(dmlWrapper));
 	            processDml(dmlWrapper, mapParentIdAddr);
 	        }
 
@@ -201,7 +202,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * and not do any changes to dmlWrapper. 
     * @return Map<Id, ParentInfo> a map of parent Id to the ParentInfo object for the parent  
     ********************************************************************************************************/
-    public static void refreshCurrentAccAddress(Map<Id, Address__c> mapParentIdAddr, DmlWrapper dmlWrapper, 
+    public static Map<Id, ParentInfo> refreshCurrentAccAddress(Map<Id, Address__c> mapParentIdAddr, DmlWrapper dmlWrapper, 
     TDTM_Runnable.Action triggerAction) {
         
         // assumptions:
@@ -210,9 +211,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         //
         // strategy:
         // for each parent, get all its addresses (query)
+        // for each hh, find all its contacts (query)
         // for each parent, find its current seasonal or default address (loop calculation)
         // for each parent, update its address fields with seasonal current/default
         // for each parent addr, clear its Default field if it isn't default
+        // for each hh contact, if no override, update mailing fields with seasonal current/default
         
         // get all Addresses by parent, that might need updating
         List<Id> listParentId = new List<Id>(mapParentIdAddr.keySet());
@@ -238,9 +241,26 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             createDefaultIfNoneExists(parentId, parentInfo);
         }
         
+        // get all Contacts by HH, that might need updating
+        // note that if we have an organizational account, our query will not pick up any contacts (by design!)
+        map<Id, list<Contact>> mapAccIdListCon = new map<Id, list<Contact>>(); 
+        set<Id> setHHId =  mapParentIdAddr.keySet();
+        list<Contact> listCon = [select Id, is_Address_Override__c, Current_Address__c, AccountId from Contact where 
+        AccountId != null and Account.RecordTypeId = :UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c 
+        and AccountId in :setHHId];
+        for (Contact con : listCon) {
+            list<Contact> listConHH = mapAccIdListCon.get(con.AccountId);
+            if (listConHH == null) {
+                listConHH = new list<Contact>();
+                mapAccIdListCon.put(con.AccountId, listConHH);
+            }
+            listConHH.add(con);
+        }
+        
         // lists of objects to update
         List<SObject> listParentUpdate = new List<SObject>();
         List<Address__c> listAddrUpdate = new List<Address__c>();
+        list<Contact> listConUpdate = new list<Contact>();
         
         // now go through each parent, and do all the work!
         for (Id parentId : listParentId) {
@@ -253,10 +273,25 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr = addrDefault;
 
             // update parents' address fields
-            updateParentsAddresses(parentId, addr, listParentUpdate, triggerAction);
+            updateParentsAddresses(parentId, addr, listParentUpdate, triggerAction, dmlWrapper);
             
             // check other addresses on this parent that are no longer the default
             uncheckOldDefaultAddrs(parentId, mapParentIdListAddrs, addrDefault, listAddrUpdate);
+            
+            // check the Contacts on this household
+            if (mapAccIdListCon != null && mapAccIdListCon.size() > 0) {
+                for (Contact con : mapAccIdListCon.get(parentId)) {
+                    // detect that the contact's current address was deleted.
+                    // and if so clear any override flag so it will get the default address.
+                    if (con.Current_Address__c == null)
+                       con.is_Address_Override__c = false;
+                    if (con.is_Address_Override__c == false || con.Current_Address__c == addr.Id) {  
+                        con.Current_Address__c = addr.Id;
+                        ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
+                        listConUpdate.add(con);
+                    }   
+                }
+            }
         }  
                     
         if (listParentUpdate.size() > 0) {
@@ -267,6 +302,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             UTIL_Debug.debug('**** listAddrUpdate: ' + listAddrUpdate);
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAddrUpdate);
         }
+        if (listConUpdate.size() > 0) {
+            UTIL_Debug.debug('**** listConUpdate: ' + listConUpdate);
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)listConUpdate);
+        }
+        
+        return mapParentIdParentInfo;
     }
     
     private static void storeDefaultSeasonal(ID parentId, ParentInfo parentInfo, 
@@ -302,17 +343,19 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     }
     
     private static void updateParentsAddresses(ID parentId, Address__c addr, List<SObject> listParentUpdate, 
-    TDTM_Runnable.Action triggerAction) {
+    TDTM_Runnable.Action triggerAction, DmlWrapper dmlWrapper) {
         if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
+            UTIL_Debug.debug('****Updating address info in Account');
             Account acc = new Account(Id = parentId);
-            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null);
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null, dmlWrapper);
             // If the address was deleted, it cannot be the override any more
             if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
                 acc.is_Address_Override__c = false;
             listParentUpdate.add(acc);
         } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
+            UTIL_Debug.debug('****Updating address info in Contact');
             Contact contact = new Contact(Id = parentId);
-            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null);
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null, dmlWrapper);
             // If the address was deleted, it cannot be the override any more
             if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
                 contact.is_Address_Override__c = false;

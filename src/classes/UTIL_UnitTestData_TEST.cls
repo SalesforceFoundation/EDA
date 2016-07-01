@@ -215,6 +215,7 @@ public class UTIL_UnitTestData_TEST {
         
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = recTypeID;
+        hs.Accounts_Addresses_Enabled__c = recTypeID + ';';
         hs.Household_Addresses_RecType__c = recTypeID;
         hs.Simple_Address_Change_Treated_as_Update__c = true;
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);

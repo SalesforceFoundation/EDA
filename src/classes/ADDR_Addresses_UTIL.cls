@@ -332,12 +332,13 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param strFieldAddrType an optional Address Type field on sobjDst to copy to 
     * @return void
     */ 
-    public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, string strFieldPrefix, string strFieldAddrType) {
+    public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, string strFieldPrefix, string strFieldAddrType, 
+    TDTM_Runnable.DmlWrapper dmlWrapper) {
         sobjDst.put(strFieldPrefix + 'Street', getMultilineStreet(addr));
         sobjDst.put(strFieldPrefix + 'City', addr.MailingCity__c);
-        sobjDst.put(strFieldPrefix + 'PostalCode', addr.MailingPostalCode__c);        
+        sobjDst.put(strFieldPrefix + 'PostalCode', addr.MailingPostalCode__c);
         sobjDst.put(strFieldPrefix + 'Latitude', addr.Geolocation__Latitude__s);
-        sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s); 
+        sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s);
         sobjDst.put('Current_Address__c', addr.Id);
         
         if (!isStateCountryPicklistsEnabled) {
@@ -376,6 +377,10 @@ public with sharing class ADDR_Addresses_UTIL {
         
         if (strFieldAddrType != null)
             sobjDst.put(strFieldAddrType, addr.Address_Type__c);
+          
+        UTIL_Debug.debug('****Object with copied address info: ' + JSON.serializePretty(sobjDst));
+        if(dmlWrapper != null)
+            dmlWrapper.objectsToUpdate.add(sobjDst);
     }
     
     /*******************************************************************************************************

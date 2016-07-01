@@ -77,7 +77,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             }
     
             // AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                 // if address change is coming from the address trigger we don't want to create a new address   
                 if (!ADDR_Addresses_TDTM.hasRunAddrTrigger) {
                     if (UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true) {
@@ -259,7 +259,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             Address__c addr = mapAddrIdAddr.get(con.Current_Address__c);
             if (addr != null) {
                 con.Primary_Address_Type__c = addr.Address_Type__c;
-                ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c');
+                UTIL_Debug.debug('****Refreshing address info in Contact from default address');
+                ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c', null);
             }
         }
     }
@@ -307,15 +308,14 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         map<Id, Address__c> mapAccIdAddr = new map<Id, Address__c>();
         for (Contact con : listCon) 
             mapAccIdAddr.put(con.AccountId, null);
-        
-        ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, null);
-        
+                
         // get the default and seasonal address for each HH
-        /*map<Id, ADDR_Addresses_TDTM.ParentInfo> mapAccIdHHInfo = ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, null);
+        map<Id, ADDR_Addresses_TDTM.ParentInfo> mapAccIdHHInfo = ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, null);
         
         // reset the Contact's address fields with the appropriate address
         for (Contact con : listCon) {
             ADDR_Addresses_TDTM.ParentInfo hhinfo = mapAccIdHHInfo.get(con.AccountId);
+            UTIL_Debug.debug('****Household address info: ' + JSON.serializePretty(hhinfo));
             if (hhinfo != null) {
                 Address__c addr = hhinfo.addrSeasonal;
                 if (addr == null)
@@ -323,9 +323,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 if (addr != null) {
                     con.Primary_Address_Type__c = addr.Address_Type__c;
                     con.Current_Address__c = addr.Id;
-                    ADDR_Addresses_TDTM.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c');
+                    ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c', null);
                 }              
             }
-        }*/        
+        }       
     }
 }

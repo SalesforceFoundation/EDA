@@ -43,6 +43,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     
     private static void configSettings() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getHhAccRecTypeID() + ';',
             Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID(),
             Simple_Address_Change_Treated_as_Update__c = true));
     }
@@ -71,12 +72,14 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         Test.startTest();
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
         Test.stopTest();
-
+        
         // verify that the HH and Contacts share the same address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        UTIL_Debug.debug('****newDefaultAddrHH Accounts: ' + JSON.serializePretty(mapAccIdAcc.values()));  
         list<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****newDefaultAddrHH listCon: ' + JSON.serializePretty(listCon)); 
         
-        for (Contact con : consAccsAddrs.contacts) {
+        for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             system.assertEquals(true, isMatchAddressAccCon(acc, con));
             system.assertEquals(false, con.is_Address_Override__c);
