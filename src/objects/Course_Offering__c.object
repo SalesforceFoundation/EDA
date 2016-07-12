@@ -147,7 +147,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Course Offering Name</label>
+        <label>Course Offering ID</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Course Offerings</pluralLabel>
