@@ -247,7 +247,7 @@
     </listViews>
     <nameField>
         <displayFormat>PE-{0000}</displayFormat>
-        <label>Enrollment Number</label>
+        <label>Program Enrollment ID</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Program Enrollments</pluralLabel>
