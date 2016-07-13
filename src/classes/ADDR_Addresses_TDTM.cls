@@ -273,25 +273,14 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr = addrDefault;
 
             // update parents' address fields
-            updateParentsAddresses(parentId, addr, listParentUpdate, triggerAction, dmlWrapper);
+            listParentUpdate.addAll(updateParentsAddresses(parentId, addr, triggerAction, dmlWrapper));
             
             // check other addresses on this parent that are no longer the default
-            uncheckOldDefaultAddrs(parentId, mapParentIdListAddrs, addrDefault, listAddrUpdate);
+            listAddrUpdate.addAll(uncheckOldDefaultAddrs(parentId, mapParentIdListAddrs, addrDefault));
             
             // check the Contacts on this household
-            if (mapAccIdListCon != null && mapAccIdListCon.size() > 0) {
-                for (Contact con : mapAccIdListCon.get(parentId)) {
-                    // detect that the contact's current address was deleted.
-                    // and if so clear any override flag so it will get the default address.
-                    if (con.Current_Address__c == null)
-                       con.is_Address_Override__c = false;
-                    if (con.is_Address_Override__c == false || con.Current_Address__c == addr.Id) {  
-                        con.Current_Address__c = addr.Id;
-                        ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
-                        listConUpdate.add(con);
-                    }   
-                }
-            }
+            listConUpdate.addAll(copyAddressToContact(parentId, addr, mapAccIdListCon, dmlWrapper));
+            
         }  
                     
         if (listParentUpdate.size() > 0) {
@@ -342,8 +331,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }
     }
     
-    private static void updateParentsAddresses(ID parentId, Address__c addr, List<SObject> listParentUpdate, 
+    private static List<SObject> updateParentsAddresses(ID parentId, Address__c addr, 
     TDTM_Runnable.Action triggerAction, DmlWrapper dmlWrapper) {
+        List<SObject> listParentUpdate = new List<SObject>();
+        
         if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
             UTIL_Debug.debug('****Updating address info in Account');
             Account acc = new Account(Id = parentId);
@@ -361,10 +352,13 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 contact.is_Address_Override__c = false;
             listParentUpdate.add(contact);
         }
+        return listParentUpdate;
     }
 
-    private static void uncheckOldDefaultAddrs(Id parentId, Map<Id, List<Address__c>> mapParentIdListAddrs, 
-    Address__c addrDefault, List<Address__c> listAddrUpdate) {
+    private static List<Address__c> uncheckOldDefaultAddrs(Id parentId, Map<Id, List<Address__c>> mapParentIdListAddrs, 
+    Address__c addrDefault) {
+        List<Address__c> listAddrUpdate = new List<Address__c>();
+        
         if (mapParentIdListAddrs != null && mapParentIdListAddrs.size() > 0 
         && mapParentIdListAddrs.get(parentId) != null) {
             for (Address__c childAddr : mapParentIdListAddrs.get(parentId)) {
@@ -380,6 +374,27 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 }   
             }
         }
+        return listAddrUpdate;
+    }
+    
+    private static List<Contact> copyAddressToContact(ID parentId, Address__c addr, Map<ID, List<Contact>> mapAccIdListCon, 
+    DmlWrapper dmlWrapper) {
+        List<Contact> listConUpdate = new List<Contact>();
+        
+        if (mapAccIdListCon != null && mapAccIdListCon.size() > 0) {
+            for (Contact con : mapAccIdListCon.get(parentId)) {
+                // detect that the contact's current address was deleted.
+                // and if so clear any override flag so it will get the default address.
+                if (con.Current_Address__c == null)
+                   con.is_Address_Override__c = false;
+                if (con.is_Address_Override__c == false || con.Current_Address__c == addr.Id) {  
+                    con.Current_Address__c = addr.Id;
+                    ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
+                    listConUpdate.add(con);
+                }   
+            }
+        }
+        return listConUpdate;
     }
         
     /*******************************************************************************************************
