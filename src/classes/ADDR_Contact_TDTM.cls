@@ -78,16 +78,22 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     
             // AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                UTIL_Debug.debug('***Contact after update in ADDR class');
                 // if address change is coming from the address trigger we don't want to create a new address   
                 if (!ADDR_Addresses_TDTM.hasRunAddrTrigger) {
+                    UTIL_Debug.debug('****Update NOT triggered from ADDR_Addresses_TDTM');
                     if (UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true) {
+                        UTIL_Debug.debug('****Contact addresses enabled');
                         Contact contactOld = (Contact)listOld[i];
+                        Boolean cleared = !ADDR_Addresses_UTIL.iscontactAddressEmpty(contactOld) && ADDR_Addresses_UTIL.iscontactAddressEmpty(contact);
+                        UTIL_Debug.debug('****Address info has been cleared: ' + cleared);
                         // if the address info has been removed
-                        if(!ADDR_Addresses_UTIL.iscontactAddressEmpty(contactOld) && ADDR_Addresses_UTIL.iscontactAddressEmpty(contact))
+                        if(cleared) {                         
                             listContactsAddrInfoCleared.add(contact);
                         // if the address changed, remember the Contact we want to add a new address for    
-                        else if (ADDR_Addresses_UTIL.isContactAddressChanged(contact, contactOld)) 
+                        } else if (ADDR_Addresses_UTIL.isContactAddressChanged(contact, contactOld)) { 
                             listcontactCreateAddr.add(contact);
+                        }
                     }
                 }
             }                
@@ -275,23 +281,60 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         List<ID> oldCurrentAddrIDs = new List<ID>();
         
         //We need to re-query before we are in the "after" part of the trigger
-        List<Contact> Contacts = [select is_Address_Override__c, Current_Address__c from Contact where ID in :listContactsAddrInfoCleared];
+        List<Contact> contacts = [select is_Address_Override__c, Current_Address__c, AccountID, Account.RecordTypeId
+                                  from Contact where ID in :listContactsAddrInfoCleared];
+        List<ID> accToUpdateIDs = new List<ID>();
         
         // clear Current_Address__c field from Contacts
-        for(Contact contact : Contacts) {
+        for(Contact contact : contacts) {
             if(contact.Current_Address__c != null) // get all current addrs
                 oldCurrentAddrIDs.add(contact.Current_Address__c);
             contact.Current_Address__c = null;
             contact.is_Address_Override__c = false;
-            dmlWrapper.objectsToUpdate.add(contact); 
+            dmlWrapper.objectsToUpdate.add(contact);
+            
+            // if contact belongs to household and its address it's not an override (it's the default), clear address info from parent account
+	        if(contact.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() && !contact.is_Address_Override__c) {
+	            accToUpdateIDs.add(contact.AccountID);
+	        }
+        }
+        UTIL_Debug.debug('****Number of Contacts that need parent address info cleared: ' + accToUpdateIDs.size());
+        
+        // clear Default_Address__c field from child addrs, if necessary
+        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true and ID in :oldCurrentAddrIDs];
+        if(addrs.size() > 0) {
+	        for(Address__c addr : addrs) {
+	            addr.Default_Address__c = false;
+	            dmlWrapper.objectsToUpdate.add(addr);
+	        }
         }
         
-        // clear Default_Address__c field from child addrs
-        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true and ID in :oldCurrentAddrIDs];
-        for(Address__c addr : addrs) {
-            addr.Default_Address__c = false;
-            dmlWrapper.objectsToUpdate.add(addr);
+        // clear address info from parent Accounts, if necessary
+        if(accToUpdateIDs.size() > 0) {
+            String strSoql = 'select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude'; 
+            
+            if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+                strSoql += ', BillingCountryCode, BillingStateCode ';
+            strSoql += ' from Account where Id IN :accToUpdateIDs';
+                
+            List<Account> accsToUpdate = database.query(strSoql);
+            UTIL_Debug.debug('****Clearing address info number of accounts: ' + accsToUpdate.size());
+            for(Account acc : accsToUpdate) {
+                acc.BillingStreet = null;
+                acc.BillingCity = null;
+                acc.BillingState = null;
+                acc.BillingPostalCode = null;
+                acc.BillingCountry = null;
+                acc.BillingLatitude = null;
+                acc.BillingLongitude = null;
+                if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+                    acc.BillingCountry = null;
+                    acc.BillingState = null;   
+                }
+                dmlWrapper.objectsToUpdate.add(acc);
+            }
         }
+        
         //Don't run ADDR_Addresses_TDTM for these updated addresses
         ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
     }
