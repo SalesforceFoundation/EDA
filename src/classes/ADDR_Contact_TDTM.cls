@@ -52,6 +52,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> listNew, List<SObject> listOld, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        
+        //To query additional fields in parent Account
+        listNew = [select Account.RecordTypeId, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Current_Address__c, 
+                   MailingLatitude, MailingLongitude, is_Address_Override__c, Primary_Address_Type__c from Contact where ID in :listNew];
             
         DmlWrapper dmlWrapper = new DmlWrapper();  
         List<Contact> listcontactCreateAddr = new List<Contact>();      
@@ -211,7 +215,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         List<Address__c> listAddr = new List<Address__c>();
         for (Contact contact : listContact) {
             Address__c addr = new Address__c();
-            addr.Parent_Contact__c = contact.Id;
+            if(contact.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()) {
+                UTIL_Debug.debug('****Creating address as child of Account');
+                addr.Parent_Account__c = contact.AccountId;
+            } else {
+                UTIL_Debug.debug('****Creating address as child of Contact');
+                addr.Parent_Contact__c = contact.Id;    
+            }
             addr.Default_Address__c = true;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;
@@ -222,28 +232,43 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         //since coming from an Contact address, there is no Address Type, so exclude it from the match testing.
         List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(ListAddr, dmlWrapper, false);
         
-        //Match each Contact with each new address
-        List<ID> contactIDsToUpdate = new List<ID>();
-        Map<ID, Address__c> parentcontactIdToAddrMap = new Map<ID, Address__c>();
+        //Match each Contact or Account with each new address
+        List<ID> parentContactIDs = new List<ID>();
+        List<ID> parentAccountIDs = new List<ID>();
+        Map<ID, Address__c> parentContactIdToAddrMap = new Map<ID, Address__c>();
+        Map<ID, Address__c> parentAccountIdToAddrMap = new Map<ID, Address__c>();
         for(Address__c addr : newAddrs) {
             if(addr.Parent_Contact__c != null) {
-               contactIDsToUpdate.add(addr.Parent_Contact__c);
-               parentcontactIdToAddrMap.put(addr.Parent_Contact__c, addr);  
+               UTIL_Debug.debug('****Putting address with parent Contact in map');
+               parentContactIDs.add(addr.Parent_Contact__c);
+               parentContactIdToAddrMap.put(addr.Parent_Contact__c, addr);  
+            } else if(addr.Parent_Account__c != null) {
+               UTIL_Debug.debug('****Putting address with parent Account in map');
+               parentAccountIDs.add(addr.Parent_Account__c);
+               parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr); 
             }
         }
         
         //We need to re-query before we are in the "after" part of the trigger. We cannot change it to before because
         //we need the Contact ID to have a value when populating the addr.Parent_Contact__c field above.
-        List<Contact> parentContacts = [select is_Address_Override__c, Current_Address__c from Contact where ID in :contactIDsToUpdate];
-        List<Contact> ContactsToUpdate = new List<Contact>();
+        List<Contact> parentContacts = [select is_Address_Override__c, Current_Address__c from Contact where ID in :parentContactIDs];
+        List<Account> parentAccounts = [select Current_Address__c from Account where ID in :parentAccountIDs];
+        List<SObject> parentsToUpdate = new List<SObject>();
         for(Contact contact : parentContacts) {
-            Address__c childAddr = parentcontactIdToAddrMap.get(contact.Id);
+            Address__c childAddr = parentContactIdToAddrMap.get(contact.Id);
             if(childAddr != null && !contact.is_Address_Override__c) {
                 contact.Current_Address__c = childAddr.Id;
-                ContactsToUpdate.add(contact);
+                parentsToUpdate.add(contact);
             }
         }
-        update ContactsToUpdate;
+        for(Account acc : parentAccounts) {
+            Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
+            if(childAddr != null) {
+                acc.Current_Address__c = childAddr.Id;
+                parentsToUpdate.add(acc);
+            }
+        }
+        update parentsToUpdate;
     }
     
     /*******************************************************************************************************
