@@ -34,14 +34,4 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
     </fields>
-    <fields>
-        <fullName>is_Address_Override__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>If checked, the Account&apos;s Current address overrides any new or seasonal address.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>If checked, the Account&apos;s Current address overrides any new or seasonal address.</inlineHelpText>
-        <label>Do Not Automatically Update</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
 </CustomObject>
