@@ -65,6 +65,8 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return Boolean. true if any of the fields fields have changed on the Address
     */ 
     public static Boolean isAddressChanged(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
+        UTIL_Debug.debug('****isAddressChanged addrNew: ' + JSON.serializePretty(addrNew));
+        UTIL_Debug.debug('****isAddressChanged addrOld: ' + JSON.serializePretty(addrOld));
         if (addrNew == null || addrOld == null) 
            return false;        
         return (
@@ -111,7 +113,7 @@ public with sharing class ADDR_Addresses_UTIL {
                 !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingStateCode')), string.valueOf(con2.get('MailingStateCode'))) || 
                 !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingCountryCode')), string.valueOf(con2.get('MailingCountryCode')));
         }    
-        UTIL_Debug.debug('****Address changed: ' + isChanged);
+        UTIL_Debug.debug('****Contact address changed: ' + isChanged);
         return isChanged;   
     }
     
@@ -475,10 +477,10 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param includeAddressType whether to include comparing the AddressType field
     * @return void
     */ 
-    public static List<Address__c> createNonDuplicateAddresses(list<Address__c> listAddr, TDTM_Runnable.DmlWrapper dmlWrapper, 
-    Boolean includeAddressType) {  
+    public static List<Address__c> createNonDuplicateAddresses(list<Address__c> listAddr, Boolean includeAddressType) {  
         
         List<Address__c> addrsToInsert = new List<Address__c>();
+        List<Address__c> addrsToUpdate = new List<Address__c>();
         map<Address__c, Address__c> mapAddrDupAddr= findDuplicateAddresses(listAddr);
         for (Address__c addrNew : listAddr) {
             Address__c addrDup = mapAddrDupAddr.get(addrNew);
@@ -489,10 +491,10 @@ public with sharing class ADDR_Addresses_UTIL {
                     if (addrNew.Default_Address__c) {
                         addrDup.Default_Address__c = true;
                     }
-                    dmlWrapper.objectsToUpdate.add(addrDup);
+                    addrsToUpdate.add(addrDup);
                 } else if (addrNew.Default_Address__c && !addrDup.Default_Address__c) {
                     addrDup.Default_Address__c = true;
-                    dmlWrapper.objectsToUpdate.add(addrDup);
+                    addrsToUpdate.add(addrDup);
                }
             } else { 
                 addrsToInsert.add(addrNew);
@@ -502,6 +504,10 @@ public with sharing class ADDR_Addresses_UTIL {
         if(addrsToInsert.size() > 0) {
             UTIL_Debug.debug('****addrsToInsert: ' + JSON.serializePretty(addrsToInsert));
             insert addrsToInsert;
+        }
+        if(addrsToUpdate.size() > 0) {
+            UTIL_Debug.debug('****addrsToUpdate: ' + JSON.serializePretty(addrsToUpdate));
+            update addrsToUpdate;
         }
         return addrsToInsert;
     }
@@ -607,14 +613,16 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return void  
     ********************************************************************************************************/
     public static void updateAddrIsOverride(Map<Id, boolean> mapAddrIdIsOverride, TDTM_Runnable.DmlWrapper dmlWrapper) {
-
+        UTIL_Debug.debug('****mapAddrIdIsOverride: ' + JSON.serializePretty(mapAddrIdIsOverride));
         for (ID id : mapAddrIdIsOverride.keySet()) {
             Address__c addr = new Address__c();
             addr.Id = id;
             if (mapAddrIdIsOverride.get(id) == true) {
+                UTIL_Debug.debug('****Updating latest start date and latest end date');
                 addr.Latest_Start_Date__c = system.today();
                 addr.Latest_End_Date__c = null;
             } else {
+                UTIL_Debug.debug('****Updating only latest end date');
                 addr.Latest_End_Date__c = system.today();
             }
             dmlWrapper.objectsToUpdate.add(addr);

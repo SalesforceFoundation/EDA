@@ -265,6 +265,7 @@ public with sharing class ADDR_Contact_TEST {
         map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
         MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c from Contact]);
         
+        UTIL_Debug.debug('****Contacts with address info: ' + JSON.serializePretty(mapAccIdAcc.values()));
         for (Contact contact : mapAccIdAcc.values()) {
             system.assert(contact.MailingStreet.contains('Street'));
             system.assert(contact.MailingCity.contains('City')); 
@@ -524,10 +525,11 @@ public with sharing class ADDR_Contact_TEST {
         }
  
          // verify the previous addresses got Default cleared.
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
+        List<Address__c> addrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
         // each set of edits created a new address object 
-        system.assertEquals(16, ListAddr.size());
-        for (Address__c addr : ListAddr) {
+        system.assertEquals(16, addrs.size());
+        UTIL_Debug.debug('****All addresses created: ' + JSON.serializePretty(addrs));
+        for (Address__c addr : addrs) {
             boolean fNewDefault = (addr.MailingStreet__c.contains('final Street Edit'));
             system.assertEquals(fNewDefault, addr.Default_Address__c);
         }                

@@ -221,7 +221,14 @@ public class UTIL_UnitTestData_TEST {
             for (Integer j = 0; j < contactCount; j++) {
                 consAccsAddrs.contacts[ (i * contactCount) + j].AccountId = consAccsAddrs.accs[i].Id;
             }
-        }        
+        }
+        /* With accCount = 2, contactCount = 2
+            i = 0, j = 0 => contact0 parent is account0
+            i = 0, j = 1 => contact1 parent is account0
+            i = 1, j = 0 => contact2 parent is account1
+            i = 1, j = 1 => contact3 parent is account1
+        */
+              
         ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
         insert consAccsAddrs.contacts;        
 

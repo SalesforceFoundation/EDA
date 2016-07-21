@@ -59,9 +59,9 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             
         // prevent recursion
         if (!hasRunAddrTrigger) {
-	        // first go through all new/modified Addresses, and collect the list of parents to consider.
-	        // map of parents, and their default Address 
-	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>(); 
+	        // first go through all new/modified Addresses, and collect the list of parents to consider. 
+	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>(); // map of parents, and their default Address
+	        map<Id, Address__c> mapAddrIdAddr = new map<Id, Address__c>(); // map of changed Addresses who need to only update any contact overrides.
 	
 	        // AFTER DELETE
 	        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
@@ -83,7 +83,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            // BEFORE INSERT
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
 		               // when an address is marked Default, we update its latest date fields
-		               if (addr.Default_Address__c) { 
+		               if (addr.Default_Address__c) {
+		                   UTIL_Debug.debug('****Address created as default: ' + JSON.serializePretty(addr));
 		                   addr.Latest_Start_Date__c = System.today();
 		                   addr.Latest_End_Date__c = null;
 		               }
@@ -94,9 +95,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		                if (addr.Default_Address__c != addrOld.Default_Address__c) {
 		                   // when an address changes Default, we update its latest date fields
 		                    if (addr.Default_Address__c) {
+		                       UTIL_Debug.debug('****Address updated to default');
 		                       addr.Latest_Start_Date__c = System.today();
 		                       addr.Latest_End_Date__c = null;
 		                    } else {
+		                       UTIL_Debug.debug('****Address updated to not default');
 		                       addr.Latest_End_Date__c = System.today();                        
 		                    }
 		                }
@@ -105,17 +108,25 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            // AFTER INSERT
 		            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
 		                // a new address that is marked default or seasonal needs to propogate to the parent
-		                if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr))
+		                if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
+		                    UTIL_Debug.debug('****Address that needs to propagate to parent Account: ' + JSON.serializePretty(addr));
 		                    putAddrInMap(addr, mapParentIdAddr);
+		                }
 		            }
 		            
 		            // AFTER UPDATE
 		            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+		                Boolean changed = ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true);
+		                UTIL_Debug.debug('****Address record changed: ' + changed);
+		                
 		                // an address that is marked default needs to propogate to the parent
 		                if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
-		                || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) { // any seasonal address also need to be considered
+		                // any seasonal address also need to be considered
+		                || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) { 
+		                    UTIL_Debug.debug('****Address changed to default: ' + JSON.serializePretty(addr));
 		                    putAddrInMap(addr, mapParentIdAddr);
-		                } else if (ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true) && addr.Default_Address__c) {
+		                } else if (changed && addr.Default_Address__c) {
+		                    UTIL_Debug.debug('****Address info updated');
 		                    putAddrInMap(addr, mapParentIdAddr);    
 		                } 
 		            }
@@ -154,9 +165,13 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     
     private void putAddrInMap(Address__c addr, Map<Id, Address__c> mapParentIdAddr) {
         if(addr.Parent_Account__c != null) {
+            UTIL_Debug.debug('****This address if the child of an Account: ' + JSON.serializePretty(addr));
             mapParentIdAddr.put(addr.Parent_Account__c, addr);
         } else if(addr.Parent_Contact__c != null) {
+            UTIL_Debug.debug('****This address if child of a Contact: ' + JSON.serializePretty(addr));
             mapParentIdAddr.put(addr.Parent_Contact__c, addr);
+        } else {
+            UTIL_Debug.debug('****This address does not have a parent: ' + JSON.serializePretty(addr));
         }
     }
     
@@ -164,6 +179,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // we must process dmlWrapper ourselves, so we can extract out the appropriate errors
         // that might occur updating contacts and parents, and associating those errors with 
         // the correct addresses.
+        UTIL_Debug.debug('***Addresses DmlWrapper to process: ' + JSON.serializePretty(dmlWrapper));
         ERR_Handler.Errors errors = TDTM_TriggerHandler.processDMLWithRollback(dmlWrapper, false);
         if (errors.errorsExist) {
             for (Error__c error : errors.errorRecords) {
@@ -231,8 +247,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 
             // if there is a provided Default address, use it over all other defaults.
             Address__c addr = mapParentIdAddr.get(parentId);
-            if (addr != null && addr.Default_Address__c) 
+            if (addr != null && addr.Default_Address__c) {
+                UTIL_Debug.debug('****Using existing default');
                 parentInfo.addrDefault = addr;
+            }
 
             // go through the Acc addresses storing the default and any seasonal          
             storeDefaultSeasonal(parentId, parentInfo, mapParentIdListAddrs);
@@ -248,6 +266,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         list<Contact> listCon = [select Id, is_Address_Override__c, Current_Address__c, AccountId from Contact where 
         AccountId != null and Account.RecordTypeId = :UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c 
         and AccountId in :setHHId];
+        UTIL_Debug.debug('***Household contacts that need updating: ' + JSON.serializePretty(listCon));
         for (Contact con : listCon) {
             list<Contact> listConHH = mapAccIdListCon.get(con.AccountId);
             if (listConHH == null) {
@@ -271,6 +290,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             Address__c addr = ParentInfo.addrSeasonal;
             if (addr == null) 
                 addr = addrDefault;
+            //UTIL_Debug.debug('****Address to propagate: ' + JSON.serializePretty(addr));
 
             // update parents' address fields
             listParentUpdate.addAll(updateParentsAddresses(parentId, addr, triggerAction, dmlWrapper));
@@ -284,15 +304,15 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         }  
                     
         if (listParentUpdate.size() > 0) {
-            UTIL_Debug.debug('**** listParentUpdate: ' + listParentUpdate);
+            UTIL_Debug.debug('**** listParentUpdate: ' + JSON.serializePretty(listParentUpdate));
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listParentUpdate);
         }
         if (listAddrUpdate.size() > 0) {
-            UTIL_Debug.debug('**** listAddrUpdate: ' + listAddrUpdate);
+            UTIL_Debug.debug('**** listAddrUpdate: ' + JSON.serializePretty(listAddrUpdate));
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAddrUpdate);
         }
         if (listConUpdate.size() > 0) {
-            UTIL_Debug.debug('**** listConUpdate: ' + listConUpdate);
+            UTIL_Debug.debug('**** listConUpdate: ' + JSON.serializePretty(listConUpdate));
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)listConUpdate);
         }
         
@@ -323,8 +343,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         if (parentInfo.addrDefault == null) {
             Address__c addrEmpty = new Address__c();
             if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
+                UTIL_Debug.debug('***Creating address as child of Account');
                 addrEmpty.Parent_Account__c = parentId;
             } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
+                UTIL_Debug.debug('***Creating address as child of Contact');
                 addrEmpty.Parent_Contact__c = parentId;
             }
             ParentInfo.addrDefault = addrEmpty;
@@ -333,10 +355,13 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     
     private static List<SObject> updateParentsAddresses(ID parentId, Address__c addr, 
     TDTM_Runnable.Action triggerAction, DmlWrapper dmlWrapper) {
+        UTIL_Debug.debug('****Parent ID: ' + parentId);
+        UTIL_Debug.debug('****Address to propagate to parent: ' + JSON.serializePretty(addr));
+        
         List<SObject> listParentUpdate = new List<SObject>();
         
         if(UTIL_Describe.isObjectIdThisType(parentId, 'Account')) {
-            UTIL_Debug.debug('****Updating address info in Account');
+            UTIL_Debug.debug('****Updating address info in Account: ' + JSON.serializePretty(addr));
             Account acc = new Account(Id = parentId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null, dmlWrapper);
             // If the address was deleted, it cannot be the override any more
@@ -344,14 +369,17 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 acc.is_Address_Override__c = false;
             listParentUpdate.add(acc);
         } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
-            UTIL_Debug.debug('****Updating address info in Contact');
+            UTIL_Debug.debug('****Updating address info in Contact: ' + JSON.serializePretty(addr));
             Contact contact = new Contact(Id = parentId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null, dmlWrapper);
             // If the address was deleted, it cannot be the override any more
             if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
                 contact.is_Address_Override__c = false;
             listParentUpdate.add(contact);
+        } else {
+            UTIL_Debug.debug('****Unknown type');
         }
+        
         return listParentUpdate;
     }
 

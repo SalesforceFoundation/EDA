@@ -35,9 +35,6 @@
 * @description Trigger Handler on Account for Address management. Creates Address__c record from Account.
 */
 public class ADDR_Account_TDTM extends TDTM_Runnable {
-
-    /* @description static flag to prevent recursive call */
-    public static boolean hasRunAddrTrigger = false;
     
     /*******************************************************************************************************
     * @description Trigger Handler on Account that handles Address management.
@@ -89,13 +86,11 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 
         // create any new Address objects
         if (ListAccCreateAddr.size() > 0)
-            createAddrFromAcc(ListAccCreateAddr, dmlWrapper);
+            createAddrFromAcc(ListAccCreateAddr);
         
         // handle accs with address info removed
         if(ListAccsAddrInfoCleared.size() > 0)
             addrInfoDeleted(ListAccsAddrInfoCleared, dmlWrapper);
-        
-        hasRunAddrTrigger = true;
                             
         return dmlWrapper;    
     }
@@ -106,7 +101,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Addresses that need creating
     * @return void
     ********************************************************************************************************/
-    private void createAddrFromAcc(List<Account> ListAcc, DmlWrapper dmlWrapper) {
+    private void createAddrFromAcc(List<Account> ListAcc) {
         List<Address__c> ListAddr = new List<Address__c>();
         for (Account acc : ListAcc) {
             Address__c addr = new Address__c();
@@ -119,7 +114,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             UTIL_Debug.debug('****New address record: ' + JSON.serializePretty(addr));
         }
         //since coming from an account address, there is no Address Type, so exclude it from the match testing.
-        List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(ListAddr, dmlWrapper, false);
+        List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(ListAddr, false);
         
         //Match each Account with each new address
         List<ID> accIDsToUpdate = new List<ID>();

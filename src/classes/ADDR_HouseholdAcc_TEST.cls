@@ -55,6 +55,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     * @return  boolean 
     **********************************************************************************************************/
     private static boolean isMatchAddressAccCon(Account acc, Contact con) {
+        UTIL_Debug.debug('****Account to Compare: ' + JSON.serializePretty(acc));
+        UTIL_Debug.debug('****Contact to Compare: ' + JSON.serializePretty(con));
         return (acc.BillingStreet == con.MailingStreet && acc.BillingCity == con.MailingCity &&          
             acc.BillingState == con.MailingState && acc.BillingPostalCode == con.MailingPostalCode &&          
             acc.BillingCountry == con.MailingCountry && acc.BillingLatitude == con.MailingLatitude &&
@@ -70,6 +72,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newDefaultAddrHH() {
+        configSettings();
         
         Test.startTest();
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
@@ -100,7 +103,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     public static void insertContactWithAddressHH() {
         configSettings();
           
-        List<Contact> contacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(2);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(1);
+        
         for (Contact con : contacts) {
             con.MailingStreet = 'new street';
             con.MailingCity = 'new city';
@@ -1647,7 +1651,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, 
+                                                                                        UTIL_Describe.getHhAccRecTypeID());
 
         // insert new contacts to the HH without any addresses
         list<Contact> listCon = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(2);
@@ -1661,8 +1666,10 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
-        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, 
+                                                                            BillingCountry, BillingLatitude, BillingLongitude from Account]);
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, 
+                                                                            MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1701,6 +1708,11 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // verify that the HH and Contacts share the same address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        List<Address__c> addrs = [select Default_Address__c, MailingStreet__c, MailingCity__c, MailingState__c, MailingCountry__c from Address__c];
+        
+        UTIL_Debug.debug('****Accs queried: ' + JSON.serializePretty(mapAccIdAcc.values()));
+        UTIL_Debug.debug('****Contacts queried: ' + JSON.serializePretty(listCon));
+        UTIL_Debug.debug('****Addresses queried: ' + JSON.serializePretty(addrs));
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);

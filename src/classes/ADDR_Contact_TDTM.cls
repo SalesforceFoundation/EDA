@@ -35,9 +35,6 @@
 * @description Trigger Handler on Contact for Address management. 
 */
 public class ADDR_Contact_TDTM extends TDTM_Runnable {
-
-    /* @description static flag to prevent recursive call */
-    public static Boolean hasRunAddrTrigger = false;
     
     /*******************************************************************************************************
     * @description Trigger Handler on Contact that handles Address Management.
@@ -57,14 +54,35 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         listNew = [select Account.RecordTypeId, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Current_Address__c, 
                    MailingLatitude, MailingLongitude, is_Address_Override__c, Primary_Address_Type__c from Contact where ID in :listNew];
             
-        DmlWrapper dmlWrapper = new DmlWrapper();  
-        List<Contact> listcontactCreateAddr = new List<Contact>();      
+        DmlWrapper dmlWrapper = new DmlWrapper();
+        List<Contact> listConAddrSet = new list<Contact>(); 
+        List<Contact> listContactCreateAddr = new List<Contact>();
+        Map<Id, boolean> mapAddrIdIsOverride = new map<Id, boolean>();  
         List<Contact> listContactsAddrInfoCleared = new List<Contact>();
-       
+        List<Contact> listConAddrReset = new list<Contact>();
+        
+        // Rules:
+        // inserting new contact - make their address a new default address, unless they say it is an override
+        // updating an existing contact - make their address a new default address, unless they say it is an override
+        
         Integer i = -1;        
         for (SObject so : listNew) {
             Contact contact = (Contact)so;
             i++;
+            
+            // BEFORE INSERT
+            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                if (contact.Current_Address__c != null) {
+                    // remember which contacts will need their address set
+                    listConAddrSet.add(contact);
+                    if (contact.is_Address_Override__c)
+                        // track which address's need their dates updated
+                        mapAddrIdIsOverride.put(contact.Current_Address__c, true);
+                } else if (ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
+                    // if the contact has no address specified, pick up the hh default.
+                    listConAddrReset.add(contact);
+                }
+            }
             
             // BEFORE UPDATE
             if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
@@ -100,18 +118,34 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                         }
                     }
                 }
-            }                
+            }
         }
+        
+        // set the mailing address for contacts who specify an address lookup or override
+        if (listConAddrSet.size() > 0) {
+            setConAddrFromLookup(listConAddrSet);
+            // to avoid pushing these address changes to the HH.
+            ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
+        }
+        
+        // reset the mailing address for contacts who no longer have an address override
+        if (listConAddrReset.size() > 0) {
+            resetConAddr(listConAddrReset, dmlWrapper);
+            // to avoid pushing these address changes to the HH.
+            ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
+        }
+        
+        // update the Latest date fields on any address overrides
+        if (mapAddrIdIsOverride.size() > 0) 
+            ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, dmlWrapper);
 
         // create any new Address objects
         if (listcontactCreateAddr.size() > 0)
-            createAddrFromContact(listContactCreateAddr, dmlWrapper);
+            createAddrFromContact(listContactCreateAddr);
         
         // handle Contacts with address info removed
         if(listContactsAddrInfoCleared.size() > 0)
             addrInfoDeleted(listContactsAddrInfoCleared, dmlWrapper);
-        
-        hasRunAddrTrigger = true;
                             
         return dmlWrapper;
     }
@@ -200,7 +234,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            
 	        // create any new Default Address objects
 	        if (listConAddrCreate.size() > 0)
-	            createAddrFromContact(listConAddrCreate, dmlWrapper);                              
+	            createAddrFromContact(listConAddrCreate);                              
         }
         return dmlWrapper;
     }
@@ -211,7 +245,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Addresses that need creating
     * @return void
     ********************************************************************************************************/
-    private void createAddrFromContact(List<Contact> listContact, DmlWrapper dmlWrapper) {
+    private void createAddrFromContact(List<Contact> listContact) {
         List<Address__c> listAddr = new List<Address__c>();
         for (Contact contact : listContact) {
             Address__c addr = new Address__c();
@@ -222,15 +256,17 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 UTIL_Debug.debug('****Creating address as child of Contact');
                 addr.Parent_Contact__c = contact.Id;    
             }
-            addr.Default_Address__c = true;
+            addr.Default_Address__c = !contact.is_Address_Override__c;
             addr.Latest_Start_Date__c = system.today();
             addr.Latest_End_Date__c = null;
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(contact, 'Mailing', addr, null);            
             ListAddr.add(addr);
-            UTIL_Debug.debug('****New address record: ' + JSON.serializePretty(addr));
         }
+        UTIL_Debug.debug('****Address records to create: ' + JSON.serializePretty(ListAddr));
+        
         //since coming from an Contact address, there is no Address Type, so exclude it from the match testing.
-        List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(ListAddr, dmlWrapper, false);
+        List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(ListAddr, false);
+        UTIL_Debug.debug('****Address records created: ' + JSON.serializePretty(newAddrs));
         
         //Match each Contact or Account with each new address
         List<ID> parentContactIDs = new List<ID>();
@@ -251,23 +287,36 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         //We need to re-query before we are in the "after" part of the trigger. We cannot change it to before because
         //we need the Contact ID to have a value when populating the addr.Parent_Contact__c field above.
+        List<Account> parentAccounts = [select Current_Address__c, (select ID from Account.Contacts) from Account where ID in :parentAccountIDs];
         List<Contact> parentContacts = [select is_Address_Override__c, Current_Address__c from Contact where ID in :parentContactIDs];
-        List<Account> parentAccounts = [select Current_Address__c from Account where ID in :parentAccountIDs];
+        
         List<SObject> parentsToUpdate = new List<SObject>();
+        
+        for(Account acc : parentAccounts) {
+            Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
+            if(childAddr != null) {
+                UTIL_Debug.debug('****Linking current address with Account');
+                acc.Current_Address__c = childAddr.Id;
+                parentsToUpdate.add(acc);
+                if(acc.Contacts != null) {
+	                UTIL_Debug.debug('****Linking current address with children of the Account');
+	                for(Contact contact : acc.Contacts) {
+	                    contact.Current_Address__c = childAddr.Id;
+                        parentsToUpdate.add(contact);
+	                }
+                }
+            }
+        }
+        
         for(Contact contact : parentContacts) {
             Address__c childAddr = parentContactIdToAddrMap.get(contact.Id);
             if(childAddr != null && !contact.is_Address_Override__c) {
+                UTIL_Debug.debug('****Linking current address with Contact');
                 contact.Current_Address__c = childAddr.Id;
                 parentsToUpdate.add(contact);
             }
         }
-        for(Account acc : parentAccounts) {
-            Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
-            if(childAddr != null) {
-                acc.Current_Address__c = childAddr.Id;
-                parentsToUpdate.add(acc);
-            }
-        }
+        
         update parentsToUpdate;
     }
     
@@ -290,7 +339,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             Address__c addr = mapAddrIdAddr.get(con.Current_Address__c);
             if (addr != null) {
                 con.Primary_Address_Type__c = addr.Address_Type__c;
-                UTIL_Debug.debug('****Refreshing address info in Contact from default address');
+                UTIL_Debug.debug('****Refreshing address info in Contact from default address: ' + JSON.serializePretty(addr));
                 ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, con, 'Mailing', 'Primary_Address_Type__c', null);
             }
         }
@@ -318,7 +367,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             contact.is_Address_Override__c = false;
             dmlWrapper.objectsToUpdate.add(contact);
             
-            // if contact belongs to household and its address it's not an override (it's the default), clear address info from parent account
+            // if contact belongs to household and its address is not an override (it's the default), clear address info from parent account
 	        if(contact.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() && !contact.is_Address_Override__c) {
 	            accToUpdateIDs.add(contact.AccountID);
 	        }
