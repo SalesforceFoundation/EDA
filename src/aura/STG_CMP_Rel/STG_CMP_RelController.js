@@ -50,5 +50,9 @@
 	resetSettings : function(component, event, helper) {
 		helper.loadReciprocalSettings(component);
 		helper.loadRelAutoCreateSettings(component);
+	},
+
+	changeReciprocalMethodStg : function(component, event, helper) {
+		helper.changeReciprocalMethodStg(component);
 	}
 })

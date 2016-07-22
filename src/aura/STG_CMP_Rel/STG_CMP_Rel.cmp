@@ -6,7 +6,8 @@
     <aura:attribute name="Id" type="String" />
     <aura:attribute name="noRecSettings" type="String" />
     <aura:attribute name="noAutoCreateSettings" type="String" />
-    
+    <aura:attribute name="reciprocalMethodOptions" type="String[]" default="List Setting,Value Inversion"/>
+
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveRelSettings}"/>
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
@@ -28,23 +29,21 @@
 			<div class="slds-grid slds-wrap">
 			    <div class="slds-col slds-size--1-of-2">Reciprocal Method:</div>
 			    <div class="slds-col slds-size--1-of-2">
-			         <aura:if isTrue="{!v.isView}">
-			             <ui:outputText value="{!v.hierarchySettings.Reciprocal_Method__c}" class="reciprocal-method" />
-			         <aura:set attribute="else">
-			             <ui:inputText value="{!v.hierarchySettings.Reciprocal_Method__c}" class="reciprocal-method"
-			                             label="{!'Reciprocal Method: ' + v.hierarchySettings.Reciprocal_Method__c}" labelClass="slds-hide"/>
-			         </aura:set>
-                     </aura:if>
-                </div>
-                <div class="slds-col slds-size--1-of-1">
-	                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                    <ui:outputText value="{!$Label.hed.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
-					<aura:set attribute="else">
-					    <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
-				    </aura:set>
-	                </aura:if>
-                </div>
-
+			        <ui:outputText value="{!v.hierarchySettings.Reciprocal_Method__c}" class="{!(v.isView ? '':'slds-hide ') + 'reciprocal-method'}" />
+              <ui:inputSelect aura:id="reciprocalMethodSelect" change="{!c.changeReciprocalMethodStg}" class="{!(v.isView ? 'slds-hide ':'') + 'reciprocal-method'}">
+                  <aura:iteration items="{!v.reciprocalMethodOptions}" var="method">
+                      <ui:inputSelectOption text="{!method}" label="{!method}" value="{!v.hierarchySettings.Reciprocal_Method__c == method}"/>
+                  </aura:iteration>
+              </ui:inputSelect>
+          </div>
+          <div class="slds-col slds-size--1-of-1">
+	            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+	                <ui:outputText value="{!$Label.hed.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
+					    <aura:set attribute="else">
+					        <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
+				      </aura:set>
+	            </aura:if>
+          </div>
 			    <div class="slds-col slds-grid slds-m-top--medium">
 				    <div class="slds-col slds-size--1-of-2">Allow Auto-Created Duplicate Relations:</div>
 				    <div class="slds-col slds-size--1-of-2">
