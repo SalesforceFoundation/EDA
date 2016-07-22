@@ -161,5 +161,10 @@
 	deleteAutoCreateRow : function(component, id, position) {
 		this.deleteRow(component, "c.deleteAutoCreateRecord", "v.autoCreateSettings", id, position, "v.noAutoCreateSettings",
 				"noAutoCreateSettings", component.get("v.namespacePrefix"));
+	},
+
+	changeReciprocalMethodStg : function(component) {
+		var value = component.find("reciprocalMethodSelect").get("v.value");
+		component.set("v.hierarchySettings.Reciprocal_Method__c", value);
 	}
 })
