@@ -840,8 +840,36 @@ public class REL_Relationships_TEST {
            System.assertEquals(false, cAuto);
            System.assertEquals(false, cmAuto);
         }
-    }  
-    
+    }
+
+    /*********************************************************************************************************
+    * @description Test method for REL_Utils class when auto create settings exist
+    */
+    @isTest
+    public static void testRelationshipUTILSAutoCreate(){
+      if (strTestOnly != '*' && strTestOnly != 'testRelationshipUTILSAutoCreate') return;
+
+      //to test the Relationship_Utils class
+      System.runAs(new User(id = UserInfo.getUserId())){
+        delete [select id from Hierarchy_Settings__c];
+
+        insert new Relationship_Auto_Create__c(Name = 'contacttest'+ system.now(),
+                                                Object__c = 'Contact', Field__c = 'coworker__c',
+                                                Relationship_Type__c = 'coworker',
+                                                Campaign_Types__c = 'fun event');
+        insert new Relationship_Auto_Create__c(Name = 'membertest'+ system.now(),
+                                                Object__c = 'CampaignMember', Field__c = 'member__c',
+                                                Relationship_Type__c = 'member',
+                                                Campaign_Types__c = 'fun event');
+
+        Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
+        Boolean cAuto = REL_Utils.hasContactAutoCreate;
+        Boolean cmAuto = REL_Utils.hasCMAutoCreate;
+        System.assertEquals(true, cAuto);
+        System.assertEquals(true, cmAuto);
+      }
+    }
+
     /*********************************************************************************************************
     * @description Test method for inserting two relationships in a single transaction.
     */
