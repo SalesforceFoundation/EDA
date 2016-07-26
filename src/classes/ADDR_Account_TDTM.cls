@@ -36,6 +36,10 @@
 */
 public class ADDR_Account_TDTM extends TDTM_Runnable {
     
+    /* @description static flag to prevent recursive call */
+    public static boolean alreadyRunBefore = false;
+    public static boolean alreadyRunAfter = false;
+    
     /*******************************************************************************************************
     * @description Trigger Handler on Account that handles Address management.
     * @param listNew the list of Accounts from trigger new. 
@@ -47,50 +51,60 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> listNew, List<SObject> listOld, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
             
-        DmlWrapper dmlWrapper = new DmlWrapper();  
-        List<Account> ListAccCreateAddr = new List<Account>();      
-        List<Account> ListAccsAddrInfoCleared = new List<Account>();
-       
-        Integer i = -1;        
-        for (SObject so : listNew) {
-            Account acc = (Account)so;
-            i++;
+        DmlWrapper dmlWrapper = new DmlWrapper();
+        
+        // prevent recursion
+        if (!alreadyRunAfter) {
+
+            //Turn off other address triggers
+            ADDR_Contact_TDTM.alreadyRunBefore = true;
+            ADDR_Contact_TDTM.alreadyRunAfter = true;
+            ADDR_Addresses_TDTM.alreadyRunBefore = true;
+            ADDR_Addresses_TDTM.alreadyRunAfter = true;
             
-            // AFTER INSERT
-            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                // for new accounts that are using address management, create the address object.
-                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
-                        ListAccCreateAddr.add(acc);
-                }
-            }
-    
-            // AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
-                // if address change is coming from the address trigger we don't want to create a new address   
-                if (!ADDR_Addresses_TDTM.hasRunAddrTrigger) {
+	        List<Account> accsToCreateAddrFrom = new List<Account>();      
+	        List<Account> accsAddrInfoCleared = new List<Account>();
+	       
+	        Integer i = -1;        
+	        for (SObject so : listNew) {
+	            Account acc = (Account)so;
+	            i++;
+	            
+	            // AFTER INSERT
+	            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+	                // for new accounts that are using address management, create the address object.
+	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+	                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
+	                        accsToCreateAddrFrom.add(acc);
+	                }
+	            }
+	    
+	            // AFTER UPDATE
+	            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
 	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
 	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
 	                    Account accOld = (Account)listOld[i];
 	                    // if the address info has been removed
 	                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
-	                        ListAccsAddrInfoCleared.add(acc);
+	                        accsAddrInfoCleared.add(acc);
 	                    // if the address changed, remember the account we want to add a new address for    
 	                    else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) 
-	                        ListAccCreateAddr.add(acc);
+	                        accsToCreateAddrFrom.add(acc);
 	                }
-                }
-            }                
-        }
+	            }                
+	        }
 
-        // create any new Address objects
-        if (ListAccCreateAddr.size() > 0)
-            createAddrFromAcc(ListAccCreateAddr);
-        
-        // handle accs with address info removed
-        if(ListAccsAddrInfoCleared.size() > 0)
-            addrInfoDeleted(ListAccsAddrInfoCleared, dmlWrapper);
+	        // create any new Address objects
+	        if (accsToCreateAddrFrom.size() > 0)
+	            createAddrFromAcc(accsToCreateAddrFrom);
+	        
+	        // handle accs with address info removed
+	        if(accsAddrInfoCleared.size() > 0)
+	            addrInfoDeleted(accsAddrInfoCleared, dmlWrapper);
+	            
+	        alreadyRunAfter = true;
+        }
                             
         return dmlWrapper;    
     }
@@ -114,19 +128,20 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             UTIL_Debug.debug('****New address record: ' + JSON.serializePretty(addr));
         }
         //since coming from an account address, there is no Address Type, so exclude it from the match testing.
-        List<Address__c> newAddrs = ADDR_Addresses_UTIL.createNonDuplicateAddresses(ListAddr, false);
+        ADDR_Addresses_UTIL.NonDupeAddrs nonDupeAddrs = ADDR_Addresses_UTIL.getNonDuplicateAddresses(ListAddr, false);
+        nonDupeAddrs.performDml();
         
         //Match each Account with each new address
         List<ID> accIDsToUpdate = new List<ID>();
         Map<ID, Address__c> parentAccIdToAddrMap = new Map<ID, Address__c>();
-        for(Address__c addr : newAddrs) {
+        for(Address__c addr : nonDupeAddrs.newAddrs) {
             if(addr.Parent_Account__c != null) {
 	           accIDsToUpdate.add(addr.Parent_Account__c);
 	           parentAccIdToAddrMap.put(addr.Parent_Account__c, addr);  
             }
         }
         
-        //We need to re-query before we are in the "after" part of the trigger. We cannot change it to before because
+        //We need to re-query because we are in the "after" part of the trigger. We cannot change it to before because
         //we need the Account ID to have a value when populating the addr.Parent_Account__c field above.
         List<Account> parentAccs = [select is_Address_Override__c, Current_Address__c from Account where ID in :accIDsToUpdate];
         List<Account> accsToUpdate = new List<Account>();
@@ -140,11 +155,11 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         update accsToUpdate;
     }
     
-    private void addrInfoDeleted(List<Account> ListAccsAddrInfoCleared, DmlWrapper dmlWrapper) {
+    private void addrInfoDeleted(List<Account> accsAddrInfoCleared, DmlWrapper dmlWrapper) {
         List<ID> oldCurrentAddrIDs = new List<ID>();
         
         //We need to re-query before we are in the "after" part of the trigger
-        List<Account> accs = [select is_Address_Override__c, Current_Address__c from Account where ID in :ListAccsAddrInfoCleared];
+        List<Account> accs = [select is_Address_Override__c, Current_Address__c from Account where ID in :accsAddrInfoCleared];
         
         // clear Current_Address__c field from accs
         for(Account acc : accs) {
@@ -161,7 +176,5 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             addr.Default_Address__c = false;
             dmlWrapper.objectsToUpdate.add(addr);
         }
-        //Don't run ADDR_Addresses_TDTM for these updated addresses
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
     }
 }

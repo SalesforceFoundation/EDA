@@ -144,11 +144,11 @@ public class UTIL_UnitTestData_TEST {
             accsAddrs.addrs[i].Default_Address__c = true;
         }
         //insert addresses
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert accsAddrs.addrs;
         
         //clear our triggers recursion prevention since we are starting a new test
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         
         return accsAddrs;
     }
@@ -172,7 +172,7 @@ public class UTIL_UnitTestData_TEST {
         //instantiate contacts
         contactsAddrs.contacts = createMultipleTestContacts(contactCount);
         //insert contacts
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert contactsAddrs.contacts;
         
         //instantiate addresses
@@ -184,11 +184,11 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.addrs[i].Default_Address__c = true;
         }
         //insert addresses
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert contactsAddrs.addrs;
         
         //clear our triggers recursion prevention since we are starting a new test
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         
         return contactsAddrs;
     }
@@ -229,7 +229,7 @@ public class UTIL_UnitTestData_TEST {
             i = 1, j = 1 => contact3 parent is account1
         */
               
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert consAccsAddrs.contacts;        
 
         consAccsAddrs.addrs = initTestAddr(accCount);
@@ -238,11 +238,11 @@ public class UTIL_UnitTestData_TEST {
             consAccsAddrs.addrs[i].Default_Address__c = true;
         }
         // clear our triggers recursion prevention since we starting a new test
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert consAccsAddrs.addrs;
         
         // clear our triggers recursion prevention since we are starting a new test
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         
         return consAccsAddrs;
     }

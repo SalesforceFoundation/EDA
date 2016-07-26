@@ -63,10 +63,10 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.stopTest();
         
         // verify Account address is new!
@@ -120,10 +120,10 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.stopTest();
         
         // verify Account address is new!
@@ -174,10 +174,10 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.stopTest();
         
         // verify Account address is new!
@@ -226,9 +226,9 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert addrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         
         // now make them current
         for (Integer i = 0; i < 2; i++) {
@@ -236,7 +236,7 @@ private with sharing class ADDR_Seasonal_TEST {
         }
         Test.startTest();
         update addrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;                
+        ADDR_Contact_TEST.resetAllAddrTriggers();                
         Test.stopTest();
         
         // verify Account address is new!
@@ -294,7 +294,7 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         try {
             insert addrs;
         } catch (Exception ex) {
@@ -504,7 +504,7 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert addrs;
         
         // create additional seasonal addresses that overlap existing seasonal addresses
@@ -519,7 +519,7 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         try {
             insert addrs;
         } catch (Exception ex) {
@@ -552,7 +552,7 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         try {
             insert addrs;
         } catch (Exception ex) {
@@ -592,7 +592,7 @@ private with sharing class ADDR_Seasonal_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         try {
             insert addrs;
         } catch (Exception ex) {
@@ -658,9 +658,10 @@ private with sharing class ADDR_Seasonal_TEST {
         // Hack!  by setting our trigger handler as run,
         // we can insert the new seasonal addresses but not have them processed.
         // this way we can test the scheduled job!
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = true;
+        ADDR_Addresses_TDTM.alreadyRunBefore = true;
+        ADDR_Addresses_TDTM.alreadyRunAfter = true;
         insert allNewAddrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
 
         //Schedule the job just for test coverage purposes. But we still have to manually run the
         //batch, as batch jobs run from a scheduled job don't actually run after stopTest, as described
@@ -748,7 +749,7 @@ private with sharing class ADDR_Seasonal_TEST {
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
         
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         insert seasonalAddress;
         Test.stopTest();
@@ -778,7 +779,7 @@ private with sharing class ADDR_Seasonal_TEST {
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().year());
         
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert seasonalAddress; 
         
         //No NPE should have been thrown. Github #197.
@@ -790,7 +791,7 @@ private with sharing class ADDR_Seasonal_TEST {
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
         
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         insert seasonalAddress2;
         Test.stopTest();
@@ -823,14 +824,14 @@ private with sharing class ADDR_Seasonal_TEST {
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
         
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert seasonalAddress;
         
         //Modify seasonal Address info
         seasonalAddress.MailingStreet__c = 'New Seasonal Address';
         seasonalAddress.MailingCity__c = 'Portland';
         seasonalAddress.MailingState__c = 'OR';
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         update seasonalAddress;
         Test.stopTest();
@@ -865,12 +866,12 @@ private with sharing class ADDR_Seasonal_TEST {
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
         
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert seasonalAddress;
         
         //Modify seasonal Address dates so it doesn't include today
         seasonalAddress.Seasonal_Start_Year__c = system.today().addYears(1).year();
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         update seasonalAddress;
         Test.stopTest();
@@ -905,11 +906,11 @@ private with sharing class ADDR_Seasonal_TEST {
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
         
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert seasonalAddress;
         
         //Delete seasonal Address
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         delete seasonalAddress;
         Test.stopTest();

@@ -99,7 +99,7 @@ public with sharing class ADDR_OtherAcc_TEST {
             acc.BillingCity = 'Seattle';
         }
         Test.startTest();
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         update listAcc;
         Test.stopTest();
 
@@ -146,9 +146,9 @@ public with sharing class ADDR_OtherAcc_TEST {
             addrs[i].Parent_Account__c = listAcc[i].Id;
             addrs[i].Default_Address__c = true;
         }
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert addrs;
-        ADDR_Addresses_TDTM.hasRunAddrTrigger = false;
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         
         // verify results
         listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, 

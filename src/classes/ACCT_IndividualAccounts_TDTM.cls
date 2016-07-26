@@ -334,10 +334,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
                 
-                if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
+                /*if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
                     ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
                     ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
-                }
+                }*/
                 
                 //Give it the default record type selected in the settings. 
                 if(defaultRecTypeID != null)
@@ -363,7 +363,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 i += 1;
             }
         }
-        ADDR_Contact_TDTM.hasRunAddrTrigger = true;
         update contactsToUpdate;
         dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }

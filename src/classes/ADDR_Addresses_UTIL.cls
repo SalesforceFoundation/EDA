@@ -269,7 +269,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param strFieldPrefixDst the address fields to copy to, ie., Mailing, Other, Shipping, Billing
     * @return void
     */ 
-    public static void copyAddressStdSObj(SObject sobjSrc, string strFieldPrefixSrc, SObject sobjDst, string strFieldPrefixDst) {
+    public static void copyAddressStdSObj(SObject sobjSrc, String strFieldPrefixSrc, SObject sobjDst, String strFieldPrefixDst) {
         sobjDst.put(strFieldPrefixDst + 'Street', sobjSrc.get(strFieldPrefixSrc + 'Street'));
         sobjDst.put(strFieldPrefixDst + 'City', sobjSrc.get(strFieldPrefixSrc + 'City'));
         sobjDst.put(strFieldPrefixDst + 'PostalCode', sobjSrc.get(strFieldPrefixSrc + 'PostalCode'));
@@ -477,10 +477,9 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param includeAddressType whether to include comparing the AddressType field
     * @return void
     */ 
-    public static List<Address__c> createNonDuplicateAddresses(list<Address__c> listAddr, Boolean includeAddressType) {  
+    public static NonDupeAddrs getNonDuplicateAddresses(list<Address__c> listAddr, Boolean includeAddressType) {  
         
-        List<Address__c> addrsToInsert = new List<Address__c>();
-        List<Address__c> addrsToUpdate = new List<Address__c>();
+        NonDupeAddrs nonDupeAddrs = new NonDupeAddrs();
         map<Address__c, Address__c> mapAddrDupAddr= findDuplicateAddresses(listAddr);
         for (Address__c addrNew : listAddr) {
             Address__c addrDup = mapAddrDupAddr.get(addrNew);
@@ -491,25 +490,38 @@ public with sharing class ADDR_Addresses_UTIL {
                     if (addrNew.Default_Address__c) {
                         addrDup.Default_Address__c = true;
                     }
-                    addrsToUpdate.add(addrDup);
+                    nonDupeAddrs.updatedAddrs.add(addrDup);
                 } else if (addrNew.Default_Address__c && !addrDup.Default_Address__c) {
                     addrDup.Default_Address__c = true;
-                    addrsToUpdate.add(addrDup);
+                    nonDupeAddrs.updatedAddrs.add(addrDup);
                }
             } else { 
-                addrsToInsert.add(addrNew);
+                 nonDupeAddrs.newAddrs.add(addrNew);
             } 
         }
-        //Inserting them directly because we need the IDs to populate the Current_Address__c field in Account
-        if(addrsToInsert.size() > 0) {
-            UTIL_Debug.debug('****addrsToInsert: ' + JSON.serializePretty(addrsToInsert));
-            insert addrsToInsert;
+
+        UTIL_Debug.debug('****addrsToInsert: ' + JSON.serializePretty(nonDupeAddrs.newAddrs));
+        UTIL_Debug.debug('****addrsToUpdate: ' + JSON.serializePretty(nonDupeAddrs.updatedAddrs));
+        return nonDupeAddrs;
+    }
+    
+    public class NonDupeAddrs {
+        public List<Address__c> newAddrs;
+        public List<Address__c> updatedAddrs;
+        
+        public NonDupeAddrs() {
+            newAddrs = new List<Address__c>();
+            updatedAddrs = new List<Address__c>();
         }
-        if(addrsToUpdate.size() > 0) {
-            UTIL_Debug.debug('****addrsToUpdate: ' + JSON.serializePretty(addrsToUpdate));
-            update addrsToUpdate;
+        
+        public void performDml() {
+            if(newAddrs.size() > 0) {
+                insert newAddrs;
+            }
+            if(updatedAddrs.size() > 0) {
+                update updatedAddrs;
+            }
         }
-        return addrsToInsert;
     }
     
     /*******************************************************************************************************
@@ -626,6 +638,32 @@ public with sharing class ADDR_Addresses_UTIL {
                 addr.Latest_End_Date__c = system.today();
             }
             dmlWrapper.objectsToUpdate.add(addr);
-        }        
+        }
     }
+    
+    public static void clearAddrInfo(Account acc) {
+        acc.BillingStreet = null;
+        acc.BillingCity = null;
+        acc.BillingState = null;
+        acc.BillingPostalCode = null;
+        acc.BillingCountry = null;
+        acc.BillingLatitude = null;
+        acc.BillingLongitude = null;
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+            acc.BillingCountry = null;
+            acc.BillingState = null;   
+        }
+    }
+    
+    public static void clearAddrInfo(Contact contact) {
+        contact.MailingStreet = null;
+        contact.MailingCity = null;
+        contact.MailingState = null;
+        contact.MailingPostalCode = null;
+        contact.MailingCountry = null;
+        contact.MailingLatitude = null;
+        contact.MailingLongitude = null;
+    }
+    
+    
 }
