@@ -250,7 +250,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 
         // create any new Address objects
         if (contactsCreateAddrFrom.size() > 0)
-            createAddrFromContact(contactsCreateAddrFrom);
+            createAddrFromContact(contactsCreateAddrFrom, dmlWrapper);
         
         // handle Contacts with address info removed
         if(contactsAddrInfoCleared.size() > 0)
@@ -370,7 +370,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Addresses that need creating
     * @return void
     ********************************************************************************************************/
-    private void createAddrFromContact(List<Contact> listContact) {
+    private void createAddrFromContact(List<Contact> listContact, DmlWrapper dmlWrapper) {
         
         List<Address__c> newAddrs = new List<Address__c>();
         for (Contact contact : listContact) {
@@ -413,22 +413,25 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         //We need to re-query because we are in the "after" part of the trigger. We cannot change it to the "before" because
         //we need the Contact ID field to have a value when populating the addr.Parent_Contact__c field above.
-        List<Account> parentAccounts = [select Current_Address__c, (select ID from Account.Contacts) from Account where ID in :parentAccountIDs];
-        List<Contact> parentContacts = [select is_Address_Override__c, Current_Address__c from Contact where ID in :parentContactIDs];
-        
-        List<SObject> parentsToUpdate = new List<SObject>();
-        
+        List<Account> parentAccounts = [select Current_Address__c, (select ID from Account.Contacts),
+                                        (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)
+                                        from Account where ID in :parentAccountIDs];
+        List<Contact> parentContacts = [select is_Address_Override__c, Current_Address__c,
+                                        (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Contact.Addresses__r)
+                                        from Contact where ID in :parentContactIDs];
+                
         for(Account acc : parentAccounts) {
             Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
+            uncheckOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
             if(childAddr != null) {
                 UTIL_Debug.debug('****Linking current address with Account');
                 acc.Current_Address__c = childAddr.Id;
-                parentsToUpdate.add(acc);
+                dmlWrapper.objectsToUpdate.add(acc);
                 if(acc.Contacts != null) {
 	                UTIL_Debug.debug('****Linking current address with children of the Account');
 	                for(Contact contact : acc.Contacts) {
 	                    contact.Current_Address__c = childAddr.Id;
-                        parentsToUpdate.add(contact);
+                        dmlWrapper.objectsToUpdate.add(contact);
 	                }
                 }
             }
@@ -436,14 +439,22 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         for(Contact contact : parentContacts) {
             Address__c childAddr = parentContactIdToAddrMap.get(contact.Id);
+            uncheckOtherAddrs(childAddr, contact.Addresses__r, dmlWrapper);
             if(childAddr != null && !contact.is_Address_Override__c) {
                 UTIL_Debug.debug('****Linking current address with Contact');
                 contact.Current_Address__c = childAddr.Id;
-                parentsToUpdate.add(contact);
+                dmlWrapper.objectsToUpdate.add(contact);
             }
         }
-        
-        update parentsToUpdate;
+    }
+    
+    private void uncheckOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, DmlWrapper dmlWrapper) {
+        for(Address__c addr : allAddrs) {
+            if(addr.ID != newAddr.ID) {
+                addr.Default_Address__c = false;
+                dmlWrapper.objectsToUpdate.add(addr);
+            }
+        }
     }
     
     /*******************************************************************************************************
