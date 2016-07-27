@@ -70,8 +70,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
             
         //Turn off other address triggers
-        ADDR_Account_TDTM.alreadyRunBefore = true;
-        ADDR_Account_TDTM.alreadyRunAfter = true;
+        ADDR_Account_TDTM.alreadyRunAfterInsert = true;
+        ADDR_Account_TDTM.alreadyRunAfterUpdate = true;
         ADDR_Addresses_TDTM.alreadyRunBefore = true;
         ADDR_Addresses_TDTM.alreadyRunAfter = true;
         
@@ -100,7 +100,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         //List of Contacts that have been created without address info
         List<Contact> contactsAddrInfoReset = new List<Contact>(); //TODO: why is this different from the contactsAddrGetFromHh list?!?            
                 
-                // BEFORE INSERT
+        // BEFORE INSERT
         if (!alreadyRunBeforeInsert && triggerAction == TDTM_Runnable.Action.BeforeInsert) {
             for (Contact contact : newContactsList) {
                 Boolean childOfHousehold = contact.Account.RecordTypeID == UTIL_Describe.getHhAccRecTypeID();
@@ -120,9 +120,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                        // if the contact has no address specified, pick up the HH default.
                        contactsAddrInfoReset.add(contact);
                     }
-                } //If parent is not a Household, Address record creation done in the afterInsert. 
-                alreadyRunBeforeInsert = true;
+                }
             }
+            alreadyRunBeforeInsert = true;
+            //If parent is not a Household, Address record creation done in the afterInsert.
         }
                 
         // BEFORE UPDATE
@@ -176,12 +177,14 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 
         // AFTER INSERT
         if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+            UTIL_Debug.debug('ADDR_Contact_TDTM after insert.');
             for (Contact contact : newContactsList) {
                 Boolean childOfHousehold = contact.Account.RecordTypeID == UTIL_Describe.getHhAccRecTypeID();
 	            // for new Contacts that are using address management and are not children of Household, create the address object. We do it in the after, 
 	            // so that the Parent_Contact__c field in Address can point back to the Contact.
 	            if (UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true && !childOfHousehold && 
 	            !ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
+	                UTIL_Debug.debug('****Address record should be created as child of Contact');
 	                contactsCreateAddrFrom.add(contact);
 	            }
             }

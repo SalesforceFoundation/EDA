@@ -37,8 +37,8 @@
 public class ADDR_Account_TDTM extends TDTM_Runnable {
     
     /* @description static flag to prevent recursive call */
-    public static boolean alreadyRunBefore = false;
-    public static boolean alreadyRunAfter = false;
+    public static boolean alreadyRunAfterInsert = false;
+    public static boolean alreadyRunAfterUpdate = false;
     
     /*******************************************************************************************************
     * @description Trigger Handler on Account that handles Address management.
@@ -52,61 +52,61 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
             
         DmlWrapper dmlWrapper = new DmlWrapper();
+
+        //Turn off other address triggers
+        ADDR_Contact_TDTM.alreadyRunBeforeInsert = true;
+        ADDR_Contact_TDTM.alreadyRunBeforeUpdate = true;
+        ADDR_Contact_TDTM.alreadyRunAfterInsert = true;
+        ADDR_Contact_TDTM.alreadyRunAfterUpdate = true;
+        ADDR_Addresses_TDTM.alreadyRunBefore = true;
+        ADDR_Addresses_TDTM.alreadyRunAfter = true;
         
-        // prevent recursion
-        if (!alreadyRunAfter) {
-
-            //Turn off other address triggers
-            ADDR_Contact_TDTM.alreadyRunBeforeInsert = true;
-            ADDR_Contact_TDTM.alreadyRunBeforeUpdate = true;
-            ADDR_Contact_TDTM.alreadyRunAfterInsert = true;
-            ADDR_Contact_TDTM.alreadyRunAfterUpdate = true;
-            ADDR_Addresses_TDTM.alreadyRunBefore = true;
-            ADDR_Addresses_TDTM.alreadyRunAfter = true;
-            
-	        List<Account> accsToCreateAddrFrom = new List<Account>();      
-	        List<Account> accsAddrInfoCleared = new List<Account>();
-	       
-	        Integer i = -1;        
-	        for (SObject so : listNew) {
-	            Account acc = (Account)so;
-	            i++;
-	            
-	            // AFTER INSERT
-	            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-	                // for new accounts that are using address management, create the address object.
-	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-	                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
-	                        accsToCreateAddrFrom.add(acc);
-	                }
-	            }
+        List<Account> accsToCreateAddrFrom = new List<Account>();      
+        List<Account> accsAddrInfoCleared = new List<Account>();
+       
+        Integer i = 0;        
+        for (SObject so : listNew) {
+            Account acc = (Account)so;
+                
+            // AFTER INSERT
+            if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                // for new accounts that are using address management, create the address object.
+                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+                        UTIL_Debug.debug('***Account should have Address record created after insert');
+                        accsToCreateAddrFrom.add(acc);
+                    }
+                }
+                alreadyRunAfterInsert = true;
+            }
 	    
-	            // AFTER UPDATE
-	            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
-	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-	                    Account accOld = (Account)listOld[i];
-	                    // if the address info has been removed
-	                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc))
-	                        accsAddrInfoCleared.add(acc);
-	                    // if the address changed, remember the account we want to add a new address for    
-	                    else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) 
-	                        accsToCreateAddrFrom.add(acc);
-	                }
-	            }                
-	        }
-
-	        // create any new Address objects
-	        if (accsToCreateAddrFrom.size() > 0)
-	            createAddrFromAcc(accsToCreateAddrFrom);
-	        
-	        // handle accs with address info removed
-	        if(accsAddrInfoCleared.size() > 0)
-	            addrInfoDeleted(accsAddrInfoCleared, dmlWrapper);
-	            
-	        alreadyRunAfter = true;
+            // AFTER UPDATE
+            if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+                    Account accOld = (Account)listOld[i];
+                    // if the address info has been removed
+                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+                        accsAddrInfoCleared.add(acc);
+                    // if the address changed, remember the account we want to add a new address for    
+                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
+                        UTIL_Debug.debug('***Account should have Address record created after update');
+                        accsToCreateAddrFrom.add(acc);
+                    }
+                }
+                alreadyRunAfterUpdate = true;
+            }
+            i++;              
         }
+
+        // create any new Address objects
+        if (accsToCreateAddrFrom.size() > 0)
+            createAddrFromAcc(accsToCreateAddrFrom);
+        
+        // handle accs with address info removed
+        if(accsAddrInfoCleared.size() > 0)
+            addrInfoDeleted(accsAddrInfoCleared, dmlWrapper);
                             
         return dmlWrapper;    
     }

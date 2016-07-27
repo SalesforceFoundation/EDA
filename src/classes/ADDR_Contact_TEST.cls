@@ -50,8 +50,8 @@ public with sharing class ADDR_Contact_TEST {
         ADDR_Contact_TDTM.alreadyRunAfterInsert = false;
         ADDR_Contact_TDTM.alreadyRunAfterUpdate = false;
         
-        ADDR_Account_TDTM.alreadyRunBefore = false;
-        ADDR_Account_TDTM.alreadyRunAfter = false;
+        ADDR_Account_TDTM.alreadyRunAfterInsert = false;
+        ADDR_Account_TDTM.alreadyRunAfterUpdate = false;
         
         ADDR_Addresses_TDTM.alreadyRunBefore = false;
         ADDR_Addresses_TDTM.alreadyRunAfter = false;
@@ -118,6 +118,7 @@ public with sharing class ADDR_Contact_TEST {
         acc.BillingPostalCode = '54545';
         acc.BillingCountry = 'USA';
 
+        ADDR_Contact_TEST.resetAllAddrTriggers();
         Test.startTest();
         update acc;
         Test.stopTest();

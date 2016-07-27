@@ -49,7 +49,7 @@ public without sharing class TDTM_DefaultConfig {
 
 		// Account Management on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
         //Supports changing or deleting Account in existing Affiliation
@@ -79,7 +79,7 @@ public without sharing class TDTM_DefaultConfig {
         
         // Relationships on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
         // Relationships on Relationship__c
@@ -94,7 +94,7 @@ public without sharing class TDTM_DefaultConfig {
                     
         // Addresses on Contact object - creates Address__c record from Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'ADDR_Contact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
+              Class__c = 'ADDR_Contact_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
         
         // Addresses on Account object - creates Address__c record from Account

@@ -61,8 +61,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // - any other Addresses that should no longer be Default
          
         //Turn off other address triggers
-        ADDR_Account_TDTM.alreadyRunBefore = true;
-        ADDR_Account_TDTM.alreadyRunAfter = true;
+        ADDR_Account_TDTM.alreadyRunAfterInsert = true;
+        ADDR_Account_TDTM.alreadyRunAfterUpdate = true;
         ADDR_Contact_TDTM.alreadyRunBeforeInsert = true;
         ADDR_Contact_TDTM.alreadyRunBeforeUpdate = true;
         ADDR_Contact_TDTM.alreadyRunAfterInsert = true;
