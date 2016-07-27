@@ -57,8 +57,10 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         if (!alreadyRunAfter) {
 
             //Turn off other address triggers
-            ADDR_Contact_TDTM.alreadyRunBefore = true;
-            ADDR_Contact_TDTM.alreadyRunAfter = true;
+            ADDR_Contact_TDTM.alreadyRunBeforeInsert = true;
+            ADDR_Contact_TDTM.alreadyRunBeforeUpdate = true;
+            ADDR_Contact_TDTM.alreadyRunAfterInsert = true;
+            ADDR_Contact_TDTM.alreadyRunAfterUpdate = true;
             ADDR_Addresses_TDTM.alreadyRunBefore = true;
             ADDR_Addresses_TDTM.alreadyRunAfter = true;
             

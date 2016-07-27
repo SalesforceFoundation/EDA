@@ -45,10 +45,14 @@ public with sharing class ADDR_Contact_TEST {
     }
     
     public static void resetAllAddrTriggers() {
-        ADDR_Contact_TDTM.alreadyRunBefore = false;
-        ADDR_Contact_TDTM.alreadyRunAfter = false;
+        ADDR_Contact_TDTM.alreadyRunBeforeInsert = false;
+        ADDR_Contact_TDTM.alreadyRunBeforeUpdate = false;
+        ADDR_Contact_TDTM.alreadyRunAfterInsert = false;
+        ADDR_Contact_TDTM.alreadyRunAfterUpdate = false;
+        
         ADDR_Account_TDTM.alreadyRunBefore = false;
         ADDR_Account_TDTM.alreadyRunAfter = false;
+        
         ADDR_Addresses_TDTM.alreadyRunBefore = false;
         ADDR_Addresses_TDTM.alreadyRunAfter = false;
     }
@@ -1110,6 +1114,7 @@ public with sharing class ADDR_Contact_TEST {
         
         // verify that no new address was created
         List<Address__c> addrs = [select Default_Address__c from Address__c];
+        UTIL_Debug.debug('****Contact addresses after clearing addr info: ' + JSON.serializePretty(addrs));
         system.assertEquals(4, addrs.size());
         
         // verify existing Default Address updated to be non-default
