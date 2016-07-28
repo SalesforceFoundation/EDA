@@ -198,7 +198,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         // AFTER UPDATE
         if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            UTIL_Debug.debug('****ADDR_Contact_TDTM after update. newContactsList: ' + JSON.serializePretty(newContactsList));
+            UTIL_Debug.debug('****ADDR_Contact_TDTM after update.');
             Integer i = 0;
             for (Contact contact : newContactsList) {
                 Boolean childOfHousehold = contact.Account.RecordTypeID == UTIL_Describe.getHhAccRecTypeID();
@@ -400,6 +400,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         //since coming from an Contact address, there is no Address Type, so exclude it from the match testing.
         ADDR_Addresses_UTIL.NonDupeAddrs nonDupeAddrs = ADDR_Addresses_UTIL.getNonDuplicateAddresses(newAddrs, false);
+        UTIL_Debug.debug('****Non-duplicate address records to create: ' + JSON.serializePretty(nonDupeAddrs));
         nonDupeAddrs.performDml();
         
         //Match each Contact or Account with each new address
@@ -409,11 +410,24 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         Map<ID, Address__c> parentAccountIdToAddrMap = new Map<ID, Address__c>();
         for(Address__c addr : nonDupeAddrs.newAddrs) {
             if(addr.Parent_Contact__c != null) {
-               UTIL_Debug.debug('****Putting address with parent Contact in map');
+               UTIL_Debug.debug('****Putting new address with parent Contact in map');
                parentContactIDs.add(addr.Parent_Contact__c);
                parentContactIdToAddrMap.put(addr.Parent_Contact__c, addr);  
             } else if(addr.Parent_Account__c != null) {
-               UTIL_Debug.debug('****Putting address with parent Account in map');
+               UTIL_Debug.debug('****Putting new address with parent Account in map');
+               parentAccountIDs.add(addr.Parent_Account__c);
+               parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr); 
+            }
+        }
+        
+        //Putting updated addresses in data structure, to uncheck other defaults
+        for(Address__c addr : nonDupeAddrs.updatedAddrs) {
+            if(addr.Parent_Contact__c != null) {
+               UTIL_Debug.debug('****Putting updated address with parent Contact in map');
+               parentContactIDs.add(addr.Parent_Contact__c);
+               parentContactIdToAddrMap.put(addr.Parent_Contact__c, addr);  
+            } else if(addr.Parent_Account__c != null) {
+               UTIL_Debug.debug('****Putting updated address with parent Account in map');
                parentAccountIDs.add(addr.Parent_Account__c);
                parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr); 
             }

@@ -169,9 +169,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         // AFTER DELETE
         if (!alreadyRunAfterDelete && triggerAction == TDTM_Runnable.Action.AfterDelete) {
             Integer i = 0;
-            for (SObject so : listNew) {
-                Address__c addr = (Address__c)so;
-                Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
+            for (SObject addrOld : listOld) {
 	            // first go through all new/modified Addresses, and collect the list of parents to consider. 
 	            ID parentAccId = ((Address__c)addrOld).Parent_Account__c;
 	            ID parentConId = ((Address__c)addrOld).Parent_Contact__c;

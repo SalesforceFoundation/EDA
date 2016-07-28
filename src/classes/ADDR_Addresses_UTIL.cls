@@ -499,9 +499,6 @@ public with sharing class ADDR_Addresses_UTIL {
                  nonDupeAddrs.newAddrs.add(addrNew);
             } 
         }
-
-        UTIL_Debug.debug('****addrsToInsert: ' + JSON.serializePretty(nonDupeAddrs.newAddrs));
-        UTIL_Debug.debug('****addrsToUpdate: ' + JSON.serializePretty(nonDupeAddrs.updatedAddrs));
         return nonDupeAddrs;
     }
     
@@ -579,7 +576,7 @@ public with sharing class ADDR_Addresses_UTIL {
             if (!hasMatch)
                 mapAddrDupAddr.put(addr, null);
         }
-        return mapAddrDupAddr;               
+        return mapAddrDupAddr;
     }
     
     /*******************************************************************************************************

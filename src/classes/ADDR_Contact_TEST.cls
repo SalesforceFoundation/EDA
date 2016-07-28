@@ -807,7 +807,6 @@ public with sharing class ADDR_Contact_TEST {
         }
         resetAllAddrTriggers();
         insert addrs;
-        resetAllAddrTriggers();        
  
         // create additional addresses thru the Contact.
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
@@ -833,10 +832,11 @@ public with sharing class ADDR_Contact_TEST {
         }
         
         // verify the new addresses still are Default and we don't have too many
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Latest_Start_Date__c, 
+        List<Address__c> allAddrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Latest_Start_Date__c, 
         Latest_End_Date__c from Address__c];
-        system.assertEquals(2 * 2, ListAddr.size());
-        for (Address__c addr : ListAddr) {
+        UTIL_Debug.debug('****newDupeAddrNonDefault addresses: ' + JSON.serializePretty(allAddrs));
+        system.assertEquals(2 * 2, allAddrs.size());
+        for (Address__c addr : allAddrs) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
             system.assertEquals(isNew, addr.Default_Address__c);
         }
