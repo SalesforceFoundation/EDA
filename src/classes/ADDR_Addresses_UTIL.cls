@@ -638,6 +638,15 @@ public with sharing class ADDR_Addresses_UTIL {
         }
     }
     
+    public static void uncheckDefaultOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, TDTM_Runnable.DmlWrapper dmlWrapper) {
+        for(Address__c addr : allAddrs) {
+            if(addr.ID != newAddr.ID) {
+                addr.Default_Address__c = false;
+                dmlWrapper.objectsToUpdate.add(addr);
+            }
+        }
+    }
+    
     public static void clearAddrInfo(Account acc) {
         acc.BillingStreet = null;
         acc.BillingCity = null;
@@ -661,6 +670,4 @@ public with sharing class ADDR_Addresses_UTIL {
         contact.MailingLatitude = null;
         contact.MailingLongitude = null;
     }
-    
-    
 }

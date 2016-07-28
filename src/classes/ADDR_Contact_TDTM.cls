@@ -445,7 +445,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
             if(childAddr != null) {
                 if(childAddr.Default_Address__c)
-                    uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
+                    ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
                 UTIL_Debug.debug('****Linking current address with Account');
                 acc.Current_Address__c = childAddr.Id;
                 dmlWrapper.objectsToUpdate.add(acc);
@@ -463,19 +463,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             Address__c childAddr = parentContactIdToAddrMap.get(contact.Id);
             if(childAddr != null && !contact.is_Address_Override__c) {
                 if(childAddr.Default_Address__c)
-                    uncheckDefaultOtherAddrs(childAddr, contact.Addresses__r, dmlWrapper);
+                    ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, contact.Addresses__r, dmlWrapper);
                 UTIL_Debug.debug('****Linking current address with Contact');
                 contact.Current_Address__c = childAddr.Id;
                 dmlWrapper.objectsToUpdate.add(contact);
-            }
-        }
-    }
-    
-    private void uncheckDefaultOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, DmlWrapper dmlWrapper) {
-        for(Address__c addr : allAddrs) {
-            if(addr.ID != newAddr.ID) {
-                addr.Default_Address__c = false;
-                dmlWrapper.objectsToUpdate.add(addr);
             }
         }
     }

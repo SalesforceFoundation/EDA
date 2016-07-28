@@ -73,10 +73,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('New Street'));
-            system.assert(acc.BillingCity.contains('New City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.contains('New Street'));
+            System.assert(acc.BillingCity.contains('New City'));
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
     }
     
@@ -102,8 +102,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals(null, acc.BillingStreet);
-            system.assertEquals(null, acc.BillingCity);
+            System.assertEquals(null, acc.BillingStreet);
+            System.assertEquals(null, acc.BillingCity);
         }
     }
 
@@ -150,10 +150,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('Street'));
-            system.assert(acc.BillingCity.contains('City')); 
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);                
+            System.assert(acc.BillingStreet.contains('Street'));
+            System.assert(acc.BillingCity.contains('City')); 
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);                
         }
     }
 
@@ -184,10 +184,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals(null, acc.BillingStreet); //address information has been cleared because address is no longer the default
-            system.assertEquals(null, acc.BillingCity); //address information has been cleared because address is no longer the default
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertEquals(null, acc.Current_Address__c); //account no longer has a current address, since address is no longer the defaults
+            System.assertEquals(null, acc.BillingStreet); //address information has been cleared because address is no longer the default
+            System.assertEquals(null, acc.BillingCity); //address information has been cleared because address is no longer the default
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertEquals(null, acc.Current_Address__c); //account no longer has a current address, since address is no longer the defaults
         }
     }
 
@@ -238,14 +238,14 @@ public with sharing class ADDR_AdminAcc_TEST {
         for (Account acc : mapAccIdAcc.values()) {
             // verify that the Account address is override
             if (acc.is_Address_Override__c) { 
-                system.assert(!acc.BillingStreet.contains('street override'));
-                system.assert(!acc.BillingCity.contains('city override'));
-                system.assertEquals(acc.Current_Address__c, addrNew.Id);            
+                System.assert(!acc.BillingStreet.contains('street override'));
+                System.assert(!acc.BillingCity.contains('city override'));
+                System.assertEquals(acc.Current_Address__c, addrNew.Id);            
             // verify that the Account address is new
             } else { 
-                system.assert(acc.BillingStreet.contains('New Street'));
-                system.assert(acc.BillingCity.contains('New City'));
-                system.assertNotEquals(null, acc.Current_Address__c);
+                System.assert(acc.BillingStreet.contains('New Street'));
+                System.assert(acc.BillingCity.contains('New City'));
+                System.assertNotEquals(null, acc.Current_Address__c);
             }
         }
     }
@@ -283,25 +283,25 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('New Default Street'));
-            system.assert(acc.BillingCity.contains('New Default City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.contains('New Default Street'));
+            System.assert(acc.BillingCity.contains('New Default City'));
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the previous addresses got Default cleared.
         // and verify latest start date and latest end date appropriately set.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
         Latest_End_Date__c from Address__c];
-        system.assertEquals(4, listAddr.size());
+        System.assertEquals(4, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fNewDefault = (addr.MailingStreet__c.contains('New Default Street'));
-            system.assertEquals(fNewDefault, addr.Default_Address__c);
+            System.assertEquals(fNewDefault, addr.Default_Address__c);
             if (fNewDefault) {
-               system.assertEquals(system.today(), addr.Latest_Start_Date__c);
-               system.assertEquals(null, addr.Latest_End_Date__c);
+               System.assertEquals(System.today(), addr.Latest_Start_Date__c);
+               System.assertEquals(null, addr.Latest_End_Date__c);
             } else {
-               system.assertEquals(system.today(), addr.Latest_End_Date__c);                
+               System.assertEquals(System.today(), addr.Latest_End_Date__c);                
             }
         }        
     }
@@ -347,17 +347,17 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         // verify the additional addresses got Default cleared.
         // and verify latest start date and latest end date appropriately set.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
         Latest_End_Date__c from Address__c];
-        system.assertEquals(4, listAddr.size());
+        System.assertEquals(4, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fNewDefault = (addr.MailingStreet__c.contains('Original Default Street'));
-            system.assertEquals(fNewDefault, addr.Default_Address__c);
+            System.assertEquals(fNewDefault, addr.Default_Address__c);
             if (fNewDefault) {
-               system.assertEquals(system.today(), addr.Latest_Start_Date__c);
-               system.assertEquals(null, addr.Latest_End_Date__c);
+               System.assertEquals(System.today(), addr.Latest_Start_Date__c);
+               System.assertEquals(null, addr.Latest_End_Date__c);
             } else {
-               system.assertEquals(system.today(), addr.Latest_End_Date__c);                
+               System.assertEquals(System.today(), addr.Latest_End_Date__c);                
             }
         }        
     }
@@ -404,19 +404,19 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('final Street Edit'));
-            system.assert(acc.BillingCity.contains('final City Edit'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.contains('final Street Edit'));
+            System.assert(acc.BillingCity.contains('final City Edit'));
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
  
          // verify the previous addresses got Default cleared.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
         // each set of edits created a new address object 
-        system.assertEquals(16, listAddr.size());
+        System.assertEquals(16, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean fNewDefault = (addr.MailingStreet__c.contains('final Street Edit'));
-            system.assertEquals(fNewDefault, addr.Default_Address__c);
+            System.assertEquals(fNewDefault, addr.Default_Address__c);
         }                
     }
 
@@ -449,20 +449,20 @@ public with sharing class ADDR_AdminAcc_TEST {
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
-        system.assertEquals('Direct Street Edit', mapAccIdAcc.values()[0].BillingStreet);
-        system.assertEquals('Direct City Edit', mapAccIdAcc.values()[0].BillingCity);
-        system.assertEquals(true, mapAccIdAcc.values()[0].is_Address_Override__c);
-        system.assertEquals('Direct Street Edit', mapAccIdAcc.values()[1].BillingStreet);
-        system.assertEquals('Direct City Edit', mapAccIdAcc.values()[1].BillingCity);
-        system.assertEquals(true, mapAccIdAcc.values()[1].is_Address_Override__c);
+        System.assertEquals('Direct Street Edit', mapAccIdAcc.values()[0].BillingStreet);
+        System.assertEquals('Direct City Edit', mapAccIdAcc.values()[0].BillingCity);
+        System.assertEquals(true, mapAccIdAcc.values()[0].is_Address_Override__c);
+        System.assertEquals('Direct Street Edit', mapAccIdAcc.values()[1].BillingStreet);
+        System.assertEquals('Direct City Edit', mapAccIdAcc.values()[1].BillingCity);
+        System.assertEquals(true, mapAccIdAcc.values()[1].is_Address_Override__c);
  
          // verify the previous addresses didn't get Default cleared.
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        system.assertEquals(4, listAddr.size());
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        System.assertEquals(4, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNewEdit = (addr.MailingStreet__c.contains('Direct Street Edit'));
             if(isNewEdit) {
-                system.assertNotEquals(false, addr.Default_Address__c);
+                System.assertNotEquals(false, addr.Default_Address__c);
             }
         }
     }
@@ -514,16 +514,16 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.equals('DIRECT STREET  EDIT'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.equals('DIRECT STREET  EDIT'));
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        system.assertEquals(2, listAddr.size());
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
-            system.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
+            System.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
         }
         
         // now test that changing the case from the account updates all addresses
@@ -539,16 +539,16 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.equals('direct street  edit'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.equals('direct street  edit'));
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
         listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        system.assertEquals(2, listAddr.size());
+        System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
-            system.assert(addr.MailingStreet__c.equals('direct street  edit'));
+            System.assert(addr.MailingStreet__c.equals('direct street  edit'));
         }                   
     }
 
@@ -593,17 +593,17 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('direct street  edit'));
-            system.assert(acc.BillingState.contains('Oregon')); 
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.contains('direct street  edit'));
+            System.assert(acc.BillingState.contains('Oregon')); 
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify that no new address was created
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        system.assertEquals(2, listAddr.size());
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
+        System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
-            system.assertEquals('direct street  edit', addr.MailingStreet__c);
+            System.assertEquals('direct street  edit', addr.MailingStreet__c);
         }        
     }
 
@@ -617,16 +617,16 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
         for (Integer i = 0; i < addrs.size(); i++) {
-            system.assertEquals(null, addrs[i].Parent_Account__c);
+            System.assertEquals(null, addrs[i].Parent_Account__c);
         }
         
         try {
             insert addrs;
         } catch (Exception ex) {
-            system.assert(ex.getMessage().contains(Label.addrValidParentObjects));
+            System.assert(ex.getMessage().contains(Label.addrValidParentObjects));
             return;
         }
-        system.assert(false); //we shouldn't get here!
+        System.assert(false); //we shouldn't get here!
     }
  
     /*********************************************************************************************************
@@ -656,8 +656,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         // verify that we don't have new Addresses
-        list<Address__c> listAddr = [select Id from Address__c];
-        system.assertEquals(2, listAddr.size());
+        List<Address__c> listAddr = [select Id from Address__c];
+        System.assertEquals(2, listAddr.size());
     }
 
     /*********************************************************************************************************
@@ -684,7 +684,6 @@ public with sharing class ADDR_AdminAcc_TEST {
         }
         ADDR_Contact_TEST.resetAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.resetAllAddrTriggers();        
  
         // create additional addresses thru the account.
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
@@ -703,19 +702,20 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assert(acc.BillingStreet.contains('New Street'));
-            system.assert(acc.BillingCity.contains('New City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assert(acc.BillingStreet.contains('New Street'));
+            System.assert(acc.BillingCity.contains('New City'));
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
         
         // verify the new addresses still are Default and we don't have too many
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
+        List<Address__c> allAddrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, 
         Latest_End_Date__c from Address__c];
-        system.assertEquals(2 * 2, listAddr.size());
-        for (Address__c addr : listAddr) {
+        UTIL_Debug.debug('***newDupeAddrNonDefault all addresses: ' + JSON.serializePretty(allAddrs));
+        System.assertEquals(2 * 2, allAddrs.size());
+        for (Address__c addr : allAddrs) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
-            system.assertEquals(isNew, addr.Default_Address__c);
+            System.assertEquals(isNew, addr.Default_Address__c);
         }
     }
 
@@ -738,21 +738,21 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();       
         
         // verify the Address objects split street.
-        list<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c];
+        List<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c];
         System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
-            system.assertEquals('new street', addr.MailingStreet__c);
-            system.assertEquals('second line', addr.MailingStreet2__c);
-            system.assertEquals('new street, second line', addr.Formula_MailingStreetAddress__c);
+            System.assertEquals('new street', addr.MailingStreet__c);
+            System.assertEquals('second line', addr.MailingStreet2__c);
+            System.assertEquals('new street, second line', addr.Formula_MailingStreetAddress__c);
         }
 
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals('new street\r\nsecond line', acc.BillingStreet);
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assertEquals('new street\r\nsecond line', acc.BillingStreet);
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
     }
 
@@ -790,8 +790,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals('New Default Street\r\nSecond Line', acc.BillingStreet);
-            system.assertEquals('New Default Street\r\nSecond Line', acc.BillingStreet);
+            System.assertEquals('New Default Street\r\nSecond Line', acc.BillingStreet);
+            System.assertEquals('New Default Street\r\nSecond Line', acc.BillingStreet);
         }
         
     }
@@ -827,19 +827,19 @@ public with sharing class ADDR_AdminAcc_TEST {
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
-            system.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
-            system.assertEquals(false, acc.is_Address_Override__c);
-            system.assertNotEquals(null, acc.Current_Address__c);
+            System.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
+            System.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
+            System.assertEquals(false, acc.is_Address_Override__c);
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
  
         // verify the Address objects split street.
-        list<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c, Default_Address__c from Address__c];
+        List<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c, Default_Address__c from Address__c];
         for (Address__c addr : listAddr) {
             if (addr.Default_Address__c) {
-                system.assertEquals('Direct Street Edit', addr.MailingStreet__c);
-                system.assertEquals('Second Line', addr.MailingStreet2__c);
-                system.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
+                System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
+                System.assertEquals('Second Line', addr.MailingStreet2__c);
+                System.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
             }
         }
     }
@@ -879,11 +879,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         // verify that no new address was created
         addrs = [select Default_Address__c from Address__c];
-        system.assertEquals(4, addrs.size());
+        System.assertEquals(4, addrs.size());
         
         // verify existing Default Address updated to be non-default
         for (Integer i = 0; i < addrs.size(); i++) {
-            system.assertEquals(false, addrs[i].Default_Address__c);
+            System.assertEquals(false, addrs[i].Default_Address__c);
         }              
     }
 }

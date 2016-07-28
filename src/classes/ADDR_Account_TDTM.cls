@@ -109,7 +109,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 
         // create any new Address objects
         if (accsToCreateAddrFrom.size() > 0)
-            createAddrFromAcc(accsToCreateAddrFrom);
+            createAddrFromAcc(accsToCreateAddrFrom, dmlWrapper);
         
         // handle accs with address info removed
         if(accsAddrInfoCleared.size() > 0)
@@ -124,7 +124,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Addresses that need creating
     * @return void
     ********************************************************************************************************/
-    private void createAddrFromAcc(List<Account> ListAcc) {
+    private void createAddrFromAcc(List<Account> ListAcc, DmlWrapper dmlWrapper) {
         List<Address__c> ListAddr = new List<Address__c>();
         for (Account acc : ListAcc) {
             Address__c addr = new Address__c();
@@ -138,25 +138,44 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         }
         //since coming from an account address, there is no Address Type, so exclude it from the match testing.
         ADDR_Addresses_UTIL.NonDupeAddrs nonDupeAddrs = ADDR_Addresses_UTIL.getNonDuplicateAddresses(ListAddr, false);
+        UTIL_Debug.debug('****createAddrFromAcc nonDupeAddrs: ' + JSON.serializePretty(nonDupeAddrs));
         nonDupeAddrs.performDml();
         
         //Match each Account with each new address
-        List<ID> accIDsToUpdate = new List<ID>();
-        Map<ID, Address__c> parentAccIdToAddrMap = new Map<ID, Address__c>();
+        List<ID> parentAccountIDs = new List<ID>();
+        Map<ID, Address__c> parentAccountIdToAddrMap = new Map<ID, Address__c>();
         for(Address__c addr : nonDupeAddrs.newAddrs) {
             if(addr.Parent_Account__c != null) {
-	           accIDsToUpdate.add(addr.Parent_Account__c);
-	           parentAccIdToAddrMap.put(addr.Parent_Account__c, addr);  
+                UTIL_Debug.debug('****Putting new address with parent Account in map');
+	            parentAccountIDs.add(addr.Parent_Account__c);
+	            parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr);  
             }
         }
         
+        //Putting updated addresses in data structure, to uncheck other defaults
+        for(Address__c addr : nonDupeAddrs.updatedAddrs) {
+            if(addr.Parent_Account__c != null) {
+                UTIL_Debug.debug('****Putting updated address with parent Account in map');
+                parentAccountIDs.add(addr.Parent_Account__c);
+                parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr); 
+            }
+        }
+        
+        UTIL_Debug.debug('****parentAccountIDs: ' + JSON.serializePretty(parentAccountIDs));
+        
         //We need to re-query because we are in the "after" part of the trigger. We cannot change it to before because
         //we need the Account ID to have a value when populating the addr.Parent_Account__c field above.
-        List<Account> parentAccs = [select is_Address_Override__c, Current_Address__c from Account where ID in :accIDsToUpdate];
+        List<Account> parentAccs = [select is_Address_Override__c, Current_Address__c,
+                                    (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)
+                                    from Account where ID in :parentAccountIDs];
+        UTIL_Debug.debug('****parentAccs with addrs: ' + JSON.serializePretty(parentAccs));
         List<Account> accsToUpdate = new List<Account>();
         for(Account acc : parentAccs) {
-            Address__c childAddr = parentAccIdToAddrMap.get(acc.Id);
+            Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
+            if(childAddr.Default_Address__c)
+                ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
             if(childAddr != null && !acc.is_Address_Override__c) {
+                UTIL_Debug.debug('****Linking current address with Account');
                 acc.Current_Address__c = childAddr.Id;
                 accsToUpdate.add(acc);
             }
