@@ -829,12 +829,8 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testRelationshipUTILS(){
-    	if (strTestOnly != '*' && strTestOnly != 'testRelationshipUTILS') return;
-    	
-        //to test the Relationship_Utils class      
+        //to test the Relationship_Utils class
         System.runAs(new User(id = UserInfo.getUserId())){
-           delete [select id from Hierarchy_Settings__c];
-           Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
            Boolean cAuto = REL_Utils.hasContactAutoCreate;
            Boolean cmAuto = REL_Utils.hasCMAutoCreate;
            System.assertEquals(false, cAuto);
@@ -847,12 +843,7 @@ public class REL_Relationships_TEST {
     */
     @isTest
     public static void testRelationshipUTILSAutoCreate(){
-      if (strTestOnly != '*' && strTestOnly != 'testRelationshipUTILSAutoCreate') return;
-
-      //to test the Relationship_Utils class
       System.runAs(new User(id = UserInfo.getUserId())){
-        delete [select id from Hierarchy_Settings__c];
-
         insert new Relationship_Auto_Create__c(Name = 'contacttest'+ system.now(),
                                                 Object__c = 'Contact', Field__c = 'coworker__c',
                                                 Relationship_Type__c = 'coworker',
@@ -862,7 +853,6 @@ public class REL_Relationships_TEST {
                                                 Relationship_Type__c = 'member',
                                                 Campaign_Types__c = 'fun event');
 
-        Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
         Boolean cAuto = REL_Utils.hasContactAutoCreate;
         Boolean cmAuto = REL_Utils.hasCMAutoCreate;
         System.assertEquals(true, cAuto);
