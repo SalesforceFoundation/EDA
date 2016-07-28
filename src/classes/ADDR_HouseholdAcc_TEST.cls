@@ -1380,8 +1380,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // Hack!  by setting our trigger handler as run,
         // we can insert the new seasonal addresses but not have them processed.
         // this way we can test the scheduled job!
-        ADDR_Addresses_TDTM.alreadyRunBefore = true;
-        ADDR_Addresses_TDTM.alreadyRunAfter = true;
+        ADDR_Addresses_TDTM.alreadyRunBeforeInsert = true;
+        ADDR_Addresses_TDTM.alreadyRunAfterInsert = true;
         insert addrs;
         ADDR_Contact_TEST.resetAllAddrTriggers();
 

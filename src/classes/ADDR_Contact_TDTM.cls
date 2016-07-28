@@ -44,6 +44,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     
     private static List<Contact> newContactsList;
     
+    public static void turnOff() {
+        alreadyRunBeforeInsert = true;
+        alreadyRunBeforeUpdate = true;
+        alreadyRunAfterInsert = true;
+        alreadyRunAfterUpdate = true;
+    }
+    
     /*******************************************************************************************************
     * @description Trigger Handler on Contact that handles Address Management.
     *
@@ -70,10 +77,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
             
         //Turn off other address triggers
-        ADDR_Account_TDTM.alreadyRunAfterInsert = true;
-        ADDR_Account_TDTM.alreadyRunAfterUpdate = true;
-        ADDR_Addresses_TDTM.alreadyRunBefore = true;
-        ADDR_Addresses_TDTM.alreadyRunAfter = true;
+        ADDR_Account_TDTM.turnOff();
+        ADDR_Addresses_TDTM.turnOff();
         
         //To query additional fields (RecordTypeId, to know if parent is Hosehold) in parent Account
         //if(newContactsList == null) {

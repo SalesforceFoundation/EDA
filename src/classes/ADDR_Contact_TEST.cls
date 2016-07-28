@@ -53,8 +53,11 @@ public with sharing class ADDR_Contact_TEST {
         ADDR_Account_TDTM.alreadyRunAfterInsert = false;
         ADDR_Account_TDTM.alreadyRunAfterUpdate = false;
         
-        ADDR_Addresses_TDTM.alreadyRunBefore = false;
-        ADDR_Addresses_TDTM.alreadyRunAfter = false;
+        ADDR_Addresses_TDTM.alreadyRunBeforeInsert = false;
+        ADDR_Addresses_TDTM.alreadyRunBeforeUpdate = false;
+        ADDR_Addresses_TDTM.alreadyRunAfterInsert = false;
+        ADDR_Addresses_TDTM.alreadyRunAfterUpdate = false;
+        ADDR_Addresses_TDTM.alreadyRunAfterDelete = false;
     }
     
     @isTest

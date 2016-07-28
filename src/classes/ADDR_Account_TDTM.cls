@@ -40,6 +40,11 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     public static boolean alreadyRunAfterInsert = false;
     public static boolean alreadyRunAfterUpdate = false;
     
+    public static void turnOff() {
+        alreadyRunAfterInsert = true;
+        alreadyRunAfterUpdate = true;
+    }
+    
     /*******************************************************************************************************
     * @description Trigger Handler on Account that handles Address management.
     * @param listNew the list of Accounts from trigger new. 
@@ -54,12 +59,8 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
         //Turn off other address triggers
-        ADDR_Contact_TDTM.alreadyRunBeforeInsert = true;
-        ADDR_Contact_TDTM.alreadyRunBeforeUpdate = true;
-        ADDR_Contact_TDTM.alreadyRunAfterInsert = true;
-        ADDR_Contact_TDTM.alreadyRunAfterUpdate = true;
-        ADDR_Addresses_TDTM.alreadyRunBefore = true;
-        ADDR_Addresses_TDTM.alreadyRunAfter = true;
+        ADDR_Contact_TDTM.turnOff();
+        ADDR_Addresses_TDTM.turnOff();
         
         List<Account> accsToCreateAddrFrom = new List<Account>();      
         List<Account> accsAddrInfoCleared = new List<Account>();
