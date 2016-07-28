@@ -64,13 +64,12 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         
         List<Account> accsToCreateAddrFrom = new List<Account>();      
         List<Account> accsAddrInfoCleared = new List<Account>();
-       
-        Integer i = 0;        
-        for (SObject so : listNew) {
-            Account acc = (Account)so;
                 
-            // AFTER INSERT
-            if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+        // AFTER INSERT
+        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+            Integer i = 0;        
+	        for (SObject so : listNew) {
+	            Account acc = (Account)so;
                 // for new accounts that are using address management, create the address object.
                 if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                 && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
@@ -79,26 +78,33 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
                         accsToCreateAddrFrom.add(acc);
                     }
                 }
-                alreadyRunAfterInsert = true;
-            }
+                i++;
+	        }
+            alreadyRunAfterInsert = true;
+        }
 	    
-            // AFTER UPDATE
-            if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+        // AFTER UPDATE
+        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+            Integer i = 0;        
+            for (SObject so : listNew) {
+                Account acc = (Account)so;
+                Account accOld = (Account)listOld[i];
                 if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                 && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-                    Account accOld = (Account)listOld[i];
+                    
                     // if the address info has been removed
                     if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+                        UTIL_Debug.debug('****Account address info cleared');
                         accsAddrInfoCleared.add(acc);
                     // if the address changed, remember the account we want to add a new address for    
                     } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
-                        UTIL_Debug.debug('***Account should have Address record created after update');
+                        UTIL_Debug.debug('****Account should have Address record created after update');
                         accsToCreateAddrFrom.add(acc);
                     }
                 }
-                alreadyRunAfterUpdate = true;
+            i++;
             }
-            i++;              
+            alreadyRunAfterUpdate = true;
         }
 
         // create any new Address objects
@@ -164,20 +170,25 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         //We need to re-query before we are in the "after" part of the trigger
         List<Account> accs = [select is_Address_Override__c, Current_Address__c from Account where ID in :accsAddrInfoCleared];
         
-        // clear Current_Address__c field from accs
+        //Gather the IDs of those addresses that were children of the accoun
         for(Account acc : accs) {
             if(acc.Current_Address__c != null) // get all current addrs
                 oldCurrentAddrIDs.add(acc.Current_Address__c);
+        }
+        
+        //Clear Default_Address__c field from these child addrs
+        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true  and ID in :oldCurrentAddrIDs];
+        for(Address__c addr : addrs) {
+            UTIL_Debug.debug('****Settings Default_Address__c to false.');
+            addr.Default_Address__c = false;
+            dmlWrapper.objectsToUpdate.add(addr);
+        }
+        
+        //Clear Current_Address__c field from accs
+        for(Account acc: accs) {
             acc.Current_Address__c = null;
             acc.is_Address_Override__c = false;
             dmlWrapper.objectsToUpdate.add(acc); 
-        }
-        
-        // clear Default_Address__c field from child addrs
-        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true  and ID in :oldCurrentAddrIDs];
-        for(Address__c addr : addrs) {
-            addr.Default_Address__c = false;
-            dmlWrapper.objectsToUpdate.add(addr);
         }
     }
 }

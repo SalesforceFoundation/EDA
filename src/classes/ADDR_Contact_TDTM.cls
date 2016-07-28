@@ -110,7 +110,6 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             for (Contact contact : newContactsList) {
                 Boolean childOfHousehold = contact.Account.RecordTypeID == UTIL_Describe.getHhAccRecTypeID();
                 
-                //Children of Household               
                 if (childOfHousehold) {
                     if (contact.is_Address_Override__c) {
                         // address needs latest start/end dates updated
@@ -212,20 +211,20 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            //If Contact Addresses are enabled, and the Contact is not the child of a HH 
 	            if (!childOfHousehold && UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true) {
 	               if(addrInfoChanged && !addrInfoCleared) {
-	                   UTIL_Debug.debug('****Addr info changed from non-household contact'); 
+	                   UTIL_Debug.debug('****Non-household Contact addr info changed.'); 
 	                   contactsCreateAddrFrom.add(contact);
 	               } else if(addrInfoCleared) {
-	                   UTIL_Debug.debug('****Addr info cleared from non-household contact');
+	                   UTIL_Debug.debug('****non-household Contact addr info cleared.');
 	                   contactsAddrInfoCleared.add(contact);
 	               }
 	            } else if (childOfHousehold) {
 	                // if the address info has been removed
 	                // if the address changed, remember the Contact we want to add a new address for    
                     if (addrInfoChanged && !addrInfoCleared) {
-                        UTIL_Debug.debug('****Addr info changed from household contact'); 
+                        UTIL_Debug.debug('****Household contact Addr info changed.'); 
                         contactsCreateAddrFrom.add(contact);
                     } else if (addrInfoCleared) {
-	                    UTIL_Debug.debug('****Addr info cleared from household contact');
+	                    UTIL_Debug.debug('****Household contact Addr info cleare.');
 	                    contactsAddrInfoCleared.add(contact);
 	                    //if the contact was not override, but pointing to the default Address instead
 	                    if(!contact.is_Address_Override__c) {
@@ -444,8 +443,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 
         for(Account acc : parentAccounts) {
             Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
-            uncheckOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
             if(childAddr != null) {
+                if(childAddr.Default_Address__c)
+                    uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
                 UTIL_Debug.debug('****Linking current address with Account');
                 acc.Current_Address__c = childAddr.Id;
                 dmlWrapper.objectsToUpdate.add(acc);
@@ -461,8 +461,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         for(Contact contact : parentContacts) {
             Address__c childAddr = parentContactIdToAddrMap.get(contact.Id);
-            uncheckOtherAddrs(childAddr, contact.Addresses__r, dmlWrapper);
             if(childAddr != null && !contact.is_Address_Override__c) {
+                if(childAddr.Default_Address__c)
+                    uncheckDefaultOtherAddrs(childAddr, contact.Addresses__r, dmlWrapper);
                 UTIL_Debug.debug('****Linking current address with Contact');
                 contact.Current_Address__c = childAddr.Id;
                 dmlWrapper.objectsToUpdate.add(contact);
@@ -470,7 +471,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         }
     }
     
-    private void uncheckOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, DmlWrapper dmlWrapper) {
+    private void uncheckDefaultOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, DmlWrapper dmlWrapper) {
         for(Address__c addr : allAddrs) {
             if(addr.ID != newAddr.ID) {
                 addr.Default_Address__c = false;
