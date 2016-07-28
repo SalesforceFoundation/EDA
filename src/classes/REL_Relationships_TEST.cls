@@ -41,8 +41,6 @@ public class REL_Relationships_TEST {
     * @description If you only want to run a single test in this class, fill in its name here.
     * If you want to run all tests, then use '*'
     */
-    private static string strTestOnly = '*';
-    
     private static Contact c1;//male
     private static Contact c2;//female
     private static Contact c3;//unknown
@@ -91,8 +89,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testContactRel() {
-    	if (strTestOnly != '*' && strTestOnly != 'testContactRel') return;
-             
         setupRelationshipTestData(null);     
       
         Relationship__c rel = new Relationship__c(
@@ -162,8 +158,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testOrphanedRelDelete() {
-    	if (strTestOnly != '*' && strTestOnly != 'testOrphanedRelDelete') return;
-    	    
         setupRelationshipTestData(null);
 
         Relationship__c crel = new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='Buddies');
@@ -194,8 +188,6 @@ public class REL_Relationships_TEST {
     */ 
     @isTest 
     public static void testRelationshipDelete(){
-    	if (strTestOnly != '*' && strTestOnly != 'testRelationshipDelete') return;
-    	
         setupRelationshipTestData(null);
         Relationship__c crel_original = new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, 
                                                                 Type__c='Buddies');
@@ -232,8 +224,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testAutoCreateCampaignMemberInsert(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsert') return;
-    	
         setupRelationshipTestData(null);
         
         //reset the process controller to mimic a second user action
@@ -268,8 +258,6 @@ public class REL_Relationships_TEST {
     //test the synchronous process as well
     @isTest 
     public static void testAutoCreateCampaignMemberInsertSynch(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberInsertSynch') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         
         //reset the process controller to mimic a second user action
@@ -296,8 +284,6 @@ public class REL_Relationships_TEST {
     */    
     @isTest 
     public static void testAutoCreateCampaignMemberUpdate(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateCampaignMemberUpdate') return;
-    	
         setupRelationshipTestData(null);        
         //reset the process controller to mimic a second user action
         //Relationships_ProcessControl.hasRun = false;        
@@ -322,8 +308,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testAutoCreateContactInsert(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsert') return;
-    	
         setupRelationshipTestData(null);
         
         //reset the process controller to mimic a second user action
@@ -347,8 +331,6 @@ public class REL_Relationships_TEST {
     
     @isTest 
     public static void testAutoCreateContactInsertSynch(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactInsertSynch') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         
         //reset the process controller to mimic a second user action
@@ -375,8 +357,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testAutoCreateContactUpdate(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateContactUpdate') return;
-    	
         setupRelationshipTestData(null);
         
         //reset the process controller to mimic a second user action
@@ -402,8 +382,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testInversionSettingsHaveType(){
-    	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsHaveType') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
         
         Relationship__c[] crel = new Relationship__c[]{
@@ -433,8 +411,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testInversionSettingsNoType(){
-    	if (strTestOnly != '*' && strTestOnly != 'testInversionSettingsNoType') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
         
         Relationship__c[] crel = new Relationship__c[]{
@@ -464,8 +440,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testNoValidSettingsConfig(){
-    	if (strTestOnly != '*' && strTestOnly != 'testNoValidSettingsConfig') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
         
         Relationship__c[] crel = new Relationship__c[]{
@@ -495,8 +469,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testMaleSalutationReciprocal(){
-    	if (strTestOnly != '*' && strTestOnly != 'testMaleSalutationReciprocal') return;
-    	
         setupRelationshipTestData(null);
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c1.id, Relatedcontact__c = c2.id, Type__c='TestLookupType')
@@ -517,8 +489,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testFemaleSalutationReciprocal(){
-    	if (strTestOnly != '*' && strTestOnly != 'testFemaleSalutationReciprocal') return;
-    	
         setupRelationshipTestData(null);
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c2.id, Relatedcontact__c = c1.id, Type__c='TestLookupType')
@@ -539,8 +509,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testNeutralSalutationReciprocal(){
-    	if (strTestOnly != '*' && strTestOnly != 'testNeutralSalutationReciprocal') return;
-    	
         setupRelationshipTestData(null);
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c3.id, Relatedcontact__c = c2.id, Type__c='TestLookupType')
@@ -561,8 +529,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testNeutralGenderFieldReciprocal(){
-    	if (strTestOnly != '*' && strTestOnly != 'testNeutralGenderFieldReciprocal') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         Relationship__c[] crel = new Relationship__c[]{
             new Relationship__c(contact__c = c3.id, Relatedcontact__c = c2.id, Type__c='TestLookupType')
@@ -585,8 +551,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testMaleGenderFieldReciprocal(){
-    	if (strTestOnly != '*' && strTestOnly != 'testMaleGenderFieldReciprocal') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         c1.Gender__c = 'Male';
         update c1;
@@ -609,8 +573,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testFemaleGenderFieldReciprocal(){
-    	if (strTestOnly != '*' && strTestOnly != 'testFemaleGenderFieldReciprocal') return;
-    	
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         c2.Gender__c = 'Female';
         update c2;
@@ -634,8 +596,6 @@ public class REL_Relationships_TEST {
     * and that the reciprocal gets the neutral type by default.
     */
     static testMethod void testNoGenderManualRel(){
-        if (strTestOnly != '*' && strTestOnly != 'testNoGenderManualRel') return;
-
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
@@ -664,8 +624,6 @@ public class REL_Relationships_TEST {
     * verify gendered relationship type hasn't changed, but that the status has changed.
     */
     static testMethod void testNoGenderManualRelStatusChange(){
-        if (strTestOnly != '*' && strTestOnly != 'testNoGenderManualRelStatusChange') return;
-
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
@@ -710,8 +668,6 @@ public class REL_Relationships_TEST {
     * hasn't changed.
     */
     static testMethod void testGenderChange(){
-        if (strTestOnly != '*' && strTestOnly != 'testGenderChange') return;
-
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
@@ -750,8 +706,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testErrorRecordCreation() {
-    	if (strTestOnly != '*' && strTestOnly != 'testErrorRecordCreation') return;
-    	    	
         setupRelationshipTestData(null);
         
         Relationship__c[] relationships = new Relationship__c[]{
@@ -785,8 +739,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testExceptionRecordCreation(){
-    	if (strTestOnly != '*' && strTestOnly != 'testExceptionRecordCreation') return;
-    	
         setupRelationshipTestData(null);
         
         ERR_Handler.processError(new MyException('TestException'), ERR_Handler.Context.REL);
@@ -800,8 +752,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void testAutoCreateDupePrevention(){
-    	if (strTestOnly != '*' && strTestOnly != 'testAutoCreateDupePrevention') return;
-    	
         setupRelationshipTestData(null);
         
         Relationship__c[] crel = new Relationship__c[]{
@@ -865,8 +815,6 @@ public class REL_Relationships_TEST {
     */
     @isTest 
     public static void test2Rels1Transaction_v2() {
-    	if (strTestOnly != '*' && strTestOnly != 'test2Rels1Transaction_v2') return;
-    	
          // Create three contacts
         Contact mainClient = new Contact(FirstName='Main',LastName='AAAClient');
         Contact friend = new Contact(FirstName='Test',LastName='AAAFriend');
