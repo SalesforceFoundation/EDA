@@ -45,6 +45,11 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         alreadyRunAfterUpdate = true;
     }
     
+    public static void turnOn() {
+        alreadyRunAfterInsert = false;
+        alreadyRunAfterUpdate = false;
+    }
+    
     /*******************************************************************************************************
     * @description Trigger Handler on Account that handles Address management.
     * @param listNew the list of Accounts from trigger new. 
@@ -58,63 +63,69 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        //Turn off other address triggers
-        ADDR_Contact_TDTM.turnOff();
-        ADDR_Addresses_TDTM.turnOff();
-        
-        List<Account> accsToCreateAddrFrom = new List<Account>();      
-        List<Account> accsAddrInfoCleared = new List<Account>();
-                
-        // AFTER INSERT
-        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
-            Integer i = 0;        
-	        for (SObject so : listNew) {
-	            Account acc = (Account)so;
-                // for new accounts that are using address management, create the address object.
-                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
-                        UTIL_Debug.debug('***Account should have Address record created after insert');
-                        accsToCreateAddrFrom.add(acc);
-                    }
-                }
-                i++;
+        if(!alreadyRunAfterInsert || !alreadyRunAfterUpdate) {
+	        //Turn off other address triggers
+	        ADDR_Contact_TDTM.turnOff();
+	        ADDR_Addresses_TDTM.turnOff();
+	        
+	        List<Account> newAddrInfoAccs = new List<Account>();      
+	        List<Account> accsAddrInfoCleared = new List<Account>();
+	                
+	        // AFTER INSERT
+	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+	            Integer i = 0;        
+		        for (SObject so : listNew) {
+		            Account acc = (Account)so;
+	                // for new accounts that are using address management, create the address object.
+	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+	                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+	                        UTIL_Debug.debug('***Account should have Address record created after insert');
+	                        newAddrInfoAccs.add(acc);
+	                    }
+	                }
+	                i++;
+		        }
+	            alreadyRunAfterInsert = true;
 	        }
-            alreadyRunAfterInsert = true;
+		    
+	        // AFTER UPDATE
+	        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+	            Integer i = 0;        
+	            for (SObject so : listNew) {
+	                Account acc = (Account)so;
+	                Account accOld = (Account)listOld[i];
+	                Boolean isHousehold = acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID();
+	                Boolean accAddrEnabledForRecType = UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+                                                       && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId);
+	                
+	                if (isHousehold || accAddrEnabledForRecType) {
+	                    
+	                    // if the address info has been removed
+	                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+	                        UTIL_Debug.debug('****Account address info cleared');
+	                        accsAddrInfoCleared.add(acc);
+	                        
+	                    // if the address changed, remember the account we want to add a new address for    
+	                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
+	                        UTIL_Debug.debug('****Account address info has changed. New account info: ' + JSON.serializePretty(acc));
+	                        UTIL_Debug.debug('****Old account info: '  + JSON.serializePretty(accOld));
+	                        newAddrInfoAccs.add(acc);
+	                    }
+	                }
+	            i++;
+	            }
+	            alreadyRunAfterUpdate = true;
+	        }
+	
+	        // create any new Address objects
+	        if (newAddrInfoAccs.size() > 0)
+	            processAccsWithNewInfo(newAddrInfoAccs, dmlWrapper);
+	        
+	        // handle accs with address info removed
+	        if(accsAddrInfoCleared.size() > 0)
+	            addrInfoDeleted(accsAddrInfoCleared, dmlWrapper);
         }
-	    
-        // AFTER UPDATE
-        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
-            Integer i = 0;        
-            for (SObject so : listNew) {
-                Account acc = (Account)so;
-                Account accOld = (Account)listOld[i];
-                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-                    
-                    // if the address info has been removed
-                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
-                        UTIL_Debug.debug('****Account address info cleared');
-                        accsAddrInfoCleared.add(acc);
-                    // if the address changed, remember the account we want to add a new address for    
-                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
-                        UTIL_Debug.debug('****Account should have Address record created after update');
-                        accsToCreateAddrFrom.add(acc);
-                    }
-                }
-            i++;
-            }
-            alreadyRunAfterUpdate = true;
-        }
-
-        // create any new Address objects
-        if (accsToCreateAddrFrom.size() > 0)
-            createAddrFromAcc(accsToCreateAddrFrom, dmlWrapper);
-        
-        // handle accs with address info removed
-        if(accsAddrInfoCleared.size() > 0)
-            addrInfoDeleted(accsAddrInfoCleared, dmlWrapper);
-                            
         return dmlWrapper;    
     }
     
@@ -124,7 +135,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Addresses that need creating
     * @return void
     ********************************************************************************************************/
-    private void createAddrFromAcc(List<Account> ListAcc, DmlWrapper dmlWrapper) {
+    private void processAccsWithNewInfo(List<Account> ListAcc, DmlWrapper dmlWrapper) {
         List<Address__c> ListAddr = new List<Address__c>();
         for (Account acc : ListAcc) {
             Address__c addr = new Address__c();
@@ -138,76 +149,129 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         }
         //since coming from an account address, there is no Address Type, so exclude it from the match testing.
         ADDR_Addresses_UTIL.NonDupeAddrs nonDupeAddrs = ADDR_Addresses_UTIL.getNonDuplicateAddresses(ListAddr, false);
-        UTIL_Debug.debug('****createAddrFromAcc nonDupeAddrs: ' + JSON.serializePretty(nonDupeAddrs));
+        UTIL_Debug.debug('****processAccsWithNewInfo nonDupeAddrs: ' + JSON.serializePretty(nonDupeAddrs));
         nonDupeAddrs.performDml();
         
-        //Match each Account with each new address
-        List<ID> parentAccountIDs = new List<ID>();
-        Map<ID, Address__c> parentAccountIdToAddrMap = new Map<ID, Address__c>();
+        //Get map of Accounts to their new addresses
+        List<ID> newAddrsParentAccountIDs = new List<ID>();
+        Map<ID, Address__c> newAddrsParentAccountIdToAddrMap = new Map<ID, Address__c>();
         for(Address__c addr : nonDupeAddrs.newAddrs) {
             if(addr.Parent_Account__c != null) {
                 UTIL_Debug.debug('****Putting new address with parent Account in map');
-	            parentAccountIDs.add(addr.Parent_Account__c);
-	            parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr);  
+	            newAddrsParentAccountIDs.add(addr.Parent_Account__c);
+	            newAddrsParentAccountIdToAddrMap.put(addr.Parent_Account__c, addr);  
             }
         }
         
-        //Putting updated addresses in data structure, to uncheck other defaults
+        UTIL_Debug.debug('****newAddrsParentAccountIDs: ' + JSON.serializePretty(newAddrsParentAccountIDs));
+        
+        //Get map of Accounts to their update addresses
+        List<ID> updatedAddrsParentAccountIDs = new List<ID>();
+        Map<ID, Address__c> updatedAddrsParentAccountIdToAddrMap = new Map<ID, Address__c>();
         for(Address__c addr : nonDupeAddrs.updatedAddrs) {
             if(addr.Parent_Account__c != null) {
                 UTIL_Debug.debug('****Putting updated address with parent Account in map');
-                parentAccountIDs.add(addr.Parent_Account__c);
-                parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr); 
+                updatedAddrsParentAccountIDs.add(addr.Parent_Account__c);
+                updatedAddrsParentAccountIdToAddrMap.put(addr.Parent_Account__c, addr);  
             }
         }
         
-        UTIL_Debug.debug('****parentAccountIDs: ' + JSON.serializePretty(parentAccountIDs));
+        UTIL_Debug.debug('****updatedAddrsParentAccountIDs: ' + JSON.serializePretty(updatedAddrsParentAccountIDs));
         
-        //We need to re-query because we are in the "after" part of the trigger. We cannot change it to before because
-        //we need the Account ID to have a value when populating the addr.Parent_Account__c field above.
-        List<Account> parentAccs = [select is_Address_Override__c, Current_Address__c,
-                                    (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)
-                                    from Account where ID in :parentAccountIDs];
-        UTIL_Debug.debug('****parentAccs with addrs: ' + JSON.serializePretty(parentAccs));
-        List<Account> accsToUpdate = new List<Account>();
-        for(Account acc : parentAccs) {
-            Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
-            if(childAddr.Default_Address__c)
-                ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
-            if(childAddr != null && !acc.is_Address_Override__c) {
-                UTIL_Debug.debug('****Linking current address with Account');
-                acc.Current_Address__c = childAddr.Id;
-                accsToUpdate.add(acc);
+        if(newAddrsParentAccountIDs.size() > 0) {
+	        //We need to re-query because we are in the "after" part of the trigger. We cannot change it to before because
+	        //we need the Account ID to have a value when populating the addr.Parent_Account__c field above.
+	        List<Account> parentAccs = [select recordTypeID, Current_Address__c,
+	            (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r),
+	            (select is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude 
+	               from Account.Contacts)
+	            from Account where ID in :newAddrsParentAccountIDs];
+	        UTIL_Debug.debug('****parentAccs with addrs: ' + JSON.serializePretty(parentAccs));
+	        
+	        List<SObject> recordsToUpdate = new List<SObject>();
+	        for(Account acc : parentAccs) {
+	            Address__c childAddr = newAddrsParentAccountIdToAddrMap.get(acc.Id);
+	            //uncheck the old default address
+	            if(childAddr.Default_Address__c)
+	                ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
+	            //link the account to the new default
+	            if(childAddr != null) {
+	                UTIL_Debug.debug('****Linking current address with Account');
+	                acc.Current_Address__c = childAddr.Id;
+	                dmlWrapper.objectsToUpdate.add(acc);
+	            }
+	            //update child contacts, if it's a household and it's not override
+	            if(acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()) {
+	                for(Contact contact : acc.Contacts) {
+	                    if(!contact.is_Address_Override__c) {
+	                        UTIL_Debug.debug('****Copying address info to child contact from Account with new address: ' + JSON.serializePretty(acc));
+		                    ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');
+		                    contact.Current_Address__c = childAddr.Id;
+		                    dmlWrapper.objectsToUpdate.add(contact);
+	                    }
+	                } 
+	            }
+	        }
+        }
+        
+        //Update child Contacts of those Accounts whose Addreses were just updated, if they are in a Household
+        if(nonDupeAddrs.updatedAddrs.size() > 0) {
+            List<Account> parentAccs = [select recordTypeID, Current_Address__c,
+                (select is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude 
+                   from Account.Contacts)
+                from Account where ID in :updatedAddrsParentAccountIDs];
+            for(Account acc : parentAccs) {
+                for(Contact contact : acc.Contacts) {
+                    UTIL_Debug.debug('****Copying address info to child contact from updated Account: ' + JSON.serializePretty(acc));
+                    if(!contact.is_Address_Override__c) {
+                        ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');
+                        dmlWrapper.objectsToUpdate.add(contact);
+                    }
+                }
             }
         }
-        update accsToUpdate;
     }
     
     private void addrInfoDeleted(List<Account> accsAddrInfoCleared, DmlWrapper dmlWrapper) {
-        List<ID> oldCurrentAddrIDs = new List<ID>();
         
         //We need to re-query before we are in the "after" part of the trigger
-        List<Account> accs = [select is_Address_Override__c, Current_Address__c from Account where ID in :accsAddrInfoCleared];
+        List<Account> accs = [select recordTypeID, Current_Address__c,
+                (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r),
+                (select is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude 
+                    from Account.Contacts)
+            from Account where ID in :accsAddrInfoCleared];
         
-        //Gather the IDs of those addresses that were children of the accoun
+        //Gather the IDs of those addresses that were children of the account
+        Set<ID> oldCurrentAddrIDs = new Set<ID>();
         for(Account acc : accs) {
             if(acc.Current_Address__c != null) // get all current addrs
                 oldCurrentAddrIDs.add(acc.Current_Address__c);
         }
         
-        //Clear Default_Address__c field from these child addrs
-        List<Address__c> addrs = [select Default_Address__c from Address__c where Default_Address__c = true  and ID in :oldCurrentAddrIDs];
-        for(Address__c addr : addrs) {
-            UTIL_Debug.debug('****Settings Default_Address__c to false.');
-            addr.Default_Address__c = false;
-            dmlWrapper.objectsToUpdate.add(addr);
-        }
-        
-        //Clear Current_Address__c field from accs
-        for(Account acc: accs) {
+        for(Account acc : accs) {
+            
+            //Clear Current_Address__c field from accs
             acc.Current_Address__c = null;
-            acc.is_Address_Override__c = false;
-            dmlWrapper.objectsToUpdate.add(acc); 
+            dmlWrapper.objectsToUpdate.add(acc);
+            
+            //Clear Default_Address__c field from these child addrs
+	        for(Address__c addr : acc.Addresses__r) {
+	            if(oldCurrentAddrIDs.contains(addr.ID)) {
+		            UTIL_Debug.debug('****Settings Default_Address__c to false.');
+		            addr.Default_Address__c = false;
+		            dmlWrapper.objectsToUpdate.add(addr);
+	            }
+	        }
+	        
+	        //Clear address info from children contacts without override
+	        if(acc.recordTypeID == UTIL_Describe.getHhAccRecTypeID()) {
+	            for(Contact contact : acc.Contacts) {
+	                if(!contact.is_Address_Override__c) {
+	                   ADDR_Addresses_UTIL.clearAddrInfo(contact);
+	                   dmlWrapper.objectsToUpdate.add(contact);
+	                }
+	            }
+	        }
         }
     }
 }

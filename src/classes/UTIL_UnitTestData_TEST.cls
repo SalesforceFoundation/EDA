@@ -38,61 +38,37 @@
 public class UTIL_UnitTestData_TEST { 
     
     public static Contact getContact() {
-    	return new Contact (
-                FirstName = 'Test',
-                LastName = 'Contact_forTests',
-                WorkEmail__c = 'junk@test.net', 
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work',
-                OtherCity = 'Seattle'
-            );
+    	return new Contact (FirstName = 'Test', LastName = 'Contact_forTests', WorkEmail__c = 'junk@test.net', 
+    	       Preferred_Email__c = 'Work',WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work',OtherCity = 'Seattle');
     }
     
-    public static List<Contact> createMultipleTestContacts (integer n) {
-        
+    public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = New List<contact> ();
-        
-        for (integer i=0;i<n;i++) {
-            Contact newCon = New Contact (
-                FirstName= 'Test' + i,
-                LastName= 'Contact_forTests' + i,
-                WorkEmail__c = 'junk@test.net', 
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work',
-                OtherCity = 'Seattle'
-            );
+        for (Integer i=0; i<n; i++) {
+            Contact newCon = New Contact (FirstName = 'Test' + i, LastName = 'Contact_forTests' + i, WorkEmail__c = 'junk@test.net', 
+                Preferred_Email__c = 'Work', WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work', OtherCity = 'Seattle');
             ContactsToAdd.add (newCon);
-        }
-        
-        // testing doing the insert in the calling code - will maybe reinstate this
-        //insert ContactsToAdd;
-        
+        }       
         return ContactsToAdd;
     }
 
-    public static List<Account> createMultipleTestAccounts (integer n, ID recTypeId) {
+    public static List<Account> getMultipleTestAccounts(Integer n, ID recTypeId) {
         List<Account> AcctsToAdd = New List<Account> ();    
-        for (integer i=0;i<n;i++) {
+        for (Integer i=0; i<n; i++) {
             AcctsToAdd.add(new Account(Name = 'Yet Another Org ' + i, RecordTypeId = recTypeId));
         }
         return AcctsToAdd;
     }
 
-    public static User CreateNewUserForTests(string strUsername) {
+    public static User createNewUserForTests(String strUsername) {
 
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
         User u;	
-        // to work around mixed DML errors during tests, you must
-        // create user account in its own transaction.  got this
+        // to work around mixed DML errors during tests, you must create user account in its own transaction. got this
         // hack from the web.
         System.runAs ( new User(Id = UserInfo.getUserId()) ) {        
-	        u = new User(alias = 'jsmith', email='jsmith@acme.com', 
-	            emailencodingkey='UTF-8', lastname='Smith', 
-	            languagelocalekey='en_US', 
-	            localesidkey='en_US', profileid = p.Id,
-	            timezonesidkey='America/Los_Angeles', 
+	        u = new User(alias = 'jsmith', email='jsmith@acme.com', emailencodingkey='UTF-8', lastname='Smith', 
+	            languagelocalekey='en_US', localesidkey='en_US', profileid = p.Id, timezonesidkey='America/Los_Angeles', 
 	            username=strUsername);
 	        insert u;
         }
@@ -104,8 +80,8 @@ public class UTIL_UnitTestData_TEST {
     * @param addrCount the number of Address objects to create
     * @return  void
     **********************************************************************************************************/
-    public static List<Address__c> initTestAddr(Integer addrCount) {
-        List<Address__c> addrs = new list<Address__c>();
+    public static List<Address__c> getMultipleTestAddresses(Integer addrCount) {
+        List<Address__c> addrs = new List<Address__c>();
         for (Integer i = 0; i < addrCount; i++) {
             Address__c addr = new Address__c();
             addr.Address_Type__c = 'Home';
@@ -127,16 +103,16 @@ public class UTIL_UnitTestData_TEST {
     * @param recTypeID The record type to use when creating Accounts.
     * @return  void
     **********************************************************************************************************/    
-    public static AccsWithAddrs createTestAccsAddrs(Integer accCount, String recTypeID) {                
-        AccsWithAddrs accsAddrs = new AccsWithAddrs();
+    public static AccsWithAddrs createTestAccsAddrs(Integer accCount, String recTypeID) { 
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         
+        AccsWithAddrs accsAddrs = new AccsWithAddrs();
         //instantiate accounts
-        accsAddrs.accs = createMultipleTestAccounts(accCount, recTypeID);
-        //insert accounts
+        accsAddrs.accs = getMultipleTestAccounts(accCount, recTypeID);
         insert accsAddrs.accs;      
         
         //instantiate addresses
-        accsAddrs.addrs = initTestAddr(accCount);
+        accsAddrs.addrs = getMultipleTestAddresses(accCount);
         
         //link addresses with accounts and make them default
         for (Integer i = 0; i < accCount; i++) {
@@ -144,11 +120,21 @@ public class UTIL_UnitTestData_TEST {
             accsAddrs.addrs[i].Default_Address__c = true;
         }
         //insert addresses
-        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert accsAddrs.addrs;
         
+        //link accounts with addresses and copy address info to accounts
+        for(Integer i = 0; i < accCount; i++) {
+            accsAddrs.accs[i].Current_Address__c = accsAddrs.addrs[i].Id;
+            accsAddrs.accs[i].BillingStreet = accsAddrs.addrs[i].MailingStreet__c;
+            accsAddrs.accs[i].BillingCity = accsAddrs.addrs[i].MailingCity__c;
+            accsAddrs.accs[i].BillingState = accsAddrs.addrs[i].MailingState__c;
+            accsAddrs.accs[i].BillingPostalCode = accsAddrs.addrs[i].MailingPostalCode__c;
+            accsAddrs.accs[i].BillingCountry = accsAddrs.addrs[i].MailingCountry__c;
+        }
+        update  accsAddrs.accs;
+
         //clear our triggers recursion prevention since we are starting a new test
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         return accsAddrs;
     }
@@ -167,16 +153,15 @@ public class UTIL_UnitTestData_TEST {
     * @return  void
     **********************************************************************************************************/  
     public static ContactsWithAddrs createTestContactsAddrs(Integer contactCount) {
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();        
         //instantiate contacts
-        contactsAddrs.contacts = createMultipleTestContacts(contactCount);
-        //insert contacts
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        contactsAddrs.contacts = getMultipleTestContacts(contactCount);
         insert contactsAddrs.contacts;
         
         //instantiate addresses
-        contactsAddrs.addrs = initTestAddr(contactCount);
+        contactsAddrs.addrs = getMultipleTestAddresses(contactCount);
         
         //link addresses with contacts and make them default
         for (Integer i = 0; i < contactCount; i++) {
@@ -184,11 +169,21 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.addrs[i].Default_Address__c = true;
         }
         //insert addresses
-        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert contactsAddrs.addrs;
         
+       //link contacts with addresses and copy address info to contacts
+        for (Integer i = 0; i < contactCount; i++) {
+            contactsAddrs.contacts[i].Current_Address__c = contactsAddrs.addrs[i].Id;
+            contactsAddrs.contacts[i].MailingStreet = contactsAddrs.addrs[i].MailingStreet__c;
+            contactsAddrs.contacts[i].MailingCity = contactsAddrs.addrs[i].MailingCity__c;
+            contactsAddrs.contacts[i].MailingState = contactsAddrs.addrs[i].MailingState__c;
+            contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
+            contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
+        }
+        update contactsAddrs.contacts;
+        
         //clear our triggers recursion prevention since we are starting a new test
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         return contactsAddrs;
     }
@@ -211,38 +206,67 @@ public class UTIL_UnitTestData_TEST {
     * @return  void
     **********************************************************************************************************/
     public static ContactsAccsWithAddrs createTestConsAccsAddrs(Integer accCount, Integer contactCount, String recTypeID) {
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
+        
         ContactsAccsWithAddrs consAccsAddrs = new ContactsAccsWithAddrs();
-            
-        consAccsAddrs.contacts = createMultipleTestContacts(accCount * contactCount);
-        consAccsAddrs.accs = createMultipleTestAccounts(accCount, recTypeID);
+        consAccsAddrs.contacts = getMultipleTestContacts(accCount * contactCount);
+        consAccsAddrs.accs = getMultipleTestAccounts(accCount, recTypeID);
         insert consAccsAddrs.accs;
         
+        // link contacts with accounts
         for (Integer i = 0; i < accCount; i++) {
             for (Integer j = 0; j < contactCount; j++) {
                 consAccsAddrs.contacts[ (i * contactCount) + j].AccountId = consAccsAddrs.accs[i].Id;
             }
         }
+        insert consAccsAddrs.contacts; 
+        
         /* With accCount = 2, contactCount = 2
             i = 0, j = 0 => contact0 parent is account0
             i = 0, j = 1 => contact1 parent is account0
             i = 1, j = 0 => contact2 parent is account1
             i = 1, j = 1 => contact3 parent is account1
-        */
-              
-        ADDR_Contact_TEST.resetAllAddrTriggers();
-        insert consAccsAddrs.contacts;        
-
-        consAccsAddrs.addrs = initTestAddr(accCount);
+        */       
+        
+        //instantiate addresses
+        consAccsAddrs.addrs = getMultipleTestAddresses(accCount);
+        
+        //link addresses with accounts and make them default
         for (Integer i = 0; i < accCount; i++) {
             consAccsAddrs.addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
             consAccsAddrs.addrs[i].Default_Address__c = true;
         }
-        // clear our triggers recursion prevention since we starting a new test
-        ADDR_Contact_TEST.resetAllAddrTriggers();
         insert consAccsAddrs.addrs;
         
+        //link accounts with addresses and copy address info to accounts
+        for(Integer i = 0; i < accCount; i++) {
+            consAccsAddrs.accs[i].Current_Address__c = consAccsAddrs.addrs[i].ID;
+            consAccsAddrs.accs[i].BillingStreet = consAccsAddrs.addrs[i].MailingStreet__c;
+            consAccsAddrs.accs[i].BillingCity = consAccsAddrs.addrs[i].MailingCity__c;
+            consAccsAddrs.accs[i].BillingState = consAccsAddrs.addrs[i].MailingState__c;
+            consAccsAddrs.accs[i].BillingPostalCode = consAccsAddrs.addrs[i].MailingPostalCode__c;
+            consAccsAddrs.accs[i].BillingCountry = consAccsAddrs.addrs[i].MailingCountry__c;
+            consAccsAddrs.accs[i].Current_Address__c = consAccsAddrs.addrs[i].ID;
+        }
+        update  consAccsAddrs.accs;
+        
+        // link contacts with addresses and copy address info to contacts
+        for (Integer i = 0; i < accCount; i++) {
+            Account parentAcc = consAccsAddrs.accs[i];
+            Address__c addr = consAccsAddrs.addrs[i];
+            for (Integer j = 0; j < contactCount; j++) {
+                consAccsAddrs.contacts[i + j].Current_Address__c = parentAcc.Current_Address__c;
+                consAccsAddrs.contacts[i + j].MailingStreet = addr.MailingStreet__c;
+	            consAccsAddrs.contacts[i + j].MailingCity = addr.MailingCity__c;
+	            consAccsAddrs.contacts[i + j].MailingState = addr.MailingState__c;
+	            consAccsAddrs.contacts[i + j].MailingPostalCode = addr.MailingPostalCode__c;
+	            consAccsAddrs.contacts[i + j].MailingCountry = addr.MailingCountry__c;
+            }
+        }
+        update consAccsAddrs.contacts;
+        
         // clear our triggers recursion prevention since we are starting a new test
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         return consAccsAddrs;
     }

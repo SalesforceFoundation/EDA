@@ -44,20 +44,16 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
     }
     
-    public static void resetAllAddrTriggers() {
-        ADDR_Contact_TDTM.alreadyRunBeforeInsert = false;
-        ADDR_Contact_TDTM.alreadyRunBeforeUpdate = false;
-        ADDR_Contact_TDTM.alreadyRunAfterInsert = false;
-        ADDR_Contact_TDTM.alreadyRunAfterUpdate = false;
-        
-        ADDR_Account_TDTM.alreadyRunAfterInsert = false;
-        ADDR_Account_TDTM.alreadyRunAfterUpdate = false;
-        
-        ADDR_Addresses_TDTM.alreadyRunBeforeInsert = false;
-        ADDR_Addresses_TDTM.alreadyRunBeforeUpdate = false;
-        ADDR_Addresses_TDTM.alreadyRunAfterInsert = false;
-        ADDR_Addresses_TDTM.alreadyRunAfterUpdate = false;
-        ADDR_Addresses_TDTM.alreadyRunAfterDelete = false;
+    public static void turnOnAllAddrTriggers() {
+        ADDR_Contact_TDTM.turnOn();
+        ADDR_Account_TDTM.turnOn();        
+        ADDR_Addresses_TDTM.turnOn();
+    }
+    
+    public static void turnOffAllAddrTriggers() {
+        ADDR_Contact_TDTM.turnOff();
+        ADDR_Account_TDTM.turnOff();        
+        ADDR_Addresses_TDTM.turnOff();
     }
     
     @isTest
@@ -121,7 +117,7 @@ public with sharing class ADDR_Contact_TEST {
         acc.BillingPostalCode = '54545';
         acc.BillingCountry = 'USA';
 
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update acc;
         Test.stopTest();
@@ -155,7 +151,7 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
  
         Integer contactCount = 3;
-        List<Contact> contacts = UTIL_UnitTestData_TEST.createMultipleTestContacts(contactCount);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactCount);
         for (Contact contact : contacts) {
             contact.MailingStreet = '123 45th';
             contact.MailingCity = 'Seattle';
@@ -251,14 +247,14 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
         
         // create additional addresses
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         insert addrs;
         
         // set the Contacts' address overrides
@@ -267,11 +263,11 @@ public with sharing class ADDR_Contact_TEST {
             contact.Current_Address__c = addrs[i].Id;
             contact.is_Address_Override__c = true;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;        
         
         // now let's delete the override Addresses
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         delete addrs;
         Test.stopTest();
@@ -341,14 +337,14 @@ public with sharing class ADDR_Contact_TEST {
         // assign it to the second Contact
         addrNew.Parent_Contact__c = contactsAddrs.contacts[1].Id;
         
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         insert addrNew;
         
         // set Contact's address override
         contactsAddrs.contacts[1].Current_Address__c = addrNew.Id;
         contactsAddrs.contacts[1].is_Address_Override__c = true;
         
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts[0];
     
         // now let's update the default Address for both Contacts
@@ -357,7 +353,7 @@ public with sharing class ADDR_Contact_TEST {
         contactsAddrs.addrs[1].MailingStreet__c = 'New Street';
         contactsAddrs.addrs[1].MailingCity__c = 'New City';
 
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.addrs;
         Test.stopTest();
@@ -394,17 +390,17 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
         
         // create additional addresses
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             addrs[i].Default_Address__c = true;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        resetAllAddrTriggers();        
+        turnOnAllAddrTriggers();        
         Test.stopTest();
 
         // verify that the Contact addresses are new
@@ -450,16 +446,16 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> ListAddrOriginal = contactsAddrs.addrs;
         
         // create additional addresses
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             addrs[i].Default_Address__c = true;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         insert addrs;
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         
         // go back to original default addresses
         // added this extra set to test fix where we didn't use the correct default
@@ -468,10 +464,10 @@ public with sharing class ADDR_Contact_TEST {
             ListAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
             ListAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update ListAddrOriginal;
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.stopTest();
         
         // verify the additional addresses got Default cleared.
@@ -509,21 +505,21 @@ public with sharing class ADDR_Contact_TEST {
             contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
             contactsAddrs.contacts[i].MailingCity = 'Direct City Edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'another Street Edit';
             contactsAddrs.contacts[i].MailingCity = 'another City Edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'final Street Edit';
             contactsAddrs.contacts[i].MailingCity = 'final City Edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -570,7 +566,7 @@ public with sharing class ADDR_Contact_TEST {
             contactsAddrs.contacts[i].MailingCity = 'Direct City Edit';
             contactsAddrs.contacts[i].is_Address_Override__c = true;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -613,26 +609,26 @@ public with sharing class ADDR_Contact_TEST {
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingState = 'Washington';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
             contactsAddrs.contacts[i].MailingState = 'Oregon';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -658,7 +654,7 @@ public with sharing class ADDR_Contact_TEST {
             Contact contact = contactsAddrs.contacts[i];
             contact.MailingStreet = 'direct street  edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
         
         // verify that the Contact address
@@ -697,20 +693,20 @@ public with sharing class ADDR_Contact_TEST {
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingState = 'Washington';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
             contactsAddrs.contacts[i].MailingState = 'Oregon';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -739,7 +735,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newAddrNoParent() {        
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < addrs.size(); i++) {
             System.assertEquals(null, addrs[i].Parent_Contact__c);
         }
@@ -773,7 +769,7 @@ public with sharing class ADDR_Contact_TEST {
             contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
             contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
         }        
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -797,14 +793,14 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
         // create additional non-default addresses
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'New Street' + i;
             addrs[i].MailingCity__c = 'New City' + i;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         insert addrs;
  
         // create additional addresses thru the Contact.
@@ -815,7 +811,7 @@ public with sharing class ADDR_Contact_TEST {
             contactsAddrs.contacts[i].MailingPostalCode = addrs[i].MailingPostalCode__c;
             contactsAddrs.contacts[i].MailingCountry = addrs[i].MailingCountry__c;
         }        
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -849,7 +845,7 @@ public with sharing class ADDR_Contact_TEST {
     public static void insertMultilineStreetAddress() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
     
-        List<Contact> contacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(2);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Contact contact : contacts) {
             contact.MailingStreet = 'new street\r\nsecond line';
             contact.MailingCity = 'new city';
@@ -891,7 +887,7 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
 
         // create additional addresses
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             addrs[i].Default_Address__c = true;
@@ -899,10 +895,10 @@ public with sharing class ADDR_Contact_TEST {
             addrs[i].MailingStreet2__c = 'Second Line';
             addrs[i].MailingCity__c = 'New Default City' + i;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        resetAllAddrTriggers();        
+        turnOnAllAddrTriggers();        
         Test.stopTest();
 
         // verify Contact address is new
@@ -936,7 +932,7 @@ public with sharing class ADDR_Contact_TEST {
             contact.MailingStreet = 'Direct Street Edit\r\nSecond Line';
             contact.MailingCity = 'Direct City Edit';
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -975,7 +971,7 @@ public with sharing class ADDR_Contact_TEST {
  
         // create Contacts without addresses
         Integer contactCount = 3;
-        List<Contact> contacts = UTIL_UnitTestData_TEST.createMultipleTestContacts(contactCount);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(contactCount);
         insert contacts;
 
         // update the Contacts' address
@@ -984,7 +980,7 @@ public with sharing class ADDR_Contact_TEST {
             contact.MailingCity = 'Seattle';
         }
         Test.startTest();
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         update contacts;
         Test.stopTest();
 
@@ -1021,18 +1017,18 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
  
         // create Contacts without addresses
-        List<Contact> contacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(3);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
         insert contacts;
 
          // create addresses for the Contacts
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(contacts.size());
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(contacts.size());
         for (Integer i = 0; i < contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contacts[i].Id;
             addrs[i].Default_Address__c = true;
         }
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         insert addrs;
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         
         // verify results
         contacts = [select Id, Name, MailingStreet, MailingCity, MailingState, 
@@ -1066,7 +1062,7 @@ public with sharing class ADDR_Contact_TEST {
     public static void testDisabledAddr() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = false));
 
-        List<Contact> contacts = UTIL_UnitTestData_TEST.CreateMultipleTestContacts(2);
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Contact contact : contacts) {
             contact.MailingStreet = 'new street';
             contact.MailingCity = 'new city';
@@ -1111,7 +1107,7 @@ public with sharing class ADDR_Contact_TEST {
             }             
         }
 
-        resetAllAddrTriggers();
+        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();

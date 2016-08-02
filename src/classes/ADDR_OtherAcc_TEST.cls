@@ -51,7 +51,7 @@ public with sharing class ADDR_OtherAcc_TEST {
                                                                       UTIL_Describe.getBizAccRecTypeID() + ';'));
  
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
         for (Account acc : listAcc) {
             acc.BillingStreet = '123 45th';
             acc.BillingCity = 'Seattle';
@@ -90,7 +90,7 @@ public with sharing class ADDR_OtherAcc_TEST {
  
         // create accounts without addresses
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
         insert listAcc;
 
         // update the accounts' address
@@ -99,7 +99,7 @@ public with sharing class ADDR_OtherAcc_TEST {
             acc.BillingCity = 'Seattle';
         }
         Test.startTest();
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listAcc;
         Test.stopTest();
 
@@ -137,18 +137,18 @@ public with sharing class ADDR_OtherAcc_TEST {
                                                                       UTIL_Describe.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
-        list<Account> listAcc = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(3, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(3, UTIL_Describe.getBizAccRecTypeID());
         insert listAcc;
 
          // create addresses for the accounts
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(listAcc.size());
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(listAcc.size());
         for (Integer i = 0; i < listAcc.size(); i++) {
             addrs[i].Parent_Account__c = listAcc[i].Id;
             addrs[i].Default_Address__c = true;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         // verify results
         listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -182,7 +182,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     public static void testDisabledAddr() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
 
-        List<Account> accs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accs = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
         for (Account acc : accs) {
             acc.BillingStreet = 'new street';
             acc.BillingCity = 'new city';

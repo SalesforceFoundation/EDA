@@ -119,7 +119,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
@@ -127,7 +127,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
         
         // set the accounts' address overrides
@@ -136,11 +136,11 @@ public with sharing class ADDR_AdminAcc_TEST {
             acc.Current_Address__c = addrs[i].Id;
             acc.is_Address_Override__c = true;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;        
         
         // now let's delete the override Addresses
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         delete addrs;
         Test.stopTest();
@@ -211,14 +211,14 @@ public with sharing class ADDR_AdminAcc_TEST {
         // assign it to the second account
         addrNew.Parent_Account__c = accsAddrs.accs[1].Id;
         
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrNew;
         
         // set account's address override
         accsAddrs.accs[1].Current_Address__c = addrNew.Id;
         accsAddrs.accs[1].is_Address_Override__c = true;
         
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs[0];
     
         // now let's update the default Address for both accounts
@@ -227,7 +227,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         addrs[1].MailingStreet__c = 'New Street';
         addrs[1].MailingCity__c = 'New City';
 
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update addrs;
         Test.stopTest();
@@ -265,17 +265,17 @@ public with sharing class ADDR_AdminAcc_TEST {
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        ADDR_Contact_TEST.resetAllAddrTriggers();        
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();        
         Test.stopTest();
 
         // verify that the Account addresses are new
@@ -321,16 +321,16 @@ public with sharing class ADDR_AdminAcc_TEST {
         List<Address__c> listAddrOriginal = accsAddrs.addrs;
         
         // create additional addresses
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
             addrs[i].MailingStreet__c = 'New Default Street' + i;
             addrs[i].MailingCity__c = 'New Default City' + i;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         // go back to original default addresses
         // added this extra set to test fix where we didn't use the correct default
@@ -339,10 +339,10 @@ public with sharing class ADDR_AdminAcc_TEST {
             listAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
             listAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update listAddrOriginal;
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.stopTest();
         
         // verify the additional addresses got Default cleared.
@@ -381,21 +381,21 @@ public with sharing class ADDR_AdminAcc_TEST {
             accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
             accsAddrs.accs[i].BillingCity = 'Direct City Edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = 'another Street Edit';
             accsAddrs.accs[i].BillingCity = 'another City Edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = 'final Street Edit';
             accsAddrs.accs[i].BillingCity = 'final City Edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -441,7 +441,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             accsAddrs.accs[i].BillingCity = 'Direct City Edit';
             accsAddrs.accs[i].is_Address_Override__c = true;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -486,26 +486,26 @@ public with sharing class ADDR_AdminAcc_TEST {
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingState = 'Washington';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
             accsAddrs.accs[i].BillingState = 'Oregon';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -531,7 +531,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             Account acc = accsAddrs.accs[i];
             acc.BillingStreet = 'direct street  edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
         
         // verify that the Account address
@@ -571,20 +571,20 @@ public with sharing class ADDR_AdminAcc_TEST {
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingState = 'Washington';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;
 
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
             accsAddrs.accs[i].BillingState = 'Oregon';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -615,7 +615,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     public static void newAddrNoParent() {
         configSettings();
         
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < addrs.size(); i++) {
             System.assertEquals(null, addrs[i].Parent_Account__c);
         }
@@ -650,7 +650,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             accsAddrs.accs[i].BillingPostalCode = addrs[i].MailingPostalCode__c;
             accsAddrs.accs[i].BillingCountry = addrs[i].MailingCountry__c;
         }        
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -675,14 +675,14 @@ public with sharing class ADDR_AdminAcc_TEST {
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional non-default addresses
-        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'New Street' + i;
             addrs[i].MailingCity__c = 'New City' + i;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
  
         // create additional addresses thru the account.
@@ -693,7 +693,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             accsAddrs.accs[i].BillingPostalCode = addrs[i].MailingPostalCode__c;
             accsAddrs.accs[i].BillingCountry = addrs[i].MailingCountry__c;
         }        
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -728,7 +728,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                     UTIL_Describe.getAdminAccRecTypeID() + ';'));
     
-        List<Account> accs = UTIL_UnitTestData_TEST.CreateMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accs = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
         for (Account acc : accs) {
             acc.BillingStreet = 'new street\r\nsecond line';
             acc.BillingCity = 'new city';
@@ -771,7 +771,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.initTestAddr(2);
+        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
@@ -779,10 +779,10 @@ public with sharing class ADDR_AdminAcc_TEST {
             addrs[i].MailingStreet2__c = 'Second Line';
             addrs[i].MailingCity__c = 'New Default City' + i;
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         insert addrs;
-        ADDR_Contact_TEST.resetAllAddrTriggers();        
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();        
         Test.stopTest();
 
         // verify Account address is new
@@ -817,7 +817,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             acc.BillingStreet = 'Direct Street Edit\r\nSecond Line';
             acc.BillingCity = 'Direct City Edit';
         }
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();
@@ -872,7 +872,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             }             
         }
 
-        ADDR_Contact_TEST.resetAllAddrTriggers();
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update accsAddrs.accs;
         Test.stopTest();

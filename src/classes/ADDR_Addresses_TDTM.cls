@@ -51,6 +51,14 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         alreadyRunAfterDelete = true;
     }
     
+    public static void turnOn() {
+        alreadyRunBeforeInsert = false;
+        alreadyRunBeforeUpdate = false;
+        alreadyRunAfterInsert = false;
+        alreadyRunAfterUpdate = false;
+        alreadyRunAfterDelete = false;
+    }
+    
     /*******************************************************************************************************
     * @description Trigger Handler on Address that handles address management.  Updates the appropriate
     * parents and Contacts when an Address is changed.
@@ -65,128 +73,129 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
    
         DmlWrapper dmlWrapper = new DmlWrapper();
         
-        // STRATEGY
-        // when a default Address is created or modified, we need to consider three other objects we may need to update:
-        // - the parent Account, if not null
-        // - the parent Contact, if not null
-        // - any other Addresses that should no longer be Default
-         
-        //Turn off other address triggers
-        ADDR_Account_TDTM.turnOff();
-        ADDR_Contact_TDTM.turnOff();
-        
-        // map of parents, and their default Address
-        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>();
-            
-        // BEFORE INSERT
-        if (!alreadyRunBeforeInsert && triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-	        for (SObject so : listNew) {
-	            Address__c addr = (Address__c)so;
-                // when an address is marked Default, we update its latest date fields
-                if (addr.Default_Address__c) {
-                    UTIL_Debug.debug('****Address created as default: ' + JSON.serializePretty(addr));
-                    addr.Latest_Start_Date__c = System.today();
-                    addr.Latest_End_Date__c = null;
-               }
-	        }
-	        alreadyRunBeforeInsert = true;
-        }
-        
-        // BEFORE UPDATE
-        if (!alreadyRunBeforeUpdate && triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-            Integer i = 0;
-	        for (SObject so : listNew) {
-	            Address__c addr = (Address__c)so;
-	            Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
-                if (addr.Default_Address__c != addrOld.Default_Address__c) {
-                   // when an address changes Default, we update its latest date fields
-                    if (addr.Default_Address__c) {
-                       UTIL_Debug.debug('****Address updated to default');
-                       addr.Latest_Start_Date__c = System.today();
-                       addr.Latest_End_Date__c = null;
-                    } else {
-                       UTIL_Debug.debug('****Address updated to not default');
-                       addr.Latest_End_Date__c = System.today();                        
-                    }
-                }
-                i++;
-	        }
-	        alreadyRunBeforeUpdate = true;
-        }
-    
-        // AFTER INSERT
-        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
-            for (SObject so : listNew) {
-                Address__c addr = (Address__c)so;
-	            // a new address that is marked default or seasonal needs to propogate to the parent
-	            if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
-	                UTIL_Debug.debug('****Address that needs to propagate to parent Account: ' + JSON.serializePretty(addr));
-	                putAddrInMap(addr, mapParentIdAddr);
-	            }
-            }
-            
-            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
-            processDml(dmlWrapper, mapParentIdAddr);
-            
-            // enforce address records created only as children of parents
-            verifyAddrAccContactChildOnly((List<Address__c>)listNew);
-            // enforce Seasonal Addresses don't overlap
-            ADDR_Seasonal_UTIL.verifyAddrSeasonalNoOverlap((List<Address__c>)listNew);
-            // delete empty addresses
-            deleteEmptyAddrs(listNew);
-            
-            alreadyRunAfterInsert = true;
-        }
-        
-        // AFTER UPDATE
-        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            Integer i = 0;
-            for (SObject so : listNew) {
-                Address__c addr = (Address__c)so;
-                Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
-	            Boolean changed = ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true);
-	            UTIL_Debug.debug('****Address record changed: ' + changed);
+        if(!alreadyRunBeforeInsert || !alreadyRunBeforeUpdate || !alreadyRunAfterInsert || !alreadyRunAfterUpdate || !alreadyRunAfterDelete) {
+	        // STRATEGY
+	        // when a default Address is created or modified, we need to consider three other objects we may need to update:
+	        // - the parent Account, if not null
+	        // - the parent Contact, if not null
+	        // - any other Addresses that should no longer be Default
+	         
+	        //Turn off other address triggers
+	        ADDR_Account_TDTM.turnOff();
+	        ADDR_Contact_TDTM.turnOff();
+	        
+	        // map of parents, and their default Address
+	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>();
 	            
-	            // an address that is marked default needs to propogate to the parent
-	            if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
-	            // any seasonal address also need to be considered
-	            || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) { 
-	                UTIL_Debug.debug('****Address changed to default: ' + JSON.serializePretty(addr));
-	                putAddrInMap(addr, mapParentIdAddr);
-	            } else if (changed && addr.Default_Address__c) {
-	                UTIL_Debug.debug('****Address info updated');
-	                putAddrInMap(addr, mapParentIdAddr);    
+	        // BEFORE INSERT
+	        if (!alreadyRunBeforeInsert && triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+		        for (SObject so : listNew) {
+		            Address__c addr = (Address__c)so;
+	                // when an address is marked Default, we update its latest date fields
+	                if (addr.Default_Address__c) {
+	                    UTIL_Debug.debug('****Address created as default: ' + JSON.serializePretty(addr));
+	                    addr.Latest_Start_Date__c = System.today();
+	                    addr.Latest_End_Date__c = null;
+	               }
+		        }
+		        alreadyRunBeforeInsert = true;
+	        }
+	        
+	        // BEFORE UPDATE
+	        if (!alreadyRunBeforeUpdate && triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+	            Integer i = 0;
+		        for (SObject so : listNew) {
+		            Address__c addr = (Address__c)so;
+		            Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
+	                if (addr.Default_Address__c != addrOld.Default_Address__c) {
+	                   // when an address changes Default, we update its latest date fields
+	                    if (addr.Default_Address__c) {
+	                       UTIL_Debug.debug('****Address updated to default');
+	                       addr.Latest_Start_Date__c = System.today();
+	                       addr.Latest_End_Date__c = null;
+	                    } else {
+	                       UTIL_Debug.debug('****Address updated to not default');
+	                       addr.Latest_End_Date__c = System.today();                        
+	                    }
+	                }
+	                i++;
+		        }
+		        alreadyRunBeforeUpdate = true;
+	        }
+	    
+	        // AFTER INSERT
+	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+	            for (SObject so : listNew) {
+	                Address__c addr = (Address__c)so;
+		            // a new address that is marked default or seasonal needs to propogate to the parent
+		            if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
+		                UTIL_Debug.debug('****Address that needs to propagate to parent Account: ' + JSON.serializePretty(addr));
+		                putAddrInMap(addr, mapParentIdAddr);
+		            }
 	            }
-	            i++;
-            }
-            
-            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
-            processDml(dmlWrapper, mapParentIdAddr);
-            
-            alreadyRunAfterUpdate = true;
-        }
-        
-        // AFTER DELETE
-        if (!alreadyRunAfterDelete && triggerAction == TDTM_Runnable.Action.AfterDelete) {
-            Integer i = 0;
-            for (SObject addrOld : listOld) {
-	            // first go through all new/modified Addresses, and collect the list of parents to consider. 
-	            ID parentAccId = ((Address__c)addrOld).Parent_Account__c;
-	            ID parentConId = ((Address__c)addrOld).Parent_Contact__c;
-	            if (parentAccId != null) {
-	                mapParentIdAddr.put(parentAccId, null);
-	            } else if(parentConId != null) {
-	                mapParentIdAddr.put(parentConId, null);
+	            
+	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	            processDml(dmlWrapper, mapParentIdAddr);
+	            
+	            // enforce address records created only as children of parents
+	            verifyAddrAccContactChildOnly((List<Address__c>)listNew);
+	            // enforce Seasonal Addresses don't overlap
+	            ADDR_Seasonal_UTIL.verifyAddrSeasonalNoOverlap((List<Address__c>)listNew);
+	            // delete empty addresses
+	            deleteEmptyAddrs(listNew);
+	            
+	            alreadyRunAfterInsert = true;
+	        }
+	        
+	        // AFTER UPDATE
+	        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+	            Integer i = 0;
+	            for (SObject so : listNew) {
+	                Address__c addr = (Address__c)so;
+	                Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
+		            Boolean changed = ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true);
+		            UTIL_Debug.debug('****Address record changed: ' + changed);
+		            
+		            // an address that is marked default needs to propogate to the parent
+		            if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
+		            // any seasonal address also need to be considered
+		            || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) { 
+		                UTIL_Debug.debug('****Address changed to default: ' + JSON.serializePretty(addr));
+		                putAddrInMap(addr, mapParentIdAddr);
+		            } else if (changed && addr.Default_Address__c) {
+		                UTIL_Debug.debug('****Address info updated');
+		                putAddrInMap(addr, mapParentIdAddr);    
+		            }
+		            i++;
 	            }
-                i++;
-            }
-            
-            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
-            processDml(dmlWrapper, mapParentIdAddr);
-            
-            alreadyRunAfterDelete = true;
+	            
+	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	            processDml(dmlWrapper, mapParentIdAddr);
+	            
+	            alreadyRunAfterUpdate = true;
+	        }
+	        
+	        // AFTER DELETE
+	        if (!alreadyRunAfterDelete && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+	            Integer i = 0;
+	            for (SObject addrOld : listOld) {
+		            // first go through all new/modified Addresses, and collect the list of parents to consider. 
+		            ID parentAccId = ((Address__c)addrOld).Parent_Account__c;
+		            ID parentConId = ((Address__c)addrOld).Parent_Contact__c;
+		            if (parentAccId != null) {
+		                mapParentIdAddr.put(parentAccId, null);
+		            } else if(parentConId != null) {
+		                mapParentIdAddr.put(parentConId, null);
+		            }
+	                i++;
+	            }
+	            
+	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	            processDml(dmlWrapper, mapParentIdAddr);
+	            
+	            alreadyRunAfterDelete = true;
+	        }
         }
-
         return dmlWrapper;
     }
     
@@ -480,8 +489,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr.addError(Label.addrValidParentObjects);
             } else if(addr.Parent_Account__c != null) {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c == null || 
-                !UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+                Boolean isHousehold = acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID();
+                Boolean accAddrEnabledForRecType = UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+                                                       && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId);
+                                                       
+                if (!isHousehold && !accAddrEnabledForRecType) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
                     addr.addError(Label.addrNotEnabled);
                 }
