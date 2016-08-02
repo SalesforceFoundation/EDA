@@ -74,6 +74,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         Test.startTest();
+        //This is really just testing that the helper method is properly written
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
         Test.stopTest();
         

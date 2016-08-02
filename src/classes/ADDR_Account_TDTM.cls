@@ -181,14 +181,13 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         if(newAddrsParentAccountIDs.size() > 0) {
 	        //We need to re-query because we are in the "after" part of the trigger. We cannot change it to before because
 	        //we need the Account ID to have a value when populating the addr.Parent_Account__c field above.
-	        List<Account> parentAccs = [select recordTypeID, Current_Address__c,
+	        List<Account> parentAccs = [select recordTypeID, Current_Address__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude,
 	            (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r),
 	            (select is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude 
 	               from Account.Contacts)
 	            from Account where ID in :newAddrsParentAccountIDs];
 	        UTIL_Debug.debug('****parentAccs with addrs: ' + JSON.serializePretty(parentAccs));
 	        
-	        List<SObject> recordsToUpdate = new List<SObject>();
 	        for(Account acc : parentAccs) {
 	            Address__c childAddr = newAddrsParentAccountIdToAddrMap.get(acc.Id);
 	            //uncheck the old default address
@@ -216,17 +215,32 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         
         //Update child Contacts of those Accounts whose Addreses were just updated, if they are in a Household
         if(nonDupeAddrs.updatedAddrs.size() > 0) {
-            List<Account> parentAccs = [select recordTypeID, Current_Address__c,
+            List<Account> parentAccs = [select recordTypeID, Current_Address__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude,
+                (select Default_Address__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r),
                 (select is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude 
                    from Account.Contacts)
                 from Account where ID in :updatedAddrsParentAccountIDs];
+            
             for(Account acc : parentAccs) {
-                for(Contact contact : acc.Contacts) {
-                    UTIL_Debug.debug('****Copying address info to child contact from updated Account: ' + JSON.serializePretty(acc));
-                    if(!contact.is_Address_Override__c) {
-                        ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');
-                        dmlWrapper.objectsToUpdate.add(contact);
-                    }
+                Address__c childAddr = updatedAddrsParentAccountIdToAddrMap.get(acc.Id);
+                //uncheck the old default address
+                if(childAddr.Default_Address__c)
+                    ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
+                //link the account to the new default
+                if(childAddr != null) {
+                    UTIL_Debug.debug('****Linking current address with Account');
+                    acc.Current_Address__c = childAddr.Id;
+                    dmlWrapper.objectsToUpdate.add(acc);
+                }
+                //update child contacts, if it's a household and it's not override
+                if(acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()) {
+	                for(Contact contact : acc.Contacts) {
+	                    UTIL_Debug.debug('****Copying address info to child contact from updated Account: ' + JSON.serializePretty(acc));
+	                    if(!contact.is_Address_Override__c) {
+	                        ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');
+	                        dmlWrapper.objectsToUpdate.add(contact);
+	                    }
+	                }
                 }
             }
         }

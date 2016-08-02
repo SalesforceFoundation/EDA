@@ -255,12 +255,12 @@ public class UTIL_UnitTestData_TEST {
             Account parentAcc = consAccsAddrs.accs[i];
             Address__c addr = consAccsAddrs.addrs[i];
             for (Integer j = 0; j < contactCount; j++) {
-                consAccsAddrs.contacts[i + j].Current_Address__c = parentAcc.Current_Address__c;
-                consAccsAddrs.contacts[i + j].MailingStreet = addr.MailingStreet__c;
-	            consAccsAddrs.contacts[i + j].MailingCity = addr.MailingCity__c;
-	            consAccsAddrs.contacts[i + j].MailingState = addr.MailingState__c;
-	            consAccsAddrs.contacts[i + j].MailingPostalCode = addr.MailingPostalCode__c;
-	            consAccsAddrs.contacts[i + j].MailingCountry = addr.MailingCountry__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].Current_Address__c = parentAcc.Current_Address__c;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingStreet = addr.MailingStreet__c;
+	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCity = addr.MailingCity__c;
+	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingState = addr.MailingState__c;
+	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingPostalCode = addr.MailingPostalCode__c;
+	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCountry = addr.MailingCountry__c;
             }
         }
         update consAccsAddrs.contacts;
