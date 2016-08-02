@@ -53,10 +53,10 @@
         <fields>Course_Offering__c</fields>
         <fields>Program_Enrollment__c</fields>
         <fields>Grade__c</fields>
-        <label>HEDA Course Enrollment Compact Layout</label>
+        <label>HEDA Course Connection Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Represents a student’s enrollment in a Course Offering.</description>
+    <description>Represents a connection to a Course Offering.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -73,7 +73,7 @@
         <inlineHelpText>The Academic Program the student is enrolled in.</inlineHelpText>
         <label>Contact&apos;s Academic Program</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
+        <relationshipLabel>Course Connections</relationshipLabel>
         <relationshipName>Course_Enrollments</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -85,7 +85,7 @@
         <externalId>false</externalId>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
-        <relationshipLabel>Course Enrollment</relationshipLabel>
+        <relationshipLabel>Course Connection</relationshipLabel>
         <relationshipName>Course_Enrollment</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -99,7 +99,7 @@
         <inlineHelpText>The student taking the course.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
+        <relationshipLabel>Course Connections</relationshipLabel>
         <relationshipName>Student_Course_Enrollments</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -113,7 +113,7 @@
         <inlineHelpText>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</inlineHelpText>
         <label>Course Offering ID</label>
         <referenceTo>Course_Offering__c</referenceTo>
-        <relationshipLabel>Course Enrollment</relationshipLabel>
+        <relationshipLabel>Course Connection</relationshipLabel>
         <relationshipName>Course_Enrollment</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -160,24 +160,24 @@
         <inlineHelpText>The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.</inlineHelpText>
         <label>Program Enrollment ID</label>
         <referenceTo>Program_Enrollment__c</referenceTo>
-        <relationshipLabel>Course Enrollments</relationshipLabel>
+        <relationshipLabel>Course Connections</relationshipLabel>
         <relationshipName>Course_Enrollments</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Course Enrollment</label>
+    <label>Course Connection</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>CE-{0000}</displayFormat>
-        <label>Course Enrollment ID</label>
+        <displayFormat>CC-{0000}</displayFormat>
+        <label>Course Connection ID</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Course Enrollments</pluralLabel>
+    <pluralLabel>Course Connections</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
