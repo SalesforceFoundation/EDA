@@ -536,9 +536,9 @@ public with sharing class ADDR_Contact_TEST {
  
          // verify the previous addresses got Default cleared.
         List<Address__c> addrs = [select Id, Default_Address__c, MailingStreet__c, Parent_Contact__c from Address__c];
+        UTIL_Debug.debug('****All addresses created: ' + JSON.serializePretty(addrs));
         // each set of edits created a new address object 
         System.assertEquals(16, addrs.size());
-        UTIL_Debug.debug('****All addresses created: ' + JSON.serializePretty(addrs));
         for (Address__c addr : addrs) {
             boolean fNewDefault = (addr.MailingStreet__c.contains('final Street Edit'));
             System.assertEquals(fNewDefault, addr.Default_Address__c);

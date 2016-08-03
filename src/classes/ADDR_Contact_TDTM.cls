@@ -205,8 +205,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                             //if override, create new Address record
                             } else if(contact.is_Address_Override__c && !addrInfoChanged) {
                                 UTIL_Debug.debug('****Household contact override set.');
-                                //Address info needs to be retrieved from Current_Address__c
-                                if(contact.Current_Address__c != null && contact.Current_Address__c != contactOld.Current_Address__c) {
+                                //If Current_Address__c has been changed, address info needs to be retrieved from Current_Address__c
+                                if(contact.Current_Address__c != null && contact.Current_Address__c != contactOld.Current_Address__c && !contact.is_Address_Override__c) {
                                     contactsAddrGetFromHh.add(contact);
                                 //Address record needs to be created as child of parent Account
                                 } else {                                   
@@ -221,8 +221,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 		                        UTIL_Debug.debug('****Household contact Addr info changed.'); 
 		                        //create new Address as child of parent Account
 		                        contactsCreateAddrFrom.add(contact);
-		                        //Address needs to be copied to parent Household, and all siblings that don't have an override.
-		                        contactsAddrPropagate.add(contact);
+		                        if(!contact.is_Address_Override__c)
+		                            //Address needs to be copied to parent Household, and all siblings that don't have an override.
+		                            contactsAddrPropagate.add(contact);
 		                    
 		                    // if the address info has been removed
 		                    } else if (addrInfoCleared) {
@@ -341,7 +342,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            DmlWrapper.objectsToUpdate.add(acc);
 	            //Copy address info to each sibling - we need to exclude the one the trigger is running on!
 	            for(Contact contact : acc.Contacts) {
-	                if(contact.ID != originalContact.ID) {
+	                if(contact.ID != originalContact.ID && !contact.is_Address_Override__c) {
 	                   ADDR_Addresses_UTIL.copyAddressStdSObj(originalContact, 'Mailing', contact, 'Mailing');
 	                   UTIL_Debug.debug('****Address info copied to sibling Contact: ' + JSON.serializePretty(contact));
 	                   DmlWrapper.objectsToUpdate.add(contact);
@@ -359,7 +360,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     
     private String getParentAccsWithChildrenQuery() {
         String query = getAccAddrFieldsQuery();
-        query += ', (select Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Account.Contacts)';  
+        query += ', (select Current_Address__c, is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Account.Contacts)';  
         query += ', (select Default_Address__c from Account.Addresses__r)';
         query +=  ' from Account where Id IN ';
         return query;
@@ -409,7 +410,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                 dmlWrapper.objectsToUpdate.add(acc);
                 //Clear address info from each sibling - we need to exclude the one the trigger is running on!
                 for(Contact contact : acc.Contacts) {
-                    if(contact.ID != originalContact.ID) {
+                    if(contact.ID != originalContact.ID && !contact.is_Address_Override__c) {
                        contact.Current_Address__c = null;
                        ADDR_Addresses_UTIL.clearAddrInfo(contact);
                        DmlWrapper.objectsToUpdate.add(contact);
@@ -620,10 +621,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             }
         }
         UTIL_Debug.debug('****parentAccIDs in resetConAddrInfo: ' + parentAccIDs);
-        String query = getParentAccsQuery() + ' :parentAccIDs';
+        
+        String query = getParentAccsWithChildrenQuery() + ' :parentAccIDs';
         UTIL_Debug.debug('****resetConAddrInfo query: ' + query);
+        
         List<Account> parentAccs = Database.query(query);
         UTIL_Debug.debug('****parentAccs in resetConAddrInfo: ' + JSON.serializePretty(parentAccs));
+        
         Map<ID, Account> parentAccsMap = new Map<ID, Account>(parentAccs); 
         
         //Copy address info from each parent account to each child contact
@@ -631,10 +635,18 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             if(contact.AccountID != null) {
                 Account acc = parentAccsMap.get(contact.AccountID);
                 UTIL_Debug.debug('****Account after calling copyAddressStdSObj on reset: ' + JSON.serializePretty(acc));
-                ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');
-                UTIL_Debug.debug('****Contact after calling copyAddressStdSObj on reset: ' + JSON.serializePretty(contact));
+                
                 if(triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                    dmlWrapper.objectsToUpdate.add(contact);   
+                    //We need to get the contact we have just queried - cannot update the one in the after part of the trigger
+                    for(Contact childContact : acc.Contacts) {
+                        if(childContact.Id == contact.Id) {                
+	                        ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', childContact, 'Mailing');
+	                        UTIL_Debug.debug('****Contact after calling copyAddressStdSObj on reset: ' + JSON.serializePretty(childContact));
+	                        dmlWrapper.objectsToUpdate.add(childContact);
+                        }
+                    }
+                } else {
+                    ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');  
                 }
             }
         }   

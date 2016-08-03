@@ -248,6 +248,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return void
     */ 
     public static void copyAddressObj(Address__c addrSrc, Address__c addrDst) {
+        addrDst.Default_Address__c = addrSrc.Default_Address__c;
         addrDst.MailingStreet__c = addrSrc.MailingStreet__c;
         addrDst.MailingStreet2__c = addrSrc.MailingStreet2__c;
         addrDst.MailingCity__c = addrSrc.MailingCity__c;
@@ -484,6 +485,8 @@ public with sharing class ADDR_Addresses_UTIL {
         for (Address__c addrNew : listAddr) {
             Address__c addrDup = mapAddrDupAddr.get(addrNew);
             if (addrDup != null) {
+                addrDup.Latest_Start_Date__c = System.today();
+                addrDup.Latest_End_Date__c = null; 
                 // if it is a fuzzy match, not exact, then we want to update the existing address.
                 if (isAddressChanged(addrNew, addrDup, includeAddressType)) {
                     copyAddressObj(addrNew, addrDup);
@@ -495,7 +498,9 @@ public with sharing class ADDR_Addresses_UTIL {
                     addrDup.Default_Address__c = true;
                     nonDupeAddrs.updatedAddrs.add(addrDup);
                }
-            } else { 
+            } else {
+                 addrNew.Latest_Start_Date__c = System.today();
+                 addrNew.Latest_End_Date__c = null; 
                  nonDupeAddrs.newAddrs.add(addrNew);
             } 
         }

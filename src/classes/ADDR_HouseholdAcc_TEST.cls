@@ -675,6 +675,9 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         UTIL_Debug.debug('****First explicit contacts update in clearAddrOverrideHH');
         update  consAccsAddrs.contacts;
 
+        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****Contacts after first update: ' + JSON.serializePretty(listCon));
+
         // now clear out the contacts' address overrides
         for (Integer i = 0; i < 2; i++) {
             consAccsAddrs.contacts[i*2 + i].is_Address_Override__c = false;
@@ -687,7 +690,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         
         // verify that the HH and Contacts share the same address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****Contacts after second update: ' + JSON.serializePretty(listCon));
         
         for (Contact con : listCon) {
             UTIL_Debug.debug('****Contact after clearing override: ' + JSON.serializePretty(con));
@@ -1588,9 +1592,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listCon;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
  
-        // modify some of the contact addresses directly
+        // modify override contact address info directly
         for (Contact con : listCon) {
             con.MailingStreet = 'Direct Street Edit';
             con.MailingCity = 'Direct City Edit';
@@ -1603,6 +1606,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // verify that the HH and Contacts share the same address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****Contacts after all updates: ' + JSON.serializePretty(listCon));
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -1994,7 +1998,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
                 
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
-        UTIL_Debug.debug('****Contacts created for test: ' + JSON.serializePretty(consAccsAddrs.contacts));
+        UTIL_Debug.debug('****Test data created for test: ' + JSON.serializePretty(consAccsAddrs));
         
         // clear some of the contact addresses directly
         for (integer i = 0; i < consAccsAddrs.contacts.size(); i++) {
