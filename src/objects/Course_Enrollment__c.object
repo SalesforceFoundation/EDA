@@ -153,6 +153,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Primary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Represents a Primary Course Connection.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Represents a Primary Course Connection.</inlineHelpText>
+        <label>Primary</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Program_Enrollment__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.</description>
@@ -165,6 +175,26 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Represents the Status of the Course Connection.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Represents the Status of the Course Connection.</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Current</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Former</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <label>Course Connection</label>
     <listViews>

@@ -195,7 +195,9 @@
         <members>Course_Enrollment__c.Credits_Attempted__c</members>
         <members>Course_Enrollment__c.Credits_Earned__c</members>
         <members>Course_Enrollment__c.Grade__c</members>
+        <members>Course_Enrollment__c.Primary__c</members>
         <members>Course_Enrollment__c.Program_Enrollment__c</members>
+        <members>Course_Enrollment__c.Status__c</members>
         <members>Course_Offering__c.Capacity__c</members>
         <members>Course_Offering__c.Course__c</members>
         <members>Course_Offering__c.End_Date__c</members>
@@ -356,7 +358,7 @@
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
         <members>Contact-HEDA Contact Layout</members>
-        <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
+        <members>Course_Enrollment__c-HEDA Course Connection Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
         <members>Error__c-HEDA Error Layout</members>
