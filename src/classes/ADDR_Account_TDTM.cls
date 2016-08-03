@@ -281,6 +281,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 	        if(acc.recordTypeID == UTIL_Describe.getHhAccRecTypeID()) {
 	            for(Contact contact : acc.Contacts) {
 	                if(!contact.is_Address_Override__c) {
+	                   contact.Current_Address__c = null;
 	                   ADDR_Addresses_UTIL.clearAddrInfo(contact);
 	                   dmlWrapper.objectsToUpdate.add(contact);
 	                }

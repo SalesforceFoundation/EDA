@@ -130,6 +130,8 @@ public class UTIL_UnitTestData_TEST {
             accsAddrs.accs[i].BillingState = accsAddrs.addrs[i].MailingState__c;
             accsAddrs.accs[i].BillingPostalCode = accsAddrs.addrs[i].MailingPostalCode__c;
             accsAddrs.accs[i].BillingCountry = accsAddrs.addrs[i].MailingCountry__c;
+            accsAddrs.accs[i].BillingLatitude = accsAddrs.addrs[i].Geolocation__Latitude__s;
+            accsAddrs.accs[i].BillingLongitude = accsAddrs.addrs[i].Geolocation__Longitude__s;
         }
         update  accsAddrs.accs;
 
@@ -179,6 +181,8 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.contacts[i].MailingState = contactsAddrs.addrs[i].MailingState__c;
             contactsAddrs.contacts[i].MailingPostalCode = contactsAddrs.addrs[i].MailingPostalCode__c;
             contactsAddrs.contacts[i].MailingCountry = contactsAddrs.addrs[i].MailingCountry__c;
+            contactsAddrs.contacts[i].MailingLatitude = contactsAddrs.addrs[i].Geolocation__Latitude__s;
+            contactsAddrs.contacts[i].MailingLongitude = contactsAddrs.addrs[i].Geolocation__Longitude__s;
         }
         update contactsAddrs.contacts;
         
@@ -246,7 +250,8 @@ public class UTIL_UnitTestData_TEST {
             consAccsAddrs.accs[i].BillingState = consAccsAddrs.addrs[i].MailingState__c;
             consAccsAddrs.accs[i].BillingPostalCode = consAccsAddrs.addrs[i].MailingPostalCode__c;
             consAccsAddrs.accs[i].BillingCountry = consAccsAddrs.addrs[i].MailingCountry__c;
-            consAccsAddrs.accs[i].Current_Address__c = consAccsAddrs.addrs[i].ID;
+            consAccsAddrs.accs[i].BillingLatitude = consAccsAddrs.addrs[i].Geolocation__Latitude__s;
+            consAccsAddrs.accs[i].BillingLongitude = consAccsAddrs.addrs[i].Geolocation__Longitude__s;
         }
         update  consAccsAddrs.accs;
         
@@ -261,6 +266,8 @@ public class UTIL_UnitTestData_TEST {
 	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingState = addr.MailingState__c;
 	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingPostalCode = addr.MailingPostalCode__c;
 	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCountry = addr.MailingCountry__c;
+	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingLatitude = addr.Geolocation__Latitude__s;
+                consAccsAddrs.contacts[ (i * contactCount) + j].MailingLongitude = addr.Geolocation__Longitude__s;
             }
         }
         update consAccsAddrs.contacts;
