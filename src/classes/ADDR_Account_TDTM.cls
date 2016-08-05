@@ -62,12 +62,13 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
             
         DmlWrapper dmlWrapper = new DmlWrapper();
-
+            
         if(!alreadyRunAfterInsert || !alreadyRunAfterUpdate) {
-	        //Turn off other address triggers
-	        ADDR_Contact_TDTM.turnOff();
-	        ADDR_Addresses_TDTM.turnOff();
 	        
+	        //Turn off other address triggers
+            ADDR_Contact_TDTM.turnOff();
+            ADDR_Addresses_TDTM.turnOff();
+        
 	        List<Account> newAddrInfoAccs = new List<Account>();      
 	        List<Account> accsAddrInfoCleared = new List<Account>();
 	                

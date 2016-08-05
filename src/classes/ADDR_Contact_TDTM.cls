@@ -37,18 +37,15 @@
 public class ADDR_Contact_TDTM extends TDTM_Runnable {
     
     /* @description static flag to prevent recursive call */
-    public static Boolean alreadyRunBeforeUpdate = false;
     public static Boolean alreadyRunAfterInsert = false;
     public static Boolean alreadyRunAfterUpdate = false;
         
     public static void turnOff() {
-        alreadyRunBeforeUpdate = true;
         alreadyRunAfterInsert = true;
         alreadyRunAfterUpdate = true;
     }
     
     public static void turnOn() {
-        alreadyRunBeforeUpdate = false;
         alreadyRunAfterInsert = false;
         alreadyRunAfterUpdate = false;
     }
@@ -79,13 +76,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
             
         if(!alreadyRunAfterInsert || !alreadyRunAfterUpdate) {
-	        //Turn off other address triggers
-	        ADDR_Account_TDTM.turnOff();
-	        ADDR_Addresses_TDTM.turnOff();
-	        
-	        //To know if a contact belongs to a household (if the parent account has Household record type) 
-	        Map<ID, ID> contactIDToAccRecTypeID = getContactIdToAccRecTypeId(listNew);
-	
+	    
+	       //Turn off other address triggers
+            ADDR_Account_TDTM.turnOff();
+            ADDR_Addresses_TDTM.turnOff();
+
+            Map<ID, ID> contactIDToAccRecTypeID;
+            
 	        //List of Contacts from which an Address record needs to be created.
 	        List<Contact> contactsCreateAddrFrom = new List<Contact>();
 	        
@@ -108,35 +105,14 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	        //List of Contacts that need to have address info copied from parent Househod (for example, they have been created without address info)
 	        List<Contact> contactsAddrInfoReset = new List<Contact>(); //This different from the contactsAddrGetFromHh list because contacts in 
 	        //contactsAddrGetFromHh should have a value in their Current_Address__c field
-	
-	
-	        //BEFORE UPDATE
-	        if (!alreadyRunBeforeUpdate && triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-	           Integer i = 0;
-	           for (SObject so : listNew) {
-                    Contact contact = (Contact)so;
-                    Contact contactOld = (Contact)listOld[i];
-                    Boolean addrInfoChanged = ADDR_Addresses_UTIL.isContactAddressChanged(contact, contactOld);
-                    UTIL_Debug.debug('****addrInfoChanged before update: ' + addrInfoChanged);
-                    
-                    // if they are changing to a new Current Address, but address info doesn't change, and it's not an override refill from it.
-                    if (contact.Current_Address__c != contactOld.Current_Address__c && contact.Current_Address__c != null && !addrInfoChanged) {
-                        UTIL_Debug.debug('****Contact switching current address');
-                        if (contact.is_Address_Override__c) {
-                            // track which address's need their dates updated
-                            addrIdsOverride.put(contact.Current_Address__c, true);
-                        } else {
-                            contactsAddrGetFromHh.add(contact);
-                        }
-                    }
-                    i++;
-	           }
-	           alreadyRunBeforeUpdate = true;
-	        }
 	        
 	        // AFTER INSERT
 	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 	            UTIL_Debug.debug('ADDR_Contact_TDTM after insert.');
+	            alreadyRunAfterInsert = true;
+	            
+	            contactIDToAccRecTypeID = getContactIdToAccRecTypeId(listNew);
+	            
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
 	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
@@ -162,18 +138,23 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 		                contactsCreateAddrFrom.add(contact);
 		            }
 	            }
-	            alreadyRunAfterInsert = true;
 	        }
 	        
 	        // AFTER UPDATE
 	        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 	            UTIL_Debug.debug('****ADDR_Contact_TDTM after update.');
+                alreadyRunAfterUpdate = true;
                 
+                //To know if a contact belongs to a household (if the parent account has Household record type) 
+                contactIDToAccRecTypeID = getContactIdToAccRecTypeId(listNew);
+            
 	            Integer i = 0;
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
+	                UTIL_Debug.debug('****Contact after update: ' + JSON.serializePretty(contact));
 	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
 	                Contact contactOld = (Contact)listOld[i];
+	                UTIL_Debug.debug('****ContactOld after update: ' + JSON.serializePretty(contactOld));
 	                
 	                Boolean addrInfoChanged = ADDR_Addresses_UTIL.isContactAddressChanged(contact, contactOld);
 	                UTIL_Debug.debug('****addrInfoChanged after update: ' + addrInfoChanged);
@@ -181,73 +162,87 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	                Boolean addrInfoCleared = !ADDR_Addresses_UTIL.iscontactAddressEmpty(contactOld) && ADDR_Addresses_UTIL.iscontactAddressEmpty(contact);
 	                UTIL_Debug.debug('****addrInfoCleared after update: ' + addrInfoCleared);
 	                
-		            //If Contact Addresses are enabled, and the Contact is not the child of a HH 
-		            if(!childOfHousehold && UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true) {
-		                if(addrInfoChanged && !addrInfoCleared) {
-		                   UTIL_Debug.debug('****Non-household Contact addr info changed.'); 
-		                   contactsCreateAddrFrom.add(contact);
-		                } else if(addrInfoCleared) {
-		                   UTIL_Debug.debug('****non-household Contact addr info cleared.');
-		                   contactsAddrInfoCleared.add(contact);
-		                }
-		            } else if(childOfHousehold) {
-		                UTIL_Debug.debug('****Updated contact is child of household');
-		                
-		                // if the Contact has been changed to a different household
-                        if(contactOld != null && contact.AccountID != contactOld.AccountID) {
-                            UTIL_Debug.debug('****Updated household contact has been moved to different household');
-                            
-                            // if no override, refill from the Default Address
-                            if (!contact.is_Address_Override__c && !addrInfoChanged) {
-                                //Refilling address info from parent Household
-                                contactsAddrInfoReset.add(contact);
-                            
-                            //if override, create new Address record
-                            } else if(contact.is_Address_Override__c && !addrInfoChanged) {
-                                UTIL_Debug.debug('****Household contact override set.');
-                                //If Current_Address__c has been changed, address info needs to be retrieved from Current_Address__c
-                                if(contact.Current_Address__c != null && contact.Current_Address__c != contactOld.Current_Address__c && !contact.is_Address_Override__c) {
-                                    contactsAddrGetFromHh.add(contact);
-                                //Address record needs to be created as child of parent Account
-                                } else {                                   
-                                    contactsCreateAddrFrom.add(contact);
-                                }
-                            }
-		                //Contact not switching household
-                        } else {
-                            UTIL_Debug.debug('****Contact has not switched household');
-			                // if the address changed  
-			                if (addrInfoChanged && !addrInfoCleared) {
-		                        UTIL_Debug.debug('****Household contact Addr info changed.'); 
-		                        //create new Address as child of parent Account
-		                        contactsCreateAddrFrom.add(contact);
-		                        if(!contact.is_Address_Override__c)
-		                            //Address needs to be copied to parent Household, and all siblings that don't have an override.
-		                            contactsAddrPropagate.add(contact);
-		                    
-		                    // if the address info has been removed
-		                    } else if (addrInfoCleared) {
-			                    UTIL_Debug.debug('****Household contact Addr info cleared.');
-			                    contactsAddrInfoCleared.add(contact);
-			                    //if the contact was not override, but pointing to the default Address instead
-			                    if(!contact.is_Address_Override__c)
-			                        contactsAddrPropagateDelete.add(contact);
-		                    
-		                    // if they are clearing isAddressOverride, refill from the Default Address
-			                } else if (!contact.is_Address_Override__c && contact.is_Address_Override__c != contactOld.is_Address_Override__c) {
-	                            UTIL_Debug.debug('****is_Address_Override__c cleared');
-	                            contactsAddrInfoReset.add(contact);
-	                            if (contactOld.Current_Address__c != null) {
-	                                // track which addresses need their dates updated
-	                                addrIdsOverride.put(contactOld.Current_Address__c, false);
-	                                UTIL_Debug.debug('****There is an address to fill contact info from');
+	                Boolean currentAddressChanged = contact.Current_Address__c != contactOld.Current_Address__c && contact.Current_Address__c != null;
+	                UTIL_Debug.debug('****currentAddressChanged after update: ' + currentAddressChanged);
+	                	                
+	                // if they are changing to a new Current Address, but address info doesn't change, refill from it (both household and not household)
+                    if (currentAddressChanged) { 
+                        if(!addrInfoChanged) {
+		                    UTIL_Debug.debug('****Contact switching current address');
+		                    contactsAddrGetFromHh.add(contact);
+		                    if(contact.is_Address_Override__c == true && contactOld.is_Address_Override__c == false)
+		                        addrIdsOverride.put(contact.Current_Address__c, true);
+                        }  else {
+                            UTIL_Debug.debug('****Current address changed & address info also changed');
+                        }
+                    } else { 
+			            //If Contact Addresses are enabled, and the Contact is not the child of a HH 
+			            if(!childOfHousehold && UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true) {
+			                if(addrInfoChanged && !addrInfoCleared && !currentAddressChanged) {
+			                   UTIL_Debug.debug('****Non-household Contact addr info changed.'); 
+			                   contactsCreateAddrFrom.add(contact);
+			                } else if(addrInfoCleared) {
+			                   UTIL_Debug.debug('****Non-household Contact addr info cleared.');
+			                   contactsAddrInfoCleared.add(contact);
+			                }
+			            } else if(childOfHousehold) {
+			                UTIL_Debug.debug('****Updated contact is child of household');
+			                
+			                // if the Contact has been changed to a different household
+	                        if(contactOld != null && contact.AccountID != contactOld.AccountID && !currentAddressChanged) {
+	                            UTIL_Debug.debug('****Updated household contact has been moved to different household');
+	                            
+	                            // if no override, refill from the Default Address
+	                            if (!contact.is_Address_Override__c && !addrInfoChanged) {
+	                                //Refilling address info from parent Household
+	                                contactsAddrInfoReset.add(contact);
+	                            
+	                            //if override, create new Address record
+	                            } else if(contact.is_Address_Override__c && !addrInfoChanged) {
+	                                UTIL_Debug.debug('****Household contact has override --> create new Address in new household');
+	                                //If Current_Address__c has been changed, address info needs to be retrieved from Current_Address__c
+	                                /*if(contact.Current_Address__c != null && contact.Current_Address__c != contactOld.Current_Address__c && !contact.is_Address_Override__c) {
+	                                    contactsAddrGetFromHh.add(contact);
+	                                //Address record needs to be created as child of parent Account
+	                                } else {*/                                   
+	                                    contactsCreateAddrFrom.add(contact);
+	                                //}
 	                            }
-	                        }
-		                }
-		            }
+			                //Contact not switching household
+	                        } else {
+	                            UTIL_Debug.debug('****Contact has not switched household');
+				                // if the address changed  
+				                if (addrInfoChanged && !addrInfoCleared && !currentAddressChanged) {
+			                        UTIL_Debug.debug('****Household contact Addr info changed.'); 
+			                        //create new Address as child of parent Account
+			                        contactsCreateAddrFrom.add(contact);
+			                        if(!contact.is_Address_Override__c)
+			                            //Address needs to be copied to parent Household, and all siblings that don't have an override.
+			                            contactsAddrPropagate.add(contact);
+			                    
+			                    // if the address info has been removed
+			                    } else if (addrInfoCleared) {
+				                    UTIL_Debug.debug('****Household contact Addr info cleared.');
+				                    contactsAddrInfoCleared.add(contact);
+				                    //if the contact was not override, but pointing to the default Address instead
+				                    if(!contact.is_Address_Override__c)
+				                        contactsAddrPropagateDelete.add(contact);
+			                    
+			                    // if they are clearing isAddressOverride, refill from the Default Address
+				                } else if (!contact.is_Address_Override__c && contact.is_Address_Override__c != contactOld.is_Address_Override__c) {
+		                            UTIL_Debug.debug('****is_Address_Override__c cleared');
+		                            contactsAddrInfoReset.add(contact);
+		                            if (contactOld.Current_Address__c != null) {
+		                                // old current address (before clearing override) needs to have Latest_End_Date updated
+		                                addrIdsOverride.put(contactOld.Current_Address__c, false);
+		                                UTIL_Debug.debug('****There is an address to fill contact info from');
+		                            }
+		                        }	                        
+			                }
+			            }
+                    }  
 		            i++;
 	            }
-	            alreadyRunAfterUpdate = true;
 	        }
 
 	        // set the mailing address for contacts who specify an address lookup or override
@@ -343,6 +338,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            //Copy address info to each sibling - we need to exclude the one the trigger is running on!
 	            for(Contact contact : acc.Contacts) {
 	                if(contact.ID != originalContact.ID && !contact.is_Address_Override__c) {
+	                   contact.Primary_Address_Type__c = originalContact.Primary_Address_Type__c;
 	                   ADDR_Addresses_UTIL.copyAddressStdSObj(originalContact, 'Mailing', contact, 'Mailing');
 	                   UTIL_Debug.debug('****Address info copied to sibling Contact: ' + JSON.serializePretty(contact));
 	                   DmlWrapper.objectsToUpdate.add(contact);
@@ -360,7 +356,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     
     private String getParentAccsWithChildrenQuery() {
         String query = getAccAddrFieldsQuery();
-        query += ', (select Current_Address__c, is_Address_Override__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Account.Contacts)';  
+        query += ', (select Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Account.Contacts)';  
         query += ', (select Default_Address__c from Account.Addresses__r)';
         query +=  ' from Account where Id IN ';
         return query;
@@ -402,8 +398,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             //Clear Address info from parent and siblings
             if(originalContact != null) {
                 //Clear current_address field from original contact
-                originalContact.Current_Address__c = null;
-                dmlWrapper.objectsToUpdate.add(originalContact);
+                //originalContact.Current_Address__c = null; --> this is done in addrInfoDeleted!
+                //dmlWrapper.objectsToUpdate.add(originalContact);
                 //Clear address info from parent Account
                 acc.Current_Address__c = null;
                 ADDR_Addresses_UTIL.clearAddrInfo(acc);
@@ -449,6 +445,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
             addr.Default_Address__c = !contact.is_Address_Override__c;
             addr.Latest_Start_Date__c = System.today();
             addr.Latest_End_Date__c = null;
+            addr.Address_Type__c = contact.Primary_Address_Type__c;
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(contact, 'Mailing', addr, null);            
             newAddrs.add(addr);
         }
@@ -548,22 +545,22 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         for (Contact contact : listCon) {
             Address__c addr = mapAddrIdAddr.get(contact.Current_Address__c);           
             if (addr != null) {
-                //UTIL_Debug.debug('****Refreshing address info in Contact from default address: ' + JSON.serializePretty(addr)); 
-                if(triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                UTIL_Debug.debug('****Refreshing address info in Contact from Current_Address__c: ' + JSON.serializePretty(addr)); 
+                //if(triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     Map<ID, Contact> childContacts = new Map<ID, Contact>(addr.Contacts1__r);
                     //Getting the queried contact, because we cannot dml on the same records that were part of the trigger
                     Contact childContact = childContacts.get(contact.ID);
                     if(childContact != null) {
                         childContact.Primary_Address_Type__c = addr.Address_Type__c;
                         ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, childContact, 'Mailing', 'Primary_Address_Type__c', null);
+                        UTIL_Debug.debug('****Contact after copying addr info from Current_Address__c: ' + JSON.serializePretty(childContact));
                         dmlWrapper.objectsToUpdate.add(childContact);
                     }
-                } else {
+                /*} else {
                     contact.Primary_Address_Type__c = addr.Address_Type__c;
                     ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', 'Primary_Address_Type__c', null);
                 }
-                addr.Latest_End_Date__c = System.today();
-                dmlWrapper.objectsToUpdate.add(addr);
+                addr.Latest_End_Date__c = System.today();*/
             }
         }
     }

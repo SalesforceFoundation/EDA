@@ -72,17 +72,17 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
    
         DmlWrapper dmlWrapper = new DmlWrapper();
-        
+
         if(!alreadyRunBeforeInsert || !alreadyRunBeforeUpdate || !alreadyRunAfterInsert || !alreadyRunAfterUpdate || !alreadyRunAfterDelete) {
+            //Turn off other address triggers
+            ADDR_Account_TDTM.turnOff();
+            ADDR_Contact_TDTM.turnOff();
+        
 	        // STRATEGY
 	        // when a default Address is created or modified, we need to consider three other objects we may need to update:
 	        // - the parent Account, if not null
 	        // - the parent Contact, if not null
 	        // - any other Addresses that should no longer be Default
-	         
-	        //Turn off other address triggers
-	        ADDR_Account_TDTM.turnOff();
-	        ADDR_Contact_TDTM.turnOff();
 	        
 	        // map of parents, and their default Address
 	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>();
@@ -134,8 +134,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            }
 	            }
 	            
-	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
-	            processDml(dmlWrapper, mapParentIdAddr);
+	            if(mapParentIdAddr.size() > 0) {
+	                refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	                processDml(dmlWrapper, mapParentIdAddr);
+	            }
 	            
 	            // enforce address records created only as children of parents
 	            verifyAddrAccContactChildOnly((List<Address__c>)listNew);
@@ -169,8 +171,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            i++;
 	            }
 	            
-	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
-	            processDml(dmlWrapper, mapParentIdAddr);
+	            if(mapParentIdAddr.size() > 0) {
+	                refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	                processDml(dmlWrapper, mapParentIdAddr);
+	            }
 	            
 	            alreadyRunAfterUpdate = true;
 	        }
@@ -190,8 +194,10 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                i++;
 	            }
 	            
-	            refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
-	            processDml(dmlWrapper, mapParentIdAddr);
+	            if(mapParentIdAddr.size() > 0) {
+	               refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	               processDml(dmlWrapper, mapParentIdAddr);
+	            }
 	            
 	            alreadyRunAfterDelete = true;
 	        }

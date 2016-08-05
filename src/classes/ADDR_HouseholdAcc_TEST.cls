@@ -261,7 +261,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         list<Contact> listCon = new list<Contact>();
         for (integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.Current_Address__c = consAccsAddrs.addrs[i].Id;
+            con.Current_Address__c = addrs[i].Id;
             con.is_Address_Override__c = true;
             listCon.add(con);
         }
@@ -597,15 +597,14 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        //ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         // set the contacts' address overrides
         list<Contact> listCon = new list<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.Current_Address__c = consAccsAddrs.addrs[i].Id;
+            con.Current_Address__c = addrs[i].Id;
             con.is_Address_Override__c = true;
             listCon.add(con);
         }
@@ -635,7 +634,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         }
 
         // verify address overrides have latest start date and latest end date appropriately set.
-        list<Address__c> listAddr = [select Id, Latest_Start_Date__c, Latest_End_Date__c from Address__c where Id in :consAccsAddrs.addrs];
+        list<Address__c> listAddr = [select Id, Latest_Start_Date__c, Latest_End_Date__c from Address__c where Id in :addrs];
         system.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
            system.assertEquals(system.today(), addr.Latest_Start_Date__c);
@@ -650,7 +649,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     @isTest
     public static void clearAddrOverrideHH() {
         configSettings();
-        ADDR_Contact_TEST.turnOffAllAddrTriggers();
+
         // this creates two child Contacts and a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
         UTIL_Debug.debug('****clearAddrOverrideHH consAccsAddrs: ' + JSON.serializePretty(consAccsAddrs));
@@ -662,38 +661,44 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
+            addrs[i].Latest_Start_Date__c = system.today();
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
         
         // set the contacts' address overrides - one contact in each account
+        List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
-            consAccsAddrs.contacts[i*2 + i].Current_Address__c = addrs[i].Id;
-            consAccsAddrs.contacts[i*2 + i].is_Address_Override__c = true;
+            Contact con = consAccsAddrs.contacts[i*2 + i];
+            con.Current_Address__c = addrs[i].Id;
+            con.is_Address_Override__c = true;
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addrs[i], con, 'Mailing', 'Primary_Address_Type__c', null);
+            listCon.add(con);
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        UTIL_Debug.debug('****First explicit contacts update in clearAddrOverrideHH');
-        update  consAccsAddrs.contacts;
+        //ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
+        update listCon;
 
-        List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        UTIL_Debug.debug('****Contacts after first update: ' + JSON.serializePretty(listCon));
+        List<Contact> allCons = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****Contacts after first update: ' + JSON.serializePretty(allCons));
 
         // now clear out the contacts' address overrides
-        for (Integer i = 0; i < 2; i++) {
-            consAccsAddrs.contacts[i*2 + i].is_Address_Override__c = false;
+        for (Contact con : listCon) {
+            con.is_Address_Override__c = false;
         }
+
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        Test.startTest();
         UTIL_Debug.debug('****Second explicit contacts update in clearAddrOverrideHH');
-        update consAccsAddrs.contacts;
+        Test.startTest();
+        update listCon;
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
-        listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        UTIL_Debug.debug('****Contacts after second update: ' + JSON.serializePretty(listCon));
+        allCons = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****Contacts after second update: ' + JSON.serializePretty(allCons));
         
-        for (Contact con : listCon) {
+        for (Contact con : allCons) {
             UTIL_Debug.debug('****Contact after clearing override: ' + JSON.serializePretty(con));
             Account acc = mapAccIdAcc.get(con.AccountId);
             UTIL_Debug.debug('****Parent Account after clearing override: ' + JSON.serializePretty(acc));
@@ -711,7 +716,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         for (Address__c addr : listAddr) {
            system.assertEquals(system.today(), addr.Latest_Start_Date__c);
            system.assertEquals(system.today(), addr.Latest_End_Date__c);
-        }        
+        }     
     }
 
     /*********************************************************************************************************
@@ -1586,7 +1591,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         list<Contact> listCon = new list<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.Current_Address__c = consAccsAddrs.addrs[i].Id;
+            con.Current_Address__c = addrs[i].Id;
             con.is_Address_Override__c = true;
             listCon.add(con);
         }
@@ -2000,9 +2005,9 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
         UTIL_Debug.debug('****Test data created for test: ' + JSON.serializePretty(consAccsAddrs));
         
-        // clear some of the contact addresses directly
-        for (integer i = 0; i < consAccsAddrs.contacts.size(); i++) {
-            Contact con = consAccsAddrs.contacts[i];
+        // clear some of the contact addresses directly - one in each household
+        for (integer i = 0; i < 2; i++) {
+            Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingStreet = null;
             con.MailingCity = null;
             con.MailingPostalCode = null;
