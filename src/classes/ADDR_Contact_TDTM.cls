@@ -118,19 +118,20 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
 		            
 		            if (childOfHousehold) {
-                        if (contact.is_Address_Override__c) {
-                            // address needs latest start/end dates updated
-                            addrIdsOverride.put(contact.Current_Address__c, true);
-                        } else { 
-                            //Address record needs to be created as child of parent Account (can be done in the Before cuz we already have the ID to populate Parent_Account__c)
-                            contactsCreateAddrFrom.add(contact);
-                            //Address needs to be copied to parent Household, and all siblings that don't have an override.
-                            contactsAddrPropagate.add(contact);
-                        }
-                        if (ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
+		                if (ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
                            // if the contact has no address specified, pick up the HH default.
                            contactsAddrInfoReset.add(contact);
-                        }
+                        } else { //address info not empty
+	                        if (contact.is_Address_Override__c) {
+	                            // address needs latest start/end dates updated
+	                            addrIdsOverride.put(contact.Current_Address__c, true);
+	                        } else {
+	                            //Address record needs to be created as child of parent Account (can be done in the Before cuz we already have the ID to populate Parent_Account__c)
+	                            contactsCreateAddrFrom.add(contact);
+	                            //Address needs to be copied to parent Household, and all siblings that don't have an override.
+	                            contactsAddrPropagate.add(contact);
+	                        }
+		                }
                     //For new Contacts that are using address management and are not children of Household, create the address object. We do it in the after, so that the 
                     //Parent_Contact__c field in Address can point back to the Contact.
                     } else if (!childOfHousehold &&  UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true && !ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
@@ -329,8 +330,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                     break;
                 }
             }
-            //Copy Address info to parent and siblings
-            if(originalContact != null) {
+            //Copy Address info to parent and siblings, if it's different
+            if(originalContact != null && !ADDR_Addresses_UTIL.isContactAccAddrInfoSame(originalContact, acc)) {
 	            //Copy address info to parent Account
 	            ADDR_Addresses_UTIL.copyAddressStdSObj(originalContact, 'Mailing', acc, 'Billing');
 	            UTIL_Debug.debug('****Address info copied to parent Account: ' + JSON.serializePretty(acc));
@@ -344,6 +345,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	                   DmlWrapper.objectsToUpdate.add(contact);
 	                }
 	            }
+	        //If the address info is the same, just update the Current_Address__c field in the original contact
+            } else if(originalContact != null && ADDR_Addresses_UTIL.isContactAccAddrInfoSame(originalContact, acc)) {
+                originalContact.Current_Address__c = acc.Current_Address__c;
+                DmlWrapper.objectsToUpdate.add(originalContact);
             }
         } 
     }
@@ -453,7 +458,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         //since coming from an Contact address, there is no Address Type, so exclude it from the match testing.
         ADDR_Addresses_UTIL.NonDupeAddrs nonDupeAddrs = ADDR_Addresses_UTIL.getNonDuplicateAddresses(newAddrs, false);
-        //UTIL_Debug.debug('****Non-duplicate address records to create: ' + JSON.serializePretty(nonDupeAddrs));
+        UTIL_Debug.debug('****Non-duplicate address records to create: ' + JSON.serializePretty(nonDupeAddrs));
         nonDupeAddrs.performDml();
         
         //Match each Contact or Account with each new address

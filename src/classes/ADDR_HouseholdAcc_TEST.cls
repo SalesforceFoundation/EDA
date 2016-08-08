@@ -254,29 +254,31 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
         
-        // set the contacts' address overrides
-        list<Contact> listCon = new list<Contact>();
-        for (integer i = 0; i < 2; i++) {
+        // set the contacts' address overrides - one Contact per household
+        List<Contact> listCon = new List<Contact>();
+        for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.Current_Address__c = addrs[i].Id;
             con.is_Address_Override__c = true;
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addrs[i], con, 'Mailing', 'Primary_Address_Type__c', null);
             listCon.add(con);
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listCon;        
         
         // now let's delete the override Addresses
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
-        delete consAccsAddrs.addrs;
+        delete addrs;
         Test.stopTest();
     
         // verify that the HH and Contacts' address fields the default
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****Accounts deleteNonDefaultOverrideAddrHH: ' + JSON.serializePretty(mapAccIdAcc.values()));
+        UTIL_Debug.debug('****Contacts deleteNonDefaultOverrideAddrHH: ' + JSON.serializePretty(listCon));
         system.assertEquals(2 * 2, listCon.size());
         
         for (Contact con : listCon) {
@@ -1746,10 +1748,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
               
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
-
-        // reload accounts to get their default addresses
-        consAccsAddrs.accs = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account];
-        system.assertEquals(2, consAccsAddrs.accs.size());
         
         // insert new contacts to the HH with the current default addresses
         list<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
@@ -1766,7 +1764,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         insert listCon;         
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address

@@ -57,6 +57,26 @@ public with sharing class ADDR_Addresses_UTIL {
            addr.MailingState__c == Null && addr.MailingPostalCode__c == Null && addr.MailingCountry__c == Null);
     }
     
+    public static Boolean isContactAccAddrInfoSame(Contact contact, Account acc) {
+        if ((contact == null && acc != null) || (contact != null && acc == null)) 
+           return false;
+        
+        Boolean isChanged = 
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingStreet, acc.BillingStreet) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCity, acc.BillingCity) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingState, acc.BillingState) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingPostalCode, acc.BillingPostalCode) ||
+           !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry);
+
+        if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
+            isChanged = 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingStateCode')), String.valueOf(acc.get('MailingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingCountryCode')), String.valueOf(acc.get('MailingCountryCode')));
+        }
+        UTIL_Debug.debug('****Contact address info different from account address info: ' + isChanged);
+        return !isChanged;
+    }
+    
     /*******************************************************************************************************
     * @description utility to compare two address objects address fields
     * @param addrNew the new version of the Address
@@ -65,8 +85,6 @@ public with sharing class ADDR_Addresses_UTIL {
     * @return Boolean. true if any of the fields fields have changed on the Address
     */ 
     public static Boolean isAddressChanged(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
-        UTIL_Debug.debug('****isAddressChanged addrNew: ' + JSON.serializePretty(addrNew));
-        UTIL_Debug.debug('****isAddressChanged addrOld: ' + JSON.serializePretty(addrOld));
         if (addrNew == null || addrOld == null) 
            return false;        
         return (
@@ -110,10 +128,10 @@ public with sharing class ADDR_Addresses_UTIL {
            
         if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingStateCode')), string.valueOf(con2.get('MailingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(con1.get('MailingCountryCode')), string.valueOf(con2.get('MailingCountryCode')));
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(con1.get('MailingStateCode')), String.valueOf(con2.get('MailingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(con1.get('MailingCountryCode')), String.valueOf(con2.get('MailingCountryCode')));
         }    
-        UTIL_Debug.debug('****Contact address changed: ' + isChanged);
+        //UTIL_Debug.debug('****Contact address changed: ' + isChanged);
         return isChanged;   
     }
     
@@ -136,12 +154,11 @@ public with sharing class ADDR_Addresses_UTIL {
 
         if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingStateCode')), string.valueOf(acc2.get('BillingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(string.valueOf(acc1.get('BillingCountryCode')), string.valueOf(acc2.get('BillingCountryCode')));
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingStateCode')), String.valueOf(acc2.get('BillingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(acc1.get('BillingCountryCode')), String.valueOf(acc2.get('BillingCountryCode')));
         }
         UTIL_Debug.debug('****Address changed: ' + isChanged);
-        return isChanged;   
-
+        return isChanged;
     }
     
     /*******************************************************************************************************
@@ -163,7 +180,6 @@ public with sharing class ADDR_Addresses_UTIL {
             // only test StateCode if picklists enabled.
             (!ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled || con1.get('MailingStateCode') == null);
         return isEmpty;   
-           
     }
     
     /*******************************************************************************************************
@@ -381,7 +397,7 @@ public with sharing class ADDR_Addresses_UTIL {
         if (strFieldAddrType != null)
             sobjDst.put(strFieldAddrType, addr.Address_Type__c);
           
-        UTIL_Debug.debug('****Object with copied address info: ' + JSON.serializePretty(sobjDst));
+        //UTIL_Debug.debug('****Object with copied address info: ' + JSON.serializePretty(sobjDst));
         if(dmlWrapper != null)
             dmlWrapper.objectsToUpdate.add(sobjDst);
     }
