@@ -1698,7 +1698,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
  
-        // insert new contacts to the HH with new addresses
+        // insert new contacts to the HH with new addresses, one per Household
         list<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
@@ -1710,7 +1710,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         insert listCon;         
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
