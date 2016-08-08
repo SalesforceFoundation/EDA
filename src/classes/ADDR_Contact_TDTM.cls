@@ -108,10 +108,12 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	        
 	        // AFTER INSERT
 	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
-	            UTIL_Debug.debug('ADDR_Contact_TDTM after insert.');
+	            UTIL_Debug.debug('****ADDR_Contact_TDTM after insert.');
 	            alreadyRunAfterInsert = true;
 	            
 	            contactIDToAccRecTypeID = getContactIdToAccRecTypeId(listNew);
+	            
+	            //@TODO: if the address info is not empty, an Address record should be created no matter what. We should refactor the code below. 
 	            
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
@@ -123,8 +125,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                            contactsAddrInfoReset.add(contact);
                         } else { //address info not empty
 	                        if (contact.is_Address_Override__c) {
-	                            // address needs latest start/end dates updated
-	                            addrIdsOverride.put(contact.Current_Address__c, true);
+	                            UTIL_Debug.debug('****Non-default Address record should be created as child of Contact');
+	                            //create non-default address record
+	                            contactsCreateAddrFrom.add(contact);
 	                        } else {
 	                            //Address record needs to be created as child of parent Account (can be done in the Before cuz we already have the ID to populate Parent_Account__c)
 	                            contactsCreateAddrFrom.add(contact);
@@ -137,6 +140,12 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                     } else if (!childOfHousehold &&  UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true && !ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
 		                UTIL_Debug.debug('****Address record should be created as child of Contact');
 		                contactsCreateAddrFrom.add(contact);
+		                //if (contact.is_Address_Override__c) {
+		                    //address needs latest start/end dates updated
+                            //addrIdsOverride.put(contact.Current_Address__c, true); --> fiend not yet populated. Start and End date set at the same
+                            //time Address record is created.
+		                //}
+		                    
 		            }
 	            }
 	        }
@@ -442,6 +451,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     * @return void
     ********************************************************************************************************/
     private void createAddrsFromContacts(List<Contact> listContact, Map<ID, ID> contactIDToAccRecTypeID, DmlWrapper dmlWrapper) {
+        Set<ID> originalContactIDs = new Set<ID>();
+        for(Contact contact : listContact) {
+            originalContactIDs.add(contact.ID);
+        }
         
         List<Address__c> newAddrs = new List<Address__c>();
         for (Contact contact : listContact) {
@@ -486,11 +499,11 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         
         //Putting updated addresses in data structure, to be able to uncheck other defaults (below)
         for(Address__c addr : nonDupeAddrs.updatedAddrs) {
-            if(addr.Parent_Contact__c != null) {
+            if(addr.Parent_Contact__c != null && addr.Default_Address__c) {
                UTIL_Debug.debug('****Putting updated address with parent Contact in map');
                parentContactIDs.add(addr.Parent_Contact__c);
                parentContactIdToAddrMap.put(addr.Parent_Contact__c, addr);  
-            } else if(addr.Parent_Account__c != null) {
+            } else if(addr.Parent_Account__c != null && addr.Default_Address__c) {
                UTIL_Debug.debug('****Putting updated address with parent Account in map');
                parentAccountIDs.add(addr.Parent_Account__c);
                parentAccountIdToAddrMap.put(addr.Parent_Account__c, addr); 
@@ -511,16 +524,19 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         for(Account acc : parentAccounts) {
             Address__c childAddr = parentAccountIdToAddrMap.get(acc.Id);
             if(childAddr != null) {
-                if(childAddr.Default_Address__c)
+                if(childAddr.Default_Address__c) {
                     ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(childAddr, acc.Addresses__r, dmlWrapper);
-                UTIL_Debug.debug('****Linking Account with Address');
-                acc.Current_Address__c = childAddr.Id;
-                objectsToUpdate.add(acc);
+	                UTIL_Debug.debug('****Linking Account with Address');
+	                acc.Current_Address__c = childAddr.Id;
+	                objectsToUpdate.add(acc);
+                }
                 if(acc.Contacts != null) {
-	                UTIL_Debug.debug('****Linking children of the Account with Address: ' + childAddr.Id);
 	                for(Contact contact : acc.Contacts) {
-	                    contact.Current_Address__c = childAddr.Id;
-                        objectsToUpdate.add(contact);
+	                    UTIL_Debug.debug('****Linking children of the Account with Address: ' + childAddr.Id);
+	                    if(childAddr.Default_Address__c || originalContactIDs.contains(contact.ID)) {
+	                       contact.Current_Address__c = childAddr.Id;
+                           objectsToUpdate.add(contact);
+	                    }
 	                }
                 }
             }
