@@ -67,6 +67,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Enable_Course_Connections__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Enables Course Connections. Requires that at least two record types exist for Course Connections to be used for the default Enrolled Student and Faculty.</description>
+        <externalId>false</externalId>
+        <label>Enable Course Connections</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Enable_Debug__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Turn this on to enable debug statements in managed package code.</description>
