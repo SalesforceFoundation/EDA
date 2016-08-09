@@ -431,22 +431,20 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].MailingStreet__c = 'not override' + i;
             addrs[i].MailingCity__c = 'not override' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         // set the contacts' address overrides
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
-            con.Current_Address__c = consAccsAddrs.addrs[i].Id;
+            con.Current_Address__c = addrs[i].Id;
             con.is_Address_Override__c = false;
             listCon.add(con);
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update listCon;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address, except for the contacts we modified
@@ -1337,17 +1335,16 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].MailingStreet__c = 'New Seasonal Street' + i;
             addrs[i].MailingCity__c = 'New Seasonal City' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         // now make them current
         for (Integer i = 0; i < 2; i++) {
-            consAccsAddrs.addrs[i].Seasonal_Start_Month__c = string.valueOf(System.today().addMonths(-1).month());
+            addrs[i].Seasonal_Start_Month__c = string.valueOf(System.today().addMonths(-1).month());
         }
         Test.startTest();
-        update consAccsAddrs.addrs;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();                
+        update addrs;
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address and it's new!
@@ -1470,28 +1467,31 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].MailingStreet__c = 'New Street' + i;
             addrs[i].MailingCity__c = 'New City' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();        
  
         // create additional addresses thru the account.
         for (Integer i = 0; i < 2; i++) {
-            consAccsAddrs.accs[i].BillingStreet = consAccsAddrs.addrs[i].MailingStreet__c;
-            consAccsAddrs.accs[i].BillingCity = consAccsAddrs.addrs[i].MailingCity__c;
-            consAccsAddrs.accs[i].BillingState = consAccsAddrs.addrs[i].MailingState__c;
-            consAccsAddrs.accs[i].BillingPostalCode = consAccsAddrs.addrs[i].MailingPostalCode__c;
-            consAccsAddrs.accs[i].BillingCountry = consAccsAddrs.addrs[i].MailingCountry__c;
+            consAccsAddrs.accs[i].BillingStreet = addrs[i].MailingStreet__c;
+            consAccsAddrs.accs[i].BillingCity = addrs[i].MailingCity__c;
+            consAccsAddrs.accs[i].BillingState = addrs[i].MailingState__c;
+            consAccsAddrs.accs[i].BillingPostalCode = addrs[i].MailingPostalCode__c;
+            consAccsAddrs.accs[i].BillingCountry = addrs[i].MailingCountry__c;
         }        
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update consAccsAddrs.accs;
         Test.stopTest();
         
-        // verify that the HH and Contacts share the same address and it's new!
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
-        System.assertEquals(2 * 2, listCon.size());
+        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
+        UTIL_Debug.debug('****newDupeAccountAddrNonDefaultHH accounts: ' + JSON.serializePretty(mapAccIdAcc.values()));
+        UTIL_Debug.debug('****newDupeAccountAddrNonDefaultHH contacts: ' + JSON.serializePretty(listCon));
+        UTIL_Debug.debug('****newDupeAccountAddrNonDefaultHH addresses: ' + JSON.serializePretty(listAddr));
+        System.assertEquals(4, listAddr.size());
         
+        // verify that the HH and Contacts share the same address and it's new!
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
             System.assertEquals(true, isMatchAddressAccCon(acc, con));
@@ -1502,8 +1502,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         }
         
         // verify the new addresses still are Default and we don't have too many
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c];
-        System.assertEquals(2 * 2, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
             System.assertEquals(isNew, addr.Default_Address__c);
@@ -1532,18 +1530,17 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             addrs[i].MailingStreet__c = 'New Street' + i;
             addrs[i].MailingCity__c = 'New City' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();        
  
         // create additional addresses thru the contact.
         for (Integer i = 0; i < 2; i++) {
             for (Integer j = 0; j < 2; j++) {
-                consAccsAddrs.contacts[(i * 2) + j].MailingStreet = consAccsAddrs.addrs[i].MailingStreet__c;
-                consAccsAddrs.contacts[(i * 2) + j].MailingCity = consAccsAddrs.addrs[i].MailingCity__c;
-                consAccsAddrs.contacts[(i * 2) + j].MailingState = consAccsAddrs.addrs[i].MailingState__c;
-                consAccsAddrs.contacts[(i * 2) + j].MailingPostalCode = consAccsAddrs.addrs[i].MailingPostalCode__c;
-                consAccsAddrs.contacts[(i * 2) + j].MailingCountry = consAccsAddrs.addrs[i].MailingCountry__c;
+                consAccsAddrs.contacts[(i * 2) + j].MailingStreet = addrs[i].MailingStreet__c;
+                consAccsAddrs.contacts[(i * 2) + j].MailingCity = addrs[i].MailingCity__c;
+                consAccsAddrs.contacts[(i * 2) + j].MailingState = addrs[i].MailingState__c;
+                consAccsAddrs.contacts[(i * 2) + j].MailingPostalCode = addrs[i].MailingPostalCode__c;
+                consAccsAddrs.contacts[(i * 2) + j].MailingCountry = addrs[i].MailingCountry__c;
             }
         }        
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -1571,8 +1568,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         for (Address__c addr : listAddr) {
             boolean isNew = (addr.MailingStreet__c.contains('New Street'));
             System.assertEquals(isNew, addr.Default_Address__c);
-        }        
- 
+        }
     }
 
     /*********************************************************************************************************
@@ -1802,17 +1798,26 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     public static void insertContactWithMultilineStreetAddressHH() {
         configSettings();
    
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
-        for (Contact con : contacts) {
+        //create new contacts, one per household
+        for (Integer i = 0; i<contacts.size(); i++) {
+            Contact con = contacts[i];
+            con.AccountId = consAccsAddrs.accs[i].Id;
             con.MailingStreet = 'new street\r\nsecond line';
             con.MailingCity = 'new city';
         }
+        
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
-        insert contacts; 
-        Test.stopTest();       
+        insert contacts;
+        Test.stopTest();
         
         // verify the Address objects split street.
-        List<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c];
+        List<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c 
+        where MailingStreet__c = 'new street'];
+        System.assertEquals(2, listAddr.size());
         for (Address__c addr : listAddr) {
             System.assertEquals('new street', addr.MailingStreet__c);
             System.assertEquals('second line', addr.MailingStreet2__c);
