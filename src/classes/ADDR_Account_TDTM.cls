@@ -39,7 +39,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     /* @description static flag to prevent recursive call */
     public static boolean alreadyRunAfterInsert = false;
     public static boolean alreadyRunAfterUpdate = false;
-    
+        
     public static void turnOff() {
         alreadyRunAfterInsert = true;
         alreadyRunAfterUpdate = true;

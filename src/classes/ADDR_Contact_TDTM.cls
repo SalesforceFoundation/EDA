@@ -39,7 +39,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
     /* @description static flag to prevent recursive call */
     public static Boolean alreadyRunAfterInsert = false;
     public static Boolean alreadyRunAfterUpdate = false;
-        
+    
+    public static Boolean afterAutomaticAccInsert = false;
+    
     public static void turnOff() {
         alreadyRunAfterInsert = true;
         alreadyRunAfterUpdate = true;
@@ -121,7 +123,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
 	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
-		            UTIL_Debug.debug('****Contact inserted is child of household.');
+		            UTIL_Debug.debug('****Contact inserted is child of household: ' + childOfHousehold);
 		            
 		            if (childOfHousehold && householdAddrsEnabled) {
 		                if (ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
@@ -144,13 +146,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
                     //Parent_Contact__c field in Address can point back to the Contact.
                     } else if (!childOfHousehold &&  UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true && !ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
 		                UTIL_Debug.debug('****Address record should be created as child of Contact');
-		                contactsCreateAddrFrom.add(contact);
-		                //if (contact.is_Address_Override__c) {
-		                    //address needs latest start/end dates updated
-                            //addrIdsOverride.put(contact.Current_Address__c, true); --> fiend not yet populated. Start and End date set at the same
-                            //time Address record is created.
-		                //}
-		                    
+		                contactsCreateAddrFrom.add(contact);  
 		            }
 	            }
 	        }
@@ -210,8 +206,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	                            // if no override, refill from the Default Address
 	                            if (!contact.is_Address_Override__c) {
 	                                UTIL_Debug.debug('****Refill address info  from new parent, unless empty');
-	                                //Refilling address info from parent Household (unless parent account address info is empty)
-	                                contactsAddrInfoReset.add(contact);
+	                                //Refilling address info from parent Household (unless parent account address info is empty), 
+	                                //and unless we are coming from the automatic parent Account creation.
+	                                if(!afterAutomaticAccInsert) {
+	                                   contactsAddrInfoReset.add(contact);
+	                                } else {
+	                                   contactsCreateAddrFrom.add(contact); 
+	                                }
 	                            
 	                            //if override, create new Address record
 	                            } else if(contact.is_Address_Override__c && !addrInfoChanged) {

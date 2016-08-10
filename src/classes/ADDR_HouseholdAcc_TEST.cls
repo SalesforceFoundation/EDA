@@ -1974,15 +1974,24 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         insert contact;
         
         //Parent Admin Account should have been created
-        contact = [select Account.ID from Contact where ID = :contact.ID];       
-        System.assertNotEquals(null, contact.Account.ID);
+        contact = [select AccountID, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude 
+                   from Contact where ID = :contact.ID];       
+        System.assertNotEquals(null, contact.AccountID);
                 
         //Address flagged as default should have been created
-        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.Account.ID];
+        Address__c defaultAddress = [select ID, Default_Address__c from Address__c where Parent_Account__c = : contact.AccountID];
         System.assertEquals(true, defaultAddress.Default_Address__c);
         
+        Account acc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude 
+                       from Account where ID = :contact.AccountID];
+        
+        //Verify account and contact share same address
+        System.assertEquals(true, isMatchAddressAccCon(acc, contact));
+        System.assertEquals('123 Default', contact.MailingStreet);
+        System.assertEquals('Chicago', acc.BillingCity);
+        
         //Create seasonal Address with start and end year that include the current date
-        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.Account.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.AccountID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
             MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month()), Seasonal_Start_Year__c = System.today().addYears(-1).year(), 
             Seasonal_End_Day__c = String.valueOf(System.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month()), 
@@ -1994,12 +2003,12 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         Test.stopTest();
         
         //Seasonal Address should have been copied to the Contact and the Account
-        contact = [select Account.ID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
+        contact = [select AccountID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
         System.assertEquals('123 Seasonal', contact.MailingStreet);
         System.assertEquals('Seattle', contact.MailingCity);
         System.assertEquals('WA', contact.MailingState);
         
-        Account acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.Account.ID];
+        acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.AccountID];
         System.assertEquals('123 Seasonal', acc.BillingStreet);
         System.assertEquals('Seattle', acc.BillingCity);
         System.assertEquals('WA', acc.BillingState);
