@@ -402,10 +402,6 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             UTIL_Debug.debug('****Updating address info in Account: ' + JSON.serializePretty(addr));
             Account acc = new Account(Id = parentId);
             ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, acc, 'Billing', null, dmlWrapper);
-            
-            // If the address was deleted, it cannot be the override any more
-            if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
-                acc.is_Address_Override__c = false;
             listParentUpdate.add(acc);
        
         } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {

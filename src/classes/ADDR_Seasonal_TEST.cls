@@ -71,13 +71,12 @@ private with sharing class ADDR_Seasonal_TEST {
         
         // verify Account address is new!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
             system.assertNotEquals(null, acc.Current_Address__c);
         }
         
@@ -128,13 +127,12 @@ private with sharing class ADDR_Seasonal_TEST {
         
         // verify Account address is new!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c 
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
             system.assertNotEquals(null, acc.Current_Address__c);
         }
         
@@ -182,13 +180,12 @@ private with sharing class ADDR_Seasonal_TEST {
         
         // verify Account address is new!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(!acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(!acc.BillingCity.contains('New Seasonal City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
             system.assertNotEquals(null, acc.Current_Address__c);
         }
         
@@ -241,13 +238,12 @@ private with sharing class ADDR_Seasonal_TEST {
         
         // verify Account address is new!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
             system.assertNotEquals(null, acc.Current_Address__c);
         }
         
@@ -684,13 +680,12 @@ private with sharing class ADDR_Seasonal_TEST {
         
         // verify Account address is new!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c 
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             system.assert(acc.BillingStreet.contains('New Seasonal Street'));
             system.assert(acc.BillingCity.contains('New Seasonal City'));
-            system.assertEquals(false, acc.is_Address_Override__c);
             system.assertNotEquals(null, acc.Current_Address__c);
         }
         

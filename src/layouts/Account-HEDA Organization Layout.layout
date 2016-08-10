@@ -54,10 +54,6 @@
                 <behavior>Edit</behavior>
                 <field>ShippingAddress</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>is_Address_Override__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

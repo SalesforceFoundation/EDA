@@ -69,13 +69,12 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
     
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('New Street'));
             System.assert(acc.BillingCity.contains('New City'));
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
     }
@@ -99,7 +98,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     
         // verify that the Account address fields are cleared
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals(null, acc.BillingStreet);
@@ -130,16 +129,15 @@ public with sharing class ADDR_AdminAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
         
-        // set the accounts' address overrides
+        // set the accounts' current address
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             Account acc = accsAddrs.accs[i];
             acc.Current_Address__c = addrs[i].Id;
-            acc.is_Address_Override__c = true;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs;        
         
-        // now let's delete the override Addresses
+        // now let's delete the current Addresses
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         delete addrs;
@@ -147,12 +145,11 @@ public with sharing class ADDR_AdminAcc_TEST {
     
         // verify that the Account address fields went back to the default
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('Street'));
             System.assert(acc.BillingCity.contains('City')); 
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);                
         }
     }
@@ -180,13 +177,12 @@ public with sharing class ADDR_AdminAcc_TEST {
     
         // verify that the Account and Contacts don't share the same address and it's new for the Account!
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c 
         from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals(null, acc.BillingStreet); //address information has been cleared because address is no longer the default
             System.assertEquals(null, acc.BillingCity); //address information has been cleared because address is no longer the default
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertEquals(null, acc.Current_Address__c); //account no longer has a current address, since address is no longer the defaults
         }
     }
@@ -214,9 +210,8 @@ public with sharing class ADDR_AdminAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrNew;
         
-        // set account's address override
+        // set account's address current address
         accsAddrs.accs[1].Current_Address__c = addrNew.Id;
-        accsAddrs.accs[1].is_Address_Override__c = true;
         
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update accsAddrs.accs[0];
@@ -233,20 +228,13 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
-        for (Account acc : mapAccIdAcc.values()) {
-            // verify that the Account address is override
-            if (acc.is_Address_Override__c) { 
-                System.assert(!acc.BillingStreet.contains('street override'));
-                System.assert(!acc.BillingCity.contains('city override'));
-                System.assertEquals(acc.Current_Address__c, addrNew.Id);            
+        for (Account acc : mapAccIdAcc.values()) {         
             // verify that the Account address is new
-            } else { 
-                System.assert(acc.BillingStreet.contains('New Street'));
-                System.assert(acc.BillingCity.contains('New City'));
-                System.assertNotEquals(null, acc.Current_Address__c);
-            }
+            System.assert(acc.BillingStreet.contains('New Street'));
+            System.assert(acc.BillingCity.contains('New City'));
+            System.assertNotEquals(null, acc.Current_Address__c);
         }
     }
 
@@ -280,12 +268,11 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         // verify that the Account addresses are new
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('New Default Street'));
             System.assert(acc.BillingCity.contains('New Default City'));
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
         
@@ -401,12 +388,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('final Street Edit'));
             System.assert(acc.BillingCity.contains('final City Edit'));
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
  
@@ -435,11 +421,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
-        // modify the account addresses directly, and set override
+        // modify the account addresses directly
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             accsAddrs.accs[i].BillingStreet = 'Direct Street Edit';
             accsAddrs.accs[i].BillingCity = 'Direct City Edit';
-            accsAddrs.accs[i].is_Address_Override__c = true;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
@@ -447,14 +432,12 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         System.assertEquals('Direct Street Edit', mapAccIdAcc.values()[0].BillingStreet);
         System.assertEquals('Direct City Edit', mapAccIdAcc.values()[0].BillingCity);
-        System.assertEquals(true, mapAccIdAcc.values()[0].is_Address_Override__c);
         System.assertEquals('Direct Street Edit', mapAccIdAcc.values()[1].BillingStreet);
         System.assertEquals('Direct City Edit', mapAccIdAcc.values()[1].BillingCity);
-        System.assertEquals(true, mapAccIdAcc.values()[1].is_Address_Override__c);
  
          // verify the previous addresses didn't get Default cleared.
         List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
@@ -511,11 +494,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.equals('DIRECT STREET  EDIT'));
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
  
@@ -536,11 +518,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         // verify that the Account address
         mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.equals('direct street  edit'));
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
  
@@ -590,12 +571,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('direct street  edit'));
             System.assert(acc.BillingState.contains('Oregon')); 
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
  
@@ -699,12 +679,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         Test.stopTest();
         
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assert(acc.BillingStreet.contains('New Street'));
             System.assert(acc.BillingCity.contains('New City'));
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
         
@@ -747,11 +726,10 @@ public with sharing class ADDR_AdminAcc_TEST {
         }
 
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals('new street\r\nsecond line', acc.BillingStreet);
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
     }
@@ -787,7 +765,7 @@ public with sharing class ADDR_AdminAcc_TEST {
 
         // verify Account address is new
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals('New Default Street\r\nSecond Line', acc.BillingStreet);
@@ -824,12 +802,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         
         // verify Account address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
             System.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
             System.assertEquals('Direct Street Edit\r\nSecond Line', acc.BillingStreet);
-            System.assertEquals(false, acc.is_Address_Override__c);
             System.assertNotEquals(null, acc.Current_Address__c);
         }
  

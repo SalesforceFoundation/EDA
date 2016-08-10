@@ -62,7 +62,7 @@ public with sharing class ADDR_OtherAcc_TEST {
 
         // verify results
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         system.assertEquals(cAcc, mapAccIdAcc.size());
         
         list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
@@ -152,7 +152,7 @@ public with sharing class ADDR_OtherAcc_TEST {
         
         // verify results
         listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c 
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c 
         from Account order by Account.Name];
         system.assertEquals(3, listAcc.size());
         
@@ -190,10 +190,9 @@ public with sharing class ADDR_OtherAcc_TEST {
 
         // verify Account address
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
-        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, is_Address_Override__c, Current_Address__c from Account]);
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c from Account]);
         
         for (Account acc : mapAccIdAcc.values()) {
-            system.assertEquals(false, acc.is_Address_Override__c);
             system.assertEquals(null, acc.Current_Address__c);
         }
         
