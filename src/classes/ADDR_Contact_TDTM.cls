@@ -106,6 +106,9 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	        List<Contact> contactsAddrInfoReset = new List<Contact>(); //This different from the contactsAddrGetFromHh list because contacts in 
 	        //contactsAddrGetFromHh should have a value in their Current_Address__c field
 	        
+	        Boolean householdAddrsEnabled = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c == UTIL_Describe.getHhAccRecTypeID();
+	        UTIL_Debug.debug('****Household addresses enabled: ' + householdAddrsEnabled); 
+	        
 	        // AFTER INSERT
 	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 	            UTIL_Debug.debug('****ADDR_Contact_TDTM after insert.');
@@ -118,17 +121,19 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
 	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
+		            UTIL_Debug.debug('****Contact inserted is child of household.');
 		            
-		            if (childOfHousehold) {
+		            if (childOfHousehold && householdAddrsEnabled) {
 		                if (ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
                            // if the contact has no address specified, pick up the HH default.
                            contactsAddrInfoReset.add(contact);
                         } else { //address info not empty
 	                        if (contact.is_Address_Override__c) {
-	                            UTIL_Debug.debug('****Non-default Address record should be created as child of Contact');
+	                            UTIL_Debug.debug('****Non-default Address record should be created from Contact');
 	                            //create non-default address record
 	                            contactsCreateAddrFrom.add(contact);
 	                        } else {
+	                            UTIL_Debug.debug('****Default Address record should be created from Contact');
 	                            //Address record needs to be created as child of parent Account (can be done in the Before cuz we already have the ID to populate Parent_Account__c)
 	                            contactsCreateAddrFrom.add(contact);
 	                            //Address needs to be copied to parent Household, and all siblings that don't have an override.
@@ -195,7 +200,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 			                   UTIL_Debug.debug('****Non-household Contact addr info cleared.');
 			                   contactsAddrInfoCleared.add(contact);
 			                }
-			            } else if(childOfHousehold) {
+			            } else if(childOfHousehold && householdAddrsEnabled) {
 			                UTIL_Debug.debug('****Updated contact is child of household');
 			                
 			                // if the Contact has been changed to a different household

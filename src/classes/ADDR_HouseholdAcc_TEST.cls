@@ -1930,7 +1930,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     }
 
     /*********************************************************************************************************
-    @description Create N contacts with Household Accounts when the setting for Address Mgmt is off. 
+    @description Create N contacts with Household Accounts when the setting for Household Address Mgmt is off. 
     verify:
         no Address objects created
         HH Account addresses set
@@ -1939,7 +1939,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     @isTest
     public static void testDisabledHHAccountAddr() {        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+                                       Household_Addresses_RecType__c = null));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Contact con : contacts) {
@@ -1948,13 +1949,13 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         }
         insert contacts;        
 
-        // verify that the HH and Contacts share the same address
+        // verify that the HH and Contacts don't share the same address
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
-            System.assertEquals(true, isMatchAddressAccCon(acc, con));
+            System.assertEquals(false, isMatchAddressAccCon(acc, con));
             System.assertEquals(false, con.is_Address_Override__c);
             System.assertEquals(null, con.Current_Address__c);
         }
