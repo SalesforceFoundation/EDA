@@ -806,10 +806,10 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
         
         // modify the contact addresses directly, and set override
-        for (Integer i = 0; i < 2; i++) {
-            consAccsAddrs.contacts[i*2 + i].MailingStreet = 'Direct Street Edit';
-            consAccsAddrs.contacts[i*2 + i].MailingCity = 'Direct City Edit';
-            consAccsAddrs.contacts[i*2 + i].is_Address_Override__c = true;
+        for (Integer i = 0; i < 4; i++) {
+            consAccsAddrs.contacts[i].MailingStreet = 'Direct Street Edit';
+            consAccsAddrs.contacts[i].MailingCity = 'Direct City Edit';
+            consAccsAddrs.contacts[i].is_Address_Override__c = true;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
@@ -819,6 +819,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // verify that the HH and Contacts do not share the same address
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];
+        UTIL_Debug.debug('****updateConAddrMarkOverrideHH accounts: ' + JSON.serializePretty(mapAccIdAcc.values()));
+        UTIL_Debug.debug('****updateConAddrMarkOverrideHH contacts: ' + JSON.serializePretty(listCon));
         
         for (Contact con : listCon) {
             Account acc = mapAccIdAcc.get(con.AccountId);
@@ -833,7 +835,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
  
          // verify the previous addresses got Default cleared.
         List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, Parent_Account__c from Address__c];
-        System.assertEquals(2 * 2 + 2, listAddr.size());
+        System.assertEquals(6, listAddr.size());
         for (Address__c addr : listAddr) {
             boolean isNewEdit = (addr.MailingStreet__c.contains('Direct Street Edit'));
             System.assertNotEquals(isNewEdit, addr.Default_Address__c);
