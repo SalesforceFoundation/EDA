@@ -154,18 +154,21 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	            Integer i = 0;
 	            for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
+	                UTIL_Debug.debug('****Addr after update: ' + JSON.serializePretty(addr));
 	                Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
 		            Boolean changed = ADDR_Addresses_UTIL.isAddressChanged(addr, addrOld, true);
 		            UTIL_Debug.debug('****Address record changed: ' + changed);
+		            Boolean seasonalChanged =  ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld);
+		            UTIL_Debug.debug('***Seasonal info changed: ' + seasonalChanged);
+		            Boolean changedToDefault = addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c);
 		            
-		            // an address that is marked default needs to propogate to the parent
-		            if ((addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c)) 
-		            // any seasonal address also need to be considered
-		            || ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld)) { 
-		                UTIL_Debug.debug('****Address changed to default: ' + JSON.serializePretty(addr));
+		            //An address that is marked default needs to propogate to the parent. Any seasonal address also need to be considered
+		            if (changedToDefault ||seasonalChanged) {
+		                UTIL_Debug.debug('****Address made default, or seasonal info changed');
 		                putAddrInMap(addr, mapParentIdAddr);
+		            //If it's default and has been changed
 		            } else if (changed && addr.Default_Address__c) {
-		                UTIL_Debug.debug('****Address info updated');
+		                UTIL_Debug.debug('****Address info updated on default address');
 		                putAddrInMap(addr, mapParentIdAddr);    
 		            }
 		            i++;
@@ -207,7 +210,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     
     private void putAddrInMap(Address__c addr, Map<Id, Address__c> mapParentIdAddr) {
         if(addr.Parent_Account__c != null) {
-            UTIL_Debug.debug('****This address if the child of an Account: ' + JSON.serializePretty(addr));
+            UTIL_Debug.debug('****This address is the child of an Account: ' + JSON.serializePretty(addr));
             mapParentIdAddr.put(addr.Parent_Account__c, addr);
         } else if(addr.Parent_Contact__c != null) {
             UTIL_Debug.debug('****This address if child of a Contact: ' + JSON.serializePretty(addr));
@@ -293,7 +296,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 
             // go through the Acc addresses storing the default and any seasonal          
             storeDefaultSeasonal(parentId, parentInfo, mapParentIdListAddrs);
-                    
+                     
         	// finally, if no default found, create an empty default
             createDefaultIfNoneExists(parentId, parentInfo);
         }
@@ -328,7 +331,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             Address__c addr = ParentInfo.addrSeasonal;
             if (addr == null) 
                 addr = addrDefault;
-            //UTIL_Debug.debug('****Address to propagate: ' + JSON.serializePretty(addr));
+            UTIL_Debug.debug('****Address to propagate: ' + JSON.serializePretty(addr));
 
             // update parents' address fields
             listParentUpdate.addAll(updateParentsAddresses(parentId, addr, triggerAction, dmlWrapper));
@@ -361,15 +364,22 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     Map<Id, List<Address__c>> mapParentIdListAddrs) {
         if (mapParentIdListAddrs.get(parentId) != null) {
 	        for (Address__c addrAcc : mapParentIdListAddrs.get(parentId)) { 
-          
+                
 	            if (ParentInfo.addrDefault == null && addrAcc.Default_Address__c)
 	               ParentInfo.addrDefault = addrAcc;
 	            
-	            if (ADDR_Seasonal_UTIL.isSeasonalAddr(addrAcc)) {
+	            Boolean isSeasonal = ADDR_Seasonal_UTIL.isSeasonalAddr(addrAcc);
+	            UTIL_Debug.debug('****Address has seasonal info: ' + isSeasonal);
+	            UTIL_Debug.debug('****Address: ' + JSON.serializePretty(addrAcc));
+	            
+	            if (isSeasonal) {
 	                Date startDate = ADDR_Seasonal_UTIL.getStartOrEndDateOfAddrSeasonal(addrAcc, true);
+	                UTIL_Debug.debug('****startDate: ' + startDate);
 	                Date endDate = ADDR_Seasonal_UTIL.getStartOrEndDateOfAddrSeasonal(addrAcc, false);
+	                UTIL_Debug.debug('****endDate: ' + endDate);
 	                Date dtToday = System.today();
 	                if (dtToday >= startDate && dtToday < endDate) {
+	                    UTIL_Debug.debug('****Seasonal address is in effect: ' + JSON.serializePretty(addrAcc));
 	                    parentInfo.addrSeasonal = addrAcc;
 	                }
 	            }

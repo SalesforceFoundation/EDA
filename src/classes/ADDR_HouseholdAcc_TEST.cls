@@ -2103,42 +2103,4 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         System.assertEquals(consAccsAddrs.addrs[0].MailingState__c, con.MailingState);
         System.assertEquals(consAccsAddrs.addrs[0].MailingCountry__c, con.MailingCountry);
     }
-
-    /*********************************************************************************************************
-    @description
-        update an org contact to be a household contact 
-    verify:
-        HH address created
-        account address matches address object address
-        contact address matches address object address
-    **********************************************************************************************************/            
-    static testMethod void updateOrgContactToHH() {
-        configSettings();
-        
-        Account acc = new Account(Name='Org Account');
-        insert acc;
-        Contact con = new Contact(Lastname='Testy', AccountId=acc.Id);
-        insert con;
-        
-        // now give the contact an address and change it to get a hh account
-        con.AccountId = null;
-        con.MailingStreet = '123 abc';
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        Test.startTest();
-        update con;
-        Test.stopTest();
-
-        // verify results
-        acc = [select Id, Name, BillingStreet from Account where Name like '%Testy%'];
-        UTIL_Debug.debug('****Parent account: ' + JSON.serializePretty(acc));
-        System.assertNotEquals(null, acc);
-        List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c from Address__c];
-        System.assertEquals(1, listAddr.size());
-        con = [select Id, Lastname, MailingStreet, Current_Address__c from Contact];
-        System.assertEquals('Testy', con.Lastname);
-        System.assertEquals('123 abc', con.MailingStreet);
-        System.assertEquals(listAddr[0].Id, con.Current_Address__c);
-        System.assertEquals(listAddr[0].MailingStreet__c, con.MailingStreet);
-        System.assertEquals(listAddr[0].MailingStreet__c, acc.BillingStreet);
-    }
 }
