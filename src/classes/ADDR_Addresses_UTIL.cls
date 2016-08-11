@@ -49,7 +49,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @description returns whether the Address's mailing fields are null
     * @param addr the Address
     * @return Boolean. true if all of the Mailing fields are empty
-    */ 
+    ********************************************************************************************************/
     public static Boolean isAddressEmpty(Address__c addr) {
         if (addr == null)
            return false;        
@@ -83,7 +83,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param addrOld the old version of the Address
     * @param includeAddressType whether to include comparing the AddressType field
     * @return Boolean. true if any of the fields fields have changed on the Address
-    */ 
+    ********************************************************************************************************/
     public static Boolean isAddressChanged(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
         if (addrNew == null || addrOld == null) 
            return false;        
@@ -224,7 +224,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param addrOld the old version of the Address
     * @param includeAddressType whether to include comparing the AddressType field
     * @return Boolean true if no more than one of the fields have changed on the Address, ignoring whitespace and case changes
-    */     
+    ********************************************************************************************************/    
     private static Boolean isAddressMatchFuzzy(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
         if (addrNew == null || addrOld == null) 
            return false;
@@ -251,7 +251,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @description utility to remove all whitespace and to lowercase the string
     * @param str the string to clean up
     * @return string
-    */ 
+    ********************************************************************************************************/
     private static string strCleanup(string str) {
         if (str != null) return str.replace(' ', '').toLowerCase();
         else return '';
@@ -262,7 +262,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param addrSrc the source Address
     * @param addrSrc the destination Address
     * @return void
-    */ 
+    ********************************************************************************************************/
     public static void copyAddressObj(Address__c addrSrc, Address__c addrDst) {
         addrDst.Default_Address__c = addrSrc.Default_Address__c;
         addrDst.MailingStreet__c = addrSrc.MailingStreet__c;
@@ -285,7 +285,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param sobjDst the destination Contact or Account
     * @param strFieldPrefixDst the address fields to copy to, ie., Mailing, Other, Shipping, Billing
     * @return void
-    */ 
+    ********************************************************************************************************/
     public static void copyAddressStdSObj(SObject sobjSrc, String strFieldPrefixSrc, SObject sobjDst, String strFieldPrefixDst) {
         sobjDst.put(strFieldPrefixDst + 'Street', sobjSrc.get(strFieldPrefixSrc + 'Street'));
         sobjDst.put(strFieldPrefixDst + 'City', sobjSrc.get(strFieldPrefixSrc + 'City'));
@@ -309,7 +309,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param addr the Address object to copy to
     * @param strAddrType if not null, copy to address.Address_Type__c
     * @return void
-    */ 
+    ********************************************************************************************************/
     public static void copyAddressStdSObjAddr(SObject sobjSrc, string strFieldPrefixSrc, Address__c addr, string strAddrType) {
         addr.MailingStreet__c = (string)sobjSrc.get(strFieldPrefixSrc + 'Street');
         handleMultilineStreet(addr);
@@ -350,7 +350,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param strFieldPrefix the address fields to copy to, ie., Mailing, Other, Shipping, Billing
     * @param strFieldAddrType an optional Address Type field on sobjDst to copy to 
     * @return void
-    */ 
+    ********************************************************************************************************/
     public static void copyAddressAddrSObj(Address__c addr, SObject sobjDst, string strFieldPrefix, string strFieldAddrType, 
     TDTM_Runnable.DmlWrapper dmlWrapper) {
         sobjDst.put(strFieldPrefix + 'Street', getMultilineStreet(addr));
@@ -405,7 +405,7 @@ public with sharing class ADDR_Addresses_UTIL {
     /*******************************************************************************************************
     * @description utility to determine if the "State and Country Picklist" field feature is enabled in Salesforce
     * @return true if enabled; Fills 4 sets<> with a list of value codes and labels for each field
-    */ 
+    ********************************************************************************************************/
     private static Boolean initValidStateCountryCodes() {
 
         // If State & Country Picklists are enabled in the org, build maps of the
@@ -437,7 +437,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @description utility to see if the address has only a subset of its seasonal fields set
     * @param addr the Address to look at
     * @return Boolean
-    */ 
+    ********************************************************************************************************/
     public static void handleMultilineStreet(Address__c addr) {
     
         if (addr.MailingStreet__c == null)
@@ -464,7 +464,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @description utility to see if the address has only a subset of its seasonal fields set
     * @param addr the Address to look at
     * @return Boolean
-    */ 
+    ********************************************************************************************************/
     public static string getMultilineStreet(Address__c addr) {
         string str = addr.MailingStreet__c;
         if (addr.MailingStreet2__c != null && addr.MailingStreet2__c.length() > 0)
@@ -475,7 +475,7 @@ public with sharing class ADDR_Addresses_UTIL {
     /*******************************************************************************************************
     * @description specifies whether state and country picklists are enabled in this org.
     * @return true if enabled
-    */ 
+    ********************************************************************************************************/ 
     public static Boolean isStateCountryPicklistsEnabled {
         get {
             if (isStateCountryPicklistsEnabled == null)
@@ -493,7 +493,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param dmlWrapper the Addresses to update
     * @param includeAddressType whether to include comparing the AddressType field
     * @return void
-    */ 
+    ********************************************************************************************************/ 
     public static NonDupeAddrs getNonDuplicateAddresses(list<Address__c> listAddr, Boolean includeAddressType) {  
         
         NonDupeAddrs nonDupeAddrs = new NonDupeAddrs();
@@ -547,7 +547,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * has null for no match, and the matching address if there is a match.
     * @param listAddr a list of Addresses to update
     * @return map<Address__c, Address__c>
-    */ 
+    ********************************************************************************************************/
     public static map<Address__c, Address__c> findDuplicateAddresses(list<Address__c> listAddr) {      
         // for each address, create a map of Parent ID to lists of Addresses
         list<Id> listParentId = new list<Id>();
@@ -604,7 +604,7 @@ public with sharing class ADDR_Addresses_UTIL {
     * @description utility to create a map of parent Id to a list of Addresses in that record, given a list of parent Ids.
     * @param listAccId the list of Account Id's
     * @return map<Id, list<Address__c>> map that contains the Addresses for each HH Account Id
-    */ 
+    ********************************************************************************************************/
     public static map<Id, list<Address__c>> getMapParentIdListAddrs(list<Id> listParentId) {
           
         list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Parent_Contact__c, Address_Type__c,
@@ -659,6 +659,13 @@ public with sharing class ADDR_Addresses_UTIL {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Sets Default_Address__c field to false in all Address records that aren't new.
+    * @param newAddr List of new Address records.
+    * @param allAddrs List of all address records,.
+    * @param dmlWrapper to hold the Address records that need updating.
+    * @return void  
+    ********************************************************************************************************/
     public static void uncheckDefaultOtherAddrs(Address__c newAddr, List<Address__c> allAddrs, TDTM_Runnable.DmlWrapper dmlWrapper) {
         for(Address__c addr : allAddrs) {
             if(addr.ID != newAddr.ID) {
@@ -668,6 +675,11 @@ public with sharing class ADDR_Addresses_UTIL {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Clears all address info from the Account.
+    * @param acc The Account that needs address information to be cleared.
+    * @return void  
+    ********************************************************************************************************/
     public static void clearAddrInfo(Account acc) {
         acc.BillingStreet = null;
         acc.BillingCity = null;
@@ -682,6 +694,11 @@ public with sharing class ADDR_Addresses_UTIL {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Clears all address info from the Contact.
+    * @param acc The Contact that needs address information to be cleared.
+    * @return void  
+    ********************************************************************************************************/
     public static void clearAddrInfo(Contact contact) {
         contact.MailingStreet = null;
         contact.MailingCity = null;
@@ -690,5 +707,20 @@ public with sharing class ADDR_Addresses_UTIL {
         contact.MailingCountry = null;
         contact.MailingLatitude = null;
         contact.MailingLongitude = null;
+    }
+    
+    /*******************************************************************************************************
+    * @description Builds a query with all address-related field from Account, its child Contacts, and its 
+    *              child Addresses. StateCountryPicklist fields included if feature enabled.
+    * @return String The query string.
+    ********************************************************************************************************/
+    public static String getParentAccsWithChildrenQuery() {
+        String query = 'select recordTypeId, Current_Address__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude';     
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+            query += ', BillingCountryCode, BillingStateCode ';
+        query += ', (select Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Account.Contacts)';  
+        query += ', (select Default_Address__c, Parent_Account__c, Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)';
+        query +=  ' from Account where Id IN ';
+        return query;
     }
 }
