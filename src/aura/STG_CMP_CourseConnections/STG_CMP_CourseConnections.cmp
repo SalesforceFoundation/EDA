@@ -1,0 +1,107 @@
+<aura:component extends="c:STG_CMP_Base" controller="UTIL_Describe">
+  <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+  <aura:attribute name="courseConnectionsEnabled" type="Boolean" default="true"/>
+  <aura:attribute name="defaultEnrolledStudentRecordTypeName" type="String" default=""/>
+  <aura:attribute name="defaultFacultyRecordTypeName" type="String" default=""/>
+  <aura:attribute name="courseConnectionRecordTypes" type="Object[]" default=""/>
+
+
+  <div id="relTabs" class="slds-tabs--scoped">
+    <ul class="slds-tabs--scoped__nav" role="tablist">
+      <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label slds-active" title="Settings" role="tab">
+        <ui:outputURL value="#" label="Settings" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+      </li>
+      <li aura:id="backfillTab" class="slds-tabs__item slds-text-heading--label" title="Backfill Operations" role="tab">
+        <ui:outputURL value="#" label="Backfill Operations" class="rel-recip-settings-menulink"  click="{!c.backfillLinkClicked}" />
+      </li>
+    </ul>
+
+    <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
+
+      <div class="slds-grid slds-wrap">
+          <div class="slds-col slds-size--1-of-2">Enable Course Connections:</div>
+          <div class="slds-col slds-size--1-of-2">
+            <label class="slds-checkbox">
+              <aura:if isTrue="{!v.isView}">
+                  <span style="margin-right: 8px">
+                      <ui:outputCheckbox value="{!v.hierarchySettings.Enable_Course_Connections__c}" class="slds-checkbox course-cons-outputcheck" />
+                  </span>
+              <aura:set attribute="else">
+                  <ui:inputCheckbox value="{!v.hierarchySettings.Enable_Course_Connections__c}" class="slds-checkbox course-cons-inputcheck"
+                                    aura:id="checkboxIds" text="" />
+                  <span class="slds-checkbox--faux"></span>
+              </aura:set>
+              </aura:if>
+            </label>
+          </div>
+          <div class="slds-col slds-size--1-of-1">
+            <ui:outputText value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod ex eu risus maximus, et porta metus pretium. Phasellus a velit vehicula, hendrerit massa non, tristique justo." class="slds-text-body--small" />
+              <!-- <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                  <ui:outputText value="{!$Label.hed.stgHelpRelReciprocalMethod}" class="slds-text-body-*-small" />
+              <aura:set attribute="else">
+                  <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body-*-small" />
+              </aura:set>
+              </aura:if> -->
+          </div>
+          <div class="slds-col slds-grid slds-m-top--medium">
+            <div class="slds-col slds-size--1-of-2">Default Enrolled Student Record Type:</div>
+            <div class="slds-col slds-size--1-of-2">
+              <!--  -->
+                <ui:outputText aura:id="studentRecTypeName" value="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c}" class="{!(v.isView ? '':'slds-hide ') + 'red-type-output'}"/>
+                <ui:inputSelect aura:id="studentRecordTypesDropDown" change="{!c.onStudentSelectChange}" class="{!(v.isView ? 'slds-hide ':'')}" disabled="{!and(!v.hierarchySettings.Enable_Course_Connections__c, !v.isView)}">
+                  <aura:if isTrue="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c == nil}">
+                    <ui:inputSelectOption label="" text="" class="rec-types-input" value="true" disabled="disabled"/>
+                  </aura:if>
+                  <aura:iteration items="{!v.courseConnectionRecordTypes}" var="recordType">
+                    <ui:inputSelectOption label="{!recordType.name}" text="{!recordType.id}" class="rec-types-input"
+                        value="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c == recordType.id ? true : false}" />
+                  </aura:iteration>
+                </ui:inputSelect>
+              <!--  -->
+            </div>
+          </div>
+          <div class="slds-col slds-size--1-of-1">
+            <ui:outputText value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod ex eu risus maximus, et porta metus pretium. Phasellus a velit vehicula, hendrerit massa non, tristique justo. Duis dignissim accumsan elit, et feugiat dui semper non. Donec consequat libero ante." class="slds-text-body--small" />
+                    <!-- <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgHelpRelAutoCreatedDup}" class="slds-text-body-*-small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgHelpRelAutoCreatedDup}" class="slds-text-body-*-small" />
+                    </aura:set>
+                    </aura:if> -->
+          </div>
+
+          <div class="slds-col slds-grid slds-m-top--medium">
+            <div class="slds-col slds-size--1-of-2">Default Faculty Record Type:</div>
+            <div class="slds-col slds-size--1-of-2">
+              <!--  -->
+                <ui:outputText aura:id="recTypeName" value="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c}" class="{!(v.isView ? '':'slds-hide ') + 'red-type-output'}"/>
+                <ui:inputSelect aura:id="facultyRecordTypesDropDown" change="{!c.onFacultySelectChange}" class="{!(v.isView ? 'slds-hide ':'')}" disabled="{!and(!v.hierarchySettings.Enable_Course_Connections__c, !v.isView)}">
+                  <aura:if isTrue="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c == nil}">
+                    <ui:inputSelectOption label="" text="" class="rec-types-input" value="true" disabled="disabled"/>
+                  </aura:if>
+                  <aura:iteration items="{!v.courseConnectionRecordTypes}" var="recordType">
+                    <ui:inputSelectOption label="{!recordType.name}" text="{!recordType.id}" class="rec-types-input"
+                        value="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c == recordType.id ? true : false}" />
+                  </aura:iteration>
+                </ui:inputSelect>
+              <!--  -->
+            </div>
+          </div>
+          <div class="slds-col slds-size--1-of-1">
+            <ui:outputText value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod ex eu risus maximus, et porta metus pretium. Duis vel eleifend dui. Donec consequat libero ante." class="slds-text-body--small" />
+                    <!-- <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgHelpRelAutoCreatedDup}" class="slds-text-body-*-small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgHelpRelAutoCreatedDup}" class="slds-text-body-*-small" />
+                    </aura:set>
+                    </aura:if> -->
+          </div>
+      </div>
+    </div>
+
+    <div aura:id="backfillTabContent" class="slds-tabs__content slds-hide" role="tabpanel">
+      Backfill Magic! Now with more Magic!
+    </div>
+  </div>
+</aura:component>

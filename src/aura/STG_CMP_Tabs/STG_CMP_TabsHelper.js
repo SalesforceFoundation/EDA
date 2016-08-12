@@ -5,6 +5,7 @@
 		$A.util.addClass(component.find("afflTabContent"), "slds-show");
 		$A.util.addClass(component.find("relTabContent"), "slds-hide");
 		$A.util.addClass(component.find("addrTabContent"), "slds-hide");
+		$A.util.addClass(component.find("courseConTabContent"), "slds-hide");
 		$A.util.addClass(component.find("systemTabContent"), "slds-hide");
 
 		//Retrieving hierarchy settings

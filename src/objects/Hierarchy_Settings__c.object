@@ -57,6 +57,28 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Default_Enrolled_Student_RecordType_Id__c</fullName>
+        <description>The Default Enrolled Student RecordType Id to be used for Course Connections.</description>
+        <externalId>false</externalId>
+        <label>Default Enrolled Student RecordType Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Faculty_RecordType_Id__c</fullName>
+        <description>The Default Faculty RecordType to be used for Course Connections.</description>
+        <externalId>false</externalId>
+        <label>Default Faculty RecordType Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
         <description>If checked, HEDA&apos;s error handling framework is disabled.</description>

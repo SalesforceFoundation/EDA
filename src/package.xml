@@ -93,6 +93,7 @@
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
         <members>STG_CMP_Base</members>
+        <members>STG_CMP_CourseConnections</members>
         <members>STG_CMP_Header</members>
         <members>STG_CMP_Rel</members>
         <members>STG_CMP_System</members>
@@ -223,6 +224,8 @@
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
+        <members>Hierarchy_Settings__c.Default_Enrolled_Student_RecordType_Id__c</members>
+        <members>Hierarchy_Settings__c.Default_Faculty_RecordType_Id__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>

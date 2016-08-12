@@ -20,6 +20,9 @@
              <li aura:id="relTab" class="slds-tabs__item slds-text-heading--label" title="Relationships" role="tab">
                  <ui:outputURL value="#" label="Relationships" click="{!c.relLinkClicked}" class="rels-menu-item" />
              </li>
+             <li aura:id="courseConTab" class="slds-tabs__item slds-text-heading--label" title="Course Connections" role="tab">
+                 <ui:outputURL value="#" label="Course Connections" click="{!c.courseConLinkClicked}" class="course-con-menu-item" />
+             </li>
              <li aura:id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Accounts and Contacts" role="tab">
                  <ui:outputURL value="#" label="Accounts and Contacts" click="{!c.addrLinkClicked}" class="accs-cons-menu-item" />
              </li>
@@ -33,6 +36,9 @@
          </div>
          <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+         </div>
+         <div aura:id="courseConTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+             <c:STG_CMP_CourseConnections hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
