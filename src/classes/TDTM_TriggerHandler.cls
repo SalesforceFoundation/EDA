@@ -36,7 +36,7 @@
 * @description Class called from each of the triggers (only one per object) that follow the TDTM design. It's in 
 * charge of figuring out which of the classes that do the actual work need to be called, and calling them.
 */
-public with sharing class TDTM_TriggerHandler {
+public class TDTM_TriggerHandler {
     
     public static Boolean defaultRecordsInserted = false;
     

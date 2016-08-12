@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component >
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:attribute name="namespacePrefix" type="String" />

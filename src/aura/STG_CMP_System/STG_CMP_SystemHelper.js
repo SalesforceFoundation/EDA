@@ -1,12 +1,7 @@
 ({
-	onSelectChange : function(component) {
-		var selectedVal = component.find("accRecTypes").get("v.value");
-		component.set("v.accRecTypeId", selectedVal);
-	},
-
 	saveAccRecType : function(component) {
 		//Get selected value
-		var accRecTypesDropDown = component.find("accRecTypes");
+		/*var accRecTypesDropDown = component.find("accRecTypes");
 		var selectedAccRecTypeId = accRecTypesDropDown.get("v.value");
 
 		//Set the selected value in the settings (so it gets saved)
@@ -23,6 +18,6 @@
 				selectedAccRecTypeName = accRecTypes[i].name;
 			}
 		}
-		component.set("v.accRecTypeName", selectedAccRecTypeName);
+		component.set("v.accRecTypeName", selectedAccRecTypeName);*/
 	}
 })

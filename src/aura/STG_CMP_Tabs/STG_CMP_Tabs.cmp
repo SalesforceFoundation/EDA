@@ -2,9 +2,14 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
     <aura:attribute name="save" type="Boolean" default="true"/>
+    
     <aura:attribute name="accRecTypes" type="Map" />
+    
     <aura:attribute name="accRecTypeId" type="String" />
     <aura:attribute name="accRecTypeName" type="String" />
+    
+    <aura:attribute name="householdRecTypeId" type="String" />
+    <aura:attribute name="householdRecTypeName" type="String" />
     
     <aura:attribute name="accTypesToDeleteSelected" type="String[]" />
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
@@ -42,11 +47,12 @@
          </div>
          <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
-             accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}" />
+             accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}" 
+             accRecTypes="{!v.accRecTypes}" householdRecTypeId="{!v.householdRecTypeId}" householdRecTypeName="{!v.householdRecTypeName}" />
          </div>
          <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" 
-             accRecTypeName="{!v.accRecTypeName}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+             <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" 
+             accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" accRecTypeName="{!v.accRecTypeName}"  />
          </div>
      </div>
 </aura:component>

@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component >
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
     
     <aura:attribute name="isView" type="Boolean" default="true"/>

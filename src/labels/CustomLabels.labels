@@ -117,16 +117,32 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address records should only be created as children of Account.</value>
+        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
+    </labels>
+    <labels>
+        <fullName>addrValidParentObjects</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrValidParentObjects</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
         <fullName>addrAccountTypeEnabled</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address management not enabled for this type of Account.</value>
+        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <value>Address management not enabled for this object type.</value>
+    </labels>
+    <labels>
+        <fullName>addrNotEnabled</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrNotEnabled</shortDescription>
+        <value>Address management not enabled for this object type in settings.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
@@ -247,6 +263,14 @@
         <protected>false</protected>
         <shortDescription>stgHelpAccountModel</shortDescription>
         <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpContactAddrs</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpContactAddrs</shortDescription>
+        <value>Check this if you'd like multiple address management enabled for Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>

@@ -8,10 +8,16 @@
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
         <members>ADDR_Addresses_TDTM</members>
-        <members>ADDR_Addresses_TEST</members>
+        <members>ADDR_Addresses_UTIL</members>
+        <members>ADDR_AdminAcc_TEST</members>
         <members>ADDR_Contact_TDTM</members>
+        <members>ADDR_Contact_TEST</members>
+        <members>ADDR_HouseholdAcc_TEST</members>
+        <members>ADDR_OtherAcc_TEST</members>
         <members>ADDR_Seasonal_BATCH</members>
         <members>ADDR_Seasonal_SCHED</members>
+        <members>ADDR_Seasonal_TEST</members>
+        <members>ADDR_Seasonal_UTIL</members>
         <members>AFFL_AccChange_TDTM</members>
         <members>AFFL_AccRecordType_TDTM</members>
         <members>AFFL_AccRecordType_TEST</members>
@@ -89,6 +95,7 @@
     </types>
     <types>
         <members>CMP_RecTypes</members>
+        <members>CMP_RecTypes_Dropdown</members>
         <members>STG_App</members>
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
@@ -123,6 +130,7 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.Current_Address__c</members>
         <members>Account.Primary_Contact__c</members>
         <members>Address__c.Address_Type__c</members>
         <members>Address__c.Default_Address__c</members>
@@ -138,6 +146,7 @@
         <members>Address__c.MailingStreet2__c</members>
         <members>Address__c.MailingStreet__c</members>
         <members>Address__c.Parent_Account__c</members>
+        <members>Address__c.Parent_Contact__c</members>
         <members>Address__c.Seasonal_End_Day__c</members>
         <members>Address__c.Seasonal_End_Month__c</members>
         <members>Address__c.Seasonal_End_Year__c</members>
@@ -220,18 +229,20 @@
         <members>Error__c.Record_URL__c</members>
         <members>Error__c.Stack_Trace__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
+        <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
         <members>Hierarchy_Settings__c.Default_Enrolled_Student_RecordType_Id__c</members>
         <members>Hierarchy_Settings__c.Default_Faculty_RecordType_Id__c</members>
+        <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
-        <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
+        <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
@@ -298,7 +309,9 @@
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>addrHhAdmAccountOnly</members>
+        <members>addrValidParentObjects</members>
         <members>addrAccountTypeEnabled</members>
+        <members>addrNotEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
@@ -314,6 +327,7 @@
         <members>stgHelpErrorNotifyOn</members>
         <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpAccountModel</members>
+        <members>stgHelpContactAddrs</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
