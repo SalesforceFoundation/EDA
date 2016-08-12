@@ -91,6 +91,29 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             System.assertNotEquals(null, con.Current_Address__c);
         }
     }
+    
+    @isTest
+    public static void insertContactWithAddress() {
+        configSettings();
+        
+        Contact con = new Contact(Lastname='Testy', MailingStreet = '123 Main St', MailingCity = 'Chicago');
+        Test.startTest();
+        insert con;
+        Test.stopTest();
+        
+        List<Account> accs = [select ID, BillingStreet, BillingCity from Account];
+        System.assertEquals(1, accs.size());
+        System.assertEquals('123 Main St', accs[0].BillingStreet);
+        System.assertEquals('Chicago', accs[0].BillingCity);
+        
+        List<Address__c> addrs = [select ID, Parent_Account__c, Parent_Contact__c, Default_Address__c, MailingStreet__c, MailingCity__c from Address__c];
+        System.assertEquals(1, addrs.size());
+        System.assertEquals(accs[0].ID, addrs[0].Parent_Account__c);
+        System.assertEquals(null, addrs[0].Parent_Contact__c);
+        System.assertEquals('123 Main St', addrs[0].MailingStreet__c);
+        System.assertEquals('Chicago', addrs[0].MailingCity__c);
+        System.assertEquals(true, addrs[0].Default_Address__c);
+    }
 
     /*********************************************************************************************************
     @description Insert contact w/ address.
@@ -100,7 +123,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         the contact gets the new Address
     **********************************************************************************************************/            
     @isTest
-    public static void insertContactWithAddressHH() {
+    public static void insertContactWithAddressToHH() {
         configSettings();
           
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
@@ -119,8 +142,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         insert contacts;
-        Test.stopTest();     
-
+        Test.stopTest();      
+        
         // verify that the HH and Contacts share the same address
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);
         List<Contact> listCon = [select Id, Name, AccountId, is_Address_Override__c, Current_Address__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Contact];

@@ -146,7 +146,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 		                }
                     //For new Contacts that are using address management and are not children of Household, create the address object. We do it in the after, so that the 
                     //Parent_Contact__c field in Address can point back to the Contact.
-                    } else if (!childOfHousehold &&  UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true && !ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
+                    } else if (!childOfHousehold && UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true 
+                    && !ADDR_Addresses_UTIL.isContactAddressEmpty(contact) && !afterAutomaticAccInsert) {
 		                contactsCreateAddrFrom.add(contact);  
 		            }
 	            }
