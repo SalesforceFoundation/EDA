@@ -1,11 +1,11 @@
 <aura:component extends="c:STG_CMP_Base" controller="UTIL_Describe">
-  <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
-  <aura:attribute name="courseConnectionsEnabled" type="Boolean" default="true"/>
-  <aura:attribute name="defaultEnrolledStudentRecordTypeName" type="String" default=""/>
-  <aura:attribute name="defaultFacultyRecordTypeName" type="String" default=""/>
-  <aura:attribute name="courseConnectionRecordTypes" type="Object[]" default=""/>
+  <aura:attribute name="courseConnectionRecTypes" type="Map" />
 
+  <aura:attribute name="studentRecTypeId" type="String" />
+  <aura:attribute name="facultyRecTypeId" type="String" />
+  <aura:attribute name="studentRecTypeName" type="String" />
+  <aura:attribute name="facultyRecTypeName" type="String" />
 
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
@@ -48,16 +48,8 @@
             <div class="slds-col slds-size--1-of-2">Default Enrolled Student Record Type:</div>
             <div class="slds-col slds-size--1-of-2">
               <!--  -->
-                <ui:outputText aura:id="studentRecTypeName" value="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c}" class="{!(v.isView ? '':'slds-hide ') + 'red-type-output'}"/>
-                <ui:inputSelect aura:id="studentRecordTypesDropDown" change="{!c.onStudentSelectChange}" class="{!(v.isView ? 'slds-hide ':'')}" disabled="{!and(!v.hierarchySettings.Enable_Course_Connections__c, !v.isView)}">
-                  <aura:if isTrue="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c == nil}">
-                    <ui:inputSelectOption label="" text="" class="rec-types-input" value="true" disabled="disabled"/>
-                  </aura:if>
-                  <aura:iteration items="{!v.courseConnectionRecordTypes}" var="recordType">
-                    <ui:inputSelectOption label="{!recordType.name}" text="{!recordType.id}" class="rec-types-input"
-                        value="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c == recordType.id ? true : false}" />
-                  </aura:iteration>
-                </ui:inputSelect>
+              <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c}" isView="{!v.isView}"
+                  recTypeId="{!v.studentRecTypeId}" recTypeName="{!v.studentRecTypeName}" recTypes="{!v.courseConnectionRecTypes}" />
               <!--  -->
             </div>
           </div>
@@ -75,16 +67,8 @@
             <div class="slds-col slds-size--1-of-2">Default Faculty Record Type:</div>
             <div class="slds-col slds-size--1-of-2">
               <!--  -->
-                <ui:outputText aura:id="recTypeName" value="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c}" class="{!(v.isView ? '':'slds-hide ') + 'red-type-output'}"/>
-                <ui:inputSelect aura:id="facultyRecordTypesDropDown" change="{!c.onFacultySelectChange}" class="{!(v.isView ? 'slds-hide ':'')}" disabled="{!and(!v.hierarchySettings.Enable_Course_Connections__c, !v.isView)}">
-                  <aura:if isTrue="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c == nil}">
-                    <ui:inputSelectOption label="" text="" class="rec-types-input" value="true" disabled="disabled"/>
-                  </aura:if>
-                  <aura:iteration items="{!v.courseConnectionRecordTypes}" var="recordType">
-                    <ui:inputSelectOption label="{!recordType.name}" text="{!recordType.id}" class="rec-types-input"
-                        value="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c == recordType.id ? true : false}" />
-                  </aura:iteration>
-                </ui:inputSelect>
+              <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Default_Faculty_RecordType_Id__c}" isView="{!v.isView}"
+                  recTypeId="{!v.facultyRecTypeId}" recTypeName="{!v.facultyRecTypeName}" recTypes="{!v.courseConnectionRecTypes}" />
               <!--  -->
             </div>
           </div>

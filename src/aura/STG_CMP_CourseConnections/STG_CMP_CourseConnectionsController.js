@@ -1,17 +1,4 @@
 ({
-
-  init : function(component, event, helper) {
-    helper.init(component, event);
-  },
-
-  onStudentSelectChange : function(component, event, helper) {
-    helper.onStudentSelectChange(component);
-  },
-
-  onFacultySelectChange : function(component, event, helper) {
-    helper.onFacultySelectChange(component);
-  },
-
 	settsLinkClicked : function(component) {
     $A.util.addClass(component.find("settsTab"), "slds-active");
     $A.util.removeClass(component.find("backfillTab"), "slds-active");

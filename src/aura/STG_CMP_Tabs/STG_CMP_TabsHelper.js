@@ -24,10 +24,15 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
+          component.set("v.studentRecTypeId", settingsNoPrefix.Default_Enrolled_Student_RecordType_Id__c);
+          component.set("v.facultyRecTypeId", settingsNoPrefix.Default_Faculty_RecordType_Id__c);
 	    		//Get account record types
 	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
-	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c, 
+	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
 	    		        settingsNoPrefix.Household_Addresses_RecType__c);
+          // Get Course Connection Record Types
+	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Default_Enrolled_Student_RecordType_Id__c,
+	    		        settingsNoPrefix.Default_Faculty_RecordType_Id__c);
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);
 			}
@@ -78,6 +83,34 @@
 	    });
 	    $A.enqueueAction(action);
 	},
+
+  getCourseConnectionRecordTypes : function(component, studentTypeId, facultyTypeId) {
+    //Get all available course connection record types
+    var action = component.get("c.getRecTypesMapByName");
+    action.setParams({ "objectName" : 'Course_Enrollment__c'});
+    action.setCallback(this, function(response) {
+        if(response.getState() === "SUCCESS") {
+          var recTypesObj = response.getReturnValue();
+          var courseConnectionRecTypes = [];
+          for(var property in recTypesObj) {
+            if (recTypesObj.hasOwnProperty(property)) {
+              courseConnectionRecTypes.push({name: property, id: recTypesObj[property]});
+              if(recTypesObj[property].indexOf(studentTypeId) > -1) {
+                  component.set("v.studentRecTypeName", property);
+              }
+              if(recTypesObj[property].indexOf(facultyTypeId) > -1) {
+                  component.set("v.facultyRecTypeName", property);
+              }
+            }
+          }
+          component.set("v.courseConnectionRecTypes", courseConnectionRecTypes);
+
+        } else if(response.getState() === "ERROR") {
+          this.displayError(response);
+      }
+      });
+      $A.enqueueAction(action);
+  },
 
 	//We want to compare the list of all available Account Record Types with the list of those that have been
 	//marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
