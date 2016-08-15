@@ -321,8 +321,10 @@
         <members>stgHelpErrorNotifyOn</members>
         <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpAccountModel</members>
+        <members>stgHelpAddressAccRecType</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
+        <members>stgHelpHouseholdRecType</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>

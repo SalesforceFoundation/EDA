@@ -265,12 +265,20 @@
         <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
     </labels>
     <labels>
+        <fullName>stgHelpAddressAccRecType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpAddressAccRecType</shortDescription>
+        <value>The Account record types that support multiple address management.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpContactAddrs</shortDescription>
-        <value>Check this if you'd like multiple address management enabled for Contacts.</value>
+        <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
@@ -279,6 +287,14 @@
         <protected>false</protected>
         <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Administrative and Household Accounts when selected.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpHouseholdRecType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpHouseholdRecType</shortDescription>
+        <value>The Account record type that best represents Households. HEDA uses the Household Account record type by default, but you can use another record type if you wish.</value>
     </labels>
     <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
