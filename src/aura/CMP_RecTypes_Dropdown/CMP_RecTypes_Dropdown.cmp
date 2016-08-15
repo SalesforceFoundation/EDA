@@ -8,17 +8,16 @@
 
     <aura:attribute name="setting" type="String" />
     
-    <div class="slds-col slds-size--1-of-2">
-        <aura:if isTrue="{!v.isView}">
-            <ui:outputText aura:id="recTypeName" value="{!v.recTypeName}" class="rec-type-output"/>
-        <aura:set attribute="else">
-            <ui:inputSelect aura:id="recTypesDropDown" change="{!c.onSelectChange}">
-                <aura:iteration items="{!v.recTypes}" var="recType">
-                    <ui:inputSelectOption label="{!recType.name}" text="{!recType.id}" class="rec-types-input"
-                        value="{!v.recTypeId == recType.id ? true : false}" />
-                </aura:iteration>
-            </ui:inputSelect> 
-        </aura:set>
-        </aura:if>
-    </div>
+    <aura:if isTrue="{!v.isView}">
+        <ui:outputText aura:id="recTypeName" value="{!v.recTypeName}" class="rec-type-output"/>
+    <aura:set attribute="else">
+        <ui:inputSelect aura:id="recTypesDropDown" change="{!c.onSelectChange}">
+            <aura:iteration items="{!v.recTypes}" var="recType">
+                <ui:inputSelectOption label="{!recType.name}" text="{!recType.id}" class="rec-types-input"
+                    value="{!v.recTypeId == recType.id ? true : false}" />
+            </aura:iteration>
+        </ui:inputSelect> 
+    </aura:set>
+    </aura:if>
+
 </aura:component>
