@@ -104,7 +104,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 	            for (SObject so : listNew) {
 	                Account acc = (Account)so;
 	                Account accOld = (Account)listOld[i];
-	                Boolean isHousehold = acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID();
+	                Boolean isHousehold = acc.RecordTypeId != null && acc.RecordTypeId == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
 	                Boolean accAddrEnabledForRecType = UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                                                        && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId);
 	                
@@ -195,7 +195,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
                 dmlWrapper.objectsToUpdate.add(acc);
             }
             //copy address info to child contacts, if it's a household and they don't have override
-            if(acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()) {
+            if(acc.RecordTypeId != null && acc.RecordTypeId == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
                 for(Contact contact : acc.Contacts) {
                     if(!contact.is_Address_Override__c) {
                         ADDR_Addresses_UTIL.copyAddressStdSObj(acc, 'Billing', contact, 'Mailing');
@@ -238,7 +238,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 	        }
 	        
 	        //Clear address info from children contacts without override
-	        if(acc.recordTypeID == UTIL_Describe.getHhAccRecTypeID()) {
+	        if(acc.RecordTypeId != null && acc.recordTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
 	            for(Contact contact : acc.Contacts) {
 	                if(!contact.is_Address_Override__c) {
 	                   contact.Current_Address__c = null;

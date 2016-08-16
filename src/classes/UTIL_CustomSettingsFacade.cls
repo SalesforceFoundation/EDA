@@ -91,7 +91,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      * Private methods that will configure the default org-level custom settings.
      **/
     private static void configSettings(Hierarchy_Settings__c hs) {
-		hs.Account_Processor__c = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
+		hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
 		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
 		hs.Contacts_Addresses_Enabled__c = true;
 		hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();

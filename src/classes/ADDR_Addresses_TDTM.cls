@@ -487,7 +487,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
                 addr.addError(Label.addrValidParentObjects);
             } else if(addr.Parent_Account__c != null) {
                 Account acc = mapAccIdAcc.get(addr.Parent_Account__c);
-                Boolean isHousehold = acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID();
+                Boolean isHousehold = acc.RecordTypeId != null && acc.RecordTypeId == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
                 Boolean accAddrEnabledForRecType = UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                                                        && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId);
                                                        
