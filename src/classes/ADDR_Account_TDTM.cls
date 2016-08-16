@@ -168,6 +168,12 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Updates the children Contacts of those Accounts for which Addresses have been created or updated. 
+    * @param newUpdatedAddrs List of new or updated addresses.
+    * @param dmlWrapper Wrapper that will hold records to process.
+    * @return void
+    ********************************************************************************************************/
     private void updateChildContacts(List<Address__c> newUpdatedAddrs, DmlWrapper dmlWrapper) {
         //Get map of Accounts to their new/updated addresses
         Set<ID> newUpdatedAddrsParentAccIDs = new Set<ID>();
@@ -207,6 +213,12 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
         }
     }
     
+    /*******************************************************************************************************
+    * @description Updates the Account, its children Contacts, and the addresses of those Accounts that had their address info cleared. 
+    * @param accsAddrInfoCleared List of Accounts that had their address info cleared.
+    * @param dmlWrapper Wrapper that will hold records to process.
+    * @return void
+    ********************************************************************************************************/
     private void addrInfoDeleted(List<Account> accsAddrInfoCleared, DmlWrapper dmlWrapper) {
         
         //We need to re-query before we are in the "after" part of the trigger
