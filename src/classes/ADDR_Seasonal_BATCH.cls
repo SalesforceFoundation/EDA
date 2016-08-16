@@ -45,7 +45,7 @@ public with sharing class ADDR_Seasonal_BATCH implements Database.Batchable<SObj
         integer iMonth = system.today().month();
         integer iDay = system.today().day();
             
-        String strQuery = 'select Id, Parent_Account__c, Default_Address__c ' +
+        String strQuery = 'select Id, Parent_Account__c, Parent_Contact__c, Default_Address__c ' +
             ' from Address__c ' +
             ' where Seasonal_Start_Month__c = \'' + String.valueOf(iMonth) + '\'' +
             ' and Seasonal_Start_Day__c = \'' + String.valueOf(iDay) + '\'';
@@ -60,7 +60,7 @@ public with sharing class ADDR_Seasonal_BATCH implements Database.Batchable<SObj
     * @return void  
     ********************************************************************************************************/
     public void execute(Database.BatchableContext bc, Sobject[] listSobj) {
-        ADDR_Addresses_TDTM.batchSeasonalUpdate((list<Address__c>) listSobj);        
+        ADDR_Seasonal_UTIL.batchSeasonalUpdate((list<Address__c>) listSobj);        
     }
 
     /*******************************************************************************************************

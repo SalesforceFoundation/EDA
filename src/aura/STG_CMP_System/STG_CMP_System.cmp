@@ -1,7 +1,6 @@
 <aura:component extends="c:STG_CMP_Base">
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-    <aura:handler event="c:STG_EVT_Save" action="{!c.saveAccRecType}"/>
     
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
@@ -16,19 +15,12 @@
             </aura:set>
             </aura:if>
         </div>
+        
         <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputText aura:id="recTypeName" value="{!v.accRecTypeName}" class="acc-model"/>
-            <aura:set attribute="else">
-                <ui:inputSelect aura:id="accRecTypes" change="{!c.onSelectChange}">
-                    <aura:iteration items="{!v.accRecTypes}" var="recType">
-                        <ui:inputSelectOption label="{!recType.name}" text="{!recType.id}" class="acc-rec-types"
-                            value="{!v.accRecTypeId == recType.id ? true : false}" />
-                    </aura:iteration>
-                </ui:inputSelect> 
-            </aura:set>
-            </aura:if>
+            <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Account_Processor__c}" isView="{!v.isView}" 
+                recTypeId="{!v.accRecTypeId}" recTypeName="{!v.accRecTypeName}" recTypes="{!v.accRecTypes}" />
         </div>
+        
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                 <ui:outputText value="{!$Label.hed.stgHelpAccountModel}" class="slds-text-body--small" />

@@ -2270,16 +2270,6 @@
         <externalId>false</externalId>
         <inlineHelpText>The current Address that the Contact&apos;s mailing fields are filled with.</inlineHelpText>
         <label>Current Address</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>Address__c.Parent_Account__c</field>
-                <operation>equals</operation>
-                <valueField>$Source.AccountId</valueField>
-            </filterItems>
-            <infoMessage>To see all addresses for the Contact&apos;s household, enter A-* in the search window</infoMessage>
-            <isOptional>true</isOptional>
-        </lookupFilter>
         <referenceTo>Address__c</referenceTo>
         <relationshipLabel>Contacts (Current Address)</relationshipLabel>
         <relationshipName>Contacts1</relationshipName>
@@ -2698,10 +2688,10 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
     <fields>
         <fullName>is_Address_Override__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, the Contact&apos;s Current Address lookup overrides the Household&apos;s default Address or seasonal Address.</description>
+        <description>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, the Contact&apos;s Current Address lookup overrides the Household&apos;s default Address or seasonal Address.</inlineHelpText>
-        <label>Address Override</label>
+        <inlineHelpText>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</inlineHelpText>
+        <label>Do Not Automatically Update</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
