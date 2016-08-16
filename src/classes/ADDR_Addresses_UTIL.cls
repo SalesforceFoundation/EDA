@@ -57,6 +57,12 @@ public with sharing class ADDR_Addresses_UTIL {
            addr.MailingState__c == Null && addr.MailingPostalCode__c == Null && addr.MailingCountry__c == Null);
     }
     
+    /*******************************************************************************************************
+    * @description Compares the mailing fields in a Contact with the billing fields of an Account.
+    * @param contact The contact to compare.
+    * @param account The account to compare.
+    * @return Boolean True if the mailing fields in the Contact are the same as the billing fields in the Account. 
+    ********************************************************************************************************/
     public static Boolean isContactAccAddrInfoSame(Contact contact, Account acc) {
         if ((contact == null && acc != null) || (contact != null && acc == null)) 
            return false;
@@ -70,8 +76,8 @@ public with sharing class ADDR_Addresses_UTIL {
 
         if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged = 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingStateCode')), String.valueOf(acc.get('MailingStateCode'))) || 
-                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingCountryCode')), String.valueOf(acc.get('MailingCountryCode')));
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingStateCode')), String.valueOf(acc.get('BillingStateCode'))) || 
+                !ADDR_Addresses_UTIL.equalsCaseSensitive(String.valueOf(contact.get('MailingCountryCode')), String.valueOf(acc.get('BillingCountryCode')));
         }
         UTIL_Debug.debug('****Contact address info different from account address info: ' + isChanged);
         return !isChanged;

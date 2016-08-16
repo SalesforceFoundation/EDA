@@ -144,7 +144,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	            }
 	            
 	            if(mapParentIdAddr.size() > 0) {
-	                refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	                refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	                processDml(dmlWrapper, mapParentIdAddr);
 	            }
 	            
@@ -179,7 +179,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	            }
 	            
 	            if(mapParentIdAddr.size() > 0) {
-	                refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	                refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	                processDml(dmlWrapper, mapParentIdAddr);
 	            }
 	            
@@ -202,7 +202,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	            }
 	            
 	            if(mapParentIdAddr.size() > 0) {
-	               refreshCurrentAccAddress(mapParentIdAddr, dmlWrapper, triggerAction);
+	               refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	               processDml(dmlWrapper, mapParentIdAddr);
 	            }
 	            
@@ -261,7 +261,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * and not do any changes to dmlWrapper. 
     * @return Map<Id, ParentInfo> a map of parent Id to the ParentInfo object for the parent  
     ********************************************************************************************************/
-    public static Map<Id, ParentInfo> refreshCurrentAccAddress(Map<Id, Address__c> mapParentIdAddr, DmlWrapper dmlWrapper, 
+    public static Map<Id, ParentInfo> refreshParentAndSiblings(Map<Id, Address__c> mapParentIdAddr, DmlWrapper dmlWrapper, 
     TDTM_Runnable.Action triggerAction) {
         
         // assumptions:
