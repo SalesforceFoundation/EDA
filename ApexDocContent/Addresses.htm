@@ -3,21 +3,23 @@
 		<h2>Address Management Related Classes</h2>
 		<p>Address Management is made up of several components:</p>
 		<ul>
-			<li>Multiple Address objects supported on Accounts</li>
+			<li>Multiple Address children supported on Account and Contact</li>
 			<li>Seasonal Address support</li>
 		</ul>
 
 		<p>Classes involved with Address object support:</p>
 		<ul>
-			<li>ADDR_Account_TDTM - Trigger Handler on Account for Address management. Creates Address__c record from Account.</li>
-			<li>ADDR_Addresses_TDTM - Trigger handler on Address object to support propagating addresses.</li>
-			<li>ADDR_Contact_TDTM - Creates Address__c record from Contact.</li>
+            <li>ADDR_Account_TDTM - Trigger Handler on Account for Address management. Creates Address record from Account.</li>
+            <li>ADDR_Addresses_TDTM - Trigger handler on Address object to support propagating address changes.</li>
+            <li>ADDR_Addresses_UTIL - Utility methods for address-related functionality.</li>
+			<li>ADDR_Contact_TDTM - Trigger Handler on Contact for Address management. Creates Address record from Contact.</li>
 		</ul>
 
 		<p>Classes involved with Seasonal Address support:</p>
 		<ul>
 			<li>ADDR_Seasonal_BATCH - Updates seasonal addresses in batch.</li>
 			<li>ADDR_Seasonal_SCHED - Supports the automatic scheduling of Seasonal Address updates.</li>
+            <li>ADDR_Seasonal_UTIL - Utility methods for seasonal address-related functionality.</li>
 		</ul>
 	</body>
 </html>

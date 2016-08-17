@@ -91,9 +91,10 @@ public without sharing class UTIL_CustomSettingsFacade {
      * Private methods that will configure the default org-level custom settings.
      **/
     private static void configSettings(Hierarchy_Settings__c hs) {
-		hs.Account_Processor__c = UTIL_Describe.getRecTypesMapByDevName('Account').get('Administrative');
-		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getHhAccRecTypeID() 
-		                                  + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
+		hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
+		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
+		hs.Contacts_Addresses_Enabled__c = true;
+		hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();
 		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
         hs.Error_Notifications_On__c = true;
@@ -117,7 +118,9 @@ public without sharing class UTIL_CustomSettingsFacade {
         //create our own based on what's passed in from the test
         settings.Account_Processor__c = mySettings.Account_Processor__c;
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
+        settings.Contacts_Addresses_Enabled__c = mySettings.Contacts_Addresses_Enabled__c;
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
+        settings.Household_Addresses_RecType__c = mySettings.Household_Addresses_RecType__c;
         settings.Reciprocal_Method__c = mySettings.Reciprocal_Method__c;
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         settings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
@@ -138,7 +141,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static List<Affl_Mappings__c> getAfflMappings() {
         if(afflMappings == null) {
         afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
-               Auto_Program_Enrollment_Status__c from Affl_Mappings__c limit 50000];
+               Auto_Program_Enrollment_Status__c from Affl_Mappings__c order by Account_Record_Type__c limit 50000];
         }
         return afflMappings;
     }

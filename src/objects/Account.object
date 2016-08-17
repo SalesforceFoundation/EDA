@@ -9,6 +9,20 @@
         <label>HEDA Account Compact Layout</label>
     </compactLayouts>
     <fields>
+        <fullName>Current_Address__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The current Address that the Account&apos;s billing fields are filled with.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The current Address that the Account&apos;s billing fields are filled with.</inlineHelpText>
+        <label>Current Address</label>
+        <referenceTo>Address__c</referenceTo>
+        <relationshipLabel>Accounts (Current Address)</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Primary_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>

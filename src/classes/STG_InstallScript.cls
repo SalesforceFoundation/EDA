@@ -66,6 +66,49 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	         }
     	     }
     	 }
+    	 
+    	 reparentAdminAddrs(context.previousVersion());
+    }
+    
+    global static void reparentAdminAddrs(Version previousVersion) {
+        //Reparent administrative account children
+		 if(previousVersion != null && previousVersion.compareTo(new Version(1,14)) == 0) {
+		     UTIL_Debug.debug('***Upgrading to version 1.14');
+		     
+		     String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
+		     
+		     if(adminRecTypeId != null) {
+		         //This loop should be processing 200 accounts, with their children, at a time
+		         for(Account[] accs : [select ID, (select ID from Account.Contacts),
+		                                              (select  Parent_Account__c, Parent_Contact__c from Account.Addresses__r)
+		         from Account where RecordTypeID = :adminRecTypeID]) {
+		             
+		             List<Address__c> addrsToUpdate = new List<Address__c>();
+		             
+		             for(Account acc : accs) {
+		                 //We need to do this, because acc.Contacts.size() would throw an exception if the account had more than 200 contacts 
+		                 Integer contactCount = 0;
+		                 Boolean tooMany = false;
+		                 for(Contact contact : acc.Contacts) {
+		                     contactCount++;
+		                     if(contactCount > 1) {
+		                         tooMany = true;
+		                         break;
+		                     }
+		                 }
+		                 //Administrative Accounts should have only one child contact
+		                 if(!tooMany) {
+		                     for(Address__c addr : acc.Addresses__r) {
+		                         addr.Parent_Account__c = null;
+		                         addr.Parent_Contact__c = acc.Contacts[0].Id;
+		                         addrsToUpdate.add(addr);
+		                     }
+		                 }
+		             }
+		             update addrsToUpdate;
+		         }
+		     }
+		 }
     }
     
     /*******************************************************************************************************

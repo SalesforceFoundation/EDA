@@ -95,7 +95,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' + 
                 'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, '; 
             
-            if (ADDR_Addresses_TDTM.isStateCountryPicklistsEnabled)
+            if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
                 strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
             
             strSoql += 'Phone, Fax from Contact where Id IN :contacts';
@@ -307,21 +307,22 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
             // is the correct type for the current account processor
             Account acc = mapContactIdAccount.get(c.Id);
-            if (acc != null && (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() 
-            || acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID())) {
+            if (acc != null && (acc.RecordTypeId == UTIL_CustomSettingsFacade.getSettings().Account_Processor__c)) {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;                
             } else {
             	UTIL_Debug.debug('****Creating new account');
                 
-                // construct the individul account for the Contact
+                // construct the individual account for the Contact
                 Account a = new Account();
                 
                 // construct the Account name
                 if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
                 	a.Name = strNameHHAccountForContact(c);
-                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
+                //TODO: we should not be asking for the record type directly, and instead let the use tell us which record type
+                //represents an Administrative account.
+                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID()) 
                 	a.Name = strNameAdmAccountForContact(c);
                 else
                     a.Name = strNameAccountForContact(c);
@@ -332,9 +333,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
-                ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
-                ADDR_Addresses_TDTM.copyAddressStdSObj(c, 'Other', a, 'Shipping');
-
+                
+                if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
+                    ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
+                    ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Other', a, 'Shipping');
+                    ADDR_Contact_TDTM.afterAutomaticAccInsert = true;
+                }
+                
                 //Give it the default record type selected in the settings. 
                 if(defaultRecTypeID != null)
                     a.RecordTypeID = defaultRecTypeID;
@@ -345,7 +350,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         
         List<Contact> contactsToUpdate = new List<Contact>();
-        List<SObject> afflsToInsert = new List<Affiliation__c>();
         if (accountInserts.size() > 0) {
         	UTIL_Debug.debug('****Number of accounts to insert: ' + accountInserts.size());
             // we can't use dmlWrapper because we need to get the new AccountID's into the Contacts.
@@ -356,18 +360,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 // for each success, write the new AccountId to the Contact.
                 c.AccountId = accountInserts[i].Id;
                 contactsToUpdate.add(c);
-                
-                //Creating affiliation - Functionality Change --> commenting out this code because we 
-                //don't want an affiliation automatically created from a Contact to its parent Account. 
-				//afflsToInsert.add(new Affiliation__c(Contact__c = c.Id, Account__c = accountInserts[i].Id, 
-				//				Primary__c = true, Status__c = 'Current'));
-				
                 i += 1;
             }
         }
-        ADDR_Contact_TDTM.contactsUpdatedAfterInsert = true;
         update contactsToUpdate;
-        dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }
     
     /*******************************************************************************************************

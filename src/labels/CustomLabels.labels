@@ -117,16 +117,32 @@
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address records should only be created as children of Account.</value>
+        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
+    </labels>
+    <labels>
+        <fullName>addrValidParentObjects</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrValidParentObjects</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
         <fullName>addrAccountTypeEnabled</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly</shortDescription>
-        <value>Address management not enabled for this type of Account.</value>
+        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
+        <value>Address management not enabled for this object type.</value>
+    </labels>
+    <labels>
+        <fullName>addrNotEnabled</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrNotEnabled</shortDescription>
+        <value>Address management not enabled for this object type in settings.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
@@ -249,12 +265,36 @@
         <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
     </labels>
     <labels>
+        <fullName>stgHelpAddressAccRecType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpAddressAccRecType</shortDescription>
+        <value>The Account record types that support multiple address management.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpContactAddrs</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpContactAddrs</shortDescription>
+        <value>Select this option to enable multiple address management for Contacts.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Administrative and Household Accounts when selected.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpHouseholdRecType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpHouseholdRecType</shortDescription>
+        <value>The Account record type that best represents Households. HEDA uses the Household Account record type by default, but you can use another record type if you wish.</value>
     </labels>
     <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
