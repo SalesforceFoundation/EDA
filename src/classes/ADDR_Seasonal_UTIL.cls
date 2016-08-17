@@ -255,7 +255,7 @@ public with sharing class ADDR_Seasonal_UTIL {
         ADDR_Contact_TDTM.turnOff();
 
         TDTM_Runnable.Dmlwrapper dmlWrapper = new TDTM_Runnable.Dmlwrapper();
-        ADDR_Addresses_TDTM.refreshCurrentAccAddress(mapAccIdAddr, dmlWrapper, null);
+        ADDR_Addresses_TDTM.refreshParentAndSiblings(mapAccIdAddr, dmlWrapper, null);
         TDTM_TriggerHandler.processDML(dmlWrapper);
     }
 }

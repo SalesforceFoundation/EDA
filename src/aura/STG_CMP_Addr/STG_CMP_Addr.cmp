@@ -46,12 +46,22 @@
         </div>
         
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="Select the Account record type that best represents Households." class="slds-text-body--small" />
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpHouseholdRecType}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpHouseholdRecType}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
         </div>
         
         <div class="slds-col slds-size--1-of-2">
             <div>Account Types with Multi-Addresses Enabled:</div>
-            <div class="slds-text-body--small">All Account Record Types that support multiple address management.</div>
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgHelpAddressAccRecType}" class="slds-text-body--small" />
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgHelpAddressAccRecType}" class="slds-text-body--small" />
+            </aura:set>
+            </aura:if>
         </div>
         <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
             <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_Addresses_Enabled__c}" 

@@ -2688,9 +2688,9 @@ if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
     <fields>
         <fullName>is_Address_Override__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, the Contact&apos;s Current address overrides any new or seasonal address.</description>
+        <description>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, the Contact&apos;s Current address overrides any new or seasonal address.</inlineHelpText>
+        <inlineHelpText>If checked, the Contact&apos;s Current address overrides any new or seasonal address. (Applies to Household Contacts only.)</inlineHelpText>
         <label>Do Not Automatically Update</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
