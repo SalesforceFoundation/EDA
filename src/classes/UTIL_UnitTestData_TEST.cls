@@ -38,24 +38,39 @@
 public class UTIL_UnitTestData_TEST { 
     
     public static Contact getContact() {
-    	return new Contact (FirstName = 'Test', LastName = 'Contact_forTests', WorkEmail__c = 'junk@test.net', 
-    	       Preferred_Email__c = 'Work',WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work',OtherCity = 'Seattle');
+    	Contact contact =  new Contact(FirstName = 'Test', LastName = 'Testerson' + Datetime.now().getTime(), 
+    	                   WorkEmail__c = 'fakeemail@salesforce.org', Preferred_Email__c = 'Work', 
+    	                   WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work',OtherCity = 'Seattle');
+    	Database.DMLOptions dmo = new Database.DMLOptions();
+        dmo.DuplicateRuleHeader.AllowSave = true;
+        contact.setOptions(dmo);
+        return contact;
     }
     
     public static List<Contact> getMultipleTestContacts(Integer n) {
-        List<contact> ContactsToAdd = New List<contact> ();
-        for (Integer i=0; i<n; i++) {
-            Contact newCon = New Contact (FirstName = 'Test' + i, LastName = 'Contact_forTests' + i, WorkEmail__c = 'junk@test.net', 
-                Preferred_Email__c = 'Work', WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work', OtherCity = 'Seattle');
-            ContactsToAdd.add (newCon);
-        }       
+        List<contact> ContactsToAdd = new List<contact>();
+        for(Integer i=0; i<n; i++) {
+            Contact newCon = new Contact(FirstName = i + 'Test' + Datetime.now().getTime(), 
+                                         LastName = i + 'Contact_forTests' + Datetime.now().getTime(), 
+                                         WorkEmail__c = i + 'fakeemail' + Datetime.now().getTime() + '@salesforce.org', 
+                                         Preferred_Email__c = 'Work', WorkPhone__c = i + '06-777-888' + Datetime.now().getTime(), 
+                                         PreferredPhone__c = 'Work', OtherCity = 'Seattle');
+            Database.DMLOptions dmo = new Database.DMLOptions();
+            dmo.DuplicateRuleHeader.AllowSave = true;
+            newCon.setOptions(dmo);
+            ContactsToAdd.add(newCon);
+        }
         return ContactsToAdd;
     }
 
     public static List<Account> getMultipleTestAccounts(Integer n, ID recTypeId) {
-        List<Account> AcctsToAdd = New List<Account> ();    
-        for (Integer i=0; i<n; i++) {
-            AcctsToAdd.add(new Account(Name = 'Yet Another Org ' + i, RecordTypeId = recTypeId));
+        List<Account> AcctsToAdd = new List<Account>();    
+        for(Integer i=0; i<n; i++) {
+            Account acc = new Account(Name = i + 'Yet Another Org ' + i, RecordTypeId = recTypeId, Website = i + 'salesforce.org');
+            Database.DMLOptions dmo = new Database.DMLOptions();
+            dmo.DuplicateRuleHeader.AllowSave = true;
+            acc.setOptions(dmo);
+            AcctsToAdd.add(acc);
         }
         return AcctsToAdd;
     }
@@ -82,13 +97,13 @@ public class UTIL_UnitTestData_TEST {
     **********************************************************************************************************/
     public static List<Address__c> getMultipleTestAddresses(Integer addrCount) {
         List<Address__c> addrs = new List<Address__c>();
-        for (Integer i = 0; i < addrCount; i++) {
+        for(Integer i = 0; i < addrCount; i++) {
             Address__c addr = new Address__c();
             addr.Address_Type__c = 'Home';
-            addr.MailingStreet__c = 'Street' + i;
-            addr.MailingCity__c = 'City' + i;
+            addr.MailingStreet__c = i + 'Street' + i;
+            addr.MailingCity__c = i + 'City' + i;
             addr.MailingState__c = 'Washington';
-            addr.MailingPostalCode__c = 'Zip' + i;
+            addr.MailingPostalCode__c = i + 'Zip' + i;
             addr.MailingCountry__c = 'United States';
             addr.Geolocation__Latitude__s = 47.6097 + i;
             addr.Geolocation__Longitude__s = -122.3331 + i;
@@ -115,7 +130,7 @@ public class UTIL_UnitTestData_TEST {
         accsAddrs.addrs = getMultipleTestAddresses(accCount);
         
         //link addresses with accounts and make them default
-        for (Integer i = 0; i < accCount; i++) {
+        for(Integer i = 0; i < accCount; i++) {
             accsAddrs.addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             accsAddrs.addrs[i].Default_Address__c = true;
         }
@@ -157,16 +172,19 @@ public class UTIL_UnitTestData_TEST {
     public static ContactsWithAddrs createTestContactsAddrs(Integer contactCount) {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
         
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();        
+        ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();        
         //instantiate contacts
         contactsAddrs.contacts = getMultipleTestContacts(contactCount);
-        insert contactsAddrs.contacts;
+        UTIL_Debug.debug('****contactsAddrs 1: ' + JSON.serializePretty(contactsAddrs.contacts));
+        Database.DMLOptions dmo = new Database.DMLOptions();
+        dmo.DuplicateRuleHeader.AllowSave = true;
+        Database.insert(contactsAddrs.contacts, dmo);
         
         //instantiate addresses
         contactsAddrs.addrs = getMultipleTestAddresses(contactCount);
         
         //link addresses with contacts and make them default
-        for (Integer i = 0; i < contactCount; i++) {
+        for(Integer i = 0; i < contactCount; i++) {
             contactsAddrs.addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             contactsAddrs.addrs[i].Default_Address__c = true;
         }
@@ -174,7 +192,7 @@ public class UTIL_UnitTestData_TEST {
         insert contactsAddrs.addrs;
         
        //link contacts with addresses and copy address info to contacts
-        for (Integer i = 0; i < contactCount; i++) {
+        for(Integer i = 0; i < contactCount; i++) {
             contactsAddrs.contacts[i].Current_Address__c = contactsAddrs.addrs[i].Id;
             contactsAddrs.contacts[i].MailingStreet = contactsAddrs.addrs[i].MailingStreet__c;
             contactsAddrs.contacts[i].MailingCity = contactsAddrs.addrs[i].MailingCity__c;
@@ -184,7 +202,21 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.contacts[i].MailingLatitude = contactsAddrs.addrs[i].Geolocation__Latitude__s;
             contactsAddrs.contacts[i].MailingLongitude = contactsAddrs.addrs[i].Geolocation__Longitude__s;
         }
-        update contactsAddrs.contacts;
+        UTIL_Debug.debug('****contactsAddrs 2: ' + JSON.serializePretty(contactsAddrs.contacts));
+        Database.DMLOptions dmo2 = new Database.DMLOptions();
+        dmo2.DuplicateRuleHeader.AllowSave = true;
+        Database.SaveResult[] srs = Database.update(contactsAddrs.contacts, dmo2);
+        for(Database.SaveResult sr : srs) {
+	        if (!sr.isSuccess()) {
+			    // Insertion failed due to duplicate detected
+			    for(Database.Error duplicateError : sr.getErrors()){
+			        Datacloud.DuplicateResult duplicateResult = ((Database.DuplicateError)duplicateError).getDuplicateResult();
+			        UTIL_Debug.debug('****Duplicate records have been detected by ' + duplicateResult.getDuplicateRule());
+			        UTIL_Debug.debug('****Error message: ' + duplicateResult.getErrorMessage());
+			        UTIL_Debug.debug('****Match results: ' + JSON.serializePretty(duplicateResult.getMatchResults()));
+			    }
+	        }
+        }
         
         //clear our triggers recursion prevention since we are starting a new test
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -218,8 +250,8 @@ public class UTIL_UnitTestData_TEST {
         insert consAccsAddrs.accs;
         
         // link contacts with accounts
-        for (Integer i = 0; i < accCount; i++) {
-            for (Integer j = 0; j < contactCount; j++) {
+        for(Integer i = 0; i < accCount; i++) {
+            for(Integer j = 0; j < contactCount; j++) {
                 consAccsAddrs.contacts[ (i * contactCount) + j].AccountId = consAccsAddrs.accs[i].Id;
             }
         }
@@ -236,7 +268,7 @@ public class UTIL_UnitTestData_TEST {
         consAccsAddrs.addrs = getMultipleTestAddresses(accCount);
         
         //link addresses with accounts and make them default
-        for (Integer i = 0; i < accCount; i++) {
+        for(Integer i = 0; i < accCount; i++) {
             consAccsAddrs.addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
             consAccsAddrs.addrs[i].Default_Address__c = true;
         }
@@ -256,10 +288,10 @@ public class UTIL_UnitTestData_TEST {
         update  consAccsAddrs.accs;
         
         // link contacts with addresses and copy address info to contacts
-        for (Integer i = 0; i < accCount; i++) {
+        for(Integer i = 0; i < accCount; i++) {
             Account parentAcc = consAccsAddrs.accs[i];
             Address__c addr = consAccsAddrs.addrs[i];
-            for (Integer j = 0; j < contactCount; j++) {
+            for(Integer j = 0; j < contactCount; j++) {
                 consAccsAddrs.contacts[ (i * contactCount) + j].Current_Address__c = parentAcc.Current_Address__c;
                 consAccsAddrs.contacts[ (i * contactCount) + j].MailingStreet = addr.MailingStreet__c;
 	            consAccsAddrs.contacts[ (i * contactCount) + j].MailingCity = addr.MailingCity__c;
