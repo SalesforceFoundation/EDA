@@ -1,7 +1,6 @@
 <aura:component extends="c:STG_CMP_Base">
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-    <aura:handler event="c:STG_EVT_Save" action="{!c.saveAccRecType}"/>
     
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
@@ -17,8 +16,10 @@
             </aura:if>
         </div>
         
-        <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Account_Processor__c}" isView="{!v.isView}" 
+        <div class="slds-col slds-size--1-of-2">
+            <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Account_Processor__c}" isView="{!v.isView}" 
                 recTypeId="{!v.accRecTypeId}" recTypeName="{!v.accRecTypeName}" recTypes="{!v.accRecTypes}" />
+        </div>
         
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">

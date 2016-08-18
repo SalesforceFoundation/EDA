@@ -116,9 +116,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	        //List of Contacts that need to have address info copied from parent Househod (for example, they have been created without address info)
 	        List<Contact> contactsAddrInfoReset = new List<Contact>(); //This different from the contactsAddrGetFromHh list because contacts in 
 	        //contactsAddrGetFromHh should have a value in their Current_Address__c field
-	        
-	        Boolean householdAddrsEnabled = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c == UTIL_Describe.getHhAccRecTypeID();
-	        
+	        	        
 	        // AFTER INSERT
 	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 	            alreadyRunAfterInsert = true;
@@ -127,9 +125,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            	            
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
-	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
+	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) != null && 
+	                                           contactIDToAccRecTypeID.get(contact.ID) == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
 		            
-		            if (childOfHousehold && householdAddrsEnabled) {
+		            if (childOfHousehold) {
 		                if (ADDR_Addresses_UTIL.isContactAddressEmpty(contact)) {
                            // if the contact has no address specified, pick up the HH default.
                            contactsAddrInfoReset.add(contact);
@@ -163,7 +162,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	            Integer i = 0;
 	            for (SObject so : listNew) {
 	                Contact contact = (Contact)so;
-	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID();
+	                Boolean childOfHousehold = contactIDToAccRecTypeID.get(contact.ID) != null && 
+	                                           contactIDToAccRecTypeID.get(contact.ID) == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
 	                Contact contactOld = (Contact)listOld[i];
 	                
 	                Boolean addrInfoChanged = ADDR_Addresses_UTIL.isContactAddressChanged(contact, contactOld);	                
@@ -189,7 +189,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 			                } else if(addrInfoCleared) {
 			                   contactsAddrInfoCleared.add(contact);
 			                }
-			            } else if(childOfHousehold && householdAddrsEnabled) {
+			            } else if(childOfHousehold) {
 			                
 			                // if the Contact has been changed to a different household
 	                        if(contactOld != null && contact.AccountID != contactOld.AccountID && !currentAddressChanged) {
@@ -417,7 +417,8 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         for (Contact contact : listContact) {
             Address__c addr = new Address__c();
             //Creating address as child of Account
-            if(contactIDToAccRecTypeID.get(contact.ID) == UTIL_Describe.getHhAccRecTypeID()) {
+            if(UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c != null 
+            && contactIDToAccRecTypeID.get(contact.ID) == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
                 addr.Parent_Account__c = contact.AccountId;
             //Creating address as child of Contact
             } else {

@@ -318,7 +318,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account();
                 
                 // construct the Account name
-                if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c)
+                if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
                 	a.Name = strNameHHAccountForContact(c);
                 //TODO: we should not be asking for the record type directly, and instead let the use tell us which record type
                 //represents an Administrative account.
@@ -350,7 +350,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         
         List<Contact> contactsToUpdate = new List<Contact>();
-        List<SObject> afflsToInsert = new List<Affiliation__c>();
         if (accountInserts.size() > 0) {
         	UTIL_Debug.debug('****Number of accounts to insert: ' + accountInserts.size());
             // we can't use dmlWrapper because we need to get the new AccountID's into the Contacts.
@@ -365,7 +364,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }
         update contactsToUpdate;
-        dmlWrapper.objectsToInsert.addAll(afflsToInsert);
     }
     
     /*******************************************************************************************************

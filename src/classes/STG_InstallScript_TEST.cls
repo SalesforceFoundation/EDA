@@ -160,4 +160,41 @@ public with sharing class STG_InstallScript_TEST {
         settings = [select Account_Processor__c from Hierarchy_Settings__c];
         System.assertEquals(adminRecTypeId, settings.Account_Processor__c);
     }
+    
+    @isTest
+    public static void changeAdminAccAddressParent() {
+        //Create 201 accounts of adminRecType
+        String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
+        List<Account> accs = new List<Account>();
+        for(Integer i = 0; i < 200; i++) {
+            accs.add(new Account(Name = 'acctest' + i, RecordTypeId = adminRecTypeId));
+        }
+        insert accs;
+        
+        //Create 201 contacts and link them with those accounts
+        List<Contact> contacts = new List<Contact>();
+        for(Integer i = 0; i < 200; i++) {
+            contacts.add(new Contact(LastName = 'contest' + i, AccountId = accs[i].Id));
+        }
+        insert contacts;
+        
+        //Create 201 addresses and link them with those accounts
+        List<Address__c> addrs = new List<Address__c>();
+        for(Integer i = 0; i < 200; i++) {
+            addrs.add(new Address__c(Parent_Account__c = accs[i].Id));
+        }
+        insert addrs;
+        
+        //Run script
+        Test.startTest();      
+        STG_InstallScript.reparentAdminAddrs(new Version(1, 14));
+        Test.stopTest();
+        
+        //Verify addresses are now linked with the contacts
+        addrs = [select Parent_Account__c, Parent_Contact__c from Address__c where ID IN :addrs];
+        for(Address__c addr : addrs) {
+            System.assertEquals(null, addr.Parent_Account__c);
+            System.assertNotEquals(null, addr.Parent_Contact__c);   
+        }
+    }
 }
