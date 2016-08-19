@@ -183,10 +183,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         bizAffl = [select Primary__c from Affiliation__c where ID = :bizAffl.ID];
         System.assertEquals(false, bizAffl.Primary__c);
     }
-    
-    //WARNING: this test will fail is the default Account record type for the system administrator profile (which is the
-    //one the test runs under) is Business Organization, as the bizOrg record will be of that type even if we don't assign
-    //it explicitly.
+
     @isTest
     public static void addRecordTypeToAcc() {        
         setup();
@@ -194,8 +191,9 @@ public with sharing class AFFL_AccRecordType_TEST {
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
        
-        //Create primary Affl to Account without record type
-        Account acc = new Account(Name = 'AccNoType');
+        //Create primary Affl to Account without record type - since the account created will have the record type assigned
+        //to the profile running the tests as default, we assign a different type to it. Profiles cannot be created in tests.
+        Account acc = new Account(Name = 'AccNoType', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
         insert acc;
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Primary__c = true);
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
