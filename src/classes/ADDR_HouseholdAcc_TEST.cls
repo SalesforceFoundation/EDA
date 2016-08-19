@@ -1736,32 +1736,16 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         for (Integer i = 0; i < 2; i++) {
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
             listCon[i].LastName = 'ToAvoidDupeRule' + i;
-            listCon[i].LastName = 'ToAvoidDupeRule' + i;
             listCon[i].MailingStreet = 'New Mailing Street' + i;
             listCon[i].MailingCity = 'New Mailing City' + i;
             listCon[i].MailingState = 'California';
             listCon[i].MailingCountry = 'United States';
         }
-        UTIL_Debug.debug('****Contacts: ' + JSON.serializePretty(listCon));
         
-        Database.DMLOptions dmo = new Database.DMLOptions();
-        //dmo.DuplicateRuleHeader.AllowSave = true;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
-        Database.SaveResult[] srs = Database.insert(listCon, dmo);
+        insert listCon;
         Test.stopTest();
-        
-        for(Database.SaveResult sr : srs) {
-            if (!sr.isSuccess()) {
-                // Insertion failed due to duplicate detected
-                for(Database.Error duplicateError : sr.getErrors()){
-                    Datacloud.DuplicateResult duplicateResult = ((Database.DuplicateError)duplicateError).getDuplicateResult();
-                    UTIL_Debug.debug('****Duplicate records have been detected by ' + duplicateResult.getDuplicateRule());
-                    UTIL_Debug.debug('****Error message: ' + duplicateResult.getErrorMessage());
-                    UTIL_Debug.debug('****Match results: ' + JSON.serializePretty(duplicateResult.getMatchResults()));
-                }
-            }
-        }
         
         // verify that the HH and Contacts share the same address
         Map<Id, Account> mapAccIdAcc = new Map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude from Account]);

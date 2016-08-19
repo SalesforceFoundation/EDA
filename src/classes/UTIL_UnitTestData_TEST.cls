@@ -50,11 +50,8 @@ public class UTIL_UnitTestData_TEST {
     public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = new List<contact>();
         for(Integer i=0; i<n; i++) {
-            Contact newCon = new Contact(FirstName = i + 'Test' + Datetime.now().getTime(), 
-                                         LastName = i + 'Contact_forTests' + Datetime.now().getTime(), 
-                                         WorkEmail__c = i + 'fakeemail' + Datetime.now().getTime() + '@salesforce.org', 
-                                         Preferred_Email__c = 'Work', WorkPhone__c = i + '06-777-888' + Datetime.now().getTime(), 
-                                         PreferredPhone__c = 'Work', OtherCity = 'Seattle');
+            Contact newCon = new Contact(FirstName = 'Test' + i, LastName = 'Contact_forTests' + i, WorkEmail__c = 'fakeemail' + i + '@salesforce.org', 
+                             Preferred_Email__c = 'Work', WorkPhone__c = i + '06-777-888' + i, PreferredPhone__c = 'Work', OtherCity = 'Seattle');
             Database.DMLOptions dmo = new Database.DMLOptions();
             dmo.DuplicateRuleHeader.AllowSave = true;
             newCon.setOptions(dmo);
@@ -66,7 +63,7 @@ public class UTIL_UnitTestData_TEST {
     public static List<Account> getMultipleTestAccounts(Integer n, ID recTypeId) {
         List<Account> AcctsToAdd = new List<Account>();    
         for(Integer i=0; i<n; i++) {
-            Account acc = new Account(Name = i + 'Yet Another Org ' + i, RecordTypeId = recTypeId, Website = i + 'salesforce.org');
+            Account acc = new Account(Name = 'Yet Another Org ' + i, RecordTypeId = recTypeId, Website = i + 'salesforce.org');
             Database.DMLOptions dmo = new Database.DMLOptions();
             dmo.DuplicateRuleHeader.AllowSave = true;
             acc.setOptions(dmo);
@@ -175,7 +172,6 @@ public class UTIL_UnitTestData_TEST {
         ContactsWithAddrs contactsAddrs = new ContactsWithAddrs();        
         //instantiate contacts
         contactsAddrs.contacts = getMultipleTestContacts(contactCount);
-        UTIL_Debug.debug('****contactsAddrs 1: ' + JSON.serializePretty(contactsAddrs.contacts));
         Database.DMLOptions dmo = new Database.DMLOptions();
         dmo.DuplicateRuleHeader.AllowSave = true;
         Database.insert(contactsAddrs.contacts, dmo);
@@ -202,21 +198,7 @@ public class UTIL_UnitTestData_TEST {
             contactsAddrs.contacts[i].MailingLatitude = contactsAddrs.addrs[i].Geolocation__Latitude__s;
             contactsAddrs.contacts[i].MailingLongitude = contactsAddrs.addrs[i].Geolocation__Longitude__s;
         }
-        UTIL_Debug.debug('****contactsAddrs 2: ' + JSON.serializePretty(contactsAddrs.contacts));
-        Database.DMLOptions dmo2 = new Database.DMLOptions();
-        dmo2.DuplicateRuleHeader.AllowSave = true;
-        Database.SaveResult[] srs = Database.update(contactsAddrs.contacts, dmo2);
-        for(Database.SaveResult sr : srs) {
-	        if (!sr.isSuccess()) {
-			    // Insertion failed due to duplicate detected
-			    for(Database.Error duplicateError : sr.getErrors()){
-			        Datacloud.DuplicateResult duplicateResult = ((Database.DuplicateError)duplicateError).getDuplicateResult();
-			        UTIL_Debug.debug('****Duplicate records have been detected by ' + duplicateResult.getDuplicateRule());
-			        UTIL_Debug.debug('****Error message: ' + duplicateResult.getErrorMessage());
-			        UTIL_Debug.debug('****Match results: ' + JSON.serializePretty(duplicateResult.getMatchResults()));
-			    }
-	        }
-        }
+        update contactsAddrs.contacts;
         
         //clear our triggers recursion prevention since we are starting a new test
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
