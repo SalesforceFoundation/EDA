@@ -61,7 +61,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
                         //AFTER INSERT
                         if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                            if(enroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getSettings().Default_Faculty_RecordType_Id__c &&
+                            if(enroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID() &&
                                enroll.Primary__c) {
                                 Course_Offering__c cOff = new Course_Offering__c(
                                     Id = enroll.Course_Offering__c,
@@ -75,7 +75,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                         if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                             Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
 
-                            if (enroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getSettings().Default_Faculty_RecordType_Id__c) {
+                            if (enroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()) {
                                 if (enroll.Primary__c && !oldEnroll.Primary__c) {
                                     // Update Course Offering to add new Primary Faculty
                                     Course_Offering__c cOff = new Course_Offering__c(
@@ -105,7 +105,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
                             Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
 
-                            if (oldEnroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getSettings().Default_Faculty_RecordType_Id__c) {
+                            if (oldEnroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()) {
                                 if (oldEnroll.Primary__c) {
                                     // Update Course Offering to remove Primary Faculty
                                     Course_Offering__c cOff = new Course_Offering__c(

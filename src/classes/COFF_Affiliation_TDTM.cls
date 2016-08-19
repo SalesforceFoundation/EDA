@@ -88,7 +88,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                                                                                     Course_Offering__c = newOff.Id);
                         if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
                             // Course Connections is enabled, set RecordType and Primary__c
-                            newEnroll.RecordTypeId = UTIL_CustomSettingsFacade.getSettings().Default_Faculty_RecordType_Id__c;
+                            newEnroll.RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
                             newEnroll.Primary__c = true;
                         }
                         courseEnrllsToInsert.add(newEnroll);
@@ -288,7 +288,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * if a connection for the Faculty member does not exist.
     ********************************************************************************************************/
     private void updateConnectionsOnFacultyChange(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, Set<Id> offsWithChangedFaculty, DmlWrapper dmlWrapper) {
-        Id facultyRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Default_Faculty_RecordType_Id__c;
+        Id facultyRecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
         Map<Id, Map<Id, Course_Enrollment__c>> offeringFacultyConnIds = getOfferingIdFacultyIdConnection(offsWithChangedFaculty, facultyRecordTypeId);
         List<Course_Enrollment__c> oldConns = [select Id, Affiliation__c, Account__c, Course_Offering__c, Primary__c
                                                  from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs];
@@ -324,7 +324,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * if a Course Connection for the Faculty member does not exist.
     ********************************************************************************************************/
     private void updateConnectionsOnFacultyAdd(List<Course_Offering__c> courseOfferings, DmlWrapper dmlWrapper) {
-        Id facultyRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Default_Faculty_RecordType_Id__c;
+        Id facultyRecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
 
         Set<Id> offIds = (new Map<Id,Course_Offering__c>(courseOfferings)).keySet();
 
