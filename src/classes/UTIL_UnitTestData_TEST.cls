@@ -97,10 +97,10 @@ public class UTIL_UnitTestData_TEST {
         for(Integer i = 0; i < addrCount; i++) {
             Address__c addr = new Address__c();
             addr.Address_Type__c = 'Home';
-            addr.MailingStreet__c = i + 'Street' + i;
-            addr.MailingCity__c = i + 'City' + i;
+            addr.MailingStreet__c = 'Street' + i;
+            addr.MailingCity__c = 'City' + i;
             addr.MailingState__c = 'Washington';
-            addr.MailingPostalCode__c = i + 'Zip' + i;
+            addr.MailingPostalCode__c = 'Zip' + i;
             addr.MailingCountry__c = 'United States';
             addr.Geolocation__Latitude__s = 47.6097 + i;
             addr.Geolocation__Longitude__s = -122.3331 + i;
