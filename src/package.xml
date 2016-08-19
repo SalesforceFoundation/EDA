@@ -235,9 +235,9 @@
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
+        <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Default_Enrolled_Student_RecordType_Id__c</members>
         <members>Hierarchy_Settings__c.Default_Faculty_RecordType_Id__c</members>
-        <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>

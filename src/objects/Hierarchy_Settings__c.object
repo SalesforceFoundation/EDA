@@ -67,6 +67,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Contacts_Addresses_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Address management support for Contacts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Address management support for Contacts.</inlineHelpText>
+        <label>Address management support for Contacts.</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Default_Enrolled_Student_RecordType_Id__c</fullName>
         <description>The Default Enrolled Student RecordType Id to be used for Course Connections.</description>
         <externalId>false</externalId>
@@ -87,16 +97,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Contacts_Addresses_Enabled__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Address management support for Contacts.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Address management support for Contacts.</inlineHelpText>
-        <label>Address management support for Contacts.</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Disable_Error_Handling__c</fullName>
