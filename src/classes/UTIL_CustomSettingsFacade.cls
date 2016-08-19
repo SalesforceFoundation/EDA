@@ -128,6 +128,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Del__c = mySettings.Affl_ProgEnroll_Del__c;
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
+        settings.Enable_Course_Connections__c = mySettings.Enable_Course_Connections__c;
 
         orgSettings = settings;
         return settings;
