@@ -368,4 +368,38 @@ public without sharing class UTIL_CustomSettingsFacade {
           getSettings().Default_Faculty_RecordType_Id__c.length() >= 15
         );
     }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Faculty Course Connection record type, if it exists.
+     * @return String The ID of the Faculty Course Connection record type as a String.
+     */
+    public static String getFacultyConnectionRecTypeID() {
+        String recTypeId = getSettings().Default_Faculty_RecordType_Id__c;
+        if(recTypeId.length() < 15 && Test.isRunningTest()) {
+            if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 0) {
+                return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[0];
+            } else {
+                return null;
+            }
+        } else {
+            return recTypeId;
+        }
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Student Course Connection record type, if it exists.
+     * @return String The ID of the Student Course Connection record type as a String.
+     */
+    public static String getStudentConnectionRecTypeID() {
+        String recTypeId = getSettings().Default_Enrolled_Student_RecordType_Id__c;
+        if(recTypeId.length() < 15 && Test.isRunningTest()) {
+            if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 1) {
+                return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[1];
+            } else {
+                return null;
+            }
+        } else {
+            return recTypeId;
+        }
+    }
 }
