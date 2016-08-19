@@ -379,7 +379,7 @@ private class ACCT_IndividualAccounts_TEST {
                                     Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
                                     Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
      
-        Account orgAccount = new Account(Name='Fake account');
+        Account orgAccount = new Account(Name='Fake account', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert orgAccount;
                
         String newContactMailingStreet = '123 Elm St';
