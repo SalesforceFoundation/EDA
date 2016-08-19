@@ -49,82 +49,126 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
          DmlWrapper dmlWrapper = new DmlWrapper();
 
-         if (!COFF_Affiliation_TDTM.hasRunCoffTrigger) {
-             // Check that Course Connections is enabled
-             if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                 List<Course_Offering__c> courseOfferingsToUpdate = new List<Course_Offering__c>();
+         // Check that Course Connections is enabled
+         if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
 
-                 if(newlist != null && newlist.size() > 0) {
+             Id facultyRecType = (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
 
-                     for (Integer i = 0; i < newlist.size(); i++) {
-                        Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+             List<Course_Offering__c> courseOfferingsToUpdate = new List<Course_Offering__c>();
+             List<Course_Enrollment__c> courseConnsBeforeInsert = new List<Course_Enrollment__c>();
 
-                        //AFTER INSERT
-                        if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                            if(enroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID() &&
-                               enroll.Primary__c) {
+             Map<Id, Course_Offering__c> offerings = new Map<Id, Course_Offering__c>();
+
+             if(newlist != null && newlist.size() > 0) {
+
+                // Build Set of Course Offerings Ids
+                Set<Id> courseOfferingIds = new Set<Id>();
+                for (Integer i = 0; i < newlist.size(); i++) {
+                    Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+                    if (enroll.RecordTypeId == facultyRecType) {
+                        Id offeringId = enroll.Course_Offering__c;
+                        courseOfferingIds.add(offeringId);
+                    }
+                }
+                // Query for all the related Course Offerings
+                offerings = getCourseOfferings(courseOfferingIds);
+
+                for (Integer i = 0; i < newlist.size(); i++) {
+                    Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+
+                    //BEFORE INSERT
+                    if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                        if(enroll.RecordTypeId == facultyRecType) {
+                            enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
+                        }
+                    }
+
+                    //AFTER INSERT
+                    if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                        // Faculty Marked as Primary on Insert
+                        if(enroll.RecordTypeId == facultyRecType &&
+                           enroll.Primary__c) {
+                            Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
+                            if (offering.Faculty__c != enroll.Contact__c) {
+                                offering.Faculty__c = enroll.Contact__c;
+                                courseOfferingsToUpdate.add(offering);
+                            }
+                        }
+                    }
+
+                    //AFTER UPDATE
+                    if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                        Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
+
+                        if (enroll.RecordTypeId == facultyRecType) {
+                            if (enroll.Primary__c && !oldEnroll.Primary__c) {
+                                // Update Course Offering to add new Primary Faculty
+                                Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
+                                if (offering.Faculty__c != enroll.Contact__c) {
+                                    offering.Faculty__c = enroll.Contact__c;
+                                }
+                                courseOfferingsToUpdate.add(offering);
+                            } else if (!enroll.Primary__c && oldEnroll.Primary__c) {
+                                // Update Course Offering to remove Primary Faculty
+                                Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
+                                if (offering.Faculty__c == oldEnroll.Contact__c) {
+                                    offering.Faculty__c = null;
+                                }
+                                courseOfferingsToUpdate.add(offering);
+                            }
+                        }
+                    }
+                }
+            }
+
+            //AFTER DELETE
+            if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
+
+                if(oldList != null && oldList.size() > 0) {
+
+                    for (Integer i = 0; i < oldList.size(); i++) {
+
+                        Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
+
+                        if (oldEnroll.RecordTypeId == facultyRecType) {
+                            if (oldEnroll.Primary__c) {
+                                // Update Course Offering to remove Primary Faculty
                                 Course_Offering__c cOff = new Course_Offering__c(
-                                    Id = enroll.Course_Offering__c,
-                                    Faculty__c = enroll.Contact__c
+                                    Id = oldEnroll.Course_Offering__c,
+                                    Faculty__c = null
                                 );
                                 courseOfferingsToUpdate.add(cOff);
                             }
                         }
-
-                        //AFTER UPDATE
-                        if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                            Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
-
-                            if (enroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()) {
-                                if (enroll.Primary__c && !oldEnroll.Primary__c) {
-                                    // Update Course Offering to add new Primary Faculty
-                                    Course_Offering__c cOff = new Course_Offering__c(
-                                        Id = enroll.Course_Offering__c,
-                                        Faculty__c = enroll.Contact__c
-                                    );
-                                    courseOfferingsToUpdate.add(cOff);
-                                } else if (!enroll.Primary__c && oldEnroll.Primary__c) {
-                                    // Update Course Offering to remove Primary Faculty
-                                    Course_Offering__c cOff = new Course_Offering__c(
-                                        Id = enroll.Course_Offering__c,
-                                        Faculty__c = null
-                                    );
-                                    courseOfferingsToUpdate.add(cOff);
-                                }
-                            }
-                        }
                     }
                 }
+            }
 
-                //AFTER DELETE
-                if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
-
-                    if(oldList != null && oldList.size() > 0) {
-
-                        for (Integer i = 0; i < oldList.size(); i++) {
-
-                            Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
-
-                            if (oldEnroll.RecordTypeId == (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()) {
-                                if (oldEnroll.Primary__c) {
-                                    // Update Course Offering to remove Primary Faculty
-                                    Course_Offering__c cOff = new Course_Offering__c(
-                                        Id = oldEnroll.Course_Offering__c,
-                                        Faculty__c = null
-                                    );
-                                    courseOfferingsToUpdate.add(cOff);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if(courseOfferingsToUpdate.size() > 0) {
-                    dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseOfferingsToUpdate);
-                }
+            if(courseOfferingsToUpdate.size() > 0) {
+                dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseOfferingsToUpdate);
             }
         }
 
+
         return dmlWrapper;
+    }
+
+    /*******************************************************************************************************
+     * @description Gets all Course Offerings related to Course Connections in order to get the Course
+     * account for Academic Program.
+     ********************************************************************************************************/
+    private Map<Id, Course_Offering__c> getCourseOfferings(Set<Id> courseOfferingIds) {
+        return new Map<Id, Course_Offering__c>([
+            SELECT
+                Id,
+                Course__r.Account__c,
+                Faculty__c
+            FROM
+                Course_Offering__c
+            WHERE
+                Id
+            IN
+                :courseOfferingIds
+        ]);
     }
 }
