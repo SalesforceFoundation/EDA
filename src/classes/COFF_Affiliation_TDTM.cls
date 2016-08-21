@@ -57,6 +57,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
         List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
         Set<Id> offsWithChangedFaculty = new Set<Id>();
+        Set<Id> offsWithRemovedFaculty = new Set<Id>();
 
         List<ID> newFacultyIDs = new List<ID>();
         List<ID> updatedFacultyIDs = new List<ID>();
@@ -150,6 +151,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                     } else if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
                         UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
                         removedFacultyIDs.add(oldOff.Faculty__c);
+                        offsWithRemovedFaculty.add(newOff.Id);
                     }
                 }
             }
@@ -195,7 +197,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
         if(removedFacultyIDs.size() > 0) {
             if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                updateConnectionsOnFacultyRemove(removedFacultyIDs, dmlWrapper);
+                updateConnectionsOnFacultyRemove(removedFacultyIDs, offsWithRemovedFaculty, dmlWrapper);
             } else {
                 deleteAfflsEnrolls(removedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
             }
@@ -373,10 +375,27 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * @description Deletes the Affiliations that had been automatically created from the Course Enrollments with
     * assigned Faculty members. Also deletes the Course Enrollments themselves.
     ********************************************************************************************************/
-    private void updateConnectionsOnFacultyRemove(List<ID> removedFacultyIDs, DmlWrapper dmlWrapper) {
-        List<Course_Enrollment__c> oldConns = [select Id from Course_Enrollment__c where Contact__c in :removedFacultyIDs];
+    private void updateConnectionsOnFacultyRemove(List<ID> removedFacultyIDs, Set<Id> offsWithRemovedFaculty, DmlWrapper dmlWrapper) {
+        List<Course_Enrollment__c> oldConns = [
+            SELECT
+                Id,
+                Course_Offering__c,
+                Primary__c
+            FROM
+                Course_Enrollment__c
+            WHERE
+                Contact__c
+            IN
+                :removedFacultyIDs
+            AND
+                Course_Offering__c
+            IN
+                :offsWithRemovedFaculty
+        ];
         for(Course_Enrollment__c conn : oldConns) {
-            conn.Primary__c = false;
+            if (conn.Primary__c && offsWithRemovedFaculty.contains(conn.Course_Offering__c)) {
+                conn.Primary__c = false;
+            }
         }
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)oldConns);
     }
