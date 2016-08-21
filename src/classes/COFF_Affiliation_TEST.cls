@@ -66,6 +66,15 @@ public with sharing class COFF_Affiliation_TEST {
     	insert faculty;
     }
 
+    private static void enableCourseConnections() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Enable_Course_Connections__c = true,
+                Default_Faculty_RecordType_Id__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            )
+        );
+    }
+
     /*********************************************************************************************************
     * @description Verifies that an Affiliation to the Department is automatically created when a Course Offering
     * with a value in the Faculty field is created and that Contact did not already have an Affiliation to that
@@ -235,6 +244,122 @@ public with sharing class COFF_Affiliation_TEST {
     }
 
     @isTest
+    public static void changeFacultyWithCourseConnEnabled() {
+        enableCourseConnections();
+    	setup();
+
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+
+        //A Course Enrollment should have been automatically created
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
+        where Contact__r.Id = :faculty.Id];
+        System.assertEquals(1, enrolls.size());
+
+    	//Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
+        List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c from Affiliation__c
+        where Contact__c = :faculty.Id and Role__c = 'Faculty'];
+        System.assertEquals(1, affls.size());
+
+    	//Create second faculty member
+    	Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert faculty2;
+
+    	//Update Offering
+    	offering.Faculty__c = faculty2.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+
+    	//A new affiliation should have been created for the new Faculty
+    	affls = [select Contact__c, Account__c, Role__c, (select Id from Course_Enrollment__r) from Affiliation__c
+    	where Contact__c = :faculty2.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+    	System.assertEquals('Faculty', affls[0].Role__c);
+    	System.assertEquals(1, affls[0].Course_Enrollment__r.size());
+
+    	//The Course Enrollment of the old Faculty member should not have been deleted and should not be primary
+    	enrolls = [select Id, Primary__c from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+    	System.assertEquals(1, enrolls.size());
+    	System.assertEquals(false, enrolls[0].Primary__c);
+
+    	//A Course Enrollment should have been automatically created for the new Faculty
+        List<Course_Enrollment__c> newEnrolls = [select Contact__c, Course_Offering__c, Affiliation__c, Primary__c from Course_Enrollment__c
+        where Contact__r.Id = :faculty2.Id];
+        System.assertEquals(1, newEnrolls.size());
+        System.assertEquals(true, newEnrolls[0].Primary__c);
+        //The Course Enrollment should have been linked to the new Affiliation that was automatically created
+        System.assertEquals(affls[0].Id, newEnrolls[0].Affiliation__c);
+
+
+    }
+
+    @isTest
+    public static void setFacultyToExistingConnWithCourseConnEnabled() {
+        enableCourseConnections();
+    	setup();
+
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+    	Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+
+        Course_Enrollment__c enroll = new Course_Enrollment__c(Contact__c = faculty.Id,
+                                                                Account__c = dpt.Id,
+                                                                Course_Offering__c = offering.Id,
+                                                                Primary__c = false,
+                                                                RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+        insert enroll;
+
+        //Update Offering
+    	offering.Faculty__c = faculty.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+
+    	//The Course Enrollment of the Faculty member should not have been created but marked primary
+    	List<Course_Enrollment__c> enrolls = [select Id, Primary__c from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+    	System.assertEquals(1, enrolls.size());
+    	System.assertEquals(true, enrolls[0].Primary__c);
+    }
+
+    @isTest
+    public static void changeFacultyToExistingConnWithCourseConnEnabled() {
+        enableCourseConnections();
+    	setup();
+
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+
+        //Create second faculty member
+    	Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert faculty2;
+
+        //Create second Course Enrollment
+        Course_Enrollment__c enroll = new Course_Enrollment__c(Contact__c = faculty2.Id,
+                                                                Account__c = dpt.Id,
+                                                                Course_Offering__c = offering.Id,
+                                                                Primary__c = false,
+                                                                RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+        insert enroll;
+
+        //Update Offering
+    	offering.Faculty__c = faculty2.Id;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+
+    	//The Course Enrollment of the Faculty member should not have been created but marked primary
+    	List<Course_Enrollment__c> enrolls = [select Id, Primary__c from Course_Enrollment__c where Contact__r.Id = :faculty2.Id];
+    	System.assertEquals(1, enrolls.size());
+    	System.assertEquals(true, enrolls[0].Primary__c);
+    }
+
+    @isTest
     public static void facultyMadeNull() {
     	setup();
 
@@ -268,6 +393,45 @@ public with sharing class COFF_Affiliation_TEST {
     	//The Course Enrollment should have been deleted
         enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
         System.assertEquals(0, enrolls.size());
+    }
+
+    @isTest
+    public static void facultyMadeNullWithCourseConnEnabled() {
+        enableCourseConnections();
+    	setup();
+
+    	//Create Course Offering with Faculty member
+    	Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.Id,
+    	Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+    	insert offering;
+
+        //A Course Enrollment should have been automatically created
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Primary__c, Affiliation__c from Course_Enrollment__c
+        where Contact__r.Id = :faculty.Id];
+        System.assertEquals(1, enrolls.size());
+        System.assertEquals(true, enrolls[0].Primary__c);
+        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+
+    	//An Affiliation should have been automatically created for the faculty member
+    	List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c from Affiliation__c
+    	where Contact__c = :faculty.Id and Role__c = 'Faculty'];
+    	System.assertEquals(1, affls.size());
+
+        System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
+
+    	//Update Offering
+    	offering.Faculty__c = null;
+    	Test.startTest();
+    	update offering;
+    	Test.stopTest();
+
+    	//The affiliation should still exist
+    	affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where Id = :affls[0].Id];
+    	System.assertEquals(1, affls.size());
+
+    	//The Course Enrollment should have been marked as not Primary
+        enrolls = [select Id, Primary__c from Course_Enrollment__c where Id = :enrolls[0].Id];
+        System.assertEquals(false, enrolls[0].Primary__c);
     }
 
     @isTest

@@ -129,6 +129,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Enable_Course_Connections__c = mySettings.Enable_Course_Connections__c;
+        settings.Default_Faculty_RecordType_Id__c = mySettings.Default_Faculty_RecordType_Id__c;
+        settings.Default_Enrolled_Student_RecordType_Id__c = mySettings.Default_Enrolled_Student_RecordType_Id__c;
 
         orgSettings = settings;
         return settings;
@@ -362,11 +364,14 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @return Boolean
     */
     public static Boolean courseConnectionsEnabled() {
-        return (
-          getSettings().Enable_Course_Connections__c &&
-          getSettings().Default_Enrolled_Student_RecordType_Id__c.length() >= 15 &&
-          getSettings().Default_Faculty_RecordType_Id__c.length() >= 15
-        );
+        if (!Test.isRunningTest()) {
+            return (
+                getSettings().Enable_Course_Connections__c &&
+                getSettings().Default_Enrolled_Student_RecordType_Id__c.length() >= 15 &&
+                getSettings().Default_Faculty_RecordType_Id__c.length() >= 15
+            );
+        }
+        return getSettings().Enable_Course_Connections__c;
     }
 
     /*******************************************************************************************************
@@ -375,7 +380,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      */
     public static String getFacultyConnectionRecTypeID() {
         String recTypeId = getSettings().Default_Faculty_RecordType_Id__c;
-        if(recTypeId.length() < 15 && Test.isRunningTest()) {
+        if(Test.isRunningTest() && String.isBlank(recTypeId)) {
             if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 0) {
                 return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[0];
             } else {
@@ -392,7 +397,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      */
     public static String getStudentConnectionRecTypeID() {
         String recTypeId = getSettings().Default_Enrolled_Student_RecordType_Id__c;
-        if(recTypeId.length() < 15 && Test.isRunningTest()) {
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
             if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 1) {
                 return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[1];
             } else {

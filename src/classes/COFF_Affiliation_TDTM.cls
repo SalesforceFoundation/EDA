@@ -37,11 +37,6 @@
 public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
-    * @description static flag to prevent recursive call
-    */
-    public static boolean hasRunCoffTrigger = false;
-
-   /*******************************************************************************************************
     * @description Handles Affiliation management for Course Offering.
                    Populates Start and End Date from Term, if fields are empty.
     * @param listNew the list of Accounts from trigger new.
@@ -206,7 +201,6 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         if(facultyCleanupIDs.size() > 0) {
             deleteAfflsEnrolls(facultyCleanupIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
         }
-        hasRunCoffTrigger = true;
         return dmlWrapper;
     }
 

@@ -27,6 +27,7 @@
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
         <members>CCON_Faculty_TDTM</members>
+        <members>CCON_Faculty_TEST</members>
         <members>CENR_AcademicProgram_TDTM</members>
         <members>CENR_AcademicProgram_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
