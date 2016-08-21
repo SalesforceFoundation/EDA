@@ -162,5 +162,8 @@ public class UTIL_Namespace {
         String l21 = Label.stgSendErrorsTitle;
         String l22 = Label.stgDisableErrorHandlingTitle;
         String l23 = Label.stgHelpContactAddrs;
+        String l24 = Label.stgHelpHouseholdRecType;
+        String l25 = Label.stgHelpContactAddrs;
+        String l26 = Label.stgHelpAddressAccRecType;
     }
 }
