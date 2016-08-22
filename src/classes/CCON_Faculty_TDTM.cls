@@ -277,7 +277,8 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                 Id,
                 Account__c,
                 Contact__c,
-                Role__c
+                Role__c,
+                CreatedDate
             FROM
                 Affiliation__c
             WHERE
@@ -286,6 +287,9 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                 :contactIds
             AND
                 Role__c = 'Faculty'
+            ORDER BY
+                CreatedDate
+            ASC
         ];
 
         Map<Id, Map<Id, List<Affiliation__c>>> contactIdAccountIdAfflList = new Map<Id, Map<Id, List<Affiliation__c>>>();

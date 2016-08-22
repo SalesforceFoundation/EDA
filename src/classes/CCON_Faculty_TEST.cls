@@ -84,15 +84,13 @@ public with sharing class CCON_Faculty_TEST {
     	// Create some faculty members
     	faculty = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	faculty2 = new Contact(FirstName = 'Test2', LastName = 'Testerson2');
-    	faculty3 = new Contact(FirstName = 'Test3', LastName = 'Testerson3');
 
         // Insert objects together
     	insert new List<SObject>{
             offering,
             offering2,
             faculty,
-            faculty2,
-            faculty3
+            faculty2
         };
     }
 
@@ -118,6 +116,75 @@ public with sharing class CCON_Faculty_TEST {
         conn = [SELECT Id, Affiliation__c FROM Course_Enrollment__c WHERE Id = :conn.Id];
 
         System.assertNotEquals(null, conn.Affiliation__c);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Verifies that a Course Connection is assigned to the oldest Affiliation if multiple
+    * Affiliations to an Account exist.
+    */
+    @isTest
+    public static void newCourseConnectionExistingAffiliations() {
+    	setup();
+
+        // Create another department
+    	Account dpt2 = new Account(Name = 'Math Department', Parent = university);
+    	insert dpt2;
+
+        // Create an Affiliation manually, different Account
+        Affiliation__c affl = new Affiliation__c(
+            Contact__c = faculty.Id,
+            Account__c = dpt2.Id,
+            Role__c = 'Faculty'
+        );
+        insert affl;
+
+        // Create Course Connection
+        Course_Enrollment__c conn = new Course_Enrollment__c(
+            Contact__c = faculty.Id,
+            Course_Offering__c = offering.Id,
+            Primary__c = false,
+            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+        );
+
+        insert conn;
+
+        // Check that an Affilition was created.
+        conn = [SELECT Id, Affiliation__c FROm Course_Enrollment__c WHERE Id = :conn.Id];
+        System.assertNotEquals(null, conn.Affiliation__c);
+
+        // Create another Affiliation manually, Same Account
+        Affiliation__c affl2 = new Affiliation__c(
+            Contact__c = faculty.Id,
+            Account__c = dpt.Id,
+            Role__c = 'Faculty'
+        );
+
+        insert affl2;
+
+        // Check that there are three Affiliations
+        List <Affiliation__c> affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        System.assertEquals(3, affls.size());
+
+        // Create another Course Connection
+        Course_Enrollment__c conn2 = new Course_Enrollment__c(
+            Contact__c = faculty.Id,
+            Course_Offering__c = offering2.Id,
+            Primary__c = false,
+            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+        );
+
+        Test.startTest();
+        insert conn2;
+        Test.stopTest();
+
+        // Check that there are still three Affiliations
+        affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        System.assertEquals(3, affls.size());
+
+        // Check that the second Course Connection got the oldest existing Affiliation for the matching Account
+        conn2 = [SELECT Id, Affiliation__c FROm Course_Enrollment__c WHERE Id = :conn2.Id];
+        System.assertEquals(conn.Affiliation__c, conn2.Affiliation__c);
 
     }
 
@@ -159,7 +226,7 @@ public with sharing class CCON_Faculty_TEST {
     * removed from the Course Offering.
     */
     @isTest
-    public static void existingPrimaryCourseConnectionMadeMarkedNotPrimary() {
+    public static void existingPrimaryCourseConnectionMarkedNotPrimary() {
     	setup();
 
         // Create Course Connection
@@ -260,8 +327,8 @@ public with sharing class CCON_Faculty_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Verifies that an additional Affiliation is not created when one for the given Dept already.
-    * The additional Connections should be linked to the existing Affiliation.
+    * @description Verifies that an additional Affiliation is not created when one for the given Dept already
+    * exists. The additional Connections should be linked to the existing Affiliation.
     */
     @isTest
     public static void newPrimaryCourseConnectionWhenAffiliationExists() {
@@ -302,5 +369,83 @@ public with sharing class CCON_Faculty_TEST {
         List<Course_Enrollment__c> conns = [SELECT Id, Affiliation__c FROM Course_Enrollment__c];
         System.assertEquals(2, conns.size());
         System.assertEquals(conns[0].Affiliation__c, conns[1].Affiliation__c);
+    }
+
+    /*********************************************************************************************************
+    * @description Verifies that when a Course Connection is removed the related Affiliation is also removed.
+    * The Affiliation should be removed because there will only be one Course Connection related to it.
+    */
+    @isTest
+    public static void deletePrimaryCourseConnection() {
+    	setup();
+
+        // Create Course Connection
+        Course_Enrollment__c conn = new Course_Enrollment__c(
+            Contact__c = faculty.Id,
+            Course_Offering__c = offering.Id,
+            Primary__c = true,
+            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+        );
+
+        insert conn;
+
+        // Check that an Affiliation was created.
+        List<Affiliation__c> affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        System.assertEquals(1, affls.size());
+
+        Test.startTest();
+        delete conn;
+        Test.stopTest();
+
+        // Check that an Affiliation was removed.
+        affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        System.assertEquals(0, affls.size());
+
+        offering = [SELECT Faculty__c FROM Course_Offering__c WHERE Id = :offering.Id];
+        System.assertEquals(null, offering.Faculty__c);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Verifies that when a Course Connection is removed the related Affiliation is also removed.
+    * The Affiliation should be removed because there will only be one Course Connection related to it.
+    */
+    @isTest
+    public static void deleteCourseConnectionKeepAffiliation() {
+    	setup();
+
+        // Create first Course Connection
+        Course_Enrollment__c conn1 = new Course_Enrollment__c(
+            Contact__c = faculty.Id,
+            Course_Offering__c = offering.Id,
+            Primary__c = false,
+            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+        );
+        insert conn1;
+
+        // Create second Course Connection
+        Course_Enrollment__c conn2 = new Course_Enrollment__c(
+            Contact__c = faculty.Id,
+            Course_Offering__c = offering2.Id,
+            Primary__c = false,
+            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+        );
+
+        insert conn2;
+
+        // Check that an Affiliation was created. Only one should have been created.
+        List<Affiliation__c> affls = [SELECT Id, Contact__c, (SELECT Id FROM Course_Enrollment__r) FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        System.assertEquals(1, affls.size());
+        System.assertEquals(2, affls[0].Course_Enrollment__r.size());
+
+        Test.startTest();
+        delete conn1;
+        Test.stopTest();
+
+        // Check that an Affiliation was not removed and now there is one Course Connection related to it.
+        affls = [SELECT Id, Contact__c, (SELECT Id FROM Course_Enrollment__r) FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        System.assertEquals(1, affls.size());
+        System.assertEquals(1, affls[0].Course_Enrollment__r.size());
+
     }
 }
