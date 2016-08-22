@@ -197,6 +197,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Canton and Enderbury Islands</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1316,6 +1320,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Cameroon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
