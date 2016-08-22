@@ -45,7 +45,6 @@ public with sharing class CCON_Faculty_TEST {
     private static Course_Offering__c offering2;
     private static Contact faculty;
     private static Contact faculty2;
-    private static Contact faculty3;
 
     private static void setup() {
         // Enable Course Connections
