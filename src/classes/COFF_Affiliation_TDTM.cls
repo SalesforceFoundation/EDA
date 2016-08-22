@@ -287,7 +287,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         Id facultyRecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
         Map<Id, Map<Id, Course_Enrollment__c>> offeringFacultyConnIds = getOfferingIdFacultyIdConnection(offsWithChangedFaculty, facultyRecordTypeId);
         List<Course_Enrollment__c> oldConns = [select Id, Affiliation__c, Account__c, Course_Offering__c, Primary__c
-                                                 from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs];
+                                                 from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs
+                                                 and Course_Offering__c in :offsWithChangedFaculty];
 
         List<Course_Enrollment__c> connsToInsert = new List<Course_Enrollment__c>();
         List<Course_Enrollment__c> connsToUpdate = new List<Course_Enrollment__c>();
