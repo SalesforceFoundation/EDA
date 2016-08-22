@@ -40,13 +40,13 @@ public with sharing class CON_Preferred_TEST {
 	@isTest
 	public static void preferredEmailPhoneInsert() {
 		
-		Contact contact1 = new Contact(LastName = 'TestersonA', UniversityEmail__c = 'fake@test.com', Preferred_Email__c = 'University', 
+		Contact contact1 = new Contact(LastName = 'TestersonA', UniversityEmail__c = 'fake@test1.com', Preferred_Email__c = 'University', 
 			HomePhone = '555-432-4433', PreferredPhone__c = 'Home');
-		Contact contact2 = new Contact(LastName = 'TestersonB', WorkEmail__c = 'fake@test.com', Preferred_Email__c = 'Work', 
+		Contact contact2 = new Contact(LastName = 'TestersonB', WorkEmail__c = 'fake@test2.com', Preferred_Email__c = 'Work', 
 			WorkPhone__c = '555-432-4433', PreferredPhone__c = 'Work');
-		Contact contact3 = new Contact(LastName = 'TestersonC', AlternateEmail__c = 'fake@test.com', Preferred_Email__c = 'Alternate', 
+		Contact contact3 = new Contact(LastName = 'TestersonC', AlternateEmail__c = 'fake@test3.com', Preferred_Email__c = 'Alternate', 
 			OtherPhone = '555-432-4433', PreferredPhone__c = 'Other');
-		Contact contact4 = new Contact(LastName = 'TestersonD', AlternateEmail__c = 'fake@test.com',
+		Contact contact4 = new Contact(LastName = 'TestersonD', AlternateEmail__c = 'fake@test4.com',
 			MobilePhone = '555-432-4433', PreferredPhone__c = 'Mobile');
 			
 		List<Contact> contacts = new Contact[]{contact1, contact2, contact3, contact4};
@@ -74,10 +74,10 @@ public with sharing class CON_Preferred_TEST {
 	@isTest
 	public static void preferredEmailPhoneUpdate() {
 		
-		Contact contact1 = new Contact(LastName = 'TestersonA', UniversityEmail__c = 'fake@test.com', HomePhone = '555-432-4433');
-		Contact contact2 = new Contact(LastName = 'TestersonB', WorkEmail__c = 'fake@test.com', WorkPhone__c = '555-432-4433');
-		Contact contact3 = new Contact(LastName = 'TestersonC', AlternateEmail__c = 'fake@test.com', OtherPhone = '555-432-4433');
-		Contact contact4 = new Contact(LastName = 'TestersonD', MobilePhone = '555-432-4433');
+		Contact contact1 = new Contact(LastName = 'TestersonE', UniversityEmail__c = 'fake@test5.com', HomePhone = '555-432-4433');
+		Contact contact2 = new Contact(LastName = 'TestersonF', WorkEmail__c = 'fake@test6.com', WorkPhone__c = '555-432-4433');
+		Contact contact3 = new Contact(LastName = 'TestersonG', AlternateEmail__c = 'fake@test7.com', OtherPhone = '555-432-4433');
+		Contact contact4 = new Contact(LastName = 'TestersonH', MobilePhone = '555-432-4433');
 			
 		List<Contact> contacts = new Contact[]{contact1, contact2, contact3, contact4};
 		insert contacts;

@@ -1735,14 +1735,16 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
+            listCon[i].LastName = 'ToAvoidDupeRule' + i;
             listCon[i].MailingStreet = 'New Mailing Street' + i;
             listCon[i].MailingCity = 'New Mailing City' + i;
             listCon[i].MailingState = 'California';
             listCon[i].MailingCountry = 'United States';
         }
+        
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
-        insert listCon;         
+        insert listCon;
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
