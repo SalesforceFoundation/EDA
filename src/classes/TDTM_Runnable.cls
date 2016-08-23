@@ -98,8 +98,9 @@ global abstract class TDTM_Runnable {
 	        DmlWrapper dmlWrapper = runnable.run(newlist, oldlist, triggerAction, objResult);
 	        
 	        //Process the result. In this case we cannot pass the original Trigger.new and Trigger.old, since we are
-	        //in a future
-	        TDTM_TriggerHandler.processDML(dmlWrapper);
+	        //in a future.
+	        Savepoint sp = Database.setSavepoint();
+	        TDTM_TriggerHandler.processDML(dmlWrapper, sp);
         }
     }
     

@@ -36,7 +36,7 @@
 * @description Class called from each of the triggers (only one per object) that follow the TDTM design. It's in 
 * charge of figuring out which of the classes that do the actual work need to be called, and calling them.
 */
-public class TDTM_TriggerHandler {
+global class TDTM_TriggerHandler {
     
     public static Boolean defaultRecordsInserted = false;
     
@@ -57,16 +57,16 @@ public class TDTM_TriggerHandler {
     * @param dao The class that is going to retrieve all the TDTM records.
     * @return void
     */
-    public void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
+    global static void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
-    Schema.DescribeSObjectResult describeObj, TDTM_ObjectDataGateway dao) {
-    	if(newList != null)
-    	   UTIL_Debug.debug('****Trigger.new size: ' + newList.size());
-    	// This solves the problem of not being able to save error records if everything gets rolled back. 
-        // TDTM_TriggerHandler is taking care of saving error records if there is any error when performing 
-        // DML operations. It also takes care of rolling everything back in that case, just so there are no 
-        // issues (side effects) with re-entrant flags.
-    	Savepoint sp = Database.setSavepoint();
+    Schema.DescribeSObjectResult describeObj) {
+        
+        // Using a savepoint solves the problem of not being able to save error records if everything gets rolled back. 
+	    // TDTM_TriggerHandler is taking care of saving error records if there is any error when performing DML operations. 
+	    // It also takes care of rolling everything back in that case, to avoid issues (side effects) with re-entrant flags.
+	    Savepoint sp = Database.setSavepoint();
+    	
+    	TDTM_ObjectDataGateway dao = new TDTM_ObjectDataGateway();
     	
     	try {
     		TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
@@ -107,7 +107,7 @@ public class TDTM_TriggerHandler {
 	                         
 	            //Process the result
 	            if(dmlWrapper != null)
-	               processDML(dmlWrapper);
+	               processDML(dmlWrapper, sp);
 	        }
 	    } catch(Exception e) {
 	    	UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
@@ -124,9 +124,8 @@ public class TDTM_TriggerHandler {
             // will be rolled back by the platform, and our error record won't be saved or error notifications sent.
             
             // but we do want our tests to fail if they encountered this error!
-            // we do need to allow some specific tests that are testing our error handling
-            // to avoid the assert, because by allowing it to throw an exception within our catch, it
-            // changes system behavior.
+            // we do need to allow some specific tests that are testing our error handling to avoid the assert, because by allowing it 
+            // to throw an exception within our catch, it changes system behavior.
             if (Test.isRunningTest() && !suppressDebugAssertAfterErrorLogging) {
                 UTIL_Debug.debug('****Stack trace: ' + e.getStackTraceString());
                 system.assertEquals(null, e.getMessage()); 
@@ -134,7 +133,7 @@ public class TDTM_TriggerHandler {
         }
     }
     
-    private TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    private static TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
     	        
         if(classToRunRecord != null) {
@@ -180,7 +179,7 @@ public class TDTM_TriggerHandler {
         return null;
     }
     
-    private void runAsync(TDTM_Runnable classToRun, String classToRunName, List<SObject> newList, 
+    private static void runAsync(TDTM_Runnable classToRun, String classToRunName, List<SObject> newList, 
     List<SObject> oldList, TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
        Map<Id,SObject> nm = new Map<Id,SObject>(newList);
        
@@ -197,20 +196,7 @@ public class TDTM_TriggerHandler {
     * @param dmlWrapper The class that contains the records that need to have DML performed on.
     * @return void
     */
-    public static void processDML(TDTM_Runnable.DmlWrapper dmlWrapper) {
-        processDMLWithRollback(dmlWrapper, true);
-    }
-    /*******************************************************************************************************
-    * @description Performs pending DML operations, on the records stored in the DMLWrapper that it gets as parameter.
-    * We want this method to be static so that it can be called from the future method in TDTM_Runnable.
-    * @param dmlWrapper The class that contains the records that need to have DML performed on.
-    * @param withRollback True if errors should cause rollback, false if not.
-    * @return Errors Object with list of Error objects
-    */
-    public static ERR_Handler.Errors processDMLWithRollback(TDTM_Runnable.DmlWrapper dmlWrapper, boolean withRollback) {
-        //Create transaction
-        Savepoint sp = Database.setSavepoint();
-        
+    public static void processDML(TDTM_Runnable.DmlWrapper dmlWrapper, Savepoint sp) {
         dmlWrapper.groupByType(); //sort thyself!
         
         /**We keep the Database methods with the opt_allOrNone flag set to false to be able to alert the client 
@@ -219,23 +205,18 @@ public class TDTM_TriggerHandler {
         List<Database.SaveResult> updateResults = Database.update(dmlWrapper.objectsToUpdate, false);        
         List<Database.DeleteResult> deleteResults = Database.delete(dmlWrapper.objectsToDelete, false);        
         List<Database.UndeleteResult> undeleteResults = Database.undelete(dmlWrapper.objectsToUndelete, false); //Not yet using this one, afaik, but no reason not to support it.
-        
         //@TODO: We cannot support upsert because you cannot do upsert on SObject. You have to specify the actual type.        
         //Also, should we support Database.merge?
         
-        //Process the results. If isPropogateErrorsFromTrigger == true, getErrors will throw an exception instead of returning the errors.
+        //Process the results.
         ERR_Handler.Errors errors = ERR_Handler.getErrors(insertResults, updateResults, deleteResults, undeleteResults, 
-            dmlWrapper.objectsToInsert, dmlWrapper.objectsToUpdate, dmlWrapper.objectsToDelete, 
-            dmlWrapper.objectsToUndelete);
+            dmlWrapper.objectsToInsert, dmlWrapper.objectsToUpdate, dmlWrapper.objectsToDelete, dmlWrapper.objectsToUndelete);
             
         if(errors.errorsExist) {
             if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                if(withRollback) {
-                	Database.rollback(sp);
-	                ERR_Handler.processErrors(errors.errorRecords, ERR_Handler.Context.TDTM.name());
-    			}
+                Database.rollback(sp);
+                ERR_Handler.processErrors(errors.errorRecords, ERR_Handler.Context.TDTM.name());
             }
         }
-        return errors;
     }
 }
