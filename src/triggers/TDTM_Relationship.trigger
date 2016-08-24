@@ -30,6 +30,6 @@
 trigger TDTM_Relationship on Relationship__c (before insert, before update, before delete, 
 after insert, after update, after delete, after undelete) {
     
-    TDTM_TriggerHandler.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
+    TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
         Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Relationship__c);
 }

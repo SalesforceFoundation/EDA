@@ -35,6 +35,6 @@ after update, before delete, before insert, before update) {
     //same transaction will return 0.
     TDTM_TriggerHandler.defaultRecordsInserted = true; 
      
-    TDTM_TriggerHandler.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
+    TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
         Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Trigger_Handler__c);
 }
