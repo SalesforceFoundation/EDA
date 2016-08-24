@@ -37,6 +37,11 @@
 public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
+    * @description static flag to prevent recursive call
+    */
+    public static boolean hasRunCoffTrigger = false;
+
+   /*******************************************************************************************************
     * @description Handles Affiliation management for Course Offering.
                    Populates Start and End Date from Term, if fields are empty.
     * @param listNew the list of Accounts from trigger new.
@@ -50,156 +55,160 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
-        Set<Id> offsWithChangedFaculty = new Set<Id>();
-        Set<Id> offsWithRemovedFaculty = new Set<Id>();
+        // prevent recursion
+        if (!hasRunCoffTrigger) {
 
-        List<ID> newFacultyIDs = new List<ID>();
-        List<ID> updatedFacultyIDs = new List<ID>();
-        List<ID> outdatedFacultyIDs = new List<ID>();
-        List<ID> removedFacultyIDs = new List<ID>();
-        List<ID> facultyCleanupIDs = new List<ID>();
+            List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
+            Set<Id> offsWithChangedFaculty = new Set<Id>();
+            Set<Id> offsWithRemovedFaculty = new Set<Id>();
 
-        List<Course_Enrollment__c> courseEnrllsToInsert = new List<Course_Enrollment__c>();
+            List<ID> newFacultyIDs = new List<ID>();
+            List<ID> updatedFacultyIDs = new List<ID>();
+            List<ID> outdatedFacultyIDs = new List<ID>();
+            List<ID> removedFacultyIDs = new List<ID>();
+            List<ID> facultyCleanupIDs = new List<ID>();
 
-        if(newlist != null) {
-            if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                //Query fields not available in the trigger
-                newList = [select Course__c, Faculty__c, Start_Date__c, End_Date__c, Course__r.Account__c, Term__r.Start_Date__c,
-                            Term__r.End_Date__c from Course_Offering__c where ID in :newlist];
-            }
-            for (integer i=0; i<newlist.size(); i++) {
-                Course_Offering__c newOff = (Course_Offering__c)newlist[i];
+            List<Course_Enrollment__c> courseEnrllsToInsert = new List<Course_Enrollment__c>();
 
-                if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                    //Course Offering with Faculty has been created
-                    //   --> create Affl if no other Affl to Dpt exists
-                    //   --> create Course Enrollment
-                    if(newOff.Faculty__c != null) {
-                        UTIL_Debug.debug('****Course Offering with Faculty has been created');
-                        newFacultyIDs.add(newOff.Faculty__c);
-                        offsWithNewFaculty.add(newOff);
-                        Course_Enrollment__c newEnroll = new Course_Enrollment__c(Contact__c = newOff.Faculty__c,
-                                                                                    Account__c = newOff.Course__r.Account__c,
-                                                                                    Course_Offering__c = newOff.Id);
-                        if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                            // Course Connections is enabled, set RecordType and Primary__c
-                            newEnroll.RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
-                            newEnroll.Primary__c = true;
+            if(newlist != null) {
+                if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                    //Query fields not available in the trigger
+                    newList = [select Course__c, Faculty__c, Start_Date__c, End_Date__c, Course__r.Account__c, Term__r.Start_Date__c,
+                                Term__r.End_Date__c from Course_Offering__c where ID in :newlist];
+                }
+                for (integer i=0; i<newlist.size(); i++) {
+                    Course_Offering__c newOff = (Course_Offering__c)newlist[i];
+
+                    if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                        //Course Offering with Faculty has been created
+                        //   --> create Affl if no other Affl to Dpt exists
+                        //   --> create Course Enrollment
+                        if(newOff.Faculty__c != null) {
+                            UTIL_Debug.debug('****Course Offering with Faculty has been created');
+                            newFacultyIDs.add(newOff.Faculty__c);
+                            offsWithNewFaculty.add(newOff);
+                            Course_Enrollment__c newEnroll = new Course_Enrollment__c(Contact__c = newOff.Faculty__c,
+                                                                                        Account__c = newOff.Course__r.Account__c,
+                                                                                        Course_Offering__c = newOff.Id);
+                            if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+                                // Course Connections is enabled, set RecordType and Primary__c
+                                newEnroll.RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
+                                newEnroll.Primary__c = true;
+                            }
+                            courseEnrllsToInsert.add(newEnroll);
                         }
-                        courseEnrllsToInsert.add(newEnroll);
-                    }
 
-                    Boolean dateCopied = false;
-                    //Copy Start Date from parent Term, if no value entered
-                    if(String.isBlank(String.valueOf(newOff.Start_Date__c)) && !String.isBlank(String.valueOf(newOff.Term__r.Start_Date__c))) {
-                        UTIL_Debug.debug('****Copying term start date to course offering: ' +  newOff.Term__r.Start_Date__c);
-                        newOff.Start_Date__c = newOff.Term__r.Start_Date__c;
-                        dateCopied = true;
-                    }
-                    //Copy End Date from parent Term, if no value entered
-                    if(String.isBlank(String.valueOf(newOff.End_Date__c)) && !String.isBlank(String.valueOf(newOff.Term__r.End_Date__c))) {
-                        UTIL_Debug.debug('****Copying term start date to course offering: ' +  newOff.Term__r.Start_Date__c);
-                        newOff.End_Date__c = newOff.Term__r.End_Date__c;
-                        dateCopied = true;
-                    }
+                        Boolean dateCopied = false;
+                        //Copy Start Date from parent Term, if no value entered
+                        if(String.isBlank(String.valueOf(newOff.Start_Date__c)) && !String.isBlank(String.valueOf(newOff.Term__r.Start_Date__c))) {
+                            UTIL_Debug.debug('****Copying term start date to course offering: ' +  newOff.Term__r.Start_Date__c);
+                            newOff.Start_Date__c = newOff.Term__r.Start_Date__c;
+                            dateCopied = true;
+                        }
+                        //Copy End Date from parent Term, if no value entered
+                        if(String.isBlank(String.valueOf(newOff.End_Date__c)) && !String.isBlank(String.valueOf(newOff.Term__r.End_Date__c))) {
+                            UTIL_Debug.debug('****Copying term start date to course offering: ' +  newOff.Term__r.Start_Date__c);
+                            newOff.End_Date__c = newOff.Term__r.End_Date__c;
+                            dateCopied = true;
+                        }
 
-                    //Nowhere else in this class are Course Offerings added to dmlWrapper.objectsToUpdate. If they were, we
-                    //should put all those changes together to avoid adding those records to dmlWrapper.objectsToUpdate more
-                    //than once.
-                    if(dateCopied) dmlWrapper.objectsToUpdate.add(newOff);
+                        //Nowhere else in this class are Course Offerings added to dmlWrapper.objectsToUpdate. If they were, we
+                        //should put all those changes together to avoid adding those records to dmlWrapper.objectsToUpdate more
+                        //than once.
+                        if(dateCopied) dmlWrapper.objectsToUpdate.add(newOff);
 
-                } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                    } else if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                        Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+
+                        //Faculty member has been added to existing Course Offering
+                        //   --> create Affl if no other Affl to Dpt exists
+                        //   --> create Course Enrollment
+                        //     --> Create without recordtype if course connections disabled
+                        //     --> Create with recordtype and as primary if course connections enabled
+                        if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
+                            UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
+                            newFacultyIDs.add(newOff.Faculty__c);
+                            offsWithNewFaculty.add(newOff);
+                            // Do not perform adding new Course Enrollments if Course Connections is enabled.
+                            // Logic for if Course Connections is enabled is handled below.
+                            if (!UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+                                Course_Enrollment__c enroll = new Course_Enrollment__c(Contact__c = newOff.Faculty__c,
+                                                                                        Account__c = newOff.Course__r.Account__c,
+                                                                                        Course_Offering__c = newOff.Id);
+                                courseEnrllsToInsert.add(enroll);
+                            }
+
+                        //Faculty member has been changed
+                        //   --> update Affiliation to Dpt to point it to the new Faculty
+                        } else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
+                            UTIL_Debug.debug('****Faculty member has been changed');
+                            if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+                                offsWithChangedFaculty.add(newOff.Id);
+                            }
+                            outdatedFacultyIDs.add(oldOff.Faculty__c);
+                            updatedFacultyIDs.add(newOff.Faculty__c);
+
+                        //Faculty member has been removed from existing Course Offering
+                        //   --> delete related Affiliation
+                        //   --> delete Course Enrollment
+                        } else if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
+                            UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
+                            removedFacultyIDs.add(oldOff.Faculty__c);
+                            offsWithRemovedFaculty.add(newOff.Id);
+                        }
+                    }
+                }
+            }
+
+            if(oldlist != null) {
+                for (integer i=0; i<oldlist.size(); i++) {
                     Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
 
-                    //Faculty member has been added to existing Course Offering
-                    //   --> create Affl if no other Affl to Dpt exists
-                    //   --> create Course Enrollment
-                    //     --> Create without recordtype if course connections disabled
-                    //     --> Create with recordtype and as primary if course connections enabled
-                    if(oldOff.Faculty__c == null && newOff.Faculty__c != null) {
-                        UTIL_Debug.debug('****Faculty member has been added to existing Course Offering');
-                        newFacultyIDs.add(newOff.Faculty__c);
-                        offsWithNewFaculty.add(newOff);
-                        // Do not perform adding new Course Enrollments if Course Connections is enabled.
-                        // Logic for if Course Connections is enabled is handled below.
-                        if (!UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                            Course_Enrollment__c enroll = new Course_Enrollment__c(Contact__c = newOff.Faculty__c,
-                                                                                    Account__c = newOff.Course__r.Account__c,
-                                                                                    Course_Offering__c = newOff.Id);
-                            courseEnrllsToInsert.add(enroll);
-                        }
+                    if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
 
-                    //Faculty member has been changed
-                    //   --> update Affiliation to Dpt to point it to the new Faculty
-                    } else if(oldOff.Faculty__c != null && newOff.Faculty__c != null && oldOff.Faculty__c != newOff.Faculty__c) {
-                        UTIL_Debug.debug('****Faculty member has been changed');
-                        if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                            offsWithChangedFaculty.add(newOff.Id);
+                        //Course Offering has been deleted
+                        //     --> delete related Affiliation, if the faculty field had a value
+                        //     --> delete the Course Enrollment, if the faculty field had a value
+                        if(oldOff.Faculty__c != null) {
+                            UTIL_Debug.debug('****Course Offering with faculty has been deleted');
+                            facultyCleanupIDs.add(oldOff.Faculty__c);
                         }
-                        outdatedFacultyIDs.add(oldOff.Faculty__c);
-                        updatedFacultyIDs.add(newOff.Faculty__c);
-
-                    //Faculty member has been removed from existing Course Offering
-                    //   --> delete related Affiliation
-                    //   --> delete Course Enrollment
-                    } else if(oldOff.Faculty__c != null && newOff.Faculty__c == null) {
-                        UTIL_Debug.debug('****Faculty member has been removed from existing Course Offering');
-                        removedFacultyIDs.add(oldOff.Faculty__c);
-                        offsWithRemovedFaculty.add(newOff.Id);
                     }
                 }
             }
-        }
 
-        if(oldlist != null) {
-            for (integer i=0; i<oldlist.size(); i++) {
-                Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
+            // If new faculty added to existing Course Offering
+            if (offsWithNewFaculty.size() > 0) {
+                if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+                    updateConnectionsOnFacultyAdd(offsWithNewFaculty, dmlWrapper);
+                } else {
+                    createAffls(offsWithNewFaculty, newFacultyIDs, courseEnrllsToInsert);
+                }
+                dmlWrapper.objectsToInsert.addAll((List<SObject>)courseEnrllsToInsert);
+            }
 
-                if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
+            if(updatedFacultyIDs.size() > 0) {
+                if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+                    // Course connections is enabled. Handle updating of objects
+                    updateConnectionsOnFacultyChange(outdatedFacultyIDs, updatedFacultyIDs, offsWithChangedFaculty, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
+                } else {
+                    dmlWrapper.objectsToUpdate.addAll(getAfflsToUpdate(outdatedFacultyIDs, updatedFacultyIDs));
+                    // Course connections is not enabled. Handle deletion and creation of course enrollments
+                    updateEnrollments(outdatedFacultyIDs, updatedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
+               }
+            }
 
-                    //Course Offering has been deleted
-                    //     --> delete related Affiliation, if the faculty field had a value
-                    //     --> delete the Course Enrollment, if the faculty field had a value
-                    if(oldOff.Faculty__c != null) {
-                        UTIL_Debug.debug('****Course Offering with faculty has been deleted');
-                        facultyCleanupIDs.add(oldOff.Faculty__c);
-                    }
+            if(removedFacultyIDs.size() > 0) {
+                if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+                    updateConnectionsOnFacultyRemove(removedFacultyIDs, offsWithRemovedFaculty, dmlWrapper);
+                } else {
+                    deleteAfflsEnrolls(removedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
                 }
             }
-        }
 
-        // If new faculty added to existing Course Offering
-        if (offsWithNewFaculty.size() > 0) {
-            if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                updateConnectionsOnFacultyAdd(offsWithNewFaculty, dmlWrapper);
-            } else {
-                createAffls(offsWithNewFaculty, newFacultyIDs, courseEnrllsToInsert);
+            if(facultyCleanupIDs.size() > 0) {
+                deleteAfflsEnrolls(facultyCleanupIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
             }
-            dmlWrapper.objectsToInsert.addAll((List<SObject>)courseEnrllsToInsert);
-        }
-
-        if(updatedFacultyIDs.size() > 0) {
-            if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                // Course connections is enabled. Handle updating of objects
-                updateConnectionsOnFacultyChange(outdatedFacultyIDs, updatedFacultyIDs, offsWithChangedFaculty, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
-            } else {
-                dmlWrapper.objectsToUpdate.addAll(getAfflsToUpdate(outdatedFacultyIDs, updatedFacultyIDs));
-                // Course connections is not enabled. Handle deletion and creation of course enrollments
-                updateEnrollments(outdatedFacultyIDs, updatedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
-           }
-        }
-
-        if(removedFacultyIDs.size() > 0) {
-            if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-                updateConnectionsOnFacultyRemove(removedFacultyIDs, offsWithRemovedFaculty, dmlWrapper);
-            } else {
-                deleteAfflsEnrolls(removedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
-            }
-        }
-
-        if(facultyCleanupIDs.size() > 0) {
-            deleteAfflsEnrolls(facultyCleanupIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
         }
         return dmlWrapper;
     }

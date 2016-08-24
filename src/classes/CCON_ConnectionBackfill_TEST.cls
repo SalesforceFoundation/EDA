@@ -159,8 +159,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
                 // Create another Course Connection
                 studentConnections.add(new Course_Enrollment__c(
                     Contact__c = student.Id,
-                    Course_Offering__c = offering.Id,
-                    RecordTypeId = null
+                    Course_Offering__c = offering.Id
                 ));
             }
         }
