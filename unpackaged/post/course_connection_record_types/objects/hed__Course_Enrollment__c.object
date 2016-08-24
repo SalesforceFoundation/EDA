@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <deploymentStatus>Deployed</deploymentStatus>
-    <description>Represents a connection to a Course Offering.</description>
     <recordTypes>
         <fullName>Faculty</fullName>
         <active>true</active>
@@ -14,12 +12,4 @@
         <description>A Student Course Connection</description>
         <label>Student</label>
     </recordTypes>
-    <label>Course Connection</label>
-    <pluralLabel>Course Connections</pluralLabel>
-    <nameField>
-        <displayFormat>CC-{0000}</displayFormat>
-        <label>Course Connection ID</label>
-        <type>AutoNumber</type>
-    </nameField>
-    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

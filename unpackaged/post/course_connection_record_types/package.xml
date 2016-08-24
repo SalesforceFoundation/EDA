@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+      <members>hed__Course_Enrollment__c.Student</members>
+      <name>RecordType</name>
+  </types>
+  <types>
+      <members>hed__Course_Enrollment__c.Faculty</members>
+      <name>RecordType</name>
+  </types>
+  <version>36.0</version>
+</Package>
