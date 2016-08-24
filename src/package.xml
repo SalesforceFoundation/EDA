@@ -26,6 +26,8 @@
         <members>AFFL_MultiRecordTypeMapper</members>
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
+        <members>CCON_ConnectionBackfill_BATCH</members>
+        <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
         <members>CCON_Faculty_TEST</members>
         <members>CENR_AcademicProgram_TDTM</members>
