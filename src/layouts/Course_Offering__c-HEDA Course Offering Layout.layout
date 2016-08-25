@@ -78,7 +78,6 @@
         <fields>Account__c</fields>
         <fields>Program_Enrollment__c</fields>
         <fields>Credits_Attempted__c</fields>
-        <fields>RECORDTYPE</fields>
         <fields>Primary__c</fields>
         <relatedList>Course_Enrollment__c.Course_Offering__c</relatedList>
     </relatedLists>
@@ -88,7 +87,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5000000VM08a</masterLabel>
+        <masterLabel>00h41000000b0Gh</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
