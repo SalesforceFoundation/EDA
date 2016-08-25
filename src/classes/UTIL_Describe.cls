@@ -496,4 +496,20 @@ public class UTIL_Describe {
             return recTypeId;
         }
 	}
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Dummy Course Connection record type, if it exists. This record
+     * type should only be used in testing.
+     * @return String The ID of the Dummy Course Connection record type as a String.
+     */
+    public static String getDummyConnectionRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Course_Enrollment__c').get('Dummy');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 2)
+                return getRecTypesMapByDevName('Course_Enrollment__c').values()[2];
+            else return null;
+        } else {
+            return recTypeId;
+        }
+    }
 }
