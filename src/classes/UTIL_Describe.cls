@@ -511,5 +511,6 @@ public class UTIL_Describe {
         } else {
             return recTypeId;
         }
+        return null;
     }
 }

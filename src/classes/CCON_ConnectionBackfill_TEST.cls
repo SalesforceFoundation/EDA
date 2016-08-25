@@ -47,8 +47,11 @@ public with sharing class CCON_ConnectionBackfill_TEST {
     private static List<Contact> facultyContacts;
     private static List<Contact> studentContacts;
     private static List<Course_Enrollment__c> studentConnections;
+    private static List<Course_Enrollment__c> facultyConnections;
 
     private static void setup() {
+
+        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
 
         // Create university
         university = new Account(Name = 'Advanced University');
@@ -92,9 +95,9 @@ public with sharing class CCON_ConnectionBackfill_TEST {
 
         // Create Biology Offerings and Psychology Offerings
         offeringsList = new List<Course_Offering__c>();
-        offeringsList.addAll(createCourseOfferings(biologyCourse.Id, term.Id, facultyContacts));
-        offeringsList.addAll(createCourseOfferings(psychologyCourse.Id, term.Id, facultyContacts));
-        insert offeringsList;
+        facultyConnections = new List<Course_Enrollment__c>();
+        createCourseOfferingsWithFaculty(biologyCourse.Id, term.Id, facultyContacts);
+        createCourseOfferingsWithFaculty(psychologyCourse.Id, term.Id, facultyContacts);
 
         studentConnections = new List<Course_Enrollment__c>();
         createCourseConnections(studentContacts);
@@ -108,14 +111,24 @@ public with sharing class CCON_ConnectionBackfill_TEST {
                 Default_Enrolled_Student_RecordType_Id__c = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID()
             )
         );
+        COFF_Affiliation_TDTM.hasRunCoffTrigger = false;
     }
 
     @isTest
-    public static void offeringsCreated() {
+    public static void checkBackfillSuccess() {
         setup();
 
-        List<Course_Enrollment__c> conns = [SELECT Id FROM Course_Enrollment__c];
-        System.assertEquals(840, conns.size());
+        String dummyRecordTypeId = UTIL_Describe.getDummyConnectionRecTypeID();
+        String studentRecordTypeId = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID();
+        String facultyRecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
+
+        List<Course_Enrollment__c> originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
+        List<Course_Enrollment__c> studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
+        List<Course_Enrollment__c> facultyConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :facultyRecordTypeId');
+
+        System.assertEquals(0, studentConns.size());
+        System.assertEquals(0, facultyConns.size());
+        System.assertEquals(840, originalConns.size());
 
         //run batch
         Test.StartTest();
@@ -123,8 +136,13 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         ID ApexJobId = Database.executeBatch(batch, 200);
         Test.stopTest();
 
-        conns = [SELECT Id FROM Course_Enrollment__c];
-        System.assertEquals(840, conns.size());
+        originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
+        studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
+        facultyConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :facultyRecordTypeId');
+
+        System.assertEquals(800, studentConns.size());
+        System.assertEquals(40, facultyConns.size());
+        System.assertEquals(0, originalConns.size());
 
     }
 
@@ -139,7 +157,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         return contacts;
     }
 
-    private static List<Course_Offering__c> createCourseOfferings(Id courseId, Id termId, List<Contact> faculty) {
+    private static void createCourseOfferingsWithFaculty(Id courseId, Id termId, List<Contact> faculty) {
         List<Course_Offering__c> offerings = new List<Course_Offering__c>();
         for(Integer i = 0; i < faculty.size(); i++) {
             offerings.add(new Course_Offering__c(
@@ -150,17 +168,30 @@ public with sharing class CCON_ConnectionBackfill_TEST {
                 Faculty__c = faculty[i].Id)
             );
         }
-        return offerings;
+        insert offerings;
+        List<Course_Enrollment__c> conns = new List<Course_Enrollment__c>();
+        for(Integer i = 0; i < faculty.size(); i++) {
+            Course_Enrollment__c conn = new Course_Enrollment__c(
+                Contact__c = faculty[i].Id,
+                Course_Offering__c = offerings[i].Id
+            );
+            conn.put('RecordTypeId', UTIL_Describe.getDummyConnectionRecTypeID());
+            conns.add(conn);
+        }
+        insert conns;
+        facultyConnections.addAll(conns);
+        offeringsList.addAll(offerings);
     }
 
     private static void createCourseConnections(List<Contact> students) {
         for(Course_Offering__c offering : offeringsList){
             for(Contact student : students){
-                // Create another Course Connection
-                studentConnections.add(new Course_Enrollment__c(
+                Course_Enrollment__c conn = new Course_Enrollment__c(
                     Contact__c = student.Id,
                     Course_Offering__c = offering.Id
-                ));
+                );
+                conn.put('RecordTypeId', UTIL_Describe.getDummyConnectionRecTypeID());
+                studentConnections.add(conn);
             }
         }
     }

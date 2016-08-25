@@ -381,10 +381,15 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static String getFacultyConnectionRecTypeID() {
         String recTypeId = getSettings().Default_Faculty_RecordType_Id__c;
         if(Test.isRunningTest() && String.isBlank(recTypeId)) {
-            if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 0) {
-                return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[0];
+            String defaultRecTypeId = UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').get('Faculty');
+            if (String.isBlank(defaultRecTypeId)) {
+                if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 0) {
+                    return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[0];
+                } else {
+                    return null;
+                }
             } else {
-                return null;
+                return defaultRecTypeId;
             }
         } else {
             return recTypeId;
@@ -397,11 +402,16 @@ public without sharing class UTIL_CustomSettingsFacade {
      */
     public static String getStudentConnectionRecTypeID() {
         String recTypeId = getSettings().Default_Enrolled_Student_RecordType_Id__c;
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-            if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 1) {
-                return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[1];
+        if(Test.isRunningTest() && String.isBlank(recTypeId)) {
+            String defaultRecTypeId = UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').get('Student');
+            if (String.isBlank(defaultRecTypeId)) {
+                if(UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 1) {
+                    return UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values()[1];
+                } else {
+                    return null;
+                }
             } else {
-                return null;
+                return defaultRecTypeId;
             }
         } else {
             return recTypeId;

@@ -75,7 +75,7 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
             facultyConverted = false;
             if (offering.Course_Enrollment__r.size() > 0) {
                 for(Course_Enrollment__c connection : offering.Course_Enrollment__r) {
-                    if (connection.get('RecordTypeId') == null) {
+                    if (connection.get('RecordTypeId') == noRecordType()) {
                         if (!facultyConverted && connection.Contact__c == offering.Faculty__c) {
                             connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
                             connection.Primary__c = true;
@@ -93,7 +93,12 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
         }
 	}
 
-
+    private String noRecordType() {
+        if (Test.isRunningTest()) {
+            return UTIL_Describe.getDummyConnectionRecTypeID();
+        }
+        return null;
+    }
 
 	public void finish(Database.BatchableContext bc) {}
 
