@@ -92,7 +92,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                                                                                         Course_Offering__c = newOff.Id);
                             if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
                                 // Course Connections is enabled, set RecordType and Primary__c
-                                newEnroll.RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
+                                newEnroll.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
                                 newEnroll.Primary__c = true;
                             }
                             courseEnrllsToInsert.add(newEnroll);
@@ -310,11 +310,12 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 connsToUpdate.add(existingConn);
             } else {
                 // No current Course Connection exists on Course Offering with Contact, create a new one
-                connsToInsert.add(new Course_Enrollment__c(Contact__c = updatedFacultyIDs[i], Account__c = oldConns[i].Account__c,
-                                                        Course_Offering__c = oldConns[i].Course_Offering__c,
-                                                        Affiliation__c = oldConns[i].Affiliation__c,
-                                                        Primary__c = true,
-                                                        RecordTypeId = facultyRecordTypeId));
+                Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = updatedFacultyIDs[i], Account__c = oldConns[i].Account__c,
+                                                                        Course_Offering__c = oldConns[i].Course_Offering__c,
+                                                                        Affiliation__c = oldConns[i].Affiliation__c,
+                                                                        Primary__c = true);
+                conn.put('RecordTypeId', facultyRecordTypeId);
+                connsToInsert.add(conn);
             }
             Course_Enrollment__c oldConn = oldConns[i];
             oldConn.Primary__c = false;
@@ -349,11 +350,13 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 connsToUpdate.add(new Course_Enrollment__c(Id = connId, Primary__c = true));
             } else {
                 // No current Course Connection exists on Course Offering with Contact, create a new one
-                connsToInsert.add(new Course_Enrollment__c(Contact__c = offering.Faculty__c,
-                                                            Account__c = offering.Course__r.Account__c,
-                                                            Course_Offering__c = offering.Id,
-                                                            Primary__c = true,
-                                                            RecordTypeId = facultyRecordTypeId));
+                Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = offering.Faculty__c,
+                                                                        Account__c = offering.Course__r.Account__c,
+                                                                        Course_Offering__c = offering.Id,
+                                                                        Primary__c = true
+                                                                        );
+                conn.put('RecordTypeId', facultyRecordTypeId);
+                connsToInsert.add(conn);
             }
         }
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)connsToUpdate);
@@ -445,8 +448,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     public Map<Id, Map<Id, Course_Enrollment__c>> getOfferingIdFacultyIdConnection(Set<Id> offeringIds, Id facultyRecordTypeId) {
         // Map with Course Offering Id as key and a value as a Map of Contact Id as key with the corresponding Course Connection as value
         Map<Id, Map<Id, Course_Enrollment__c>> connToOfferingIdMap = new Map<Id, Map<Id, Course_Enrollment__c>>();
-        List<Course_Enrollment__c> conns = [select Id, Course_Offering__c, Contact__c from Course_Enrollment__c
-                                             where Course_Offering__c in :offeringIds and RecordTypeId = :facultyRecordTypeId];
+        List<Course_Enrollment__c> conns = Database.query('select Id, Course_Offering__c, Contact__c from Course_Enrollment__c '+
+                                                            'where Course_Offering__c in :offeringIds and RecordTypeId = :facultyRecordTypeId');
         UTIL_Debug.debug('****Number of Faculty Course Connections for Course Offerings: ' + conns.size());
         if(conns.size() > 0) {
             for(Course_Enrollment__c conn : conns){

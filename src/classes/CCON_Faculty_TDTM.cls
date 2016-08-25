@@ -72,7 +72,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
             if(newlist != null && newlist.size() > 0) {
                 for (Integer i = 0; i < newlist.size(); i++) {
                     Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
-                    if (enroll.RecordTypeId == facultyRecType) {
+                    if (enroll.get('RecordTypeId') == facultyRecType) {
                         courseOfferingIds.add(enroll.Course_Offering__c);
                         contactIds.add(enroll.Contact__c);
                     }
@@ -96,7 +96,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                     for (Integer i = 0; i < newlist.size(); i++) {
                         Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
 
-                        if(enroll.RecordTypeId == facultyRecType) {
+                        if(enroll.get('RecordTypeId') == facultyRecType) {
                             enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
 
                             if (contactIdAccountIdAfflList.containsKey(enroll.Contact__c) && (
@@ -129,7 +129,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                     //AFTER INSERT
                     if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
                         // Faculty Marked as Primary on Insert
-                        if(enroll.RecordTypeId == facultyRecType &&
+                        if(enroll.get('RecordTypeId') == facultyRecType &&
                            enroll.Primary__c) {
                             Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
                             if (offering.Faculty__c != enroll.Contact__c) {
@@ -143,7 +143,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                     if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                         Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
 
-                        if (enroll.RecordTypeId == facultyRecType) {
+                        if (enroll.get('RecordTypeId') == facultyRecType) {
                             if (enroll.Primary__c && !oldEnroll.Primary__c) {
                                 // Update Course Offering to add new Primary Faculty
                                 Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
@@ -184,7 +184,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
                         Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
 
-                        if (oldEnroll.RecordTypeId == facultyRecType) {
+                        if (oldEnroll.get('RecordTypeId') == facultyRecType) {
                             if (potentialAfflDeletions.containsKey(oldEnroll.Affiliation__c)) {
                                 Affiliation__c affl = potentialAfflDeletions.get(oldEnroll.Affiliation__c);
                                 if (affl.Course_Enrollment__r.size() == 0) {

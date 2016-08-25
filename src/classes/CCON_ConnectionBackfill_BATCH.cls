@@ -75,13 +75,13 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
             facultyConverted = false;
             if (offering.Course_Enrollment__r.size() > 0) {
                 for(Course_Enrollment__c connection : offering.Course_Enrollment__r) {
-                    if (String.isBlank(connection.RecordTypeId)) {
+                    if (connection.get('RecordTypeId') == null) {
                         if (!facultyConverted && connection.Contact__c == offering.Faculty__c) {
-                            connection.RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
+                            connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
                             connection.Primary__c = true;
                             facultyConverted = true;
                         } else {
-                            connection.RecordTypeId = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID();
+                            connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID());
                         }
                         connsToUpdate.add(connection);
                     }

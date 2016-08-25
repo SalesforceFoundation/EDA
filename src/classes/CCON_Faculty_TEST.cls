@@ -104,9 +104,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         Test.startTest();
         insert conn;
@@ -142,9 +142,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         insert conn;
 
@@ -169,9 +169,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn2 = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering2.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn2.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         Test.startTest();
         insert conn2;
@@ -199,9 +199,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         insert conn;
 
@@ -232,9 +232,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = true,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = true
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         insert conn;
 
@@ -266,9 +266,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = true,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = true
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         Test.startTest();
         insert conn;
@@ -291,16 +291,16 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = true,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = true
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
         // Create second Course Connection
         Course_Enrollment__c conn2 = new Course_Enrollment__c(
             Contact__c = faculty2.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn2.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
         insert new List<Course_Enrollment__c>{
             conn,
             conn2
@@ -337,9 +337,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         insert conn;
 
@@ -352,9 +352,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn2 = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering2.Id,
-            Primary__c = true,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = true
         );
+        conn2.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         Test.startTest();
         insert conn2;
@@ -382,9 +382,9 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = true,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = true
         );
+        conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         insert conn;
 
@@ -417,18 +417,18 @@ public with sharing class CCON_Faculty_TEST {
         Course_Enrollment__c conn1 = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn1.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
         insert conn1;
 
         // Create second Course Connection
         Course_Enrollment__c conn2 = new Course_Enrollment__c(
             Contact__c = faculty.Id,
             Course_Offering__c = offering2.Id,
-            Primary__c = false,
-            RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+            Primary__c = false
         );
+        conn2.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
 
         insert conn2;
 

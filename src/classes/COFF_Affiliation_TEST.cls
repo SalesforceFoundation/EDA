@@ -309,8 +309,8 @@ public with sharing class COFF_Affiliation_TEST {
         Course_Enrollment__c enroll = new Course_Enrollment__c(Contact__c = faculty.Id,
                                                                 Account__c = dpt.Id,
                                                                 Course_Offering__c = offering.Id,
-                                                                Primary__c = false,
-                                                                RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+                                                                Primary__c = false);
+        enroll.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
         insert enroll;
 
         //Update Offering
@@ -343,8 +343,8 @@ public with sharing class COFF_Affiliation_TEST {
         Course_Enrollment__c enroll = new Course_Enrollment__c(Contact__c = faculty2.Id,
                                                                 Account__c = dpt.Id,
                                                                 Course_Offering__c = offering.Id,
-                                                                Primary__c = false,
-                                                                RecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+                                                                Primary__c = false);
+        enroll.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
         insert enroll;
 
         //Update Offering
