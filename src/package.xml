@@ -302,39 +302,35 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
-        <members>noAccRecType</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
+        <members>CannotDelete</members>
+        <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
-        <members>DefaultAccountName</members>
-        <members>CannotDelete</members>
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
+        <members>RelationshipsAutoDescription</members>
+        <members>RelationshipsLookupDescription</members>
         <members>addrHhAdmAccountOnly</members>
-        <members>addrValidParentObjects</members>
-        <members>addrAccountTypeEnabled</members>
         <members>addrNotEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
+        <members>addrValidParentObjects</members>
+        <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
-        <members>RelationshipsAutoDescription</members>
-        <members>RelationshipsLookupDescription</members>
         <members>stgAccModelTitle</members>
         <members>stgDefaultFacultyTypeTitle</members>
         <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgErrorNotifRecipientsTitle</members>
-        <members>stgHelpErrorDisable</members>
-        <members>stgHelpErrorNotifyOn</members>
-        <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAddressAccRecType</members>
         <members>stgHelpContactAddrs</members>
@@ -342,13 +338,16 @@
         <members>stgHelpDefaultFacultyType</members>
         <members>stgHelpDefaultStudentType</members>
         <members>stgHelpEnableCourseConnections</members>
+        <members>stgHelpErrorDisable</members>
+        <members>stgHelpErrorNotifyOn</members>
+        <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpHouseholdRecType</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
-        <members>stgHelpSimpleAddrChangeIsUpdate</members>
-        <members>stgHelpStoreErrorsOn</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
+        <members>stgHelpSimpleAddrChangeIsUpdate</members>
+        <members>stgHelpStoreErrorsOn</members>
         <members>stgSendErrorsTitle</members>
         <members>stgStoreErrorsTitle</members>
         <name>CustomLabel</name>

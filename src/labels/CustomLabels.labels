@@ -17,14 +17,6 @@
         <value>When a Program Enrollment is deleted, delete the related Affiliation.</value>
     </labels>
     <labels>
-         <fullName>noAccRecType</fullName>
-         <categories>Record Types</categories>
-         <language>en_US</language>
-         <protected>false</protected>
-         <shortDescription>noAccRecType - DEPRECATED</shortDescription>
-         <value>The defined account record type does not exist:</value>
-     </labels>
-    <labels>
         <fullName>AutoCreateFieldError</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -41,6 +33,22 @@
         <value>Please set both Filter Field and Filter Value, or neither.</value>
     </labels>
     <labels>
+        <fullName>CannotDelete</fullName>
+        <categories>Contacts, Accounts</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CannotDelete</shortDescription>
+        <value>Record cannot be deleted because children records exist. Delete children first.</value>
+    </labels>
+    <labels>
+        <fullName>DefaultAccountName</fullName>
+        <categories>Account Naming</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default Account Name</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
         <fullName>DefaultAdminName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>
@@ -55,22 +63,6 @@
         <protected>false</protected>
         <shortDescription>Default Household Name</shortDescription>
         <value>Household</value>
-    </labels>
-    <labels>
-        <fullName>DefaultAccountName</fullName>
-        <categories>Account Naming</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Default Account Name</shortDescription>
-        <value>Account</value>
-    </labels>
-    <labels>
-        <fullName>CannotDelete</fullName>
-        <categories>Contacts, Accounts</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CannotDelete</shortDescription>
-        <value>Record cannot be deleted because children records exist. Delete children first.</value>
     </labels>
     <labels>
         <fullName>Female</fullName>
@@ -113,28 +105,28 @@
         <value>-</value>
     </labels>
     <labels>
+        <fullName>RelationshipsAutoDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsAutoDescription</shortDescription>
+        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsLookupDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsLookupDescription</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+    </labels>
+    <labels>
         <fullName>addrHhAdmAccountOnly</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
         <value>Address records should only be created as children of Account or Contact.</value>
-    </labels>
-    <labels>
-        <fullName>addrValidParentObjects</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>addrValidParentObjects</shortDescription>
-        <value>Address records should only be created as children of Account or Contact.</value>
-    </labels>
-    <labels>
-        <fullName>addrAccountTypeEnabled</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
-        <value>Address management not enabled for this object type.</value>
     </labels>
     <labels>
         <fullName>addrNotEnabled</fullName>
@@ -167,6 +159,22 @@
         <protected>false</protected>
         <shortDescription>addrSeasonalPartialYear</shortDescription>
         <value>An address must have either both start and end year set or neither.</value>
+    </labels>
+    <labels>
+        <fullName>addrValidParentObjects</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrValidParentObjects</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
+    </labels>
+    <labels>
+        <fullName>noAccRecType</fullName>
+        <categories>Record Types</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>noAccRecType - DEPRECATED</shortDescription>
+        <value>The defined account record type does not exist:</value>
     </labels>
     <labels>
         <fullName>noAfflMappings</fullName>
@@ -204,7 +212,7 @@
         <fullName>stgDefaultFacultyTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgDefaultFacultyTypeTitle</shortDescription>
         <value>Default Faculty Record Type:</value>
     </labels>
@@ -212,7 +220,7 @@
         <fullName>stgDefaultStudentTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
         <value>Default Enrolled Student Record Type:</value>
     </labels>
@@ -292,7 +300,7 @@
         <fullName>stgHelpEnableCourseConnections</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpEnableCourseConnections</shortDescription>
         <value>Setting that enables the Course Connections Record Type logic. This feature requires that a Default Student and Faculty Record Type be selected. After enabling this feature for the first time it is highly recommended to go through the Backfill Operation.</value>
     </labels>
