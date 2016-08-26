@@ -117,6 +117,18 @@
     </div>
 
     <div aura:id="backfillTabContent" class="slds-tabs__content slds-hide" role="tabpanel">
+      <span class="{!v.hierarchySettings.Enable_Course_Connections__c ? 'slds-hide ' : '' }">
+        <div class="slds-m-bottom--medium">
+          <div class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+              <h2>
+                <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning' }"
+                      category="utility" size="small" name="warn" class="slds-m-right--small enable-connection-error-icon"/>
+                      You must enable Course Connections in order to run the backfill.</h2>
+            </div>
+          </div>
+        </div>
+      </span>
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">Course Connection Backfill:</div>
       </div>
@@ -134,7 +146,7 @@
         <div>
           <label class="slds-checkbox">
             <ui:inputCheckbox value="{!v.allowBackfill}" class="slds-checkbox allow-backfill-checkbox"
-                              text="" />
+                              text="" disabled="{!not(v.hierarchySettings.Enable_Course_Connections__c)}"/>
             <span class="slds-checkbox--faux"></span>
             Yes, I understand.
           </label>
