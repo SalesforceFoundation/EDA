@@ -368,7 +368,8 @@ public without sharing class UTIL_CustomSettingsFacade {
             return (
                 getSettings().Enable_Course_Connections__c &&
                 getSettings().Default_Enrolled_Student_RecordType_Id__c.length() >= 15 &&
-                getSettings().Default_Faculty_RecordType_Id__c.length() >= 15
+                getSettings().Default_Faculty_RecordType_Id__c.length() >= 15 &&
+                getSettings().Default_Faculty_RecordType_Id__c != getSettings().Default_Enrolled_Student_RecordType_Id__c
             );
         }
         return getSettings().Enable_Course_Connections__c;
