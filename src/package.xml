@@ -340,6 +340,7 @@
         <members>stgHelpContactAddrs</members>
         <members>stgHelpCourseConnBackfillDescription</members>
         <members>stgHelpDefaultFacultyType</members>
+        <members>stgHelpDefaultStudentType</members>
         <members>stgHelpEnableCourseConnections</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpHouseholdRecType</members>

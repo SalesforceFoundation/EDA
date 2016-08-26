@@ -281,6 +281,14 @@
         <value>The default Record Type to be used for Faculty.</value>
     </labels>
     <labels>
+        <fullName>stgHelpDefaultStudentType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpDefaultStudentType</shortDescription>
+        <value>The default Record Type to be used for Enrolled Students.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpEnableCourseConnections</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

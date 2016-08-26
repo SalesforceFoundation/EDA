@@ -171,5 +171,7 @@ public class UTIL_Namespace {
         String l30 = Label.stgHelpDefaultFacultyType;
         String l31 = Label.stgDefaultFacultyTypeTitle;
         String l32 = Label.stgDefaultStudentTypeTitle;
+        String l33 = Label.stgHelpDefaultStudentType;
+        String l34 = Label.stgHelpDefaultFacultyType;
     }
 }
