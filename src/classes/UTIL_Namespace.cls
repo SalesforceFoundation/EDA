@@ -139,40 +139,42 @@ public class UTIL_Namespace {
     * @return void.
     ********************************************************************************************************/
     public static void hack() {
-        String l1 = Label.noAfflMappings;
-        String l2 = Label.noAutoCreateSettings;
-        String l3 = Label.noRecSettings;
-        String l4 = Label.stgHelpRelReciprocalMethod;
-        String l5 = Label.stgHelpRelAutoCreatedDup;
-        String l6 = Label.RelationshipsLookupDescription;
-        String l7 = Label.RelationshipsAutoDescription;
-        String l8 = Label.stgHelpOrgAccountAddressMgmt;
-        String l9 = Label.stgHelpHouseAdmAccountAddressMgmt;
-        String l10 = Label.stgHelpSimpleAddrChangeIsUpdate;
-        String l11 = Label.stgHelpAccountModel;
-        String l12 = Label.stgHelpStoreErrorsOn;
-        String l13 = Label.stgHelpErrorNotifyOn;
-        String l14 = Label.stgHelpErrorNotifyTo;
-        String l15 = Label.stgHelpErrorDisable;
-        String l16 = Label.AfflMappingsDescription;
-        String l17 = Label.AfflProgEnrollDeleted;
-        String l18 = Label.stgErrorNotifRecipientsTitle;
-        String l19 = Label.stgAccModelTitle;
-        String l20 = Label.stgStoreErrorsTitle;
-        String l21 = Label.stgSendErrorsTitle;
-        String l22 = Label.stgDisableErrorHandlingTitle;
-        String l23 = Label.stgHelpContactAddrs;
-        String l24 = Label.stgHelpHouseholdRecType;
-        String l25 = Label.stgHelpContactAddrs;
-        String l26 = Label.stgHelpAddressAccRecType;
-        String l27 = Label.stgEnableCourseConnectionsTitle;
-        String l28 = Label.stgHelpEnableCourseConnections;
-        String l29 = Label.stgHelpCourseConnBackfillDescription;
-        String l30 = Label.stgHelpDefaultFacultyType;
-        String l31 = Label.stgDefaultFacultyTypeTitle;
-        String l32 = Label.stgDefaultStudentTypeTitle;
-        String l33 = Label.stgHelpDefaultStudentType;
-        String l34 = Label.stgHelpDefaultFacultyType;
-        String l35 = Label.noAccRecType;
+        List<String> labelList = new List<String>{
+            Label.noAfflMappings,
+            Label.noAutoCreateSettings,
+            Label.noRecSettings,
+            Label.stgHelpRelReciprocalMethod,
+            Label.stgHelpRelAutoCreatedDup,
+            Label.RelationshipsLookupDescription,
+            Label.RelationshipsAutoDescription,
+            Label.stgHelpOrgAccountAddressMgmt,
+            Label.stgHelpHouseAdmAccountAddressMgmt,
+            Label.stgHelpSimpleAddrChangeIsUpdate,
+            Label.stgHelpAccountModel,
+            Label.stgHelpStoreErrorsOn,
+            Label.stgHelpErrorNotifyOn,
+            Label.stgHelpErrorNotifyTo,
+            Label.stgHelpErrorDisable,
+            Label.AfflMappingsDescription,
+            Label.AfflProgEnrollDeleted,
+            Label.stgErrorNotifRecipientsTitle,
+            Label.stgAccModelTitle,
+            Label.stgStoreErrorsTitle,
+            Label.stgSendErrorsTitle,
+            Label.stgDisableErrorHandlingTitle,
+            Label.stgHelpContactAddrs,
+            Label.stgHelpHouseholdRecType,
+            Label.stgHelpContactAddrs,
+            Label.stgHelpAddressAccRecType,
+            Label.stgEnableCourseConnectionsTitle,
+            Label.stgHelpEnableCourseConnections,
+            Label.stgHelpCourseConnBackfillDescription,
+            Label.stgHelpDefaultFacultyType,
+            Label.stgDefaultFacultyTypeTitle,
+            Label.stgDefaultStudentTypeTitle,
+            Label.stgHelpDefaultStudentType,
+            Label.stgHelpDefaultFacultyType,
+            Label.noAccRecType
+        };
     }
 }
