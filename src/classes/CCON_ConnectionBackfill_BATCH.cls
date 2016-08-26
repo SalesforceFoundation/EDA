@@ -71,19 +71,22 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
    	public void execute(Database.BatchableContext bc, List<Course_Offering__c> offerings) {
         List<Course_Enrollment__c> connsToUpdate = new List<Course_Enrollment__c>();
 
-        for(Course_Offering__c offering : offerings) {
-            facultyConverted = false;
-            if (offering.Course_Enrollment__r.size() > 0) {
-                for(Course_Enrollment__c connection : offering.Course_Enrollment__r) {
-                    if (connection.get('RecordTypeId') == noRecordType()) {
-                        if (!facultyConverted && connection.Contact__c == offering.Faculty__c) {
-                            connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
-                            connection.Primary__c = true;
-                            facultyConverted = true;
-                        } else {
-                            connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID());
+        if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+
+            for(Course_Offering__c offering : offerings) {
+                facultyConverted = false;
+                if (offering.Course_Enrollment__r.size() > 0) {
+                    for(Course_Enrollment__c connection : offering.Course_Enrollment__r) {
+                        if (connection.get('RecordTypeId') == noRecordType()) {
+                            if (!facultyConverted && connection.Contact__c == offering.Faculty__c) {
+                                connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+                                connection.Primary__c = true;
+                                facultyConverted = true;
+                            } else {
+                                connection.put('RecordTypeId', UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID());
+                            }
+                            connsToUpdate.add(connection);
                         }
-                        connsToUpdate.add(connection);
                     }
                 }
             }
