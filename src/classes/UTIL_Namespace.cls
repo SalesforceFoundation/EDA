@@ -165,5 +165,11 @@ public class UTIL_Namespace {
         String l24 = Label.stgHelpHouseholdRecType;
         String l25 = Label.stgHelpContactAddrs;
         String l26 = Label.stgHelpAddressAccRecType;
+        String l27 = Label.stgEnableCourseConnectionsTitle;
+        String l28 = Label.stgHelpEnableCourseConnections;
+        String l29 = Label.stgHelpCourseConnBackfillDescription;
+        String l30 = Label.stgHelpDefaultFacultyType;
+        String l31 = Label.stgDefaultFacultyTypeTitle;
+        String l32 = Label.stgDefaultStudentTypeTitle;
     }
 }

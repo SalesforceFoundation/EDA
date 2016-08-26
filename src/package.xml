@@ -52,6 +52,7 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>STG_CourseConnections</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
         <members>TDTM_DefaultConfig</members>
@@ -325,7 +326,10 @@
         <members>RelationshipsAutoDescription</members>
         <members>RelationshipsLookupDescription</members>
         <members>stgAccModelTitle</members>
+        <members>stgDefaultFacultyTypeTitle</members>
+        <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
+        <members>stgEnableCourseConnectionsTitle</members>
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgHelpErrorDisable</members>
         <members>stgHelpErrorNotifyOn</members>
@@ -333,6 +337,9 @@
         <members>stgHelpAccountModel</members>
         <members>stgHelpAddressAccRecType</members>
         <members>stgHelpContactAddrs</members>
+        <members>stgHelpCourseConnBackfillDescription</members>
+        <members>stgHelpDefaultFacultyType</members>
+        <members>stgHelpEnableCourseConnections</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpHouseholdRecType</members>
         <members>stgHelpOrgAccountAddressMgmt</members>

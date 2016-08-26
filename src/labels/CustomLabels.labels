@@ -225,6 +225,14 @@
         <value>Disable Error Handling:</value>
     </labels>
     <labels>
+        <fullName>stgEnableCourseConnectionsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgEnableCourseConnectionsTitle</shortDescription>
+        <value>Enable Course Connections:</value>
+    </labels>
+    <labels>
         <fullName>stgErrorNotifRecipientsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -273,12 +281,61 @@
         <value>The Account record types that support multiple address management.</value>
     </labels>
     <labels>
+        <fullName>stgDefaultFacultyTypeTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgDefaultFacultyTypeTitle</shortDescription>
+        <value>Default Faculty Record Type:</value>
+    </labels>
+    <labels>
+        <fullName>stgDefaultStudentTypeTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
+        <value>Default Enrolled Student Record Type:</value>
+    </labels>
+
+    <labels>
+        <fullName>stgEnableCourseConnectionsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgEnableCourseConnectionsTitle</shortDescription>
+        <value>Enable Course Connections:</value>
+    </labels>
+    <labels>
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpContactAddrs</shortDescription>
         <value>Select this option to enable multiple address management for Contacts.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCourseConnBackfillDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpCourseConnBackfillDescription</shortDescription>
+        <value>The Course Connection backfill is to be used when enabling Course Connections for the very first time and only when prior data existed in the Course Offering and Course Connection(Enrollment) objects. The backfill will perform two tasks. It will first convert all Faculty contacts that have been added to a Course Connection(Enrollment) and as Faculty on Course Offering to the Default Faculty Record Type. the second task that the backfill performs is to convert the rest of the Course Connections(Enrollments) into the Default Enrolled Student Record Type. Please check the box labelled &apos;Yes, I understand&apos; to start the backfill.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpDefaultFacultyType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpDefaultFacultyType</shortDescription>
+        <value>The default Record Type to be used for Faculty.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpEnableCourseConnections</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpEnableCourseConnections</shortDescription>
+        <value>Setting that enables the Course Connections Record Type logic. This feature requires that a Default Student and Faculty Record Type be selected. After enabling this feature for the first time it is highly recommended to go through the Backfill Operation.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
