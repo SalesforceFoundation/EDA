@@ -24,14 +24,14 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
-          component.set("v.studentRecTypeId", settingsNoPrefix.Default_Enrolled_Student_RecordType_Id__c);
+          component.set("v.studentRecTypeId", settingsNoPrefix.Default_Student_RecordType_Id__c);
           component.set("v.facultyRecTypeId", settingsNoPrefix.Default_Faculty_RecordType_Id__c);
 	    		//Get account record types
 	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
 	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
 	    		        settingsNoPrefix.Household_Addresses_RecType__c);
           // Get Course Connection Record Types
-	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Default_Enrolled_Student_RecordType_Id__c,
+	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Default_Student_RecordType_Id__c,
 	    		        settingsNoPrefix.Default_Faculty_RecordType_Id__c);
 	    	} else if(response.getState() === "ERROR") {
 	    		this.displayError(response);

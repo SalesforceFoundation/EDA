@@ -29,7 +29,7 @@
               <h2>
                 <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning' }"
                       category="utility" size="small" name="warn" class="slds-m-right--small enable-connection-error-icon"/>
-                      You must enable Course Connections to edit default record types</h2>
+                      You must enable Course Connections before editing record types.</h2>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
               </aura:if>
             </div>
             <div class="slds-col slds-size--1-of-2">
-              <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Default_Enrolled_Student_RecordType_Id__c}" isView="{!v.isView}"
+              <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Default_Student_RecordType_Id__c}" isView="{!v.isView}"
                   recTypeId="{!v.studentRecTypeId}" recTypeName="{!v.studentRecTypeName}" recTypes="{!v.courseConnectionRecTypes}"
                   dropdownDisabled="{!!v.hierarchySettings.Enable_Course_Connections__c}" />
             </div>
@@ -124,7 +124,7 @@
               <h2>
                 <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning' }"
                       category="utility" size="small" name="warn" class="slds-m-right--small enable-connection-error-icon"/>
-                      You must enable Course Connections in order to run the backfill.</h2>
+                      You must enable Course Connections before running the Course Connections Backfill.</h2>
             </div>
           </div>
         </div>
@@ -148,13 +148,13 @@
             <ui:inputCheckbox value="{!v.allowBackfill}" class="slds-checkbox allow-backfill-checkbox"
                               text="" disabled="{!not(v.hierarchySettings.Enable_Course_Connections__c)}"/>
             <span class="slds-checkbox--faux"></span>
-            Yes, I understand.
+            I understand and am ready to run Backfill
           </label>
         </div>
       </div>
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
-          <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="Start Backfill" press="{!c.startBackfill}"/>
+          <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="Run Backfill" press="{!c.startBackfill}"/>
         </div>
       </div>
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">

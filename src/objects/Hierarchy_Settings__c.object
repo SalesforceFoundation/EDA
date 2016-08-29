@@ -77,10 +77,10 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Default_Enrolled_Student_RecordType_Id__c</fullName>
-        <description>The Default Enrolled Student RecordType Id to be used for Course Connections.</description>
+        <fullName>Default_Faculty_RecordType_Id__c</fullName>
+        <description>The Default Faculty RecordType to be used for Course Connections.</description>
         <externalId>false</externalId>
-        <label>Default Enrolled Student RecordType Id</label>
+        <label>Default Faculty RecordType Id</label>
         <length>18</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -88,10 +88,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Default_Faculty_RecordType_Id__c</fullName>
-        <description>The Default Faculty RecordType to be used for Course Connections.</description>
+        <fullName>Default_Student_RecordType_Id__c</fullName>
+        <description>The Default Enrolled Student RecordType Id to be used for Course Connections.</description>
         <externalId>false</externalId>
-        <label>Default Faculty RecordType Id</label>
+        <label>Default Student RecordType Id</label>
         <length>18</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -111,7 +111,7 @@
     <fields>
         <fullName>Enable_Course_Connections__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Enables Course Connections. Requires that at least two record types exist for Course Connections to be used for the default Enrolled Student and Faculty.</description>
+        <description>Enables Course Connections. Requires that at least two record types exist for Course Connections to be used for the default Active Student and Faculty.</description>
         <externalId>false</externalId>
         <label>Enable Course Connections</label>
         <trackTrending>false</trackTrending>

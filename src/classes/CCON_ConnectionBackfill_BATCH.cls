@@ -36,7 +36,7 @@
 * Connections. It assigns all current Faculty attached to Course Offerings
 * to the Default Faculty RecordType and marks it as Primary. After it attaches
 * all Faculty it will convert all other Course Connections without a RecordType
-* to the Default Enrolled Student RecordType.
+* to the Default Student RecordType.
 *
 */
 public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject> {

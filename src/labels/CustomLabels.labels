@@ -222,7 +222,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
-        <value>Default Enrolled Student Record Type:</value>
+        <value>Default Active Student Record Type:</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
@@ -278,7 +278,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpCourseConnBackfillDescription</shortDescription>
-        <value>The Course Connection backfill is to be used when enabling Course Connections for the very first time and only when prior data existed in the Course Offering and Course Connection(Enrollment) objects. The backfill will perform two tasks. It will first convert all Faculty contacts that have been added to a Course Connection(Enrollment) and as Faculty on Course Offering to the Default Faculty Record Type. the second task that the backfill performs is to convert the rest of the Course Connections(Enrollments) into the Default Enrolled Student Record Type. Please check the box labelled &apos;Yes, I understand&apos; to start the backfill.</value>
+        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the feature. The Backfill converts all contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>
@@ -286,7 +286,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpDefaultFacultyType</shortDescription>
-        <value>The default Record Type to be used for Faculty.</value>
+        <value>The default record type when creating Course Connections for a faculty member.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultStudentType</fullName>
@@ -294,7 +294,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpDefaultStudentType</shortDescription>
-        <value>The default Record Type to be used for Enrolled Students.</value>
+        <value>The default record type when creating Course Connections for active students.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnableCourseConnections</fullName>
@@ -302,7 +302,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpEnableCourseConnections</shortDescription>
-        <value>Setting that enables the Course Connections Record Type logic. This feature requires that a Default Student and Faculty Record Type be selected. After enabling this feature for the first time it is highly recommended to go through the Backfill Operation.</value>
+        <value>Course Connections connect a contact with a course offering. Enabling this checkbox lets you choose to create the connection for a student or faculty (the two default record types). After selecting this checkbox, you must set the Default Active Student Record Type and the Default Faculty Record Type. If enabling this feature for the first time, it is highly recommended that you run the Backfill in your org.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorDisable</fullName>
