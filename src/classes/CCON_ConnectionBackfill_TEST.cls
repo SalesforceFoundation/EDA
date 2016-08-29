@@ -107,8 +107,8 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Default_Faculty_RecordType_Id__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID(),
-                Default_Student_RecordType_Id__c = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID()
+                Faculty_RecType__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID(),
+                Student_RecType__c = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID()
             )
         );
         COFF_Affiliation_TDTM.hasRunCoffTrigger = false;

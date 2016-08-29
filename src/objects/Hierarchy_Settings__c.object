@@ -77,28 +77,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Default_Faculty_RecordType_Id__c</fullName>
-        <description>The Default Faculty RecordType to be used for Course Connections.</description>
-        <externalId>false</externalId>
-        <label>Default Faculty RecordType Id</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Default_Student_RecordType_Id__c</fullName>
-        <description>The Default Enrolled Student RecordType Id to be used for Course Connections.</description>
-        <externalId>false</externalId>
-        <label>Default Student RecordType Id</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
         <description>If checked, HEDA&apos;s error handling framework is disabled.</description>
@@ -146,6 +124,17 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Faculty_RecType__c</fullName>
+        <description>The default record type when creating Course Connections for a faculty member.</description>
+        <externalId>false</externalId>
+        <label>Faculty Record Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Household_Addresses_RecType__c</fullName>
@@ -214,6 +203,17 @@
         <label>Store Errors</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Student_RecType__c</fullName>
+        <description>The default record type when creating Course Connections for active students.</description>
+        <externalId>false</externalId>
+        <label>Student Record Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Hierarchy Settings</label>
     <visibility>Public</visibility>

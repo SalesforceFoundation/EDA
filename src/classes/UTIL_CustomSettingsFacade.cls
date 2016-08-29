@@ -129,8 +129,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Enable_Course_Connections__c = mySettings.Enable_Course_Connections__c;
-        settings.Default_Faculty_RecordType_Id__c = mySettings.Default_Faculty_RecordType_Id__c;
-        settings.Default_Student_RecordType_Id__c = mySettings.Default_Student_RecordType_Id__c;
+        settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
+        settings.Student_RecType__c = mySettings.Student_RecType__c;
 
         orgSettings = settings;
         return settings;
@@ -367,9 +367,9 @@ public without sharing class UTIL_CustomSettingsFacade {
         if (!Test.isRunningTest()) {
             return (
                 getSettings().Enable_Course_Connections__c &&
-                getSettings().Default_Student_RecordType_Id__c.length() >= 15 &&
-                getSettings().Default_Faculty_RecordType_Id__c.length() >= 15 &&
-                getSettings().Default_Faculty_RecordType_Id__c != getSettings().Default_Student_RecordType_Id__c
+                getSettings().Student_RecType__c.length() >= 15 &&
+                getSettings().Faculty_RecType__c.length() >= 15 &&
+                getSettings().Faculty_RecType__c != getSettings().Student_RecType__c
             );
         }
         return getSettings().Enable_Course_Connections__c;
@@ -380,7 +380,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      * @return String The ID of the Faculty Course Connection record type as a String.
      */
     public static String getFacultyConnectionRecTypeID() {
-        String recTypeId = getSettings().Default_Faculty_RecordType_Id__c;
+        String recTypeId = getSettings().Faculty_RecType__c;
         if(Test.isRunningTest() && String.isBlank(recTypeId)) {
             String defaultRecTypeId = UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').get('Faculty');
             if (String.isBlank(defaultRecTypeId)) {
@@ -402,7 +402,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      * @return String The ID of the Student Course Connection record type as a String.
      */
     public static String getStudentConnectionRecTypeID() {
-        String recTypeId = getSettings().Default_Student_RecordType_Id__c;
+        String recTypeId = getSettings().Student_RecType__c;
         if(Test.isRunningTest() && String.isBlank(recTypeId)) {
             String defaultRecTypeId = UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').get('Student');
             if (String.isBlank(defaultRecTypeId)) {

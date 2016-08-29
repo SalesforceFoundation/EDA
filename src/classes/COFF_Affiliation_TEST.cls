@@ -70,7 +70,7 @@ public with sharing class COFF_Affiliation_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Default_Faculty_RecordType_Id__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+                Faculty_RecType__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
             )
         );
     }
