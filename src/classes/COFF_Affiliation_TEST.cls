@@ -70,7 +70,7 @@ public with sharing class COFF_Affiliation_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Faculty_RecType__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID()
+                Faculty_RecType__c = UTIL_Describe.getFacultyConnectionRecType()
             )
         );
     }
@@ -310,7 +310,7 @@ public with sharing class COFF_Affiliation_TEST {
                                                                 Account__c = dpt.Id,
                                                                 Course_Offering__c = offering.Id,
                                                                 Primary__c = false);
-        enroll.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+        enroll.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
         insert enroll;
 
         //Update Offering
@@ -344,7 +344,7 @@ public with sharing class COFF_Affiliation_TEST {
                                                                 Account__c = dpt.Id,
                                                                 Course_Offering__c = offering.Id,
                                                                 Primary__c = false);
-        enroll.put('RecordTypeId', UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID());
+        enroll.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
         insert enroll;
 
         //Update Offering

@@ -53,7 +53,7 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
         // Check that Course Connections is enabled
         if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
 
-            Id facultyRecType = (Id)UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
+            Id facultyRecType = (Id)UTIL_Describe.getFacultyConnectionRecType();
 
             List<Course_Offering__c> courseOfferingsToUpdate = new List<Course_Offering__c>();
             List<Course_Enrollment__c> courseConnsBeforeInsert = new List<Course_Enrollment__c>();

@@ -107,8 +107,8 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Faculty_RecType__c = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID(),
-                Student_RecType__c = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID()
+                Faculty_RecType__c = UTIL_Describe.getFacultyConnectionRecType(),
+                Student_RecType__c = UTIL_Describe.getStudentConnectionRecType()
             )
         );
         COFF_Affiliation_TDTM.hasRunCoffTrigger = false;
@@ -119,8 +119,8 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         setup();
 
         String dummyRecordTypeId = UTIL_Describe.getDummyConnectionRecTypeID();
-        String studentRecordTypeId = UTIL_CustomSettingsFacade.getStudentConnectionRecTypeID();
-        String facultyRecordTypeId = UTIL_CustomSettingsFacade.getFacultyConnectionRecTypeID();
+        String studentRecordTypeId = UTIL_Describe.getStudentConnectionRecType();
+        String facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
 
         List<Course_Enrollment__c> originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
         List<Course_Enrollment__c> studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
