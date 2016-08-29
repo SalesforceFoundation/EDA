@@ -372,7 +372,9 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Cache for the record type DeveloperName-to-ID map.
+    * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
+    * Object name as the key and Map as the value. The value Map is the RecordType Developer Name to
+    * RecordType Id
     */
     private static Map<String, Map<String, Id>> mapRecordTypes = new Map<String, Map<String, Id>>();
 
