@@ -315,15 +315,6 @@
         <relatedList>Course_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>Course__c</fields>
-        <fields>Term__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
-        <fields>Capacity__c</fields>
-        <relatedList>Course_Offering__c.Faculty__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>CAMPAIGN.NAME</fields>
         <fields>CAMPAIGN.START_DATE</fields>
         <fields>CAMPAIGN.CAMPAIGN_TYPE</fields>

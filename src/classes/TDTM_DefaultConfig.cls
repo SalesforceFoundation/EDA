@@ -151,7 +151,12 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CENR_AcademicProgram_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
-              
+
+        // Course Connections Faculty Management on Course Enrollment object
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'CCON_Faculty_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
+              Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
+
         return handlers;
     }
 }

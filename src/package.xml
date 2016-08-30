@@ -26,6 +26,10 @@
         <members>AFFL_MultiRecordTypeMapper</members>
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
+        <members>CCON_ConnectionBackfill_BATCH</members>
+        <members>CCON_ConnectionBackfill_TEST</members>
+        <members>CCON_Faculty_TDTM</members>
+        <members>CCON_Faculty_TEST</members>
         <members>CENR_AcademicProgram_TDTM</members>
         <members>CENR_AcademicProgram_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
@@ -48,6 +52,8 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>STG_CourseConnections</members>
+        <members>STG_CourseConnections_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
         <members>TDTM_DefaultConfig</members>
@@ -100,6 +106,7 @@
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
         <members>STG_CMP_Base</members>
+        <members>STG_CMP_CourseConnections</members>
         <members>STG_CMP_Header</members>
         <members>STG_CMP_Rel</members>
         <members>STG_CMP_System</members>
@@ -204,7 +211,9 @@
         <members>Course_Enrollment__c.Credits_Attempted__c</members>
         <members>Course_Enrollment__c.Credits_Earned__c</members>
         <members>Course_Enrollment__c.Grade__c</members>
+        <members>Course_Enrollment__c.Primary__c</members>
         <members>Course_Enrollment__c.Program_Enrollment__c</members>
+        <members>Course_Enrollment__c.Status__c</members>
         <members>Course_Offering__c.Capacity__c</members>
         <members>Course_Offering__c.Course__c</members>
         <members>Course_Offering__c.End_Date__c</members>
@@ -233,15 +242,18 @@
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
         <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
+        <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
+        <members>Hierarchy_Settings__c.Faculty_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
         <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
+        <members>Hierarchy_Settings__c.Student_RecType__c</members>
         <members>Program_Enrollment__c.Account__c</members>
         <members>Program_Enrollment__c.Admission_Date__c</members>
         <members>Program_Enrollment__c.Affiliation__c</members>
@@ -290,46 +302,52 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
-        <members>noAccRecType</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
+        <members>CannotDelete</members>
+        <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>
-        <members>DefaultAccountName</members>
-        <members>CannotDelete</members>
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
+        <members>RelationshipsAutoDescription</members>
+        <members>RelationshipsLookupDescription</members>
         <members>addrHhAdmAccountOnly</members>
-        <members>addrValidParentObjects</members>
-        <members>addrAccountTypeEnabled</members>
         <members>addrNotEnabled</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
+        <members>addrValidParentObjects</members>
+        <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
-        <members>RelationshipsAutoDescription</members>
-        <members>RelationshipsLookupDescription</members>
         <members>stgAccModelTitle</members>
+        <members>stgDefaultFacultyTypeTitle</members>
+        <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
+        <members>stgEnableCourseConnectionsTitle</members>
         <members>stgErrorNotifRecipientsTitle</members>
-        <members>stgHelpErrorDisable</members>
-        <members>stgHelpErrorNotifyOn</members>
-        <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAddressAccRecType</members>
         <members>stgHelpContactAddrs</members>
+        <members>stgHelpCourseConnBackfillDescription</members>
+        <members>stgHelpDefaultFacultyType</members>
+        <members>stgHelpDefaultStudentType</members>
+        <members>stgHelpEnableCourseConnections</members>
+        <members>stgHelpErrorDisable</members>
+        <members>stgHelpErrorNotifyOn</members>
+        <members>stgHelpErrorNotifyTo</members>
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpHouseholdRecType</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
-        <members>stgHelpSimpleAddrChangeIsUpdate</members>
-        <members>stgHelpStoreErrorsOn</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
+        <members>stgHelpSimpleAddrChangeIsUpdate</members>
+        <members>stgHelpStoreErrorsOn</members>
         <members>stgSendErrorsTitle</members>
         <members>stgStoreErrorsTitle</members>
         <name>CustomLabel</name>
