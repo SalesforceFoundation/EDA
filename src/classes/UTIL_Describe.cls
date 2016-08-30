@@ -523,10 +523,11 @@ public class UTIL_Describe {
     public static String getFacultyConnectionRecType() {
         String recTypeId = UTIL_CustomSettingsFacade.getSettings().Faculty_RecType__c;
         if(Test.isRunningTest() && String.isBlank(recTypeId)) {
-            recTypeId = getRecTypesMapByDevName('Course_Enrollment__c').get('Faculty');
+            Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
+            recTypeId = recTypes.get('Faculty');
             if (String.isBlank(recTypeId)) {
-                if(getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 0) {
-                    return getRecTypesMapByDevName('Course_Enrollment__c').values()[0];
+                if(recTypes.values().size() > 0) {
+                    return recTypes.values()[0];
                 } else {
                     return null;
                 }
@@ -542,10 +543,11 @@ public class UTIL_Describe {
     public static String getStudentConnectionRecType() {
         String recTypeId = UTIL_CustomSettingsFacade.getSettings().Student_RecType__c;
         if(Test.isRunningTest() && String.isBlank(recTypeId)) {
-            recTypeId = getRecTypesMapByDevName('Course_Enrollment__c').get('Student');
+            Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
+            recTypeId = recTypes.get('Student');
             if (String.isBlank(recTypeId)) {
-                if(getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 1) {
-                    return getRecTypesMapByDevName('Course_Enrollment__c').values()[1];
+                if(recTypes.values().size() > 1) {
+                    return recTypes.values()[1];
                 } else {
                     return null;
                 }
