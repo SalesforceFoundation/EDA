@@ -47,21 +47,11 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
     private Boolean facultyConverted;
 
 	public CCON_ConnectionBackfill_BATCH() {
-        query = 'SELECT '+
-                    'Id, '+
-                    'Name, '+
-                    'Faculty__c, '+
-                    '( '+
-                        'SELECT '+
-                            'Id, '+
-                            'Name, '+
-                            'RecordTypeId, '+
-                            'Contact__c '+
-                        'FROM '+
-                            'Course_Enrollment__r '+
-                    ') '+
-                'FROM '+
-                    'Course_Offering__c';
+        query = 'SELECT Id, Name, Faculty__c, ( SELECT Id, Name, Contact__c';
+        if (recordTypesExist()) {
+            query += ', RecordTypeId ';
+        }
+        query += ' FROM Course_Enrollment__r ) FROM Course_Offering__c';
 	}
 
 	public Database.QueryLocator start(Database.BatchableContext bc) {
@@ -77,15 +67,17 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
                 facultyConverted = false;
                 if (offering.Course_Enrollment__r.size() > 0) {
                     for(Course_Enrollment__c connection : offering.Course_Enrollment__r) {
-                        if (connection.get('RecordTypeId') == noRecordType()) {
-                            if (!facultyConverted && connection.Contact__c == offering.Faculty__c) {
-                                connection.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
-                                connection.Primary__c = true;
-                                facultyConverted = true;
-                            } else {
-                                connection.put('RecordTypeId', UTIL_Describe.getStudentConnectionRecType());
+                        if (recordTypesExist()) {
+                            if (connection.get('RecordTypeId') == noRecordType()) {
+                                if (!facultyConverted && connection.Contact__c == offering.Faculty__c) {
+                                    connection.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+                                    connection.Primary__c = true;
+                                    facultyConverted = true;
+                                } else {
+                                    connection.put('RecordTypeId', UTIL_Describe.getStudentConnectionRecType());
+                                }
+                                connsToUpdate.add(connection);
                             }
-                            connsToUpdate.add(connection);
                         }
                     }
                 }
@@ -101,6 +93,10 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
             return UTIL_Describe.getDummyConnectionRecTypeID();
         }
         return null;
+    }
+
+    private Boolean recordTypesExist() {
+        return UTIL_Describe.isValidField('Course_Enrollment__c','RecordTypeId');
     }
 
 	public void finish(Database.BatchableContext bc) {}

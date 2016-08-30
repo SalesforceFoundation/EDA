@@ -116,34 +116,36 @@ public with sharing class CCON_ConnectionBackfill_TEST {
 
     @isTest
     public static void checkBackfillSuccess() {
-        setup();
+        // Only run test if we actually have three record types to test with.
+        if (UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 2) {
+            setup();
 
-        String dummyRecordTypeId = UTIL_Describe.getDummyConnectionRecTypeID();
-        String studentRecordTypeId = UTIL_Describe.getStudentConnectionRecType();
-        String facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
+            String dummyRecordTypeId = UTIL_Describe.getDummyConnectionRecTypeID();
+            String studentRecordTypeId = UTIL_Describe.getStudentConnectionRecType();
+            String facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
 
-        List<Course_Enrollment__c> originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
-        List<Course_Enrollment__c> studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
-        List<Course_Enrollment__c> facultyConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :facultyRecordTypeId');
+            List<Course_Enrollment__c> originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
+            List<Course_Enrollment__c> studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
+            List<Course_Enrollment__c> facultyConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :facultyRecordTypeId');
 
-        System.assertEquals(0, studentConns.size());
-        System.assertEquals(0, facultyConns.size());
-        System.assertEquals(840, originalConns.size());
+            System.assertEquals(0, studentConns.size());
+            System.assertEquals(0, facultyConns.size());
+            System.assertEquals(840, originalConns.size());
 
-        //run batch
-        Test.StartTest();
-        CCON_ConnectionBackfill_BATCH batch = new CCON_ConnectionBackfill_BATCH();
-        ID ApexJobId = Database.executeBatch(batch, 200);
-        Test.stopTest();
+            //run batch
+            Test.StartTest();
+            CCON_ConnectionBackfill_BATCH batch = new CCON_ConnectionBackfill_BATCH();
+            ID ApexJobId = Database.executeBatch(batch, 200);
+            Test.stopTest();
 
-        originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
-        studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
-        facultyConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :facultyRecordTypeId');
+            originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :dummyRecordTypeId');
+            studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
+            facultyConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :facultyRecordTypeId');
 
-        System.assertEquals(800, studentConns.size());
-        System.assertEquals(40, facultyConns.size());
-        System.assertEquals(0, originalConns.size());
-
+            System.assertEquals(800, studentConns.size());
+            System.assertEquals(40, facultyConns.size());
+            System.assertEquals(0, originalConns.size());
+        }
     }
 
     private static List<Contact> createContacts(Integer amount, String uniqueString) {

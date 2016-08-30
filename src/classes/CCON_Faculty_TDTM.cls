@@ -50,24 +50,24 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
+        Id facultyRecType = (Id)UTIL_Describe.getFacultyConnectionRecType();
+
+        List<Course_Offering__c> courseOfferingsToUpdate = new List<Course_Offering__c>();
+        List<Course_Enrollment__c> courseConnsBeforeInsert = new List<Course_Enrollment__c>();
+
+        List<Affiliation__c> affiliationsToInsert = new List<Affiliation__c>();
+        List<Course_Enrollment__c> connsNeedingAffls = new List<Course_Enrollment__c>();
+
+        List<Affiliation__c> affiliationsToDelete = new List<Affiliation__c>();
+
+        Map<Id, Map<Id, List<Affiliation__c>>> contactIdAccountIdAfflList = new Map<Id, Map<Id, List<Affiliation__c>>>();
+
+        Set<Id> courseOfferingIds = new Set<Id>();
+        Set<Id> contactIds = new Set<Id>();
+        Map<Id, Course_Offering__c> offerings = new Map<Id, Course_Offering__c>();
+
         // Check that Course Connections is enabled
         if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
-
-            Id facultyRecType = (Id)UTIL_Describe.getFacultyConnectionRecType();
-
-            List<Course_Offering__c> courseOfferingsToUpdate = new List<Course_Offering__c>();
-            List<Course_Enrollment__c> courseConnsBeforeInsert = new List<Course_Enrollment__c>();
-
-            List<Affiliation__c> affiliationsToInsert = new List<Affiliation__c>();
-            List<Course_Enrollment__c> connsNeedingAffls = new List<Course_Enrollment__c>();
-
-            List<Affiliation__c> affiliationsToDelete = new List<Affiliation__c>();
-
-            Map<Id, Map<Id, List<Affiliation__c>>> contactIdAccountIdAfflList = new Map<Id, Map<Id, List<Affiliation__c>>>();
-
-            Set<Id> courseOfferingIds = new Set<Id>();
-            Set<Id> contactIds = new Set<Id>();
-            Map<Id, Course_Offering__c> offerings = new Map<Id, Course_Offering__c>();
 
             if(newlist != null && newlist.size() > 0) {
                 for (Integer i = 0; i < newlist.size(); i++) {
@@ -239,11 +239,12 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-     * @description Gets all Affiliations related to Course Connections in order to get the number of
-     * Course Connections affiliated.
-     * @param afflIds A set of Affiliation Ids
-     * @return Map<Id, Affiliation__c>
-     ********************************************************************************************************/
+    * @description Gets all Affiliations related to Course Connections in order to get the number of
+    * Course Connections affiliated.
+    * @param afflIds A set of Affiliation Ids
+    * @return Map<Id, Affiliation__c>
+    ********************************************************************************************************/
+    @testVisible
     private Map<Id, Affiliation__c> getAffiliations(Set<Id> afflIds) {
         return new Map<Id, Affiliation__c>( [
             SELECT
@@ -264,13 +265,14 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
-     * @description Gets all Affiliations related to Course Connections Contact in order to determine if
-     * an Affiliation needs to be created or deleted. Returns a Map with the Contact ids as the key and a
-     * Map as the value. The Map as a value has an Account Id as key and a List of Affiliations as values.
-     * definition: Map<CONTACT_ID, Map<ACCOUNT_ID, List<Affiliation__c>>>
-     * @param contactIds A Set of Contact Ids
-     * @return Map<Id, Map<Id, List<Affiliation__c>>>
-     ********************************************************************************************************/
+    * @description Gets all Affiliations related to Course Connections Contact in order to determine if
+    * an Affiliation needs to be created or deleted. Returns a Map with the Contact ids as the key and a
+    * Map as the value. The Map as a value has an Account Id as key and a List of Affiliations as values.
+    * definition: Map<CONTACT_ID, Map<ACCOUNT_ID, List<Affiliation__c>>>
+    * @param contactIds A Set of Contact Ids
+    * @return Map<Id, Map<Id, List<Affiliation__c>>>
+    ********************************************************************************************************/
+    @testVisible
     private Map<Id, Map<Id, List<Affiliation__c>>> getContactIdAccountIdAffiliationsList(Set<Id> contactIds) {
         List<Affiliation__c> affls = [
             SELECT
