@@ -90,7 +90,7 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
 
     private String noRecordType() {
         if (Test.isRunningTest()) {
-            return UTIL_Describe.getDummyConnectionRecTypeID();
+            return UTIL_Describe.getDefaultConnectionRecTypeID();
         }
         return null;
     }

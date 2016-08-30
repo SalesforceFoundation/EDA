@@ -13,9 +13,9 @@
         <label>Student</label>
     </recordTypes>
     <recordTypes>
-        <fullName>Dummy</fullName>
+        <fullName>Default</fullName>
         <active>true</active>
-        <description>A Dummy Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators.</description>
-        <label>Dummy</label>
+        <description>A Default Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators.</description>
+        <label>Default</label>
     </recordTypes>
 </CustomObject>

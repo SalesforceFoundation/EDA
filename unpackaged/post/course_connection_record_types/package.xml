@@ -9,7 +9,7 @@
       <name>RecordType</name>
   </types>
   <types>
-      <members>%%%NAMESPACE%%%Course_Enrollment__c.Dummy</members>
+      <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
       <name>RecordType</name>
   </types>
   <version>36.0</version>
