@@ -916,4 +916,48 @@ private with sharing class ADDR_Seasonal_TEST {
         System.assertEquals('Chicago', acc.BillingCity);
         System.assertEquals('IL', acc.BillingState);
     }
+    
+    @isTest
+    public static void newSeasonalAddrForContact() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(), 
+            Contacts_Addresses_Enabled__c = true, 
+            Simple_Address_Change_Treated_as_Update__c = true));
+            
+        Contact contact = new Contact(LastName = 'newSeasonalAddr', MailingStreet = '123 Main St', MailingCity = 'Chicago', MailingState = 'IL');
+        insert Contact;
+        
+        //Address record should have been created as child of Contact
+        List<Address__c> addrs = [select Parent_Contact__c, Parent_Account__c, MailingStreet__c, MailingCity__c, MailingState__c from Address__c];
+        System.assertEquals(1, addrs.size());
+        System.assertNotEquals(null, addrs[0].Parent_Contact__c);
+        System.assertEquals(null, addrs[0].Parent_Account__c);
+        System.assertEquals('123 Main St', addrs[0].MailingStreet__c);
+        System.assertEquals('Chicago', addrs[0].MailingCity__c);
+        System.assertEquals('IL', addrs[0].MailingState__c);
+                
+        //Create new seasonal address record on Contact that includes today
+        Address__c seasonalAddr = new Address__c();
+        seasonalAddr.Parent_Contact__c = contact.Id;
+        seasonalAddr.MailingStreet__c = '50 Fremont St';
+        seasonalAddr.MailingCity__c = 'SF';
+        seasonalAddr.MailingState__c = 'CA';
+        seasonalAddr.Seasonal_Start_Day__c = String.valueOf(System.today().day());
+        seasonalAddr.Seasonal_Start_Month__c = String.valueOf(System.today().month());
+        seasonalAddr.Seasonal_Start_Year__c = System.today().year()-1;
+        seasonalAddr.Seasonal_End_Day__c = String.valueOf(System.today().day());
+        seasonalAddr.Seasonal_End_Month__c = String.valueOf(System.today().month());
+        seasonalAddr.Seasonal_End_Year__c = System.today().year()+1;
+        
+        ADDR_Addresses_TDTM.turnOn();
+        Test.startTest();
+        insert seasonalAddr;
+        Test.stopTest();
+        
+        contact = [select MailingStreet, MailingCity, MailingState, Current_Address__c from Contact where ID = :contact.ID];
+        System.assertEquals('50 Fremont St', contact.MailingStreet);
+        System.assertEquals('SF', contact.MailingCity);
+        System.assertEquals('CA', contact.MailingState);
+        System.assertEquals(seasonalAddr.ID, contact.Current_Address__c);
+    }
 }
