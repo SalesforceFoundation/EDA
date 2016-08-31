@@ -87,7 +87,9 @@
   getCourseConnectionRecordTypes : function(component, studentTypeId, facultyTypeId) {
     //Get all available course connection record types
     var action = component.get("c.getRecTypesMapByName");
-    action.setParams({ "objectName" : 'Course_Enrollment__c'});
+    var prefix = component.get("v.namespacePrefix");
+    var objectName = prefix + 'Course_Enrollment__c';
+    action.setParams({ "objectName" : objectName});
     action.setCallback(this, function(response) {
         if(response.getState() === "SUCCESS") {
           var recTypesObj = response.getReturnValue();
