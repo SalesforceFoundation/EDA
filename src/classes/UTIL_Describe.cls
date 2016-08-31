@@ -505,10 +505,11 @@ public class UTIL_Describe {
      * @return String The ID of the Default Course Connection record type as a String.
      */
     public static String getDefaultConnectionRecTypeID() {
-        String recTypeId = getRecTypesMapByDevName('Course_Enrollment__c').get('Default');
+        Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
+        String recTypeId = recTypes.get('Default');
         if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-            if(getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 2)
-                return getRecTypesMapByDevName('Course_Enrollment__c').values()[2];
+            if(recTypes.values().size() > 2)
+                return recTypes.values()[2];
             else return null;
         } else {
             return recTypeId;
