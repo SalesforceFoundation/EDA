@@ -33,7 +33,7 @@
 
     <!-- To avoid deploying record types in post target, because if we deploy them we cannot programmatically delete them, and also
     they get automatically added to the package. -->
-    <target name="deployManagedUnpackagedPost" ></target>
+    <target name="deployUnpackagedPost" ></target>
     
     <!-- Add project specific build targets and CumulusCI overrides here 
 	<target name="preUninstall">

@@ -117,7 +117,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
     @isTest
     public static void checkBackfillSuccess() {
         // Only run test if we actually have three record types to test with.
-        if (UTIL_Describe.getRecTypesMapByDevName('Course_Enrollment__c').values().size() > 2) {
+        if (UTIL_Describe.getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c')).values().size() > 2) {
             setup();
 
             String defaultRecordTypeId = UTIL_Describe.getDefaultConnectionRecTypeID();
