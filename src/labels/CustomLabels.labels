@@ -17,14 +17,6 @@
         <value>When a Program Enrollment is deleted, delete the related Affiliation.</value>
     </labels>
     <labels>
-         <fullName>noAccRecType</fullName>
-         <categories>Record Types</categories>
-         <language>en_US</language>
-         <protected>false</protected>
-         <shortDescription>noAccRecType - DEPRECATED</shortDescription>
-         <value>The defined account record type does not exist:</value>
-     </labels>
-    <labels>
         <fullName>AutoCreateFieldError</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -41,6 +33,22 @@
         <value>Please set both Filter Field and Filter Value, or neither.</value>
     </labels>
     <labels>
+        <fullName>CannotDelete</fullName>
+        <categories>Contacts, Accounts</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CannotDelete</shortDescription>
+        <value>Record cannot be deleted because children records exist. Delete children first.</value>
+    </labels>
+    <labels>
+        <fullName>DefaultAccountName</fullName>
+        <categories>Account Naming</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default Account Name</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
         <fullName>DefaultAdminName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>
@@ -55,22 +63,6 @@
         <protected>false</protected>
         <shortDescription>Default Household Name</shortDescription>
         <value>Household</value>
-    </labels>
-    <labels>
-        <fullName>DefaultAccountName</fullName>
-        <categories>Account Naming</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Default Account Name</shortDescription>
-        <value>Account</value>
-    </labels>
-    <labels>
-        <fullName>CannotDelete</fullName>
-        <categories>Contacts, Accounts</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CannotDelete</shortDescription>
-        <value>Record cannot be deleted because children records exist. Delete children first.</value>
     </labels>
     <labels>
         <fullName>Female</fullName>
@@ -113,28 +105,28 @@
         <value>-</value>
     </labels>
     <labels>
+        <fullName>RelationshipsAutoDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsAutoDescription</shortDescription>
+        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
+    </labels>
+    <labels>
+        <fullName>RelationshipsLookupDescription</fullName>
+        <categories>Relationships</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelationshipsLookupDescription</shortDescription>
+        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+    </labels>
+    <labels>
         <fullName>addrHhAdmAccountOnly</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
         <value>Address records should only be created as children of Account or Contact.</value>
-    </labels>
-    <labels>
-        <fullName>addrValidParentObjects</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>addrValidParentObjects</shortDescription>
-        <value>Address records should only be created as children of Account or Contact.</value>
-    </labels>
-    <labels>
-        <fullName>addrAccountTypeEnabled</fullName>
-        <categories>Address Management</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>addrHhAdmAccountOnly  - DEPRECATED</shortDescription>
-        <value>Address management not enabled for this object type.</value>
     </labels>
     <labels>
         <fullName>addrNotEnabled</fullName>
@@ -169,6 +161,22 @@
         <value>An address must have either both start and end year set or neither.</value>
     </labels>
     <labels>
+        <fullName>addrValidParentObjects</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrValidParentObjects</shortDescription>
+        <value>Address records should only be created as children of Account or Contact.</value>
+    </labels>
+    <labels>
+        <fullName>noAccRecType</fullName>
+        <categories>Record Types</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>noAccRecType - DEPRECATED</shortDescription>
+        <value>The defined account record type does not exist:</value>
+    </labels>
+    <labels>
         <fullName>noAfflMappings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -193,28 +201,28 @@
         <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
-        <fullName>RelationshipsAutoDescription</fullName>
-        <categories>Relationships</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>RelationshipsAutoDescription</shortDescription>
-        <value>Auto relationships allow you to identify your own custom lookup fields on the Contact or Campaign Member objects that trigger the creation of a new Relationship type of your choice. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationships between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
-    </labels>
-    <labels>
-        <fullName>RelationshipsLookupDescription</fullName>
-        <categories>Relationships</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>RelationshipsLookupDescription</shortDescription>
-        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
-    </labels>
-    <labels>
         <fullName>stgAccModelTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgAccModelTitle</shortDescription>
         <value>Default Account Model:</value>
+    </labels>
+    <labels>
+        <fullName>stgDefaultFacultyTypeTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgDefaultFacultyTypeTitle</shortDescription>
+        <value>Default Faculty Record Type:</value>
+    </labels>
+    <labels>
+        <fullName>stgDefaultStudentTypeTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
+        <value>Default Active Student Record Type:</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
@@ -225,36 +233,20 @@
         <value>Disable Error Handling:</value>
     </labels>
     <labels>
+        <fullName>stgEnableCourseConnectionsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgEnableCourseConnectionsTitle</shortDescription>
+        <value>Enable Course Connections:</value>
+    </labels>
+    <labels>
         <fullName>stgErrorNotifRecipientsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgErrorNotifRecipientsTitle</shortDescription>
         <value>Error Notification Recipients:</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpErrorDisable</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>stgHelpErrorDisable</shortDescription>
-        <value>If checked, HEDA&apos;s error handling framework is disabled.</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpErrorNotifyOn</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>stgHelpErrorNotifyOn</shortDescription>
-        <value>Check this if you&apos;d like the system to post notifications for certain type of errors.</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpErrorNotifyTo</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>stgHelpErrorNotifyTo</shortDescription>
-        <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are 'All Sys Admins', the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>
@@ -281,6 +273,62 @@
         <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
     <labels>
+        <fullName>stgHelpCourseConnBackfillDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpCourseConnBackfillDescription</shortDescription>
+        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the feature. The Backfill converts all contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpDefaultFacultyType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpDefaultFacultyType</shortDescription>
+        <value>The default record type when creating Course Connections for a faculty member.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpDefaultStudentType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpDefaultStudentType</shortDescription>
+        <value>The default record type when creating Course Connections for active students.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpEnableCourseConnections</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpEnableCourseConnections</shortDescription>
+        <value>Course Connections connect a contact with a course offering. Enabling this checkbox lets you choose to create the connection for a student or faculty (the two default record types). After selecting this checkbox, you must set the Default Active Student Record Type and the Default Faculty Record Type. If enabling this feature for the first time, it is highly recommended that you run the Backfill in your org.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpErrorDisable</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpErrorDisable</shortDescription>
+        <value>If checked, HEDA&apos;s error handling framework is disabled.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpErrorNotifyOn</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpErrorNotifyOn</shortDescription>
+        <value>Check this if you&apos;d like the system to post notifications for certain type of errors.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpErrorNotifyTo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpErrorNotifyTo</shortDescription>
+        <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -305,22 +353,6 @@
         <value>Enables Address management for Organizational Accounts when selected.</value>
     </labels>
     <labels>
-        <fullName>stgHelpSimpleAddrChangeIsUpdate</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
-        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpStoreErrorsOn</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>stgHelpStoreErrorsOn</shortDescription>
-        <value>Check this if you&apos;d like errors to be stored in the database.</value>
-    </labels>
-    <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -335,6 +367,22 @@
         <protected>false</protected>
         <shortDescription>stgHelpRelReciprocalMethod</shortDescription>
         <value>Determines method used to generate the reciprocal relationship. Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;).</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpSimpleAddrChangeIsUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
+        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpStoreErrorsOn</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpStoreErrorsOn</shortDescription>
+        <value>Check this if you&apos;d like errors to be stored in the database.</value>
     </labels>
     <labels>
         <fullName>stgSendErrorsTitle</fullName>

@@ -101,7 +101,7 @@
         <fullName>Faculty__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Faculty</label>
+        <label>Primary Faculty</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Offerings</relationshipLabel>
         <relationshipName>Courses_Taught</relationshipName>

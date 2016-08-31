@@ -31,6 +31,69 @@
     <!-- Load CumulusCI build targets -->
     <import file="${env.CUMULUSCI_PATH}/build/build.xml" />
 
+    <!-- To avoid deploying record types in post target, because if we deploy them we cannot programmatically delete them, and also
+    they get automatically added to the package. -->
+    <target name="deployUnpackagedPost" ></target>
+
+    <target name="deployManagedUpdatedAdminProfile">
+        <echo>Retrieving Admin.profile</echo>
+        <retrieveAdminProfile dir="admin_profile" />
+
+        <echo>Granting read/edit FLS on all fields in Admin.profile</echo>
+        <updateAdminProfileGrantFLS dir="admin_profile" />
+
+        <antcall target="preDeployManagedUpdatedAdminProfile" />
+
+        <echo>Deploying updated Admin.profile</echo>
+            <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="admin_profile" maxPoll="${cumulusci.maxPoll.notest}" />
+
+        <delete dir="admin_profile" />
+    </target>
+
+    <target name="postDeployManagedBeta">
+        <antcall target="deployManagedUpdatedAdminProfile" />
+    </target>
+
+    <target name="preDeployUpdatedAdminProfile">
+        <!-- Course_Enrollment__c.Default -->
+        <replaceregexp 
+                    file="admin_profile/profiles/Admin.profile" 
+                                match="(${lt}tabVisibilities>)" 
+                                            replace="${lt}recordTypeVisibilities>${line.separator}      ${lt}default>false${lt}/default>${line.separator}      ${lt}personAccountDefault>true${lt}/personAccountDefault>${line.separator}      ${lt}recordType>Course_Enrollment__c.Default${lt}/recordType>${line.separator}      ${lt}visible>true${lt}/visible>${line.separator}    ${lt}/recordTypeVisibilities>${line.separator}    \1" />
+
+        <!-- Course_Enrollment__c.Faculty -->
+        <replaceregexp 
+                    file="admin_profile/profiles/Admin.profile" 
+                                match="(${lt}tabVisibilities>)" 
+                                            replace="${lt}recordTypeVisibilities>${line.separator}      ${lt}default>false${lt}/default>${line.separator}      ${lt}personAccountDefault>true${lt}/personAccountDefault>${line.separator}      ${lt}recordType>Course_Enrollment__c.Faculty${lt}/recordType>${line.separator}      ${lt}visible>true${lt}/visible>${line.separator}    ${lt}/recordTypeVisibilities>${line.separator}    \1" />
+
+        <!-- Course_Enrollment__c.Student (default) -->
+        <replaceregexp 
+                    file="admin_profile/profiles/Admin.profile" 
+                                match="(${lt}tabVisibilities>)" 
+                                            replace="${lt}recordTypeVisibilities>${line.separator}      ${lt}default>true${lt}/default>${line.separator}      ${lt}personAccountDefault>false${lt}/personAccountDefault>${line.separator}      ${lt}recordType>Course_Enrollment__c.Student${lt}/recordType>${line.separator}      ${lt}visible>true${lt}/visible>${line.separator}    ${lt}/recordTypeVisibilities>${line.separator}    \1" />
+    </target>
+    
+    <target name="preDeployManagedUpdatedAdminProfile">
+        <!-- hed__Course_Enrollment__c.Default -->
+        <replaceregexp 
+                    file="admin_profile/profiles/Admin.profile" 
+                                match="(${lt}tabVisibilities>)" 
+                                            replace="${lt}recordTypeVisibilities>${line.separator}      ${lt}default>false${lt}/default>${line.separator}      ${lt}personAccountDefault>true${lt}/personAccountDefault>${line.separator}      ${lt}recordType>hed__Course_Enrollment__c.Default${lt}/recordType>${line.separator}      ${lt}visible>true${lt}/visible>${line.separator}    ${lt}/recordTypeVisibilities>${line.separator}    \1" />
+
+        <!-- hed__Course_Enrollment__c.Faculty -->
+        <replaceregexp 
+                    file="admin_profile/profiles/Admin.profile" 
+                                match="(${lt}tabVisibilities>)" 
+                                            replace="${lt}recordTypeVisibilities>${line.separator}      ${lt}default>false${lt}/default>${line.separator}      ${lt}personAccountDefault>true${lt}/personAccountDefault>${line.separator}      ${lt}recordType>hed__Course_Enrollment__c.Faculty${lt}/recordType>${line.separator}      ${lt}visible>true${lt}/visible>${line.separator}    ${lt}/recordTypeVisibilities>${line.separator}    \1" />
+
+        <!-- hed__Course_Enrollment__c.Student (default) -->
+        <replaceregexp 
+                    file="admin_profile/profiles/Admin.profile" 
+                                match="(${lt}tabVisibilities>)" 
+                                            replace="${lt}recordTypeVisibilities>${line.separator}      ${lt}default>true${lt}/default>${line.separator}      ${lt}personAccountDefault>false${lt}/personAccountDefault>${line.separator}      ${lt}recordType>hed__Course_Enrollment__c.Student${lt}/recordType>${line.separator}      ${lt}visible>true${lt}/visible>${line.separator}    ${lt}/recordTypeVisibilities>${line.separator}    \1" />
+    </target>
+
     <!-- Add project specific build targets and CumulusCI overrides here 
 	<target name="preUninstall">
 		<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
@@ -39,4 +102,5 @@
 	
 	<!-- Overriding target so it doesn't try to delete the custom object, like in http://ci.salesforcefoundation.org/job/01_hedap_feature/152/console 
 	<target name="uninstallUnpackagedPost"></target> -->
+
 </project>

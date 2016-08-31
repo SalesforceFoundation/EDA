@@ -43,7 +43,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 
     //storing org-level custom settings in-memory to avoid slowing down the settings page
     static Hierarchy_Settings__c orgSettings;
-    
+
     //list settings
     static List<Affl_Mappings__c> afflMappings;
     static List<Relationship_Auto_Create__c> relationshipAutocreate;
@@ -128,11 +128,14 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Del__c = mySettings.Affl_ProgEnroll_Del__c;
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
-        
+        settings.Enable_Course_Connections__c = mySettings.Enable_Course_Connections__c;
+        settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
+        settings.Student_RecType__c = mySettings.Student_RecType__c;
+
         orgSettings = settings;
         return settings;
     }
-    
+
     /*******************************************************************************************************
     * @description Retrieves the existing Affiliation Mappings list custom settings.
     * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
@@ -140,12 +143,12 @@ public without sharing class UTIL_CustomSettingsFacade {
     @AuraEnabled
     public static List<Affl_Mappings__c> getAfflMappings() {
         if(afflMappings == null) {
-        afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c, 
+        afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c,
                Auto_Program_Enrollment_Status__c from Affl_Mappings__c order by Account_Record_Type__c limit 50000];
         }
         return afflMappings;
     }
-    
+
     /*******************************************************************************************************
     * @description Retrieves the existing Relationship Reciprocal list custom settings.
     * @return List<Relationship_Lookup__c> Existing Relationship Reciprocal custom settings in a list.
@@ -157,7 +160,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         }
         return relationshipLookup;
     }
-    
+
     /*******************************************************************************************************
     * @description Retrieves the existing Relationship Auto-Create list custom settings.
     * @return List<Relationship_Auto_Create__c> Existing Relationship Auto-Create custom settings in a list.
@@ -170,22 +173,22 @@ public without sharing class UTIL_CustomSettingsFacade {
         }
         return relationshipAutocreate;
     }
-    
+
     /*******************************************************************************************************
     * @description Saves the Hierarchy Settings passed from the client.
     * @param hierarchySettings The Hierarchy_Settings__c record to upsert.
     * @return void
-    **/    
+    **/
     @AuraEnabled
     public static void saveHierarchySettings(Hierarchy_Settings__c hierarchySettings) {
         upsert hierarchySettings;
     }
-    
+
     /*******************************************************************************************************
     * @description Saves the Affiliation Mappings passed from the client.
     * @param afflMappings The list of Affl_Mappings__c records to updsert.
     * @return void
-    **/  
+    **/
     @AuraEnabled
     public static void saveAfflMappings(List<Affl_Mappings__c> mappings) {
         //upsert afflMappings; We cannot do this because apparently the type information gets lost when called from the client.
@@ -201,12 +204,12 @@ public without sharing class UTIL_CustomSettingsFacade {
         insert toInsert;
         update toUpdate;
     }
-    
+
     /*******************************************************************************************************
     * @description Saves the Reciprocal Settings passed from the client.
     * @param reciprocalSettings The list of Relationship_Lookup__c records to upsert.
     * @return void
-    **/  
+    **/
     @AuraEnabled
     public static void saveReciprocalSettings(List<Relationship_Lookup__c> reciprocalSettings) {
         //upsert reciprocalSettings; We cannot do this because apparently the type information gets lost when called from the client.
@@ -222,12 +225,12 @@ public without sharing class UTIL_CustomSettingsFacade {
         insert toInsert;
         update toUpdate;
     }
-    
+
     /*******************************************************************************************************
     * @description Saves the Auto-Create Settings passed from the client.
     * @param autoCreateSettings The list of Relationship_Auto_Create__c records to upsert.
     * @return void
-    **/  
+    **/
     @AuraEnabled
     public static void saveAutoCreateSettings(List<Relationship_Auto_Create__c> autoCreateSettings) {
         //upsert autoCreateSettings; We cannot do this because apparently the type information gets lost when called from the client.
@@ -243,7 +246,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         insert toInsert;
         update toUpdate;
     }
-    
+
     /*******************************************************************************************************
     * @description Creates a new Affiliation Mapping List Setting record.
     * @param accRecType The value of the Account_Record_Type__c field in the Affl_Mappings__c record to create.
@@ -252,19 +255,19 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @param autoEnrollStatus The value of the Auto_Program_Enrollment_Status__c field in the Affl_Mappings__c record to create.
     * @param autoEnrollRole The value of the Auto_Program_Enrollment_Role__c field in the Affl_Mappings__c record to create.
     * @return String The Id of the record that has just been created, as a String.
-    **/ 
+    **/
     @AuraEnabled
-    public static String newAfflMpg(String accRecType, String primaryField, Boolean autoEnroll, String autoEnrollStatus, 
+    public static String newAfflMpg(String accRecType, String primaryField, Boolean autoEnroll, String autoEnrollStatus,
     String autoEnrollRole) {
-        Affl_Mappings__c newMapping = new Affl_Mappings__c(Name = accRecType, Account_Record_Type__c = accRecType, 
-        Auto_Program_Enrollment__c = autoEnroll, Auto_Program_Enrollment_Role__c = autoEnrollRole, 
+        Affl_Mappings__c newMapping = new Affl_Mappings__c(Name = accRecType, Account_Record_Type__c = accRecType,
+        Auto_Program_Enrollment__c = autoEnroll, Auto_Program_Enrollment_Role__c = autoEnrollRole,
         Auto_Program_Enrollment_Status__c = autoEnrollStatus, Primary_Affl_Field__c = primaryField);
         insert newMapping;
         if(afflMappings != null)
             afflMappings.add(newMapping);
         return newMapping.Id;
     }
-    
+
     /*******************************************************************************************************
     * @description Creates a new Reciprocal List Setting record.
     * @param name The value of the Name field in the Relationship_Lookup__c record to create.
@@ -273,17 +276,17 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @param neutral The value of the Neutral__c field in the Relationship_Lookup__c record to create.
     * @param active The value of the Active__c field in the Relationship_Lookup__c record to create.
     * @return String The Id of the record that has just been created, as a String.
-    **/ 
+    **/
     @AuraEnabled
     public static String newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
-        Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male, 
+        Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male,
                                                                         Neutral__c = neutral, Active__c = active);
         insert newSetting;
         if(relationshipLookup != null)
             relationshipLookup.add(newSetting);
         return newSetting.Id;
     }
-    
+
     /*******************************************************************************************************
     * @description Creates a new Auto-Create List Setting record.
     * @param obj The value of the Object__c field in the Relationship_Auto_Create__c record to create.
@@ -291,17 +294,17 @@ public without sharing class UTIL_CustomSettingsFacade {
     * @param relType The value of the Relationship_Type__c field in the Relationship_Auto_Create__c record to create.
     * @param campaigns The value of the Campaign_Types__c field in the Relationship_Auto_Create__c record to create.
     * @return String The Id of the record that has just been created, as a String.
-    **/ 
+    **/
     @AuraEnabled
     public static String newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
-        Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(), 
+        Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(),
                         Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
         insert newSetting;
         if(relationshipAutoCreate != null)
         relationshipAutoCreate.add(newSetting);
         return newSetting.Id;
     }
-    
+
     /*******************************************************************************************************
     * @description Deletes an Auto-Create List Setting record.
     * @return void
@@ -319,7 +322,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 	        }
         }
     }
-    
+
     /*******************************************************************************************************
     * @description Deletes a Relationship Lookup List Setting record.
     * @return void
@@ -337,7 +340,7 @@ public without sharing class UTIL_CustomSettingsFacade {
             }
         }
     }
-    
+
     /*******************************************************************************************************
     * @description Deletes an Auto-Create List Setting record.
     * @return void
@@ -354,5 +357,24 @@ public without sharing class UTIL_CustomSettingsFacade {
                 }
             }
         }
+    }
+
+    /*******************************************************************************************************
+    * @description Gets if Course Connections is enabled
+    * @return Boolean
+    */
+    public static Boolean courseConnectionsEnabled() {
+        if (getSettings().Enable_Course_Connections__c) {
+            if (getSettings().Student_RecType__c != null &&
+                 getSettings().Faculty_RecType__c != null &&
+                 getSettings().Student_RecType__c.length() >= 15 &&
+                 getSettings().Faculty_RecType__c.length() >= 15 &&
+                 getSettings().Faculty_RecType__c != getSettings().Student_RecType__c) {
+                return true;
+            } else if (Test.isRunningTest()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
