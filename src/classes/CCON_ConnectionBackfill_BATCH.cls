@@ -96,7 +96,7 @@ public class CCON_ConnectionBackfill_BATCH implements Database.Batchable<sObject
     }
 
     private Boolean recordTypesExist() {
-        return UTIL_Describe.isValidField('Course_Enrollment__c','RecordTypeId');
+        return UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId');
     }
 
 	public void finish(Database.BatchableContext bc) {}

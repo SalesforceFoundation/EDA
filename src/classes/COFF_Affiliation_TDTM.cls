@@ -320,7 +320,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                                                                         Course_Offering__c = oldConns[i].Course_Offering__c,
                                                                         Affiliation__c = oldConns[i].Affiliation__c,
                                                                         Primary__c = true);
-                if (UTIL_Describe.isValidField('Course_Enrollment__c','RecordTypeId')) {
+                if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
                     conn.put('RecordTypeId', facultyRecordTypeId);
                 }
                 objectsToInsert.add((SObject)conn);
@@ -359,7 +359,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                                                                         Course_Offering__c = offering.Id,
                                                                         Primary__c = true
                                                                         );
-                if (UTIL_Describe.isValidField('Course_Enrollment__c','RecordTypeId')) {
+                if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
                     conn.put('RecordTypeId', facultyRecordTypeId);
                 }
                 objectsToInsert.add(conn);
@@ -454,7 +454,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         // Map with Course Offering Id as key and a value as a Map of Contact Id as key with the corresponding Course Connection as value
         Map<Id, Map<Id, Course_Enrollment__c>> connToOfferingIdMap = new Map<Id, Map<Id, Course_Enrollment__c>>();
         String queryString = 'select Id, Course_Offering__c, Contact__c from Course_Enrollment__c where Course_Offering__c in :offeringIds';
-        if (UTIL_Describe.isValidField('Course_Enrollment__c','RecordTypeId') && facultyRecordTypeId != null) {
+        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId') && facultyRecordTypeId != null) {
             queryString += ' and RecordTypeId = :facultyRecordTypeId';
         }
         List<Course_Enrollment__c> conns = Database.query(queryString);
