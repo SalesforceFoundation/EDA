@@ -416,17 +416,17 @@ public with sharing class ADDR_Addresses_UTIL {
 
         // If State & Country Picklists are enabled in the org, build maps of the
         // valid Labels and Codes for each field to use for validation
-        map<String, Schema.SObjectField> acctFields = Account.getSobjectType().getDescribe().fields.getMap();
+        Map<String, Schema.SObjectField> acctFields = Account.getSobjectType().getDescribe().fields.getMap();
         Boolean isCodesEnabled = acctFields.containsKey('BillingCountryCode');
         if (isCodesEnabled) {
-            list<Schema.Picklistentry> countryPLValues = acctFields.get('BillingCountryCode').getDescribe().getPicklistValues();
+            List<Schema.Picklistentry> countryPLValues = acctFields.get('BillingCountryCode').getDescribe().getPicklistValues();
             for (Schema.Picklistentry p : countryPLValues) {
                 if (p.isActive()) { 
                     validCountriesByLabel.put(p.getLabel(), p.getValue()); 
                     validCountriesByCode.put(p.getValue(), p.getLabel());
                 }
             }
-            list<Schema.Picklistentry> statePLValues = acctFields.get('BillingStateCode').getDescribe().getPicklistValues();
+            List<Schema.Picklistentry> statePLValues = acctFields.get('BillingStateCode').getDescribe().getPicklistValues();
             for (Schema.Picklistentry p : statePLValues) {
                 if (p.isActive()) { 
                     validStatesByLabel.put(p.getLabel(), p.getValue());
@@ -500,10 +500,10 @@ public with sharing class ADDR_Addresses_UTIL {
     * @param includeAddressType whether to include comparing the AddressType field
     * @return void
     ********************************************************************************************************/ 
-    public static NonDupeAddrs getNonDuplicateAddresses(list<Address__c> listAddr, Boolean includeAddressType) {  
+    public static NonDupeAddrs getNonDuplicateAddresses(List<Address__c> listAddr, Boolean includeAddressType) {  
         
         NonDupeAddrs nonDupeAddrs = new NonDupeAddrs();
-        map<Address__c, Address__c> mapAddrDupAddr= findDuplicateAddresses(listAddr);
+        Map<Address__c, Address__c> mapAddrDupAddr= findDuplicateAddresses(listAddr);
         for (Address__c addrNew : listAddr) {
             Address__c addrDup = mapAddrDupAddr.get(addrNew);
             if (addrDup != null) {
@@ -552,27 +552,19 @@ public with sharing class ADDR_Addresses_UTIL {
     * @description for the given addresses, find if they have a match, and return a map that
     * has null for no match, and the matching address if there is a match.
     * @param listAddr a list of Addresses to update
-    * @return map<Address__c, Address__c>
+    * @return Map<Address__c, Address__c>
     ********************************************************************************************************/
-    public static map<Address__c, Address__c> findDuplicateAddresses(list<Address__c> listAddr) {      
-        // for each address, create a map of Parent ID to lists of Addresses
-        list<Id> listParentId = new list<Id>();
-        for (Address__c addr : listAddr) {
-            if(addr.Parent_Account__c != null) {
-                listParentId.add(addr.Parent_Account__c);
-            } else if(addr.Parent_Contact__c != null) {
-                listParentId.add(addr.Parent_Contact__c);
-            }
-        }
-        map<Id, list<Address__c>> mapParentIdToAddrs = getMapParentIdListAddrs(listParentId);
+    public static Map<Address__c, Address__c> findDuplicateAddresses(List<Address__c> listAddr) {      
+
+        Map<Id, List<Address__c>> mapParentIdToAddrs = getParentIdToAddrs(listAddr);
         Boolean tryFuzzy = UTIL_CustomSettingsFacade.getSettings().Simple_Address_Change_Treated_as_Update__c;
         
         // create our map for returning information in
-        map<Address__c, Address__c> mapAddrDupAddr = new map<Address__c, Address__c>();
+        Map<Address__c, Address__c> mapAddrDupAddr = new Map<Address__c, Address__c>();
         
         // now compare our Addresses to the existing Addresses
         for (Address__c addr : listAddr) {
-            list<Address__c> childAddrs;
+            List<Address__c> childAddrs;
             if(addr.Parent_Account__c != null) {
                 childAddrs = mapParentIdToAddrs.get(addr.Parent_Account__c);
             } else if(addr.Parent_Contact__c != null) {
@@ -607,22 +599,40 @@ public with sharing class ADDR_Addresses_UTIL {
     }
     
     /*******************************************************************************************************
+    * @description Creates a map of parent Id to a list of children Addresses.
+    * @param listAddr the list of Addresses
+    * @return Map<Id, List<Address__c>> Map that contains the Addresses for each parent Id. 
+    ********************************************************************************************************/
+    public static Map<ID, List<Address__c>> getParentIdToAddrs(List<Address__c> listAddr) {
+        // for each address, create a map of Parent ID to lists of Addresses
+        List<Id> listParentId = new List<Id>();
+        for (Address__c addr : listAddr) {
+            if(addr.Parent_Account__c != null) {
+                listParentId.add(addr.Parent_Account__c);
+            } else if(addr.Parent_Contact__c != null) {
+                listParentId.add(addr.Parent_Contact__c);
+            }
+        }
+        return getMapParentIdListAddrs(listParentId);
+    }
+    
+    /*******************************************************************************************************
     * @description utility to create a map of parent Id to a list of Addresses in that record, given a list of parent Ids.
     * @param listAccId the list of Account Id's
-    * @return map<Id, list<Address__c>> map that contains the Addresses for each HH Account Id
+    * @return Map<Id, List<Address__c>> map that contains the Addresses for each parent Id.
     ********************************************************************************************************/
-    public static map<Id, list<Address__c>> getMapParentIdListAddrs(list<Id> listParentId) {
+    public static Map<Id, List<Address__c>> getMapParentIdListAddrs(List<Id> listParentId) {
           
-        list<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Parent_Contact__c, Address_Type__c,
+        List<Address__c> listAddrOther = [select Id, Default_Address__c, Parent_Account__c, Parent_Contact__c, Address_Type__c,
             MailingStreet__c, MailingStreet2__c, MailingCity__c, MailingState__c, MailingPostalCode__c, MailingCountry__c, 
             Seasonal_Start_Year__c, Seasonal_End_Year__c, Seasonal_Start_Month__c, Seasonal_Start_Day__c, Seasonal_End_Month__c, 
             Seasonal_End_Day__c, Geolocation__Latitude__s, Geolocation__Longitude__s from Address__c where Parent_Account__c 
-            IN :listParentId or Parent_Contact__c in :listParentID order by Default_Address__c desc, LastModifiedDate asc]; // ordering needed by cleanupAccountAddresses().
+            IN :listParentId or Parent_Contact__c in :listParentId order by Default_Address__c desc, LastModifiedDate asc]; // ordering needed by cleanupAccountAddresses().
         
-        map<Id, list<Address__c>> mapParentIdListAddrs = new map<Id, list<Address__c>>();   
+        Map<Id, List<Address__c>> mapParentIdListAddrs = new Map<Id, List<Address__c>>();   
         for (Address__c addr : listAddrOther) { 
             if(addr.Parent_Account__c != null) {
-                list<Address__c> listAddrParentAccs = mapParentIdListAddrs.get(addr.Parent_Account__c);
+                List<Address__c> listAddrParentAccs = mapParentIdListAddrs.get(addr.Parent_Account__c);
                 if (listAddrParentAccs == null) {
                     listAddrParentAccs = new List<Address__c>();
                     mapParentIdListAddrs.put(addr.Parent_Account__c, listAddrParentAccs);
@@ -631,7 +641,7 @@ public with sharing class ADDR_Addresses_UTIL {
             }
             
             if(addr.Parent_Contact__c != null) {
-                list<Address__c> listAddrParentContacts = mapParentIdListAddrs.get(addr.Parent_Contact__c);
+                List<Address__c> listAddrParentContacts = mapParentIdListAddrs.get(addr.Parent_Contact__c);
                 if (listAddrParentContacts == null) {
                     listAddrParentContacts = new List<Address__c>();
                     mapParentIdListAddrs.put(addr.Parent_Contact__c, listAddrParentContacts);

@@ -211,12 +211,8 @@ public with sharing class ADDR_Seasonal_UTIL {
             }
         }
 
-        // now check for overlaps within each parent's saved addresses
-        List<Id> listAccId = new List<Id>();
-        for (Address__c addr : listAddrS) {
-            listAccId.add(addr.Parent_Account__c);
-        }        
-        Map<Id, List<Address__c>> mapAccIdListAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(listAccId);
+        // now check for overlaps within each parent's saved addresses      
+        Map<Id, List<Address__c>> mapAccIdListAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(listAddrS);
         
         for (Address__c addr : listAddrS) {
             if(mapAccIdListAddrs != null && mapAccIdListAddrs.size() > 0) {
