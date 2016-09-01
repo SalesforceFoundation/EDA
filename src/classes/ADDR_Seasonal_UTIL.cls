@@ -200,7 +200,8 @@ public with sharing class ADDR_Seasonal_UTIL {
             for (Address__c addr2 : listAddrS) {
                 if (addr == addr2)
                     continue;
-                if (addr.Parent_Account__c != addr2.Parent_Account__c)
+                if ((addr.Parent_Account__c != null && addr.Parent_Account__c != addr2.Parent_Account__c) || 
+                    (addr.Parent_Contact__c != null && addr.Parent_Contact__c != addr2.Parent_Contact__c))
                     continue;  
                 Boolean isSeasonalOverlap = isSeasonalOverlap(addr, addr2);
                 UTIL_Debug.debug('****Is Seasonal Overlap: ' + isSeasonalOverlap);
@@ -210,7 +211,7 @@ public with sharing class ADDR_Seasonal_UTIL {
             }
         }
 
-        // now check for overlaps within each household's saved addresses
+        // now check for overlaps within each parent's saved addresses
         List<Id> listAccId = new List<Id>();
         for (Address__c addr : listAddrS) {
             listAccId.add(addr.Parent_Account__c);
