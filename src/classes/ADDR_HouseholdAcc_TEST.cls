@@ -1698,7 +1698,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // insert new contacts to the HH without any addresses
         List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
-            listCon[i].LastName = 'ToAvoidDupeRule' + i;
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -1787,7 +1786,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // insert new contacts to the HH with the current default addresses
         List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
-            listCon[i].LastName = 'ToAvoidDupeRule' + i;
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
             listCon[i].MailingStreet = consAccsAddrs.accs[i].BillingStreet;
             listCon[i].MailingCity = consAccsAddrs.accs[i].BillingCity;
@@ -1833,7 +1831,6 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         //create new contacts, one per household
         for (Integer i = 0; i<contacts.size(); i++) {
             Contact con = contacts[i];
-            con.LastName = 'ToAvoidDupeRule' + i;
             con.AccountId = consAccsAddrs.accs[i].Id;
             con.MailingStreet = 'new street\r\nsecond line';
             con.MailingCity = 'new city';
