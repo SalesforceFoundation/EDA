@@ -37,9 +37,7 @@
 * charge of figuring out which of the classes that do the actual work need to be called, and calling them.
 */
 public class TDTM_TriggerHandler {
-    
-    public static Boolean defaultRecordsInserted = false;
-    
+        
     public static Boolean suppressDebugAssertAfterErrorLogging = false;
     
     /*******************************************************************************************************
@@ -66,8 +64,6 @@ public class TDTM_TriggerHandler {
 	    // It also takes care of rolling everything back in that case, to avoid issues (side effects) with re-entrant flags.
 	    Savepoint sp = Database.setSavepoint();
     	
-    	TDTM_ObjectDataGateway dao = new TDTM_ObjectDataGateway();
-    	
     	try {
     		TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
     		                                              isAfter, isInsert, isUpdate, isDelete, isUnDelete);
@@ -75,21 +71,13 @@ public class TDTM_TriggerHandler {
         
 	        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 	        
-	        // If there are no records, insert the defaults.
-	        if(!defaultRecordsInserted && dao.isEmpty()) {
-	            defaultRecordsInserted = true;
-	        	List<Trigger_Handler__c> defaultConfig = TDTM_DefaultConfig.getDefaultRecords();
-	        	insert defaultConfig;
-	        }
-	        
-	        // Get the classes to run. Note that we are using the local object name, so it works for objects 
-	        // from Cumulus both in the package and unmanaged dev orgs.
-	        List<SObject> classesToCall = dao.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
+	        // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
+	        List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
 	        UTIL_Debug.debug('****Classes To Call for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
 	        
 	        if(classesToCall != null && classesToCall.size() > 0) {
 	            //Run the relevant classes
-	            for (SObject classToCall : classesToCall) {
+	            for (TDTM_Global_API.TdtmToken classToCall : classesToCall) {
 	                TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
 	                dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
 	                if(dmlWrapperLocal != null) {
@@ -102,7 +90,7 @@ public class TDTM_TriggerHandler {
 	                    if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
 	                        dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
 	                }          
-                    UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.get('Class__c'));
+                    UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.getClassName());
 	            }
 	                         
 	            //Process the result
@@ -133,38 +121,35 @@ public class TDTM_TriggerHandler {
         }
     }
     
-    private static TDTM_Runnable.DmlWrapper runClass(SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    private static TDTM_Runnable.DmlWrapper runClass(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
     	        
-        if(classToRunRecord != null) {
-	        String classToRunName = String.valueOf(classToRunRecord.get('Class__c'));
-	        Type classType = Type.forName(classToRunName);
+        if(tdtmToken.getClassName() != null) {
+	        Type classType = Type.forName(tdtmToken.getClassName());
 	        
 	        if(classType != null) {   	
 	        	Object classInstance = classType.newInstance();
 	        	
 	        	//The objects we create dynamically need to implement the TDTM_Runnable interface
 	        	if(classInstance instanceof TDTM_Runnable) {
-			        TDTM_Runnable classToRun = (TDTM_Runnable)classInstance;
-			        Boolean async = Boolean.valueOf(classToRunRecord.get('Asynchronous__c'));
-			        String action = String.valueOf(classToRunRecord.get('Trigger_Action__c'));
+			        TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
 			        
 			        //A class can only run asynchronously (calling a future) if we have the ids of the
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
-			        if(async && action != 'BeforeInsert' && !System.isFuture() && !System.isBatch()) {
-			        	UTIL_Debug.debug('****Calling asynchronously: ' + classToRunName);
-			        	runAsync(classToRun, classToRunName, newList, oldList, thisAction, describeObj);
+			        if(tdtmToken.isAsync() && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
+			        	UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.getClassName());
+			        	runAsync(classToRunInstance, tdtmToken.getClassName(), newList, oldList, thisAction, describeObj);
 			        } else {
-			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + classToRunName);
+			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.getClassName());
 			        	
-			        	TDTM_Filter filter = new TDTM_Filter(classToRunName, classToRunRecord, newList, oldList, describeObj);
+			        	TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
 			        	TDTM_Filter.FilteredLists filtered = filter.filter();
                         
                         if(filtered != null) {
-                        	return classToRun.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                        	return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
                         } else {
-                        	return classToRun.run(newList, oldList, thisAction, describeObj);
+                        	return classToRunInstance.run(newList, oldList, thisAction, describeObj);
                         }
 			        }
 	        	} else {

@@ -33,7 +33,8 @@ after update, before delete, before insert, before update) {
     //To avoid having the default TDTM config automatically inserted when we manually insert it. If 
     //the handlers table is empty when inserting a record, getting the count from that table in the 
     //same transaction will return 0.
-    TDTM_TriggerHandler.defaultRecordsInserted = true; 
+    //TDTM_TriggerHandler.defaultRecordsInserted = true; 
+    TDTM_Global_API.setTdtmConfig(new List<TDTM_Global_API.TdtmToken>());
      
     TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
         Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Trigger_Handler__c);

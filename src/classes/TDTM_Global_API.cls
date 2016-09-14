@@ -60,15 +60,90 @@ global class TDTM_Global_API {
         TDTM_TriggerHandler.run(isBefore, isAfter, isInsert, isUpdate, isDelete, isUnDelete, newList, oldList, describeObj);
     }
     
-     /*******************************************************************************************************
+    /********************************************************************************************************
     * @description Returns the default TDTM configuration. 
     * @return List<Trigger_Handler__c> a list of trigger handler records with the default values. The records
     *         have not yet been inserted in the database. You can manipulate them, if necessary, and insert 
     *         them. If no Trigger_Handler__c records exist, the application will insert the defaults when any 
     *         of the triggers run. 
-    */
-    global static List<Trigger_Handler__c> getDefaultTdtmConfig() {
+    *********************************************************************************************************/
+    global static List<TdtmToken> getTdtmConfig() {
+        return TDTM_Config.getTdtmConfig();
+    }
+    /********************************************************************************************************
+    * @description
+    * @return
+    *********************************************************************************************************/
+    global static void setTdtmConfig(List<TdtmToken> tokens) {
+        TDTM_Config.setTdtmConfig(tokens);
+    }
+    
+    /********************************************************************************************************
+    * @description
+    *********************************************************************************************************/
+    global class TdtmToken {
+        private String className;
+        private String targetObject;
+        private String actions;
+        private Boolean active;
+        private Integer loadOrder;
+        private Boolean async;
+        private String filterField;
+        private String filterValue;
         
-        return TDTM_DefaultConfig.getDefaultRecords();
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global TdtmToken(String className, String targetObject, String actions, Boolean active, Integer loadOrder, 
+        Boolean async, String filterField, String filterValue) {
+            this.className = className;
+            this.targetObject = targetObject;
+            this.actions = actions;
+            this.active = active;
+            this.loadOrder = loadOrder;
+            this.async = async;
+            this.filterField = filterField;
+            this.filterValue = filterValue;
+        }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global String getClassName()    { return className; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global String getTargetObject() { return targetObject; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global String getActions()      { return actions; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global Boolean isActive()       { return active; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global Integer getLoadOrder()   { return loadOrder; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global Boolean isAsync()        { return async; }
+       
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global String getFilterField() { return filterField; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global String getFilterValue() { return filterValue; }
     }
 }
