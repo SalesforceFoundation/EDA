@@ -104,34 +104,25 @@ public class TDTM_Config {
      **/
     public static List<TDTM_Global_API.TdtmToken> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {
         
-        //@TODO: it seems silly we are getting them and then setting them...
+        //Getting the defaults and storing them in the cache.
         List<TDTM_Global_API.TdtmToken> tdtmTokens = getTdtmConfig();
         setTdtmConfig(tdtmTokens);
         
-        /*if(tdtmTokensCache == null || tdtmTokensCache.size() == 0) {
-             for(Trigger_Handler__c handler : [select Asynchronous__c, Class__c, Load_Order__c, Object__c, Active__c, 
-             Trigger_Action__c, Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Active__c = true order by Load_Order__c]) {
-                 
-                 tdtmTokensCache.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Active__c));
-             }
-        }
-        List<SObject> listClasses = new List<Sobject>();
-        for (Trigger_Handler__c th : triggerHandlers) {
-            if (th.Object__c == objectName && th.Trigger_Action__c.contains(action.Name())) 
-                listClasses.add(th);
-        }*/
+        //@TODO: verify we are allowing unit tests to set their own TDTM configuration. 
         
-        Map<Integer, List<TDTM_Global_API.TdtmToken>> loadOrderedTokens = new Map<Integer, List<TDTM_Global_API.TdtmToken>>();
+        //Using a map because there might be more than one TDTM entry with the same Load Order for the same Object.
+        Map<Integer, List<TDTM_Global_API.TdtmToken>> loadKeyedTokens = new Map<Integer, List<TDTM_Global_API.TdtmToken>>();
         Integer loadOrderMax = 0;
         //Put all tokens for the specified object in map, keyed by load order.
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
-            if(token.getTargetObject() == objectName) {
+            //Filtering those active by object and action.
+            if(token.isActive() && token.getTargetObject() == objectName && token.getActions().contains(action.Name())) {
                 //We need a list, in case there is more than one entry with the same load order.
-                List<TDTM_Global_API.TdtmToken> tokens = loadOrderedTokens.get(token.getLoadOrder());
+                List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(token.getLoadOrder());
                 if(tokens == null)
                     tokens = new List<TDTM_Global_API.TdtmToken>();
                 tokens.add(token);
-	            loadOrderedTokens.put(token.getLoadOrder(), tokens);
+	            loadKeyedTokens.put(token.getLoadOrder(), tokens);
 	            if(token.getLoadOrder() > loadOrderMax)
 	                loadOrderMax = token.getLoadOrder();
             }
@@ -140,10 +131,10 @@ public class TDTM_Config {
         List<TDTM_Global_API.TdtmToken> sortedTokens = new List<TDTM_Global_API.TdtmToken>(); 
         //Sort them by load order
         for(Integer i = 0; i <= loadOrderMax; i++) {
-            List<TDTM_Global_API.TdtmToken> tokens = loadOrderedTokens.get(i);
-            sortedTokens.addAll(tokens);
+            List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(i);
+            if(tokens != null)
+                sortedTokens.addAll(tokens);
         }
-        
         return sortedTokens;
     }
     

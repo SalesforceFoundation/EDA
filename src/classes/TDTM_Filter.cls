@@ -37,7 +37,7 @@
 */
 public class TDTM_Filter {
     
-    /* @description  The name of the class being run.*/
+    /* @description  Information on the class being run.*/
     TDTM_Global_API.TdtmToken tdtmToken;
     /* * @description The records that were passed to the trigger as trigger.new. */
     List<SObject> newList;
@@ -64,7 +64,7 @@ public class TDTM_Filter {
     * @param oldList The records that were passed to the trigger as trigger.old.
     * @param describeObj The type of SObject the class runs for.
     */
-    public TDTM_Filter(TDTM_Global_API.TdtmToken token, List<SObject> newList, List<SObject> oldList, 
+    public TDTM_Filter(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     DescribeSObjectResult describeObj) {
         this.tdtmToken = tdtmToken;
         this.newList = newList;

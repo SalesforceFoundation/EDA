@@ -73,7 +73,7 @@ public class TDTM_TriggerHandler {
 	        
 	        // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
 	        List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
-	        UTIL_Debug.debug('****Classes To Call for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
+	        UTIL_Debug.debug('****Classes To Call on ' + thisAction + ' for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
 	        
 	        if(classesToCall != null && classesToCall.size() > 0) {
 	            //Run the relevant classes
