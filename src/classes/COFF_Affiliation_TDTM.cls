@@ -168,7 +168,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 for (integer i=0; i<oldlist.size(); i++) {
                     Course_Offering__c oldOff = (Course_Offering__c)oldlist[i];
 
-                    if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
+                    if(triggerAction == TDTM_Runnable.Action.BeforeDelete) {
 
                         //Course Offering has been deleted
                         //     --> delete related Affiliation, if the faculty field had a value
@@ -176,6 +176,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                         if(oldOff.Faculty__c != null) {
                             UTIL_Debug.debug('****Course Offering with faculty has been deleted');
                             facultyCleanupIDs.add(oldOff.Faculty__c);
+                            offsWithRemovedFaculty.add(oldOff.Id);
                         }
                     }
                 }
@@ -186,7 +187,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
                     updateConnectionsOnFacultyAdd(offsWithNewFaculty, objectsToInsert, objectsToUpdate);
                 } else {
-                    createAffls(offsWithNewFaculty, newFacultyIDs, courseEnrllsToInsert);
+                    createOrLinkAffls(offsWithNewFaculty, newFacultyIDs, courseEnrllsToInsert);
                 }
                 dmlWrapper.objectsToInsert.addAll((List<SObject>)courseEnrllsToInsert);
             }
@@ -206,12 +207,12 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
                     updateConnectionsOnFacultyRemove(removedFacultyIDs, offsWithRemovedFaculty, objectsToUpdate);
                 } else {
-                    deleteAfflsEnrolls(removedFacultyIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
+                    deleteAfflsEnrolls(removedFacultyIDs, offsWithRemovedFaculty, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
                 }
             }
 
             if(facultyCleanupIDs.size() > 0) {
-                deleteAfflsEnrolls(facultyCleanupIDs, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
+                deleteAfflsEnrolls(facultyCleanupIDs, offsWithRemovedFaculty, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
             }
 
             dmlWrapper.objectsToUpdate.addAll(objectsToUpdate);
@@ -226,9 +227,9 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * existed for the department the Course Offering belongs to. Also, it links the automatically created Course
     * Enrollments to the automatically created Affiliations.
     ********************************************************************************************************/
-    private void createAffls(List<Course_Offering__c> offsWithNewFaculty, List<ID> newFacultyIDs, List<Course_Enrollment__c> courseEnrllsToInsert) {
+    private void createOrLinkAffls(List<Course_Offering__c> offsWithNewFaculty, List<Id> newFacultyIDs, List<Course_Enrollment__c> courseEnrllsToInsert) {
          //Find all Affls for all Faculty members in the trigger.
-         Map<ID, List<Affiliation__c>> facultyIDtoAffls = getAfflsForContact(newFacultyIDs);
+         Map<Id, List<Affiliation__c>> facultyIDtoAffls = getAfflsForContact(newFacultyIDs);
 
          //Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created,
          //and no Affl to the parent Department exists.
@@ -236,15 +237,16 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
          List<Affiliation__c> afflsTemp = new List<Affiliation__c>();
          for(Integer i = 0 ; i < offsWithNewFaculty.size(); i++) {
              Course_Offering__c offering = offsWithNewFaculty[i];
-             Boolean afflToDptExists = afflToDptExists(offering, facultyIDtoAffls);
-             UTIL_Debug.debug('****Affl to Dpt already exists: ' + afflToDptExists);
-             if(!afflToDptExists) {
+             Affiliation__c afflToDpt = affiliationToAccount(offering, facultyIDtoAffls);
+             if(afflToDpt == null) {
+                 UTIL_Debug.debug('****Affl to Dpt does not exist');
                  Affiliation__c afflToInsert = new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Course__r.Account__c,
                                          Role__c = 'Faculty', StartDate__c = offering.Term__r.Start_Date__c, EndDate__c = offering.Term__r.End_Date__c);
                 afflsToInsert.add(afflToInsert);
                 afflsTemp.add(afflToInsert);
              } else {
-                 afflsTemp.add(null); //Just so afflsToInsert has the same # of records as courseEnrllsToInsert
+                 UTIL_Debug.debug('****Affl to Dpt exists: ' + afflToDpt.Id);
+                 afflsTemp.add(afflToDpt); // Add existing affl to link to Course Enrollment
              }
          }
          insert afflsToInsert;
@@ -252,7 +254,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
          //Link Course Enrollments to Affiliations
          for(Integer i = 0; i < afflsTemp.size(); i++) {
               if(afflsTemp[i] != null) {
-                  courseEnrllsToInsert[i].Affiliation__c = afflsTemp[i].ID;
+                  courseEnrllsToInsert[i].Affiliation__c = afflsTemp[i].Id;
               }
          }
     }
@@ -370,15 +372,31 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
     * @description Deletes the Affiliations that had been automatically created from the Course Enrollments with
-    * assigned Faculty members. Also deletes the Course Enrollments themselves.
+    * assigned Faculty members but only if those Affiliations would no longer have any Course Enrollments
+    * linked to them. Also deletes the Course Enrollments themselves.
     ********************************************************************************************************/
-    private void deleteAfflsEnrolls(List<ID> removedFacultyIDs, DmlWrapper dmlWrapper) {
-        List<Course_Enrollment__c> oldEnrolls = [select ID, Affiliation__c from Course_Enrollment__c where Contact__c in :removedFacultyIDs];
-        List<ID> afflsToDeleteIDs = new List<ID>();
-        for(Course_Enrollment__c enroll : oldEnrolls) {
-            afflsToDeleteIDs.add(enroll.Affiliation__c);
+    private void deleteAfflsEnrolls(List<ID> removedFacultyIds, Set<Id> offsWithRemovedFaculty, DmlWrapper dmlWrapper) {
+        Set<Id> afflIds = new Set<Id>();
+        Set<Id> afflsToDeleteIds = new Set<Id>();
+
+        List<Course_Enrollment__c> oldEnrolls = [select Id, Affiliation__c from Course_Enrollment__c where Contact__c in :removedFacultyIds and Course_Offering__c in :offsWithRemovedFaculty];
+
+        for(Course_Enrollment__c enroll : oldEnrolls){
+            afflIds.add(enroll.Affiliation__c);
         }
-        dmlWrapper.objectsToDelete.addAll((List<SObject>)[select ID from Affiliation__c where ID in :afflsToDeleteIDs]);
+
+        Map<Id, Affiliation__c> affls = new Map<Id, Affiliation__c>([select Id, (select Id from Course_Enrollment__r where Course_Offering__c not in :offsWithRemovedFaculty) from Affiliation__c where Id in :afflIds]);
+
+        for(Course_Enrollment__c enroll : oldEnrolls) {
+            if (affls.get(enroll.Affiliation__c) != null) {
+                if (affls.get(enroll.Affiliation__c).Course_Enrollment__r.size() == 0) {
+                    afflsToDeleteIds.add(enroll.Affiliation__c);
+                }
+            }
+        }
+        if (afflsToDeleteIds.size() > 0) {
+            dmlWrapper.objectsToDelete.addAll((List<SObject>)[select Id from Affiliation__c where Id in :afflsToDeleteIds]);
+        }
         dmlWrapper.objectsToDelete.addAll((List<SObject>)oldEnrolls);
     }
 
@@ -420,7 +438,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         UTIL_Debug.debug('****Number of newly assigned faculty: ' + newFacultyIDs.size());
         //Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
-        List<Affiliation__c> affls = [select Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs
+        List<Affiliation__c> affls = [select Id, Account__c, Contact__c from Affiliation__c where Contact__c in :newFacultyIDs
                                         order by Contact__c];
         UTIL_Debug.debug('****Number of affls for existing faculty: ' + affls.size());
 
@@ -471,20 +489,20 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     }
 
    /*******************************************************************************************************
-    * @description Determines whether an Affiliation to the Department the Course Offering belongs to already
-    * exists for each faculty member. Public only so it can be called from the tests.
+    * @description Determines whether an Affiliation to the Account the Course Offering belongs to already
+    * exists for each faculty member. Will return null if no Affiliation exists.
+    * @return Affiliation__c Affiliation to the Account or null
     ********************************************************************************************************/
-    public Boolean afflToDptExists(Course_Offering__c offering, Map<ID, List<Affiliation__c>> facultyIDtoAffls) {
+    @testVisible
+    private Affiliation__c affiliationToAccount(Course_Offering__c offering, Map<ID, List<Affiliation__c>> facultyIDtoAffls) {
         List<Affiliation__c> facultyMemberAffls = facultyIDtoAffls.get(offering.Faculty__c);
-        Boolean afflToDptExists = false;
         if(facultyMemberAffls != null && facultyMemberAffls.size() > 0) {
             for(Affiliation__c affl : facultyMemberAffls) {
                 if(affl.Account__c == offering.Course__r.Account__c) {
-                    afflToDptExists = true;
-                    break;
+                    return affl;
                 }
             }
         }
-        return afflToDptExists;
+        return null;
     }
 }

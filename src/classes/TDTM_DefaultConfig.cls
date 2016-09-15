@@ -123,10 +123,10 @@ public without sharing class TDTM_DefaultConfig {
               Trigger_Action__c = 'BeforeInsert;AfterDelete'));
         
         // Affiliation and Date management on Course Offering record creation
-        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'COFF_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering__c', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
-        
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+              Class__c = 'COFF_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering__c',
+              Trigger_Action__c = 'AfterInsert;AfterUpdate;BeforeDelete'));
+
         // Validation on Trigger Handler record manipulation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'THAN_Filter_TDTM', Load_Order__c = 1, Object__c = 'Trigger_Handler__c', 

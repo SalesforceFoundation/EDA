@@ -166,7 +166,7 @@ public with sharing class COFF_Affiliation_TEST {
         Affiliation__c affl = new Affiliation__c(Account__c = dpt.ID, Contact__c = faculty.ID);
         insert affl;
 
-        List<Affiliation__c> affls = [select ID from Affiliation__c];
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
         Integer afflsSize1 = affls.size();
 
         //Create Course Offering without Faculty member
@@ -174,8 +174,8 @@ public with sharing class COFF_Affiliation_TEST {
         Term__c = term.Id, Capacity__c = 200);
         insert offering;
 
-        //No affiliation should have been created
-        affls = [select ID from Affiliation__c];
+        //No new affiliations should have been created
+        affls = [select Id from Affiliation__c];
         System.assertEquals(afflsSize1, affls.size());
 
         //Add faculty to offering
@@ -184,16 +184,16 @@ public with sharing class COFF_Affiliation_TEST {
         update offering;
         Test.stopTest();
 
-        //Still no Affl should have been created
-        affls = [select ID from Affiliation__c];
+        //Still no new affiliations should have been created
+        affls = [select Id from Affiliation__c];
         System.assertEquals(afflsSize1, affls.size());
 
         //A Course Enrollment should have been automatically created
         List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
-        //The Course Enrollment should not be linked to the Affiliation that already existed (and wasn't automatically created)
-        System.assertEquals(null, enrolls[0].Affiliation__c);
+        //The Course Enrollment should be linked to the existing Affiliation that already existed (and wasn't automatically created)
+        System.assertEquals(affls[0].Id, enrolls[0].Affiliation__c);
     }
 
     @isTest
@@ -404,6 +404,99 @@ public with sharing class COFF_Affiliation_TEST {
     }
 
     @isTest
+    public static void facultyMadeNullWhenOtherEnrollmentsExist() {
+        setup();
+
+        // Create first Course Offering with Faculty member
+        Course_Offering__c firstOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 1', Course__c = course.Id,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        insert firstOffering;
+
+        //Create second Course Offering with Faculty member
+        Course_Offering__c secondOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 2', Course__c = course.Id,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        insert secondOffering;
+
+        //An Affiliation should have been automatically created for the faculty member
+        List<Affiliation__c> affls = [select Id, (select Id from Course_Enrollment__r) from Affiliation__c where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        System.assertEquals(1, affls.size());
+
+        // The affiliation should have two Course Enrollments
+        System.assertEquals(2, affls[0].Course_Enrollment__r.size());
+
+        // Two Course Enrollments should have been automatically created
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
+        where Contact__r.Id = :faculty.Id];
+        System.assertEquals(2, enrolls.size());
+        //The Course Enrollments should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].Id, enrolls[0].Affiliation__c);
+        System.assertEquals(affls[0].Id, enrolls[1].Affiliation__c);
+
+        // Update first Offering
+        firstOffering.Faculty__c = null;
+        Test.startTest();
+        update firstOffering;
+        Test.stopTest();
+
+        // The affiliation should not have been deleted
+        affls = [select Id, (select Id from Course_Enrollment__r) from Affiliation__c where Id = :affls[0].Id];
+        System.assertEquals(1, affls.size());
+
+        // The affiliation should have one Course Enrollment
+        System.assertEquals(1, affls[0].Course_Enrollment__r.size());
+
+        // One Course Enrollment should have been deleted
+        enrolls = [select Id from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+        System.assertEquals(1, enrolls.size());
+    }
+
+    @isTest
+    public static void deleteMultipleCourseOfferingsWithFaculty() {
+        setup();
+
+        // Create first Course Offering with Faculty member
+        Course_Offering__c firstOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 1', Course__c = course.Id,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        insert firstOffering;
+
+        //Create second Course Offering with Faculty member
+        Course_Offering__c secondOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 2', Course__c = course.Id,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        insert secondOffering;
+
+        //An Affiliation should have been automatically created for the faculty member
+        List<Affiliation__c> affls = [select Id, (select Id from Course_Enrollment__r) from Affiliation__c where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        System.assertEquals(1, affls.size());
+
+        // The affiliation should have two Course Enrollments
+        System.assertEquals(2, affls[0].Course_Enrollment__r.size());
+
+        // Two Course Enrollments should have been automatically created
+        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
+        where Contact__r.Id = :faculty.Id];
+        System.assertEquals(2, enrolls.size());
+        //The Course Enrollments should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].Id, enrolls[0].Affiliation__c);
+        System.assertEquals(affls[0].Id, enrolls[1].Affiliation__c);
+
+        Test.startTest();
+        delete new List<Course_Offering__c>{
+            firstOffering,
+            secondOffering
+        };
+        Test.stopTest();
+
+        // The two Course Enrollments should have been deleted
+        enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
+        where Contact__r.Id = :faculty.Id];
+        System.assertEquals(0, enrolls.size());
+
+        // The affiliation should have been deleted
+        affls = [select Id, (select Id from Course_Enrollment__r) from Affiliation__c where Id = :affls[0].Id];
+        System.assertEquals(0, affls.size());
+    }
+
+    @isTest
     public static void facultyMadeNullWithCourseConnEnabled() {
         if (recordTypesExist()) {
             enableCourseConnections();
@@ -449,7 +542,7 @@ public with sharing class COFF_Affiliation_TEST {
         setup();
 
         //Create Course Offering with Faculty member
-        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.Id,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
 
@@ -463,18 +556,18 @@ public with sharing class COFF_Affiliation_TEST {
         where Contact__r.Id = :faculty.Id];
         System.assertEquals(1, enrolls.size());
         //The Course Enrollment should have been linked to the Affiliation that was automatically created
-        System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
+        System.assertEquals(affls[0].Id, enrolls[0].Affiliation__c);
 
         Test.startTest();
         delete offering;
         Test.stopTest();
 
         //The affiliation should have been deleted
-        affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where ID = :affls[0].ID];
+        affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c where Id = :affls[0].Id];
         System.assertEquals(0, affls.size());
 
         //The Course Enrollment should have been deleted
-        enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+        enrolls = [select Id from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
         System.assertEquals(0, enrolls.size());
     }
 
@@ -537,8 +630,8 @@ public with sharing class COFF_Affiliation_TEST {
         offering = [select Faculty__c, Course__r.Account__c from Course_Offering__c where ID = :offering.ID];
         COFF_Affiliation_TDTM tdtm = new COFF_Affiliation_TDTM();
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = tdtm.getAfflsForContact(new ID[]{faculty.ID});
-        Boolean afflToDptExists = tdtm.afflToDptExists(offering, facultyIDtoAffls);
-        System.assertEquals(true, afflToDptExists);
+        Affiliation__c afflToDpt = tdtm.affiliationToAccount(offering, facultyIDtoAffls);
+        System.assertNotEquals(null, afflToDpt.Id);
     }
 
     @isTest
