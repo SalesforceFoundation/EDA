@@ -421,14 +421,14 @@ public with sharing class ADDR_Addresses_UTIL {
         if (isCodesEnabled) {
             List<Schema.Picklistentry> countryPLValues = acctFields.get('BillingCountryCode').getDescribe().getPicklistValues();
             for (Schema.Picklistentry p : countryPLValues) {
-                if (p.active) { 
+                if (p.isActive()) { 
                     validCountriesByLabel.put(p.getLabel(), p.getValue()); 
                     validCountriesByCode.put(p.getValue(), p.getLabel());
                 }
             }
             List<Schema.Picklistentry> statePLValues = acctFields.get('BillingStateCode').getDescribe().getPicklistValues();
             for (Schema.Picklistentry p : statePLValues) {
-                if (p.active) { 
+                if (p.isActive()) { 
                     validStatesByLabel.put(p.getLabel(), p.getValue());
                     // we can't have a map of valid StateCodes, because they are not unique.
                     // ideally we would have a map of CountryCode + StateCode -> StateLabel
