@@ -57,8 +57,8 @@ public with sharing class TDTM_Filter_TEST {
         
         //Disabling class that creates reciprocal relationships
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_TDTM') {
-                token.setActive(false);
+            if(token.className == 'REL_Relationships_TDTM') {
+                token.active = false;
             }
         }
         return tokens;
@@ -69,9 +69,9 @@ public with sharing class TDTM_Filter_TEST {
         
 		//Creating filter condition
 		for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-		        token.setFilterField('UniversityEmail__c');
-                token.setFilterValue(null);
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+		        token.filterField = 'UniversityEmail__c';
+                token.filterValue = null;
             }
 		}
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -103,9 +103,9 @@ public with sharing class TDTM_Filter_TEST {
                                              
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('AssistantName');
-                token.setFilterValue('Anne');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'AssistantName';
+                token.filterValue = 'Anne';
             }
         }
 		TDTM_Global_API.setTdtmConfig(tokens);
@@ -137,9 +137,9 @@ public with sharing class TDTM_Filter_TEST {
                                              
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('AssistantName');
-                token.setFilterValue('Anne');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'AssistantName';
+                token.filterValue = 'Anne';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -167,14 +167,14 @@ public with sharing class TDTM_Filter_TEST {
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
             //Creating filter condition.
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('InvalidField');
-                token.setFilterValue('Anne');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'InvalidField';
+                token.filterValue = 'Anne';
             }
             //Disabling THAN_Filter_TDTM, which validates that relationship defined in a Trigger Handler
             //is valid.
-            else if(token.getClassName() == 'THAN_Filter_TDTM') {
-                token.setActive(false);
+            else if(token.className == 'THAN_Filter_TDTM') {
+                token.active = false;
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -203,9 +203,9 @@ public with sharing class TDTM_Filter_TEST {
 		List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('HasOptedOutOfEmail');
-                token.setFilterValue('true');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'HasOptedOutOfEmail';
+                token.filterValue = 'true';
             }
         }
 		TDTM_Global_API.setTdtmConfig(tokens);
@@ -236,9 +236,9 @@ public with sharing class TDTM_Filter_TEST {
 		List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('MobilePhone');
-                token.setFilterValue('5555-444-3322');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'MobilePhone';
+                token.filterValue = '5555-444-3322';
             }
         }
 		TDTM_Global_API.setTdtmConfig(tokens);
@@ -269,9 +269,9 @@ public with sharing class TDTM_Filter_TEST {
 		List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Birthdate');
-                token.setFilterValue('01/01/1990');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Birthdate';
+                token.filterValue = '01/01/1990';
             }
         }
 		TDTM_Global_API.setTdtmConfig(tokens);
@@ -302,9 +302,9 @@ public with sharing class TDTM_Filter_TEST {
 		List<TDTM_Global_API.TdtmToken> tokens = setup();           
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Gender__c');
-                token.setFilterValue('Male');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Gender__c';
+                token.filterValue = 'Male';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -342,9 +342,9 @@ public with sharing class TDTM_Filter_TEST {
 		                                      
 		 //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Account.Id');
-                token.setFilterValue(acc2.Id);
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.Id';
+                token.filterValue = acc2.Id;
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);      
@@ -382,9 +382,9 @@ public with sharing class TDTM_Filter_TEST {
         List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Account.Name');
-                token.setFilterValue('Acme');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.Name';
+                token.filterValue = 'Acme';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -418,9 +418,9 @@ public with sharing class TDTM_Filter_TEST {
     public static testmethod void accountParentField() {
         List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Account.Parent.Name');
-                token.setFilterValue('top1');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.Parent.Name';
+                token.filterValue = 'top1';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -465,9 +465,9 @@ public with sharing class TDTM_Filter_TEST {
         List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Account.RecordType.Name');
-                token.setFilterValue('Business Organization');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.RecordType.Name';
+                token.filterValue = 'Business Organization';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -509,9 +509,9 @@ public with sharing class TDTM_Filter_TEST {
         List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Current_Address__r.Parent_Account__r.RecordType.Name');
-                token.setFilterValue('Business Organization');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Current_Address__r.Parent_Account__r.RecordType.Name';
+                token.filterValue = 'Business Organization';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -557,9 +557,9 @@ public with sharing class TDTM_Filter_TEST {
         List<TDTM_Global_API.TdtmToken> tokens = setup();                                      
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Current_Address__r.Parent_Account__r.Name');
-                token.setFilterValue('topAcc');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Current_Address__r.Parent_Account__r.Name';
+                token.filterValue = 'topAcc';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
@@ -603,9 +603,9 @@ public with sharing class TDTM_Filter_TEST {
         List<TDTM_Global_API.TdtmToken> tokens = setup();                   
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.getClassName() == 'REL_Relationships_Con_TDTM') {
-                token.setFilterField('Current_Address__r.Default_Address__c');
-                token.setFilterValue('true');
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Current_Address__r.Default_Address__c';
+                token.filterValue = 'true';
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);

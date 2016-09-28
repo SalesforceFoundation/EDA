@@ -90,7 +90,7 @@ public class TDTM_TriggerHandler {
 	                    if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
 	                        dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
 	                }          
-                    UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.getClassName());
+                    UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.className);
 	            }
 	                         
 	            //Process the result
@@ -124,8 +124,8 @@ public class TDTM_TriggerHandler {
     private static TDTM_Runnable.DmlWrapper runClass(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
     	        
-        if(tdtmToken.getClassName() != null) {
-	        Type classType = Type.forName(tdtmToken.getClassName());
+        if(tdtmToken.className != null) {
+	        Type classType = Type.forName(tdtmToken.className);
 	        
 	        if(classType != null) {   	
 	        	Object classInstance = classType.newInstance();
@@ -137,11 +137,11 @@ public class TDTM_TriggerHandler {
 			        //A class can only run asynchronously (calling a future) if we have the ids of the
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
-			        if(tdtmToken.isAsync() && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
-			        	UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.getClassName());
-			        	runAsync(classToRunInstance, tdtmToken.getClassName(), newList, oldList, thisAction, describeObj);
+			        if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
+			        	UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
+			        	runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
 			        } else {
-			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.getClassName());
+			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
 			        	
 			        	TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
 			        	TDTM_Filter.FilteredLists filtered = filter.filter();

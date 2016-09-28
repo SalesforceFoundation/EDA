@@ -50,7 +50,7 @@ public class TDTM_Config {
     
     public TDTM_Config(List<TDTM_Global_API.TdtmToken> tdtmTokens) {
         if(tdtmTokens != null) {
-            tdtmTokensCache = tdtmTokens;
+            setTdtmConfig(tdtmTokens);
             rowCount = tdtmTokens.size();
         } else {
             tdtmTokensCache = new List<TDTM_Global_API.TdtmToken>();
@@ -68,7 +68,8 @@ public class TDTM_Config {
         List<Trigger_Handler__c> defaultConfig = TDTM_DefaultConfig.getDefaultRecords();
         for(Trigger_Handler__c handler : defaultConfig) {
             tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, handler.Active__c, 
-            Integer.valueOf(handler.Load_Order__c), handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c));
+                    Integer.valueOf(handler.Load_Order__c), handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, 
+                    handler.User_Managed__c));
         }
         //tdtmTokensCache = tokens; we probably don't want to do this here, but instead have code explicity call setTdtmConfig.
         return tokens;
@@ -79,16 +80,32 @@ public class TDTM_Config {
     */
     public static void setTdtmConfig(List<TDTM_Global_API.TdtmToken> tdtmTokens) {
         tdtmTokensCache = tdtmTokens;
+        
+        //clear existing TDTM configuration
+        delete [select Id from Trigger_Handler__c limit 50000];
+        
+        //Persisting new configuration to database
+        List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
+        for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
+            Trigger_Handler__c handler = new Trigger_Handler__c(Class__c = token.className, Object__c = token.targetObject, 
+                    Trigger_Action__c = token.actions, Active__c = token.active, Load_Order__c = token.loadOrder, 
+                    Asynchronous__c = token.async, Filter_Field__c = token.filterField, Filter_Value__c = token.filterValue,
+                    User_Managed__c = token.userManaged);
+            handlers.add(handler);
+        }
+        UTIL_Debug.debug('****Handlers to insert: ' + JSON.serializePretty(handlers));
+        insert handlers;
     }
     
     /*******************************************************************************************************
      * @description Checks if any TDTM records exist.
      * @return Boolean True is there are no TDTM records. False otherwise.
      */
-    public Boolean isEmpty() {
+    public static Boolean isEmpty() {
         if(rowCount == null) {
             List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c];
             rowCount = (Integer)result[0].get('rowCount');
+            UTIL_Debug.debug('****rowCount: ' + rowCount);
         }
         if(rowCount == 0)
             return true;    
@@ -106,25 +123,24 @@ public class TDTM_Config {
         
         //Getting the defaults and storing them in the cache.
         List<TDTM_Global_API.TdtmToken> tdtmTokens = getTdtmConfig();
-        setTdtmConfig(tdtmTokens);
-        
-        //@TODO: verify we are allowing unit tests to set their own TDTM configuration. 
-        
+        if(tdtmTokensCache == null)
+            setTdtmConfig(tdtmTokens);
+                
         //Using a map because there might be more than one TDTM entry with the same Load Order for the same Object.
         Map<Integer, List<TDTM_Global_API.TdtmToken>> loadKeyedTokens = new Map<Integer, List<TDTM_Global_API.TdtmToken>>();
         Integer loadOrderMax = 0;
         //Put all tokens for the specified object in map, keyed by load order.
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
             //Filtering those active by object and action.
-            if(token.isActive() && token.getTargetObject() == objectName && token.getActions().contains(action.Name())) {
+            if(token.active && token.targetObject == objectName && token.actions.contains(action.Name())) {
                 //We need a list, in case there is more than one entry with the same load order.
-                List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(token.getLoadOrder());
+                List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(token.loadOrder);
                 if(tokens == null)
                     tokens = new List<TDTM_Global_API.TdtmToken>();
                 tokens.add(token);
-	            loadKeyedTokens.put(token.getLoadOrder(), tokens);
-	            if(token.getLoadOrder() > loadOrderMax)
-	                loadOrderMax = token.getLoadOrder();
+	            loadKeyedTokens.put(token.loadOrder, tokens);
+	            if(token.loadOrder > loadOrderMax)
+	                loadOrderMax = token.loadOrder;
             }
         }
         
@@ -136,12 +152,5 @@ public class TDTM_Config {
                 sortedTokens.addAll(tokens);
         }
         return sortedTokens;
-    }
-    
-    /*******************************************************************************************************
-     * @description to allow test code to modify the saved trigger handlers and have them reread into the cache.
-     */ 
-    public static void clearTdtmCacheForTest() {
-        tdtmTokensCache = null;
     }
 }

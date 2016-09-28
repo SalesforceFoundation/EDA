@@ -82,20 +82,34 @@ global class TDTM_Global_API {
     * @description
     *********************************************************************************************************/
     global class TdtmToken {
-        private String className;
-        private String targetObject;
-        private String actions;
-        private Boolean active;
-        private Integer loadOrder;
-        private Boolean async;
-        private String filterField;
-        private String filterValue;
+        global String className    { get; set; }
+        global String targetObject { get; set; }
+        global String actions      { get; set; }
+        global Boolean active      { get; set; }
+        global Integer loadOrder   { get; set; }
+        global Boolean async       { get; set; }
+        global String filterField  { get; set; }
+        global String filterValue  { get; set; }
+        global Boolean userManaged { get; set; }
+        
+        /********************************************************************************************************
+        * @description
+        *********************************************************************************************************/
+        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
+            this.className = className;
+            this.targetObject = targetObject;
+            this.actions = actions;
+            this.loadOrder = loadOrder;
+            this.active = true;
+            this.async = false;
+            this.userManaged = false;
+        }
         
         /********************************************************************************************************
         * @description
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Boolean active, Integer loadOrder, 
-        Boolean async, String filterField, String filterValue) {
+        Boolean async, String filterField, String filterValue, Boolean userManaged) {
             this.className = className;
             this.targetObject = targetObject;
             this.actions = actions;
@@ -104,63 +118,7 @@ global class TDTM_Global_API {
             this.async = async;
             this.filterField = filterField;
             this.filterValue = filterValue;
+            this.userManaged = userManaged;
         }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global String getClassName()    { return className; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global String getTargetObject() { return targetObject; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global String getActions()      { return actions; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global Boolean isActive()       { return active; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global Integer getLoadOrder()   { return loadOrder; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global Boolean isAsync()        { return async; }
-       
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global String getFilterField() { return filterField; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global String getFilterValue() { return filterValue; }
-        
-        
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global void setActive(Boolean active)        { this.active = active; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global void setFilterField(String filterField) { this.filterField = filterField; }
-        
-        /********************************************************************************************************
-        * @description
-        *********************************************************************************************************/
-        global void setFilterValue(String filterValue) { this.filterValue = filterValue; }
     }
 }

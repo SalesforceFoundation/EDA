@@ -80,7 +80,7 @@ public class TDTM_Filter {
     */
     public FilteredLists filter() {
     	try {
-    		filterField = tdtmToken.getFilterField();
+    		filterField = tdtmToken.filterField;
     		if(filterField != null) {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
@@ -142,7 +142,7 @@ public class TDTM_Filter {
     private void addErrorToAll() {
         for(Integer i = 0; i < newList.size(); i++) {
             UTIL_Debug.debug('****Invalid filter error added in TDTM_Filter');
-            newList[i].addError(Label.InvalidFilter + ' ' + tdtmToken.getClassName());
+            newList[i].addError(Label.InvalidFilter + ' ' + tdtmToken.className);
             filtered.newList.add(newList[i]);
         }
     }
@@ -360,7 +360,7 @@ public class TDTM_Filter {
         //let's find the field type
         DisplayType fieldType = field.getDescribe().getType();
         UTIL_Debug.debug('****Filter field type: ' + fieldType);
-        String val = tdtmToken.getFilterValue();    
+        String val = tdtmToken.filterValue;    
         if(fieldType == DisplayType.Boolean) {
             if(val == 'true') {
                 return true;

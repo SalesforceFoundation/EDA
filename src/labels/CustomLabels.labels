@@ -30,7 +30,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Please set both Filter Field and Filter Value, or neither.</value>
+        <value>Please set Filter Field, or both Filter Field and Filter Value.</value>
     </labels>
     <labels>
         <fullName>CannotDelete</fullName>
