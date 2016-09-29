@@ -1,25 +1,25 @@
 <aura:component extends="c:STG_CMP_Base">
 
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-    
+
     <aura:attribute name="accTypesToDeleteSelected" type="Object[]" />
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
-    
+
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="householdRecTypeName" type="String" />
     <aura:attribute name="householdRecTypeId" type="String" />
-    
+
     <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size--1-of-2">Contact Multi-Addresses Enabled:</div> 
+        <div class="slds-col slds-size--1-of-2">Contact Multi-Addresses Enabled:</div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
                     <label class="slds-checkbox">
                         <aura:if isTrue="{!v.isView}">
-                            <ui:outputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}" 
+                            <ui:outputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}"
                                                class="contact-addr-enabled" />
                         <aura:set attribute="else">
-                            <ui:inputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}" 
+                            <ui:inputCheckbox value="{!v.hierarchySettings.Contacts_Addresses_Enabled__c}"
                                               class="contact-addr-enabled" />
                             <span class="slds-checkbox--faux"></span>
                             <span class="slds-form-element__label"></span>
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                 <ui:outputText value="{!$Label.hed.stgHelpContactAddrs}" class="slds-text-body--small" />
@@ -38,13 +38,18 @@
             </aura:set>
             </aura:if>
         </div>
-        
+
         <div class="slds-col slds-size--1-of-2">Account record type that supports Household Addresses:</div>
         <div class="slds-col slds-size--1-of-2">
-            <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Household_Addresses_RecType__c}" isView="{!v.isView}" 
-                recTypeId="{!v.householdRecTypeId}" recTypeName="{!v.householdRecTypeName}" recTypes="{!v.accRecTypes}" />
+            <c:CMP_RecTypes_Dropdown class="hh-addresses-account-record-type"
+              setting="{!v.hierarchySettings.Household_Addresses_RecType__c}"
+              isView="{!v.isView}"
+              recTypeId="{!v.householdRecTypeId}"
+              recTypeName="{!v.householdRecTypeName}"
+              recTypes="{!v.accRecTypes}"
+            />
         </div>
-        
+
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                 <ui:outputText value="{!$Label.hed.stgHelpHouseholdRecType}" class="slds-text-body--small" />
@@ -53,7 +58,7 @@
             </aura:set>
             </aura:if>
         </div>
-        
+
         <div class="slds-col slds-size--1-of-2">
             <div>Account Types with Multi-Addresses Enabled:</div>
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
@@ -64,20 +69,20 @@
             </aura:if>
         </div>
         <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
-            <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_Addresses_Enabled__c}" 
+            <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_Addresses_Enabled__c}"
                             recTypesSelected="{!v.accTypesAddrSelected}" isView="{!v.isView}" />
         </div>
 
-        <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div> 
+        <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
                     <label class="slds-checkbox">
 			            <aura:if isTrue="{!v.isView}">
-			                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" 
+			                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
 			                                   class="addr-change-outputcheck" />
 			            <aura:set attribute="else">
-			                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}" 
+			                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
 			                                  class="addr-change-inputcheck" />
 			                <span class="slds-checkbox--faux"></span>
 			                <span class="slds-form-element__label"></span>
@@ -95,13 +100,13 @@
             </aura:set>
             </aura:if>
         </div>
-        
+
         <div class="slds-col slds-size--1-of-2">
             <div>Account Types without Contacts to Delete:</div>
-            <div class="slds-text-body--small">Record Types of those Accounts that will be automatically deleted if all their children Contacts have been deleted.</div> 
+            <div class="slds-text-body--small">Record Types of those Accounts that will be automatically deleted if all their children Contacts have been deleted.</div>
         </div>
         <div class="slds-col slds-size--1-of-2">
-	        <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_to_Delete__c}" 
+	        <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_to_Delete__c}"
 	                        recTypesSelected="{!v.accTypesToDeleteSelected}" isView="{!v.isView}" />
         </div>
     </div>
