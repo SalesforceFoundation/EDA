@@ -135,8 +135,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
                                                        Filter_Value__c, User_Managed__c from Trigger_Handler__c where Class__c != null];
         List<TDTM_Global_API.TdtmToken> existingTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
         for(Trigger_Handler__c handler : existingHandlers) {
-            existingTdtmConfig.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, handler.Active__c, 
-                    Integer.valueOf(handler.Load_Order__c), handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
+            existingTdtmConfig.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, Integer.valueOf(handler.Load_Order__c), 
+                   handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
         }
 
         List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();

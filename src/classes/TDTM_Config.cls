@@ -40,26 +40,36 @@ public class TDTM_Config {
     
     /*******************************************************************************************************
     * @description Holds the trigger handlers cached in a list, to avoid repetitive soql calls.
-    */
+    *********************************************************************************************************/
     private static List<TDTM_Global_API.TdtmToken> tdtmTokensCache;
     
     /*******************************************************************************************************
-     * @description Number of Trigger Handlers records.
-     */
+    * @description Number of trigger handlers records that currently exist in the system.
+    *********************************************************************************************************/
     private static Integer rowCount;
     
+    /*******************************************************************************************************
+    * @description Constructor. 
+    * @param tdtmTokens Trigger handlers to use to configure the application. If null is passed, the configuration
+    * will be empty.
+    *********************************************************************************************************/
     public TDTM_Config(List<TDTM_Global_API.TdtmToken> tdtmTokens) {
         if(tdtmTokens != null) {
             setTdtmConfig(tdtmTokens);
             rowCount = tdtmTokens.size();
         } else {
             tdtmTokensCache = new List<TDTM_Global_API.TdtmToken>();
+            rowCount = 0;
         }
     }
     
-    /*******************************************************************************************************
-    * @description
-    */
+    /********************************************************************************************************
+    * @description Returns the default TDTM configuration. If no configuration is currently set, it will return 
+    * the default configuration without setting it. The configuration returned has not yet been inserted in the 
+    * database. It can be manipulated, if necessary, then set. 
+    * If no configuration exists, the application will insert the defaults when any of the triggers run. 
+    * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values. 
+    *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getTdtmConfig() {
         if(tdtmTokensCache != null) {
             return tdtmTokensCache;
@@ -67,17 +77,19 @@ public class TDTM_Config {
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
         List<Trigger_Handler__c> defaultConfig = TDTM_DefaultConfig.getDefaultRecords();
         for(Trigger_Handler__c handler : defaultConfig) {
-            tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, handler.Active__c, 
-                    Integer.valueOf(handler.Load_Order__c), handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, 
-                    handler.User_Managed__c));
+            tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, 
+                    Integer.valueOf(handler.Load_Order__c), handler.Active__c, handler.Asynchronous__c, 
+                    handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
         }
-        //tdtmTokensCache = tokens; we probably don't want to do this here, but instead have code explicity call setTdtmConfig.
+        //tdtmTokensCache = tokens; We don't want to set the cache here, but instead have code explicity call setTdtmConfig.
         return tokens;
     }
     
     /*******************************************************************************************************
-    * @description
-    */
+    * @description Sets the trigger handlers configuration with the data passed as parameter.
+    * @parameter tdtmTokens A list with the defaul trigger handlers configuration.
+    * @return void
+    *********************************************************************************************************/
     public static void setTdtmConfig(List<TDTM_Global_API.TdtmToken> tdtmTokens) {
         tdtmTokensCache = tdtmTokens;
         
@@ -98,9 +110,9 @@ public class TDTM_Config {
     }
     
     /*******************************************************************************************************
-     * @description Checks if any TDTM records exist.
-     * @return Boolean True is there are no TDTM records. False otherwise.
-     */
+    * @description Checks if any Trigger Handler records exist in the database.
+    * @return Boolean True is there are no TDTM records. False otherwise.
+    *********************************************************************************************************/
     public static Boolean isEmpty() {
         if(rowCount == null) {
             List<AggregateResult> result = [select count(Id) rowCount from Trigger_Handler__c];
@@ -113,12 +125,12 @@ public class TDTM_Config {
     }
     
     /*******************************************************************************************************
-     * @description Returns the classes that will be called for the specified object and action. Returned list 
-     *              is sorted by load order.
-     * @param objectName The name of the object.
-     * @param action The action (before insert, after insert,...). 
-     * @return List<SObject> List of classes to call, sorted by load order.
-     **/
+    * @description Returns the classes that will be called for the specified object and action. Returned list 
+    *              is sorted by load order.
+    * @param objectName The name of the object.
+    * @param action The action (before insert, after insert,...). 
+    * @return List<DTM_Global_API.TdtmToken> List of trigger handlers to call, sorted by load order.
+    *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {
         
         //Getting the defaults and storing them in the cache.

@@ -61,39 +61,86 @@ global class TDTM_Global_API {
     }
     
     /********************************************************************************************************
-    * @description Returns the default TDTM configuration. 
-    * @return List<Trigger_Handler__c> a list of trigger handler records with the default values. The records
-    *         have not yet been inserted in the database. You can manipulate them, if necessary, and insert 
-    *         them. If no Trigger_Handler__c records exist, the application will insert the defaults when any 
-    *         of the triggers run. 
+    * @description Returns the default TDTM configuration. If no configuration is currently set, it will return 
+    * the default configuration without setting it. The configuration returned has not yet been inserted in the 
+    * database. It can be manipulated, if necessary, then set. 
+    * If no configuration exists, the application will insert the defaults when any of the triggers run. 
+    * @return List<TdtmToken> List of trigger handler tokens with the default values. 
     *********************************************************************************************************/
     global static List<TdtmToken> getTdtmConfig() {
         return TDTM_Config.getTdtmConfig();
     }
-    /********************************************************************************************************
-    * @description
-    * @return
+    /*******************************************************************************************************
+    * @description Sets the trigger handlers configuration with the data passed as parameter.
+    * @parameter tdtmTokens A list with the defaul trigger handlers configuration.
+    * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens) {
         TDTM_Config.setTdtmConfig(tokens);
     }
     
     /********************************************************************************************************
-    * @description
+    * @description Trigger Handler token. It contains information about the code that will run in response to 
+    * a database action.
     *********************************************************************************************************/
     global class TdtmToken {
+        /********************************************************************************************************
+        * @description The name of the class containing the code to run.
+        *********************************************************************************************************/
         global String className    { get; set; }
+        
+        /********************************************************************************************************
+        * @description The name of the object that causes the code to run when manipulated.
+        *********************************************************************************************************/
         global String targetObject { get; set; }
+        
+        /********************************************************************************************************
+        * @description The trigger actions that cause the code to run. 
+        *********************************************************************************************************/
         global String actions      { get; set; }
+        
+        /********************************************************************************************************
+        * @description Wheter the code is active or not.
+        *********************************************************************************************************/
         global Boolean active      { get; set; }
+        
+        /********************************************************************************************************
+        * @description The order in which the code will run with relation to other active tokens defined for the 
+        * same object.
+        *********************************************************************************************************/
         global Integer loadOrder   { get; set; }
+        
+        /********************************************************************************************************
+        * @description Whether the dispatched will attempt to run this code asynchronously. WARNING: the code needs
+        * to be written in a manner that running asynchronously is suppported.
+        *********************************************************************************************************/
         global Boolean async       { get; set; }
+        
+        /********************************************************************************************************
+        * @description The field on the target object to filter records on. Filtered records won't be processed 
+        * by the code.
+        *********************************************************************************************************/
         global String filterField  { get; set; }
+        
+        /********************************************************************************************************
+        * @description The value of the filter field that, if matched, will cause records to be excluede from 
+        * processing.
+        *********************************************************************************************************/
         global String filterValue  { get; set; }
+        
+        /********************************************************************************************************
+        * @description Flags a handler as user-managed. If the handler is user-managed, the post-install script
+        * won't attempt to modify it in any way.
+        *********************************************************************************************************/
         global Boolean userManaged { get; set; }
         
         /********************************************************************************************************
-        * @description
+        * @description Constructor. Simpler version. It assumes default values for those properties not passed as
+        * parameters.
+        * @parameter className The token's class name.
+        * @parameter targetObject The token's target object.
+        * @parameter actions The token's actions.
+        * @parameter loadOrder The token's load order.
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
             this.className = className;
@@ -106,9 +153,19 @@ global class TDTM_Global_API {
         }
         
         /********************************************************************************************************
-        * @description
+        * @description Constructor. Simpler version. It assumes default values for those properties not passed as
+        * parameters.
+        * @parameter className The token's class name.
+        * @parameter targetObject The token's target object.
+        * @parameter actions The token's actions.
+        * @parameter loadOrder The token's load order.
+        * @parameter active The token's active flag.
+        * @parameter async The token's async flag.
+        * @parameter filterField The token's filter field.
+        * @parameter filterValue The token's filter value.
+        * @parameter userManaged The token's user-managed flag.
         *********************************************************************************************************/
-        global TdtmToken(String className, String targetObject, String actions, Boolean active, Integer loadOrder, 
+        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active,
         Boolean async, String filterField, String filterValue, Boolean userManaged) {
             this.className = className;
             this.targetObject = targetObject;
