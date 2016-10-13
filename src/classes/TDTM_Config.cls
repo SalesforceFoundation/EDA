@@ -48,21 +48,6 @@ public class TDTM_Config {
     *********************************************************************************************************/
     private static Integer rowCount;
     
-    /*******************************************************************************************************
-    * @description Constructor. 
-    * @param tdtmTokens Trigger handlers to use to configure the application. If null is passed, the configuration
-    * will be empty.
-    *********************************************************************************************************/
-    public TDTM_Config(List<TDTM_Global_API.TdtmToken> tdtmTokens) {
-        if(tdtmTokens != null) {
-            setTdtmConfig(tdtmTokens);
-            rowCount = tdtmTokens.size();
-        } else {
-            tdtmTokensCache = new List<TDTM_Global_API.TdtmToken>();
-            rowCount = 0;
-        }
-    }
-    
     /********************************************************************************************************
     * @description Returns the default TDTM configuration. If no configuration is currently set, it will return 
     * the default configuration without setting it. The configuration returned has not yet been inserted in the 

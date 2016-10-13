@@ -153,8 +153,7 @@ global class TDTM_Global_API {
         }
         
         /********************************************************************************************************
-        * @description Constructor. Simpler version. It assumes default values for those properties not passed as
-        * parameters.
+        * @description Constructor. Verbose version. Values are provided for all properties.
         * @parameter className The token's class name.
         * @parameter targetObject The token's target object.
         * @parameter actions The token's actions.
