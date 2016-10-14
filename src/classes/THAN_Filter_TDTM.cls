@@ -54,11 +54,10 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                 Trigger_Handler__c handler = (Trigger_Handler__c)newlist[i];
                 
                 if(triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    if(handler.Filter_Field__c != null && handler.Filter_Value__c == null) {
+                    //null should be a valid filter value, so we only check if the filter field isn't null
+                    if(handler.Filter_Field__c == null && handler.Filter_Value__c != null) {
                         handler.addError(Label.BothFieldAndValue);
-                    } else if(handler.Filter_Field__c == null && handler.Filter_Value__c != null) {
-                        handler.addError(Label.BothFieldAndValue);
-                    } else if(handler.Filter_Field__c != null && handler.Filter_Value__c != null && handler.Object__c != null) {
+                    } else if(handler.Filter_Field__c != null && handler.Object__c != null) {
 	                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
 	                    String obj = String.escapeSingleQuotes(handler.Object__c);
 	                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
