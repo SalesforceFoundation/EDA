@@ -48,31 +48,33 @@ public with sharing class TDTM_Filter_TEST {
         adminRecTypeID = UTIL_Describe.getAdminAccRecTypeID();
     } 
     
-    public static List<Trigger_Handler__c> setup() {
+    public static List<TDTM_Global_API.TdtmToken> setup() {
         insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
                                                     Field__c='ReportsToId', Relationship_Type__c = 'TestType');
-        List<Trigger_Handler__c> handlers = TDTM_DefaultConfig.getDefaultRecords();
+        
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+
         
         //Disabling class that creates reciprocal relationships
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_TDTM') {
-                handler.Active__c = false;
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_TDTM') {
+                token.active = false;
             }
         }
-        return handlers;
+        return tokens;
     }
     
 	public static testmethod void emailField() {
-        List<Trigger_Handler__c> handlers = setup();
+        List<TDTM_Global_API.TdtmToken> tokens = setup();
         
 		//Creating filter condition
-		for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-		        handler.Filter_Field__c = 'UniversityEmail__c';
-                handler.Filter_Value__c = null;
+		for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+		        token.filterField = 'UniversityEmail__c';
+                token.filterValue = null;
             }
 		}
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. two of them are not students, because they don't have a university email.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu');
@@ -97,16 +99,16 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void textField() {
-		List<Trigger_Handler__c> handlers = setup();
+		List<TDTM_Global_API.TdtmToken> tokens = setup();
                                              
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'AssistantName';
-                handler.Filter_Value__c = 'Anne';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'AssistantName';
+                token.filterValue = 'Anne';
             }
         }
-		insert handlers;
+		TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
@@ -131,16 +133,16 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void oneRecordOnly() {
-        List<Trigger_Handler__c> handlers = setup();
+        List<TDTM_Global_API.TdtmToken> tokens = setup();
                                              
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'AssistantName';
-                handler.Filter_Value__c = 'Anne';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'AssistantName';
+                token.filterValue = 'Anne';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         //Creating two contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Anne');
@@ -161,21 +163,21 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void InvalidFilterField() {
-        List<Trigger_Handler__c> handlers = setup();
+        List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
+        for(TDTM_Global_API.TdtmToken token : tokens) {
             //Creating filter condition.
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'InvalidField';
-                handler.Filter_Value__c = 'Anne';
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'InvalidField';
+                token.filterValue = 'Anne';
             }
             //Disabling THAN_Filter_TDTM, which validates that relationship defined in a Trigger Handler
             //is valid.
-            else if(handler.Class__c == 'THAN_Filter_TDTM') {
-                handler.Active__c = false;
+            else if(token.className == 'THAN_Filter_TDTM') {
+                token.active = false;
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;
         
@@ -198,15 +200,15 @@ public with sharing class TDTM_Filter_TEST {
     }
 	
 	public static testmethod void checkboxField() {
-		List<Trigger_Handler__c> handlers = setup();                                             
+		List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'HasOptedOutOfEmail';
-                handler.Filter_Value__c = 'true';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'HasOptedOutOfEmail';
+                token.filterValue = 'true';
             }
         }
-		insert handlers;
+		TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
@@ -231,15 +233,15 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void phoneField() {
-		List<Trigger_Handler__c> handlers = setup();
+		List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'MobilePhone';
-                handler.Filter_Value__c = '5555-444-3322';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'MobilePhone';
+                token.filterValue = '5555-444-3322';
             }
         }
-		insert handlers;
+		TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', MobilePhone = '5555-333-1111');
@@ -264,15 +266,15 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void dateField() {
-		List<Trigger_Handler__c> handlers = setup();
+		List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Birthdate';
-                handler.Filter_Value__c = '01/01/1990';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Birthdate';
+                token.filterValue = '01/01/1990';
             }
         }
-		insert handlers;
+		TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Birthdate = Date.parse('01/01/1989'));
@@ -297,15 +299,15 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void picklistField() {
-		List<Trigger_Handler__c> handlers = setup();           
+		List<TDTM_Global_API.TdtmToken> tokens = setup();           
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Gender__c';
-                handler.Filter_Value__c = 'Male';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Gender__c';
+                token.filterValue = 'Male';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Gender__c = 'Female');
@@ -330,22 +332,22 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void lookupField() {
-		List<Trigger_Handler__c> handlers = setup();
-        insert handlers;
+		List<TDTM_Global_API.TdtmToken> tokens = setup();
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         Account acc1 = new Account(Name = 'Acc1'); 
 		Account acc2 = new Account(Name = 'Acc2'); 
 		insert new Account[] {acc1, acc2};
 		UTIL_Debug.debug('****Filter value in test: ' + acc2.Id);
-		
-		//Creating filter condition.
-		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c 
-		                                      where Class__c = 'REL_Relationships_Con_TDTM'];
-        handler.Filter_Field__c = 'Account.Id';
-        handler.Filter_Value__c = acc2.Id;
-        update handler;
-        
-        TDTM_ObjectDataGateway.clearCachedTriggerHandlersForTest();
+		                                      
+		 //Creating filter condition.
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.Id';
+                token.filterValue = acc2.Id;
+            }
+        }
+        TDTM_Global_API.setTdtmConfig(tokens);      
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = acc1.Id);
@@ -377,15 +379,15 @@ public with sharing class TDTM_Filter_TEST {
 	}
 	
 	public static testmethod void relationshipField() {
-        List<Trigger_Handler__c> handlers = setup();                                             
+        List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Account.Name';
-                handler.Filter_Value__c = 'Acme';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.Name';
+                token.filterValue = 'Acme';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         Account accFiltered = new Account(Name = 'Acme');
         Account accNotFiltered = new Account(Name = 'ABC');
@@ -414,14 +416,14 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void accountParentField() {
-        List<Trigger_Handler__c> handlers = setup();                                             
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Account.Parent.Name';
-                handler.Filter_Value__c = 'top1';
+        List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.Parent.Name';
+                token.filterValue = 'top1';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         Account topAccountFiltered = new Account(Name = 'top1');
         Account topAccountNotFiltered = new Account(Name = 'top2');
@@ -458,17 +460,17 @@ public with sharing class TDTM_Filter_TEST {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ';' + householdRecTypeID + ';'));
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
                 
-        List<Trigger_Handler__c> handlers = setup();                                             
+        List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Account.RecordType.Name';
-                handler.Filter_Value__c = 'Business Organization';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Account.RecordType.Name';
+                token.filterValue = 'Business Organization';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
@@ -502,17 +504,17 @@ public with sharing class TDTM_Filter_TEST {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ';' + householdRecTypeID + ';'));
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
                 
-        List<Trigger_Handler__c> handlers = setup();
+        List<TDTM_Global_API.TdtmToken> tokens = setup();
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Current_Address__r.Parent_Account__r.RecordType.Name';
-                handler.Filter_Value__c = 'Business Organization';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Current_Address__r.Parent_Account__r.RecordType.Name';
+                token.filterValue = 'Business Organization';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
@@ -550,17 +552,17 @@ public with sharing class TDTM_Filter_TEST {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'));
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');'));
                 
-        List<Trigger_Handler__c> handlers = setup();                                      
+        List<TDTM_Global_API.TdtmToken> tokens = setup();                                      
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Current_Address__r.Parent_Account__r.Name';
-                handler.Filter_Value__c = 'topAcc';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Current_Address__r.Parent_Account__r.Name';
+                token.filterValue = 'topAcc';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         Account accFiltered = new Account(Name = 'topAcc', RecordTypeId = orgRecTypeID);
         Account accNotFiltered = new Account(Name = 'ABC', RecordTypeId = orgRecTypeID);
@@ -596,17 +598,17 @@ public with sharing class TDTM_Filter_TEST {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ';'));
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');'));
                 
-        List<Trigger_Handler__c> handlers = setup();                   
+        List<TDTM_Global_API.TdtmToken> tokens = setup();                   
         //Creating filter condition.
-        for(Trigger_Handler__c handler : handlers) {
-            if(handler.Class__c == 'REL_Relationships_Con_TDTM') {
-                handler.Filter_Field__c = 'Current_Address__r.Default_Address__c';
-                handler.Filter_Value__c = 'true';
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'REL_Relationships_Con_TDTM') {
+                token.filterField = 'Current_Address__r.Default_Address__c';
+                token.filterValue = 'true';
             }
         }
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(tokens);
         
         Account topAcc = new Account(Name = 'topAcc', RecordTypeId = orgRecTypeID);
         insert new Account[] {topAcc};

@@ -42,29 +42,23 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global void onInstall(InstallContext context) {
+    	
+    	//Initial installation.
     	if(context.previousVersion() == null) {
     		UTIL_CustomSettingsFacade.getSettings();
     		insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
     		insertRelationshipLookups();
     		//Schedule Seasonal Addresses recurring job daily
     		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
-    	 } else if(context.isUpgrade() || context.isPush()) {
-    	 	List<Trigger_Handler__c> defaultHandlers = TDTM_DefaultConfig.getDefaultRecords(); 
-            insertTdtmDefaults(defaultHandlers);
-    	 }
+    	    //Insert default TDTM config (not necessary, but better to be explicit).
+    	    List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+            TDTM_Global_API.setTdtmConfig(tokens); 
     	 
-    	 //Replace the value in the "Account Processor" field with the ID of the record type that was there
-    	 if(context.previousVersion() != null && context.previousVersion().compareTo(new Version(1,7)) == 0) {
-    	     UTIL_Debug.debug('***Upgrading to version 1.7');
-    	     Hierarchy_Settings__c settings = UTIL_CustomSettingsFacade.getSettings();
-    	     String accModel = settings.Account_Processor__c;
-    	     if(!String.isBlank(accModel)) {
-    	         String accRecTypeID = UTIL_Describe.getRecTypesMapByName('Account').get(accModel);
-    	         if(accRecTypeID != null) {
-    	             settings.Account_Processor__c = accRecTypeID;
-    	             update settings;
-    	         }
-    	     }
+    	 //Updates, manual of pushed by publisher.
+    	 } else if(context.isUpgrade() || context.isPush()) {
+    	    //Update TDTM configuration, if necessary.
+    	    List<TDTM_Global_API.TdtmToken> defaultTdtmConfig = TDTM_Global_API.getTdtmConfig();
+            updateDefaultTdtmConfig(defaultTdtmConfig);
     	 }
     	 
     	 reparentAdminAddrs(context.previousVersion());
@@ -130,40 +124,61 @@ global without sharing class STG_InstallScript implements InstallHandler {
     
     /*******************************************************************************************************
     * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
-    * upgradade. Public just for testing purposes (it should otherwise be private).
-    * @param defaultHandlers The default TDTM records.
+    * upgradade.
+    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it.
     * @return void
     */
-    public static void insertTdtmDefaults(List<Trigger_Handler__c> defaultHandlers) {
-        List<Trigger_Handler__c> existingHandlers = [select Class__c, Object__c, Load_Order__c, Trigger_Action__c, User_Managed__c 
-                                                       from Trigger_Handler__c where Class__c != null];
+    @TestVisible 
+    private static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
+        //Getting the config that is really in the database.
+        List<Trigger_Handler__c> existingHandlers = [select Class__c, Object__c, Trigger_Action__c, Active__c, Load_Order__c, Asynchronous__c, Filter_Field__c, 
+                                                       Filter_Value__c, User_Managed__c from Trigger_Handler__c where Class__c != null];
+        List<TDTM_Global_API.TdtmToken> existingTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
+        for(Trigger_Handler__c handler : existingHandlers) {
+            existingTdtmConfig.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, Integer.valueOf(handler.Load_Order__c), 
+                   handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
+        }
 
-        List<Trigger_Handler__c> handlersToInsert = new List<Trigger_Handler__c>();
-        List<Trigger_Handler__c> handlersToUpdate = new List<Trigger_Handler__c>();
+        List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
         
         //Insert those that are in the list of default handlers but aren't in the database
-        for(Trigger_Handler__c defaultHandler : defaultHandlers) {
+        for(TDTM_Global_API.TdtmToken defaultToken : defaultTdtmConfig) {
             Boolean alreadyExists = false;
-            Boolean needsUpdate = false;
-            for(Trigger_Handler__c existingHandler : existingHandlers) {
-                if(defaultHandler.Class__c == existingHandler.Class__c && defaultHandler.Object__c == existingHandler.Object__c) {
+            for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
+                if(defaultToken.className == existingToken.className && defaultToken.targetObject == existingToken.targetObject) {
                     alreadyExists = true;
-                    //Determine if order or action has changed (compare old load order with new load order, old action with new action)
-                    //Filter to only those that have not been flagged as user-managed
-                    if(!existingHandler.User_Managed__c && (defaultHandler.Load_Order__c != existingHandler.Load_Order__c || 
-                    defaultHandler.Trigger_Action__c != existingHandler.Trigger_Action__c)) {
-                        existingHandler.Load_Order__c = defaultHandler.Load_Order__c;
-                        existingHandler.Trigger_Action__c = defaultHandler.Trigger_Action__c;
-                        handlersToUpdate.add(existingHandler);
+                    //Determine if order, actions, or filter have changed, for those that have not been flagged as user-managed.
+                    if(!existingToken.userManaged && (defaultToken.loadOrder != existingToken.loadOrder || defaultToken.actions != existingToken.actions 
+                    ||defaultToken.filterField != existingToken.filterField || defaultToken.filterValue != existingToken.filterValue)) {
+                        UTIL_Debug.debug('****It was not user managed and has changed: ' + existingToken.className);
+                        existingToken.loadOrder = defaultToken.loadOrder;
+                        existingToken.actions = defaultToken.actions;
+                        existingToken.filterField = defaultToken.filterField;
+                        existingToken.filterValue = defaultToken.filterValue;
+                        newTdtmConfig.add(existingToken);
+                    //If it already exists and nothing has changed, put it in, as we are going to replace the whole config. It shouldn't
+                    //matter if we add defaultToken or existingToken, as they should be the same.
+                    } else if(!existingToken.userManaged && defaultToken.loadOrder == existingToken.loadOrder || 
+                    defaultToken.actions == existingToken.actions) {
+                        UTIL_Debug.debug('****It was not user managed and has not changed: ' + existingToken.className);
+                        newTdtmConfig.add(existingToken);
+                    } else if(existingToken.userManaged) {
+                        UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
+                        newTdtmConfig.add(existingToken);
                     }
                     break;
                 }
             }
-            if(!alreadyExists)
-                handlersToInsert.add(defaultHandler); 
-        }    
-        if(handlersToInsert.size() > 0) insert handlersToInsert;
-        if(handlersToUpdate.size() > 0) update handlersToUpdate;
+            
+            if(!alreadyExists) {
+                UTIL_Debug.debug('****New token: ' + defaultToken.className);
+                newTdtmConfig.add(defaultToken);
+            }
+        }
+        
+        UTIL_Debug.debug('****newTdtmConfig: ' + JSON.serializePretty(newTdtmConfig));
+        
+        TDTM_Global_API.setTdtmConfig(newTdtmConfig);
     }
     
     /*******************************************************************************************************

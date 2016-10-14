@@ -46,23 +46,7 @@ private class ACCT_IndividualAccounts_TEST {
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
      
         // turn off all TDTM triggers for this component
-        List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
-        handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'BeforeInsert'));
-        handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'BeforeUpdate'));
-        handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert'));
-        handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterUpdate'));                
-        handlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterDelete'));
-        insert handlers;
+        TDTM_Global_API.setTdtmConfig(new List<TDTM_Global_API.TdtmToken>());
          
         Contact con = new Contact(
             FirstName='Test',
