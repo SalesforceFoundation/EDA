@@ -43,6 +43,8 @@ public with sharing class STG_InstallScript_TEST {
         Test.testInstall(new STG_InstallScript(), null);
         List<Affl_Mappings__c> mappings = [select Account_Record_Type__c, Primary_Affl_Field__c from Affl_Mappings__c];
         System.assertEquals(6, mappings.size());
+        List<Trigger_Handler__c> tdtmHandlers = [select Name from Trigger_Handler__c];
+        System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers.size());
 	}
 	
 	//If the handlers in our default TDTM config are different from what it's in the org (either action or load order),
@@ -50,42 +52,33 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     public static void handlersChanged() {
     	//Handlers that exist in the org
-        List<Trigger_Handler__c> oldHandlers = new List<Trigger_Handler__c>();
-        oldHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'AFFL_Affiliations_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert'));
-        oldHandlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Cm_TDTM', Load_Order__c = 1, Object__c = 'CampaignMember', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
-        oldHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterDelete'));
-    	insert oldHandlers;
+        List<TDTM_Global_API.TdtmToken> oldHandlers = new List<TDTM_Global_API.TdtmToken>();
+        oldHandlers.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1));
+        oldHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 1));
+        oldHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1));
+    	TDTM_Global_API.setTdtmConfig(oldHandlers);
     	
     	//Updated handlers
-    	List<Trigger_Handler__c> updatedHandlers = new List<Trigger_Handler__c>();
-        updatedHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'AFFL_Affiliations_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
-        updatedHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Cm_TDTM', Load_Order__c = 0, Object__c = 'CampaignMember', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
-        updatedHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+    	List<TDTM_Global_API.TdtmToken> updatedHandlers = new List<TDTM_Global_API.TdtmToken>();
+    	updatedHandlers.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 1));
+        updatedHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 0));
+        updatedHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterUpdate;AfterDelete', 2));
     	
     	Test.startTest();
-    	STG_InstallScript.insertTdtmDefaults(updatedHandlers);
+    	STG_InstallScript.updateDefaultTdtmConfig(updatedHandlers);
     	Test.stopTest();
     	
     	//Verify handlers have been updated
     	List<Trigger_Handler__c> newHandlers = [select Load_Order__c, Class__c, Trigger_Action__c from Trigger_Handler__c order by Load_Order__c];
+        
         System.assertEquals(0, newHandlers[0].Load_Order__c);   
         System.assertEquals('REL_Relationships_Cm_TDTM', newHandlers[0].Class__c);   
         System.assertEquals('AfterInsert;AfterUpdate', newHandlers[0].Trigger_Action__c);
+        
         System.assertEquals(1, newHandlers[1].Load_Order__c);   
         System.assertEquals('AFFL_Affiliations_TDTM', newHandlers[1].Class__c);   
         System.assertEquals('AfterInsert;AfterUpdate', newHandlers[1].Trigger_Action__c);  
+        
         System.assertEquals(2, newHandlers[2].Load_Order__c);   
         System.assertEquals('REL_Relationships_Con_TDTM', newHandlers[2].Class__c);   
         System.assertEquals('AfterInsert;AfterUpdate;AfterDelete', newHandlers[2].Trigger_Action__c);    
@@ -95,70 +88,51 @@ public with sharing class STG_InstallScript_TEST {
     //and the user flagged them as user managed, we do not need to update them
     @isTest
     public static void handlersChanged_UserManaged() {
+        
         //Handlers that exist in the org
-        List<Trigger_Handler__c> oldHandlers = new List<Trigger_Handler__c>();
-        //Should not be modified 
-        oldHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'AFFL_Affiliations_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert', User_Managed__c = true));
-        //Should be modified
-        oldHandlers.add(new Trigger_Handler__c(Active__c = false, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Cm_TDTM', Load_Order__c = 1, Object__c = 'CampaignMember', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+        List<TDTM_Global_API.TdtmToken> oldHandlers = new List<TDTM_Global_API.TdtmToken>();
         //Should not be modified
-        oldHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterDelete', User_Managed__c = true));
-        insert oldHandlers;
+        TDTM_Global_API.TdtmToken token1 = new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1);
+        token1.userManaged = true;
+        oldHandlers.add(token1);
+        
+        //Should be modified
+        oldHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 1));
+        
+        //Should not be modified
+        TDTM_Global_API.TdtmToken token3 = new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 2);
+        token3.userManaged = true;
+        oldHandlers.add(token3);
+        
+        TDTM_Global_API.setTdtmConfig(oldHandlers);
         
         //Updated handlers
-        List<Trigger_Handler__c> updatedHandlers = new List<Trigger_Handler__c>();
-        updatedHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'AFFL_Affiliations_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
-        updatedHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Cm_TDTM', Load_Order__c = 0, Object__c = 'CampaignMember', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
-        updatedHandlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+        List<TDTM_Global_API.TdtmToken> updatedHandlers = new List<TDTM_Global_API.TdtmToken>();
+        updatedHandlers.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 1));
+        updatedHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 0));
+        updatedHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterUpdate;AfterDelete', 1));
         
         Test.startTest();
-        STG_InstallScript.insertTdtmDefaults(updatedHandlers);
+        STG_InstallScript.updateDefaultTdtmConfig(updatedHandlers);
         Test.stopTest();
         
         //Verify handlers marked as "User Managed" were not modified
         List<Trigger_Handler__c> newHandlers = [select Load_Order__c, Class__c, Trigger_Action__c from Trigger_Handler__c order by Load_Order__c];
+        
         //Should have been modified
         System.assertEquals('REL_Relationships_Cm_TDTM', newHandlers[0].Class__c);   
         System.assertEquals(0, newHandlers[0].Load_Order__c); 
         System.assertEquals('AfterInsert;AfterUpdate', newHandlers[0].Trigger_Action__c);
+        
         //Should not have been modified  
         System.assertEquals('AFFL_Affiliations_TDTM', newHandlers[1].Class__c);   
         System.assertEquals(1, newHandlers[1].Load_Order__c);
         System.assertEquals('AfterInsert', newHandlers[1].Trigger_Action__c);  
+        
         //Should not have been modified
         System.assertEquals('REL_Relationships_Con_TDTM', newHandlers[2].Class__c); 
-        System.assertEquals(2, newHandlers[2].Load_Order__c);     
+        System.assertEquals(2, newHandlers[2].Load_Order__c);
         System.assertEquals('AfterInsert;AfterDelete', newHandlers[2].Trigger_Action__c);     
-    }
-    
-    @isTest
-    public static void storeAccRecTypeIdInsteadOfName() {
-        Hierarchy_Settings__c settings = UTIL_CustomSettingsFacade.getSettings();
-        settings.Account_Processor__c = 'Administrative';
-        upsert settings;
-        
-        String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
-        System.assertNotEquals(null, adminRecTypeId);
-        
-        //Simulate upgrading from version 1.6 to 1.7
-        Test.startTest();
-        Test.testInstall(new STG_InstallScript(), new Version(1,7), true);
-        Test.stopTest();
-        
-        settings = [select Account_Processor__c from Hierarchy_Settings__c];
-        System.assertEquals(adminRecTypeId, settings.Account_Processor__c);
     }
     
     @isTest

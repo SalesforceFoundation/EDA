@@ -37,10 +37,8 @@
 */
 public class TDTM_Filter {
     
-    /* @description  The name of the class being run.*/
-    String classToRunName;
-    /* @description  An instance of the class being run.*/
-    SObject classToRunRecord; 
+    /* @description  Information on the class being run.*/
+    TDTM_Global_API.TdtmToken tdtmToken;
     /* * @description The records that were passed to the trigger as trigger.new. */
     List<SObject> newList;
     /* @description The records that were passed to the trigger as trigger.old. */
@@ -66,10 +64,9 @@ public class TDTM_Filter {
     * @param oldList The records that were passed to the trigger as trigger.old.
     * @param describeObj The type of SObject the class runs for.
     */
-    public TDTM_Filter(String classToRunName, SObject classToRunRecord, List<SObject> newList, List<SObject> oldList, 
+    public TDTM_Filter(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     DescribeSObjectResult describeObj) {
-        this.classToRunName = classToRunName;
-        this.classToRunRecord = classToRunRecord;
+        this.tdtmToken = tdtmToken;
         this.newList = newList;
         this.oldList = oldList;
         this.describeObj = describeObj;
@@ -83,7 +80,7 @@ public class TDTM_Filter {
     */
     public FilteredLists filter() {
     	try {
-    		filterField = String.valueOf(classToRunRecord.get('Filter_Field__c'));
+    		filterField = tdtmToken.filterField;
     		if(filterField != null) {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
@@ -145,7 +142,7 @@ public class TDTM_Filter {
     private void addErrorToAll() {
         for(Integer i = 0; i < newList.size(); i++) {
             UTIL_Debug.debug('****Invalid filter error added in TDTM_Filter');
-            newList[i].addError(Label.InvalidFilter + ' ' + classToRunName);
+            newList[i].addError(Label.InvalidFilter + ' ' + tdtmToken.className);
             filtered.newList.add(newList[i]);
         }
     }
@@ -363,7 +360,7 @@ public class TDTM_Filter {
         //let's find the field type
         DisplayType fieldType = field.getDescribe().getType();
         UTIL_Debug.debug('****Filter field type: ' + fieldType);
-        String val = String.valueOf(classToRunRecord.get('Filter_Value__c'));    
+        String val = tdtmToken.filterValue;    
         if(fieldType == DisplayType.Boolean) {
             if(val == 'true') {
                 return true;
