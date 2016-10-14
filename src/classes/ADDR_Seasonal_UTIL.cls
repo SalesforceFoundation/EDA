@@ -258,6 +258,7 @@ public with sharing class ADDR_Seasonal_UTIL {
 
         TDTM_Runnable.Dmlwrapper dmlWrapper = new TDTM_Runnable.Dmlwrapper();
         ADDR_Addresses_TDTM.refreshParentAndSiblings(mapAccIdAddr, dmlWrapper, null);
-        TDTM_TriggerHandler.processDML(dmlWrapper);
+        Savepoint sp = Database.setSavepoint();
+        TDTM_TriggerHandler.processDML(dmlWrapper, sp);
     }
 }

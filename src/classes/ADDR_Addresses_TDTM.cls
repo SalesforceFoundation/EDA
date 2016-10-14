@@ -225,7 +225,20 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     private void processDml(DmlWrapper dmlWrapper, Map<Id, Address__c> mapParentIdAddr) {
         // we must process dmlWrapper ourselves, so we can extract out the appropriate errors that might occur updating contacts 
         // and parents, and associating those errors with the correct addresses.
-        ERR_Handler.Errors errors = TDTM_TriggerHandler.processDMLWithRollback(dmlWrapper, false);
+        
+        dmlWrapper.groupByType(); //sort thyself!
+        
+        /**We keep the Database methods with the opt_allOrNone flag set to false to be able to alert the client 
+        process of all the errors that occurred in the context **/
+        List<Database.SaveResult> insertResults = Database.insert(dmlWrapper.objectsToInsert, false);        
+        List<Database.SaveResult> updateResults = Database.update(dmlWrapper.objectsToUpdate, false);        
+        List<Database.DeleteResult> deleteResults = Database.delete(dmlWrapper.objectsToDelete, false);        
+        List<Database.UndeleteResult> undeleteResults = Database.undelete(dmlWrapper.objectsToUndelete, false);
+        
+        //Process the results.
+        ERR_Handler.Errors errors = ERR_Handler.getErrors(insertResults, updateResults, deleteResults, undeleteResults, 
+            dmlWrapper.objectsToInsert, dmlWrapper.objectsToUpdate, dmlWrapper.objectsToDelete, dmlWrapper.objectsToUndelete);
+
         if (errors.errorsExist) {
             for (Error__c error : errors.errorRecords) {
                 ID objId = ERR_Handler.getErrorObjectId(error);
