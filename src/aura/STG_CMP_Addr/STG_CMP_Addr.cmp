@@ -70,7 +70,8 @@
         </div>
         <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
             <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_Addresses_Enabled__c}"
-                            recTypesSelected="{!v.accTypesAddrSelected}" isView="{!v.isView}" />
+                            recTypesSelected="{!v.accTypesAddrSelected}" isView="{!v.isView}"
+                            class="multi-addresses-enabled" />
         </div>
 
         <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div>
@@ -78,17 +79,17 @@
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
                     <label class="slds-checkbox">
-			            <aura:if isTrue="{!v.isView}">
-			                <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
-			                                   class="addr-change-outputcheck" />
-			            <aura:set attribute="else">
-			                <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
-			                                  class="addr-change-inputcheck" />
-			                <span class="slds-checkbox--faux"></span>
-			                <span class="slds-form-element__label"></span>
-			            </aura:set>
-			            </aura:if>
-			        </label>
+                  <aura:if isTrue="{!v.isView}">
+                      <ui:outputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
+                                         class="addr-change-outputcheck" />
+                  <aura:set attribute="else">
+                      <ui:inputCheckbox value="{!v.hierarchySettings.Simple_Address_Change_Treated_as_Update__c}"
+                                        class="addr-change-inputcheck" />
+                      <span class="slds-checkbox--faux"></span>
+                      <span class="slds-form-element__label"></span>
+                  </aura:set>
+                  </aura:if>
+              </label>
                 </div>
             </div>
         </div>
@@ -106,8 +107,9 @@
             <div class="slds-text-body--small">Record Types of those Accounts that will be automatically deleted if all their children Contacts have been deleted.</div>
         </div>
         <div class="slds-col slds-size--1-of-2">
-	        <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_to_Delete__c}"
-	                        recTypesSelected="{!v.accTypesToDeleteSelected}" isView="{!v.isView}" />
+          <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_to_Delete__c}"
+                          recTypesSelected="{!v.accTypesToDeleteSelected}" isView="{!v.isView}"
+                          class="accounts-to-delete" />
         </div>
     </div>
 </aura:component>
