@@ -76,9 +76,14 @@
               </aura:if>
             </div>
             <div class="slds-col slds-size--1-of-2">
-              <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Student_RecType__c}" isView="{!v.isView}"
-                  recTypeId="{!v.studentRecTypeId}" recTypeName="{!v.studentRecTypeName}" recTypes="{!v.courseConnectionRecTypes}"
-                  dropdownDisabled="{!!v.hierarchySettings.Enable_Course_Connections__c}" />
+              <c:CMP_RecTypes_Dropdown class="student-course-connection-record-type"
+                setting="{!v.hierarchySettings.Student_RecType__c}"
+                isView="{!v.isView}"
+                recTypeId="{!v.studentRecTypeId}"
+                recTypeName="{!v.studentRecTypeName}"
+                recTypes="{!v.courseConnectionRecTypes}"
+                dropdownDisabled="{!!v.hierarchySettings.Enable_Course_Connections__c}"
+              />
             </div>
           </div>
           <div class="slds-col slds-size--1-of-1">
@@ -100,9 +105,14 @@
               </aura:if>
             </div>
             <div class="slds-col slds-size--1-of-2">
-              <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Faculty_RecType__c}" isView="{!v.isView}"
-                  recTypeId="{!v.facultyRecTypeId}" recTypeName="{!v.facultyRecTypeName}" recTypes="{!v.courseConnectionRecTypes}"
-                  dropdownDisabled="{!!v.hierarchySettings.Enable_Course_Connections__c}" />
+              <c:CMP_RecTypes_Dropdown class="faculty-course-connection-record-type"
+                setting="{!v.hierarchySettings.Faculty_RecType__c}"
+                isView="{!v.isView}"
+                recTypeId="{!v.facultyRecTypeId}"
+                recTypeName="{!v.facultyRecTypeName}"
+                recTypes="{!v.courseConnectionRecTypes}"
+                dropdownDisabled="{!!v.hierarchySettings.Enable_Course_Connections__c}"
+              />
             </div>
           </div>
           <div class="slds-col slds-size--1-of-1">
