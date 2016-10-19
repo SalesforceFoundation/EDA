@@ -41,8 +41,13 @@
 
         <div class="slds-col slds-size--1-of-2">Account record type that supports Household Addresses:</div>
         <div class="slds-col slds-size--1-of-2">
-            <c:CMP_RecTypes_Dropdown setting="{!v.hierarchySettings.Household_Addresses_RecType__c}" isView="{!v.isView}"
-                recTypeId="{!v.householdRecTypeId}" recTypeName="{!v.householdRecTypeName}" recTypes="{!v.accRecTypes}" />
+            <c:CMP_RecTypes_Dropdown class="hh-addresses-account-record-type"
+              setting="{!v.hierarchySettings.Household_Addresses_RecType__c}"
+              isView="{!v.isView}"
+              recTypeId="{!v.householdRecTypeId}"
+              recTypeName="{!v.householdRecTypeName}"
+              recTypes="{!v.accRecTypes}"
+            />
         </div>
 
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
