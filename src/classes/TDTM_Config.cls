@@ -79,7 +79,11 @@ public class TDTM_Config {
         tdtmTokensCache = tdtmTokens;
         
         //clear existing TDTM configuration
-        delete [select Id from Trigger_Handler__c limit 50000];
+        try {
+            delete [select Id from Trigger_Handler__c limit 50000];
+        } catch(System.DmlException e) {
+            UTIL_Debug.debug('***Could not delete default config');
+        }
         
         //Persisting new configuration to database
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
