@@ -60,13 +60,23 @@ public class TDTM_Config {
             return tdtmTokensCache;
         }
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
-        List<Trigger_Handler__c> defaultConfig = TDTM_DefaultConfig.getDefaultRecords();
-        for(Trigger_Handler__c handler : defaultConfig) {
+        List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c, 
+                            Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c from Trigger_Handler__c];
+                         
+        //Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
+        //we would delete customizations and Trigger Handlers entries that aren't in the default configuration. 
+        if(tdtmConfig.size() == 0) {
+	        tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
+        }
+        
+        for(Trigger_Handler__c handler : tdtmConfig) {
             tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, 
                     Integer.valueOf(handler.Load_Order__c), handler.Active__c, handler.Asynchronous__c, 
                     handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
         }
-        //tdtmTokensCache = tokens; We don't want to set the cache here, but instead have code explicity call setTdtmConfig.
+        
+        tdtmTokensCache = tokens;
+	        
         return tokens;
     }
     
@@ -118,10 +128,8 @@ public class TDTM_Config {
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getClassesToCallForObject(String objectName, TDTM_Runnable.Action action) {
         
-        //Getting the defaults and storing them in the cache.
+        //Getting the TDTM configuration and storing it in the cache.
         List<TDTM_Global_API.TdtmToken> tdtmTokens = getTdtmConfig();
-        if(tdtmTokensCache == null)
-            setTdtmConfig(tdtmTokens);
                 
         //Using a map because there might be more than one TDTM entry with the same Load Order for the same Object.
         Map<Integer, List<TDTM_Global_API.TdtmToken>> loadKeyedTokens = new Map<Integer, List<TDTM_Global_API.TdtmToken>>();
