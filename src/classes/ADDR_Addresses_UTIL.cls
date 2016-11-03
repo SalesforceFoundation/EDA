@@ -733,8 +733,11 @@ public with sharing class ADDR_Addresses_UTIL {
     public static String getParentAccsWithChildrenQuery() {
         String query = 'select recordTypeId, Current_Address__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude';     
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
-            query += ', BillingCountryCode, BillingStateCode ';
-        query += ', (select Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude from Account.Contacts)';  
+            query += ', BillingCountryCode, BillingStateCode';
+        query += ', (select Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+            query += ', MailingCountryCode, MailingStateCode';
+        query += ' from Account.Contacts)';
         query += ', (select Default_Address__c, Parent_Account__c, Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c from Account.Addresses__r)';
         query +=  ' from Account where Id IN ';
         return query;

@@ -66,7 +66,7 @@ public with sharing class ADDR_Contact_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
         Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Main St', 
-        MailingCity = 'Chicago', MailingState = 'IL', MailingPostalcode = '60606', MailingCountry = 'USA');
+        MailingCity = 'Austin', MailingState = 'Texas', MailingPostalcode = '78701', MailingCountry = 'United States');
         Test.startTest();
         insert contact;
         Test.stopTest();
@@ -90,7 +90,9 @@ public with sharing class ADDR_Contact_TEST {
         System.assertEquals(null, acc.BillingStreet);
         System.assertEquals(null, acc.BillingState);
         System.assertEquals(null, acc.BillingPostalCode);
-        System.assertEquals(null, acc.BillingCountry);
+        if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled || Account.BillingCountryCode.getDescribe().getDefaultValue() == null) {
+            System.assertEquals(null, contact.MailingCountry);
+        }
     }
     
     @isTest
@@ -102,20 +104,20 @@ public with sharing class ADDR_Contact_TEST {
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
-        Contact contact = new Contact(LastName = 'Testerson');
-        insert contact;
+        Contact contact1 = new Contact(LastName = 'Testerson');
+        insert contact1;
         
         //Verify parent account was automatically created
-        contact = [select AccountID from Contact where ID = :contact.ID];
-        System.assertNotEquals(null, contact.AccountID);
+        contact1 = [select AccountID from Contact where ID = :contact1.ID];
+        System.assertNotEquals(null, contact1.AccountID);
         
         //Give address info to account
         Account acc = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
-        from Account where ID = :contact.AccountID];
+        from Account where ID = :contact1.AccountID];
         acc.BillingStreet = '123 main st';
-        acc.BillingState = 'IL';
-        acc.BillingPostalCode = '54545';
-        acc.BillingCountry = 'USA';
+        acc.BillingState = 'Texas';
+        acc.BillingPostalCode = '78701';
+        acc.BillingCountry = 'United States';
 
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
@@ -128,15 +130,17 @@ public with sharing class ADDR_Contact_TEST {
         System.assertEquals(null, addrs[0].Parent_Contact__c);
         
          //Verify child contact has no address info
-        contact = [select MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry
-        from Contact where ID = :contact.ID];
-        System.assertEquals(null, contact.MailingStreet);
-        System.assertEquals(null, contact.MailingState);
-        System.assertEquals(null, contact.MailingPostalCode);
-        System.assertEquals(null, contact.MailingCountry);
+        contact1 = [select MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry
+        from Contact where ID = :contact1.ID];
+        System.assertEquals(null, contact1.MailingStreet);
+        System.assertEquals(null, contact1.MailingState);
+        System.assertEquals(null, contact1.MailingPostalCode);
+        if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled || Contact.MailingCountryCode.getDescribe().getDefaultValue() == null) {
+            System.assertEquals(null, contact1.MailingCountry);
+        }
         
         //Verify no address record was created as child of the child contact
-        addrs = [select ID from Address__c where Parent_Contact__c = :contact.ID];
+        addrs = [select ID from Address__c where Parent_Contact__c = :contact1.ID];
         System.assertEquals(0, addrs.size()); 
     }
   

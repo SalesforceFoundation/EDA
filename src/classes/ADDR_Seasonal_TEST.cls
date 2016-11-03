@@ -729,7 +729,7 @@ private with sharing class ADDR_Seasonal_TEST {
               
         //Create Account with Address info
         Account acc = new Account(Name = 'Testerson', RecordTypeID = UTIL_Describe.getAdminAccRecTypeID(), BillingStreet = '123 Default', 
-        BillingCity = 'Chicago', BillingState = 'IL');
+        BillingCity = 'Austin', BillingState = 'Texas', BillingCountry = 'United States');
         insert acc;
 
                 
@@ -739,7 +739,7 @@ private with sharing class ADDR_Seasonal_TEST {
         
         //Create seasonal Address with start and end year that include the current date
         Address__c seasonalAddress = new Address__c(Parent_Account__c = acc.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
-            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            MailingState__c = 'Washington', MailingCountry__c = 'United States', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
@@ -753,7 +753,7 @@ private with sharing class ADDR_Seasonal_TEST {
         acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :acc.ID];
         System.assertEquals('123 Seasonal', acc.BillingStreet);
         System.assertEquals('Seattle', acc.BillingCity);
-        System.assertEquals('WA', acc.BillingState);
+        System.assertEquals('Washington', acc.BillingState);
     }
     
     @isTest
@@ -768,8 +768,8 @@ private with sharing class ADDR_Seasonal_TEST {
         insert acc;
         
         //Create seasonal Address with start and end year.
-        Address__c seasonalAddress = new Address__c(Parent_Account__c = acc.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
-            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+        Address__c seasonalAddress = new Address__c(Parent_Account__c = acc.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Austin', 
+            MailingState__c = 'Texas', MailingCountry__c = 'United States', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().year(), 
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().year());
@@ -805,7 +805,7 @@ private with sharing class ADDR_Seasonal_TEST {
               
         //Create Account with Address info
         Account acc = new Account(Name = 'Testerson', RecordTypeID = UTIL_Describe.getAdminAccRecTypeID(), BillingStreet = '123 Default', 
-        BillingCity = 'Chicago', BillingState = 'IL');
+        BillingCity = 'Austin', BillingState = 'Texas', BillingCountry = 'United States');
         insert acc;
                 
         //Address flagged as default should have been created
@@ -814,7 +814,7 @@ private with sharing class ADDR_Seasonal_TEST {
         
         //Create seasonal Address with start and end year that include the current date
         Address__c seasonalAddress = new Address__c(Parent_Account__c = acc.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
-            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            MailingState__c = 'Washington', MailingCountry__c = 'United States', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
@@ -825,7 +825,7 @@ private with sharing class ADDR_Seasonal_TEST {
         //Modify seasonal Address info
         seasonalAddress.MailingStreet__c = 'New Seasonal Address';
         seasonalAddress.MailingCity__c = 'Portland';
-        seasonalAddress.MailingState__c = 'OR';
+        seasonalAddress.MailingState__c = 'Oregon';
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update seasonalAddress;
@@ -835,7 +835,7 @@ private with sharing class ADDR_Seasonal_TEST {
         acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :acc.ID];
         System.assertEquals('New Seasonal Address', acc.BillingStreet);
         System.assertEquals('Portland', acc.BillingCity);
-        System.assertEquals('OR', acc.BillingState);
+        System.assertEquals('Oregon', acc.BillingState);
     }
     
     @isTest
@@ -847,7 +847,7 @@ private with sharing class ADDR_Seasonal_TEST {
               
         //Create Contact with Address info
         Account acc = new Account(Name = 'Testerson', RecordTypeID = UTIL_Describe.getAdminAccRecTypeID(), BillingStreet = '123 Default', 
-        BillingCity = 'Chicago', BillingState = 'IL');
+        BillingCity = 'Austin', BillingState = 'Texas', BillingCountry = 'United States');
         insert acc;
                 
         //Address flagged as default should have been created
@@ -856,7 +856,7 @@ private with sharing class ADDR_Seasonal_TEST {
         
         //Create seasonal Address with start and end year that include the current date
         Address__c seasonalAddress = new Address__c(Parent_Account__c = acc.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
-            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            MailingState__c = 'Washington', MailingCountry__c = 'United States', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
@@ -874,8 +874,8 @@ private with sharing class ADDR_Seasonal_TEST {
         //Account should have reverted to default address        
         acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :acc.ID];
         System.assertEquals('123 Default', acc.BillingStreet);
-        System.assertEquals('Chicago', acc.BillingCity);
-        System.assertEquals('IL', acc.BillingState);
+        System.assertEquals('Austin', acc.BillingCity);
+        System.assertEquals('Texas', acc.BillingState);
     }
     
     @isTest
@@ -887,7 +887,7 @@ private with sharing class ADDR_Seasonal_TEST {
               
         //Create Contact with Address info
         Account acc = new Account(Name = 'Testerson', RecordTypeID = UTIL_Describe.getAdminAccRecTypeID(), BillingStreet = '123 Default', 
-        BillingCity = 'Chicago', BillingState = 'IL');
+        BillingCity = 'Austin', BillingState = 'Texas', BillingCountry = 'United States');
         insert acc;
                 
         //Address flagged as default should have been created
@@ -896,7 +896,7 @@ private with sharing class ADDR_Seasonal_TEST {
         
         //Create seasonal Address with start and end year that include the current date
         Address__c seasonalAddress = new Address__c(Parent_Account__c = acc.ID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
-            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
+            MailingState__c = 'Washington', MailingCountry__c = 'United States', Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()), Seasonal_Start_Year__c = system.today().addYears(-1).year(), 
             Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(system.today().addMonths(1).month()), 
             Seasonal_End_Year__c = system.today().addYears(1).year());
@@ -913,8 +913,8 @@ private with sharing class ADDR_Seasonal_TEST {
         //Account should have reverted to default address
         acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :acc.ID];
         System.assertEquals('123 Default', acc.BillingStreet);
-        System.assertEquals('Chicago', acc.BillingCity);
-        System.assertEquals('IL', acc.BillingState);
+        System.assertEquals('Austin', acc.BillingCity);
+        System.assertEquals('Texas', acc.BillingState);
     }
     
     @isTest
@@ -924,7 +924,7 @@ private with sharing class ADDR_Seasonal_TEST {
             Contacts_Addresses_Enabled__c = true, 
             Simple_Address_Change_Treated_as_Update__c = true));
             
-        Contact contact = new Contact(LastName = 'newSeasonalAddr', MailingStreet = '123 Main St', MailingCity = 'Chicago', MailingState = 'IL');
+        Contact contact = new Contact(LastName = 'newSeasonalAddr', MailingStreet = '123 Main St', MailingCity = 'Austin', MailingState = 'Texas', MailingCountry = 'United States');
         insert Contact;
         
         //Address record should have been created as child of Contact
@@ -933,15 +933,16 @@ private with sharing class ADDR_Seasonal_TEST {
         System.assertEquals(contact.ID, addrs[0].Parent_Contact__c);
         System.assertEquals(null, addrs[0].Parent_Account__c);
         System.assertEquals('123 Main St', addrs[0].MailingStreet__c);
-        System.assertEquals('Chicago', addrs[0].MailingCity__c);
-        System.assertEquals('IL', addrs[0].MailingState__c);
+        System.assertEquals('Austin', addrs[0].MailingCity__c);
+        System.assertEquals('Texas', addrs[0].MailingState__c);
                 
         //Create new seasonal address record on Contact that includes today
         Address__c seasonalAddr = new Address__c();
         seasonalAddr.Parent_Contact__c = contact.Id;
         seasonalAddr.MailingStreet__c = '50 Fremont St';
         seasonalAddr.MailingCity__c = 'SF';
-        seasonalAddr.MailingState__c = 'CA';
+        seasonalAddr.MailingState__c = 'California';
+        seasonalAddr.MailingCountry__c = 'United States';
         seasonalAddr.Seasonal_Start_Day__c = String.valueOf(System.today().day());
         seasonalAddr.Seasonal_Start_Month__c = String.valueOf(System.today().month());
         seasonalAddr.Seasonal_Start_Year__c = System.today().year()-1;
@@ -957,7 +958,7 @@ private with sharing class ADDR_Seasonal_TEST {
         contact = [select MailingStreet, MailingCity, MailingState, Current_Address__c from Contact where ID = :contact.ID];
         System.assertEquals('50 Fremont St', contact.MailingStreet);
         System.assertEquals('SF', contact.MailingCity);
-        System.assertEquals('CA', contact.MailingState);
+        System.assertEquals('California', contact.MailingState);
         System.assertEquals(seasonalAddr.ID, contact.Current_Address__c);
     }
     
