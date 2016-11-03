@@ -2000,7 +2000,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
               
         //Create Contact with Address info
-        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Chicago', MailingState = 'IL');
+        Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Default', MailingCity = 'Austin', MailingState = 'Texas', MailingCountry = 'United States');
         insert contact;
         
         //Parent Admin Account should have been created
@@ -2018,11 +2018,11 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         //Verify account and contact share same address
         System.assertEquals(true, isMatchAddressAccCon(acc, contact));
         System.assertEquals('123 Default', contact.MailingStreet);
-        System.assertEquals('Chicago', acc.BillingCity);
+        System.assertEquals('Austin', acc.BillingCity);
         
         //Create seasonal Address with start and end year that include the current date
         Address__c seasonalAddress = new Address__c(Parent_Account__c = contact.AccountID, MailingStreet__c = '123 Seasonal', MailingCity__c = 'Seattle', 
-            MailingState__c = 'WA', Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()), 
+            MailingState__c = 'Washington', MailingCountry__c = 'United States', Seasonal_Start_Day__c = String.valueOf(System.today().addDays(-1).day()), 
             Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month()), Seasonal_Start_Year__c = System.today().addYears(-1).year(), 
             Seasonal_End_Day__c = String.valueOf(System.today().addDays(1).day()), Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month()), 
             Seasonal_End_Year__c = System.today().addYears(1).year());
@@ -2036,12 +2036,12 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         contact = [select AccountID, MailingStreet, MailingCity, MailingState from Contact where ID = :contact.ID];
         System.assertEquals('123 Seasonal', contact.MailingStreet);
         System.assertEquals('Seattle', contact.MailingCity);
-        System.assertEquals('WA', contact.MailingState);
+        System.assertEquals('Washington', contact.MailingState);
         
         acc = [select BillingStreet, BillingCity, BillingState from Account where ID = :contact.AccountID];
         System.assertEquals('123 Seasonal', acc.BillingStreet);
         System.assertEquals('Seattle', acc.BillingCity);
-        System.assertEquals('WA', acc.BillingState);
+        System.assertEquals('Washington', acc.BillingState);
     }
     
     /*********************************************************************************************************
