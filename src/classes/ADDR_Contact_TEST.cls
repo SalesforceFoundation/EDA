@@ -90,8 +90,8 @@ public with sharing class ADDR_Contact_TEST {
         System.assertEquals(null, acc.BillingStreet);
         System.assertEquals(null, acc.BillingState);
         System.assertEquals(null, acc.BillingPostalCode);
-        if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled || Account.BillingCountryCode.getDescribe().getDefaultValue() == null) {
-            System.assertEquals(null, contact.MailingCountry);
+        if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled) {
+            System.assertEquals(null, acc.BillingCountry);   
         }
     }
     
@@ -135,8 +135,8 @@ public with sharing class ADDR_Contact_TEST {
         System.assertEquals(null, contact1.MailingStreet);
         System.assertEquals(null, contact1.MailingState);
         System.assertEquals(null, contact1.MailingPostalCode);
-        if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled || Contact.MailingCountryCode.getDescribe().getDefaultValue() == null) {
-            System.assertEquals(null, contact1.MailingCountry);
+        if (!ADDR_Addresses_UTIL.isStateCountryPickListsEnabled) {
+            System.assertEquals(null, contact1.MailingCountry);   
         }
         
         //Verify no address record was created as child of the child contact
