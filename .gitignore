@@ -15,3 +15,10 @@ unpackaged/zipped
 unpackaged_stage
 packaged
 .*.swp
+
+# macOS Specific Ignores
+# https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
+*.DS_Store
+.AppleDouble
+.LSOverride
+
