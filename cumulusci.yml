@@ -1,0 +1,6 @@
+project:
+    name: HEDA
+    package:
+        name: HEDA
+        namespace: hed
+        api_version: 35.0
