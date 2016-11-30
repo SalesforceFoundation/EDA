@@ -318,6 +318,7 @@
         <members>RelationshipsLookupDescription</members>
         <members>addrHhAdmAccountOnly</members>
         <members>addrNotEnabled</members>
+        <members>addrNotEnabledContact</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
@@ -354,11 +355,13 @@
         <name>CustomLabel</name>
     </types>
     <types>
-        <members>Account</members>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
-        <members>Contact</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
