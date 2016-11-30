@@ -134,7 +134,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrNotEnabled</shortDescription>
-        <value>Address management not enabled for this object type in settings.</value>
+        <value>The ability to add multiple addresses is disabled for this Account record type. To enable it, go to HEDA Settings, click on Accounts and Contacts, and select the appropriate checkbox next to Account Types with Multi-Addresses Enabled.</value>
+    </labels>
+    <labels>
+        <fullName>addrNotEnabledContact</fullName>
+        <categories>Address Management</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>addrNotEnabledContact</shortDescription>
+        <value>The ability to add multiple addresses is disabled for Contacts. To enable it, go to HEDA Settings, click on Accounts and Contacts, then select the Contact Multi-Addresses Enabled checkbox.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
