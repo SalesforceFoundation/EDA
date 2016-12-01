@@ -506,7 +506,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 
                 if (!isHousehold && !accAddrEnabledForRecType) {
                     // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.
-                    addr.addError(Label.addrNotEnabled);
+                    addr.addError(Label.addrNotEnabledAccount);
                 }
             } else if(addr.Parent_Contact__c != null && UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == false) {
                 // with TDTM, have to use addError, not throw an exception, or the error will just get logged but not passed to Salesforce to stop its DML.

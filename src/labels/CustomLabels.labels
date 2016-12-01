@@ -129,11 +129,11 @@
         <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
-        <fullName>addrNotEnabled</fullName>
+        <fullName>addrNotEnabledAccount</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>addrNotEnabled</shortDescription>
+        <shortDescription>addrNotEnabledAccount</shortDescription>
         <value>The ability to add multiple addresses is disabled for this Account record type. To enable it, go to HEDA Settings, click on Accounts and Contacts, and select the appropriate checkbox next to Account Types with Multi-Addresses Enabled.</value>
     </labels>
     <labels>
