@@ -317,7 +317,8 @@
         <members>RelationshipsAutoDescription</members>
         <members>RelationshipsLookupDescription</members>
         <members>addrHhAdmAccountOnly</members>
-        <members>addrNotEnabled</members>
+        <members>addrNotEnabledAccount</members>
+        <members>addrNotEnabledContact</members>
         <members>addrSeasonalOverlap</members>
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
