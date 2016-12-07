@@ -726,7 +726,7 @@ private with sharing class ADDR_Seasonal_TEST {
         schedule a seasonal address update to test address expiration
     verify:
         contact's && hh address matches new seasonal upon insert
-        address exires and default is reset
+        address expires and default is reset
     **********************************************************************************************************/
     @isTest
     public static void scheduleSeasonalAddrExpire() {
@@ -776,8 +776,6 @@ private with sharing class ADDR_Seasonal_TEST {
         // We want the processing to run on the new addresses from the trigger to set the addresses as current
         insert allNewAddrs;
 
-        System.debug(allNewAddrs);
-
         //verify account seasonal address is set
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState,
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
@@ -810,8 +808,6 @@ private with sharing class ADDR_Seasonal_TEST {
         ADDR_Addresses_TDTM.alreadyRunAfterUpdate = true;
         update allNewAddrs;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
-
-        System.debug(allNewAddrs);
 
         //Schedule the job just for test coverage purposes. But we still have to manually run the
         //batch, as batch jobs run from a scheduled job don't actually run after stopTest, as described
