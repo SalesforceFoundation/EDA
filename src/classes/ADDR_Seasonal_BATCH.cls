@@ -51,7 +51,7 @@ public with sharing class ADDR_Seasonal_BATCH implements Database.Batchable<SObj
             ' and Seasonal_Start_Day__c = \'' + String.valueOf(iDay) + '\')' +
             ' OR (Seasonal_End_Month__c = \'' + String.valueOf(iMonth) + '\'' +
             ' and Seasonal_End_Day__c = \'' + String.valueOf(iDay) + '\')';
-            
+
         return Database.getQueryLocator(strQuery);
     }
 

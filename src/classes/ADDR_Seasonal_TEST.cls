@@ -720,6 +720,137 @@ private with sharing class ADDR_Seasonal_TEST {
         }
     }
 
+
+    /*********************************************************************************************************
+    @description
+        schedule a seasonal address update to test address expiration
+    verify:
+        contact's && hh address matches new seasonal upon insert
+        address exires and default is reset
+    **********************************************************************************************************/
+    @isTest
+    public static void scheduleSeasonalAddrExpire() {
+        Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
+            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Contacts_Addresses_Enabled__c = true,
+            Simple_Address_Change_Treated_as_Update__c = true);
+        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+
+        // this creates a default Address for each Account
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Address__c> accAddrs = accsAddrs.addrs;
+
+        // this creates a default Address for each Contact
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
+        List<Address__c> conAddrs = contactsAddrs.addrs;
+
+        // create additional Account addresses, with seasonal information to expire today
+        List<Address__c> accAddrs2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        for (Integer i = 0; i < 2; i++) {
+            accAddrs2[i].Parent_Account__c = accsAddrs.accs[i].Id;
+            accAddrs2[i].Default_Address__c = false;
+            accAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
+            accAddrs2[i].Seasonal_Start_Day__c = '28';
+            accAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().month());
+            accAddrs2[i].Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day());
+            accAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
+            accAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
+        }
+
+        // create additional Contact addresses, with seasonal information to expire today
+        List<Address__c> conAddrs2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        for (Integer i = 0; i < 2; i++) {
+            conAddrs2[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
+            conAddrs2[i].Default_Address__c = false;
+            conAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
+            conAddrs2[i].Seasonal_Start_Day__c = '28';
+            conAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().month());
+            conAddrs2[i].Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day());
+            conAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
+            conAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
+        }  
+
+        List<Address__c> allNewAddrs = new List<Address__c>(accAddrs2);
+        allNewAddrs.addAll(conAddrs2);
+
+        // We want the processing to run on the new addresses from the trigger to set the addresses as current
+        insert allNewAddrs;
+
+        System.debug(allNewAddrs);
+
+        //verify account seasonal address is set
+        map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState,
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c
+        from Account]);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert(acc.BillingStreet.contains('New Seasonal Street'));
+            system.assert(acc.BillingCity.contains('New Seasonal City'));
+            system.assertNotEquals(null, acc.Current_Address__c);
+        }
+
+        // verify Contact address is set!
+        map<Id, Contact> mapContactIdContact = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState,
+        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c
+        from Contact]);
+
+        for (Contact con : mapContactIdContact.values()) {
+            system.assert(con.MailingStreet.contains('New Seasonal Street'));
+            system.assert(con.MailingCity.contains('New Seasonal City'));
+            system.assertEquals(false, con.is_Address_Override__c);
+            system.assertNotEquals(null, con.Current_Address__c);
+        }
+
+        // Set End date to today for scheduled job testing
+        for (Address__c seasAddr : allNewAddrs ) {
+            seasAddr.Seasonal_End_Day__c = String.valueOf(system.today().day());
+        }
+
+        // Turn off triggers because we need to update the addresses to test the batch.
+        ADDR_Addresses_TDTM.alreadyRunBeforeUpdate = true;
+        ADDR_Addresses_TDTM.alreadyRunAfterUpdate = true;
+        update allNewAddrs;
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+
+        System.debug(allNewAddrs);
+
+        //Schedule the job just for test coverage purposes. But we still have to manually run the
+        //batch, as batch jobs run from a scheduled job don't actually run after stopTest, as described
+        //at https://salesforce.stackexchange.com/questions/36806/does-test-stoptest-ensure-a-system-schedule-database-batchable-completes-in-a
+        STG_InstallScript.scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
+        // Get the information from the CronTrigger API object
+        CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE CronJobDetail.Name = 'Seasonal Addresses Update'];
+        // Verify the expressions are the same
+        System.assertEquals('0 15 0 * * ?', ct.CronExpression);
+        // Verify the job has not run
+        System.assertEquals(0, ct.TimesTriggered);
+        // Verify the next time the job will run
+        System.assert(String.valueOf(ct.NextFireTime).contains('00:15:00'));
+
+        // run the scheduled batch directly
+        ADDR_Seasonal_BATCH batch = new ADDR_Seasonal_BATCH();
+        Test.startTest();
+        Database.executeBatch(batch);
+        Test.stopTest();
+
+        //verify account default address is set
+        mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState,
+        BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c, Current_Address__r.Default_Address__c
+        from Account]);
+        for (Account acc : mapAccIdAcc.values()) {
+            system.assert( acc.Current_Address__r.Default_Address__c == true );
+        }
+
+        // verify Contact default address is set!
+        mapContactIdContact = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState,
+        MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c, Current_Address__r.Default_Address__c
+        from Contact]);
+        for (Contact con : mapContactIdContact.values()) {
+            system.assert( con.Current_Address__r.Default_Address__c == true );
+            system.assertEquals(false, con.is_Address_Override__c);
+        }
+
+    }
+
     @isTest
     public static void testSeasonalStartEndYearCurrent() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
