@@ -15,6 +15,7 @@ unpackaged/zipped
 unpackaged_stage
 packaged
 .*.swp
+*.pyc
 
 # macOS Specific Ignores
 # https://github.com/github/gitignore/blob/master/Global/macOS.gitignore

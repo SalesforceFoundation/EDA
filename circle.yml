@@ -1,0 +1,28 @@
+general:
+  branches:
+    only:
+      - /feature\/.*/
+machine:
+  python:
+    version: 2.7.12
+  environment:
+    CUMULUSCI_KEY: FIXME
+    CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
+dependencies:
+  override:
+    #- 'pip install --upgrade cumulusci'
+    - 'mkdir ~/.appcloud'
+    - 'echo $SFDX_CONFIG > ~/.appcloud/workspace-config.json'
+    - 'echo $SFDX_HUB_ORG > ~/.appcloud/hubOrg.json'
+    - 'heroku plugins:install salesforce-alm@preview'
+    - 'heroku force --help'
+    - 'git clone git@github.com:SalesforceFoundation/CumulusCI'
+    - 'cd CumulusCI; git checkout feature/2.0; pip install -r requirements_dev.txt'
+test:
+  override:
+    - 'if [[ $CIRCLE_BRANCH == feature/* ]]; then cumulusci2 flow run ci_feature_heda --org feature --delete-org; fi'
+  post:
+    - 'mkdir -p $CIRCLE_TEST_REPORTS/junit/'
+    - 'cp test_results.xml $CIRCLE_TEST_REPORTS/junit/'
+    #- 'if [[ $CIRCLE_BRANCH != "master" ]]; then cp test_results.json $CIRCLE_ARTIFACTS; fi'
+    #- 'if [[ $CIRCLE_BRANCH != "master" ]]; then cumulusci2 task run apextestsdb_upload; fi'
