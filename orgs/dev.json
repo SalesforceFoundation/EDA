@@ -1,0 +1,12 @@
+{
+  "Company": "HEDA - Dev Workspace",
+  "Country": "US",
+  "LastName": "Belvedere",
+  "Email": "mrbelvedere@salesforce.org",
+  "Edition": "Developer",
+  "OrgPreferences" : {
+    "S1DesktopEnabled" : true,
+    "Translation" : true,
+    "ChatterEnabled" : true
+  }
+}

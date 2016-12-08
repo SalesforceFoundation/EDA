@@ -1,0 +1,12 @@
+{
+  "Company": "HEDA - Feature Test Org",
+  "Country": "US",
+  "LastName": "Belvedere",
+  "Email": "mrbelvedere@salesforce.org",
+  "Edition": "Developer",
+  "OrgPreferences" : {
+    "S1DesktopEnabled" : true,
+    "Translation" : true,
+    "ChatterEnabled" : true
+  }
+}

@@ -4,3 +4,21 @@ project:
         name: HEDA
         namespace: hed
         api_version: 35.0
+    git:
+        prefix_release: rel/
+
+tasks:
+    update_admin_profile:
+        class_path: tasks.salesforce.UpdateAdminProfile
+
+flows:
+    ci_feature_heda:
+        description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
+        tasks:
+            - task: create_package
+            - task: deploy_pre
+            - task: update_dependencies
+            - task: deploy
+            - task: deploy_post
+            - task: update_admin_profile
+            - task: run_tests

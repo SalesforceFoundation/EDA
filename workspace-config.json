@@ -1,0 +1,6 @@
+{
+    "DefaultArtifact": "src",
+    "SfdcLoginUrl" : "https://gs0.salesforce.com",
+    "ApiVersion": "38.0",
+    "EnableTokenEncryption": false
+}
