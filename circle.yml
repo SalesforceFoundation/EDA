@@ -20,7 +20,7 @@ dependencies:
     - 'cd CumulusCI; git checkout feature/2.0; pip install -r requirements_dev.txt'
 test:
   override:
-    - 'if [[ $CIRCLE_BRANCH == feature/* ]]; then cumulusci2 flow run ci_feature_heda --org feature --delete-org; fi'
+    - 'cumulusci2 flow run ci_feature_heda --org feature --delete-org'
   post:
     - 'mkdir -p $CIRCLE_TEST_REPORTS/junit/'
     - 'cp test_results.xml $CIRCLE_TEST_REPORTS/junit/'
