@@ -10,14 +10,13 @@ machine:
     CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
 dependencies:
   override:
-    #- 'pip install --upgrade cumulusci'
+    - 'pip install --upgrade pip'
+    - 'pip install --upgrade cumulusci'
     - 'mkdir ~/.appcloud'
     - 'echo $SFDX_CONFIG > ~/.appcloud/workspace-config.json'
     - 'echo $SFDX_HUB_ORG > ~/.appcloud/hubOrg.json'
     - 'heroku plugins:install salesforce-alm@preview'
     - 'heroku force --help'
-    - 'git clone git@github.com:SalesforceFoundation/CumulusCI'
-    - 'cd CumulusCI; git checkout feature/2.0; pip install -r requirements_dev.txt'
 test:
   override:
     - 'cumulusci2 flow run ci_feature_heda --org feature --delete-org'
