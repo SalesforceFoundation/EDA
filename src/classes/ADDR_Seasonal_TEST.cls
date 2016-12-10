@@ -901,11 +901,11 @@ private with sharing class ADDR_Seasonal_TEST {
             MailingCity__c = 'Austin',
             MailingState__c = 'Texas',
             MailingCountry__c = 'United States',
-            Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()),
-            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()),
+            Seasonal_Start_Day__c = '1',
+            Seasonal_Start_Month__c = '1',
             Seasonal_Start_Year__c = system.today().year(),
-            Seasonal_End_Day__c = String.valueOf(system.today().day()),
-            Seasonal_End_Month__c = String.valueOf(system.today().month()),
+            Seasonal_End_Day__c = '31',
+            Seasonal_End_Month__c = '5',
             Seasonal_End_Year__c = system.today().year()
             );
 
@@ -920,12 +920,12 @@ private with sharing class ADDR_Seasonal_TEST {
             MailingStreet__c = '123 Seasonal',
             MailingCity__c = 'Seattle',
             MailingState__c = 'WA',
-            Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-1).day()),
-            Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month()),
-            Seasonal_Start_Year__c = system.today().addYears(1).year(),
-            Seasonal_End_Day__c = String.valueOf(system.today().day()),
-            Seasonal_End_Month__c = String.valueOf(system.today().month()), 
-            Seasonal_End_Year__c = system.today().addYears(1).year()
+            Seasonal_Start_Day__c = '1',
+            Seasonal_Start_Month__c = '6',
+            Seasonal_Start_Year__c = system.today().year(),
+            Seasonal_End_Day__c = '31',
+            Seasonal_End_Month__c = '7', 
+            Seasonal_End_Year__c = system.today().year()
             );
 
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
