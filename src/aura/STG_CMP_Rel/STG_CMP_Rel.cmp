@@ -163,19 +163,19 @@
 			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
 			          <div class="slds-form-element__control">
 			               <ui:inputText aura:id="newName" placeholder="Name" class="slds-m-right--medium new-rec-settg-name" 
-			                             label="Name" labelClass="slds-hide"/>
+			                             label="Name" labelClass="slds-hide"  blur="{!c.newReciprocalStgKeyup}"/>
 			          </div>
                       <div class="slds-form-element__control">
                           <ui:inputText aura:id="newFemale" placeholder="Female" class="slds-m-right--medium new-rec-settg-female" 
-                                        label="Female" labelClass="slds-hide"/>
+                                        label="Female" labelClass="slds-hide"  blur="{!c.newReciprocalStgKeyup}"/>
                       </div>
                       <div class="slds-form-element__control">
                           <ui:inputText aura:id="newMale" placeholder="Male" class="slds-m-right--medium new-rec-settg-male" 
-                                        label="Male" labelClass="slds-hide"/>
+                                        label="Male" labelClass="slds-hide"  blur="{!c.newReciprocalStgKeyup}"/>
                       </div>
                       <div class="slds-form-element__control">
                           <ui:inputText aura:id="newNeutral" placeholder="Neutral" class="slds-m-right--medium new-rec-settg-neutral" 
-                                        label="Neutral" labelClass="slds-hide"/>
+                                        label="Neutral" labelClass="slds-hide"  blur="{!c.newReciprocalStgKeyup}"/>
                       </div>
                       <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
                       <div class="slds-form-element__control">
@@ -186,8 +186,8 @@
 	                      </label>
                       </div>
 			        </div>
-			        <ui:button class="slds-button slds-button--brand slds-m-top--medium add-rec-setting" 
-			                   press="{!c.newReciprocalStg}">Add Setting</ui:button>
+			        <ui:button aura:id="newReciprocalStgBtn" class="slds-button slds-button--brand slds-m-top--medium add-rec-setting" 
+			                   press="{!c.newReciprocalStg}" disabled="true">Add Setting</ui:button>
 			    </fieldset>
 			  </div>
             </div>
@@ -263,23 +263,23 @@
                     <div class="slds-form--inline slds-form-element">
                       <div class="slds-form-element__control">
                         <ui:inputText aura:id="newObject" placeholder="Object" class="slds-m-right--medium new-autoc-settg-object" 
-                                      label="Object" labelClass="slds-hide"/>
+                                      label="Object" labelClass="slds-hide" keyup="{!c.newAutoCreateKeyup}"/>
                       </div>
                       <div class="slds-form-element__control">
                         <ui:inputText aura:id="newField" placeholder="Field" class="slds-m-right--medium new-autoc-settg-field" 
-                                      label="Field" labelClass="slds-hide"/>
+                                      label="Field" labelClass="slds-hide" blur="{!c.newAutoCreateKeyup}"/>
                       </div>
                       <div class="slds-form-element__control">
                         <ui:inputText aura:id="newRelType" placeholder="Relationship Type" class="slds-m-right--medium new-autoc-settg-type" 
-                                      label="Relationship Type" labelClass="slds-hide"/>
+                                      label="Relationship Type" labelClass="slds-hide" blur="{!c.newAutoCreateKeyup}"/>
                       </div>
                       <div class="slds-form-element__control">
                         <ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types" class="new-autoc-settg-campaign" 
-                                          label="Campaign Types" labelClass="slds-hide"/>
+                                          label="Campaign Types" labelClass="slds-hide" blur="{!c.newAutoCreateKeyup}"/>
                       </div>
                     </div>
-                    <ui:button class="slds-button slds-button--brand slds-m-top--medium new-autoc-sttg-bttn" 
-                               press="{!c.newAutoCreateStg}">Add Setting</ui:button>
+                    <ui:button aura:id="newAutoCreateStgBtn" class="slds-button slds-button--brand slds-m-top--medium new-autoc-sttg-bttn" 
+                               press="{!c.newAutoCreateStg}" disabled="true">Add Setting</ui:button>
                 </fieldset>
               </div>
             </div>

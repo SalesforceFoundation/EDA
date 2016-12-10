@@ -123,6 +123,9 @@
 										"Male__c" : male, "Neutral__c" : neutral, "Active__c" : active });
 				component.set("v.reciprocalSettings", reciprocalSettings);
 				this.clearNewStgBoxes(component, ["newName", "newFemale", "newMale", "newNeutral", "newActive"]);
+
+				// Re-Disable Add Setting button after succesful completion
+				component.find("newReciprocalStgBtn").set("v.disabled", true);
 			} else if(response.getState() === "ERROR") {
 				this.displayError(response);
 			}
@@ -146,6 +149,10 @@
 											"Relationship_Type__c" : relType, "Campaign_Types__c" : campaigns });
 				component.set("v.autoCreateSettings", autoCreateSettings);
 				this.clearNewStgBoxes(component, ["newObject", "newField", "newRelType", "newCpgTypes"]);
+				
+				// Re-Disable Add Setting button after succesful completion
+				component.find("newAutoCreateStgBtn").set("v.disabled", true);
+
 			} else if(response.getState() === "ERROR") {
 				this.displayError(response);
 			}

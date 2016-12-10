@@ -37,5 +37,19 @@
 			var position = event.getParam("position");
 			helper.deleteAfflMappingRow(component, id, position);
 		}
-	}
+	},
+
+	newAfflMappingBlur : function (component, event) {
+		var accRecType = component.find("accRecType").get("v.value") || "";
+		var primaryField = component.find("primaryField").get("v.value") || "";
+		var autoEnrollStatus = component.find("autoEnrollStatus").get("v.value") || "";
+		var autoEnrollRole = component.find("autoEnrollRole").get("v.value") || "";
+		var autoEnroll = component.find("autoEnroll").get("v.value") || ""; // boolean
+
+		if( accRecType.length > 0 || primaryField.length > 0 || autoEnrollStatus.length > 0 || autoEnrollRole.length > 0 ) { 
+			component.find("newAfflMappingBtn").set("v.disabled", false);
+		} else {
+			component.find("newAfflMappingBtn").set("v.disabled", true);	
+		}
+	},
 })
