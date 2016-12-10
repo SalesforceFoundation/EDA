@@ -23,7 +23,7 @@
 		helper.saveRelSettings(component);
 	},
 
-	newReciprocalStgKeyup : function (component, event, helper) {
+	newReciprocalStgBlur : function (component, event, helper) {
 		var name = component.find("newName").get("v.value")|| "";
 		var female = component.find("newFemale").get("v.value")|| "";
 		var male = component.find("newMale").get("v.value")|| "";
@@ -40,7 +40,7 @@
 		helper.newReciprocalStg(component);
 	},
 
-	newAutoCreateKeyup : function (component, event) {
+	newAutoCreateBlur : function (component, event) {
 		var object = component.find("newObject").get("v.value") || "";
 		var field = component.find("newField").get("v.value") || "";
 		var relType = component.find("newRelType").get("v.value") || "";
