@@ -157,41 +157,55 @@
 			</div>
 			<div class="newrecsetting">
 			  <div aria-labelledby="newrecsettingform">
-			    <fieldset class="slds-box slds-theme--default slds-container--medium">
+			    <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
 			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting</legend>
-			        <div class="slds-form--inline slds-form-element">
-			          <label class="slds-form-element__label" for="Name">&nbsp;</label>
-			          <div class="slds-form-element__control">
-			               <ui:inputText aura:id="newName" placeholder="Name" class="slds-m-right--medium new-rec-settg-name" 
-			                             label="Name" labelClass="slds-hide"  blur="{!c.newReciprocalStgBlur}"/>
-			          </div>
-                      <div class="slds-form-element__control">
-                          <ui:inputText aura:id="newFemale" placeholder="Female" class="slds-m-right--medium new-rec-settg-female" 
-                                        label="Female" labelClass="slds-hide"  blur="{!c.newReciprocalStgBlur}"/>
-                      </div>
-                      <div class="slds-form-element__control">
-                          <ui:inputText aura:id="newMale" placeholder="Male" class="slds-m-right--medium new-rec-settg-male" 
-                                        label="Male" labelClass="slds-hide"  blur="{!c.newReciprocalStgBlur}"/>
-                      </div>
-                      <div class="slds-form-element__control">
-                          <ui:inputText aura:id="newNeutral" placeholder="Neutral" class="slds-m-right--medium new-rec-settg-neutral" 
-                                        label="Neutral" labelClass="slds-hide"  blur="{!c.newReciprocalStgBlur}"/>
-                      </div>
-                      <label class="slds-form-element__label" for="Active">&nbsp;Active:</label>
-                      <div class="slds-form-element__control">
-                          <label class="slds-checkbox">
-	                          <ui:inputCheckbox aura:id="newActive" />
-	                          <span class="slds-checkbox--faux"></span>
-	                          <span class="slds-form-element__label"></span>
-	                      </label>
-                      </div>
-			        </div>
+	                <div class="slds-form-element__group">
+	                <div class="slds-form-element__row">
+
+						<div class="slds-form-element slds-size--1-of-6">
+				          <div class="slds-form-element__control">
+				               <ui:inputText aura:id="newName" class="slds-m-right--medium new-rec-settg-name slds-input" label="Name" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+				          </div>
+						</div>
+
+						<div class="slds-form-element slds-size--1-of-6">
+	                      <div class="slds-form-element__control">
+	                          <ui:inputText aura:id="newFemale" class="slds-m-right--medium new-rec-settg-female slds-input" label="Female" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+	                      </div>
+						</div>
+
+						<div class="slds-form-element slds-size--1-of-6">
+	                      <div class="slds-form-element__control">
+	                          <ui:inputText aura:id="newMale" class="slds-m-right--medium new-rec-settg-male slds-input" label="Male" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+	                      </div>
+						</div>
+
+						<div class="slds-form-element slds-size--1-of-6">
+	                      <div class="slds-form-element__control">
+	                          <ui:inputText aura:id="newNeutral" class="slds-m-right--medium new-rec-settg-neutral slds-input" label="Neutral" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+	                      </div>
+						</div>
+
+						<div class="slds-form-element slds-size--1-of-6">
+	                      <label class="slds-form-element__label" for="Active">&nbsp;Active:</label><br />
+	                      <div class="slds-form-element__control">
+	                          <label class="slds-checkbox">
+		                          <ui:inputCheckbox aura:id="newActive" />
+		                          <span class="slds-checkbox--faux"></span>
+		                          <span class="slds-form-element__label"></span>
+		                      </label>
+	                      </div>
+				        </div>
+
+				    </div>
+					</div>
 			        <ui:button aura:id="newReciprocalStgBtn" class="slds-button slds-button--brand slds-m-top--medium add-rec-setting" 
 			                   press="{!c.newReciprocalStg}" disabled="true">Add Setting</ui:button>
 			    </fieldset>
 			  </div>
             </div>
 		</div>
+
 		<div aura:id="autocTabContent" class="slds-tabs__content" role="tabpanel">
 		    <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                 <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
@@ -258,25 +272,33 @@
             </div>
             <div class="newautocsetting">
               <div aria-labelledby="newautocsettingform">
-                <fieldset class="slds-box slds-theme--default slds-container--medium">
+                <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
                   <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
-                    <div class="slds-form--inline slds-form-element">
-                      <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newObject" placeholder="Object" class="slds-m-right--medium new-autoc-settg-object" 
-                                      label="Object" labelClass="slds-hide" blur="{!c.newAutoCreateBlur}"/>
-                      </div>
-                      <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newField" placeholder="Field" class="slds-m-right--medium new-autoc-settg-field" 
-                                      label="Field" labelClass="slds-hide" blur="{!c.newAutoCreateBlur}"/>
-                      </div>
-                      <div class="slds-form-element__control">
-                        <ui:inputText aura:id="newRelType" placeholder="Relationship Type" class="slds-m-right--medium new-autoc-settg-type" 
-                                      label="Relationship Type" labelClass="slds-hide" blur="{!c.newAutoCreateBlur}"/>
-                      </div>
-                      <div class="slds-form-element__control">
-                        <ui:inputTextArea aura:id="newCpgTypes" placeholder="Campaign Types" class="new-autoc-settg-campaign" 
-                                          label="Campaign Types" labelClass="slds-hide" blur="{!c.newAutoCreateBlur}"/>
-                      </div>
+
+                    <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element slds-size--1-of-6">
+                          <div class="slds-form-element__control">
+                            <ui:inputText aura:id="newObject" class="slds-input slds-m-right--medium new-autoc-settg-object" label="Object" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                          </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-6">
+                          <div class="slds-form-element__control">
+                            <ui:inputText aura:id="newField" class="slds-input slds-m-right--medium new-autoc-settg-field" label="Field" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                          </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-6">
+                          <div class="slds-form-element__control">
+                            <ui:inputText aura:id="newRelType" class="slds-input slds-m-right--medium new-autoc-settg-type" label="Relationship Type" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                          </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-6">
+                          <div class="slds-form-element__control">
+                            <ui:inputTextArea aura:id="newCpgTypes" class="slds-input new-autoc-settg-campaign" label="Campaign Types" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                          </div>
+                        </div>
+
+                    </div>
                     </div>
                     <ui:button aura:id="newAutoCreateStgBtn" class="slds-button slds-button--brand slds-m-top--medium new-autoc-sttg-bttn" 
                                press="{!c.newAutoCreateStg}" disabled="true">Add Setting</ui:button>
