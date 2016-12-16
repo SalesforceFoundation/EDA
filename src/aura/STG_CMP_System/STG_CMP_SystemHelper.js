@@ -20,6 +20,15 @@
 			$A.util.removeClass(errNoticeUserId, "slds-show");
 			$A.util.addClass(errNoticeUserId, "slds-hide");
 
+		} else {
+			// User selected "All Sys Admins"
+			component.set("{!v.hierarchySettings.Error_Notifications_To__c}","All Sys Admins");
+
+			// Hide other fields
+			$A.util.addClass(errNoticeChatter, "slds-hide");
+			$A.util.removeClass(errNoticeChatter, "slds-show");
+			$A.util.removeClass(errNoticeUserId, "slds-show");
+			$A.util.addClass(errNoticeUserId, "slds-hide");
 		}
 	}
 

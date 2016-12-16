@@ -18,5 +18,12 @@
 	},
 	errorToSelect : function(component, event, helper) {
 		helper.errorToSelect(component, event, helper);
-	}
+	},
+    handleAutocomplete: function(component, event) {
+        var selOpt = event.getParam('value');
+        console.log(selOpt.label);
+        console.log(selOpt.value);
+
+        component.set("{!v.hierarchySettings.Error_Notifications_To__c}",selOpt.value);
+    }
 })
