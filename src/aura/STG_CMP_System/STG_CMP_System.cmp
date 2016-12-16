@@ -10,11 +10,6 @@
     <aura:attribute name="errorNotificationUser" type="User" default="{ 'sobjectType': 'User' }"/>
     <aura:attribute name="errorNotificationChatGroup" type="Group" default="{ 'sobjectType': 'Group' }"/>
 
-<!--     <force:outputField aura:id="userLookup" value="{!v.errorNotificationUser}" class="slds-hide"></force:outputField>
-    <force:outputField aura:id="chatterLookup" value="{!v.errorNotificationChatGroup}" class="slds-hide"></force:outputField> -->
-
-<force:inputField aura:id="errNoticeUserId" value="{!v.errorNotificationUser.Id}" class=""/>
-
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
@@ -135,11 +130,12 @@
                     <option value="User">User</option>
                 </lightning:select>   
 
-                <force:inputField aura:id="errNoticeUserId" value="{!v.errorNotificationUser.Id}" class=""/>
-                <force:inputField aura:id="errNoticeChatter" value="{!v.errorNotificationChatGroup.Id}" class=""/>
-
-                <!-- <force:inputField aura:id="errNoticeUserId" value="{!v.errorNotificationUser.Id}" class="slds-hide"/>
-                <force:inputField aura:id="errNoticeChatter" value="{!v.errorNotificationChatGroup.Id}" class="slds-hide"/> -->
+                <div class="slds-hide slds-form-element error_notify_element" aura:id="errNoticeUserId" >
+                    <ui:inputText value="{!v.hierarchySettings.Error_Notifications_To__c}" class="slds-input" label="User Id"/>
+                </div>
+                <div class="slds-hide slds-form-element error_notify_element" aura:id="errNoticeChatter">
+                    <ui:inputText value="{!v.hierarchySettings.Error_Notifications_To__c}" class="slds-input" label="Chatter Group Id"/>
+                </div>
 
             </aura:set>
             </aura:if>

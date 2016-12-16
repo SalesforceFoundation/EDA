@@ -1,19 +1,26 @@
 ({
-	errorToSelect : function(component, event, helper) {
-		// console.log(event);
-		// console.log( event.getParam("value") );
-		var notifyLookup;
-		var notifyType = component.get("v.errorNotificationType");
+	errorToSelect : function(component) {
+		var errNoticeUserId = component.find("errNoticeUserId");
+		var errNoticeChatter = component.find("errNoticeChatter");
+		var	notifyType = component.get("v.errorNotificationType");
 
 		if (notifyType=="User") {
-			notifyLookup = component.find("errNoticeUserId");
+
+			$A.util.removeClass(errNoticeUserId, "slds-hide");
+			$A.util.addClass(errNoticeUserId, "slds-show");
+			// Hide other field if shown
+			$A.util.removeClass(errNoticeChatter, "slds-show");
+			$A.util.addClass(errNoticeChatter, "slds-hide");
+
 		} else if (notifyType=="Chatter Group") {
-			notifyLookup = component.find("errNoticeChatter");
+			
+			$A.util.removeClass(errNoticeChatter, "slds-hide");
+			$A.util.addClass(errNoticeChatter, "slds-show");
+			// Hide other field if shown
+			$A.util.removeClass(errNoticeUserId, "slds-show");
+			$A.util.addClass(errNoticeUserId, "slds-hide");
+
 		}
-
-		console.log( notifyType );
-
-		$A.util.removeClass(notifyLookup, "slds-hide");
-		$A.util.addClass(notifyLookup, "slds-show");
 	}
+
 })
