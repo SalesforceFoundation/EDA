@@ -115,6 +115,11 @@
         <members>STG_EVT_Cancel</members>
         <members>STG_EVT_Edit</members>
         <members>STG_EVT_Save</members>
+        <members>autocomplete</members>
+        <members>autocompleteEvent</members>
+        <members>autocompleteOption</members>
+        <members>autocompleteSelectListOption</members>
+        <members>dataProviderInterface</members>
         <members>svgIcon</members>
         <members>svgIcon_EVT_Press</members>
         <name>AuraDefinitionBundle</name>
