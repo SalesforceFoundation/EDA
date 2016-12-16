@@ -1,0 +1,7 @@
+<aura:interface description="A component that provides a list of items given a keyword">
+    <aura:method name="provide" access="public">
+        <aura:attribute name="keyword" type="String" required="true"/>
+        <aura:attribute name="idDataCallback" type="Integer" />
+        <aura:attribute name="callback" type="Object"/>
+    </aura:method>
+</aura:interface>
