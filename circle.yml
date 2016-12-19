@@ -19,9 +19,9 @@ dependencies:
     - 'heroku force --help'
 test:
   override:
-    - 'cumulusci2 flow run ci_feature_heda --org feature --delete-org'
+    - 'cumulusci2 flow run ci_feature --org feature --delete-org'
   post:
     - 'mkdir -p $CIRCLE_TEST_REPORTS/junit/'
     - 'cp test_results.xml $CIRCLE_TEST_REPORTS/junit/'
-    #- 'if [[ $CIRCLE_BRANCH != "master" ]]; then cp test_results.json $CIRCLE_ARTIFACTS; fi'
-    #- 'if [[ $CIRCLE_BRANCH != "master" ]]; then cumulusci2 task run apextestsdb_upload; fi'
+    - 'cp test_results.json $CIRCLE_ARTIFACTS'
+    - 'cumulusci2 task run apextestsdb_upload -o environment_name "scratch - dev" -o execution_name $CIRCLE_BUILD_NUM -o execution_url $CIRCLE_BUILD_URL -o results_file_url "$CIRCLE_BUILD_URL/artifacts/$CIRCLE_NODE_INDEX/$CIRCLE_ARTIFACTS/test_results.json"'
