@@ -117,7 +117,6 @@
         <members>STG_EVT_Save</members>
         <members>autocomplete</members>
         <members>autocompleteDataProvider</members>
-        <members>autocompleteEvent</members>
         <members>autocompleteOption</members>
         <members>autocompleteSelectListOption</members>
         <members>dataProviderInterface</members>
@@ -422,12 +421,6 @@
         <members>Trigger_Handler__c.All</members>
         <members>Trigger_Handler__c.All_Main_Fields</members>
         <name>ListView</name>
-    </types>
-    <types>
-        <members>Course_Enrollment__c.Default</members>
-        <members>Course_Enrollment__c.Faculty</members>
-        <members>Course_Enrollment__c.Student</members>
-        <name>RecordType</name>
     </types>
     <types>
         <members>SLDS</members>
