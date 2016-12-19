@@ -12,13 +12,14 @@ tasks:
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
-    ci_feature_heda:
+    ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
         tasks:
-            - task: create_package
-            - task: deploy_pre
-            - task: update_dependencies
-            - task: deploy
-            - task: deploy_post
-            - task: update_admin_profile
-            - task: run_tests
+            2:
+              task: deploy_pre
+            3:
+              task: update_dependencies
+            5:
+              task: None
+            6.1:
+              task: update_admin_profile
