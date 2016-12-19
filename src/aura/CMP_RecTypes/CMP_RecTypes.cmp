@@ -17,20 +17,19 @@
     <aura:iteration items="{!v.recTypesSelected}" var="recType" indexVar="index">
         <div class="{!join(' ', 'slds-form-element', v.class)}">
             <div class="slds-form-element__control">
-                <label class="slds-checkbox">
+                <label class="slds-checkbox slds-checkbox__label" style="display: inline-block">
                 <aura:if isTrue="{!v.isView}">
-                    <span style="margin-right: 8px">
-                        <ui:outputCheckbox value="{!recType.selected}"
-                          class="{!join(' ', 'slds-checkbox', v.class + '-rectypes-outputcheck-' + index)}" />
+                    <span style="margin-right: 8px; display: inline-block">
+                        <ui:outputCheckbox value="{!recType.selected}" class="{!join(' ', 'slds-checkbox', v.class + '-rectypes-outputcheck-' + index)}" />
                     </span>
                 <aura:set attribute="else">
-                    <ui:inputCheckbox value="{!recType.selected}"
-                      class="{!join(' ', 'slds-checkbox', v.class + '-rectypes-inputcheck-' + index)}"
+                    <ui:inputCheckbox value="{!recType.selected}" class="{!join(' ', 'slds-checkbox', v.class + '-rectypes-inputcheck-' + index)}"
                       aura:id="checkboxIds" text="{!recType.id}"  />
                     <span class="slds-checkbox--faux"></span>
                 </aura:set>
                 </aura:if>
-                    <span class="slds-form-element__label" for="recTypeName">{!recType.name}</span>
+                    
+                <span class="slds-form-element__label" for="recTypeName" style="display: inline-block">{!recType.name}</span>
               </label>
           </div>
         </div>
