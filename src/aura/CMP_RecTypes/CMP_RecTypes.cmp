@@ -17,9 +17,9 @@
     <aura:iteration items="{!v.recTypesSelected}" var="recType" indexVar="index">
         <div class="{!join(' ', 'slds-form-element', v.class)}">
             <div class="slds-form-element__control">
-                <label class="slds-checkbox slds-checkbox__label" style="display: inline-block">
+                <label class="slds-checkbox slds-checkbox__label">
                 <aura:if isTrue="{!v.isView}">
-                    <span style="margin-right: 8px; display: inline-block">
+                    <span>
                         <ui:outputCheckbox value="{!recType.selected}" class="{!join(' ', 'slds-checkbox', v.class + '-rectypes-outputcheck-' + index)}" />
                     </span>
                 <aura:set attribute="else">
@@ -29,7 +29,7 @@
                 </aura:set>
                 </aura:if>
                     
-                <span class="slds-form-element__label" for="recTypeName" style="display: inline-block">{!recType.name}</span>
+                <span class="slds-form-element__label" for="recTypeName">{!recType.name}</span>
               </label>
           </div>
         </div>
