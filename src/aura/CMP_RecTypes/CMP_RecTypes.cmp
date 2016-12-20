@@ -28,7 +28,6 @@
                     <span class="slds-checkbox--faux"></span>
                 </aura:set>
                 </aura:if>
-                    
                 <span class="slds-form-element__label" for="recTypeName">{!recType.name}</span>
               </label>
           </div>
