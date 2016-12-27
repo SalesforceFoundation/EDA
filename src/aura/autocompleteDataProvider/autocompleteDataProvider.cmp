@@ -1,3 +1,3 @@
-<aura:component controller="UTIL_CustomSettingsFacade" implements="c:dataProviderInterface">
+<aura:component controller="CMP_SettingsDataProvider" implements="c:dataProviderInterface">
 	<aura:attribute name="sObjectType" type="String" access="public" required="true"/>
 </aura:component>

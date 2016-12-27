@@ -6,7 +6,7 @@
     provide: function (component, event, helper) {
         var args = event.getParam('arguments');
         if (args && args.keyword && args.callback) {
-            var queryAction = component.get('c.getSuggestions');
+            var queryAction = component.get('c.getAutocompleteResults');
             var sObjectType = component.get('v.sObjectType');
             queryAction.setParams({
                 term: args.keyword,
