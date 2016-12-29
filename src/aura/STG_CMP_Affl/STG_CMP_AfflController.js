@@ -37,5 +37,17 @@
 			var position = event.getParam("position");
 			helper.deleteAfflMappingRow(component, id, position);
 		}
-	}
+	},
+
+	newAfflMappingKeyup : function (component, event) {
+		// accRecType && primaryField are  required fields
+		var accRecType = component.find("accRecType").get("v.value") || "";
+		var primaryField = component.find("primaryField").get("v.value") || "";
+
+		if( accRecType.length > 0 && primaryField.length > 0  ) { 
+			component.find("newAfflMappingBtn").set("v.disabled", false);
+		} else {
+			component.find("newAfflMappingBtn").set("v.disabled", true);	
+		}
+	},
 })

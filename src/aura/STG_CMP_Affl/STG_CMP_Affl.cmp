@@ -157,36 +157,52 @@
              </div>
              <div class="newafflmapping">
                 <div aria-labelledby="newafflmappingform">
-                  <fieldset class="slds-box slds-theme--default slds-container--medium">
-                    <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
-                      <div class="slds-form--inline slds-form-element">
-                        <div class="slds-form-element__control">
-                            <ui:inputText aura:id="accRecType" placeholder="Account Record Type" class="slds-m-right--medium acc-rec-type-new" 
-                                          label="Account Record Type" labelClass="slds-hide"/>
+                    <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
+                        <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
+
+                        <div class="slds-form-element__group">
+                        <div class="slds-form-element__row">
+
+                            <div class="slds-form-element slds-size--1-of-6">
+                                <div class="slds-form-element__control">
+                                    <ui:inputText aura:id="accRecType" class="slds-m-right--medium acc-rec-type-new slds-input" label="Account Record Type" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-6">
+                                <div class="slds-form-element__control">
+                                    <ui:inputText aura:id="primaryField" class="slds-m-right--medium acc-rec-type-new slds-input" label="Primary Affl Field" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-6">
+                                <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment</label><br />
+                                <div class="slds-form-element__control">
+                                     <label class="slds-checkbox">
+                                         <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium auto-enroll-checkbox"  />
+                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-form-element__label"></span>
+                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-6">
+                                <div class="slds-form-element__control">
+                                     <ui:inputText aura:id="autoEnrollStatus" class="slds-m-right--medium auto-enroll-status-new slds-input" label="Status" labelClass="slds-form-element__label" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-6">
+                                <div class="slds-form-element__control">
+                                    <ui:inputText aura:id="autoEnrollRole" label="Role" labelClass="slds-form-element__label" class="auto-enroll-role-new slds-input" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="slds-form-element__control">
-                            <ui:inputText aura:id="primaryField" placeholder="Primary Affl Field" class="slds-m-right--medium acc-rec-type-new" 
-                                          label="Primary Affl Field" labelClass="slds-hide"/>
                         </div>
-                        <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment:</label>
-                        <div class="slds-form-element__control">
-                             <label class="slds-checkbox">
-	                             <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium auto-enroll-checkbox" />
-	                             <span class="slds-checkbox--faux"></span>
-	                             <span class="slds-form-element__label"></span>
-	                         </label>
-                        </div>
-                        <div class="slds-form-element__control">
-                             <ui:inputText aura:id="autoEnrollStatus" placeholder="Status" class="slds-m-right--medium auto-enroll-status-new" 
-                                           label="Status" labelClass="slds-hide"/>
-                        </div>
-                        <div class="slds-form-element__control">
-                            <ui:inputText aura:id="autoEnrollRole" placeholder="Role" label="Role" labelClass="slds-hide" class="auto-enroll-role-new" />
-                        </div>
-                      </div>
-                      <ui:button class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" 
-                                 press="{!c.newAfflMapping}">Add Mapping</ui:button>
-                  </fieldset>
+
+                        <ui:button aura:id="newAfflMappingBtn" class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" 
+                                     press="{!c.newAfflMapping}" disabled="true">Add Mapping</ui:button>
+                    </fieldset>
                 </div>
               </div>
         </div>
