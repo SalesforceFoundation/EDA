@@ -1,0 +1,8 @@
+.THIS .slds-form-element__control .slds-checkbox.slds-checkbox__label, .THIS .slds-form-element__label {
+    display: inline-block;
+}
+
+.THIS .slds-form-element__control .slds-checkbox.slds-checkbox__label > span {
+    display: inline-block;
+    margin-right: 8px;
+}

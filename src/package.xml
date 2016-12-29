@@ -418,10 +418,6 @@
         <name>ListView</name>
     </types>
     <types>
-        <members>SLDS</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>
         <name>ValidationRule</name>
     </types>

@@ -91,6 +91,9 @@
 								"Auto_Program_Enrollment_Role__c" : autoEnrollRole });
 				component.set("v.afflMappings", afflMappings);
 				this.clearNewStgBoxes(component, ["accRecType", "primaryField", "autoEnroll", "autoEnrollStatus", "autoEnrollRole"]);
+				
+				// Re-Disable Add Setting button after succesful completion
+				component.find("newAfflMappingBtn").set("v.disabled", true);
 			} else if(response.getState() === "ERROR") {
 				this.displayError(response);
 			}
