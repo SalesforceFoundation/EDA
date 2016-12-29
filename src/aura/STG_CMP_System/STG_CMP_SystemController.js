@@ -1,9 +1,9 @@
 ({
-	toggleIsView : function(component, event) {
+	toggleIsView : function(component, event, helper) {
 		component.set("v.isView", event.getParam("isView"));
 
 		// setup the select for the error notificatio UI
-		// if( component.get("v.isView") ) {
+		if( !event.getParam("isView") ) {
 			var notifyTo = component.get("v.hierarchySettings.Error_Notifications_To__c"),
 				type = "All Sys Admins";
 			
@@ -14,16 +14,17 @@
 			}
 			
 			component.set("v.errorNotificationType", type);
-		// }
+
+			// process dropdown to display select if necessary
+			helper.errorToSelect(component);
+
+		}
 	},
 	errorToSelect : function(component, event, helper) {
-		helper.errorToSelect(component, event, helper);
+		helper.errorToSelect(component);
 	},
     handleAutocomplete: function(component, event) {
         var selOpt = event.getParam('value');
-        console.log(selOpt.label);
-        console.log(selOpt.value);
-
         component.set("{!v.hierarchySettings.Error_Notifications_To__c}",selOpt.value);
     }
 })
