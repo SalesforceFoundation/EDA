@@ -5,10 +5,13 @@
 
     <div class="slds">
         
-        <div id="headSettings"></div>
+<!--         <div id="headSettings"></div>
         <br/>
         
         <div id="tabSettings"></div>
+        <br/> -->
+
+        <div id="stgContainer"></div>
         <br/>
         
     </div>
@@ -37,8 +40,10 @@
         });
         
         function loadComponents(namespacePrefix) {
-            $Lightning.createComponent(namespace + ":STG_CMP_Header", {namespacePrefix : namespacePrefix}, "headSettings");
-            $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {namespacePrefix : namespacePrefix}, "tabSettings");
+            // $Lightning.createComponent(namespace + ":STG_CMP_Header", {namespacePrefix : namespacePrefix}, "headSettings");
+            // $Lightning.createComponent(namespace + ":STG_CMP_Tabs", {namespacePrefix : namespacePrefix}, "tabSettings");
+
+            $Lightning.createComponent(namespace + ":STG_CMP_Container", {namespacePrefix : namespacePrefix} ,"stgContainer");
         }
     </script>
 </apex:page>
