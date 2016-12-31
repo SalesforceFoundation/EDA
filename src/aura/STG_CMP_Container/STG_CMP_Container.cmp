@@ -4,6 +4,7 @@
 	<c:STG_CMP_Header namespacePrefix="{!v.namespacePrefix}" />
 	<c:STG_CMP_Tabs namespacePrefix="{!v.namespacePrefix}" />
 
+	<!-- Error Toast -->
 	<div class="slds-notify_container slds-hide" aura:id="notificationToast">
 		<div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
 			<span class="slds-assistive-text">Error</span>
