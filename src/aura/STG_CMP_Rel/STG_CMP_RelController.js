@@ -32,7 +32,7 @@
 		if( name.length > 0 && female.length > 0 && male.length > 0 && neutral.length > 0 ) { 
 			component.find("newReciprocalStgBtn").set("v.disabled", false);
 		} else {
-			component.find("newReciprocalStgBtn").set("v.disabled", true);	
+			component.find("newReciprocalStgBtn").set("v.disabled", true);
 		}
 	},
 

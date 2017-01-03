@@ -1,0 +1,23 @@
+<aura:component extends="c:STG_CMP_Base">
+    <aura:handler event="aura:systemError" action="{!c.displayError}"/>
+
+	<c:STG_CMP_Header namespacePrefix="{!v.namespacePrefix}" />
+	<c:STG_CMP_Tabs namespacePrefix="{!v.namespacePrefix}" />
+
+	<!-- Error Toast -->
+	<div class="slds-notify_container slds-hide" aura:id="notificationToast">
+		<div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
+			<span class="slds-assistive-text">Error</span>
+			<lightning:buttonIcon iconName="utility:close" variant="bare" onclick="{! c.hideToast }" alternativeText="Close" class="slds-icon slds-notify__close slds-button--icon-inverse" size="large" />
+			<div class="slds-notify__content slds-grid slds-align-middle">
+
+				<lightning:icon iconName="utility:warning" class="slds-icon slds-m-right--small slds-col slds-no-flex" size="medium" />
+
+				<div class="slds-col slds-align-middle">
+					<!-- By Using the ID "auraErrorMessage" the system will automatically append the error message to the element-->
+					<h2 id="auraErrorMessage" class="slds-text-heading--xsmall"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</aura:component>
