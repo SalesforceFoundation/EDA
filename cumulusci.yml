@@ -4,6 +4,7 @@ project:
         name: HEDA
         namespace: hed
         api_version: 35.0
+        install_class: STG_InstallScript
     git:
         prefix_release: rel/
 
