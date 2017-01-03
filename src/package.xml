@@ -107,6 +107,7 @@
         <members>STG_CMP_Addr</members>
         <members>STG_CMP_Affl</members>
         <members>STG_CMP_Base</members>
+        <members>STG_CMP_Container</members>
         <members>STG_CMP_CourseConnections</members>
         <members>STG_CMP_Header</members>
         <members>STG_CMP_Rel</members>
