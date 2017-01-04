@@ -9,10 +9,6 @@
     
     <aura:attribute name="errorNotificationType" type="String"  />
 
-    <aura:attribute name="errorNotificationUser" type="User" default="{ 'sobjectType': 'User' }"/>
-    <aura:attribute name="errorNotificationChatGroup" type="Group" default="{ 'sobjectType': 'Group' }"/>
-
-
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
