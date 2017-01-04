@@ -25,6 +25,6 @@
 	},
     handleAutocomplete: function(component, event) {
         var selOpt = event.getParam('value');
-        component.set("{!v.hierarchySettings.Error_Notifications_To__c}",selOpt.value);
+        component.set("v.hierarchySettings.Error_Notifications_To__c", selOpt.value);
     }
 })

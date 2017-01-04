@@ -22,7 +22,7 @@
 
 		} else {
 			// User selected "All Sys Admins"
-			component.set("{!v.hierarchySettings.Error_Notifications_To__c}","All Sys Admins");
+			component.set("v.hierarchySettings.Error_Notifications_To__c","All Sys Admins");
 
 			// Hide other fields
 			$A.util.addClass(errNoticeChatter, "slds-hide");
