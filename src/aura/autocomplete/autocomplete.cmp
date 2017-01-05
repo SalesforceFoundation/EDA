@@ -1,0 +1,79 @@
+<aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="optionSelected" event="c:autocompleteSelectListOption" action="{!c.handleOptionSelected}" />
+
+    <aura:attribute name="items" type="Object[]" default="[]" access="private"/>
+    <aura:attribute name="keyword" type="String" access="private"/>
+    <aura:attribute name="inputFocused" type="Boolean" default="false" access="private"/>
+    <aura:attribute name="placeholder" type="String" default="" access="public"/>
+    <aura:attribute name="label" type="String" default="" access="public"/>
+    <aura:attribute name="searchContext" type="String" default="" access="public"/>
+    <aura:attribute name="displayValue" type="String" default="" access="public"/>
+    <aura:attribute name="value" type="Object" access="public"/>
+    <aura:attribute name="dataProvider" type="Aura.Component[]" required="true" access="public"/>
+    <aura:attribute name="itemVar" default="item" type="String" access="public"/>
+    <aura:attribute name="isListVisible" default="false" type="Boolean" access="public"/>
+    <aura:attribute name="idDataCallback" type="Integer" default="0" access="private" />
+    
+    <aura:method name="clearList" action="{!c.clearList}" access="public" />
+
+    <aura:attribute name="itemTemplate" type="Aura.ComponentDefRef[]" access="public">
+        <c:autocompleteOption value="{!item.value}" displayValue="{!item.label}"/>
+    </aura:attribute>
+
+    <aura:attribute name="listFooter" type="Aura.Component[]" description="A facet below the rendered list, for use as a list footer" access="public"/>
+    <aura:attribute name="showListHeader" type="Boolean" default="true" description="Indicates whether the listHeader is visible. The default is true." access="public"/>
+    <aura:attribute name="showListFooter" type="Boolean" default="true" description="Indicates whether the listFooter is visible. The default is true." access="public"/>
+    <aura:attribute name="loadingIndicator" type="Aura.Component[]" description="Content to be shown while the list is loading" access="public"/>
+    <aura:attribute name="showLoadingIndicator" type="Boolean" default="false" access="public"/>
+    <aura:attribute name="emptyListContent" type="Aura.Component[]" description="Content to be shown if the list is empty" access="public"/>
+
+    <div class="slds" aura:id="autocomplete">
+        <div
+             class="slds-lookup"
+             data-select="single"
+             data-scope="single"
+             data-typeahead="true">
+            <div class="slds-form-element">
+                <aura:if isTrue="{!!empty(v.label)}">
+                    <label class="slds-form-element__label">{!v.label}</label>
+                </aura:if>
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                    <lightning:icon iconName="utility:search" class="slds-input__icon slds-icon-text-default" size="x-small"/>
+                    <ui:inputText aura:id="input"
+                                  class="slds-input"
+                                  placeholder="{!v.placeholder}"
+                                  value="{!v.displayValue}"
+                                  updateOn="keyup"
+                                  />
+                </div>
+            </div>
+
+            <div class="{!'slds-lookup__menu' + (v.isListVisible ? ' slds-show' : ' slds-hide')}" role="listbox" aura:id="list" tabindex="-1" onfocusin="{!c.handleListFocus}" onfocusout="{!c.handleListBlur}" onfocus="{!c.handleListFocus}" onblur="{!c.handleListBlur}">
+                <aura:if isTrue="{!v.showListHeader}">
+                    <div class="slds-lookup__item">
+                        <span>
+                            <lightning:icon iconName="utility:search" class="slds-icon-text-default" size="x-small"/>
+                            &quot;{!v.keyword}&quot; {!if(!empty(v.searchContext), v.searchContext, '')}
+                        </span>
+                    </div>
+                </aura:if>
+                <ul aura:id="ullist" class="slds-lookup__list" role="presentation">
+                    <aura:if isTrue="{!v.showLoadingIndicator}">
+                        {!v.loadingIndicator}
+                    </aura:if>
+                    <aura:if isTrue="{!!empty(v.items.length)}">
+                        <aura:iteration aura:id="iter" items="{!v.items}" var="{!v.itemVar}" body="{!v.itemTemplate}"/>
+                        <aura:set attribute="else">
+                            {!v.emptyListContent}
+                        </aura:set>
+                    </aura:if>
+                </ul>
+                <aura:if isTrue="{!v.showListFooter}">
+                    {!v.listFooter}
+                </aura:if>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

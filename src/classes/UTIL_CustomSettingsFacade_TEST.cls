@@ -179,4 +179,5 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         settings = [select Id from Relationship_Auto_Create__c where Id = :settings[0].Id];
         System.assertEquals(0, settings.size());
     }
+
 }

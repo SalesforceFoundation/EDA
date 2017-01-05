@@ -1,0 +1,16 @@
+<aura:component extensible="true">
+    <aura:attribute name="value" type="Object" required="true" access="public"/>
+    <aura:attribute name="displayValue" type="String" access="public"/>
+    <aura:attribute name="iconSprite" type="String" access="public"/>
+    <aura:attribute name="iconName" type="String" access="public"/>
+    <aura:registerEvent name="optionSelected" type="c:autocompleteSelectListOption"/>
+
+    <li role="presentation">
+        <span class="slds-lookup__item-action slds-media slds-media--center" role="option" onclick="{!c.handleClick}">
+            <lightning:icon iconName="{!v.iconSprite + ':' + v.iconName}" size="small" class="slds-icon--small slds-media__figure"/>
+            <div class="slds-media__body">
+                <div class="slds-lookup__result-text">{!v.displayValue}</div>
+            </div>
+        </span>
+    </li>
+</aura:component>

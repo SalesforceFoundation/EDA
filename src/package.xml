@@ -32,6 +32,8 @@
         <members>CCON_Faculty_TEST</members>
         <members>CENR_AcademicProgram_TDTM</members>
         <members>CENR_AcademicProgram_TEST</members>
+        <members>CMP_SettingsDataProvider</members>
+        <members>CMP_SettingsDataProvider_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
@@ -116,6 +118,11 @@
         <members>STG_EVT_Cancel</members>
         <members>STG_EVT_Edit</members>
         <members>STG_EVT_Save</members>
+        <members>autocomplete</members>
+        <members>autocompleteDataProvider</members>
+        <members>autocompleteOption</members>
+        <members>autocompleteSelectListOption</members>
+        <members>dataProviderInterface</members>
         <members>svgIcon</members>
         <members>svgIcon_EVT_Press</members>
         <name>AuraDefinitionBundle</name>
