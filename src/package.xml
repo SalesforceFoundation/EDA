@@ -188,6 +188,7 @@
         <members>Contact.Current_Address__c</members>
         <members>Contact.Deceased__c</members>
         <members>Contact.Do_Not_Contact__c</members>
+        <members>Contact.Dual_Citizenship__c</members>
         <members>Contact.Ethnicity__c</members>
         <members>Contact.Exclude_from_Household_Formal_Greeting__c</members>
         <members>Contact.Exclude_from_Household_Informal_Greeting__c</members>
