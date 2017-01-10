@@ -205,6 +205,7 @@
         <members>Contact.Primary_Address_Type__c</members>
         <members>Contact.Primary_Household__c</members>
         <members>Contact.Primary_Organization__c</members>
+        <members>Contact.Race__c</members>
         <members>Contact.Religion__c</members>
         <members>Contact.Secondary_Address_Type__c</members>
         <members>Contact.Social_Security_Number__c</members>

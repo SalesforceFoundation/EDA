@@ -2311,31 +2311,16 @@
         <label>Ethnicity</label>
         <picklist>
             <picklistValues>
-                <fullName>American Indian or Alaska Native</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Asian</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Black or African American</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Hispanic or Latino</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Native Hawaiian or Other Pacific Islander</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>White</fullName>
+                <fullName>Not Hispanic or Latino</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -2560,6 +2545,42 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Race__c</fullName>
+        <externalId>false</externalId>
+        <label>Race</label>
+        <picklist>
+            <picklistValues>
+                <fullName>American Indian or Alaska Native</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Black or African American</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hispanic or Latino</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Native Hawaiian or Other Pacific Islander</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>White</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Religion__c</fullName>
