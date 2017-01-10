@@ -139,10 +139,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     
                     // if the account (any type) has changed
                     if (c.AccountId != oldContacts[i].AccountId) {
-                        listAccountIdHHToUpdate.add(c.AccountId);
+                        if (c.AccountId != null) {
+                            listAccountIdHHToUpdate.add(c.AccountId);
+                        }
                         
                         // old HH Accounts that don't get deleted still need to have name redone
-                        listAccountIdHHToUpdate.add(oldContacts[i].AccountId);                                                                             
+                        if (oldContacts[i].AccountId != null) {
+                            listAccountIdHHToUpdate.add(oldContacts[i].AccountId);                                                                             
+                        }
                     } 
                     
                     // check for ownership changes

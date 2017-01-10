@@ -1,4 +1,5 @@
 .externalToolBuilders
+.appcloud
 .project
 .settings
 .gitignore
