@@ -93,6 +93,9 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                     }
                 }
             }
+
+            // Set reentrant Flag
+            alreadyRunAfterInsert = true;
         }
 
         // BEFORE UPDATE
@@ -137,6 +140,9 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                     }
                 }
             }
+
+            // Set reentrant Flag
+            alreadyRunBeforeUpdate = true;
         }
         
         if(afflsToInsert.size() > 0) {
