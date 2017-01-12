@@ -2580,7 +2580,8 @@
         </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
     </fields>
     <fields>
         <fullName>Religion__c</fullName>
