@@ -71,7 +71,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
 
         // AFTER INSERT
-        if( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert ) {
+        if( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert  && !alreadyRunAfterInsert) {
 
             // Loop over contact list
             for (integer i=0; i<newlist.size(); i++) {
@@ -99,7 +99,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         }
 
         // BEFORE UPDATE
-        if (newlist != null && triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.BeforeUpdate && !alreadyRunBeforeUpdate) {
             for (integer i=0; i<newlist.size(); i++) {
                 Contact newContact = (Contact)newlist[i];
                 Contact oldContact = (Contact)oldlist[i];
