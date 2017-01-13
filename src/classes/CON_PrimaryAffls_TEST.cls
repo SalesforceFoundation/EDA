@@ -51,27 +51,43 @@ public with sharing class CON_PrimaryAffls_TEST {
         orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
         householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
     }
-    
+
     @isTest
-    public static void newContactWithPrimaryAfflField() {        
+    public static void newContactWithPrimaryAfflFieldMultiple() {        
         setup();
         
         //Create account of Business Organization record type
         Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert bizOrg1;
 
-        //Create contact with value in Primary Business Organization field
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID);
+        //Create second account of Business Organization record type
+        Account bizOrg2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        insert bizOrg2;
+
+        List<Contact> contacts = new List<Contact>();
+
+        //Create contacts with value in Primary Business Organization field
+        contacts.add( new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = bizOrg1.ID) );
+
+        contacts.add( new Contact(FirstName = 'Test2', LastName = 'Testerson2', Primary_Organization__c = bizOrg2.ID) );
+        
         Test.startTest();
-        insert contact;
+        insert contacts;
         Test.stopTest();
         
         //Verify key business affiliation has been automatically created
-        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c 
-                                        where Contact__c = :contact.ID and Account__c = :bizOrg1.ID];
-        System.assertEquals(1, affls.size());
+        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c];
+
+        // Check Bulkification
+        System.assertEquals(2, affls.size());
+
+        // Check 1st Record
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals(true, affls[0].Primary__c);
+
+        // Check 2nd Record
+        System.assertEquals('Business Organization', affls[1].Affiliation_Type__c);
+        System.assertEquals(true, affls[1].Primary__c);
     }
     
     @isTest
