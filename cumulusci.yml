@@ -17,15 +17,15 @@ flows:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
         tasks:
             2:
-              task: deploy_pre
+                task: deploy_pre
             3:
-              task: update_dependencies
+                task: update_dependencies
             5:
-              task: None
+                task: None
             6.1:
-              task: update_admin_profile
+                task: update_admin_profile
     ci_master:
         tasks:
             9:
-              options:
-                  skip_record_types: True  
+                options:
+                    skip_record_types: True  
