@@ -12,11 +12,29 @@ rt_visibility_template = """
 </recordTypeVisibilities>
 """
 
+task_options = BaseUpdateAdminProfile.task_options.copy()
+task_options['skip_record_types'] = {
+    'description': 'If True, setting record types will be skipped.  This is necessary when deploying to packaging as the ci_master flow does not deploy unpackaged/post.',
+    'required': True,
+}
+
 class UpdateAdminProfile(BaseUpdateAdminProfile):
+
+    task_options = task_options
+
+    def _init_options(self, kwargs):
+        super(UpdateAdminProfile, self)._init_options(kwargs)
+        if 'skip_record_types' not in self.options:
+            self.options['skip_record_types'] = False
+        if self.options['skip_record_types'] == 'False':
+            self.options['skip_record_types'] = False
         
     def _process_metadata(self):
         super(UpdateAdminProfile, self)._process_metadata()
-        
+       
+        if self.options['skip_record_types']:
+            return
+ 
         # Strip record type visibilities
         findReplaceRegex(
             '<recordTypeVisibilities>([^\$]+)</recordTypeVisibilities>',
