@@ -29,3 +29,8 @@ flows:
             9:
                 options:
                     skip_record_types: True  
+    ci_beta:
+        tasks:
+            6:
+                options:
+                    managed: True  
