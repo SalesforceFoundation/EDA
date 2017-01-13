@@ -23,7 +23,7 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
     task_options = task_options
 
     def _init_options(self, **kwargs):
-        super(UpdateAdminProfile)._init_options(**kwargs)
+        super(UpdateAdminProfile, self)._init_options(**kwargs)
         if 'skip_record_types' not in self.options:
             self.options['skip_record_types'] = False
         if self.options['skip_record_types'] == 'False':
