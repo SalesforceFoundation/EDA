@@ -38,6 +38,7 @@
 private class CON_EthnicityRace_TEST {
 
 	Private static List<String> races = new List<String>{
+			'Non-Standard to see what happens',
 			'White',
 			'Asian',
 			'Hispanic or Latino',
@@ -52,7 +53,7 @@ private class CON_EthnicityRace_TEST {
 		// How many races to test
 		Integer raceCount = races.size();
 
-		// Get contacts that match the number ot
+		// Get contacts
         List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(raceCount);
         for (Integer i = 0; i < raceCount; i++) {
             listCon[i].LastName = 'ToAvoidDupeRule' + i;//Avoid duplicate matching
@@ -72,8 +73,7 @@ private class CON_EthnicityRace_TEST {
 	    Database.executeBatch( contbatch );
 		Test.stopTest();
 
-		// AFter test run assert
-		//System.assertEquals( 7, contacts.size() );
+		// After test run assert
 		List<Contact> contacts = [SELECT Id, Name, Ethnicity__c, Race__c FROM Contact WHERE Race__c in: races];
 		System.assertEquals( (races.size()-2) , contacts.size() ); // We reduce the count by two because we are explicitly trying to exclude two of the results
 	}
