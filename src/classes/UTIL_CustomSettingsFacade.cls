@@ -49,6 +49,16 @@ public without sharing class UTIL_CustomSettingsFacade {
     static List<Relationship_Auto_Create__c> relationshipAutocreate;
     static List<Relationship_Lookup__c> relationshipLookup;
 
+    // Constructor
+    public UTIL_CustomSettingsFacade() {
+        User usr = [SELECT ProfileId FROM User where Id = :UserInfo.getUserId()]; 
+        Profile prof = [SELECT PermissionsCustomizeApplication FROM Profile Where Id =: usr.ProfileId];
+        System.debug('PermissionsApiEnabled: '+prof.PermissionsApiEnabled);
+
+        throw new StgException('You do not have permission to Customize this Application.');
+    }
+
+
     /*******************************************************************************************************
     * @description Returns the default settings.
     * @return Hierarchy_Settings__c custom settings record.
@@ -377,4 +387,21 @@ public without sharing class UTIL_CustomSettingsFacade {
         }
         return false;
     }
+
+    /*******************************************************************************************************
+    * @description Executes Ethnicity Race Batch
+    * @return void
+    */
+    @AuraEnabled
+    public static Id executeEthnicityRaceBatch() {
+        CON_EthnicityRace_BATCH contbatch = new CON_EthnicityRace_BATCH();
+        Id jobId = Database.executeBatch( contbatch , 200 );
+        return jobId;
+    }
+
+    /*******************************************************************************************************
+    * @description A custom Exception for Settings
+    */
+    public class StgException extends Exception {}
+
 }

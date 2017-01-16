@@ -111,5 +111,33 @@
                           recTypesSelected="{!v.accTypesToDeleteSelected}" isView="{!v.isView}"
                           class="accounts-to-delete" />
         </div>
+
+        <hr />
+
+        <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top slds-p-right--xx-large">
+            <h2>Ethnicity and Race Backfill</h2>
+            <p class="slds-text-body--small">
+                These steps will help you modify the existing data in your organization to utilize the new “Race” field and modify the “Ethnicity” field to match the current version of HEDA.
+                <ol class="slds-list--ordered">
+                    <li>Add “Not Hispanic or Latino” pick-list option to the “Ethnicity” field</li>
+                    <li>Optional: If your Org has any additional values configured in the “Ethnicity” Field these may need to be re-created in the “Race” field.</li>
+                    <li>Run the batch job by clicking the button in the settings</li>
+                        <ul>
+                            <li>This will copy the values that are not “Hispanic or Latino” to the “Race” field</li>
+                        </ul>
+                    <li>Delete "American Indian or Alaskan Native", "Asian", "Black or African American", "Native Hawaiian or Other Pacific Islander", and "White" options from the “Ethnicity” field.</li>
+                        <ul>
+                            <li>Note: It is recommended that you use the option to replace the values you are deleting with “Not Hispanic or Latino”.</li>
+                        </ul>
+                    <li>Optional: Update any dependencies that have been been added to your Org that relied on previous values in the “Ethnicity” field.</li>
+                </ol>
+            </p>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top">
+            <lightning:button variant="brand" label="Run Backfill" iconName="utility:copy" iconPosition="left" onclick="{! c.runBackfill }" aura:id="ethnicRaceBtn" />
+            <br />
+            <ui:outputText aura:id="ethnicRaceMsg" value="The backfill was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
+        </div>
+        
     </div>
 </aura:component>
