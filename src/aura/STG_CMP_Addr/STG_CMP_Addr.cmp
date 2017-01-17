@@ -118,7 +118,7 @@
             <h2>Ethnicity and Race Backfill</h2>
             <div class="slds-text-body--small">
 
-                <p>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field in HEDA version 1.28. The Backfill copies all values that were not “Hispanic or Latino” in the Ethnicity field to the Race field. The copy includes both standard picklist values and any custom values you may have added.</p>
+                <p>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. The Backfill copies all values that were not “Hispanic or Latino” in the Ethnicity field to the Race field. The copy includes both standard picklist values and any custom values you may have added.</p>
 
                 <h3>Before you run the Backfill:</h3>
                 <p>Add the "Not Hispanic or Latino" picklist value to the Ethnicity field.</p>
