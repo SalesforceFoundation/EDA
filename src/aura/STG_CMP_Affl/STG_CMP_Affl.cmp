@@ -154,8 +154,8 @@
                          </aura:if>
                      </div>
                  </aura:iteration>
-             </div>
-             <div class="newafflmapping">
+            </div>
+            <div class="newafflmapping">
                 <div aria-labelledby="newafflmappingform">
                     <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
                         <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
@@ -171,7 +171,7 @@
 
                             <div class="slds-form-element slds-size--1-of-6">
                                 <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="primaryField" class="slds-m-right--medium acc-rec-type-new slds-input" label="Primary Affl Field" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                    <ui:inputText aura:id="primaryField" class="slds-m-right--medium primary-affl-field-new slds-input" label="Primary Affl Field" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
                                 </div>
                             </div>
 
@@ -204,7 +204,7 @@
                                      press="{!c.newAfflMapping}" disabled="true">Add Mapping</ui:button>
                     </fieldset>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </aura:component>
