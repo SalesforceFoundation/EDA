@@ -37,6 +37,8 @@
 */
 public without sharing class UTIL_CustomSettingsFacade {
 
+    public Boolean hasPerm {get;set;}
+
     //storing user-level custom settings in-memory to avoid trying to isert/update them
     //twice and thus trigger the "duplicate OwnerId" error
     static Hierarchy_Settings__c settings;
@@ -48,6 +50,16 @@ public without sharing class UTIL_CustomSettingsFacade {
     static List<Affl_Mappings__c> afflMappings;
     static List<Relationship_Auto_Create__c> relationshipAutocreate;
     static List<Relationship_Lookup__c> relationshipLookup;
+
+    /*******************************************************************************************************
+    * @description Constructor checks 
+    * 
+    */    
+    public UTIL_CustomSettingsFacade() {
+        User user = [SELECT ProfileId FROM User where Id = :UserInfo.getUserId()]; 
+        Profile proile = [SELECT PermissionsCustomizeApplication FROM Profile Where Id = :user.ProfileId];
+        this.hasPerm = proile.PermissionsCustomizeApplication;
+    }
 
     /*******************************************************************************************************
     * @description Returns the default settings.

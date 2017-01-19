@@ -1,16 +1,25 @@
-<apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
+<apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0" controller="UTIL_CustomSettingsFacade">
     <script src="/soap/ajax/35.0/connection.js" type="text/javascript"></script>
     <script src="/soap/ajax/35.0/apex.js" type="text/javascript"></script>
     <script src="/lightning/lightning.out.js" type="text/javascript"></script>
 
     <div class="slds">
-        <div id="stgContainer"></div>
-        <br/>
+        <!-- layout=block makes the outputPanel produce a DIV -->
+        <apex:outputPanel layout="block" id="stgContainer" rendered="{!hasPerm}"></apex:outputPanel>
+        
+        <!-- No Access without Profile.PermissionsCustomizeApplication -->
+        <apex:outputPanel layout="block" rendered="{!NOT(hasPerm)}">
+            <h1 style="font-size: 1.5em;">You do not have permission to view this page.</h1> 
+            <p>Please contact your administrator if you require access.</p>
+        </apex:outputPanel>
     </div>
 
     <script>
         //Because sometimes the session ID is not set correctly
         sforce.connection.sessionId = "{!$Api.Session_ID}";
+
+        // We dont know the ID (because visualforce) so were gonna use a CSS selector to get it
+        var stgContainerId = document.querySelector('[id$="stgContainer"]').id;
         
         var namespace = '';
         var namespacePrefix = '';
@@ -32,7 +41,7 @@
         });
         
         function loadComponents(namespacePrefix) {
-            $Lightning.createComponent(namespace + ":STG_CMP_Container", {namespacePrefix : namespacePrefix} ,"stgContainer");
+            $Lightning.createComponent(namespace + ":STG_CMP_Container", {namespacePrefix : namespacePrefix} ,stgContainerId);
         }
     </script>
 </apex:page>
