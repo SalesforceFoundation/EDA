@@ -52,7 +52,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     static List<Relationship_Lookup__c> relationshipLookup;
 
     /*******************************************************************************************************
-    * @description Constructor checks 
+    * @description Constructor, sets boolean value to determine is User can access Settings page 
     * 
     */    
     public UTIL_CustomSettingsFacade() {
