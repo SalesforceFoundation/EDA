@@ -396,7 +396,11 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static Id executeEthnicityRaceBatch() {
         CON_EthnicityRace_BATCH contbatch = new CON_EthnicityRace_BATCH();
         Id jobId = Database.executeBatch( contbatch , 200 );
-        return jobId;
+        if(jobId == null) {
+            throw new AuraHandledException('There was a problem starting the Batch.');
+        } else {
+            return jobId;
+        }
     }
 
     /*******************************************************************************************************

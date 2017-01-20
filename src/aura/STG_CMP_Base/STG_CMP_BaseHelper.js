@@ -76,10 +76,14 @@
 
 	displayError : function(response) {
 		var errors = response.getError();
-		if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
+		if (errors && errors[0].message && typeof errors[0].pageErrors == 'undefined' && typeof errors[0].fieldErrors == 'undefined') {
+			throw new Error("Error message: " + errors[0].message);
+		} else if (errors && errors[0].pageErrors[0] && errors[0].pageErrors[0].message) {
 			throw new Error("Error message: " + errors[0].pageErrors[0].message);
-		} else if(errors && errors[0].fieldErrors && errors[0].fieldErrors.Name[0] && errors[0].fieldErrors.Name[0].message) {
-			throw new Error("Error message: " + errors[0].fieldErrors[0].Name[0].message);
+		} else if(errors && errors[0].fieldErrors && errors[0].fieldErrors.Name && errors[0].fieldErrors.Name[0] && errors[0].fieldErrors.Name[0].message) {
+			throw new Error("Error message: " + errors[0].fieldErrors.Name[0].message);
+		} else if(errors && errors[0].fieldErrors && errors[0].fieldErrors.Id && errors[0].fieldErrors.Id[0] && errors[0].fieldErrors.Id[0].message) {
+			throw new Error("Error message: " + errors[0].fieldErrors.Id[0].message);
 		} else {
 			throw new Error("Unknown error");
 		}
