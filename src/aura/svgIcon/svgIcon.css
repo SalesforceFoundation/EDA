@@ -1,3 +1,7 @@
 .THIS {
 	cursor: pointer;
 }
+
+.THIS.slds-theme--inverse .slds-icon {
+	fill: #ffffff;
+}
