@@ -56,9 +56,8 @@ public without sharing class UTIL_CustomSettingsFacade {
     * 
     */    
     public UTIL_CustomSettingsFacade() {
-        User user = [SELECT ProfileId FROM User where Id = :UserInfo.getUserId()]; 
-        Profile profile = [SELECT PermissionsCustomizeApplication FROM Profile Where Id = :user.ProfileId];
-        this.hasPerm = profile.PermissionsCustomizeApplication;
+        User user = [SELECT Profile.PermissionsCustomizeApplication FROM User where Id = :UserInfo.getUserId()];
+        this.hasPerm = user.Profile.PermissionsCustomizeApplication;
     }
 
     /*******************************************************************************************************
