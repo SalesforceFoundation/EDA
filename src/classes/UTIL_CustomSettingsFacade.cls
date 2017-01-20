@@ -37,7 +37,7 @@
 */
 public without sharing class UTIL_CustomSettingsFacade {
 
-    private Boolean hasPerm {get;set;}
+    public Boolean hasPerm {get;set;}
 
     //storing user-level custom settings in-memory to avoid trying to isert/update them
     //twice and thus trigger the "duplicate OwnerId" error
