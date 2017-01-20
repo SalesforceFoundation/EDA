@@ -27,8 +27,7 @@
           <div class="slds-notify_container">
             <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
               <h2>
-                <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning' }"
-                      category="utility" size="small" name="warn" class="slds-m-right--small enable-connection-error-icon"/>
+                <lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
                       You must enable Course Connections before editing record types.</h2>
             </div>
           </div>
@@ -132,8 +131,7 @@
           <div class="slds-notify_container">
             <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
               <h2>
-                <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#warning' }"
-                      category="utility" size="small" name="warn" class="slds-m-right--small enable-connection-error-icon"/>
+                <lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
                       You must enable Course Connections before running the Course Connections Backfill.</h2>
             </div>
           </div>

@@ -148,8 +148,7 @@
 			        </div>
 			        <div class="slds-col slds-size--1-of-6">
 			            <aura:if isTrue="{!!v.isView}">
-				            <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-	                        category="utility" size="small" name="delete" class="slds-theme--inverse rec-settg-delete" 
+				            <c:svgIcon category="utility" size="small" name="delete" class="slds-theme--inverse rec-settg-delete" 
 	                        pressIcon="{!c.deleteRecSettingRow}" id="{!recSetting.Id}" position="{!position}" />
                         </aura:if>
                     </div>
@@ -263,8 +262,7 @@
                     </div>
                     <div class="slds-col slds-size--1-of-5">
                         <aura:if isTrue="{!!v.isView}">
-	                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-	                            category="utility" size="small" name="delete" class="slds-theme--inverse autoc-settg-delete" 
+	                        <c:svgIcon category="utility" size="small" name="delete" class="slds-theme--inverse autoc-settg-delete" 
 	                            pressIcon="{!c.deleteAutoCreateRow}" id="{!autocSetting.Id}" position="{!position}" />
                         </aura:if>
                     </div>
