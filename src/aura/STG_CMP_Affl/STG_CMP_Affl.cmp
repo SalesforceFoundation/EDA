@@ -148,8 +148,7 @@
                      </div>
                      <div class="slds-col slds-size--1-of-6">
                         <aura:if isTrue="{!!v.isView}">
-	                         <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/utility-sprite/svg/symbols.svg#delete' }" 
-	                             category="utility" size="small" name="delete" class="slds-theme--inverse mapping-delete" 
+	                         <c:svgIcon category="utility" size="small" name="delete" class="slds-theme--inverse mapping-delete" 
 	                             pressIcon="{!c.deleteAfflMappingRow}" id="{!afflMapping.Id}" position="{!position}" />
                          </aura:if>
                      </div>
