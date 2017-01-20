@@ -20,8 +20,7 @@
                 <!-- MEDIA OBJECT = FIGURE + BODY -->
                 <div class="slds-media">
                     <div class="slds-media__figure">
-                        <c:svgIcon svgPath="{! '/resource/' + v.namespacePrefix + 'SLDS/assets/icons/standard-sprite/svg/symbols.svg#custom' }"
-                        category="standard" size="large" name="user" />
+                        <lightning:icon iconName="standard:custom" size="large"/>
                     </div>
 
                     <div class="slds-media__body">
