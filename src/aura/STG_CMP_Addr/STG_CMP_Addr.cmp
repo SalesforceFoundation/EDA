@@ -111,5 +111,31 @@
                           recTypesSelected="{!v.accTypesToDeleteSelected}" isView="{!v.isView}"
                           class="accounts-to-delete" />
         </div>
+
+        <hr />
+
+        <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top slds-p-right--xx-large">
+            <h2>Ethnicity and Race Backfill</h2>
+            <div class="slds-text-body--small">
+
+                <p>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. The Backfill copies all values that were not “Hispanic or Latino” in the Ethnicity field to the Race field. The copy includes both standard picklist values and any custom values you may have added.</p>
+                <br />
+                <h3><strong>Before you run the Backfill:</strong></h3>
+                <p>Add the "Not Hispanic or Latino" picklist value to the Ethnicity field.</p>
+                <br />
+                <h3><strong>After you run the Backfill:</strong></h3>
+                <ul class="slds-list--dotted">
+                    <li>Remove these picklist values from the Ethnicity field: "American Indian or Alaskan Native," "Asian," "Black or African American," "Native Hawaiian or Other Pacific Islander," and "White." We recommend that you replace these values with "Not Hispanic or Latino" rather than deleting them outright from existing records.</li>
+                    <li>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</li>
+                    <li>If your org had previously added custom values to the Ethnicity field that you want to be available in the Race field, copy those values to Race.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top">
+            <lightning:button variant="brand" label="Run Backfill" iconName="utility:copy" iconPosition="left" onclick="{! c.runBackfill }" aura:id="ethnicRaceBtn" />
+            <br />
+            <ui:outputText aura:id="ethnicRaceMsg" value="The backfill was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
+        </div>
+        
     </div>
 </aura:component>
