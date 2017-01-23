@@ -105,10 +105,14 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         //the accounts that have changed.
         List<Contact> childrenAccsTypeChanged;
         if(accsTypeChanged.size() > 0) {
-            String childrenAccsTypeChangedQuery = 'select ID from Contact where '
-                                                       + accsTypeChanged[0].oldType + ' != null';
+			Set<Id> allChangedIds = new Set<Id>();
+			for (AccNewOldType accNewOldType:accsTypeChanged) {
+				allChangedIds.add(accNewOldType.accId);
+			}
+			String childrenAccsTypeChangedQuery = 'select ID from Contact where '
+                                                       + accsTypeChanged[0].oldType + ' IN :allChangedIds';
             for(Integer i = 1; i < accsTypeChanged.size(); i++) {
-                childrenAccsTypeChangedQuery += ' OR ' + accsTypeChanged[i].oldType + ' != null';
+                childrenAccsTypeChangedQuery += ' OR ' + accsTypeChanged[i].oldType + ' IN :allChangedIds';
             }
             childrenAccsTypeChanged = Database.query(childrenAccsTypeChangedQuery);
         }
