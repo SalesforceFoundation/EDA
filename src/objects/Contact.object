@@ -10,9 +10,9 @@
     </compactLayouts>
     <fields>
         <fullName>AlternateEmail__c</fullName>
-        <description>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</description>
+        <description>Alternate Email is an optional email not captured in other email fields.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Alternate Email is an optional fourth email: Not personal, preferred, or work email.</inlineHelpText>
+        <inlineHelpText>Alternate Email is an optional email not captured in other email fields.</inlineHelpText>
         <label>Alternate Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
