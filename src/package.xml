@@ -54,6 +54,8 @@
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>STG_Base_CTRL</members>
+        <members>STG_Base_CTRL_TEST</members>
         <members>STG_CourseConnections</members>
         <members>STG_CourseConnections_TEST</members>
         <members>STG_InstallScript</members>
