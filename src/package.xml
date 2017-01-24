@@ -40,6 +40,8 @@
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
         <members>CON_DoNotContact_TEST</members>
+        <members>CON_EthnicityRace_BATCH</members>
+        <members>CON_EthnicityRace_TEST</members>
         <members>CON_Preferred_TDTM</members>
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
@@ -208,6 +210,7 @@
         <members>Contact.Primary_Address_Type__c</members>
         <members>Contact.Primary_Household__c</members>
         <members>Contact.Primary_Organization__c</members>
+        <members>Contact.Race__c</members>
         <members>Contact.Religion__c</members>
         <members>Contact.Secondary_Address_Type__c</members>
         <members>Contact.Social_Security_Number__c</members>

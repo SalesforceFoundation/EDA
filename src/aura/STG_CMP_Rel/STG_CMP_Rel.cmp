@@ -189,7 +189,7 @@
 	                      <label class="slds-form-element__label" for="Active">&nbsp;Active:</label><br />
 	                      <div class="slds-form-element__control">
 	                          <label class="slds-checkbox">
-		                          <ui:inputCheckbox aura:id="newActive" />
+		                          <ui:inputCheckbox aura:id="newActive" class="new-rec-settg-active" />
 		                          <span class="slds-checkbox--faux"></span>
 		                          <span class="slds-form-element__label"></span>
 		                      </label>
