@@ -34,3 +34,10 @@ flows:
             6:
                 options:
                     managed: True  
+
+    release_beta:
+        tasks:
+            5:
+                task: mrbelvedere_publish
+                options:
+                    tag: ^^github_release.tag_name
