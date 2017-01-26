@@ -244,6 +244,7 @@ public with sharing class STG_Base_CTRL {
     */
     @AuraEnabled
     public static void deleteAutoCreateRecord(String idString) {
+        System.debug(relationshipAutocreate);
         ID idType = ID.valueOf(IdString);
         delete [select Id from Relationship_Auto_Create__c where Id = :idType];
         if(relationshipAutoCreate != null) {
@@ -253,6 +254,21 @@ public with sharing class STG_Base_CTRL {
                     break;
                 }
             }
+        }
+    }
+
+	/*******************************************************************************************************
+    * @description Executes Ethnicity Race Batch
+    * @return void
+    */
+    @AuraEnabled
+    public static Id executeEthnicityRaceBatch() {
+        CON_EthnicityRace_BATCH contbatch = new CON_EthnicityRace_BATCH();
+        Id jobId = Database.executeBatch( contbatch , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException('There was a problem starting the Batch.');
+        } else {
+            return jobId;
         }
     }
 }
