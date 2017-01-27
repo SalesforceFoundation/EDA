@@ -38,11 +38,6 @@ public with sharing class STG_Base_CTRL {
     // Peermission check
     public Boolean hasPerm {get;set;}
 
-    //list settings
-    static List<Affl_Mappings__c> afflMappings;
-    static List<Relationship_Auto_Create__c> relationshipAutocreate;
-    static List<Relationship_Lookup__c> relationshipLookup;
-
     /*******************************************************************************************************
     * @description Constructor, sets boolean value to determine is User can access Settings page 
     */ 	
@@ -154,14 +149,13 @@ public with sharing class STG_Base_CTRL {
     * @return String The Id of the record that has just been created, as a String.
     **/
     @AuraEnabled
-    public static String newAfflMpg(String accRecType, String primaryField, Boolean autoEnroll, String autoEnrollStatus,
-    String autoEnrollRole) {
+    public static String newAfflMpg(String accRecType, String primaryField, Boolean autoEnroll, String autoEnrollStatus, String autoEnrollRole) {
         Affl_Mappings__c newMapping = new Affl_Mappings__c(Name = accRecType, Account_Record_Type__c = accRecType,
         Auto_Program_Enrollment__c = autoEnroll, Auto_Program_Enrollment_Role__c = autoEnrollRole,
         Auto_Program_Enrollment_Status__c = autoEnrollStatus, Primary_Affl_Field__c = primaryField);
         insert newMapping;
-        if(afflMappings != null)
-            afflMappings.add(newMapping);
+        if(UTIL_CustomSettingsFacade.getAfflMappings() != null)
+            UTIL_CustomSettingsFacade.afflMappings.add(newMapping);
         return newMapping.Id;
     }
 
@@ -179,8 +173,8 @@ public with sharing class STG_Base_CTRL {
         Relationship_Lookup__c newSetting = new Relationship_Lookup__c(Name = name, Female__c = female, Male__c = male,
                                                                         Neutral__c = neutral, Active__c = active);
         insert newSetting;
-        if(relationshipLookup != null)
-            relationshipLookup.add(newSetting);
+        if(UTIL_CustomSettingsFacade.getReciprocalSettings() != null)
+            UTIL_CustomSettingsFacade.relationshipLookup.add(newSetting);
         return newSetting.Id;
     }
 
@@ -197,8 +191,8 @@ public with sharing class STG_Base_CTRL {
         Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(Name = 'AutoCreateRel-' + system.now(),
                         Object__c = obj, Field__c = field, Relationship_Type__c = relType, Campaign_Types__c = campaigns);
         insert newSetting;
-        if(relationshipAutoCreate != null)
-        relationshipAutoCreate.add(newSetting);
+        if(UTIL_CustomSettingsFacade.getAutoCreateSettings() != null)
+        	UTIL_CustomSettingsFacade.relationshipAutocreate.add(newSetting);
         return newSetting.Id;
     }
 
@@ -210,10 +204,10 @@ public with sharing class STG_Base_CTRL {
     public static void deleteAfflMappingRecord(String idString) {
         ID idType = ID.valueOf(IdString);
         delete [select Id from Affl_Mappings__c where Id = :idType];
-        if(AfflMappings != null) {
-	        for(Integer i = 0; i < AfflMappings.size(); i++) {
-	            if(AfflMappings[i].ID == idType) {
-	                AfflMappings.remove(i);
+        if(UTIL_CustomSettingsFacade.getAfflMappings() != null) {
+	        for(Integer i = 0; i < UTIL_CustomSettingsFacade.AfflMappings.size(); i++) {
+	            if(UTIL_CustomSettingsFacade.AfflMappings[i].ID == idType) {
+	                UTIL_CustomSettingsFacade.AfflMappings.remove(i);
 	                break;
 	            }
 	        }
@@ -228,10 +222,10 @@ public with sharing class STG_Base_CTRL {
     public static void deleteRecSettingRecord(String idString) {
         ID idType = ID.valueOf(IdString);
         delete [select Id from Relationship_Lookup__c where Id = :idType];
-        if(relationshipLookup != null) {
-            for(Integer i = 0; i < relationshipLookup.size(); i++) {
-                if(relationshipLookup[i].ID == idType) {
-                    relationshipLookup.remove(i);
+        if(UTIL_CustomSettingsFacade.getReciprocalSettings() != null) {
+            for(Integer i = 0; i < UTIL_CustomSettingsFacade.getReciprocalSettings().size(); i++) {
+                if(UTIL_CustomSettingsFacade.getReciprocalSettings()[i].ID == idType) {
+                    UTIL_CustomSettingsFacade.getReciprocalSettings().remove(i);
                     break;
                 }
             }
@@ -244,13 +238,12 @@ public with sharing class STG_Base_CTRL {
     */
     @AuraEnabled
     public static void deleteAutoCreateRecord(String idString) {
-        System.debug(relationshipAutocreate);
         ID idType = ID.valueOf(IdString);
         delete [select Id from Relationship_Auto_Create__c where Id = :idType];
-        if(relationshipAutoCreate != null) {
-            for(Integer i = 0; i < relationshipAutoCreate.size(); i++) {
-                if(relationshipAutoCreate[i].ID == idType) {
-                    relationshipAutoCreate.remove(i);
+        if( UTIL_CustomSettingsFacade.getAutoCreateSettings() != null) {
+            for(Integer i = 0; i < UTIL_CustomSettingsFacade.relationshipAutocreate.size(); i++) {
+                if(UTIL_CustomSettingsFacade.relationshipAutocreate[i].ID == idType) {
+                    UTIL_CustomSettingsFacade.relationshipAutocreate.remove(i);
                     break;
                 }
             }

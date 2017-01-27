@@ -45,9 +45,9 @@ public without sharing class UTIL_CustomSettingsFacade {
     static Hierarchy_Settings__c orgSettings;
 
     //list settings
-    static List<Affl_Mappings__c> afflMappings;
-    static List<Relationship_Auto_Create__c> relationshipAutocreate;
-    static List<Relationship_Lookup__c> relationshipLookup;
+    public static List<Affl_Mappings__c> afflMappings;
+    public static List<Relationship_Auto_Create__c> relationshipAutocreate;
+    public static List<Relationship_Lookup__c> relationshipLookup;
 
     /*******************************************************************************************************
     * @description Returns the default settings.
