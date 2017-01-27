@@ -35,11 +35,11 @@
 * @description Base Class for Settings Components with Aura Enabled Methods
 */
 public with sharing class STG_Base_CTRL {
-    // Peermission check
-    public Boolean hasPerm {get;set;}
 
-    /*******************************************************************************************************
-    * @description Constructor, sets boolean value to determine is User can access Settings page 
+    public Boolean hasPerm {get;set;} // Permission check
+
+    /*******************************************************************************************
+    * @description Constructor that sets boolean value to determine is User can access Settings page 
     */ 	
 	public STG_Base_CTRL() {
         User user = [SELECT Profile.PermissionsCustomizeApplication FROM User where Id = :UserInfo.getUserId()];

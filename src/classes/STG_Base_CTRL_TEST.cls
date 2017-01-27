@@ -86,22 +86,27 @@ private class STG_Base_CTRL_TEST {
     }
 
     @isTest
-    public static void newDeleteAfflMappings() {
-
+    public static void newAfflMappings() {
         Test.startTest();
-       
         STG_Base_CTRL.newAfflMpg('Educational Institution', 'Primary Educational Institution', true, 'student','current');
+        Test.stopTest();
 
         List<Affl_Mappings__c> afflMappings = [select Account_Record_Type__c from Affl_Mappings__c where Primary_Affl_Field__c = 'Primary Educational Institution'];
         System.assertEquals(1, afflMappings.size());
         System.assertEquals('Educational Institution', afflMappings[0].Account_Record_Type__c);
+    }
 
+    @isTest
+    public static void deleteAfflMappings() {
+        STG_Base_CTRL.newAfflMpg('Educational Institution', 'Primary Educational Institution', true, 'student','current');
+        List<Affl_Mappings__c> afflMappings = [select Account_Record_Type__c from Affl_Mappings__c where Primary_Affl_Field__c = 'Primary Educational Institution'];
+        
+        Test.startTest();
         STG_Base_CTRL.deleteAfflMappingRecord(afflMappings[0].Id);
-
+		Test.stopTest();
+        
         afflMappings = [select Account_Record_Type__c from Affl_Mappings__c where Primary_Affl_Field__c = 'Primary Educational Institution'];
         System.assertEquals(0, afflMappings.size());
-
-        Test.stopTest();
     }
 
     /*** Reciprocal Settings ***/
