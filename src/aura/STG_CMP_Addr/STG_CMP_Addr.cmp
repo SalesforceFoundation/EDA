@@ -115,19 +115,22 @@
         <hr />
 
         <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top slds-p-right--xx-large">
-            <h2>Ethnicity and Race Backfill</h2>
+            <h2>Ethnicity and Race Backfill for Contacts</h2>
             <div class="slds-text-body--small">
 
-                <p>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. The Backfill copies all values that were not “Hispanic or Latino” in the Ethnicity field to the Race field. The copy includes both standard picklist values and any custom values you may have added.</p>
+                <p>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. The Backfill will copy all currently selected values in the Ethnicity field on Contacts that do not equal “Hispanic or Latino” to the Race field. The copy includes both standard picklist values and any custom values you may have added.</p>
                 <br />
                 <h3><strong>Before you run the Backfill:</strong></h3>
-                <p>Add the "Not Hispanic or Latino" picklist value to the Ethnicity field.</p>
+                <ul class="slds-list--dotted">
+                    <li>Add "Not Hispanic or Latino" as a picklist value to the Ethnicity field if necessary.</li>
+                    <li>Add "Hispanic or Latino" as a picklist value to the Ethnicity field if necessary.</li>
+                </ul>
                 <br />
                 <h3><strong>After you run the Backfill:</strong></h3>
                 <ul class="slds-list--dotted">
-                    <li>Remove these picklist values from the Ethnicity field: "American Indian or Alaskan Native," "Asian," "Black or African American," "Native Hawaiian or Other Pacific Islander," and "White." We recommend that you replace these values with "Not Hispanic or Latino" rather than deleting them outright from existing records.</li>
+                    <li>If your org had previously added custom pick-list values to the Ethnicity field that you want to be available in the Race field, copy those pick-list options to the Race field.</li>
+                    <li>Remove all pick-list options from the Ethnicity field leaving "Hispanic or Latino" and "Not Hispanic or Latino". We recommend that you replace the old values with the appropriate remaining values rather than deleting them outright from existing records. As of HEDA version 1.28 the Ethnicity Field only includes two values, "Not Hispanic or Latino" and "Hispanic or Latino".</li>
                     <li>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</li>
-                    <li>If your org had previously added custom values to the Ethnicity field that you want to be available in the Race field, copy those values to Race.</li>
                 </ul>
             </div>
         </div>
