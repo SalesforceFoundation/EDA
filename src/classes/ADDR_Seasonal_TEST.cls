@@ -744,28 +744,32 @@ private with sharing class ADDR_Seasonal_TEST {
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
         List<Address__c> conAddrs = contactsAddrs.addrs;
 
-        // create additional Account addresses, with seasonal information to expire today
+        // create additional Account addresses, with seasonal information to expire tomorrow
         List<Address__c> accAddrs2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
             accAddrs2[i].Parent_Account__c = accsAddrs.accs[i].Id;
             accAddrs2[i].Default_Address__c = false;
-            accAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
-            accAddrs2[i].Seasonal_Start_Day__c = '28';
-            accAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().month());
+            accAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().addDays(-31).month());
+            accAddrs2[i].Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-31).day());
+            accAddrs2[i].Seasonal_Start_Year__c = system.today().addDays(-31).year();
+            accAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().addDays(1).month());
             accAddrs2[i].Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day());
+            accAddrs2[i].Seasonal_End_Year__c = system.today().addDays(1).year();
             accAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
             accAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
         }
 
-        // create additional Contact addresses, with seasonal information to expire today
+        // create additional Contact addresses, with seasonal information to expire tomorrow
         List<Address__c> conAddrs2 = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
             conAddrs2[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
             conAddrs2[i].Default_Address__c = false;
-            conAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().addMonths(-1).month());
-            conAddrs2[i].Seasonal_Start_Day__c = '28';
-            conAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().month());
+            conAddrs2[i].Seasonal_Start_Month__c = String.valueOf(system.today().addDays(-31).month());
+            conAddrs2[i].Seasonal_Start_Day__c = String.valueOf(system.today().addDays(-31).day());
+            conAddrs2[i].Seasonal_Start_Year__c = system.today().addDays(-31).year();
+            conAddrs2[i].Seasonal_End_Month__c = String.valueOf(system.today().addDays(1).month());
             conAddrs2[i].Seasonal_End_Day__c = String.valueOf(system.today().addDays(1).day());
+            conAddrs2[i].Seasonal_End_Year__c = system.today().addDays(1).year();
             conAddrs2[i].MailingStreet__c = 'New Seasonal Street' + i;
             conAddrs2[i].MailingCity__c = 'New Seasonal City' + i;
         }  
@@ -798,9 +802,11 @@ private with sharing class ADDR_Seasonal_TEST {
             system.assertNotEquals(null, con.Current_Address__c);
         }
 
-        // Set End date to today for scheduled job testing
+        // Set End date to today for scheduled job and batch testing
         for (Address__c seasAddr : allNewAddrs ) {
-            seasAddr.Seasonal_End_Day__c = String.valueOf(system.today().day());
+            seasAddr.Seasonal_End_Day__c = String.valueOf(system.today().day()); 
+            seasAddr.Seasonal_End_Month__c = String.valueOf(system.today().month());
+            seasAddr.Seasonal_End_Year__c = system.today().year();
         }
 
         // Turn off triggers because we need to update the addresses to test the batch.
