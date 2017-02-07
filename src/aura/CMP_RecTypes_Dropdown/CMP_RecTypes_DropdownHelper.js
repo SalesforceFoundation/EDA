@@ -4,11 +4,7 @@
         component.set("v.recTypeId", selectedVal);
     },
     
-   saveSetting : function(component) {
-        var recTypesDropDown = component.find("recTypesDropDown");
-        var selectedRecTypeId = recTypesDropDown.get("v.value");
-        component.set("v.setting", selectedRecTypeId);
-        
+   saveSetting : function(component) {        
         //Get selected value
         var recTypesDropDown = component.find("recTypesDropDown");
         var selectedRecTypeId = recTypesDropDown.get("v.value");
