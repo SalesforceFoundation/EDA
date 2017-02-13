@@ -1,5 +1,5 @@
 project:
-    name: HEDA
+    name: HEDAP
     package:
         name: HEDA
         namespace: hed
@@ -34,6 +34,12 @@ flows:
             6:
                 options:
                     managed: True  
+
+    ci_beta_install:
+        tasks:
+            6:
+                options:
+                    managed: True
 
     release_beta:
         tasks:
