@@ -1,4 +1,4 @@
-<aura:component abstract="true" extensible="true" controller="UTIL_CustomSettingsFacade">
+<aura:component abstract="true" extensible="true" controller="STG_Base_CTRL">
 
     <aura:attribute name="namespacePrefix" type="String" />
     <aura:attribute name="isView" type="Boolean" default="true"/>
