@@ -36,42 +36,73 @@
 */
 public class CON_Preferred_TDTM extends TDTM_Runnable {
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
     * @description Updates default email and phone fields based to the preferred email and preferred phone values.
     * @return dmlWrapper
     ********************************************************************************************************/
-	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-        	 
-    	 if((triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
-    	 	
-    	 	for(SObject so : newlist) {
-    	 		Contact contact = (Contact)so;
-    	 	
-	    	 	if(!String.isBlank(contact.Preferred_Email__c)) {
-	    	 		if(contact.Preferred_Email__c == 'University') {
-	    	 			contact.Email = contact.UniversityEmail__c;
-	    	 		} else if(contact.Preferred_Email__c == 'Work') {
-	    	 			contact.Email = contact.WorkEmail__c;
-	    	 		} else if(contact.Preferred_Email__c == 'Alternate') {
-	    	 			contact.Email = contact.AlternateEmail__c;
-	    	 		}
-	    	 	}
-	    	 	
-	    	 	if(!String.isBlank(contact.PreferredPhone__c)) {
-	    	 		if(contact.PreferredPhone__c == 'Home') {
-	    	 			contact.Phone = contact.HomePhone;
-	    	 		} else if(contact.PreferredPhone__c == 'Work') {
-	    	 			contact.Phone = contact.WorkPhone__c;
-	    	 		} else if(contact.PreferredPhone__c == 'Mobile') {
-	    	 			contact.Phone = contact.MobilePhone;
-	    	 		} else if(contact.PreferredPhone__c == 'Other') {
-	    	 			contact.Phone = contact.OtherPhone;
-	    	 		}
-	    	 	}
-    	 	}
-    	 }
-    	 
-    	 return null;
-   	}
+             
+         if((triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
+            
+            for(SObject so : newlist) {
+                Contact contact = (Contact)so;
+            
+                if(!String.isBlank(contact.Preferred_Email__c)) {
+
+                    if(contact.Preferred_Email__c == 'University') {
+                        contact.Email = contact.UniversityEmail__c;
+                    } else if(contact.Preferred_Email__c == 'Work') {
+                        contact.Email = contact.WorkEmail__c;
+                    } else if(contact.Preferred_Email__c == 'Alternate') {
+                        contact.Email = contact.AlternateEmail__c;
+                    } else {
+                        // We have a custom value in Preferred Email so we will try to match this value with an Email
+                        // field. We'll try with two options, with and without an underscore.
+
+                        // Make lowercase
+                        String preferredLowCase = contact.Preferred_Email__c.toLowerCase();
+
+                        // Get options
+                        String labelWithUndr = preferredLowCase.replace(' ', '_') + '__c';
+                        String labelNoSpaces = preferredLowCase.deleteWhitespace()+ '__c';
+
+                        // Get field map from Contact
+                        Map<String, Schema.SObjectField> allFieldsMap = Schema.SObjectType.Contact.fields.getMap();
+
+                        // Figure out which label to use
+                        String fieldLabel = null;
+                        if(allFieldsMap.containsKey(labelWithUndr)){
+                            fieldLabel = labelWithUndr;
+                        } else if (allFieldsMap.containsKey(labelNoSpaces)) {
+                            fieldLabel = labelNoSpaces;
+                        }
+
+                        if(String.isNotBlank(fieldLabel)) {
+                            Schema.DisplayType fieldType = allFieldsMap.get(fieldLabel).getDescribe().getType();
+
+                            // Make sure this is an email field
+                            if( String.valueOf(fieldType) == 'EMAIL' ) {
+                                contact.Email = (String)contact.get(fieldLabel);
+                            }
+                        }
+                    }
+                }
+                
+                if(!String.isBlank(contact.PreferredPhone__c)) {
+                    if(contact.PreferredPhone__c == 'Home') {
+                        contact.Phone = contact.HomePhone;
+                    } else if(contact.PreferredPhone__c == 'Work') {
+                        contact.Phone = contact.WorkPhone__c;
+                    } else if(contact.PreferredPhone__c == 'Mobile') {
+                        contact.Phone = contact.MobilePhone;
+                    } else if(contact.PreferredPhone__c == 'Other') {
+                        contact.Phone = contact.OtherPhone;
+                    }
+                }
+            }
+         }
+         
+         return null;
+    }
 }
