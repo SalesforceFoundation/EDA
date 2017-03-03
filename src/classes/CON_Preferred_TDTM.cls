@@ -55,9 +55,7 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
             for(SObject so : newlist) {
                 Contact contact = (Contact)so;
 
-
-
-                // Copy custom email fields to standard if only one is present
+                // Retreive all Email fields
                 Map<String, Schema.DescribeFieldResult> emailFields = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
 
                 // Organize Email fields with a value
@@ -71,12 +69,12 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                     }
                 }
 
-                // Enforce preferred email field
-                if(valuedEmailMap.size() > 0 && String.isBlank(contact.Preferred_Email__c) ) {
-                    contact.addError( Label.PreferredEmailRequiredError );
-                }
-            
-                if(!String.isBlank(contact.Preferred_Email__c) && valuedEmailMap.size() > 1 ) {
+                if( valuedEmailMap.size() > 0 ) {
+
+                    // Enforce preferred email field
+                    if(String.isBlank(contact.Preferred_Email__c)){
+                        contact.addError( Label.PreferredEmailRequiredError );
+                    }
 
                     // Get the Api name that matches the value in Preferred Email
                     String preferredApiField = ( preferredEmailMappings.containsKey(contact.Preferred_Email__c) ) ? preferredEmailMappings.get(contact.Preferred_Email__c) : valuedEmailMap.get(contact.Preferred_Email__c);
@@ -84,11 +82,22 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                     String prefEmailVal = (String)contact.get(preferredApiField);
 
                     if (  String.isNotBlank( prefEmailVal ) ) { 
-                        contact.put('Email',  prefEmailVal );
+                        contact.Email = prefEmailVal;
                     } else {
                         contact.addError(Label.PreferredEmailMatchNotNull);
-                    }                    
-                }
+                    }      
+                
+                } else {
+
+                    // Cannot have preferred email set if there are no emails present
+                    if( !String.isBlank(contact.Preferred_Email__c)) {
+                        contact.addError(Label.PreferredEmailMatchNotNull);                    
+                    }
+
+                    if (!String.isBlank(contact.Email)) {
+                        contact.Email = null; // Need to clear the standard email field if no emails are present.
+                    }
+                } 
                 
                 if(!String.isBlank(contact.PreferredPhone__c)) {
                     if(contact.PreferredPhone__c == 'Home') {
