@@ -226,6 +226,29 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
+    * @description Gives fields of given type
+    * @param objectName the name of the object to look up
+    * @param type the type of field to return - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
+    * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
+    * @return DescribeFieldResult Map of DescribeFieldResult
+    */
+    public static Map<String, Schema.DescribeFieldResult> getFieldsOfType(String objectName, String type) {
+
+        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
+        Map<String, Schema.DescribeFieldResult> fields = new Map<String, Schema.DescribeFieldResult>();
+
+        for(String fieldLabel: allFields.keySet()) {
+            Schema.DescribeFieldResult field = allFields.get(fieldLabel);
+     
+            if (String.valueOf( field.getType() ) == 'EMAIL') {
+                fields.put(field.getName(), field );
+            }
+        }
+
+        return fields;
+    }
+
+    /*******************************************************************************************************
     * @description Returns field describe data
     * @param objectName the name of the object to look up
     * @param fieldName the name of the field to look up

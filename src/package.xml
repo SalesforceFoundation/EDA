@@ -326,6 +326,8 @@
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
+        <members>PreferredEmailMatchNotNull</members>
+        <members>PreferredEmailRequiredError</members>
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>RelationshipsAutoDescription</members>

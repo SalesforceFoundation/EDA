@@ -36,6 +36,13 @@
 */
 public class CON_Preferred_TDTM extends TDTM_Runnable {
 
+    // Store default email field mappings to preferred email pick list.
+    private Map<String,String> preferredEmailMappings = new Map<String,String>{   
+        'University' => 'UniversityEmail__c',
+        'Work' => 'WorkEmail__c',
+        'Alternate' => 'AlternateEmail__c'
+    };
+
     /*******************************************************************************************************
     * @description Updates default email and phone fields based to the preferred email and preferred phone values.
     * @return dmlWrapper
@@ -47,46 +54,40 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
             
             for(SObject so : newlist) {
                 Contact contact = (Contact)so;
-            
-                if(!String.isBlank(contact.Preferred_Email__c)) {
 
-                    if(contact.Preferred_Email__c == 'University') {
-                        contact.Email = contact.UniversityEmail__c;
-                    } else if(contact.Preferred_Email__c == 'Work') {
-                        contact.Email = contact.WorkEmail__c;
-                    } else if(contact.Preferred_Email__c == 'Alternate') {
-                        contact.Email = contact.AlternateEmail__c;
-                    } else {
-                        // We have a custom value in Preferred Email so we will try to match this value with an Email
-                        // field. We'll try with two options, with and without an underscore.
 
-                        // Make lowercase
-                        String preferredLowCase = contact.Preferred_Email__c.toLowerCase();
 
-                        // Get options
-                        String labelWithUndr = preferredLowCase.replace(' ', '_') + '__c';
-                        String labelNoSpaces = preferredLowCase.deleteWhitespace()+ '__c';
+                // Copy custom email fields to standard if only one is present
+                Map<String, Schema.DescribeFieldResult> emailFields = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
 
-                        // Get field map from Contact
-                        Map<String, Schema.SObjectField> allFieldsMap = Schema.SObjectType.Contact.fields.getMap();
+                // Organize Email fields with a value
+                Map<String,String> valuedEmailMap = new Map<String,String>(); 
+                for(String fieldName : emailFields.keySet() ) {
 
-                        // Figure out which label to use
-                        String fieldLabel = null;
-                        if(allFieldsMap.containsKey(labelWithUndr)){
-                            fieldLabel = labelWithUndr;
-                        } else if (allFieldsMap.containsKey(labelNoSpaces)) {
-                            fieldLabel = labelNoSpaces;
-                        }
+                    String emailField = (String)contact.get(fieldName);
 
-                        if(String.isNotBlank(fieldLabel)) {
-                            Schema.DisplayType fieldType = allFieldsMap.get(fieldLabel).getDescribe().getType();
-
-                            // Make sure this is an email field
-                            if( String.valueOf(fieldType) == 'EMAIL' ) {
-                                contact.Email = (String)contact.get(fieldLabel);
-                            }
-                        }
+                    if ( fieldName != 'Email' && String.isNotBlank(emailField) ) {
+                        valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
                     }
+                }
+
+                // Enforce preferred email field
+                if(valuedEmailMap.size() > 0 && String.isBlank(contact.Preferred_Email__c) ) {
+                    contact.addError( Label.PreferredEmailRequiredError );
+                }
+            
+                if(!String.isBlank(contact.Preferred_Email__c) && valuedEmailMap.size() > 1 ) {
+
+                    // Get the Api name that matches the value in Preferred Email
+                    String preferredApiField = ( preferredEmailMappings.containsKey(contact.Preferred_Email__c) ) ? preferredEmailMappings.get(contact.Preferred_Email__c) : valuedEmailMap.get(contact.Preferred_Email__c);
+
+                    String prefEmailVal = (String)contact.get(preferredApiField);
+
+                    if (  String.isNotBlank( prefEmailVal ) ) { 
+                        contact.put('Email',  prefEmailVal );
+                    } else {
+                        contact.addError(Label.PreferredEmailMatchNotNull);
+                    }                    
                 }
                 
                 if(!String.isBlank(contact.PreferredPhone__c)) {
