@@ -53,6 +53,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	    //Insert default TDTM config (not necessary, but better to be explicit).
     	    List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
             TDTM_Global_API.setTdtmConfig(tokens); 
+
+            // Format existing contact email addresses
+            CON_Email_BATCH contbatch = new CON_Email_BATCH();
+            Database.executeBatch( contbatch );
     	 
     	 //Updates, manual of pushed by publisher.
     	 } else if(context.isUpgrade() || context.isPush()) {
