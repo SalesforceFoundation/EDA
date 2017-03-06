@@ -36,13 +36,6 @@
 */
 public class CON_Preferred_TDTM extends TDTM_Runnable {
 
-    // Store default email field mappings to preferred email pick list.
-    private Map<String,String> preferredEmailMappings = new Map<String,String>{   
-        'University' => 'UniversityEmail__c',
-        'Work' => 'WorkEmail__c',
-        'Alternate' => 'AlternateEmail__c'
-    };
-
     /*******************************************************************************************************
     * @description Updates default email and phone fields based to the preferred email and preferred phone values.
     * @return dmlWrapper
@@ -50,55 +43,15 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
              
-         if((triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
-            
+        if((triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
+
             for(SObject so : newlist) {
                 Contact contact = (Contact)so;
 
-                // Retreive all Email fields
-                Map<String, Schema.DescribeFieldResult> emailFields = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
-
-                // Organize Email fields with a value
-                Map<String,String> valuedEmailMap = new Map<String,String>(); 
-                for(String fieldName : emailFields.keySet() ) {
-
-                    String emailField = (String)contact.get(fieldName);
-
-                    if ( fieldName != 'Email' && String.isNotBlank(emailField) ) {
-                        valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
-                    }
-                }
-
-                if( valuedEmailMap.size() > 0 ) {
-
-                    // Enforce preferred email field
-                    if(String.isBlank(contact.Preferred_Email__c)){
-                        contact.addError( Label.PreferredEmailRequiredError );
-                    }
-
-                    // Get the Api name that matches the value in Preferred Email
-                    String preferredApiField = ( preferredEmailMappings.containsKey(contact.Preferred_Email__c) ) ? preferredEmailMappings.get(contact.Preferred_Email__c) : valuedEmailMap.get(contact.Preferred_Email__c);
-
-                    String prefEmailVal = (String)contact.get(preferredApiField);
-
-                    if (  String.isNotBlank( prefEmailVal ) ) { 
-                        contact.Email = prefEmailVal;
-                    } else {
-                        contact.addError(Label.PreferredEmailMatchNotNull);
-                    }      
+                // Process the prefered Email
+                CON_Email.processPreferredEmail(contact, oldlist);
                 
-                } else {
-
-                    // Cannot have preferred email set if there are no emails present
-                    if( !String.isBlank(contact.Preferred_Email__c)) {
-                        contact.addError(Label.PreferredEmailMatchNotNull);                    
-                    }
-
-                    if (!String.isBlank(contact.Email)) {
-                        contact.Email = null; // Need to clear the standard email field if no emails are present.
-                    }
-                } 
-                
+                // Process the Preferred Phone
                 if(!String.isBlank(contact.PreferredPhone__c)) {
                     if(contact.PreferredPhone__c == 'Home') {
                         contact.Phone = contact.HomePhone;
@@ -111,8 +64,8 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                     }
                 }
             }
-         }
+        }
          
-         return null;
+        return null;
     }
 }

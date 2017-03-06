@@ -226,7 +226,7 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Gives fields of given type
+    * @description returns fields of given type by object
     * @param objectName the name of the object to look up
     * @param type the type of field to return - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
@@ -240,7 +240,7 @@ public class UTIL_Describe {
         for(String fieldLabel: allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldLabel);
      
-            if (String.valueOf( field.getType() ) == 'EMAIL') {
+            if (String.valueOf( field.getType() ) == type) {
                 fields.put(field.getName(), field );
             }
         }
