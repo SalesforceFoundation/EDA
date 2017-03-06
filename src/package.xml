@@ -40,6 +40,9 @@
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
         <members>CON_DoNotContact_TEST</members>
+        <members>CON_Email</members>
+        <members>CON_Email_BATCH</members>
+        <members>CON_Email_TEST</members>
         <members>CON_EthnicityRace_BATCH</members>
         <members>CON_EthnicityRace_TEST</members>
         <members>CON_Preferred_TDTM</members>
