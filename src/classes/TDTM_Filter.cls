@@ -152,7 +152,7 @@ public class TDTM_Filter {
     * is necessary. All the filter conditions are stored as strings, but some many need to be transformed to 
     * compare against the values in the trigger records. For example, is a filtering condition is stored as 'true' 
     * we'll need to transform it into the Boolean value true.
-    * @param parentObjectName The name of the object that is the parent of the filter field, as initally defined in the filtering
+    * @param parentObjectName The name of the object that is the parent of the filter field, as initially defined in the filtering
     * condition.
     * @return SObjectField The field to filter on as SObjectField.
     */

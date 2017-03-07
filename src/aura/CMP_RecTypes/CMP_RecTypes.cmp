@@ -1,7 +1,7 @@
 <aura:component >
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}"/>
 
-    <!-- The class attribute is designed to be a single string and not a space seperated list -->
+    <!-- The class attribute is designed to be a single string and not a space separated list -->
     <aura:attribute name="class" type="String" />
     <aura:attribute name="isView" type="Boolean" default="true"/>
     <aura:attribute name="setting" type="Object" />
