@@ -100,7 +100,7 @@ global class TDTM_Global_API {
         global String actions      { get; set; }
         
         /********************************************************************************************************
-        * @description Wheter the code is active or not.
+        * @description Whether the code is active or not.
         *********************************************************************************************************/
         global Boolean active      { get; set; }
         

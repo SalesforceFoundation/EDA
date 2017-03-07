@@ -50,8 +50,6 @@ global class CON_EthnicityRace_BATCH implements Database.Batchable<sObject> {
 	}
 
    	global void execute(Database.BatchableContext BC, List<sObject> scope) {
-   		System.debug(scope);
-
 		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
         
         // According to the spec (https://nces.ed.gov/ipeds/Section/collecting_re on 1/13/2017) Ethnicity should only ask if Hispanic or Latino, so the other options will be copied to the Race field. 

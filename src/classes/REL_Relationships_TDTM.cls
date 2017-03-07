@@ -56,7 +56,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
     /// <summary> Overloads the REL_Relationships object constructor to handle Relationship processing </summary>
     /// <param name="Relationships"> Relationship objects that are being triggered </param>
     /// <param name="oldRelationships"> Relationships object values before trigger event </param>
-    /// <param name="ta"> Trigger action that is occuring </param>
+    /// <param name="ta"> Trigger action that is occurring </param>
     private DmlWrapper runForRelationships(List<Relationship__c> newList, List<Relationship__c> oldList, 
     TDTM_Runnable.Action triggerAction) {
     	    

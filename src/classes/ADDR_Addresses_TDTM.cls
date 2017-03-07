@@ -137,7 +137,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 	            for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
-		            // a new address that is marked default or seasonal needs to propogate to the parent Account
+		            // a new address that is marked default or seasonal needs to propagate to the parent Account
 		            if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
 		                putAddrInMap(addr, mapParentIdAddr);
 		            }
@@ -168,7 +168,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            Boolean seasonalChanged =  ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld);
 		            Boolean changedToDefault = addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c);
 
-		            //An address that is marked default, of that had its seasonal info changed needs to propogate to the parent.
+		            //An address that is marked default, of that had its seasonal info changed needs to propagate to the parent.
 		            if (changedToDefault ||seasonalChanged) {
 		                putAddrInMap(addr, mapParentIdAddr);
 		            //If it's default and its address info has changed.
