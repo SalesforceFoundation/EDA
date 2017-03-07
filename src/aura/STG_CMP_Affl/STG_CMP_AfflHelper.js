@@ -92,7 +92,7 @@
 				component.set("v.afflMappings", afflMappings);
 				this.clearNewStgBoxes(component, ["accRecType", "primaryField", "autoEnroll", "autoEnrollStatus", "autoEnrollRole"]);
 				
-				// Re-Disable Add Setting button after succesful completion
+				// Re-Disable Add Setting button after successful completion
 				component.find("newAfflMappingBtn").set("v.disabled", true);
 			} else if(response.getState() === "ERROR") {
 				this.displayError(response);
