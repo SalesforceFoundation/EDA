@@ -75,12 +75,12 @@ private class CON_Email_TEST {
 
 	@isTest static void testPrefferedEmailDeleting() {
 
-		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, Personal_Email__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE EMAIL != null LIMIT 1];
+		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE EMAIL != null LIMIT 1];
 
         if(contacts.size()>0) {
 	        for(Contact c : contacts) {
 	        	c.Preferred_Email__c = null;
-	        	c.Personal_Email__c = null;
+	        	c.AlternateEmail__c = null;
 	        	c.UniversityEmail__c = null;
 	        	c.WorkEmail__c = null;
             }
@@ -90,7 +90,7 @@ private class CON_Email_TEST {
         update contacts;
 		Test.stopTest();
 
-		contacts = [SELECT Id, Name, Preferred_Email__c, Email, Personal_Email__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE id =: contacts[0].Id LIMIT 1];
+		contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE id =: contacts[0].Id LIMIT 1];
 
 		System.assertEquals(null, contacts[0].Email); // Contact email should be null because all other emails fields were deleted.
 	}
