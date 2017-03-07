@@ -77,9 +77,9 @@ public with sharing class TDTM_Filter_TEST {
         TDTM_Global_API.setTdtmConfig(tokens);
 		
 		//Creating four contacts. two of them are not students, because they don't have a university email.
-		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu');
+		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu',Preferred_Email__c = 'University');
 		Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', UniversityEmail__c = null);
-		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', UniversityEmail__c = 'tt3@fake.edu');
+		Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', UniversityEmail__c = 'tt3@fake.edu',Preferred_Email__c = 'University');
 		Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', UniversityEmail__c = '');
 		Contact[] contacts = new Contact[] {c1, c2, c3, c4};
 		insert contacts;
