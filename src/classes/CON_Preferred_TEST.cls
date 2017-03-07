@@ -46,7 +46,7 @@ public with sharing class CON_Preferred_TEST {
 			WorkPhone__c = '555-432-4433', PreferredPhone__c = 'Work');
 		Contact contact3 = new Contact(LastName = 'TestersonC', AlternateEmail__c = 'fake@test3.com', Preferred_Email__c = 'Alternate', 
 			OtherPhone = '555-432-4433', PreferredPhone__c = 'Other');
-		Contact contact4 = new Contact(LastName = 'TestersonD', AlternateEmail__c = 'fake@test4.com',
+		Contact contact4 = new Contact(LastName = 'TestersonD', AlternateEmail__c = 'fake@test4.com',Preferred_Email__c = 'Alternate',
 			MobilePhone = '555-432-4433', PreferredPhone__c = 'Mobile');
 			
 		List<Contact> contacts = new Contact[]{contact1, contact2, contact3, contact4};
@@ -74,9 +74,10 @@ public with sharing class CON_Preferred_TEST {
 	@isTest
 	public static void preferredEmailPhoneUpdate() {
 		
-		Contact contact1 = new Contact(LastName = 'TestersonE', UniversityEmail__c = 'fake@test5.com', HomePhone = '555-432-4433');
-		Contact contact2 = new Contact(LastName = 'TestersonF', WorkEmail__c = 'fake@test6.com', WorkPhone__c = '555-432-4433');
-		Contact contact3 = new Contact(LastName = 'TestersonG', AlternateEmail__c = 'fake@test7.com', OtherPhone = '555-432-4433');
+		// Preferred email is required to pass checks in preferred trigger
+		Contact contact1 = new Contact(LastName = 'TestersonE', UniversityEmail__c = 'fake@test5.com', HomePhone = '555-432-4433',Preferred_Email__c = 'University');
+		Contact contact2 = new Contact(LastName = 'TestersonF', WorkEmail__c = 'fake@test6.com', WorkPhone__c = '555-432-4433',Preferred_Email__c = 'Work');
+		Contact contact3 = new Contact(LastName = 'TestersonG', AlternateEmail__c = 'fake@test7.com', OtherPhone = '555-432-4433',Preferred_Email__c = 'Alternate');
 		Contact contact4 = new Contact(LastName = 'TestersonH', MobilePhone = '555-432-4433');
 			
 		List<Contact> contacts = new Contact[]{contact1, contact2, contact3, contact4};
