@@ -103,7 +103,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	        //List of Contact IDs that need their address info deletion propagated to the parent and all siblings without override
 	        List<Contact> contactsAddrPropagateDelete = new List<Contact>();  
 	        
-	        //Map of Adress IDs to Boolean, with the Boolean representing if the Address needs its Latest Date fields updated.
+	        //Map of Address IDs to Boolean, with the Boolean representing if the Address needs its Latest Date fields updated.
 	        Map<Id, Boolean> addrIdsOverride = new Map<Id, Boolean>();
 	        
 	        //List of Contacts that need to have their address info pulled from the parent Household (if they unchecked the override field, for example)
