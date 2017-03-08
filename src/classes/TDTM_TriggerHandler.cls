@@ -95,7 +95,7 @@ public class TDTM_TriggerHandler {
 	                         
 	            //Process the result
 	            if(dmlWrapper != null)
-	               processDML(dmlWrapper, sp);
+	               processDML(dmlWrapper, true);
 	        }
 	    } catch(Exception e) {
 	    	UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
@@ -179,17 +179,18 @@ public class TDTM_TriggerHandler {
     * @description Performs pending DML operations, on the records stored in the DMLWrapper that it gets as parameter.
     * We want this method to be static so that it can be called from the future method in TDTM_Runnable.
     * @param dmlWrapper The class that contains the records that need to have DML performed on.
+    * @param allOrNone weather or not to continue the operation if an error is encountered. Callers will need to deal with errors is allOrNone is false.
     * @return void
     */
-    public static void processDML(TDTM_Runnable.DmlWrapper dmlWrapper, Savepoint sp) {
+    public static ERR_Handler.Errors processDML(TDTM_Runnable.DmlWrapper dmlWrapper, Boolean allOrNone) {
         dmlWrapper.groupByType(); //sort thyself!
         
         /**We keep the Database methods with the opt_allOrNone flag set to false to be able to alert the client 
         process of all the errors that occurred in the context **/
-        List<Database.SaveResult> insertResults = Database.insert(dmlWrapper.objectsToInsert, false);        
-        List<Database.SaveResult> updateResults = Database.update(dmlWrapper.objectsToUpdate, false);        
-        List<Database.DeleteResult> deleteResults = Database.delete(dmlWrapper.objectsToDelete, false);        
-        List<Database.UndeleteResult> undeleteResults = Database.undelete(dmlWrapper.objectsToUndelete, false); //Not yet using this one, afaik, but no reason not to support it.
+        List<Database.SaveResult> insertResults = Database.insert(dmlWrapper.objectsToInsert, allOrNone);        
+        List<Database.SaveResult> updateResults = Database.update(dmlWrapper.objectsToUpdate, allOrNone);        
+        List<Database.DeleteResult> deleteResults = Database.delete(dmlWrapper.objectsToDelete, allOrNone);        
+        List<Database.UndeleteResult> undeleteResults = Database.undelete(dmlWrapper.objectsToUndelete, allOrNone); //Not yet using this one, afaik, but no reason not to support it.
         //@TODO: We cannot support upsert because you cannot do upsert on SObject. You have to specify the actual type.        
         //Also, should we support Database.merge?
         
@@ -197,11 +198,6 @@ public class TDTM_TriggerHandler {
         ERR_Handler.Errors errors = ERR_Handler.getErrors(insertResults, updateResults, deleteResults, undeleteResults, 
             dmlWrapper.objectsToInsert, dmlWrapper.objectsToUpdate, dmlWrapper.objectsToDelete, dmlWrapper.objectsToUndelete);
             
-        if(errors.errorsExist) {
-            if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                Database.rollback(sp);
-                ERR_Handler.processErrors(errors.errorRecords, ERR_Handler.Context.TDTM.name());
-            }
-        }
+        return errors;
     }
 }
