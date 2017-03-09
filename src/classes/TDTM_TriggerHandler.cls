@@ -38,8 +38,6 @@
 */
 public class TDTM_TriggerHandler {
         
-    public static Boolean suppressDebugAssertAfterErrorLogging = false;
-    
     /*******************************************************************************************************
     * @description Method to be called from each of the triggers (only one per object) that follow the TDTM 
     * design. Figures out which classes need to be called, and calls them.
@@ -58,12 +56,7 @@ public class TDTM_TriggerHandler {
     public static void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
-        
-        // Using a savepoint solves the problem of not being able to save error records if everything gets rolled back. 
-	    // TDTM_TriggerHandler is taking care of saving error records if there is any error when performing DML operations. 
-	    // It also takes care of rolling everything back in that case, to avoid issues (side effects) with re-entrant flags.
-	    Savepoint sp = Database.setSavepoint();
-    	
+                
     	try {
     		TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
     		                                              isAfter, isInsert, isUpdate, isDelete, isUnDelete);
@@ -98,27 +91,27 @@ public class TDTM_TriggerHandler {
 	               processDML(dmlWrapper, true);
 	        }
 	    } catch(Exception e) {
-	    	UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
-	    	UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
-            if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                Database.rollback(sp);
-                //Store error record and send error email notification
-                ERR_Handler.processError(e, ERR_Handler.Context.TDTM);
-            } else { // re-throwing exception if error handling is disabled 
-            	throw e;
-            }
-            // We don't need to mark the record(s) with an error (with addError) because the application does it automatically 
-            // for us (IF they are part of the DML performed in our processDML method). If we mark it with an error the transaction 
-            // will be rolled back by the platform, and our error record won't be saved or error notifications sent.
+            UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
+            UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
             
-            // but we do want our tests to fail if they encountered this error!
-            // we do need to allow some specific tests that are testing our error handling to avoid the assert, because by allowing it 
-            // to throw an exception within our catch, it changes system behavior.
-            if (Test.isRunningTest() && !suppressDebugAssertAfterErrorLogging) {
-                UTIL_Debug.debug('****Stack trace: ' + e.getStackTraceString());
-                system.assertEquals(null, e.getMessage()); 
+            if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
+                       
+                //use the correct list
+                List<SObject> populatedList = newList == null || newList.isEmpty() ? oldList : newList;
+                //if we're only doing DML on one object and the caught exception is handled,
+                //trap the error and add the message to the page.
+                if (populatedList.size() == 1 && ERR_ExceptionHandler.isHandledException(e)) {
+                    ERR_ExceptionHandler.beautifyExceptionMessage(e);
+                    populatedList[0].addError(e);
+                    return;
+                } else {
+                    throw e;
+                }
+            } else { // re-throwing exception if error handling is disabled 
+                throw e;
             }
         }
+
     }
     
     private static TDTM_Runnable.DmlWrapper runClass(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 

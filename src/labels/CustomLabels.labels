@@ -177,6 +177,22 @@
         <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
+        <fullName>exceptionRequiredField</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>exceptionRequiredField</shortDescription>
+        <value>A required field is not set. This field could be from this record or a related record.</value>
+    </labels>
+    <labels>
+        <fullName>exceptionValidationRule</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>exceptionValidationRule</shortDescription>
+        <value>A validation rule is preventing the record from being processed. This could be from this record, or a related record being updated. VALIDATION MESSAGE:</value>
+    </labels>
+    <labels>
         <fullName>noAccRecType</fullName>
         <categories>Record Types</categories>
         <language>en_US</language>
