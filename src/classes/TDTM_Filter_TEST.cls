@@ -179,8 +179,6 @@ public with sharing class TDTM_Filter_TEST {
         }
         TDTM_Global_API.setTdtmConfig(tokens);
         
-        TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;
-        
         //Creating four contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
         Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
@@ -188,15 +186,14 @@ public with sharing class TDTM_Filter_TEST {
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
         
-        Test.startTest();
-        insert contacts;
-        Test.stopTest();
-        
-        List<Error__c> errors = [select Id, Full_Message__c, Stack_Trace__c from Error__c];
-        UTIL_Debug.debug('****ERROR: ' + JSON.serializePretty(errors));
-        System.assertEquals(1, errors.size());
-        System.assertEquals(true, errors[0].Full_Message__c.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
-        System.assertEquals(true, errors[0].Full_Message__c.contains(Label.InvalidFilter));
+        try {
+            Test.startTest();        
+            insert contacts;
+            Test.stopTest();
+        } catch(Exception ex) {
+            // Should throw a validation message, catching the message to the test will still complete
+            System.assertEquals(true, ex.getMessage().contains(Label.InvalidFilter));
+        }
     }
 	
 	public static testmethod void checkboxField() {

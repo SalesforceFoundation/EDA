@@ -37,7 +37,7 @@
 * charge of figuring out which of the classes that do the actual work need to be called, and calling them.
 */
 public class TDTM_TriggerHandler {
-        
+    
     /*******************************************************************************************************
     * @description Method to be called from each of the triggers (only one per object) that follow the TDTM 
     * design. Figures out which classes need to be called, and calls them.
@@ -57,40 +57,40 @@ public class TDTM_TriggerHandler {
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
                 
-    	try {
-    		TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
-    		                                              isAfter, isInsert, isUpdate, isDelete, isUnDelete);
+        try {
+            TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
+                                                          isAfter, isInsert, isUpdate, isDelete, isUnDelete);
             UTIL_Debug.debugWithInfo('****ACTION: ' + thisAction + ' on ' + describeObj.getLabel());
         
-	        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
-	        
-	        // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
-	        List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
-	        UTIL_Debug.debug('****Classes To Call on ' + thisAction + ' for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
-	        
-	        if(classesToCall != null && classesToCall.size() > 0) {
-	            //Run the relevant classes
-	            for (TDTM_Global_API.TdtmToken classToCall : classesToCall) {
-	                TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
-	                dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
-	                if(dmlWrapperLocal != null) {
-	                	if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
-	                        dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
-	                    if(dmlWrapperLocal.objectsToUpdate != null && !dmlWrapperLocal.objectsToUpdate.isEmpty())
-	                        dmlWrapper.objectsToUpdate.addAll(dmlWrapperLocal.objectsToUpdate);
-	                    if(dmlWrapperLocal.objectsToDelete != null && !dmlWrapperLocal.objectsToDelete.isEmpty())
-	                        dmlWrapper.objectsToDelete.addAll(dmlWrapperLocal.objectsToDelete);
-	                    if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
-	                        dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
-	                }          
+            TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            
+            // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
+            List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
+            UTIL_Debug.debug('****Classes To Call on ' + thisAction + ' for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
+            
+            if(classesToCall != null && classesToCall.size() > 0) {
+                //Run the relevant classes
+                for (TDTM_Global_API.TdtmToken classToCall : classesToCall) {
+                    TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
+                    dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
+                    if(dmlWrapperLocal != null) {
+                        if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
+                            dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
+                        if(dmlWrapperLocal.objectsToUpdate != null && !dmlWrapperLocal.objectsToUpdate.isEmpty())
+                            dmlWrapper.objectsToUpdate.addAll(dmlWrapperLocal.objectsToUpdate);
+                        if(dmlWrapperLocal.objectsToDelete != null && !dmlWrapperLocal.objectsToDelete.isEmpty())
+                            dmlWrapper.objectsToDelete.addAll(dmlWrapperLocal.objectsToDelete);
+                        if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
+                            dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
+                    }          
                     UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.className);
-	            }
-	                         
-	            //Process the result
-	            if(dmlWrapper != null)
-	               processDML(dmlWrapper, true);
-	        }
-	    } catch(Exception e) {
+                }
+                             
+                //Process the result
+                if(dmlWrapper != null)
+                   processDML(dmlWrapper, true);
+            }
+        } catch(Exception e) {
             UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
             UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
             
@@ -116,43 +116,43 @@ public class TDTM_TriggerHandler {
     
     private static TDTM_Runnable.DmlWrapper runClass(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
-    	        
+                
         if(tdtmToken.className != null) {
-	        Type classType = Type.forName(tdtmToken.className);
-	        
-	        if(classType != null) {   	
-	        	Object classInstance = classType.newInstance();
-	        	
-	        	//The objects we create dynamically need to implement the TDTM_Runnable interface
-	        	if(classInstance instanceof TDTM_Runnable) {
-			        TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
-			        
-			        //A class can only run asynchronously (calling a future) if we have the ids of the
+            Type classType = Type.forName(tdtmToken.className);
+            
+            if(classType != null) {     
+                Object classInstance = classType.newInstance();
+                
+                //The objects we create dynamically need to implement the TDTM_Runnable interface
+                if(classInstance instanceof TDTM_Runnable) {
+                    TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
+                    
+                    //A class can only run asynchronously (calling a future) if we have the ids of the
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
-			        if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
-			        	UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
-			        	runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
-			        } else {
-			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
-			        	
-			        	TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
-			        	TDTM_Filter.FilteredLists filtered = filter.filter();
+                    if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
+                        UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
+                        runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
+                    } else {
+                        UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
+                        
+                        TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
+                        TDTM_Filter.FilteredLists filtered = filter.filter();
                         
                         if(filtered != null) {
-                        	return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                            return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
                         } else {
-                        	return classToRunInstance.run(newList, oldList, thisAction, describeObj);
+                            return classToRunInstance.run(newList, oldList, thisAction, describeObj);
                         }
-			        }
-	        	} else {
-	        		UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
-	        	}
-	        } else {
-	        	UTIL_Debug.debug(LoggingLevel.WARN, '****ClassType was null.');
-	        }
+                    }
+                } else {
+                    UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
+                }
+            } else {
+                UTIL_Debug.debug(LoggingLevel.WARN, '****ClassType was null.');
+            }
         } else {
-        	UTIL_Debug.debug(LoggingLevel.WARN, '****ClassToCall was null');
+            UTIL_Debug.debug(LoggingLevel.WARN, '****ClassToCall was null');
         }
         return null;
     }

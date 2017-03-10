@@ -75,7 +75,6 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         //Update primary affiliation to point to a different contact
         bizAffl1.Contact__c = contact2.ID;
-        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -107,7 +106,6 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         //Clear contact
         bizAffl1.Contact__c = null;
-        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -136,7 +134,6 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         //Change affiliation account
         bizAffl1.Account__c = bizOrg2.ID;
-        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -165,7 +162,6 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         //Change affiliation account
         bizAffl1.Account__c = householdOrg1.ID;
-        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -194,7 +190,6 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         //Clear affiliation account
         bizAffl1.Account__c = null;
-        resetAfflFlags();
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
