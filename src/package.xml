@@ -47,6 +47,7 @@
         <members>CON_PrimaryAffls_TDTM</members>
         <members>CON_PrimaryAffls_TEST</members>
         <members>ERR_ExceptionHandler</members>
+        <members>ERR_ExceptionHandler_TEST</members>
         <members>ERR_Handler</members>
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>
