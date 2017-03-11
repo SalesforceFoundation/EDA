@@ -259,7 +259,7 @@ public with sharing class ADDR_Seasonal_UTIL {
         TDTM_Runnable.Dmlwrapper dmlWrapper = new TDTM_Runnable.Dmlwrapper();
         ADDR_Addresses_TDTM.refreshParentAndSiblings(mapAccIdAddr, dmlWrapper, null);
 
-        // Process DML. Wewant to parse the errors so the allOrNone boolean is set to false
+        // Process DML. We want to parse the errors so the allOrNone boolean is set to false
         ERR_Handler.Errors errors = TDTM_TriggerHandler.processDML(dmlWrapper, false); 
 
         // process results for an error otherwise we can assume success

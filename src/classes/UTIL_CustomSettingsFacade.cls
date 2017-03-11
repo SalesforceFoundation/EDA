@@ -101,6 +101,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Enable_Debug__c = false;
         hs.Affl_ProgEnroll_Del__c = false;
         hs.Affl_ProgEnroll_Del_Status__c = 'Former';
+        hs.Async_Error_Check_Last_Run__c = null;
     }
 
     /*******************************************************************************************************
@@ -123,6 +124,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Error_Notifications_On__c = mySettings.Error_Notifications_On__c;
         settings.Error_Notifications_To__c = mySettings.Error_Notifications_To__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;
+        settings.Async_Error_Check_Last_Run__c = mySettings.Async_Error_Check_Last_Run__c;
         settings.Affl_ProgEnroll_Del__c = mySettings.Affl_ProgEnroll_Del__c;
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
