@@ -50,6 +50,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     		insertRelationshipLookups();
     		//Schedule Seasonal Addresses recurring job daily
     		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
+
     	    //Insert default TDTM config (not necessary, but better to be explicit).
     	    List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
             TDTM_Global_API.setTdtmConfig(tokens); 
@@ -62,6 +63,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	 }
     	 
     	 reparentAdminAddrs(context.previousVersion());
+
+        //Schedule Async APEX Error Processing recurring hourly
+        scheduleJobIfNotScheduled('HEDA Async Apex Error Processing', '0 0 * * * ?', 'ERR_AsyncErrors_SCHED');
     }
     
     global static void reparentAdminAddrs(Version previousVersion) {

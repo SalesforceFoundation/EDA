@@ -46,6 +46,9 @@
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
         <members>CON_PrimaryAffls_TEST</members>
+        <members>ERR_AsyncErrors</members>
+        <members>ERR_AsyncErrors_SCHED</members>
+        <members>ERR_AsyncErrors_TEST</members>
         <members>ERR_ExceptionHandler</members>
         <members>ERR_ExceptionHandler_TEST</members>
         <members>ERR_Handler</members>
@@ -257,6 +260,7 @@
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
+        <members>Hierarchy_Settings__c.Async_Error_Check_Last_Run__c</members>
         <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
