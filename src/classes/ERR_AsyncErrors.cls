@@ -51,8 +51,6 @@ public virtual class ERR_AsyncErrors implements Queueable {
 
         DateTime now = getCurrentDateTime();
 
-        System.debug('*********** Last Run Before: ' + lastRun);
-
         if (lastRun == null) {
             lastRun = now.addDays(-1);
         }
@@ -67,8 +65,6 @@ public virtual class ERR_AsyncErrors implements Queueable {
             lastRun,
             namespace
         );
-
-        System.debug('*********** Last Run after: ' + lastRun);
 
         List<Error__c> errors = new List<Error__c>();
         for (AsyncApexJobWrapper job : asyncJobErrors) {
