@@ -90,7 +90,8 @@ public with sharing class CON_Preferred_TEST {
 		contact3.Preferred_Email__c = 'Alternate';
 		contact3.PreferredPhone__c = 'Other';
 		contact4.PreferredPhone__c = 'Mobile';
-		
+
+	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to re-activate the trigger since this is all the same transaction
 		Test.startTest();
 		update contacts;
 		Test.stopTest();
