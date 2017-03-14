@@ -172,7 +172,7 @@ public class TDTM_TriggerHandler {
     * @description Performs pending DML operations, on the records stored in the DMLWrapper that it gets as parameter.
     * We want this method to be static so that it can be called from the future method in TDTM_Runnable.
     * @param dmlWrapper The class that contains the records that need to have DML performed on.
-    * @param allOrNone weather or not to continue the operation if an error is encountered. Callers will need to deal with errors is allOrNone is false.
+    * @param allOrNone whether or not to continue the operation if an error is encountered. Callers will need to deal with errors is allOrNone is false.
     * @return void
     */
     public static ERR_Handler.Errors processDML(TDTM_Runnable.DmlWrapper dmlWrapper, Boolean allOrNone) {
