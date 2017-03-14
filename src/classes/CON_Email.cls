@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2014 Salesforce.org
+    Copyright (c) 2017 Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -28,10 +28,10 @@
     POSSIBILITY OF SUCH DAMAGE.
 /**
 * @author Salesforce.org
-* @date 2016
+* @date 2017
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description A Class to handle Contact Email related Items
+* @description Handles processing of COntact preferred emails. Copies custom email fields to the standard field.
 *
 */
 public class CON_Email {
@@ -39,10 +39,16 @@ public class CON_Email {
     /*******************************************************************************************************
     * @description Sets the Email field depending on the value of Preferred Email
     * @param Contact the contact to update
+    * @param oldlist list of old contacts from update or delete context of a trigger
     */
 	public static void processPreferredEmail(Contact contact, List<Contact> oldlist) {
 
-		Boolean isUpdate =  (oldlist != null) ? true : false;
+        // No need to run if we are in a delete context
+        if(contact == null) {
+            return;
+        }
+
+		Boolean isUpdateOrDelete = (oldlist != null) ? true : false;
 
 	    // Store default email field mappings to preferred email pick list.
 	    Map<String,String> preferredEmailMappings = new Map<String,String>{   
@@ -51,7 +57,7 @@ public class CON_Email {
 	        'Alternate' => 'AlternateEmail__c'
 	    };
 
-	    Map<String,String> valuedEmailMap = emailFieldsWithValue(contact);
+	    Map<String,String> valuedEmailMap = getEmailFieldsWithValue(contact);
 
         if( valuedEmailMap.size() > 0 ) {
 
@@ -78,17 +84,19 @@ public class CON_Email {
                 contact.addError(Label.PreferredEmailMatchNotNull);                    
             }
 
-            // oldlist is NULL onInsert so we check to make sure this logic only applies on updates.
-			if( isUpdate && String.isNotBlank(contact.Email) ) {
+            // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
+			if( isUpdateOrDelete && String.isNotBlank(contact.Email) ) {
 	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist); 
 
 	            // Get the old email values - if any - to compare.
-	            Map<String,String> oldValuedEmails = emailFieldsWithValue( oldmap.get(contact.Id) );
+	            Map<String,String> oldValuedEmails = getEmailFieldsWithValue( oldmap.get(contact.Id) );
 
-	            // If this is an update and the contact contained previous emails we want to clear the estandard email field
+	            // If this is an update and the contact contained previous emails we want to clear the standard email field
+                // we do this because when a user deletes all email values in the HEDA contact without clearing
+                // the value if email, there would be an emil address that the user tried to delete.
 	            if (oldValuedEmails.size() > 0) {
 	                contact.Email = null; 
-	            }
+	            } 
 	        } else if(String.isNotBlank(contact.Email)) {
 	        	copyStdEmailToAlternate(contact);
 	        }
@@ -96,7 +104,7 @@ public class CON_Email {
 	}
 
     /*******************************************************************************************************
-    * @description Copys the value of the standard Email field to the Alternate Email field if Email has a value and no other emails.
+    * @description Copies the value of the standard Email field to the Alternate Email field if Email has a value and no other emails.
     * @param Contact the contact to change
     */
 	public static void copyStdEmailToAlternate(Contact contact) {
@@ -111,20 +119,25 @@ public class CON_Email {
     * @param Contact contact object to populate list from
     * @return Map<String,String> Map of emails fields key is field name and value is the field value
     */
-	private static Map<String,String> emailFieldsWithValue(Contact contact) {
-        // Retreive all Email fields
-        Map<String, Schema.DescribeFieldResult> emailFields = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
-
+	private static Map<String,String> getEmailFieldsWithValue(Contact contact) {
         // Organize Email fields with a value
         Map<String,String> valuedEmailMap = new Map<String,String>(); 
-        for(String fieldName : emailFields.keySet() ) {
 
-            String emailField = (String)contact.get(fieldName);
+        if(contact != null) {
 
-            // if the field has a value add it to the map, excluding the standard Email field
-            if ( fieldName != 'Email' && String.isNotBlank(emailField) ) {
-                valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
+            // Retreive all Email fields
+            Map<String, Schema.DescribeFieldResult> emailFields = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+
+            for(String fieldName : emailFields.keySet() ) {
+
+                String emailField = (String)contact.get(fieldName);
+
+                // if the field has a value add it to the map, excluding the standard Email field
+                if ( fieldName != 'Email' && String.isNotBlank(emailField) ) {
+                    valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
+                }
             }
+
         }
 
         return valuedEmailMap;

@@ -43,7 +43,10 @@ private class CON_Email_TEST {
 		// Get contacts set up
         List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
         for (Integer i = 0; i < 10; i++) {
+
             listCon[i].LastName = 'ToAvoidDupeRule' + i;//Avoid duplicate matching
+            listCon[i].WorkEmail__c = ''; // clear email field set in getMultipleTestContacts
+            listCon[i].Preferred_Email__c = ''; // clear preferred field set in getMultipleTestContacts
         }
 
         insert listCon;
@@ -75,16 +78,22 @@ private class CON_Email_TEST {
 
 	@isTest static void testPrefferedEmailDeleting() {
 
-		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE EMAIL != null LIMIT 1];
+		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact LIMIT 1];
 
+		// Process the contact for testing
         if(contacts.size()>0) {
-	        for(Contact c : contacts) {
-	        	c.Preferred_Email__c = null;
-	        	c.AlternateEmail__c = null;
-	        	c.UniversityEmail__c = null;
-	        	c.WorkEmail__c = null;
-            }
+        	contacts[0].WorkEmail__c = 'testworkemail@domain.com';
+        	contacts[0].Preferred_Email__c = 'Work';
+		    CON_Preferred_TDTM.alreadyRunBefore = true; // turn off preferred emial processing
+	        update contacts;
+
+        	contacts[0].Preferred_Email__c = null;
+        	contacts[0].AlternateEmail__c = null;
+        	contacts[0].UniversityEmail__c = null;
+        	contacts[0].WorkEmail__c = null;
         }
+
+	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to re-activate the trigger
 
 		Test.startTest();
         update contacts;
@@ -97,6 +106,29 @@ private class CON_Email_TEST {
 
 	// Test the batch Class
 	@isTest static void testContactEmailBatch() {
+		List<String> contIds = new List<String>();
+
+		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact];
+
+		// Process the contact for testing
+        if(contacts.size()>0) {
+
+	        for (Integer i = 0; i < contacts.size(); i++) {
+				contacts[i].Email = 'emailtest' + i + '@domainemail.com';
+				contIds.add(contacts[i].Id);
+	        }
+
+	        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this test
+	        update contacts;
+
+        	contacts[0].Preferred_Email__c = null;
+        	contacts[0].AlternateEmail__c = null;
+        	contacts[0].UniversityEmail__c = null;
+        	contacts[0].WorkEmail__c = null;
+        }
+
+	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to activate these for the batch
+
 		// Run Batch
 		Test.startTest();
 	    CON_Email_BATCH contbatch = new CON_Email_BATCH();
@@ -104,7 +136,7 @@ private class CON_Email_TEST {
 		Test.stopTest();
 
 		// After batch run assert
-		List<Contact> contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Email != null];
+		contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Id in: contIds ];
 
 		for(Contact c : contacts) {
 			System.assertEquals( c.AlternateEmail__c , c.Email ); 

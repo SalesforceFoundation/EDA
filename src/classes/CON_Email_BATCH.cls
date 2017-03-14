@@ -34,19 +34,19 @@
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Batch Class to process contacts on HEDA installation
 */
-global class CON_Email_BATCH implements Database.Batchable<sObject> {
+public class CON_Email_BATCH implements Database.Batchable<sObject> {
 
-	String query = 'SELECT Id, Name, Email FROM Contact WHERE Email != null';
+	String query = 'SELECT Id, Name, Email FROM Contact WHERE Email != null AND Preferred_Email__c = null';
 	
-	global Database.QueryLocator start(Database.BatchableContext BC) {
+	public Database.QueryLocator start(Database.BatchableContext BC) {
 
 		return Database.getQueryLocator(query);
 	}
 
-   	global void execute(Database.BatchableContext BC, List<sObject> scope) {
+   	public void execute(Database.BatchableContext BC, List<sObject> scope) {
 		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
         
-        // According to the spec (https://nces.ed.gov/ipeds/Section/collecting_re on 1/13/2017) Ethnicity should only ask if Hispanic or Latino, so the other options will be copied to the Race field. 
+        // process contact emails
         if(contacts.size()>0) {
 	        for(Contact c : contacts) {
 	        	CON_Email.copyStdEmailToAlternate(c);
@@ -56,7 +56,7 @@ global class CON_Email_BATCH implements Database.Batchable<sObject> {
         update contacts;
 	}
 	
-	global void finish(Database.BatchableContext BC) {
+	public void finish(Database.BatchableContext BC) {
 		UTIL_Debug.debug('****Contact Email batch completed. ID:'+BC.getJobId() );
 	}
 	
