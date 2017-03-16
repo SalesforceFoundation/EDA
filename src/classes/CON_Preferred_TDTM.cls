@@ -36,42 +36,41 @@
 */
 public class CON_Preferred_TDTM extends TDTM_Runnable {
 
-	/*******************************************************************************************************
+    /* @description Flag to prevent recursive call on beforeInsert and BeforeUpdate */
+    public static Boolean alreadyRunBefore = false;
+
+    /*******************************************************************************************************
     * @description Updates default email and phone fields based to the preferred email and preferred phone values.
     * @return dmlWrapper
     ********************************************************************************************************/
-	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-        	 
-    	 if((triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
-    	 	
-    	 	for(SObject so : newlist) {
-    	 		Contact contact = (Contact)so;
-    	 	
-	    	 	if(!String.isBlank(contact.Preferred_Email__c)) {
-	    	 		if(contact.Preferred_Email__c == 'University') {
-	    	 			contact.Email = contact.UniversityEmail__c;
-	    	 		} else if(contact.Preferred_Email__c == 'Work') {
-	    	 			contact.Email = contact.WorkEmail__c;
-	    	 		} else if(contact.Preferred_Email__c == 'Alternate') {
-	    	 			contact.Email = contact.AlternateEmail__c;
-	    	 		}
-	    	 	}
-	    	 	
-	    	 	if(!String.isBlank(contact.PreferredPhone__c)) {
-	    	 		if(contact.PreferredPhone__c == 'Home') {
-	    	 			contact.Phone = contact.HomePhone;
-	    	 		} else if(contact.PreferredPhone__c == 'Work') {
-	    	 			contact.Phone = contact.WorkPhone__c;
-	    	 		} else if(contact.PreferredPhone__c == 'Mobile') {
-	    	 			contact.Phone = contact.MobilePhone;
-	    	 		} else if(contact.PreferredPhone__c == 'Other') {
-	    	 			contact.Phone = contact.OtherPhone;
-	    	 		}
-	    	 	}
-    	 	}
-    	 }
-    	 
-    	 return null;
-   	}
+             
+        if( !alreadyRunBefore && (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
+
+            alreadyRunBefore = true;
+
+            for(SObject so : newlist) {
+                Contact contact = (Contact)so;
+
+                // Process the prefered Email
+                CON_Email.processPreferredEmail(contact, oldlist);
+                
+                // Process the Preferred Phone
+                if(!String.isBlank(contact.PreferredPhone__c)) {
+                    if(contact.PreferredPhone__c == 'Home') {
+                        contact.Phone = contact.HomePhone;
+                    } else if(contact.PreferredPhone__c == 'Work') {
+                        contact.Phone = contact.WorkPhone__c;
+                    } else if(contact.PreferredPhone__c == 'Mobile') {
+                        contact.Phone = contact.MobilePhone;
+                    } else if(contact.PreferredPhone__c == 'Other') {
+                        contact.Phone = contact.OtherPhone;
+                    }
+                }
+            }
+        }
+         
+        return null;
+    }
 }

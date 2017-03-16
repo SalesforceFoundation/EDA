@@ -89,6 +89,22 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>PreferredEmailMatchNotNull</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PreferredEmailMatchNotNull</shortDescription>
+        <value>The email selected for Preferred Email can&apos;t be blank.</value>
+    </labels>
+    <labels>
+        <fullName>PreferredEmailRequiredError</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preferred Email Required Error</shortDescription>
+        <value>Tell us which email is preferred.</value>
+    </labels>
+    <labels>
         <fullName>Relationship_Explanation_Connector</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
