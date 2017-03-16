@@ -115,7 +115,7 @@ public class CON_Email {
 	}
 
     /*******************************************************************************************************
-    * @description Returns a map of emails fields and their value if they have a value
+    * @description Returns a map of emails field labels and their api name if they have a value
     * @param Contact contact object to populate list from
     * @return Map<String,String> Map of emails fields key is field name and value is the field value
     */
