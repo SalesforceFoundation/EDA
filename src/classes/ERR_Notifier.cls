@@ -91,12 +91,17 @@ public class ERR_Notifier {
     * @return void
     */
     private static void sendEmailNotifications(String context, List<String> sendList) {
-        if (!system.isBatch() && !system.isFuture() && Limits.getFutureCalls() < Limits.getLimitFutureCalls()) {
+        // Futures CAN be called from Queueable, so we will allow that here.
+        if (   Limits.getFutureCalls() < Limits.getLimitFutureCalls() && 
+                (  System.isQueueable() || (!system.isBatch() && !system.isFuture()) ) 
+            ) {
             //We cannot pass the context, because only primitive types can be passed to future methods.
             sendErrorQueueEmailNotificationFuture(sendList);
-        } else if (system.isFuture()) {
+
+        } else if ( system.isFuture() ) {
             sendErrorQueueEmailNotification(context, sendList);
         }
+
     }
 
     /*******************************************************************************************************
