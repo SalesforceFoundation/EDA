@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016, Salesforce.org
+    Copyright (c) 2017, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2016
+* @date 2017
 * @group ErrorHandling
 * @description Exception handler for intercepting and modifying exception messages to be more user friendly,
 * and to remove cruft.

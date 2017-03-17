@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016 Salesforce.org
+    Copyright (c) 2017 Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -30,8 +30,8 @@
 /**
 * @author Salesforce.org
 * @group ErrorHandling
-* @description Schedules the recurring job that will detect errors from asynchronous jobs
-* and log and send notifications for those errors
+* @description Schedules the recurring job that will detect errors from asynchronous jobs,
+* log and send notifications for those errors
 */
 public with sharing class ERR_AsyncErrors_SCHED implements Schedulable {
     /**
