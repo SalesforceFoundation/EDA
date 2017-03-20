@@ -252,7 +252,7 @@ public with sharing class STG_Base_CTRL {
 
 	/*******************************************************************************************************
     * @description Executes Ethnicity Race Batch
-    * @return void
+    * @return Id of Ethnicity Race Batch Job
     */
     @AuraEnabled
     public static Id executeEthnicityRaceBatch() {

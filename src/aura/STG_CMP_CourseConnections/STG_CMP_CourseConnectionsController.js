@@ -9,5 +9,9 @@
 
   startBackfill : function(component, event, helper) {
     helper.startBackfill(component);
+  },
+
+  startCourseDescriptionCopy : function(component, event, helper) {
+    helper.courseDescriptionCopy(component);
   }
 })

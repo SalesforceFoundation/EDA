@@ -111,7 +111,7 @@
         <description>A text area capable of accepting longer course descriptions.</description>
         <externalId>false</externalId>
         <label>Extended Description</label>
-        <length>2048</length>
+        <length>131072</length>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>

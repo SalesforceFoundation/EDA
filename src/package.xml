@@ -49,6 +49,7 @@
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
         <members>CON_PrimaryAffls_TEST</members>
+        <members>COUR_DescriptionCopy_BATCH</members>
         <members>ERR_Handler</members>
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>

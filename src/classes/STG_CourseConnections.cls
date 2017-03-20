@@ -45,4 +45,19 @@ public class STG_CourseConnections {
         Id ApexJobId = Database.executeBatch(batch, 200);
         return ApexJobId;
     }
+
+  /*******************************************************************************************************
+    * @description Enqueues and returns a Job Id for the Course Description Copy Job
+     * @return Id of Course Description Copy Job
+    */
+    @AuraEnabled
+    public static Id courseDescriptionCopy() {
+        COUR_DescriptionCopy_BATCH contbatch = new COUR_DescriptionCopy_BATCH();
+        Id jobId = Database.executeBatch( contbatch , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException('There was a problem starting the Job.');
+        } else {
+            return jobId;
+        }
+    }
 }
