@@ -50,6 +50,7 @@
         <members>CON_PrimaryAffls_TDTM</members>
         <members>CON_PrimaryAffls_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
+        <members>COUR_DescriptionCopy_TEST</members>
         <members>ERR_Handler</members>
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>
