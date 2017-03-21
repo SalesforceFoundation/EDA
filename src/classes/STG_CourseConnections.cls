@@ -36,8 +36,8 @@
 
 public class STG_CourseConnections {
 	/*******************************************************************************************************
-     * @description Enqueues and returns an Job Id for the Course Connections Backill
-     * @return Id of Course Connection Backill Job
+     * @description Enqueues and returns an Job Id for the Course Connections Backfill
+     * @return Id of Course Connection Backfill Job
      */
     @AuraEnabled
     public static Id getEnqueueCourseConnectionsBackfill() {

@@ -37,56 +37,56 @@
 @isTest
 private class COUR_DescriptionCopy_TEST {
 
-	// How many courses to insert
-	private static Integer courseCount = 10;
+    // How many courses to insert
+    private static Integer courseCount = 10;
 
-	@testSetup
-	static void dataSetup() {
+    @testSetup
+    static void dataSetup() {
 
         // Create university
         Account university = new Account(Name = 'Advanced University');
         insert university;
 
-		List<Course__c> courses = new List<Course__c>();
+        List<Course__c> courses = new List<Course__c>();
        
         for (Integer i = 0; i < courseCount; i++) {
-        	courses.add(
-        		new Course__c(
-        			Name = 'Course ' + i,
-        			Account__c = university.Id,
-        			Description__c = 'Course ' + i + ' Description'
-        		)
-        	);
+            courses.add(
+                new Course__c(
+                    Name = 'Course ' + i,
+                    Account__c = university.Id,
+                    Description__c = 'Course ' + i + ' Description'
+                )
+            );
         }
 
         // add one extended description
-        courses[0].Extended_Description__c = 'Exteded Description';
+        courses[0].Extended_Description__c = 'Extended Description';
 
         insert courses;
-	}
+    }
 
-	@isTest
-	static void testCourseDescriptionCopyBatch() {
-		// Run Batch
-		Test.startTest();
-	    COUR_DescriptionCopy_BATCH cbatch = new COUR_DescriptionCopy_BATCH();
-	    Database.executeBatch( cbatch );
-		Test.stopTest();
+    @isTest
+    static void testCourseDescriptionCopyBatch() {
+        // Run Batch
+        Test.startTest();
+        COUR_DescriptionCopy_BATCH cbatch = new COUR_DescriptionCopy_BATCH();
+        Database.executeBatch( cbatch );
+        Test.stopTest();
 
-		// We cant query against Extended Description because it is a long textarea field.
-		List<Course__c> coursesAfter = [SELECT Id, Name, Description__c, Extended_Description__c FROM Course__c];
+        // We cant query against Extended Description because it is a long textarea field.
+        List<Course__c> coursesAfter = [SELECT Id, Name, Description__c, Extended_Description__c FROM Course__c];
 
-		// Make sure we get all the courses we inserted
-		System.assertEquals( coursesAfter.size(), courseCount );
+        // Make sure we get all the courses we inserted
+        System.assertEquals( coursesAfter.size(), courseCount );
 
         for (Integer i = 0; i < coursesAfter.size(); i++) {
-        	// Isolate the one different Course already with an extended description 
-        	if(coursesAfter[i].Description__c != coursesAfter[i].Extended_Description__c) {
-        		// Make sure the extended description was not overridden
-				System.assertEquals( coursesAfter[i].Extended_Description__c , 'Exteded Description' );
-        	} else {
-				System.assertEquals( coursesAfter[i].Extended_Description__c, coursesAfter[i].Description__c );
-        	}
+            // Isolate the one different Course already with an extended description 
+            if(coursesAfter[i].Description__c != coursesAfter[i].Extended_Description__c) {
+                // Make sure the extended description was not overridden
+                System.assertEquals( coursesAfter[i].Extended_Description__c , 'Extended Description' );
+            } else {
+                System.assertEquals( coursesAfter[i].Extended_Description__c, coursesAfter[i].Description__c );
+            }
         }
-	}
+    }
 }

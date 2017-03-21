@@ -187,10 +187,10 @@
     <div class="slds-card__body">
       <div class="slds-p-around--medium" style="background-color: #ffffff;">
         <!-- Card Body -->
-        In HEDA 1.30 a new extended field was added to accomodate longer Course descriptions.<br />
+        In HEDA 1.30 a new extended field was added to accommodate longer Course descriptions.<br />
         Click the button below to copy Course Descriptions to the Extended Description field. Once finished you'll want to update page layouts or other areas of the application that referenced the Description field.<br />
         <br />
-        Note: This process will skip any courses that already have a value in Estended Description.
+        Note: This process will skip any courses that already have a value in Extended Description.
       </div>
     </div>
     <div class="slds-card__footer">
