@@ -37,6 +37,9 @@
 @isTest
 private class COUR_DescriptionCopy_TEST {
 
+	// How many courses to insert
+	private static Integer courseCount = 10;
+
 	@testSetup
 	static void dataSetup() {
 
@@ -44,12 +47,9 @@ private class COUR_DescriptionCopy_TEST {
         Account university = new Account(Name = 'Advanced University');
         insert university;
 
-		// How many courses to insert
-		Integer count = 10;
-
 		List<Course__c> courses = new List<Course__c>();
        
-        for (Integer i = 0; i < count; i++) {
+        for (Integer i = 0; i < courseCount; i++) {
         	courses.add(
         		new Course__c(
         			Name = 'Course ' + i,
@@ -66,7 +66,7 @@ private class COUR_DescriptionCopy_TEST {
 	}
 
 	@isTest
-	static void testCOurseDescriptionCopyBatch() {
+	static void testCourseDescriptionCopyBatch() {
 		// Run Batch
 		Test.startTest();
 	    COUR_DescriptionCopy_BATCH cbatch = new COUR_DescriptionCopy_BATCH();
@@ -75,6 +75,9 @@ private class COUR_DescriptionCopy_TEST {
 
 		// We cant query against Extended Description because it is a long textarea field.
 		List<Course__c> coursesAfter = [SELECT Id, Name, Description__c, Extended_Description__c FROM Course__c];
+
+		// Make sure we get all the courses we inserted
+		System.assertEquals( coursesAfter.size(), courseCount );
 
         for (Integer i = 0; i < coursesAfter.size(); i++) {
         	// Isolate the one different Course already with an extended description 
