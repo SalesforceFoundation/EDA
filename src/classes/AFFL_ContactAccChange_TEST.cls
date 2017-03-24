@@ -39,42 +39,54 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
-    
-    public static void setup() {
+
+    @testSetup 
+    static void dataSetup() {
+
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
-                
+
+        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
         insert mappings;
-        
-        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
-    }
-    
-    @isTest
-    public static void changeContact() {
-        setup();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         Contact contact2 = new Contact(FirstName = 'Test2', LastName = 'Testerson2');
         insert new Contact[] {contact, contact2};
         
-        //Create account of Business Organization record type
+        //Create accounts of Business Organization record type
         Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
+        Account bizOrg2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
+        Account householdOrg1 = new Account(Name='AcmeHousehold2', RecordTypeId = householdRecTypeID);
+        insert new Account[] {bizOrg1, bizOrg2, householdOrg1};
 
         //Create primary affiliation
         Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
         resetAfflFlags();
         insert bizAffl1;
+    }
+    
+    @isTest
+    public static void changeContact() {
+
+        Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
         
         //Confirm Primary Business Organization field has been populated in contact
-        contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
+        Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
+        Contact contact2 = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test2' AND Lastname = 'Testerson2'];
+
+        Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];
+
         System.assertEquals(contact.Primary_Organization__c, bizAffl1.Account__c);
         
         //Update primary affiliation to point to a different contact
         bizAffl1.Contact__c = contact2.ID;
+
+        //resetAfflFlags();
+
         Test.startTest();
         update bizAffl1;
         Test.stopTest();
@@ -90,19 +102,9 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void clearContact() {
-        setup();
-
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
-        
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
-
-        //Create primary affiliation
-        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetAfflFlags();
-        insert bizAffl1;
+        Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
+        Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
+        Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];
         
         //Clear contact
         bizAffl1.Contact__c = null;
@@ -117,20 +119,11 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void changeAccountSameType() {
-        setup();
-
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
+        Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
+        Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
+        Account bizOrg2 = [SELECT Id FROM Account WHERE Name = 'Acme2'];
         
-        //Create accounts of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        Account bizOrg2 = new Account(Name='Acme2', RecordTypeId = orgRecTypeID);
-        insert new Account[] {bizOrg1, bizOrg2};
-
-        //Create primary affiliation
-        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetAfflFlags();
-        insert bizAffl1;
+        Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];
         
         //Change affiliation account
         bizAffl1.Account__c = bizOrg2.ID;
@@ -145,20 +138,14 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void changeAccountDifferentType() {
-        setup();
 
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
-        
-        //Create accounts of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        Account householdOrg1 = new Account(Name='Acme2', RecordTypeId = householdRecTypeID);
-        insert new Account[] {bizOrg1, householdOrg1};
+        Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
 
-        //Create primary affiliation
-        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetAfflFlags();
-        insert bizAffl1;
+        Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
+        Account householdOrg1 = [SELECT Id FROM Account WHERE Name = 'AcmeHousehold2'];
+
+        //Get primary affiliation
+        Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];
         
         //Change affiliation account
         bizAffl1.Account__c = householdOrg1.ID;
@@ -174,23 +161,15 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void clearAccount() {
-        setup();
 
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
-        
-        //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert bizOrg1;
-
-        //Create primary affiliation
-        Affiliation__c bizAffl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg1.ID, Primary__c = true);
-        resetAfflFlags();
-        insert bizAffl1;
+        Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
+        Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
+        Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];
         
         //Clear affiliation account
         bizAffl1.Account__c = null;
         Test.startTest();
+        System.debug('************ bizAffl1 :' + bizAffl1);
         update bizAffl1;
         Test.stopTest();
         
