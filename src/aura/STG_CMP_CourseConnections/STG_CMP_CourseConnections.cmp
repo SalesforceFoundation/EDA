@@ -172,34 +172,4 @@
       </div>
     </div>
   </div>
-
-  <!-- Course Description Data Migration -->
-  <div class="slds-card slds-m-top--medium">
-    <div class="slds-card__header slds-grid">
-      <header class="slds-media slds-media--center slds-has-flexi-truncate">
-        <div class="slds-media__body">
-          <h2>
-              <span class="slds-text-heading--small">Courses: Description Data Migration</span>
-          </h2>
-        </div>
-      </header>
-    </div>
-    <div class="slds-card__body">
-      <div class="slds-p-around--medium" style="background-color: #ffffff;">
-        
-        In HEDA 1.30, the Extended Description field was added to accommodate longer course descriptions.<br />
-        This utility copies values from the Course Description field to the Extended Description field. This process may take some time, but you can safely close this page and the process will continue in the background.<br />
-        If a course already has a value for Extended Description, we don't overwrite it.<br /><br />
-
-        After the process is complete, remember to update page layouts and other areas of the application that refer to the Description fields.
-      </div>
-    </div>
-    <div class="slds-card__footer">
-      <div class="slds-no-flex">
-        <ui:outputText aura:id="descCopyMsg" value="The process was queued successfully. An email will be sent at the completion of the job." class="slds-text-color--weak slds-hide" />
-
-        <lightning:button variant="brand" label="Run Copy" iconName="utility:copy" iconPosition="left" onclick="{! c.startCourseDescriptionCopy }" aura:id="descCopyBtn" />
-      </div>
-    </div>
-  </div>
 </aura:component>
