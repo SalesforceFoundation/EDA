@@ -78,7 +78,8 @@ global class COUR_DescriptionCopy_BATCH implements Database.Batchable<sObject> {
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 		String[] toAddresses = new String[] {a.CreatedBy.Email};
 		mail.setToAddresses(toAddresses);
-		mail.setSubject('Course Description Copy Job Completed: ' + a.Status);
+
+		mail.setSubject(label.stgCoursCourseDescriptionCopyEmailSubject + ' ' + a.Status);
 		mail.setPlainTextBody(emailBody);
 		Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 		

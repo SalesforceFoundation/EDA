@@ -233,6 +233,13 @@
         <value>Default Account Model:</value>
     </labels>
     <labels>
+        <fullName>stgCoursCourseDescriptionCopyEmailSubject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting Cours Course Description Copy Email Subject</shortDescription>
+        <value>Course Description Copy Job Completed with a status of:</value>
+    </labels>
+    <labels>
         <fullName>stgDefaultFacultyTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
