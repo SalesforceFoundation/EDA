@@ -1,6 +1,6 @@
 ({
     courseDescriptionCopy : function (component) {
-        var runBatchAction = component.get("c.courseDescriptionCopy");
+        var runBatchAction = component.get("c.getCourseDescriptionCopyId");
         runBatchAction.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
                 var descCopyMsg = component.find("descCopyMsg");

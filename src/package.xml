@@ -65,6 +65,8 @@
         <members>STG_Base_CTRL_TEST</members>
         <members>STG_CourseConnections</members>
         <members>STG_CourseConnections_TEST</members>
+        <members>STG_Courses</members>
+        <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
         <members>TDTM_Config</members>
