@@ -233,10 +233,19 @@
         <value>Default Account Model:</value>
     </labels>
     <labels>
-        <fullName>stgCoursCourseDescriptionCopyEmailSubject</fullName>
+        <fullName>stgCourseDescriptionCopyEmailBody</fullName>
+        <categories>Courses</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Cours Course Description Copy Email Subject</shortDescription>
+        <shortDescription>Setting Course Course Description Copy Email Body</shortDescription>
+        <value>The batch Apex job processed {0} batches with {1} failures.</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseDescriptionCopyEmailSubject</fullName>
+        <categories>Courses</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting Course Description Copy Email Subject</shortDescription>
         <value>Course Description Copy Job Completed with a status of:</value>
     </labels>
     <labels>

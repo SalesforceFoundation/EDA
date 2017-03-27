@@ -71,15 +71,19 @@ global class COUR_DescriptionCopy_BATCH implements Database.Batchable<sObject> {
 		AsyncApexJob a = [SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CreatedBy.Email
 							FROM AsyncApexJob WHERE Id =:BC.getJobId()];
 
-		String emailBody = 'The batch Apex job processed ' + a.TotalJobItems +
-		' batches with '+ a.NumberOfErrors + ' failures.';
+        // setup parameterized Email body
+        String[] params = new String[]{
+            String.valueOf(a.TotalJobItems),
+            String.valueOf(a.NumberOfErrors)
+        };
+		String emailBody = String.format(label.stgCourseDescriptionCopyEmailBody, params);
 
 		// Send an email to the Apex job's submitter notifying of job completion.
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 		String[] toAddresses = new String[] {a.CreatedBy.Email};
 		mail.setToAddresses(toAddresses);
 
-		mail.setSubject(label.stgCoursCourseDescriptionCopyEmailSubject + ' ' + a.Status);
+		mail.setSubject(label.stgCourseDescriptionCopyEmailSubject + ' ' + a.Status);
 		mail.setPlainTextBody(emailBody);
 		Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 		
