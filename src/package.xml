@@ -353,7 +353,8 @@
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
         <members>stgAccModelTitle</members>
-        <members>stgCoursCourseDescriptionCopyEmailSubject</members>
+        <members>stgCourseDescriptionCopyEmailBody</members>
+        <members>stgCourseDescriptionCopyEmailSubject</members>
         <members>stgDefaultFacultyTypeTitle</members>
         <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
