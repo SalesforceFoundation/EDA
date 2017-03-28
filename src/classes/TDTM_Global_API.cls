@@ -70,6 +70,15 @@ global class TDTM_Global_API {
     global static List<TdtmToken> getTdtmConfig() {
         return TDTM_Config.getTdtmConfig();
     }
+
+    /********************************************************************************************************
+    * @description Returns the default TDTM configuration directly as TDTM Tokens.  
+    * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values. 
+    *********************************************************************************************************/
+    global static List<TdtmToken> getDefaultTdtmConfig() {
+        return TDTM_Config.getDefaultTdtmConfig();
+    }
+    
     /*******************************************************************************************************
     * @description Sets the trigger handlers configuration with the data passed as parameter.
     * @parameter tdtmTokens A list with the defaul trigger handlers configuration.

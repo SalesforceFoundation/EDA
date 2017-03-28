@@ -49,7 +49,7 @@ public class TDTM_Config {
     private static Integer rowCount;
     
     /********************************************************************************************************
-    * @description Returns the default TDTM configuration. If no configuration is currently set, it will return 
+    * @description Returns the TDTM configuration. If no configuration is currently set, it will return 
     * the default configuration without setting it. The configuration returned has not yet been inserted in the 
     * database. It can be manipulated, if necessary, then set. 
     * If no configuration exists, the application will insert the defaults when any of the triggers run. 
@@ -77,6 +77,24 @@ public class TDTM_Config {
         
         tdtmTokensCache = tokens;
 	        
+        return tokens;
+    }
+
+    /********************************************************************************************************
+    * @description Returns the default TDTM configuration directly as TDTM Tokens.  
+    * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values. 
+    *********************************************************************************************************/
+    public static List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfig() {
+
+        List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
+
+        List<Trigger_Handler__c> existingHandlers = TDTM_DefaultConfig.getDefaultRecords();
+        for(Trigger_Handler__c handler : existingHandlers) {
+            tokens.add(
+                new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, Integer.valueOf(handler.Load_Order__c), handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c ) 
+            );
+        }
+
         return tokens;
     }
     

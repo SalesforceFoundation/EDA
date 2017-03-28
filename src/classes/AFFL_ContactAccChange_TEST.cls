@@ -169,7 +169,6 @@ public with sharing class AFFL_ContactAccChange_TEST {
         //Clear affiliation account
         bizAffl1.Account__c = null;
         Test.startTest();
-        System.debug('************ bizAffl1 :' + bizAffl1);
         update bizAffl1;
         Test.stopTest();
         
