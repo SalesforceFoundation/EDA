@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016 Salesforce.org
+    Copyright (c) 2017 Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -28,20 +28,25 @@
     POSSIBILITY OF SUCH DAMAGE.
 /**
 * @author Salesforce.org
-* @date 2016
-* @group CourseEnrollments
-* @group-content ../../ApexDocContent/CourseEnrollments.htm
-* @description This class is to be used as a controller for Course Connections Settings.
+* @date 2017
+* @group Courses
+* @group-content ../../ApexDocContent/Courses.htm
+* @description This class is to be used as a controller for Courses Settings.
 */
-public class STG_CourseConnections {
-    /***********************************************************************************************
-    * @description Enqueues and returns an Job Id for the Course Connections Backfill
-    * @return Id of Course Connection Backfill Job
+
+public class STG_Courses {
+  /*******************************************************************************************************
+    * @description Enqueues and returns a Job Id for the Course Description Copy Job
+     * @return Id of Course Description Copy Job
     */
     @AuraEnabled
-    public static Id getEnqueueCourseConnectionsBackfill() {
-        CCON_ConnectionBackfill_BATCH batch = new CCON_ConnectionBackfill_BATCH();
-        Id ApexJobId = Database.executeBatch(batch, 200);
-        return ApexJobId;
+    public static Id getCourseDescriptionCopyId() {
+        COUR_DescriptionCopy_BATCH contbatch = new COUR_DescriptionCopy_BATCH();
+        Id jobId = Database.executeBatch( contbatch , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException('There was a problem starting the Job.');
+        } else {
+            return jobId;
+        }
     }
 }

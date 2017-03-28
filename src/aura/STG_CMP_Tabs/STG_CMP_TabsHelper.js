@@ -1,15 +1,18 @@
 ({
 	init : function(component) {
+		//Retrieving hierarchy settings
+		this.getHierarchySettings(component);
+
+		// since we can't call this.processTabs(component, 'afflTabBtn') from here
+		// well process the tabs manually here.
 		$A.util.addClass(component.find("afflTab"), "slds-active");
 
 		$A.util.addClass(component.find("afflTabContent"), "slds-show");
 		$A.util.addClass(component.find("relTabContent"), "slds-hide");
 		$A.util.addClass(component.find("addrTabContent"), "slds-hide");
+		$A.util.addClass(component.find("coursesTabContent"), "slds-hide");
 		$A.util.addClass(component.find("courseConTabContent"), "slds-hide");
 		$A.util.addClass(component.find("systemTabContent"), "slds-hide");
-
-		//Retrieving hierarchy settings
-		this.getHierarchySettings(component);
 	},
 
 	getHierarchySettings : function(component) {
@@ -152,5 +155,44 @@
 
 	resetSettings : function(component) {
 		this.getHierarchySettings(component);
+	},
+
+	tabNavClick : function(component, event) {
+		this.processTabs(component, event.getSource().getLocalId() );
+	},
+
+	processTabs : function(component, btnId) {
+		// Since this method uses querySelector we can't use this method until the DOM is initialized.
+
+		let tabNav = component.find('tabs').getElement().querySelector('ul.slds-tabs--default__nav'); 
+		let contId =  btnId.replace('Btn', 'Content'); // content to show Id
+		let tabId  =  btnId.replace('Btn', ''); // clicked tab
+		let tabItem  = component.find(tabId);
+		let contItem = component.find(contId);
+		let matches = tabNav.querySelectorAll('li.slds-tabs__item');
+
+		// Process all Tabs and content
+		matches.forEach(function(element) {
+
+			// Link Aura to DOM via GlobalId
+			let selectedTab = element.dataset.auraRenderedBy == tabItem.getGlobalId() || false;
+
+			// link this is the clicked element make active, otherwise remove the class
+			element.classList.toggle('slds-active', selectedTab );
+
+			// Process Content Tabs
+			if( selectedTab ) {
+				// Since this is the elected tab, we show that content
+				$A.util.removeClass(contItem, "slds-hide");
+				$A.util.addClass(contItem, "slds-show");
+			} else {
+				let tmpComp = component.find(element.getAttribute('id')+'Content');
+				// Since we are in a loop we can hide all the other items except those we selected
+				$A.util.removeClass(tmpComp, "slds-show");
+				$A.util.addClass(tmpComp, "slds-hide");
+			}			
+
+		});
 	}
+
 })

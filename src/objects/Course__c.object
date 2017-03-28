@@ -106,6 +106,16 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>Extended_Description__c</fullName>
+        <description>A text area capable of accepting longer course descriptions.</description>
+        <externalId>false</externalId>
+        <label>Extended Description</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
     <label>Course</label>
     <listViews>
         <fullName>All</fullName>
