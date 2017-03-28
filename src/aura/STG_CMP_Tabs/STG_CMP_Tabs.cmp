@@ -23,44 +23,52 @@
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
-    <div id="tabs" class="slds-tabs--default">
-         <ul class="slds-tabs--default__nav" role="tablist">
-             <li aura:id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="tab">
-                 <ui:outputURL value="#" label="Affiliations" click="{!c.afflLinkClicked}" class="affls-menu-item" />
-             </li>
-             <li aura:id="relTab" class="slds-tabs__item slds-text-heading--label" title="Relationships" role="tab">
-                 <ui:outputURL value="#" label="Relationships" click="{!c.relLinkClicked}" class="rels-menu-item" />
-             </li>
-             <li aura:id="courseConTab" class="slds-tabs__item slds-text-heading--label" title="Course Connections" role="tab">
-                 <ui:outputURL value="#" label="Course Connections" click="{!c.courseConLinkClicked}" class="course-con-menu-item" />
-             </li>
-             <li aura:id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Accounts and Contacts" role="tab">
-                 <ui:outputURL value="#" label="Accounts and Contacts" click="{!c.addrLinkClicked}" class="accs-cons-menu-item" />
-             </li>
-             <li aura:id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="tab">
-                 <ui:outputURL value="#" label="System" click="{!c.sysLinkClicked}" class="system-menu-item" />
-             </li>
-         </ul>
+    <div aura:id="tabs" id="tabs" class="slds-tabs--default">
+        <ul class="slds-tabs--default__nav" role="tablist">
+            <li aura:id="afflTab" id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="tab">
+                <ui:outputURL aura:id="afflTabBtn" value="#" label="Affiliations" click="{!c.tabNavigationClick}" class="afflTab affls-menu-item" />
+            </li>
+            <li aura:id="relTab" id="relTab" class="slds-tabs__item slds-text-heading--label" title="Relationships" role="tab">
+                <ui:outputURL aura:id="relTabBtn" value="#" label="Relationships" click="{!c.tabNavigationClick}" class="relTab rels-menu-item" />
+            </li>
+            <li aura:id="coursesTab" id="coursesTab" class="slds-tabs__item slds-text-heading--label" title="Courses" role="tab">
+                <ui:outputURL aura:id="coursesTabBtn" value="#" label="Courses" click="{!c.tabNavigationClick}" class="coursesTab course-con-menu-item" />
+            </li>
+            <li aura:id="courseConTab" id="courseConTab" class="slds-tabs__item slds-text-heading--label" title="Course Connections" role="tab">
+                <ui:outputURL aura:id="courseConTabBtn" value="#" label="Course Connections" click="{!c.tabNavigationClick}" class="courseConTab course-con-menu-item" />
+            </li>
+            <li aura:id="addrTab" id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Accounts and Contacts" role="tab">
+                <ui:outputURL aura:id="addrTabBtn" value="#" label="Accounts and Contacts" click="{!c.tabNavigationClick}" class="addrTab accs-cons-menu-item" />
+            </li>
+            <li aura:id="systemTab" id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="tab">
+                <ui:outputURL aura:id="systemTabBtn" value="#" label="System" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />
+            </li>
+        </ul>
 
-         <div aura:id="afflTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Affl hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
-         </div>
-         <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
-         </div>
-         <div aura:id="courseConTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_CourseConnections hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
+        <div aura:id="afflTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+
+            <c:STG_CMP_Affl hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+        </div>
+        <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+
+            <c:STG_CMP_Rel hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+        </div>
+        <div aura:id="coursesTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+            <c:STG_CMP_Courses hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+        </div>
+        <div aura:id="courseConTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+            <c:STG_CMP_CourseConnections hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
                courseConnectionRecTypes="{!v.courseConnectionRecTypes}" studentRecTypeName="{!v.studentRecTypeName}" studentRecTypeId="{!v.studentRecTypeId}"
                facultyRecTypeName="{!v.facultyRecTypeName}" facultyRecTypeId="{!v.facultyRecTypeId}"/>
-         </div>
-         <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
-             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
+        </div>
+        <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+            <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
              accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}"
              accRecTypes="{!v.accRecTypes}" householdRecTypeId="{!v.householdRecTypeId}" householdRecTypeName="{!v.householdRecTypeName}" />
-         </div>
-         <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+        </div>
+        <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
              accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" accRecTypeName="{!v.accRecTypeName}"  />
-         </div>
-     </div>
+        </div>
+    </div>
 </aura:component>

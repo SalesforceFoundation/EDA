@@ -9,5 +9,6 @@
 
   startBackfill : function(component, event, helper) {
     helper.startBackfill(component);
-  }
+  },
+
 })

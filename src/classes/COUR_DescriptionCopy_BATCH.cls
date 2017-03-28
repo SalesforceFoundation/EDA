@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017, Salesforce.com Foundation
+    Copyright (c) 2017, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -10,7 +10,7 @@
     * Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-    * Neither the name of the Salesforce.com Foundation nor the names of
+    * Neither the name of the Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
 
@@ -28,13 +28,13 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.com Foundation
+* @author Salesforce.org
 * @date 2017
-* @group Contacts
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Copies data from the Ethnicty Field to the Race Field.
+* @group Courses
+* @group-content ../../ApexDocContent/Courses.htm
+* @description Copies Course descriptions to the Extended Description field.
 */
-global class CON_EthnicityRace_BATCH implements Database.Batchable<sObject> {
+global class COUR_DescriptionCopy_BATCH implements Database.Batchable<sObject> {
 
     /*******************************************************************************************************
     * @description start Method for the Database.Batchable interface
@@ -43,27 +43,26 @@ global class CON_EthnicityRace_BATCH implements Database.Batchable<sObject> {
     ********************************************************************************************************/
 	global Database.QueryLocator start(Database.BatchableContext BC) {
 
-		// Get all Contacts that have Ethnicity/Race information that is not "Hispanic or Latino" and not "Not Hispanic or Latino"
-		String query = 'SELECT Id, Name, Ethnicity__c, Race__c FROM Contact WHERE Ethnicity__c != \'Hispanic or Latino\' AND Ethnicity__c != \'Not Hispanic or Latino\' AND Ethnicity__c != null';
+		// Get all courses with a description
+		String query = 'SELECT Id, Name, Description__c, Extended_Description__c FROM Course__c WHERE Description__c != null';
 
 		return Database.getQueryLocator(query);
 	}
 
    	global void execute(Database.BatchableContext BC, List<sObject> scope) {
-		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
+		List<Course__c> courses = (List<Course__c> ) scope; //Cast list of courses
         
-        // According to the spec (https://nces.ed.gov/ipeds/Section/collecting_re on 1/13/2017) Ethnicity should only ask if Hispanic or Latino, so the other options will be copied to the Race field. 
-        if(contacts.size()>0) {
-	        for(Contact c : contacts) {
+        if(courses.size()>0) {
+	        for(Course__c c : courses) {
 
-	        	// If the race field is populated we dont want to override it
-	        	if(c.Ethnicity__c != null && c.Race__c == null) {
-	        		c.Race__c = c.Ethnicity__c;
+	        	// Check extended description is blank, since we cannot query for this field in our where clause
+	        	if(c.Description__c != null && c.Extended_Description__c == null) {
+	        		c.Extended_Description__c = c.Description__c;
 	        	}
             }
         }
 
-        update contacts;
+        update courses;
 	}
 
 	global void finish(Database.BatchableContext BC) {
@@ -72,14 +71,19 @@ global class CON_EthnicityRace_BATCH implements Database.Batchable<sObject> {
 		AsyncApexJob a = [SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CreatedBy.Email
 							FROM AsyncApexJob WHERE Id =:BC.getJobId()];
 
-		String emailBody = 'The batch Apex job processed ' + a.TotalJobItems +
-		' batches with '+ a.NumberOfErrors + ' failures.';
+        // setup parameterized Email body
+        String[] params = new String[]{
+            String.valueOf(a.TotalJobItems),
+            String.valueOf(a.NumberOfErrors)
+        };
+		String emailBody = String.format(label.stgCourseDescriptionCopyEmailBody, params);
 
 		// Send an email to the Apex job's submitter notifying of job completion.
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 		String[] toAddresses = new String[] {a.CreatedBy.Email};
 		mail.setToAddresses(toAddresses);
-		mail.setSubject('Ethnicity and Race field backfill: ' + a.Status);
+
+		mail.setSubject(label.stgCourseDescriptionCopyEmailSubject + ' ' + a.Status);
 		mail.setPlainTextBody(emailBody);
 		Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 		
