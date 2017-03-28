@@ -1,10 +1,10 @@
 /*
     Copyright (c) 2014, Salesforce.org
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-    
+
     * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -13,18 +13,18 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
- 
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
-    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
-    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
@@ -33,40 +33,40 @@
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Creates Affiliations when the user manually populates
-* any of the primary affiliation lookup fields. 
+* any of the primary affiliation lookup fields.
 */
 public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
-    
+
     //Get the primary affiliation fields defined in the Affiliation Mappings
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-    
+
     /*******************************************************************************************************
     * @description Static flag to prevent AFFL_MultiRecordType_TDTM from updating the primary affiliation fields
     * when they are updated directly in the Contact.
     ********************************************************************************************************/
     public static Boolean keyAfflLookupUpdated = false;
-    
+
     /*******************************************************************************************************
     * @description Static flags to prevent recursive call.
     ********************************************************************************************************/
     public static boolean alreadyRunAfterInsert = false;
     public static boolean alreadyRunBeforeUpdate = false;
-     
+
     /*******************************************************************************************************
     * @description Handles primary affiliation fields.
-    * @param listNew the list of Accounts from trigger new. 
-    * @param listOld the list of Accounts from trigger old. 
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Accounts 
-    * @return dmlWrapper.  
+    * @param listNew the list of Accounts from trigger new.
+    * @param listOld the list of Accounts from trigger old.
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @param objResult the describe for Accounts
+    * @return dmlWrapper.
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-        
+
         DmlWrapper dmlWrapper = new DmlWrapper();
 
         List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
-        //Map of Contact ID to list of Account IDs that represent key Affl fields that have been cleared or modified. 
+        //Map of Contact ID to list of Account IDs that represent key Affl fields that have been cleared or modified.
         //The old Affls need to be made non-primary.
         Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
 
@@ -84,7 +84,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                     try {
                         if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
                             UTIL_Debug.debug('****Contact has been created with one of the Key Affiliation fields populated');
-                            createAfflFromLookup(newContact, j, afflsToInsert);                           
+                            createAfflFromLookup(newContact, j, afflsToInsert);
                         }
                     } catch(Exception e) {
                         UTIL_Debug.debug('****Exception message: ' + e.getMessage());
@@ -108,31 +108,31 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                     try {
                         //If any Key Affiliation field has been set
                         //  --> Create a matching primary Affiliation for the Contact
-                        //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility. 
+                        //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility.
                         if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
                            UTIL_Debug.debug('****Key Affiliation field has been set');
                            createAfflFromLookup(newContact, j, afflsToInsert);
                         }
-                        
+
                         //If any Key Affiliation field has been changed to point to another Account
-                        //  --> Create new Affiliation (even if another one exists to the same Account - used should have made existing one primary if that 
+                        //  --> Create new Affiliation (even if another one exists to the same Account - used should have made existing one primary if that
                         //         was his intention)
                         //  --> Make the old Affiliation non-primary. Although this could be AFFL_MultiRecordType_TDTM's responsibility, since the Affl type
-                        //        is not yet defined (and the formula will run later), we'll do it here.    
-                        else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j]) 
+                        //        is not yet defined (and the formula will run later), we'll do it here.
+                        else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j])
                         != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
                             UTIL_Debug.debug('****Key Affiliation field has been changed');
                             createAfflFromLookup(newContact, j, afflsToInsert);
                             populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                         }
-                        
+
                         //If any Key Affiliation field has been cleared
                         //  --> Make the matching Affiliation non-primary
                         else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
                             UTIL_Debug.debug('****Key Affiliation field has been cleared');
                             populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                         }
-                        
+
                     } catch(Exception e) {
                         UTIL_Debug.debug('****Exception message: ' + e.getMessage());
                         UTIL_Debug.debug('****Stack trace: \n' + e.getStackTraceString());
@@ -144,7 +144,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             // Set reentrant Flag
             alreadyRunBeforeUpdate = true;
         }
-        
+
         if(afflsToInsert.size() > 0) {
             UTIL_Debug.debug('****Inserting ' + afflsToInsert.size() + ' affiliations.');
             dmlWrapper.objectsToInsert.addAll((List<SObject>)afflsToInsert);
@@ -153,10 +153,10 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         if(changedConToAccsMap.size() > 0) {
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)makeOtherAfflsNotPrimary(changedConToAccsMap));
         }
-        
+
         return dmlWrapper;
     }
-    
+
     private void createAfflFromLookup(Contact newContact, Integer j, List<Affiliation__c> afflsToInsert) {
         if(!AFFL_MultiRecordType_TDTM.afflMadePrimary) {
 	        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
@@ -165,9 +165,9 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 	        keyAfflLookupUpdated = true;
         }
     }
-    
+
     private List<Affiliation__c> makeOtherAfflsNotPrimary(Map<ID, List<ID>> changedConToAccsMap) {
-        //Find all the affiliations to make non-primary. 
+        //Find all the affiliations to make non-primary.
         List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
         //Initially we get all possible affiliations from those contacts.
         List<Affiliation__c> afflsAll = [select Contact__c, Account__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
@@ -185,7 +185,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         }
         return afflsToMakeNonPrimary;
     }
-    
+
     private static void populateConToAccsMap(Contact newContact, Contact oldContact, Map<ID, List<ID>> changedConToAccsMap, Integer j) {
         List<ID> accIDs = changedConToAccsMap.get(newContact.ID);
         if(accIDs == null) {
