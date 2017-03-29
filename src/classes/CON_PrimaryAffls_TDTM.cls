@@ -50,7 +50,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     * @description Static flags to prevent recursive call.
     ********************************************************************************************************/
     public static boolean alreadyRunAfterInsert = false;
-    public static boolean alreadyRunBeforeUpdate = false;
+    public static boolean alreadyRunAfterUpdate = false;
 
     /*******************************************************************************************************
     * @description Handles primary affiliation fields.
@@ -99,7 +99,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         }
 
         // BEFORE UPDATE
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.BeforeUpdate && !alreadyRunBeforeUpdate) {
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !alreadyRunAfterUpdate) {
             for (integer i=0; i<newlist.size(); i++) {
                 Contact newContact = (Contact)newlist[i];
                 Contact oldContact = (Contact)oldlist[i];
@@ -142,7 +142,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             }
 
             // Set reentrant Flag
-            alreadyRunBeforeUpdate = true;
+            alreadyRunAfterUpdate = true;
         }
 
         if(afflsToInsert.size() > 0) {

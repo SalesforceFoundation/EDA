@@ -186,11 +186,7 @@ public with sharing class CON_PrimaryAffls_TEST {
         //update key Business Organization field in Contact
         contact.Primary_Organization__c = null;
 
-        // Reset some TDTM flags to prevent recursion
-        AFFL_ContactChange_TDTM.afflContactChangeAlreadyRun = false;
-        CON_PrimaryAffls_TDTM.keyAfflLookupUpdated = false;
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        AFFL_ContactAccChange_TEST.resetAfflFlags();
         
         Test.startTest();
         update contact;

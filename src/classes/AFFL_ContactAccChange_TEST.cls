@@ -182,7 +182,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
         
         CON_PrimaryAffls_TDTM.keyAfflLookupUpdated = false;
         CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunBeforeUpdate = false;
+        CON_PrimaryAffls_TDTM.alreadyRunAfterUpdate = false;
         
         AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
         AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
