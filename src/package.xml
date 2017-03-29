@@ -49,6 +49,8 @@
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
         <members>CON_PrimaryAffls_TEST</members>
+        <members>COUR_DescriptionCopy_BATCH</members>
+        <members>COUR_DescriptionCopy_TEST</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -68,6 +70,8 @@
         <members>STG_Base_CTRL_TEST</members>
         <members>STG_CourseConnections</members>
         <members>STG_CourseConnections_TEST</members>
+        <members>STG_Courses</members>
+        <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
         <members>TDTM_Config</members>
@@ -123,6 +127,7 @@
         <members>STG_CMP_Base</members>
         <members>STG_CMP_Container</members>
         <members>STG_CMP_CourseConnections</members>
+        <members>STG_CMP_Courses</members>
         <members>STG_CMP_Header</members>
         <members>STG_CMP_Rel</members>
         <members>STG_CMP_System</members>
@@ -248,6 +253,7 @@
         <members>Course__c.Course_ID__c</members>
         <members>Course__c.Credit_Hours__c</members>
         <members>Course__c.Description__c</members>
+        <members>Course__c.Extended_Description__c</members>
         <members>Error__c.Context_Type__c</members>
         <members>Error__c.Datetime__c</members>
         <members>Error__c.Email_Sent__c</members>
@@ -355,6 +361,8 @@
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
         <members>stgAccModelTitle</members>
+        <members>stgCourseDescriptionCopyEmailBody</members>
+        <members>stgCourseDescriptionCopyEmailSubject</members>
         <members>stgDefaultFacultyTypeTitle</members>
         <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
