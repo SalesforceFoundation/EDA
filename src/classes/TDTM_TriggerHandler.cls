@@ -37,8 +37,6 @@
 * charge of figuring out which of the classes that do the actual work need to be called, and calling them.
 */
 public class TDTM_TriggerHandler {
-        
-    public static Boolean suppressDebugAssertAfterErrorLogging = false;
     
     /*******************************************************************************************************
     * @description Method to be called from each of the triggers (only one per object) that follow the TDTM 
@@ -58,108 +56,103 @@ public class TDTM_TriggerHandler {
     public static void run(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate,
     Boolean isDelete, Boolean isUnDelete, List<SObject> newList, List<SObject> oldList, 
     Schema.DescribeSObjectResult describeObj) {
-        
-        // Using a savepoint solves the problem of not being able to save error records if everything gets rolled back. 
-	    // TDTM_TriggerHandler is taking care of saving error records if there is any error when performing DML operations. 
-	    // It also takes care of rolling everything back in that case, to avoid issues (side effects) with re-entrant flags.
-	    Savepoint sp = Database.setSavepoint();
-    	
-    	try {
-    		TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
-    		                                              isAfter, isInsert, isUpdate, isDelete, isUnDelete);
+                
+        try {
+            TDTM_Runnable.Action thisAction = TDTM_TriggerActionHelper.determineTriggerAction(isBefore, 
+                                                          isAfter, isInsert, isUpdate, isDelete, isUnDelete);
             UTIL_Debug.debugWithInfo('****ACTION: ' + thisAction + ' on ' + describeObj.getLabel());
         
-	        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
-	        
-	        // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
-	        List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
-	        UTIL_Debug.debug('****Classes To Call on ' + thisAction + ' for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
-	        
-	        if(classesToCall != null && classesToCall.size() > 0) {
-	            //Run the relevant classes
-	            for (TDTM_Global_API.TdtmToken classToCall : classesToCall) {
-	                TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
-	                dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
-	                if(dmlWrapperLocal != null) {
-	                	if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
-	                        dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
-	                    if(dmlWrapperLocal.objectsToUpdate != null && !dmlWrapperLocal.objectsToUpdate.isEmpty())
-	                        dmlWrapper.objectsToUpdate.addAll(dmlWrapperLocal.objectsToUpdate);
-	                    if(dmlWrapperLocal.objectsToDelete != null && !dmlWrapperLocal.objectsToDelete.isEmpty())
-	                        dmlWrapper.objectsToDelete.addAll(dmlWrapperLocal.objectsToDelete);
-	                    if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
-	                        dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
-	                }          
-                    UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.className);
-	            }
-	                         
-	            //Process the result
-	            if(dmlWrapper != null)
-	               processDML(dmlWrapper, sp);
-	        }
-	    } catch(Exception e) {
-	    	UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
-	    	UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
-            if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                Database.rollback(sp);
-                //Store error record and send error email notification
-                ERR_Handler.processError(e, ERR_Handler.Context.TDTM);
-            } else { // re-throwing exception if error handling is disabled 
-            	throw e;
-            }
-            // We don't need to mark the record(s) with an error (with addError) because the application does it automatically 
-            // for us (IF they are part of the DML performed in our processDML method). If we mark it with an error the transaction 
-            // will be rolled back by the platform, and our error record won't be saved or error notifications sent.
+            TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
             
-            // but we do want our tests to fail if they encountered this error!
-            // we do need to allow some specific tests that are testing our error handling to avoid the assert, because by allowing it 
-            // to throw an exception within our catch, it changes system behavior.
-            if (Test.isRunningTest() && !suppressDebugAssertAfterErrorLogging) {
-                UTIL_Debug.debug('****Stack trace: ' + e.getStackTraceString());
-                system.assertEquals(null, e.getMessage()); 
+            // Get the classes to run. Note that we are using the local object name, so it works for managed and unmanaged objects.
+            List<TDTM_Global_API.TdtmToken> classesToCall = TDTM_Config.getclassesToCallForObject(describeObj.getLocalName(), thisAction);
+            UTIL_Debug.debug('****Classes To Call on ' + thisAction + ' for ' + describeObj.getLocalName() + ': ' + JSON.serializePretty(classesToCall));
+            
+            if(classesToCall != null && classesToCall.size() > 0) {
+                //Run the relevant classes
+                for (TDTM_Global_API.TdtmToken classToCall : classesToCall) {
+                    TDTM_Runnable.DmlWrapper dmlWrapperLocal = new TDTM_Runnable.DmlWrapper();
+                    dmlWrapperLocal = runClass(classToCall, newList, oldList, thisAction, describeObj);
+                    if(dmlWrapperLocal != null) {
+                        if(dmlWrapperLocal.objectsToInsert != null && !dmlWrapperLocal.objectsToInsert.isEmpty())
+                            dmlWrapper.objectsToInsert.addAll(dmlWrapperLocal.objectsToInsert);
+                        if(dmlWrapperLocal.objectsToUpdate != null && !dmlWrapperLocal.objectsToUpdate.isEmpty())
+                            dmlWrapper.objectsToUpdate.addAll(dmlWrapperLocal.objectsToUpdate);
+                        if(dmlWrapperLocal.objectsToDelete != null && !dmlWrapperLocal.objectsToDelete.isEmpty())
+                            dmlWrapper.objectsToDelete.addAll(dmlWrapperLocal.objectsToDelete);
+                        if(dmlWrapperLocal.objectsToUndelete != null && !dmlWrapperLocal.objectsToUndelete.isEmpty())
+                            dmlWrapper.objectsToUndelete.addAll(dmlWrapperLocal.objectsToUndelete);
+                    }          
+                    UTIL_Debug.debugWithInfo('****Finished executing: ' + classToCall.className);
+                }
+                             
+                //Process the result
+                if(dmlWrapper != null)
+                   processDML(dmlWrapper, true);
+            }
+        } catch(Exception e) {
+            UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
+            UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
+            
+            if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
+                       
+                //use the correct list
+                List<SObject> populatedList = newList == null || newList.isEmpty() ? oldList : newList;
+                //if we're only doing DML on one object and the caught exception is handled,
+                //trap the error and add the message to the page.
+                if (populatedList.size() == 1 && ERR_ExceptionHandler.isHandledException(e)) {
+                    ERR_ExceptionHandler.beautifyExceptionMessage(e);
+                    populatedList[0].addError(e);
+                    return;
+                } else {
+                    throw e;
+                }
+            } else { // re-throwing exception if error handling is disabled 
+                throw e;
             }
         }
+
     }
     
     private static TDTM_Runnable.DmlWrapper runClass(TDTM_Global_API.TdtmToken tdtmToken, List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action thisAction, Schema.DescribeSObjectResult describeObj) {
-    	        
+                
         if(tdtmToken.className != null) {
-	        Type classType = Type.forName(tdtmToken.className);
-	        
-	        if(classType != null) {   	
-	        	Object classInstance = classType.newInstance();
-	        	
-	        	//The objects we create dynamically need to implement the TDTM_Runnable interface
-	        	if(classInstance instanceof TDTM_Runnable) {
-			        TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
-			        
-			        //A class can only run asynchronously (calling a future) if we have the ids of the
+            Type classType = Type.forName(tdtmToken.className);
+            
+            if(classType != null) {     
+                Object classInstance = classType.newInstance();
+                
+                //The objects we create dynamically need to implement the TDTM_Runnable interface
+                if(classInstance instanceof TDTM_Runnable) {
+                    TDTM_Runnable classToRunInstance = (TDTM_Runnable)classInstance;
+                    
+                    //A class can only run asynchronously (calling a future) if we have the ids of the
                     //records we want to affect. This means we can only run it for after in insert. 
                     //Also,a future cannot be called from a future or batch method.
-			        if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
-			        	UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
-			        	runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
-			        } else {
-			        	UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
-			        	
-			        	TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
-			        	TDTM_Filter.FilteredLists filtered = filter.filter();
+                    if(tdtmToken.async && thisAction != TDTM_Runnable.Action.BeforeInsert && !System.isFuture() && !System.isBatch()) {
+                        UTIL_Debug.debug('****Calling asynchronously: ' + tdtmToken.className);
+                        runAsync(classToRunInstance, tdtmToken.className, newList, oldList, thisAction, describeObj);
+                    } else {
+                        UTIL_Debug.debugWithInfo('****Calling synchronously: ' + tdtmToken.className);
+                        
+                        TDTM_Filter filter = new TDTM_Filter(tdtmToken, newList, oldList, describeObj);
+                        TDTM_Filter.FilteredLists filtered = filter.filter();
                         
                         if(filtered != null) {
-                        	return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
+                            return classToRunInstance.run(filtered.newList, filtered.oldList, thisAction, describeObj);
                         } else {
-                        	return classToRunInstance.run(newList, oldList, thisAction, describeObj);
+                            return classToRunInstance.run(newList, oldList, thisAction, describeObj);
                         }
-			        }
-	        	} else {
-	        		UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
-	        	}
-	        } else {
-	        	UTIL_Debug.debug(LoggingLevel.WARN, '****ClassType was null.');
-	        }
+                    }
+                } else {
+                    UTIL_Debug.debug(LoggingLevel.WARN, '****The class does not implement the required interface.');
+                }
+            } else {
+                UTIL_Debug.debug(LoggingLevel.WARN, '****ClassType was null.');
+            }
         } else {
-        	UTIL_Debug.debug(LoggingLevel.WARN, '****ClassToCall was null');
+            UTIL_Debug.debug(LoggingLevel.WARN, '****ClassToCall was null');
         }
         return null;
     }
@@ -179,17 +172,18 @@ public class TDTM_TriggerHandler {
     * @description Performs pending DML operations, on the records stored in the DMLWrapper that it gets as parameter.
     * We want this method to be static so that it can be called from the future method in TDTM_Runnable.
     * @param dmlWrapper The class that contains the records that need to have DML performed on.
+    * @param allOrNone whether or not to continue the operation if an error is encountered. Callers will need to deal with errors is allOrNone is false.
     * @return void
     */
-    public static void processDML(TDTM_Runnable.DmlWrapper dmlWrapper, Savepoint sp) {
+    public static ERR_Handler.Errors processDML(TDTM_Runnable.DmlWrapper dmlWrapper, Boolean allOrNone) {
         dmlWrapper.groupByType(); //sort thyself!
         
         /**We keep the Database methods with the opt_allOrNone flag set to false to be able to alert the client 
         process of all the errors that occurred in the context **/
-        List<Database.SaveResult> insertResults = Database.insert(dmlWrapper.objectsToInsert, false);        
-        List<Database.SaveResult> updateResults = Database.update(dmlWrapper.objectsToUpdate, false);        
-        List<Database.DeleteResult> deleteResults = Database.delete(dmlWrapper.objectsToDelete, false);        
-        List<Database.UndeleteResult> undeleteResults = Database.undelete(dmlWrapper.objectsToUndelete, false); //Not yet using this one, afaik, but no reason not to support it.
+        List<Database.SaveResult> insertResults = Database.insert(dmlWrapper.objectsToInsert, allOrNone);        
+        List<Database.SaveResult> updateResults = Database.update(dmlWrapper.objectsToUpdate, allOrNone);        
+        List<Database.DeleteResult> deleteResults = Database.delete(dmlWrapper.objectsToDelete, allOrNone);        
+        List<Database.UndeleteResult> undeleteResults = Database.undelete(dmlWrapper.objectsToUndelete, allOrNone); //Not yet using this one, afaik, but no reason not to support it.
         //@TODO: We cannot support upsert because you cannot do upsert on SObject. You have to specify the actual type.        
         //Also, should we support Database.merge?
         
@@ -197,11 +191,6 @@ public class TDTM_TriggerHandler {
         ERR_Handler.Errors errors = ERR_Handler.getErrors(insertResults, updateResults, deleteResults, undeleteResults, 
             dmlWrapper.objectsToInsert, dmlWrapper.objectsToUpdate, dmlWrapper.objectsToDelete, dmlWrapper.objectsToUndelete);
             
-        if(errors.errorsExist) {
-            if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                Database.rollback(sp);
-                ERR_Handler.processErrors(errors.errorRecords, ERR_Handler.Context.TDTM.name());
-            }
-        }
+        return errors;
     }
 }

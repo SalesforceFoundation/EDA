@@ -258,7 +258,19 @@ public with sharing class ADDR_Seasonal_UTIL {
 
         TDTM_Runnable.Dmlwrapper dmlWrapper = new TDTM_Runnable.Dmlwrapper();
         ADDR_Addresses_TDTM.refreshParentAndSiblings(mapAccIdAddr, dmlWrapper, null);
-        Savepoint sp = Database.setSavepoint();
-        TDTM_TriggerHandler.processDML(dmlWrapper, sp);
+
+        // Process DML. We want to parse the errors so the allOrNone boolean is set to false
+        ERR_Handler.Errors errors = TDTM_TriggerHandler.processDML(dmlWrapper, false); 
+
+        // process results for an error otherwise we can assume success
+        if (errors.errorsExist) {
+            for (Error__c error : errors.errorRecords) {
+                ID objId = ERR_Handler.getErrorObjectId(error);
+
+                Address__c addr = mapAccIdAddr.get(objId);
+                addr.addError(error.Full_Message__c);
+            }
+        }
+
     }
 }
