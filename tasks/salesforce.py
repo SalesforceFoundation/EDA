@@ -55,9 +55,20 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
         namespace_prefix = ''
         if self.options['managed']:
             namespace_prefix = '{}__'.format(self.project_config.project__package__namespace)
+
+        # Set record type visibilities for Course Connections
         self._set_record_type('{}Course_Enrollment__c.Default'.format(namespace_prefix), 'false')
         self._set_record_type('{}Course_Enrollment__c.Faculty'.format(namespace_prefix), 'false')
         self._set_record_type('{}Course_Enrollment__c.Student'.format(namespace_prefix), 'true')
+
+        # Set record type visibilities for Accounts
+        self._set_record_type('{}Account.Administrative'.format(namespace_prefix), 'true')
+        self._set_record_type('{}Account.Academic_Program'.format(namespace_prefix), 'false')
+        self._set_record_type('{}Account.Business_Organization'.format(namespace_prefix), 'false')
+        self._set_record_type('{}Account.Educational_Institution'.format(namespace_prefix), 'false')
+        self._set_record_type('{}Account.HH_Account'.format(namespace_prefix), 'false')
+        self._set_record_type('{}Account.Sports_Organization'.format(namespace_prefix), 'false')
+        self._set_record_type('{}Account.University_Department'.format(namespace_prefix), 'false')
 
     def _set_record_type(self, name, default):
         rt = rt_visibility_template.format(default, name)
