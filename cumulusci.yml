@@ -12,6 +12,12 @@ tasks:
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
 
+    deploy_dev_config:
+        description: Deploys the post install configuration for an unmanaged DE org config
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: dev_config/src
+
 flows:
     ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
@@ -40,6 +46,11 @@ flows:
             6:
                 options:
                     managed: True
+
+    dev_org:
+        tasks:
+            8:
+                task: deploy_dev_config
 
     release_beta:
         tasks:
