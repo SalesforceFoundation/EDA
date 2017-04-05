@@ -91,6 +91,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     private static void configSettings(Hierarchy_Settings__c hs) {
 		hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
 		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
+        hs.Disable_Preferred_Email_Enforcement__c = false;
 		hs.Contacts_Addresses_Enabled__c = true;
 		hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();
 		hs.Reciprocal_Method__c = 'List Setting';

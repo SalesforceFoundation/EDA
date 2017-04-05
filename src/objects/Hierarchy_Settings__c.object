@@ -96,6 +96,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Disable_Preferred_Email_Enforcement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disable the enforcement of the Preferred Email field for Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this box to disable the enforcement of the Preferred Email field for Contacts.</inlineHelpText>
+        <label>Disable Preferred Email Enforcement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Enable_Course_Connections__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Enables Course Connections. Requires that at least two record types exist for Course Connections to be used for the default Active Student and Faculty.</description>

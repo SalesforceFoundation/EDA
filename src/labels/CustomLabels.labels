@@ -329,6 +329,14 @@
         <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
     <labels>
+        <fullName>stgHelpContactPreferredEmail</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpContactPreferredEmail</shortDescription>
+        <value>Select this box to disable the enforcement of the Preferred Email field for Contacts.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

@@ -272,6 +272,7 @@
         <members>Hierarchy_Settings__c.Async_Error_Check_Last_Run__c</members>
         <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
+        <members>Hierarchy_Settings__c.Disable_Preferred_Email_Enforcement__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
@@ -371,6 +372,7 @@
         <members>stgHelpAccountModel</members>
         <members>stgHelpAddressAccRecType</members>
         <members>stgHelpContactAddrs</members>
+        <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpCourseConnBackfillDescription</members>
         <members>stgHelpDefaultFacultyType</members>
         <members>stgHelpDefaultStudentType</members>
