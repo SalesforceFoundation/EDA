@@ -22,6 +22,7 @@ task_options['skip_record_types'] = {
     'required': True,
 }
 
+#Used to set the record type visibilities
 class UpdateAdminProfile(BaseUpdateAdminProfile):
 
     task_options = task_options
@@ -78,4 +79,34 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             os.path.join(self.tempdir, 'profiles'),
             'Admin.profile',
             max=1,
+        )
+
+#Used to reverse the changes to Admin profile.
+class ClearAdminProfile(BaseUpdateAdminProfile):
+
+    task_options = task_options
+
+    def _init_options(self, kwargs):
+        super(UpdateAdminProfile, self)._init_options(kwargs)
+        if 'skip_record_types' not in self.options:
+            self.options['skip_record_types'] = False
+        if self.options['skip_record_types'] == 'False':
+            self.options['skip_record_types'] = False
+        if 'managed' not in self.options:
+            self.options['managed'] = False
+        if self.options['managed'] == 'False':
+            self.options['managed'] = False
+        
+    def _process_metadata(self):
+        super(UpdateAdminProfile, self)._process_metadata()
+       
+        if self.options['skip_record_types']:
+            return
+ 
+        # Strip record type visibilities
+        findReplaceRegex(
+            '<recordTypeVisibilities>([^\$]+)</recordTypeVisibilities>',
+            '',
+            os.path.join(self.tempdir, 'profiles'),
+            'Admin.profile'
         )
