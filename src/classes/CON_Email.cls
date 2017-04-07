@@ -43,6 +43,8 @@ public class CON_Email {
     */
 	public static void processPreferredEmail(Contact contact, List<Contact> oldlist) {
 
+        Boolean validatePreferred = !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c;
+
         // No need to run if we are in a delete context
         if(contact == null) {
             return;
@@ -51,77 +53,107 @@ public class CON_Email {
 		Boolean isUpdateOrDelete = (oldlist != null) ? true : false;
 
 	    // Store default email field mappings to preferred email pick list.
-	    Map<String,String> preferredEmailMappings = new Map<String,String>{   
-	        'University' => 'UniversityEmail__c',
-	        'Work' => 'WorkEmail__c',
-	        'Alternate' => 'AlternateEmail__c'
+	    Map<String,String> preferredEmailMappings = new Map<String,String>{
+	        'University' => 'University Email',
+	        'Work' => 'Work Email',
+	        'Alternate' => 'Alternate Email'
 	    };
 
-	    Map<String,String> valuedEmailMap = getEmailFieldsWithValue(contact);
+        // Build the list of email fields
+        CON_EmailFieldSet emailFields = new CON_EmailFieldSet(contact);
 
-        if( valuedEmailMap.size() > 0 ) {
+        if( emailFields.valuedCount() > 0 ) {
 
-            // Enforce preferred email field
-            if(String.isBlank(contact.Preferred_Email__c)){
+            // Enforce preferred email field unless validation is disabled
+            if(validatePreferred && String.isBlank(contact.Preferred_Email__c)){
+
                 contact.addError( Label.PreferredEmailRequiredError );
+
+            } else if ( String.isNotBlank(contact.Preferred_Email__c) ) {
+
+                String preferredLabel = (preferredEmailMappings.containsKey(contact.Preferred_Email__c)) ? preferredEmailMappings.get(contact.Preferred_Email__c) : contact.Preferred_Email__c;
+
+                // Make sure the value in Preferred email matches an actual field
+                if(!emailFields.isValidLabel(preferredLabel)) {
+                    contact.addError(Label.PreferredEmailMatchMustExist);
+                }
+
+                CON_EmailField field = emailFields.getFieldByLabel(preferredLabel);
+
+                if( field != null) {
+                    // Make sure we are not setting to a blank value
+                    if(String.isNotBlank(field.value)) {
+                        // Copy the value that matches preferred email to the standard email field
+                        contact.Email = (String)field.value;
+                    } else {
+                        contact.addError(Label.PreferredEmailMatchNotNull);
+                    }
+                }
             }
 
-            // Get the Api name that matches the value in Preferred Email
-            String preferredApiField = ( preferredEmailMappings.containsKey(contact.Preferred_Email__c) ) ? preferredEmailMappings.get(contact.Preferred_Email__c) : valuedEmailMap.get(contact.Preferred_Email__c);
-
-            String prefEmailVal = (String)contact.get(preferredApiField);
-
-            if (  String.isNotBlank( prefEmailVal ) ) { 
-                contact.Email = prefEmailVal;
-            } else {
-                contact.addError(Label.PreferredEmailMatchNotNull);
-            }      
-        
         } else {
 
             // Cannot have preferred email set if there are no emails present
             if( !String.isBlank(contact.Preferred_Email__c)) {
-                contact.addError(Label.PreferredEmailMatchNotNull);                    
+                contact.addError(Label.PreferredEmailMatchNotNull);
             }
 
             // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
 			if( isUpdateOrDelete && String.isNotBlank(contact.Email) ) {
-	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist); 
+	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
 
 	            // Get the old email values - if any - to compare.
-	            Map<String,String> oldValuedEmails = getEmailFieldsWithValue( oldmap.get(contact.Id) );
+	            Map<String,CON_EmailField> oldValuedEmails = getEmailFieldsWithValue( oldmap.get(contact.Id) );
 
 	            // If this is an update and the contact contained previous emails we want to clear the standard email field
                 // we do this because when a user deletes all email values in the HEDA contact without clearing
                 // the value if email, there would be an emil address that the user tried to delete.
 	            if (oldValuedEmails.size() > 0) {
-	                contact.Email = null; 
-	            } 
+	                contact.Email = null;
+	            }
 	        } else if(String.isNotBlank(contact.Email)) {
 	        	copyStdEmailToAlternate(contact);
 	        }
-        } 
+        }
+
+        // Check if the standard email field does not match any of the custom email values
 	}
 
     /*******************************************************************************************************
     * @description Copies the value of the standard Email field to the Alternate Email field if Email has a value and no other emails.
     * @param Contact the contact to change
     */
-	public static void copyStdEmailToAlternate(Contact contact) {
-		if(contact.Email != null) {
-			contact.Preferred_Email__c = 'Alternate';
-			contact.AlternateEmail__c = contact.Email;
-		}
-	}
+    public static void copyStdEmailToAlternate(Contact contact) {
+        if(contact.Email != null) {
+            contact.Preferred_Email__c = 'Alternate';
+            contact.AlternateEmail__c = contact.Email;
+        }
+    }
 
     /*******************************************************************************************************
-    * @description Returns a map of emails field labels and their api name if they have a value
-    * @param Contact contact object to populate list from
+    * @description CHeck if the contact has any fields containing the search value
+    * @param Search the contact to change
+    * @param Contact the contact to change
+    */
+    private static Boolean contactHasEmail(String search, Contact contact) {
+        Boolean hasValue = false;
+
+        for(CON_EmailField emailField :getEmailFieldsWithValue( contact ).values()){
+            if(emailField.value == contact.Email){
+                hasValue = true;
+            }
+        }
+        return hasValue;
+    }
+
+    /*******************************************************************************************************
+    * @description Returns a map of emails field labels and their api name if they have a value for a Contact
+    * @param Contact to populate list from
     * @return Map<String,String> Map of emails fields key is field name and value is the field value
     */
-	private static Map<String,String> getEmailFieldsWithValue(Contact contact) {
+	private static Map<String,CON_EmailField> getEmailFieldsWithValue(Contact contact) {
         // Organize Email fields with a value
-        Map<String,String> valuedEmailMap = new Map<String,String>(); 
+        Map<String,CON_EmailField> valuedEmailMap = new Map<String,CON_EmailField>();
 
         if(contact != null) {
 
@@ -134,12 +166,88 @@ public class CON_Email {
 
                 // if the field has a value add it to the map, excluding the standard Email field
                 if ( fieldName != 'Email' && String.isNotBlank(emailField) ) {
-                    valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
+
+                    //valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
+                    valuedEmailMap.put(
+                        emailFields.get(fieldName).getLabel(),
+                        new CON_EmailField( emailField, emailFields.get(fieldName).getLabel(), fieldName )
+                    );
                 }
             }
-
         }
 
         return valuedEmailMap;
 	}
+
+    private class CON_EmailFieldSet {
+
+        private Set<CON_EmailField> fieldSet {get;set;}
+
+        public CON_EmailFieldSet(Contact contact) {
+
+            this.fieldSet = new Set<CON_EmailField>();
+            Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+
+            for(String fieldName : fieldMap.keySet() ) {
+                if ( fieldName != 'Email' ) {
+                    String emailField = (String)contact.get(fieldName);
+                    fieldSet.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
+                }
+            }
+        }
+
+        public Integer valuedCount() {
+            Integer count = 0;
+            for(CON_EmailField field : this.fieldSet) {
+                count += (field.hasValue()) ? 1 : 0;
+            }
+            return count;
+        }
+
+        public CON_EmailField getFieldByApi(String apiSearch) {
+            for(CON_EmailField field : this.fieldSet) {
+                if (apiSearch == field.apiName) {
+                    return field;
+                }
+            }
+            return null;
+        }
+
+        public CON_EmailField getFieldByLabel(String labelSearch) {
+            for(CON_EmailField field : this.fieldSet) {
+                if (labelSearch == field.label) {
+                    return field;
+                }
+            }
+            return null;
+        }
+
+        public Boolean isValidlabel(String labelSearch) {
+            Boolean isValid = false;
+            for(CON_EmailField field : this.fieldSet) {
+                if (labelSearch == field.label) {
+                    isValid = true;
+                    break;
+                }
+            }
+            return isValid;
+        }
+    }
+
+    private class CON_EmailField {
+
+        public String value {get;set;}
+        public String label {get;set;}
+        public String apiName {get;set;}
+
+        public CON_EmailField(String val, String lbl, String api ) {
+            this.value = val;
+            this.label = lbl;
+            this.apiName = api;
+        }
+
+        public Boolean hasValue(){
+            return String.isNotBlank(this.value);
+        }
+    }
 }

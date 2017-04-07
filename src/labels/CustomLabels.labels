@@ -89,6 +89,14 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>PreferredEmailMatchMustExist</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PreferredEmailMatchMustExist</shortDescription>
+        <value>The value selected in Preferred Email does not match any email fields. Values in Preferred Email must match a custom email field label.</value>
+    </labels>
+    <labels>
         <fullName>PreferredEmailMatchNotNull</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
