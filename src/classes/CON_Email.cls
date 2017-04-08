@@ -93,7 +93,7 @@ public class CON_Email {
                     }
 
                 // Make sure the value in Preferred email matches an actual field making an exception for a special case to prevent errors.
-                } else if(contact.Preferred_Email__c != 'Email (standard)') {
+                } else if(contact.Preferred_Email__c != 'Email (standard)' || contact.Preferred_Email__c != 'Email') {
                     contact.addError(Label.PreferredEmailMatchMustExist);
                 }
             }

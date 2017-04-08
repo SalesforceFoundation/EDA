@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="slds-col slds-size--1-of-2">
-            <lightning:button variant="brand" label="Run Clean Up" iconName="utility:copy" iconPosition="left" onclick="{! c.runCleanUp }" aura:id="cleanUpBtn" />
+            <lightning:button variant="brand" label="Run Clean Up" iconName="utility:copy" iconPosition="left" onclick="{! c.runCleanUp }" aura:id="cleanUpBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Email_Enforcement__c , v.isView), !v.isView)}"  />
             <br />
             <ui:outputText aura:id="cleanUpMsg" value="The Clean Up was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
         </div>
