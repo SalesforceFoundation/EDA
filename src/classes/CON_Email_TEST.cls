@@ -159,9 +159,6 @@ private class CON_Email_TEST {
 
 	        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this test
 	        update contacts;
-
-	        System.debug([SELECT Id, Name, Email, AlternateEmail__c,Preferred_Email__c FROM Contact WHERE Id =: caseOneId]);
-	        System.debug(Hierarchy_Settings__c.getOrgDefaults());
         }
 
 	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to activate these for the batch

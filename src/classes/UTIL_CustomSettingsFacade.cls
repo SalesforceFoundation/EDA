@@ -37,7 +37,7 @@
 */
 public without sharing class UTIL_CustomSettingsFacade {
 
-    //storing user-level custom settings in-memory to avoid trying to isert/update them
+    //storing user-level custom settings in-memory to avoid trying to insert/update them
     //twice and thus trigger the "duplicate OwnerId" error
     static Hierarchy_Settings__c settings;
 

@@ -58,7 +58,7 @@ public class CON_Email {
         if( emailFields.valuedCount() > 0 ) {
 
             // Check the presence of a special cases when running a batch process.
-            // This will prevent some validation errors below to allow batches to complete succesfully.
+            // This will prevent some validation errors below to allow batches to complete successfully.
             if( validatePreferred && System.isBatch() ) {
                 if( !emailFields.valueExists(contact.Email) && String.isBlank(contact.Preferred_Email__c)) {
                     contact.Preferred_Email__c = 'Email (standard)';
@@ -114,7 +114,7 @@ public class CON_Email {
 
 	            // If this is an update and the contact contained previous emails we want to clear the standard email field
                 // we do this because when a user deletes all email values in the HEDA contact without clearing
-                // the value if email, there would be an emil address that the user tried to delete.
+                // the value if email, there would be an email address that the user tried to delete.
 	            if (oldEmailFields.valuedCount() > 0) {
 	                contact.Email = null;
 	            }
@@ -137,7 +137,7 @@ public class CON_Email {
     }
 
     /*******************************************************************************************************
-    * @description An inner erapper class to contain a list of email fields and perform functions on them
+    * @description An inner wrapper class to contain a list of email fields and perform functions on them
     * @param Contact the contact to build list from.
     */
     private class CON_EmailFieldList {
