@@ -36,9 +36,12 @@
 */
 @isTest
 private class CON_Email_TEST {
-	
+
 	@testSetup
 	static void dataSetup() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+            );
 
 		// Get contacts set up
         List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
@@ -52,7 +55,7 @@ private class CON_Email_TEST {
         insert listCon;
 	}
 
-	@isTest static void testPrefferedEmailInsert() {
+	@isTest static void testPrefferedEmailInsertNoStd() {
 		List<Contact> contacts = [SELECT Id, Name, Email FROM Contact WHERE EMAIL != null LIMIT 2];
 		List<String> contIds = new List<String>();
 
@@ -84,8 +87,11 @@ private class CON_Email_TEST {
         if(contacts.size()>0) {
         	contacts[0].WorkEmail__c = 'testworkemail@domain.com';
         	contacts[0].Preferred_Email__c = 'Work';
-		    CON_Preferred_TDTM.alreadyRunBefore = true; // turn off preferred emial processing
+		    CON_Preferred_TDTM.alreadyRunBefore = false; // turn off preferred email processing
 	        update contacts;
+
+	        Contact contactOne = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE Id =:contacts[0].Id LIMIT 1];
+			System.assertEquals('testworkemail@domain.com', contactOne.Email); // make sure the email is copied for the test
 
         	contacts[0].Preferred_Email__c = null;
         	contacts[0].AlternateEmail__c = null;
@@ -106,40 +112,81 @@ private class CON_Email_TEST {
 
 	// Test the batch Class
 	@isTest static void testContactEmailBatch() {
+
+		UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
+            );
+
+        UTIL_CustomSettingsFacade.getSettings();
 		List<String> contIds = new List<String>();
 
 		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact];
+
+		String caseOneId;
+		String caseTwoId;
 
 		// Process the contact for testing
         if(contacts.size()>0) {
 
 	        for (Integer i = 0; i < contacts.size(); i++) {
-				contacts[i].Email = 'emailtest' + i + '@domainemail.com';
-				contIds.add(contacts[i].Id);
+
+	        	// Setup special Case 1
+	        	if(i==5) {
+					contacts[5].Email = 'uniquwemailtest5nomatch@domainemail.com';
+					contacts[5].AlternateEmail__c = 'alternate5@domainemail.com';
+		        	contacts[5].UniversityEmail__c = null;
+		        	contacts[5].WorkEmail__c = null;
+					contacts[5].Preferred_Email__c = '';
+					caseOneId = contacts[5].Id;
+
+        		// Setup special Case 2
+				} else if (i==6) {
+					contacts[6].AlternateEmail__c = 'alternate6@domainemail.com';
+					contacts[6].Email = '';
+					contacts[6].WorkEmail__c = null;
+					contacts[6].Preferred_Email__c = '';
+					caseTwoId = contacts[6].Id;
+
+				} else {
+					contacts[i].Email = 'emailtest' + i + '@domainemail.com';
+		        	contacts[i].UniversityEmail__c = null;
+		        	contacts[i].WorkEmail__c = null;
+					contacts[i].AlternateEmail__c = null;
+					contacts[i].Preferred_Email__c = null;
+					contIds.add(contacts[i].Id);
+				}
 	        }
 
 	        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this test
 	        update contacts;
 
-        	contacts[0].Preferred_Email__c = null;
-        	contacts[0].AlternateEmail__c = null;
-        	contacts[0].UniversityEmail__c = null;
-        	contacts[0].WorkEmail__c = null;
+	        System.debug([SELECT Id, Name, Email, AlternateEmail__c,Preferred_Email__c FROM Contact WHERE Id =: caseOneId]);
+	        System.debug(Hierarchy_Settings__c.getOrgDefaults());
         }
 
 	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to activate these for the batch
-
 		// Run Batch
 		Test.startTest();
 	    CON_Email_BATCH contbatch = new CON_Email_BATCH();
 	    Database.executeBatch( contbatch );
 		Test.stopTest();
 
-		// After batch run assert
-		contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Id in: contIds ];
-
+		// After batch run assert leaving off the two contacts for special cases
+		contacts = [SELECT Id, Name, Email, AlternateEmail__c FROM Contact WHERE Id in: contIds AND Id!=:caseOneId AND Id !=: caseTwoId];
 		for(Contact c : contacts) {
-			System.assertEquals( c.AlternateEmail__c , c.Email ); 
+			System.assertEquals( c.AlternateEmail__c , c.Email );
 		}
-	}	
+
+	    // Check special Case 1
+		Contact contactOne = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseOneId LIMIT 1];
+		System.assertEquals('uniquwemailtest5nomatch@domainemail.com', contactOne.Email);
+		System.assertEquals('Email (standard)', contactOne.Preferred_Email__c);
+
+	    // Check special Case 2
+		Contact contactTwo = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseTwoId LIMIT 1];
+		System.assertEquals(contactTwo.Email, contactTwo.AlternateEmail__c);
+		System.assertEquals('Alternate', contactTwo.Preferred_Email__c);
+
+	}
+
 }

@@ -35,8 +35,8 @@
 * @description Batch Class to process contacts on HEDA installation
 */
 public class CON_Email_BATCH implements Database.Batchable<sObject> {
-
-	String query = 'SELECT Id, Name, Email FROM Contact WHERE Email != null AND Preferred_Email__c = null';
+    
+	String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
 	
 	public Database.QueryLocator start(Database.BatchableContext BC) {
 
@@ -45,19 +45,32 @@ public class CON_Email_BATCH implements Database.Batchable<sObject> {
 
    	public void execute(Database.BatchableContext BC, List<sObject> scope) {
 		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
-        
-        // process contact emails
+        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this batch
+        // process contact emails manually
         if(contacts.size()>0) {
 	        for(Contact c : contacts) {
-	        	CON_Email.copyStdEmailToAlternate(c);
+	        	CON_Email.processPreferredEmail(c,null);
             }
         }
-
         update contacts;
 	}
 	
 	public void finish(Database.BatchableContext BC) {
 		UTIL_Debug.debug('****Contact Email batch completed. ID:'+BC.getJobId() );
 	}
+
+    // Dynamically build SOQL query to include all custom emails
+    private String getCustomFields() {
+        Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+        String customFieldQuery = '';
+        
+        for(String fieldName : fieldMap.keySet() ) {
+            if ( fieldName != 'Email' ) {
+                customFieldQuery += ', ' + fieldName;
+            }
+        }
+
+        return customFieldQuery;
+    }
 	
 }

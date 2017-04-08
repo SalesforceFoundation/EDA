@@ -69,7 +69,7 @@ public class CON_Email {
                 // custom emails are present the first in the list will be set to preferred.
                 if(String.isBlank(contact.Email) ) {
                     // Get the first item from the list either one or many
-                    contact.Email = (String)emailFields.valuedFields[0].value;
+                    contact.Email = emailFields.valuedFields[0].value;
                     contact.Preferred_Email__c = emailFields.valuedFields[0].prefLabel;
                 }
             }
@@ -87,7 +87,7 @@ public class CON_Email {
                     // Make sure we are not setting to a blank value
                     if(String.isNotBlank(field.value)) {
                         // Copy the value that matches preferred email to the standard email field
-                        contact.Email = (String)field.value;
+                        contact.Email = field.value;
                     } else {
                         contact.addError(Label.PreferredEmailMatchNotNull);
                     }
@@ -155,13 +155,6 @@ public class CON_Email {
                 if ( fieldName != 'Email' ) {
                     String emailField = (String)contact.get(fieldName);
 
-                    System.debug( 'JSON.serializePretty(fieldMap)' );
-                    System.debug( JSON.serializePretty(fieldMap) );
-
-                    //System.debug( 'fieldMap: ' + fieldMap );
-                    System.debug( 'fieldName: ' + fieldName );
-                    System.debug( 'emailField: ' + emailField );
-
                     allFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
                     if(String.isNotBlank(emailField)) {
                         valuedFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
@@ -178,15 +171,6 @@ public class CON_Email {
             return count;
         }
 
-        public CON_EmailField getFieldByApi(String apiSearch) {
-            for(CON_EmailField field : this.allFields) {
-                if (apiSearch == field.apiName) {
-                    return field;
-                }
-            }
-            return null;
-        }
-
         public CON_EmailField getFieldByPrefLabel(String labelSearch) {
             for(CON_EmailField field : this.allFields) {
                 if (labelSearch == field.label || labelSearch == field.prefLabel) {
@@ -196,20 +180,9 @@ public class CON_Email {
             return null;
         }
 
-        public Boolean isValidlabel(String labelSearch) {
-            Boolean isValid = false;
-            for(CON_EmailField field : this.allFields) {
-                if (labelSearch == field.label) {
-                    isValid = true;
-                    break;
-                }
-            }
-            return isValid;
-        }
-
         private Boolean valueExists(String search) {
             Boolean hasValue = false;
-            for(CON_EmailField field : this.allFields ){
+            for(CON_EmailField field : this.valuedFields ){
                 if(field.value == search){
                     hasValue = true;
                     break;

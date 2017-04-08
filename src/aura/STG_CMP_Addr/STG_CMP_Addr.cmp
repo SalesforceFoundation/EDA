@@ -37,6 +37,21 @@
             </aura:set>
             </aura:if>
         </div>
+
+        <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
+            <h2>Preferred Email Data Clean Up:</h2>
+            <div class="slds-text-body--small">
+                <p>You can run this data clean up process if the Preferred Email enforcement has been disabled for some time, or if the Preferred Email enforcement is being turned on for the first time.</p>
+                <p>This process will update existing Contacts by setting the Preferred Email field as appropriate. This way Batch processes will have a better chance of succeeding in the future.</p>
+            </div>
+        </div>
+        <div class="slds-col slds-size--1-of-2">
+            <lightning:button variant="brand" label="Run Clean Up" iconName="utility:copy" iconPosition="left" onclick="{! c.runCleanUp }" aura:id="cleanUpBtn" />
+            <br />
+            <ui:outputText aura:id="cleanUpMsg" value="The Clean Up was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
+        </div>
+
+        <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
         
         <div class="slds-col slds-size--1-of-2">Contact Multi-Addresses Enabled:</div>
         <div class="slds-col slds-size--1-of-2">
@@ -141,7 +156,7 @@
 
         <hr />
 
-        <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top slds-p-right--xx-large">
+        <div class="slds-col slds-size--1-of-2 slds-p-top--large slds-m-top--large slds-border--top slds-p-right--xx-large">
             <h2>Ethnicity and Race Backfill for Contacts</h2>
             <div class="slds-text-body--small">
 
@@ -161,7 +176,7 @@
                 </ul>
             </div>
         </div>
-        <div class="slds-col slds-size--1-of-2 slds-m-top--large slds-border--top">
+        <div class="slds-col slds-size--1-of-2 slds-p-top--large slds-m-top--large slds-border--top">
             <lightning:button variant="brand" label="Run Backfill" iconName="utility:copy" iconPosition="left" onclick="{! c.runBackfill }" aura:id="ethnicRaceBtn" />
             <br />
             <ui:outputText aura:id="ethnicRaceMsg" value="The backfill was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
