@@ -112,11 +112,6 @@ private class CON_Email_TEST {
 	// Test the batch Class
 	@isTest static void testContactEmailBatch() {
 
-		UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
-            );
-
-        UTIL_CustomSettingsFacade.getSettings();
 		List<String> contIds = new List<String>();
 
 		List<Contact> contacts = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact];

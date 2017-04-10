@@ -1,5 +1,5 @@
 ({
-	runBackfill : function (component, event, helper) {
+	runBackfill : function (component) {
 		var runBatchAction = component.get("c.executeEthnicityRaceBatch");
 		runBatchAction.setCallback(this, function(response) {
 	        if(response.getState() === "SUCCESS") {
@@ -13,7 +13,7 @@
 		});
 		$A.enqueueAction(runBatchAction);
 	},
-	runCleanUp : function (component, event, helper) {
+	runCleanUp : function (component) {
 		var runBatchAction = component.get("c.executePreferredEmailCleanUpBatch");
 		runBatchAction.setCallback(this, function(response) {
 	        if(response.getState() === "SUCCESS") {

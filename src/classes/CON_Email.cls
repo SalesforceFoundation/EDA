@@ -60,7 +60,7 @@ public class CON_Email {
             // Check the presence of a special cases when running a batch process.
             // This will prevent some validation errors below to allow batches to complete successfully.
             if( validatePreferred && System.isBatch() ) {
-                if( !emailFields.valueExists(contact.Email) && String.isBlank(contact.Preferred_Email__c)) {
+                if(String.isNotBlank(contact.Email) && !emailFields.valueExists(contact.Email) && String.isBlank(contact.Preferred_Email__c)) {
                     contact.Preferred_Email__c = 'Email (standard)';
                 }
 
@@ -181,14 +181,12 @@ public class CON_Email {
         }
 
         private Boolean valueExists(String search) {
-            Boolean hasValue = false;
             for(CON_EmailField field : this.valuedFields ){
-                if(field.value == search){
-                    hasValue = true;
-                    break;
+                if(String.isNotBlank(search) && field.value == search){
+                    return true;
                 }
             }
-            return hasValue;
+            return false;
         }
     }
 
