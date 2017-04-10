@@ -87,7 +87,6 @@ private class CON_Email_TEST {
         if(contacts.size()>0) {
         	contacts[0].WorkEmail__c = 'testworkemail@domain.com';
         	contacts[0].Preferred_Email__c = 'Work';
-		    CON_Preferred_TDTM.alreadyRunBefore = false; // turn off preferred email processing
 	        update contacts;
 
 	        Contact contactOne = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE Id =:contacts[0].Id LIMIT 1];
