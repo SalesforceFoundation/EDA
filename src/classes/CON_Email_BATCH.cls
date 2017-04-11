@@ -37,9 +37,8 @@
 public class CON_Email_BATCH implements Database.Batchable<sObject> {
     
 	String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
-	
-	public Database.QueryLocator start(Database.BatchableContext BC) {
 
+	public Database.QueryLocator start(Database.BatchableContext BC) {
 		return Database.getQueryLocator(query);
 	}
 
@@ -51,7 +50,25 @@ public class CON_Email_BATCH implements Database.Batchable<sObject> {
 	}
 	
 	public void finish(Database.BatchableContext BC) {
-		UTIL_Debug.debug('****Contact Email batch completed. ID:'+BC.getJobId() );
+
+        // Email Notification
+        AsyncApexJob a = [SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CreatedBy.Email FROM AsyncApexJob WHERE Id =:BC.getJobId()];
+
+        // setup parameterized Email body
+        String[] params = new String[]{
+            String.valueOf(a.TotalJobItems),
+            String.valueOf(a.NumberOfErrors)
+        };
+        String emailBody = String.format(label.stgPreferredEmailBatchEmailBody, params);
+
+        // Send an email to the Apex job's submitter notifying of job completion.
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String[] toAddresses = new String[] {a.CreatedBy.Email};
+        mail.setToAddresses(toAddresses);
+
+        mail.setSubject(label.stgPreferredEmailBatchEmailSubject + ' ' + a.Status);
+        mail.setPlainTextBody(emailBody);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 	}
 
     // Dynamically build SOQL query to include all custom emails

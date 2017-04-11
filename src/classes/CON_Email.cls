@@ -110,12 +110,14 @@ public class CON_Email {
         } else {
 
             // Cannot have preferred email set if there are no emails present
-            if( !String.isBlank(contact.Preferred_Email__c)) {
+            if( String.isNotBlank(contact.Preferred_Email__c)) {
                 contact.addError(Label.PreferredEmailMatchNotNull);
             }
 
             // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
-			if( isUpdateOrDelete && String.isNotBlank(contact.Email) ) {
+            // We make sure this isnt a batch, because the batch relies on this trigger while
+            // updating contact
+			if( isUpdateOrDelete && String.isNotBlank(contact.Email) && !System.isBatch() ) {
 	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
 
 	            // Get the old email values - if any - to compare.
