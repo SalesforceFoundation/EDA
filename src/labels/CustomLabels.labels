@@ -458,15 +458,15 @@
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
-        <categories>Courses</categories>
+        <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Course Course Description Copy Email Body</shortDescription>
+        <shortDescription>Setting Preferred Email Batch Body</shortDescription>
         <value>The batch Apex job processed {0} batches with {1} failures.</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailSubject</fullName>
-        <categories>Courses</categories>
+        <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Setting Preferred Email batch Subject</shortDescription>
