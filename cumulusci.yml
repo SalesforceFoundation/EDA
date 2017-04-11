@@ -12,6 +12,52 @@ tasks:
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
 
+    download_browser_tests:
+        description: Downloads the browser tests from the HEDA-Browser-Tests Github repository.
+        class_path: cumulusci.tasks.util.DownloadZip
+        options:
+            url: 'https://github.com/SalesforceFoundation/HEDA-Browser-Tests/archive/master.zip'
+            dir: browser_tests
+            subfolder: HEDA-Browser-Tests-master
+
+    browsertests_firefox:
+        description: Runs the Ruby/Watir browser tests in the browsertests folder using Firefox
+        class_path: cumulusci.tasks.command.SalesforceBrowserTest
+        options:
+            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber -c features/ --tags ~@flaky --tags ~@chrome'
+            dir: '.'
+            env:
+                SELENIUM_BROWSER: firefox
+
+    browsertests_chrome:
+        description: Runs the Ruby/Watir browser tests in the browsertests folder using Chrome
+        class_path: cumulusci.tasks.command.SalesforceBrowserTest
+        options:
+            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber -c features/ --tags ~@firefox --tags ~@flaky'
+            dir: '.'
+            env:
+                SELENIUM_BROWSER: chrome
+
+    browsertests_unmanaged_firefox:
+        description: Runs the Ruby/Watir browser tests in the browsertests folder against unmanaged metadata in Firefox
+        class_path: cumulusci.tasks.command.SalesforceBrowserTest
+        options:
+            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber -c features/ --tags ~@flaky --tags ~@chrome'
+            dir: '.'
+            env:
+                SELENIUM_BROWSER: firefox
+                TARGET_ORG: unmanaged
+
+    browsertests_unmanaged_chrome:
+        description: Runs the Ruby/Watir browser tests in the browsertests folder against unmanaged metadata in Chrome
+        class_path: cumulusci.tasks.command.SalesforceBrowserTest
+        options:
+            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber -c features/ --tags ~@firefox --tags ~@flaky'
+            dir: '.'
+            env:
+                SELENIUM_BROWSER: chrome
+                TARGET_ORG: unmanaged
+
 flows:
     ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
@@ -47,3 +93,75 @@ flows:
                 task: mrbelvedere_publish
                 options:
                     tag: ^^github_release.tag_name
+
+    browsertests_firefox:
+        description: Runs the browser tests locally against a managed package in Firefox
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_firefox
+
+    browsertests_chrome:
+        description: Runs the browser tests locally against a managed package in Chrome
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_chrome
+
+    browsertests_unmanaged_firefox:
+        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Firefox
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_unmanaged_firefox
+
+    browsertests_unmanaged_chrome:
+        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Chrome
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_unmanaged_chrome
+
+    ci_browsertests_firefox:
+        description: Runs the browser tests via SauceLabs against a managed package in Firefox
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_firefox
+                options:
+                    use_saucelabs: True
+
+    ci_browsertests_chrome:
+        description: Runs the browser tests via SauceLabs against a managed package in Chrome
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_chrome
+                options:
+                    use_saucelabs: True
+
+    ci_browsertests_unmanaged_firefox:
+        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Firefox
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_unmanaged_firefox
+                options:
+                    use_saucelabs: True
+
+    ci_browsertests_unmanaged_chrome:
+        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Chrome
+        tasks:
+            1:
+                task: download_browser_tests
+            2:
+                task: browsertests_unmanaged_chrome
+                options:
+                    use_saucelabs: True
