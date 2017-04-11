@@ -43,6 +43,8 @@ public class CON_Email {
     */
 	public static void processPreferredEmail(Contact contact, List<Contact> oldlist) {
 
+        Boolean validatePreferred = !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c;
+
         // No need to run if we are in a delete context
         if(contact == null) {
             return;
@@ -50,96 +52,184 @@ public class CON_Email {
 
 		Boolean isUpdateOrDelete = (oldlist != null) ? true : false;
 
-	    // Store default email field mappings to preferred email pick list.
-	    Map<String,String> preferredEmailMappings = new Map<String,String>{   
-	        'University' => 'UniversityEmail__c',
-	        'Work' => 'WorkEmail__c',
-	        'Alternate' => 'AlternateEmail__c'
-	    };
+        // Build the list of email fields
+        CON_EmailFieldList emailFields = new CON_EmailFieldList(contact);
 
-	    Map<String,String> valuedEmailMap = getEmailFieldsWithValue(contact);
+        if( emailFields.valuedCount() > 0 ) {
 
-        if( valuedEmailMap.size() > 0 ) {
+            // Check the presence of a special cases when running a batch process.
+            // This will prevent some validation errors below to allow batches to complete successfully.
+            if( validatePreferred && System.isBatch() ) {
 
-            // Enforce preferred email field
-            if(String.isBlank(contact.Preferred_Email__c)){
-                contact.addError( Label.PreferredEmailRequiredError );
+                // Catch a special case when there is a value in Email that doesn't match the 
+                // other fields and Preferred Email is blank
+                if(String.isNotBlank(contact.Email) && emailFields.valueExists(contact.Email) == null && String.isBlank(contact.Preferred_Email__c)) {
+                    contact.Preferred_Email__c = 'Email (standard)';
+                }
+
+                // Process when Email matches an existing value
+                if(String.isNotBlank(contact.Email) && emailFields.valueExists(contact.Email) != null && String.isBlank(contact.Preferred_Email__c)) {
+                    contact.Preferred_Email__c = emailFields.valueExists(contact.Email).prefLabel;
+                }
+
+                // We are catching a special case here when there are Custom Emails but Email is blank.
+                // If there is only one custom email present, we will set it as preferred. When multiple
+                // custom emails are present the first in the list will be set to preferred.
+                if(String.isBlank(contact.Email) ) {
+                    // Get the first item from the list either one or many
+                    contact.Email = emailFields.valuedFields[0].value;
+                    contact.Preferred_Email__c = emailFields.valuedFields[0].prefLabel;
+                }
             }
 
-            // Get the Api name that matches the value in Preferred Email
-            String preferredApiField = ( preferredEmailMappings.containsKey(contact.Preferred_Email__c) ) ? preferredEmailMappings.get(contact.Preferred_Email__c) : valuedEmailMap.get(contact.Preferred_Email__c);
+            // Enforce preferred email field unless validation is disabled
+            if(validatePreferred && String.isBlank(contact.Preferred_Email__c)){
 
-            String prefEmailVal = (String)contact.get(preferredApiField);
+                contact.addError( Label.PreferredEmailRequiredError );
 
-            if (  String.isNotBlank( prefEmailVal ) ) { 
-                contact.Email = prefEmailVal;
-            } else {
-                contact.addError(Label.PreferredEmailMatchNotNull);
-            }      
-        
+            // Make Sure pteferrd isn't blank making an exception for a special case to prevent errors.
+            } else if ( String.isNotBlank(contact.Preferred_Email__c) && contact.Preferred_Email__c != 'Email (standard)' && contact.Preferred_Email__c != 'Email' ) {
+
+                CON_EmailField field = emailFields.getFieldByPrefLabel(contact.Preferred_Email__c);
+
+                if( field != null) {
+                    // Make sure we are not setting to a blank value
+                    if(String.isNotBlank(field.value)) {
+                        // Copy the value that matches preferred email to the standard email field
+                        contact.Email = field.value;
+                    } else {
+                        contact.addError(Label.PreferredEmailMatchNotNull);
+                    }
+
+                // Make sure the value in Preferred email matches an actual field 
+                } else {
+                    contact.addError(Label.PreferredEmailMatchMustExist);
+                }
+            }
+
         } else {
 
             // Cannot have preferred email set if there are no emails present
-            if( !String.isBlank(contact.Preferred_Email__c)) {
-                contact.addError(Label.PreferredEmailMatchNotNull);                    
+            if( String.isNotBlank(contact.Preferred_Email__c)) {
+                contact.addError(Label.PreferredEmailMatchNotNull);
             }
 
             // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
-			if( isUpdateOrDelete && String.isNotBlank(contact.Email) ) {
-	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist); 
+            // We make sure this isnt a batch, because the batch relies on this trigger while
+            // updating contact
+			if( isUpdateOrDelete && String.isNotBlank(contact.Email) && !System.isBatch() ) {
+	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
 
 	            // Get the old email values - if any - to compare.
-	            Map<String,String> oldValuedEmails = getEmailFieldsWithValue( oldmap.get(contact.Id) );
+                CON_EmailFieldList oldEmailFields = new CON_EmailFieldList( oldmap.get(contact.Id) );
 
 	            // If this is an update and the contact contained previous emails we want to clear the standard email field
                 // we do this because when a user deletes all email values in the HEDA contact without clearing
-                // the value if email, there would be an emil address that the user tried to delete.
-	            if (oldValuedEmails.size() > 0) {
-	                contact.Email = null; 
-	            } 
+                // the value if email, there would be an email address that the user tried to delete.
+	            if (oldEmailFields.valuedCount() > 0) {
+	                contact.Email = null;
+	            }
 	        } else if(String.isNotBlank(contact.Email)) {
 	        	copyStdEmailToAlternate(contact);
 	        }
-        } 
+        }
+
 	}
 
     /*******************************************************************************************************
     * @description Copies the value of the standard Email field to the Alternate Email field if Email has a value and no other emails.
     * @param Contact the contact to change
     */
-	public static void copyStdEmailToAlternate(Contact contact) {
-		if(contact.Email != null) {
-			contact.Preferred_Email__c = 'Alternate';
-			contact.AlternateEmail__c = contact.Email;
-		}
-	}
+    public static void copyStdEmailToAlternate(Contact contact) {
+        if(contact.Email != null) {
+            contact.Preferred_Email__c = 'Alternate';
+            contact.AlternateEmail__c = contact.Email;
+        }
+    }
 
     /*******************************************************************************************************
-    * @description Returns a map of emails field labels and their api name if they have a value
-    * @param Contact contact object to populate list from
-    * @return Map<String,String> Map of emails fields key is field name and value is the field value
+    * @description An inner wrapper class to contain a list of email fields and perform functions on them
+    * @param Contact the contact to build list from.
     */
-	private static Map<String,String> getEmailFieldsWithValue(Contact contact) {
-        // Organize Email fields with a value
-        Map<String,String> valuedEmailMap = new Map<String,String>(); 
+    private class CON_EmailFieldList {
 
-        if(contact != null) {
+        private List<CON_EmailField> allFields {get;set;}
+        private List<CON_EmailField> valuedFields {get;set;}
 
-            // Retreive all Email fields
-            Map<String, Schema.DescribeFieldResult> emailFields = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+        public CON_EmailFieldList(Contact contact) {
 
-            for(String fieldName : emailFields.keySet() ) {
+            this.allFields = new List<CON_EmailField>();
+            this.valuedFields = new List<CON_EmailField>();
+            Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
 
-                String emailField = (String)contact.get(fieldName);
+            for(String fieldName : fieldMap.keySet() ) {
+                if ( fieldName != 'Email' ) {
+                    String emailField = (String)contact.get(fieldName);
 
-                // if the field has a value add it to the map, excluding the standard Email field
-                if ( fieldName != 'Email' && String.isNotBlank(emailField) ) {
-                    valuedEmailMap.put( emailFields.get(fieldName).getLabel(), fieldName);
+                    allFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
+                    if(String.isNotBlank(emailField)) {
+                        valuedFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
+                    }
                 }
             }
-
         }
 
-        return valuedEmailMap;
-	}
+        public Integer valuedCount() {
+            Integer count = 0;
+            for(CON_EmailField field : this.allFields) {
+                count += (field.hasValue()) ? 1 : 0;
+            }
+            return count;
+        }
+
+        public CON_EmailField getFieldByPrefLabel(String labelSearch) {
+            for(CON_EmailField field : this.allFields) {
+                if (labelSearch == field.label || labelSearch == field.prefLabel) {
+                    return field;
+                }
+            }
+            return null;
+        }
+
+        private CON_EmailField valueExists(String search) {
+            for(CON_EmailField field : this.valuedFields ){
+                if(String.isNotBlank(search) && field.value == search){
+                    return field;
+                }
+            }
+            return null;
+        }
+    }
+
+    /*******************************************************************************************************
+    * @description An inner wrapper class to represent a custom email field on a contact
+    * @param val The value of the email field
+    * @param lbl The label of the email field
+    * @param api The Api name of the email field
+    */
+    private class CON_EmailField {
+
+        public String value {get;set;}
+        public String label {get;set;}
+        public String apiName {get;set;}
+        public String prefLabel {get;set;}
+
+        public CON_EmailField(String val, String lbl, String api ) {
+            // Store default email field mappings to preferred email pick list.
+            Map<String,String> preferredEmailMappings = new Map<String,String>{
+                'University Email' => 'University',
+                'Work Email' => 'Work',
+                'Alternate Email' => 'Alternate'
+            };
+
+            this.value = val;
+            this.label = lbl;
+            this.apiName = api;
+            this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
+        }
+
+        public Boolean hasValue(){
+            return String.isNotBlank(this.value);
+        }
+    }
 }

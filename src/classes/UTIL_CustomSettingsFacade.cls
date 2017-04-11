@@ -37,7 +37,7 @@
 */
 public without sharing class UTIL_CustomSettingsFacade {
 
-    //storing user-level custom settings in-memory to avoid trying to isert/update them
+    //storing user-level custom settings in-memory to avoid trying to insert/update them
     //twice and thus trigger the "duplicate OwnerId" error
     static Hierarchy_Settings__c settings;
 
@@ -91,6 +91,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     private static void configSettings(Hierarchy_Settings__c hs) {
 		hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
 		hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
+        hs.Disable_Preferred_Email_Enforcement__c = false;
 		hs.Contacts_Addresses_Enabled__c = true;
 		hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();
 		hs.Reciprocal_Method__c = 'List Setting';
@@ -131,6 +132,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Enable_Course_Connections__c = mySettings.Enable_Course_Connections__c;
         settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
         settings.Student_RecType__c = mySettings.Student_RecType__c;
+        settings.Disable_Preferred_Email_Enforcement__c = mySettings.Disable_Preferred_Email_Enforcement__c;
 
         orgSettings = settings;
         return settings;
