@@ -65,6 +65,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	    List<TDTM_Global_API.TdtmToken> defaultTdtmConfig = TDTM_Global_API.getDefaultTdtmConfig();
 
             updateDefaultTdtmConfig(defaultTdtmConfig);
+
+            disablePreferredEmailEnforcement(context.previousVersion());
     	 }
     	 
     	 reparentAdminAddrs(context.previousVersion());
@@ -133,7 +135,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     
     /*******************************************************************************************************
     * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
-    * upgradade.
+    * upgrade.
     * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it.
     * @return void
     */
@@ -249,5 +251,20 @@ global without sharing class STG_InstallScript implements InstallHandler {
             }
         }
         return null;
+    }
+
+    /*******************************************************************************************************
+    * @description Disables Preferred Email handling when upgrading from 1.30
+    * @return void
+    */
+    global static void disablePreferredEmailEnforcement(Version previousVersion) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,31)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.31');
+            Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+            if(orgSettings.Disable_Preferred_Email_Enforcement__c == null || orgSettings.Disable_Preferred_Email_Enforcement__c != true) {
+                orgSettings.Disable_Preferred_Email_Enforcement__c = true;
+            }
+            upsert orgSettings;             
+        }
     }
 }

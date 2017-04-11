@@ -35,29 +35,54 @@
 * @description Batch Class to process contacts on HEDA installation
 */
 public class CON_Email_BATCH implements Database.Batchable<sObject> {
+    
+	String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
 
-	String query = 'SELECT Id, Name, Email FROM Contact WHERE Email != null AND Preferred_Email__c = null';
-	
 	public Database.QueryLocator start(Database.BatchableContext BC) {
-
 		return Database.getQueryLocator(query);
 	}
 
    	public void execute(Database.BatchableContext BC, List<sObject> scope) {
 		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
-        
-        // process contact emails
-        if(contacts.size()>0) {
-	        for(Contact c : contacts) {
-	        	CON_Email.copyStdEmailToAlternate(c);
-            }
-        }
 
+        // Just run updates because the processing is part of the trigger
         update contacts;
 	}
 	
 	public void finish(Database.BatchableContext BC) {
-		UTIL_Debug.debug('****Contact Email batch completed. ID:'+BC.getJobId() );
+
+        // Email Notification
+        AsyncApexJob a = [SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CreatedBy.Email FROM AsyncApexJob WHERE Id =:BC.getJobId()];
+
+        // setup parameterized Email body
+        String[] params = new String[]{
+            String.valueOf(a.TotalJobItems),
+            String.valueOf(a.NumberOfErrors)
+        };
+        String emailBody = String.format(label.stgPreferredEmailBatchEmailBody, params);
+
+        // Send an email to the Apex job's submitter notifying of job completion.
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String[] toAddresses = new String[] {a.CreatedBy.Email};
+        mail.setToAddresses(toAddresses);
+
+        mail.setSubject(label.stgPreferredEmailBatchEmailSubject + ' ' + a.Status);
+        mail.setPlainTextBody(emailBody);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 	}
+
+    // Dynamically build SOQL query to include all custom emails
+    private String getCustomFields() {
+        Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+        String customFieldQuery = '';
+        
+        for(String fieldName : fieldMap.keySet() ) {
+            if ( fieldName != 'Email' ) {
+                customFieldQuery += ', ' + fieldName;
+            }
+        }
+
+        return customFieldQuery;
+    }
 	
 }
