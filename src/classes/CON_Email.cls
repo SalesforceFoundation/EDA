@@ -60,8 +60,16 @@ public class CON_Email {
             // Check the presence of a special cases when running a batch process.
             // This will prevent some validation errors below to allow batches to complete successfully.
             if( validatePreferred && System.isBatch() ) {
-                if(String.isNotBlank(contact.Email) && !emailFields.valueExists(contact.Email) && String.isBlank(contact.Preferred_Email__c)) {
+
+                // Catch a special case when there is a value in Email that doesn't match the 
+                // other fields and Preferred Email is blank
+                if(String.isNotBlank(contact.Email) && emailFields.valueExists(contact.Email) == null && String.isBlank(contact.Preferred_Email__c)) {
                     contact.Preferred_Email__c = 'Email (standard)';
+                }
+
+                // Process when Email matches an existing value
+                if(String.isNotBlank(contact.Email) && emailFields.valueExists(contact.Email) != null && String.isBlank(contact.Preferred_Email__c)) {
+                    contact.Preferred_Email__c = emailFields.valueExists(contact.Email).prefLabel;
                 }
 
                 // We are catching a special case here when there are Custom Emails but Email is blank.
@@ -79,7 +87,8 @@ public class CON_Email {
 
                 contact.addError( Label.PreferredEmailRequiredError );
 
-            } else if ( String.isNotBlank(contact.Preferred_Email__c) ) {
+            // Make Sure pteferrd isn't blank making an exception for a special case to prevent errors.
+            } else if ( String.isNotBlank(contact.Preferred_Email__c) && contact.Preferred_Email__c != 'Email (standard)' && contact.Preferred_Email__c != 'Email' ) {
 
                 CON_EmailField field = emailFields.getFieldByPrefLabel(contact.Preferred_Email__c);
 
@@ -92,8 +101,8 @@ public class CON_Email {
                         contact.addError(Label.PreferredEmailMatchNotNull);
                     }
 
-                // Make sure the value in Preferred email matches an actual field making an exception for a special case to prevent errors.
-                } else if(contact.Preferred_Email__c != 'Email (standard)' || contact.Preferred_Email__c != 'Email') {
+                // Make sure the value in Preferred email matches an actual field 
+                } else {
                     contact.addError(Label.PreferredEmailMatchMustExist);
                 }
             }
@@ -180,13 +189,13 @@ public class CON_Email {
             return null;
         }
 
-        private Boolean valueExists(String search) {
+        private CON_EmailField valueExists(String search) {
             for(CON_EmailField field : this.valuedFields ){
                 if(String.isNotBlank(search) && field.value == search){
-                    return true;
+                    return field;
                 }
             }
-            return false;
+            return null;
         }
     }
 

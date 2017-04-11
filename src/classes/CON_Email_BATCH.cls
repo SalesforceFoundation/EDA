@@ -45,13 +45,8 @@ public class CON_Email_BATCH implements Database.Batchable<sObject> {
 
    	public void execute(Database.BatchableContext BC, List<sObject> scope) {
 		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
-        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this batch
-        // process contact emails manually
-        if(contacts.size()>0) {
-	        for(Contact c : contacts) {
-	        	CON_Email.processPreferredEmail(c,null);
-            }
-        }
+
+        // Just run updates because the processing is part of the trigger
         update contacts;
 	}
 	
