@@ -260,7 +260,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global static void disablePreferredEmailEnforcement(Version previousVersion) {
-        if(previousVersion != null && previousVersion.compareTo(new Version(1,31)) < 0) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,33)) < 0) {
             UTIL_Debug.debug('***Upgrading to version 1.31');
             Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgSettings.Disable_Preferred_Email_Enforcement__c == null || orgSettings.Disable_Preferred_Email_Enforcement__c != true) {
