@@ -114,24 +114,30 @@ public class CON_Email {
                 contact.addError(Label.PreferredEmailMatchNotNull);
             }
 
-            // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
-            // We make sure this isnt a batch, because the batch relies on this trigger while
-            // updating contact
-			if( isUpdateOrDelete && String.isNotBlank(contact.Email) && !System.isBatch() ) {
-	            Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
+            // We are not going to format data for orgs that are not enforcing the preferred email field
+            if(validatePreferred && String.isNotBlank(contact.Email)) {
 
-	            // Get the old email values - if any - to compare.
-                CON_EmailFieldList oldEmailFields = new CON_EmailFieldList( oldmap.get(contact.Id) );
+                // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
+                // We make sure this isnt a batch, because the batch relies on this trigger while
+                // updating contacts
+                if( isUpdateOrDelete && !System.isBatch() ) {
+                    Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
 
-	            // If this is an update and the contact contained previous emails we want to clear the standard email field
-                // we do this because when a user deletes all email values in the HEDA contact without clearing
-                // the value if email, there would be an email address that the user tried to delete.
-	            if (oldEmailFields.valuedCount() > 0) {
-	                contact.Email = null;
-	            }
-	        } else if(String.isNotBlank(contact.Email)) {
-	        	copyStdEmailToAlternate(contact);
-	        }
+                    // Get the old email values - if any - to compare.
+                    CON_EmailFieldList oldEmailFields = new CON_EmailFieldList( oldmap.get(contact.Id) );
+
+                    // If this is an update and the contact contained previous emails we want to clear the standard email field
+                    // we do this because when a user deletes all email values in the HEDA contact without clearing
+                    // the value if email, there would be an email address that the user tried to delete.
+                    if (oldEmailFields.valuedCount() > 0) {
+                        contact.Email = null;
+                    } else {
+                        copyStdEmailToAlternate(contact);
+                    }
+                } else {
+                    copyStdEmailToAlternate(contact);
+                }
+            }
         }
 
 	}
