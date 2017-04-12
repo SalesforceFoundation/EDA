@@ -158,7 +158,7 @@ private class CON_Email_TEST {
 	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to activate these for the batch
 		// Run Batch
 		Test.startTest();
-	    CON_Email_BATCH contbatch = new CON_Email_BATCH();
+	    CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
 	    Database.executeBatch( contbatch );
 		Test.stopTest();
 
