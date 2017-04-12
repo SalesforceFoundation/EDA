@@ -40,6 +40,12 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
 	
     String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
 
+    private InstallContext context;
+
+    public CON_Email_BATCH(InstallContext ic) {
+        this.context = ic;
+    }
+
 	public Database.QueryLocator start(Database.BatchableContext BC) {
 		return Database.getQueryLocator(query);
 	}
@@ -87,14 +93,26 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
             }
         }
 
+        // Sunce this batch can be called by a user or the install script, we need to figure
+        // out the right address to notify
+        String toAddress= a.CreatedBy.Email; // Store manuall user address
+
+        if(this.context != null) {
+            // Get the user who initiated the install if this is called from the install script
+            User u = [Select Id, Email from User where Id =:context.installerID()];  
+            toAddress= u.Email; // Store manual user address
+        }
+
         // Send an email to the Apex job's submitter notifying of job completion.
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         String[] toAddresses = new String[] {a.CreatedBy.Email};
-        mail.setToAddresses(toAddresses);
+        if(toAddress != null) {
+            mail.setToAddresses(toAddresses);        
+            mail.setSubject(label.stgPreferredEmailBatchEmailSubject + ' ' + a.Status);
+            mail.setPlainTextBody(emailBody);
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+        }
 
-        mail.setSubject(label.stgPreferredEmailBatchEmailSubject + ' ' + a.Status);
-        mail.setPlainTextBody(emailBody);
-        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 	}
 
     // Dynamically build SOQL query to include all custom emails

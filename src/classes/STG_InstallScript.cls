@@ -56,8 +56,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
             TDTM_Global_API.setTdtmConfig(tokens); 
 
             // Format existing contact email addresses
-            CON_Email_BATCH contbatch = new CON_Email_BATCH();
-            Database.executeBatch( contbatch );
+
+            CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
+            //Database.executeBatch( contbatch );
+            System.scheduleBatch(contbatch, 'Process Contact Emails on Install', 1);
     	 
     	 //Updates, manual of pushed by publisher.
     	 } else if(context.isUpgrade() || context.isPush()) {
