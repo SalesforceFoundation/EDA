@@ -94,7 +94,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PreferredEmailMatchMustExist</shortDescription>
-        <value>The value selected in Preferred Email does not match any email fields. Values in Preferred Email must match a custom email field label.</value>
+        <value>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailMatchNotNull</fullName>
@@ -461,8 +461,8 @@
         <categories>Contacts</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Setting Preferred Email Batch Body</shortDescription>
-        <value>The batch Apex job processed {0} batches with {1} failures.</value>
+        <shortDescription>Setting Preferred Email Batch Email Body</shortDescription>
+        <value>The batch Apex job processed {0} records with {1} failures.</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailSubject</fullName>

@@ -41,8 +41,8 @@
         <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
             <h2>Preferred Email Data Cleanup:</h2>
             <div class="slds-text-body--small">
-                <p>You can run this data cleanup process if the Preferred Email enforcement has been disabled for some time, or if the Preferred Email enforcement is being turned on for the first time.</p>
-                <p>This process will update existing Contacts by setting the Preferred Email field as appropriate. This way Batch processes will have a better chance of succeeding in the future.</p>
+                <p>Run this data cleanup process after you've enabled the Preferred Email requirement for the first time or after a period of not enforcing the requirement.</p>
+                <p>For existing Contacts who haven't specified a Preferred Email, the cleanup ensures that one of the Contact's standard or custom email addresses is set as the Preferred Email.</p>
             </div>
         </div>
         <div class="slds-col slds-size--1-of-2">

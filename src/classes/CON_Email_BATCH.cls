@@ -34,9 +34,11 @@
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Batch Class to process contacts on HEDA installation
 */
-public class CON_Email_BATCH implements Database.Batchable<sObject> {
-    
-	String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
+public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Stateful {
+    public List<String> exception_List = new List<String>();
+    public Integer recordCount = 0;
+	
+    String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
 
 	public Database.QueryLocator start(Database.BatchableContext BC) {
 		return Database.getQueryLocator(query);
@@ -46,7 +48,24 @@ public class CON_Email_BATCH implements Database.Batchable<sObject> {
 		List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
 
         // Just run updates because the processing is part of the trigger
-        update contacts;
+        //update contacts;
+        Database.SaveResult[] SaveResultList = Database.update(contacts,false); 
+
+        for(integer i =0; i<SaveResultList.size();i++){
+            String msg='';
+            If(!SaveResultList[i].isSuccess()){
+                msg += 'Record Id: ' + contacts.get(i).id + '\n'+' Error: "';        
+                for(Database.Error err: SaveResultList[i].getErrors()){  
+                    msg += err.getmessage()+'"\n\n';
+                } 
+            }
+            if(msg!='') {
+                exception_List.add(msg);
+            }
+        }
+
+        // Add up records completed
+        recordCount += SaveResultList.size();
 	}
 	
 	public void finish(Database.BatchableContext BC) {
@@ -56,10 +75,17 @@ public class CON_Email_BATCH implements Database.Batchable<sObject> {
 
         // setup parameterized Email body
         String[] params = new String[]{
-            String.valueOf(a.TotalJobItems),
-            String.valueOf(a.NumberOfErrors)
+            String.valueOf(recordCount),
+            String.valueOf(exception_List.size())
         };
-        String emailBody = String.format(label.stgPreferredEmailBatchEmailBody, params);
+        String emailBody = String.format(label.stgPreferredEmailBatchEmailBody, params) + '\n\n';
+        
+        if(exception_List.size() > 0) {
+            // Loop through exceptions to include in Batch message
+            for(String err : exception_List) {
+                emailBody += err + '\n';
+            }
+        }
 
         // Send an email to the Apex job's submitter notifying of job completion.
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
