@@ -96,7 +96,6 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
         // Sunce this batch can be called by a user or the install script, we need to figure
         // out the right address to notify
         String toAddress= a.CreatedBy.Email; // Store manuall user address
-
         if(this.context != null) {
             // Get the user who initiated the install if this is called from the install script
             User u = [Select Id, Email from User where Id =:context.installerID()];  
