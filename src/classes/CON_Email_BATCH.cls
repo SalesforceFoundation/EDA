@@ -91,7 +91,7 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
             for(String err : exception_List) {
                 emailBody += err + '\n';
             }
-        }
+        }   
 
         // Sunce this batch can be called by a user or the install script, we need to figure
         // out the right address to notify
@@ -104,7 +104,7 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
 
         // Send an email to the Apex job's submitter notifying of job completion.
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        String[] toAddresses = new String[] {a.CreatedBy.Email};
+        String[] toAddresses = new String[] {toAddress};
         if(toAddress != null) {
             mail.setToAddresses(toAddresses);        
             mail.setSubject(label.stgPreferredEmailBatchEmailSubject + ' ' + a.Status);
