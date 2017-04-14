@@ -264,4 +264,19 @@ public with sharing class STG_Base_CTRL {
             return jobId;
         }
     }
+
+    /*******************************************************************************************************
+    * @description Executes Batch to clean up data for Preferred Email enforcement
+    * @return Id of Batch Job
+    */
+    @AuraEnabled
+    public static Id executePreferredEmailCleanUpBatch() {
+        CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
+        Id jobId = Database.executeBatch( contbatch , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException('There was a problem starting the Batch.');
+        } else {
+            return jobId;
+        }
+    }
 }

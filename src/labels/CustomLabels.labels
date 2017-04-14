@@ -89,6 +89,14 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>PreferredEmailMatchMustExist</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PreferredEmailMatchMustExist</shortDescription>
+        <value>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</value>
+    </labels>
+    <labels>
         <fullName>PreferredEmailMatchNotNull</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
@@ -191,6 +199,22 @@
         <protected>true</protected>
         <shortDescription>addrValidParentObjects</shortDescription>
         <value>Address records should only be created as children of Account or Contact.</value>
+    </labels>
+    <labels>
+        <fullName>exceptionRequiredField</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>exceptionRequiredField</shortDescription>
+        <value>A required field is not set. This field could be from this record or a related record.</value>
+    </labels>
+    <labels>
+        <fullName>exceptionValidationRule</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>exceptionValidationRule</shortDescription>
+        <value>A validation rule is preventing the record from being processed. This could be from this record, or a related record being updated. VALIDATION MESSAGE:</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>
@@ -313,6 +337,14 @@
         <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
     <labels>
+        <fullName>stgHelpContactPreferredEmail</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpContactPreferredEmail</shortDescription>
+        <value>Do not require Contacts to have a Preferred Email.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -423,6 +455,22 @@
         <protected>false</protected>
         <shortDescription>stgHelpStoreErrorsOn</shortDescription>
         <value>Check this if you&apos;d like errors to be stored in the database.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredEmailBatchEmailBody</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting Preferred Email Batch Email Body</shortDescription>
+        <value>The batch Apex job processed {0} records with {1} failures.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredEmailBatchEmailSubject</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting Preferred Email batch Subject</shortDescription>
+        <value>Preferred Email Job completed with a status of:</value>
     </labels>
     <labels>
         <fullName>stgSendErrorsTitle</fullName>

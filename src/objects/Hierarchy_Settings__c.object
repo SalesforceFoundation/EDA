@@ -67,6 +67,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Async_Error_Check_Last_Run__c</fullName>
+        <description>Used to keep track of the most recent execution of the Async Job error logger</description>
+        <externalId>false</externalId>
+        <label>Async Error Check Last Run</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Contacts_Addresses_Enabled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Address management support for Contacts.</description>
@@ -83,6 +92,16 @@
         <externalId>false</externalId>
         <inlineHelpText>If checked, HEDA&apos;s error handling framework is disabled.</inlineHelpText>
         <label>Disable Error Handling</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Preferred_Email_Enforcement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disable the enforcement of the Preferred Email field for Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this box to disable the enforcement of the Preferred Email field for Contacts.</inlineHelpText>
+        <label>Disable Preferred Email Enforcement</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

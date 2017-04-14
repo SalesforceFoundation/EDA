@@ -39,12 +39,30 @@ public with sharing class STG_InstallScript_TEST {
 
 	@isTest
 	public static void onInstall() {
+        Contact cont = new Contact(
+            FirstName = 'Joe',
+            LastName = 'Test',
+            Email = 'joe@domain.com'
+        );
+        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this test
+        insert cont;
+
+        CON_Preferred_TDTM.alreadyRunBefore = false; // back on for install script
+
+        Test.startTest();
 		//Run the install script
         Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+
         List<Affl_Mappings__c> mappings = [select Account_Record_Type__c, Primary_Affl_Field__c from Affl_Mappings__c];
         System.assertEquals(6, mappings.size());
         List<Trigger_Handler__c> tdtmHandlers = [select Name from Trigger_Handler__c];
         System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers.size());
+
+        // Making sure the Batch process ran successfully
+        Contact cont2 = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =: cont.Id];
+        System.assertEquals(cont2.AlternateEmail__c, cont2.Email);
+
 	}
 	
 	//If the handlers in our default TDTM config are different from what it's in the org (either action or load order),

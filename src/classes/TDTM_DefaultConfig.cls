@@ -27,7 +27,6 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
-
 /**
 * @author Salesforce.org
 * @date 2014
@@ -47,7 +46,7 @@ public without sharing class TDTM_DefaultConfig {
     public static List<Trigger_Handler__c> getDefaultRecords() {
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
 
-		// Account Management on Contact
+		    // Account Management on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
               Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
@@ -55,12 +54,12 @@ public without sharing class TDTM_DefaultConfig {
         //Supports changing or deleting Account in existing Affiliation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_AccChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
-              Trigger_Action__c = 'BeforeUpdate'));
+              Trigger_Action__c = 'AfterUpdate'));
         
         //Supports changing or deleting Contact in existing Affiliation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_ContactChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
-              Trigger_Action__c = 'BeforeUpdate'));
+              Trigger_Action__c = 'AfterUpdate'));
                     
         //Multi-Affiliation Type support on Affiliations - populates primary affl fields
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
@@ -107,7 +106,7 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CON_DoNotContact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
-		// Preferred fields operations on Contact object
+		    // Preferred fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_Preferred_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
               Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
@@ -115,7 +114,7 @@ public without sharing class TDTM_DefaultConfig {
         // Primary Affiliation fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_PrimaryAffls_TDTM', Load_Order__c = 4, Object__c = 'Contact', 
-              Trigger_Action__c = 'AfterInsert;BeforeUpdate'));
+              Trigger_Action__c = 'AfterInsert;AfterUpdate'));
               
         // Affiliation management on Program Enrollment record creation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 

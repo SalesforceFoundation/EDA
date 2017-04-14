@@ -4,5 +4,8 @@
 	},
 	runBackfill : function (component, event, helper) {
 		helper.runBackfill(component);
+	},
+	runCleanUp : function (component, event, helper) {
+		helper.runCleanUp(component);
 	}
 })

@@ -50,22 +50,29 @@ global without sharing class STG_InstallScript implements InstallHandler {
     		insertRelationshipLookups();
     		//Schedule Seasonal Addresses recurring job daily
     		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
+
     	    //Insert default TDTM config (not necessary, but better to be explicit).
     	    List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
             TDTM_Global_API.setTdtmConfig(tokens); 
 
             // Format existing contact email addresses
-            CON_Email_BATCH contbatch = new CON_Email_BATCH();
+            CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
     	 
     	 //Updates, manual of pushed by publisher.
     	 } else if(context.isUpgrade() || context.isPush()) {
     	    //Update TDTM configuration, if necessary.
-    	    List<TDTM_Global_API.TdtmToken> defaultTdtmConfig = TDTM_Global_API.getTdtmConfig();
+    	    List<TDTM_Global_API.TdtmToken> defaultTdtmConfig = TDTM_Global_API.getDefaultTdtmConfig();
+
             updateDefaultTdtmConfig(defaultTdtmConfig);
+
+            disablePreferredEmailEnforcement(context.previousVersion());
     	 }
     	 
     	 reparentAdminAddrs(context.previousVersion());
+
+        //Schedule Async APEX Error Processing recurring hourly
+        scheduleJobIfNotScheduled('HEDA Async Apex Error Processing', '0 0 * * * ?', 'ERR_AsyncErrors_SCHED');
     }
     
     global static void reparentAdminAddrs(Version previousVersion) {
@@ -128,12 +135,12 @@ global without sharing class STG_InstallScript implements InstallHandler {
     
     /*******************************************************************************************************
     * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
-    * upgradade.
+    * upgrade.
     * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it.
     * @return void
     */
     @TestVisible 
-    private static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
+    global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
         //Getting the config that is really in the database.
         List<Trigger_Handler__c> existingHandlers = [select Class__c, Object__c, Trigger_Action__c, Active__c, Load_Order__c, Asynchronous__c, Filter_Field__c, 
                                                        Filter_Value__c, User_Managed__c from Trigger_Handler__c where Class__c != null];
@@ -151,9 +158,14 @@ global without sharing class STG_InstallScript implements InstallHandler {
             for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
                 if(defaultToken.className == existingToken.className && defaultToken.targetObject == existingToken.targetObject) {
                     alreadyExists = true;
+                    
                     //Determine if order, actions, or filter have changed, for those that have not been flagged as user-managed.
-                    if(!existingToken.userManaged && (defaultToken.loadOrder != existingToken.loadOrder || defaultToken.actions != existingToken.actions 
-                    ||defaultToken.filterField != existingToken.filterField || defaultToken.filterValue != existingToken.filterValue)) {
+                    if(!existingToken.userManaged && (
+                        defaultToken.loadOrder != existingToken.loadOrder || 
+                        defaultToken.actions != existingToken.actions ||
+                        defaultToken.filterField != existingToken.filterField || 
+                        defaultToken.filterValue != existingToken.filterValue)
+                    ) {
                         UTIL_Debug.debug('****It was not user managed and has changed: ' + existingToken.className);
                         existingToken.loadOrder = defaultToken.loadOrder;
                         existingToken.actions = defaultToken.actions;
@@ -239,5 +251,20 @@ global without sharing class STG_InstallScript implements InstallHandler {
             }
         }
         return null;
+    }
+
+    /*******************************************************************************************************
+    * @description Disables Preferred Email handling when upgrading to 1.33
+    * @return void
+    */
+    global static void disablePreferredEmailEnforcement(Version previousVersion) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,33)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.33');
+            Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+            if(orgSettings.Disable_Preferred_Email_Enforcement__c == null || orgSettings.Disable_Preferred_Email_Enforcement__c != true) {
+                orgSettings.Disable_Preferred_Email_Enforcement__c = true;
+            }
+            upsert orgSettings;             
+        }
     }
 }

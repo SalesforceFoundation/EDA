@@ -61,8 +61,8 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
             if(newlist != null && newlist.size() > 0) {
 
-                // Perform query outside loop for later user in BeforeUpdate
-                if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                // Perform query outside loop for later user in AfterUpdate
+                if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
                     relatedContactsMap = afflMulti.queryAfflLookupFields(newlist);
                 }
@@ -81,8 +81,8 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                        lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
                    }
 
-                   //BEFORE UPDATE
-                   if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                   //AFTER UPDATE
+                   if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
                        Contact relatedContact;
                        relatedContact = relatedContactsMap.get(affl.Contact__c);

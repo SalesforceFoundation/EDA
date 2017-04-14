@@ -44,8 +44,6 @@ public with sharing class ERR_Handler_TEST {
     private static Id chatterGroupId;
     
     private static void setupWithChatterNotifications() {
-    	// all these tests are about testing our error handling, so we can't let the assert interfere
-    	TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;        
     	
     	if(Schema.SObjectType.User.isFeedEnabled()) {
 	    	SObject chatterGroup = (SObject)System.Type.forName('CollaborationGroup').newInstance();
@@ -64,8 +62,7 @@ public with sharing class ERR_Handler_TEST {
     }
     
     private static void setupWithEmailNotifications() {
-        // all these tests are about testing our error handling, so we can't let the assert interfere
-        TDTM_TriggerHandler.suppressDebugAssertAfterErrorLogging = true;        
+        // all these tests are about testing our error handling, so we can't let the assert interfere       
         
         User user = UTIL_UnitTestData_TEST.CreateNewUserForTests(System.now().getTime() + '@testerson.com');
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
@@ -129,9 +126,15 @@ public with sharing class ERR_Handler_TEST {
         insert contact1;
                 
         Relationship__c[] relationships = new Relationship__c[]{
-            new Relationship__c(contact__c = contact1.id, Type__c='TestLookupType') };
+            new Relationship__c(Contact__c = contact1.id, Type__c='TestLookupType') };
         
-        insert relationships;
+        // We catch errors here because TDTM_TriggerHandler no loger processes errors.
+        try {
+            insert relationships;
+        } catch (Exception ex) {
+            ERR_Handler.processError(ex, ERR_Handler.Context.REL);
+        }
+
         //assert an error record was created - Required fields are missing: [Contact__c]
         //Contact__c is missing from the reciprocal relationship that gets automatically created.
         system.assertEquals(1, [select count() from Error__c]);

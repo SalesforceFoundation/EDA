@@ -229,4 +229,16 @@ private class STG_Base_CTRL_TEST {
         // Make sure an Apex Job Id is returned.
         System.assertEquals('AsyncApexJob', String.valueOf( batchId.getSobjectType() ) );
     }
+
+    /*** Ethnicity Race batch ***/
+    @isTest
+    public static void executePreferredEmailCleanUpBatch() {
+
+        Test.startTest();
+        Id batchId = STG_Base_CTRL.executePreferredEmailCleanUpBatch();
+        Test.stopTest();
+
+        // Make sure an Apex Job Id is returned.
+        System.assertEquals('AsyncApexJob', String.valueOf( batchId.getSobjectType() ) );
+    }
 }
