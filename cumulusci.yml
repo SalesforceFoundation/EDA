@@ -17,7 +17,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: dev_config/src
-
+            
 flows:
     ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs

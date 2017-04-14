@@ -2,7 +2,6 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-home</defaultLandingTab>
     <description>Higher Education Data Architecture</description>
-    <formFactors>Large</formFactors>
     <label>HEDA</label>
     <tab>standard-Account</tab>
     <tab>standard-Contact</tab>
