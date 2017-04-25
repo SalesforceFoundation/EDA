@@ -144,7 +144,8 @@ public class CON_Email {
 
     /*******************************************************************************************************
     * @description Copies the value of the standard Email field to the Alternate Email field if Email has a value and no other emails.
-    * @param Contact the contact to change
+    * @param contact the contact to change
+    * @param fieldList an instance of the CON_EmailFieldList class
     */
     public static void copyStdEmailToAlternate(Contact contact, CON_EmailFieldList fieldList) {
         if(contact.Email != null) {
