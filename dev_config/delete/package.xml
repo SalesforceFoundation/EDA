@@ -4,5 +4,13 @@
         <members>Admin</members>
         <name>Profile</name>
     </types>
-    <version>38.0</version>
+    <types>
+        <members>*</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CompactLayout</name>
+    </types>
+    <version>39.0</version>
 </Package>
