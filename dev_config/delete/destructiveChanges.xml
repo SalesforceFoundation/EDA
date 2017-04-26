@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Account-Account %28Marketing%29 Layout.layout</members>
+        <members>Account-Account %28Sales%29 Layout.layout</members>
+        <members>Account-Account %28Support%29 Layout.layout</members>
+        <members>Contact-Contact %28Marketing%29 Layout.layout</members>
+        <members>Contact-Contact %28Sales%29 Layout.layout</members>
+        <members>Contact-Contact %28Support%29 Layout.layout</members>
+        <members>Opportunity-Opportunity %28Marketing%29 Layout.layout</members>
+        <members>Opportunity-Opportunity %28Sales%29 Layout.layout</members>
+        <members>Opportunity-Opportunity %28Support%29 Layout.layout</members>
+        <members>Opportunity-Opportunity Layout.layout</members>
+        <name>Layout</name>
+    </types>
+    <version>38.0</version>
+</Package>

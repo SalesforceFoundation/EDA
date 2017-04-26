@@ -17,8 +17,22 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: dev_config/src
+
+    delete_dev_config:
+        description: Deploys the admin configuration for an unmanaged DE org config
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: dev_config/delete
             
 flows:
+    hedaectomy:
+        description: Remove all the HEDA metadata in the target Org
+        tasks:
+            1:
+                task: delete_dev_config
+            2:
+                task: uninstall_packaged
+
     ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
         tasks:
