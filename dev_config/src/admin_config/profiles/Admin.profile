@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
-        <application>HEDA</application>
+        <application>%%%NAMESPACE%%%HEDA</application>
         <default>true</default>
         <visible>true</visible>
     </applicationVisibilities>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
         <recordType>Account.Academic_Program</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
         <recordType>Account.Administrative</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
         <recordType>Account.Business_Organization</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
         <recordType>Account.Educational_Institution</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Household Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Household Layout</layout>
         <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
         <recordType>Account.Sports_Organization</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-HEDA Organization Layout</layout>
+        <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
         <recordType>Account.University_Department</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-HEDA Contact Layout</layout>
+        <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Enrollment__c-HEDA Course Enrollment Layout</layout>
+        <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Enrollment__c-HEDA Course Enrollment Layout</layout>
-        <recordType>Course_Enrollment__c.Default</recordType>
+        <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
+        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Default</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Enrollment__c-HEDA Course Enrollment Layout</layout>
-        <recordType>Course_Enrollment__c.Faculty</recordType>
+        <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
+        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Faculty</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Enrollment__c-HEDA Course Enrollment Layout</layout>
-        <recordType>Course_Enrollment__c.Student</recordType>
+        <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
+        <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Student</recordType>
     </layoutAssignments>
     <tabVisibilities>
-        <tab>Address__c</tab>
+        <tab>%%%NAMESPACE%%%Address__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Affiliation__c</tab>
+        <tab>%%%NAMESPACE%%%Affiliation__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Course_Enrollment__c</tab>
+        <tab>%%%NAMESPACE%%%Course_Enrollment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Course_Offering__c</tab>
+        <tab>%%%NAMESPACE%%%Course_Offering__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Course__c</tab>
+        <tab>%%%NAMESPACE%%%Course__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>HEDA_Settings</tab>
+        <tab>%%%NAMESPACE%%%HEDA_Settings</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Program_Enrollment__c</tab>
+        <tab>%%%NAMESPACE%%%Program_Enrollment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Relationship__c</tab>
+        <tab>%%%NAMESPACE%%%Relationship__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Term__c</tab>
+        <tab>%%%NAMESPACE%%%Term__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Trigger_Handler__c</tab>
+        <tab>%%%NAMESPACE%%%Trigger_Handler__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

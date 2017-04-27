@@ -52,7 +52,7 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'Admin.profile'
         )
         
-        # Set record type visibilities
+        # Set up namespace
         namespace_prefix = ''
         if self.options['managed']:
             namespace_prefix = '{}__'.format(self.project_config.project__package__namespace)
@@ -63,13 +63,13 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
         self._set_record_type('{}Course_Enrollment__c.Student'.format(namespace_prefix), 'true')
 
         # Set record type visibilities for Accounts
-        self._set_record_type('{}Account.Administrative'.format(namespace_prefix), 'true')
-        self._set_record_type('{}Account.Academic_Program'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Account.Business_Organization'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Account.Educational_Institution'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Account.HH_Account'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Account.Sports_Organization'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Account.University_Department'.format(namespace_prefix), 'false')
+        self._set_record_type('Account.Administrative', 'true')
+        self._set_record_type('Account.Academic_Program', 'false')
+        self._set_record_type('Account.Business_Organization', 'false')
+        self._set_record_type('Account.Educational_Institution', 'false')
+        self._set_record_type('Account.HH_Account', 'false')
+        self._set_record_type('Account.Sports_Organization', 'false')
+        self._set_record_type('Account.University_Department', 'false')
 
     def _set_record_type(self, name, default):
         rt = rt_visibility_template.format(default, name)
