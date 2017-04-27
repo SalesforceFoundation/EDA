@@ -13,7 +13,7 @@ tasks:
         class_path: tasks.salesforce.UpdateAdminProfile
 
     deploy_dev_config:
-        description: Deploys the dev configuration for an unmanaged DE org config
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities
         class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
         options:
             path: dev_config/src
@@ -21,7 +21,7 @@ tasks:
             filename_token: '___NAMESPACE___'
 
     delete_dev_config:
-        description: Deploys the admin configuration for Managed code
+        description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: dev_config/delete
