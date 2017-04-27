@@ -13,7 +13,7 @@ tasks:
         class_path: tasks.salesforce.UpdateAdminProfile
 
     deploy_dev_config:
-        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
         class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
         options:
             path: dev_config/src
