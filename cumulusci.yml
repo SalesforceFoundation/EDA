@@ -59,8 +59,6 @@ flows:
 
     ci_beta_install:
         tasks:
-            0.1: 
-                task: delete_dev_config
             6:
                 options:
                     managed: True
