@@ -46,11 +46,13 @@ flows:
                 task: None
             6.1:
                 task: update_admin_profile
+    
     ci_master:
         tasks:
             9:
                 options:
                     skip_record_types: True  
+    
     ci_beta:
         tasks:
             6:
