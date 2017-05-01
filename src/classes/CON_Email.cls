@@ -149,8 +149,10 @@ public class CON_Email {
     */
     public static void copyStdEmailToAlternate(Contact contact, CON_EmailFieldList fieldList) {
         if(contact.Email != null) {
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
             // Retrieve field from field list using the known API name.
-            CON_EmailField alternateField = fieldList.getFieldByApiName('AlternateEmail__c');
+            CON_EmailField alternateField = fieldList.getFieldByApiName(prefix + 'AlternateEmail__c');
             contact.Preferred_Email__c = alternateField.prefLabel;
             contact.AlternateEmail__c = contact.Email;
         }
