@@ -41,7 +41,7 @@ public class CON_Email {
     * @param Contact the contact to update
     * @param oldlist list of old contacts from update or delete context of a trigger
     */
-	public static void processPreferredEmail(Contact contact, List<Contact> oldlist) {
+    public static void processPreferredEmail(Contact contact, List<Contact> oldlist) {
 
         Boolean validatePreferred = !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Email_Enforcement__c;
 
@@ -50,7 +50,7 @@ public class CON_Email {
             return;
         }
 
-		Boolean isUpdateOrDelete = (oldlist != null) ? true : false;
+        Boolean isUpdateOrDelete = (oldlist != null) ? true : false;
 
         // Build the list of email fields
         CON_EmailFieldList emailFields = new CON_EmailFieldList(contact);
@@ -87,7 +87,7 @@ public class CON_Email {
 
                 contact.addError( Label.PreferredEmailRequiredError );
 
-            // Make Sure pteferrd isn't blank making an exception for a special case to prevent errors.
+            // Make Sure preferred isn't blank making an exception for a special case to prevent errors.
             } else if ( String.isNotBlank(contact.Preferred_Email__c) && contact.Preferred_Email__c != 'Email (standard)' && contact.Preferred_Email__c != 'Email' ) {
 
                 CON_EmailField field = emailFields.getFieldByPrefLabel(contact.Preferred_Email__c);
@@ -118,7 +118,7 @@ public class CON_Email {
             if(validatePreferred && String.isNotBlank(contact.Email)) {
 
                 // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
-                // We make sure this isnt a batch, because the batch relies on this trigger while
+                // We make sure this isn't a batch, because the batch relies on this trigger while
                 // updating contacts
                 if( isUpdateOrDelete && !System.isBatch() ) {
                     Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
@@ -132,23 +132,28 @@ public class CON_Email {
                     if (oldEmailFields.valuedCount() > 0) {
                         contact.Email = null;
                     } else {
-                        copyStdEmailToAlternate(contact);
+                        copyStdEmailToAlternate(contact, emailFields);
                     }
                 } else {
-                    copyStdEmailToAlternate(contact);
+                    copyStdEmailToAlternate(contact, emailFields);
                 }
             }
         }
 
-	}
+    }
 
     /*******************************************************************************************************
     * @description Copies the value of the standard Email field to the Alternate Email field if Email has a value and no other emails.
-    * @param Contact the contact to change
+    * @param contact the contact to change
+    * @param fieldList an instance of the CON_EmailFieldList class
     */
-    public static void copyStdEmailToAlternate(Contact contact) {
+    public static void copyStdEmailToAlternate(Contact contact, CON_EmailFieldList fieldList) {
         if(contact.Email != null) {
-            contact.Preferred_Email__c = 'Alternate';
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
+            // Retrieve field from field list using the known API name.
+            CON_EmailField alternateField = fieldList.getFieldByApiName(prefix + 'AlternateEmail__c');
+            contact.Preferred_Email__c = alternateField.prefLabel;
             contact.AlternateEmail__c = contact.Email;
         }
     }
@@ -197,6 +202,15 @@ public class CON_Email {
             return null;
         }
 
+        public CON_EmailField getFieldByApiName(String apiSearch) {
+            for(CON_EmailField field : this.allFields) {
+                if (apiSearch == field.apiName ) {
+                    return field;
+                }
+            }
+            return null;
+        }
+
         private CON_EmailField valueExists(String search) {
             for(CON_EmailField field : this.valuedFields ){
                 if(String.isNotBlank(search) && field.value == search){
@@ -211,7 +225,7 @@ public class CON_Email {
     * @description An inner wrapper class to represent a custom email field on a contact
     * @param val The value of the email field
     * @param lbl The label of the email field
-    * @param api The Api name of the email field
+    * @param api The API name of the email field
     */
     private class CON_EmailField {
 
