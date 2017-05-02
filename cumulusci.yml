@@ -107,6 +107,10 @@ flows:
 
     ci_beta_install:
         tasks:
+            0.1: 
+                task: delete_dev_config
+                options:
+                    ignore_failure: True
             6:
                 options:
                     managed: True
