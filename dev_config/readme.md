@@ -1,5 +1,5 @@
 
-Developer Confguration Tasks
+Developer Configuration Tasks
 ============================
 
 Goal
@@ -15,11 +15,13 @@ New/Modified tasks
 
 
 ### `deploy_dev_config`
-  On “deployment” this assigns the page layouts and tab visibilities
-  Accepts 'managed' option
+  Deploys metadata found under /src/admin_config
+  On “deployment” this assigns the page layouts, tab visibilities for Admin, and sets HEDA App as default for Admin, and also sets the HEDA App as available in Lightning
+  Accepts 'managed' option depending on usage
 
 
 ### `delete_dev_config`
+  Deploys metadata found under /delete
   Removes the Record type visibilities, page layout assignments
   Required to remove an installed beta
 
@@ -32,19 +34,16 @@ New/Modified Flows
 
 
 ### `ci_beta_install`
-  Deploys DEV config as last task
-  You'll need to run delete_dev_config if re-running this on a persistent org
+  Modified - First will attempt to run `delete_dev_config` ignoring failures to remove previous Dev configuration. Finally deploys DEV config as last task
 
 
 ### `dev_org`
-  Deploys DEV config as last task
+  Modified - Deploys DEV config as last task
 
 
 ### `install_beta`
-  Deploys DEV config as last task
+  Modified - Deploys DEV config as last task
 
 
 ## Still to do
-Execute APEX to run some basic install script tasks - [W-018513](https://foundation--agf.na6.visual.force.com/apex/adm_userstorydetail?id=a2x800000006VadAAE&sfdc.override=1)
-
-
+- Execute APEX to run some basic install script tasks - [W-018513](https://foundation--agf.na6.visual.force.com/apex/adm_userstorydetail?id=a2x800000006VadAAE&sfdc.override=1)
