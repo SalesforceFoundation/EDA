@@ -6,9 +6,9 @@
     <label>HEDA</label>
     <tab>standard-Account</tab>
     <tab>standard-Contact</tab>
-    <tab>Course__c</tab>
-    <tab>Term__c</tab>
-    <tab>Course_Offering__c</tab>
-    <tab>Trigger_Handler__c</tab>
-    <tab>HEDA_Settings</tab>
+    <tab>%%%NAMESPACE%%%Course__c</tab>
+    <tab>%%%NAMESPACE%%%Term__c</tab>
+    <tab>%%%NAMESPACE%%%Course_Offering__c</tab>
+    <tab>%%%NAMESPACE%%%Trigger_Handler__c</tab>
+    <tab>%%%NAMESPACE%%%HEDA_Settings</tab>
 </CustomApplication>
