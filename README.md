@@ -13,6 +13,8 @@ You can install HEDA utilizing our custom application installer into any Develop
 
 #### For Developers
 
+<a href="https://codeclimate.com/repos/58493bc88fe22815f60019fe/feed"><img src="https://codeclimate.com/repos/58493bc88fe22815f60019fe/badges/3233aa17e7b6cfb75692/issue_count.svg" /></a>
+
 The Higher Education Data Architecture is released under the open source BSD license (see link below for additional license information).  Contributions (code and otherwise) are welcome and encouraged.  You can fork this repository and deploy the unmanaged version of the code into a Salesforce org of your choice.  
 
 * Fork the repository by clicking on the "Fork" button in the upper-righthand corner.  This creates your own copy of HEDA for your Github user.
