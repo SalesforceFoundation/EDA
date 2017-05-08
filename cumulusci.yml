@@ -12,6 +12,20 @@ tasks:
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
 
+    deploy_dev_config:
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
+        class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
+        options:
+            path: dev_config/src
+            namespace_token: '%%%NAMESPACE%%%'
+            filename_token: '___NAMESPACE___'
+
+    delete_dev_config:
+        description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: dev_config/delete
+            
     download_browser_tests:
         description: Downloads the browser tests from the HEDA-Browser-Tests Github repository.
         class_path: cumulusci.tasks.util.DownloadZip
@@ -59,6 +73,14 @@ tasks:
                 TARGET_ORG: unmanaged
 
 flows:
+    hedaectomy:
+        description: Remove all the HEDA metadata in the target Org
+        tasks:
+            1:
+                task: delete_dev_config
+            2:
+                task: uninstall_packaged
+
     ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
         tasks:
@@ -70,11 +92,13 @@ flows:
                 task: None
             6.1:
                 task: update_admin_profile
+    
     ci_master:
         tasks:
             9:
                 options:
                     skip_record_types: True  
+    
     ci_beta:
         tasks:
             6:
@@ -83,7 +107,30 @@ flows:
 
     ci_beta_install:
         tasks:
+            0.1: 
+                task: delete_dev_config
+                options:
+                    ignore_failure: True
             6:
+                options:
+                    managed: True
+            7:
+                task: deploy_dev_config
+                options:
+                    managed: True
+
+    dev_org:
+        tasks:
+            8:
+                task: deploy_dev_config
+
+    install_beta:
+        tasks:
+            5:
+                options:
+                    managed: True
+            6:
+                task: deploy_dev_config
                 options:
                     managed: True
 
