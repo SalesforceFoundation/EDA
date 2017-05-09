@@ -71,6 +71,18 @@ tasks:
             env:
                 SELENIUM_BROWSER: chrome
                 TARGET_ORG: unmanaged
+    mockaroo_contacts:
+        class_path: cumulusci_mockaroo.tasks.MockarooToSql
+        options:
+            schema: 'HEDA: Contacts'
+            count: 10
+            database_url: 'sqlite:///testdata.db'
+            table: 'Contact'
+            boolean_fields:
+                - FERPA__c
+                - Financial_Aid_Applicant__c
+                - HIPAA__C
+                - Military_Service__c
 
 flows:
     hedaectomy:
@@ -212,3 +224,11 @@ flows:
                 task: browsertests_unmanaged_chrome
                 options:
                     use_saucelabs: True
+
+services:
+    mockaroo:
+        description: Configure connection for Mockaroo tasks
+        attributes:
+            key:
+                description: The API key for Mockaroo
+                required: True
