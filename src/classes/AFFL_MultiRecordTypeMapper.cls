@@ -136,12 +136,23 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     ********************************************************************************************************/
 	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
 		for(String recTypeName : mapAccRecTypeToContactLabel.keySet()) {
-    		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
-    		if(rcId == recordTypeId) {
-    			String fieldLabel = mapAccRecTypeToContactLabel.get(recTypeName);
-    			String fieldName = contactLabelNames.get(fieldLabel);
-    			return fieldName;
-    		}
+            if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null)
+            {
+        		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
+        		if(rcId == recordTypeId) {
+        			String fieldLabel = mapAccRecTypeToContactLabel.get(recTypeName);
+        			String fieldName = contactLabelNames.get(fieldLabel);
+        			return fieldName;
+        		}
+            }else{
+                //TODO: Need Liane's review on the error msg
+                //Setup null pointer error message
+                String[] params = new String[]{
+                    String.valueOf(recTypeName)
+                };
+                String nullPointerMsg = String.format(label.afflNullPointerError, params);
+                Trigger.new[0].addError(nullPointerMsg);
+            }
 		}
 		return null;
     }
