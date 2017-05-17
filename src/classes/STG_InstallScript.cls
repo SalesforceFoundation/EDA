@@ -136,7 +136,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     /*******************************************************************************************************
     * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
     * upgrade.
-    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes item from TDTM_DefaultConfig
+    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
     * @return void
     */
     @TestVisible 
