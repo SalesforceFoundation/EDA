@@ -58,7 +58,6 @@ public with sharing class ERR_ExceptionHandler {
     public static void beautifyExceptionMessage(Exception ex) {
         String message = ex.getMessage();
         String typeName = ex.getTypeName();
-        system.debug(typeName);
         for (String STATUS : EXCEPTION_MESSAGES.keySet()) {
             if (message.contains(STATUS)) {
                 message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
