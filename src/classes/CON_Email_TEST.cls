@@ -55,6 +55,24 @@ private class CON_Email_TEST {
         insert listCon;
 	}
 
+	@isTest static void testSingleEmailSmartSet() {
+
+		Contact newCont = new Contact(
+			FirstName = 'JohnnyTest',
+			LastName = 'JohnnyTest',
+			WorkEmail__c = 'workit@test.com'
+		);
+
+		Test.startTest();
+        insert newCont;
+		Test.stopTest();
+
+		Contact newContAfter = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact WHERE Name = 'JohnnyTest JohnnyTest' LIMIT 1];
+
+        System.assertEquals(newContAfter.Email, newContAfter.WorkEmail__c);
+        System.assertEquals('Work', newContAfter.Preferred_Email__c);
+	}
+
 	@isTest static void testPrefferedEmailInsertNoStd() {
 		List<Contact> contacts = [SELECT Id, Name, Email FROM Contact WHERE EMAIL != null LIMIT 2];
 		List<String> contIds = new List<String>();
