@@ -136,7 +136,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     /*******************************************************************************************************
     * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
     * upgrade.
-    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it.
+    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes item from TDTM_DefaultConfig
     * @return void
     */
     @TestVisible 
@@ -152,9 +152,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
         List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
         
-        // First preserve the handlers that are user managed. This helps keep the records manually added by users.
+        // First preserve the trigger handlers that are user managed. We do this because this 
+        // method accepts the default config without the addition of custom trigger handlers 
+        // added by users.
         for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
-            // Preserve user managed items
             if(existingToken.userManaged) {
                 UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
                 newTdtmConfig.add(existingToken);

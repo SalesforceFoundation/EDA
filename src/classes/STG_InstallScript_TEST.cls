@@ -153,7 +153,7 @@ public with sharing class STG_InstallScript_TEST {
         //Verify handlers marked as "User Managed" were not modified
         List<Trigger_Handler__c> newHandlers = [select Load_Order__c, Class__c, Trigger_Action__c from Trigger_Handler__c order by Load_Order__c];
 
-        // Mae sure the manually added item is not deleted.
+        // Make sure the manually added items are not deleted.
         System.assertEquals(5, newHandlers.size());   
         
         // Individually check each handler scenario
