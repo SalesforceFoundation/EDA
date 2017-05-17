@@ -152,6 +152,15 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
         List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
         
+        // First preserve the handlers that are user managed. This helps keep the records manually added by users.
+        for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
+            // Preserve user managed items
+            if(existingToken.userManaged) {
+                UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
+                newTdtmConfig.add(existingToken);
+            }
+        }
+
         //Insert those that are in the list of default handlers but aren't in the database
         for(TDTM_Global_API.TdtmToken defaultToken : defaultTdtmConfig) {
             Boolean alreadyExists = false;
@@ -177,9 +186,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
                     } else if(!existingToken.userManaged && defaultToken.loadOrder == existingToken.loadOrder || 
                     defaultToken.actions == existingToken.actions) {
                         UTIL_Debug.debug('****It was not user managed and has not changed: ' + existingToken.className);
-                        newTdtmConfig.add(existingToken);
-                    } else if(existingToken.userManaged) {
-                        UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
                         newTdtmConfig.add(existingToken);
                     }
                     break;

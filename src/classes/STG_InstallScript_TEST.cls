@@ -104,6 +104,7 @@ public with sharing class STG_InstallScript_TEST {
     
     //If the handlers in our default TDTM config are different from what it's in the org (either action or load order),
     //and the user flagged them as user managed, we do not need to update them
+    // also test that new handlers are added 
     @isTest
     public static void handlersChanged_UserManaged() {
         
@@ -121,8 +122,20 @@ public with sharing class STG_InstallScript_TEST {
         TDTM_Global_API.TdtmToken token3 = new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 2);
         token3.userManaged = true;
         oldHandlers.add(token3);
-        
+
         TDTM_Global_API.setTdtmConfig(oldHandlers);
+
+        // Create fourth trigger handler to simulate a new record added by a user.
+        Trigger_Handler__c custTrigHand = new Trigger_Handler__c(
+            Active__c = true, 
+            Asynchronous__c = false, 
+            Class__c = 'ADDR_Addresses_TDTM', 
+            Load_Order__c = 1, 
+            Object__c = 'Address__c', 
+            Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete',
+            User_Managed__c = true
+        );
+        insert custTrigHand; // Must be inserted after setTdtmConfig() to prevent deletion
         
         //Updated handlers
         List<TDTM_Global_API.TdtmToken> updatedHandlers = new List<TDTM_Global_API.TdtmToken>();
@@ -130,27 +143,43 @@ public with sharing class STG_InstallScript_TEST {
         updatedHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 0));
         updatedHandlers.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterUpdate;AfterDelete', 1));
         
+        // Add new items added to default
+        updatedHandlers.add(new TDTM_Global_API.TdtmToken('ADDR_Contact_TDTM', 'Contact', 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate', 2));
+
         Test.startTest();
         STG_InstallScript.updateDefaultTdtmConfig(updatedHandlers);
         Test.stopTest();
         
         //Verify handlers marked as "User Managed" were not modified
         List<Trigger_Handler__c> newHandlers = [select Load_Order__c, Class__c, Trigger_Action__c from Trigger_Handler__c order by Load_Order__c];
+
+        // Mae sure the manually added item is not deleted.
+        System.assertEquals(5, newHandlers.size());   
         
-        //Should have been modified
-        System.assertEquals('REL_Relationships_Cm_TDTM', newHandlers[0].Class__c);   
-        System.assertEquals(0, newHandlers[0].Load_Order__c); 
-        System.assertEquals('AfterInsert;AfterUpdate', newHandlers[0].Trigger_Action__c);
-        
-        //Should not have been modified  
-        System.assertEquals('AFFL_Affiliations_TDTM', newHandlers[1].Class__c);   
-        System.assertEquals(1, newHandlers[1].Load_Order__c);
-        System.assertEquals('AfterInsert', newHandlers[1].Trigger_Action__c);  
-        
-        //Should not have been modified
-        System.assertEquals('REL_Relationships_Con_TDTM', newHandlers[2].Class__c); 
-        System.assertEquals(2, newHandlers[2].Load_Order__c);
-        System.assertEquals('AfterInsert;AfterDelete', newHandlers[2].Trigger_Action__c);     
+        // Individually check each handler scenario
+        for (Trigger_Handler__c handler : newHandlers) {
+            if(handler.Class__c == 'REL_Relationships_Cm_TDTM') {
+                 //Should have been modified
+                System.assertEquals(0, handler.Load_Order__c); 
+                System.assertEquals('AfterInsert;AfterUpdate', handler.Trigger_Action__c);
+            } else if (handler.Class__c == 'AFFL_Affiliations_TDTM') {
+                //Should not have been modified 
+                System.assertEquals(1, handler.Load_Order__c);
+                System.assertEquals('AfterInsert', handler.Trigger_Action__c); 
+            } else if (handler.Class__c == 'REL_Relationships_Con_TDTM') {
+                //Should not have been modified
+                System.assertEquals(2, handler.Load_Order__c);
+                System.assertEquals('AfterInsert;AfterDelete', handler.Trigger_Action__c);
+            } else if (handler.Class__c == 'ADDR_Addresses_TDTM') {
+                //Should not have been modified
+                System.assertEquals(1, handler.Load_Order__c);
+                System.assertEquals('BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete', handler.Trigger_Action__c);  
+            } else if (handler.Class__c == 'ADDR_Contact_TDTM') {
+                //Should have been added
+                System.assertEquals(2, handler.Load_Order__c);
+                System.assertEquals('BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate', handler.Trigger_Action__c);  
+            }
+        }
     }
     
     @isTest
