@@ -145,17 +145,19 @@ public with sharing class AFFL_MultiRecordTypeMapper {
         			return fieldName;
         		}
             }else{
-                //TODO: Need Liane's review on the error msg
                 //Setup null pointer error message
                 String[] params = new String[]{
                     String.valueOf(recTypeName)
                 };
-                String nullPointerMsg = String.format(label.afflNullPointerError, params);
-                Trigger.new[0].addError(nullPointerMsg);
+                String nullPointerMsg = String.format(Label.afflNullPointerError, params);
+                throw new AfflNullPointerException(nullPointerMsg);
             }
 		}
 		return null;
     }
+    
+    public class AfflNullPointerException extends Exception {}
+
     
     /*******************************************************************************************************
     * @description Tells caller if Account record type needs Program Enrollment auto-creation.

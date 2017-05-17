@@ -206,7 +206,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflNullPointerError</shortDescription>
-        <value>One of the Account Record Types: {0} does not exist. Please contact Admins.</value>
+        <value>The {0} Account record type doesn&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
     </labels>
     <labels>
         <fullName>exceptionRequiredField</fullName>
