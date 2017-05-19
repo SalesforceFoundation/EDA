@@ -9,8 +9,6 @@ project:
         prefix_release: rel/
 
 tasks:
-    update_admin_profile:
-        class_path: tasks.salesforce.UpdateAdminProfile
 
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
@@ -25,7 +23,27 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: dev_config/delete
-            
+
+    execute_install_apex:
+        description: Runs most of the install script methods from STG_InstallScript class
+        class_path: cumulusci.tasks.anonymous_apex.AnonymousApexTask
+        options:
+            apex: >
+                UTIL_CustomSettingsFacade.getSettings();
+                STG_InstallScript.insertMappings();
+                STG_InstallScript.insertRelationshipLookups();
+                TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
+
+    execute_install_apex_managed:
+        description: Runs most of the install script methods from STG_InstallScript class
+        class_path: cumulusci.tasks.anonymous_apex.AnonymousApexTask
+        options:
+            apex: >
+                hed.UTIL_CustomSettingsFacade.getSettings();
+                hed.STG_InstallScript.insertMappings();
+                hed.STG_InstallScript.insertRelationshipLookups();
+                hed.TDTM_Global_API.setTdtmConfig( hed.TDTM_Global_API.getTdtmConfig() );
+
     download_browser_tests:
         description: Downloads the browser tests from the HEDA-Browser-Tests Github repository.
         class_path: cumulusci.tasks.util.DownloadZip
@@ -72,6 +90,9 @@ tasks:
                 SELENIUM_BROWSER: chrome
                 TARGET_ORG: unmanaged
 
+    update_admin_profile:
+        class_path: tasks.salesforce.UpdateAdminProfile
+
 flows:
     hedaectomy:
         description: Remove all the HEDA metadata in the target Org
@@ -92,6 +113,8 @@ flows:
                 task: None
             6.1:
                 task: update_admin_profile
+            6.2:
+                task: execute_install_apex
     
     ci_master:
         tasks:
@@ -118,11 +141,15 @@ flows:
                 task: deploy_dev_config
                 options:
                     managed: True
+            8: 
+                task: execute_install_apex_managed
 
     dev_org:
         tasks:
             8:
                 task: deploy_dev_config
+            9:
+                task: execute_install_apex
 
     install_beta:
         tasks:
@@ -133,6 +160,8 @@ flows:
                 task: deploy_dev_config
                 options:
                     managed: True
+            7:
+                task: execute_install_apex_managed
 
     release_beta:
         tasks:

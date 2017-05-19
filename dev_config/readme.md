@@ -17,7 +17,7 @@ New/Modified tasks
 ### `deploy_dev_config`
   Deploys metadata found under /src/admin_config
   On “deployment” this assigns the page layouts, tab visibilities for Admin, and sets HEDA App as default for Admin, and also sets the HEDA App as available in Lightning
-  Accepts 'managed' option depending on usage
+  * Accepts 'managed' option (Boolean)
 
 
 ### `delete_dev_config`
@@ -25,6 +25,11 @@ New/Modified tasks
   Removes the Record type visibilities, page layout assignments
   Required to remove an installed beta
 
+### `execute_install_apex`
+  Runs most of the install script methods from STG_InstallScript class
+
+### `execute_install_apex_managed`
+  Runs most of the install script methods from STG_InstallScript class for Managed code
 
 New/Modified Flows
 ------------------
@@ -43,7 +48,3 @@ New/Modified Flows
 
 ### `install_beta`
   Modified - Deploys DEV config as last task
-
-
-## Still to do
-- Execute APEX to run some basic install script tasks - [W-018513](https://foundation--agf.na6.visual.force.com/apex/adm_userstorydetail?id=a2x800000006VadAAE&sfdc.override=1)
