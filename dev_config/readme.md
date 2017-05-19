@@ -39,12 +39,12 @@ New/Modified Flows
 
 
 ### `ci_beta_install`
-  Modified - First will attempt to run `delete_dev_config` ignoring failures to remove previous Dev configuration. Finally deploys DEV config as last task
+  Modified - First will attempt to run `delete_dev_config` ignoring failures to remove previous Dev configuration. Finally deploys DEV configiguration and runs some post install methods as the final tasks
 
 
 ### `dev_org`
-  Modified - Deploys DEV config as last task
+  Modified - Deploys DEV configiguration and runs some post install methods as the final tasks
 
 
 ### `install_beta`
-  Modified - Deploys DEV config as last task
+  Modified - Deploys DEV configiguration and runs some post install methods as the final tasks
