@@ -201,6 +201,14 @@
         <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
+        <fullName>afflNullPointerError</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflNullPointerError</shortDescription>
+        <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
+    </labels>
+    <labels>
         <fullName>exceptionRequiredField</fullName>
         <categories>Error</categories>
         <language>en_US</language>

@@ -39,7 +39,8 @@ public with sharing class ERR_ExceptionHandler {
     */
     private static final Map<String, String> EXCEPTION_MESSAGES = new Map<String, String>{
         'FIELD_CUSTOM_VALIDATION_EXCEPTION' => Label.exceptionValidationRule,
-        'REQUIRED_FIELD_MISSING' => Label.exceptionRequiredField
+        'REQUIRED_FIELD_MISSING' => Label.exceptionRequiredField,
+        'AfflNullPointerException' => Label.afflNullPointerError
     };
 
     /** @description Map of exception STATUS codes to the string that defines the start and end of the useful part of the message
@@ -56,11 +57,15 @@ public with sharing class ERR_ExceptionHandler {
     */
     public static void beautifyExceptionMessage(Exception ex) {
         String message = ex.getMessage();
+        String typeName = ex.getTypeName();
         for (String STATUS : EXCEPTION_MESSAGES.keySet()) {
             if (message.contains(STATUS)) {
                 message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
                 ex.setMessage(message);
                 break;
+            }else if ((typeName.contains(STATUS))){
+                ex.setMessage(message);
+                break;                
             }
         }
     }
@@ -72,7 +77,7 @@ public with sharing class ERR_ExceptionHandler {
     */
     public static Boolean isHandledException(Exception ex) {
         for (String STATUS : EXCEPTION_MESSAGES.keySet()) {
-            if (ex.getMessage().contains(STATUS) || ex.getMessage().contains(EXCEPTION_MESSAGES.get(STATUS))) {
+            if (ex.getMessage().contains(STATUS) || ex.getMessage().contains(EXCEPTION_MESSAGES.get(STATUS)) || ex.getTypeName().contains(STATUS)) {
                 return true;
             }
         }
