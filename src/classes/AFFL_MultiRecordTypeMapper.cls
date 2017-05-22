@@ -147,7 +147,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
             }else{
                 //Setup null pointer error message
                 String[] params = new String[]{
-                    String.valueOf(recTypeName)
+                    recTypeName
                 };
                 String nullPointerMsg = String.format(Label.afflNullPointerError, params);
                 throw new AfflNullPointerException(nullPointerMsg);
