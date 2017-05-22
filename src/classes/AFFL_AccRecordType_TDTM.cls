@@ -77,7 +77,7 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
                         String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
 
 			        	//Find the lookup field that matches the old record type
-				        String keyAfflFieldOldType = afflMapper.getKeyAfflFieldByAccRecordType(oldAcc.RecordTypeId);
+				        String keyAfflFieldOldType = afflMapper.getKeyAfflFieldByAccRecordType(oldAcc.RecordTypeId);                        
 
 				       //Checking if keyAfflFieldOldType is null instead of acc.RecordTypeId because apparently that field
 				       //has a value even if the Account is created without populating that field in a test.
@@ -210,4 +210,6 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         UTIL_Debug.debug('****No other account has been set to record type ' + oldType);
         return false;
     }
+
+    public class AfflNullPointerException extends Exception {}
 }
