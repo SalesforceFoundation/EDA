@@ -63,8 +63,8 @@ public class TDTM_Config {
         List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c, 
                             Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c from Trigger_Handler__c];
                          
-        //Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
-        //we would delete customizations and Trigger Handlers entries that aren't in the default configuration. 
+        // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
+        // we would delete customizations and Trigger Handlers entries that aren't in the default configuration. 
         if(tdtmConfig.size() == 0) {
 	        tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
         }
