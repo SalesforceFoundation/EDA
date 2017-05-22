@@ -136,15 +136,28 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     ********************************************************************************************************/
 	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
 		for(String recTypeName : mapAccRecTypeToContactLabel.keySet()) {
-    		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
-    		if(rcId == recordTypeId) {
-    			String fieldLabel = mapAccRecTypeToContactLabel.get(recTypeName);
-    			String fieldName = contactLabelNames.get(fieldLabel);
-    			return fieldName;
-    		}
+            if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null)
+            {
+        		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
+        		if(rcId == recordTypeId) {
+        			String fieldLabel = mapAccRecTypeToContactLabel.get(recTypeName);
+        			String fieldName = contactLabelNames.get(fieldLabel);
+        			return fieldName;
+        		}
+            }else{
+                //Setup null pointer error message
+                String[] params = new String[]{
+                    recTypeName
+                };
+                String nullPointerMsg = String.format(Label.afflNullPointerError, params);
+                throw new AfflNullPointerException(nullPointerMsg);
+            }
 		}
 		return null;
     }
+    
+    public class AfflNullPointerException extends Exception {}
+
     
     /*******************************************************************************************************
     * @description Tells caller if Account record type needs Program Enrollment auto-creation.
