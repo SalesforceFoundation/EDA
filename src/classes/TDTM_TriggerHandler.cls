@@ -93,20 +93,14 @@ public class TDTM_TriggerHandler {
         } catch(Exception e) {
             UTIL_Debug.debug(LoggingLevel.WARN, '****Exception caught in run method of TDTM_TriggerHandler: ' + e.getMessage());
             UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
-            system.debug('@@@ e ' + e);
-            system.debug('@@@ e.getMessage() ' + e.getMessage());
-            system.debug('@@@ e.getTypeName() ' + e.getTypeName());
+            
             if(!UTIL_CustomSettingsFacade.getSettings().Disable_Error_Handling__c) {
-                system.debug('aha!');
                        
                 //use the correct list
                 List<SObject> populatedList = newList == null || newList.isEmpty() ? oldList : newList;
                 //if we're only doing DML on one object and the caught exception is handled,
                 //trap the error and add the message to the page.
-                                system.debug(populatedList.size());
-                                system.debug(ERR_ExceptionHandler.isHandledException(e));
                 if (populatedList.size() == 1 && ERR_ExceptionHandler.isHandledException(e)) {
-                    system.debug('aha!');
                     ERR_ExceptionHandler.beautifyExceptionMessage(e);
                     populatedList[0].addError(e);
                     return;

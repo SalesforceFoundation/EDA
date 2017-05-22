@@ -459,12 +459,6 @@
         <name>ListView</name>
     </types>
     <types>
-        <members>Course_Enrollment__c.Default</members>
-        <members>Course_Enrollment__c.Faculty</members>
-        <members>Course_Enrollment__c.Student</members>
-        <name>RecordType</name>
-    </types>
-    <types>
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>
         <name>ValidationRule</name>
     </types>

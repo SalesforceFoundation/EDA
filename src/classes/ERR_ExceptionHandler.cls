@@ -63,7 +63,8 @@ public with sharing class ERR_ExceptionHandler {
                 message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
                 ex.setMessage(message);
                 break;
-            }else if ((typeName.contains(STATUS))){
+            }else if ((typeName.contains(STATUS)))
+            {
                 ex.setMessage(message);
                 break;                
             }
