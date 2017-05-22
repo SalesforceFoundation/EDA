@@ -28,8 +28,6 @@ New/Modified tasks
 ### `execute_install_apex`
   Runs most of the install script methods from STG_InstallScript class
 
-### `execute_install_apex_managed`
-  Runs most of the install script methods from STG_InstallScript class for Managed code
 
 New/Modified Flows
 ------------------
