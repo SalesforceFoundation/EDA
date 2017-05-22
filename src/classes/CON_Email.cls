@@ -81,7 +81,7 @@ public class CON_Email {
                 }
             }
 
-            // Only one emai field, so we can intelligently set preferred email.
+            // Only one email field, so we can intelligently set preferred email.
             if(validatePreferred && emailFields.valuedCount() == 1 && String.isBlank(contact.Preferred_Email__c)){
 
                 contact.Preferred_Email__c = emailFields.valuedFields[0].prefLabel;
