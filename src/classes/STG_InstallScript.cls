@@ -136,7 +136,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     /*******************************************************************************************************
     * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
     * upgrade.
-    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it.
+    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
     * @return void
     */
     @TestVisible 
@@ -152,6 +152,16 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
         List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
         
+        // First preserve the trigger handlers that are user managed. We do this because this 
+        // method accepts the default config without the addition of custom trigger handlers 
+        // added by users.
+        for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
+            if(existingToken.userManaged) {
+                UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
+                newTdtmConfig.add(existingToken);
+            }
+        }
+
         //Insert those that are in the list of default handlers but aren't in the database
         for(TDTM_Global_API.TdtmToken defaultToken : defaultTdtmConfig) {
             Boolean alreadyExists = false;
@@ -177,9 +187,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
                     } else if(!existingToken.userManaged && defaultToken.loadOrder == existingToken.loadOrder || 
                     defaultToken.actions == existingToken.actions) {
                         UTIL_Debug.debug('****It was not user managed and has not changed: ' + existingToken.className);
-                        newTdtmConfig.add(existingToken);
-                    } else if(existingToken.userManaged) {
-                        UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
                         newTdtmConfig.add(existingToken);
                     }
                     break;
