@@ -55,6 +55,34 @@ private class CON_Email_TEST {
         insert listCon;
 	}
 
+	@isTest static void tedLeadConversion() {
+		// create a Lead
+		Lead tLead = new Lead(
+			FirstName='Joshua',
+			LastName='McTesterman',
+			Email='mctesterman@mctesersite.com',
+			Company='Test',
+			Status='Inquiry'
+		);
+
+		insert tLead;
+
+		Database.LeadConvert lc = new Database.LeadConvert();
+		lc.setLeadId(tLead.Id);
+
+		LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+		lc.setConvertedStatus(convertStatus.MasterLabel);
+
+		Test.startTest();		
+		Database.LeadConvertResult lcr = Database.convertLead(lc);
+		Test.stopTest();
+
+		String contId = lcr.getContactId();
+		Contact c = [SELECT Id, Name, Email FROM Contact WHERE Id =:contId LIMIT 1];
+
+		System.assertEquals(c.Email,tLead.Email );
+	}
+
 	@isTest static void testSingleEmailSmartSet() {
 
 		Contact newCont = new Contact(
