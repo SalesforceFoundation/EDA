@@ -35,7 +35,6 @@
 *
 */
 public class CON_Email {
-
     /*******************************************************************************************************
     * @description Sets the Email field depending on the value of Preferred Email
     * @param Contact the contact to update
@@ -82,8 +81,14 @@ public class CON_Email {
                 }
             }
 
+            // Only one email field, so we can intelligently set preferred email.
+            if(validatePreferred && emailFields.valuedCount() == 1 && String.isBlank(contact.Preferred_Email__c)){
+
+                contact.Preferred_Email__c = emailFields.valuedFields[0].prefLabel;
+                contact.Email = emailFields.valuedFields[0].value;
+
             // Enforce preferred email field unless validation is disabled
-            if(validatePreferred && String.isBlank(contact.Preferred_Email__c)){
+            } else if(validatePreferred && String.isBlank(contact.Preferred_Email__c)){
 
                 contact.addError( Label.PreferredEmailRequiredError );
 
