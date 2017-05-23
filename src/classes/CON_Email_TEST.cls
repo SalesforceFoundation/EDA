@@ -55,7 +55,7 @@ private class CON_Email_TEST {
         insert listCon;
 	}
 
-	@isTest static void tedLeadConversion() {
+	@isTest static void testLeadConversion() {
 		// create a Lead
 		Lead tLead = new Lead(
 			FirstName='Joshua',
