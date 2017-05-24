@@ -88,7 +88,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
                 }
                 
                 //handle updates to the gender field
-                if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
+                if (triggerAction == TDTM_Runnable.Action.afterUpdate && oldMap.get(c.id) != null) {
                     if (c.Gender__c != oldMap.get(c.id).Gender__c) {
                         changedGender.add(c.id);
                     }
