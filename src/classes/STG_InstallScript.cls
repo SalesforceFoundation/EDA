@@ -230,6 +230,10 @@ global without sharing class STG_InstallScript implements InstallHandler {
             lookups.add(new Relationship_Lookup__c(Name = 'Grandchild', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Employer', Male__c = 'Employee', Female__c = 'Employee', Neutral__c = 'Employee', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Employee', Male__c = 'Employer', Female__c = 'Employer', Neutral__c = 'Employer', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Sibling\'s Child', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Parent\'s Sibling', Male__c = 'Nephew', Female__c = 'Niece', Neutral__c = 'Sibling\'s Child', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Nephew', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
+            lookups.add(new Relationship_Lookup__c(Name = 'Niece', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
             insert lookups;
         }
     }

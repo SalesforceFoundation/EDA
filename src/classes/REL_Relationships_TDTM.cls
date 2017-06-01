@@ -341,8 +341,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                     
                     //can't match up gender, bad field or otherwise
                     } else {
-                        if (copy.Type__c==null)          
-                            copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
+                        copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
                     }                                     
                 //no matching custom List setting, use provided type
                 } else {
