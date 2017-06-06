@@ -42,7 +42,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global void onInstall(InstallContext context) {
-    	
+        
     	//Initial installation.
     	if(context.previousVersion() == null) {
     		UTIL_CustomSettingsFacade.getSettings();
@@ -51,9 +51,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
     		//Schedule Seasonal Addresses recurring job daily
     		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
 
-    	    //Insert default TDTM config (not necessary, but better to be explicit).
-    	    List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
-            TDTM_Global_API.setTdtmConfig(tokens); 
+            // Install TDTM Configuration
+            List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+            TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
 
             // Format existing contact email addresses
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
@@ -61,12 +61,22 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	 
     	 //Updates, manual of pushed by publisher.
     	 } else if(context.isUpgrade() || context.isPush()) {
-    	    //Update TDTM configuration, if necessary.
-    	    List<TDTM_Global_API.TdtmToken> defaultTdtmConfig = TDTM_Global_API.getDefaultTdtmConfig();
 
-            updateDefaultTdtmConfig(defaultTdtmConfig);
+            Version previousVersion = context.previousVersion();
+            
+            disablePreferredEmailEnforcement(previousVersion);
+    
+            if(previousVersion != null && previousVersion.compareTo(new Version(1,36)) < 0) {
 
-            disablePreferredEmailEnforcement(context.previousVersion());
+                // Handle when updating to namespaced handlers 
+                List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+                TDTM_Global_API.setTdtmConfig(defaultTokens);            
+            } else {
+
+                // Upgrade TDTM Configuration
+                List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+                TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+            }
     	 }
     	 
     	 reparentAdminAddrs(context.previousVersion());
@@ -134,77 +144,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
     
     /*******************************************************************************************************
-    * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
-    * upgrade.
-    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
-    * @return void
-    */
-    @TestVisible 
-    global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
-        //Getting the config that is really in the database.
-        List<Trigger_Handler__c> existingHandlers = [select Class__c, Object__c, Trigger_Action__c, Active__c, Load_Order__c, Asynchronous__c, Filter_Field__c, 
-                                                       Filter_Value__c, User_Managed__c from Trigger_Handler__c where Class__c != null];
-        List<TDTM_Global_API.TdtmToken> existingTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
-        for(Trigger_Handler__c handler : existingHandlers) {
-            existingTdtmConfig.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, Integer.valueOf(handler.Load_Order__c), 
-                   handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
-        }
-
-        List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
-        
-        // First preserve the trigger handlers that are user managed. We do this because this 
-        // method accepts the default config without the addition of custom trigger handlers 
-        // added by users.
-        for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
-            if(existingToken.userManaged) {
-                UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
-                newTdtmConfig.add(existingToken);
-            }
-        }
-
-        //Insert those that are in the list of default handlers but aren't in the database
-        for(TDTM_Global_API.TdtmToken defaultToken : defaultTdtmConfig) {
-            Boolean alreadyExists = false;
-            for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
-                if(defaultToken.className == existingToken.className && defaultToken.targetObject == existingToken.targetObject) {
-                    alreadyExists = true;
-                    
-                    //Determine if order, actions, or filter have changed, for those that have not been flagged as user-managed.
-                    if(!existingToken.userManaged && (
-                        defaultToken.loadOrder != existingToken.loadOrder || 
-                        defaultToken.actions != existingToken.actions ||
-                        defaultToken.filterField != existingToken.filterField || 
-                        defaultToken.filterValue != existingToken.filterValue)
-                    ) {
-                        UTIL_Debug.debug('****It was not user managed and has changed: ' + existingToken.className);
-                        existingToken.loadOrder = defaultToken.loadOrder;
-                        existingToken.actions = defaultToken.actions;
-                        existingToken.filterField = defaultToken.filterField;
-                        existingToken.filterValue = defaultToken.filterValue;
-                        newTdtmConfig.add(existingToken);
-                    //If it already exists and nothing has changed, put it in, as we are going to replace the whole config. It shouldn't
-                    //matter if we add defaultToken or existingToken, as they should be the same.
-                    } else if(!existingToken.userManaged && defaultToken.loadOrder == existingToken.loadOrder || 
-                    defaultToken.actions == existingToken.actions) {
-                        UTIL_Debug.debug('****It was not user managed and has not changed: ' + existingToken.className);
-                        newTdtmConfig.add(existingToken);
-                    }
-                    break;
-                }
-            }
-            
-            if(!alreadyExists) {
-                UTIL_Debug.debug('****New token: ' + defaultToken.className);
-                newTdtmConfig.add(defaultToken);
-            }
-        }
-        
-        UTIL_Debug.debug('****newTdtmConfig: ' + JSON.serializePretty(newTdtmConfig));
-        
-        TDTM_Global_API.setTdtmConfig(newTdtmConfig);
-    }
-    
-    /*******************************************************************************************************
     * @description Inserts the default Relationship Lookup settings.
     * @return void
     */
@@ -230,10 +169,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
             lookups.add(new Relationship_Lookup__c(Name = 'Grandchild', Male__c = 'Grandfather', Female__c = 'Grandmother', Neutral__c = 'Grandparent', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Employer', Male__c = 'Employee', Female__c = 'Employee', Neutral__c = 'Employee', Active__c = true));
             lookups.add(new Relationship_Lookup__c(Name = 'Employee', Male__c = 'Employer', Female__c = 'Employer', Neutral__c = 'Employer', Active__c = true));
-            lookups.add(new Relationship_Lookup__c(Name = 'Sibling\'s Child', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
-            lookups.add(new Relationship_Lookup__c(Name = 'Parent\'s Sibling', Male__c = 'Nephew', Female__c = 'Niece', Neutral__c = 'Sibling\'s Child', Active__c = true));
-            lookups.add(new Relationship_Lookup__c(Name = 'Nephew', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
-            lookups.add(new Relationship_Lookup__c(Name = 'Niece', Male__c = 'Uncle', Female__c = 'Aunt', Neutral__c = 'Parent\'s Sibling', Active__c = true));
             insert lookups;
         }
     }

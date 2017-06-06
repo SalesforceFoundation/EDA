@@ -79,6 +79,8 @@
         <members>TDTM_Filter</members>
         <members>TDTM_Filter_TEST</members>
         <members>TDTM_Global_API</members>
+        <members>TDTM_Manager</members>
+        <members>TDTM_Manager_TEST</members>
         <members>TDTM_Runnable</members>
         <members>TDTM_TriggerActionHelper</members>
         <members>TDTM_TriggerHandler</members>
@@ -326,6 +328,7 @@
         <members>Trigger_Handler__c.Filter_Value__c</members>
         <members>Trigger_Handler__c.Load_Order__c</members>
         <members>Trigger_Handler__c.Object__c</members>
+        <members>Trigger_Handler__c.Owned_by_Namespace__c</members>
         <members>Trigger_Handler__c.Trigger_Action__c</members>
         <members>Trigger_Handler__c.User_Managed__c</members>
         <name>CustomField</name>
