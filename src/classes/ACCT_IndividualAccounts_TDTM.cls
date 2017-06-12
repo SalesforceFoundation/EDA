@@ -243,26 +243,35 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void resetPrimaryContactForAccount(list<Id> listAccountId, DmlWrapper dmlWrapper) {
     
         // for each account, we need a set of their contacts.
-        map<Id, set<Id>> mapAccountIdSetContacts = new map<Id, set<Id>>();
-        
-        list<Contact> listCon = [select Id, AccountId, Account.Primary_Contact__c from Contact where AccountId in :listAccountId];
-        for (Contact con : listCon) {
-            set<Id> setContactId = mapAccountIdSetContacts.get(con.AccountId);
-            if (setContactId == null) { 
-                setContactId = new set<Id>();
-                mapAccountIdSetContacts.put(con.AccountId, setContactId);
+        map<Id, set<Id>> mapAccountIdSetContacts = new map<Id, set<Id>>();       
+        for (list<Contact> listCon : [select Id, 
+                                            AccountId, 
+                                            Account.Primary_Contact__c 
+                                    from Contact 
+                                    where AccountId in :listAccountId]) {
+            for (Contact con : listCon){
+                set<Id> setContactId = mapAccountIdSetContacts.get(con.AccountId);
+                if (setContactId == null) { 
+                    setContactId = new set<Id>();
+                    mapAccountIdSetContacts.put(con.AccountId, setContactId);
+                }
+                setContactId.add(con.Id);
             }
-            setContactId.add(con.Id);
         }
         
         // now go thru each account and update their primary contact if the current one isn't valid
-        list<Account> listAcc = [select Id, Primary_Contact__c from Account where Id in :listAccountId];
         list<Account> listAccToUpdate = new list<Account>();
-        for (Account acc : listAcc) {
-            set<Id> setContactId = mapAccountIdSetContacts.get(acc.Id);
-            if (setContactId != null && !setContactId.contains(acc.Primary_Contact__c)) {
-                acc.Primary_Contact__c = firstIdFromSet(setContactId);
-                listAccToUpdate.add(acc);
+        for (list<Account> listAcc : [select Id, 
+                                            Primary_Contact__c 
+                                    from Account 
+                                    where Id in :listAccountId]) {
+            for (Account acc : listAcc)
+            {
+                set<Id> setContactId = mapAccountIdSetContacts.get(acc.Id);
+                if (setContactId != null && !setContactId.contains(acc.Primary_Contact__c)) {
+                    acc.Primary_Contact__c = firstIdFromSet(setContactId);
+                    listAccToUpdate.add(acc);
+                }
             }    
         }
         
