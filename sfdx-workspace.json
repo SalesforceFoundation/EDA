@@ -1,0 +1,10 @@
+{
+  "PackageDirectories": [
+    {
+      "Path": "src",
+      "Default": true
+    }
+  ],
+  "Namespace": "hed",
+  "SourceApiVersion": "35.0"
+}
