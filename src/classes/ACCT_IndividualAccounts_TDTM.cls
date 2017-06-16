@@ -241,40 +241,56 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return void
     */ 
     private void resetPrimaryContactForAccount(list<Id> listAccountId, DmlWrapper dmlWrapper) {
-    
-        // for each account, we need a set of their contacts.
-        map<Id, set<Id>> mapAccountIdSetContacts = new map<Id, set<Id>>();       
-        for (list<Contact> listCon : [select Id, 
-                                            AccountId, 
-                                            Account.Primary_Contact__c 
-                                    from Contact 
-                                    where AccountId in :listAccountId]) {
-            for (Contact con : listCon){
-                set<Id> setContactId = mapAccountIdSetContacts.get(con.AccountId);
-                if (setContactId == null) { 
-                    setContactId = new set<Id>();
-                    mapAccountIdSetContacts.put(con.AccountId, setContactId);
+        Set<Id> setPrimaryContactIds = new Set<Id>();
+        Set<Id> setAccToResetIds = new Set<Id>();    
+        List<Account> listAccToUpdate = new List<Account>();
+
+        //Build a set of primary contact ids based on give account ids
+        List<Account> listAccount = [SELECT Primary_Contact__c,
+                                            (SELECT id
+                                            FROM Contacts
+                                            LIMIT 1)
+                                    FROM Account
+                                    WHERE Id in :listAccountId];
+        for (Account acc : listAccount){
+            setPrimaryContactIds.add(acc.Primary_Contact__c);
+        }
+
+        if (setPrimaryContactIds.size() > 0){        
+            for (Account acc : [SELECT id, 
+                                    (SELECT id 
+                                    FROM Contacts 
+                                    WHERE id in :setPrimaryContactIds 
+                                    LIMIT 1)
+                                FROM Account                           
+                                WHERE id in : listAccountId]){
+                //An account need to be reset if it can not find a child contact who is primary contact
+                if (acc.Contacts.size() == 0)
+                {
+                    setAccToResetIds.add(acc.Id);              
                 }
-                setContactId.add(con.Id);
+            }
+        }else{
+            setAccToResetIds.addAll(listAccountId);
+        }
+
+        //if setAccToResetIds is empty, skip dml and return
+        if (setAccToResetIds.size() == 0)
+        {
+            return;
+        }
+
+        //for each account need to be reset 
+        //query one child contact and use it as primary contact
+        for (Account acc : listAccount)
+        {
+            if (acc.Contacts.size() > 0)
+            {
+                acc.Primary_Contact__c = acc.contacts[0].Id;
+                listAccToUpdate.add(acc);
             }
         }
-        
-        // now go thru each account and update their primary contact if the current one isn't valid
-        list<Account> listAccToUpdate = new list<Account>();
-        for (list<Account> listAcc : [select Id, 
-                                            Primary_Contact__c 
-                                    from Account 
-                                    where Id in :listAccountId]) {
-            for (Account acc : listAcc)
-            {
-                set<Id> setContactId = mapAccountIdSetContacts.get(acc.Id);
-                if (setContactId != null && !setContactId.contains(acc.Primary_Contact__c)) {
-                    acc.Primary_Contact__c = firstIdFromSet(setContactId);
-                    listAccToUpdate.add(acc);
-                }
-            }    
-        }
-        
+
         // now do the update
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
     }
