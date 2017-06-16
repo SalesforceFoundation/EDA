@@ -117,6 +117,9 @@ flows:
                 task: update_admin_profile
             6.2:
                 task: execute_install_apex
+            8:
+                options:
+                    managed: True
     
     ci_master:
         tasks:
