@@ -294,18 +294,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         // now do the update
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
     }
-        
-    /*******************************************************************************************************
-    * @description returns the first Id from the specified set
-    * @param setId a set of Id's
-    * @return Id.  null if the set is empty.
-    */ 
-    private Id firstIdFromSet(set<Id> setId) {
-        for (ID id : setId) {
-            return Id;
-        }
-        return null;
-    }
 
     /*******************************************************************************************************
     * @description Inserts a new Account for an Individual Contact
