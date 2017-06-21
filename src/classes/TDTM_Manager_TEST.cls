@@ -85,7 +85,7 @@ private class TDTM_Manager_TEST {
 		// Setup new configuration
         Set<TDTM_Global_API.TdtmToken> noNameConfig = new Set<TDTM_Global_API.TdtmToken>();
         noNameConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2, true, false, null, null, false, null));
-        noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5, true, false, null, null, false, null));
+        noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5.2, true, false, null, null, false, null));
         noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, null));
 
 		TDTM_Manager manager = new TDTM_Manager(null);
@@ -136,7 +136,7 @@ private class TDTM_Manager_TEST {
 		// Setup new configuration
         Set<TDTM_Global_API.TdtmToken> newConfig = new Set<TDTM_Global_API.TdtmToken>();
         // Update load order and trigger action
-        newConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2.2, true, false, null, null, false, 'hed'));
         // Update load order and trigger action
         newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5, true, false, null, null, false, 'hed'));
         // We'll leave this alone
@@ -155,7 +155,7 @@ private class TDTM_Manager_TEST {
 			// Verify Change
 			if(h.Class__c == 'AFFL_Affiliations_TDTM'){
 				System.assertEquals(h.Trigger_Action__c, 'AfterInsert;AfterUpdate' );
-				System.assertEquals(h.Load_Order__c, 2 );
+				System.assertEquals(h.Load_Order__c, 2.2 );
 				System.assertEquals(h.Owned_by_Namespace__c, 'hed' );
 			}
 			// Verify Change
@@ -243,9 +243,9 @@ private class TDTM_Manager_TEST {
 				System.assertEquals(h.Load_Order__c, 1 );
 			}
 			// Verify NO Change
-			if(h.Class__c == 'REL_Relationships_Con_TDTM'){
-				System.assertEquals(h.Trigger_Action__c, 'AfterInsert;AfterDelete' );
-				System.assertEquals(h.Load_Order__c, 1 );
+			if(h.Class__c == 'Contact_Update'){
+				System.assertEquals(h.Trigger_Action__c, 'BeforeInsert;BeforeUpdate' );
+				System.assertEquals(h.Load_Order__c, 0.2 );
 			}
 		}
 	}
@@ -253,8 +253,8 @@ private class TDTM_Manager_TEST {
 	private static Set<TDTM_Global_API.TdtmToken> getBasicDefaults() {
         Set<TDTM_Global_API.TdtmToken> h = new Set<TDTM_Global_API.TdtmToken>();
         h.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed'));
-        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 1, true, false, null, null, false, 'hed'));
-        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, 'hed'));
+        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 1.1, true, false, null, null, false, 'hed'));
+        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1.2, true, false, null, null, false, 'hed'));
     	return h;
 	}
 

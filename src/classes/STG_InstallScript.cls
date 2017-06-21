@@ -66,7 +66,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             
             disablePreferredEmailEnforcement(previousVersion);
     
-            if(previousVersion != null && previousVersion.compareTo(new Version(1,36)) < 0) {
+            if(previousVersion != null && previousVersion.compareTo(new Version(1,37)) < 0) {
 
                 // Handle when updating to namespaced handlers 
                 List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();

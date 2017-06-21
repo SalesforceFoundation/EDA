@@ -32,11 +32,11 @@
  * @date 2017
  * @group TDTM
  * @group-content ../../ApexDocContent/TDTM.htm
- * @description A Global Class to setup of the default TDTM configuration for processing on package 
+ * @description A Class to setup of the default TDTM configuration for processing on package 
  * installs. Global to allow packages with dependencies on HEDA to easily process their own Trigger 
  * handlers.
  */
-global class TDTM_Manager {
+public class TDTM_Manager {
 
 	public String namespace {get;set;}
 	public Map<Id,Trigger_Handler__c> currentHandlers;
@@ -47,7 +47,7 @@ global class TDTM_Manager {
     
     /*******************************************************************************************************
     * @description Constructor. Sets namespace, currentHandlers, and currentTokens default properties.
-    * @parameter nm A list with the default trigger handlers configuration.
+    * @parameter nm A String representing the namespace to query from.
     *********************************************************************************************************/
 	public TDTM_Manager(String nm) {  
 		this.namespace = nm;

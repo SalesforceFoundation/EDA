@@ -33,8 +33,7 @@
  * @date 2014
  * @group TDTM
  * @group-content ../../ApexDocContent/TDTM.htm
- * @description Class that queries custom object to retrieve classes to call for creation or modification
- * of a record of a specific object type.
+ * @description A Class to retreive and interact with the TDTM configurtaion
  */
 public class TDTM_Config {
 
@@ -71,7 +70,7 @@ public class TDTM_Config {
 
         for(Trigger_Handler__c handler : tdtmConfig) {
             tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
-                    Integer.valueOf(handler.Load_Order__c), handler.Active__c, handler.Asynchronous__c,
+                    handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
                     handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c));
         }
 
@@ -91,7 +90,7 @@ public class TDTM_Config {
         List<Trigger_Handler__c> existingHandlers = TDTM_DefaultConfig.getDefaultRecords();
         for(Trigger_Handler__c handler : existingHandlers) {
             tokens.add(
-                new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, Integer.valueOf(handler.Load_Order__c), handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c )
+                new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c )
             );
         }
 
@@ -108,8 +107,8 @@ public class TDTM_Config {
         tdtmTokensCache = tdtmTokens;
 
         TDTM_Manager manager = new TDTM_Manager(namespace);
-        Set<TDTM_Global_API.TdtmToken> tSet =  new Set<TDTM_Global_API.TdtmToken>(tdtmTokens);
-        manager.updateDefaultTdtmConfig( tSet );
+        Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tdtmTokens);
+        manager.updateDefaultTdtmConfig( tokenSet );
     }
 
     /*******************************************************************************************************

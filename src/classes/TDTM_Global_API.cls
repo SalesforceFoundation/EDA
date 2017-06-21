@@ -242,7 +242,7 @@ global class TDTM_Global_API {
         * @parameter Set<TDTM_Global_API.TdtmToken> tokenSet a Set of TDTM Tokens to match against
         * @return TDTM_Global_API.TdtmToken The matched token
         *********************************************************************************************************/
-        global TDTM_Global_API.TdtmToken getMatch(Set<TDTM_Global_API.TdtmToken> tokenSet) {
+        public TDTM_Global_API.TdtmToken getMatch(Set<TDTM_Global_API.TdtmToken> tokenSet) {
             // Return matching
             for(TDTM_Global_API.TdtmToken t : tokenSet) {
                 if(t.className == this.className  && t.targetObject== this.targetObject){
