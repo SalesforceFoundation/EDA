@@ -1,10 +1,10 @@
 /*
     Copyright (c) 2017, Salesforce.org
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-    
+
     * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -15,16 +15,16 @@
       from this software without specific prior written permission.
 
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
-    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
-    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
@@ -42,12 +42,12 @@ public class TDTM_Manager {
 
     private List<Trigger_Handler__c> toDelete = new List<Trigger_Handler__c>();
     private List<Trigger_Handler__c> toUpsert = new List<Trigger_Handler__c>();
-    
+
     /*******************************************************************************************************
     * @description Constructor. Sets namespace, currentHandlers, and currentTokens default properties.
     * @parameter nm A String representing the namespace to query from.
     *********************************************************************************************************/
-	public TDTM_Manager(String nm) {  
+	public TDTM_Manager(String nm) {
 		this.namespace = nm;
 		this.currentHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Owned_by_Namespace__c =: this.namespace ORDER BY Load_Order__c ]);
 
@@ -55,7 +55,7 @@ public class TDTM_Manager {
 	}
 
     /*******************************************************************************************************
-    * @description Update the existing Trigger Handlers in the database. Will also delete Handlers not 
+    * @description Update the existing Trigger Handlers in the database. Will also delete Handlers not
     * included in the default configuration.
     * @parameter newTokenSet A set of TDTM Tokens that represent a new configuration to compare to existing
     * @return void
@@ -77,10 +77,10 @@ public class TDTM_Manager {
 			        if(existingToken.userManaged && match != null ) {
 			        	// Skip if User Managed
 			        	newTokenSet.remove(match);
-			        
+
 			        // Check if the match is different, if so we'll update the current token
 			        } else if( !existingToken.userManaged && match != null && !existingToken.equals(match) ) {
-						
+
 						// Update current handler value
 						this.toUpsert.add( mergeToken(currentHandlers.get(existingToken.handlerId), match ) );
 						// mark processed if updated
@@ -88,7 +88,7 @@ public class TDTM_Manager {
 
 					// Removed from default config
 					} else if ( !existingToken.userManaged && match == null ) {
-						
+
 						// Remove from existing list and setup for deletion
 						this.toDelete.add(currentHandlers.get(existingToken.handlerId));
 					}
@@ -97,7 +97,7 @@ public class TDTM_Manager {
 				// mark processed if not updated or deleted. This skips
 				newTokenSet.remove(existingToken);
 			}
-			
+
 			// Check for new items to add since these didn't match against existing items
 			if(newTokenSet.size() > 0) {
 				for( TDTM_Global_API.TdtmToken newToken: newTokenSet ){
@@ -105,14 +105,14 @@ public class TDTM_Manager {
 				}
 			}
 		}
-		
+
 		if(this.toUpsert.size()>0) {
-			upsert this.toUpsert;		
+			upsert this.toUpsert;
 
 			// Update class properties because we have updates.
 			this.currentHandlers = new Map<Id,Trigger_Handler__c>(this.toUpsert);
 			this.currentTokens = this.getTokenSet(this.currentHandlers);
-		} 
+		}
 
 		if(this.toDelete.size()>0) {
 			delete this.toDelete;
@@ -131,7 +131,7 @@ public class TDTM_Manager {
 		for( Trigger_Handler__c h: hs.values() ) {
 
 			TDTM_Global_API.TdtmToken newToken = new TDTM_Global_API.TdtmToken( h.Class__c, h.Object__c, h.Trigger_Action__c, h.Load_Order__c, h.Active__c, h.Asynchronous__c, null, null, h.User_Managed__c, h.Owned_by_Namespace__c);
-		
+
 			// Conditionally set Id
 			if(h.Id != null) {
 				newToken.handlerId = h.Id;
@@ -140,7 +140,7 @@ public class TDTM_Manager {
 		}
 
 		return ts;
-	} 
+	}
 
 	/***
 		Merge token data into Trigger Handler. Has a special case to check if the token does not contain an ID. If not, it is a new handler so it adds "classname" and "targetObject" properties.
@@ -154,7 +154,7 @@ public class TDTM_Manager {
         h.Owned_by_Namespace__c = t.ownedByNamespace;
 
         if(t.handlerId == null) {
-			h.Class__c = t.className;  
+			h.Class__c = t.className;
 			h.Object__c = t.targetObject;
         }
         return h;
