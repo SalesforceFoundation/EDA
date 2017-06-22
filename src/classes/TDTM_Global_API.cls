@@ -34,7 +34,8 @@
 * @group TDTM
 * @group-content ../../ApexDocContent/API.htm
 * @description Provides methods to call the Trigger Handler class, which in turns calls the classes that need to
-* run for each DML action on a set of records, and to retrieve the default HEDA TDTM configuration.
+* run for each DML action on a set of records, and to retrieve the default HEDA TDTM configuration. Includes
+* methods to set default handlers isolated by namespace
 */
 global class TDTM_Global_API {
     
@@ -85,7 +86,10 @@ global class TDTM_Global_API {
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens) {
-        TDTM_Config.setTdtmConfig(tokens,null);
+        TDTM_Manager manager = new TDTM_Manager(null);
+        Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
+        manager.updateDefaultTdtmConfig( tokenSet );
+
     }
     /*******************************************************************************************************
     * @description Sets the trigger handlers configuration with the data passed as parameter.
@@ -94,7 +98,9 @@ global class TDTM_Global_API {
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens,String namespace) {
-        TDTM_Config.setTdtmConfig(tokens,namespace);
+        TDTM_Manager manager = new TDTM_Manager(namespace);
+        Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
+        manager.updateDefaultTdtmConfig( tokenSet );
     }
 
     /********************************************************************************************************
@@ -206,8 +212,8 @@ global class TDTM_Global_API {
         * @parameter filterValue The token's filter value.
         * @parameter userManaged The token's user-managed flag.
         *********************************************************************************************************/
-        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active,
-        Boolean async, String filterField, String filterValue, Boolean userManaged) {
+        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
+            
             this(className, targetObject, actions, loadOrder, active, async, filterField, filterValue, userManaged, null);
         }
 

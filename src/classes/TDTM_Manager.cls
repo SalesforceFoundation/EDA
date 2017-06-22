@@ -32,15 +32,13 @@
  * @date 2017
  * @group TDTM
  * @group-content ../../ApexDocContent/TDTM.htm
- * @description A Class to setup of the default TDTM configuration for processing on package 
- * installs. Global to allow packages with dependencies on HEDA to easily process their own Trigger 
- * handlers.
+ * @description A Class that accesses and modifies TDTM configuration. The configuration is isolated by Namespace.
  */
 public class TDTM_Manager {
 
 	public String namespace {get;set;}
-	public Map<Id,Trigger_Handler__c> currentHandlers;
-	public Set<TDTM_Global_API.TdtmToken> currentTokens;
+	public Map<Id,Trigger_Handler__c> currentHandlers {get;set;}
+	public Set<TDTM_Global_API.TdtmToken> currentTokens {get;set;}
 
     private List<Trigger_Handler__c> toDelete = new List<Trigger_Handler__c>();
     private List<Trigger_Handler__c> toUpsert = new List<Trigger_Handler__c>();

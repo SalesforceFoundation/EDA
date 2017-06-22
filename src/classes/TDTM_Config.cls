@@ -33,7 +33,7 @@
  * @date 2014
  * @group TDTM
  * @group-content ../../ApexDocContent/TDTM.htm
- * @description A Class to retreive and interact with the TDTM configurtaion
+ * @description A Class to retreive, cache and interact with the Org wide TDTM configurtaion
  */
 public class TDTM_Config {
 
@@ -84,6 +84,9 @@ public class TDTM_Config {
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfig() {
+        if(tdtmTokensCache != null) {
+            return tdtmTokensCache;
+        }
 
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
 
@@ -94,21 +97,9 @@ public class TDTM_Config {
             );
         }
 
+        tdtmTokensCache = tokens;
+
         return tokens;
-    }
-
-    /*******************************************************************************************************
-    * @description Sets the trigger handlers configuration with the data passed as parameter.
-    * @parameter tdtmTokens A list with the default trigger handlers configuration.
-    * @parameter namespace The namespace that will manage this handler.
-    * @return void
-    *********************************************************************************************************/
-    public static void setTdtmConfig(List<TDTM_Global_API.TdtmToken> tdtmTokens, String namespace) {
-        tdtmTokensCache = tdtmTokens;
-
-        TDTM_Manager manager = new TDTM_Manager(namespace);
-        Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tdtmTokens);
-        manager.updateDefaultTdtmConfig( tokenSet );
     }
 
     /*******************************************************************************************************
