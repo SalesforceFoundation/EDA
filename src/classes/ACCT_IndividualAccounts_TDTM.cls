@@ -131,9 +131,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterDelete && !alreadyRunAfterDelete) {
             for (Contact c : oldContacts)
                 listContactAccountDelete.add(c);
-
-            // Set reentrant flag
-            alreadyRunAfterDelete = true;
         } else {
             Integer i = 0; // used to index into oldContacts when needed
             for (Contact c : contacts) {
@@ -154,9 +151,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
                     }
-
-                    // Set reentrant flag
-                    alreadyRunAfterInsert = true;
 	            }
 
                 // AFTER UPDATE
@@ -184,11 +178,22 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.OwnerId != oldContacts[i].OwnerId) {
                     	mapContactIdContactOwnerChange.put(c.Id, c);
                     }
-
-                    // Set reentrant flag
-                    alreadyRunAfterUpdate = true;
                 }
                 i += 1;
+            }
+
+            // Must set flags after contact for loop to make sure all contacts are processed.
+            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                // Set reentrant flag
+                alreadyRunAfterInsert = true;
+            }
+            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                // Set reentrant flag
+                alreadyRunAfterUpdate = true;
+            }
+            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+                // Set reentrant flag
+                alreadyRunAfterDelete = true;
             }
         }
 
