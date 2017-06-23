@@ -34,7 +34,8 @@
 * @group TDTM
 * @group-content ../../ApexDocContent/API.htm
 * @description Provides methods to call the Trigger Handler class, which in turns calls the classes that need to
-* run for each DML action on a set of records, and to retrieve the default HEDA TDTM configuration.
+* run for each DML action on a set of records, and to retrieve the default HEDA TDTM configuration. Includes
+* methods to set default handlers isolated by namespace
 */
 global class TDTM_Global_API {
     
@@ -72,7 +73,7 @@ global class TDTM_Global_API {
     }
 
     /********************************************************************************************************
-    * @description Returns the default TDTM configuration directly as TDTM Tokens.  
+    * @description Returns the default TDTM configuration directly as TDTM Tokens in a List. 
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values. 
     *********************************************************************************************************/
     global static List<TdtmToken> getDefaultTdtmConfig() {
@@ -85,14 +86,34 @@ global class TDTM_Global_API {
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens) {
-        TDTM_Config.setTdtmConfig(tokens);
+        TDTM_Manager manager = new TDTM_Manager(null);
+        Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
+        manager.updateDefaultTdtmConfig( tokenSet );
+
     }
-    
+    /*******************************************************************************************************
+    * @description Sets the trigger handlers configuration with the data passed as parameter.
+    * @parameter tdtmTokens A list with the defaul trigger handlers configuration.
+    * @parameter namespace The namespace that will manage this handler.
+    * @return void
+    *********************************************************************************************************/
+    global static void setTdtmConfig(List<TdtmToken> tokens,String namespace) {
+        TDTM_Manager manager = new TDTM_Manager(namespace);
+        Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
+        manager.updateDefaultTdtmConfig( tokenSet );
+    }
+
     /********************************************************************************************************
     * @description Trigger Handler token. It contains information about the code that will run in response to 
     * a database action.
     *********************************************************************************************************/
     global class TdtmToken {
+        /********************************************************************************************************
+        * @description Id if this came from the database. This field should NOT be used when comparing tokens 
+        * to each other
+        *********************************************************************************************************/
+        global String handlerId { get; set; }
+
         /********************************************************************************************************
         * @description The name of the class containing the code to run.
         *********************************************************************************************************/
@@ -117,7 +138,7 @@ global class TDTM_Global_API {
         * @description The order in which the code will run with relation to other active tokens defined for the 
         * same object.
         *********************************************************************************************************/
-        global Integer loadOrder   { get; set; }
+        global Decimal loadOrder   { get; set; }
         
         /********************************************************************************************************
         * @description Whether the dispatched will attempt to run this code asynchronously. WARNING: the code needs
@@ -144,14 +165,32 @@ global class TDTM_Global_API {
         global Boolean userManaged { get; set; }
         
         /********************************************************************************************************
+        * @description States which Package or Org is responsible for managing.
+        * 
+        *********************************************************************************************************/
+        global String ownedByNamespace { get; set; }
+
+        /********************************************************************************************************
+        * @description Constructor. Simpler version accepting Integer for Load Order. It assumes default values for 
+        * those properties not passed as parameters.
+        * @parameter className The token's class name.
+        * @parameter targetObject The token's target object.
+        * @parameter actions The token's actions.
+        * @parameter loadOrder Integer value of the token's load order.
+        *********************************************************************************************************/
+        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
+            this(className, targetObject, actions, Decimal.valueOf(loadOrder));
+        }
+
+        /********************************************************************************************************
         * @description Constructor. Simpler version. It assumes default values for those properties not passed as
         * parameters.
         * @parameter className The token's class name.
         * @parameter targetObject The token's target object.
         * @parameter actions The token's actions.
-        * @parameter loadOrder The token's load order.
+        * @parameter loadOrder Decimal value of the token's load order.
         *********************************************************************************************************/
-        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
+        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder) {
             this.className = className;
             this.targetObject = targetObject;
             this.actions = actions;
@@ -160,21 +199,38 @@ global class TDTM_Global_API {
             this.async = false;
             this.userManaged = false;
         }
-        
+
         /********************************************************************************************************
         * @description Constructor. Verbose version. Values are provided for all properties.
         * @parameter className The token's class name.
         * @parameter targetObject The token's target object.
         * @parameter actions The token's actions.
-        * @parameter loadOrder The token's load order.
+        * @parameter loadOrder Integer value of the token's load order.
         * @parameter active The token's active flag.
         * @parameter async The token's async flag.
         * @parameter filterField The token's filter field.
         * @parameter filterValue The token's filter value.
         * @parameter userManaged The token's user-managed flag.
         *********************************************************************************************************/
-        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active,
-        Boolean async, String filterField, String filterValue, Boolean userManaged) {
+        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
+            
+            this(className, targetObject, actions, loadOrder, active, async, filterField, filterValue, userManaged, null);
+        }
+
+        /********************************************************************************************************
+        * @description Constructor. Verbose version. Values are provided for all properties.
+        * @parameter className The token's class name.
+        * @parameter targetObject The token's target object.
+        * @parameter actions The token's actions.
+        * @parameter loadOrder Bollean value of the token's load order.
+        * @parameter active The token's active flag.
+        * @parameter async The token's async flag.
+        * @parameter filterField The token's filter field.
+        * @parameter filterValue The token's filter value.
+        * @parameter userManaged The token's user-managed flag.
+        * @parameter ownedByNamespace The token's user-managed flag.
+        *********************************************************************************************************/
+        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
             this.className = className;
             this.targetObject = targetObject;
             this.actions = actions;
@@ -184,6 +240,61 @@ global class TDTM_Global_API {
             this.filterField = filterField;
             this.filterValue = filterValue;
             this.userManaged = userManaged;
+            this.ownedByNamespace = ownedByNamespace;
+        }
+
+        /********************************************************************************************************
+        * @description Compares a Set of TDTM Tokens and returns the matching item if found. Returns NULL if not match is found.
+        * @parameter Set<TDTM_Global_API.TdtmToken> tokenSet a Set of TDTM Tokens to match against
+        * @return TDTM_Global_API.TdtmToken The matched token
+        *********************************************************************************************************/
+        public TDTM_Global_API.TdtmToken getMatch(Set<TDTM_Global_API.TdtmToken> tokenSet) {
+            // Return matching
+            for(TDTM_Global_API.TdtmToken t : tokenSet) {
+                if(t.className == this.className  && t.targetObject== this.targetObject){
+                    return t;
+                }
+            }
+            return null;
+        }
+
+        /********************************************************************************************************
+        * @description Equals implementation. Leaving out Managed Field we dont want it in the comparison if the field has been updated.
+        *********************************************************************************************************/
+        global Boolean equals(Object o) {           
+            // Support API versions 31 and lower with null check
+            if ( (o == null) || !(o instanceof TdtmToken) ) {
+               return false;
+            }
+
+            TdtmToken t = (TdtmToken)o;
+
+            // Compare all fields
+            if (
+                this.className == t.className 
+                && this.targetObject == t.targetObject 
+                && this.actions == t.actions 
+                && this.active == t.active 
+                && this.loadOrder == t.loadOrder 
+                && this.async == t.async 
+                && this.filterField == t.filterField 
+                && this.filterValue == t.filterValue 
+                && this.ownedByNamespace == t.ownedByNamespace 
+            ) {
+                return true;
+            }
+
+            return false;            
+        }
+
+        /********************************************************************************************************
+        * @description Hash Code implementation 
+        *********************************************************************************************************/
+        global Integer hashCode() {
+            return (
+                31 
+                * targetObject.hashCode() 
+            ) ^ className.hashCode() ;
         }
     }
 }
