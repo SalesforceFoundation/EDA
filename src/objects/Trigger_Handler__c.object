@@ -120,7 +120,7 @@
         <label>Load Order</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -133,6 +133,17 @@
         <label>Object</label>
         <length>255</length>
         <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owned_by_Namespace__c</fullName>
+        <description>Enter the namespace of the package or Org that will control this Trigger handler.</description>
+        <externalId>false</externalId>
+        <label>Owned by Namespace</label>
+        <length>15</length>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
