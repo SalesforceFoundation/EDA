@@ -202,6 +202,7 @@ global class TDTM_Global_API {
             this.targetObject = targetObject;
             this.actions = actions;
             this.loadOrderDec = loadOrder;
+            this.loadOrder = Integer.valueOf(loadOrder);
             this.active = true;
             this.async = false;
             this.userManaged = false;
@@ -244,6 +245,7 @@ global class TDTM_Global_API {
             this.actions = actions;
             this.active = active;
             this.loadOrderDec = loadOrder;
+            this.loadOrder = Integer.valueOf(loadOrder);
             this.async = async;
             this.filterField = filterField;
             this.filterValue = filterValue;
