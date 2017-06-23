@@ -148,7 +148,7 @@ public class TDTM_Manager {
 	private Trigger_Handler__c mergeToken(Trigger_Handler__c h, TDTM_Global_API.TdtmToken t) {
         h.Trigger_Action__c = t.actions;
         h.Active__c = t.active;
-        h.Load_Order__c = t.loadOrder;
+        h.Load_Order__c = t.loadOrderDec;
         h.Asynchronous__c = t.async;
         h.User_Managed__c = t.userManaged;
         h.Owned_by_Namespace__c = t.ownedByNamespace;
