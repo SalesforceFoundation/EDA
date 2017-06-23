@@ -137,13 +137,13 @@ public class TDTM_Config {
             //Filtering those active by object and action.
             if(token.active && token.targetObject == objectName && token.actions.contains(action.Name())) {
                 //We need a list, in case there is more than one entry with the same load order.
-                List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(token.loadOrder);
+                List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(token.loadOrderDec);
                 if(tokens == null)
                     tokens = new List<TDTM_Global_API.TdtmToken>();
                 tokens.add(token);
-	            loadKeyedTokens.put(token.loadOrder, tokens);
-	            if(token.loadOrder > loadOrderMax)
-	                loadOrderMax = token.loadOrder;
+	            loadKeyedTokens.put(token.loadOrderDec, tokens);
+	            if(token.loadOrderDec > loadOrderMax)
+	                loadOrderMax = token.loadOrderDec;
             }
         }
 
