@@ -138,7 +138,7 @@ global class TDTM_Global_API {
         * @description DEPRECATED The order in which the code will run with relation to other active tokens defined for the 
         * same object.
         *********************************************************************************************************/
-        @deprecated global integer loadOrder   { get; set; }
+        @deprecated global Integer loadOrder   { get; set; }
 
         /********************************************************************************************************
         * @description The order in which the code will run with relation to other active tokens defined for the 
