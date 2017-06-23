@@ -135,10 +135,16 @@ global class TDTM_Global_API {
         global Boolean active      { get; set; }
         
         /********************************************************************************************************
+        * @description DEPRECATED The order in which the code will run with relation to other active tokens defined for the 
+        * same object.
+        *********************************************************************************************************/
+        @deprecated global Integer loadOrder   { get; set; }
+
+        /********************************************************************************************************
         * @description The order in which the code will run with relation to other active tokens defined for the 
         * same object.
         *********************************************************************************************************/
-        global Decimal loadOrder   { get; set; }
+        global Decimal loadOrderDec { get; set; }
         
         /********************************************************************************************************
         * @description Whether the dispatched will attempt to run this code asynchronously. WARNING: the code needs
@@ -171,13 +177,14 @@ global class TDTM_Global_API {
         global String ownedByNamespace { get; set; }
 
         /********************************************************************************************************
-        * @description Constructor. Simpler version accepting Integer for Load Order. It assumes default values for 
+        * @description DEPRECATED Constructor. Simpler version accepting Integer for Load Order. It assumes default values for 
         * those properties not passed as parameters.
         * @parameter className The token's class name.
         * @parameter targetObject The token's target object.
         * @parameter actions The token's actions.
         * @parameter loadOrder Integer value of the token's load order.
         *********************************************************************************************************/
+        @deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
             this(className, targetObject, actions, Decimal.valueOf(loadOrder));
         }
@@ -194,7 +201,8 @@ global class TDTM_Global_API {
             this.className = className;
             this.targetObject = targetObject;
             this.actions = actions;
-            this.loadOrder = loadOrder;
+            this.loadOrderDec = loadOrder;
+            this.loadOrder = Integer.valueOf(loadOrder);
             this.active = true;
             this.async = false;
             this.userManaged = false;
@@ -212,9 +220,10 @@ global class TDTM_Global_API {
         * @parameter filterValue The token's filter value.
         * @parameter userManaged The token's user-managed flag.
         *********************************************************************************************************/
+        @deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
             
-            this(className, targetObject, actions, loadOrder, active, async, filterField, filterValue, userManaged, null);
+            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null);
         }
 
         /********************************************************************************************************
@@ -235,7 +244,8 @@ global class TDTM_Global_API {
             this.targetObject = targetObject;
             this.actions = actions;
             this.active = active;
-            this.loadOrder = loadOrder;
+            this.loadOrderDec = loadOrder;
+            this.loadOrder = Integer.valueOf(loadOrder);
             this.async = async;
             this.filterField = filterField;
             this.filterValue = filterValue;
@@ -275,7 +285,7 @@ global class TDTM_Global_API {
                 && this.targetObject == t.targetObject 
                 && this.actions == t.actions 
                 && this.active == t.active 
-                && this.loadOrder == t.loadOrder 
+                && this.loadOrderDec == t.loadOrderDec 
                 && this.async == t.async 
                 && this.filterField == t.filterField 
                 && this.filterValue == t.filterValue 
