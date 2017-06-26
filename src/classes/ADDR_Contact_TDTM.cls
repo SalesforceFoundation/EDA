@@ -345,8 +345,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         }
         //explicitly doing the update, because if we put the records in DmlWrapper we get a "duplicate id in list" error due to
         //the method updateAccountPrimaryContact in ACCT_IndividualAccounts_TDTM also putting them there.
-        update accountsToUpdate;
-        update contactsToUpdate;
+        List<SObject> objectsToUpdate = new List<SObject>();
+        objectsToUpdate.addAll((List<SObject>)accountsToUpdate);
+        objectsToUpdate.addAll((List<SObject>)contactsToUpdate);
+        update objectsToUpdate;
     }
     
     private void propagateAddrInfoDelete(List<Contact> contactsAddrPropagate, DmlWrapper dmlWrapper) {
@@ -517,8 +519,10 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
         }
         //explicitly doing the update, because if we put the records in DmlWrapper we get a "duplicate id in list" error due to
         //the method propagateAddrInfo also updating the same records.
-        update accountsToUpdate;
-        update contactsToUpdate;
+        List<SObject> objectsToUpdate = new List<SObject>();
+        objectsToUpdate.addAll((List<SObject>)accountsToUpdate);
+        objectsToUpdate.addAll((List<SObject>)contactsToUpdate);
+        update objectsToUpdate;
     }
     
     /*******************************************************************************************************
