@@ -59,8 +59,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
 
-    	 //Updates, manual of pushed by publisher.
-    	 } else if(context.isUpgrade() || context.isPush()) {
+        //Updates, manual of pushed by publisher.
+        } else if(context.isUpgrade() || context.isPush()) {
 
             Version previousVersion = context.previousVersion();
 
