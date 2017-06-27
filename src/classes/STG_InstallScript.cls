@@ -1,10 +1,10 @@
 /*
     Copyright (c) 2014, Salesforce.org
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-    
+
     * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -15,16 +15,16 @@
       from this software without specific prior written permission.
 
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
-    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
-    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
@@ -32,7 +32,7 @@
 * @date 2014
 * @group Settings
 * @group-content ../../ApexDocContent/Settings.htm
-* @description Installs Script for the HEDA package. 
+* @description Installs Script for the HEDA package.
 */
 global without sharing class STG_InstallScript implements InstallHandler {
 
@@ -42,7 +42,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global void onInstall(InstallContext context) {
-    	
+
     	//Initial installation.
     	if(context.previousVersion() == null) {
     		UTIL_CustomSettingsFacade.getSettings();
@@ -51,47 +51,57 @@ global without sharing class STG_InstallScript implements InstallHandler {
     		//Schedule Seasonal Addresses recurring job daily
     		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
 
-    	    //Insert default TDTM config (not necessary, but better to be explicit).
-    	    List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
-            TDTM_Global_API.setTdtmConfig(tokens); 
+            // Install TDTM Configuration
+            List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+            TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
 
             // Format existing contact email addresses
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
-    	 
+
     	 //Updates, manual of pushed by publisher.
     	 } else if(context.isUpgrade() || context.isPush()) {
-    	    //Update TDTM configuration, if necessary.
-    	    List<TDTM_Global_API.TdtmToken> defaultTdtmConfig = TDTM_Global_API.getDefaultTdtmConfig();
 
-            updateDefaultTdtmConfig(defaultTdtmConfig);
+            Version previousVersion = context.previousVersion();
 
-            disablePreferredEmailEnforcement(context.previousVersion());
+            disablePreferredEmailEnforcement(previousVersion);
+
+            if(previousVersion != null && previousVersion.compareTo(new Version(1,37)) < 0) {
+
+                // Handle when updating to namespaced handlers
+                List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+                TDTM_Global_API.setTdtmConfig(defaultTokens);
+            } else {
+
+                // Upgrade TDTM Configuration
+                List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+                TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+            }
     	 }
-    	 
+
     	 reparentAdminAddrs(context.previousVersion());
 
         //Schedule Async APEX Error Processing recurring hourly
         scheduleJobIfNotScheduled('HEDA Async Apex Error Processing', '0 0 * * * ?', 'ERR_AsyncErrors_SCHED');
     }
-    
+
     global static void reparentAdminAddrs(Version previousVersion) {
         //Reparent administrative account children
 		 if(previousVersion != null && previousVersion.compareTo(new Version(1,14)) == 0) {
 		     UTIL_Debug.debug('***Upgrading to version 1.14');
-		     
+
 		     String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
-		     
+
 		     if(adminRecTypeId != null) {
 		         //This loop should be processing 200 accounts, with their children, at a time
 		         for(Account[] accs : [select ID, (select ID from Account.Contacts),
 		                                              (select  Parent_Account__c, Parent_Contact__c from Account.Addresses__r)
 		         from Account where RecordTypeID = :adminRecTypeID]) {
-		             
+
 		             List<Address__c> addrsToUpdate = new List<Address__c>();
-		             
+
 		             for(Account acc : accs) {
-		                 //We need to do this, because acc.Contacts.size() would throw an exception if the account had more than 200 contacts 
+		                 //We need to do this, because acc.Contacts.size() would throw an exception if the account had more than 200 contacts
 		                 Integer contactCount = 0;
 		                 Boolean tooMany = false;
 		                 for(Contact contact : acc.Contacts) {
@@ -115,7 +125,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
 		     }
 		 }
     }
-    
+
     /*******************************************************************************************************
     * @description Inserts the default Affiliation Mappings.
     * @return void
@@ -124,7 +134,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     	List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c where Account_Record_Type__c != null AND Primary_Affl_Field__c != null];
     	if(mappings.size() == 0) {
 			mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic Program', Primary_Affl_Field__c = 'Primary Academic Program', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
-	    	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
+	    	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
 	    	mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
 	    	mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational Institution', Primary_Affl_Field__c = 'Primary Educational Institution'));
 	    	mappings.add(new Affl_Mappings__c(Name = 'Department', Account_Record_Type__c = 'University Department', Primary_Affl_Field__c = 'Primary Department'));
@@ -132,78 +142,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
 	    	insert mappings;
     	}
     }
-    
-    /*******************************************************************************************************
-    * @description Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
-    * upgrade.
-    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
-    * @return void
-    */
-    @TestVisible 
-    global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
-        //Getting the config that is really in the database.
-        List<Trigger_Handler__c> existingHandlers = [select Class__c, Object__c, Trigger_Action__c, Active__c, Load_Order__c, Asynchronous__c, Filter_Field__c, 
-                                                       Filter_Value__c, User_Managed__c from Trigger_Handler__c where Class__c != null];
-        List<TDTM_Global_API.TdtmToken> existingTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
-        for(Trigger_Handler__c handler : existingHandlers) {
-            existingTdtmConfig.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c, Integer.valueOf(handler.Load_Order__c), 
-                   handler.Active__c, handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c));
-        }
 
-        List<TDTM_Global_API.TdtmToken> newTdtmConfig = new List<TDTM_Global_API.TdtmToken>();
-        
-        // First preserve the trigger handlers that are user managed. We do this because this 
-        // method accepts the default config without the addition of custom trigger handlers 
-        // added by users.
-        for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
-            if(existingToken.userManaged) {
-                UTIL_Debug.debug('****It was user managed,so we should not change it: ' + existingToken.className);
-                newTdtmConfig.add(existingToken);
-            }
-        }
-
-        //Insert those that are in the list of default handlers but aren't in the database
-        for(TDTM_Global_API.TdtmToken defaultToken : defaultTdtmConfig) {
-            Boolean alreadyExists = false;
-            for(TDTM_Global_API.TdtmToken existingToken : existingTdtmConfig) {
-                if(defaultToken.className == existingToken.className && defaultToken.targetObject == existingToken.targetObject) {
-                    alreadyExists = true;
-                    
-                    //Determine if order, actions, or filter have changed, for those that have not been flagged as user-managed.
-                    if(!existingToken.userManaged && (
-                        defaultToken.loadOrder != existingToken.loadOrder || 
-                        defaultToken.actions != existingToken.actions ||
-                        defaultToken.filterField != existingToken.filterField || 
-                        defaultToken.filterValue != existingToken.filterValue)
-                    ) {
-                        UTIL_Debug.debug('****It was not user managed and has changed: ' + existingToken.className);
-                        existingToken.loadOrder = defaultToken.loadOrder;
-                        existingToken.actions = defaultToken.actions;
-                        existingToken.filterField = defaultToken.filterField;
-                        existingToken.filterValue = defaultToken.filterValue;
-                        newTdtmConfig.add(existingToken);
-                    //If it already exists and nothing has changed, put it in, as we are going to replace the whole config. It shouldn't
-                    //matter if we add defaultToken or existingToken, as they should be the same.
-                    } else if(!existingToken.userManaged && defaultToken.loadOrder == existingToken.loadOrder || 
-                    defaultToken.actions == existingToken.actions) {
-                        UTIL_Debug.debug('****It was not user managed and has not changed: ' + existingToken.className);
-                        newTdtmConfig.add(existingToken);
-                    }
-                    break;
-                }
-            }
-            
-            if(!alreadyExists) {
-                UTIL_Debug.debug('****New token: ' + defaultToken.className);
-                newTdtmConfig.add(defaultToken);
-            }
-        }
-        
-        UTIL_Debug.debug('****newTdtmConfig: ' + JSON.serializePretty(newTdtmConfig));
-        
-        TDTM_Global_API.setTdtmConfig(newTdtmConfig);
-    }
-    
     /*******************************************************************************************************
     * @description Inserts the default Relationship Lookup settings.
     * @return void
@@ -237,7 +176,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             insert lookups;
         }
     }
-    
+
     /*******************************************************************************************************
     * @description Schedules a class that implements the Schedulable interface, if it's not already scheduled.
     * @param JobName The name to give the scheduled job.
@@ -246,16 +185,16 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return The ID of the scheduled job.
     */
     public static String scheduleJobIfNotScheduled(String JobName, String frequency, String className) {
-        
+
         //Check if the job is already scheduled - CronJobDetail is the parent and CronTrigger is the child
         //Type '7' is for scheduled Apex
-        List<CronTrigger> scheduledJobs = [select Id, CronJobDetail.Id from CronTrigger 
+        List<CronTrigger> scheduledJobs = [select Id, CronJobDetail.Id from CronTrigger
                     where CronJobDetail.Name = :JobName and CronJobDetail.JobType = '7'];
-        
+
         if(scheduledJobs.size() == 0) {
             Type classType = Type.forName(className);
-            
-            if(classType != null) {     
+
+            if(classType != null) {
                Object instance = classType.newInstance();
                if(instance instanceof Schedulable)
                    return System.schedule(JobName, frequency, (Schedulable)instance);
@@ -275,7 +214,18 @@ global without sharing class STG_InstallScript implements InstallHandler {
             if(orgSettings.Disable_Preferred_Email_Enforcement__c == null || orgSettings.Disable_Preferred_Email_Enforcement__c != true) {
                 orgSettings.Disable_Preferred_Email_Enforcement__c = true;
             }
-            upsert orgSettings;             
+            upsert orgSettings;
         }
+    }
+
+    /*******************************************************************************************************
+    * @description DEPRECATED: Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
+    * upgrade.
+    * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
+    * @return void
+    */
+     @deprecated
+     global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
+        TDTM_Global_API.setTdtmConfig(defaultTdtmConfig);     
     }
 }
