@@ -291,10 +291,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                                                             limit 1)
                                                     FROM Course_Offering__c
                                                     WHERE Id in :offsWithChangedFaculty];
-        for(Course_Offering__c updatedOffering : updatedOfferings)
-        {
-            if (updatedOffering.Course_Enrollment__r.size() > 0)
-            {
+        for(Course_Offering__c updatedOffering : updatedOfferings){
+            if (updatedOffering.Course_Enrollment__r.size() > 0){
                 oldEnrolls.add(updatedOffering.Course_Enrollment__r[0]);
                 newEnrolls.add(new Course_Enrollment__c(Contact__c = updatedOffering.Faculty__c, Account__c = updatedOffering.Course_Enrollment__r[0].Account__c,
                                                         Course_Offering__c = updatedOffering.Course_Enrollment__r[0].Course_Offering__c,
