@@ -10,6 +10,8 @@ Referenced Packages
 /uninstallsrc
 /installdeploy
 /installedPackages
+test_results.json
+test_results.xml
 unpackaged/*/*/*.zip
 unpackaged/namespaced_zipped
 unpackaged/zipped
