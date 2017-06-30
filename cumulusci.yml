@@ -113,21 +113,12 @@ flows:
             #    task: update_dependencies
             5:
                 task: None
-            6:
-                options:
-                    managed: True
             #6.1:
             #    task: update_admin_profile
             #    options:
             #        managed: True
             6.2:
                 task: execute_install_apex
-            7:
-                options:
-                    managed: True
-            8:
-                options:
-                    managed: True
     
     ci_master:
         tasks:
