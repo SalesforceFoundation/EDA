@@ -64,7 +64,7 @@ private class TDTM_Manager_TEST {
 		System.assertEquals(defaultTokenSet, existingDBtokens);
 	}	
 
-	/* This test is installing the actual defualts to the database and making sure they are not updated if there was no change */
+	/* This test is installing the actual defualts to the database and checking the value of TDTM_Config.getTdtmConfig() */
 	@isTest
 	public static void verifyDefaultsConfig() {
         // Install Deffault HEDA TDTM Configuration
