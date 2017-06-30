@@ -40,6 +40,7 @@ public class TDTM_Config {
     /*******************************************************************************************************
     * @description Holds the trigger handlers cached in a list, to avoid repetitive soql calls.
     *********************************************************************************************************/
+    @TestVisible
     private static List<TDTM_Global_API.TdtmToken> tdtmTokensCache;
 
     /*******************************************************************************************************
