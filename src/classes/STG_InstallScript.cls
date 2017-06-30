@@ -224,7 +224,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
     * @return void
     */
-     @deprecated
+     //cumulusci-managed@deprecated
      global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
         TDTM_Global_API.setTdtmConfig(defaultTdtmConfig);     
     }

@@ -138,7 +138,8 @@ global class TDTM_Global_API {
         * @description DEPRECATED The order in which the code will run with relation to other active tokens defined for the 
         * same object.
         *********************************************************************************************************/
-        @deprecated global Integer loadOrder   { get; set; }
+        //cumulusci-managed@deprecated 
+        global Integer loadOrder   { get; set; }
 
         /********************************************************************************************************
         * @description The order in which the code will run with relation to other active tokens defined for the 
@@ -184,7 +185,7 @@ global class TDTM_Global_API {
         * @parameter actions The token's actions.
         * @parameter loadOrder Integer value of the token's load order.
         *********************************************************************************************************/
-        @deprecated
+        //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
             this(className, targetObject, actions, Decimal.valueOf(loadOrder));
         }
@@ -220,7 +221,7 @@ global class TDTM_Global_API {
         * @parameter filterValue The token's filter value.
         * @parameter userManaged The token's user-managed flag.
         *********************************************************************************************************/
-        @deprecated
+        //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
             
             this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null);
