@@ -36,20 +36,20 @@
 */
 global without sharing class STG_InstallScript implements InstallHandler {
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
     * @description Runs on package install.
     * @param context The install context.
     * @return void
     */
     global void onInstall(InstallContext context) {
 
-    	//Initial installation.
-    	if(context.previousVersion() == null) {
-    		UTIL_CustomSettingsFacade.getSettings();
-    		insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
-    		insertRelationshipLookups();
-    		//Schedule Seasonal Addresses recurring job daily
-    		scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
+        //Initial installation.
+        if(context.previousVersion() == null) {
+            UTIL_CustomSettingsFacade.getSettings();
+            insertMappings(); //putting the logic in a different method to be able to call it from the anonymous window
+            insertRelationshipLookups();
+            //Schedule Seasonal Addresses recurring job daily
+            scheduleJobIfNotScheduled('Seasonal Addresses Update', '0 15 0 * * ?', 'ADDR_Seasonal_SCHED');
 
             // Install TDTM Configuration
             List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
@@ -59,8 +59,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
 
-    	 //Updates, manual of pushed by publisher.
-    	 } else if(context.isUpgrade() || context.isPush()) {
+        //Updates, manual or pushed by publisher.
+        } else if(context.isUpgrade() || context.isPush()) {
 
             Version previousVersion = context.previousVersion();
 
@@ -77,9 +77,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
                 List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
                 TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
             }
-    	 }
+         }
 
-    	 reparentAdminAddrs(context.previousVersion());
+         reparentAdminAddrs(context.previousVersion());
 
         //Schedule Async APEX Error Processing recurring hourly
         scheduleJobIfNotScheduled('HEDA Async Apex Error Processing', '0 0 * * * ?', 'ERR_AsyncErrors_SCHED');
@@ -87,43 +87,43 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
     global static void reparentAdminAddrs(Version previousVersion) {
         //Reparent administrative account children
-		 if(previousVersion != null && previousVersion.compareTo(new Version(1,14)) == 0) {
-		     UTIL_Debug.debug('***Upgrading to version 1.14');
+         if(previousVersion != null && previousVersion.compareTo(new Version(1,14)) == 0) {
+             UTIL_Debug.debug('***Upgrading to version 1.14');
 
-		     String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
+             String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
 
-		     if(adminRecTypeId != null) {
-		         //This loop should be processing 200 accounts, with their children, at a time
-		         for(Account[] accs : [select ID, (select ID from Account.Contacts),
-		                                              (select  Parent_Account__c, Parent_Contact__c from Account.Addresses__r)
-		         from Account where RecordTypeID = :adminRecTypeID]) {
+             if(adminRecTypeId != null) {
+                 //This loop should be processing 200 accounts, with their children, at a time
+                 for(Account[] accs : [select ID, (select ID from Account.Contacts),
+                                                      (select  Parent_Account__c, Parent_Contact__c from Account.Addresses__r)
+                 from Account where RecordTypeID = :adminRecTypeID]) {
 
-		             List<Address__c> addrsToUpdate = new List<Address__c>();
+                     List<Address__c> addrsToUpdate = new List<Address__c>();
 
-		             for(Account acc : accs) {
-		                 //We need to do this, because acc.Contacts.size() would throw an exception if the account had more than 200 contacts
-		                 Integer contactCount = 0;
-		                 Boolean tooMany = false;
-		                 for(Contact contact : acc.Contacts) {
-		                     contactCount++;
-		                     if(contactCount > 1) {
-		                         tooMany = true;
-		                         break;
-		                     }
-		                 }
-		                 //Administrative Accounts should have only one child contact
-		                 if(!tooMany) {
-		                     for(Address__c addr : acc.Addresses__r) {
-		                         addr.Parent_Account__c = null;
-		                         addr.Parent_Contact__c = acc.Contacts[0].Id;
-		                         addrsToUpdate.add(addr);
-		                     }
-		                 }
-		             }
-		             update addrsToUpdate;
-		         }
-		     }
-		 }
+                     for(Account acc : accs) {
+                         //We need to do this, because acc.Contacts.size() would throw an exception if the account had more than 200 contacts
+                         Integer contactCount = 0;
+                         Boolean tooMany = false;
+                         for(Contact contact : acc.Contacts) {
+                             contactCount++;
+                             if(contactCount > 1) {
+                                 tooMany = true;
+                                 break;
+                             }
+                         }
+                         //Administrative Accounts should have only one child contact
+                         if(!tooMany) {
+                             for(Address__c addr : acc.Addresses__r) {
+                                 addr.Parent_Account__c = null;
+                                 addr.Parent_Contact__c = acc.Contacts[0].Id;
+                                 addrsToUpdate.add(addr);
+                             }
+                         }
+                     }
+                     update addrsToUpdate;
+                 }
+             }
+         }
     }
 
     /*******************************************************************************************************
@@ -131,16 +131,16 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @return void
     */
     global static void insertMappings() {
-    	List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c where Account_Record_Type__c != null AND Primary_Affl_Field__c != null];
-    	if(mappings.size() == 0) {
-			mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic Program', Primary_Affl_Field__c = 'Primary Academic Program', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
-	    	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
-	    	mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
-	    	mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational Institution', Primary_Affl_Field__c = 'Primary Educational Institution'));
-	    	mappings.add(new Affl_Mappings__c(Name = 'Department', Account_Record_Type__c = 'University Department', Primary_Affl_Field__c = 'Primary Department'));
-	    	mappings.add(new Affl_Mappings__c(Name = 'Sports', Account_Record_Type__c = 'Sports Organization', Primary_Affl_Field__c = 'Primary Sports Organization'));
-	    	insert mappings;
-    	}
+        List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c where Account_Record_Type__c != null AND Primary_Affl_Field__c != null];
+        if(mappings.size() == 0) {
+            mappings.add(new Affl_Mappings__c(Name = 'Academic Program', Account_Record_Type__c = 'Academic Program', Primary_Affl_Field__c = 'Primary Academic Program', Auto_Program_Enrollment__c = true, Auto_Program_Enrollment_Status__c = 'Current', Auto_Program_Enrollment_Role__c = 'Student'));
+            mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
+            mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+            mappings.add(new Affl_Mappings__c(Name = 'Educational Institution', Account_Record_Type__c = 'Educational Institution', Primary_Affl_Field__c = 'Primary Educational Institution'));
+            mappings.add(new Affl_Mappings__c(Name = 'Department', Account_Record_Type__c = 'University Department', Primary_Affl_Field__c = 'Primary Department'));
+            mappings.add(new Affl_Mappings__c(Name = 'Sports', Account_Record_Type__c = 'Sports Organization', Primary_Affl_Field__c = 'Primary Sports Organization'));
+            insert mappings;
+        }
     }
 
     /*******************************************************************************************************

@@ -40,6 +40,7 @@ public class TDTM_Config {
     /*******************************************************************************************************
     * @description Holds the trigger handlers cached in a list, to avoid repetitive soql calls.
     *********************************************************************************************************/
+    @TestVisible
     private static List<TDTM_Global_API.TdtmToken> tdtmTokensCache;
 
     /*******************************************************************************************************
@@ -60,7 +61,7 @@ public class TDTM_Config {
         }
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
         List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
-                            Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c from Trigger_Handler__c];
+                            Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c from Trigger_Handler__c];
 
         // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
         // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
