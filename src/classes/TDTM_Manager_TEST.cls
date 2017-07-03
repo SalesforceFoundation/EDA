@@ -62,6 +62,31 @@ private class TDTM_Manager_TEST {
 
 		// Check direct comparisons
 		System.assertEquals(defaultTokenSet, existingDBtokens);
+	}	
+
+	/* This test is installing the actual defaults to the database and checking the value of TDTM_Config.getTdtmConfig() */
+	@isTest
+	public static void verifyDefaultsConfig() {
+        // Install Default HEDA TDTM Configuration
+        List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+        TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+
+        // Verify there are items in the DB
+		System.assertEquals(false , TDTM_Config.isEmpty() );
+
+		// Need to clear the cache for the test
+		TDTM_Config.tdtmTokensCache = null;		
+
+        // This should pull items from the database.
+		List<TDTM_Global_API.TdtmToken> tdtmConfig = TDTM_Config.getTdtmConfig();
+		Set<TDTM_Global_API.TdtmToken> tdtmConfigSet = new Set<TDTM_Global_API.TdtmToken>(tdtmConfig);
+
+		// Instantiate the TDTM Trigger Handler Manager
+		TDTM_Manager manager = new TDTM_Manager('hed');
+		Set<TDTM_Global_API.TdtmToken> defaultTokenSet = manager.currentTokens;
+
+		// Make sure items in DB count match 
+		System.assertEquals(defaultTokenSet.size(), tdtmConfigSet.size() );
 	}
 
 	@isTest
