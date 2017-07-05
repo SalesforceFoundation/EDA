@@ -46,9 +46,9 @@ public without sharing class TDTM_DefaultConfig {
     public static List<Trigger_Handler__c> getDefaultRecords() {
         List<Trigger_Handler__c> handlers = new List<Trigger_Handler__c>();
 
-		    // Account Management on Contact
+        // Account Management on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
-              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
+              Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1.00, Object__c = 'Contact', 
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
         //Supports changing or deleting Account in existing Affiliation
@@ -106,7 +106,7 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CON_DoNotContact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
-		    // Preferred fields operations on Contact object
+        // Preferred fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_Preferred_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
