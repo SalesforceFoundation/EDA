@@ -66,7 +66,7 @@ public class TDTM_Config {
         // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
         // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
         if(tdtmConfig.size() == 0) {
-	        tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
+            tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
         }
 
         for(Trigger_Handler__c handler : tdtmConfig) {
@@ -129,32 +129,18 @@ public class TDTM_Config {
 
         //Getting the TDTM configuration and storing it in the cache.
         List<TDTM_Global_API.TdtmToken> tdtmTokens = getTdtmConfig();
+        List<TDTM_Global_API.TdtmToken> objectTokens = new List<TDTM_Global_API.TdtmToken>();
 
-        //Using a map because there might be more than one TDTM entry with the same Load Order for the same Object.
-        Map<Decimal, List<TDTM_Global_API.TdtmToken>> loadKeyedTokens = new Map<Decimal, List<TDTM_Global_API.TdtmToken>>();
-        Decimal loadOrderMax = 0;
-        //Put all tokens for the specified object in map, keyed by load order.
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
             //Filtering those active by object and action.
             if(token.active && token.targetObject == objectName && token.actions.contains(action.Name())) {
-                //We need a list, in case there is more than one entry with the same load order.
-                List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(token.loadOrderDec);
-                if(tokens == null)
-                    tokens = new List<TDTM_Global_API.TdtmToken>();
-                tokens.add(token);
-	            loadKeyedTokens.put(token.loadOrderDec, tokens);
-	            if(token.loadOrderDec > loadOrderMax)
-	                loadOrderMax = token.loadOrderDec;
+                objectTokens.add(token);
             }
         }
 
-        List<TDTM_Global_API.TdtmToken> sortedTokens = new List<TDTM_Global_API.TdtmToken>();
-        //Sort them by load order
-        for(Integer i = 0; i <= loadOrderMax; i++) {
-            List<TDTM_Global_API.TdtmToken> tokens = loadKeyedTokens.get(i);
-            if(tokens != null)
-                sortedTokens.addAll(tokens);
-        }
-        return sortedTokens;
+        // Order by loadOrder
+        objectTokens.sort();
+
+        return objectTokens;
     }
 }

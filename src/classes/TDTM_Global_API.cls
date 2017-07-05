@@ -107,7 +107,7 @@ global class TDTM_Global_API {
     * @description Trigger Handler token. It contains information about the code that will run in response to 
     * a database action.
     *********************************************************************************************************/
-    global class TdtmToken {
+    global class TdtmToken implements Comparable {
         /********************************************************************************************************
         * @description Id if this came from the database. This field should NOT be used when comparing tokens 
         * to each other
@@ -306,6 +306,23 @@ global class TDTM_Global_API {
                 31 
                 * targetObject.hashCode() 
             ) ^ className.hashCode() ;
+        }
+
+        /********************************************************************************************************
+        * @description compareTo implementation for sorting
+        *********************************************************************************************************/
+        global Integer compareTo(Object obj) {
+            TdtmToken token = (TdtmToken)(obj);
+
+            if (this.loadOrder > token.loadOrder) {
+                return 1;
+            }
+
+            if (this.loadOrder == token.loadOrder) {
+                return 0;
+            }
+
+            return -1;
         }
     }
 }
