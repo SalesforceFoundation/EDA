@@ -107,10 +107,6 @@ flows:
     ci_feature:
         description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
         tasks:
-            2:
-                task: deploy_pre
-            3:
-                task: update_dependencies
             5:
                 task: None
             6.1:
@@ -118,9 +114,6 @@ flows:
 
             6.2:
                 task: execute_install_apex
-            8:
-                options:
-                    managed: True
     
     ci_master:
         tasks:
