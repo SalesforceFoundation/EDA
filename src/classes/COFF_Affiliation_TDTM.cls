@@ -278,26 +278,20 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
     * @description Updates each Course Enrollment from the old Faculty member to the new Faculty member. A Faculty
-    * member should not be at the same time teaching and attending a course, so querying for all outdatedFacultyIDs
-    * should be ok.
+    * member should not be at the same time teaching and attending a course if the course connection is disabled. 
+    * However, it still allows users to replace the course enrollment with the new faculty member.
     ********************************************************************************************************/
     private void updateEnrollments(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, Set<Id> offsWithChangedFaculty, DmlWrapper dmlWrapper) {      
-        List<Course_Enrollment__c> oldEnrolls = new List<Course_Enrollment__c>();
         List<Course_Enrollment__c> newEnrolls = new List<Course_Enrollment__c>();
-        List<Course_Offering__c> updatedOfferings = [SELECT Id, Faculty__c,
-                                                            (SELECT Affiliation__c, Account__c, Course_Offering__c, Contact__c
-                                                            FROM Course_Enrollment__r
-                                                            WHERE Contact__c in :outdatedFacultyIDs
-                                                            limit 1)
-                                                    FROM Course_Offering__c
-                                                    WHERE Id in :offsWithChangedFaculty];
-        for(Course_Offering__c updatedOffering : updatedOfferings){
-            if (updatedOffering.Course_Enrollment__r.size() > 0){
-                oldEnrolls.add(updatedOffering.Course_Enrollment__r[0]);
-                newEnrolls.add(new Course_Enrollment__c(Contact__c = updatedOffering.Faculty__c, Account__c = updatedOffering.Course_Enrollment__r[0].Account__c,
-                                                        Course_Offering__c = updatedOffering.Course_Enrollment__r[0].Course_Offering__c,
-                                                        Affiliation__c = updatedOffering.Course_Enrollment__r[0].Affiliation__c));
-            }
+        List<Course_Enrollment__c> oldEnrolls = [SELECT Affiliation__c, Account__c, Course_Offering__c, Course_Offering__r.Faculty__c
+                                                 FROM Course_Enrollment__c 
+                                                 WHERE Contact__c in :outdatedFacultyIDs
+                                                    AND Course_Offering__c in :offsWithChangedFaculty];
+        for(Course_Enrollment__c enroll : oldEnrolls){
+            newEnrolls.add(new Course_Enrollment__c(Contact__c = enroll.Course_Offering__r.Faculty__c, Account__c = enroll.Account__c,
+                                                        Course_Offering__c = enroll.Course_Offering__c,
+                                                        Affiliation__c = enroll.Affiliation__c));
+            
         }
 
         dmlWrapper.objectsToDelete.addAll((List<SObject>)oldEnrolls);

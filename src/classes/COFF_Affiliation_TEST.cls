@@ -837,4 +837,38 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(0, objectsToInsert.size());
         System.assertEquals(objectsToUpdate[0].get('Primary__c'), true);
     }
+
+    @isTest
+    public static void testUpdateMultipleConnectionsOnFacultyAddUpdateExisting() {
+        setup();
+
+        //Create Course Offerings with same Faculty member
+        List<Course_Offering__c> offerings = new List<Course_Offering__c>();
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        offerings.add(offering);
+        offerings.add(offering2);
+        insert offerings;
+
+        Contact newFaculty = new Contact(FirstName = 'Test2', LastName = 'Test2');
+        insert newFaculty;
+
+        Course_Enrollment__c conn = [SELECT Id, Contact__c FROM Course_Enrollment__c WHERE Course_Offering__c = :offering2.Id LIMIT 1];
+
+        Test.startTest();
+        offering2.Faculty__c = newFaculty.Id;
+        update offering2;
+        Test.stopTest();
+
+        //assert
+        List<Course_Enrollment__c> resultConns = [SELECT Id, Contact__c FROM Course_Enrollment__c WHERE Course_Offering__c = :offering2.Id];
+        //course offering still has only one course connection
+        system.assertEquals(1, resultConns.size());
+        //the faculty of course offering is changed to new faculty
+        system.assertEquals(newFaculty.Id, resultConns[0].Contact__c);
+        //course offering has a different course connection
+        system.assertNotEquals(conn.Id, resultConns[0].Id);
+    }
 }
