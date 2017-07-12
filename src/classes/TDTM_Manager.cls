@@ -40,6 +40,9 @@ public class TDTM_Manager {
 	public Map<Id,Trigger_Handler__c> currentHandlers {get;set;}
 	public Set<TDTM_Global_API.TdtmToken> currentTokens {get;set;}
 
+    private Map<Id,Trigger_Handler__c> allHandlers {get;set;}
+    private Set<TDTM_Global_API.TdtmToken> allTokens {get;set;}
+
     private List<Trigger_Handler__c> toDelete = new List<Trigger_Handler__c>();
     private List<Trigger_Handler__c> toUpsert = new List<Trigger_Handler__c>();
 
@@ -49,9 +52,19 @@ public class TDTM_Manager {
     *********************************************************************************************************/
 	public TDTM_Manager(String nm) {
 		this.namespace = nm;
-		this.currentHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Owned_by_Namespace__c =: this.namespace ORDER BY Load_Order__c ]);
 
-		this.currentTokens = getTokenSet(this.currentHandlers);
+        // Get all handlers from database.
+		this.allHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c FROM Trigger_Handler__c ORDER BY Load_Order__c LIMIT 5000]);
+        this.allTokens = getTokenSet(this.allHandlers);
+
+        // Isolate the current handlers by namespace
+        this.currentHandlers = new Map<Id,Trigger_Handler__c>();
+        for(Trigger_Handler__c t : this.allHandlers.values() ) {
+            if (t.Owned_by_Namespace__c == this.namespace) {
+                this.currentHandlers.put(t.Id, t);
+            }
+        }
+        this.currentTokens = getTokenSet(this.currentHandlers);
 	}
 
     /*******************************************************************************************************
@@ -62,12 +75,12 @@ public class TDTM_Manager {
     *********************************************************************************************************/
 	public void updateDefaultTdtmConfig(Set<TDTM_Global_API.TdtmToken> newTokenSet) {
 
-		// Check for changes
+        // Check for changes
 		if(newTokenSet != this.currentTokens) {
 
 			for( TDTM_Global_API.TdtmToken existingToken : this.currentTokens ){
 
-				// If the configuration does not include the item it changed
+                // If the configuration does not include the item it changed
 				if(!newTokenSet.contains(existingToken)) {
 
 			        // Using Class and Target Object fields we check if the new set contains a matching token
@@ -78,7 +91,7 @@ public class TDTM_Manager {
 			        	// Skip if User Managed
 			        	newTokenSet.remove(match);
 
-			        // Check if the match is different, if so we'll update the current token
+                        // Check if the match is different, if so we'll update the current token
 			        } else if( !existingToken.userManaged && match != null && !existingToken.equals(match) ) {
 
 						// Update current handler value
@@ -100,9 +113,14 @@ public class TDTM_Manager {
 
 			// Check for new items to add since these didn't match against existing items
 			if(newTokenSet.size() > 0) {
-				for( TDTM_Global_API.TdtmToken newToken: newTokenSet ){
-					this.toUpsert.add( mergeToken(new Trigger_Handler__c() ,newToken ) );
-				}
+                for( TDTM_Global_API.TdtmToken newToken : newTokenSet ){
+
+                    // Check to make sure we dont create duplicates by object and class
+                    TDTM_Global_API.TdtmToken dup = newToken.getmatch( this.allTokens );
+                    if(dup == null){
+                        this.toUpsert.add( mergeToken( new Trigger_Handler__c(), newToken ) );
+                    }
+                }
 			}
 		}
 

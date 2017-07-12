@@ -66,17 +66,15 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             disablePreferredEmailEnforcement(previousVersion);
 
-            if(previousVersion != null && previousVersion.compareTo(new Version(1,37)) < 0) {
-
-                // Handle when updating to namespaced handlers
-                List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-                TDTM_Global_API.setTdtmConfig(defaultTokens);
-            } else {
-
-                // Upgrade TDTM Configuration
-                List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-                TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+            if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
+                // We need to handle a special case to populate the Owned_by_Namespace__c field for HEDA specific Trigger Handlers since that field is new.
+                // SInce there are no other trigger handler updates happening we can target the owned by namespace field specifically.
+                populateNamespaceHandlers();
             }
+
+            // Upgrade TDTM Configuration
+            List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+            TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
          }
 
          reparentAdminAddrs(context.previousVersion());
@@ -226,6 +224,31 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
      //cumulusci-managed@deprecated
      global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
-        TDTM_Global_API.setTdtmConfig(defaultTdtmConfig);     
+        TDTM_Global_API.setTdtmConfig(defaultTdtmConfig);
+    }
+
+    /*******************************************************************************************************
+    * @description: Popualte the Owned by Namespace field for HEDA owned triggers. We have to update Trigger
+    * handlers even if they are marked as user managed. We will only update this single field in this instance
+    * for HEDA version 1.38
+    */
+    private static void populateNamespaceHandlers(){
+        // Populate filters for soql query
+        Set<String> objectTypes = new Set<String>();
+        Set<String> classNames = new Set<String>();
+
+        for(TDTM_Global_API.TdtmToken token : TDTM_Global_API.getDefaultTdtmConfig() ) {
+            objectTypes.add(token.targetObject);
+            classNames.add(token.className);
+        }
+
+        // Get HEDA trigger Handlers from the database
+        List<Trigger_Handler__c> hedaHandlers = [SELECT Id, Name, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Class__c in: classNames AND Object__c in: objectTypes LIMIT 5000];
+
+        for(Trigger_Handler__c t : hedaHandlers) {
+            t.Owned_by_Namespace__c = 'hed';
+        }
+
+        update hedaHandlers;
     }
 }
