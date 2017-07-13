@@ -67,8 +67,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             disablePreferredEmailEnforcement(previousVersion);
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
-                // We need to handle a special case to populate the Owned_by_Namespace__c field for HEDA specific Trigger Handlers since that field is new.
-                // SInce there are no other trigger handler updates happening we can target the owned by namespace field specifically.
+                // We need to handle a special case to populate the Owned_by_Namespace__c field for HEDA Orgs before 1.38.
                 populateNamespaceHandlers();
             }
 
@@ -229,8 +228,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
     /*******************************************************************************************************
     * @description: Popualte the Owned by Namespace field for HEDA owned triggers. We have to update Trigger
-    * handlers even if they are marked as user managed. We will only update this single field in this instance
-    * for HEDA version 1.38
+    * handlers even if they are marked as user managed.
     */
     private static void populateNamespaceHandlers(){
         // Populate filters for soql query
