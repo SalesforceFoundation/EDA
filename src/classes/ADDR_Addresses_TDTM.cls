@@ -404,7 +404,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
         //Updating address info in Contact
         } else if(UTIL_Describe.isObjectIdThisType(parentId, 'Contact')) {
             Contact contact = new Contact(Id = parentId);
-            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', null, dmlWrapper);
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(addr, contact, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
 
             // If the address was deleted, it cannot be the override any more
             if(triggerAction != null && triggerAction == TDTM_Runnable.Action.AfterDelete)
