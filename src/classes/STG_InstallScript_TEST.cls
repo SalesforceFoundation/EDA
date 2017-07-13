@@ -97,7 +97,7 @@ public with sharing class STG_InstallScript_TEST {
 
     @isTest
     public static void tdtmUpdateWithNamespace() {
-        // Testing the special Case when orgs are updated to 1.37 without user managed field
+        // Testing the special Case when orgs are updated to 1.38 before "Owned by Namespace" field existed on Trigger Handlers
 
         // Simulate a user adding their own handler, should not need User_Managed__c to be true
         Trigger_Handler__c newHandler = new Trigger_Handler__c(
@@ -131,63 +131,76 @@ public with sharing class STG_InstallScript_TEST {
         List<Trigger_Handler__c> userHandlers = [select Name, Owned_by_Namespace__c from Trigger_Handler__c WHERE Class__c = 'Contact_Update' AND Object__c = 'Contact'];
         System.assertEquals(1, userHandlers.size());
         System.assertEquals(null, userHandlers[0].Owned_by_Namespace__c);
-
     }
 
-    // Testing a 1.36 and 1.37 Org state. This is testing a scenario where an org had user managed triggers, prior to the existence of the "Owned by Namespace" field
+    // Testing a 1.36 and 1.37 Org state upgrade. This is testing a scenario where an org had user managed triggers, prior to the existence of the "Owned by Namespace" field
     @isTest
     public static void tdtmUpdateWithNamespaceUserManaged() {
 
-        // Remove Namespace and disable all records
-        List<Trigger_Handler__c> previousDefaults = TDTM_DefaultConfig.getDefaultRecords();
-        for(Trigger_Handler__c h:previousDefaults){
-            h.Owned_by_Namespace__c = null;
-        }
-        insert previousDefaults;
+        // Simulate a user adding their own handler, should not need User_Managed__c to be true
+        Trigger_Handler__c newHandler = new Trigger_Handler__c(
+            Active__c = true,
+            Asynchronous__c = false,
+            Class__c = 'Contact_Update',
+            Load_Order__c = 0.2,
+            Object__c = 'Contact',
+            Trigger_Action__c = 'BeforeInsert;BeforeUpdate'
+        );
+        insert newHandler;
 
-        // Now that the trigger handlers are added lets simulate them being disabled by an Admin.
-        List<Trigger_Handler__c> userModifiedDefaults = [SELECT Id, Name, Owned_by_Namespace__c, Active__c, User_Managed__c FROM Trigger_Handler__c];
+        // Remove Namespace to simulate pre 1.38 status, and user disabled
+        List<Trigger_Handler__c> userModifiedDefaults = TDTM_DefaultConfig.getDefaultRecords();
         for(Trigger_Handler__c h:userModifiedDefaults){
+            h.Owned_by_Namespace__c = null;
             h.Active__c = false;
             h.User_Managed__c = true;
         }
-        update userModifiedDefaults;
+        insert userModifiedDefaults;
 
         //Run the install script
-        Test.testInstall(new STG_InstallScript(), new Version(1,36), true);
+        Test.testInstall(new STG_InstallScript(), new Version(1,37), true);
 
-        List<Trigger_Handler__c> tdtmHandlers = [SELECT Id, Name, Owned_by_Namespace__c, Active__c, User_Managed__c FROM Trigger_Handler__c];
+        List<Trigger_Handler__c> tdtmHandlers = [SELECT Id, Name, Owned_by_Namespace__c, Active__c, User_Managed__c, Class__c FROM Trigger_Handler__c];
 
-        // Verify the number of default records didn't change.
-        System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers.size());
+        // Verify the number of default records didn't change. We subtract one because the custom non-HEDAtriiger handler should still exist
+        System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers.size()-1);
 
         for(Trigger_Handler__c h:tdtmHandlers){
-            // Unfortunantly the user overwrote them all, so we cannot edit it to add the namespace field
-            System.assertEquals('hed', h.Owned_by_Namespace__c);
+            if(h.Class__c != 'Contact_Update') { // exclude custom handler
+                System.assertEquals('hed', h.Owned_by_Namespace__c);
 
-            // Verify Admin overrides
-            System.assertEquals(false, h.Active__c);
-            System.assertEquals(true, h.User_Managed__c);
+                // Verify Admin overrides
+                System.assertEquals(false, h.Active__c);
+                System.assertEquals(true, h.User_Managed__c);
+            }
         }
 
         Test.startTest();
 
         //Run the install script
-        Test.testInstall(new STG_InstallScript(), new Version(1,37), true);
+        Test.testInstall(new STG_InstallScript(), new Version(1,38), true);
         Test.stopTest();
 
-        List<Trigger_Handler__c> tdtmHandlers2 = [SELECT Id, Name, Owned_by_Namespace__c, Active__c, User_Managed__c FROM Trigger_Handler__c];
+        List<Trigger_Handler__c> tdtmHandlers2 = [SELECT Id, Name, Owned_by_Namespace__c, Active__c, User_Managed__c, Class__c FROM Trigger_Handler__c];
 
         // Verify the number of default records didn't change.
-        System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers2.size());
+        System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers2.size()-1);
 
         for(Trigger_Handler__c h: tdtmHandlers2){
-            // Unfortunantly the user overwrote them all, so we cannot edit it to add the namespace field
-            System.assertEquals('hed', h.Owned_by_Namespace__c);
+            if(h.Class__c != 'Contact_Update') {
+                // Unfortunantly the user overwrote them all, so we cannot edit it to add the namespace field
+                System.assertEquals('hed', h.Owned_by_Namespace__c);
 
-            // Verify Admin overrides
-            System.assertEquals(false, h.Active__c);
-            System.assertEquals(true, h.User_Managed__c);
+                // Verify Admin overrides
+                System.assertEquals(false, h.Active__c);
+                System.assertEquals(true, h.User_Managed__c);
+            } else {
+                // Verify custom handler
+                System.assertEquals('Contact_Update', h.Class__c);
+                System.assertEquals(null, h.Owned_by_Namespace__c);
+                System.assertEquals(true, h.Active__c);
+                System.assertEquals(false, h.User_Managed__c);
+            }
         }
     }
 
