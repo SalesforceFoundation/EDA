@@ -110,6 +110,10 @@ public with sharing class STG_InstallScript_TEST {
         );
         insert newHandler;
 
+        // Verify handlers are not added to the DB
+        List<Trigger_Handler__c> initialHandlers = [select Name, Owned_by_Namespace__c from Trigger_Handler__c WHERE Owned_by_Namespace__c = 'hed'];
+        System.assertEquals(0, initialHandlers.size());
+
         // Remove Namespace from all records
         List<Trigger_Handler__c> previousDefaults = TDTM_DefaultConfig.getDefaultRecords();
         for(Trigger_Handler__c h:previousDefaults){
