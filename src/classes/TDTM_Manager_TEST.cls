@@ -62,7 +62,7 @@ private class TDTM_Manager_TEST {
 
 		// Check direct comparisons
 		System.assertEquals(defaultTokenSet, existingDBtokens);
-	}
+	}	
 
 	/* This test is installing the actual defaults to the database and checking the value of TDTM_Config.getTdtmConfig() */
 	@isTest
@@ -75,7 +75,7 @@ private class TDTM_Manager_TEST {
 		System.assertEquals(false , TDTM_Config.isEmpty() );
 
 		// Need to clear the cache for the test
-		TDTM_Config.tdtmTokensCache = null;
+		TDTM_Config.tdtmTokensCache = null;		
 
         // This should pull items from the database.
 		List<TDTM_Global_API.TdtmToken> tdtmConfig = TDTM_Config.getTdtmConfig();
@@ -85,7 +85,7 @@ private class TDTM_Manager_TEST {
 		TDTM_Manager manager = new TDTM_Manager('hed');
 		Set<TDTM_Global_API.TdtmToken> defaultTokenSet = manager.currentTokens;
 
-		// Make sure items in DB count match
+		// Make sure items in DB count match 
 		System.assertEquals(defaultTokenSet.size(), tdtmConfigSet.size() );
 	}
 
@@ -166,6 +166,7 @@ private class TDTM_Manager_TEST {
         newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5, true, false, null, null, false, 'hed'));
         // We'll leave this alone
         newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, 'hed'));
+
 
 		// Instantiate new manager for test.
 		TDTM_Manager updateManager = new TDTM_Manager('hed');

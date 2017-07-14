@@ -133,7 +133,7 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals(null, userHandlers[0].Owned_by_Namespace__c);
     }
 
-    // Testing a 1.36 and 1.37 Org state upgrade. This is testing a scenario where an org had user managed triggers, prior to the existence of the "Owned by Namespace" field
+    // Testing a 1.37 and 1.38 Org state upgrade. This is testing a scenario where an org had user managed triggers, prior to the existence of the "Owned by Namespace" field
     @isTest
     public static void tdtmUpdateWithNamespaceUserManaged() {
 
@@ -188,7 +188,7 @@ public with sharing class STG_InstallScript_TEST {
 
         for(Trigger_Handler__c h: tdtmHandlers2){
             if(h.Class__c != 'Contact_Update') {
-                // Unfortunantly the user overwrote them all, so we cannot edit it to add the namespace field
+                // Verify 'hed' namespace still persists
                 System.assertEquals('hed', h.Owned_by_Namespace__c);
 
                 // Verify Admin overrides
