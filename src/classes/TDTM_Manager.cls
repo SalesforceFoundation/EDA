@@ -37,21 +37,34 @@
 public class TDTM_Manager {
 
 	public String namespace {get;set;}
-	public Map<Id,Trigger_Handler__c> currentHandlers {get;set;}
-	public Set<TDTM_Global_API.TdtmToken> currentTokens {get;set;}
+	public Map<Id,Trigger_Handler__c> packageHandlers {get;set;}
+	public Set<TDTM_Global_API.TdtmToken> packageTokens {get;set;}
+
+    private Map<Id,Trigger_Handler__c> allHandlers {get;set;}
+    private Set<TDTM_Global_API.TdtmToken> allTokens {get;set;}
 
     private List<Trigger_Handler__c> toDelete = new List<Trigger_Handler__c>();
     private List<Trigger_Handler__c> toUpsert = new List<Trigger_Handler__c>();
 
     /*******************************************************************************************************
-    * @description Constructor. Sets namespace, currentHandlers, and currentTokens default properties.
+    * @description Constructor. Sets namespace, packageHandlers, and packageTokens default properties.
     * @parameter nm A String representing the namespace to query from.
     *********************************************************************************************************/
 	public TDTM_Manager(String nm) {
 		this.namespace = nm;
-		this.currentHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Owned_by_Namespace__c =: this.namespace ORDER BY Load_Order__c ]);
 
-		this.currentTokens = getTokenSet(this.currentHandlers);
+        // Get all handlers from database.
+		this.allHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c FROM Trigger_Handler__c ORDER BY Load_Order__c LIMIT 5000]);
+        this.allTokens = getTokenSet(this.allHandlers);
+
+        // Isolate the current handlers by namespace
+        this.packageHandlers = new Map<Id,Trigger_Handler__c>();
+        for(Trigger_Handler__c t : this.allHandlers.values() ) {
+            if (t.Owned_by_Namespace__c == this.namespace) {
+                this.packageHandlers.put(t.Id, t);
+            }
+        }
+        this.packageTokens = getTokenSet(this.packageHandlers);
 	}
 
     /*******************************************************************************************************
@@ -62,12 +75,12 @@ public class TDTM_Manager {
     *********************************************************************************************************/
 	public void updateDefaultTdtmConfig(Set<TDTM_Global_API.TdtmToken> newTokenSet) {
 
-		// Check for changes
-		if(newTokenSet != this.currentTokens) {
+        // Check for changes
+		if(newTokenSet != this.packageTokens) {
 
-			for( TDTM_Global_API.TdtmToken existingToken : this.currentTokens ){
+			for( TDTM_Global_API.TdtmToken existingToken : this.packageTokens ){
 
-				// If the configuration does not include the item it changed
+                // If the configuration does not include the item it changed
 				if(!newTokenSet.contains(existingToken)) {
 
 			        // Using Class and Target Object fields we check if the new set contains a matching token
@@ -78,11 +91,11 @@ public class TDTM_Manager {
 			        	// Skip if User Managed
 			        	newTokenSet.remove(match);
 
-			        // Check if the match is different, if so we'll update the current token
+                        // Check if the match is different, if so we'll update the current token
 			        } else if( !existingToken.userManaged && match != null && !existingToken.equals(match) ) {
 
 						// Update current handler value
-						this.toUpsert.add( mergeToken(currentHandlers.get(existingToken.handlerId), match ) );
+						this.toUpsert.add( mergeToken(packageHandlers.get(existingToken.handlerId), match ) );
 						// mark processed if updated
 						newTokenSet.remove(match);
 
@@ -90,7 +103,7 @@ public class TDTM_Manager {
 					} else if ( !existingToken.userManaged && match == null ) {
 
 						// Remove from existing list and setup for deletion
-						this.toDelete.add(currentHandlers.get(existingToken.handlerId));
+						this.toDelete.add(packageHandlers.get(existingToken.handlerId));
 					}
 				}
 
@@ -100,9 +113,14 @@ public class TDTM_Manager {
 
 			// Check for new items to add since these didn't match against existing items
 			if(newTokenSet.size() > 0) {
-				for( TDTM_Global_API.TdtmToken newToken: newTokenSet ){
-					this.toUpsert.add( mergeToken(new Trigger_Handler__c() ,newToken ) );
-				}
+                for( TDTM_Global_API.TdtmToken newToken : newTokenSet ){
+
+                    // Check to make sure we dont create duplicates by object and class
+                    TDTM_Global_API.TdtmToken dup = newToken.getmatch( this.allTokens );
+                    if(dup == null){
+                        this.toUpsert.add( mergeToken( new Trigger_Handler__c(), newToken ) );
+                    }
+                }
 			}
 		}
 
@@ -110,8 +128,8 @@ public class TDTM_Manager {
 			upsert this.toUpsert;
 
 			// Update class properties because we have updates.
-			this.currentHandlers = new Map<Id,Trigger_Handler__c>(this.toUpsert);
-			this.currentTokens = this.getTokenSet(this.currentHandlers);
+			this.packageHandlers = new Map<Id,Trigger_Handler__c>(this.toUpsert);
+			this.packageTokens = this.getTokenSet(this.packageHandlers);
 		}
 
 		if(this.toDelete.size()>0) {

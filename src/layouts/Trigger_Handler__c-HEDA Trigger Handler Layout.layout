@@ -31,10 +31,6 @@
                 <behavior>Edit</behavior>
                 <field>User_Managed__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Owned_by_Namespace__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -56,6 +52,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Filter_Value__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Owned_by_Namespace__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

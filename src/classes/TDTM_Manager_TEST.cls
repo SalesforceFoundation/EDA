@@ -47,7 +47,7 @@ private class TDTM_Manager_TEST {
 
 		// Instantiate the TDTM Trigger Handler Manager
 		TDTM_Manager manager = new TDTM_Manager('hed');
-		Set<TDTM_Global_API.TdtmToken> defaultTokenSet = manager.currentTokens;
+		Set<TDTM_Global_API.TdtmToken> defaultTokenSet = manager.packageTokens;
 
 		// Set up references to existing trigger handlers already in the database. This
 		// is testing that even though the references are different in memory they are still
@@ -62,7 +62,7 @@ private class TDTM_Manager_TEST {
 
 		// Check direct comparisons
 		System.assertEquals(defaultTokenSet, existingDBtokens);
-	}	
+	}
 
 	/* This test is installing the actual defaults to the database and checking the value of TDTM_Config.getTdtmConfig() */
 	@isTest
@@ -75,7 +75,7 @@ private class TDTM_Manager_TEST {
 		System.assertEquals(false , TDTM_Config.isEmpty() );
 
 		// Need to clear the cache for the test
-		TDTM_Config.tdtmTokensCache = null;		
+		TDTM_Config.tdtmTokensCache = null;
 
         // This should pull items from the database.
 		List<TDTM_Global_API.TdtmToken> tdtmConfig = TDTM_Config.getTdtmConfig();
@@ -83,9 +83,9 @@ private class TDTM_Manager_TEST {
 
 		// Instantiate the TDTM Trigger Handler Manager
 		TDTM_Manager manager = new TDTM_Manager('hed');
-		Set<TDTM_Global_API.TdtmToken> defaultTokenSet = manager.currentTokens;
+		Set<TDTM_Global_API.TdtmToken> defaultTokenSet = manager.packageTokens;
 
-		// Make sure items in DB count match 
+		// Make sure items in DB count match
 		System.assertEquals(defaultTokenSet.size(), tdtmConfigSet.size() );
 	}
 
@@ -93,7 +93,7 @@ private class TDTM_Manager_TEST {
 	public static void newHandlers() {
 		TDTM_Manager manager = new TDTM_Manager('hed');
 		// Verifying there is nothing in the DB.
-		System.assertEquals(manager.currentTokens.size(), 0);
+		System.assertEquals(manager.packageTokens.size(), 0);
 
         Set<TDTM_Global_API.TdtmToken> defaults = getBasicDefaults();
 
