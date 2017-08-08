@@ -147,7 +147,9 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         // Using ALL ROWS returns them in the query used to gather the mirror Relationships to be deleted 
         for (Relationship__c r : [Select Id, ReciprocalRelationship__c from Relationship__c 
             where Contact__c in :contacts.keySet() ALL ROWS]){
-            relationshipsToDelete.add(new Relationship__c(Id = r.ReciprocalRelationship__c));
+            if (r.ReciprocalRelationship__c != null) {
+                relationshipsToDelete.add(new Relationship__c(Id = r.ReciprocalRelationship__c));
+            }
         }
         if ( relationshipsToDelete.size() > 0 ) {
             dmlWrapper.objectsToDelete.addAll(relationshipsToDelete);
