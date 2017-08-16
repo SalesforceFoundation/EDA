@@ -36,18 +36,15 @@
 */
 public class ADDR_Account_TDTM extends TDTM_Runnable {
     
-    /* @description Flag to prevent recursive call after insert */
-    public static boolean alreadyRunAfterInsert = false;
-    /* @description Flag to prevent recursive call after update */
-    public static boolean alreadyRunAfterUpdate = false;
-    
+    public static Set<Id> accountIdsInserted = new Set<Id>();
+    public static Set<Id> accountIdsUpdated = new Set<Id>();
     /*******************************************************************************************************
     * @description Turns class off.
     * @return void
     ********************************************************************************************************/
     public static void turnOff() {
-        alreadyRunAfterInsert = true;
-        alreadyRunAfterUpdate = true;
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert);
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update);
     }
     
     /*******************************************************************************************************
@@ -55,8 +52,8 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     * @return void
     ********************************************************************************************************/
     public static void turnOn() {
-        alreadyRunAfterInsert = false;
-        alreadyRunAfterUpdate = false;
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update);
     }
     
     /*******************************************************************************************************
@@ -72,7 +69,7 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
             
         DmlWrapper dmlWrapper = new DmlWrapper();
             
-        if(!alreadyRunAfterInsert || !alreadyRunAfterUpdate) {
+        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert) || !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update)) {
 	        
 	        //Turn off other address triggers
             ADDR_Contact_TDTM.turnOff();
@@ -82,24 +79,27 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 	        List<Account> accsAddrInfoCleared = new List<Account>();
 	                
 	        // AFTER INSERT
-	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+	        if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert) && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 	            Integer i = 0;        
 		        for (SObject so : listNew) {
 		            Account acc = (Account)so;
-	                // for new accounts that are using address management, create the address object.
-	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
-	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
-	                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
-	                        newAddrInfoAccs.add(acc);
-	                    }
-	                }
+                    if (!accountIdsInserted.contains(acc.Id)){
+    	                // for new accounts that are using address management, create the address object.
+    	                if (UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
+    	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
+    	                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+    	                        newAddrInfoAccs.add(acc);
+    	                    }
+    	                }
+                        accountIdsInserted.add(acc.Id);
+                    }
 	                i++;
 		        }
-	            alreadyRunAfterInsert = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert, true);
 	        }
 		    
 	        // AFTER UPDATE
-	        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
+	        if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update) && triggerAction == TDTM_Runnable.Action.AfterUpdate) {  
 	            Integer i = 0;        
 	            for (SObject so : listNew) {
 	                Account acc = (Account)so;
@@ -108,29 +108,44 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
 	                Boolean accAddrEnabledForRecType = UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c != null && acc.RecordTypeId != null
                                                        && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId);
 	                
-	                if (isHousehold || accAddrEnabledForRecType) {
-	                    
-	                    // if the address info has been cleared
-	                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
-	                        accsAddrInfoCleared.add(acc);
-	                        
-	                    // if the account address info has changed  
-	                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
-	                        newAddrInfoAccs.add(acc);
-	                    }
-	                }
+                    if (!accountIdsUpdated.contains(acc.Id)){
+                        if (isHousehold || accAddrEnabledForRecType) {
+    	                    
+    	                    // if the address info has been cleared
+    	                    if(!ADDR_Addresses_UTIL.isAccAddressEmpty(accOld) && ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+    	                        accsAddrInfoCleared.add(acc);
+    	                        
+    	                    // if the account address info has changed  
+    	                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
+    	                        newAddrInfoAccs.add(acc);
+    	                    }
+    	                }
+                        accountIdsUpdated.add(acc.Id);
+                    }
 	            i++;
 	            }
-	            alreadyRunAfterUpdate = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update, true);
 	        }
 	
 	        // create any new Address objects
 	        if (newAddrInfoAccs.size() > 0)
+            {
 	            processAccsWithNewInfo(newAddrInfoAccs, dmlWrapper);
+            }
 	        
 	        // handle accs with address info removed
 	        if(accsAddrInfoCleared.size() > 0)
+            {
 	            addrInfoDeleted(accsAddrInfoCleared, dmlWrapper);
+            }
+
+        }
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert, false);
+        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update, false);
         }
         return dmlWrapper;    
     }

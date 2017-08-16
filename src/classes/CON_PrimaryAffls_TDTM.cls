@@ -47,12 +47,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     public static Boolean keyAfflLookupUpdated = false;
 
     /*******************************************************************************************************
-    * @description Static flags to prevent recursive call.
-    ********************************************************************************************************/
-    public static boolean alreadyRunAfterInsert = false;
-    public static boolean alreadyRunAfterUpdate = false;
-
-    /*******************************************************************************************************
     * @description Handles primary affiliation fields.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -71,7 +65,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
 
         // AFTER INSERT
-        if( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert  && !alreadyRunAfterInsert) {
+        if( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert  && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert)) {
 
             // Loop over contact list
             for (integer i=0; i<newlist.size(); i++) {
@@ -95,11 +89,11 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             }
 
             // Set reentrant Flag
-            alreadyRunAfterInsert = true;
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, true);
         }
 
         // BEFORE UPDATE
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !alreadyRunAfterUpdate) {
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update)) {
             for (integer i=0; i<newlist.size(); i++) {
                 Contact newContact = (Contact)newlist[i];
                 Contact oldContact = (Contact)oldlist[i];
@@ -142,7 +136,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             }
 
             // Set reentrant Flag
-            alreadyRunAfterUpdate = true;
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, true);
         }
 
         if(afflsToInsert.size() > 0) {
@@ -154,6 +148,13 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)makeOtherAfflsNotPrimary(changedConToAccsMap));
         }
 
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, false);
+        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, false);
+        }
         return dmlWrapper;
     }
 

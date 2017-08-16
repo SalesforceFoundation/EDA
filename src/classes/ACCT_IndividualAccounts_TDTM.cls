@@ -42,31 +42,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private static ID defaultRecTypeID = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
 
     /*******************************************************************************************************
-    * @description Re-entrant Flag for After Insert
-    */
-    public static boolean alreadyRunAfterInsert = false;
-
-    /*******************************************************************************************************
-    * @description Re-entrant Flag for After Update
-    */
-    public static boolean alreadyRunAfterUpdate = false;
-
-    /*******************************************************************************************************
-    * @description Re-entrant Flag for After Delete
-    */
-    public static boolean alreadyRunAfterDelete = false;
-
-    /*******************************************************************************************************
-    * @description A method to disable all trigger actions for this trigger class
-    * @return void
-    */
-    public static void turnOff() {
-        alreadyRunAfterInsert = true;
-        alreadyRunAfterUpdate = true;
-        alreadyRunAfterDelete = true;
-    }
-
-    /*******************************************************************************************************
     * @description a set of languages that require different naming conventions
     */
     private static Set<String> EasternOrderLanguages = new Set<String>{
@@ -128,7 +103,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         // AFTER DELETE
-        if (triggerAction == TDTM_Runnable.Action.AfterDelete && !alreadyRunAfterDelete) {
+        if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
             for (Contact c : oldContacts)
                 listContactAccountDelete.add(c);
         } else {
@@ -136,7 +111,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             for (Contact c : contacts) {
 
                 // AFTER INSERT
-                if (triggerAction == TDTM_Runnable.Action.AfterInsert && !alreadyRunAfterInsert) {
+                if (triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
 
                 	// Account should be created if:
                     //    1. The account isn't set by the user
@@ -154,7 +129,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 	            }
 
                 // AFTER UPDATE
-                if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !alreadyRunAfterUpdate) {
+                if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
                     // HH account should be created if:
 	                //   1. The account has been blanked out by the user
 	                //   2. The Account Model is not blank
@@ -185,15 +160,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             // Must set flags after contact for loop to make sure all contacts are processed.
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 // Set reentrant flag
-                alreadyRunAfterInsert = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
             }
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                 // Set reentrant flag
-                alreadyRunAfterUpdate = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, true);
             }
             if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
                 // Set reentrant flag
-                alreadyRunAfterDelete = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
             }
         }
 
@@ -203,6 +178,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         	UTIL_Debug.debug('****Number of contacts that need accounts created: ' + listContactNeedAccount.size());
             //add the newly created or updated Contacts that need a new individual account
             insertContactAccount(listContactNeedAccount, dmlWrapper);
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
         }
         if (mapAccountIdContactId.size() > 0) {
             //update Accounts that have newly created Contacts connected to them
@@ -216,7 +192,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             updateParentAcc(listAccountIdHHToUpdate, dmlWrapper);
         }
         if (mapContactIdContactOwnerChange.size() > 0) {
-        	updateOwners(mapContactIdContactOwnerChange, dmlWrapper);
+            updateOwners(mapContactIdContactOwnerChange, dmlWrapper);
         }
         if (listContactAccountDelete.size() > 0) {
         	UTIL_Debug.debug('****Number of accs to delete: ' + listContactAccountDelete.size());
@@ -224,6 +200,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             deleteContactAccountsIfEmpty(listContactAccountDelete, dmlWrapper);
         }
 
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
+        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, false);
+        }else if (triggerAction == TDTM_Runnable.Action.AfterDelete){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);            
+        }
     	return dmlWrapper;
     }
 
@@ -459,6 +444,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         // update any HH accounts that just lost a contact
         if (listAccountIdUpdate.size() > 0)
             updateParentAcc(listAccountIdUpdate, dmlWrapper);
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);
+
     }
 
     /*******************************************************************************************************

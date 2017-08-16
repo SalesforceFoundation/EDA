@@ -76,7 +76,6 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Change the account record type to Business Organization
         acc.RecordTypeId = orgRecTypeID;
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         update acc;
         Test.stopTest();
         
@@ -110,7 +109,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
         insert bizOrg;
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before, false);
         insert bizAffl;
         
         //Verify the primary business organization field was populated
@@ -122,7 +121,6 @@ public with sharing class AFFL_AccRecordType_TEST {
         household.RecordTypeId = orgRecTypeID;
         bizOrg.RecordTypeId = householdRecTypeID;
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         update new Account[]{household, bizOrg};
         Test.stopTest();
         
@@ -157,7 +155,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert bizOrg;
         UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before, false);
         insert bizAffl;
         
         //Verify the primary business organization field was populated
@@ -169,7 +167,6 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Change the account record type of parent Household to Business Organization
         household.RecordTypeId = orgRecTypeID;
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
         update household;
         Test.stopTest();
         
@@ -196,7 +193,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         Account acc = new Account(Name = 'AccNoType', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
         insert acc;
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Primary__c = true);
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before, false);
         insert affl;
         
         //Verify Primary Business Organization field was not populated

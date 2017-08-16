@@ -46,12 +46,6 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     public static Boolean afflMadePrimary = false;
 
 	/*******************************************************************************************************
-    * @description Static flags to prevent recursive call.
-    ********************************************************************************************************/
-    public static boolean afflMultiHasRunBefore = false;
-	public static boolean afflMultiHasRunAfter = false;
-
-	/*******************************************************************************************************
     * @description Handles Affiliation management.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -65,7 +59,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     	 DmlWrapper dmlWrapper = new DmlWrapper();
 		 List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
 
-		 if(!afflMultiHasRunBefore) {
+		 if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before)) {
 
 			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
 			 Map<ID, Contact> relatedContactsMap;
@@ -136,21 +130,26 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            }
 		    	 }
 	    	 }
-	    	 afflMultiHasRunBefore = true;
+           TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before, true);
         }
 
         //AFTER INSERT
-        if(!afflMultiHasRunAfter && triggerAction == TDTM_Runnable.Action.AfterInsert) {
+        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After) && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 			 if(newlist != null && newlist.size() > 0) {
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
 					createProgramEnrollmentIfNecessary(affl, dmlWrapper);
 		    	 }
 			 }
-			 afflMultiHasRunAfter = true;
+           TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After, true);
 		}
+		TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After, false);
+        }
 
-        return dmlWrapper;
+    	return dmlWrapper;
     }
 
     public void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldName, DmlWrapper dmlWrapper) {
