@@ -7,6 +7,9 @@ project:
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
+    apexdoc:
+        branch: gh-pages
+        repo_dir: ApexDocumentation
 
 tasks:
 
