@@ -368,7 +368,6 @@ private class TDTM_DMLgt200_TEST {
         	MailingCity = 'Austin', MailingState = 'Texas', MailingPostalcode = '78701', MailingCountry = 'United States');
         	testContacts.add(contact);       	
         }
-        system.debug(testContacts.size());
         Test.startTest();
         insert testContacts;
         Test.stopTest();
