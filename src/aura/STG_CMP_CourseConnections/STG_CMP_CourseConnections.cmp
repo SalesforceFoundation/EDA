@@ -13,10 +13,20 @@
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
       <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label slds-active" title="Settings" role="tab">
-        <ui:outputURL value="#" label="Settings" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+          <ui:outputURL value="#" label="{!$Label.hed.stgTabSettings}" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+          <aura:set attribute="else">
+            <ui:outputURL value="#" label="{!$Label.c.stgTabSettings}" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+          </aura:set>
+        </aura:if>
       </li>
       <li aura:id="backfillTab" class="slds-tabs__item slds-text-heading--label" title="Backfill" role="tab">
-        <ui:outputURL value="#" label="Backfill" class="rel-recip-settings-menulink"  click="{!c.backfillLinkClicked}" />
+        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+          <ui:outputURL value="#" label="{!$Label.hed.stgTabBackfill}" class="rel-recip-settings-menulink"  click="{!c.backfillLinkClicked}" />
+          <aura:set attribute="else">
+            <ui:outputURL value="#" label="{!$Label.c.stgTabBackfill}" class="rel-recip-settings-menulink"  click="{!c.backfillLinkClicked}" />
+          </aura:set>
+        </aura:if>
       </li>
     </ul>
 
@@ -28,7 +38,13 @@
             <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
               <h2>
                 <lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
-                      You must enable Course Connections before editing record types.</h2>
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                  <ui:outputText value="{!$Label.hed.stgHelpEnableCourseConnBeforeRecordTypes}" class="slds-text-body--small" />
+                  <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.stgHelpEnableCourseConnBeforeRecordTypes}" class="slds-text-body--small" />
+                  </aura:set>
+                </aura:if>
+              </h2>
             </div>
           </div>
         </div>
@@ -132,13 +148,26 @@
             <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
               <h2>
                 <lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
-                      You must enable Course Connections before running the Course Connections Backfill.</h2>
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                      <ui:outputText value="{!$Label.hed.stgHelpEnableCourseConnBeforeBackfill}" class="slds-text-body--small" />
+                      <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgHelpEnableCourseConnBeforeBackfill}" class="slds-text-body--small" />
+                      </aura:set>
+                    </aura:if>
+              </h2>
             </div>
           </div>
         </div>
       </span>
       <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size--1-of-1">Course Connection Backfill:</div>
+        <div class="slds-col slds-size--1-of-1">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+              <ui:outputText value="{!$Label.hed.stgTitleCourseConnectionBackfill}" class="slds-text-body--small" />
+              <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgTitleCourseConnectionBackfill}" class="slds-text-body--small" />
+              </aura:set>
+            </aura:if>
+        </div>
       </div>
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">
@@ -156,13 +185,23 @@
             <ui:inputCheckbox value="{!v.allowBackfill}" class="slds-checkbox allow-backfill-checkbox"
                               text="" disabled="{!not(v.hierarchySettings.Enable_Course_Connections__c)}"/>
             <span class="slds-checkbox--faux"></span>
-            I understand and am ready to run Backfill
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+              <ui:outputText value="{!$Label.hed.stgConfirmReadyRunBackfill}" class="slds-text-body--small" />
+              <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.stgConfirmReadyRunBackfill}" class="slds-text-body--small" />
+              </aura:set>
+            </aura:if>
           </label>
         </div>
       </div>
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
-          <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="Run Backfill" press="{!c.startBackfill}"/>
+          <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+            <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.hed.stgBtnRunBackfill}" press="{!c.startBackfill}"/>            
+            <aura:set attribute="else">
+              <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.c.stgBtnRunBackfill}" press="{!c.startBackfill}"/>            
+            </aura:set>
+          </aura:if>
         </div>
       </div>
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">

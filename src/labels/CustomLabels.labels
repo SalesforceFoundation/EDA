@@ -265,6 +265,302 @@
         <value>Default Account Model:</value>
     </labels>
     <labels>
+        <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAccountRecordTypeSupportsHHAddress</shortDescription>
+        <value>Account record type that supports Household Addresses:</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountTypesMultiAddressesEnabled</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAccountTypesMultiAddressesEnabled</shortDescription>
+        <value>Account Types with Multi-Addresses Enabled:</value>
+    </labels>
+    <labels>
+        <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAccoutTypesWithoutContactsDelete</shortDescription>
+        <value>Account Types without Contacts to Delete:</value>
+    </labels>
+    <labels>
+        <fullName>stgAddHispanicOrLatinoPicklistValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAddHispanicOrLatinoPicklistValue</shortDescription>
+        <value>Add &quot;Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAddNotHispanicOrLatinoPicklistValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAddNotHispanicOrLatinoPicklistValue</shortDescription>
+        <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAfterRunBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfterRunBackfill</shortDescription>
+        <value>After you run the Backfill:</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoCompleteEnterChatterGroupName</shortDescription>
+        <value>Enter Chatter Group name to search</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoCompleteEnterUserName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoCompleteEnterUserName</shortDescription>
+        <value>Enter User name to search</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoCompleteSelectChatterGroup</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoCompleteSelectChatterGroup</shortDescription>
+        <value>Select Chatter Group</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoCompleteSelectUser</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoCompleteSelectUser</shortDescription>
+        <value>Select User</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoEnrollment</shortDescription>
+        <value>Auto-Enrollment</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoEnrollmentRole</shortDescription>
+        <value>Auto-Enrollment Role</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentStatus</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAutoEnrollmentStatus</shortDescription>
+        <value>Auto-Enrollment Status</value>
+    </labels>
+    <labels>
+        <fullName>stgBackfillQueuedEmailSent</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBackfillQueuedEmailSent</shortDescription>
+        <value>The backfill was queued successfully. An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
+        <fullName>stgBeforeRunBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBeforeRunBackfill</shortDescription>
+        <value>Before you run the Backfill:</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnAddMapping</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnAddMapping</shortDescription>
+        <value>Add Mapping</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnAddSetting</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnAddSetting</shortDescription>
+        <value>Add Setting</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCancel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnCancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEdit</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnEdit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnRunBackfill</shortDescription>
+        <value>Run Backfill</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCopy</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnRunCopy</shortDescription>
+        <value>Run Copy</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnSave</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgBtnSave</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>stgCleanupQueuedEmailSent</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgCleanupQueuedEmailSent</shortDescription>
+        <value>The Cleanup was queued successfully. An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
+        <fullName>stgColAccountRecordType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColAccountRecordType</shortDescription>
+        <value>Account Record Type</value>
+    </labels>
+    <labels>
+        <fullName>stgColActive</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColActive</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>stgColCampTypes</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColCampTypes</shortDescription>
+        <value>Campaign Types</value>
+    </labels>
+    <labels>
+        <fullName>stgColContactPrimaryAfflField</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColContactPrimaryAfflField</shortDescription>
+        <value>Contact Primary Affl Field</value>
+    </labels>
+    <labels>
+        <fullName>stgColFemale</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColFemale</shortDescription>
+        <value>Female</value>
+    </labels>
+    <labels>
+        <fullName>stgColField</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColField</shortDescription>
+        <value>Field</value>
+    </labels>
+    <labels>
+        <fullName>stgColMale</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColMale</shortDescription>
+        <value>Male</value>
+    </labels>
+    <labels>
+        <fullName>stgColNeutral</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColNeutral</shortDescription>
+        <value>Neutral</value>
+    </labels>
+    <labels>
+        <fullName>stgColObject</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColObject</shortDescription>
+        <value>Object</value>
+    </labels>
+    <labels>
+        <fullName>stgColRelType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColRelType</shortDescription>
+        <value>Relationship Type</value>
+    </labels>
+    <labels>
+        <fullName>stgColRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColRole</shortDescription>
+        <value>Role</value>
+    </labels>
+    <labels>
+        <fullName>stgColStatus</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgColStatus</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>stgConfirmReadyRunBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgConfirmReadyRunBackfill</shortDescription>
+        <value>I understand and am ready to run Backfill</value>
+    </labels>
+    <labels>
+        <fullName>stgContactMultiAddressesEnabled</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgContactMultiAddressesEnabled</shortDescription>
+        <value>Contact Multi-Addresses Enabled:</value>
+    </labels>
+    <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
         <categories>Courses</categories>
         <language>en_US</language>
@@ -284,7 +580,7 @@
         <fullName>stgDefaultFacultyTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgDefaultFacultyTypeTitle</shortDescription>
         <value>Default Faculty Record Type:</value>
     </labels>
@@ -292,25 +588,57 @@
         <fullName>stgDefaultStudentTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
         <value>Default Active Student Record Type:</value>
+    </labels>
+    <labels>
+        <fullName>stgDeleteRelatedAfflNo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgDeleteRelatedAfflNo</shortDescription>
+        <value>No, just change Status to:</value>
+    </labels>
+    <labels>
+        <fullName>stgDeleteRelatedAfflYes</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgDeleteRelatedAfflYes</shortDescription>
+        <value>Yes:</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgDisableErrorHandlingTitle</shortDescription>
         <value>Disable Error Handling:</value>
+    </labels>
+    <labels>
+        <fullName>stgDisablePreferredEmailEnforcement</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgDisablePreferredEmailEnforcement</shortDescription>
+        <value>Disable Preferred Email enforcement:</value>
     </labels>
     <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgEnableCourseConnectionsTitle</shortDescription>
         <value>Enable Course Connections:</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorNotiTo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgErrorNotiTo</shortDescription>
+        <value>Error Notifications To:</value>
     </labels>
     <labels>
         <fullName>stgErrorNotifRecipientsTitle</fullName>
@@ -321,6 +649,14 @@
         <value>Error Notification Recipients:</value>
     </labels>
     <labels>
+        <fullName>stgEthnicityRaceBackfillContacts</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgEthnicityRaceBackfillContacts</shortDescription>
+        <value>Ethnicity and Race Backfill for Contacts</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAccountModel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -329,10 +665,18 @@
         <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
     </labels>
     <labels>
+        <fullName>stgHelpAccoutsDeletedIfChildContactsDeleted</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAccoutsDeletedIfChildContactsDeleted</shortDescription>
+        <value>Record Types of those Accounts that will be automatically deleted if all their children Contacts have been deleted.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpAddressAccRecType</shortDescription>
         <value>The Account record types that support multiple address management.</value>
     </labels>
@@ -340,7 +684,7 @@
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpContactAddrs</shortDescription>
         <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
@@ -353,18 +697,58 @@
         <value>Do not require Contacts to have a Preferred Email.</value>
     </labels>
     <labels>
+        <fullName>stgHelpCopyQueuedEmailSent</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpCopyQueuedEmailSent</shortDescription>
+        <value>The process was queued successfully. An email will be sent at the completion of the job.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpCourseConnBackfillDescription</shortDescription>
         <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the feature. The Backfill converts all contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCoursesDataMigration</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpCoursesDataMigration</shortDescription>
+        <value>In HEDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCoursesDataMigrationCopiesValues</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpCoursesDataMigrationCopiesValues</shortDescription>
+        <value>This utility copies values from the Course Description field to the Extended Description field. This process may take some time, but you can safely close this page and the process will continue in the background.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCoursesDataMigrationDontOverwrite</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpCoursesDataMigrationDontOverwrite</shortDescription>
+        <value>If a course already has a value for Extended Description, we don&apos;t overwrite it.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCoursesDataMigrationUpdatePageLayouts</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpCoursesDataMigrationUpdatePageLayouts</shortDescription>
+        <value>After the process is complete, remember to update page layouts and other areas of the application that refer to the Description fields.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpDefaultFacultyType</shortDescription>
         <value>The default record type when creating Course Connections for a faculty member.</value>
     </labels>
@@ -372,17 +756,41 @@
         <fullName>stgHelpDefaultStudentType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpDefaultStudentType</shortDescription>
         <value>The default record type when creating Course Connections for active students.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpEnableCourseConnBeforeBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpEnableCourseConnBeforeBackfill</shortDescription>
+        <value>You must enable Course Connections before running the Course Connections Backfill.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpEnableCourseConnBeforeRecordTypes</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpEnableCourseConnBeforeRecordTypes</shortDescription>
+        <value>You must enable Course Connections before editing record types.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnableCourseConnections</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpEnableCourseConnections</shortDescription>
         <value>Course Connections connect a contact with a course offering. Enabling this checkbox lets you choose to create the connection for a student or faculty (the two default record types). After selecting this checkbox, you must set the Default Active Student Record Type and the Default Faculty Record Type. If enabling this feature for the first time, it is highly recommended that you run the Backfill in your org.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpEnsureExistContactPreferEmail</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpEnsureExistContactPreferEmail</shortDescription>
+        <value>For existing Contacts who haven&apos;t specified a Preferred Email, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses is set as the Preferred Email.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorDisable</fullName>
@@ -409,10 +817,18 @@
         <value>You can send email notifications to all System Administrators, a single user, or a Chatter Group. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can only enter one value.</value>
     </labels>
     <labels>
+        <fullName>stgHelpEthnicityRaceBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpEthnicityRaceBackfill</shortDescription>
+        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Administrative and Household Accounts when selected.</value>
     </labels>
@@ -425,10 +841,18 @@
         <value>The Account record type that best represents Households. HEDA uses the Household Account record type by default, but you can use another record type if you wish.</value>
     </labels>
     <labels>
+        <fullName>stgHelpIfCustomValuesEthnicityCopyRace</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpIfCustomValuesEthnicityCopyRace</shortDescription>
+        <value>If your org previously added custom picklist values to the Ethnicity field that you want to be available in the Race field, copy those custom picklist values to the Race field.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Organizational Accounts when selected.</value>
     </labels>
@@ -449,10 +873,18 @@
         <value>Determines method used to generate the reciprocal relationship. Either List Setting which uses custom settings by gender (see Reciprocal Relationships tab), or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;).</value>
     </labels>
     <labels>
+        <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</shortDescription>
+        <value>Remove all picklist values from the Ethnicity field except for &quot;Hispanic or Latino&quot; and &quot;Not Hispanic or Latino.&quot; We recommend that you replace each removed value with one of the remaining valid values, rather than deleting them outright from existing records. As of HEDA version 1.28, the only valid Ethnicity values are &quot;Not Hispanic or Latino&quot; and &quot;Hispanic or Latino.&quot;</value>
+    </labels>
+    <labels>
         <fullName>stgHelpSimpleAddrChangeIsUpdate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
+        <protected>true</protected>
         <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
         <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
     </labels>
@@ -463,6 +895,54 @@
         <protected>false</protected>
         <shortDescription>stgHelpStoreErrorsOn</shortDescription>
         <value>Check this if you&apos;d like errors to be stored in the database.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpUpdateReportIfDependenciesEthnicity</shortDescription>
+        <value>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</value>
+    </labels>
+    <labels>
+        <fullName>stgNewAfflMapping</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgNewAfflMapping</shortDescription>
+        <value>New Affiliation Mapping</value>
+    </labels>
+    <labels>
+        <fullName>stgOptAllSysAdmins</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgOptAllSysAdmins</shortDescription>
+        <value>All Sys Admins</value>
+    </labels>
+    <labels>
+        <fullName>stgOptChatterGroup</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgOptChatterGroup</shortDescription>
+        <value>Chatter Group</value>
+    </labels>
+    <labels>
+        <fullName>stgOptSelect</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgOptSelect</shortDescription>
+        <value>Select...</value>
+    </labels>
+    <labels>
+        <fullName>stgOptUser</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgOptUser</shortDescription>
+        <value>User</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
@@ -481,6 +961,30 @@
         <value>Preferred Email Job completed with a status of:</value>
     </labels>
     <labels>
+        <fullName>stgPreferredEmailDataCleanup</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgPreferredEmailDataCleanup</shortDescription>
+        <value>Preferred Email Data Cleanup:</value>
+    </labels>
+    <labels>
+        <fullName>stgRunCleanUpEnableFirstTime</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRunCleanUpEnableFirstTime</shortDescription>
+        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email requirement for the first time or after a period of not enforcing the requirement.</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectReciType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgSelectReciType</shortDescription>
+        <value>Select recipient type</value>
+    </labels>
+    <labels>
         <fullName>stgSendErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -489,11 +993,203 @@
         <value>Send Error Notifications:</value>
     </labels>
     <labels>
+        <fullName>stgSimpleAddressChangeUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgSimpleAddressChangeUpdate</shortDescription>
+        <value>Simple Address Change Treated as Update:</value>
+    </labels>
+    <labels>
         <fullName>stgStoreErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgStoreErrorsTitle</shortDescription>
         <value>Store Errors:</value>
+    </labels>
+    <labels>
+        <fullName>stgTabAccCont</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabAccCont</shortDescription>
+        <value>Accounts and Contacts</value>
+    </labels>
+    <labels>
+        <fullName>stgTabAffl</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabAffl</shortDescription>
+        <value>Affiliations</value>
+    </labels>
+    <labels>
+        <fullName>stgTabAfflMappings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabAfflMappings</shortDescription>
+        <value>Affiliation Mappings</value>
+    </labels>
+    <labels>
+        <fullName>stgTabAutocreation</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabAutocreation</shortDescription>
+        <value>Autocreation</value>
+    </labels>
+    <labels>
+        <fullName>stgTabBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabBackfill</shortDescription>
+        <value>Backfill</value>
+    </labels>
+    <labels>
+        <fullName>stgTabCourse</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabCourse</shortDescription>
+        <value>Courses</value>
+    </labels>
+    <labels>
+        <fullName>stgTabCourseConn</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabCourseConn</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
+        <fullName>stgTabName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabName</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>stgTabPrimaryAfflField</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabPrimaryAfflField</shortDescription>
+        <value>Primary Affl Field</value>
+    </labels>
+    <labels>
+        <fullName>stgTabReciprocalSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabReciprocalSettings</shortDescription>
+        <value>Reciprocal Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgTabRel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabRel</shortDescription>
+        <value>Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgTabSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabSettings</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgTabSystem</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabSystem</shortDescription>
+        <value>System</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleAllowAutocreatedDuplicateRel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleAllowAutocreatedDuplicateRel</shortDescription>
+        <value>Allow Auto-Created Duplicate Relations:</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleAppwideSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleAppwideSettings</shortDescription>
+        <value>App-wide Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleCourseConnectionBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleCourseConnectionBackfill</shortDescription>
+        <value>Course Connection Backfill:</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleCoursesDescriptionDataMigration</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleCoursesDescriptionDataMigration</shortDescription>
+        <value>Courses: Description Data Migration</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleHEDAConfig</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleHEDAConfig</shortDescription>
+        <value>Configuration</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleHEDASettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleHEDASettings</shortDescription>
+        <value>HEDA Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleNewAutocreateSetting</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleNewAutocreateSetting</shortDescription>
+        <value>New Auto-Create Setting</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleNewReciSetting</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleNewReciSetting</shortDescription>
+        <value>New Reciprocal Setting</value>
+    </labels>
+    <labels>
+        <fullName>stgTitleReciMethod</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTitleReciMethod</shortDescription>
+        <value>Reciprocal Method:</value>
+    </labels>
+    <labels>
+        <fullName>stgToastError</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgToastError</shortDescription>
+        <value>Error</value>
     </labels>
 </CustomLabels>
