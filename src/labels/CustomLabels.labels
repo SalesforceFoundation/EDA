@@ -580,7 +580,7 @@
         <fullName>stgDefaultFacultyTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgDefaultFacultyTypeTitle</shortDescription>
         <value>Default Faculty Record Type:</value>
     </labels>
@@ -588,7 +588,7 @@
         <fullName>stgDefaultStudentTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgDefaultStudentTypeTitle</shortDescription>
         <value>Default Active Student Record Type:</value>
     </labels>
@@ -612,7 +612,7 @@
         <fullName>stgDisableErrorHandlingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgDisableErrorHandlingTitle</shortDescription>
         <value>Disable Error Handling:</value>
     </labels>
@@ -628,7 +628,7 @@
         <fullName>stgEnableCourseConnectionsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgEnableCourseConnectionsTitle</shortDescription>
         <value>Enable Course Connections:</value>
     </labels>
@@ -676,7 +676,7 @@
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpAddressAccRecType</shortDescription>
         <value>The Account record types that support multiple address management.</value>
     </labels>
@@ -684,7 +684,7 @@
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpContactAddrs</shortDescription>
         <value>Select this option to enable multiple address management for Contacts.</value>
     </labels>
@@ -708,7 +708,7 @@
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpCourseConnBackfillDescription</shortDescription>
         <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the feature. The Backfill converts all contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
     </labels>
@@ -748,7 +748,7 @@
         <fullName>stgHelpDefaultFacultyType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpDefaultFacultyType</shortDescription>
         <value>The default record type when creating Course Connections for a faculty member.</value>
     </labels>
@@ -756,7 +756,7 @@
         <fullName>stgHelpDefaultStudentType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpDefaultStudentType</shortDescription>
         <value>The default record type when creating Course Connections for active students.</value>
     </labels>
@@ -780,7 +780,7 @@
         <fullName>stgHelpEnableCourseConnections</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpEnableCourseConnections</shortDescription>
         <value>Course Connections connect a contact with a course offering. Enabling this checkbox lets you choose to create the connection for a student or faculty (the two default record types). After selecting this checkbox, you must set the Default Active Student Record Type and the Default Faculty Record Type. If enabling this feature for the first time, it is highly recommended that you run the Backfill in your org.</value>
     </labels>
@@ -828,7 +828,7 @@
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Administrative and Household Accounts when selected.</value>
     </labels>
@@ -852,7 +852,7 @@
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpOrgAccountAddressMgmt - DEPRECATED</shortDescription>
         <value>Enables Address management for Organizational Accounts when selected.</value>
     </labels>
@@ -884,7 +884,7 @@
         <fullName>stgHelpSimpleAddrChangeIsUpdate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpSimpleAddrChangeIsUpdate</shortDescription>
         <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
     </labels>
