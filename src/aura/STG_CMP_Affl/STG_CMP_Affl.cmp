@@ -11,10 +11,20 @@
     <div id="afflTabs" class="slds-tabs--scoped">
         <ul class="slds-tabs--scoped__nav" role="tablist">
             <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Settings" role="tab">
-                <ui:outputURL value="#" label="Settings" click="{!c.settsLinkClicked}" class="affl-settings-menulink" />
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputURL value="#" label="{!$Label.hed.stgTabSettings}" click="{!c.settsLinkClicked}" class="affl-settings-menulink" />
+                    <aura:set attribute="else">
+                        <ui:outputURL value="#" label="{!$Label.c.stgTabSettings}" click="{!c.settsLinkClicked}" class="affl-settings-menulink" />
+                    </aura:set>
+                </aura:if>
             </li>
             <li aura:id="mappingsTab" class="slds-tabs__item slds-text-heading--label" title="Affiliation Mappings" role="tab">
-                <ui:outputURL value="#" label="Affiliation Mappings" click="{!c.mappingsLinkClicked}" class="affl-mappings-menulink"/>
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputURL value="#" label="{!$Label.hed.stgTabAfflMappings}" click="{!c.mappingsLinkClicked}" class="affl-mappings-menulink"/>
+                    <aura:set attribute="else">
+                        <ui:outputURL value="#" label="{!$Label.c.stgTabAfflMappings}" click="{!c.mappingsLinkClicked}" class="affl-mappings-menulink"/>
+                    </aura:set>
+                </aura:if>
             </li>
         </ul>
         
@@ -23,28 +33,42 @@
                 <div class="slds-col slds-size--1-of-1">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.AfflProgEnrollDeleted + ' '}" />
-	                <aura:set attribute="else">
-	                    <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted + ' '}" />
-	                </aura:set>
-	                </aura:if>
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted + ' '}" />
+                    </aura:set>
+                    </aura:if>
                 </div>
                 <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
                     
-                    <div class="slds-col slds-size--1-of-2">Yes:</div> 
+                    <div class="slds-col slds-size--1-of-2">
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgDeleteRelatedAfflYes + ' '}" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgDeleteRelatedAfflYes + ' '}" />
+                        </aura:set>
+                        </aura:if>                        
+                    </div> 
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
                             <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="true" text="true" disabled="{!v.isView}" 
-                                     change="{!c.setAfflProgEnrollDel}" />
-                         <aura:set attribute="else">
-                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" text="true" disabled="{!v.isView}"
-                                     change="{!c.setAfflProgEnrollDel}" />
-                         </aura:set>
+                                         change="{!c.setAfflProgEnrollDel}" />
+                             <aura:set attribute="else">
+                                <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" text="true" disabled="{!v.isView}"
+                                         change="{!c.setAfflProgEnrollDel}" />
+                             </aura:set>
                          </aura:if>
                     </div>
                             
                     <div class="slds-col slds-size--1-of-2">
                          <div class="slds-col slds-grid slds-wrap">
-                            <div class="slds-col slds-size--1-of-2">No, just change Status to:</div>
+                            <div class="slds-col slds-size--1-of-2">
+                                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                    <ui:outputText value="{!$Label.hed.stgDeleteRelatedAfflNo + ' '}" />
+                                <aura:set attribute="else">
+                                    <ui:outputText value="{!$Label.c.stgDeleteRelatedAfflNo + ' '}" />
+                                </aura:set>
+                                </aura:if> 
+                            </div>
                             <div class="slds-col slds-size--1-of-2">
                                 <aura:if isTrue="{!v.isView}">
                                     <ui:outputText aura:id="ProgEnrollDel" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
@@ -84,11 +108,56 @@
                     label="HEDA documentation." target="_blank" />
             </div>
             <div class="slds-grid slds-wrap">
-                 <div class="slds-col slds-size--1-of-6"><strong>Account Record Type</strong></div>
-                 <div class="slds-col slds-size--1-of-6"><strong>Contact Primary Affl Field</strong></div>
-                 <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment</strong></div>
-                 <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment Status</strong></div>
-                 <div class="slds-col slds-size--1-of-6"><strong>Auto-Enrollment Role</strong></div>
+                <div class="slds-col slds-size--1-of-6">
+                    <strong>
+                       <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgColAccountRecordType + ' '}" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgColAccountRecordType + ' '}" />
+                            </aura:set>
+                        </aura:if> 
+                    </strong>
+                </div>
+                 <div class="slds-col slds-size--1-of-6">
+                    <strong>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgColContactPrimaryAfflField + ' '}" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgColContactPrimaryAfflField + ' '}" />
+                            </aura:set>
+                        </aura:if> 
+                    </strong>
+                </div>
+                 <div class="slds-col slds-size--1-of-6">
+                    <strong>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgAutoEnrollment + ' '}" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgAutoEnrollment + ' '}" />
+                            </aura:set>
+                        </aura:if>
+                    </strong>
+                </div>
+                 <div class="slds-col slds-size--1-of-6">
+                    <strong>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgAutoEnrollmentStatus + ' '}" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgAutoEnrollmentStatus + ' '}" />
+                            </aura:set>
+                        </aura:if>
+                    </strong>
+                </div>
+                 <div class="slds-col slds-size--1-of-6">
+                    <strong>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgAutoEnrollmentRole + ' '}" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgAutoEnrollmentRole + ' '}" />
+                            </aura:set>
+                        </aura:if>
+                    </strong>
+                </div>
                  <div class="slds-col slds-size--1-of-6">&nbsp;</div>
             
                  <ui:outputText value="{!v.noAfflMappings}"/>
@@ -116,15 +185,15 @@
                          <div class="slds-form-element">
                             <div class="slds-form-element__control">
                                 <label class="slds-checkbox">
-			                         <aura:if isTrue="{!v.isView}">
-			                             <ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
-			                         <aura:set attribute="else">
-			                             <ui:inputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
-			                             <span class="slds-checkbox--faux"></span>
-			                             <span class="slds-form-element__label"></span>
-			                         </aura:set>
-			                         </aura:if>
-			                     </label>
+                                     <aura:if isTrue="{!v.isView}">
+                                         <ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
+                                     <aura:set attribute="else">
+                                         <ui:inputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
+                                         <span class="slds-checkbox--faux"></span>
+                                         <span class="slds-form-element__label"></span>
+                                     </aura:set>
+                                     </aura:if>
+                                 </label>
                             </div>
                         </div>
                      </div>
@@ -148,8 +217,8 @@
                      </div>
                      <div class="slds-col slds-size--1-of-6">
                         <aura:if isTrue="{!!v.isView}">
-	                         <c:svgIcon category="utility" size="small" name="delete" class="slds-theme--inverse mapping-delete" 
-	                             pressIcon="{!c.deleteAfflMappingRow}" id="{!afflMapping.Id}" position="{!position}" />
+                             <c:svgIcon category="utility" size="small" name="delete" class="slds-theme--inverse mapping-delete" 
+                                 pressIcon="{!c.deleteAfflMappingRow}" id="{!afflMapping.Id}" position="{!position}" />
                          </aura:if>
                      </div>
                  </aura:iteration>
@@ -157,25 +226,50 @@
             <div class="newafflmapping">
                 <div aria-labelledby="newafflmappingform">
                     <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
-                        <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">New Affiliation Mapping</legend>
+                        <legend id="newafflmappingform" class="slds-text-heading--medium slds-p-vertical--medium">
+                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                <ui:outputText value="{!$Label.hed.stgNewAfflMapping}" />
+                                <aura:set attribute="else">
+                                    <ui:outputText value="{!$Label.c.stgNewAfflMapping}" />
+                                </aura:set>
+                            </aura:if>
+                        </legend>
 
                         <div class="slds-form-element__group">
                         <div class="slds-form-element__row">
 
                             <div class="slds-form-element slds-size--1-of-6">
                                 <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="accRecType" class="slds-m-right--medium acc-rec-type-new slds-input" label="Account Record Type" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                        <ui:inputText aura:id="accRecType" class="slds-m-right--medium acc-rec-type-new slds-input" label="{!$Label.hed.stgColAccountRecordType}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                        <aura:set attribute="else">
+                                            <ui:inputText aura:id="accRecType" class="slds-m-right--medium acc-rec-type-new slds-input" label="{!$Label.c.stgColAccountRecordType}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                        </aura:set>
+                                    </aura:if>
                                 </div>
                             </div>
 
                             <div class="slds-form-element slds-size--1-of-6">
                                 <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="primaryField" class="slds-m-right--medium primary-affl-field-new slds-input" label="Primary Affl Field" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                        <ui:inputText aura:id="primaryField" class="slds-m-right--medium primary-affl-field-new slds-input" label="{!$Label.c.stgTabPrimaryAfflField}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                        <aura:set attribute="else">
+                                            <ui:inputText aura:id="primaryField" class="slds-m-right--medium primary-affl-field-new slds-input" label="{!$Label.c.stgTabPrimaryAfflField}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                        </aura:set>
+                                    </aura:if>                                    
                                 </div>
                             </div>
 
                             <div class="slds-form-element slds-size--1-of-6">
-                                <label class="slds-form-element__label" for="autoEnroll">&nbsp;Auto-Enrollment</label><br />
+                                <label class="slds-form-element__label" for="autoEnroll">&nbsp;
+                                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                        <ui:outputText value="{!$Label.hed.stgAutoEnrollment}" />
+                                        <aura:set attribute="else">
+                                            <ui:outputText value="{!$Label.c.stgAutoEnrollment}" />
+                                        </aura:set>
+                                    </aura:if>
+                                </label>
+                                <br />
                                 <div class="slds-form-element__control">
                                      <label class="slds-checkbox">
                                          <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium auto-enroll-checkbox"  />
@@ -187,20 +281,36 @@
 
                             <div class="slds-form-element slds-size--1-of-6">
                                 <div class="slds-form-element__control">
-                                     <ui:inputText aura:id="autoEnrollStatus" class="slds-m-right--medium auto-enroll-status-new slds-input" label="Status" labelClass="slds-form-element__label" />
+                                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                        <ui:inputText aura:id="autoEnrollStatus" class="slds-m-right--medium auto-enroll-status-new slds-input" label="{!$Label.hed.stgColStatus}" labelClass="slds-form-element__label" />
+                                        <aura:set attribute="else">
+                                            <ui:inputText aura:id="autoEnrollStatus" class="slds-m-right--medium auto-enroll-status-new slds-input" label="{!$Label.c.stgColStatus}" labelClass="slds-form-element__label" />
+                                        </aura:set>
+                                    </aura:if>                                     
                                 </div>
                             </div>
 
                             <div class="slds-form-element slds-size--1-of-6">
                                 <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="autoEnrollRole" label="Role" labelClass="slds-form-element__label" class="auto-enroll-role-new slds-input" />
+                                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                        <ui:inputText aura:id="autoEnrollRole" label="{!$Label.hed.stgColRole}" labelClass="slds-form-element__label" class="auto-enroll-role-new slds-input" />
+                                        <aura:set attribute="else">
+                                            <ui:inputText aura:id="autoEnrollRole" label="{!$Label.c.stgColRole}" labelClass="slds-form-element__label" class="auto-enroll-role-new slds-input" />
+                                        </aura:set>
+                                    </aura:if>                                     
                                 </div>
                             </div>
                         </div>
                         </div>
 
-                        <ui:button aura:id="newAfflMappingBtn" class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" 
-                                     press="{!c.newAfflMapping}" disabled="true">Add Mapping</ui:button>
+                        <ui:button aura:id="newAfflMappingBtn" class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" press="{!c.newAfflMapping}" disabled="true">
+                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                <ui:outputText value="{!$Label.hed.stgBtnAddMapping}" />
+                                <aura:set attribute="else">
+                                    <ui:outputText value="{!$Label.c.stgBtnAddMapping}" />
+                                </aura:set>
+                            </aura:if>
+                        </ui:button>
                     </fieldset>
                 </div>
             </div>

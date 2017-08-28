@@ -10,7 +10,14 @@
     <aura:attribute name="householdRecTypeId" type="String" />
 
     <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size--1-of-2">Disable Preferred Email enforcement:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgDisablePreferredEmailEnforcement}"/>
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.stgDisablePreferredEmailEnforcement}"/>
+                </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
@@ -32,28 +39,60 @@
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                 <ui:outputText value="{!$Label.hed.stgHelpContactPreferredEmail}" class="slds-text-body--small" />
-            <aura:set attribute="else">
-                <ui:outputText value="{!$Label.c.stgHelpContactPreferredEmail}" class="slds-text-body--small" />
-            </aura:set>
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.stgHelpContactPreferredEmail}" class="slds-text-body--small" />
+                </aura:set>
             </aura:if>
         </div>
 
         <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
-            <h2>Preferred Email Data Cleanup:</h2>
+            <h2>
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.stgPreferredEmailDataCleanup}" class="slds-text-body--small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgPreferredEmailDataCleanup}" class="slds-text-body--small" />
+                    </aura:set>
+                </aura:if>
+            </h2>
             <div class="slds-text-body--small">
-                <p>Run this data cleanup process after you've enabled the Preferred Email requirement for the first time or after a period of not enforcing the requirement.</p>
-                <p>For existing Contacts who haven't specified a Preferred Email, the cleanup ensures that one of the Contact's standard or custom email addresses is set as the Preferred Email.</p>
+                <p>
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgRunCleanUpEnableFirstTime}" class="slds-text-body--small" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgRunCleanUpEnableFirstTime}" class="slds-text-body--small" />
+                        </aura:set>
+                    </aura:if>
+                </p>
+                <p>
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgHelpEnsureExistContactPreferEmail}" class="slds-text-body--small" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgHelpEnsureExistContactPreferEmail}" class="slds-text-body--small" />
+                        </aura:set>
+                    </aura:if>                    
+                </p>
             </div>
         </div>
         <div class="slds-col slds-size--1-of-2">
             <lightning:button variant="brand" label="Run Cleanup" iconName="utility:copy" iconPosition="left" onclick="{! c.runCleanUp }" aura:id="cleanUpBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Email_Enforcement__c , v.isView), !v.isView)}"  />
             <br />
-            <ui:outputText aura:id="cleanUpMsg" value="The Cleanup was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText aura:id="cleanUpMsg" value="{!$Label.hed.stgCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+                <aura:set attribute="else">
+                    <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+                </aura:set>
+            </aura:if>
         </div>
 
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
         
-        <div class="slds-col slds-size--1-of-2">Contact Multi-Addresses Enabled:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgContactMultiAddressesEnabled}" class="slds-text-body--small" />
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.stgContactMultiAddressesEnabled}" class="slds-text-body--small" />
+                </aura:set>
+            </aura:if></div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
@@ -81,7 +120,14 @@
             </aura:if>
         </div>
 
-        <div class="slds-col slds-size--1-of-2">Account record type that supports Household Addresses:</div>
+        <div class="slds-col slds-size--1-of-2">            
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgAccountRecordTypeSupportsHHAddress}" class="slds-text-body--small" />
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.stgAccountRecordTypeSupportsHHAddress}" class="slds-text-body--small" />
+                </aura:set>
+            </aura:if>
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <c:CMP_RecTypes_Dropdown class="hh-addresses-account-record-type"
               setting="{!v.hierarchySettings.Household_Addresses_RecType__c}"
@@ -102,7 +148,14 @@
         </div>
 
         <div class="slds-col slds-size--1-of-2">
-            <div>Account Types with Multi-Addresses Enabled:</div>
+            <div>            
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.stgAccountTypesMultiAddressesEnabled}" class="slds-text-body--small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgAccountTypesMultiAddressesEnabled}" class="slds-text-body--small" />
+                    </aura:set>
+                </aura:if>
+            </div>
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                 <ui:outputText value="{!$Label.hed.stgHelpAddressAccRecType}" class="slds-text-body--small" />
             <aura:set attribute="else">
@@ -116,7 +169,14 @@
                             class="multi-addresses-enabled" />
         </div>
 
-        <div class="slds-col slds-size--1-of-2">Simple Address Change Treated as Update:</div>
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.stgSimpleAddressChangeUpdate}" class="slds-text-body--small" />
+                <aura:set attribute="else">
+                    <ui:outputText value="{!$Label.c.stgSimpleAddressChangeUpdate}" class="slds-text-body--small" />
+                </aura:set>
+            </aura:if>      
+        </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
@@ -145,8 +205,22 @@
         </div>
 
         <div class="slds-col slds-size--1-of-2">
-            <div>Account Types without Contacts to Delete:</div>
-            <div class="slds-text-body--small">Record Types of those Accounts that will be automatically deleted if all their children Contacts have been deleted.</div>
+            <div>
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.stgAccoutTypesWithoutContactsDelete}" class="slds-text-body--small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgAccoutTypesWithoutContactsDelete}" class="slds-text-body--small" />
+                    </aura:set>
+                </aura:if> 
+            </div>
+            <div class="slds-text-body--small">
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.stgHelpAccoutsDeletedIfChildContactsDeleted}" class="slds-text-body--small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgHelpAccoutsDeletedIfChildContactsDeleted}" class="slds-text-body--small" />
+                    </aura:set>
+                </aura:if> 
+            </div>
         </div>
         <div class="slds-col slds-size--1-of-2">
           <c:CMP_RecTypes setting="{!v.hierarchySettings.Accounts_to_Delete__c}"
@@ -157,29 +231,97 @@
         <hr />
 
         <div class="slds-col slds-size--1-of-2 slds-p-top--large slds-m-top--large slds-border--top slds-p-right--xx-large">
-            <h2>Ethnicity and Race Backfill for Contacts</h2>
+            <h2>
+                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText value="{!$Label.hed.stgEthnicityRaceBackfillContacts}" class="slds-text-body--small" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgEthnicityRaceBackfillContacts}" class="slds-text-body--small" />
+                    </aura:set>
+                </aura:if> 
+            </h2>
             <div class="slds-text-body--small">
 
-                <p>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. If the value in the Contact's Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</p>
+                <p>
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgHelpEthnicityRaceBackfill}" class="slds-text-body--small" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgHelpEthnicityRaceBackfill}" class="slds-text-body--small" />
+                        </aura:set>
+                    </aura:if>
+                </p>
                 <br />
-                <h3><strong>Before you run the Backfill:</strong></h3>
+                <h3><strong>
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgBeforeRunBackfill}" class="slds-text-body--small" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgBeforeRunBackfill}" class="slds-text-body--small" />
+                        </aura:set>
+                    </aura:if>
+                </strong></h3>
                 <ul class="slds-list--dotted">
-                    <li>Add "Not Hispanic or Latino" as a picklist value to the Ethnicity field if necessary.</li>
-                    <li>Add "Hispanic or Latino" as a picklist value to the Ethnicity field if necessary.</li>
+                    <li>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgAddNotHispanicOrLatinoPicklistValue}" class="slds-text-body--small" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgAddNotHispanicOrLatinoPicklistValue}" class="slds-text-body--small" />
+                            </aura:set>
+                        </aura:if>
+                    </li>
+                    <li>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgAddHispanicOrLatinoPicklistValue}" class="slds-text-body--small" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgAddHispanicOrLatinoPicklistValue}" class="slds-text-body--small" />
+                            </aura:set>
+                        </aura:if>
+                    </li>
                 </ul>
                 <br />
-                <h3><strong>After you run the Backfill:</strong></h3>
+                <h3><strong>
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgAfterRunBackfill}" class="slds-text-body--small" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgAfterRunBackfill}" class="slds-text-body--small" />
+                        </aura:set>
+                    </aura:if>
+                </strong></h3>
                 <ul class="slds-list--dotted">
-                    <li>If your org previously added custom picklist values to the Ethnicity field that you want to be available in the Race field, copy those custom picklist values to the Race field.</li>
-                    <li>Remove all picklist values from the Ethnicity field except for "Hispanic or Latino" and "Not Hispanic or Latino." We recommend that you replace each removed value with one of the remaining valid values, rather than deleting them outright from existing records. As of HEDA version 1.28, the only valid Ethnicity values are "Not Hispanic or Latino" and "Hispanic or Latino."</li>
-                    <li>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</li>
+                    <li>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgHelpIfCustomValuesEthnicityCopyRace}" class="slds-text-body--small" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgHelpIfCustomValuesEthnicityCopyRace}" class="slds-text-body--small" />
+                            </aura:set>
+                        </aura:if>
+                    </li>
+                    <li>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino}" class="slds-text-body--small" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino}" class="slds-text-body--small" />
+                            </aura:set>
+                        </aura:if>
+                    </li>
+                    <li>
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgHelpUpdateReportIfDependenciesEthnicity}" class="slds-text-body--small" />
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgHelpUpdateReportIfDependenciesEthnicity}" class="slds-text-body--small" />
+                            </aura:set>
+                        </aura:if>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="slds-col slds-size--1-of-2 slds-p-top--large slds-m-top--large slds-border--top">
             <lightning:button variant="brand" label="Run Backfill" iconName="utility:copy" iconPosition="left" onclick="{! c.runBackfill }" aura:id="ethnicRaceBtn" />
             <br />
-            <ui:outputText aura:id="ethnicRaceMsg" value="The backfill was queued successfully. An email will be sent at the completion of the batch." class="slds-text-color--weak slds-hide" />
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    <ui:outputText aura:id="ethnicRaceMsg" value="{!$Label.hed.stgBackfillQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+                    <aura:set attribute="else">
+                        <ui:outputText aura:id="ethnicRaceMsg" value="{!$Label.c.stgBackfillQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+                    </aura:set>
+            </aura:if>
         </div>
         
     </div>
