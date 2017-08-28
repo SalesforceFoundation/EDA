@@ -15,19 +15,41 @@
 	<div id="relTabs" class="slds-tabs--scoped">
 		<ul class="slds-tabs--scoped__nav" role="tablist">
 			<li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Settings" role="tab">
-				<ui:outputURL value="#" label="Settings" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+					<ui:outputURL value="#" label="{!$Label.hed.stgTabSettings}" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+                    <aura:set attribute="else">
+						<ui:outputURL value="#" label="{!$Label.c.stgTabSettings}" class="rel-settings-menulink" click="{!c.settsLinkClicked}" />
+                    </aura:set>
+                </aura:if>
 			</li>
 			<li aura:id="recSettsTab" class="slds-tabs__item slds-text-heading--label" title="Reciprocal Settings" role="tab">
-				<ui:outputURL value="#" label="Reciprocal Settings" class="rel-recip-settings-menulink"  click="{!c.recSettsLinkClicked}" />
+				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+					<ui:outputURL value="#" label="{!$Label.hed.stgTabReciprocalSettings}" class="rel-recip-settings-menulink"  click="{!c.recSettsLinkClicked}" />
+                    <aura:set attribute="else">
+						<ui:outputURL value="#" label="{!$Label.c.stgTabReciprocalSettings}" class="rel-recip-settings-menulink"  click="{!c.recSettsLinkClicked}" />
+                    </aura:set>
+                </aura:if>
 			</li>
 			<li aura:id="autocTab" class="slds-tabs__item slds-text-heading--label" title="Autocreation" role="tab">
-				<ui:outputURL value="#" label="Autocreation" class="rel-autoc-settings-menulink" click="{!c.autocLinkClicked}" />
+				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                	<ui:outputURL value="#" label="{!$Label.hed.stgTabAutocreation}" class="rel-autoc-settings-menulink" click="{!c.autocLinkClicked}" />
+                    <aura:set attribute="else">
+                		<ui:outputURL value="#" label="{!$Label.c.stgTabAutocreation}" class="rel-autoc-settings-menulink" click="{!c.autocLinkClicked}" />
+                    </aura:set>
+                </aura:if>
 			</li>
 		</ul>
 		
 		<div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
 			<div class="slds-grid slds-wrap">
-			    <div class="slds-col slds-size--1-of-2">Reciprocal Method:</div>
+			    <div class="slds-col slds-size--1-of-2">
+			    	<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgTitleReciMethod}"/>
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgTitleReciMethod}"/>
+                        </aura:set>
+                    </aura:if>
+                </div>
 			    <div class="slds-col slds-size--1-of-2">
 			        <ui:outputText value="{!v.hierarchySettings.Reciprocal_Method__c}" class="{!(v.isView ? '':'slds-hide ') + 'reciprocal-method'}" />
               <ui:inputSelect aura:id="reciprocalMethodSelect" change="{!c.changeReciprocalMethodStg}" class="{!(v.isView ? 'slds-hide ':'') + 'reciprocal-method'}">
@@ -45,7 +67,14 @@
 	            </aura:if>
           </div>
 			    <div class="slds-col slds-grid slds-m-top--medium">
-				    <div class="slds-col slds-size--1-of-2">Allow Auto-Created Duplicate Relations:</div>
+				    <div class="slds-col slds-size--1-of-2">			    	
+				    	<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgTitleAllowAutocreatedDuplicateRel}"/>
+                        	<aura:set attribute="else">
+                            	<ui:outputText value="{!$Label.c.stgTitleAllowAutocreatedDuplicateRel}"/>
+                        	</aura:set>
+                    	</aura:if>
+                	</div>
 				    <div class="slds-col slds-size--1-of-2">
 				         <div class="slds-form-element">
 			                 <div class="slds-form-element__control">
@@ -84,11 +113,56 @@
                 </aura:if>
             </div>
 			<div class="slds-grid slds-wrap">
-			    <div class="slds-col slds-size--1-of-6"><strong>Name</strong></div>
-			    <div class="slds-col slds-size--1-of-6"><strong>Female</strong></div>
-			    <div class="slds-col slds-size--1-of-6"><strong>Male</strong></div>
-			    <div class="slds-col slds-size--1-of-6"><strong>Neutral</strong></div>
-			    <div class="slds-col slds-size--1-of-6"><strong>Active</strong></div>
+			    <div class="slds-col slds-size--1-of-6">
+			    	<strong>			    	
+			    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgTabName}"/>
+	                        <aura:set attribute="else">
+	                            <ui:outputText value="{!$Label.c.stgTabName}"/>
+	                        </aura:set>
+                    	</aura:if>
+                	</strong>
+                </div>
+			    <div class="slds-col slds-size--1-of-6">
+			    	<strong>
+			    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgColFemale}"/>
+	                        <aura:set attribute="else">
+	                            <ui:outputText value="{!$Label.c.stgColFemale}"/>
+	                        </aura:set>
+                    	</aura:if>
+                    </strong>
+                </div>
+			    <div class="slds-col slds-size--1-of-6">
+			    	<strong>
+			    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgColMale}"/>
+	                        <aura:set attribute="else">
+	                            <ui:outputText value="{!$Label.c.stgColMale}"/>
+	                        </aura:set>
+                    	</aura:if>
+                    </strong>
+                </div>
+			    <div class="slds-col slds-size--1-of-6">
+			    	<strong>
+			    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgColNeutral}"/>
+	                        <aura:set attribute="else">
+	                            <ui:outputText value="{!$Label.c.stgColNeutral}"/>
+	                        </aura:set>
+                    	</aura:if>
+                    </strong>
+                </div>
+			    <div class="slds-col slds-size--1-of-6">
+			    	<strong>
+			    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgColActive}"/>
+	                        <aura:set attribute="else">
+	                            <ui:outputText value="{!$Label.c.stgColActive}"/>
+	                        </aura:set>
+                    	</aura:if>
+                    </strong>
+                </div>
 			    <div class="slds-col slds-size--1-of-6">&nbsp;</div>
 			
 			    <ui:outputText value="{!v.noRecSettings}"/>
@@ -157,36 +231,70 @@
 			<div class="newrecsetting">
 			  <div aria-labelledby="newrecsettingform">
 			    <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
-			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Reciprocal Setting</legend>
+			      <legend id="newrecsettingform" class="slds-text-heading--medium slds-p-vertical--medium">			    		
+			      		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        	<ui:outputText value="{!$Label.hed.stgTitleNewReciSetting}"/>
+	                        <aura:set attribute="else">
+	                            <ui:outputText value="{!$Label.c.stgTitleNewReciSetting}"/>
+	                        </aura:set>
+                    	</aura:if></legend>
 	                <div class="slds-form-element__group">
 	                <div class="slds-form-element__row">
 
 						<div class="slds-form-element slds-size--1-of-6">
-				          <div class="slds-form-element__control">
-				               <ui:inputText aura:id="newName" class="slds-m-right--medium new-rec-settg-name slds-input" label="Name" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+				          	<div class="slds-form-element__control">
+      				    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+			               			<ui:inputText aura:id="newName" class="slds-m-right--medium new-rec-settg-name slds-input" label="{!$Label.hed.stgTabName}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>		
+			               			<aura:set attribute="else">
+			               				<ui:inputText aura:id="newName" class="slds-m-right--medium new-rec-settg-name slds-input" label="{!$Label.c.stgTabName}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>	
+			           				</aura:set>
+	                    		</aura:if>
 				          </div>
 						</div>
 
 						<div class="slds-form-element slds-size--1-of-6">
-	                      <div class="slds-form-element__control">
-	                          <ui:inputText aura:id="newFemale" class="slds-m-right--medium new-rec-settg-female slds-input" label="Female" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+	                      	<div class="slds-form-element__control">      				    		
+	                      		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+									<ui:inputText aura:id="newFemale" class="slds-m-right--medium new-rec-settg-female slds-input" label="{!$Label.hed.stgColFemale}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>			               	
+									<aura:set attribute="else">
+										<ui:inputText aura:id="newFemale" class="slds-m-right--medium new-rec-settg-female slds-input" label="{!$Label.c.stgColFemale}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>  
+									</aura:set>
+	                    		</aura:if>
+	                      	</div>
+						</div>
+
+						<div class="slds-form-element slds-size--1-of-6">
+	                      	<div class="slds-form-element__control">	                      		
+	                      		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+									<ui:inputText aura:id="newMale" class="slds-m-right--medium new-rec-settg-male slds-input" label="{!$Label.hed.stgColMale}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>		
+									<aura:set attribute="else">
+										<ui:inputText aura:id="newMale" class="slds-m-right--medium new-rec-settg-male slds-input" label="{!$Label.c.stgColMale}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+									</aura:set>
+	                    		</aura:if>
 	                      </div>
 						</div>
 
 						<div class="slds-form-element slds-size--1-of-6">
-	                      <div class="slds-form-element__control">
-	                          <ui:inputText aura:id="newMale" class="slds-m-right--medium new-rec-settg-male slds-input" label="Male" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
-	                      </div>
+	                      	<div class="slds-form-element__control">
+	                      		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+	                          		<ui:inputText aura:id="newNeutral" class="slds-m-right--medium new-rec-settg-neutral slds-input" label="{!$Label.hed.stgColNeutral}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+									<aura:set attribute="else">
+	                          			<ui:inputText aura:id="newNeutral" class="slds-m-right--medium new-rec-settg-neutral slds-input" label="{!$Label.c.stgColNeutral}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
+									</aura:set>
+	                    		</aura:if>	                      	
+	                      	</div>
 						</div>
 
 						<div class="slds-form-element slds-size--1-of-6">
-	                      <div class="slds-form-element__control">
-	                          <ui:inputText aura:id="newNeutral" class="slds-m-right--medium new-rec-settg-neutral slds-input" label="Neutral" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newReciprocalStgKeyup}"/>
-	                      </div>
-						</div>
-
-						<div class="slds-form-element slds-size--1-of-6">
-	                      <label class="slds-form-element__label" for="Active">&nbsp;Active:</label><br />
+	                        <label class="slds-form-element__label" for="Active">&nbsp;			    		
+	                      		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+	                        		<ui:outputText value="{!$Label.hed.stgColActive}"/>
+		                        	<aura:set attribute="else">
+		                            	<ui:outputText value="{!$Label.c.stgColActive}"/>
+		                        	</aura:set>
+                    			</aura:if>
+                    	 	</label>
+                    	 	<br />
 	                      <div class="slds-form-element__control">
 	                          <label class="slds-checkbox">
 		                          <ui:inputCheckbox aura:id="newActive" class="new-rec-settg-active" />
@@ -199,7 +307,14 @@
 				    </div>
 					</div>
 			        <ui:button aura:id="newReciprocalStgBtn" class="slds-button slds-button--brand slds-m-top--medium add-rec-setting" 
-			                   press="{!c.newReciprocalStg}" disabled="true">Add Setting</ui:button>
+			                   press="{!c.newReciprocalStg}" disabled="true">
+			                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+	                        		<ui:outputText value="{!$Label.hed.stgBtnAddSetting}"/>
+		                        	<aura:set attribute="else">
+		                            	<ui:outputText value="{!$Label.c.stgBtnAddSetting}"/>
+		                        	</aura:set>
+                    			</aura:if>
+                    </ui:button>
 			    </fieldset>
 			  </div>
             </div>
@@ -215,10 +330,46 @@
                 </aura:if>
             </div>
 			<div class="slds-grid slds-wrap"> 
-			    <div class="slds-col slds-size--1-of-5"><strong>Object</strong></div>              
-                <div class="slds-col slds-size--1-of-5"><strong>Field</strong></div>
-                <div class="slds-col slds-size--1-of-5"><strong>Relationship Type</strong></div>
-                <div class="slds-col slds-size--1-of-5"><strong>Campaign Types</strong></div>
+			    <div class="slds-col slds-size--1-of-5">
+			    	<strong>
+			    		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    		<ui:outputText value="{!$Label.hed.stgColObject}"/>
+                        	<aura:set attribute="else">
+                            	<ui:outputText value="{!$Label.c.stgColObject}"/>
+                        	</aura:set>
+            			</aura:if>
+            		</strong>
+            	</div>              
+                <div class="slds-col slds-size--1-of-5">
+                	<strong>
+                		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    		<ui:outputText value="{!$Label.hed.stgColField}"/>
+                        	<aura:set attribute="else">
+                            	<ui:outputText value="{!$Label.c.stgColField}"/>
+                        	</aura:set>
+            			</aura:if>
+            		</strong>
+            	</div>
+                <div class="slds-col slds-size--1-of-5">
+                	<strong>
+                		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    		<ui:outputText value="{!$Label.hed.stgColRelType}"/>
+                        	<aura:set attribute="else">
+                            	<ui:outputText value="{!$Label.c.stgColRelType}"/>
+                        	</aura:set>
+            			</aura:if>
+            		</strong>
+            	</div>
+                <div class="slds-col slds-size--1-of-5">
+                	<strong>
+                		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    		<ui:outputText value="{!$Label.hed.stgColCampTypes}"/>
+                        	<aura:set attribute="else">
+                            	<ui:outputText value="{!$Label.c.stgColCampTypes}"/>
+                        	</aura:set>
+            			</aura:if>
+            		</strong>
+            	</div>
                 <div class="slds-col slds-size--1-of-5">&nbsp;</div>
             
                 <ui:outputText value="{!v.noAutoCreateSettings}"/>
@@ -271,35 +422,69 @@
             <div class="newautocsetting">
               <div aria-labelledby="newautocsettingform">
                 <fieldset class="slds-box slds-form--compound slds-theme--default slds-container--medium">
-                  <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">New Auto-Create Setting</legend>
+                  <legend id="newautocsettingform" class="slds-text-heading--medium slds-p-vertical--medium">
+                  		<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                    		<ui:outputText value="{!$Label.hed.stgTitleNewAutocreateSetting}"/>
+                        	<aura:set attribute="else">
+                            	<ui:outputText value="{!$Label.c.stgTitleNewAutocreateSetting}"/>
+                        	</aura:set>
+            			</aura:if>
+            		</legend>
 
                     <div class="slds-form-element__group">
                     <div class="slds-form-element__row">
                         <div class="slds-form-element slds-size--1-of-6">
                           <div class="slds-form-element__control">
-                            <ui:inputText aura:id="newObject" class="slds-input slds-m-right--medium new-autoc-settg-object" label="Object" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                          	<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            	<ui:inputText aura:id="newObject" class="slds-input slds-m-right--medium new-autoc-settg-object" label="{!$Label.hed.stgColObject}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />                  
+	                            <aura:set attribute="else">
+	                            	<ui:inputText aura:id="newObject" class="slds-input slds-m-right--medium new-autoc-settg-object" label="{!$Label.c.stgColObject}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" /> 
+	                        	</aura:set>
+            				</aura:if>
                           </div>
                         </div>
                         <div class="slds-form-element slds-size--1-of-6">
                           <div class="slds-form-element__control">
-                            <ui:inputText aura:id="newField" class="slds-input slds-m-right--medium new-autoc-settg-field" label="Field" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            	<ui:inputText aura:id="newField" class="slds-input slds-m-right--medium new-autoc-settg-field" label="{!$Label.hed.stgColField}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+	                            <aura:set attribute="else">
+                            		<ui:inputText aura:id="newField" class="slds-input slds-m-right--medium new-autoc-settg-field" label="{!$Label.c.stgColField}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+	                        	</aura:set>
+            				</aura:if>
                           </div>
                         </div>
                         <div class="slds-form-element slds-size--1-of-6">
                           <div class="slds-form-element__control">
-                            <ui:inputText aura:id="newRelType" class="slds-input slds-m-right--medium new-autoc-settg-type" label="Relationship Type" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+								<ui:inputText aura:id="newRelType" class="slds-input slds-m-right--medium new-autoc-settg-type" label="{!$Label.hed.stgColRelType}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />	         
+								<aura:set attribute="else">
+									<ui:inputText aura:id="newRelType" class="slds-input slds-m-right--medium new-autoc-settg-type" label="{!$Label.c.stgColRelType}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />	   	
+								</aura:set>
+            				</aura:if>
                           </div>
                         </div>
                         <div class="slds-form-element slds-size--1-of-6">
                           <div class="slds-form-element__control">
-                            <ui:inputTextArea aura:id="newCpgTypes" class="slds-input new-autoc-settg-campaign" label="Campaign Types" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />
+                          	<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+								<ui:inputTextArea aura:id="newCpgTypes" class="slds-input new-autoc-settg-campaign" label="{!$Label.hed.stgColCampTypes}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />					
+								<aura:set attribute="else">
+									<ui:inputTextArea aura:id="newCpgTypes" class="slds-input new-autoc-settg-campaign" label="{!$Label.c.stgColCampTypes}" labelClass="slds-form-element__label" updateOn="keyup" keyup="{!c.newAutoCreateKeyup}" required="true" requiredIndicatorClass="slds-required" />				
+								</aura:set>
+            				</aura:if>
                           </div>
                         </div>
 
                     </div>
                     </div>
                     <ui:button aura:id="newAutoCreateStgBtn" class="slds-button slds-button--brand slds-m-top--medium new-autoc-sttg-bttn" 
-                               press="{!c.newAutoCreateStg}" disabled="true">Add Setting</ui:button>
+                               press="{!c.newAutoCreateStg}" disabled="true">
+                       <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgBtnAddSetting}"/>
+                            <aura:set attribute="else">
+                                <ui:outputText value="{!$Label.c.stgBtnAddSetting}"/>
+                            </aura:set>
+                        </aura:if>
+                    </ui:button>
                 </fieldset>
               </div>
             </div>
