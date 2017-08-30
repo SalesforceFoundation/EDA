@@ -30,7 +30,7 @@ tasks:
 
     execute_install_apex:
         description: Runs most of the install script methods from STG_InstallScript class
-        class_path: cumulusci.tasks.anonymous_apex.AnonymousApexTask
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
                 UTIL_CustomSettingsFacade.getSettings();
