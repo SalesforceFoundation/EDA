@@ -130,7 +130,8 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 
 	        // AFTER INSERT
 	        if (triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert)) {
-	            for (SObject so : listNew) {
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert, true);
+                for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
                     if (!addressIdsInserted.contains(addr.Id)){
     		            // a new address that is marked default or seasonal needs to propagate to the parent Account
@@ -145,7 +146,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	                processDmlErrors(dmlWrapper, mapParentIdAddr);
 	            }
-
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert, false);
 	            // enforce address records created only as children of parents
 	            verifyAddrAccContactChildOnly((List<Address__c>)listNew);
 	            // enforce Seasonal Addresses don't overlap
@@ -153,12 +154,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	            // delete empty addresses
 	            deleteEmptyAddrs(listNew);
 
-                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert, true);
 	        }
 
 	        // AFTER UPDATE
 	        if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update)) {
-	            Integer i = 0;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update, true);    
+                Integer i = 0;
 	            for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
 	                Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
@@ -185,12 +186,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	                processDmlErrors(dmlWrapper, mapParentIdAddr);
 	            }
-
-                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update, true);
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update, false);                    
 	        }
 
 	        // AFTER DELETE
 	        if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete)) {
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete, true);
 	            Integer i = 0;
 	            for (SObject addrOld : listOld) {
 		            // first go through all new/modified Addresses, and collect the list of parents to consider.
@@ -208,8 +209,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	               refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	               processDmlErrors(dmlWrapper, mapParentIdAddr);
 	            }
-
-                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete, true);
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete, false);
 	        }
         }
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
@@ -218,12 +218,6 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert, false);
         }else if (triggerAction == TDTM_Runnable.Action.BeforeUpdate){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update, false);
-        }else if (triggerAction == TDTM_Runnable.Action.AfterInsert){
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert, false);
-        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update, false);
-        }else if (triggerAction == TDTM_Runnable.Action.AfterDelete){
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete, false);
         }
         return dmlWrapper;
     }
