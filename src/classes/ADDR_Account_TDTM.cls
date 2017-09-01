@@ -89,9 +89,9 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     	                && UTIL_CustomSettingsFacade.getSettings().Accounts_Addresses_Enabled__c.contains(acc.RecordTypeId)) {
     	                    if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
     	                        newAddrInfoAccs.add(acc);
+                                accountIdsInserted.add(acc.Id);
     	                    }
     	                }
-                        accountIdsInserted.add(acc.Id);
                     }
 	                i++;
 		        }
@@ -118,9 +118,9 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     	                    // if the account address info has changed  
     	                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
     	                        newAddrInfoAccs.add(acc);
+                                accountIdsUpdated.add(acc.Id);
     	                    }
     	                }
-                        accountIdsUpdated.add(acc.Id);
                     }
 	            i++;
 	            }

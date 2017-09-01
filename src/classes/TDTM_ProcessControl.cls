@@ -53,8 +53,9 @@ public class TDTM_ProcessControl {
         ADDR_Contact_TDTM_After_Update,
         AFFL_AccChange_TDTM,
         AFFL_ContactChange_TDTM,
-        AFFL_MultiRecordType_TDTM_Before,
-        AFFL_MultiRecordType_TDTM_After,
+        AFFL_MultiRecordType_TDTM_Before_Insert,
+        AFFL_MultiRecordType_TDTM_After_Insert,
+        AFFL_MultiRecordType_TDTM_After_Update,
         COFF_Affiliation_TDTM,
         CON_Preferred_TDTM,
         CON_PrimaryAffls_TDTM_After_Insert,
@@ -94,6 +95,5 @@ public class TDTM_ProcessControl {
     */
     public static void resetRecursionFlag(registeredTrigger f){
        recursionMap.put(f, 0);
-    }        
-
+    }  
 }

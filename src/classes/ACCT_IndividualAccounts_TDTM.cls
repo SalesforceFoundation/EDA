@@ -178,7 +178,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         	UTIL_Debug.debug('****Number of contacts that need accounts created: ' + listContactNeedAccount.size());
             //add the newly created or updated Contacts that need a new individual account
             insertContactAccount(listContactNeedAccount, dmlWrapper);
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
         }
         if (mapAccountIdContactId.size() > 0) {
             //update Accounts that have newly created Contacts connected to them
@@ -444,9 +443,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         // update any HH accounts that just lost a contact
         if (listAccountIdUpdate.size() > 0)
             updateParentAcc(listAccountIdUpdate, dmlWrapper);
-
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);
-
     }
 
     /*******************************************************************************************************

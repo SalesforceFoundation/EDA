@@ -48,8 +48,7 @@ private class ACCT_IndividualAccounts_TEST {
         // turn off all TDTM triggers for this component
         TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert);
         TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update);
-        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete);
-    
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete);               
 
         Contact con = new Contact(
             FirstName='Test',
@@ -160,7 +159,7 @@ private class ACCT_IndividualAccounts_TEST {
         Contact con2 = new Contact(FirstName='John', LastName='Smith', AccountId = accountId);
 
         Test.startTest();
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before, false);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
         insert con2;
         Test.stopTest();
 

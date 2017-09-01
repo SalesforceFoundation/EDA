@@ -95,7 +95,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>();
 
 	        // BEFORE INSERT
-	        if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+	        if (triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert)) {
 		        for (SObject so : listNew) {
 		            Address__c addr = (Address__c)so;
 	                // when an address is created as Default, we update its latest date fields
@@ -108,7 +108,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        }
 
 	        // BEFORE UPDATE
-	        if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+	        if (triggerAction == TDTM_Runnable.Action.BeforeUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update)) {
 	            Integer i = 0;
 		        for (SObject so : listNew) {
 		            Address__c addr = (Address__c)so;
@@ -129,7 +129,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        }
 
 	        // AFTER INSERT
-	        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+	        if (triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert)) {
 	            for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
                     if (!addressIdsInserted.contains(addr.Id)){
@@ -157,7 +157,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        }
 
 	        // AFTER UPDATE
-	        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+	        if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update)) {
 	            Integer i = 0;
 	            for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
@@ -170,11 +170,13 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     		            //An address that is marked default, of that had its seasonal info changed needs to propagate to the parent.
     		            if (changedToDefault ||seasonalChanged) {
     		                putAddrInMap(addr, mapParentIdAddr);
+                            addressIdsUpdated.add((addr.Id));
+
     		            //If it's default and its address info has changed.
     		            } else if (changed && addr.Default_Address__c) {
     		                putAddrInMap(addr, mapParentIdAddr);
+                            addressIdsUpdated.add((addr.Id));
     		            }
-                        addressIdsUpdated.add((addr.Id));
     		            i++;
                     }
 	            }
@@ -188,7 +190,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        }
 
 	        // AFTER DELETE
-	        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+	        if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete)) {
 	            Integer i = 0;
 	            for (SObject addrOld : listOld) {
 		            // first go through all new/modified Addresses, and collect the list of parents to consider.
