@@ -94,12 +94,12 @@ public without sharing class TDTM_DefaultConfig {
         // Addresses on Contact object - creates Address__c record from Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ADDR_Contact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
         
         // Addresses on Account object - creates Address__c record from Account
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ADDR_Account_TDTM', Load_Order__c = 1, Object__c = 'Account', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
         
         // Do Not Contact and related operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
