@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.org
 * @date 2016
-* @group Contacts
+* @group Accounts
 * @group-content ../../ApexDocContent/Accounts.htm
 * @description Tests for ACCT_CannotDelete_TDTM.
 */
