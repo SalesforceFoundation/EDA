@@ -58,13 +58,13 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                 
                 // Process the Preferred Phone
                 if(!String.isBlank(contact.PreferredPhone__c)) {
-                    if(contact.PreferredPhone__c == 'Home') {
+                    if(contact.PreferredPhone__c == Label.preferredPhoneHome) {
                         contact.Phone = contact.HomePhone;
-                    } else if(contact.PreferredPhone__c == 'Work') {
+                    } else if(contact.PreferredPhone__c == Label.preferredPhoneWork) {
                         contact.Phone = contact.WorkPhone__c;
-                    } else if(contact.PreferredPhone__c == 'Mobile') {
+                    } else if(contact.PreferredPhone__c == Label.preferredPhoneMobile) {
                         contact.Phone = contact.MobilePhone;
-                    } else if(contact.PreferredPhone__c == 'Other') {
+                    } else if(contact.PreferredPhone__c == Label.preferredPhoneOther) {
                         contact.Phone = contact.OtherPhone;
                     }
                 }

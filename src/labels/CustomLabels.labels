@@ -257,6 +257,102 @@
         <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
+        <fullName>preferredEmailAlternate</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailAlternate</shortDescription>
+        <value>Alternate</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailAlternateEmail</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailAlternateEmail</shortDescription>
+        <value>Alternate Email</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailEmail</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailEmail</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailEmailStandard</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailEmailStandard</shortDescription>
+        <value>Email (standard)</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailUniversity</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailUniversity</shortDescription>
+        <value>University</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailUniversityEmail</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailUniversityEmail</shortDescription>
+        <value>University Email</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailWork</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailWork</shortDescription>
+        <value>Work</value>
+    </labels>
+    <labels>
+        <fullName>preferredEmailWorkEmail</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredEmailWorkEmail</shortDescription>
+        <value>Work Email</value>
+    </labels>
+    <labels>
+        <fullName>preferredPhoneHome</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredPhoneHome</shortDescription>
+        <value>Home</value>
+    </labels>
+    <labels>
+        <fullName>preferredPhoneMobile</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredPhoneMobile</shortDescription>
+        <value>Mobile</value>
+    </labels>
+    <labels>
+        <fullName>preferredPhoneOther</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredPhoneOther</shortDescription>
+        <value>Other</value>
+    </labels>
+    <labels>
+        <fullName>preferredPhoneWork</fullName>
+        <categories>TDTM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredPhoneWork</shortDescription>
+        <value>Work</value>
+    </labels>
+    <labels>
         <fullName>stgAccModelTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
