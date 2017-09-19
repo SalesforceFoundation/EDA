@@ -366,18 +366,6 @@
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
-        <members>preferredEmailAlternate</members>
-        <members>preferredEmailAlternateEmail</members>
-        <members>preferredEmailEmail</members>
-        <members>preferredEmailEmailStandard</members>
-        <members>preferredEmailUniversity</members>
-        <members>preferredEmailUniversityEmail</members>
-        <members>preferredEmailWork</members>
-        <members>preferredEmailWorkEmail</members>
-        <members>preferredPhoneHome</members>
-        <members>preferredPhoneMobile</members>
-        <members>preferredPhoneOther</members>
-        <members>preferredPhoneWork</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
         <members>stgAccountTypesMultiAddressesEnabled</members>
