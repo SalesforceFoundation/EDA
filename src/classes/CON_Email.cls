@@ -63,7 +63,7 @@ public class CON_Email {
                 // Catch a special case when there is a value in Email that doesn't match the 
                 // other fields and Preferred Email is blank
                 if(String.isNotBlank(contact.Email) && emailFields.valueExists(contact.Email) == null && String.isBlank(contact.Preferred_Email__c)) {
-                    contact.Preferred_Email__c = 'Email (standard)';
+                    contact.Preferred_Email__c = Label.preferredBatchDefaultEmail;
                 }
 
                 // Process when Email matches an existing value
@@ -93,7 +93,7 @@ public class CON_Email {
                 contact.addError( Label.PreferredEmailRequiredError );
 
             // Make Sure preferred isn't blank making an exception for a special case to prevent errors.
-            } else if ( String.isNotBlank(contact.Preferred_Email__c) && contact.Preferred_Email__c != 'Email (standard)' && contact.Preferred_Email__c != 'Email' ) {
+            } else if ( String.isNotBlank(contact.Preferred_Email__c) && contact.Preferred_Email__c != Label.preferredBatchDefaultEmail && contact.Preferred_Email__c != emailFields.emailLabel ) {
 
                 CON_EmailField field = emailFields.getFieldByPrefLabel(contact.Preferred_Email__c);
 
@@ -171,15 +171,16 @@ public class CON_Email {
 
         private List<CON_EmailField> allFields {get;set;}
         private List<CON_EmailField> valuedFields {get;set;}
+        public String emailLabel {get;set;}
 
         public CON_EmailFieldList(Contact contact) {
 
             this.allFields = new List<CON_EmailField>();
             this.valuedFields = new List<CON_EmailField>();
             Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
-
+            this.emailLabel = fieldMap.get('Email').getLabel();
             for(String fieldName : fieldMap.keySet() ) {
-                if ( fieldName != 'Email' ) {
+                if ( fieldName != emailLabel ) {
                     String emailField = (String)contact.get(fieldName);
 
                     allFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );

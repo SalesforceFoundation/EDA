@@ -257,6 +257,14 @@
         <value>No Reciprocal Settings to display. Try creating new ones using the form below.</value>
     </labels>
     <labels>
+        <fullName>preferredBatchDefaultEmail</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredBatchDefaultEmail</shortDescription>
+        <value>Email (standard)</value>
+    </labels>
+    <labels>
         <fullName>stgAccModelTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
