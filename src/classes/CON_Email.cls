@@ -96,7 +96,6 @@ public class CON_Email {
             } else if ( String.isNotBlank(contact.Preferred_Email__c) && contact.Preferred_Email__c != Label.preferredBatchDefaultEmail && contact.Preferred_Email__c != emailFields.emailLabel ) {
 
                 CON_EmailField field = emailFields.getFieldByPrefLabel(contact.Preferred_Email__c);
-
                 if( field != null) {
                     // Make sure we are not setting to a blank value
                     if(String.isNotBlank(field.value)) {
@@ -200,6 +199,7 @@ public class CON_Email {
         }
 
         public CON_EmailField getFieldByPrefLabel(String labelSearch) {
+            labelSearch = getCustomPicklistValue(labelSearch);
             for(CON_EmailField field : this.allFields) {
                 if (labelSearch == field.label || labelSearch == field.prefLabel) {
                     return field;
@@ -225,6 +225,22 @@ public class CON_Email {
             }
             return null;
         }
+
+        //Check if transalted picklist value of preferred email exist
+        private String getCustomPicklistValue(String lableSearch)
+        {       
+            Map<String,String> apiLabelMappings = new Map<String,String>();       
+            Schema.DescribeFieldResult fieldResult = Contact.Preferred_Email__c.getDescribe();
+            List<Schema.PicklistEntry> picklistEntries = fieldResult.getPicklistValues();
+            for( Schema.PicklistEntry entry : fieldResult.getPicklistValues()) {
+                if (entry.getValue() == lableSearch)
+                {
+                    return entry.getLabel();
+                }
+            }
+            return lableSearch;         
+        }
+
     }
 
     /*******************************************************************************************************
