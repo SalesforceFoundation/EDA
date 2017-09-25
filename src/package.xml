@@ -366,6 +366,7 @@
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
+        <members>preferredBatchDefaultEmail</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
         <members>stgAccountTypesMultiAddressesEnabled</members>
