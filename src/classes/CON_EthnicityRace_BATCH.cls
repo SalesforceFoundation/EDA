@@ -81,7 +81,11 @@ global class CON_EthnicityRace_BATCH implements Database.Batchable<sObject> {
 		mail.setToAddresses(toAddresses);
 		mail.setSubject('Ethnicity and Race field backfill: ' + a.Status);
 		mail.setPlainTextBody(emailBody);
-		Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+
+		//Prevent sending email in the unit test
+		if(!Test.isRunningTest()) {
+			Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+		}
 		
 	}
 

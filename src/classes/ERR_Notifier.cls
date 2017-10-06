@@ -126,7 +126,12 @@ public class ERR_Notifier {
 
         if (!errors.isEmpty() && !sendList.isEmpty()) {
             Messaging.SingleEmailMessage sme = createEmailMessage(context, errors, sendList);
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[]{sme});
+
+            //Prevent sending email in the unit test
+            if(!Test.isRunningTest()) {
+                Messaging.sendEmail(new Messaging.SingleEmailMessage[]{sme});
+            }
+
 
             for(Error__c error : errors)
                 error.Email_Sent__c = true;
