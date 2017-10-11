@@ -302,7 +302,7 @@ public with sharing class STG_InstallScript_TEST {
         Test.testInstall(new STG_InstallScript(), null);
         Test.stopTest();
 
-        //System should create the address schedule job on Install if it does not exist
+        //System should create the error schedule job on Install if it does not exist
         if(errorSchedule.size() == 0) {
             List<CronTrigger> errorSchedule1 = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
             where CronJobDetail.Name = 'HEDA Async Apex Error Processing'];
