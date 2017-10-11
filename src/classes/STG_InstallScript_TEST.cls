@@ -244,4 +244,70 @@ public with sharing class STG_InstallScript_TEST {
             System.assertNotEquals(null, addr.Parent_Contact__c);
         }
     }
+
+    @isTest
+    public static void createAdminAccountForContactOnInstall() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+
+        Contact cont = new Contact(
+                FirstName = 'Test',
+                LastName = 'User',
+                Email = 'usertest@domain.com'
+        );
+
+        ACCT_IndividualAccounts_TDTM.alreadyRunAfterInsert = true; // need to turn off the trigger for this test
+        insert cont;
+        ACCT_IndividualAccounts_TDTM.alreadyRunAfterInsert = false; // back on for install script
+
+
+        Contact contInserted = [Select AccountId from Contact where Id = :cont.Id];
+
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+
+        //If the exsiting Contact does not have Account and the default Admin Account record type exists, system should
+        //create Admin account on Install HEDA
+        if (contInserted.AccountId == null && String.isNotBlank(UTIL_Describe.getAdminAccRecTypeID())) {
+            Contact contInserted2 = [Select AccountId from Contact where Id = :cont.Id];
+            System.assertNotEquals(null, contInserted2.AccountId);
+        }
+
+    }
+
+    @isTest
+    public static void seasonalAddressScheduleOnInstall() {
+        List<CronTrigger> addressSchedule = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
+        where CronJobDetail.Name = 'Seasonal Addresses Update'];
+
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+
+        //System should create the address schedule job on Install if it does not exist
+        if(addressSchedule.size() == 0) {
+            List<CronTrigger> addressSchedule1 = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
+            where CronJobDetail.Name = 'Seasonal Addresses Update'];
+            System.assertEquals(1, addressSchedule1.size());
+        }
+    }
+
+    @isTest
+    public static void asyncErrorSchedule() {
+        List<CronTrigger> errorSchedule = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
+        where CronJobDetail.Name = 'HEDA Async Apex Error Processing'];
+
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+
+        //System should create the address schedule job on Install if it does not exist
+        if(errorSchedule.size() == 0) {
+            List<CronTrigger> errorSchedule1 = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
+            where CronJobDetail.Name = 'HEDA Async Apex Error Processing'];
+            System.assertEquals(1, errorSchedule1.size());
+        }
+    }
+
 }
