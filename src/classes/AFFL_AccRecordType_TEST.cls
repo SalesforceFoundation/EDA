@@ -72,7 +72,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
         System.assertNotEquals(null, contact.Primary_Household__c);
         
-        AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
         Account acc = [select RecordTypeId from Account where ID=:contact.Account.ID];
         //Change the account record type to Business Organization
         acc.RecordTypeId = orgRecTypeID;
@@ -121,7 +121,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         household.RecordTypeId = orgRecTypeID;
         bizOrg.RecordTypeId = householdRecTypeID;
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
         update new Account[]{household, bizOrg};
         Test.stopTest();
         
@@ -168,7 +168,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Change the account record type of parent Household to Business Organization
         household.RecordTypeId = orgRecTypeID;
         Test.startTest();
-        AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
         update household;
         Test.stopTest();
         

@@ -452,4 +452,45 @@ private class TDTM_DMLgt200_TEST {
         
     }
 
+    /*********************************************************************************************************
+    @description Insert 200+ contacts with Primary_Education_Institution__c
+    verify:
+        certain amounts of affiliations are created
+    **********************************************************************************************************/    
+    @isTest
+    public static void createContactsWithOrg() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
+        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
+        insert mappings;
+
+        Id orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
+        Id householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+
+        //Create account of Business Organization record type
+        Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        insert bizOrg1;
+
+        List<Contact> newContacts = new List<Contact>();
+        for (Integer i = 0; i < inputSize; i++){
+            Contact newContact = new Contact(FirstName = 'New' + i, LastName = 'Testerson', Primary_Organization__c = bizOrg1.Id);
+            newContacts.add(newContact);
+        }
+
+        Test.startTest();
+        insert newContacts;
+        Test.stopTest();
+
+        //Verify
+        List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c];
+        System.assertEquals(inputSize, affls.size());
+
+        for (Affiliation__c affl : affls)
+        {
+            System.assertEquals('Business Organization', affl.Affiliation_Type__c);
+        }
+    }
+
 }

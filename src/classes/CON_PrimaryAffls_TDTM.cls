@@ -41,12 +41,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     private static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
     /*******************************************************************************************************
-    * @description Static flag to prevent AFFL_MultiRecordType_TDTM from updating the primary affiliation fields
-    * when they are updated directly in the Contact.
-    ********************************************************************************************************/
-    public static Boolean keyAfflLookupUpdated = false;
-
-    /*******************************************************************************************************
     * @description Handles primary affiliation fields.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -66,7 +60,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 
         // AFTER INSERT
         if( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert  && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert)) {
-
             // Loop over contact list
             for (integer i=0; i<newlist.size(); i++) {
 
@@ -87,7 +80,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                     }
                 }
             }
-
             // Set reentrant Flag
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, true);
         }
@@ -154,16 +146,17 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, false);
         }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, false);
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
         }
         return dmlWrapper;
     }
 
     private void createAfflFromLookup(Contact newContact, Integer j, List<Affiliation__c> afflsToInsert) {
-        if(!AFFL_MultiRecordType_TDTM.afflMadePrimary) {
+        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
 	        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
 	        if(accID != null)
 	          afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
-	        keyAfflLookupUpdated = true;
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated, true);
         }
     }
 

@@ -59,7 +59,9 @@ public class TDTM_ProcessControl {
         COFF_Affiliation_TDTM,
         CON_Preferred_TDTM,
         CON_PrimaryAffls_TDTM_After_Insert,
-        CON_PrimaryAffls_TDTM_After_Update
+        CON_PrimaryAffls_TDTM_After_Update,
+        AFFL_MultiRecordType_TDTM_afflMadePrimary,
+        CON_PrimaryAffls_TDTM_keyAfflLookupUpdated
     }
 
     /*******************************************************************************************************
@@ -91,7 +93,7 @@ public class TDTM_ProcessControl {
     }
 
     /*******************************************************************************************************
-    * @description turn off the recursion flag manually. Set as 1001 because the limit is 1000 dml per transaction
+    * @description reset the recursion flag
     */
     public static void resetRecursionFlag(registeredTrigger f){
        recursionMap.put(f, 0);
