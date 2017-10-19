@@ -70,7 +70,8 @@ public with sharing class TDTM_Filter_TEST {
 		//Creating filter condition
 		for(TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'REL_Relationships_Con_TDTM') {
-		        token.filterField = 'UniversityEmail__c';
+                //The filter field need to have the namespace if you are trying to use heda field
+                token.filterField = UTIL_Namespace.StrTokenNSPrefix('UniversityEmail__c');
                 token.filterValue = null;
             }
 		}
@@ -300,7 +301,8 @@ public with sharing class TDTM_Filter_TEST {
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'REL_Relationships_Con_TDTM') {
-                token.filterField = 'Gender__c';
+                //The filter field need to have the namespace if you are trying to use heda field
+                token.filterField = UTIL_Namespace.StrTokenNSPrefix('Gender__c');      
                 token.filterValue = 'Male';
             }
         }
