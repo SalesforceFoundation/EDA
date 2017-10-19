@@ -85,8 +85,8 @@ public class TDTM_Filter {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
 	        	} else { //No need to break down the field condition
-                	//Note: The filterField should include the namespace already, so we don't need to handle namespace here
-                	fieldName = filterField;
+					//Note: The filterField should include the namespace already, so we don't need to handle namespace here
+					fieldName = filterField;
 	        	    filterByField();
 	        	}
 	        	return filtered;
