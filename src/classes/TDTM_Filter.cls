@@ -86,7 +86,7 @@ public class TDTM_Filter {
 	        	    filterByRelationship();
 	        	} else { //No need to break down the field condition
                     	    //Note: The filterField should include the namespace already, so we don't need to handle namespace here
-                            fieldName = filterField;
+			    fieldName = filterField;
 	        	    filterByField();
 	        	}
 	        	return filtered;
