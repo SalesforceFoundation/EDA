@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Error --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Error --></value>
+    </caseValues>
+    <fields>
+        <help>Contexto en el que se generó el error, si se conoce.</help>
+        <label>Tipo de contexto</label>
+        <name>Context_Type__c</name>
+    </fields>
+    <fields>
+        <help>Fecha y hora en el que ocurrió el error</help>
+        <label>Fecha y hora</label>
+        <name>Datetime__c</name>
+    </fields>
+    <fields>
+        <help>Indica si se envío un correo electrónico de notificación sobre este error.</help>
+        <label>Correo electrónico enviado</label>
+        <name>Email_Sent__c</name>
+    </fields>
+    <fields>
+        <help>Tipo de error que se produjo.</help>
+        <label>Tipo de error</label>
+        <name>Error_Type__c</name>
+    </fields>
+    <fields>
+        <help>Texto completo del mensaje de error.</help>
+        <label>Mensaje completo</label>
+        <name>Full_Message__c</name>
+    </fields>
+    <fields>
+        <help>Tipo de objeto en el que se produjo el error, si se conoce.</help>
+        <label>Tipo de objeto</label>
+        <name>Object_Type__c</name>
+    </fields>
+    <fields>
+        <help>Indica si el error fue publicado en Chatter</help>
+        <label>Publicado en Chatter</label>
+        <name>Posted_in_Chatter__c</name>
+    </fields>
+    <fields>
+        <help>Un vínculo al registro que provocó el error, si está disponible.</help>
+        <label>URL del registro</label>
+        <name>Record_URL__c</name>
+    </fields>
+    <fields>
+        <help>Seguimiento de la pila del error, si está disponible en tiempo de ejecución.</help>
+        <label>Seguimiento de la pila</label>
+        <name>Stack_Trace__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- Error Number --></nameFieldLabel>
+</CustomObjectTranslation>
