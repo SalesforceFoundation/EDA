@@ -81,7 +81,6 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
             				TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
 		            	    populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
-                        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, true);
 		            }
 
 		            // AFTER UPDATE
@@ -104,10 +103,17 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
             				TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
                             populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
 		                }
-                        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update, true);
 		            }
 		        	i++;
 		    	 }
+		    	 if (triggerAction == TDTM_Runnable.Action.BeforeInsert)
+		    	 {
+	             	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, true);
+	             }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate)
+	             {
+                    TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update, true);
+
+	             }
 		    	 if(afflsMadePrimary.size() > 0) {
 		    	     uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
 		    	 }
@@ -144,9 +150,11 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterInsert){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert, false);
         }else if (triggerAction == TDTM_Runnable.Action.BeforeInsert){
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);        	
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+			TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);        	
         }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
         	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update, false);
+			TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);        	
         }
 
     	return dmlWrapper;
