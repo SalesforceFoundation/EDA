@@ -61,19 +61,16 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 	                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
 	                    String obj = String.escapeSingleQuotes(handler.Object__c);
 	                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
-		                    try {
-					//Note: We should use schema class to check if the field is valid for an object since dynamic query will ignore namespace automatically.
-					SObjectField field = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap().get(filterField);
-					/*Note: System will automatically remove HEDA namespace of client's custom field. For example, client create a custom field ABC__c,
-					 *and put hed__ABC__c into the setting. The field value will not be null but ABC__c. We do not want user to accidentally add namespace 
-					 *into their own field.
-					 */
-					if(field == null || String.valueOf(field) != filterField) {
-					    handler.addError(Label.InvalidFilter + handler.Class__c);
-					}
-		                    } catch(QueryException e) {
-		                        handler.addError(Label.InvalidFilter + handler.Class__c);
-		                    }
+                            try {
+                                //Note: We should use schema class to check if the field is valid for an object since dynamic query will ignore namespace automatically.
+                                SObjectField field = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap().get(filterField);
+                                //Note: System will automatically remove HEDA namespace of client's custom field. For example, client create a custom field ABC__c, and put hed__ABC__c into the setting. The field value will not be null but ABC__c. We do not want user to accidentally add namespace into their own field.
+                                if(field == null || String.valueOf(field) != filterField) {
+                                    handler.addError(Label.InvalidFilter + handler.Class__c);
+                                }
+                            } catch(QueryException e) {
+                                handler.addError(Label.InvalidFilter + handler.Class__c);
+                            }
 	                    }
                     }
                 }
