@@ -21,6 +21,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
         options:
             path: dev_config/src
+            unmanaged: True
             namespace_token: '%%%NAMESPACE%%%'
             filename_token: '___NAMESPACE___'
 
@@ -145,7 +146,7 @@ flows:
             7:
                 task: deploy_dev_config
                 options:
-                    managed: True
+                    unmanaged: False
 
     dev_org:
         tasks:
@@ -162,7 +163,7 @@ flows:
             6:
                 task: deploy_dev_config
                 options:
-                    managed: True
+                    unmanaged: False
 
     release_beta:
         tasks:
