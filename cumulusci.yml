@@ -17,12 +17,11 @@ project:
 tasks:
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
-        class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
+        class_path: cumulusci.tasks.salesforce.DeployBundles
         options:
+            namespace_inject: $project_config.project__package__namespace
             path: dev_config/src
             unmanaged: True
-            namespace_token: '%%%NAMESPACE%%%'
-            filename_token: '___NAMESPACE___'
 
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
@@ -121,12 +120,6 @@ flows:
             6.2:
                 task: execute_install_apex
     
-    ci_master:
-        tasks:
-            9:
-                options:
-                    skip_record_types: True  
-    
     ci_beta:
         tasks:
             6:
@@ -147,8 +140,24 @@ flows:
                 options:
                     unmanaged: False
 
+    ci_master:
+        tasks:
+            9:
+                options:
+                    skip_record_types: True
+
     dev_org:
         tasks:
+            8:
+                task: deploy_dev_config
+            9:
+                task: execute_install_apex
+
+    dev_org_namespaced:
+        tasks:
+            6:
+                options:
+                    namespaced_org: True
             8:
                 task: deploy_dev_config
             9:
