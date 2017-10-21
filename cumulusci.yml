@@ -15,7 +15,6 @@ project:
         repo_dir: ApexDocumentation
 
 tasks:
-
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
         class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
