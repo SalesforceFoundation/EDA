@@ -56,9 +56,6 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
     def _process_metadata(self):
         super(UpdateAdminProfile, self)._process_metadata()
        
-        if self.options['skip_record_types']:
-            return
- 
         # Strip record type visibilities
         findReplaceRegex(
             '<recordTypeVisibilities>([^\$]+)</recordTypeVisibilities>',
@@ -72,20 +69,6 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'namespaced_org': self.namespaced_org_prefix,
         }
         
-        # Set record type visibilities for Course Connections
-        self._set_record_type(
-            '{managed}Course_Enrollment__c.{namespaced_org}Default'.format(**namespace_args),
-            'false',
-        )
-        self._set_record_type(
-            '{managed}Course_Enrollment__c.{namespaced_org}Faculty'.format(**namespace_args),
-            'false',
-        )
-        self._set_record_type(
-            '{managed}Course_Enrollment__c.{namespaced_org}Student'.format(**namespace_args),
-            'true',
-        )
-
         # Set record type visibilities for Accounts
         self._set_record_type(
             'Account.{namespaced_org}Administrative'.format(**namespace_args),
@@ -115,6 +98,24 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'Account.{namespaced_org}University_Department'.format(**namespace_args),
             'false',
         )
+
+        if self.options['skip_record_types']:
+            return
+ 
+        # Set record type visibilities for Course Connections
+        self._set_record_type(
+            '{managed}Course_Enrollment__c.{namespaced_org}Default'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            '{managed}Course_Enrollment__c.{namespaced_org}Faculty'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            '{managed}Course_Enrollment__c.{namespaced_org}Student'.format(**namespace_args),
+            'true',
+        )
+
 
     def _set_record_type(self, name, default):
         rt = rt_visibility_template.format(default, name)

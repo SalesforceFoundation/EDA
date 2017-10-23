@@ -144,6 +144,8 @@ flows:
         tasks:
             9:
                 options:
+                    managed: True
+                    namespaced_org: True
                     skip_record_types: True
 
     dev_org:
