@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Hierarchy Settings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Hierarchy Settings --></value>
+    </caseValues>
+    <fields>
+        <help>Parámetro para el modelo de cuenta. Debe ser Uno a uno o Individual. Sustituye el campo personalizado Contact.SystemAccountProcessor__c.</help>
+        <label>Procesador de cuenta</label>
+        <name>Account_Processor__c</name>
+    </fields>
+    <fields>
+        <help>Tipos de registro de aquellas cuentas que deben tener múltiples direcciones habilitadas.</help>
+        <label>Cuentas con múltiples direcciones</label>
+        <name>Accounts_Addresses_Enabled__c</name>
+    </fields>
+    <fields>
+        <help>Tipos de registro de aquellas cuentas que deben eliminarse si todos sus contactos secundarios fueron eliminados.</help>
+        <label>Cuentas a eliminar</label>
+        <name>Accounts_to_Delete__c</name>
+    </fields>
+    <fields>
+        <help>Estado al que se debe cambiar una afiliación cuando se elimina su inscripción en un programa relacionado, si la opción seleccionada es la de cambiar el estado en vez de eliminarlo.</help>
+        <label>Estado de afil. al eliminar insc. prog.</label>
+        <name>Affl_ProgEnroll_Del_Status__c</name>
+    </fields>
+    <fields>
+        <help>Determina si se eliminará automáticamente una afiliación cuando se elimine su inscripción en un programa relacionado. De lo contrario, el estado cambiará a Anterior.</help>
+        <label>Eliminación inscripción prog. afiliación</label>
+        <name>Affl_ProgEnroll_Del__c</name>
+    </fields>
+    <fields>
+        <help>Las relaciones creadas automáticamente se desduplican para evitar la creación de registros de relaciones duplicados entre dos contactos. Marque para evitar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre contactos.</help>
+        <label>Permitir relaciones duplic. automáticas</label>
+        <name>Allow_AutoCreated_Duplicates__c</name>
+    </fields>
+    <fields>
+        <label><!-- Async Error Check Last Run --></label>
+        <name>Async_Error_Check_Last_Run__c</name>
+    </fields>
+    <fields>
+        <help>Compatibilidad de gestión de direcciones para contactos.</help>
+        <label>Compat. gestión direcciones contactos.</label>
+        <name>Contacts_Addresses_Enabled__c</name>
+    </fields>
+    <fields>
+        <help>Si se selecciona esta opción, se deshabilita el marco de trabajo de control de errores de HEDA.</help>
+        <label>Deshabilitar control de errores</label>
+        <name>Disable_Error_Handling__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select this box to disable the enforcement of the Preferred Email field for Contacts. --></help>
+        <label><!-- Disable Preferred Email Enforcement --></label>
+        <name>Disable_Preferred_Email_Enforcement__c</name>
+    </fields>
+    <fields>
+        <label>Habilitar conexiones al curso</label>
+        <name>Enable_Course_Connections__c</name>
+    </fields>
+    <fields>
+        <help>Active esta opción para habilitar las instrucciones de depuración en el código de paquetes gestionados.</help>
+        <label>Habilitar depuración</label>
+        <name>Enable_Debug__c</name>
+    </fields>
+    <fields>
+        <help>Seleccione esta opción si desea que el sistema publique notificaciones con cierto tipo de errores.</help>
+        <label>Notificaciones de errores</label>
+        <name>Error_Notifications_On__c</name>
+    </fields>
+    <fields>
+        <help>Seleccione el tipo de usuario al que se le envían notificaciones.</help>
+        <label>Destinatario de mensajes de error</label>
+        <name>Error_Notifications_To__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de registro de profesor</label>
+        <name>Faculty_RecType__c</name>
+    </fields>
+    <fields>
+        <help>Tipo de registro de cuenta que admite el comportamiento de Direcciones de domicilios.</help>
+        <label>Tipo registro cuenta direcci. domicilios</label>
+        <name>Household_Addresses_RecType__c</name>
+    </fields>
+    <fields>
+        <help>Determina el método utilizado para generar la relación recíproca. Puede ser Configuración de lista que utiliza configuraciones personalizadas por sexo o Inversión de valor, que invierte el tipo si es apropiado (Padre-hijo a Hijo-padre)</help>
+        <label>Método de reciprocidad</label>
+        <name>Reciprocal_Method__c</name>
+    </fields>
+    <fields>
+        <help>Al cumplimentar este valor permite que el campo se cumplimente automáticamente cuando se crea una nueva relación desde el Visor de relaciones (vea la descripción para obtener más información)</help>
+        <label>Id. de campo de nombre de relación</label>
+        <name>Relationship_Name_Field_Id__c</name>
+    </fields>
+    <fields>
+        <help>Al cumplimentar este valor permite que el campo se cumplimente automáticamente cuando se crea una nueva relación desde el Visor de relaciones (vea una descripción para obtener más información)</help>
+        <label>Id. campo de identificación de relación</label>
+        <name>Relationship_Name_Id_Field_Id__c</name>
+    </fields>
+    <fields>
+        <help>Si se selecciona, las modificaciones realizadas en un único campo de dirección de Cuenta o Contacto actualizan la dirección existente, en vez de crear una nueva dirección.</help>
+        <label>Cambio de dirección como actualización</label>
+        <name>Simple_Address_Change_Treated_as_Update__c</name>
+    </fields>
+    <fields>
+        <help>Seleccione esta opción si desea que los errores se almacenen en la base de datos.</help>
+        <label>Almacenar errores</label>
+        <name>Store_Errors_On__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de registro de estudiante</label>
+        <name>Student_RecType__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+</CustomObjectTranslation>

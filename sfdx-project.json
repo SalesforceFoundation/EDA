@@ -5,6 +5,6 @@
       "default": true
     }
   ],
-  "namespace": "",
+  "namespace": "hed",
   "sourceApiVersion": "35.0"
 }

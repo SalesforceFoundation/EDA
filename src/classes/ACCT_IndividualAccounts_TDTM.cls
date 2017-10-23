@@ -77,6 +77,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Contact> listContactNeedAccount = new List<Contact>();
         List<Contact> listContactNeedAccountUpdate = new List<Contact>();
         List<Contact> listContactAccountDelete = new List<Contact>();
+        List<Contact> listContactsChangedLastName = new List<Contact>();
 
         Map<Id,Id> mapAccountIdContactId = new Map<Id,Id>();
 
@@ -153,6 +154,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.OwnerId != oldContacts[i].OwnerId) {
                     	mapContactIdContactOwnerChange.put(c.Id, c);
                     }
+
+                    // if the last name of contact has changed and it is using admin account model 
+                    // change the related admin account last name
+                    if (c.LastName != oldContacts[i].LastName && c.AccountId != null)
+                    {
+                        listContactsChangedLastName.add(c);
+                    }
                 }
                 i += 1;
             }
@@ -197,6 +205,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         	UTIL_Debug.debug('****Number of accs to delete: ' + listContactAccountDelete.size());
             // check all old accounts to delete is they are left hanging around
             deleteContactAccountsIfEmpty(listContactAccountDelete, dmlWrapper);
+        }
+        if (listContactsChangedLastName.size() > 0) {
+            updateAccountsLastName(listContactsChangedLastName, dmlWrapper);
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
@@ -509,5 +520,28 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     public static String strNameAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAccountName;
+    }
+
+    private void updateAccountsLastName(List<Contact> listContactsChangedLastName, DmlWrapper dmlWrapper) 
+    {
+        list<Account> listAccToUpdate = new list<Account>();
+        map<Id, Contact> mapAccIdToCon = new map<Id, Contact>();
+        for (Contact con : listContactsChangedLastName) {
+            mapAccIdToCon.put(con.AccountId, con);
+        }
+
+        list<Account> listAcc = [SELECT Id, RecordTypeId 
+                                 FROM Account
+                                 WHERE Id IN :mapAccIdToCon.keySet()];
+
+        for (Account acc : listAcc) {
+            // only consider Admin Accounts
+            if (acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
+                acc.Name = strNameAdmAccountForContact(mapAccIdToCon.get(acc.Id));
+                listAccToUpdate.add(acc);
+            }
+        }
+        // add all accounts needing updating to our list
+        dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
     }
 }

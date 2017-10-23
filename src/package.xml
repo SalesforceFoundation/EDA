@@ -510,6 +510,39 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Account-es</members>
+        <members>Address__c-en_US</members>
+        <members>Address__c-es</members>
+        <members>Affiliation__c-en_US</members>
+        <members>Affiliation__c-es</members>
+        <members>Affl_Mappings__c-en_US</members>
+        <members>Affl_Mappings__c-es</members>
+        <members>Contact-es</members>
+        <members>Course_Enrollment__c-en_US</members>
+        <members>Course_Enrollment__c-es</members>
+        <members>Course_Offering__c-en_US</members>
+        <members>Course_Offering__c-es</members>
+        <members>Course__c-en_US</members>
+        <members>Course__c-es</members>
+        <members>Error__c-en_US</members>
+        <members>Error__c-es</members>
+        <members>Hierarchy_Settings__c-en_US</members>
+        <members>Hierarchy_Settings__c-es</members>
+        <members>Program_Enrollment__c-en_US</members>
+        <members>Program_Enrollment__c-es</members>
+        <members>Relationship_Auto_Create__c-en_US</members>
+        <members>Relationship_Auto_Create__c-es</members>
+        <members>Relationship_Lookup__c-en_US</members>
+        <members>Relationship_Lookup__c-es</members>
+        <members>Relationship__c-en_US</members>
+        <members>Relationship__c-es</members>
+        <members>Term__c-en_US</members>
+        <members>Term__c-es</members>
+        <members>Trigger_Handler__c-en_US</members>
+        <members>Trigger_Handler__c-es</members>
+        <name>CustomObjectTranslation</name>
+    </types>
+    <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Course_Enrollment__c</members>
@@ -550,6 +583,10 @@
         <members>Trigger_Handler__c.All</members>
         <members>Trigger_Handler__c.All_Main_Fields</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>es</members>
+        <name>Translations</name>
     </types>
     <types>
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>

@@ -1,4 +1,5 @@
 import os
+from cumulusci.core.utils import process_bool_arg
 from cumulusci.tasks.salesforce import UpdateAdminProfile as BaseUpdateAdminProfile
 from cumulusci.utils import findReplace
 from cumulusci.utils import findReplaceRegex
@@ -17,6 +18,10 @@ task_options['managed'] = {
     'description': 'If True, uses the namespace prefix where appropriate.  Use if running against an org with the managed package installed.  Defaults to False',
     'required': True,
 }
+task_options['namespaced_org'] = {
+    'description': 'If True, attempts to prefix all unmanaged metadata references with the namespace prefix for deployment to the packaging org or a namespaced scratch org',
+    'required': True,
+}
 task_options['skip_record_types'] = {
     'description': 'If True, setting record types will be skipped.  This is necessary when deploying to packaging as the ci_master flow does not deploy unpackaged/post.',
     'required': True,
@@ -29,21 +34,28 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
 
     def _init_options(self, kwargs):
         super(UpdateAdminProfile, self)._init_options(kwargs)
-        if 'skip_record_types' not in self.options:
-            self.options['skip_record_types'] = False
-        if self.options['skip_record_types'] == 'False':
-            self.options['skip_record_types'] = False
-        if 'managed' not in self.options:
-            self.options['managed'] = False
-        if self.options['managed'] == 'False':
-            self.options['managed'] = False
+        self.options['skip_record_types'] = process_bool_arg(
+            self.options.get('skip_record_types', False)
+        )
+        self.options['managed'] = process_bool_arg(
+            self.options.get('managed', False)
+        )
+        self.options['namespaced_org'] = process_bool_arg(
+            self.options.get('namespaced_org', False)
+        )
+        # For namespaced orgs, managed should always be True
+        if self.options['namespaced_org']:
+            self.options['managed'] = True
+
+        # Set up namespace prefix strings
+        namespace_prefix = '{}__'.format(self.project_config.project__package__namespace)
+        self.namespace_prefix = namespace_prefix if self.options['managed'] else ''
+        self.namespaced_org_prefix = namespace_prefix if self.options['namespaced_org'] else ''
+
         
     def _process_metadata(self):
         super(UpdateAdminProfile, self)._process_metadata()
        
-        if self.options['skip_record_types']:
-            return
- 
         # Strip record type visibilities
         findReplaceRegex(
             '<recordTypeVisibilities>([^\$]+)</recordTypeVisibilities>',
@@ -51,25 +63,59 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             os.path.join(self.tempdir, 'profiles'),
             'Admin.profile'
         )
+
+        namespace_args = {
+            'managed': self.namespace_prefix,
+            'namespaced_org': self.namespaced_org_prefix,
+        }
         
-        # Set up namespace
-        namespace_prefix = ''
-        if self.options['managed']:
-            namespace_prefix = '{}__'.format(self.project_config.project__package__namespace)
-
-        # Set record type visibilities for Course Connections
-        self._set_record_type('{}Course_Enrollment__c.Default'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Course_Enrollment__c.Faculty'.format(namespace_prefix), 'false')
-        self._set_record_type('{}Course_Enrollment__c.Student'.format(namespace_prefix), 'true')
-
         # Set record type visibilities for Accounts
-        self._set_record_type('Account.Administrative', 'true')
-        self._set_record_type('Account.Academic_Program', 'false')
-        self._set_record_type('Account.Business_Organization', 'false')
-        self._set_record_type('Account.Educational_Institution', 'false')
-        self._set_record_type('Account.HH_Account', 'false')
-        self._set_record_type('Account.Sports_Organization', 'false')
-        self._set_record_type('Account.University_Department', 'false')
+        self._set_record_type(
+            'Account.{namespaced_org}Administrative'.format(**namespace_args),
+            'true',
+        )
+        self._set_record_type(
+            'Account.{namespaced_org}Academic_Program'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            'Account.{namespaced_org}Business_Organization'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            'Account.{namespaced_org}Educational_Institution'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            'Account.{namespaced_org}HH_Account'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            'Account.{namespaced_org}Sports_Organization'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            'Account.{namespaced_org}University_Department'.format(**namespace_args),
+            'false',
+        )
+
+        if self.options['skip_record_types']:
+            return
+ 
+        # Set record type visibilities for Course Connections
+        self._set_record_type(
+            '{managed}Course_Enrollment__c.{namespaced_org}Default'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            '{managed}Course_Enrollment__c.{namespaced_org}Faculty'.format(**namespace_args),
+            'false',
+        )
+        self._set_record_type(
+            '{managed}Course_Enrollment__c.{namespaced_org}Student'.format(**namespace_args),
+            'true',
+        )
+
 
     def _set_record_type(self, name, default):
         rt = rt_visibility_template.format(default, name)

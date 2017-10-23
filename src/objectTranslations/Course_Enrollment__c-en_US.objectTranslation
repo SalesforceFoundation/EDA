@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Course Connection</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Course Connections</value>
+    </caseValues>
+    <fields>
+        <help><!-- The Academic Program the student is enrolled in. --></help>
+        <label><!-- Contact&apos;s Academic Program --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Course Connections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Affiliation --></label>
+        <name>Affiliation__c</name>
+        <relationshipLabel><!-- Course Connection --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The student taking the course. --></help>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Course Connections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term. --></help>
+        <label><!-- Course Offering ID --></label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel><!-- Course Connection --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credits Attempted --></label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credits Earned --></label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- Represents a Primary Course Connection. --></help>
+        <label><!-- Primary --></label>
+        <name>Primary__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program. --></help>
+        <label><!-- Program Enrollment ID --></label>
+        <name>Program_Enrollment__c</name>
+        <relationshipLabel><!-- Course Connections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Represents the Status of the Course Connection. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation><!-- Current --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation><!-- Former --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Faculty --></label>
+        <name>Faculty</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Student --></label>
+        <name>Student</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
