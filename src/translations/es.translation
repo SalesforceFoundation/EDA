@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- HEDA --></label>
+        <name>HEDA</name>
+    </customApplications>
+    <customLabels>
+        <label>Las afiliaciones principales asignadas aparecen en una sección especial de afiliaciones principales en el registro Contacto. El valor establecido como principal para un tipo de registro de cuenta aparece en los campos correspondientes en el registro Contacto, tal como se define a continuación. Para obtener más información, consulte el</label>
+        <name>AfflMappingsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Cuando se elimina una inscripción en un programa, elimina la afiliación relacionada.</label>
+        <name>AfflProgEnrollDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>No se puede encontrar configuraciones de creación automática de relación válidas. Compruebe la configuración en Configuración de HEDA | Relaciones | Autocreation para campos válidos y vuelva a intentarlo.</label>
+        <name>AutoCreateFieldError</name>
+    </customLabels>
+    <customLabels>
+        <label>Defina el campo de filtro o el campo de filtro y el valor del filtro.</label>
+        <name>BothFieldAndValue</name>
+    </customLabels>
+    <customLabels>
+        <label>No se puede eliminar el registro porque existen registros de relacionados. Elimine primero los registros secundarios.</label>
+        <name>CannotDelete</name>
+    </customLabels>
+    <customLabels>
+        <label>Cuenta</label>
+        <name>DefaultAccountName</name>
+    </customLabels>
+    <customLabels>
+        <label>Cuenta administrativa</label>
+        <name>DefaultAdminName</name>
+    </customLabels>
+    <customLabels>
+        <label>Familia</label>
+        <name>DefaultHouseholdName</name>
+    </customLabels>
+    <customLabels>
+        <label>Femenino</label>
+        <name>Female</name>
+    </customLabels>
+    <customLabels>
+        <label>Valor del campo de filtro no válido definido para</label>
+        <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <label>Masculino</label>
+        <name>Male</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredEmailMatchMustExist --></label>
+        <name>PreferredEmailMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredEmailMatchNotNull --></label>
+        <name>PreferredEmailMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Preferred Email Required Error --></label>
+        <name>PreferredEmailRequiredError</name>
+    </customLabels>
+    <customLabels>
+        <label>es</label>
+        <name>Relationship_Explanation_Connector</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Relationship Split --></label>
+        <name>Relationship_Split</name>
+    </customLabels>
+    <customLabels>
+        <label>Las relaciones automáticas le permiten identificar sus propios campos de búsqueda personalizados en los objetos Contacto o Miembro de campaña que activan la creación de un nuevo tipo de relación de su elección. Por ejemplo, una campo de búsqueda Referencia de Miembro de campaña a Contacto podría crear una relación Referente y Referido entre los dos contactos. (Tenga en cuenta que esta función no está disponible para los objetos Candidatos o Miembros de campaña que hagan referencia a Candidatos.)</label>
+        <name>RelationshipsAutoDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Estas configuraciones le permiten configurar relaciones recíprocas o la relación de coincidencia entre dos contactos. Por ejemplo, si un padre está relacionado con su hijo, el hijo también debe ser relacionado de nuevo con el padre. Puede especificar el valor de tipo para el nombre y, a continuación, qué valor recíproco debe basarse en el sexo del contacto de conexión. Se puede definir un recíproco masculino, un recíproco femenino y un recíproco sin género que se utilizará si no se puede determinar el género.</label>
+        <name>RelationshipsLookupDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Solo deben crearse los registros de direcciones como secundarios de Cuenta o Contacto.</label>
+        <name>addrHhAdmAccountOnly</name>
+    </customLabels>
+    <customLabels>
+        <label>La capacidad de agregar varias direcciones está deshabilitada para este tipo de registro de cuenta. Para activarla, vaya a Configuración de HEDA, haga clic en Cuentas y contactos y seleccione la casilla de verificación adecuada junto a Tipos de cuenta con direcciones múltiples activadas.</label>
+        <name>addrNotEnabledAccount</name>
+    </customLabels>
+    <customLabels>
+        <label>La capacidad de agregar varias direcciones está deshabilitada para Contactos. Para habilitarla, vaya a Configuración de HEDA, haga clic en Cuentas y contactos y, a continuación, seleccione la casilla de verificación Contacto de direcciones múltiples habilitadas.</label>
+        <name>addrNotEnabledContact</name>
+    </customLabels>
+    <customLabels>
+        <label>Los intervalos de fechas para las direcciones estacionales no pueden superponerse.</label>
+        <name>addrSeasonalOverlap</name>
+    </customLabels>
+    <customLabels>
+        <label>Una dirección debe tener todos los campos de inicio y fin de día y mes establecidos o ninguno de ellos.</label>
+        <name>addrSeasonalPartial</name>
+    </customLabels>
+    <customLabels>
+        <label>Una dirección debe tener tanto el año de inicio como de finalización o ninguno.</label>
+        <name>addrSeasonalPartialYear</name>
+    </customLabels>
+    <customLabels>
+        <label>Solo deben crearse registros de direcciones como secundarios de Cuenta o Contacto.</label>
+        <name>addrValidParentObjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflNullPointerError --></label>
+        <name>afflNullPointerError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- exceptionRequiredField --></label>
+        <name>exceptionRequiredField</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- exceptionValidationRule --></label>
+        <name>exceptionValidationRule</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipo de registro de cuenta definido no existe:</label>
+        <name>noAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>No hay ninguna asignación de afiliación para mostrar. Intente crear nuevas utilizando el siguiente formulario.</label>
+        <name>noAfflMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>No hay ninguna configuración de creación automática para mostrar. Intente crear nuevas utilizando el siguiente formulario.</label>
+        <name>noAutoCreateSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>No hay ninguna configuración de recíprocos para mostrar. Intente crear otros nuevos utilizando el siguiente formulario.</label>
+        <name>noRecSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- preferredBatchDefaultEmail --></label>
+        <name>preferredBatchDefaultEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Modelo de cuenta predeterminado:</label>
+        <name>stgAccModelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAccountRecordTypeSupportsHHAddress --></label>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAccountTypesMultiAddressesEnabled --></label>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAccoutTypesWithoutContactsDelete --></label>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAddHispanicOrLatinoPicklistValue --></label>
+        <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAddNotHispanicOrLatinoPicklistValue --></label>
+        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfterRunBackfill --></label>
+        <name>stgAfterRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoCompleteEnterChatterGroupName --></label>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoCompleteEnterUserName --></label>
+        <name>stgAutoCompleteEnterUserName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoCompleteSelectChatterGroup --></label>
+        <name>stgAutoCompleteSelectChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoCompleteSelectUser --></label>
+        <name>stgAutoCompleteSelectUser</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoEnrollment --></label>
+        <name>stgAutoEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoEnrollmentRole --></label>
+        <name>stgAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAutoEnrollmentStatus --></label>
+        <name>stgAutoEnrollmentStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBackfillQueuedEmailSent --></label>
+        <name>stgBackfillQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBeforeRunBackfill --></label>
+        <name>stgBeforeRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnAddMapping --></label>
+        <name>stgBtnAddMapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnAddSetting --></label>
+        <name>stgBtnAddSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnCancel --></label>
+        <name>stgBtnCancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnEdit --></label>
+        <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnRunBackfill --></label>
+        <name>stgBtnRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnRunCopy --></label>
+        <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgBtnSave --></label>
+        <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCleanupQueuedEmailSent --></label>
+        <name>stgCleanupQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColAccountRecordType --></label>
+        <name>stgColAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColActive --></label>
+        <name>stgColActive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColCampTypes --></label>
+        <name>stgColCampTypes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColContactPrimaryAfflField --></label>
+        <name>stgColContactPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColFemale --></label>
+        <name>stgColFemale</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColField --></label>
+        <name>stgColField</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColMale --></label>
+        <name>stgColMale</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColNeutral --></label>
+        <name>stgColNeutral</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColObject --></label>
+        <name>stgColObject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColRelType --></label>
+        <name>stgColRelType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColRole --></label>
+        <name>stgColRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColStatus --></label>
+        <name>stgColStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgConfirmReadyRunBackfill --></label>
+        <name>stgConfirmReadyRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgContactMultiAddressesEnabled --></label>
+        <name>stgContactMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting Course Course Description Copy Email Body --></label>
+        <name>stgCourseDescriptionCopyEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting Course Description Copy Email Subject --></label>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipo de registro de profesor predeterminado:</label>
+        <name>stgDefaultFacultyTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipo de registro de estudiante activo predeterminado:</label>
+        <name>stgDefaultStudentTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgDeleteRelatedAfflNo --></label>
+        <name>stgDeleteRelatedAfflNo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgDeleteRelatedAfflYes --></label>
+        <name>stgDeleteRelatedAfflYes</name>
+    </customLabels>
+    <customLabels>
+        <label>Deshabilitar el tratamiento de errores:</label>
+        <name>stgDisableErrorHandlingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgDisablePreferredEmailEnforcement --></label>
+        <name>stgDisablePreferredEmailEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>Habilitar conexiones de curso:</label>
+        <name>stgEnableCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgErrorNotiTo --></label>
+        <name>stgErrorNotiTo</name>
+    </customLabels>
+    <customLabels>
+        <label>Destinatarios de notificación de errores:</label>
+        <name>stgErrorNotifRecipientsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgEthnicityRaceBackfillContacts --></label>
+        <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuración del modelo de cuenta. Administrativo es el modelo recomendado.</label>
+        <name>stgHelpAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAccoutsDeletedIfChildContactsDeleted --></label>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>Los tipos de registro de cuenta que admiten la gestión de direcciones múltiples.</label>
+        <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccione esta opción para habilitar la administración de direcciones múltiples para Contactos.</label>
+        <name>stgHelpContactAddrs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredEmail --></label>
+        <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpCopyQueuedEmailSent --></label>
+        <name>stgHelpCopyQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Solo debe utilizarse Course Connections Backfill cuando se habilitan Conexiones de curso por primera vez y solo en las organizaciones en las que existieron las Ofertas de cursos y las Conexiones de curso (Inscripción) antes de habilitar la función. Backfill convierte todos los contactos que se enumeran como profesores en una Conexión de curso (Inscripción) u Oferta de curso en el Tipo de registro predeterminado de profesores. Backfill convierte a continuación los contactos en las Conexiones de curso (Inscripción) restantes en el tipo de registro de estudiante activo predeterminado.</label>
+        <name>stgHelpCourseConnBackfillDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpCoursesDataMigration --></label>
+        <name>stgHelpCoursesDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpCoursesDataMigrationCopiesValues --></label>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpCoursesDataMigrationDontOverwrite --></label>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpCoursesDataMigrationUpdatePageLayouts --></label>
+        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipo de registro predeterminado cuando se crean Conexiones de curso para un profesor.</label>
+        <name>stgHelpDefaultFacultyType</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipo de registro predeterminado cuando se crean Conexiones de curso para estudiantes activos.</label>
+        <name>stgHelpDefaultStudentType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpEnableCourseConnBeforeBackfill --></label>
+        <name>stgHelpEnableCourseConnBeforeBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpEnableCourseConnBeforeRecordTypes --></label>
+        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>Conexiones de curso conectan un contacto con una oferta de curso. Al activar esta casilla de verificación puede elegir crear la conexión para un estudiante o un profesor (los dos tipos de registro predeterminados). Después de seleccionar esta casilla de verificación, debe establecer el tipo de registro de estudiante activo predeterminado y el tipo de registro de profesor predeterminado. Si habilita esta función por primera vez, se recomienda encarecidamente que ejecute Backfill en su organización.</label>
+        <name>stgHelpEnableCourseConnections</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpEnsureExistContactPreferEmail --></label>
+        <name>stgHelpEnsureExistContactPreferEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Si se selecciona, se deshabilita el marco de trabajo de control de errores de HEDA.</label>
+        <name>stgHelpErrorDisable</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccione esta opción si desea que el sistema publique notificaciones de cierto tipo de errores.</label>
+        <name>stgHelpErrorNotifyOn</name>
+    </customLabels>
+    <customLabels>
+        <label>Puede enviar notificaciones por correo electrónico a todos los administradores del sistema, a un solo usuario o a un grupo Chatter. Los valores válidos son Todos los administradores del sistema, el Id. de un usuario en su organización o el Id. de un grupo Chatter. Solo puede introducir un valor.</label>
+        <name>stgHelpErrorNotifyTo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpEthnicityRaceBackfill --></label>
+        <name>stgHelpEthnicityRaceBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Habilita la administración de direcciones para las cuentas administrativas y de domicilio cuando se selecciona.</label>
+        <name>stgHelpHouseAdmAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipo de registro de cuenta que mejor representa a los domicilios. HEDA utiliza el tipo de registro de cuenta de domicilio de manera predeterminada, pero puede usar otro tipo de registro si lo desea.</label>
+        <name>stgHelpHouseholdRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpIfCustomValuesEthnicityCopyRace --></label>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+    </customLabels>
+    <customLabels>
+        <label>Habilita direcciones para Cuentas de organización cuando se selecciona esta opción.</label>
+        <name>stgHelpOrgAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>Los duplicados se eliminan automáticamente de las relaciones creadas automáticamente para evitar la creación de registros de relación duplicados entre dos contactos. Marque esta casilla para desactivar este comportamiento y permitir que varias relaciones del mismo tipo se creen entre dos contactos</label>
+        <name>stgHelpRelAutoCreatedDup</name>
+    </customLabels>
+    <customLabels>
+        <label>Determina el método utilizado para generar la relación recíproca. Puede ser Configuración de lista que utiliza configuraciones personalizadas por sexo o Inversión de valor, que invierte el tipo si es apropiado (Padre-hijo a Hijo-padre)</label>
+        <name>stgHelpRelReciprocalMethod</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino --></label>
+        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+    </customLabels>
+    <customLabels>
+        <label>Trata los cambios en campos de dirección de contacto o de cuenta únicos como actualizaciones de la dirección existente (es decir, no se crea ningún objeto Dirección nuevo). También hace que el espacio en blanco y los cambios de caso se traten como actualizaciones.</label>
+        <name>stgHelpSimpleAddrChangeIsUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccione esta opción si desea que los errores se almacenen en la base de datos.</label>
+        <name>stgHelpStoreErrorsOn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpUpdateReportIfDependenciesEthnicity --></label>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgNewAfflMapping --></label>
+        <name>stgNewAfflMapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgOptAllSysAdmins --></label>
+        <name>stgOptAllSysAdmins</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgOptChatterGroup --></label>
+        <name>stgOptChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgOptSelect --></label>
+        <name>stgOptSelect</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgOptUser --></label>
+        <name>stgOptUser</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting Preferred Email Batch Email Body --></label>
+        <name>stgPreferredEmailBatchEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting Preferred Email batch Subject --></label>
+        <name>stgPreferredEmailBatchEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgPreferredEmailDataCleanup --></label>
+        <name>stgPreferredEmailDataCleanup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgRunCleanUpEnableFirstTime --></label>
+        <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSelectReciType --></label>
+        <name>stgSelectReciType</name>
+    </customLabels>
+    <customLabels>
+        <label>Enviar notificaciones de errores:</label>
+        <name>stgSendErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSimpleAddressChangeUpdate --></label>
+        <name>stgSimpleAddressChangeUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>Almacenar Errores:</label>
+        <name>stgStoreErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabAccCont --></label>
+        <name>stgTabAccCont</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabAffl --></label>
+        <name>stgTabAffl</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabAfflMappings --></label>
+        <name>stgTabAfflMappings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabAutocreation --></label>
+        <name>stgTabAutocreation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabBackfill --></label>
+        <name>stgTabBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabCourse --></label>
+        <name>stgTabCourse</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabCourseConn --></label>
+        <name>stgTabCourseConn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabName --></label>
+        <name>stgTabName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabPrimaryAfflField --></label>
+        <name>stgTabPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabReciprocalSettings --></label>
+        <name>stgTabReciprocalSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabRel --></label>
+        <name>stgTabRel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabSettings --></label>
+        <name>stgTabSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTabSystem --></label>
+        <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleAllowAutocreatedDuplicateRel --></label>
+        <name>stgTitleAllowAutocreatedDuplicateRel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleAppwideSettings --></label>
+        <name>stgTitleAppwideSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleCourseConnectionBackfill --></label>
+        <name>stgTitleCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleCoursesDescriptionDataMigration --></label>
+        <name>stgTitleCoursesDescriptionDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleHEDAConfig --></label>
+        <name>stgTitleHEDAConfig</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleHEDASettings --></label>
+        <name>stgTitleHEDASettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleNewAutocreateSetting --></label>
+        <name>stgTitleNewAutocreateSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleNewReciSetting --></label>
+        <name>stgTitleNewReciSetting</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgTitleReciMethod --></label>
+        <name>stgTitleReciMethod</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgToastError --></label>
+        <name>stgToastError</name>
+    </customLabels>
+    <customTabs>
+        <label>Configuración de HEDA</label>
+        <name>HEDA_Settings</name>
+    </customTabs>
+</Translations>

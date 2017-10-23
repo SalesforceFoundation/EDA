@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>La etiqueta del tipo de registro de cuenta.</help>
+        <label>Tipo de registro de cuenta</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <label>Función de la inscripción automática</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <label>Estado de la inscripción automática</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>Si se selecciona, se creará automáticamente un registro de inscripción de programa cuando el usuario cree una afiliación a una cuenta de este tipo.</help>
+        <label>Inscripción automática</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>La etiqueta del campo de búsqueda en Contacto que señala a la cuenta principal del tipo de registro especificado.</help>
+        <label>Campo de afiliación principal</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+</CustomObjectTranslation>
