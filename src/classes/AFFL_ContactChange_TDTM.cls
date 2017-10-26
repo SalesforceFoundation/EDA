@@ -37,11 +37,6 @@
 public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Static flags to prevent recursive call.
-    ********************************************************************************************************/
-    public static boolean afflContactChangeAlreadyRun = false;
-
-    /*******************************************************************************************************
     * @description Handles Affiliation management.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -54,7 +49,7 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if(!afflContactChangeAlreadyRun) {
+        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM)) {
 
             AFFL_MultiRecordType_TDTM afflMulti = new AFFL_MultiRecordType_TDTM();
             Map<ID, Contact> newRelatedContactsMap, oldRelatedContactsMap;
@@ -116,8 +111,11 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	               i++;
 	           }
 	       }
-	       afflContactChangeAlreadyRun = true;
+           TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM, true);
         }
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;        
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM, false);
         return dmlWrapper;
     }
 }
