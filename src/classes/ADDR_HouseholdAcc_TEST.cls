@@ -572,6 +572,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         
         List<Address__c> listAddrOriginal = consAccsAddrs.addrs;
         
+        ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < 2; i++) {
@@ -582,8 +583,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        
+ 
+         ADDR_Addresses_TDTM.addressIdsUpdated = new Set<Id>();       
         // go back to original default addresses
         // added this extra set to test fix where we didn't use the correct default
         for (Integer i = 0; i < 2; i++) {
@@ -591,10 +592,8 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             listAddrOriginal[i].MailingStreet__c = 'Original Default Street' + i;
             listAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update listAddrOriginal;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.stopTest();
 
         // verify that the HH and Contacts share the same address and it's new!
@@ -887,13 +886,14 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             listCon.add(con);
         }
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         update listCon;
 
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingState = 'Washington';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         update listCon;
 
         for (Integer i = 0; i < 2; i++) {
@@ -901,7 +901,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             con.MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
             con.MailingState = 'Oregon';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         Test.startTest();
         update listCon;
         Test.stopTest();
@@ -941,6 +941,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         
         // modify some of the contact addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
@@ -950,26 +951,26 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listCon;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingState = 'Washington';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listCon;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
             con.MailingState = 'Oregon';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update listCon;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Contact con = consAccsAddrs.contacts[i*2 + i];
             con.MailingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update listCon;
         Test.stopTest();
@@ -993,6 +994,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             System.assert(addr.MailingStreet__c.equals('DIRECT STREET  EDIT'));
         }
         
+        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         // now test that changing the case from the account updates all addresses
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
@@ -1034,6 +1036,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
         
+        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         // modify some of the account addresses directly
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
@@ -1043,20 +1046,20 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update consAccsAddrs.accs;
 
+        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
             acc.BillingStreet = 'another Street Edit';
             acc.BillingCity = 'another City Edit';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update consAccsAddrs.accs;
 
+        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
             acc.BillingStreet = 'final Street Edit';
             acc.BillingCity = 'final City Edit';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update consAccsAddrs.accs;
         Test.stopTest();
@@ -1106,19 +1109,19 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update consAccsAddrs.accs;
 
+        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
             acc.BillingState = 'Washington';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         update consAccsAddrs.accs;
 
+        ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             Account acc = consAccsAddrs.accs[i];
             acc.BillingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
             acc.BillingState = 'Oregon';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         Test.startTest();
         update consAccsAddrs.accs;
         Test.stopTest();
@@ -1424,8 +1427,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         // Hack!  by setting our trigger handler as run,
         // we can insert the new seasonal addresses but not have them processed.
         // this way we can test the scheduled job!
-        ADDR_Addresses_TDTM.alreadyRunBeforeInsert = true;
-        ADDR_Addresses_TDTM.alreadyRunAfterInsert = true;
+        ADDR_Addresses_TDTM.turnOff();
         insert addrs;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
 
@@ -1611,17 +1613,20 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
 
         // create additional addresses
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
         for (Integer i = 0; i < 2; i++) {
             addrs[i].Parent_Account__c = consAccsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = false;
             addrs[i].MailingStreet__c = 'override' + i;
             addrs[i].MailingCity__c = 'override' + i;
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         insert addrs;
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
-        
+    
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();    
         // set the contacts' address overrides
         List<Contact> listCon = new List<Contact>();
         for (Integer i = 0; i < 2; i++) {
@@ -1630,15 +1635,16 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             con.is_Address_Override__c = true;
             listCon.add(con);
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         update listCon;
  
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
         // modify override contact address info directly
         for (Contact con : listCon) {
             con.MailingStreet = 'Direct Street Edit';
             con.MailingCity = 'Direct City Edit';
         }
-        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         Test.startTest();
         update listCon;
         Test.stopTest();
