@@ -44,10 +44,10 @@ public with sharing class STG_InstallScript_TEST {
             LastName = 'Test',
             Email = 'joe@domain.com'
         );
-        CON_Preferred_TDTM.alreadyRunBefore = true; // need to turn off the trigger for this test
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);// need to turn off the trigger for this test
         insert cont;
 
-        CON_Preferred_TDTM.alreadyRunBefore = false; // back on for install script
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true); // back on for install script
 
         Test.startTest();
 		//Run the install script

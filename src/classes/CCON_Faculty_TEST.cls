@@ -334,6 +334,7 @@ public with sharing class CCON_Faculty_TEST {
             System.assertEquals(faculty.Id, offering.Faculty__c);
 
             // Mark the second Course Connection as Primary.
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
             conn2.Primary__c = true;
             Test.startTest();
             update conn2;
@@ -484,7 +485,7 @@ public with sharing class CCON_Faculty_TEST {
 
     @isTest
     public static void testGetAffiliations() {
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         setup();
 
         Affiliation__c affl = new Affiliation__c(Contact__c = faculty.Id, Account__c = dpt.Id, Role__c = 'Faculty');
@@ -508,7 +509,7 @@ public with sharing class CCON_Faculty_TEST {
 
     @isTest
     public static void testGetContactIdAccountIdAffiliationsList() {
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         setup();
 
         Affiliation__c affl = new Affiliation__c(Contact__c = faculty.Id, Account__c = dpt.Id, Role__c = 'Faculty');
