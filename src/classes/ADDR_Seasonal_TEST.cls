@@ -654,8 +654,7 @@ private with sharing class ADDR_Seasonal_TEST {
         // Hack!  by setting our trigger handler as run,
         // we can insert the new seasonal addresses but not have them processed.
         // this way we can test the scheduled job!
-        ADDR_Addresses_TDTM.alreadyRunBeforeInsert = true;
-        ADDR_Addresses_TDTM.alreadyRunAfterInsert = true;
+        ADDR_Addresses_TDTM.turnoff();
         insert allNewAddrs;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
 
@@ -805,8 +804,7 @@ private with sharing class ADDR_Seasonal_TEST {
         }
 
         // Turn off triggers because we need to update the addresses to test the batch.
-        ADDR_Addresses_TDTM.alreadyRunBeforeUpdate = true;
-        ADDR_Addresses_TDTM.alreadyRunAfterUpdate = true;
+        ADDR_Addresses_TDTM.turnOff();
         update allNewAddrs;
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
 

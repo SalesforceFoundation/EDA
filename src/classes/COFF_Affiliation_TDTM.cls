@@ -37,11 +37,6 @@
 public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
-    * @description static flag to prevent recursive call
-    */
-    public static boolean hasRunCoffTrigger = false;
-
-   /*******************************************************************************************************
     * @description Handles Affiliation management for Course Offering.
                    Populates Start and End Date from Term, if fields are empty.
     * @param listNew the list of Accounts from trigger new.
@@ -54,9 +49,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
-
         // prevent recursion
-        if (!hasRunCoffTrigger) {
+        if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM)) {
 
             List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
             Set<Id> offsWithChangedFaculty = new Set<Id>();
@@ -179,7 +173,6 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                     }
                 }
             }
-
             // If new faculty added to existing Course Offering
             if (offsWithNewFaculty.size() > 0) {
                 if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
@@ -213,10 +206,15 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 deleteAfflsEnrolls(facultyCleanupIDs, offsWithRemovedFaculty, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
             }
 
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
+
             dmlWrapper.objectsToUpdate.addAll(objectsToUpdate);
             dmlWrapper.objectsToInsert.addAll(objectsToInsert);
             dmlWrapper.objectsToDelete.addAll(objectsToDelete);
         }
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         return dmlWrapper;
     }
 
@@ -228,7 +226,6 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     private void createOrLinkAffls(List<Course_Offering__c> offsWithNewFaculty, List<Id> newFacultyIDs, List<Course_Enrollment__c> courseEnrllsToInsert) {
          //Find all Affls for all Faculty members in the trigger.
          Map<Id, List<Affiliation__c>> facultyIDtoAffls = getAfflsForContact(newFacultyIDs);
-
          //Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created,
          //and no Affl to the parent Department exists.
          List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
