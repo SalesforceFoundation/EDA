@@ -61,7 +61,6 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
          //
          //    B. If that account did not have a record type:
          //         --> the key affl lookup field for that type in Contacts affiliated to it needs to be populated
-
     	 if(newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
     	 	for (Integer i = 0; i < newlist.size(); i++) {
     	 	    SObject so = newlist[i];
@@ -90,7 +89,6 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 			        }
     	 		}
 		    }
-
 		    updatePrimaryAfflsOnChange(accsTypeChanged, dmlWrapper);
             updatePrimaryAfflsOnAdd(accsTypeAdded, dmlWrapper);
     	 }

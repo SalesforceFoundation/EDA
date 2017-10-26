@@ -91,7 +91,7 @@ public with sharing class CON_Preferred_TEST {
 		contact3.PreferredPhone__c = 'Other';
 		contact4.PreferredPhone__c = 'Mobile';
 
-	    CON_Preferred_TDTM.alreadyRunBefore = false; // need to re-activate the trigger since this is all the same transaction
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
 		Test.startTest();
 		update contacts;
 		Test.stopTest();

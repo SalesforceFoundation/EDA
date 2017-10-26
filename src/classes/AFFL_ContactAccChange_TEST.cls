@@ -178,14 +178,14 @@ public with sharing class AFFL_ContactAccChange_TEST {
     }
     
     public static void resetAfflFlags() {
-        AFFL_ContactChange_TDTM.afflContactChangeAlreadyRun = false;
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM);
         
-        CON_PrimaryAffls_TDTM.keyAfflLookupUpdated = false;
-        CON_PrimaryAffls_TDTM.alreadyRunAfterInsert = false;
-        CON_PrimaryAffls_TDTM.alreadyRunAfterUpdate = false;
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
         
-        AFFL_MultiRecordType_TDTM.afflMadePrimary = false;
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunBefore = false;
-        AFFL_MultiRecordType_TDTM.afflMultiHasRunAfter = false;
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update);
     }    
 }
