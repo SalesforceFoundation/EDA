@@ -138,6 +138,7 @@ public with sharing class COFF_Affiliation_TEST {
         //Add faculty to offering
         offering.Faculty__c = faculty.Id;
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         update offering;
         Test.stopTest();
 
@@ -181,6 +182,7 @@ public with sharing class COFF_Affiliation_TEST {
         //Add faculty to offering
         offering.Faculty__c = faculty.Id;
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         update offering;
         Test.stopTest();
 
@@ -222,6 +224,7 @@ public with sharing class COFF_Affiliation_TEST {
         //Update Offering
         offering.Faculty__c = faculty2.Id;
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);        
         update offering;
         Test.stopTest();
 
@@ -275,6 +278,7 @@ public with sharing class COFF_Affiliation_TEST {
             //Update Offering
             offering.Faculty__c = faculty2.Id;
             Test.startTest();
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
             update offering;
             Test.stopTest();
 
@@ -321,6 +325,7 @@ public with sharing class COFF_Affiliation_TEST {
             //Update Offering
             offering.Faculty__c = faculty.Id;
             Test.startTest();
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
             update offering;
             Test.stopTest();
 
@@ -357,6 +362,7 @@ public with sharing class COFF_Affiliation_TEST {
             //Update Offering
             offering.Faculty__c = faculty2.Id;
             Test.startTest();
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
             update offering;
             Test.stopTest();
 
@@ -391,6 +397,7 @@ public with sharing class COFF_Affiliation_TEST {
         //Update Offering
         offering.Faculty__c = null;
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         update offering;
         Test.stopTest();
 
@@ -411,7 +418,8 @@ public with sharing class COFF_Affiliation_TEST {
         Course_Offering__c firstOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 1', Course__c = course.Id,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert firstOffering;
-
+            
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         //Create second Course Offering with Faculty member
         Course_Offering__c secondOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 2', Course__c = course.Id,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
@@ -435,6 +443,7 @@ public with sharing class COFF_Affiliation_TEST {
         // Update first Offering
         firstOffering.Faculty__c = null;
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         update firstOffering;
         Test.stopTest();
 
@@ -460,6 +469,7 @@ public with sharing class COFF_Affiliation_TEST {
         insert firstOffering;
 
         //Create second Course Offering with Faculty member
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         Course_Offering__c secondOffering = new Course_Offering__c(Section_Id__c = 'BIO-101 Spring 16 - 2', Course__c = course.Id,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert secondOffering;
@@ -480,6 +490,7 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(affls[0].Id, enrolls[1].Affiliation__c);
 
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         delete new List<Course_Offering__c>{
             firstOffering,
             secondOffering
@@ -524,6 +535,7 @@ public with sharing class COFF_Affiliation_TEST {
             //Update Offering
             offering.Faculty__c = null;
             Test.startTest();
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
             update offering;
             Test.stopTest();
 
@@ -559,6 +571,7 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(affls[0].Id, enrolls[0].Affiliation__c);
 
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);        
         delete offering;
         Test.stopTest();
 
@@ -672,7 +685,7 @@ public with sharing class COFF_Affiliation_TEST {
     @isTest
     public static void testUpdateConnectionsOnFacultyChangeUpdateExisting() {
         setup();
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
@@ -704,6 +717,7 @@ public with sharing class COFF_Affiliation_TEST {
         COFF_Affiliation_TDTM cls = new COFF_Affiliation_TDTM();
 
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         cls.updateConnectionsOnFacultyChange(outdatedFaculty, updatedFaculty, offerings, objectsToInsert, objectsToUpdate);
         Test.stopTest();
 
@@ -717,7 +731,7 @@ public with sharing class COFF_Affiliation_TEST {
     public static void testUpdateConnectionsOnFacultyChangeInsertNew() {
         setup();
 
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
@@ -780,14 +794,12 @@ public with sharing class COFF_Affiliation_TEST {
     public static void testUpdateConnectionsOnFacultyAddInsertNew() {
         setup();
 
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
-
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = false;
 
         List<Course_Offering__c> offerings = new List<Course_Offering__c>{offering};
 
@@ -797,6 +809,7 @@ public with sharing class COFF_Affiliation_TEST {
         COFF_Affiliation_TDTM cls = new COFF_Affiliation_TDTM();
 
         Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         cls.updateConnectionsOnFacultyAdd(offerings, objectsToInsert, objectsToUpdate);
         Test.stopTest();
 
@@ -809,7 +822,7 @@ public with sharing class COFF_Affiliation_TEST {
     public static void testUpdateConnectionsOnFacultyAddUpdateExisting() {
         setup();
 
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
@@ -859,6 +872,7 @@ public with sharing class COFF_Affiliation_TEST {
 
         Test.startTest();
         offering2.Faculty__c = newFaculty.Id;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
         update offering2;
         Test.stopTest();
 

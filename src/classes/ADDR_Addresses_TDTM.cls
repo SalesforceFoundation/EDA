@@ -36,27 +36,18 @@
 */
 public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 
-    /* @description Flag to prevent recursive call before insert */
-    public static boolean alreadyRunBeforeInsert = false;
-    /* @description Flag to prevent recursive call before update */
-    public static boolean alreadyRunBeforeUpdate = false;
-    /* @description Flag to prevent recursive call after insert */
-    public static boolean alreadyRunAfterInsert = false;
-    /* @description Flag to prevent recursive call after update */
-    public static boolean alreadyRunAfterUpdate = false;
-    /* @description Flag to prevent recursive call after delete */
-    public static boolean alreadyRunAfterDelete = false;
-
+    public static Set<Id> addressIdsInserted = new Set<Id>();
+    public static Set<Id> addressIdsUpdated = new Set<Id>();
     /*******************************************************************************************************
     * @description Turns class off.
     * @return void
     ********************************************************************************************************/
     public static void turnOff() {
-        alreadyRunBeforeInsert = true;
-        alreadyRunBeforeUpdate = true;
-        alreadyRunAfterInsert = true;
-        alreadyRunAfterUpdate = true;
-        alreadyRunAfterDelete = true;
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert);
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update);
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert);
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update);
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete);
     }
 
     /*******************************************************************************************************
@@ -64,11 +55,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
     * @return void
     ********************************************************************************************************/
     public static void turnOn() {
-        alreadyRunBeforeInsert = false;
-        alreadyRunBeforeUpdate = false;
-        alreadyRunAfterInsert = false;
-        alreadyRunAfterUpdate = false;
-        alreadyRunAfterDelete = false;
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete);
     }
 
     /*******************************************************************************************************
@@ -85,7 +76,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if(!alreadyRunBeforeInsert || !alreadyRunBeforeUpdate || !alreadyRunAfterInsert || !alreadyRunAfterUpdate || !alreadyRunAfterDelete) {
+        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert) 
+            || !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update) 
+            || !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert) 
+            || !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update) 
+            || !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete)) {
             //Turn off other address triggers
             ADDR_Account_TDTM.turnOff();
             ADDR_Contact_TDTM.turnOff();
@@ -100,7 +95,7 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	        Map<Id, Address__c> mapParentIdAddr = new Map<Id, Address__c>();
 
 	        // BEFORE INSERT
-	        if (!alreadyRunBeforeInsert && triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+	        if (triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert)) {
 		        for (SObject so : listNew) {
 		            Address__c addr = (Address__c)so;
 	                // when an address is created as Default, we update its latest date fields
@@ -109,11 +104,11 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                    addr.Latest_End_Date__c = null;
 	               }
 		        }
-		        alreadyRunBeforeInsert = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert, true);
 	        }
 
 	        // BEFORE UPDATE
-	        if (!alreadyRunBeforeUpdate && triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+	        if (triggerAction == TDTM_Runnable.Action.BeforeUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update)) {
 	            Integer i = 0;
 		        for (SObject so : listNew) {
 		            Address__c addr = (Address__c)so;
@@ -130,24 +125,28 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	                }
 	                i++;
 		        }
-		        alreadyRunBeforeUpdate = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update, true);
 	        }
 
 	        // AFTER INSERT
-	        if (!alreadyRunAfterInsert && triggerAction == TDTM_Runnable.Action.AfterInsert) {
-	            for (SObject so : listNew) {
+	        if (triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert)) {
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert, true);
+                for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
-		            // a new address that is marked default or seasonal needs to propagate to the parent Account
-		            if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
-		                putAddrInMap(addr, mapParentIdAddr);
-		            }
+                    if (!addressIdsInserted.contains(addr.Id)){
+    		            // a new address that is marked default or seasonal needs to propagate to the parent Account
+    		            if (addr.Default_Address__c || ADDR_Seasonal_UTIL.isSeasonalAddr(addr)) {
+    		                putAddrInMap(addr, mapParentIdAddr);
+    		            }
+                        addressIdsInserted.add(addr.Id);
+                    }
 	            }
 
 	            if(mapParentIdAddr.size() > 0) {
 	                refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	                processDmlErrors(dmlWrapper, mapParentIdAddr);
 	            }
-
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Insert, false);
 	            // enforce address records created only as children of parents
 	            verifyAddrAccContactChildOnly((List<Address__c>)listNew);
 	            // enforce Seasonal Addresses don't overlap
@@ -155,12 +154,12 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	            // delete empty addresses
 	            deleteEmptyAddrs(listNew);
 
-	            alreadyRunAfterInsert = true;
 	        }
 
 	        // AFTER UPDATE
-	        if (!alreadyRunAfterUpdate && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-	            Integer i = 0;
+	        if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update)) {
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update, true);    
+                Integer i = 0;
 	            for (SObject so : listNew) {
 	                Address__c addr = (Address__c)so;
 	                Address__c addrOld = listOld == null? null : (Address__c)listOld[i];
@@ -168,26 +167,31 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 		            Boolean seasonalChanged =  ADDR_Seasonal_UTIL.isSeasonalChanged(addr, addrOld);
 		            Boolean changedToDefault = addr.Default_Address__c && (addr.Default_Address__c != addrOld.Default_Address__c);
 
-		            //An address that is marked default, of that had its seasonal info changed needs to propagate to the parent.
-		            if (changedToDefault ||seasonalChanged) {
-		                putAddrInMap(addr, mapParentIdAddr);
-		            //If it's default and its address info has changed.
-		            } else if (changed && addr.Default_Address__c) {
-		                putAddrInMap(addr, mapParentIdAddr);
-		            }
-		            i++;
+                    if (!addressIdsUpdated.contains(addr.Id)){
+    		            //An address that is marked default, of that had its seasonal info changed needs to propagate to the parent.
+    		            if (changedToDefault ||seasonalChanged) {
+    		                putAddrInMap(addr, mapParentIdAddr);
+                            addressIdsUpdated.add((addr.Id));
+
+    		            //If it's default and its address info has changed.
+    		            } else if (changed && addr.Default_Address__c) {
+    		                putAddrInMap(addr, mapParentIdAddr);
+                            addressIdsUpdated.add((addr.Id));
+    		            }
+    		            i++;
+                    }
 	            }
 
 	            if(mapParentIdAddr.size() > 0) {
 	                refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	                processDmlErrors(dmlWrapper, mapParentIdAddr);
 	            }
-
-	            alreadyRunAfterUpdate = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Update, false);                    
 	        }
 
 	        // AFTER DELETE
-	        if (!alreadyRunAfterDelete && triggerAction == TDTM_Runnable.Action.AfterDelete) {
+	        if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete)) {
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete, true);
 	            Integer i = 0;
 	            for (SObject addrOld : listOld) {
 		            // first go through all new/modified Addresses, and collect the list of parents to consider.
@@ -205,9 +209,15 @@ public class ADDR_Addresses_TDTM extends TDTM_Runnable {
 	               refreshParentAndSiblings(mapParentIdAddr, dmlWrapper, triggerAction);
 	               processDmlErrors(dmlWrapper, mapParentIdAddr);
 	            }
-
-	            alreadyRunAfterDelete = true;
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_After_Delete, false);
 	        }
+        }
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        if (triggerAction == TDTM_Runnable.Action.BeforeInsert){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Insert, false);
+        }else if (triggerAction == TDTM_Runnable.Action.BeforeUpdate){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Addresses_TDTM_Before_Update, false);
         }
         return dmlWrapper;
     }
