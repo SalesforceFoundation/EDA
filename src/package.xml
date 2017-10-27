@@ -371,7 +371,17 @@
         <members>afflNullPointerError</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
+        <members>firstNameLastNameAdminACC</members>
+        <members>firstNameLastNameFamily</members>
+        <members>firstNameLastNameHH</members>
         <members>hhAccNameFormat</members>
+        <members>hhFamily</members>
+        <members>lastNameAdminAcc</members>
+        <members>lastNameFamily</members>
+        <members>lastNameFirstNameAdminAcc</members>
+        <members>lastNameFirstNameFamily</members>
+        <members>lastNameFirstNameHH</members>
+        <members>lastNameHH</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>

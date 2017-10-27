@@ -241,11 +241,92 @@
         <value>A validation rule is preventing the record from being processed. This could be from this record, or a related record being updated. VALIDATION MESSAGE:</value>
     </labels>
     <labels>
+        <fullName>firstNameLastNameAdminACC</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>firstNameLastNameAdminACC</shortDescription>
+        <value>{!FirstName} {!LastName} Administrative Account</value>
+    </labels>
+    <labels>
+        <fullName>firstNameLastNameFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>firstNameLastNameFamily</shortDescription>
+        <value>{!FirstName} {!LastName} Family</value>
+    </labels>
+    <labels>
+        <fullName>firstNameLastNameHH</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>firstNameLastNameHH</shortDescription>
+        <value>{!FirstName} {!LastName} Household</value>
+    </labels>
+    <labels>
         <fullName>hhAccNameFormat</fullName>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>hhAccNameFormat</shortDescription>
         <value>Household Account Name Format</value>
+    </labels>
+    <labels>
+        <fullName>hhFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>hhFamily</shortDescription>
+        <value>Family</value>
+    </labels>
+    <labels>
+        <fullName>lastNameAdminAcc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameAdminAcc</shortDescription>
+        <value>{!LastName} Administrative Account</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFamily</shortDescription>
+        <value>{!LastName} Family</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFirstNameAdminAcc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFirstNameAdminAcc</shortDescription>
+        <value>{!LastName} {!FirstName} Administrative Account</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFirstNameFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFirstNameFamily</shortDescription>
+        <value>{!LastName} {!FirstName} Family</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFirstNameHH</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFirstNameHH</shortDescription>
+        <value>{!LastName} {!FirstName} Household</value>
+    </labels>
+    <labels>
+        <fullName>lastNameHH</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameHH</shortDescription>
+        <value>{!LastName} Household</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>
