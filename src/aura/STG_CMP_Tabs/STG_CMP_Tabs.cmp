@@ -20,6 +20,11 @@
     <aura:attribute name="studentRecTypeName" type="String" />
     <aura:attribute name="facultyRecTypeName" type="String" />
 
+    <aura:attribute name="adminNameFormat" type="String" />
+    <aura:attribute name="hhNameFormat" type="String" />
+    <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
+    <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
+
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
@@ -98,7 +103,7 @@
         </div>
         <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
-             accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" accRecTypeName="{!v.accRecTypeName}"  />
+             accRecTypes="{!v.accRecTypes}" accRecTypeId="{!v.accRecTypeId}" accRecTypeName="{!v.accRecTypeName}"  hhNameFormat="{!v.hhNameFormat}" adminNameFormat="{!v.adminNameFormat}" adminOtherDisplay="{!v.adminOtherDisplay}" hhOtherDisplay="{!v.hhOtherDisplay}"/>
         </div>
     </div>
 </aura:component>

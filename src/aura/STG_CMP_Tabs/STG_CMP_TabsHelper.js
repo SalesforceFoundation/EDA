@@ -27,8 +27,14 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
-          component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
-          component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
+		        component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
+		        component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
+
+		        component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
+		        component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
+		        component.set("v.adminOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
+		        component.set("v.hhOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
+
 	    		//Get account record types
 	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
 	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
@@ -193,6 +199,24 @@
 			}			
 
 		});
+	},
+
+	getOtherDisplay : function(component, value)
+	{
+		var prefix = component.get("v.namespacePrefix");
+		var label = '';
+		if(prefix === 'hed__')
+        {
+            label = $A.get("$Label.hed.acctNamingOther");
+        }else{
+            label = $A.get("$Label.c.acctNamingOther");
+        } 
+        if (value === label)
+        {
+        	return true;
+        }else{
+        	return false;
+        }
 	}
 
 })

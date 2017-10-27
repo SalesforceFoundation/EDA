@@ -501,7 +501,18 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return string. the Household account name
     */
     public static String strNameHHAccountForContact(Contact con) {
-        return con.LastName + ' ' + system.label.DefaultHouseholdName;
+        String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
+        if (hhAccNamingFormat == Label.acctNamingOther)
+        {
+            hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
+        }
+        if (hhAccNamingFormat!= null)
+        {
+            return formatContactName(con, hhAccNamingFormat);
+        }else{
+            return con.LastName + ' ' + system.label.DefaultHouseholdName;
+
+        }
     }
 
     /*******************************************************************************************************
@@ -510,7 +521,17 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return string. the Household account name
     */
     public static String strNameAdmAccountForContact(Contact con) {
-        return con.LastName + ' ' + system.label.DefaultAdminName;
+        String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
+        if (adminAccNamingFormat == Label.acctNamingOther)
+        {
+            adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
+        }
+        if (adminAccNamingFormat != null)
+        {
+            return formatContactName(con, adminAccNamingFormat);
+        }else{
+            return con.LastName + ' ' + system.label.DefaultAdminName; 
+        }
     }
 
     /*******************************************************************************************************
@@ -543,5 +564,37 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         // add all accounts needing updating to our list
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
+    }
+
+    private static String formatContactName(Contact con, String setting)
+    {
+        Map<String, Schema.SObjectField> mapContactFields = Schema.getGlobalDescribe().get('Contact').getDescribe().fields.getMap();
+        Set<String> contactFieldsNames = mapContactFields.keySet(); 
+        String resultSetting = '';
+        List<String> settingsSplitSpace= setting.split(' ');
+        List<String> settingsSplitParenthesis = new List<String>();
+        for (String settingSplitSpace : settingsSplitSpace)
+        {
+            if (settingSplitSpace.contains('{!') && settingSplitSpace.contains('}'))
+            {
+                settingsSplitParenthesis = settingSplitSpace.split('}');
+                for (String settingSplitParenthesis : settingsSplitParenthesis)
+                {
+                    if (settingSplitParenthesis.startsWith('{!'))
+                    {
+                        settingSplitParenthesis = settingSplitParenthesis.remove('{!');
+                    }
+                    if (contactFieldsNames.contains(settingSplitParenthesis) && con.get(settingSplitParenthesis) != null)
+                    {
+                        resultSetting += (String)(con.get(settingSplitParenthesis));
+                    }
+                }
+            }else{
+                resultSetting += settingSplitSpace;
+            }
+            resultSetting += ' ';
+        }
+        return resultSetting.trim();
+
     }
 }

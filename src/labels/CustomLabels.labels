@@ -145,6 +145,14 @@
         <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
     </labels>
     <labels>
+        <fullName>acctNamingOther</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>acctNamingOther</shortDescription>
+        <value>Other</value>
+    </labels>
+    <labels>
         <fullName>addrHhAdmAccountOnly</fullName>
         <categories>Address Management</categories>
         <language>en_US</language>
@@ -201,6 +209,14 @@
         <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
+        <fullName>adminAccNameFormat</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>adminAccNameFormat</shortDescription>
+        <value>Admin Account Name Format</value>
+    </labels>
+    <labels>
         <fullName>afflNullPointerError</fullName>
         <categories>Error</categories>
         <language>en_US</language>
@@ -223,6 +239,13 @@
         <protected>true</protected>
         <shortDescription>exceptionValidationRule</shortDescription>
         <value>A validation rule is preventing the record from being processed. This could be from this record, or a related record being updated. VALIDATION MESSAGE:</value>
+    </labels>
+    <labels>
+        <fullName>hhAccNameFormat</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>hhAccNameFormat</shortDescription>
+        <value>Household Account Name Format</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>
