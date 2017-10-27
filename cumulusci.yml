@@ -8,6 +8,11 @@ project:
     git:
         prefix_release: rel/
         repo_url: https://github.com/SalesforceFoundation/HEDAP
+        release_notes:
+            parsers:
+                6:
+                    class_path: cumulusci.tasks.release_notes.parser.GithubLinesParser
+                    title: Testing Notes
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -15,14 +20,13 @@ project:
         repo_dir: ApexDocumentation
 
 tasks:
-
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
-        class_path: cumulusci.tasks.salesforce.DeployNamespacedBundles
+        class_path: cumulusci.tasks.salesforce.DeployBundles
         options:
+            namespace_inject: $project_config.project__package__namespace
             path: dev_config/src
-            namespace_token: '%%%NAMESPACE%%%'
-            filename_token: '___NAMESPACE___'
+            unmanaged: True
 
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
@@ -121,12 +125,6 @@ flows:
             6.2:
                 task: execute_install_apex
     
-    ci_master:
-        tasks:
-            9:
-                options:
-                    skip_record_types: True  
-    
     ci_beta:
         tasks:
             6:
@@ -145,10 +143,28 @@ flows:
             7:
                 task: deploy_dev_config
                 options:
+                    unmanaged: False
+
+    ci_master:
+        tasks:
+            9:
+                options:
                     managed: True
+                    namespaced_org: True
+                    skip_record_types: True
 
     dev_org:
         tasks:
+            8:
+                task: deploy_dev_config
+            9:
+                task: execute_install_apex
+
+    dev_org_namespaced:
+        tasks:
+            6:
+                options:
+                    namespaced_org: True
             8:
                 task: deploy_dev_config
             9:
@@ -162,7 +178,7 @@ flows:
             6:
                 task: deploy_dev_config
                 options:
-                    managed: True
+                    unmanaged: False
 
     release_beta:
         tasks:

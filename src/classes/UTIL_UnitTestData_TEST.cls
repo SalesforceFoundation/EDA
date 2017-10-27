@@ -102,8 +102,8 @@ public class UTIL_UnitTestData_TEST {
             addr.MailingState__c = 'Washington';
             addr.MailingPostalCode__c = 'Zip' + i;
             addr.MailingCountry__c = 'United States';
-            addr.Geolocation__Latitude__s = 47.6097 + i;
-            addr.Geolocation__Longitude__s = -122.3331 + i;
+            addr.Geolocation__Latitude__s = 47.6097;
+            addr.Geolocation__Longitude__s = -122.3331;
             addrs.add(addr);            
         }
         return addrs;

@@ -51,7 +51,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
 
     private static void setup() {
 
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = true;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         // Create university
         university = new Account(Name = 'Advanced University');
@@ -63,6 +63,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         // Create Psychology department
         psychologyDept = new Account(Name = 'Psychology Department', Parent = university);
 
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         insert new List<Account>{
             biologyDept,
             psychologyDept
@@ -79,21 +80,25 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         psychologyCourse = new Course__c(Course_ID__c = 'Psychology 101', Account__c = psychologyDept.Id, Credit_Hours__c = 40,
            Description__c = 'Psychology 101');
 
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         insert new List<SObject>{
             term,
             biologyCourse,
             psychologyCourse
         };
 
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         facultyContacts = new List<Contact>();
         facultyContacts = createContacts(20, 'faculty');
         insert facultyContacts;
 
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         studentContacts = new List<Contact>();
         studentContacts = createContacts(20, 'student');
         insert studentContacts;
 
         // Create Biology Offerings and Psychology Offerings
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
         offeringsList = new List<Course_Offering__c>();
         facultyConnections = new List<Course_Enrollment__c>();
         createCourseOfferingsWithFaculty(biologyCourse.Id, term.Id, facultyContacts);
@@ -111,7 +116,6 @@ public with sharing class CCON_ConnectionBackfill_TEST {
                 Student_RecType__c = UTIL_Describe.getStudentConnectionRecType()
             )
         );
-        COFF_Affiliation_TDTM.hasRunCoffTrigger = false;
     }
 
     @isTest

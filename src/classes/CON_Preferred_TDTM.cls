@@ -36,9 +36,6 @@
 */
 public class CON_Preferred_TDTM extends TDTM_Runnable {
 
-    /* @description Flag to prevent recursive call on beforeInsert and BeforeUpdate */
-    public static Boolean alreadyRunBefore = false;
-
     /*******************************************************************************************************
     * @description Updates default email and phone fields based to the preferred email and preferred phone values.
     * @return dmlWrapper
@@ -46,9 +43,9 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
              
-        if( !alreadyRunBefore && (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
+        if( !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM) && (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
 
-            alreadyRunBefore = true;
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
 
             for(SObject so : newlist) {
                 Contact contact = (Contact)so;
