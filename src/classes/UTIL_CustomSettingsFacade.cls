@@ -103,6 +103,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Affl_ProgEnroll_Del__c = false;
         hs.Affl_ProgEnroll_Del_Status__c = 'Former';
         hs.Async_Error_Check_Last_Run__c = null;
+        hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
+        hs.Household_Account_Naming_Format__c = '{!LastName} Household';        
     }
 
     /*******************************************************************************************************
