@@ -584,7 +584,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     {
                         settingSplitParenthesis = settingSplitParenthesis.remove('{!');
                     }
-                    if (contactFieldsNames.contains(settingSplitParenthesis) && con.get(settingSplitParenthesis) != null)
+                    if (contactFieldsNames.contains(settingSplitParenthesis.toLowerCase()) && con.get(settingSplitParenthesis) != null)
                     {
                         resultSetting += (String)(con.get(settingSplitParenthesis));
                     }
