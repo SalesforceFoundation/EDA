@@ -427,7 +427,7 @@ private class TDTM_Manager_TEST {
 		List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
 		TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
 
-		//insert user's handlers
+		//Insert user's handlers
 		Trigger_Handler__c contactUpdate = new Trigger_Handler__c(
 				Active__c = true,
 				Asynchronous__c = false,
