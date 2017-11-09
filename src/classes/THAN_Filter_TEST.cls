@@ -42,7 +42,7 @@ public with sharing class THAN_Filter_TEST {
     @isTest
     public static void invalidRelationship() {
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         //Creating filter condition
         Trigger_Handler__c handler = [select Filter_Field__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];        
@@ -67,7 +67,7 @@ public with sharing class THAN_Filter_TEST {
     @isTest
     public static void nullField() { 
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         //Creating filter condition
         Trigger_Handler__c handler = [select Filter_Field__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];        

@@ -56,7 +56,7 @@ public class TDTM_Config {
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getTdtmConfig() {
-        if(tdtmTokensCache != null) {
+        if(tdtmTokensCache != null && tdtmTokensCache.size() > 0) {
             return tdtmTokensCache;
         }
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
@@ -85,7 +85,7 @@ public class TDTM_Config {
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfig() {
-        if(tdtmTokensCache != null) {
+        if(tdtmTokensCache != null && tdtmTokensCache.size() > 0) {
             return tdtmTokensCache;
         }
 

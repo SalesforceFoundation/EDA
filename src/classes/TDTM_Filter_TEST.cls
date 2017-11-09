@@ -74,7 +74,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = null;
             }
 		}
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
 		
 		//Creating four contacts. two of them are not students, because they don't have a university email.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', UniversityEmail__c = 'tt1@fake.edu',Preferred_Email__c = 'University');
@@ -108,7 +108,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'Anne';
             }
         }
-		TDTM_Global_API.setTdtmConfig(tokens);
+		TDTM_Global_API.setTdtmConfig(tokens, 'hed');
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
@@ -142,7 +142,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'Anne';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         //Creating two contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Anne');
@@ -177,7 +177,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.active = false;
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         //Creating four contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
@@ -205,7 +205,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'true';
             }
         }
-		TDTM_Global_API.setTdtmConfig(tokens);
+		TDTM_Global_API.setTdtmConfig(tokens, 'hed');
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', HasOptedOutOfEmail = false);
@@ -238,7 +238,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = '5555-444-3322';
             }
         }
-		TDTM_Global_API.setTdtmConfig(tokens);
+		TDTM_Global_API.setTdtmConfig(tokens, 'hed');
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', MobilePhone = '5555-333-1111');
@@ -271,7 +271,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = '01/01/1990';
             }
         }
-		TDTM_Global_API.setTdtmConfig(tokens);
+		TDTM_Global_API.setTdtmConfig(tokens, 'hed');
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Birthdate = Date.parse('01/01/1989'));
@@ -304,7 +304,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'Male';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', Gender__c = 'Female');
@@ -330,7 +330,12 @@ public with sharing class TDTM_Filter_TEST {
 	
 	public static testmethod void lookupField() {
 		List<TDTM_Global_API.TdtmToken> tokens = setup();
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
+
+        system.assertEquals(new List<TDTM_Global_API.TdtmToken>(), tokens);
+
+        //since we clear the token in setTdtmConfig now, we need to get the new tokens here
+        tokens = TDTM_Global_API.getTdtmConfig();
         
         Account acc1 = new Account(Name = 'Acc1'); 
 		Account acc2 = new Account(Name = 'Acc2'); 
@@ -344,7 +349,9 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = acc2.Id;
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);      
+
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
+
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = acc1.Id);
@@ -384,7 +391,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'Acme';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         Account accFiltered = new Account(Name = 'Acme');
         Account accNotFiltered = new Account(Name = 'ABC');
@@ -420,7 +427,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'top1';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         Account topAccountFiltered = new Account(Name = 'top1');
         Account topAccountNotFiltered = new Account(Name = 'top2');
@@ -467,7 +474,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'Business Organization';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
@@ -511,7 +518,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'Business Organization';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         System.assertNotEquals(null, orgRecTypeID); //Let's make sure the record type exists in the system
             
@@ -559,7 +566,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'topAcc';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         Account accFiltered = new Account(Name = 'topAcc', RecordTypeId = orgRecTypeID);
         Account accNotFiltered = new Account(Name = 'ABC', RecordTypeId = orgRecTypeID);
@@ -605,7 +612,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = 'true';
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
         
         Account topAcc = new Account(Name = 'topAcc', RecordTypeId = orgRecTypeID);
         insert new Account[] {topAcc};
