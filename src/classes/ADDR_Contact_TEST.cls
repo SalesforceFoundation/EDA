@@ -450,6 +450,7 @@ public with sharing class ADDR_Contact_TEST {
         List<Address__c> ListAddrOriginal = contactsAddrs.addrs;
         
         // create additional addresses
+        ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
@@ -459,7 +460,6 @@ public with sharing class ADDR_Contact_TEST {
         }
         turnOnAllAddrTriggers();
         insert addrs;
-        turnOnAllAddrTriggers();
         
         // go back to original default addresses
         // added this extra set to test fix where we didn't use the correct default
@@ -469,6 +469,7 @@ public with sharing class ADDR_Contact_TEST {
             ListAddrOriginal[i].MailingCity__c = 'Original Default City' + i;
         }
         turnOnAllAddrTriggers();
+        ADDR_Addresses_TDTM.addressIdsUpdated = new Set<Id>();
         Test.startTest();
         update ListAddrOriginal;
         turnOnAllAddrTriggers();
@@ -602,23 +603,23 @@ public with sharing class ADDR_Contact_TEST {
         turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingState = 'Washington';
         }
-        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';  // whitespace and casing should not count as a real edit.
             contactsAddrs.contacts[i].MailingState = 'Oregon';
         }
-        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = ' DIRECT STREET  EDIT ';  // only change casing.
         }
-        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
@@ -644,6 +645,7 @@ public with sharing class ADDR_Contact_TEST {
             Contact contact = contactsAddrs.contacts[i];
             contact.MailingStreet = 'direct street  edit';
         }
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
         
@@ -686,17 +688,17 @@ public with sharing class ADDR_Contact_TEST {
         turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingState = 'Washington';
         }
-        turnOnAllAddrTriggers();
         update contactsAddrs.contacts;
 
+        ADDR_Contact_TDTM.contactIdsUpdated = new Set<Id>();
         for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
             contactsAddrs.contacts[i].MailingStreet = ' direct street  edit ';    // whitespace and casing should not count as real edit.
             contactsAddrs.contacts[i].MailingState = 'Oregon';
         }
-        turnOnAllAddrTriggers();
         Test.startTest();
         update contactsAddrs.contacts;
         Test.stopTest();
