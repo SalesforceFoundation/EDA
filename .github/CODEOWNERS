@@ -1,0 +1,13 @@
+
+# Python
+*.py                  @SalesforceFoundation/release-engineering-reviewers
+
+# CumulusCI
+/cumulusci.yml        @SalesforceFoundation/release-engineering-reviewers
+/tasks/               @SalesforceFoundation/release-engineering-reviewers
+
+# Heroku CI
+/Gemfile.lock         @SalesforceFoundation/release-engineering-reviewers
+/app.json             @SalesforceFoundation/release-engineering-reviewers
+/requirements.txt     @SalesforceFoundation/release-engineering-reviewers
+/runtime.txt          @SalesforceFoundation/release-engineering-reviewers
