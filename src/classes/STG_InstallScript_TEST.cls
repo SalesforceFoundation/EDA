@@ -244,4 +244,62 @@ public with sharing class STG_InstallScript_TEST {
             System.assertNotEquals(null, addr.Parent_Contact__c);
         }
     }
+
+    @isTest
+    public static void createAdminAccountForContactOnInstall() {
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+
+        Contact cont = new Contact(
+                FirstName = 'Test',
+                LastName = 'User',
+                Email = 'usertest@domain.com'
+        );
+
+        
+        // need to turn off the trigger for this test
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
+        insert cont;
+        // back on for install script
+		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
+
+        Contact contWithoutAccId = [Select AccountId from Contact where Id = :cont.Id];        
+        System.assertEquals(null, contWithoutAccId.AccountId);
+
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+        
+        //After we run install script, system should populate the AccountId field of the Contact
+        Contact contWithAccId = [Select AccountId from Contact where Id = :cont.Id];
+        System.assertNotEquals(null, contWithAccId.AccountId);
+
+    }
+
+    @isTest
+    public static void seasonalAddressScheduleOnInstall() {
+
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+
+        //System should create the address schedule job after the installation.
+        List<CronTrigger> addressSchedule = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
+        where CronJobDetail.Name = 'Seasonal Addresses Update'];
+        System.assertEquals(1, addressSchedule.size());        
+    }
+
+    @isTest
+    public static void asyncErrorSchedule() {
+
+        Test.startTest();
+        Test.testInstall(new STG_InstallScript(), null);
+        Test.stopTest();
+
+        //System should create the error schedule job after the installation. 
+        List<CronTrigger> errorSchedule = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
+        where CronJobDetail.Name = 'HEDA Async Apex Error Processing'];
+        System.assertEquals(1, errorSchedule.size());
+    }
+
 }
