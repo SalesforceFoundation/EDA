@@ -256,9 +256,11 @@ public with sharing class STG_InstallScript_TEST {
                 Email = 'usertest@domain.com'
         );
 
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);// need to turn off the trigger for this test
+        // need to turn off the trigger for this test
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
         insert cont;
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);// back on for install script
+        // back on for install script
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
 
 
         Contact contWithoutAccId = [Select AccountId from Contact where Id = :cont.Id];        
