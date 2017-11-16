@@ -29,9 +29,9 @@
     saveSetting : function(component) {        
         //Get selected value
         var selectedVal = component.find("nameFormatDropDown").get("v.value");
+        //Set the selected value in the settings (so it gets saved)
         component.set("v.setting", selectedVal);
 
-        //Set the selected value in the settings (so it gets saved)
         var prefix = component.get("v.namespacePrefix");
         if (prefix === 'hed__')
         {
@@ -73,6 +73,7 @@
         var hhNameFormatOptions = [];
         if (prefix === 'hed__')
         {
+            hhNameFormatOptions.push($A.get("$Label.hed.None"));
             hhNameFormatOptions.push($A.get("$Label.hed.lastNameHH"));
             hhNameFormatOptions.push($A.get("$Label.hed.lastNameFirstNameHH"));
             hhNameFormatOptions.push($A.get("$Label.hed.firstNameLastNameHH"));
@@ -81,13 +82,14 @@
             hhNameFormatOptions.push($A.get("$Label.hed.firstNameLastNameFamily"));
             hhNameFormatOptions.push($A.get("$Label.hed.acctNamingOther"));
         }else{
+            hhNameFormatOptions.push($A.get("$Label.c.None"));
             hhNameFormatOptions.push($A.get("$Label.c.lastNameHH"));
             hhNameFormatOptions.push($A.get("$Label.c.lastNameFirstNameHH"));
-            hhNameFormatOptions.push($A.get("$Label.c.firstNameLastNameHH")); 
+            hhNameFormatOptions.push($A.get("$Label.c.firstNameLastNameHH"));
             hhNameFormatOptions.push($A.get("$Label.c.lastNameFamily"));
             hhNameFormatOptions.push($A.get("$Label.c.lastNameFirstNameFamily"));
             hhNameFormatOptions.push($A.get("$Label.c.firstNameLastNameFamily"));
-            hhNameFormatOptions.push($A.get("$Label.c.acctNamingOther"));           
+            hhNameFormatOptions.push($A.get("$Label.c.acctNamingOther"));
         }
         component.set("v.hhNameFormatOptions", hhNameFormatOptions);
     }

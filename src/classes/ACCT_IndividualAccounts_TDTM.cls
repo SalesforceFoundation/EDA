@@ -506,12 +506,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         {
             hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
         }
-        if (hhAccNamingFormat!= null)
+        if (hhAccNamingFormat!= null && hhAccNamingFormat != Label.None)
         {
             return formatContactName(con, hhAccNamingFormat);
         }else{
-            return con.LastName + ' ' + system.label.DefaultHouseholdName;
-
+            return system.label.DefaultHouseholdName;
         }
     }
 
