@@ -572,21 +572,30 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Set<String> contactFieldsNames = mapContactFields.keySet(); 
         String resultSetting = '';
         List<String> settingsSplitSpace= setting.split(' ');
-        List<String> settingsSplitParenthesis = new List<String>();
+        List<String> settingsSplitRightParenthesis = new List<String>();
+        List<String> settingsSplitLeftParenthesis = new List<String>();
         for (String settingSplitSpace : settingsSplitSpace)
         {
             if (settingSplitSpace.contains('{!') && settingSplitSpace.contains('}'))
             {
-                settingsSplitParenthesis = settingSplitSpace.split('}');
-                for (String settingSplitParenthesis : settingsSplitParenthesis)
+                settingsSplitRightParenthesis = settingSplitSpace.split('}');
+                for (String settingSplitRightParenthesis : settingsSplitRightParenthesis)
                 {
-                    if (settingSplitParenthesis.startsWith('{!'))
+                    if (settingSplitRightParenthesis.contains('{!'))
                     {
-                        settingSplitParenthesis = settingSplitParenthesis.remove('{!');
-                    }
-                    if (contactFieldsNames.contains(settingSplitParenthesis.toLowerCase()) && con.get(settingSplitParenthesis) != null)
-                    {
-                        resultSetting += (String)(con.get(settingSplitParenthesis));
+                        settingsSplitLeftParenthesis = settingSplitRightParenthesis.split('\\{!');
+                        for (String settingSplitLeftParenthesis : settingsSplitLeftParenthesis)
+                        {
+                            if (contactFieldsNames.contains(settingSplitLeftParenthesis.toLowerCase()) && con.get(settingSplitLeftParenthesis) != null)
+                            {
+                                resultSetting += (String)(con.get(settingSplitLeftParenthesis));
+                            }else{
+                                resultSetting += settingSplitLeftParenthesis;
+
+                            }
+                        }
+                    }else{
+                        resultSetting += settingSplitRightParenthesis;
                     }
                 }
             }else{
