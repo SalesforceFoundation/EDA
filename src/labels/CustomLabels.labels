@@ -89,6 +89,14 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>None</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>None</shortDescription>
+        <value>none</value>
+    </labels>
+    <labels>
         <fullName>PreferredEmailMatchMustExist</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
