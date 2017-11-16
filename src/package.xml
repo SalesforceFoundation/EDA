@@ -352,6 +352,7 @@
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
+        <members>None</members>
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
