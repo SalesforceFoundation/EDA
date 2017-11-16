@@ -85,9 +85,7 @@ public class TDTM_Config {
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
     public static List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfig() {
-        if(tdtmTokensCache != null && tdtmTokensCache.size() > 0) {
-            return tdtmTokensCache;
-        }
+        //Removed tdtmTokensCache here since this method suppose to always return default TDTM from TDTM_DefaultConfig. We do not need to cache it since there is no query in this method. Also, it should not shared the same cached tokens with getTdtmConfig method.
 
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
 
@@ -98,7 +96,6 @@ public class TDTM_Config {
             );
         }
 
-        tdtmTokensCache = tokens;
 
         return tokens;
     }
@@ -133,7 +130,8 @@ public class TDTM_Config {
 
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
             //Filtering those active by object and action.
-            if(token.active && token.targetObject == objectName && token.actions.contains(action.Name())) {
+            //Actions should not be null, otherwise it will throw null pointer exception. We might need to create a WI to do more validation on insert/update Trigger Handler
+            if(token.active && token.targetObject == objectName && token.actions != null && token.actions.contains(action.Name())) {
                 objectTokens.add(token);
             }
         }

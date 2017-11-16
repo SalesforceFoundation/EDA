@@ -278,32 +278,24 @@ private class TDTM_Manager_TEST {
 	//Test to make sure setTDTMConfig can clear the cache after being called
 	@isTest
 	public static void clearTokenCaches() {
-		//When user insert a new Handler, system will try to set the cache. However, it will cache the default config since the new trigger handler is not in the database yet
-		Trigger_Handler__c newHandler = new Trigger_Handler__c(
-				Active__c = true,
-				Asynchronous__c = false,
-				Class__c = 'Contact_Update',
-				Load_Order__c = 0.2,
-				Object__c = 'Contact',
-				Trigger_Action__c = 'BeforeInsert;BeforeUpdate'
-		);
-		insert newHandler;
 
 		//Build the token for the new handler
 		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '');
 
-		//get the cached token and verify the new token is not included
-		List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
-		Boolean hasNewHandler = false;
-		for(TDTM_Global_API.TdtmToken token : tokens) {
-			if(token.targetObject == newHandlerToken.targetObject && token.className == newHandlerToken.className) {
-				hasNewHandler = true;
-			}
-		}
-		system.assertEquals(false,hasNewHandler);
 
+        //Populate the cache with default TDTM Tokens
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
 
-		//call the setTdtmConfig to clear the cache and add new trigger handler
+        //Verify that the cached tokens do not contains new token
+        Boolean hasNewHandler = false;
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.targetObject == newHandlerToken.targetObject && token.className == newHandlerToken.className) {
+                hasNewHandler = true;
+            }
+        }
+        system.assertEquals(false,hasNewHandler);
+
+        //call the setTdtmConfig to clear the cache and add new trigger handler
 		Test.startTest();
 		TDTM_Global_API.setTdtmConfig(new List<TDTM_Global_API.TdtmToken>{newHandlerToken});
 		Test.stopTest();
@@ -311,8 +303,9 @@ private class TDTM_Manager_TEST {
 		//now verify the old token get cleared
 		system.assertEquals(new List<TDTM_Global_API.TdtmToken>(), tokens);
 
-		//get the refreshed tokens and verify the new handler is included
+		//get token again and verify the new handler is included
 		tokens = TDTM_Global_API.getTdtmConfig();
+        hasNewHandler = false;
 		for(TDTM_Global_API.TdtmToken token : tokens) {
 			if(token.targetObject == newHandlerToken.targetObject && token.className == newHandlerToken.className) {
 				hasNewHandler = true;
@@ -464,7 +457,7 @@ private class TDTM_Manager_TEST {
 
 	private static void insertTestDefaults() {
         List<TDTM_Global_API.TdtmToken> tl = new List<TDTM_Global_API.TdtmToken>( getBasicDefaults() );
-    	TDTM_Global_API.setTdtmConfig(tl, 'hed');
+    	TDTM_Global_API.setTdtmConfig(tl);
 	}
 
 	private static Map<Id,Trigger_Handler__c> getDbHanders() {
