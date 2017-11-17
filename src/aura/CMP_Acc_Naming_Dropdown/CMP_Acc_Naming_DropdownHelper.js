@@ -1,27 +1,20 @@
 ({
     init : function(component) {
-        //Retrieving admin account naming options
+        //Retrieving account naming options
         this.getAdminAccNameFormatOptions(component);
         this.getHHAccNameFormatOptions(component);
     },
     onSelectChange : function(component) {
         var selectedVal = component.find("nameFormatDropDown").get("v.value");
-        var prefix = component.get("v.namespacePrefix");
-        if (prefix === 'hed__')
-        {
-            if (selectedVal === ($A.get("$Label.hed.acctNamingOther")))
-            {
-                component.set("v.otherDisplay", true);
-            }else{
-                component.set("v.otherDisplay", false);
-            }
-        }else{
-            if (selectedVal === ($A.get("$Label.c.acctNamingOther")))
-            {
-                component.set("v.otherDisplay", true);
-            }else{
-                component.set("v.otherDisplay", false);
-            }
+        if (prefix === 'hed__') {
+            var accNamingOther = $A.get("$Label.hed.acctNamingOther");
+        } else {
+            var accNamingOther = $A.get("$Label.c.acctNamingOther");
+        }
+        if(selectedVal === accNamingOther) {
+            component.set("v.otherDisplay", true);
+        } else {
+            component.set("v.otherDisplay", false);
         }
         component.set("v.nameFormat", selectedVal);
     },
@@ -31,26 +24,20 @@
         var selectedVal = component.find("nameFormatDropDown").get("v.value");
         //Set the selected value in the settings (so it gets saved)
         component.set("v.setting", selectedVal);
-
-        var prefix = component.get("v.namespacePrefix");
-        if (prefix === 'hed__')
-        {
-            if (selectedVal === ($A.get("$Label.hed.acctNamingOther")))
-            {
-                selectedVal = component.find("otherText").get("v.value");
-                component.set("v.otherSetting", selectedVal);
-            }
-        }else{
-            if (selectedVal === ($A.get("$Label.c.acctNamingOther")))
-            {
-                selectedVal = component.find("otherText").get("v.value");
-                component.set("v.otherSetting", selectedVal);
-            }
+        if (prefix === 'hed__') {
+            var accNamingOther = $A.get("$Label.hed.acctNamingOther");
+        } else {
+            var accNamingOther = $A.get("$Label.c.acctNamingOther");
         }
+        if (selectedVal === ($A.get("$Label.c.acctNamingOther")))
+        {
+            selectedVal = component.find("otherText").get("v.value");
+            component.set("v.otherSetting", selectedVal);
+        }
+
     },
 
     getAdminAccNameFormatOptions : function(component) {
-        var prefix = component.get("v.namespacePrefix");
         var adminAccNameFormatOptions = [];
         if (prefix === 'hed__')
         {
@@ -69,7 +56,6 @@
     },
 
     getHHAccNameFormatOptions : function(component) {
-        var prefix = component.get("v.namespacePrefix");
         var hhNameFormatOptions = [];
         if (prefix === 'hed__')
         {
