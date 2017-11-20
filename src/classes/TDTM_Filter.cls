@@ -85,8 +85,11 @@ public class TDTM_Filter {
 	        	if(filterField.contains('.')) { //If the field to filter on is made of relationships
 	        	    filterByRelationship();
 	        	} else { //No need to break down the field condition
-                    //Note: The filterField should include the namespace already, so we don't need to handle namespace here
-                    fieldName = filterField;
+	        	    if(filterField.endsWith('__c')) {
+	        	        fieldName = handleNamespace(filterField);
+	        	    } else {
+	        	        fieldName = filterField;
+	        	    }
 	        	    filterByField();
 	        	}
 	        	return filtered;
@@ -96,6 +99,31 @@ public class TDTM_Filter {
     		UTIL_Debug.debug(LoggingLevel.WARN, '\n****Stack Trace:\n' + e.getStackTraceString() + '\n');
     	}
     	return null;
+    }
+
+    /*******************************************************************************************************
+    * @description apply the correct namespace of the field
+    * @param filterField the name of the filter
+    * @return String the filter field with correct namespace based on existing filter logic
+    */
+    public string handleNamespace(string filterField) {
+        string theFilter = '';
+        String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
+        //if somehow the existing filter has the heda namespace, then we need to add namespace to keep it consistent
+        if(filterField.startsWithIgnoreCase(hedaPrefix)) {
+            theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
+        } else {
+            //We first add heda namespace. If the query works, then the field exists in HEDA, otherwise remove heda
+            try {
+                theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
+                String dynamicQuery = 'select ' + theFilter + ' from ' + describeObj.getName() + ' limit 1';
+                List<SObject> records =  Database.query(dynamicQuery);
+            } catch (QueryException e) {
+                theFilter = UTIL_Namespace.StrTokenRemoveNSPrefix(filterField);
+            }
+        }
+
+        return theFilter;
     }
     
     /*******************************************************************************************************

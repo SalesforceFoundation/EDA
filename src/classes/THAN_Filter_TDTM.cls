@@ -61,12 +61,51 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 	                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
 	                    String obj = String.escapeSingleQuotes(handler.Object__c);
 	                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
-                            
-                            //Note: We should use schema class to check if the field is valid for an object since dynamic query will ignore namespace automatically.
-                            SObjectField field = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap().get(filterField);
-                            //Note: System will automatically remove HEDA namespace of client's custom field. For example, client create a custom field ABC__c, and put hed__ABC__c into the setting. The field value will not be null but ABC__c. We do not want user to accidentally add namespace into their own field.
-                            if(field == null || String.valueOf(field) != filterField) {
+                            //those four type of fields are considered valid Filter field
+                            //1. Standard Field e.g. FirstName
+                            //2. HEDA Field WITHOUT namespace e.g. Military_Service__c
+                            //3. User's Custom Field e.g. MyField__c
+                            //4. Field from another package with namespace e.g. NS__Field__c
+
+                            String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
+                            Boolean hasHEDAPrefix = filterField.startsWithIgnoreCase(hedaPrefix) ? true : false;
+                            Boolean ignoreDuplicateField = filterField.endsWithIgnoreCase(Label.duplicateFieldInFilter) ? true: false;
+
+                            //after we get the duplicate indicator, we need to remove it from the filter field string
+                            if(ignoreDuplicateField) {
+                                filterField = filterField.replace(Label.duplicateFieldInFilter, '');
+                                handler.Filter_Field__c = handler.Filter_Field__c.replace(Label.duplicateFieldInFilter, '');
+                            }
+
+                            //Throw error if the field starts with heda namespace
+                            if(hasHEDAPrefix) {
                                 handler.addError(Label.InvalidFilter + handler.Class__c);
+                            } else {
+                                //First check if the field is valid in general
+                                try {
+                                    String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
+                                    List<SObject> records =  Database.query(dynamicQuery);
+
+                                    //We need to do the duplicate check with HEDA field here
+                                    If(!ignoreDuplicateField){
+                                        //if the field is valid, then check if HEDA has the same field
+                                        filterField  = UTIL_Namespace.StrTokenNSPrefix(filterField);
+
+                                        try {
+                                            dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
+                                            records =  Database.query(dynamicQuery);
+
+                                            //if there is no query exception, we need to let user know system will use the HEDA field
+                                            handler.addError(Label.duplicateWithHEDAField + handler.Class__c);
+                                        } catch(QueryException e) {
+                                            //if there is an exception, that means the field is valid and it is not in HEDA, so we are good
+                                        }
+                                    }
+
+                                } catch(QueryException e) {
+                                    handler.addError(Label.InvalidFilter + handler.Class__c);
+                                }
+
                             }
 	                    }
                     }
