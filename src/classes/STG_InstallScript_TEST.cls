@@ -289,7 +289,6 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals(1, addressSchedule.size());        
     }
 
-
     @isTest
     public static void asyncErrorSchedule() {
 
@@ -302,4 +301,5 @@ public with sharing class STG_InstallScript_TEST {
         where CronJobDetail.Name = 'HEDA Async Apex Error Processing'];
         System.assertEquals(1, errorSchedule.size());
     }
+    
 }
