@@ -301,31 +301,4 @@ public with sharing class STG_InstallScript_TEST {
         where CronJobDetail.Name = 'HEDA Async Apex Error Processing'];
         System.assertEquals(1, errorSchedule.size());
     }
-
-    //Test to make sure the new THAN_ClearCacheTDTM is added after the upgrade
-    @isTest
-    public static void thanClearCacheTDTM() {
-
-        //First insert the tokens without THAN_ClearCache_TDTM
-        List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-
-        //Creating filter condition.
-        for(Integer i = 0; i < defaultTokens.size(); i++) {
-            if(defaultTokens[i].className == 'THAN_ClearCache_TDTM') {
-                defaultTokens.remove(i);
-            }
-        }
-        TDTM_Global_API.setTdtmConfig(defaultTokens);
-
-        List<Trigger_Handler__c> clearCacheTDTM = [SELECT ID FROM Trigger_Handler__c where Class__c = 'THAN_ClearCache_TDTM'];
-        System.assertEquals(0, clearCacheTDTM.size());
-
-        Test.startTest();
-        Test.testInstall(new STG_InstallScript(), new Version(1,44), true);
-        Test.stopTest();
-        
-        List<Trigger_Handler__c> clearCacheTDTMAfterUpgrade = [SELECT ID FROM Trigger_Handler__c where Class__c = 'THAN_ClearCache_TDTM'];
-        System.assertEquals(1, clearCacheTDTMAfterUpgrade.size());
-    }
-
 }

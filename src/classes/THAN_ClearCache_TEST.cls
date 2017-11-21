@@ -52,10 +52,13 @@ public with sharing class THAN_ClearCache_TEST {
                 Filter_Value__c = 'Male'
         );
 
+        Test.startTest();
         insert contactUpdate;
+        Test.stopTest();
 
         //After insert Trigger Handler, system should clear the cache, so getTdtmConfig should include the new TriggerHandler
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+        system.assertEquals(tokens.size(), 1);
         Boolean hasContactUpdate = false;
         for(TDTM_Global_API.TdtmToken token : tokens) {
             if(token.className == 'Contact_Update_User') {

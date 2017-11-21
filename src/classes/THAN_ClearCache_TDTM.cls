@@ -48,7 +48,8 @@ public class THAN_ClearCache_TDTM extends TDTM_Runnable {
             TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         if(newlist != null && newlist.size() > 0) {
-            if(triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            if(triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate
+                    ||triggerAction == TDTM_Runnable.Action.AfterDelete) {
                 List<TDTM_Global_API.TdtmToken> cachedTokens = TDTM_Global_API.getTdtmConfig();
                 cachedTokens.clear();
             }

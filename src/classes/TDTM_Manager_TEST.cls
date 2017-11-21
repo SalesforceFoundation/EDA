@@ -152,7 +152,7 @@ private class TDTM_Manager_TEST {
 
 		// Add user managed trigger
 		Trigger_Handler__c myHandler = new Trigger_Handler__c(
-				Active__c = false, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', User_Managed__c = true
+				Active__c = false, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Filter_Field__c = 'Gender__c', Filter_Value__c = 'Male', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', User_Managed__c = true
 		);
 		insert myHandler;
 
@@ -201,6 +201,8 @@ private class TDTM_Manager_TEST {
 				System.assertEquals(h.Load_Order__c, 3 );
 				System.assertEquals(h.Active__c, false );
 				System.assertEquals(h.User_Managed__c, true );
+                System.assertEquals(h.Filter_Field__c, 'Gender__c');
+                System.assertEquals(h.Filter_Value__c, 'Male' );
 			}
 		}
 	}
@@ -375,78 +377,6 @@ private class TDTM_Manager_TEST {
 
 	}
 
-	//Test to make sure we will not overwrite Filter if it is marked as usermanaged
-	@isTest
-	public static void filterForUserManagedHandler() {
-		//Get default token and save it into DB
-		List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-		TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
-
-		//try to add filter for the default config
-		List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
-		for(TDTM_Global_API.TdtmToken token : tokens) {
-			if(token.className == 'REL_Relationships_Con_TDTM') {
-				token.filterField = 'Gender__c';
-				token.filterValue = 'Male';
-				token.userManaged = true;
-			}
-			if(token.className == 'ACCT_IndividualAccounts_TDTM') {
-				token.filterField = 'Gender__c';
-				token.filterValue = 'Male';
-			}
-		}
-
-		TDTM_Global_API.setTdtmConfig(tokens, 'hed');
-
-		//If we re apply the default config (for example in HEDA upgrade), the user managed one should not get updated
-		defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-		Test.startTest();
-		TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
-		Test.stopTest();
-
-		Trigger_Handler__c relationshipConTdtm = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM'];
-		system.assertEquals('Gender__c', relationshipConTdtm.Filter_Field__c);
-		system.assertEquals('Male', relationshipConTdtm.Filter_Value__c);
-
-		Trigger_Handler__c individualAccountTdtm = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'ACCT_IndividualAccounts_TDTM'];
-		system.assertEquals(null, individualAccountTdtm.Filter_Field__c);
-		system.assertEquals(null, individualAccountTdtm.Filter_Value__c);
-	}
-
-	//Test to make sure we will not modify user's handler in HEDA upgrade
-	@isTest
-	public static void userHanlderAfterHEDAUpgrade() {
-		//Get default token and save it into DB
-		List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-		TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
-
-		//Insert user's handlers
-		Trigger_Handler__c contactUpdate = new Trigger_Handler__c(
-				Active__c = true,
-				Asynchronous__c = false,
-				Class__c = 'Contact_Update_User',
-				Load_Order__c = 0.20,
-				Object__c = 'Contact',
-				Trigger_Action__c = 'BeforeInsert;BeforeUpdate',
-				Filter_Field__c = 'Gender__c',
-				Filter_Value__c = 'Male'
-		);
-
-		insert contactUpdate;
-
-		//Now, simulate the upgrade process and verify user's handler is still the same
-		defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
-		Test.startTest();
-		TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
-		Test.stopTest();
-
-		List<Trigger_Handler__c> contactUpdateAfterUpgrade = [select Id from Trigger_Handler__c where Active__c = true and Asynchronous__c = false and
-		Class__c = 'Contact_Update_User' and Load_Order__c = 0.20 and Object__c = 'Contact' and Trigger_Action__c = 'BeforeInsert;BeforeUpdate' and
-		Filter_Field__c = 'Gender__c' and Filter_Value__c = 'Male'];
-		system.assertEquals(1, contactUpdateAfterUpgrade.size());
-
-	}
-
 	private static Set<TDTM_Global_API.TdtmToken> getBasicDefaults() {
         Set<TDTM_Global_API.TdtmToken> h = new Set<TDTM_Global_API.TdtmToken>();
         h.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed'));
@@ -461,7 +391,7 @@ private class TDTM_Manager_TEST {
 	}
 
 	private static Map<Id,Trigger_Handler__c> getDbHanders() {
-        return new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c , User_Managed__c, Owned_by_Namespace__c
+        return new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c , Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c
         	FROM Trigger_Handler__c ORDER BY Load_Order__c]);
 	}
 }

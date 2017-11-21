@@ -134,7 +134,7 @@ public without sharing class TDTM_DefaultConfig {
         // Clear the TDTM cache on Trigger Handler record manipulation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'THAN_ClearCache_TDTM', Load_Order__c = 2, Object__c = 'Trigger_Handler__c',
-                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
               
         // Default dates from Term to Course Offerings
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
