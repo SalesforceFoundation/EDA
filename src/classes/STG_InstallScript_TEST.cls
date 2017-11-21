@@ -289,6 +289,7 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals(1, addressSchedule.size());        
     }
 
+
     @isTest
     public static void asyncErrorSchedule() {
 

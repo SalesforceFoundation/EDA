@@ -201,8 +201,8 @@ private class TDTM_Manager_TEST {
 				System.assertEquals(h.Load_Order__c, 3 );
 				System.assertEquals(h.Active__c, false );
 				System.assertEquals(h.User_Managed__c, true );
-                System.assertEquals(h.Filter_Field__c, 'Gender__c');
-                System.assertEquals(h.Filter_Value__c, 'Male' );
+				System.assertEquals(h.Filter_Field__c, 'Gender__c');
+				System.assertEquals(h.Filter_Value__c, 'Male' );
 			}
 		}
 	}

@@ -52,7 +52,7 @@ public with sharing class TDTM_Filter_TEST {
         insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
                                                     Field__c='ReportsToId', Relationship_Type__c = 'TestType');
         
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
 
         
         //Disabling class that creates reciprocal relationships
