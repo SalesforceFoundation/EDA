@@ -163,7 +163,8 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void InvalidFilterField() {
-        List<TDTM_Global_API.TdtmToken> tokens = setup();
+        //If we use getDefaultTDTMConfig from setup, then we can't save the token with invalid field. Because even we set  THAN_Filter_TDTM = inacive and save the token (insert TriggerHandler), system will call getTdtmConfig and get it from default config. So, in here, we need to modify the cache directly.
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
             //Creating filter condition.
@@ -177,17 +178,17 @@ public with sharing class TDTM_Filter_TEST {
                 token.active = false;
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);
-        
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
+
         //Creating four contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
         Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
         Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
-        
+
         try {
-            Test.startTest();        
+            Test.startTest();
             insert contacts;
             Test.stopTest();
         } catch(Exception ex) {
@@ -331,11 +332,6 @@ public with sharing class TDTM_Filter_TEST {
 	public static testmethod void lookupField() {
 		List<TDTM_Global_API.TdtmToken> tokens = setup();
         TDTM_Global_API.setTdtmConfig(tokens);
-
-        system.assertEquals(new List<TDTM_Global_API.TdtmToken>(), tokens);
-
-        //since we clear the token in setTdtmConfig now, we need to get the new tokens here
-        tokens = TDTM_Global_API.getTdtmConfig();
         
         Account acc1 = new Account(Name = 'Acc1'); 
 		Account acc2 = new Account(Name = 'Acc2'); 
