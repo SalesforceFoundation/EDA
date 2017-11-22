@@ -178,7 +178,7 @@ public with sharing class TDTM_Filter_TEST {
                 token.active = false;
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
+        TDTM_Global_API.setTdtmConfig(tokens);
 
         //Creating four contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
