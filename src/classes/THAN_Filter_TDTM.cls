@@ -71,41 +71,33 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                             Boolean hasHEDAPrefix = filterField.startsWithIgnoreCase(hedaPrefix) ? true : false;
                             Boolean ignoreDuplicateField = filterField.endsWithIgnoreCase(Label.duplicateFieldInFilter) ? true: false;
 
-                            //after we get the duplicate indicator, we need to remove it from the filter field string
+                            //Get the ignoreDuplicateField flag and remove it from the Filter Field value
                             if(ignoreDuplicateField) {
                                 filterField = filterField.replace(Label.duplicateFieldInFilter, '');
                                 handler.Filter_Field__c = handler.Filter_Field__c.replace(Label.duplicateFieldInFilter, '');
                             }
 
-                            //Throw error if the field starts with heda namespace
+                            //System should't allow a Filter Field with HEDA namespace
                             if(hasHEDAPrefix) {
                                 handler.addError(Label.InvalidFilter + handler.Class__c);
                             } else {
-                                //First check if the field is valid in general
-                                try {
-                                    String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
-                                    List<SObject> records =  Database.query(dynamicQuery);
+                                Boolean fieldExists = false;
+                                Boolean fieldExistsHEDA = false;
 
-                                    //We need to do the duplicate check with HEDA field here
-                                    If(!ignoreDuplicateField){
-                                        //if the field is valid, then check if HEDA has the same field
-                                        filterField  = UTIL_Namespace.StrTokenNSPrefix(filterField);
+                                //First, test if the field exists outside HEDA 
+                                fieldExists = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap().keySet().contains(filterField.toLowerCase());
 
-                                        try {
-                                            dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
-                                            records =  Database.query(dynamicQuery);
+                                //Second, add the HEDA namespace and test if the field exists in HEDA
+                                filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
+                                fieldExistsHEDA = Schema.getGlobalDescribe().get(obj).getDescribe().fields.getMap().keySet().contains(filterField.toLowerCase());
 
-                                            //if there is no query exception, we need to let user know system will use the HEDA field
-                                            handler.addError(Label.duplicateWithHEDAField + handler.Class__c);
-                                        } catch(QueryException e) {
-                                            //if there is an exception, that means the field is valid and it is not in HEDA, so we are good
-                                        }
-                                    }
-
-                                } catch(QueryException e) {
-                                    handler.addError(Label.InvalidFilter + handler.Class__c);
+                                if(fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
+                                    handler.addError(Label.InvalidFilter + handler.Class__c + '. ' +string.format(Label.duplicateWithHEDAField, new String[]{Label.duplicateFieldInFilter}));
                                 }
 
+                                if(!fieldExists && !fieldExistsHEDA) {
+                                    handler.addError(Label.InvalidFilter + handler.Class__c);
+                                }
                             }
 	                    }
                     }

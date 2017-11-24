@@ -109,17 +109,14 @@ public class TDTM_Filter {
     public string handleNamespace(string filterField) {
         string theFilter = '';
         String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
-        //if somehow the existing filter has the heda namespace, then we need to add namespace to keep it consistent
+        //if the filter has the heda namespace, then we need to add heda namespace again (This is for backward compatibility. Previously, we allow user put full name include the heda namespace, but the filter does not work)
         if(filterField.startsWithIgnoreCase(hedaPrefix)) {
             theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
         } else {
-            //We first add heda namespace. If the query works, then the field exists in HEDA, otherwise remove heda
-            try {
-                theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
-                String dynamicQuery = 'select ' + theFilter + ' from ' + describeObj.getName() + ' limit 1';
-                List<SObject> records =  Database.query(dynamicQuery);
-            } catch (QueryException e) {
-                theFilter = UTIL_Namespace.StrTokenRemoveNSPrefix(filterField);
+            //We should always add HEDA namespace of the field (means system should always use heda field if it exits in heda). Unless,the field does not exists in heda
+            theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
+            if(!describeObj.fields.getMap().keySet().contains(theFilter.toLowerCase())) {
+                theFilter = UTIL_Namespace.StrTokenRemoveNSPrefix(theFilter);
             }
         }
 

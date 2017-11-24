@@ -214,14 +214,15 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Tell trigger to ignore duplicate field error</shortDescription>
-        <value>(ProceedDuplicate)</value>
+        <value>(DuplicateAcknowledged)</value>
     </labels>
     <labels>
         <fullName>duplicateWithHEDAField</fullName>
+        <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>Looks like this field is duplicate with one of the HEDA field. Please note that system will use HEDA field as the Filter. If you would like to proceed, please add (ProceedDuplicate) after your Filter Field. For example: put Deceased__c{0} as Filter Field.</value>
+        <value>The Filter Field value names a duplicate of a HEDA field. We will filter according to the value in the HEDA field. To proceed with saving this record, either specify a non-duplicate field or acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
     </labels>
     <labels>
         <fullName>exceptionRequiredField</fullName>
