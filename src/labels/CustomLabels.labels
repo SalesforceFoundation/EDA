@@ -242,6 +242,7 @@
     </labels>
     <labels>
         <fullName>fieldWithHEDANamespace</fullName>
+        <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
