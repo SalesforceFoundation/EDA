@@ -213,7 +213,7 @@
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Tell trigger to ignore duplicate field error</shortDescription>
+        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
         <value>(DuplicateAcknowledged)</value>
     </labels>
     <labels>
@@ -239,6 +239,13 @@
         <protected>true</protected>
         <shortDescription>exceptionValidationRule</shortDescription>
         <value>A validation rule is preventing the record from being processed. This could be from this record, or a related record being updated. VALIDATION MESSAGE:</value>
+    </labels>
+    <labels>
+        <fullName>fieldWithHEDANamespace</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
+        <value>The Filter Field value can&apos;t include the HEDA namespace. Remove it from the field name.</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>

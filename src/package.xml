@@ -366,6 +366,7 @@
         <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
+        <members>fieldWithHEDANamespace</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>

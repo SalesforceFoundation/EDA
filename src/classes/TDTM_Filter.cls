@@ -106,8 +106,8 @@ public class TDTM_Filter {
     * @param filterField the name of the filter
     * @return String the filter field with correct namespace based on existing filter logic
     */
-    public string handleNamespace(string filterField) {
-        string theFilter = '';
+    public String handleNamespace(string filterField) {
+        String theFilter = '';
         String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
         //if the filter has the heda namespace, then we need to add heda namespace again (This is for backward compatibility. Previously, we allow user put full name include the heda namespace, but the filter does not work)
         if(filterField.startsWithIgnoreCase(hedaPrefix)) {
