@@ -89,7 +89,6 @@ global class TDTM_Global_API {
         TDTM_Manager manager = new TDTM_Manager(null);
         Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
         manager.updateDefaultTdtmConfig( tokenSet );
-
     }
     /*******************************************************************************************************
     * @description Sets the trigger handlers configuration that have specific namespace with the data passed as parameter.
@@ -101,7 +100,6 @@ global class TDTM_Global_API {
         TDTM_Manager manager = new TDTM_Manager(namespace);
         Set<TDTM_Global_API.TdtmToken> tokenSet =  new Set<TDTM_Global_API.TdtmToken>(tokens);
         manager.updateDefaultTdtmConfig( tokenSet );
-
     }
 
     /********************************************************************************************************

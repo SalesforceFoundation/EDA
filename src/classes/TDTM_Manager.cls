@@ -136,9 +136,9 @@ public class TDTM_Manager {
 			delete this.toDelete;
 		}
 
-        //after save the tokens into database, clear the cached tokens
-        List<TDTM_Global_API.TdtmToken> cachedTokens = TDTM_Config.getTdtmConfig();
-        cachedTokens.clear();
+		//after save the tokens into database, clear the cached tokens
+		List<TDTM_Global_API.TdtmToken> cachedTokens = TDTM_Config.getTdtmConfig();
+		cachedTokens.clear();
 	}
 
 
