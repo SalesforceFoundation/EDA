@@ -163,7 +163,7 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void InvalidFilterField() {
-        //If we use getDefaultTDTMConfig from setup, then we can't save the token with invalid field. Because even we set  THAN_Filter_TDTM = inacive and save the token (insert TriggerHandler), system will call getTdtmConfig and get it from default config. So, in here, we need to modify the cache directly.
+        //If we use getDefaultTDTMConfig from setup, then we can't save the token with invalid field. Because the default token in the database still have THAN_Filter_TDTM = Acive. So, we need to call getTDTMConfig, modify the cache directly and save the token.
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
