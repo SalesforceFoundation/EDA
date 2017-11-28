@@ -81,18 +81,16 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                             if(hasHEDAPrefix) {
                                 handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + Label.fieldWithHEDANamespace);
                             } else {
-                                Boolean fieldExists = false;
-                                Boolean fieldExistsHEDA = false;
 
                                 //Get Sobject keyset
                                 Set<String> fieldSet = UTIL_Describe.getAllFieldsDescribe(obj).keySet();
 
                                 //First, test if the field exists outside HEDA
-                                fieldExists = fieldSet.contains(filterField.toLowerCase());
+                                Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
 
                                 //Second, add the HEDA namespace and test if the field exists in HEDA
                                 filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
-                                fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
+                                Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
 
                                 if(fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
                                     handler.addError(Label.InvalidFilter + handler.Class__c + '. ' +string.format(Label.duplicateWithHEDAField, new String[]{Label.duplicateFieldInFilter}));
