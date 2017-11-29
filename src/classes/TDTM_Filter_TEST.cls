@@ -52,7 +52,7 @@ public with sharing class TDTM_Filter_TEST {
         insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
                                                     Field__c='ReportsToId', Relationship_Type__c = 'TestType');
         
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
 
         
         //Disabling class that creates reciprocal relationships
@@ -163,7 +163,8 @@ public with sharing class TDTM_Filter_TEST {
     }
     
     public static testmethod void InvalidFilterField() {
-        List<TDTM_Global_API.TdtmToken> tokens = setup();
+        //If we use getDefaultTDTMConfig from setup, then we can't save the token with invalid field. Because the default token in the database still have THAN_Filter_TDTM = Acive. So, we need to call getTDTMConfig, modify the cache directly and save the token.
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
         //Creating filter condition.
         for(TDTM_Global_API.TdtmToken token : tokens) {
             //Creating filter condition.
@@ -178,16 +179,16 @@ public with sharing class TDTM_Filter_TEST {
             }
         }
         TDTM_Global_API.setTdtmConfig(tokens);
-        
+
         //Creating four contacts. The second one meets the filtering criteria.
         Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AssistantName = 'Nancy');
         Contact c2 = new Contact(FirstName = 'Test', LastName = 'Testerson2', AssistantName = 'Anne');
         Contact c3 = new Contact(FirstName = 'Test', LastName = 'Testerson3', AssistantName = null);
         Contact c4 = new Contact(FirstName = 'Test', LastName = 'Testerson4', AssistantName = 'John');
         Contact[] contacts = new Contact[] {c1, c2, c3, c4};
-        
+
         try {
-            Test.startTest();        
+            Test.startTest();
             insert contacts;
             Test.stopTest();
         } catch(Exception ex) {
@@ -344,7 +345,9 @@ public with sharing class TDTM_Filter_TEST {
                 token.filterValue = acc2.Id;
             }
         }
-        TDTM_Global_API.setTdtmConfig(tokens);      
+
+        TDTM_Global_API.setTdtmConfig(tokens, 'hed');
+
 		
 		//Creating four contacts. The second one meets the filtering criteria.
 		Contact c1 = new Contact(FirstName = 'Test', LastName = 'Testerson1', AccountId = acc1.Id);
