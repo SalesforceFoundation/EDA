@@ -53,7 +53,7 @@ private class TDTM_Manager_TEST {
 		// is testing that even though the references are different in memory they are still
 		// equal.
         Map<Id,Trigger_Handler__c> existingDBHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c
-	        , User_Managed__c, Owned_by_Namespace__c
+	        , User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c
 			FROM Trigger_Handler__c ORDER BY Load_Order__c]);
         Set<TDTM_Global_API.TdtmToken> existingDBtokens = manager.getTokenSet(existingDBHandlers);
 
@@ -152,7 +152,7 @@ private class TDTM_Manager_TEST {
 
 		// Add user managed trigger
 		Trigger_Handler__c myHandler = new Trigger_Handler__c(
-				Active__c = false, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', User_Managed__c = true
+				Active__c = false, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Filter_Field__c = 'Gender__c', Filter_Value__c = 'Male', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', User_Managed__c = true
 		);
 		insert myHandler;
 
@@ -201,6 +201,8 @@ private class TDTM_Manager_TEST {
 				System.assertEquals(h.Load_Order__c, 3 );
 				System.assertEquals(h.Active__c, false );
 				System.assertEquals(h.User_Managed__c, true );
+				System.assertEquals(h.Filter_Field__c, 'Gender__c');
+				System.assertEquals(h.Filter_Value__c, 'Male' );
 			}
 		}
 	}
@@ -275,6 +277,106 @@ private class TDTM_Manager_TEST {
 		}
 	}
 
+	//Test to make sure setTDTMConfig can clear the cache after being called
+	@isTest
+	public static void clearTokenCaches() {
+
+		//Build the token for the new handler
+		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '');
+
+
+        //Populate the cache with default TDTM Tokens
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+
+        //Verify that the cached tokens do not contains new token
+        Boolean hasNewHandler = false;
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.targetObject == newHandlerToken.targetObject && token.className == newHandlerToken.className) {
+                hasNewHandler = true;
+            }
+        }
+        system.assertEquals(false,hasNewHandler);
+
+        //call the setTdtmConfig to clear the cache and add new trigger handler
+		Test.startTest();
+		TDTM_Global_API.setTdtmConfig(new List<TDTM_Global_API.TdtmToken>{newHandlerToken});
+		Test.stopTest();
+
+		//now verify the old token get cleared
+		system.assertEquals(new List<TDTM_Global_API.TdtmToken>(), tokens);
+
+		//get token again and verify the new handler is included
+		tokens = TDTM_Global_API.getTdtmConfig();
+        hasNewHandler = false;
+		for(TDTM_Global_API.TdtmToken token : tokens) {
+			if(token.targetObject == newHandlerToken.targetObject && token.className == newHandlerToken.className) {
+				hasNewHandler = true;
+			}
+		}
+		system.assertEquals(true,hasNewHandler);
+	}
+
+	//Test to make sure we can save Filter Field and Filter Value for default config
+	@isTest
+	public static void updateDefaultFilterFieldFilterValue() {
+		//get default tokens
+		List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
+
+		//Change the Filter Field and Filter Value
+		for(TDTM_Global_API.TdtmToken token : tokens) {
+			if(token.className == 'REL_Relationships_Con_TDTM') {
+				token.filterField = 'Gender__c';
+				token.filterValue = 'Male';
+			}
+		}
+
+		//use setTdtmConfig to save the filter in the DB
+		Test.startTest();
+		TDTM_Global_API.setTdtmConfig(tokens, 'hed');
+		Test.stopTest();
+
+		//verify the filter is saved in DB
+		List<Trigger_Handler__c> handlers = [select Id from Trigger_Handler__c where Class__c = 'REL_Relationships_Con_TDTM' and Filter_Field__c = 'Gender__c' and Filter_Value__c = 'Male' ];
+		system.assertEquals(1, handlers.size());
+
+	}
+
+	//Test to make sure we can save Filter Field and Filter Value for user's config
+	@isTest
+	public static void updateUserHandlerFilterFieldFilterValue() {
+
+		//Build Token for User's Trigger Handler
+		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '');
+
+		//Save the token into the DB
+		TDTM_Global_API.setTdtmConfig(new List<TDTM_Global_API.TdtmToken>{newHandlerToken});
+
+		//Verify that Filter is not in the DB
+		Trigger_Handler__c handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'Contact_Update'];
+		system.assertEquals(null, handler.Filter_Field__c);
+		system.assertEquals(null, handler.Filter_Value__c);
+
+		//Get token and add Filter Field and Filter Value
+		List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+		for(TDTM_Global_API.TdtmToken token : tokens) {
+			if(token.className == 'Contact_Update') {
+				token.filterField = 'Gender__c';
+				token.filterValue = 'Male';
+			}
+		}
+
+		//set Filter field and Filter value
+		Test.startTest();
+		TDTM_Global_API.setTdtmConfig(tokens);
+		Test.stopTest();
+
+		//verify that the Filter is saved in DB
+		handler = [select Filter_Field__c, Filter_Value__c from Trigger_Handler__c where Class__c = 'Contact_Update'];
+		system.assertEquals('Gender__c', handler.Filter_Field__c);
+		system.assertEquals('Male', handler.Filter_Value__c);
+
+	}
+
 	private static Set<TDTM_Global_API.TdtmToken> getBasicDefaults() {
         Set<TDTM_Global_API.TdtmToken> h = new Set<TDTM_Global_API.TdtmToken>();
         h.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed'));
@@ -289,7 +391,7 @@ private class TDTM_Manager_TEST {
 	}
 
 	private static Map<Id,Trigger_Handler__c> getDbHanders() {
-        return new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c , User_Managed__c, Owned_by_Namespace__c
+        return new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c , Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c
         	FROM Trigger_Handler__c ORDER BY Load_Order__c]);
 	}
 }
