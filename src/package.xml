@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>HEDA</fullName>
     <types>
@@ -99,6 +99,7 @@
         <members>UTIL_Namespace</members>
         <members>UTIL_Namespace_TEST</members>
         <members>UTIL_UnitTestData_TEST</members>
+        <members>TDTM_Adapter</members>
         <name>ApexClass</name>
     </types>
     <types>

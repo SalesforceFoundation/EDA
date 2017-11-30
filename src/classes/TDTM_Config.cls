@@ -61,38 +61,49 @@ public class TDTM_Config {
         }
 
         Boolean useAdv = false;
+        String apiHedaClass = '';
         //Check if Advancement is installed and enabled.
         try {
-            List<SObject> advSettings = Database.query('select use_adv from Adv_Settings');
-            useAdv = (Boolean)advSettings[0].get('use_adv');
+            List<SObject> advSettings = Database.query('select use_adv__c, API_HEDA_Class__c from Adv_Settings__c');
+            useAdv = (Boolean)advSettings[0].get('use_adv__c');
+            apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
         } catch(Exception e) {
             //Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use HEDA's TDTM config.
         }
 
-        List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
+        List<TDTM_Global_API.TdtmToken> tokens;
         List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
-                            Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c from Trigger_Handler__c];
+                            Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c
+                            from Trigger_Handler__c];
 
         // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
         // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
         if(tdtmConfig.size() == 0) {
             //If Advancement is installed and enabled, get the TDTM configuration from there.
             if(useAdv) {
-
+                Type classType = Type.forName(apiHedaClass);
+                if(classType != null) {
+                    Object classInstance = classType.newInstance();
+                    if(classInstance instanceof TDTM_Adapter) {
+                        TDTM_Adapter API_HEDA = (TDTM_Adapter)classInstance;
+                        //We already have the configuration as tokens, so no need for any transformation.
+                        tokens = API_HEDA.getDefaultTdtmConfigTokens();
+                    }
+                }
             } else {
                 tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
+                tokens = new List<TDTM_Global_API.TdtmToken>();
+                for(Trigger_Handler__c handler : tdtmConfig) {
+                    tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c,
+                            handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c,
+                            handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c,
+                            handler.User_Managed__c, handler.Owned_by_Namespace__c));
+                }
             }
 
         }
 
-        for(Trigger_Handler__c handler : tdtmConfig) {
-            tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
-                    handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
-                    handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c));
-        }
-
         tdtmTokensCache = tokens;
-
         return tokens;
     }
 
