@@ -59,6 +59,16 @@ public class TDTM_Config {
         if(tdtmTokensCache != null) {
             return tdtmTokensCache;
         }
+
+        Boolean useAdv = false;
+        //Check if Advancement is installed and enabled.
+        try {
+            List<SObject> advSettings = Database.query('select use_adv from Adv_Settings');
+            useAdv = (Boolean)advSettings[0].get('use_adv');
+        } catch(Exception e) {
+            //Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use HEDA's TDTM config.
+        }
+
         List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
         List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
                             Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c from Trigger_Handler__c];
@@ -66,7 +76,13 @@ public class TDTM_Config {
         // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
         // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
         if(tdtmConfig.size() == 0) {
-            tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
+            //If Advancement is installed and enabled, get the TDTM configuration from there.
+            if(useAdv) {
+
+            } else {
+                tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
+            }
+
         }
 
         for(Trigger_Handler__c handler : tdtmConfig) {
