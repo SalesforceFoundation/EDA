@@ -254,7 +254,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>firstNameLastNameAdminACC</shortDescription>
-        <value>{!FirstName} {!LastName} Administrative Account</value>
+        <value>{!{!FirstName}} {!LastName} Administrative Account</value>
     </labels>
     <labels>
         <fullName>firstNameLastNameFamily</fullName>
@@ -262,7 +262,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>firstNameLastNameFamily</shortDescription>
-        <value>{!FirstName} {!LastName} Family</value>
+        <value>{!{!FirstName}} {!LastName} Family</value>
     </labels>
     <labels>
         <fullName>firstNameLastNameHH</fullName>
@@ -270,7 +270,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>firstNameLastNameHH</shortDescription>
-        <value>{!FirstName} {!LastName} Household</value>
+        <value>{!{!FirstName}} {!LastName} Household</value>
     </labels>
     <labels>
         <fullName>hhAccNameFormat</fullName>
@@ -310,7 +310,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>lastNameFirstNameAdminAcc</shortDescription>
-        <value>{!LastName} ({!FirstName}) Administrative Account</value>
+        <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
     </labels>
     <labels>
         <fullName>lastNameFirstNameFamily</fullName>
@@ -318,7 +318,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>lastNameFirstNameFamily</shortDescription>
-        <value>{!LastName} ({!FirstName}) Family</value>
+        <value>{!LastName} ({!{!FirstName}}) Family</value>
     </labels>
     <labels>
         <fullName>lastNameFirstNameHH</fullName>
@@ -326,7 +326,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>lastNameFirstNameHH</shortDescription>
-        <value>{!LastName} ({!FirstName}) Household</value>
+        <value>{!LastName} ({!{!FirstName}}) Household</value>
     </labels>
     <labels>
         <fullName>lastNameHH</fullName>
