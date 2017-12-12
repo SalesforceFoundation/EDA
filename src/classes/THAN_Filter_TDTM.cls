@@ -87,7 +87,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                 }
 
                                 //System should't allow a Filter Field with HEDA namespace
-                                if(hasHEDAPrefix) {
+                                if(String.isNotBlank(hedaPrefix) && hasHEDAPrefix) {
                                     handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + Label.fieldWithHEDANamespace);
                                 } else {
 
