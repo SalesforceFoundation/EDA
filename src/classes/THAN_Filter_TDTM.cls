@@ -93,7 +93,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 
                                     //Get Sobject keyset. If user put a HEDA object without namespace, we need to add the namespace for it
                                     Set<String> fieldSet = UTIL_Describe.getAllFieldsDescribe(obj) == null ? UTIL_Describe.getAllFieldsDescribe(UTIL_Namespace.StrTokenNSPrefix(obj)).keySet() : UTIL_Describe.getAllFieldsDescribe(obj).keySet();
-
+                                    
                                     //First, test if the field exists outside HEDA
                                     Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
 
@@ -101,7 +101,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                     filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
                                     Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
 
-                                    if(fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
+                                    if(String.isNotBlank(hedaPrefix) && fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
                                         handler.addError(Label.InvalidFilter + handler.Class__c + '. ' +string.format(Label.duplicateWithHEDAField, new String[]{Label.duplicateFieldInFilter}));
                                     }
 
