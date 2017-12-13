@@ -109,7 +109,7 @@ public class TDTM_Filter {
     public String handleNamespace(string filterField) {
         String theFilter = '';
         String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
-        //if the filter has the heda namespace, then we need to add heda namespace again (This is for backward compatibility. Previously, we allow user put full name include the heda namespace, but the filter does not work)
+        //If the filter has the heda namespace, then we need to add heda namespace again. Adding the namespace the second time will break the filter. However, that is the desire behavior here. Because, previously, we allow user to put heda namespace as the prefix of the filter field, but the filter does not work. We want to keep this logic so it will be backward compatible.
         if(filterField.startsWithIgnoreCase(hedaPrefix)) {
             theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
         } else {
