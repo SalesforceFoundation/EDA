@@ -94,14 +94,13 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                     //Get Sobject keyset.
                                     Set<String> fieldSet = new Set<String>();
                                     try {
-                                        //If user put a HEDA object without namespace, we need to add the namespace because describe needs it
+                                        //If user put a HEDA object without namespace, we need to add the namespace because describe needs the exact api name
                                         try {
                                             fieldSet = UTIL_Describe.getAllFieldsDescribe(obj).keySet();
                                         } catch (UTIL_Describe.SchemaDescribeException e) {
-                                            //If user put a HEDA object without namespace, we need to add the namespace
                                             fieldSet = UTIL_Describe.getAllFieldsDescribe(UTIL_Namespace.StrTokenNSPrefix(obj)).keySet();
                                         }
-                                        
+
                                         //First, test if the field exists outside HEDA
                                         Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
 
