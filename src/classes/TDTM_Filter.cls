@@ -295,7 +295,7 @@ public class TDTM_Filter {
             //This filter won't work because fromRtoC method will add namespace to MyObj__r and MyField__c.
             //Adding extra HEDA namespace to the field (e.g. MyField__c) is ok because objectDescribe.fields.getMap().get(xxx) will ignore extra HEDA namespace
             //Adding extra HEDA namespace to the object (e.g. MyObj__c) is NOT because UTIL_Describe.getObjectDescribe(xxx) expect the exact api name
-            //The fix here is not ideal but it is safer to make a big change in fromRtoC method that has the risk to break other use cases
+            //The fix here is not ideal but it is safer than making a big change in fromRtoC method that has the risk to break other use cases
             try {
                 return getSOFieldHelper(UTIL_Namespace.StrTokenRemoveNSPrefix(parentObjectName), fieldName);
             } catch (UTIL_Describe.SchemaDescribeException ex) {
