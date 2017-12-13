@@ -91,27 +91,33 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                     handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + Label.fieldWithHEDANamespace);
                                 } else {
 
-                                    //Get Sobject keyset. If user put a HEDA object without namespace, we need to add the namespace because describe needs it
+                                    //Get Sobject keyset.
                                     Set<String> fieldSet = new Set<String>();
                                     try {
                                         fieldSet = UTIL_Describe.getAllFieldsDescribe(obj).keySet();
                                     } catch (UTIL_Describe.SchemaDescribeException e) {
-                                        fieldSet = UTIL_Describe.getAllFieldsDescribe(UTIL_Namespace.StrTokenNSPrefix(obj)).keySet();
-                                    }
+                                        try {
+                                            //If user put a HEDA object without namespace, we need to add the namespace because describe needs it
+                                            fieldSet = UTIL_Describe.getAllFieldsDescribe(UTIL_Namespace.StrTokenNSPrefix(obj)).keySet();
 
-                                    //First, test if the field exists outside HEDA
-                                    Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
+                                            //First, test if the field exists outside HEDA
+                                            Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
 
-                                    //Second, add the HEDA namespace and test if the field exists in HEDA
-                                    filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
-                                    Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
+                                            //Second, add the HEDA namespace and test if the field exists in HEDA
+                                            filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
+                                            Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
 
-                                    if(String.isNotBlank(hedaPrefix) && fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
-                                        handler.addError(Label.InvalidFilter + handler.Class__c + '. ' +string.format(Label.duplicateWithHEDAField, new String[]{Label.duplicateFieldInFilter}));
-                                    }
+                                            if(String.isNotBlank(hedaPrefix) && fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
+                                                handler.addError(Label.InvalidFilter + handler.Class__c + '. ' +string.format(Label.duplicateWithHEDAField, new String[]{Label.duplicateFieldInFilter}));
+                                            }
 
-                                    if(!fieldExists && !fieldExistsHEDA) {
-                                        handler.addError(Label.InvalidFilter + handler.Class__c);
+                                            if(!fieldExists && !fieldExistsHEDA) {
+                                                handler.addError(Label.InvalidFilter + handler.Class__c);
+                                            }
+
+                                        } catch (UTIL_Describe.SchemaDescribeException ex) {
+                                            handler.addError(Label.InvalidFilter + handler.Class__c);
+                                        }
                                     }
                                 }
                             }
