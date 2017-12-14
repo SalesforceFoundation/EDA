@@ -50,8 +50,8 @@ public class TDTM_Config {
 
     /********************************************************************************************************
     * @description Returns the TDTM configuration. If no configuration is currently set, it will return
-    * the default configuration without setting it. The configuration returned has not yet been inserted in the
-    * database. It can be manipulated, if necessary, then set.
+    * the default configuration without setting it. If the default configuration is the one returned,
+    * it has not yet been inserted in the database. It can be manipulated, if necessary, then set.
     * If no configuration exists, the application will insert the defaults when any of the triggers run.
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
@@ -69,6 +69,7 @@ public class TDTM_Config {
             apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
         } catch(Exception e) {
             //Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use HEDA's TDTM config.
+            UTIL_Debug.debug('****Advancement not installed.');
         }
 
         List<TDTM_Global_API.TdtmToken> tokens;
@@ -76,34 +77,39 @@ public class TDTM_Config {
                             Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c
                             from Trigger_Handler__c];
 
+
         // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
         // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
-        if(tdtmConfig.size() == 0) {
+        if(tdtmConfig == null || tdtmConfig.size() == 0) {
+            UTIL_Debug.debug('****No TDTM configuration in the database.');
             //If Advancement is installed and enabled, get the TDTM configuration from there.
-            if(useAdv) {
+            if (useAdv) {
+                UTIL_Debug.debug('****Using Adv config');
                 Type classType = Type.forName(apiHedaClass);
-                if(classType != null) {
+                if (classType != null) {
                     Object classInstance = classType.newInstance();
-                    if(classInstance instanceof TDTM_Adapter) {
-                        TDTM_Adapter API_HEDA = (TDTM_Adapter)classInstance;
+                    if (classInstance instanceof TDTM_Adapter) {
+                        TDTM_Adapter API_HEDA = (TDTM_Adapter) classInstance;
                         //We already have the configuration as tokens, so no need for any transformation.
                         tokens = API_HEDA.getDefaultTdtmConfigTokens();
                     }
                 }
             } else {
+                UTIL_Debug.debug('****Not Using Adv config');
                 tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
-                tokens = new List<TDTM_Global_API.TdtmToken>();
-                for(Trigger_Handler__c handler : tdtmConfig) {
-                    tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c,
-                            handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c,
-                            handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c,
-                            handler.User_Managed__c, handler.Owned_by_Namespace__c));
-                }
             }
+        }
 
+        tokens = new List<TDTM_Global_API.TdtmToken>();
+        for(Trigger_Handler__c handler : tdtmConfig) {
+            tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c,
+                    handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c,
+                    handler.Asynchronous__c, handler.Filter_Field__c, handler.Filter_Value__c,
+                    handler.User_Managed__c, handler.Owned_by_Namespace__c));
         }
 
         tdtmTokensCache = tokens;
+        UTIL_Debug.debug('****TDTM tokens: ' + JSON.serializePretty(tokens));
         return tokens;
     }
 
