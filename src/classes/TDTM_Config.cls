@@ -68,8 +68,8 @@ public class TDTM_Config {
             useAdv = (Boolean)advSettings[0].get('use_adv__c');
             apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
         } catch(Exception e) {
-            //Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use HEDA's TDTM config.
-            UTIL_Debug.debug('****Advancement not installed.');
+            // Advancement not installed. Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use
+            // HEDA's TDTM config.
         }
 
         List<TDTM_Global_API.TdtmToken> tokens;
@@ -81,10 +81,10 @@ public class TDTM_Config {
         // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
         // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
         if(tdtmConfig == null || tdtmConfig.size() == 0) {
-            UTIL_Debug.debug('****No TDTM configuration in the database.');
+            //No TDTM configuration in the database.
             //If Advancement is installed and enabled, get the TDTM configuration from there.
             if (useAdv) {
-                UTIL_Debug.debug('****Using Adv config');
+                //Using Adv config.
                 Type classType = Type.forName(apiHedaClass);
                 if (classType != null) {
                     Object classInstance = classType.newInstance();
@@ -95,7 +95,7 @@ public class TDTM_Config {
                     }
                 }
             } else {
-                UTIL_Debug.debug('****Not Using Adv config');
+                //Not Using Adv config.
                 tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
             }
         }
@@ -109,7 +109,6 @@ public class TDTM_Config {
         }
 
         tdtmTokensCache = tokens;
-        UTIL_Debug.debug('****TDTM tokens: ' + JSON.serializePretty(tokens));
         return tokens;
     }
 
