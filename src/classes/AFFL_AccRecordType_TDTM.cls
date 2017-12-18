@@ -154,7 +154,9 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         if(accsTypeAdded.size() > 0) {
             String childrenAccsTypeAddedQuery = 'select Account__c, Contact__c';
             for(Integer i = 0; i < accsTypeAdded.values().size(); i++) {
-                childrenAccsTypeAddedQuery += ', Contact__r.' + accsTypeAdded.values()[i];
+                if(!childrenAccsTypeAddedQuery.contains(accsTypeAdded.values()[i])) {
+                    childrenAccsTypeAddedQuery += ', Contact__r.' + accsTypeAdded.values()[i];
+                }
             }
             Set<ID> accsTypeAddedIDs = accsTypeAdded.keySet();
             childrenAccsTypeAddedQuery += ' from Affiliation__c where Account__c IN :accsTypeAddedIDs';

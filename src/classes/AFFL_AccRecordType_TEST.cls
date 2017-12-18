@@ -212,4 +212,40 @@ public with sharing class AFFL_AccRecordType_TEST {
         contact = [select Primary_Organization__c from Contact where ID=:contact.Id];
         System.assertEquals(acc.ID, contact.Primary_Organization__c);
     }
+
+    @isTest
+    public static void updateAdminAccRecordTypeBulk() {
+        setup();
+
+        //Create some Accounts with Admin record type
+        List<Account> adminAccList = new List<Account>();
+        for(Integer i = 0 ; i < 10; i++) {
+            Account acc = new Account(Name = 'The Account', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
+            adminAccList.add(acc);
+        }
+        insert adminAccList;
+
+        List<Account> theAccs = [Select Id from Account where RecordTypeId =: UTIL_Describe.getAdminAccRecTypeID()];
+        system.assertEquals(10, theAccs.size());
+
+        //Change the record type of the Accounts to Biz type and HH type
+        for(Integer i = 0 ; i < 10; i++) {
+            if(i < 5) {
+                theAccs[i].RecordTypeId = orgRecTypeID;
+            } else {
+                theAccs[i].RecordTypeId = householdRecTypeID;
+            }
+        }
+
+        //Update Accounts in bulk. It shouldn't throw any error
+        Test.startTest();
+        update theAccs;
+        Test.stopTest();
+
+        List<Account> orgAccounts = [Select Id from Account where RecordTypeId =: orgRecTypeID];
+        system.assertEquals(5, orgAccounts.size());
+
+        List<Account> hhAccounts = [Select Id from Account where RecordTypeId =: householdRecTypeID];
+        system.assertEquals(5, hhAccounts.size());
+    }
 }
