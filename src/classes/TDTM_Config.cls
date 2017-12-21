@@ -64,8 +64,11 @@ public class TDTM_Config {
         String apiHedaClass = '';
         //Check if Advancement is installed and enabled.
         try {
-            List<SObject> advSettings = Database.query('select use_adv__c, API_HEDA_Class__c from Adv_Settings__c');
-            useAdv = (Boolean)advSettings[0].get('use_adv__c');
+            //List<SObject> advSettings = Database.query('select use_adv__c, API_HEDA_Class__c from Adv_Settings__c');
+            //useAdv = (Boolean)advSettings[0].get('use_adv__c');
+            //apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
+            List<SObject> advSettings = Database.query('select Use_Advancement__c, API_HEDA_Class__c from Advancement_Setting__mdt');
+            useAdv = (Boolean)advSettings[0].get('Use_Advancement__c');
             apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
         } catch(Exception e) {
             // Advancement not installed. Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use
