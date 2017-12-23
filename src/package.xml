@@ -365,8 +365,11 @@
         <members>addrSeasonalPartialYear</members>
         <members>addrValidParentObjects</members>
         <members>afflNullPointerError</members>
+        <members>duplicateFieldInFilter</members>
+        <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
+        <members>fieldWithHEDANamespace</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
