@@ -61,12 +61,67 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 	                    String filterField = String.escapeSingleQuotes(handler.Filter_Field__c);
 	                    String obj = String.escapeSingleQuotes(handler.Object__c);
 	                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
-		                    try {
-		                        String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
-		                        List<SObject> records =  Database.query(dynamicQuery);
-		                    } catch(QueryException e) {
-		                        handler.addError(Label.InvalidFilter + handler.Class__c);
-		                    }
+                            //those four type of fields are considered valid Filter field
+                            //1. Standard Field e.g. FirstName
+                            //2. HEDA Field WITHOUT namespace e.g. Military_Service__c
+                            //3. User's Custom Field e.g. MyField__c
+                            //4. Field from another package with namespace e.g. NS__Field__c
+                            //5. The relationship field e.g. Account.Id; Affiliation__c.Account__c.RecordType.Name
+                            //if the Filter Field is not a relationship field, then we need to do more check
+                            if(filterField.contains('.')) {
+                                try {
+                                    String dynamicQuery = 'select ' + filterField + ' from ' + obj + ' limit 1';
+                                    List<SObject> records =  Database.query(dynamicQuery);
+                                } catch(QueryException e) {
+                                    handler.addError(Label.InvalidFilter + handler.Class__c);
+                                }
+                            } else {
+                                String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
+                                Boolean hasHEDAPrefix = filterField.startsWithIgnoreCase(hedaPrefix) ? true : false;
+                                Boolean ignoreDuplicateField = filterField.endsWithIgnoreCase(Label.duplicateFieldInFilter) ? true: false;
+
+                                //Get the ignoreDuplicateField flag and remove it from the Filter Field value
+                                if(ignoreDuplicateField) {
+                                    filterField = filterField.replace(Label.duplicateFieldInFilter, '');
+                                    handler.Filter_Field__c = handler.Filter_Field__c.replace(Label.duplicateFieldInFilter, '');
+                                }
+
+                                //System should't allow a Filter Field with HEDA namespace
+                                if(String.isNotBlank(hedaPrefix) && hasHEDAPrefix) {
+                                    handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + Label.fieldWithHEDANamespace);
+                                } else {
+
+                                    //Get Sobject keyset.
+                                    Set<String> fieldSet = new Set<String>();
+                                    try {
+                                        //If user put a HEDA object without namespace, we need to add the namespace because describe needs the exact api name
+                                        try {
+                                            fieldSet = UTIL_Describe.getAllFieldsDescribe(obj).keySet();
+                                        } catch (UTIL_Describe.SchemaDescribeException e) {
+                                            fieldSet = UTIL_Describe.getAllFieldsDescribe(UTIL_Namespace.StrTokenNSPrefix(obj)).keySet();
+                                        }
+
+                                        //First, test if the field exists outside HEDA
+                                        Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
+
+                                        //Second, add the HEDA namespace and test if the field exists in HEDA
+                                        filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
+                                        Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
+
+                                        if (String.isNotBlank(hedaPrefix) && fieldExists && fieldExistsHEDA && !ignoreDuplicateField) {
+                                            handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + string.format(Label.duplicateWithHEDAField, new String[]{
+                                                    Label.duplicateFieldInFilter
+                                            }));
+                                        }
+
+                                        if (!fieldExists && !fieldExistsHEDA) {
+                                            handler.addError(Label.InvalidFilter + handler.Class__c);
+                                        }
+                                    } catch (UTIL_Describe.SchemaDescribeException e) {
+                                        handler.addError(Label.InvalidFilter + handler.Class__c);
+                                    }
+                                }
+                            }
 	                    }
                     }
                 }
