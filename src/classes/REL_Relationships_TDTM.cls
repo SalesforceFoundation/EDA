@@ -15,16 +15,16 @@
       from this software without specific prior written permission.
  
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
@@ -36,13 +36,10 @@
 */
 public class REL_Relationships_TDTM extends TDTM_Runnable {
 
-    /* @description Provides process control to prevent relationship creation recursion in triggers. */
+    /* @description Provides process control to prevent relationship creation recursion in triggers. */ 
     public static boolean hasRun = false;
     
-    /* @description Keeps track of relationships that have already been deleted to prevent Entity is Deleted error */
-    private static Set<Id> hasBeenDeleted = new Set<Id>();
-    
-    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
+    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     	
     	List<Relationship__c> newListCasted = (newList == null ? new List<Relationship__c>(): (List<Relationship__c>)newList);
@@ -60,7 +57,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
     /// <param name="Relationships"> Relationship objects that are being triggered </param>
     /// <param name="oldRelationships"> Relationships object values before trigger event </param>
     /// <param name="ta"> Trigger action that is occurring </param>
-    private DmlWrapper runForRelationships(List<Relationship__c> newList, List<Relationship__c> oldList,
+    private DmlWrapper runForRelationships(List<Relationship__c> newList, List<Relationship__c> oldList, 
     TDTM_Runnable.Action triggerAction) {
     	    
     	DmlWrapper mainWrapper = new DmlWrapper();
@@ -71,16 +68,19 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         List<Relationship__c> relationshipsToUpdate = new List<Relationship__c>();
         List<Relationship__c> relationshipsToDelete = new List<Relationship__c>();
         List<Relationship__c> reciprocalsToUpdate = new List<Relationship__c>();
-        
+
+        //Keeps track of relationships that have already been deleted to prevent Entity is Deleted error
+        Set<Id> hasBeenDeleted = new Set<Id>();
+
         if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
             hasRun = true;
         }
-        
+
         if (triggerAction == TDTM_Runnable.Action.afterDelete) {
             hasBeenDeleted.addAll((new Map<Id, Relationship__c>(newList)).keySet());
         }
         
-        Integer i = 0;          // processing counter
+        Integer i = 0;          // processing counter            
         for(Relationship__c r : newList) {
             // AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.afterInsert) {
@@ -93,8 +93,8 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
             }
             
             // AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
-                if (r.ReciprocalRelationship__c == oldList[i].ReciprocalRelationship__c
+            if (triggerAction == TDTM_Runnable.Action.afterUpdate) {   
+                if (r.ReciprocalRelationship__c == oldList[i].ReciprocalRelationship__c 
                 && r.RelatedContact__c != null) {
                     relationshipsToUpdate.add(r);
                     origRelationships.add(oldList[i]);
@@ -170,7 +170,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         List<SObject> relationshipsToUpdate = new List<SObject>();
         for(Relationship__c r : Relationships) {
         	UTIL_Debug.debug('****Creating reciprocal relatioship');
-            Relationship__c copy = new Relationship__c(Id = r.ReciprocalRelationship__c,
+            Relationship__c copy = new Relationship__c(Id = r.ReciprocalRelationship__c, 
                                                                     ReciprocalRelationship__c = r.Id);
             relationshipsToUpdate.add(copy);
         }
@@ -189,7 +189,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                 
         for(Relationship__c r : Relationships) {
         	UTIL_Debug.debug('****Creating relationship in createRelationship method');
-            Relationship__c copy = new Relationship__c();
+            Relationship__c copy = new Relationship__c();              
             copy.Contact__c = r.RelatedContact__c;
             copy.RelatedContact__c = r.Contact__c;
             copy.Status__c = r.Status__c;
@@ -200,7 +200,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         }
         
         //evaluate and add the type
-        addType(Relationships, relationshipstoCreate);
+        addType(Relationships, relationshipstoCreate);      
         dmlWrapper.objectsToInsert.addAll(relationshipsToCreate);
         //inspectSaveResults(sr, relationshipsToCreate);
         
@@ -211,7 +211,7 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
     /// <summary> Updates the Status and/or Type of a relationship After its reciprocal has been updated </summary>
     /// <param name="Relationships">  </param>
     /// <param name="oldRelationships">  </param>
-    public static DmlWrapper updateRelationship(Relationship__c[] Relationships,
+    public static DmlWrapper updateRelationship(Relationship__c[] Relationships, 
     Relationship__c[] oldRelationships){
     	
     	DmlWrapper dmlWrapper = new DmlWrapper();
@@ -219,14 +219,14 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         List<Relationship__c> originalRelationships = new List<Relationship__c>();
         List<SObject> relationshipsTypesToUpdate = new List<SObject>();
         List<SObject> reciprocalsToUpdate = new List<SObject>();
-        Integer counter = 0;                                            // processing counter
+        Integer counter = 0;                                            // processing counter       
 
         for(Relationship__c r : Relationships) {
         	
             //SWA 2009-05-13 removed a duplicate check for change to Status__c from this OR statement
-            if ((r.Status__c != oldRelationships[counter].Status__c
-            || r.Type__c != oldRelationships[counter].Type__c
-            || r.Description__c != oldRelationships[counter].Description__c)
+            if ((r.Status__c != oldRelationships[counter].Status__c 
+            || r.Type__c != oldRelationships[counter].Type__c 
+            || r.Description__c != oldRelationships[counter].Description__c) 
             && r.ReciprocalRelationship__c != null) {
             	UTIL_Debug.debug('****Creating relationship in updateRelationship method');
                 Relationship__c copy = new Relationship__c(Id=r.ReciprocalRelationship__c);
@@ -266,10 +266,10 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
         
         //used for tracking place in array
-        integer counter = 0;
+        integer counter = 0;            
         
-        if (rs.Reciprocal_Method__c == 'List Setting'){
-            List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings().clone();
+        if (rs.Reciprocal_Method__c == 'List Setting'){ 
+            List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings().clone();           
             Map<String, Relationship_Lookup__c> rlMap = new Map<String, Relationship_Lookup__c>();
             for(Relationship_Lookup__c setting : settings) {
                 rlMap.put(setting.Name, setting);
@@ -288,9 +288,9 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
             for (Relationship__c r : rList){
             //    rIDs.add(r.RelatedContact__c);
                 rIDs.add(r.Contact__c);
-            }
+            }            
             
-            String query_String = 'select id, Salutation, Gender__c from Contact where Id IN :rIDs';
+            String query_String = 'select id, Salutation, Gender__c from Contact where Id IN :rIDs';                         
             
             Map<id, Contact> cMap = new Map<id,Contact>((List<Contact>)database.query(query_String));
             
@@ -301,17 +301,17 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                 Contact relatedContact = cMap.get(r.Contact__c);
             
                 if (rlMap.containsKey(r.Type__c)){
-                    List<String> maleList = system.label.Male.split(',');
+                    List<String> maleList = system.label.Male.split(',');                                                                                                        
                     List<String> femaleList = system.label.Female.split(',');
                     
                     Set<String> maleset = new Set<String>();
                     Set<String> femaleset = new Set<String>();
                     maleset.addAll(maleList);
-                    femaleset.addAll(femaleList);
+                    femaleset.addAll(femaleList);                    
                                         
-                    //was a gender field defined?
+                    //was a gender field defined? 
                     if (relatedContact.Gender__c != null){
-                        String match_type = '';
+                        String match_type = '';                        
                         
                         //try male
                         for (String s : maleList){
@@ -328,38 +328,38 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                                     break;
                                 }
                             }
-                        }
+                        }     
                         
                         if (match_type == 'male' && rlMap.get(r.Type__c).Male__c != null)
                             copy.Type__c = rlMap.get(r.Type__c).Male__c;
-                        else if (match_type == 'female' && rlMap.get(r.Type__c).Female__c != null)
+                        else if (match_type == 'female' && rlMap.get(r.Type__c).Female__c != null)                            
                             copy.Type__c = rlMap.get(r.Type__c).Female__c;
                         else
                             copy.Type__c = rlMap.get(r.Type__c).Neutral__c;
                     }
-                    else if ((relatedContact.Salutation == 'Mr.' || maleset.contains(relatedContact.Salutation))
+                    else if ((relatedContact.Salutation == 'Mr.' || maleset.contains(relatedContact.Salutation))  
                     && rlMap.get(r.Type__c).Male__c != null){
                         copy.Type__c = rlMap.get(r.Type__c).Male__c;
                     }
-                    else if (((relatedContact.Salutation == 'Ms.' || relatedContact.Salutation == 'Mrs.')
-                    || femaleset.contains(relatedContact.Salutation)) && rlMap.get(r.Type__c).Female__c
+                    else if (((relatedContact.Salutation == 'Ms.' || relatedContact.Salutation == 'Mrs.') 
+                    || femaleset.contains(relatedContact.Salutation)) && rlMap.get(r.Type__c).Female__c 
                     != null){
                         copy.Type__c = rlMap.get(r.Type__c).Female__c;
                     
                     //can't match up gender, bad field or otherwise
                     } else {
-                        copy.Type__c = rlMap.get(r.Type__c).Neutral__c;
-                    }
+                        copy.Type__c = rlMap.get(r.Type__c).Neutral__c;                     
+                    }                                     
                 //no matching custom List setting, use provided type
                 } else {
                     copy.Type__c = r.Type__c;
-                }
+                }                
                 counter++;
-            }
+            }            
         }
         
         else if(rs.Reciprocal_Method__c == 'Value Inversion'){
-            for (Relationship__c r : rList){
+            for (Relationship__c r : rList){                           
                 //instead lets split the type
                 List<String> splitrelationship = r.Type__c.split(system.label.Relationship_Split);
                 String newString = '';
@@ -377,8 +377,8 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
             for (Relationship__c r : rList){
             	Relationship__c castedObject = (Relationship__c)rCopy[counter];
                 castedObject.Type__c = r.Type__c;
-                counter++;
-            }
+                counter++; 
+            }   
         }
     }
 }
