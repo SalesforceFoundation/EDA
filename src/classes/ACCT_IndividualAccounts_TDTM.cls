@@ -229,7 +229,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, false);
         }else if (triggerAction == TDTM_Runnable.Action.AfterDelete){
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);            
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);
+        }            
         if (listAccountIdHHToRename.size() > 0){
             updateHHAccountsName(listAccountIdHHToRename);
         }
