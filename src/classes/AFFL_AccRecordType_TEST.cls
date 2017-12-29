@@ -248,4 +248,46 @@ public with sharing class AFFL_AccRecordType_TEST {
         List<Account> hhAccounts = [Select Id from Account where RecordTypeId =: householdRecTypeID];
         system.assertEquals(5, hhAccounts.size());
     }
+
+    @isTest
+    public static void fillInPrimaryFieldForContacts() {
+        setup();
+
+        //Create Contacts
+        Contact js = new Contact(FirstName = 'John', LastName = 'Smith');
+        Contact mb = new Contact(FirstName = 'Mark', LastName = 'Bruce');
+        List<Contact> contacts = new List<Contact>{js, mb};
+        insert contacts;
+
+        //Create Accounts with Admin Record Type
+        Account company = new Account(Name = 'ABC Company', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
+        Account hh = new Account(Name = 'Mark Household', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accs = new List<Account>{company, hh};
+        insert accs;
+
+        //Create Affiliations
+        Affiliation__c companyAffl = new Affiliation__c(Contact__c = js.ID, Account__c = company.ID, Primary__c = true);
+        Affiliation__c hhAffl = new Affiliation__c(Contact__c = mb.ID, Account__c = hh.ID, Primary__c = true);
+        List<Affiliation__c> affls = new List<Affiliation__c>{companyAffl, hhAffl};
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+        insert affls;
+
+        //Now Update the Account Record Type
+        Account companyWithCorrectType = new Account(Id = company.Id, RecordTypeId = orgRecTypeID);
+        Account hhWithCorrectType = new Account(Id = hh.Id, RecordTypeId = householdRecTypeID);
+        List<Account> accsForUpdate = new List<Account>{companyWithCorrectType, hhWithCorrectType};
+
+        Test.startTest();
+        update accsForUpdate;
+        Test.stopTest();
+
+        //Verify that the Primary Fields on Contacts get populated correctly
+        Contact john = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: js.Id];
+        system.assertEquals(null, john.Primary_Household__c);
+        system.assertEquals(company.Id, john.Primary_Organization__c);
+
+        Contact mark = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: mb.Id];
+        system.assertEquals(hh.id, mark.Primary_Household__c);
+        system.assertEquals(null, mark.Primary_Organization__c);
+    }
 }
