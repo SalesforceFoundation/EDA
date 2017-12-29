@@ -559,8 +559,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         return con.LastName + ' ' + system.label.DefaultAccountName;
     }
 
-    private void updateAdminAccountsName(List<Contact> listContactsChangedLastName, DmlWrapper dmlWrapper)
-    {
+    private void updateAdminAccountsName(List<Contact> listContactsChangedLastName, DmlWrapper dmlWrapper) {
         list<Account> listAccToUpdate = new list<Account>();
         map<Id, Contact> mapAccIdToCon = new map<Id, Contact>();
         for (Contact con : listContactsChangedLastName) {
@@ -589,8 +588,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return string. the formatted account name
     */
 
-    private static String formatAccountName(List<Contact> cons, String setting)
-    {
+    private static String formatAccountName(List<Contact> cons, String setting) {
         //get all the fields of Contact
         Map<String, Schema.SObjectField> mapContactFields = Schema.getGlobalDescribe().get('Contact').getDescribe().fields.getMap();
         Set<String> contactFieldsNames = mapContactFields.keySet();
@@ -718,8 +716,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param accIdsToRename set of account ids whose name need to be updated
     * @return void
     */
-    private void updateHHAccountsName(Set<Id> accIdsToRename)
-    {
+    private void updateHHAccountsName(Set<Id> accIdsToRename) {
         list<Account> listAccsToRename = new list<Account>();
 
         list<Account> listAcc = [SELECT Id,
@@ -736,5 +733,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         // add all accounts needing updating to our list
             update listAccsToRename;
-        }
+    }
+
 }
