@@ -82,7 +82,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Map<Id,Id> mapAccountIdContactId = new Map<Id,Id>();
 
         List<Id> listAccountIdHHToUpdate = new list<Id>();
-        Set<Id> listAccountIdHHToRename = new Set<Id>();
+        List<Id> listAccountIdHHToRename = new list<Id>();
 
         map<Id, Contact> mapContactIdContactOwnerChange = new map<Id, Contact>();
 
@@ -126,10 +126,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != null) {
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
-                        if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID())
-                        {
-                            listAccountIdHHToRename.add(c.AccountId);
-                        }
                     }
 	            }
 
@@ -164,14 +160,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.LastName != oldContacts[i].LastName && c.AccountId != null)
                     {
                         listContactsChangedLastName.add(c);
-                    }
-
-                    // Rename the account if the name of contact is changed and the account model is household account
-                    if ((c.LastName != oldContacts[i].LastName
-                                || c.FirstName != oldContacts[i].FirstName)
-                            && c.AccountId != null
-                            && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()){
-                        listAccountIdHHToRename.add(c.AccountId);
                     }
                 }
                 i += 1;
@@ -219,13 +207,18 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             deleteContactAccountsIfEmpty(listContactAccountDelete, dmlWrapper);
         }
         if (listContactsChangedLastName.size() > 0) {
-            updateAdminAccountsName(listContactsChangedLastName, dmlWrapper);
+            updateAccountsLastName(listContactsChangedLastName, dmlWrapper);
         }
 
-        if (listAccountIdHHToRename.size() > 0){
-            updateHHAccountsName(listAccountIdHHToRename);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
+        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, false);
+        }else if (triggerAction == TDTM_Runnable.Action.AfterDelete){
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);            
         }
-
     	return dmlWrapper;
     }
 
@@ -373,7 +366,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
                 // construct the Account name
                 if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
-                	a.Name = strNameHHAccountForContact(new List<Contact>{c});
+                	a.Name = strNameHHAccountForContact(c);
                 //TODO: we should not be asking for the record type directly, and instead let the use tell us which record type
                 //represents an Administrative account.
                 else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
@@ -507,7 +500,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param con the Contact
     * @return string. the Household account name
     */
-    public static String strNameHHAccountForContact(List<Contact> cons) {
+    public static String strNameHHAccountForContact(Contact con) {
         String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
         if (hhAccNamingFormat == Label.acctNamingOther)
         {
@@ -515,7 +508,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         if (hhAccNamingFormat!= null && hhAccNamingFormat != Label.None)
         {
-            return formatAccountName(cons, hhAccNamingFormat);
+            return formatContactName(con, hhAccNamingFormat);
         }else{
             return system.label.DefaultHouseholdName;
         }
@@ -534,9 +527,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
         if (adminAccNamingFormat != null)
         {
-            List<Contact> cons = new List<Contact>();
-            cons.add(con);
-            return formatAccountName(cons, adminAccNamingFormat);
+            return formatContactName(con, adminAccNamingFormat);
         }else{
             return con.LastName + ' ' + system.label.DefaultAdminName; 
         }
@@ -551,7 +542,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         return con.LastName + ' ' + system.label.DefaultAccountName;
     }
 
-    private void updateAdminAccountsName(List<Contact> listContactsChangedLastName, DmlWrapper dmlWrapper)
+    private void updateAccountsLastName(List<Contact> listContactsChangedLastName, DmlWrapper dmlWrapper) 
     {
         list<Account> listAccToUpdate = new list<Account>();
         map<Id, Contact> mapAccIdToCon = new map<Id, Contact>();
@@ -574,42 +565,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)listAccToUpdate);
     }
 
-    /*******************************************************************************************************
-    * @description format the account name based on naming settings
-    * @param cons the Contacts need to format Account Name
-    * @param setting the Account naming setting
-    * @return string. the formatted account name
-    */
-
-    private static String formatAccountName(List<Contact> cons, String setting)
+    private static String formatContactName(Contact con, String setting)
     {
-        //get all the fields of Contact
         Map<String, Schema.SObjectField> mapContactFields = Schema.getGlobalDescribe().get('Contact').getDescribe().fields.getMap();
-        Set<String> contactFieldsNames = mapContactFields.keySet();
-
-        String result = '';
-        String settingPrefix = '';
-        String settingSuffix = '';
+        Set<String> contactFieldsNames = mapContactFields.keySet(); 
+        String resultSetting = '';
+        List<String> settingsSplitSpace= setting.split(' ');
         List<String> settingsSplitRightParenthesis = new List<String>();
         List<String> settingsSplitLeftParenthesis = new List<String>();
-        Map<String, List<Contact>> mapLastNameContacts = new Map<String, List<Contact>>();
-        Set<String> setContactFields = new Set<String>();
-        List<String> listNameStrings = new List<String>();
-
-        //Build the map of lastname and contacts
-        mapLastNameContacts = buildMapLastNameContacts(cons);
-        //Build prefix
-        settingPrefix = setting.substringBefore('{!');
-        //Build suffix and remove prefix and suffix from original string
-        if (setting.lastIndexOf('}') <= setting.lastIndexOf(')')){
-            settingSuffix = setting.substringAfterLast(')');
-            setting = setting.substring(setting.indexOf('{!'), setting.lastIndexOf(')')+1);
-        }else{
-            settingSuffix = setting.substringAfterLast('}');
-            setting = setting.substring(setting.indexOf('{!'), setting.lastIndexOf('}')+1);
-        }
-        //Split strings into a list
-        List<String> settingsSplitSpace= setting.split(' ');
         for (String settingSplitSpace : settingsSplitSpace)
         {
             if (settingSplitSpace.contains('{!') && settingSplitSpace.contains('}'))
@@ -622,111 +585,24 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         settingsSplitLeftParenthesis = settingSplitRightParenthesis.split('\\{!');
                         for (String settingSplitLeftParenthesis : settingsSplitLeftParenthesis)
                         {
-                            if (contactFieldsNames.contains(settingSplitLeftParenthesis.toLowerCase())) {
-                                setContactFields.add(settingSplitLeftParenthesis.toLowerCase());
+                            if (contactFieldsNames.contains(settingSplitLeftParenthesis.toLowerCase()) && con.get(settingSplitLeftParenthesis) != null)
+                            {
+                                resultSetting += (String)(con.get(settingSplitLeftParenthesis));
+                            }else{
+                                resultSetting += settingSplitLeftParenthesis;
+
                             }
-                            if (settingSplitLeftParenthesis != '')
-                                listNameStrings.add(settingSplitLeftParenthesis);
                         }
                     }else{
-                        if (settingSplitRightParenthesis != '')
-                            listNameStrings.add(settingSplitRightParenthesis);
+                        resultSetting += settingSplitRightParenthesis;
                     }
                 }
-            }else {
-                if (settingSplitSpace != '')
-                    listNameStrings.add(settingSplitSpace);
-            }
-            listNameStrings.add(' ');
-        }
-        if (setContactFields.contains('lastname')){
-            Integer lnCounter = mapLastNameContacts.keySet().size();
-            for (String lastName : mapLastNameContacts.keySet()){
-                    for (String nameString : listNameStrings) {
-                        if (contactFieldsNames.contains(nameString.toLowerCase())) {
-                            if (nameString == 'lastname') {
-                                result += lastname;
-                            } else {
-                                Integer counter = mapLastNameContacts.get(lastName).size();
-                                for (Contact con : mapLastNameContacts.get(lastName)) {
-                                    result += con.get(nameString);
-                                    counter--;
-                                    if (counter > 0) {
-                                        result += ' and ';
-                                    }
-                                }
-                            }
-                        }else{
-                            result += nameString;
-                        }
-                    }
-                    lnCounter--;
-                    if (lnCounter > 0) {
-                        result += ' and ';
-                    }
-            }
-        }else{
-            for (String nameString : listNameStrings) {
-                if (contactFieldsNames.contains(nameString.toLowerCase())){
-                    Integer counter = cons.size();
-                    for (Contact con : cons) {
-                        result += con.get(nameString);
-                        counter--;
-                        if (counter > 0) {
-                            result += ' and ';
-                        }
-                    }
-                }else{
-                    result += nameString;
-                }
-            }
-        }
-        result = result.trim();
-        String output = settingPrefix + result + settingSuffix;
-        return output.trim();
-
-    }
-
-    /*******************************************************************************************************
-    * @description build the name Map of last name and contacts with the same last names
-    * @param cons list of sibling contacts
-    * @return map<String, List<Contact>. the map of last name and list of contacts
-    */
-    private static Map<String, List<Contact>> buildMapLastNameContacts(List<Contact> cons) {
-        Map<String, List<Contact>> mapLastNameContacts = new Map<String, List<Contact>>();
-        for (Contact con : cons)
-        {
-            if (mapLastNameContacts.containsKey(con.LastName)){
-                mapLastNameContacts.get(con.LastName).add(con);
             }else{
-                mapLastNameContacts.put(con.LastName, new List<Contact>{con});
+                resultSetting += settingSplitSpace;
             }
+            resultSetting += ' ';
         }
-        return mapLastNameContacts;
+        return resultSetting.trim();
+
     }
-
-    /*******************************************************************************************************
-    * @description update account names if any changes made to contacts' names or a new contact is linked the account
-    * @param accIdsToRename set of account ids whose name need to be updated
-    * @return void
-    */
-    private void updateHHAccountsName(Set<Id> accIdsToRename)
-    {
-        list<Account> listAccsToRename = new list<Account>();
-
-        list<Account> listAcc = [SELECT Id,
-                                        RecordTypeId,
-                                        (SELECT FirstName,
-                                                LastName
-                                        FROM Contacts)
-                                FROM Account
-                                WHERE Id IN :accIdsToRename];
-
-        for (Account acc : listAcc) {
-            acc.Name = strNameHHAccountForContact(acc.Contacts);
-            listAccsToRename.add(acc);
-        }
-        // add all accounts needing updating to our list
-            update listAccsToRename;
-        }
 }
