@@ -669,7 +669,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     }
                     lnCounter--;
                     if (lnCounter > 0) {
-                        result += ' and ';
+                        result += 'and ';
                     }
             }
         }else{
@@ -680,7 +680,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         result += con.get(nameString);
                         counter--;
                         if (counter > 0) {
-                            result += ' and ';
+                            result += 'and ';
                         }
                     }
                 }else{
