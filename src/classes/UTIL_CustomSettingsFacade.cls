@@ -135,6 +135,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
         settings.Student_RecType__c = mySettings.Student_RecType__c;
         settings.Disable_Preferred_Email_Enforcement__c = mySettings.Disable_Preferred_Email_Enforcement__c;
+        settings.Household_Account_Naming_Format__c = mySettings.Household_Account_Naming_Format__c;
 
         orgSettings = settings;
         return settings;
