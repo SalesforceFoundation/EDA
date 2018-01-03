@@ -852,6 +852,30 @@ public class REL_Relationships_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test method for deleting relationship and reciprocal relationship in a single transaction.
+    */
+    @isTest
+    public static void deleteRelationshipAndReciRelationship() {
+        setupRelationshipTestData(null);
+
+        Relationship__c rel = new Relationship__c( contact__c = c1.id, relatedcontact__c = c2.id, Type__c='Friend');
+        insert rel;
+
+        //After insert the relationship, system should create the reciprocal relationship. So, we should have two relationships in the system.
+        List<Relationship__c> relList = [select Id from Relationship__c];
+        system.assertEquals(2, relList.size());
+
+        //now we delete the relationships, this will include relationship we inserted and the corresponding reciprocal relationship
+        Test.startTest();
+        delete relList;
+        Test.stopTest();
+
+        //We should be able to delete all relationship without error
+        List<Relationship__c> relRemaining = [select Id from Relationship__c];
+        system.assertEquals(0, relRemaining.size());
+    }
+
+    /*********************************************************************************************************
     * @description Exception
     */
     public class MyException extends Exception{}
