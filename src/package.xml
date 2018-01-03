@@ -372,6 +372,8 @@
         <members>addrValidParentObjects</members>
         <members>adminAccNameFormat</members>
         <members>afflNullPointerError</members>
+        <members>duplicateFieldInFilter</members>
+        <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>firstNameLastNameAdminACC</members>
@@ -385,6 +387,7 @@
         <members>lastNameFirstNameFamily</members>
         <members>lastNameFirstNameHH</members>
         <members>lastNameHH</members>
+        <members>fieldWithHEDANamespace</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
