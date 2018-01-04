@@ -201,18 +201,15 @@
 		});
 	},
 
-	getOtherDisplay : function(component, value)
-	{
+	getOtherDisplay : function(component, value) {
 		var prefix = component.get("v.namespacePrefix");
 		var label = '';
-		if(prefix === 'hed__')
-        {
+		if(prefix === 'hed__') {
             label = $A.get("$Label.hed.acctNamingOther");
         }else{
             label = $A.get("$Label.c.acctNamingOther");
         } 
-        if (value === label)
-        {
+        if (value === label) {
         	return true;
         }else{
         	return false;
