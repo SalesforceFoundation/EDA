@@ -590,9 +590,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
 
     private static String formatAccountName(List<Contact> cons, String setting) {
-        //get all the fields of Contact
-        Map<String, Schema.SObjectField> mapContactFields = Schema.getGlobalDescribe().get('Contact').getDescribe().fields.getMap();
-        Set<String> contactFieldsNames = mapContactFields.keySet();
 
         String result = '';
         String settingPrefix = '';
@@ -629,7 +626,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         settingsSplitLeftParenthesis = settingSplitRightParenthesis.split('\\{!');
                         for (String settingSplitLeftParenthesis : settingsSplitLeftParenthesis)
                         {
-                            if (contactFieldsNames.contains(settingSplitLeftParenthesis.toLowerCase())) {
+                            if (UTIL_Describe.isValidField('Contact', settingSplitLeftParenthesis.toLowerCase())) {
                                 setContactFields.add(settingSplitLeftParenthesis.toLowerCase());
                             }
                             if (settingSplitLeftParenthesis != '')
@@ -650,7 +647,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             Integer lnCounter = mapLastNameContacts.keySet().size();
             for (String lastName : mapLastNameContacts.keySet()){
                     for (String nameString : listNameStrings) {
-                        if (contactFieldsNames.contains(nameString.toLowerCase())) {
+                        if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
                             if (nameString == 'lastname') {
                                 result += lastname;
                             } else {
@@ -674,7 +671,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }else{
             for (String nameString : listNameStrings) {
-                if (contactFieldsNames.contains(nameString.toLowerCase())){
+                if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())){
                     Integer counter = cons.size();
                     for (Contact con : cons) {
                         result += con.get(nameString);
@@ -733,7 +730,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             listAccsToRename.add(acc);
         }
         // add all accounts needing updating to our list
-            update listAccsToRename;
+        //TODO: We will need to work on DMLWrapper enhancements to check if a certain record is already in DMLwrapper
+        //For now, we use direct DML statement to avoid duplicate id issue
+        update listAccsToRename;
     }
 
 }
