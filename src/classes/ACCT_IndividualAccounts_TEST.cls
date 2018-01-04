@@ -37,6 +37,8 @@
 @isTest
 private class ACCT_IndividualAccounts_TEST {
 
+    static Contact con = UTIL_UnitTestData_TEST.getContact();
+    static Contact con2 = UTIL_UnitTestData_TEST.getContact();
     /*********************************************************************************************************
     * @description Create a Contact with TDTM triggers off
     */
@@ -48,16 +50,8 @@ private class ACCT_IndividualAccounts_TEST {
         // turn off all TDTM triggers for this component
         TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert);
         TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update);
-        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete);               
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete);
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         Test.startTest();
         insert con;
         Test.stopTest();
@@ -75,8 +69,6 @@ private class ACCT_IndividualAccounts_TEST {
     public static void newContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
-
-        Contact con = UTIL_UnitTestData_TEST.getContact();
 
         Test.startTest();
         insert con;
@@ -97,15 +89,6 @@ private class ACCT_IndividualAccounts_TEST {
 
         String newContactMailingStreet = '123 Elm St';
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            MailingStreet = newContactMailingStreet,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         insert con;
 
         Contact[] insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,
@@ -143,20 +126,12 @@ private class ACCT_IndividualAccounts_TEST {
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
         insert mappings;
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         insert con;
 
         con = [select AccountId from Contact where id=:con.id];
         Id accountId = con.AccountId;
 
-        Contact con2 = new Contact(FirstName='John', LastName='Smith', AccountId = accountId);
+        con2.AccountId = accountId;
 
         Test.startTest();
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
@@ -176,20 +151,12 @@ private class ACCT_IndividualAccounts_TEST {
     public static void contactUpdatedToExistingAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         insert con;
 
         Contact[] insertedContacts = [Select Account.Name, AccountId from Contact where id=:con.id];
         Id accountId = insertedContacts[0].AccountId;
 
-        Contact con2 = new Contact(FirstName='John', LastName='Smith',AccountId=null);
+        con2.AccountId = null;
         insert con2;
 
         // now update the contact to the existing account from contact 1
@@ -211,31 +178,24 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
 
         String acctName = 'Test Account 876';
-        Account acct = new Account(Name=acctName);
-        insert acct;
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+        accts[0].Name = acctName;
+        insert accts[0];
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            AccountId = acct.id,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
+        con.AccountId = accts[0].id;
         insert con;
 
         Contact[] insertedContacts = [Select Account.Name, AccountId from Contact where id=:con.id];
 
         //the contact should be connected to the account
-        system.assertEquals(acct.id,insertedContacts[0].AccountId);
+        system.assertEquals(accts[0].id,insertedContacts[0].AccountId);
         system.assertEquals(acctName,insertedContacts[0].Account.Name);
 
-        Contact con2 = new Contact(id=con.id, LastName='Smith');
-        update con2;
+        con.LastName = 'Smith';
+        update con;
 
         Contact[] updatedContacts = [Select Account.Name, AccountId from Contact where id=:con.id];
-        system.assertEquals(con2.LastName + ' ' + Label.DefaultAdminName, updatedContacts[0].Account.Name);
+        system.assertEquals(con.LastName + ' ' + Label.DefaultAdminName, updatedContacts[0].Account.Name);
     }
 
     /*********************************************************************************************************
@@ -248,15 +208,7 @@ private class ACCT_IndividualAccounts_TEST {
         Account acct = new Account(Name='Test Account 876');
         insert acct;
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            AccountId = acct.id,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
+        con.AccountId = acct.id;
         insert con;
 
         Contact[] insertedContacts = [Select Account.Name, AccountId from Contact where id=:con.id];
@@ -285,15 +237,6 @@ private class ACCT_IndividualAccounts_TEST {
 
         String newContactMailingStreet = '123 Elm St';
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            MailingStreet = newContactMailingStreet,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         insert con;
         Id contactId;
         contactId = con.id;
@@ -323,15 +266,6 @@ private class ACCT_IndividualAccounts_TEST {
 
         String newContactMailingStreet = '123 Elm St';
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            MailingStreet = newContactMailingStreet,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         insert con;
         Id contactId;
         contactId = con.id;
@@ -367,21 +301,14 @@ private class ACCT_IndividualAccounts_TEST {
                                     Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
                                     Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
 
-        Account orgAccount = new Account(Name='Fake account', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
-        insert orgAccount;
+        List<Account> orgAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+        //Account orgAccount = new Account(Name='Fake account', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        insert orgAccounts[0];
 
         String newContactMailingStreet = '123 Elm St';
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            MailingStreet = newContactMailingStreet,
-            AccountId = orgAccount.id,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
+        con.MailingStreet = newContactMailingStreet;
+        con.AccountId = orgAccounts[0].id;
         insert con;
 
         Contact[] insertedContacts = [Select FirstName, LastName, AccountId from Contact where id=:con.id];
@@ -402,20 +329,11 @@ private class ACCT_IndividualAccounts_TEST {
     public static void firstNameToNullAdm() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
 
-        Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work'
-        );
         insert con;
 
-        con = [select AccountId from Contact where id = :con.Id];
+        con = [select AccountId, LastName from Contact where id = :con.Id];
         Account newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-
-        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultAdminName);
+        system.assertEquals(newAcc.Name, con.LastName + ' ' + Label.DefaultAdminName);
 
         //set name to null
         con.FirstName = null;
@@ -425,7 +343,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
 
         newAcc = [select id,Name from Account where id = :con.AccountId limit 1];
-        system.assertEquals(newAcc.Name, 'Contact_forTests' + ' ' + Label.DefaultAdminName);
+        system.assertEquals(newAcc.Name, con.LastName + ' ' + Label.DefaultAdminName);
     }
 
     /*********************************************************************************************************
@@ -437,13 +355,6 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household'));
 
-        Contact con = new Contact(
-                FirstName='Test',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work');
         Test.startTest();
         insert con;
         Test.stopTest();
@@ -462,28 +373,15 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household'));
 
-        Contact con = new Contact(
-                FirstName='Test',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work'
-        );
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
-        Contact con2 = new Contact(
-                AccountId = assertAccount.Id,
-                FirstName='Test2',
-                LastName='Contact_forTests2',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work');
+        con2.AccountId = assertAccount.Id;
+        con2.LastName = con.LastName + '2';
+        con2.FirstName = 'Test2';
         Test.startTest();
         insert con2;
         Test.stopTest();
@@ -505,28 +403,15 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!FirstName}) Household'));
 
-        Contact con = new Contact(
-                FirstName='Test',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work'
-        );
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.LastName + ' (' + con.FirstName + ') Household', assertAccount.Name);
 
-        Contact con2 = new Contact(
-                AccountId = assertAccount.Id,
-                FirstName='Test2',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work');
+        con2.FirstName = 'Test2';
+        con2.LastName = con.LastName;
+        con2.AccountId = assertAccount.id;
         Test.startTest();
         insert con2;
         Test.stopTest();
@@ -546,28 +431,15 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household'));
 
-        Contact con = new Contact(
-                FirstName='Test',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work'
-        );
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
-        Contact con2 = new Contact(
-                AccountId = assertAccount.Id,
-                FirstName='Test2',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work');
+        con2.AccountId = assertAccount.Id;
+        con2.LastName = con.LastName;
+        con2.FirstName = 'Test2';
         Test.startTest();
         insert con2;
         Test.stopTest();
@@ -588,28 +460,15 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household'));
 
-        Contact con = new Contact(
-                FirstName='Test',
-                LastName='Contact_forTests',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work'
-        );
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
-        Contact con2 = new Contact(
-                AccountId = assertAccount.Id,
-                FirstName='Test2',
-                LastName='Contact_forTests2',
-                WorkEmail__c = 'junk@test.net',
-                Preferred_Email__c = 'Work',
-                WorkPhone__c = '206-777-8888',
-                PreferredPhone__c = 'Work');
+        con2.AccountId = assertAccount.Id;
+        con2.FirstName = 'Test2';
+        con2.LastName = con.LastName + '2';
         insert con2;
 
         assertAccount = [SELECT Id, RecordType.Name, Name FROM Account];
