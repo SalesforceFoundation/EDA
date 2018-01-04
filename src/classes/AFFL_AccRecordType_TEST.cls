@@ -57,7 +57,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void changePrimaryAffiliationRecordType() {        
         setup();
 
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
         
         //Verify default household account has been created for the contact
@@ -91,7 +91,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void changePrimaryAffiliationRecordTypeTwoAccs() {        
         setup();
 
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
         
         //Verify default household account has been created for the contact
@@ -107,7 +107,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
-        Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
+        Account bizOrg = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizOrg;
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         insert bizAffl;
@@ -136,7 +136,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void otherPrimaryNotPrimary() {        
         setup();
 
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
         
         //Verify default household account has been created for the contact
@@ -152,7 +152,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
-        Account bizOrg = new Account(Name = 'BizOrg', RecordTypeId = orgRecTypeID);
+        Account bizOrg = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizOrg;
         UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
@@ -187,12 +187,12 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void addRecordTypeToAcc() {        
         setup();
        
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
        
         //Create primary Affl to Account without record type - since the account created will have the record type assigned
         //to the profile running the tests as default, we assign a different type to it. Profiles cannot be created in tests.
-        Account acc = new Account(Name = 'AccNoType', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID())[0];
         insert acc;
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Primary__c = true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
@@ -218,11 +218,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         setup();
 
         //Create some Accounts with Admin record type
-        List<Account> adminAccList = new List<Account>();
-        for(Integer i = 0 ; i < 10; i++) {
-            Account acc = new Account(Name = 'The Account', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
-            adminAccList.add(acc);
-        }
+        List<Account> adminAccList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(10, UTIL_Describe.getAdminAccRecTypeID());
         insert adminAccList;
 
         List<Account> theAccs = [Select Id from Account where RecordTypeId =: UTIL_Describe.getAdminAccRecTypeID()];
@@ -254,20 +250,20 @@ public with sharing class AFFL_AccRecordType_TEST {
         setup();
 
         //Create Contacts
-        Contact js = new Contact(FirstName = 'John', LastName = 'Smith');
-        Contact mb = new Contact(FirstName = 'Mark', LastName = 'Bruce');
-        List<Contact> contacts = new List<Contact>{js, mb};
+        Contact john = UTIL_UnitTestData_TEST.getContact();
+        Contact mark = UTIL_UnitTestData_TEST.getContact();
+        List<Contact> contacts = new List<Contact>{john, mark};
         insert contacts;
 
         //Create Accounts with Admin Record Type
-        Account company = new Account(Name = 'ABC Company', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
-        Account hh = new Account(Name = 'Mark Household', RecordTypeId = UTIL_Describe.getAdminAccRecTypeID());
+        Account company = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID())[0];
+        Account hh = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID())[0];
         List<Account> accs = new List<Account>{company, hh};
         insert accs;
 
         //Create Affiliations
-        Affiliation__c companyAffl = new Affiliation__c(Contact__c = js.ID, Account__c = company.ID, Primary__c = true);
-        Affiliation__c hhAffl = new Affiliation__c(Contact__c = mb.ID, Account__c = hh.ID, Primary__c = true);
+        Affiliation__c companyAffl = new Affiliation__c(Contact__c = john.ID, Account__c = company.ID, Primary__c = true);
+        Affiliation__c hhAffl = new Affiliation__c(Contact__c = mark.ID, Account__c = hh.ID, Primary__c = true);
         List<Affiliation__c> affls = new List<Affiliation__c>{companyAffl, hhAffl};
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
         insert affls;
@@ -282,12 +278,12 @@ public with sharing class AFFL_AccRecordType_TEST {
         Test.stopTest();
 
         //Verify that the Primary Fields on Contacts get populated correctly
-        Contact john = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: js.Id];
-        system.assertEquals(null, john.Primary_Household__c);
-        system.assertEquals(company.Id, john.Primary_Organization__c);
+        Contact johnUpdated = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: john.Id];
+        system.assertEquals(null, johnUpdated.Primary_Household__c);
+        system.assertEquals(company.Id, johnUpdated.Primary_Organization__c);
 
-        Contact mark = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: mb.Id];
-        system.assertEquals(hh.id, mark.Primary_Household__c);
-        system.assertEquals(null, mark.Primary_Organization__c);
+        Contact markUpdated = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: mark.Id];
+        system.assertEquals(hh.id, markUpdated.Primary_Household__c);
+        system.assertEquals(null, markUpdated.Primary_Organization__c);
     }
 }
