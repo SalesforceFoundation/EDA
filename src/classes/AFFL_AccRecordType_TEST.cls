@@ -265,8 +265,8 @@ public with sharing class AFFL_AccRecordType_TEST {
         Affiliation__c companyAffl = new Affiliation__c(Contact__c = john.ID, Account__c = company.ID, Primary__c = true);
         Affiliation__c hhAffl = new Affiliation__c(Contact__c = mark.ID, Account__c = hh.ID, Primary__c = true);
         List<Affiliation__c> affls = new List<Affiliation__c>{companyAffl, hhAffl};
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
-        insert affls;
+		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+		insert affls;
 
         //Now Update the Account Record Type
         Account companyWithCorrectType = new Account(Id = company.Id, RecordTypeId = orgRecTypeID);

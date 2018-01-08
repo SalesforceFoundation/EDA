@@ -49,4 +49,36 @@
             <section>Fields</section>
         </sections>
     </layouts>
+    <recordTypes>
+        <label><!-- Academic Program --></label>
+        <name>Academic_Program</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Administrative --></label>
+        <name>Administrative</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Business Organization --></label>
+        <name>Business_Organization</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Educational Institution --></label>
+        <name>Educational_Institution</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Household Account --></label>
+        <name>HH_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sports Organization --></label>
+        <name>Sports_Organization</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- University Department --></label>
+        <name>University_Department</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Billing --></label>
+        <name>Billing</name>
+    </webLinks>
 </CustomObjectTranslation>
