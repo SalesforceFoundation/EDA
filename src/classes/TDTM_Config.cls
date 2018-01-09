@@ -72,7 +72,7 @@ public class TDTM_Config {
             // HEDA's TDTM config.
         }
 
-        List<TDTM_Global_API.TdtmToken> tokens;
+        List<TDTM_Global_API.TdtmToken> tokens  = new List<TDTM_Global_API.TdtmToken>();
         List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
                             Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c
                             from Trigger_Handler__c];
@@ -100,7 +100,6 @@ public class TDTM_Config {
             }
         }
 
-        tokens = new List<TDTM_Global_API.TdtmToken>();
         for(Trigger_Handler__c handler : tdtmConfig) {
             tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c,
                     handler.Trigger_Action__c, handler.Load_Order__c, handler.Active__c,
