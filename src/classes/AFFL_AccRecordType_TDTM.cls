@@ -152,23 +152,15 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         //B - Find all Contacts with an Affiliation to an Account that didn't have a record type before,
         //but that now has it. Update the matching primary affiliation field on Contact.
         if(accsTypeAdded.size() > 0) {
-            String childrenAccsTypeAddedQuery = 'select Account__c, Contact__c';
-            for(Integer i = 0; i < accsTypeAdded.values().size(); i++) {
-                childrenAccsTypeAddedQuery += ', Contact__r.' + accsTypeAdded.values()[i];
-            }
-            Set<ID> accsTypeAddedIDs = accsTypeAdded.keySet();
-            childrenAccsTypeAddedQuery += ' from Affiliation__c where Account__c IN :accsTypeAddedIDs';
-            List<Affiliation__c> afflsAccsTypeAdded = Database.query(childrenAccsTypeAddedQuery);
+            List<Affiliation__c> afflsAccsTypeAdded = [select Account__c, Contact__c from Affiliation__c where Account__c IN :accsTypeAdded.keySet()];
 
             //Populate the necessary primary field for each Contact
             List<Contact> contactsToUpdate = new List<Contact>();
             for(Affiliation__c affl : afflsAccsTypeAdded) {
                 Contact contact = new Contact(ID = affl.Contact__c);
-                //Iterate over the Contact primary fields
-                for(String primaryField : accsTypeAdded.values()) {
-                    contact.put(primaryField, affl.Account__c);
-                    contactsToUpdate.add(contact);
-                }
+                //We need to populate the Primary Field on Contact based on Account's Type
+                contact.put(accsTypeAdded.get(affl.Account__c), affl.Account__c);
+                contactsToUpdate.add(contact);
             }
             if(contactsToUpdate.size() > 0) {
                 dmlWrapper.objectsToUpdate.addAll((List<SObject>)contactsToUpdate);
