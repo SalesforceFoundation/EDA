@@ -526,7 +526,20 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         {
             return formatAccountName(cons, hhAccNamingFormat);
         }else{
-            return system.label.DefaultHouseholdName;
+            Set<String> householdLastNames = new Set<String>();
+            for (Contact con : cons){
+                householdLastNames.add(con.LastName);
+            }
+            String name = '';
+            Integer counter = 0;
+            for (String lastName : householdLastNames){
+                name += lastName;
+                counter++;
+                if (counter < householdLastNames.size()) {
+                    name += ' and ';
+                }
+            }
+            return name + ' ' + system.label.DefaultHouseholdName;
         }
     }
 
@@ -605,13 +618,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         //Build prefix
         settingPrefix = setting.substringBefore('{!');
         //Build suffix and remove prefix and suffix from original string
-        if (setting.lastIndexOf('}') <= setting.lastIndexOf(')')){
-            settingSuffix = setting.substringAfterLast(')');
-            setting = setting.substring(setting.indexOf('{!'), setting.lastIndexOf(')')+1);
-        }else{
-            settingSuffix = setting.substringAfterLast('}');
-            setting = setting.substring(setting.indexOf('{!'), setting.lastIndexOf('}')+1);
+        Integer indexAfterLastParenthesis = setting.lastIndexOf('}');
+        while (setting.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' '
+                && indexAfterLastParenthesis < setting.length()-1){
+            indexAfterLastParenthesis++;
         }
+        settingSuffix = setting.substring(indexAfterLastParenthesis+1, setting.length());
+        setting = setting.substring(setting.indexOf('{!'), indexAfterLastParenthesis+1);
         //Split strings into a list
         List<String> settingsSplitSpace= setting.split(' ');
         for (String settingSplitSpace : settingsSplitSpace)
