@@ -222,7 +222,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>adminAccNameFormat</shortDescription>
-        <value>Admin Account Name Format</value>
+        <value>Administrative Account Name Format:</value>
     </labels>
     <labels>
         <fullName>afflNullPointerError</fullName>
@@ -302,7 +302,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>hhAccNameFormat</shortDescription>
-        <value>Household Account Name Format</value>
+        <value>Household Account Name Format:</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
