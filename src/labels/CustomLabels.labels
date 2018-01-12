@@ -89,6 +89,14 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>None</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>None</shortDescription>
+        <value>none</value>
+    </labels>
+    <labels>
         <fullName>PreferredEmailMatchMustExist</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
@@ -143,6 +151,14 @@
         <protected>false</protected>
         <shortDescription>RelationshipsLookupDescription</shortDescription>
         <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, if a father is related to his son, the son should likewise be related back to the father. You can specify the Type value for the Name, and then what the reciprocal value should be based on the gender of the connecting Contact. You can define a male reciprocal, a female reciprocal and a neutral reciprocal to be used if gender is unable to be determined.</value>
+    </labels>
+    <labels>
+        <fullName>acctNamingOther</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>acctNamingOther</shortDescription>
+        <value>Other</value>
     </labels>
     <labels>
         <fullName>addrHhAdmAccountOnly</fullName>
@@ -201,6 +217,14 @@
         <value>Address records should only be created as children of Account or Contact.</value>
     </labels>
     <labels>
+        <fullName>adminAccNameFormat</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>adminAccNameFormat</shortDescription>
+        <value>Administrative Account Name Format:</value>
+    </labels>
+    <labels>
         <fullName>afflNullPointerError</fullName>
         <categories>Error</categories>
         <language>en_US</language>
@@ -247,6 +271,94 @@
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
         <value>The Filter Field value can&apos;t include the HEDA namespace. Remove it from the field name.</value>
+    </labels>
+    <labels>
+        <fullName>firstNameLastNameAdminACC</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>firstNameLastNameAdminACC</shortDescription>
+        <value>{!{!FirstName}} {!LastName} Administrative Account</value>
+    </labels>
+    <labels>
+        <fullName>firstNameLastNameFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>firstNameLastNameFamily</shortDescription>
+        <value>{!{!FirstName}} {!LastName} Family</value>
+    </labels>
+    <labels>
+        <fullName>firstNameLastNameHH</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>firstNameLastNameHH</shortDescription>
+        <value>{!{!FirstName}} {!LastName} Household</value>
+    </labels>
+    <labels>
+        <fullName>hhAccNameFormat</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>hhAccNameFormat</shortDescription>
+        <value>Household Account Name Format:</value>
+    </labels>
+    <labels>
+        <fullName>hhFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>hhFamily</shortDescription>
+        <value>Family</value>
+    </labels>
+    <labels>
+        <fullName>lastNameAdminAcc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameAdminAcc</shortDescription>
+        <value>{!LastName} Administrative Account</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFamily</shortDescription>
+        <value>{!LastName} Family</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFirstNameAdminAcc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFirstNameAdminAcc</shortDescription>
+        <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFirstNameFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFirstNameFamily</shortDescription>
+        <value>{!LastName} ({!{!FirstName}}) Family</value>
+    </labels>
+    <labels>
+        <fullName>lastNameFirstNameHH</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameFirstNameHH</shortDescription>
+        <value>{!LastName} ({!{!FirstName}}) Household</value>
+    </labels>
+    <labels>
+        <fullName>lastNameHH</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>lastNameHH</shortDescription>
+        <value>{!LastName} Household</value>
     </labels>
     <labels>
         <fullName>noAccRecType</fullName>

@@ -125,6 +125,7 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>CMP_Acc_Naming_Dropdown</members>
         <members>CMP_RecTypes</members>
         <members>CMP_RecTypes_Dropdown</members>
         <members>STG_App</members>
@@ -272,6 +273,8 @@
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
         <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
+        <members>Hierarchy_Settings__c.Admin_Account_Naming_Format__c</members>
+        <members>Hierarchy_Settings__c.Admin_Other_Name_Setting__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
@@ -284,7 +287,9 @@
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
         <members>Hierarchy_Settings__c.Faculty_RecType__c</members>
+        <members>Hierarchy_Settings__c.Household_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
+        <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
@@ -350,6 +355,7 @@
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
+        <members>None</members>
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
@@ -357,6 +363,7 @@
         <members>Relationship_Split</members>
         <members>RelationshipsAutoDescription</members>
         <members>RelationshipsLookupDescription</members>
+        <members>acctNamingOther</members>
         <members>addrHhAdmAccountOnly</members>
         <members>addrNotEnabledAccount</members>
         <members>addrNotEnabledContact</members>
@@ -364,11 +371,23 @@
         <members>addrSeasonalPartial</members>
         <members>addrSeasonalPartialYear</members>
         <members>addrValidParentObjects</members>
+        <members>adminAccNameFormat</members>
         <members>afflNullPointerError</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
+        <members>firstNameLastNameAdminACC</members>
+        <members>firstNameLastNameFamily</members>
+        <members>firstNameLastNameHH</members>
+        <members>hhAccNameFormat</members>
+        <members>hhFamily</members>
+        <members>lastNameAdminAcc</members>
+        <members>lastNameFamily</members>
+        <members>lastNameFirstNameAdminAcc</members>
+        <members>lastNameFirstNameFamily</members>
+        <members>lastNameFirstNameHH</members>
+        <members>lastNameHH</members>
         <members>fieldWithHEDANamespace</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
