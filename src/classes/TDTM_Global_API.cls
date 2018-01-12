@@ -177,6 +177,12 @@ global class TDTM_Global_API {
         global String ownedByNamespace { get; set; }
 
         /********************************************************************************************************
+        * @description Semicolon separated list of Salesforce usernames that this trigger will NOT run for.
+        *
+        *********************************************************************************************************/
+        global String usernamesToExclude { get; set; }
+
+        /********************************************************************************************************
         * @description DEPRECATED Constructor. Simpler version accepting Integer for Load Order. It assumes default values for 
         * those properties not passed as parameters.
         * @parameter className The token's class name.
@@ -209,7 +215,7 @@ global class TDTM_Global_API {
         }
 
         /********************************************************************************************************
-        * @description Constructor. Verbose version. Values are provided for all properties.
+        * @description DEPRECATED Constructor. Verbose version. Values are provided for all properties.
         * @parameter className The token's class name.
         * @parameter targetObject The token's target object.
         * @parameter actions The token's actions.
@@ -223,7 +229,7 @@ global class TDTM_Global_API {
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
             
-            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null);
+            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null, null);
         }
 
         /********************************************************************************************************
@@ -237,9 +243,10 @@ global class TDTM_Global_API {
         * @parameter filterField The token's filter field.
         * @parameter filterValue The token's filter value.
         * @parameter userManaged The token's user-managed flag.
-        * @parameter ownedByNamespace The token's user-managed flag.
+        * @parameter ownedByNamespace The token's owned-by-namespace flag.
+        * @parameter usernamesToExclude The token's usernames-to-excluded field.
         *********************************************************************************************************/
-        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
+        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace, String usernamesToExclude) {
             this.className = className;
             this.targetObject = targetObject;
             this.actions = actions;
@@ -251,6 +258,7 @@ global class TDTM_Global_API {
             this.filterValue = filterValue;
             this.userManaged = userManaged;
             this.ownedByNamespace = ownedByNamespace;
+            this.usernamesToExclude = usernamesToExclude;
         }
 
         /********************************************************************************************************
