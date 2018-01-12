@@ -54,7 +54,7 @@ public class TDTM_Manager {
 		this.namespace = nm;
 
         // Get all handlers from database.
-		this.allHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c FROM Trigger_Handler__c ORDER BY Load_Order__c LIMIT 5000]);
+		this.allHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c, Usernames_to_Exclude__c FROM Trigger_Handler__c ORDER BY Load_Order__c LIMIT 5000]);
         this.allTokens = getTokenSet(this.allHandlers);
 
         // Isolate the current handlers by namespace

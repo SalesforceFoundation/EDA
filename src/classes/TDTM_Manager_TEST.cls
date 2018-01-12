@@ -53,7 +53,7 @@ private class TDTM_Manager_TEST {
 		// is testing that even though the references are different in memory they are still
 		// equal.
         Map<Id,Trigger_Handler__c> existingDBHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c
-	        , User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c
+	        , User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c, Usernames_to_Exclude__c
 			FROM Trigger_Handler__c ORDER BY Load_Order__c]);
         Set<TDTM_Global_API.TdtmToken> existingDBtokens = manager.getTokenSet(existingDBHandlers);
 
@@ -109,9 +109,9 @@ private class TDTM_Manager_TEST {
 	public static void newHandlersNullName() {
 		// Setup new configuration
         Set<TDTM_Global_API.TdtmToken> noNameConfig = new Set<TDTM_Global_API.TdtmToken>();
-        noNameConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2, true, false, null, null, false, null));
-        noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5.2, true, false, null, null, false, null));
-        noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, null));
+        noNameConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2, true, false, null, null, false, null, null));
+        noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5.2, true, false, null, null, false, null, null));
+        noNameConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, null, null));
 
 		TDTM_Manager manager = new TDTM_Manager(null);
 		Test.startTest();
@@ -132,7 +132,7 @@ private class TDTM_Manager_TEST {
 		tmpManager.updateDefaultTdtmConfig( defaults );
 
 		// Setup new defaults with one missing to test removal from default.
-		defaults.remove( new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed') ); // Remove a single item
+		defaults.remove( new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed', null) ); // Remove a single item
 
 		// Instantiate new manager for test.
 		TDTM_Manager removeManager = new TDTM_Manager('hed');
@@ -161,11 +161,11 @@ private class TDTM_Manager_TEST {
 		// Setup new configuration
         Set<TDTM_Global_API.TdtmToken> newConfig = new Set<TDTM_Global_API.TdtmToken>();
         // Update load order and trigger action
-        newConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2.2, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2.2, true, false, null, null, false, 'hed', null));
         // Update load order and trigger action
-        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 5, true, false, null, null, false, 'hed', null));
         // We'll leave this alone
-        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, 'hed', null));
 
 
 		// Instantiate new manager for test.
@@ -235,11 +235,11 @@ private class TDTM_Manager_TEST {
 		// Setup new configuration
         Set<TDTM_Global_API.TdtmToken> newConfig = new Set<TDTM_Global_API.TdtmToken>();
         // Update load order and trigger action
-        newConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert;AfterUpdate', 2, true, false, null, null, false, 'hed', null));
         // Update load order and trigger action
-        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 2, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate;AfterDelete', 2, true, false, null, null, false, 'hed', null));
         // We'll leave this alone
-        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, 'hed'));
+        newConfig.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1, true, false, null, null, false, 'hed', null));
 
 		// Instantiate new manager for test.
 		TDTM_Manager updateManager = new TDTM_Manager('hed');
@@ -282,7 +282,7 @@ private class TDTM_Manager_TEST {
 	public static void clearTokenCaches() {
 
 		//Build the token for the new handler
-		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '');
+		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '', null);
 
 
         //Populate the cache with default TDTM Tokens
@@ -346,7 +346,7 @@ private class TDTM_Manager_TEST {
 	public static void updateUserHandlerFilterFieldFilterValue() {
 
 		//Build Token for User's Trigger Handler
-		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '');
+		TDTM_Global_API.TdtmToken newHandlerToken = new TDTM_Global_API.TdtmToken('Contact_Update', 'Contact', 'BeforeInsert;BeforeUpdate', 0.2, true, false, null, null, false, '', null);
 
 		//Save the token into the DB
 		TDTM_Global_API.setTdtmConfig(new List<TDTM_Global_API.TdtmToken>{newHandlerToken});
@@ -379,9 +379,9 @@ private class TDTM_Manager_TEST {
 
 	private static Set<TDTM_Global_API.TdtmToken> getBasicDefaults() {
         Set<TDTM_Global_API.TdtmToken> h = new Set<TDTM_Global_API.TdtmToken>();
-        h.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed'));
-        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 1.1, true, false, null, null, false, 'hed'));
-        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1.2, true, false, null, null, false, 'hed'));
+        h.add(new TDTM_Global_API.TdtmToken('AFFL_Affiliations_TDTM', 'Contact', 'AfterInsert', 1, true, false, null, null, false, 'hed', null));
+        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Cm_TDTM', 'CampaignMember', 'AfterInsert;AfterUpdate', 1.1, true, false, null, null, false, 'hed', null));
+        h.add(new TDTM_Global_API.TdtmToken('REL_Relationships_Con_TDTM', 'Contact', 'AfterInsert;AfterDelete', 1.2, true, false, null, null, false, 'hed', null));
     	return h;
 	}
 
