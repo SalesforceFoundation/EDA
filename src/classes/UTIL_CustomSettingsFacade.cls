@@ -103,6 +103,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Affl_ProgEnroll_Del__c = false;
         hs.Affl_ProgEnroll_Del_Status__c = 'Former';
         hs.Async_Error_Check_Last_Run__c = null;
+        hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
+        hs.Household_Account_Naming_Format__c = '{!LastName} Household';        
     }
 
     /*******************************************************************************************************
@@ -133,6 +135,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
         settings.Student_RecType__c = mySettings.Student_RecType__c;
         settings.Disable_Preferred_Email_Enforcement__c = mySettings.Disable_Preferred_Email_Enforcement__c;
+        settings.Household_Account_Naming_Format__c = mySettings.Household_Account_Naming_Format__c;
 
         orgSettings = settings;
         return settings;

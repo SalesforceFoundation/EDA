@@ -9,7 +9,12 @@
     
     <aura:attribute name="errorNotificationType" type="String"  />
 
-    <div class="slds-grid slds-wrap">
+    <aura:attribute name="adminNameFormat" type="String" />    
+    <aura:attribute name="hhNameFormat" type="String" />
+    <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
+    <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
+
+        <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">
             <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                 <ui:outputText value="{!$Label.hed.stgAccModelTitle}" />
@@ -269,6 +274,46 @@
                 <ui:outputText value="{!$Label.c.stgHelpErrorDisable}" class="slds-text-body--small" />
             </aura:set>
             </aura:if>
+        </div>
+
+        <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.adminAccNameFormat}"/>
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
+            </aura:set>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium" >
+            <c:CMP_Acc_Naming_Dropdown isView="{!v.isView}"
+                setting="{!v.hierarchySettings.Admin_Account_Naming_Format__c}"
+                nameFormat="{!v.adminNameFormat}"
+                targetSetting="Admin_Account_Naming_Format__c"
+                namespacePrefix="{!v.namespacePrefix}"
+                otherDisplay="{!v.adminOtherDisplay}"
+                otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
+            />
+        </div>
+
+        <div class="slds-col slds-size--1-of-2">
+            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                <ui:outputText value="{!$Label.hed.hhAccNameFormat}"/>
+            <aura:set attribute="else">
+                <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
+            </aura:set>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size--1-of-2">
+            <c:CMP_Acc_Naming_Dropdown isView="{!v.isView}"
+                setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
+                nameFormat="{!v.hhNameFormat}"
+                targetSetting="Household_Account_Naming_Format__c"
+                namespacePrefix="{!v.namespacePrefix}"
+                otherDisplay="{!v.hhOtherDisplay}"
+                otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
+            />
         </div>
     </div>
 </aura:component>

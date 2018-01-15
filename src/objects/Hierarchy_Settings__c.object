@@ -35,6 +35,28 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Admin_Account_Naming_Format__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the setting for admin account naming format</inlineHelpText>
+        <label>Admin Account Naming Format</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Admin_Other_Name_Setting__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To store other naming setting for admin account</inlineHelpText>
+        <label>Admin Other Name Setting</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
         <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
         <externalId>false</externalId>
@@ -156,11 +178,33 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Household_Account_Naming_Format__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the setting for household account naming format</inlineHelpText>
+        <label>Household Account Naming Format</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Household_Addresses_RecType__c</fullName>
         <description>Account record type that supports Household Addresses behavior.</description>
         <externalId>false</externalId>
         <inlineHelpText>Account record type that supports Household Addresses behavior.</inlineHelpText>
         <label>Household Addresses Acc Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Household_Other_Name_Setting__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To store other name setting for household account</inlineHelpText>
+        <label>Household Other Name Setting</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
