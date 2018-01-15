@@ -130,15 +130,19 @@ public class TDTM_Config {
         //Get current username
         String currUserName = UserInfo.getUserName();
         for(TDTM_Global_API.TdtmToken token : tdtmTokens) {
-            //Get a list of excluded usernames
+            //Get a list of excluded usernames in lowercase
+            Set<String> excludedUserNamesLowercase = new Set<String>();
             Set<String> excludedUserNames = (token.usernamesToExclude != null ?
                     new Set<String>(token.usernamesToExclude.split(';')) : new Set<String>());
+            for (String username : excludedUserNames) {
+                excludedUserNamesLowercase.add(username.toLowerCase());
+            }
             //Filtering those active by object and action.
             //Actions should not be null, otherwise it will throw null pointer exception. We might need to create a WI to do more validation on insert/update Trigger Handler
             if(token.active && token.targetObject == objectName
                     && token.actions != null
                     && token.actions.contains(action.Name())
-                    && !excludedUserNames.contains(currUsername)) {
+                    && !excludedUserNamesLowercase.contains(currUsername)) {
                 objectTokens.add(token);
             }
         }

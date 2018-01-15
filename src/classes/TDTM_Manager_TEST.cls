@@ -394,4 +394,73 @@ private class TDTM_Manager_TEST {
         return new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c , Asynchronous__c , Class__c , Load_Order__c , Object__c , Trigger_Action__c , Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c
         	FROM Trigger_Handler__c ORDER BY Load_Order__c]);
 	}
+
+	//Test to make sure trigger handler is skipped if usernames_to_excluded contains current username
+	@isTest
+	public static void excludeUsernamesSingleUser() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(
+				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+
+		//Get current user's username
+		String currUserName = UserInfo.getUserName();
+
+		//Populate the Usernames_to_Exclude__c value of the trigger handler
+		Trigger_Handler__c handler = new Trigger_Handler__c(
+				Active__c = true, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Usernames_to_Exclude__c = currUserName);
+		insert handler;
+
+		Contact con = UTIL_UnitTestData_TEST.getContact();
+
+		Test.startTest();
+		insert con;
+		Test.stopTest();
+
+		//verify that the Admin account is not created for current user
+		Contact assertCon = [SELECT Id, AccountId from Contact WHERE Id = :con.Id];
+		system.assertEquals(null, assertCon.AccountId);
+
+	}
+
+	//Test to make sure trigger handler is skipped if usernames_to_excluded contains multiple certain usernames
+	@isTest
+	public static void excludeUsernamesMultipleUser() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(
+				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+
+		//Get current user's username
+		String currUserName = UserInfo.getUserName();
+		User testUserDisabled = UTIL_UnitTestData_TEST.createNewUserForTests('excludedUser@gmail.com');
+		User testUserEnabled = UTIL_UnitTestData_TEST.createNewUserForTests('notExcludedUser@gmail.com');
+		String strUsernames = currUserName + ';' + testUserDisabled.Username;
+
+		//Populate the Usernames_to_Exclude__c value of the trigger handler
+		Trigger_Handler__c handler = new Trigger_Handler__c(
+				Active__c = true, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Usernames_to_Exclude__c = strUsernames);
+		insert handler;
+
+		Contact con = UTIL_UnitTestData_TEST.getContact();
+		Contact con2 = UTIL_UnitTestData_TEST.getContact();
+		Contact con3 = UTIL_UnitTestData_TEST.getContact();
+
+		Test.startTest();
+		insert con;
+		System.runAs(testUserDisabled) {
+			insert con2;
+		}
+		System.runAs(testUserEnabled) {
+			insert con3;
+		}
+		Test.stopTest();
+
+		//verify that the Admin account is not created for current user
+		Contact assertCon = [SELECT Id, AccountId from Contact WHERE Id = :con.Id];
+		system.assertEquals(null, assertCon.AccountId);
+		Contact assertCon2 = [SELECT Id, AccountId from Contact WHERE Id = :con2.Id];
+		system.assertEquals(null, assertCon2.AccountId);
+		Contact assertCon3 = [SELECT Id, AccountId from Contact WHERE Id = :con3.Id];
+		system.assertNotEquals(null, assertCon3.AccountId);
+
+	}
+
+
 }
