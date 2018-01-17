@@ -155,10 +155,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     	mapContactIdContactOwnerChange.put(c.Id, c);
                     }
 
-                    // if the last name of contact has changed and it is using admin account model 
-                    // change the related admin account last name
-                    // if the contact's last name has changed and its account is an admin account
-                    // update the admin account with the contact's new last name
+                    // if the contact's last name has changed and it is using admin account model
+                    // update the name of the related admin account
                     if (c.LastName != oldContacts[i].LastName && c.AccountId != null)
                     {
                         listContactsChangedLastName.add(c);
