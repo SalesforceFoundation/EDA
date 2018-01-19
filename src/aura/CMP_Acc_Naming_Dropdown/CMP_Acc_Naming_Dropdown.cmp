@@ -24,8 +24,6 @@
                 </aura:iteration>
             </ui:inputSelect>
             <aura:if isTrue="{!v.otherDisplay}">
-                <br/>
-                <br/>
                 <ui:inputText aura:id="otherText" value="{!v.otherSetting}" class="slds-input" disabled="{!v.textboxDisabled}"/>
             </aura:if>
         </aura:set>

@@ -126,7 +126,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != null) {
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
-                        if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID())
+                        if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
+                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false)
                         {
                             listAccountIdHHToRename.add(c.AccountId);
                         }
@@ -170,7 +171,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if ((c.LastName != oldContacts[i].LastName
                                 || c.FirstName != oldContacts[i].FirstName)
                             && c.AccountId != null
-                            && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()){
+                            && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
+                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
                         listAccountIdHHToRename.add(c.AccountId);
                     }
                 }

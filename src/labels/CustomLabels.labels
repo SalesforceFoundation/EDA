@@ -225,6 +225,14 @@
         <value>Administrative Account Name Format:</value>
     </labels>
     <labels>
+        <fullName>adminAccNameFormatHelpText</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>adminAccNameFormatHelpText</shortDescription>
+        <value>The format used for naming Administrative Accounts.</value>
+    </labels>
+    <labels>
         <fullName>afflNullPointerError</fullName>
         <categories>Error</categories>
         <language>en_US</language>
@@ -303,6 +311,14 @@
         <protected>true</protected>
         <shortDescription>hhAccNameFormat</shortDescription>
         <value>Household Account Name Format:</value>
+    </labels>
+    <labels>
+        <fullName>hhAccNameFormatHelpText</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>hhAccNameFormatHelpText</shortDescription>
+        <value>The format used for naming Household Accounts.</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
@@ -1335,5 +1351,21 @@
         <protected>true</protected>
         <shortDescription>stgToastError</shortDescription>
         <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>automaticHHNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>automaticHHNaming</shortDescription>
+        <value>Automatic Household Naming:</value>
+    </labels>
+    <labels>
+        <fullName>automaticHHNamingHelpText</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>automaticHHNamingHelpText</shortDescription>
+        <value>Enables automatic naming of Household Accounts, based on the names of Contacts in the Household. If enabled, we also automatically rename Household Accounts when new Contacts are added or existing Contacts are renamed.</value>
     </labels>
 </CustomLabels>
