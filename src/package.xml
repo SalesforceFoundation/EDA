@@ -279,6 +279,7 @@
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
         <members>Hierarchy_Settings__c.Async_Error_Check_Last_Run__c</members>
+        <members>Hierarchy_Settings__c.Automatic_Household_Naming__c</members>
         <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Disable_Preferred_Email_Enforcement__c</members>
@@ -371,9 +372,12 @@
         <members>addrSeasonalPartialYear</members>
         <members>addrValidParentObjects</members>
         <members>adminAccNameFormat</members>
+        <members>adminAccNameFormatHelpText</members>
         <members>afflNullPointerError</members>
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
+        <members>automaticHHNaming</members>
+        <members>automaticHHNamingHelpText</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>firstNameLastNameAdminACC</members>
@@ -388,6 +392,7 @@
         <members>lastNameFirstNameHH</members>
         <members>lastNameHH</members>
         <members>fieldWithHEDANamespace</members>
+        <members>hhAccNameFormatHelpText</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
