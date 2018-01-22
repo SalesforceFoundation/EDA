@@ -92,8 +92,8 @@ global class TDTM_Global_API {
     }
     /*******************************************************************************************************
     * @description Sets the trigger handlers configuration that have specific namespace with the data passed as parameter.
-    * @param tdtmTokens A list with the defaul trigger handlers configuration.
-    * @param namespace The namespace that will manage this handler.
+    * @parameter tdtmTokens A list with the defaul trigger handlers configuration.
+    * @parameter namespace The namespace that will manage this handler.
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens,String namespace) {
@@ -216,15 +216,15 @@ global class TDTM_Global_API {
 
         /********************************************************************************************************
         * @description DEPRECATED Constructor. Verbose version. Values are provided for all properties.
-        * @param className The token's class name.
-        * @param targetObject The token's target object.
-        * @param actions The token's actions.
-        * @param loadOrder Integer value of the token's load order.
-        * @param active The token's active flag.
-        * @param async The token's async flag.
-        * @param filterField The token's filter field.
-        * @param filterValue The token's filter value.
-        * @param userManaged The token's user-managed flag.
+        * @parameter className The token's class name.
+        * @parameter targetObject The token's target object.
+        * @parameter actions The token's actions.
+        * @parameter loadOrder Integer value of the token's load order.
+        * @parameter active The token's active flag.
+        * @parameter async The token's async flag.
+        * @parameter filterField The token's filter field.
+        * @parameter filterValue The token's filter value.
+        * @parameter userManaged The token's user-managed flag.
         *********************************************************************************************************/
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
