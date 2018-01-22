@@ -111,7 +111,7 @@ public without sharing class UTIL_CustomSettingsFacade {
     /*******************************************************************************************************
     * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
     * as the configured settings.
-    * @parameter mySettings Settings instance with the values to set.
+    * @param mySettings Settings instance with the values to set.
     * @return Hierarchy_Settings__c The configured settings.
     **/
     public static Hierarchy_Settings__c getSettingsForTests(Hierarchy_Settings__c mySettings) {

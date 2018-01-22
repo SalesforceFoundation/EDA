@@ -5,8 +5,9 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Account_Processor__c</fullName>
+        <description>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Setting for the Account model. Should be &quot;One-to-one&quot; or &quot;Individual&quot;. Replaces the custom field Contact.SystemAccountProcessor__c</inlineHelpText>
+        <inlineHelpText>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</inlineHelpText>
         <label>Account Processor</label>
         <length>255</length>
         <required>false</required>
