@@ -48,7 +48,7 @@ public class TDTM_Manager {
 
     /*******************************************************************************************************
     * @description Constructor. Sets namespace, packageHandlers, and packageTokens default properties.
-    * @parameter nm A String representing the namespace to query from.
+    * @param nm A String representing the namespace to query from.
     *********************************************************************************************************/
 	public TDTM_Manager(String nm) {
 		this.namespace = nm;
@@ -70,7 +70,7 @@ public class TDTM_Manager {
     /*******************************************************************************************************
     * @description Update the existing Trigger Handlers in the database. Will also delete Handlers not
     * included in the default configuration.
-    * @parameter newTokenSet A set of TDTM Tokens that represent a new configuration to compare to existing
+    * @param newTokenSet A set of TDTM Tokens that represent a new configuration to compare to existing
     * @return void
     *********************************************************************************************************/
 	public void updateDefaultTdtmConfig(Set<TDTM_Global_API.TdtmToken> newTokenSet) {
@@ -144,7 +144,7 @@ public class TDTM_Manager {
 
     /*******************************************************************************************************
     * @description Create an Set of TDTM Tokens
-    * @parameter hs A Map of TDTM trigger handlers representing a new default configuration.
+    * @param hs A Map of TDTM trigger handlers representing a new default configuration.
     * @return A set of TDTM Tokens from the Trigger handlers that were passed in.
     *********************************************************************************************************/
 	public Set<TDTM_Global_API.TdtmToken> getTokenSet(Map<Id,Trigger_Handler__c> hs) {
