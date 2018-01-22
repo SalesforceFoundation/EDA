@@ -234,17 +234,17 @@ global class TDTM_Global_API {
 
         /********************************************************************************************************
         * @description Constructor. Verbose version. Values are provided for all properties.
-        * @parameter className The token's class name.
-        * @parameter targetObject The token's target object.
-        * @parameter actions The token's actions.
-        * @parameter loadOrder Bollean value of the token's load order.
-        * @parameter active The token's active flag.
-        * @parameter async The token's async flag.
-        * @parameter filterField The token's filter field.
-        * @parameter filterValue The token's filter value.
-        * @parameter userManaged The token's user-managed flag.
-        * @parameter ownedByNamespace The token's owned-by-namespace flag.
-        * @parameter usernamesToExclude The token's usernames-to-excluded field.
+        * @param className The token's class name.
+        * @param targetObject The token's target object.
+        * @param actions The token's actions.
+        * @param loadOrder Bollean value of the token's load order.
+        * @param active The token's active flag.
+        * @param async The token's async flag.
+        * @param filterField The token's filter field.
+        * @param filterValue The token's filter value.
+        * @param userManaged The token's user-managed flag.
+        * @param ownedByNamespace The token's owned-by-namespace flag.
+        * @param usernamesToExclude The token's usernames-to-excluded field.
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace, String usernamesToExclude) {
             this.className = className;
