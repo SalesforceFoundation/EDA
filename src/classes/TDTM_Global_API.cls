@@ -297,7 +297,8 @@ global class TDTM_Global_API {
                 && this.async == t.async 
                 && this.filterField == t.filterField 
                 && this.filterValue == t.filterValue 
-                && this.ownedByNamespace == t.ownedByNamespace 
+                && this.ownedByNamespace == t.ownedByNamespace
+                && this.usernamesToExclude == t.usernamesToExclude
             ) {
                 return true;
             }

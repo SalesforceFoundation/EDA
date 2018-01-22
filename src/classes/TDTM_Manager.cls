@@ -176,6 +176,7 @@ public class TDTM_Manager {
         h.Filter_Value__c = t.filterValue;
         h.User_Managed__c = t.userManaged;
         h.Owned_by_Namespace__c = t.ownedByNamespace;
+        h.Usernames_to_Exclude__c = t.usernamesToExclude;
 
         if(t.handlerId == null) {
 			h.Class__c = t.className;
