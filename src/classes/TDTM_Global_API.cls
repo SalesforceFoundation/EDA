@@ -82,7 +82,7 @@ global class TDTM_Global_API {
 
     /*******************************************************************************************************
     * @description Sets the trigger handlers configuration that don't have namespace with the data passed as parameter.
-    * @parameter tdtmTokens A list with the defaul trigger handlers configuration.
+    * @param tdtmTokens A list with the default trigger handlers configuration.
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens) {
@@ -92,8 +92,8 @@ global class TDTM_Global_API {
     }
     /*******************************************************************************************************
     * @description Sets the trigger handlers configuration that have specific namespace with the data passed as parameter.
-    * @parameter tdtmTokens A list with the defaul trigger handlers configuration.
-    * @parameter namespace The namespace that will manage this handler.
+    * @param tdtmTokens A list with the default trigger handlers configuration.
+    * @param namespace The namespace that will manage this handler.
     * @return void
     *********************************************************************************************************/
     global static void setTdtmConfig(List<TdtmToken> tokens,String namespace) {
@@ -179,10 +179,10 @@ global class TDTM_Global_API {
         /********************************************************************************************************
         * @description DEPRECATED Constructor. Simpler version accepting Integer for Load Order. It assumes default values for 
         * those properties not passed as parameters.
-        * @parameter className The token's class name.
-        * @parameter targetObject The token's target object.
-        * @parameter actions The token's actions.
-        * @parameter loadOrder Integer value of the token's load order.
+        * @param className The token's class name.
+        * @param targetObject The token's target object.
+        * @param actions The token's actions.
+        * @param loadOrder Integer value of the token's load order.
         *********************************************************************************************************/
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder) {
@@ -192,10 +192,10 @@ global class TDTM_Global_API {
         /********************************************************************************************************
         * @description Constructor. Simpler version. It assumes default values for those properties not passed as
         * parameters.
-        * @parameter className The token's class name.
-        * @parameter targetObject The token's target object.
-        * @parameter actions The token's actions.
-        * @parameter loadOrder Decimal value of the token's load order.
+        * @param className The token's class name.
+        * @param targetObject The token's target object.
+        * @param actions The token's actions.
+        * @param loadOrder Decimal value of the token's load order.
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder) {
             this.className = className;
@@ -210,15 +210,15 @@ global class TDTM_Global_API {
 
         /********************************************************************************************************
         * @description Constructor. Verbose version. Values are provided for all properties.
-        * @parameter className The token's class name.
-        * @parameter targetObject The token's target object.
-        * @parameter actions The token's actions.
-        * @parameter loadOrder Integer value of the token's load order.
-        * @parameter active The token's active flag.
-        * @parameter async The token's async flag.
-        * @parameter filterField The token's filter field.
-        * @parameter filterValue The token's filter value.
-        * @parameter userManaged The token's user-managed flag.
+        * @param className The token's class name.
+        * @param targetObject The token's target object.
+        * @param actions The token's actions.
+        * @param loadOrder Integer value of the token's load order.
+        * @param active The token's active flag.
+        * @param async The token's async flag.
+        * @param filterField The token's filter field.
+        * @param filterValue The token's filter value.
+        * @param userManaged The token's user-managed flag.
         *********************************************************************************************************/
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
@@ -228,16 +228,16 @@ global class TDTM_Global_API {
 
         /********************************************************************************************************
         * @description Constructor. Verbose version. Values are provided for all properties.
-        * @parameter className The token's class name.
-        * @parameter targetObject The token's target object.
-        * @parameter actions The token's actions.
-        * @parameter loadOrder Bollean value of the token's load order.
-        * @parameter active The token's active flag.
-        * @parameter async The token's async flag.
-        * @parameter filterField The token's filter field.
-        * @parameter filterValue The token's filter value.
-        * @parameter userManaged The token's user-managed flag.
-        * @parameter ownedByNamespace The token's user-managed flag.
+        * @param className The token's class name.
+        * @param targetObject The token's target object.
+        * @param actions The token's actions.
+        * @param loadOrder Bollean value of the token's load order.
+        * @param active The token's active flag.
+        * @param async The token's async flag.
+        * @param filterField The token's filter field.
+        * @param filterValue The token's filter value.
+        * @param userManaged The token's user-managed flag.
+        * @param ownedByNamespace The token's user-managed flag.
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
             this.className = className;
@@ -255,7 +255,7 @@ global class TDTM_Global_API {
 
         /********************************************************************************************************
         * @description Compares a Set of TDTM Tokens and returns the matching item if found. Returns NULL if not match is found.
-        * @parameter Set<TDTM_Global_API.TdtmToken> tokenSet a Set of TDTM Tokens to match against
+        * @param Set<TDTM_Global_API.TdtmToken> tokenSet a Set of TDTM Tokens to match against
         * @return TDTM_Global_API.TdtmToken The matched token
         *********************************************************************************************************/
         public TDTM_Global_API.TdtmToken getMatch(Set<TDTM_Global_API.TdtmToken> tokenSet) {
