@@ -213,7 +213,7 @@ global class TDTM_Global_API {
             this.async = false;
             this.userManaged = false;
         }
-      
+        /********************************************************************************************************
         * @description Constructor. Verbose version. Values are provided for all properties.
         * @param className The token's class name.
         * @param targetObject The token's target object.
