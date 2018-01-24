@@ -548,7 +548,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description returns the default name for a new Administrative Account.
     * @param con the Contact
-    * @return string. the Household account name
+    * @return string. the Admin account name
     */
     public static String strNameAdmAccountForContact(Contact con) {
         String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
@@ -569,7 +569,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description returns the default name for a new generic Account.
     * @param con the Contact
-    * @return string. the Household account name
+    * @return string. the generic account name
     */
     public static String strNameAccountForContact(Contact con) {
         return con.LastName + ' ' + system.label.DefaultAccountName;
