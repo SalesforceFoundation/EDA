@@ -355,7 +355,6 @@
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
-        <members>None</members>
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
@@ -378,6 +377,7 @@
         <members>duplicateWithHEDAField</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
+        <members>defaultNamingConnector</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
         <members>firstNameLastNameAdminACC</members>

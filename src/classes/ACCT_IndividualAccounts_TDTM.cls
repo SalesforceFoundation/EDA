@@ -524,7 +524,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         {
             hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
         }
-        if (hhAccNamingFormat!= null && hhAccNamingFormat != Label.None)
+        if (hhAccNamingFormat!= null)
         {
             return formatAccountName(cons, hhAccNamingFormat);
         }else{
@@ -538,7 +538,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 name += lastName;
                 counter++;
                 if (counter < householdLastNames.size()) {
-                    name += ' and ';
+                    name += ' ' + Label.defaultNamingConnector +' ';
                 }
             }
             return name + ' ' + system.label.DefaultHouseholdName;
@@ -671,7 +671,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                     result += con.get(nameString);
                                     counter--;
                                     if (counter > 0) {
-                                        result += ' and ';
+                                        result += ' ' + Label.defaultNamingConnector + ' ';
                                     }
                                 }
                             }
@@ -681,7 +681,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     }
                     lnCounter--;
                     if (lnCounter > 0) {
-                        result += 'and ';
+                        result += Label.defaultNamingConnector + ' ';
                     }
             }
         }else{
@@ -692,7 +692,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         result += con.get(nameString);
                         counter--;
                         if (counter > 0) {
-                            result += 'and ';
+                            result += Label.defaultNamingConnector + ' ';
                         }
                     }
                 }else{

@@ -63,7 +63,6 @@
         var prefix = component.get("v.namespacePrefix");
         if (prefix === 'hed__')
         {
-            hhNameFormatOptions.push($A.get("$Label.hed.None"));
             hhNameFormatOptions.push($A.get("$Label.hed.lastNameHH"));
             hhNameFormatOptions.push($A.get("$Label.hed.lastNameFirstNameHH"));
             hhNameFormatOptions.push($A.get("$Label.hed.firstNameLastNameHH"));
@@ -72,7 +71,6 @@
             hhNameFormatOptions.push($A.get("$Label.hed.firstNameLastNameFamily"));
             hhNameFormatOptions.push($A.get("$Label.hed.acctNamingOther"));
         }else{
-            hhNameFormatOptions.push($A.get("$Label.c.None"));
             hhNameFormatOptions.push($A.get("$Label.c.lastNameHH"));
             hhNameFormatOptions.push($A.get("$Label.c.lastNameFirstNameHH"));
             hhNameFormatOptions.push($A.get("$Label.c.firstNameLastNameHH"));
