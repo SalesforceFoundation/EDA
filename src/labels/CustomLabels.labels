@@ -247,13 +247,6 @@
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
         <value>The Filter Field value names a duplicate of a HEDA field. We will filter according to the value in the HEDA field. To proceed with saving this record, either specify a non-duplicate field or acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
-    <labels>
-        <fullName>defaultNamingConnector</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>defaultNamingConnector</shortDescription>
-        <value>and</value>
     </labels>
     <labels>
         <fullName>exceptionRequiredField</fullName>
@@ -1366,5 +1359,13 @@
         <protected>true</protected>
         <shortDescription>automaticHHNamingHelpText</shortDescription>
         <value>Enables automatic naming of Household Accounts, based on the names of Contacts in the Household. If enabled, we also automatically rename Household Accounts when new Contacts are added or existing Contacts are renamed.</value>
+    </labels>
+    <labels>
+        <fullName>defaultNamingConnector</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>defaultNamingConnector</shortDescription>
+        <value>and</value>
     </labels>
 </CustomLabels>
