@@ -133,7 +133,7 @@ public class TDTM_Config {
             //Get a list of excluded usernames in lowercase
             Set<String> excludedUserNamesLowercase = new Set<String>();
             Set<String> excludedUserNames = (token.usernamesToExclude != null ?
-                    new Set<String>(token.usernamesToExclude.split(';')) : new Set<String>());
+                    new Set<String>(token.usernamesToExclude.split('\\s*;\\s*')) : new Set<String>());
             for (String username : excludedUserNames) {
                 excludedUserNamesLowercase.add(username.toLowerCase());
             }
