@@ -82,7 +82,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Map<Id,Id> mapAccountIdContactId = new Map<Id,Id>();
 
         List<Id> listAccountIdHHToUpdate = new list<Id>();
-        Set<Id> listAccountIdHHToRename = new Set<Id>();
+        Set<Id> setAccountIdHHToRename = new Set<Id>();
 
         map<Id, Contact> mapContactIdContactOwnerChange = new map<Id, Contact>();
 
@@ -105,8 +105,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         // AFTER DELETE
         if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
-            for (Contact c : oldContacts)
+            for (Contact c : oldContacts){
                 listContactAccountDelete.add(c);
+                // Rename the account if a contact is deleted from a household account
+                if (c.AccountId != null
+                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                    setAccountIdHHToRename.add(c.AccountId);
+                }
+            }
         } else {
             Integer i = 0; // used to index into oldContacts when needed
             for (Contact c : contacts) {
@@ -129,7 +135,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                                 && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false)
                         {
-                            listAccountIdHHToRename.add(c.AccountId);
+                            setAccountIdHHToRename.add(c.AccountId);
                         }
                     }
 	            }
@@ -147,6 +153,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != oldContacts[i].AccountId) {
                         if (c.AccountId != null) {
                             listAccountIdHHToUpdate.add(c.AccountId);
+                            if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
+                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                                setAccountIdHHToRename.add(c.AccountId);
+                            }
+                        }else{
+                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                                setAccountIdHHToRename.add(oldContacts[i].AccountId);
+                            }
                         }
 
                         // old HH Accounts that don't get deleted still need to have name redone
@@ -173,7 +187,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             && c.AccountId != null
                             && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                             && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
-                        listAccountIdHHToRename.add(c.AccountId);
+                        setAccountIdHHToRename.add(c.AccountId);
                     }
                 }
                 i += 1;
@@ -233,8 +247,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }else if (triggerAction == TDTM_Runnable.Action.AfterDelete){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);
         }            
-        if (listAccountIdHHToRename.size() > 0){
-            updateHHAccountsName(listAccountIdHHToRename);
+        if (setAccountIdHHToRename.size() > 0){
+            updateHHAccountsName(setAccountIdHHToRename);
         }
 
     	return dmlWrapper;
