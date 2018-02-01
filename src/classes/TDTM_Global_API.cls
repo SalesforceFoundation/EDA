@@ -243,8 +243,34 @@ global class TDTM_Global_API {
         * @param filterValue The token's filter value.
         * @param userManaged The token's user-managed flag.
         * @param ownedByNamespace The token's owned-by-namespace flag.
+        *********************************************************************************************************/
+        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
+            this.className = className;
+            this.targetObject = targetObject;
+            this.actions = actions;
+            this.active = active;
+            this.loadOrderDec = loadOrder;
+            this.loadOrder = Integer.valueOf(loadOrder);
+            this.async = async;
+            this.filterField = filterField;
+            this.filterValue = filterValue;
+            this.userManaged = userManaged;
+            this.ownedByNamespace = ownedByNamespace;
+        }
+
+        /********************************************************************************************************
+        * @description Constructor. Verbose version. Values are provided for all properties.
+        * @param className The token's class name.
+        * @param targetObject The token's target object.
+        * @param actions The token's actions.
+        * @param loadOrder Bollean value of the token's load order.
+        * @param active The token's active flag.
+        * @param async The token's async flag.
+        * @param filterField The token's filter field.
+        * @param filterValue The token's filter value.
+        * @param userManaged The token's user-managed flag.
+        * @param ownedByNamespace The token's owned-by-namespace flag.
         * @param usernamesToExclude The token's usernames-to-excluded field.
-        * @param ownedByNamespace The token's user-managed flag.
         *********************************************************************************************************/
         global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace, String usernamesToExclude) {
             this.className = className;
