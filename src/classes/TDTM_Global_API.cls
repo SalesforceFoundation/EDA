@@ -228,7 +228,7 @@ global class TDTM_Global_API {
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
             
-            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null, null);
+            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null);
         }
 
         /********************************************************************************************************
