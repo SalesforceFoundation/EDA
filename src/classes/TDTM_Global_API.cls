@@ -213,8 +213,9 @@ global class TDTM_Global_API {
             this.async = false;
             this.userManaged = false;
         }
+
         /********************************************************************************************************
-        * @description Constructor. Verbose version. Values are provided for all properties.
+        * @description DEPRECATED Constructor. Verbose version. Values are provided for all properties.
         * @param className The token's class name.
         * @param targetObject The token's target object.
         * @param actions The token's actions.
@@ -227,12 +228,11 @@ global class TDTM_Global_API {
         *********************************************************************************************************/
         //cumulusci-managed@deprecated
         global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged) {
-            
-            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null);
+            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, null, null);
         }
 
         /********************************************************************************************************
-        * @description Constructor. Verbose version. Values are provided for all properties.
+        * @description DEPRECATED Constructor. Verbose version. Values are provided for all properties.
         * @param className The token's class name.
         * @param targetObject The token's target object.
         * @param actions The token's actions.
@@ -244,18 +244,9 @@ global class TDTM_Global_API {
         * @param userManaged The token's user-managed flag.
         * @param ownedByNamespace The token's owned-by-namespace flag.
         *********************************************************************************************************/
-        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
-            this.className = className;
-            this.targetObject = targetObject;
-            this.actions = actions;
-            this.active = active;
-            this.loadOrderDec = loadOrder;
-            this.loadOrder = Integer.valueOf(loadOrder);
-            this.async = async;
-            this.filterField = filterField;
-            this.filterValue = filterValue;
-            this.userManaged = userManaged;
-            this.ownedByNamespace = ownedByNamespace;
+        //cumulusci-managed@deprecated
+        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
+            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, ownedByNamespace, null);
         }
 
         /********************************************************************************************************
