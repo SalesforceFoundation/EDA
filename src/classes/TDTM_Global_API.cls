@@ -245,8 +245,8 @@ global class TDTM_Global_API {
         * @param ownedByNamespace The token's owned-by-namespace flag.
         *********************************************************************************************************/
         //cumulusci-managed@deprecated
-        global TdtmToken(String className, String targetObject, String actions, Integer loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
-            this(className, targetObject, actions, Decimal.valueOf(loadOrder), active, async, filterField, filterValue, userManaged, ownedByNamespace, null);
+        global TdtmToken(String className, String targetObject, String actions, Decimal loadOrder, Boolean active, Boolean async, String filterField, String filterValue, Boolean userManaged, String ownedByNamespace) {
+            this(className, targetObject, actions, loadOrder, active, async, filterField, filterValue, userManaged, ownedByNamespace, null);
         }
 
         /********************************************************************************************************
