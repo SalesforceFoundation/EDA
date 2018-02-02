@@ -54,7 +54,7 @@ public class TDTM_Manager {
 		this.namespace = nm;
 
         // Get all handlers from database.
-		this.allHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c FROM Trigger_Handler__c ORDER BY Load_Order__c LIMIT 5000]);
+		this.allHandlers = new Map<Id,Trigger_Handler__c>([SELECT Id, Active__c,  Asynchronous__c,  Object__c,  Load_Order__c,  Class__c,  Trigger_Action__c,  User_Managed__c, Owned_by_Namespace__c, Filter_Field__c, Filter_Value__c, Usernames_to_Exclude__c FROM Trigger_Handler__c ORDER BY Load_Order__c LIMIT 5000]);
         this.allTokens = getTokenSet(this.allHandlers);
 
         // Isolate the current handlers by namespace
@@ -152,7 +152,7 @@ public class TDTM_Manager {
 
 		for( Trigger_Handler__c h: hs.values() ) {
 
-			TDTM_Global_API.TdtmToken newToken = new TDTM_Global_API.TdtmToken( h.Class__c, h.Object__c, h.Trigger_Action__c, h.Load_Order__c, h.Active__c, h.Asynchronous__c, h.Filter_Field__c, h.Filter_Value__c, h.User_Managed__c, h.Owned_by_Namespace__c);
+			TDTM_Global_API.TdtmToken newToken = new TDTM_Global_API.TdtmToken( h.Class__c, h.Object__c, h.Trigger_Action__c, h.Load_Order__c, h.Active__c, h.Asynchronous__c, h.Filter_Field__c, h.Filter_Value__c, h.User_Managed__c, h.Owned_by_Namespace__c, h.Usernames_to_Exclude__c);
 
 			// Conditionally set Id
 			if(h.Id != null) {
@@ -176,6 +176,7 @@ public class TDTM_Manager {
         h.Filter_Value__c = t.filterValue;
         h.User_Managed__c = t.userManaged;
         h.Owned_by_Namespace__c = t.ownedByNamespace;
+        h.Usernames_to_Exclude__c = t.usernamesToExclude;
 
         if(t.handlerId == null) {
 			h.Class__c = t.className;

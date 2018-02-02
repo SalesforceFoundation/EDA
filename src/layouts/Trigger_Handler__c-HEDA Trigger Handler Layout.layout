@@ -31,6 +31,10 @@
                 <behavior>Edit</behavior>
                 <field>User_Managed__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Usernames_to_Exclude__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
