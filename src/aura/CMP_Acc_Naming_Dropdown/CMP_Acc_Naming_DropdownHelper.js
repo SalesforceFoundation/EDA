@@ -25,6 +25,7 @@
         var selectedVal = component.find("nameFormatDropDown").get("v.value");
         //Set the selected value in the settings (so it gets saved)
         component.set("v.setting", selectedVal);
+        component.set("v.nameFormat", selectedVal);
         var prefix = component.get("v.namespacePrefix");
         if (prefix === 'hed__') {
             var accNamingOther = $A.get("$Label.hed.acctNamingOther");
@@ -36,7 +37,6 @@
             selectedVal = component.find("otherText").get("v.value");
             component.set("v.otherSetting", selectedVal);
         }
-
     },
 
     getAdminAccNameFormatOptions : function(component) {
