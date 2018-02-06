@@ -1358,7 +1358,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>automaticHHNamingHelpText</shortDescription>
-        <value>Enables automatic naming of Household Accounts, based on the names of Contacts in the Household. If enabled, we also automatically rename Household Accounts when new Contacts are added or existing Contacts are renamed.</value>
+        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
     </labels>
     <labels>
         <fullName>defaultNamingConnector</fullName>
