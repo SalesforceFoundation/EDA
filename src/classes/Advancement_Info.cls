@@ -30,32 +30,34 @@
 /**
 * @author Salesforce.org
 * @date 2017
-* @group TDTM
-* @group-content ../../ApexDocContent/TDTM.htm
-* @description Provides an adapter for other packages to be able to inject customizations into HEDA.
+* @group
+* @group-content
+* @description Provides the Advancement Information to HEDA class.
 **/
 
-//@TODO: is this a good name for this class? Is the TDTM prefix correct? Later on we may want it to be an adaptor for additional functionality.
-global virtual with sharing class TDTM_Adapter {
+public class Advancement_Info {
+    public Boolean useAdv = false;
+    public Advancement_Adapter API_HEDA = null;
 
-    /**
-     * @description To be called by the HEDA TDTM trigger dispatcher. It returns the combined HEDA+NPSP TDTM configuration
-     * as HEDA tokens (since that's what HEDA consumes internally.)
-     *
-     * @return List<hed.TDTM_Global_API.TdtmToken> The TDTM configuration as HEDA tokens.
-     */
-    global virtual List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfigTokens() {
-        return TDTM_Global_API.getDefaultTdtmConfig();
+    public Advancement_Info() {
+        //Check if Advancement is installed and enabled.
+        try {
+            List<SObject> advSettings = Database.query('select Use_Advancement__c, API_HEDA_Class__c from Advancement_Setting__mdt');
+            useAdv = (Boolean)advSettings[0].get('Use_Advancement__c');
+            String apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
+
+            if(String.isNotBlank(apiHedaClass)) {
+                Type classType = Type.forName(apiHedaClass);
+                if (classType != null) {
+                    Object classInstance = classType.newInstance();
+                    if (classInstance instanceof Advancement_Adapter) {
+                        API_HEDA = (Advancement_Adapter) classInstance;
+                    }
+                }
+            }
+        } catch(Exception e) {
+            // Advancement not installed. Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use
+            // HEDA's TDTM config.
+        }
     }
-
-    //@TODO: we have yet to decide if this method should be included.
-    /**
-     * @description Sets the trigger handlers configuration with the data passed as parameter.
-     *
-     * @param tokens The TDTM configuration as HEDA tokens.
-
-    global virtual void setTdtmConfig(List<TDTM_Global_API.TdtmToken> tokens) {
-        TDTM_Global_API.setTdtmConfig(tokens);
-    }
-    */
 }

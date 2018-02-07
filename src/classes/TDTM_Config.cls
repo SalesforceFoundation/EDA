@@ -60,32 +60,15 @@ public class TDTM_Config {
             return tdtmTokensCache;
         }
 
-        Boolean useAdv = false;
-        String apiHedaClass = '';
-        //Check if Advancement is installed and enabled.
-        try {
-            List<SObject> advSettings = Database.query('select Use_Advancement__c, API_HEDA_Class__c from Advancement_Setting__mdt');
-            useAdv = (Boolean)advSettings[0].get('Use_Advancement__c');
-            apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
-        } catch(Exception e) {
-            // Advancement not installed. Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use
-            // HEDA's TDTM config.
-        }
+        Advancement_Info adv = new Advancement_Info();
 
         List<TDTM_Global_API.TdtmToken> tokens  = new List<TDTM_Global_API.TdtmToken>();
 
-        if(useAdv) {
+        if(adv.useAdv && adv.API_HEDA  != null) {
             //If Advancement is installed and enabled, get the TDTM configuration from there.
-            //Using Adv config.
-            Type classType = Type.forName(apiHedaClass);
-            if (classType != null) {
-                Object classInstance = classType.newInstance();
-                if (classInstance instanceof TDTM_Adapter) {
-                    TDTM_Adapter API_HEDA = (TDTM_Adapter) classInstance;
-                    //We already have the configuration as tokens, so no need for any transformation.
-                    tokens = API_HEDA.getDefaultTdtmConfigTokens();
-                }
-            }
+            //Using Adv config
+            tokens = adv.API_HEDA.getDefaultTdtmConfigTokens();
+
         } else {
             List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
                     Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c from Trigger_Handler__c];

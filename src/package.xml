@@ -26,6 +26,8 @@
         <members>AFFL_MultiRecordTypeMapper</members>
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
+        <members>Advancement_Adapter</members>
+        <members>Advancement_Info</members>
         <members>CCON_ConnectionBackfill_BATCH</members>
         <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
@@ -101,7 +103,6 @@
         <members>UTIL_Namespace</members>
         <members>UTIL_Namespace_TEST</members>
         <members>UTIL_UnitTestData_TEST</members>
-        <members>TDTM_Adapter</members>
         <name>ApexClass</name>
     </types>
     <types>
