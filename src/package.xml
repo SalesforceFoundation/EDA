@@ -337,6 +337,7 @@
         <members>Trigger_Handler__c.Owned_by_Namespace__c</members>
         <members>Trigger_Handler__c.Trigger_Action__c</members>
         <members>Trigger_Handler__c.User_Managed__c</members>
+        <members>Trigger_Handler__c.Usernames_to_Exclude__c</members>
         <name>CustomField</name>
     </types>
     <types>
