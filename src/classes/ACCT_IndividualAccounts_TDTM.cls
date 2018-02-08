@@ -156,6 +156,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                                     && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
                                 setAccountIdHHToRename.add(c.AccountId);
+                                if (oldContacts[i].AccountId != null){
+                                    setAccountIdHHToRename.add(oldContacts[i].AccountId);
+                                }
                             }
                         }else{
                             if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
