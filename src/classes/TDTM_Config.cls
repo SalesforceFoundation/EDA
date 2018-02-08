@@ -50,8 +50,8 @@ public class TDTM_Config {
 
     /********************************************************************************************************
     * @description Returns the TDTM configuration. If no configuration is currently set, it will return
-    * the default configuration without setting it. If the default configuration is the one returned,
-    * it has not yet been inserted in the database. It can be manipulated, if necessary, then set.
+    * the default configuration without setting it. The configuration returned has not yet been inserted in the
+    * database. It can be manipulated, if necessary, then set.
     * If no configuration exists, the application will insert the defaults when any of the triggers run.
     * @return List<TDTM_Global_API.TdtmToken> List of trigger handler tokens with the default values.
     *********************************************************************************************************/
