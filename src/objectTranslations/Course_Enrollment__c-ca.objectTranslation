@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Course Connection --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Course Connection --></value>
+    </caseValues>
+    <fields>
+        <help>El programa acadèmic en què està inscrit l&apos;estudiant.</help>
+        <label>Programa acadèmic del contacte</label>
+        <name>Account__c</name>
+        <relationshipLabel>Connexions del curs</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Afiliació</label>
+        <name>Affiliation__c</name>
+        <relationshipLabel>Connexió del curs</relationshipLabel>
+    </fields>
+    <fields>
+        <help>L&apos;alumne que cursa el curs.</help>
+        <label>Contacte</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Connexions del curs</relationshipLabel>
+    </fields>
+    <fields>
+        <help>L&apos;oferta de curs a la qual està inscrit l&apos;estudiant. És un curs ofert en un termini específic.</help>
+        <label>ID d&apos;oferta del curs</label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel>Connexió del curs</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Crèdits als quals s&apos;ha assistit</label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <label>Crèdits obtinguts</label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <label>Nota</label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <help>Representa una connexió de curs principal.</help>
+        <label>Primari</label>
+        <name>Primary__c</name>
+    </fields>
+    <fields>
+        <help>El programa en què està inscrit l&apos;estudiant. Enllaça un estudiant amb un programa acadèmic.</help>
+        <label>ID d&apos;inscripció del programa</label>
+        <name>Program_Enrollment__c</name>
+        <relationshipLabel>Connexions del curs</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Representa l&apos;estat de connexió del curs.</help>
+        <label>Estat</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Actual</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Antic</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Course Connection ID --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Facultat</label>
+        <name>Faculty</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Estudiant</label>
+        <name>Student</name>
+    </recordTypes>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>

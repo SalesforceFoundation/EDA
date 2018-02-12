@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- HEDA --></label>
+        <name>HEDA</name>
+    </customApplications>
+    <customLabels>
+        <label>Les afiliacions primàries assignades apareixen en una secció especial d&apos;afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu el</label>
+        <name>AfflMappingsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Quan se suprimeixi la inscripció del programa, elimineu l&apos;afiliació relacionada.</label>
+        <name>AfflProgEnrollDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>No es pot trobar la configuració de la relació d&apos;autocreació vàlida. Verifiqueu la configuració a Configuració de HEDA | Relacions | Autocreació per a camps vàlids i torneu-ho a provar.</label>
+        <name>AutoCreateFieldError</name>
+    </customLabels>
+    <customLabels>
+        <label>Establiu el camp del filtre, o bé el camp del filtre i el valor del filtre.</label>
+        <name>BothFieldAndValue</name>
+    </customLabels>
+    <customLabels>
+        <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
+        <name>CannotDelete</name>
+    </customLabels>
+    <customLabels>
+        <label>Compte</label>
+        <name>DefaultAccountName</name>
+    </customLabels>
+    <customLabels>
+        <label>Compte administratiu</label>
+        <name>DefaultAdminName</name>
+    </customLabels>
+    <customLabels>
+        <label>Llar</label>
+        <name>DefaultHouseholdName</name>
+    </customLabels>
+    <customLabels>
+        <label>Dona</label>
+        <name>Female</name>
+    </customLabels>
+    <customLabels>
+        <label>El valor del camp de filtre no és vàlid definit per a </label>
+        <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <label>Home</label>
+        <name>Male</name>
+    </customLabels>
+    <customLabels>
+        <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l&apos;etiqueta del camp d&apos;un camp de correu electrònic personalitzat existent.</label>
+        <name>PreferredEmailMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label>El correu electrònic seleccionat per a l&apos;adreça electrònica preferida no es pot deixar en blanc.</label>
+        <name>PreferredEmailMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label>Indiqueu el correu electrònic preferit.</label>
+        <name>PreferredEmailRequiredError</name>
+    </customLabels>
+    <customLabels>
+        <label>és</label>
+        <name>Relationship_Explanation_Connector</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Relationship Split --></label>
+        <name>Relationship_Split</name>
+    </customLabels>
+    <customLabels>
+        <label>Les relacions automàtiques permeten identificar els vostres propis camps de cerca personalitzats als objectes de contacte o de campanya que activen la creació d&apos;un nou tipus de relació que vulgueu. Per exemple, una consulta de &quot;Referència&quot; des del membre de la campanya amb qui contactar podria crear una relació de &quot;Referenciant&quot; i un &quot;Referit&quot; entre els dos contactes. (Tingueu en compte que aquesta funció no està disponible per a clients potencials o objectes membre de la campanya que fan referències.)</label>
+        <name>RelationshipsAutoDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Aquesta configuració us permet configurar relacions recíproques o la relació &quot;coincident&quot; entre dos contactes. Per exemple, si un pare està relacionat amb el seu fill, el fill també s&apos;hauria de relacionar amb el pare. Podeu especificar el valor Tipus de nom i, a continuació, especificar en quin valor recíproc s&apos;ha de basar en el sexe del contacte de connexió. Podeu definir un recíproc masculí, un recíproc femení i un recíproc neutre que s&apos;utilitzarà si el sexe no es pot determinar.</label>
+        <name>RelationshipsLookupDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
+        <name>addrHhAdmAccountOnly</name>
+    </customLabels>
+    <customLabels>
+        <label>La capacitat d&apos;afegir diverses adreces està desactivada per a aquest tipus de registre del compte. Per habilitar-lo, aneu a Configuració de HEDA, feu clic a Comptes i contactes i seleccioneu la casella corresponent al costat dels tipus de compte amb les adreces múltiples activades.</label>
+        <name>addrNotEnabledAccount</name>
+    </customLabels>
+    <customLabels>
+        <label>La capacitat d&apos;afegir diverses adreces està desactivada per als contactes. Per activar-lo, aneu a Configuració de HEDA, feu clic a Comptes i contactes i, a continuació, seleccioneu la casella de selecció Contacte amb adreces múltiples activades.</label>
+        <name>addrNotEnabledContact</name>
+    </customLabels>
+    <customLabels>
+        <label>Els intervals de dates per a les adreces estacionals no es poden superposar.</label>
+        <name>addrSeasonalOverlap</name>
+    </customLabels>
+    <customLabels>
+        <label>Una adreça ha de tenir tots els camps d&apos;inici i finalització del dia i el mes establerts o cap d&apos;ells.</label>
+        <name>addrSeasonalPartial</name>
+    </customLabels>
+    <customLabels>
+        <label>Una adreça ha de tenir tant el conjunt d&apos;inici com a final d&apos;any o cap d&apos;ells.</label>
+        <name>addrSeasonalPartialYear</name>
+    </customLabels>
+    <customLabels>
+        <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
+        <name>addrValidParentObjects</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipus de registre del compte {0} no existeix. Demaneu al vostre administrador que verifiqui els tipus de registre en les assignacions d&apos;afiliació.</label>
+        <name>afflNullPointerError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for TDTM filtering functionality. --></label>
+        <name>duplicateFieldInFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for TDTM filtering functionality. --></label>
+        <name>duplicateWithHEDAField</name>
+    </customLabels>
+    <customLabels>
+        <label>No s&apos;estableix un camp obligatori. Aquest camp podria ser d&apos;aquest registre o d&apos;un registre relacionat.</label>
+        <name>exceptionRequiredField</name>
+    </customLabels>
+    <customLabels>
+        <label>Una regla de validació impedeix que es processi el registre. Això podria ser a causa d&apos;aquest registre o d&apos;un registre relacionat que s&apos;actualitzava. MISSATGE DE VALIDACIÓ:</label>
+        <name>exceptionValidationRule</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for TDTM filtering functionality. --></label>
+        <name>fieldWithHEDANamespace</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipus de registre del compte definit no existeix:</label>
+        <name>noAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Sense assignacions d&apos;afiliació per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
+        <name>noAfflMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>Sense configuracions de creació automàtica per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
+        <name>noAutoCreateSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Sense configuracions de reciprocitat per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
+        <name>noRecSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Correu electrònic (estàndard)</label>
+        <name>preferredBatchDefaultEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Model de compte predeterminat:</label>
+        <name>stgAccModelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus de registre del compte que admeten les adreces de la llar.</label>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus de comptes amb diverses adreces habilitades:</label>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus de compte sense contactes per esborrar:</label>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
+    </customLabels>
+    <customLabels>
+        <label>Afegiu &quot;Hispà o llatí&quot; com a valor de llista de selecció al camp Ètnia si és necessari.</label>
+        <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label>Afegiu &quot;No hispà ni llatí&quot; com a valor de llista de selecció al camp Ètnia si és necessari.</label>
+        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label>Després d&apos;executar el reenviament:</label>
+        <name>stgAfterRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Introduïu el nom del grup de Chatter per cercar</label>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
+    </customLabels>
+    <customLabels>
+        <label>Introduïu el nom de l&apos;usuari per cercar</label>
+        <name>stgAutoCompleteEnterUserName</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccioneu el grup de Chatter</label>
+        <name>stgAutoCompleteSelectChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccioneu l&apos;usuari</label>
+        <name>stgAutoCompleteSelectUser</name>
+    </customLabels>
+    <customLabels>
+        <label>Inscripció automàtica</label>
+        <name>stgAutoEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label>Funció d&apos;inscripció automàtica</label>
+        <name>stgAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label>Estat d&apos;inscripció automàtica</label>
+        <name>stgAutoEnrollmentStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>El reenviament s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
+        <name>stgBackfillQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Abans d&apos;executar el reenviament:</label>
+        <name>stgBeforeRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Afegeix una assignació</label>
+        <name>stgBtnAddMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>Afegeix una configuració</label>
+        <name>stgBtnAddSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>Cancel·la</label>
+        <name>stgBtnCancel</name>
+    </customLabels>
+    <customLabels>
+        <label>Edita</label>
+        <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label>Executa el reenviament</label>
+        <name>stgBtnRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Executa la còpia</label>
+        <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label>Desa</label>
+        <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label>La neteja s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
+        <name>stgCleanupQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus de registre del compte</label>
+        <name>stgColAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label>Actiu</label>
+        <name>stgColActive</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus de campanya</label>
+        <name>stgColCampTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>Camp d&apos;afiliació primària de contacte</label>
+        <name>stgColContactPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label>Dona</label>
+        <name>stgColFemale</name>
+    </customLabels>
+    <customLabels>
+        <label>Camp</label>
+        <name>stgColField</name>
+    </customLabels>
+    <customLabels>
+        <label>Home</label>
+        <name>stgColMale</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgColNeutral --></label>
+        <name>stgColNeutral</name>
+    </customLabels>
+    <customLabels>
+        <label>Objecte</label>
+        <name>stgColObject</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus de relació</label>
+        <name>stgColRelType</name>
+    </customLabels>
+    <customLabels>
+        <label>Funció</label>
+        <name>stgColRole</name>
+    </customLabels>
+    <customLabels>
+        <label>Estat</label>
+        <name>stgColStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>Entenc i estic preparat per executar el reenviament</label>
+        <name>stgConfirmReadyRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Contacte amb múltiples adreces activades:</label>
+        <name>stgContactMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label>El treball Apex per lots ha processat {0} lots amb {1} errors.</label>
+        <name>stgCourseDescriptionCopyEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Descripció del curs Còpia Treball Complet amb un estatus de:</label>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus predeterminat de registre de la facultat:</label>
+        <name>stgDefaultFacultyTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Tipus predeterminat de registre d&apos;estudiant actiu:</label>
+        <name>stgDefaultStudentTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>No, només s&apos;ha de canviar l&apos;estat a:</label>
+        <name>stgDeleteRelatedAfflNo</name>
+    </customLabels>
+    <customLabels>
+        <label>Sí:</label>
+        <name>stgDeleteRelatedAfflYes</name>
+    </customLabels>
+    <customLabels>
+        <label>Desactiva el maneig d&apos;errors:</label>
+        <name>stgDisableErrorHandlingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Desactiva l&apos;aplicació de correu electrònic preferit:</label>
+        <name>stgDisablePreferredEmailEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>Activa les connexions del curs:</label>
+        <name>stgEnableCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Notificacions d&apos;errors a:</label>
+        <name>stgErrorNotiTo</name>
+    </customLabels>
+    <customLabels>
+        <label>Destinataris de les notificacions d&apos;errors:</label>
+        <name>stgErrorNotifRecipientsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Origen ètnic i racial per als contactes</label>
+        <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuració del model de compte. &quot;Administratiu&quot; és el model recomanat.</label>
+        <name>stgHelpAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label>Registre els tipus dels comptes que s&apos;eliminaran automàticament si s&apos;han eliminat tots els contactes dels seus derivats.</label>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
+        <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
+        <name>stgHelpContactAddrs</name>
+    </customLabels>
+    <customLabels>
+        <label>No requereix que els contactes tinguin un correu electrònic preferit.</label>
+        <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>El procés s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el treball.</label>
+        <name>stgHelpCopyQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>El reenviament de connexions del curs s&apos;ha d&apos;utilitzar només quan s&apos;activen les connexions del curs per primera vegada i només a les organitzacions on hi ha hagut ofertes per a cursos i connexions per a cursos (inscripcions) abans d&apos;activar la funció. El reenviament converteix tots els contactes que es van incloure com a professors en una connexió de curs (inscripció) o oferta de cursos en el tipus de registre predeterminat del professorat. El reenviament converteix els contactes de les connexions restants del curs (inscripcions) en el tipus predeterminat de registre d&apos;estudiant actiu.</label>
+        <name>stgHelpCourseConnBackfillDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>A HEDA 1.30, el camp de Descripció ampliada s&apos;ha afegit per donar cabuda a descripcions de cursos més llargues.</label>
+        <name>stgHelpCoursesDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label>Aquesta utilitat copia els valors del camp Descripció del curs al camp de Descripció ampliada. Aquest procés pot trigar una mica, però podeu tancar aquesta pàgina amb seguretat i el procés continuarà en segon pla.</label>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
+    </customLabels>
+    <customLabels>
+        <label>Si un curs ja té un valor per a la Descripció ampliada, no la sobreescriurem.</label>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+    </customLabels>
+    <customLabels>
+        <label>Un cop finalitzat el procés, recordeu actualitzar els dissenys de pàgines i altres àrees de l&apos;aplicació que fan referència als camps de la descripció.</label>
+        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a un membre de la facultat.</label>
+        <name>stgHelpDefaultFacultyType</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a estudiants actius.</label>
+        <name>stgHelpDefaultStudentType</name>
+    </customLabels>
+    <customLabels>
+        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;executar el reenviament de connexions del curs.</label>
+        <name>stgHelpEnableCourseConnBeforeBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;editar els tipus de registre.</label>
+        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>Les connexions del curs connecten un contacte amb una oferta de cursos. Si activeu aquesta casella de selecció, podeu triar crear la connexió per a un estudiant o professor (els dos tipus de registre predeterminats). Després de seleccionar aquesta casella de verificació, heu d&apos;establir el Tipus predeterminat de registre d&apos;estudiant actiu i el tipus predeterminat de registre de facultat. Si activeu aquesta funció per primera vegada, us recomanem que executeu el reenviament a la vostra organització.</label>
+        <name>stgHelpEnableCourseConnections</name>
+    </customLabels>
+    <customLabels>
+        <label>Per als contactes existents que no han especificat un correu electrònic preferit, la neteja assegura que una de les adreces de correu electrònic estàndard o personalitzada del contacte s&apos;estableixi com a correu electrònic preferit.</label>
+        <name>stgHelpEnsureExistContactPreferEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Si es marca, el marc de maneig d&apos;errors de HEDA està desactivat.</label>
+        <name>stgHelpErrorDisable</name>
+    </customLabels>
+    <customLabels>
+        <label>Marqueu això si voleu que el sistema publiqui notificacions per a determinats tipus d&apos;errors.</label>
+        <name>stgHelpErrorNotifyOn</name>
+    </customLabels>
+    <customLabels>
+        <label>Podeu enviar notificacions per correu electrònic a tots els administradors del sistema, a un sol usuari o a un grup de Chatter. Els valors vàlids són &quot;Tots els administradors del sistema&quot;, la identificació d&apos;un usuari a la vostra organització, o la identificació d&apos;un grup de Chatter. Només podeu introduir un valor.</label>
+        <name>stgHelpErrorNotifyTo</name>
+    </customLabels>
+    <customLabels>
+        <label>Utilitzeu el reenviament d&apos;ètnia i raça només si la vostra organització utilitzava el camp d&apos;Ètnia abans que HEDA afegís el camp de la raça i elimineu els valors del camp Ètnia a partir de la versió HEDA 1.28. Si el valor del camp d&apos;origen de contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;hispà o llatí&quot;, el reenviament copia el valor al camp Raça. Els dos valors estàndard de la llista de selecció i els valors personalitzats que hàgiu afegit podran ser copiats.</label>
+        <name>stgHelpEthnicityRaceBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Activa la gestió d&apos;adreces de comptes administratius i de les llars quan es selecciona.</label>
+        <name>stgHelpHouseAdmAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>El tipus de registre del compte que millor representa les llars. HEDA utilitza el tipus de registre del compte de la llar de forma predeterminada, però podeu utilitzar un altre tipus de registre si ho desitgeu.</label>
+        <name>stgHelpHouseholdRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Si la vostra organització ha afegit prèviament valors de llista de selecció personalitzats al camp Ètnia que voleu que estigui disponible al camp Raça, copieu els valors de llista de selecció personalitzats al camp Raça.</label>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+    </customLabels>
+    <customLabels>
+        <label>Activa la gestió d&apos;adreces dels comptes d&apos;organització quan es selecciona.</label>
+        <name>stgHelpOrgAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>Les relacions creades automàticament es dedueixen automàticament per evitar que es creïn registres de relacions duplicats entre dos contactes. Marqueu aquesta casella per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</label>
+        <name>stgHelpRelAutoCreatedDup</name>
+    </customLabels>
+    <customLabels>
+        <label>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe (vegeu la pestanya Relacions recíproques), o la inversió de valor, que inverteix el tipus, si escau (&quot;Principal-Derivat&quot; a &quot;Derivat-Principal&quot;)</label>
+        <name>stgHelpRelReciprocalMethod</name>
+    </customLabels>
+    <customLabels>
+        <label>Elimineu tots els valors de la llista de selecció del camp Ètnia, excepte &quot;Hispà o llatí&quot; i &quot;No hispà ni llatí&quot;. Recomanem que substituïu cada valor eliminat amb un dels valors vàlids restants, en comptes d&apos;eliminar-los directament dels registres existents. A partir de la versió HEDA 1.28, els únics valors ètnics vàlids són &quot;No hispà ni llatí&quot; i &quot;hispà o llatí&quot;.</label>
+        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+    </customLabels>
+    <customLabels>
+        <label>Tracta els canvis en els camps d&apos;adreça de contacte o un únic compte com a actualitzacions de l&apos;adreça existent (és a dir, no es crea cap nou objecte d&apos;adreça). També provoca que l&apos;espai en blanc i els canvis de cas siguin tractats com a actualitzacions.</label>
+        <name>stgHelpSimpleAddrChangeIsUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>Marqueu això si voleu que s&apos;emmagatzemin els errors a la base de dades.</label>
+        <name>stgHelpStoreErrorsOn</name>
+    </customLabels>
+    <customLabels>
+        <label>Si teniu dependències que es basaven en els valors anteriors del camp Ètnia, com ara els informes, actualitzeu-los.</label>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label>Nova assignació d&apos;afiliació</label>
+        <name>stgNewAfflMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>Tots els administradors de sistemes</label>
+        <name>stgOptAllSysAdmins</name>
+    </customLabels>
+    <customLabels>
+        <label>Grup de Chatter</label>
+        <name>stgOptChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecciona...</label>
+        <name>stgOptSelect</name>
+    </customLabels>
+    <customLabels>
+        <label>Usuari</label>
+        <name>stgOptUser</name>
+    </customLabels>
+    <customLabels>
+        <label>El treball Apex per lots ha processat {0} registres amb {1} errors.</label>
+        <name>stgPreferredEmailBatchEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Treball de correu electrònic preferit completat amb un estat de:</label>
+        <name>stgPreferredEmailBatchEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>Neteja de dades de correu electrònic preferit:</label>
+        <name>stgPreferredEmailDataCleanup</name>
+    </customLabels>
+    <customLabels>
+        <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
+        <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label>Seleccioneu el tipus de destinatari</label>
+        <name>stgSelectReciType</name>
+    </customLabels>
+    <customLabels>
+        <label>Envia notificacions d&apos;errors:</label>
+        <name>stgSendErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Canvi simple d&apos;adreça tractat com a actualització:</label>
+        <name>stgSimpleAddressChangeUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>Errors d&apos;emmagatzematge:</label>
+        <name>stgStoreErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Comptes i contactes</label>
+        <name>stgTabAccCont</name>
+    </customLabels>
+    <customLabels>
+        <label>Afiliacions</label>
+        <name>stgTabAffl</name>
+    </customLabels>
+    <customLabels>
+        <label>Assignacions d&apos;afiliació</label>
+        <name>stgTabAfflMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>Creació automàtica</label>
+        <name>stgTabAutocreation</name>
+    </customLabels>
+    <customLabels>
+        <label>Reenviament</label>
+        <name>stgTabBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursos</label>
+        <name>stgTabCourse</name>
+    </customLabels>
+    <customLabels>
+        <label>Connexions del curs</label>
+        <name>stgTabCourseConn</name>
+    </customLabels>
+    <customLabels>
+        <label>Nom</label>
+        <name>stgTabName</name>
+    </customLabels>
+    <customLabels>
+        <label>Camp d&apos;afiliació primària</label>
+        <name>stgTabPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuració recíproca</label>
+        <name>stgTabReciprocalSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Relacions</label>
+        <name>stgTabRel</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuració</label>
+        <name>stgTabSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Sistema</label>
+        <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label>Permetre relacions duplicades creades automàticament:</label>
+        <name>stgTitleAllowAutocreatedDuplicateRel</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuració a tota l&apos;aplicació</label>
+        <name>stgTitleAppwideSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Reenviament de connexió del curs:</label>
+        <name>stgTitleCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursos: Migració de dades de descripció</label>
+        <name>stgTitleCoursesDescriptionDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuració</label>
+        <name>stgTitleHEDAConfig</name>
+    </customLabels>
+    <customLabels>
+        <label>Configuració de HEDA</label>
+        <name>stgTitleHEDASettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Nova configuració de creació automàtica</label>
+        <name>stgTitleNewAutocreateSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>Nova configuració recíproca</label>
+        <name>stgTitleNewReciSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>Mètode recíproc:</label>
+        <name>stgTitleReciMethod</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgToastError --></label>
+        <name>stgToastError</name>
+    </customLabels>
+    <customTabs>
+        <label>Configuració de HEDA</label>
+        <name>HEDA_Settings</name>
+    </customTabs>
+</Translations>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Course --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Course --></value>
+    </caseValues>
+    <fields>
+        <label>Departament</label>
+        <name>Account__c</name>
+        <relationshipLabel>Cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>ID de curs</label>
+        <name>Course_ID__c</name>
+    </fields>
+    <fields>
+        <label>Hores del crèdit</label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label>Descripció</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Descripció ampliada</label>
+        <name>Extended_Description__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Course Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>

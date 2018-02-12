@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Term --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Term --></value>
+    </caseValues>
+    <fields>
+        <label>Compte</label>
+        <name>Account__c</name>
+        <relationshipLabel>Condicions</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Data de finalització</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Data d&apos;inici</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Term Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Term Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
