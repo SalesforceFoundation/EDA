@@ -634,16 +634,20 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         //Build the map of lastname and contacts
         mapLastNameContacts = buildMapLastNameContacts(cons);
-        //Build prefix
-        settingPrefix = setting.substringBefore('{!');
-        //Build suffix and remove prefix and suffix from original string
-        Integer indexAfterLastParenthesis = setting.lastIndexOf('}');
-        while (setting.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' '
-                && indexAfterLastParenthesis < setting.length()-1){
+        //get index of first parenthesis
+        Integer indexFirstParenthesis = setting.indexOf('{!') > 0 ? setting.indexOf('{!') : 0;
+        //get index of last parenthesis
+        Integer indexAfterLastParenthesis = setting.lastIndexOf('}') > 0 ? setting.lastIndexOf('}') : setting.length()-1;
+        while (indexAfterLastParenthesis < setting.length()-1
+                && setting.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' '){
             indexAfterLastParenthesis++;
         }
+        //Build prefix
+        settingPrefix = setting.substring(0, indexFirstParenthesis);
+        //Build Suffix
         settingSuffix = setting.substring(indexAfterLastParenthesis+1, setting.length());
-        setting = setting.substring(setting.indexOf('{!'), indexAfterLastParenthesis+1);
+        setting = setting.substring(indexFirstParenthesis, indexAfterLastParenthesis+1);
+
         //Split strings into a list
         List<String> settingsSplitSpace= setting.split(' ');
         for (String settingSplitSpace : settingsSplitSpace)
