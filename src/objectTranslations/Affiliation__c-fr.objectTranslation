@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affiliation --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affiliation --></value>
+    </caseValues>
+    <fields>
+        <label>Organisation</label>
+        <name>Account__c</name>
+        <relationshipLabel>Contacts affiliés</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Type d&apos;affiliation</label>
+        <name>Affiliation_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel>Comptes affiliés</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Date de fin</label>
+        <name>EndDate__c</name>
+    </fields>
+    <fields>
+        <help>Si cette case est cochée, l’organisation de l’affiliation est stockée dans l’enregistrement du contact.</help>
+        <label>Principal</label>
+        <name>Primary__c</name>
+    </fields>
+    <fields>
+        <label>Rôle</label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>Applicant</masterLabel>
+            <translation>Candidat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation>Employé</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Faculty</masterLabel>
+            <translation>Professeur</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect</masterLabel>
+            <translation><!-- Prospect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student</masterLabel>
+            <translation>Étudiant</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Date de début</label>
+        <name>StartDate__c</name>
+    </fields>
+    <fields>
+        <label>Statut</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Actuel</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Ancien</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Informations sur l&apos;affiliation</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Affiliation Key --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>

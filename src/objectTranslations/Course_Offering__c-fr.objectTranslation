@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Course Offering --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Course Offering --></value>
+    </caseValues>
+    <fields>
+        <label>Capacité</label>
+        <name>Capacity__c</name>
+    </fields>
+    <fields>
+        <label>Cours</label>
+        <name>Course__c</name>
+        <relationshipLabel>Offres de cours</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Date de fin</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Professeur principal</label>
+        <name>Faculty__c</name>
+        <relationshipLabel>Offres de cours</relationshipLabel>
+    </fields>
+    <fields>
+        <label>ID de section</label>
+        <name>Section_ID__c</name>
+    </fields>
+    <fields>
+        <label>Date de début</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Durée</label>
+        <name>Term__c</name>
+        <relationshipLabel>Offres de cours</relationshipLabel>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Course Offering ID --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
