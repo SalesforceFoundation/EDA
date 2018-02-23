@@ -537,21 +537,21 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     public static String strNameHHAccountForContact(List<Contact> cons) {
         String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
-        if (hhAccNamingFormat == Label.acctNamingOther)
-        {
+        if (hhAccNamingFormat == Label.acctNamingOther) {
             hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
         }
-        if (hhAccNamingFormat!= null)
-        {
+        if (hhAccNamingFormat!= null) {
             return formatAccountName(cons, hhAccNamingFormat);
-        }else{
+        } else {
+
             Set<String> householdLastNames = new Set<String>();
-            for (Contact con : cons){
+            
+            for (Contact con : cons) {
                 householdLastNames.add(con.LastName);
             }
             String name = '';
             Integer counter = 0;
-            for (String lastName : householdLastNames){
+            for (String lastName : householdLastNames) {
                 name += lastName;
                 counter++;
                 if (counter < householdLastNames.size()) {
@@ -569,17 +569,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     public static String strNameAdmAccountForContact(Contact con) {
         String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
-        if (adminAccNamingFormat == Label.acctNamingOther)
-        {
+        if (adminAccNamingFormat == Label.acctNamingOther) {
             adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
         }
-        if (adminAccNamingFormat != null)
-        {
+        if (adminAccNamingFormat != null) {
             List<Contact> cons = new List<Contact>();
             cons.add(con);
             return formatAccountName(cons, adminAccNamingFormat);
-        }else{
-            return con.LastName + ' ' + system.label.DefaultAdminName; 
+        } else {
+            return con.LastName + ' ' + system.label.DefaultAdminName;
         }
     }
 
@@ -639,7 +637,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         //get index of last parenthesis
         Integer indexAfterLastParenthesis = setting.lastIndexOf('}') > 0 ? setting.lastIndexOf('}') : setting.length()-1;
         while (indexAfterLastParenthesis < setting.length()-1
-                && setting.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' '){
+                && setting.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' ') {
             indexAfterLastParenthesis++;
         }
         //Build prefix
@@ -650,38 +648,37 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         //Split strings into a list
         List<String> settingsSplitSpace= setting.split(' ');
-        for (String settingSplitSpace : settingsSplitSpace)
-        {
-            if (settingSplitSpace.contains('{!') && settingSplitSpace.contains('}'))
-            {
+        for (String settingSplitSpace : settingsSplitSpace) {
+            if (settingSplitSpace.contains('{!') && settingSplitSpace.contains('}')) {
+
                 settingsSplitRightParenthesis = settingSplitSpace.split('}');
-                for (String settingSplitRightParenthesis : settingsSplitRightParenthesis)
-                {
-                    if (settingSplitRightParenthesis.contains('{!'))
-                    {
+
+                for (String settingSplitRightParenthesis : settingsSplitRightParenthesis) {
+                    if (settingSplitRightParenthesis.contains('{!')) {
                         settingsSplitLeftParenthesis = settingSplitRightParenthesis.split('\\{!');
-                        for (String settingSplitLeftParenthesis : settingsSplitLeftParenthesis)
-                        {
+                        for (String settingSplitLeftParenthesis : settingsSplitLeftParenthesis) {
                             if (UTIL_Describe.isValidField('Contact', settingSplitLeftParenthesis.toLowerCase())) {
                                 setContactFields.add(settingSplitLeftParenthesis.toLowerCase());
                             }
                             if (settingSplitLeftParenthesis != '')
                                 listNameStrings.add(settingSplitLeftParenthesis);
                         }
-                    }else{
+                    } else {
                         if (settingSplitRightParenthesis != '')
                             listNameStrings.add(settingSplitRightParenthesis);
                     }
                 }
-            }else {
+            } else {
                 if (settingSplitSpace != '')
                     listNameStrings.add(settingSplitSpace);
             }
             listNameStrings.add(' ');
         }
-        if (setContactFields.contains('lastname')){
+        if (setContactFields.contains('lastname')) {
+
             Integer lnCounter = mapLastNameContacts.keySet().size();
-            for (String lastName : mapLastNameContacts.keySet()){
+
+            for (String lastName : mapLastNameContacts.keySet()) {
                 for (String nameString : listNameStrings) {
                     if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
                         if (nameString == 'lastname') {
@@ -696,7 +693,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 }
                             }
                         }
-                    }else{
+                    } else {
                         result += nameString;
                     }
                 }
@@ -705,9 +702,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     result += Label.defaultNamingConnector + ' ';
                 }
             }
-        }else{
+        } else {
             for (String nameString : listNameStrings) {
-                if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())){
+                if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
                     Integer counter = cons.size();
                     for (Contact con : cons) {
                         result += con.get(nameString) != null ? con.get(nameString) : '';
@@ -716,7 +713,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             result += Label.defaultNamingConnector + ' ';
                         }
                     }
-                }else{
+                } else {
                     result += nameString;
                 }
             }
@@ -734,11 +731,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     private static Map<String, List<Contact>> buildMapLastNameContacts(List<Contact> cons) {
         Map<String, List<Contact>> mapLastNameContacts = new Map<String, List<Contact>>();
-        for (Contact con : cons)
-        {
-            if (mapLastNameContacts.containsKey(con.LastName)){
+        for (Contact con : cons) {
+            if (mapLastNameContacts.containsKey(con.LastName)) {
                 mapLastNameContacts.get(con.LastName).add(con);
-            }else{
+            } else {
                 mapLastNameContacts.put(con.LastName, new List<Contact>{con});
             }
         }
