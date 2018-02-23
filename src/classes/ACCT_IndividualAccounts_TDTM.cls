@@ -695,14 +695,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                     result += ' ' + Label.defaultNamingConnector + ' ';
                                 }
                             }
-                        }else{
-                            result += nameString;
                         }
+                    }else{
+                        result += nameString;
                     }
-                    lnCounter--;
-                    if (lnCounter > 0) {
-                        result += Label.defaultNamingConnector + ' ';
-                    }
+                }
+                lnCounter--;
+                if (lnCounter > 0) {
+                    result += Label.defaultNamingConnector + ' ';
+                }
             }
         }else{
             for (String nameString : listNameStrings) {
