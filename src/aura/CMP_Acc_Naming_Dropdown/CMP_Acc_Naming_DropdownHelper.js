@@ -1,4 +1,5 @@
 ({
+    //@TODO: Need to refactor this method to avoid calling each of these two methods twice
     init : function(component) {
         //Retrieving account naming options
         this.getAdminAccNameFormatOptions(component);
