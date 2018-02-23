@@ -682,18 +682,17 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (setContactFields.contains('lastname')){
             Integer lnCounter = mapLastNameContacts.keySet().size();
             for (String lastName : mapLastNameContacts.keySet()){
-                    for (String nameString : listNameStrings) {
-                        if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
-                            if (nameString == 'lastname') {
-                                result += lastname;
-                            } else {
-                                Integer counter = mapLastNameContacts.get(lastName).size();
-                                for (Contact con : mapLastNameContacts.get(lastName)) {
-                                    result += con.get(nameString);
-                                    counter--;
-                                    if (counter > 0) {
-                                        result += ' ' + Label.defaultNamingConnector + ' ';
-                                    }
+                for (String nameString : listNameStrings) {
+                    if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
+                        if (nameString == 'lastname') {
+                            result += lastname;
+                        } else {
+                            Integer counter = mapLastNameContacts.get(lastName).size();
+                            for (Contact con : mapLastNameContacts.get(lastName)) {
+                                result += con.get(nameString) != null ? con.get(nameString) : '';
+                                counter--;
+                                if (counter > 0) {
+                                    result += ' ' + Label.defaultNamingConnector + ' ';
                                 }
                             }
                         }else{
@@ -710,7 +709,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())){
                     Integer counter = cons.size();
                     for (Contact con : cons) {
-                        result += con.get(nameString);
+                        result += con.get(nameString) != null ? con.get(nameString) : '';
                         counter--;
                         if (counter > 0) {
                             result += Label.defaultNamingConnector + ' ';
@@ -753,13 +752,21 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void updateHHAccountsName(Set<Id> accIdsToRename) {
         list<Account> listAccsToRename = new list<Account>();
 
-        list<Account> listAcc = [SELECT Id,
-                                        RecordTypeId,
-                                        (SELECT FirstName,
-                                                LastName
-                                        FROM Contacts)
-                                FROM Account
-                                WHERE Id IN :accIdsToRename];
+        // requery to get correct Account values (and all the other fields we will look at)
+        string strSoql = 'select id, RecordTypeId, ';
+        strSoql += '(select id, AccountId,' +
+                'Account.RecordTypeID, ' +
+                'Account.Primary_Contact__c, Account.Name,' +
+                'firstname, lastname, OwnerId, Salutation,' +
+                'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' +
+                'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, ';
+
+        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
+            strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
+
+        strSoql += 'Phone, Fax from Contacts)';
+        strSoql += ' FROM Account WHERE Id IN :accIdsToRename';
+        list<Account> listAcc = database.query(strSoql);
 
         for (Account acc : listAcc) {
             acc.Name = strNameHHAccountForContact(acc.Contacts);
