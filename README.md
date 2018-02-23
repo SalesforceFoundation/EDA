@@ -11,6 +11,12 @@ You can install HEDA utilizing our custom application installer into any Develop
 * <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/hed" target="_blank">HEDA Installer</a>
 * <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/hed/beta" target="_blank">HEDA BETA Installer</a>
 
+#### Resources
+
+* <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">HEDA ApexDoc code documentation</a>
+* <a href="https://powerofus.force.com/articles/Resource/Higher-Education-Data-Architecture-HEDA-Software-Requirements-Specification" target="_blank"> HEDA Software Requirements specification</a>
+* <a href="https://salesforce.quip.com/cAJzAnydf6gp" target="_blank">HEDA Data Dictionary</a>
+
 #### For Developers
 
 The Higher Education Data Architecture is released under the open source BSD license (see link below for additional license information).  Contributions (code and otherwise) are welcome and encouraged.  You can fork this repository and deploy the unmanaged version of the code into a Salesforce org of your choice.  
@@ -35,9 +41,6 @@ sf.maxPoll = 20
 $ cd hedap
 $ ant deploy -buildfile PATH_TO_YOUR_BUILDFILE
 ```
-
-* Full ApexDoc code documentation can be found <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">here</a>.
-* Full Software Requirements specification can be found <a href="https://powerofus.force.com/articles/Resource/Higher-Education-Data-Architecture-HEDA-Software-Requirements-Specification" target="_blank"> here</a>.
 
 #### Meta
 
