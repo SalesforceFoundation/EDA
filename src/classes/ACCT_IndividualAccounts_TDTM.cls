@@ -128,8 +128,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     }
 
                     // grab the Accounts that need to have the newly assigned Contact Id added to them if:
-                    //    1. If the contact is connected to an Account
-                    if (c.AccountId != null) {
+                    //    1. If the contact is connected to an Account and the current primary contact of the account is empty
+                    if (c.AccountId != null && c.Account.Primary_Contact__c == null) {
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
                         if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
