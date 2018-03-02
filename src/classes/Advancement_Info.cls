@@ -35,29 +35,48 @@
 * @description Provides the Advancement Information to HEDA class.
 **/
 
-public class Advancement_Info {
-    public Boolean useAdv = false;
-    public Advancement_Adapter API_HEDA = null;
+public with sharing class Advancement_Info {
+    private static Boolean useAdv = false;
+    private static Advancement_Adapter apiHEDA = null;
+    private static Boolean setupCalled = false;
 
-    public Advancement_Info() {
+    private static void setup() {
         //Check if Advancement is installed and enabled.
         try {
-            List<SObject> advSettings = Database.query('select Use_Advancement__c, API_HEDA_Class__c from Advancement_Setting__mdt');
-            useAdv = (Boolean)advSettings[0].get('Use_Advancement__c');
-            String apiHedaClass = (String)advSettings[0].get('API_HEDA_Class__c');
+            //This function checks if the current user is licensed to Advancement
+            //If the Advancement is not installed, then it will throw TypeException: Package corresponding to namespace prefix not found
+            Boolean isUserLicensed = UserInfo.isCurrentUserLicensed('adv1');
+            if(isUserLicensed) {
+                List<SObject> advSettings = Database.query('select adv1__Use_Advancement__c, adv1__API_HEDA_Class__c from adv1__Advancement_Setting__mdt');
+                useAdv = (Boolean) advSettings[0].get('adv1__Use_Advancement__c');
+                String apiHedaClass = (String) advSettings[0].get('adv1__API_HEDA_Class__c');
 
-            if(String.isNotBlank(apiHedaClass)) {
-                Type classType = Type.forName(apiHedaClass);
-                if (classType != null) {
-                    Object classInstance = classType.newInstance();
-                    if (classInstance instanceof Advancement_Adapter) {
-                        API_HEDA = (Advancement_Adapter) classInstance;
+                if (String.isNotBlank(apiHedaClass)) {
+                    Type classType = Type.forName(apiHedaClass);
+                    if (classType != null) {
+                        Object classInstance = classType.newInstance();
+                        if (classInstance instanceof Advancement_Adapter) {
+                            apiHEDA = (Advancement_Adapter) classInstance;
+                        }
                     }
                 }
             }
         } catch(Exception e) {
-            // Advancement not installed. Nothing to do. If the custom setting Adv_Settings doesn't exist, we'll use
-            // HEDA's TDTM config.
+            // Advancement not installed. Nothing to do.
         }
+    }
+
+    public static Boolean useAdv() {
+        if(!setupCalled) {
+            setup();
+        }
+        return useAdv;
+    }
+
+    public static Advancement_Adapter getApiHEDA() {
+        if(!setupCalled) {
+            setup();
+        }
+        return apiHEDA;
     }
 }

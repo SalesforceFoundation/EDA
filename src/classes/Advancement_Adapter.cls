@@ -70,7 +70,7 @@ global virtual with sharing class Advancement_Adapter {
     /**
      * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
      */
-    global virtual void accountFields(Account a, String defaultRecTypeID) {
+    global virtual void configAccountForContact(Account a, String defaultRecTypeID) {
         //No Logic for HEDA
     }
 

@@ -57,17 +57,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         return OrgLanguage;
     } set; }
 
-
-    /********
-     * @description determine if Adv is installed
-     */
-    private Boolean useAdv = false;
-
-    /********
-    * @description the name of the class for dependency injection when Adv is installed
-    */
-    private Advancement_Adapter apiHEDA = null;
-
     /*******************************************************************************************************
     * @description Trigger Handler on Contact that handles account management.  Depending on the Account
     * Model, creates a Household Account, One-to-One Account, or uses the Individual Bucket Account.
@@ -100,11 +89,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         //Those two sets are used for Adv to inject the opportunity logic
         map<Id, Id> mapContactIdAccountIdOldMoveOpps = new map<Id, Id>();
         map<Id, Id> mapContactIdAccountIdNewMoveOpps = new map<Id, Id>();
-
-        //Populate the Adv related information
-        Advancement_Info adv = new Advancement_Info();
-        useAdv = adv.useAdv;
-        apiHEDA = adv.API_HEDA;
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
@@ -142,8 +126,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     }
 
                     // grab the Accounts that need to have the newly assigned Contact Id added to them if:
-                    //    1. If the contact is connected to an Account and the current primary contact of the account is empty 
-                    if (c.AccountId != null && c.Account.Primary_Contact__c == null) {
+                    //    1. If the contact is connected to an Account
+                    if (c.AccountId != null) {
                         // contacts are connected to Accounts, make the connection in the other direction
                         mapAccountIdContactId.put(c.AccountId, c.Id);
                     }
@@ -237,8 +221,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         //Inject Adv logic to handle opportunity
-        if (mapContactIdAccountIdNewMoveOpps.size() > 0 && useAdv && apiHEDA != null) {
-            apiHEDA.moveOppsToContactAccount(mapContactIdAccountIdNewMoveOpps,mapContactIdAccountIdOldMoveOpps);
+        if (mapContactIdAccountIdNewMoveOpps.size() > 0 && Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+            Advancement_Info.getApiHEDA().moveOppsToContactAccount(mapContactIdAccountIdNewMoveOpps,mapContactIdAccountIdOldMoveOpps);
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
@@ -264,8 +248,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         for (Id i : mapAccountIdContactId.keySet()) {
             Account a = new Account(Id = i, Primary_Contact__c = mapAccountIdContactId.get(i));
             //Inject the Adv logic for handling primary contact
-            if(useAdv && apiHEDA != null) {
-                apiHEDA.primaryContact(a,mapAccountIdContactId.get(i));
+            if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                Advancement_Info.getApiHEDA().primaryContact(a,mapAccountIdContactId.get(i));
             }
             listAccount.add(a);
         }
@@ -302,8 +286,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void updateParentAcc(list<Id> listAccountId, DmlWrapper dmlWrapper) {
         resetPrimaryContactForAccount(listAccountId, dmlWrapper);
         //Inject Adv logic to do the rollup for Account
-        if(useAdv && apiHEDA != null) {
-            apiHEDA.rollupAccount(listAccountId);
+        if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+            Advancement_Info.getApiHEDA().rollupAccount(listAccountId);
         }
     }
 
@@ -357,8 +341,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             if (acc.Contacts.size() > 0) {
                 acc.Primary_Contact__c = acc.contacts[0].Id;
                 //Inject Adv logic for handle primary contact
-                if(useAdv && apiHEDA != null) {
-                    apiHEDA.primaryContact(acc ,acc.contacts[0].Id);
+                if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                    Advancement_Info.getApiHEDA().primaryContact(acc ,acc.contacts[0].Id);
                 }
                 listAccToUpdate.add(acc);
             }
@@ -421,8 +405,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if (c.Id != null) {
                     a.Primary_Contact__c = c.Id;
                     //Inject Adv logic for handle primary contact
-                    if(useAdv && apiHEDA != null) {
-                        apiHEDA.primaryContact(a, c.Id);
+                    if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                        Advancement_Info.getApiHEDA().primaryContact(a, c.Id);
                     }
                 }
                 a.Phone = c.Phone;
@@ -438,8 +422,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if(defaultRecTypeID != null)
                     a.RecordTypeID = defaultRecTypeID;
 
-                if(useAdv && apiHEDA != null) {
-                    apiHEDA.accountFields(a, defaultRecTypeID);
+                if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                    Advancement_Info.getApiHEDA().configAccountForContact(a, defaultRecTypeID);
                 }
 
                 accountInserts.add(a);

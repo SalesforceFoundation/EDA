@@ -60,14 +60,11 @@ public class TDTM_Config {
             return tdtmTokensCache;
         }
 
-        Advancement_Info adv = new Advancement_Info();
-
         List<TDTM_Global_API.TdtmToken> tokens  = new List<TDTM_Global_API.TdtmToken>();
 
-        if(adv.useAdv && adv.API_HEDA  != null) {
-            //If Advancement is installed and enabled, get the TDTM configuration from there.
-            //Using Adv config
-            tokens = adv.API_HEDA.getDefaultTdtmConfigTokens();
+        if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+            //If Advancement is installed and enabled, Using Adv config
+            tokens = Advancement_Info.getApiHEDA().getDefaultTdtmConfigTokens();
 
         } else {
             List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
