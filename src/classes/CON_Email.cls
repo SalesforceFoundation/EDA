@@ -179,7 +179,7 @@ public class CON_Email {
             Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
             this.emailLabel = fieldMap.get('Email').getLabel();
             for(String fieldName : fieldMap.keySet() ) {
-                if ( fieldName != emailLabel) {
+                if ( fieldName != emailLabel ) {
                     String emailField = (String)contact.get(fieldName);
 
                     allFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
