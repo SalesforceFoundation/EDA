@@ -43,6 +43,10 @@ global virtual with sharing class Advancement_Adapter {
      * @return A list of HEDA tokens.
      */
     global virtual List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfigTokens() {
+        if(!Advancement_Info.useAdv()) {
+            throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
+        }
+
         return TDTM_Global_API.getDefaultTdtmConfig();
     }
 
@@ -50,6 +54,10 @@ global virtual with sharing class Advancement_Adapter {
     *  @description This method is used to inject the NPSP rollup logic into HEDA Trigger Handler.
     */
     global virtual void rollupAccount(list<Id> listAccountId) {
+        if(!Advancement_Info.useAdv()) {
+            throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
+        }
+
         //No logic for HEDA
     }
 
@@ -57,6 +65,10 @@ global virtual with sharing class Advancement_Adapter {
      * @description This method is used to inject the NPSP opportunity logic info HEDA Trigger Handler.
      */
     global virtual void moveOppsToContactAccount(map<Id,Id> mapContactIdAccountIdNew, map<Id,Id> mapContactIdAccountIdOld) {
+        if(!Advancement_Info.useAdv()) {
+            throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
+        }
+
         //No logic for HEDA
     }
 
@@ -64,6 +76,10 @@ global virtual with sharing class Advancement_Adapter {
      * @description This method is used to populate NPSP's primary contact field in HEDA Trigger Handler
      */
     global virtual void primaryContact(Account a, Id contactId) {
+        if(!Advancement_Info.useAdv()) {
+            throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
+        }
+
         //No Logic for HEDA
     }
 
@@ -71,7 +87,15 @@ global virtual with sharing class Advancement_Adapter {
      * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
      */
     global virtual void configAccountForContact(Account a, String defaultRecTypeID) {
+        if(!Advancement_Info.useAdv()) {
+            throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
+        }
+
         //No Logic for HEDA
     }
 
+    /**
+     * @description This is the expection class for Advancement Adapter class
+     */
+    global class AdapterException extends Exception{}
 }
