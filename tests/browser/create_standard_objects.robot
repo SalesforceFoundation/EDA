@@ -17,7 +17,7 @@ Test Create Contact
     Click Modal Button  Save
     Wait Until Loading Is Complete
     Page Should Contain  ${first_name} ${last_name}
-    Capture Page Screenshot
+    Header Field Should Have Link  Account Name
 
 *** Keywords ***
 
