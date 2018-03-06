@@ -2,7 +2,7 @@
 
 Resource  tests/HEDA.robot
 Suite Setup  Set Login Url
-#Suite Teardown  Close Browser
+Suite Teardown  Close Browser
 
 *** Test Cases ***
 
