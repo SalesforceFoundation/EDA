@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource  cumulusci/robotframework/Salesforce.robot
+Resource  tests/HEDA.robot
 Suite Setup  Set Login Url
 Suite Teardown  Close Browser
 
