@@ -4,7 +4,7 @@ Resource  cumulusci/robotframework/Salesforce.robot
 
 *** Keywords ***
 
-Create Contact
+API Create Contact
     ${first_name} =  Generate Random String
     ${last_name} =   Generate Random String
     ${contact_id} =  Salesforce Insert  Contact
@@ -13,19 +13,7 @@ Create Contact
     &{contact} =     Salesforce Get  Contact  ${contact_id}
     [return]         &{contact}
 
-Create Department
-    # Use the UI since we don't yet have easy keywords for querying record types
-    ${department_name} =  Generate Random String
-    Go To Object Home     Account
-    Click Object Button   New
-    Select Record Type    University Department
-    Populate Form         Account Name=${department_name}
-    Click Modal Button    Save
-    Wait Until Modal is Closed
-    ${department_id} =    Get Current Record Id
-    [return]              ${department_id}
-
-Create Term
+API Create Term
     [Arguments]       ${account_id}
     ${term_name} =    Generate Random String
     ${term_id} =      Salesforce Insert  Term__c
@@ -34,7 +22,7 @@ Create Term
     &{term} =         Salesforce Get  Term__c  ${term_id}
     [return]          &{term}
 
-Create Course
+API Create Course
     [Arguments]       ${account_id}
     ${course_name} =  Generate Random String
     ${course_id} =    Salesforce Insert  Course__c
@@ -43,7 +31,7 @@ Create Course
     &{course} =       Salesforce Get  Course__c  ${course_id}
     [return]          &{course}
 
-Create Course Offering
+API Create Course Offering
     [Arguments]       ${course_id}  ${term_id}
     ${offering_id} =  Salesforce Insert  Course_Offering__c
     ...                   Course__c=${course_id} 
@@ -51,12 +39,58 @@ Create Course Offering
     &{offering} =     Salesforce Get  Course_Offering__c  ${offering_id}
     [return]          &{offering}
 
-Create Course Connection
+API Create Course Enrollment
+    [Arguments]       ${contact_id}  ${offering_id}
+    ${rt_id} =        Get Record Type Id  Course_Enrollment__c  Student
+    ${enrollment_id} =  Salesforce Insert  Course_Enrollment__c
+    ...                   Contact__c=${contact_id} 
+    ...                   Course_Offering__c=${offering_id} 
+    ...                   RecordTypeId=${rt_id} 
+    &{enrollment} =   Salesforce Get  Course_Enrollment__c  ${enrollment_id}
+    [return]          &{enrollment}
+
+API Create Department
+    [Arguments]       ${record_type}=University_Department
+    ${dept_name} =    Generate Random String
+    ${rt_id} =        Get Record Type Id  Account  University_Department
+    ${dept_id} =      Salesforce Insert  Account
+    ...                   Name=${dept_name} 
+    ...                   RecordTypeId=${rt_id} 
+    &{department} =   Salesforce Get  Account  ${dept_id}
+    [return]          &{department}
+
+Create Contact
+    Go To Object Home  Contact
+    Click Object Button  New
+    Get Random Contact Info
+    Populate Form
+    ...    First Name=${first_name}
+    ...    Last Name=${last_name}
+    Click Modal Button  Save    
+    Wait Until Modal is Closed
+    ${contact_id} =  Get Current Record Id
+    Store Session Record  Contact  ${contact_id}
+    [return]  ${contact_id}
+
+Create Course Enrollment
     [Arguments]       ${contact_id}  ${offering_name}
     Go To Record Home          ${contact_id}
     Click Related List Button  Course Connections  New
     Select Record Type         Student
-    Populate Field             Course Offering ID  ${offering_name}
+    Populate Lookup Field      Course Offering ID  ${offering_name}
     Click Link                 ${offering_name}
     Click Modal Button         Save
     Wait Until Modal Is Closed
+
+Create Department
+    ${department_name} =  Generate Random String
+    Go To Object Home     Account
+    Click Object Button   New
+    Select Record Type    University Department
+    Populate Form         Account Name=${department_name}
+    Click Modal Button    Save
+    Wait Until Modal is Closed
+    ${department_id} =    Get Current Record Id
+    Store Session Record  Account  ${department_id}
+    [return]              ${department_id}
+

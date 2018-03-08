@@ -1,21 +1,35 @@
 *** Settings ***
 
-Resource  tests/HEDA.robot
-Suite Setup  Set Login Url
-Suite Teardown  Close Browser
+Resource        tests/HEDA.robot
+Suite Setup     Open Test Browser
+Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Create Course Connection
+Enroll via UI
     Open Test Browser
-    &{contact} =        Create Contact
-    ${department_id} =  Create Department
-    &{term} =           Create Term             ${department_id}
-    &{course} =         Create Course           ${department_id}
-    &{offering} =       Create Course Offering  &{course}[Id]  &{term}[Id]
+    &{contact} =        API Create Contact
+    &{department} =     API Create Department
+    &{term} =           API Create Term             &{department}[Id]
+    &{course} =         API Create Course           &{department}[Id]
+    &{offering} =       API Create Course Offering  &{course}[Id]  &{term}[Id]
     
-    Create Course Connection   &{contact}[Id]  &{offering}[Name]
+    Create Course Enrollment   &{contact}[Id]  &{offering}[Name]
 
     Go To Record Home          &{contact}[Id]
     ${count} =                 Get Related List Count  Course Connections
     Should Be Equal            ${count}  ${1}
+
+Enroll via API
+    Open Test Browser
+    &{contact} =        API Create Contact
+    &{department} =     API Create Department
+    &{term} =           API Create Term             &{department}[Id]
+    &{course} =         API Create Course           &{department}[Id]
+    &{offering} =       API Create Course Offering  &{course}[Id]  &{term}[Id]
+    
+    API Create Course Enrollment   &{contact}[Id]  &{offering}[Name]
+
+    Go To Record Home   &{contact}[Id]
+    ${count} =          Get Related List Count  Course Connections
+    Should Be Equal     ${count}  ${1}
