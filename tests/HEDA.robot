@@ -60,27 +60,33 @@ API Create Department
     [return]          &{department}
 
 Create Contact
-    Go To Object Home  Contact
-    Click Object Button  New
-    Get Random Contact Info
+    Go To Object Home         Contact
+    Sleep                     5
+    Click Object Button       New
+    ${first_name} =           Generate Random String
+    ${last_name} =            Generate Random String
     Populate Form
-    ...    First Name=${first_name}
-    ...    Last Name=${last_name}
-    Click Modal Button  Save    
-    Wait Until Modal is Closed
-    ${contact_id} =  Get Current Record Id
-    Store Session Record  Contact  ${contact_id}
-    [return]  ${contact_id}
+    ...                       First Name=${first_name}
+    ...                       Last Name=${last_name}
+    Click Modal Button        Save    
+    Wait Until Modal Is Closed
+    ${contact_id} =           Get Current Record Id
+    Store Session Record      Contact  ${contact_id}
+    [return]                  ${contact_id}
 
 Create Course Enrollment
-    [Arguments]       ${contact_id}  ${offering_name}
+    [Arguments]                ${contact_id}  ${offering_name}
     Go To Record Home          ${contact_id}
     Click Related List Button  Course Connections  New
     Select Record Type         Student
     Populate Lookup Field      Course Offering ID  ${offering_name}
-    Click Link                 ${offering_name}
     Click Modal Button         Save
     Wait Until Modal Is Closed
+    @{records} =               Salesforce Query  Course_Enrollment__c
+    ...                            Contact__c=${contact_id}
+    ...                            Course_Offering__r.Name=${offering_name}
+    &{enrollment} =            Get From List  ${records}  0
+    Store Session Record       Course_Enrollment__c  &{enrollment}[Id]
 
 Create Department
     ${department_name} =  Generate Random String
@@ -89,7 +95,7 @@ Create Department
     Select Record Type    University Department
     Populate Form         Account Name=${department_name}
     Click Modal Button    Save
-    Wait Until Modal is Closed
+    Wait Until Modal Is Closed
     ${department_id} =    Get Current Record Id
     Store Session Record  Account  ${department_id}
     [return]              ${department_id}
