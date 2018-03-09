@@ -59,6 +59,16 @@ API Create Department
     &{department} =   Salesforce Get  Account  ${dept_id}
     [return]          &{department}
 
+API Create Program
+    [Arguments]       ${record_type}=Academic_Program
+    ${prog_name} =    Generate Random String
+    ${rt_id} =        Get Record Type Id  Account  Academic_Program
+    ${prog_id} =      Salesforce Insert  Account
+    ...                   Name=${prog_name}
+    ...                   RecordTypeId=${rt_id}
+    &{program} =      Salesforce Get  Account  ${prog_id}
+    [return]          &{program}
+
 Create Contact
     Go To Object Home  Contact
     Click Object Button  New
@@ -94,3 +104,14 @@ Create Department
     Store Session Record  Account  ${department_id}
     [return]              ${department_id}
 
+Create Program
+    ${program_name} =     Generate Random String
+    Go To Object Home     Account
+    Click Object Button   New
+    Select Record Type    Academic Program
+    Populate Form         Account Name =${program_name}
+    Click Modal Button    Save
+    Wait Until Modal is Closed
+    ${program_id} =       Get Current Record Id
+    Store Session Record  Account  ${program_id}
+    [return]              ${program_id}
