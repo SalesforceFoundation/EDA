@@ -14,7 +14,7 @@ Enroll via API
     &{course} =         API Create Course           &{department}[Id]
     &{offering} =       API Create Course Offering  &{course}[Id]  &{term}[Id]
     
-    API Create Course Enrollment   &{contact}[Id]  &{offering}[Name]
+    API Create Course Enrollment   &{contact}[Id]  &{offering}[Id]
     Validate Contact in UI         &{contact}[Id]
 
 
