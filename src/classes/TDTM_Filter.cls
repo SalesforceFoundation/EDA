@@ -430,11 +430,11 @@ public class TDTM_Filter {
     */
     private void filterByCondition(List<SObject> newListRelatedFields, List<SObject> oldListRelatedFields) {
         if(filterObjectChain.size() == 0) { //The field in in the same object the trigger fires on
-	    	filterList(newList, filtered.newList);
-			filterList(oldList, filtered.oldList);	
+            filterList(newList, newList, filtered.newList);
+            filterList(oldList, newList, filtered.oldList);
         } else { //The field is in a related object
             filterListByRelatedField(newListRelatedFields, newList, filtered.newList);
-            filterListByRelatedField(oldListRelatedFields, oldList, filtered.oldList);
+            filterListByRelatedField(newListRelatedFields, oldList, filtered.oldList);
         }
     }
     
@@ -494,7 +494,6 @@ public class TDTM_Filter {
     private void filterList(List<SObject> listToFilter, List<SObject> filteredList) {
         if(listToFilter != null && listToFilter.size() > 0) {
             for(SObject o : listToFilter) {
-                if(o.get(fieldName) != filterValue) {
                     filteredList.add(o);
                 }
             }
