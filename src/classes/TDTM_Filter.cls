@@ -491,10 +491,11 @@ public class TDTM_Filter {
     * @param filteredList The resulting filtered list.
     * @return void 
     */
-    private void filterList(List<SObject> listToFilter, List<SObject> filteredList) {
+    private void filterList(List<SObject> listToFilter, List<SObject> newList, List<SObject> filteredList) {
         if(listToFilter != null && listToFilter.size() > 0) {
-            for(SObject o : listToFilter) {
-                    filteredList.add(o);
+            for(integer i=0; i<listToFilter.size();i++) {
+                if(newList[i].get(fieldName) != filterValue) {
+                    filteredList.add(listToFilter[i]);
                 }
             }
         } 
