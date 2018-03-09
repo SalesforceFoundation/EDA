@@ -115,7 +115,7 @@ Create Program
     Go To Object Home     Account
     Click Object Button   New
     Select Record Type    Academic Program
-    Populate Form         Account Name =${program_name}
+    Populate Form         Account Name=${program_name}
     Click Modal Button    Save
     Wait Until Modal is Closed
     ${program_id} =       Get Current Record Id
