@@ -419,21 +419,21 @@ public class TDTM_Filter {
         }
         return null;
     }
-    
+
     /*******************************************************************************************************
     * @description Filters newList and oldList based on the defined filtering criteria. 
     * @param newListRelatedFields A list of records pointing to the same records that are present in newList, 
     * but containing only the fields defined in the query condition. In the same order as newList.
-    * @param oldListRelatedFields A list of records pointing to the same records that are present in oldList, 
-    * but containing only the fields defined in the query condition. In the same order as newList.
     * @return void 
     */
-    private void filterByCondition(List<SObject> newListRelatedFields, List<SObject> oldListRelatedFields) {
+    private void filterByCondition(List<SObject> newListRelatedFields) {
         if(filterObjectChain.size() == 0) { //The field in in the same object the trigger fires on
+            //Only need newList to decide if a record meets trigger handler filter value
             filterList(newList, newList, filtered.newList);
             filterList(oldList, newList, filtered.oldList);
         } else { //The field is in a related object
             filterListByRelatedField(newListRelatedFields, newList, filtered.newList);
+            //Only need newListRelatedFields to decide if a record meets trigger handler filter value
             filterListByRelatedField(newListRelatedFields, oldList, filtered.oldList);
         }
     }
