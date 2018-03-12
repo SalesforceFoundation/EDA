@@ -2178,7 +2178,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         Test.stopTest();
 
         // verify results
-        Account acc = [select Id, Name, BillingStreet from Account where Name like '%Testy%'];
+        Account acc = [select Id, Name, BillingStreet from Account where Name like '%Household%'];
         UTIL_Debug.debug('****Parent account: ' + JSON.serializePretty(acc));
         System.assertNotEquals(null, acc);
         List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c from Address__c];
