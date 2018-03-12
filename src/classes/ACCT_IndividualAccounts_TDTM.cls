@@ -131,7 +131,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     //    1. If the contact is connected to an Account
                     if (c.AccountId != null) {
                         // contacts are connected to Accounts, make the connection in the other direction
-                        mapAccountIdContactId.put(c.AccountId, c.Id);
+                        if(c.Account.Primary_Contact__c == null) {
+                            mapAccountIdContactId.put(c.AccountId, c.Id);
+                        }
                         if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                                 && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false)
                         {
