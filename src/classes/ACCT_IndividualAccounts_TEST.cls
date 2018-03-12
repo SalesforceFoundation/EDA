@@ -651,7 +651,8 @@ private class ACCT_IndividualAccounts_TEST {
         update con2;
         Test.stopTest();
 
-        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account];
+        //After remove the Account lookup for con2, system will create a new Account for con2. So, we need to query the Account of con in order to verify the Account Name.
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account where Id =: assertAccount.Id];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
     }
