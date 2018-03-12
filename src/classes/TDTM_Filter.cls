@@ -129,7 +129,6 @@ public class TDTM_Filter {
     */
     private void filterByRelationship() {        
         List<SObject> newListRelatedFields = queryRelatedFields(newList);
-        List<SObject> oldListRelatedFields = queryRelatedFields(oldList);
         
         List<String> filterFullChain = (filterField.split('\\.', 0)); //separate cross object references, i.e. account.name   
         fieldName = filterFullChain[filterFullChain.size() - 1]; //get the field name itself
@@ -151,7 +150,7 @@ public class TDTM_Filter {
         if(field != null) { //the field name is valid for the object at the top of the chain!
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
-            filterByCondition(newListRelatedFields, oldListRelatedFields);
+            filterByCondition(newListRelatedFields);
         } else {
             addErrorToAll();
         }       
@@ -388,7 +387,7 @@ public class TDTM_Filter {
         if(field != null) { //the field name is valid!
             filterValue = getFilter(field);
             UTIL_Debug.debug('****Filter value: ' + filterValue);
-            filterByCondition(null, null);
+            filterByCondition(null);
         } else {
             addErrorToAll();
         }
@@ -488,6 +487,7 @@ public class TDTM_Filter {
     * @description Populates filteredList with the records from listToFilter that don't match the filtering
     * criteria.
     * @param listToFilter The list of records to filter.
+    * @param newList The list of new records to compare with filter value.
     * @param filteredList The resulting filtered list.
     * @return void 
     */
