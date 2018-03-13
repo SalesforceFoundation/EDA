@@ -53,7 +53,7 @@ global virtual with sharing class Advancement_Adapter {
     /**
     *  @description This method is used to inject the NPSP rollup logic into HEDA Trigger Handler.
     */
-    global virtual void rollupAccount(list<Id> listAccountId) {
+    global virtual void rollupAccount(List<Id> listAccountId) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
         }
@@ -64,7 +64,7 @@ global virtual with sharing class Advancement_Adapter {
     /**
      * @description This method is used to inject the NPSP opportunity logic info HEDA Trigger Handler.
      */
-    global virtual void moveOppsToContactAccount(map<Id,Id> mapContactIdAccountIdNew, map<Id,Id> mapContactIdAccountIdOld) {
+    global virtual void moveOppsToContactAccount(Map<Id,Id> mapContactIdAccountIdNew, Map<Id,Id> mapContactIdAccountIdOld) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
         }
@@ -86,7 +86,7 @@ global virtual with sharing class Advancement_Adapter {
     /**
      * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
      */
-    global virtual void configAccountForContact(Account a, String defaultRecTypeID) {
+    global virtual void configAccountForContact(Account a) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException('Invalid call. This function is reserved for Salesforce use.');
         }

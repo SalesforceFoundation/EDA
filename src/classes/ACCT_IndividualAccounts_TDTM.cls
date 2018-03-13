@@ -461,7 +461,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     a.RecordTypeID = defaultRecTypeID;
 
                 if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-                    Advancement_Info.getApiHEDA().configAccountForContact(a, defaultRecTypeID);
+                    Advancement_Info.getApiHEDA().configAccountForContact(a);
                 }
 
                 accountInserts.add(a);
