@@ -64,6 +64,8 @@ public with sharing class Advancement_Info {
         } catch(Exception e) {
             // Advancement not installed. Nothing to do.
         }
+
+        setupCalled = true;
     }
 
     public static Boolean useAdv() {
