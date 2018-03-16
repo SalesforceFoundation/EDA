@@ -178,8 +178,19 @@ public class CON_Email {
             this.valuedFields = new List<CON_EmailField>();
             Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
             this.emailLabel = fieldMap.get('Email').getLabel();
+
+            Map<String, String> hedaEmailField = new Map<String, String>();
+            //build map for HEDA email field map (Label, API Name)
             for(String fieldName : fieldMap.keySet() ) {
-                if ( fieldName != emailLabel ) {
+                if(String.isNotBlank(UTIL_Namespace.getNamespace()) && fieldName.startsWithIgnoreCase(UTIL_Namespace.getNamespace())) {
+                    hedaEmailField.put(fieldMap.get(fieldName).getLabel(), fieldName);
+                }
+            }
+
+            for(String fieldName : fieldMap.keySet() ) {
+                //If the field is not a standard email field and it is not duplicate with HEDA email, then add it to the list
+                if ( fieldName != emailLabel && !(hedaEmailField.get(fieldMap.get(fieldName).getLabel()) != null &&
+                                fieldName != hedaEmailField.get(fieldMap.get(fieldName).getLabel()))) {
                     String emailField = (String)contact.get(fieldName);
 
                     allFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
