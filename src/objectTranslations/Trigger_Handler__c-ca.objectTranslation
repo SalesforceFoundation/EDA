@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Trigger Handler --></value>
+        <value>Gestor de disparador</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Trigger Handler --></value>
+        <value>Gestors de disparadors</value>
     </caseValues>
     <fields>
         <help>Indica que aquest mòdul està actiu</help>
@@ -90,7 +90,7 @@
         <label><!-- Usernames to Exclude --></label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
+    <gender>Masculine</gender>
     <layouts>
         <layout>HEDA Trigger Handler Layout</layout>
         <sections>
@@ -98,6 +98,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Trigger Handler Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>Nom del gestor de disparador</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

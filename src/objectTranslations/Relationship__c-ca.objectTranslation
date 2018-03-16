@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Relationship --></value>
+        <value>Relació</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Relationship --></value>
+        <value>Relacions</value>
     </caseValues>
     <fields>
         <help>El contacte relacionat és ______ d&apos;aquest contacte.</help>
@@ -155,7 +155,7 @@
             <translation>Dona</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Relationship Layout</layout>
         <sections>
@@ -167,8 +167,8 @@
             <section>Relationship Information</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Relationship Key --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>Clau de relació</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage>En lloc de canviar els contactes en una relació existent, elimineu aquesta relació i creeu-ne un d&apos;entre els nous contactes</errorMessage>
         <name>Related_Contact_Do_Not_Change</name>

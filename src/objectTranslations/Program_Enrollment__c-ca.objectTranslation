@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Program Enrollment --></value>
+        <value>Inscripció al programa</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Program Enrollment --></value>
+        <value>Inscripcions al programa</value>
     </caseValues>
     <fields>
         <help>El programa al qual està inscrit l&apos;estudiant.</help>
@@ -98,7 +98,7 @@
         <label>Data d&apos;inici</label>
         <name>Start_Date__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Program Enrollment Layout</layout>
         <sections>
@@ -106,6 +106,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Program Enrollment ID --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>ID d&apos;inscripció del programa</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

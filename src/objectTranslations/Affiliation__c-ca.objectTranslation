@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Affiliation --></value>
+        <value>Afiliació</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Affiliation --></value>
+        <value>Afiliacions</value>
     </caseValues>
     <fields>
         <label>Organització</label>
@@ -75,7 +75,7 @@
             <translation>Antic</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Feminine --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Affiliation Layout</layout>
         <sections>
@@ -87,6 +87,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Affiliation Key --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>Clau d&apos;afiliació</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

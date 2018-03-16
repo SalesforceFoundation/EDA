@@ -1,5 +1,927 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contacte</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Contactes</value>
+    </caseValues>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Adreça</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>address_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Assistent</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>assistant_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Telèfon d&apos;Assistent</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>asst_phone_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Adreça de facturació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>billing_address_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Data de naixement</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>birthdate_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ciutat</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>city_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat de neteja</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>cleanstatus_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Accés de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_access</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nivell d&apos;accés de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_access_level</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Compte de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Divisa de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_currency</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Descripció de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_description</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Divisió de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_division</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Modificació de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_edit</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Correu electrònic de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_email</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Fax de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_fax</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Camp de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Campos de contactes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_field</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Historial de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_history</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informe d&apos;historial de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_history_report</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informació de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_information</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Mòbil de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_mobile</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Noms de contactes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_name</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nota de contacte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_note</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nombre de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_number</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Propietari de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_owner</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Àlies de propietari de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_owner_alias</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Telèfon de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_phone</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Registre de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Registres de contactes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_record</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Tipus de registre de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Tipus de registres de contactes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_record_type</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Contacte de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_reports_to</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Funció de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Funcions de contactes</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_role</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de Funció de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_role_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informe de funció de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Informes de funcions de contactes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_role_report</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de Etapa de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_stage_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat de contacte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_status</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Tipus de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Tipus de contactes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>contact_type</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Vista de contacte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Vistas de contactes</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>contact_view</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>País</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>country_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Clau de Data.com</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>datadotcom_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Departament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>department_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Descripció</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>description_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>No cridar</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>do_not_call_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Correu electrònic</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>email_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Anul·lació de subscripció de correu electrònic</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>email_opt_out_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Anul·lació de subscripció de fax</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>fax_opt_out_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de pila</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>first_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de pila (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>first_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Part global</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>global_party_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Telèfon domèstic</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>home_phone_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom informal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>informal_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom informal (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>informal_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Cognom</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>last_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Cognom (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>last_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Precisió de geocodi postal</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>mailing_accuracy_geocode_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Adreça postal</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>mailing_address_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ciutat postal</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>mailing_city_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi de país postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mailing_country_code_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>País postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mailing_country_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Latitud postal</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>mailing_latitude_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Longitud postal</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>mailing_longitude_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi d&apos;estat/província postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mailing_state_code_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat/Província postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mailing_state_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Carrer postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mailing_street_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mailing_zip_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Segon nom</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>middle_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Segon nom (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>middle_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Mòbil</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>mobile_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Sufix</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>name_suffix_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Una altra precisió de geocodi</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>other_accuracy_geocode_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Una altra adreça</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>other_address_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Una altra ciutat</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>other_city_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre codi de país</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_country_code_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre país</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_country_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Una altra latitud</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>other_latitude_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Una altra longitud</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>other_longitude_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre telèfon</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_phone_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre codi d&apos;estat/província</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_state_code_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre estat/província</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_state_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre carrer</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_street_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Un altre codi postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>other_zip_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Telèfon</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>phone_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de pila de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_first_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de pila de supervisor (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_first_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom informal de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_informal_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom informal de supervisor (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_informal_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Cognom de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_last_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Cognom de supervisor (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_last_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Segon nom de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_middle_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Segon nom de supervisor (Local)</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_middle_name_local_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_name_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Sufix de supervisor</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>reports_to_suffix_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Salutació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>salutation_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>state_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Càrrec (Job position) / Títol</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>title_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>zip_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
     <fields>
         <help>El correu electrònic alternatiu és un quart correu electrònic opcional: no és un correu electrònic personal, preferit ni de treball.</help>
         <label>Correu electrònic alternatiu</label>
@@ -3633,6 +4555,7 @@
         <label>No actualitzis automàticament</label>
         <name>is_Address_Override__c</name>
     </fields>
+    <gender>Masculine</gender>
     <layouts>
         <layout>HEDA Contact Layout</layout>
         <sections>
@@ -3652,4 +4575,5 @@
             <section>Primary Affiliations</section>
         </sections>
     </layouts>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

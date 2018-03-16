@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Course --></value>
+        <value>Curs</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Course --></value>
+        <value>Cursos</value>
     </caseValues>
     <fields>
         <label>Departament</label>
@@ -29,7 +29,7 @@
         <label>Descripció ampliada</label>
         <name>Extended_Description__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
+    <gender>Masculine</gender>
     <layouts>
         <layout>HEDA Course Layout</layout>
         <sections>
@@ -37,6 +37,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Course Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>Nom del curs</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
