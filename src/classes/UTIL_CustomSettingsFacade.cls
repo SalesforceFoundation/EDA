@@ -96,7 +96,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 		hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();
 		hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
-        hs.Error_Notifications_On__c = true;
+        hs.Error_Notifications_On__c = false;
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
         hs.Disable_Error_Handling__c = false;
         hs.Enable_Debug__c = false;
