@@ -84,4 +84,11 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
 
         System.assertEquals(1, settings.size());
     }
+
+    @isTest
+    public static void getOrgSettings() {
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getOrgSettings();
+
+        System.assertEquals(false, hs.Error_Notifications_On__c);
+    }
 }
