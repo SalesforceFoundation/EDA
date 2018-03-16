@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Term --></value>
+        <value>Durée</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Term --></value>
+        <value>Durées</value>
     </caseValues>
     <fields>
         <label>Compte</label>
@@ -21,7 +21,7 @@
         <label>Date de début</label>
         <name>Start_Date__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Term Layout</layout>
         <sections>
@@ -29,6 +29,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Term Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>Nom de la durée</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

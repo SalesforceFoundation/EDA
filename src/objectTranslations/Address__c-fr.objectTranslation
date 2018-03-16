@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Address --></value>
+        <value>Adresse</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Address --></value>
+        <value>Adresses</value>
     </caseValues>
     <fields>
         <label>Type d’adresse</label>
@@ -466,7 +466,7 @@
         <label>Année de début de saison</label>
         <name>Seasonal_Start_Year__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Address Layout</layout>
         <sections>
@@ -475,5 +475,5 @@
         </sections>
     </layouts>
     <nameFieldLabel><!-- Address ID --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

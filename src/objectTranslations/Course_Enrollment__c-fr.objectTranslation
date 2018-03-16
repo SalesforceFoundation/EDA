@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Course Connection --></value>
+        <value>Connexion au cours</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Course Connection --></value>
+        <value>Connexions aux cours</value>
     </caseValues>
     <fields>
         <help>Le programme académique auquel l&apos;étudiant est inscrit.</help>
@@ -67,7 +67,7 @@
             <translation>Ancien</translation>
         </picklistValues>
     </fields>
-    <gender><!-- Masculine --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>HEDA Course Enrollment Layout</layout>
         <sections>
@@ -88,5 +88,5 @@
         <label>Étudiant</label>
         <name>Student</name>
     </recordTypes>
-    <startsWith><!-- Consonant --></startsWith>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Trigger Handler --></value>
+        <value>Gestionnaire de déclencheur</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Trigger Handler --></value>
+        <value>Gestionnaires de déclencheurs</value>
     </caseValues>
     <fields>
         <help>Indique que ce module est actif</help>
@@ -90,7 +90,7 @@
         <label><!-- Usernames to Exclude --></label>
         <name>Usernames_to_Exclude__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
+    <gender>Masculine</gender>
     <layouts>
         <layout>HEDA Trigger Handler Layout</layout>
         <sections>
@@ -98,6 +98,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Trigger Handler Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel>Nom du gestionnaire de déclencheur</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
