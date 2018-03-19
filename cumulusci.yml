@@ -14,7 +14,7 @@ project:
         branch: gh-pages
         repo_dir: ApexDocumentation
     dependencies:
-        github: https://github.com/SalesforceFoundation/Cumulus
+        - github: https://github.com/SalesforceFoundation/Cumulus
 
 tasks:
     deploy_dev_config:
