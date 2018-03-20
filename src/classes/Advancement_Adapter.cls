@@ -38,10 +38,10 @@
 global virtual with sharing class Advancement_Adapter {
 
     /*******************************************************************************************************
-     * @description To be called by the HEDA TDTM trigger dispatcher.
-     * It returns the HEDA TDTM tokens with the new one from Adv
-     * @return List<TDTM_Global_API.TdtmToken> A list of HEDA tokens.
-     */
+    * @description To be called by the HEDA TDTM trigger dispatcher.
+    * It returns the HEDA TDTM tokens with the new one from Adv
+    * @return List<TDTM_Global_API.TdtmToken> A list of HEDA tokens.
+    */
     global virtual List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfigTokens() {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException(Label.adapterException);
@@ -51,9 +51,9 @@ global virtual with sharing class Advancement_Adapter {
     }
 
     /*******************************************************************************************************
-    *  @description This method is used to inject the NPSP rollup logic into HEDA Trigger Handler.
-    *  @param listAccountId The list of Account (Id's) that need updating.
-    *  @return void
+    * @description This method is used to inject the NPSP rollup logic into HEDA Trigger Handler.
+    * @param listAccountId The list of Account (Id's) that need updating.
+    * @return void
     */
     global virtual void rollupAccount(List<Id> listAccountId) {
         if(!Advancement_Info.useAdv()) {
@@ -64,11 +64,11 @@ global virtual with sharing class Advancement_Adapter {
     }
 
     /*******************************************************************************************************
-     * @description This method is used to inject the NPSP opportunity logic info HEDA Trigger Handler.
-     * @param mapContactIdAccountIdNew  A map of Contact Id to Account Id, for the Accounts to move opps to
-     * @param mapContactIdAccountIdOld A map of Contact Id to Account Id, for the Accounts to move opps from
-     * @return void
-     */
+    * @description This method is used to inject the NPSP opportunity logic info HEDA Trigger Handler.
+    * @param mapContactIdAccountIdNew  A map of Contact Id to Account Id, for the Accounts to move opps to
+    * @param mapContactIdAccountIdOld A map of Contact Id to Account Id, for the Accounts to move opps from
+    * @return void
+    */
     global virtual void moveOppsToContactAccount(Map<Id,Id> mapContactIdAccountIdNew, Map<Id,Id> mapContactIdAccountIdOld) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException(Label.adapterException);
@@ -78,11 +78,11 @@ global virtual with sharing class Advancement_Adapter {
     }
 
     /*******************************************************************************************************
-     * @description This method is used to populate NPSP's primary contact field in HEDA Trigger Handler
-     * @param a The Account that need updating.
-     * @param contactId The id of the primary contact
-     * @return void
-     */
+    * @description This method is used to populate NPSP's primary contact field in HEDA Trigger Handler
+    * @param a The Account that need updating.
+    * @param contactId The id of the primary contact
+    * @return void
+    */
     global virtual void primaryContact(Account a, Id contactId) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException(Label.adapterException);
@@ -92,10 +92,10 @@ global virtual with sharing class Advancement_Adapter {
     }
 
     /*******************************************************************************************************
-     * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
-     * @param a The Account that need updating.
-     * @return void
-     */
+    * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
+    * @param a The Account that need updating.
+    * @return void
+    */
     global virtual void configAccountForContact(Account a) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException(Label.adapterException);
@@ -105,7 +105,7 @@ global virtual with sharing class Advancement_Adapter {
     }
 
     /*******************************************************************************************************
-     * @description This is the expection class for Advancement Adapter class
-     */
+    * @description This is the expection class for Advancement Adapter class
+    */
     global class AdapterException extends Exception{}
 }
