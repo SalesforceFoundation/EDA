@@ -254,9 +254,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             updateAdminAccountsName(listContactsChangedLastName, dmlWrapper);
         }
 
-        //Inject Adv logic to handle opportunity
+        //Inject Adv logic to handle moving opportunity
         if (mapContactIdAccountIdNewMoveOpps.size() > 0 && Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-            Advancement_Info.getApiHEDA().moveOppsToContactAccount(mapContactIdAccountIdNewMoveOpps,mapContactIdAccountIdOldMoveOpps);
+            Advancement_Info.getApiHEDA().moveOppsToContactAccount(mapContactIdAccountIdNewMoveOpps, mapContactIdAccountIdOldMoveOpps);
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
@@ -285,9 +285,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Account> listAccount = new List<Account>();
         for (Id i : mapAccountIdContactId.keySet()) {
             Account a = new Account(Id = i, Primary_Contact__c = mapAccountIdContactId.get(i));
-            //Inject the Adv logic for handling primary contact
+            //Inject the Adv logic to handle npsp primary contact of the Account
             if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-                Advancement_Info.getApiHEDA().primaryContact(a,mapAccountIdContactId.get(i));
+                Advancement_Info.getApiHEDA().primaryContact(a, mapAccountIdContactId.get(i));
             }
             listAccount.add(a);
         }
@@ -378,9 +378,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         for (Account acc : listAccount) {
             if (acc.Contacts.size() > 0) {
                 acc.Primary_Contact__c = acc.contacts[0].Id;
-                //Inject Adv logic for handle primary contact
+                //Inject Adv logic to handle npsp primary contact of the Account
                 if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-                    Advancement_Info.getApiHEDA().primaryContact(acc ,acc.contacts[0].Id);
+                    Advancement_Info.getApiHEDA().primaryContact(acc, acc.contacts[0].Id);
                 }
                 listAccToUpdate.add(acc);
             }
@@ -442,7 +442,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 //connect the Account to the Contact for HHAccount
                 if (c.Id != null) {
                     a.Primary_Contact__c = c.Id;
-                    //Inject Adv logic for handle primary contact
+                    //Inject Adv logic to handle npsp primary contact of the Account
                     if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                         Advancement_Info.getApiHEDA().primaryContact(a, c.Id);
                     }
@@ -460,6 +460,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if(defaultRecTypeID != null)
                     a.RecordTypeID = defaultRecTypeID;
 
+                //Inject Adv logic to populate npsp Account fields of the Contact
                 if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                     Advancement_Info.getApiHEDA().configAccountForContact(a);
                 }
