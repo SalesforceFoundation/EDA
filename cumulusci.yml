@@ -154,6 +154,12 @@ flows:
                     namespaced_org: True
                     skip_record_types: True
 
+    ci_release:
+        tasks:
+            5:
+                options:
+                    managed: True  
+
     dev_org:
         tasks:
             8:
