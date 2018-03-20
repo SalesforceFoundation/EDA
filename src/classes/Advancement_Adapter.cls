@@ -52,7 +52,7 @@ global virtual with sharing class Advancement_Adapter {
 
     /*******************************************************************************************************
     *  @description This method is used to inject the NPSP rollup logic into HEDA Trigger Handler.
-    *  @param listAccountId A list of Account Id what needs rollup.
+    *  @param listAccountId The list of Account (Id's) that need updating.
     *  @return void
     */
     global virtual void rollupAccount(List<Id> listAccountId) {
@@ -79,7 +79,7 @@ global virtual with sharing class Advancement_Adapter {
 
     /*******************************************************************************************************
      * @description This method is used to populate NPSP's primary contact field in HEDA Trigger Handler
-     * @param a The Account for us to set the primary contact
+     * @param a The Account that need updating.
      * @param contactId The id of the primary contact
      * @return void
      */
@@ -93,7 +93,7 @@ global virtual with sharing class Advancement_Adapter {
 
     /*******************************************************************************************************
      * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
-     * @param a The Account for us to populate the system fields
+     * @param a The Account that need updating.
      * @return void
      */
     global virtual void configAccountForContact(Account a) {
