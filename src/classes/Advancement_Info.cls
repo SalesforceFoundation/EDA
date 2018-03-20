@@ -37,8 +37,8 @@
 
 public with sharing class Advancement_Info {
     /*******************************************************************************************************
-    * @description  The boolean value to determine if Adv project is installed.
-    */
+     * @description  The boolean value to determine if Adv project is installed.
+     */
     private static Boolean useAdv = false;
 
     /*******************************************************************************************************
