@@ -638,4 +638,81 @@ public with sharing class TDTM_Filter_TEST {
         Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
         System.assertEquals(2, rels.size());     
     }
+
+    /*********************************************************************************************************
+    * @description Update a contact to meet currency trigger handler filter. Make sure trigger does not run.
+    */
+    @isTest
+    public static void filterCurrencyField() {
+        List<TDTM_Global_API.TdtmToken> tokens = setup();
+        //Creating filter condition.
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'CON_DoNotContact_TDTM') {
+                token.filterField = 'Account.AnnualRevenue';
+                token.filterValue = '25';
+            }
+        }
+        TDTM_Global_API.setTdtmConfig(tokens);
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        insert testContact;
+
+        //Use account because contact has no corrency/number field
+        Account testAccount = [SELECT Id FROM Account LIMIT 1];
+        testAccount.AnnualRevenue = 25;
+        update testAccount;
+
+        Test.startTest();
+        testContact.Deceased__c = true;
+        update testContact;
+        Test.stopTest();
+
+
+        Contact assertContact = [SELECT Id,
+                                        Exclude_from_Household_Name__c,
+                                        Do_Not_Contact__c
+                                FROM Contact WHERE Id = :testContact.Id];
+        system.assertEquals(false, assertContact.Exclude_from_Household_Name__c);
+        system.assertEquals(false, testContact.Do_Not_Contact__c);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Update a contact to meet number trigger handler filter. Make sure trigger does not run.
+    */
+    @isTest
+    public static void filterNumberField() {
+        List<TDTM_Global_API.TdtmToken> tokens = setup();
+        //Creating filter condition.
+        for(TDTM_Global_API.TdtmToken token : tokens) {
+            if(token.className == 'CON_DoNotContact_TDTM') {
+                token.filterField = 'Account.NumberOfEmployees';
+                token.filterValue = '25';
+            }
+        }
+        TDTM_Global_API.setTdtmConfig(tokens);
+
+        Contact testContact = UTIL_UnitTestData_TEST.getContact();
+        insert testContact;
+
+        //Use account because contact has no corrency/number field
+        Account testAccount = [SELECT Id FROM Account LIMIT 1];
+        testAccount.NumberOfEmployees = 25;
+        update testAccount;
+
+        Test.startTest();
+        testContact.Deceased__c = true;
+        update testContact;
+        Test.stopTest();
+
+
+        Contact assertContact = [SELECT Id,
+                Exclude_from_Household_Name__c,
+                Do_Not_Contact__c
+        FROM Contact WHERE Id = :testContact.Id];
+        system.assertEquals(false, assertContact.Exclude_from_Household_Name__c);
+        system.assertEquals(false, testContact.Do_Not_Contact__c);
+
+    }
+
 }
