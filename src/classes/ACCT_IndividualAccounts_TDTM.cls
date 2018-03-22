@@ -384,7 +384,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     acc.Primary_Contact__c = acc.contacts[0].Id;
                     //Inject Adv logic to handle npsp primary contact of the Account
                 	if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-                    Advancement_Info.getApiHEDA().primaryContact(acc, acc.contacts[0].Id);
+                        Advancement_Info.getApiHEDA().primaryContact(acc, acc.contacts[0].Id);
+                    }
                 } else {
                     //if no child contact exists, clear up primary contact
                     acc.Primary_Contact__c = null;
