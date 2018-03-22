@@ -413,6 +413,14 @@ public class TDTM_Filter {
             return Date.parse(val);
         } else if(fieldType == DisplayType.Reference) {
             return ID.valueOf(val);
+        } else if(fieldType == DisplayType.CURRENCY) {
+            return Decimal.valueOf(val);
+        } else if(fieldType == DisplayType.INTEGER) {
+            return Integer.valueOf(val);
+        } else if(fieldType == DisplayType.DOUBLE) {
+            return Double.valueOf(val);
+        } else if(fieldType == DisplayType.PERCENT) {
+            return Decimal.valueOf(val);
         } else { //We'll treat everything else as a string, including String, Email, Phone, and Picklist
             return val;
         }
