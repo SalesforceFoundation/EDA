@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>L&apos;étiquette du type d&apos;enregistrement de compte.</help>
+        <label>Type d&apos;enregistrement de compte</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <label>Rôle d&apos;inscription automatique</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <label>Statut d&apos;inscription automatique</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>Si cette case est cochée, un enregistrement Inscription au programme est automatiquement créé lorsque l&apos;utilisateur crée une affiliation avec un compte de ce type.</help>
+        <label>Inscription automatique</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>L&apos;étiquette du champ de référence du contact qui pointe vers le compte principal du type d&apos;enregistrement spécifié.</help>
+        <label>Champ d&apos;affiliation principal</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
