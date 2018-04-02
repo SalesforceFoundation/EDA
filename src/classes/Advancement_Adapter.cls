@@ -55,7 +55,7 @@ global virtual with sharing class Advancement_Adapter {
     * @param listAccountId The list of Account (Id's) that need updating.
     * @return void
     */
-    global virtual void rollupAccount(List<Id> listAccountId) {
+    global virtual void rollupAccounts(List<Id> listAccountId) {
         if(!Advancement_Info.useAdv()) {
             throw new AdapterException(Label.adapterException);
         }

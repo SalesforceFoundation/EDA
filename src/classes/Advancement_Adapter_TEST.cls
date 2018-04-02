@@ -65,7 +65,7 @@ public class Advancement_Adapter_TEST {
         Advancement_Adapter theAdapter = new Advancement_Adapter();
         Test.startTest();
         try {
-            theAdapter.rollupAccount(null);
+            theAdapter.rollupAccounts(null);
         } catch (Exception ex) {
             System.assertEquals(Label.adapterException, ex.getMessage());
         }

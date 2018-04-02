@@ -325,7 +325,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         resetPrimaryContactForAccount(listAccountId, dmlWrapper);
         //Inject Adv logic to do the rollup for Account
         if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
-            Advancement_Info.getApiHEDA().rollupAccount(listAccountId);
+            Advancement_Info.getApiHEDA().rollupAccounts(listAccountId);
         }
     }
 
