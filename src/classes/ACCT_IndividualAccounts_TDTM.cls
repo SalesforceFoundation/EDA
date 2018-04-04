@@ -324,19 +324,22 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                     FROM Account
                                     WHERE Id in :listAccountId];
         for (Account acc : listAccount) {
-            setPrimaryContactIds.add(acc.Primary_Contact__c);
+            if (acc.Primary_Contact__c != null)
+                setPrimaryContactIds.add(acc.Primary_Contact__c);
         }
 
         if (setPrimaryContactIds.size() > 0) {
-            for (Account acc : [SELECT id,
-                                    (SELECT id
-                                    FROM Contacts
-                                    WHERE id in :setPrimaryContactIds
-                                    LIMIT 1)
+            for (Account acc : [SELECT Primary_Contact__c,
+                                        (SELECT id
+                                        FROM Contacts
+                                        WHERE id in :setPrimaryContactIds
+                                        LIMIT 1)
                                 FROM Account
-                                WHERE id in : listAccountId]){
-                //An account need to be reset if it can not find a child contact who is primary contact
-                if (acc.Contacts.size() == 0) {
+                                WHERE id in : listAccountId]) {
+                //There are two cases account primary contact needs reset
+                //1. An account has no child contact but it used to have primary contact
+                //2. An account used to have no child contact but a contact was just assigned to it
+                if (acc.Contacts.size() == 0 || acc.Primary_Contact__c == null) {
                     setAccToResetIds.add(acc.Id);
                 }
             }
@@ -350,10 +353,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         //for each account need to be reset
-        //query one child contact and use it as primary contact
         for (Account acc : listAccount) {
-            if (acc.Contacts.size() > 0) {
-                acc.Primary_Contact__c = acc.contacts[0].Id;
+            if (setAccToResetIds.contains(acc.Id)) {
+                if (acc.Contacts.size() > 0) {
+                    //if any child contact exists, use one as primary contact
+                    acc.Primary_Contact__c = acc.contacts[0].Id;
+                } else {
+                    //if no child contact exists, clear up primary contact
+                    acc.Primary_Contact__c = null;
+                }
                 listAccToUpdate.add(acc);
             }
         }
