@@ -77,6 +77,10 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
+        <label><!-- acctNamingOther --></label>
+        <name>acctNamingOther</name>
+    </customLabels>
+    <customLabels>
         <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
         <name>addrHhAdmAccountOnly</name>
     </customLabels>
@@ -105,8 +109,28 @@
         <name>addrValidParentObjects</name>
     </customLabels>
     <customLabels>
+        <label><!-- adminAccNameFormat --></label>
+        <name>adminAccNameFormat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- adminAccNameFormatHelpText --></label>
+        <name>adminAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
         <label>El tipus de registre del compte {0} no existeix. Demaneu al vostre administrador que verifiqui els tipus de registre en les assignacions d&apos;afiliació.</label>
         <name>afflNullPointerError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- automaticHHNaming --></label>
+        <name>automaticHHNaming</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- automaticHHNamingHelpText --></label>
+        <name>automaticHHNamingHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- defaultNamingConnector --></label>
+        <name>defaultNamingConnector</name>
     </customLabels>
     <customLabels>
         <label><!-- Error message for TDTM filtering functionality. --></label>
@@ -127,6 +151,50 @@
     <customLabels>
         <label><!-- Error message for TDTM filtering functionality. --></label>
         <name>fieldWithHEDANamespace</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- firstNameLastNameAdminACC --></label>
+        <name>firstNameLastNameAdminACC</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- firstNameLastNameFamily --></label>
+        <name>firstNameLastNameFamily</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- firstNameLastNameHH --></label>
+        <name>firstNameLastNameHH</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- hhAccNameFormat --></label>
+        <name>hhAccNameFormat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- hhAccNameFormatHelpText --></label>
+        <name>hhAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lastNameAdminAcc --></label>
+        <name>lastNameAdminAcc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lastNameFamily --></label>
+        <name>lastNameFamily</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lastNameFirstNameAdminAcc --></label>
+        <name>lastNameFirstNameAdminAcc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lastNameFirstNameFamily --></label>
+        <name>lastNameFirstNameFamily</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lastNameFirstNameHH --></label>
+        <name>lastNameFirstNameHH</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lastNameHH --></label>
+        <name>lastNameHH</name>
     </customLabels>
     <customLabels>
         <label>El tipus de registre del compte definit no existeix:</label>

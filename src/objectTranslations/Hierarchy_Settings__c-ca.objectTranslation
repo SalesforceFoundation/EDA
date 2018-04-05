@@ -24,6 +24,16 @@
         <name>Accounts_to_Delete__c</name>
     </fields>
     <fields>
+        <help><!-- This is the setting for admin account naming format --></help>
+        <label><!-- Admin Account Naming Format --></label>
+        <name>Admin_Account_Naming_Format__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store other naming setting for admin account --></help>
+        <label><!-- Admin Other Name Setting --></label>
+        <name>Admin_Other_Name_Setting__c</name>
+    </fields>
+    <fields>
         <help>Estat al qual s&apos;ha de canviar una Afiliació quan es suprimeix la inscripció de programa relacionada, si l&apos;opció seleccionada és canviar el seu estat en lloc de suprimir-lo.</help>
         <label>Estat afil. supressió inscripció prog.</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
@@ -41,6 +51,11 @@
     <fields>
         <label>Darrera comprovació errors asíncrons</label>
         <name>Async_Error_Check_Last_Run__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings. --></help>
+        <label><!-- Automatic Household Naming --></label>
+        <name>Automatic_Household_Naming__c</name>
     </fields>
     <fields>
         <help>Suport gestió d&apos;adreces per a contactes.</help>
@@ -81,9 +96,19 @@
         <name>Faculty_RecType__c</name>
     </fields>
     <fields>
+        <help><!-- This is the setting for household account naming format --></help>
+        <label><!-- Household Account Naming Format --></label>
+        <name>Household_Account_Naming_Format__c</name>
+    </fields>
+    <fields>
         <help>Tipus de registre del compte que admet el comportament de les adreces de la llar.</help>
         <label>Tipus registre de compte adreces de llar</label>
         <name>Household_Addresses_RecType__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store other name setting for household account --></help>
+        <label><!-- Household Other Name Setting --></label>
+        <name>Household_Other_Name_Setting__c</name>
     </fields>
     <fields>
         <help>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe, o la inversió de valor, que inverteix el tipus, si escau (&quot;Principal-Derivat&quot; a &quot;Derivat-Principal&quot;)</help>
