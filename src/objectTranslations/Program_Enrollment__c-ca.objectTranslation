@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Inscripció al programa</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Inscripcions al programa</value>
+    </caseValues>
+    <fields>
+        <help>El programa al qual està inscrit l&apos;estudiant.</help>
+        <label>Programa</label>
+        <name>Account__c</name>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Data d&apos;admissió</label>
+        <name>Admission_Date__c</name>
+    </fields>
+    <fields>
+        <help>La relació de compte i contacte amb la qual està relacionada aquesta informació acadèmica.</help>
+        <label>Afiliació</label>
+        <name>Affiliation__c</name>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Data de presentació de la sol·licitud</label>
+        <name>Application_Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label>Classe de peu</label>
+        <name>Class_Standing__c</name>
+        <picklistValues>
+            <masterLabel>Freshman</masterLabel>
+            <translation>Estudiant de primer any</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior</masterLabel>
+            <translation>Estudiant de penúltim any</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior</masterLabel>
+            <translation>Estudiant d&apos;últim any</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sophomore</masterLabel>
+            <translation>Estudiant de segon any</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>El contacte principal.</help>
+        <label>Contacte</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Inscripcions del programa</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Crèdits als quals s&apos;ha assistit</label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <label>Crèdits obtinguts</label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <label>Elegible per inscriure&apos;s</label>
+        <name>Eligible_to_Enroll__c</name>
+    </fields>
+    <fields>
+        <label>Data de finalització</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Estat d&apos;inscripció</label>
+        <name>Enrollment_Status__c</name>
+        <picklistValues>
+            <masterLabel>Full-time</masterLabel>
+            <translation>A temps complet</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Half-time</masterLabel>
+            <translation>A mitja jornada</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Less than half-time</masterLabel>
+            <translation>Menys de mitja jornada</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- GPA --></label>
+        <name>GPA__c</name>
+    </fields>
+    <fields>
+        <label>Any de classe</label>
+        <name>Graduation_Year__c</name>
+    </fields>
+    <fields>
+        <label>Data d&apos;inici</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;inscripció del programa</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>L&apos;etiqueta Tipus de registre del compte.</help>
+        <label>Tipus de registre del compte</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <label>Funció d&apos;inscripció automàtica</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <label>Estat d&apos;inscripció automàtica</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>Si està marcada, es crearà automàticament un registre d&apos;inscripció del programa quan l&apos;usuari crea una Afiliació a un compte d&apos;aquest tipus.</help>
+        <label>Inscripció automàtica</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>L&apos;etiqueta del camp de cerca en el contacte que apunta al compte principal del Tipus de registre especificat.</help>
+        <label>Camp d&apos;afiliació primària</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
