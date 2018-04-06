@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Error</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Errors</value>
+    </caseValues>
+    <fields>
+        <help>Context en què es generava l&apos;error, si es coneix.</help>
+        <label>Tipus de context</label>
+        <name>Context_Type__c</name>
+    </fields>
+    <fields>
+        <help>Data i hora en què s&apos;ha produït l&apos;error</help>
+        <label>Data i hora</label>
+        <name>Datetime__c</name>
+    </fields>
+    <fields>
+        <help>Indica si s&apos;ha enviat una notificació per correu electrònic sobre aquest error.</help>
+        <label>Correu electrònic enviat</label>
+        <name>Email_Sent__c</name>
+    </fields>
+    <fields>
+        <help>Tipus d&apos;error que s&apos;ha produït</help>
+        <label>Tipus d&apos;error</label>
+        <name>Error_Type__c</name>
+    </fields>
+    <fields>
+        <help>Text complet del missatge d&apos;error</help>
+        <label>Missatge complet</label>
+        <name>Full_Message__c</name>
+    </fields>
+    <fields>
+        <help>Tipus d&apos;objecte en què s&apos;ha produït l&apos;error, si es coneix.</help>
+        <label>Tipus d&apos;objecte</label>
+        <name>Object_Type__c</name>
+    </fields>
+    <fields>
+        <help>Indica si l&apos;error s&apos;ha publicat a Chatter.</help>
+        <label>Publicat a Chatter</label>
+        <name>Posted_in_Chatter__c</name>
+    </fields>
+    <fields>
+        <help>Un enllaç del registre que va provocar l&apos;error, si està disponible.</help>
+        <label>URL del registre</label>
+        <name>Record_URL__c</name>
+    </fields>
+    <fields>
+        <help>Seguiment de pila per a l&apos;error llançat, si està disponible en temps d&apos;execució.</help>
+        <label>Seguiment de pila</label>
+        <name>Stack_Trace__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nombre d&apos;error</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>
