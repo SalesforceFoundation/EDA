@@ -59,24 +59,30 @@ public class TDTM_Config {
         if(tdtmTokensCache != null && tdtmTokensCache.size() > 0) {
             return tdtmTokensCache;
         }
-        List<TDTM_Global_API.TdtmToken> tokens = new List<TDTM_Global_API.TdtmToken>();
-        List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
-                            Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c, Usernames_to_Exclude__c from Trigger_Handler__c];
 
-        // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
-        // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
-        if(tdtmConfig.size() == 0) {
-            tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
-        }
+        List<TDTM_Global_API.TdtmToken> tokens  = new List<TDTM_Global_API.TdtmToken>();
 
-        for(Trigger_Handler__c handler : tdtmConfig) {
-            tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
-                    handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
-                    handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c));
+        if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+            //If Advancement is installed and enabled, Using Adv config
+            tokens = Advancement_Info.getApiHEDA().getDefaultTdtmConfigTokens();
+
+        } else {
+            List<Trigger_Handler__c> tdtmConfig = [select Class__c, Object__c, Trigger_Action__c, Load_Order__c, Active__c,
+                    Asynchronous__c, Filter_Field__c, Filter_Value__c, User_Managed__c, Owned_by_Namespace__c , Usernames_to_Exclude__c from Trigger_Handler__c];
+            // Getting the default configuration only if there is no data in the Trigger Handler object. Otherwise
+            // we would delete customizations and Trigger Handlers entries that aren't in the default configuration.
+            if(tdtmConfig.size() == 0) {
+                tdtmConfig = TDTM_DefaultConfig.getDefaultRecords();
+            }
+
+            for(Trigger_Handler__c handler : tdtmConfig) {
+                tokens.add(new TDTM_Global_API.TdtmToken(handler.Class__c, handler.Object__c, handler.Trigger_Action__c,
+                        handler.Load_Order__c, handler.Active__c, handler.Asynchronous__c,
+                        handler.Filter_Field__c, handler.Filter_Value__c, handler.User_Managed__c, handler.Owned_by_Namespace__c, handler.Usernames_to_Exclude__c));
+            }
         }
 
         tdtmTokensCache = tokens;
-
         return tokens;
     }
 
