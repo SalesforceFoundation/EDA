@@ -314,6 +314,12 @@
         <members>Program_Enrollment__c.GPA__c</members>
         <members>Program_Enrollment__c.Graduation_Year__c</members>
         <members>Program_Enrollment__c.Start_Date__c</members>
+        <members>Program_Plan__c.Account__c</members>
+        <members>Program_Plan__c.End_Date__c</members>
+        <members>Program_Plan__c.Is_Primary__c</members>
+        <members>Program_Plan__c.Start_Date__c</members>
+        <members>Program_Plan__c.Status__c</members>
+        <members>Program_Plan__c.Version__c</members>
         <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
         <members>Relationship_Auto_Create__c.Field__c</members>
         <members>Relationship_Auto_Create__c.Object__c</members>
@@ -536,6 +542,7 @@
         <members>Error__c</members>
         <members>Hierarchy_Settings__c</members>
         <members>Program_Enrollment__c</members>
+        <members>Program_Plan__c</members>
         <members>Relationship_Auto_Create__c</members>
         <members>Relationship_Lookup__c</members>
         <members>Relationship__c</members>
@@ -590,6 +597,10 @@
         <members>Relationship__c-en_US</members>
         <members>Relationship__c-es</members>
         <members>Relationship__c-fr</members>
+        <members>Program_Plan__c-ca</members>
+        <members>Program_Plan__c-en_US</members>
+        <members>Program_Plan__c-es</members>
+        <members>Program_Plan__c-fr</members>
         <members>Relationship_Auto_Create__c-ca</members>
         <members>Relationship_Auto_Create__c-en_US</members>
         <members>Relationship_Auto_Create__c-es</members>
@@ -632,6 +643,7 @@
         <members>Course__c-HEDA Course Layout</members>
         <members>Error__c-HEDA Error Layout</members>
         <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
+        <members>Program_Plan__c-HEDA Program Plan Layout</members>
         <members>Relationship__c-HEDA Relationship Layout</members>
         <members>Term__c-HEDA Term Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>

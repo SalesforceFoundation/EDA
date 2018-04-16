@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Program Plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Program Plans</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Program Plans --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the end date of the program plan --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment --></help>
+        <label><!-- Is Primary --></label>
+        <name>Is_Primary__c</name>
+    </fields>
+    <fields>
+        <help><!-- The start date of a program plan --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The status of the program plan --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Archived</masterLabel>
+            <translation><!-- Archived --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation><!-- Current --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The version of the program plan --></help>
+        <label><!-- Version --></label>
+        <name>Version__c</name>
+    </fields>
+    <gender>Feminine</gender>
+    <nameFieldLabel><!-- Program Plan Name --></nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
