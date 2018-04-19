@@ -61,7 +61,7 @@ private class TDTM_DMLgt200_TEST {
     */
     @isTest
     public static void insertUpdateContact() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         String newContactMailingStreet = '123 Elm St';
 
@@ -114,8 +114,8 @@ private class TDTM_DMLgt200_TEST {
      @isTest
      public static void deleteContactNoOpps() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-                    Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
-                    Accounts_to_Delete__c = UTIL_Describe.getAdminAccRecTypeID()));
+                    Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                    Accounts_to_Delete__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
 		List<Contact> testContacts = new List<Contact>();
         for (Integer i = 0; i < inputSize; i++)
@@ -150,12 +150,12 @@ private class TDTM_DMLgt200_TEST {
     @isTest 
     public static void updateDefaultAddr() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;        
         // now let's update the Addresses
         for (Integer i = 0; i < addrs.size(); i++) {
@@ -186,12 +186,12 @@ private class TDTM_DMLgt200_TEST {
     @isTest 
     static void deleteDefaultAddr() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
 
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
        
         // now let's delete the Addresses
@@ -216,15 +216,15 @@ private class TDTM_DMLgt200_TEST {
     @isTest
     static void deleteNonDefaultOverrideAddr() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(inputSize);
+        addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(inputSize);
         
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
@@ -267,12 +267,12 @@ private class TDTM_DMLgt200_TEST {
     @isTest
     public static void updateNonDefaultAddr() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // now let's update the Addresses
@@ -305,15 +305,15 @@ private class TDTM_DMLgt200_TEST {
     @isTest
     public static void insertNewDefaultAddr() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);          
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(inputSize, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(inputSize);
+        addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(inputSize);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
@@ -356,8 +356,8 @@ private class TDTM_DMLgt200_TEST {
 	@isTest
     public static void noContactToAccPropagation() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID(),
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
@@ -413,10 +413,10 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/    
     @isTest
     public static void changeContact() {
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
-        Id orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        Id householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+        Id orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        Id householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
 
     	Contact oldContact = new Contact(FirstName = 'Old', LastName = 'Testerson');
     	insert oldContact;
@@ -459,15 +459,15 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/    
     @isTest
     public static void createContactsWithOrg() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
         insert mappings;
 
-        Id orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        Id householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+        Id orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        Id householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
 
         //Create account of Business Organization record type
         Account bizOrg1 = new Account(Name='Acme', RecordTypeId = orgRecTypeID);

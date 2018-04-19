@@ -89,7 +89,7 @@ public with sharing class CCON_Faculty_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Faculty_RecType__c = UTIL_Describe.getFacultyConnectionRecType()
+                Faculty_RecType__c = UTIL_Describe_API.getFacultyConnectionRecType()
             )
         );
     }
@@ -100,7 +100,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -110,7 +110,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = false
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             Test.startTest();
             insert conn;
@@ -130,7 +130,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newCourseConnectionExistingAffiliations() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -152,7 +152,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = false
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             insert conn;
 
@@ -179,7 +179,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering2.Id,
                 Primary__c = false
             );
-            conn2.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn2.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             Test.startTest();
             insert conn2;
@@ -203,7 +203,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void existingCourseConnectionMadePrimary() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -213,7 +213,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = false
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             insert conn;
 
@@ -239,7 +239,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void existingPrimaryCourseConnectionMarkedNotPrimary() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -249,7 +249,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = true
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             insert conn;
 
@@ -277,7 +277,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newPrimaryCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -287,7 +287,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = true
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             Test.startTest();
             insert conn;
@@ -306,7 +306,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void changePrimaryCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -316,14 +316,14 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = true
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
             // Create second Course Connection
             Course_Enrollment__c conn2 = new Course_Enrollment__c(
                 Contact__c = faculty2.Id,
                 Course_Offering__c = offering.Id,
                 Primary__c = false
             );
-            conn2.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn2.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
             insert new List<Course_Enrollment__c>{
                 conn,
                 conn2
@@ -357,7 +357,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newPrimaryCourseConnectionWhenAffiliationExists() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -367,7 +367,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = false
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             insert conn;
 
@@ -382,7 +382,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering2.Id,
                 Primary__c = true
             );
-            conn2.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn2.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             Test.startTest();
             insert conn2;
@@ -406,7 +406,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void deletePrimaryCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -416,7 +416,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = true
             );
-            conn.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             insert conn;
 
@@ -444,7 +444,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void deleteCourseConnectionKeepAffiliation() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -454,7 +454,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering.Id,
                 Primary__c = false
             );
-            conn1.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn1.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
             insert conn1;
 
             // Create second Course Connection
@@ -463,7 +463,7 @@ public with sharing class CCON_Faculty_TEST {
                 Course_Offering__c = offering2.Id,
                 Primary__c = false
             );
-            conn2.put('RecordTypeId', UTIL_Describe.getFacultyConnectionRecType());
+            conn2.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
 
             insert conn2;
 

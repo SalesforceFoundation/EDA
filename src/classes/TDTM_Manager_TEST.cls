@@ -399,7 +399,7 @@ private class TDTM_Manager_TEST {
 	@isTest
 	public static void excludeUsernamesSingleUser() {
 		UTIL_CustomSettingsFacade.getSettingsForTests(
-				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
 		//Get current user's username
 		String currUserName = UserInfo.getUserName();
@@ -409,7 +409,7 @@ private class TDTM_Manager_TEST {
 				Active__c = true, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Usernames_to_Exclude__c = currUserName);
 		insert handler;
 
-		Contact con = UTIL_UnitTestData_TEST.getContact();
+		Contact con = UTIL_UnitTestData_API.getContact();
 
 		Test.startTest();
 		insert con;
@@ -425,12 +425,12 @@ private class TDTM_Manager_TEST {
 	@isTest
 	public static void excludeUsernamesMultipleUser() {
 		UTIL_CustomSettingsFacade.getSettingsForTests(
-				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
 		//Get current user's username
 		String currUserName = UserInfo.getUserName();
-		User testUserDisabled = UTIL_UnitTestData_TEST.createNewUserForTests('excludedUser@gmail.com');
-		User testUserEnabled = UTIL_UnitTestData_TEST.createNewUserForTests('notExcludedUser@gmail.com');
+		User testUserDisabled = UTIL_UnitTestData_API.createNewUserForTests('excludedUser@gmail.com');
+		User testUserEnabled = UTIL_UnitTestData_API.createNewUserForTests('notExcludedUser@gmail.com');
 		String strUsernames = currUserName + ';' + testUserDisabled.Username;
 
 		//Populate the Usernames_to_Exclude__c value of the trigger handler
@@ -438,9 +438,9 @@ private class TDTM_Manager_TEST {
 				Active__c = true, Asynchronous__c = false, Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 3, Object__c = 'Contact', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete', Usernames_to_Exclude__c = strUsernames);
 		insert handler;
 
-		Contact con = UTIL_UnitTestData_TEST.getContact();
-		Contact con2 = UTIL_UnitTestData_TEST.getContact();
-		Contact con3 = UTIL_UnitTestData_TEST.getContact();
+		Contact con = UTIL_UnitTestData_API.getContact();
+		Contact con2 = UTIL_UnitTestData_API.getContact();
+		Contact con3 = UTIL_UnitTestData_API.getContact();
 
 		Test.startTest();
 		insert con;

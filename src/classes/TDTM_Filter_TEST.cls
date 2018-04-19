@@ -43,9 +43,9 @@ public with sharing class TDTM_Filter_TEST {
     private static ID adminRecTypeID;
     
     public static void recTypesSetup() {
-        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
-        adminRecTypeID = UTIL_Describe.getAdminAccRecTypeID();
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
+        adminRecTypeID = UTIL_Describe_API.getAdminAccRecTypeID();
     } 
     
     public static List<TDTM_Global_API.TdtmToken> setup() {
@@ -459,7 +459,7 @@ public with sharing class TDTM_Filter_TEST {
     public static testmethod void recordTypeRelationship() {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                 Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
                 
         List<TDTM_Global_API.TdtmToken> tokens = setup();                                             
@@ -503,7 +503,7 @@ public with sharing class TDTM_Filter_TEST {
     public static testmethod void customObject() {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                 Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
                 
         List<TDTM_Global_API.TdtmToken> tokens = setup();
@@ -551,7 +551,7 @@ public with sharing class TDTM_Filter_TEST {
     public static testmethod void customObjectTopOfChain() {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                 Accounts_Addresses_Enabled__c = orgRecTypeID + ');'));
                 
         List<TDTM_Global_API.TdtmToken> tokens = setup();                                      
@@ -597,7 +597,7 @@ public with sharing class TDTM_Filter_TEST {
     public static testmethod void customObjectOnlyOneInChain() {
         recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                 Accounts_Addresses_Enabled__c = orgRecTypeID + ');'));
                 
         List<TDTM_Global_API.TdtmToken> tokens = setup();                   
