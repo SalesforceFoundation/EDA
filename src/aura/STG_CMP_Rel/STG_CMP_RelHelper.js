@@ -35,7 +35,7 @@
 			if(response.getState() === "SUCCESS") {
 				var settings = response.getReturnValue();
 				if(settings.length === 0) {
-					this.setMessageLabel(component, "v.noAutoCreateSettings", prefix, "noAutoCreateSettings");
+					component.set("v.noAutoCreateSettings", $A.get("$Label.c.noAutoCreateSettings"));
 				}
 				component.set("v.autoCreateSettings", this.removePrefixListSettings(settings, prefix));
 	    	} else if(response.getState() === "ERROR") {
