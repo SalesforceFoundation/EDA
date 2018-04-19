@@ -14,7 +14,7 @@
         <relationshipLabel><!-- Program Plans --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- This is the end date of the program plan --></help>
+        <help><!-- The end date of the program plan --></help>
         <label><!-- End Date --></label>
         <name>End_Date__c</name>
     </fields>

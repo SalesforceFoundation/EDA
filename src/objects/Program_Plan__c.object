@@ -53,7 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
@@ -61,15 +61,6 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Account</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>Account.RecordTypeId</field>
-                <operation>equals</operation>
-                <value>Academic Program</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Plans</relationshipLabel>
         <relationshipName>Program_Plans</relationshipName>
@@ -79,9 +70,9 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
-        <description>This is the end date of the program plan</description>
+        <description>The end date of the program plan</description>
         <externalId>false</externalId>
-        <inlineHelpText>This is the end date of the program plan</inlineHelpText>
+        <inlineHelpText>The end date of the program plan</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -134,13 +125,18 @@
         <externalId>false</externalId>
         <inlineHelpText>The version of the program plan</inlineHelpText>
         <label>Version</label>
-        <length>10</length>
+        <length>25</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <label>Program Plan</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Program Plan Name</label>
         <type>Text</type>

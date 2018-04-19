@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Plan Requirement --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Plan Requirement --></value>
+    </caseValues>
+    <fields>
+        <help><!-- Category for the plan requirement --></help>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Optional</masterLabel>
+            <translation><!-- Optional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Lookup field to Course --></help>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Could be the credits for a specific course, or the total number of credits needed for type of requirement --></help>
+        <label><!-- Credits --></label>
+        <name>Credits__c</name>
+    </fields>
+    <fields>
+        <help><!-- The description of plan requirement --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lookup to Plan Requirement to support multiple levels of requirements. A generic requirement could have a list of optional courses that satisfy that requirement. --></help>
+        <label><!-- Plan Requirement --></label>
+        <name>Plan_Requirement__c</name>
+        <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Look up field to program plan --></help>
+        <label><!-- Program Plan --></label>
+        <name>Program_Plan__c</name>
+        <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The progression of courses --></help>
+        <label><!-- Sequence --></label>
+        <name>Sequence__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <nameFieldLabel><!-- Plan Requirement Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>

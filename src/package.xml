@@ -121,7 +121,9 @@
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
         <members>TDTM_Opportunity</members>
+        <members>TDTM_PlanRequirement</members>
         <members>TDTM_ProgramEnrollment</members>
+        <members>TDTM_ProgramPlan</members>
         <members>TDTM_Relationship</members>
         <members>TDTM_Term</members>
         <members>TDTM_TriggerHandler</members>
@@ -300,6 +302,13 @@
         <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
         <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
         <members>Hierarchy_Settings__c.Student_RecType__c</members>
+        <members>Plan_Requirement__c.Category__c</members>
+        <members>Plan_Requirement__c.Course__c</members>
+        <members>Plan_Requirement__c.Credits__c</members>
+        <members>Plan_Requirement__c.Description__c</members>
+        <members>Plan_Requirement__c.Plan_Requirement__c</members>
+        <members>Plan_Requirement__c.Program_Plan__c</members>
+        <members>Plan_Requirement__c.Sequence__c</members>
         <members>Program_Enrollment__c.Account__c</members>
         <members>Program_Enrollment__c.Admission_Date__c</members>
         <members>Program_Enrollment__c.Affiliation__c</members>
@@ -541,6 +550,7 @@
         <members>Course__c</members>
         <members>Error__c</members>
         <members>Hierarchy_Settings__c</members>
+        <members>Plan_Requirement__c</members>
         <members>Program_Enrollment__c</members>
         <members>Program_Plan__c</members>
         <members>Relationship_Auto_Create__c</members>
@@ -589,14 +599,14 @@
         <members>Hierarchy_Settings__c-en_US</members>
         <members>Hierarchy_Settings__c-es</members>
         <members>Hierarchy_Settings__c-fr</members>
+        <members>Plan_Requirement__c-ca</members>
+        <members>Plan_Requirement__c-en_US</members>
+        <members>Plan_Requirement__c-es</members>
+        <members>Plan_Requirement__c-fr</members>
         <members>Program_Enrollment__c-ca</members>
         <members>Program_Enrollment__c-en_US</members>
         <members>Program_Enrollment__c-es</members>
         <members>Program_Enrollment__c-fr</members>
-        <members>Relationship__c-ca</members>
-        <members>Relationship__c-en_US</members>
-        <members>Relationship__c-es</members>
-        <members>Relationship__c-fr</members>
         <members>Program_Plan__c-ca</members>
         <members>Program_Plan__c-en_US</members>
         <members>Program_Plan__c-es</members>
@@ -627,6 +637,7 @@
         <members>Course__c</members>
         <members>HEDA_Settings</members>
         <members>Program_Enrollment__c</members>
+        <members>Program_Plan__c</members>
         <members>Relationship__c</members>
         <members>Term__c</members>
         <members>Trigger_Handler__c</members>
@@ -642,6 +653,7 @@
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
         <members>Error__c-HEDA Error Layout</members>
+        <members>Plan_Requirement__c-HEDA Plan Requirement Layout</members>
         <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
         <members>Program_Plan__c-HEDA Program Plan Layout</members>
         <members>Relationship__c-HEDA Relationship Layout</members>
@@ -656,6 +668,7 @@
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
         <members>Program_Enrollment__c.All</members>
+        <members>Program_Plan__c.All</members>
         <members>Relationship__c.All</members>
         <members>Term__c.All</members>
         <members>Trigger_Handler__c.All</members>
