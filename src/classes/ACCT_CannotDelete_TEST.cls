@@ -53,14 +53,18 @@ public with sharing class ACCT_CannotDelete_TEST {
         
         //Create contact without affl, program enrollment, or course enrollment children
         Account acc4 = new Account(Name='test4');
-        
-        Account[] accs = new Account[] {acc1, acc2, acc3, acc4};
+
+        //Create contact with program plan
+        Account acc5 = new Account(Name='test5');
+
+        Account[] accs = new Account[] {acc1, acc2, acc3, acc4, acc5};
         insert accs;
 
         Affiliation__c affl = new Affiliation__c(Contact__c = c.ID, Account__c = acc1.ID);
         Program_Enrollment__c programEnroll = new Program_Enrollment__c(Contact__c = c.ID, Account__c = acc2.ID);
         Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = c.ID, Account__c = acc3.ID);
-        insert new SObject[] {affl, programEnroll, courseEnroll};
+        Program_Plan__c programPlan = NEW Program_Plan__c(Account__c = acc5.Id);
+        insert new SObject[] {affl, programEnroll, courseEnroll, programPlan};
         
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(accs, false);
@@ -70,7 +74,7 @@ public with sharing class ACCT_CannotDelete_TEST {
         
         //Verify only acc4 was successfully deleted
         accs = [select ID from Account where ID in :accs];
-        System.assertEquals(3, accs.size());
+        System.assertEquals(4, accs.size());
         
         System.assertEquals(false, results[0].success);
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
@@ -79,5 +83,7 @@ public with sharing class ACCT_CannotDelete_TEST {
         System.assertEquals(false, results[2].success);
         System.assertEquals(Label.CannotDelete, results[2].errors[0].message);
         System.assertEquals(true, results[3].success);
+        System.assertEquals(false, results[4].success);
+        System.assertEquals(Label.CannotDelete, results[4].errors[0].message);
     }
 }
