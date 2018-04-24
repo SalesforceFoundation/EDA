@@ -29,7 +29,6 @@
 */
 trigger TDTM_PlanRequirement on Plan_Requirement__c (before insert, before update, before delete,
 after insert, after update, after delete, after undelete) {
-
-TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete,
-Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Plan_Requirement__c);
+    TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete,
+    Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Plan_Requirement__c);
 }

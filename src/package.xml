@@ -62,6 +62,8 @@
         <members>ERR_Handler</members>
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>
+        <members>PPlan_Primary_TDTM</members>
+        <members>PPlan_Primary_TEST</members>
         <members>PREN_Affiliation_TDTM</members>
         <members>PREN_Affiliation_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
