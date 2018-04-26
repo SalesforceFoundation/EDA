@@ -63,7 +63,7 @@
         <members>ERR_Handler_TEST</members>
         <members>ERR_Notifier</members>
         <members>PPlan_CannotDelete_TDTM</members>
-        <members>PPlan_CannotDelete_Test</members>
+        <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
         <members>PPlan_Primary_TEST</members>
         <members>PREN_Affiliation_TDTM</members>
