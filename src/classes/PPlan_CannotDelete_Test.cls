@@ -35,7 +35,7 @@
 * @description Tests for PPlan_CannotDelete_TDTM.
 */
 @isTest
-public with sharing class PPlan_CannotDelete_Test {
+public with sharing class PPlan_CannotDelete_TEST {
 
     @isTest
     public static void pPlanCannotDeleteWithPlanRequirement() {
