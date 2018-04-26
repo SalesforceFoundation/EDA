@@ -30,39 +30,35 @@
 /**
 * @author Salesforce.org
 * @date 2018
-* @group Program Plan
-* @group-content ../../ApexDocContent/ProgramPlan.htm
-* @description Stops an Program Plan from being deleted if it has any Plan Requirement
+* @group Plan Requirement
+* @group-content ../../ApexDocContent/PlanRequirement.htm
+* @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
 */
-public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
-
+public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
-    * @description Stops an Program Plan from being deleted if it has any Plan Requirement
-    * @param listNew the list of Program Plan from trigger new.
-    * @param listOld the list of Program Plan from trigger old.
+    * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
+    * @param listNew the list of Plan Requirement from trigger new.
+    * @param listOld the list of Plan Requirement from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Program Plan
+    * @param objResult the describe for Plan Requirement
     * @return dmlWrapper.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
-            TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-
-            for (Program_Plan__c programPlan : [SELECT ID,
+            for (Plan_Requirement__c planReq : [SELECT ID,
                                                         (SELECT ID FROM Plan_Requirements__r)
-                                                FROM Program_Plan__c
-                                                WHERE ID IN :oldlist]) {
-
-                if(programPlan.Plan_Requirements__r.size() > 0 ) {
-                    Program_Plan__c programplanInContext = (Program_Plan__c)oldmap.get(programPlan.ID);
-                    programplanInContext.addError(Label.CannotDelete);
+                                                    FROM Plan_Requirement__c
+                                                    WHERE ID in :oldlist]) {
+                if(planReq.Plan_Requirements__r.size() > 0 ) {
+                    Plan_Requirement__c planReqInContext = (Plan_Requirement__c)oldmap.get(planReq.ID);
+                    planReqInContext.addError(Label.CannotDelete);
                 }
             }
         }
-
         return new DmlWrapper();
     }
 }
