@@ -100,7 +100,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -130,7 +130,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newCourseConnectionExistingAffiliations() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -203,7 +203,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void existingCourseConnectionMadePrimary() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -239,7 +239,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void existingPrimaryCourseConnectionMarkedNotPrimary() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -277,7 +277,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newPrimaryCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -306,7 +306,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void changePrimaryCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -357,7 +357,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void newPrimaryCourseConnectionWhenAffiliationExists() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -406,7 +406,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void deletePrimaryCourseConnection() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 
@@ -444,7 +444,7 @@ public with sharing class CCON_Faculty_TEST {
     @isTest
     public static void deleteCourseConnectionKeepAffiliation() {
         // Do not run test if record types do not exist
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             enableCourseConnections();
             setup();
 

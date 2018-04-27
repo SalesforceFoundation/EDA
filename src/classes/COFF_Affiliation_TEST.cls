@@ -76,7 +76,7 @@ public with sharing class COFF_Affiliation_TEST {
     }
 
     private static Boolean recordTypesExist() {
-        return (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId') && UTIL_Describe_API.getFacultyConnectionRecType() != null);
+        return (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId') && UTIL_Describe_API.getFacultyConnectionRecType() != null);
     }
 
     /*********************************************************************************************************
@@ -693,7 +693,7 @@ public with sharing class COFF_Affiliation_TEST {
         insert offering;
 
         Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id);
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
         insert conn;
@@ -702,7 +702,7 @@ public with sharing class COFF_Affiliation_TEST {
         insert faculty2;
 
         Course_Enrollment__c conn2 = new Course_Enrollment__c(Contact__c = faculty2.Id, Course_Offering__c = offering.Id);
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn2.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
         insert conn2;
@@ -739,7 +739,7 @@ public with sharing class COFF_Affiliation_TEST {
         insert offering;
 
         Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id);
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
         insert conn;
@@ -830,7 +830,7 @@ public with sharing class COFF_Affiliation_TEST {
         insert offering;
 
         Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id);
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace_API.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
         insert conn;
