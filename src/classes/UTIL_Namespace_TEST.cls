@@ -39,7 +39,7 @@
 public with sharing class UTIL_Namespace_TEST {
 
     static testmethod void TestNamespacePrefixFixups() {
-        UTIL_Namespace_API.isSandbox();
+        UTIL_UnitTestData_API.isSandbox();
         if (UTIL_Namespace.getNamespace()!='') {
             system.assertNotEquals('',UTIL_Namespace.getNamespace());
             system.assertEquals(UTIL_Namespace.getNamespace() + '__foo', UTIL_Namespace.StrTokenNSPrefix('foo'));
@@ -64,7 +64,7 @@ public with sharing class UTIL_Namespace_TEST {
     }               
 
     static testmethod void testSandboxEmailToRealEmail() {
-        String fixedEmail = UTIL_Namespace_API.sandboxEmailToRealEmail('awheeler=universalcontainers.com@example.com');	
+        String fixedEmail = UTIL_UnitTestData_API.sandboxEmailToRealEmail('awheeler=universalcontainers.com@example.com');	
         System.assertEquals('awheeler@universalcontainers.com', fixedEmail);
     }
 }

@@ -61,4 +61,20 @@ global class UTIL_UnitTestData_API {
         return UTIL_UnitTestData_TEST.getMultipleTestAddresses(addrCount);
     }
 
+    /*******************************************************************************************************
+    * @description Static method that detects if we are running in a sandbox.
+    * @return true if running in sandbox. false otherwise.
+    */
+    global static Boolean isSandbox() {
+        return UTIL_Namespace.isSandbox();
+    }
+
+    /*******************************************************************************************************
+    * @description Static method that returns the real email if it's a sandbox email.
+    * @return string with user's email.
+    */
+    global static String sandboxEmailToRealEmail(String email) {
+        return UTIL_Namespace.sandboxEmailToRealEmail(email);
+    }
+
 }

@@ -103,7 +103,6 @@
         <members>UTIL_Describe_API</members>
         <members>UTIL_Describe_TEST</members>
         <members>UTIL_Namespace</members>
-        <members>UTIL_Namespace_API</members>
         <members>UTIL_Namespace_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
