@@ -695,4 +695,86 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals('Household', assertAccount.Name);
     }
+
+/*********************************************************************************************************
+* @description
+* Remove primary contact from household account
+* Make sure the primary contact of household account is cleared up
+*/
+    @isTest
+    public static void hhAccountNoChildContactResetPrimaryContact() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+        insert con;
+
+        Test.startTest();
+        con.AccountId = null;
+        update con;
+        Test.stopTest();
+
+        Account assertAccount = [Select Primary_Contact__c FROM Account LIMIT 1];
+        system.assertEquals(null, assertAccount.Primary_Contact__c);
+    }
+
+/*********************************************************************************************************
+* @description
+* Add a contact to a household account
+* Make sure the primary contact of household account is not changed
+*/
+    @isTest
+    public static void hhAccountNewChildContactNotResetPrimaryContact() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+        insert con;
+
+        Account acc = [SELECT Id FROM Account LIMIT 1];
+
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        insert con2;
+
+        Test.startTest();
+        con2.AccountId = acc.Id;
+        update con2;
+        Test.stopTest();
+
+        Account assertAccount = [Select Primary_Contact__c FROM Account WHERE Id = :acc.Id LIMIT 1];
+        system.assertEquals(con.Id, assertAccount.Primary_Contact__c);
+        system.assertNotEquals(con2.Id, assertAccount.Primary_Contact__c);
+
+    }
+
+/*********************************************************************************************************
+* @description
+* Switch contacts between two household accounts
+* Make sure primary contacts are updated correctly
+*/
+    @isTest
+    public static void hhAccountSwitchChildContactResetPrimaryContact() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+        insert con;
+
+        Account acc = [SELECT Id FROM Account LIMIT 1];
+
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        insert con2;
+
+        Account acc2 = [SELECT Id FROM Account where Id != :acc.Id LIMIT 1];
+
+        Test.startTest();
+        con2.AccountId = acc.Id;
+        update con2;
+        con.AccountId = acc2.Id;
+        update con;
+        Test.stopTest();
+
+        Account assertAccount = [Select Primary_Contact__c FROM Account WHERE Id = :acc.Id LIMIT 1];
+        Account assertAccount2 = [Select Primary_Contact__c FROM Account WHERE Id = :acc2.Id LIMIT 1];
+        system.assertEquals(con2.Id, assertAccount.Primary_Contact__c);
+        system.assertEquals(con.Id, assertAccount2.Primary_Contact__c);
+
+    }
 }

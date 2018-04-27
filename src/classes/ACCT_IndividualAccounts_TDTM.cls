@@ -86,7 +86,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         map<Id, Contact> mapContactIdContactOwnerChange = new map<Id, Contact>();
 
-		if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+        //Those two sets are used for Adv to inject the opportunity logic
+        map<Id, Id> mapContactIdAccountIdOldMoveOpps = new map<Id, Id>();
+        map<Id, Id> mapContactIdAccountIdNewMoveOpps = new map<Id, Id>();
+
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
            // requery to get correct Account values (and all the other fields we will look at)
            string strSoql = 'select id, AccountId,' +
@@ -155,6 +159,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (c.AccountId != oldContacts[i].AccountId) {
                         if (c.AccountId != null) {
                             listAccountIdHHToUpdate.add(c.AccountId);
+
+                            //Used to Adv to inject oppor logic
+                            mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
+
                             if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                                     && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
                                 setAccountIdHHToRename.add(c.AccountId);
@@ -171,6 +179,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         // old HH Accounts that don't get deleted still need to have name redone
                         if (oldContacts[i].AccountId != null) {
                             listAccountIdHHToUpdate.add(oldContacts[i].AccountId);
+
+                            //Used to Adv to inject oppor logic
+                            mapContactIdAccountIdOldMoveOpps.put(c.Id, oldContacts[i].AccountId);
                         }
                     }
 
@@ -243,6 +254,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             updateAdminAccountsName(listContactsChangedLastName, dmlWrapper);
         }
 
+        //Inject Adv logic to handle moving opportunity
+        if (mapContactIdAccountIdNewMoveOpps.size() > 0 && Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+            Advancement_Info.getApiHEDA().moveOppsToContactAccount(mapContactIdAccountIdNewMoveOpps, mapContactIdAccountIdOldMoveOpps);
+        }
+
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;
         if (triggerAction == TDTM_Runnable.Action.AfterInsert){
@@ -269,6 +285,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Account> listAccount = new List<Account>();
         for (Id i : mapAccountIdContactId.keySet()) {
             Account a = new Account(Id = i, Primary_Contact__c = mapAccountIdContactId.get(i));
+            //Inject the Adv logic to handle npsp primary contact of the Account
+            if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                Advancement_Info.getApiHEDA().primaryContact(a, mapAccountIdContactId.get(i));
+            }
             listAccount.add(a);
         }
         if (listAccount.size() > 0) {
@@ -303,6 +323,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     private void updateParentAcc(list<Id> listAccountId, DmlWrapper dmlWrapper) {
         resetPrimaryContactForAccount(listAccountId, dmlWrapper);
+        //Inject Adv logic to do the rollup for Account
+        if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+            Advancement_Info.getApiHEDA().rollupAccounts(listAccountId);
+        }
     }
 
     /*******************************************************************************************************
@@ -324,19 +348,22 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                     FROM Account
                                     WHERE Id in :listAccountId];
         for (Account acc : listAccount) {
-            setPrimaryContactIds.add(acc.Primary_Contact__c);
+            if (acc.Primary_Contact__c != null)
+                setPrimaryContactIds.add(acc.Primary_Contact__c);
         }
 
         if (setPrimaryContactIds.size() > 0) {
-            for (Account acc : [SELECT id,
-                                    (SELECT id
-                                    FROM Contacts
-                                    WHERE id in :setPrimaryContactIds
-                                    LIMIT 1)
+            for (Account acc : [SELECT Primary_Contact__c,
+                                        (SELECT id
+                                        FROM Contacts
+                                        WHERE id in :setPrimaryContactIds
+                                        LIMIT 1)
                                 FROM Account
-                                WHERE id in : listAccountId]){
-                //An account need to be reset if it can not find a child contact who is primary contact
-                if (acc.Contacts.size() == 0) {
+                                WHERE id in : listAccountId]) {
+                //There are two cases account primary contact needs reset
+                //1. An account has no child contact but it used to have primary contact
+                //2. An account used to have no child contact but a contact was just assigned to it
+                if (acc.Contacts.size() == 0 || acc.Primary_Contact__c == null) {
                     setAccToResetIds.add(acc.Id);
                 }
             }
@@ -350,10 +377,19 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         //for each account need to be reset
-        //query one child contact and use it as primary contact
         for (Account acc : listAccount) {
-            if (acc.Contacts.size() > 0) {
-                acc.Primary_Contact__c = acc.contacts[0].Id;
+            if (setAccToResetIds.contains(acc.Id)) {
+                if (acc.Contacts.size() > 0) {
+                    //if any child contact exists, use one as primary contact
+                    acc.Primary_Contact__c = acc.contacts[0].Id;
+                    //Inject Adv logic to handle npsp primary contact of the Account
+                    if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                        Advancement_Info.getApiHEDA().primaryContact(acc, acc.contacts[0].Id);
+                    }
+                } else {
+                    //if no child contact exists, clear up primary contact
+                    acc.Primary_Contact__c = null;
+                }
                 listAccToUpdate.add(acc);
             }
         }
@@ -414,6 +450,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 //connect the Account to the Contact for HHAccount
                 if (c.Id != null) {
                     a.Primary_Contact__c = c.Id;
+                    //Inject Adv logic to handle npsp primary contact of the Account
+                    if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                        Advancement_Info.getApiHEDA().primaryContact(a, c.Id);
+                    }
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
@@ -427,6 +467,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 //Give it the default record type selected in the settings.
                 if(defaultRecTypeID != null)
                     a.RecordTypeID = defaultRecTypeID;
+
+                //Inject Adv logic to populate npsp Account fields of the Contact
+                if(Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
+                    Advancement_Info.getApiHEDA().configAccountForContact(a);
+                }
 
                 accountInserts.add(a);
                 listContactNewAcct.add(c);

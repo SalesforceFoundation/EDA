@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Compte</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Comptes</value>
+    </caseValues>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Accés de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_access</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nivell d’accés de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_access_level</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Funció de contacte de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Funcions de contactes de comptes</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_contact_role</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Creador de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_creator</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Divisa de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_currency</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Descripció de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_description</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Pàgina de detall de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_detail_page</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Divisió de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_division</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Modificació de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_edit</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Fax de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_fax</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Camp de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Campos de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_field</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>General de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_general</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Jerarquia de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_hierarchy</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Historial de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_history</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Arxiu d’historial de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_history_archive</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informe d’historial de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_history_report</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de Compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informació de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_information</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nom de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Noms de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_name</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nombre de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_number</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Propietari de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Propietaris de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_owner</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Àlies de propietari de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_owner_alias</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informe de propietari de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_owner_report</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Funció de propietari de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_owner_role</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Propietat de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_ownership</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Telèfon de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_phone</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Qualificació de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_rating</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Registre de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Registres de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_record</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Tipus de registre del compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Tipus de registres de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_record_type</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informe de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Informes de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_report</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Col·laboració de compte</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_sharing</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Lloc de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Llocs de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_site</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Origen de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_source</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de Etapa de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_stage_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Equip de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Equips de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_team</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Membre d’equip de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Membres d&apos;equips de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_team_member</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de Membre d’equip de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_team_member_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informe d’equip de compte</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_team_report</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Territori de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Territoris de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_territory</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Eina de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Eines de comptes</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_tool</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Tipus de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Tipus de comptes</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>account_type</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Vista de compte</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Vistes de comptes</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>account_view</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Adreça</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>address_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Informació d’adreça</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>address_information_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ingressos anuals</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>annual_revenue_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Precisió de geocodi de facturació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>billing_accuracy_geocode_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Adreça de facturació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>billing_address_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ciutat de facturació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>billing_city_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>País de facturació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>billing_country_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi de país de facturació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>billing_country_code_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Latitud de facturació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>billing_latitude_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Longitud de facturació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>billing_longitude_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat/província de facturació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>billing_state_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi d’estat/província de facturació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>billing_state_code_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Carrer de facturació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>billing_street_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi postal de facturació</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>billing_zip_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ciutat</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>city_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat de neteja</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>cleanstatus_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>País</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>country_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Divisa</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>currency_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Clau de Data.com</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>datadotcom_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Descripció</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>description_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Nombre D-U-N-S</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>duns_number</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Empleats</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>employees_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Part global</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>global_party_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Indústria</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>industry_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi NAICS</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>naics_code</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Descripció NAICS</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>naics_description</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Propietat</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>ownership_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Compte principal</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Comptes principals</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>parent_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Divisió de compte principal</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>parent_account_division</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Id. de Compte principal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>parent_account_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Lloc de compte principal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>parent_account_site</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Registre de compte personal</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Registres de comptes principals</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>person_account_record</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Telèfon</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>phone_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Qualificació</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>rating_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Precisió de geocodi d’enviament</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>shipping_accuracy_geocode_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Adreça d’enviament</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>shipping_address_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ciutat d’enviament</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>shipping_city_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>País d’enviament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>shipping_country_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi de país d’enviament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>shipping_country_code_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Latitud d’enviament</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>shipping_latitude_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Longitud d’enviament</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>shipping_longitude_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat/província d’enviament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>shipping_state_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi d’estat/província d’enviament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>shipping_state_code_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Carrer d’enviament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>shipping_street_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi postal d’enviament</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>shipping_zip_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi SIC</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>sic_code</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Descripció SIC</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>sic_description</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Lloc</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>site_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estat</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>state_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Carrer</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>street_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Símbol de teletip</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>ticker_symbol_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Estil mercantil</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>tradestyle</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Tipus</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>type_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Lloc web</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>website_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Any d’inici</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>year_started</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Codi postal</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>zip_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <help>L&apos;adreça actual que omplen els camps de facturació del compte.</help>
+        <label>Adreça actual</label>
+        <name>Current_Address__c</name>
+        <relationshipLabel>Comptes (adreça actual)</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- _SYSTEM: One2OneContact --></label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel>Compte</relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Household Layout</layout>
+        <sections>
+            <label>Adreça</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Camps</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HEDA Organization Layout</layout>
+        <sections>
+            <label>Adreça</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Camps</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
