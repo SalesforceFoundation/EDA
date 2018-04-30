@@ -613,6 +613,10 @@
         <members>Program_Enrollment__c-en_US</members>
         <members>Program_Enrollment__c-es</members>
         <members>Program_Enrollment__c-fr</members>
+        <members>Relationship__c-ca</members>
+        <members>Relationship__c-en_US</members>
+        <members>Relationship__c-es</members>
+        <members>Relationship__c-fr</members>
         <members>Program_Plan__c-ca</members>
         <members>Program_Plan__c-en_US</members>
         <members>Program_Plan__c-es</members>
