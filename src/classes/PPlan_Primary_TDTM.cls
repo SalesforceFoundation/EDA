@@ -68,7 +68,9 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
             for (integer i=0; i<newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
                 Program_Plan__c oldPPlan = (Program_Plan__c)oldlist[i];
-                if (newPPlan.Is_Primary__c == true && newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c){
+                if (newPPlan.Is_Primary__c == true
+                    && (newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c
+                        || newPPlan.Account__c != oldPPlan.Account__c)){
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
                     if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c))
