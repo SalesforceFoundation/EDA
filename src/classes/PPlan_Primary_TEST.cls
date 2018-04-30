@@ -75,7 +75,7 @@ private class PPlan_Primary_TEST {
 
     /*********************************************************************************************************
      * @description Set other program plans as non-primary
-     * when a program plan is set as primary
+     * when a new program plan is inserted and set as primary
      */
     @IsTest
     static void setOtherProgramPlanNonPrimaryInsert() {
@@ -100,6 +100,47 @@ private class PPlan_Primary_TEST {
         newPPlan.Account__c = accts[0].Id;
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
+        Test.stopTest();
+
+        //assert
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        for (Program_Plan__c pPlan : assertProgramPlans) {
+            if (pPlan.Id != newPPlan.Id) {
+                system.assertEquals(false, pPlan.Is_Primary__c);
+            }else {
+                system.assertEquals(true, pPlan.Is_Primary__c);
+            }
+        }
+    }
+
+    /*********************************************************************************************************
+     * @description Set other program plans as non-primary
+     * when a program plan is set as primary and linked to the account
+     */
+    @IsTest
+    static void setOtherProgramPlanNonPrimaryLinkToAccount() {
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+        insert accts[0];
+
+        List<Program_Plan__c> pPlans = new List<Program_Plan__c>();
+        for (Integer i=0; i < 3; i++) {
+            Program_Plan__c pPlan = new Program_Plan__c();
+            pPlan.Name = 'pp test ' + i;
+            pPlan.Account__c = accts[0].Id;
+            pPlans.add(pPlan);
+        }
+        insert pPlans;
+
+        pPlans[0].Is_Primary__c = true;
+        update pPlans[0];
+
+        Test.startTest();
+        Program_Plan__c newPPlan = new Program_Plan__c();
+        newPPlan.Name = 'pp test ' + 3;
+        newPPlan.Is_Primary__c = true;
+        insert newPPlan;
+        newPPlan.Account__c = accts[0].Id;
+        update newPPlan;
         Test.stopTest();
 
         //assert
