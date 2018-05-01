@@ -39,6 +39,7 @@
 public with sharing class UTIL_Namespace_TEST {
 
     static testmethod void TestNamespacePrefixFixups() {
+        UTIL_UnitTestData_API.isSandbox();
         if (UTIL_Namespace.getNamespace()!='') {
             system.assertNotEquals('',UTIL_Namespace.getNamespace());
             system.assertEquals(UTIL_Namespace.getNamespace() + '__foo', UTIL_Namespace.StrTokenNSPrefix('foo'));
@@ -56,11 +57,14 @@ public with sharing class UTIL_Namespace_TEST {
             system.assertEquals('foo__c', UTIL_Namespace.StrAllNSPrefix('foo__c'));
             system.assertEquals('foo_bar_baz__c', UTIL_Namespace.StrAllNSPrefix('foo_bar_baz__c'));
             system.assertEquals('select foo__c, bar, baz1__c, biz_buz__c from Contact', UTIL_Namespace.StrAllNSPrefix('select foo__c, bar, baz1__c, biz_buz__c from Contact'));           
+            system.assertEquals('foo__c', UTIL_Namespace.StrTokenRemoveNSPrefix(UTIL_Namespace.getNamespace()  +  '__foo__c'));
+            system.assertEquals('foo_'  +  UTIL_Namespace.getNamespace() + '__c', UTIL_Namespace.StrTokenRemoveNSPrefix('foo_' + UTIL_Namespace.getNamespace() + '__c'));
+            system.assertEquals('foo', UTIL_Namespace.StrTokenNSPrefixDotNotation('foo'));
         }
     }               
 
     static testmethod void testSandboxEmailToRealEmail() {
-        String fixedEmail = UTIL_Namespace.sandboxEmailToRealEmail('awheeler=universalcontainers.com@example.com');	
+        String fixedEmail = UTIL_UnitTestData_API.sandboxEmailToRealEmail('awheeler=universalcontainers.com@example.com');	
         System.assertEquals('awheeler@universalcontainers.com', fixedEmail);
     }
 }

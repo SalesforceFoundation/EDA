@@ -54,7 +54,7 @@ private class CON_EthnicityRace_TEST {
 		Integer raceCount = races.size();
 
 		// Get contacts
-        List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(raceCount);
+        List<Contact> listCon = UTIL_UnitTestData_API.getMultipleTestContacts(raceCount);
         for (Integer i = 0; i < raceCount; i++) {
             listCon[i].LastName = 'ToAvoidDupeRule' + i;//Avoid duplicate matching
 

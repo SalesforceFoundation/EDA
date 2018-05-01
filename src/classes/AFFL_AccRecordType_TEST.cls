@@ -42,22 +42,22 @@ public with sharing class AFFL_AccRecordType_TEST {
     private static ID householdRecTypeID;
     
     public static void setup() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
                 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
         mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
         insert mappings;
         
-        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
     }
     
     @isTest
     public static void changePrimaryAffiliationRecordType() {        
         setup();
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
         
         //Verify default household account has been created for the contact
@@ -91,7 +91,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void changePrimaryAffiliationRecordTypeTwoAccs() {        
         setup();
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
         
         //Verify default household account has been created for the contact
@@ -107,7 +107,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
-        Account bizOrg = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizOrg;
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
         insert bizAffl;
@@ -136,7 +136,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void otherPrimaryNotPrimary() {        
         setup();
 
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
         
         //Verify default household account has been created for the contact
@@ -152,7 +152,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
-        Account bizOrg = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizOrg;
         UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
@@ -187,12 +187,12 @@ public with sharing class AFFL_AccRecordType_TEST {
     public static void addRecordTypeToAcc() {        
         setup();
        
-        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
        
         //Create primary Affl to Account without record type - since the account created will have the record type assigned
         //to the profile running the tests as default, we assign a different type to it. Profiles cannot be created in tests.
-        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID())[0];
+        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
         insert acc;
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Primary__c = true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
@@ -218,10 +218,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         setup();
 
         //Create some Accounts with Admin record type
-        List<Account> adminAccList = UTIL_UnitTestData_TEST.getMultipleTestAccounts(10, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(10, UTIL_Describe_API.getAdminAccRecTypeID());
         insert adminAccList;
 
-        List<Account> theAccs = [Select Id from Account where RecordTypeId =: UTIL_Describe.getAdminAccRecTypeID()];
+        List<Account> theAccs = [Select Id from Account where RecordTypeId =: UTIL_Describe_API.getAdminAccRecTypeID()];
         system.assertEquals(10, theAccs.size());
 
         //Change the record type of the Accounts to Biz type and HH type
@@ -250,14 +250,14 @@ public with sharing class AFFL_AccRecordType_TEST {
         setup();
 
         //Create Contacts
-        Contact john = UTIL_UnitTestData_TEST.getContact();
-        Contact mark = UTIL_UnitTestData_TEST.getContact();
+        Contact john = UTIL_UnitTestData_API.getContact();
+        Contact mark = UTIL_UnitTestData_API.getContact();
         List<Contact> contacts = new List<Contact>{john, mark};
         insert contacts;
 
         //Create Accounts with Admin Record Type
-        Account company = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID())[0];
-        Account hh = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID())[0];
+        Account company = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        Account hh = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
         List<Account> accs = new List<Account>{company, hh};
         insert accs;
 

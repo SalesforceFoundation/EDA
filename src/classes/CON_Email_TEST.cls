@@ -44,7 +44,7 @@ private class CON_Email_TEST {
             );
 
 		// Get contacts set up
-        List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        List<Contact> listCon = UTIL_UnitTestData_API.getMultipleTestContacts(10);
         for (Integer i = 0; i < 10; i++) {
 
             listCon[i].LastName = 'ToAvoidDupeRule' + i;//Avoid duplicate matching
