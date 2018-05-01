@@ -112,8 +112,8 @@ public with sharing class CCON_ConnectionBackfill_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
-                Faculty_RecType__c = UTIL_Describe.getFacultyConnectionRecType(),
-                Student_RecType__c = UTIL_Describe.getStudentConnectionRecType()
+                Faculty_RecType__c = UTIL_Describe_API.getFacultyConnectionRecType(),
+                Student_RecType__c = UTIL_Describe_API.getStudentConnectionRecType()
             )
         );
     }
@@ -121,12 +121,12 @@ public with sharing class CCON_ConnectionBackfill_TEST {
     @isTest
     public static void checkBackfillSuccess() {
         // Only run test if we actually have three record types to test with.
-        if (UTIL_Describe.getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c')).values().size() > 2) {
+        if (UTIL_Describe_API.getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c')).values().size() > 2) {
             setup();
 
-            String defaultRecordTypeId = UTIL_Describe.getDefaultConnectionRecTypeID();
-            String studentRecordTypeId = UTIL_Describe.getStudentConnectionRecType();
-            String facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
+            String defaultRecordTypeId = UTIL_Describe_API.getDefaultConnectionRecTypeID();
+            String studentRecordTypeId = UTIL_Describe_API.getStudentConnectionRecType();
+            String facultyRecordTypeId = UTIL_Describe_API.getFacultyConnectionRecType();
 
             List<Course_Enrollment__c> originalConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :defaultRecordTypeId');
             List<Course_Enrollment__c> studentConns = Database.query('SELECT Id, RecordTypeId FROM Course_Enrollment__c WHERE RecordTypeId = :studentRecordTypeId');
@@ -181,7 +181,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
                 Contact__c = faculty[i].Id,
                 Course_Offering__c = offerings[i].Id
             );
-            conn.put('RecordTypeId', UTIL_Describe.getDefaultConnectionRecTypeID());
+            conn.put('RecordTypeId', UTIL_Describe_API.getDefaultConnectionRecTypeID());
             conns.add(conn);
         }
         insert conns;
@@ -196,7 +196,7 @@ public with sharing class CCON_ConnectionBackfill_TEST {
                     Contact__c = student.Id,
                     Course_Offering__c = offering.Id
                 );
-                conn.put('RecordTypeId', UTIL_Describe.getDefaultConnectionRecTypeID());
+                conn.put('RecordTypeId', UTIL_Describe_API.getDefaultConnectionRecTypeID());
                 studentConnections.add(conn);
             }
         }
