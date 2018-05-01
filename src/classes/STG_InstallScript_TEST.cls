@@ -211,7 +211,7 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     public static void changeAdminAccAddressParent() {
         //Create 201 accounts of adminRecType
-        String adminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
+        String adminRecTypeId = UTIL_Describe_API.getAdminAccRecTypeID();
         List<Account> accs = new List<Account>();
         for(Integer i = 0; i < 200; i++) {
             accs.add(new Account(Name = 'acctest' + i, RecordTypeId = adminRecTypeId));
@@ -248,7 +248,7 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     public static void createAdminAccountForContactOnInstall() {
 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         Contact cont = new Contact(
                 FirstName = 'Test',

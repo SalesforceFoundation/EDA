@@ -40,7 +40,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     
     private static void configSettings() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
-            Accounts_Addresses_Enabled__c = UTIL_Describe.getAdminAccRecTypeID() + ';',
+            Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
         UTIL_CustomSettingsFacade.getSettingsForTests(hs);
     }
@@ -54,7 +54,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // now let's update the Addresses
@@ -88,7 +88,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
             
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
        
         // now let's delete the Addresses
@@ -114,11 +114,11 @@ public with sharing class ADDR_AdminAcc_TEST {
     static void deleteNonDefaultOverrideAddr() {
         configSettings();
         
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
@@ -163,7 +163,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // now let's update the Addresses
@@ -196,7 +196,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for the Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create new non-default address
@@ -249,11 +249,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
           
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
@@ -304,12 +304,12 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> listAddrOriginal = accsAddrs.addrs;
         
         // create additional addresses
         ADDR_Addresses_TDTM.addressIdsInserted = new Set<Id>();
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
@@ -362,7 +362,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
          
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // modify some of the Account addresses directly
@@ -423,7 +423,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // modify the account addresses directly
@@ -466,7 +466,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // modify some of the account addresses directly
@@ -554,7 +554,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // modify some of the account addresses directly
@@ -608,7 +608,7 @@ public with sharing class ADDR_AdminAcc_TEST {
     public static void newAddrNoParent() {
         configSettings();
         
-        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < addrs.size(); i++) {
             System.assertEquals(null, addrs[i].Parent_Account__c);
         }
@@ -632,7 +632,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
          
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses thru the account.
@@ -664,11 +664,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional non-default addresses
-        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = false;
@@ -718,9 +718,9 @@ public with sharing class ADDR_AdminAcc_TEST {
     @isTest
     public static void insertMultilineStreetAddress() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                    UTIL_Describe.getAdminAccRecTypeID() + ';'));
+                                                                    UTIL_Describe_API.getAdminAccRecTypeID() + ';'));
     
-        List<Account> accs = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accs = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
         for (Account acc : accs) {
             acc.BillingStreet = 'new street\r\nsecond line';
             acc.BillingCity = 'new city';
@@ -758,11 +758,11 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // create additional addresses
-        addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
         for (Integer i = 0; i < accsAddrs.accs.size(); i++) {
             addrs[i].Parent_Account__c = accsAddrs.accs[i].Id;
             addrs[i].Default_Address__c = true;
@@ -799,7 +799,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
         List<Address__c> addrs = accsAddrs.addrs;
         
         // modify some of the account addresses directly
@@ -842,10 +842,10 @@ public with sharing class ADDR_AdminAcc_TEST {
     **********************************************************************************************************/            
     static testMethod void clearAddrExisting() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                    UTIL_Describe.getAdminAccRecTypeID() + ';'));
+                                                                    UTIL_Describe_API.getAdminAccRecTypeID() + ';'));
                 
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe.getAdminAccRecTypeID());
+        UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(4, UTIL_Describe_API.getAdminAccRecTypeID());
         UTIL_Debug.debug('****accsAddrs: ' + JSON.serializePretty(accsAddrs));
         List<Address__c> addrs = accsAddrs.addrs;
         
