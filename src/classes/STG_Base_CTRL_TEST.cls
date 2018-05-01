@@ -42,9 +42,9 @@ private class STG_Base_CTRL_TEST {
     private static ID adminRecTypeID;
 
     public static void recTypesSetup() {
-        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
-        adminRecTypeID = UTIL_Describe.getAdminAccRecTypeID();
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
+        adminRecTypeID = UTIL_Describe_API.getAdminAccRecTypeID();
     }
 
     /*** Affiliate Mappings ***/
