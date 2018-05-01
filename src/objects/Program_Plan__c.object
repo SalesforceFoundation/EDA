@@ -137,11 +137,33 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>Primary_Program_Plan</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Is_Primary__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Is_Primary__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Primary Program Plan</label>
+    </listViews>
     <nameField>
         <label>Program Plan Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Program Plans</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Is_Primary__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
