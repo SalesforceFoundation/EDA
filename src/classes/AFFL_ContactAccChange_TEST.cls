@@ -43,10 +43,10 @@ public with sharing class AFFL_ContactAccChange_TEST {
     @testSetup 
     static void dataSetup() {
 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
-        orgRecTypeID = UTIL_Describe.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  

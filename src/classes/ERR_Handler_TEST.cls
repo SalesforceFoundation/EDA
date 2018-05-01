@@ -53,21 +53,21 @@ public with sharing class ERR_Handler_TEST {
 	    	chatterGroupId = chatterGroup.Id;
 	    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
 	    	  Error_Notifications_To__c = chatterGroup.Id, Store_Errors_On__c = true, 
-	    	  Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+	    	  Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
     	} else {
     		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
     		  Error_Notifications_To__c = null, Store_Errors_On__c = true, 
-    		  Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+    		  Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
     	}
     }
     
     private static void setupWithEmailNotifications() {
         // all these tests are about testing our error handling, so we can't let the assert interfere       
         
-        User user = UTIL_UnitTestData_TEST.CreateNewUserForTests(System.now().getTime() + '@testerson.com');
+        User user = UTIL_UnitTestData_API.CreateNewUserForTests(System.now().getTime() + '@testerson.com');
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Error_Notifications_On__c = true, 
             Error_Notifications_To__c = user.Id, Store_Errors_On__c = true, 
-            Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
+            Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
     }
     
     /** Test using the default configuration of classes that implement TDTM_Runnable **/

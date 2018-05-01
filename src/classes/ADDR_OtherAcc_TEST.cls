@@ -48,10 +48,10 @@ public with sharing class ADDR_OtherAcc_TEST {
     @isTest
     public static void newRecordsWithAddrInfo() {            
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      UTIL_Describe.getBizAccRecTypeID() + ';'));
+                                                                      UTIL_Describe_API.getBizAccRecTypeID() + ';'));
  
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(cAcc, UTIL_Describe_API.getBizAccRecTypeID());
         for (Account acc : listAcc) {
             acc.BillingStreet = '123 45th';
             acc.BillingCity = 'Seattle';
@@ -86,11 +86,11 @@ public with sharing class ADDR_OtherAcc_TEST {
     @isTest
     public static void updateRecordsWithAddrInfo() {         
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                            UTIL_Describe.getBizAccRecTypeID() + ';'));
+                                                                            UTIL_Describe_API.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
         Integer cAcc = 3;
-        list<Account> listAcc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(cAcc, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(cAcc, UTIL_Describe_API.getBizAccRecTypeID());
         insert listAcc;
 
         // update the accounts' address
@@ -134,10 +134,10 @@ public with sharing class ADDR_OtherAcc_TEST {
     @isTest
     public static void newAddrForAccounts() {           
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
-                                                                      UTIL_Describe.getBizAccRecTypeID() + ';'));
+                                                                      UTIL_Describe_API.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
-        list<Account> listAcc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(3, UTIL_Describe.getBizAccRecTypeID());
+        list<Account> listAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(3, UTIL_Describe_API.getBizAccRecTypeID());
         insert listAcc;
 
          // create addresses for the accounts
@@ -182,7 +182,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     public static void testDisabledAddr() {        
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
 
-        List<Account> accs = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        List<Account> accs = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
         for (Account acc : accs) {
             acc.BillingStreet = 'new street';
             acc.BillingCity = 'new city';

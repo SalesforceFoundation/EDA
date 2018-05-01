@@ -39,12 +39,12 @@
 public with sharing class ADDR_HouseholdAcc_TEST {
     
     /* @description Household Account Record Type ID. */
-    private static ID householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+    private static ID householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
     
     private static void configSettings() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-            Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID(),
+            Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+            Household_Addresses_RecType__c = UTIL_Describe_API.getHhAccRecTypeID(),
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true));
     }
@@ -75,7 +75,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         
         Test.startTest();
         //This is really just testing that the helper method is properly written
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         Test.stopTest();
         
         // verify that the HH and Contacts share the same address
@@ -126,7 +126,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     public static void insertContactWithAddressToHH() {
         configSettings();
           
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         //Insert one contact in each household
         List<Contact> contacts = new List<Contact>();
@@ -167,7 +167,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     public static void insertContactWithAddressOverrideHH() {
         configSettings();
                            
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         List<Contact> contacts = new List<Contact>();
         //Insert one Contact per household with address info and override
@@ -217,7 +217,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // now let's update the Addresses
         for (Integer i = 0; i < 2; i++) {
@@ -258,7 +258,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         // now let's delete the Addresses
@@ -293,7 +293,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     static void deleteNonDefaultOverrideAddrHH() {
         configSettings();
            
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -349,7 +349,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // now let's update the Addresses
         for (Integer i = 0; i < 2; i++) {
@@ -384,7 +384,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
                
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create a new non-default address
         Address__c addrNew = new Address__c();
@@ -444,7 +444,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -507,7 +507,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         List<Address__c> listAddr = [select Id from Address__c];
         UTIL_Debug.debug('****listAddr count 1: ' + listAddr.size());
         
@@ -568,7 +568,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         List<Address__c> listAddrOriginal = consAccsAddrs.addrs;
         
@@ -635,7 +635,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -699,7 +699,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
 
         // this creates two child Contacts and a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         UTIL_Debug.debug('****clearAddrOverrideHH consAccsAddrs: ' + JSON.serializePretty(consAccsAddrs));
         
         // create additional addresses - one for each account
@@ -778,7 +778,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // modify some of the contact addresses directly
         for (Integer i = 0; i < 2; i++) {
@@ -825,7 +825,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // modify the contact addresses directly, and set override
         for (Integer i = 0; i < 4; i++) {
@@ -875,7 +875,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
           
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
        
         // modify some of the contact addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -937,7 +937,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
          
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // modify some of the contact addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -1034,7 +1034,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
           
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         ADDR_Account_TDTM.accountIdsUpdated = new Set<Id>();
         // modify some of the account addresses directly
@@ -1098,7 +1098,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // modify some of the account addresses directly
         // NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
@@ -1181,7 +1181,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
              
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1235,7 +1235,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1295,7 +1295,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1349,7 +1349,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // create additional seasonal addresses not current
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1409,7 +1409,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
                 
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
  
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1484,7 +1484,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
            
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
 
          // create additional non-default addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1547,7 +1547,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
 
         // create additional non-default addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1610,7 +1610,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
                
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
 
         // create additional addresses
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
@@ -1699,10 +1699,10 @@ public with sharing class ADDR_HouseholdAcc_TEST {
              
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, 
-                                                                                        UTIL_Describe.getHhAccRecTypeID());
+                                                                                        UTIL_Describe_API.getHhAccRecTypeID());
 
         // insert new contacts to the HH without any addresses
-        List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        List<Contact> listCon = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
             listCon[i].LastName = 'ToAvoidDupeRule' + i;
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
@@ -1736,10 +1736,10 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
            
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
  
         // insert new contacts to the HH with new addresses, one per Household
-        List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        List<Contact> listCon = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
             listCon[i].LastName = 'ToAvoidDupeRule' + i;
@@ -1788,10 +1788,10 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
               
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         // insert new contacts to the HH with the current default addresses
-        List<Contact> listCon = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        List<Contact> listCon = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Integer i = 0; i < 2; i++) {
             listCon[i].LastName = 'ToAvoidDupeRule' + i;
             listCon[i].AccountId = consAccsAddrs.accs[i].Id;
@@ -1833,9 +1833,9 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     public static void insertContactWithMultilineStreetAddressHH() {
         configSettings();
    
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
-        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         //create new contacts, one per household
         for (Integer i = 0; i<contacts.size(); i++) {
             Contact con = contacts[i];
@@ -1884,7 +1884,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
         
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
 
         // create additional addresses
         List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
@@ -1927,7 +1927,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
           
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
 
         // modify some of the account addresses directly
         for (Integer i = 0; i < 2; i++) {
@@ -1975,10 +1975,10 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     @isTest
     public static void testDisabledHHAccountAddr() {        
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(), 
+            new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                                        Household_Addresses_RecType__c = null));
 
-        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Contact con : contacts) {
             con.MailingStreet = 'new street';
             con.MailingCity = 'new city';
@@ -2061,7 +2061,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
                 
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         UTIL_Debug.debug('****Test data created for test: ' + JSON.serializePretty(consAccsAddrs));
         
         // clear some of the contact addresses directly - one in each household
@@ -2126,7 +2126,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         configSettings();
            
         // this creates a default Address for each Account
-        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe.getHhAccRecTypeID());
+        UTIL_UnitTestData_TEST.ContactsAccsWithAddrs consAccsAddrs = UTIL_UnitTestData_TEST.createTestConsAccsAddrs(2, 2, UTIL_Describe_API.getHhAccRecTypeID());
         
         Contact con = new Contact();
         con.lastname = 'test';
@@ -2162,7 +2162,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
         
-        Account orgAcc = new Account(Name='Org Account', RecordTypeID = UTIL_Describe.getBizAccRecTypeID());
+        Account orgAcc = new Account(Name='Org Account', RecordTypeID = UTIL_Describe_API.getBizAccRecTypeID());
         insert orgAcc;
         
         Contact con = new Contact(Lastname='Testy', AccountId = orgAcc.Id);
