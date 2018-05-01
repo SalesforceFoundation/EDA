@@ -679,6 +679,7 @@
         <members>Course__c.All</members>
         <members>Program_Enrollment__c.All</members>
         <members>Program_Plan__c.All</members>
+        <members>Program_Plan__c.Primary_Program_Plan</members>
         <members>Relationship__c.All</members>
         <members>Term__c.All</members>
         <members>Trigger_Handler__c.All</members>
