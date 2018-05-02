@@ -234,6 +234,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Plan__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup Relationship to Academic Plan to document which plan a student is following</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup Relationship to Academic Plan to document which plan a student is following</inlineHelpText>
+        <label>Plan</label>
+        <referenceTo>Program_Plan__c</referenceTo>
+        <relationshipLabel>Program Enrollments</relationshipLabel>
+        <relationshipName>Program_Enrollments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
