@@ -236,9 +236,9 @@
     <fields>
         <fullName>Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup Relationship to Academic Plan to document which plan a student is following</description>
+        <description>Lookup field to the Program Plan encompassing all Program Requirements that a student should follow for this Program Enrollment.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Lookup Relationship to Academic Plan to document which plan a student is following</inlineHelpText>
+        <inlineHelpText>Click to select a Program Plan that a student should follow for this Program Enrollment.</inlineHelpText>
         <label>Plan</label>
         <referenceTo>Program_Plan__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>

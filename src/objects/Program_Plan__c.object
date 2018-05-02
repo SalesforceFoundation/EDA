@@ -47,7 +47,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>An academic program could list multiple courses and a course could be associated with multiple Academic Programs.</description>
+    <description>Links Courses to an Academic Program to create a path for students to follow. An Academic Program can list multiple Courses, and a Course can be associated with multiple Academic Programs.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -70,9 +70,9 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
-        <description>The end date of the program plan</description>
+        <description>The end date for the Program Plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The end date of the program plan</inlineHelpText>
+        <inlineHelpText>The end date for the Program Plan.</inlineHelpText>
         <label>End Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -90,9 +90,9 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <description>The start date of a program plan</description>
+        <description>The date the Program Plan went into effect.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The start date of a program plan</inlineHelpText>
+        <inlineHelpText>The date the Program Plan went into effect.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -100,9 +100,9 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>The status of the program plan</description>
+        <description>The status of the program plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The status of the program plan</inlineHelpText>
+        <inlineHelpText>The status of the program plan.</inlineHelpText>
         <label>Status</label>
         <picklist>
             <picklistValues>
@@ -121,9 +121,9 @@
     </fields>
     <fields>
         <fullName>Version__c</fullName>
-        <description>The version of the program plan</description>
+        <description>The version of the Program Plan. For example, “Spring 2019.”</description>
         <externalId>false</externalId>
-        <inlineHelpText>The version of the program plan</inlineHelpText>
+        <inlineHelpText>The version of the Program Plan. For example, “Spring 2019.”</inlineHelpText>
         <label>Version</label>
         <length>25</length>
         <required>false</required>

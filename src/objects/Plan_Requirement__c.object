@@ -58,9 +58,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Category__c</fullName>
-        <description>Category for the plan requirement</description>
+        <description>Category for the Plan Requirement.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Category for the plan requirement</inlineHelpText>
+        <inlineHelpText>Specify a category for the the Plan Requirement.</inlineHelpText>
         <label>Category</label>
         <picklist>
             <picklistValues>
@@ -81,9 +81,9 @@
     <fields>
         <fullName>Course__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field to Course</description>
+        <description>Lookup field to find a Course.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Lookup field to Course</inlineHelpText>
+        <inlineHelpText>Click to search for a Course.</inlineHelpText>
         <label>Course</label>
         <referenceTo>Course__c</referenceTo>
         <relationshipLabel>Plan Requirements</relationshipLabel>
@@ -94,9 +94,9 @@
     </fields>
     <fields>
         <fullName>Credits__c</fullName>
-        <description>Could be the credits for a specific course, or the total number of credits needed for type of requirement</description>
+        <description>A field that can contain the credits a student receives for completing a specific course, or the total number of credits needed for type of requirement.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Could be the credits for a specific course, or the total number of credits needed for type of requirement</inlineHelpText>
+        <inlineHelpText>Specify the number of credits a student receives when completing a course or another type of Plan Requirement (for example, a multi-course Plan Requirement).</inlineHelpText>
         <label>Credits</label>
         <precision>6</precision>
         <required>false</required>
@@ -107,9 +107,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>The description of plan requirement</description>
+        <description>The description of Plan Requirement.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The description of plan requirement</inlineHelpText>
+        <inlineHelpText>Describe the Plan Requirement.</inlineHelpText>
         <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -120,7 +120,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to Plan Requirement to support multiple levels of requirements. A generic requirement could have a list of optional courses that satisfy that requirement.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Lookup to Plan Requirement to support multiple levels of requirements. A generic requirement could have a list of optional courses that satisfy that requirement.</inlineHelpText>
+        <inlineHelpText>Click to search for a Plan Requirement.</inlineHelpText>
         <label>Plan Requirement</label>
         <referenceTo>Plan_Requirement__c</referenceTo>
         <relationshipLabel>Plan Requirements</relationshipLabel>
@@ -132,9 +132,9 @@
     <fields>
         <fullName>Program_Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Look up field to program plan</description>
+        <description>Look up field to program plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Look up field to program plan</inlineHelpText>
+        <inlineHelpText>Click to search for a Program Plan.</inlineHelpText>
         <label>Program Plan</label>
         <referenceTo>Program_Plan__c</referenceTo>
         <relationshipLabel>Plan Requirements</relationshipLabel>
