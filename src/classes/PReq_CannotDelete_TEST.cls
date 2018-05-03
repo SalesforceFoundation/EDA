@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2018
 * @group Plan Requirement
-* @group-content ../../ApexDocContent/PlanRequirement.htm
+* @group-content ../../ApexDocContent/PlanRequirements.htm
 * @description Tests for PReq_CannotDelete_TDTM.
 */
 @isTest

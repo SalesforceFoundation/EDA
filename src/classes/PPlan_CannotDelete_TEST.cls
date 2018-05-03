@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2018
 * @group Program Plan
-* @group-content ../../ApexDocContent/ProgramPlan.htm
+* @group-content ../../ApexDocContent/ProgramPlans.htm
 * @description Tests for PPlan_CannotDelete_TDTM.
 */
 @isTest

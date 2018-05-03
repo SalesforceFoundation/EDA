@@ -31,7 +31,7 @@
 * @author Salesforce.org
 * @date 2018
 * @group Plan Requirement
-* @group-content ../../ApexDocContent/PlanRequirement.htm
+* @group-content ../../ApexDocContent/PlanRequirements.htm
 * @description Stops an Plan Requirement from being deleted if it has any child Plan Requirement
 */
 public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {

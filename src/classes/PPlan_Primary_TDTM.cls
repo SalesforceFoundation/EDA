@@ -31,13 +31,12 @@
 * @author Salesforce.org
 * @date 2018
 * @group ProgramPlan
-* @group-content ../../ApexDocContent/ProgramPlan.htm
-* @description Creates Affiliations when the user manually populates
-* any of the primary affiliation lookup fields.
+* @group-content ../../ApexDocContent/ProgramPlans.htm
+* @description Handles primary program plans under accounts
 */
 public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
-    * @description Handles primary affiliation fields.
+    * @description Handles primary program plans.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
