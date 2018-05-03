@@ -49,7 +49,7 @@ private class PPlan_Primary_TEST {
         for (Integer i=0; i < 3; i++) {
             Program_Plan__c pPlan = new Program_Plan__c();
             pPlan.Name = 'pp test ' + i;
-            pPlan.Account__c = accts[0].Id;
+            pPlan.Academic_Program__c = accts[0].Id;
             pPlans.add(pPlan);
         }
         insert pPlans;
@@ -63,7 +63,7 @@ private class PPlan_Primary_TEST {
         Test.stopTest();
 
         //assert
-        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Academic_Program__c = :accts[0].Id];
         for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Id != pPlans[1].Id) {
                 system.assertEquals(false, pPlan.Is_Primary__c);
@@ -86,7 +86,7 @@ private class PPlan_Primary_TEST {
         for (Integer i=0; i < 3; i++) {
             Program_Plan__c pPlan = new Program_Plan__c();
             pPlan.Name = 'pp test ' + i;
-            pPlan.Account__c = accts[0].Id;
+            pPlan.Academic_Program__c = accts[0].Id;
             pPlans.add(pPlan);
         }
         insert pPlans;
@@ -97,13 +97,13 @@ private class PPlan_Primary_TEST {
         Test.startTest();
         Program_Plan__c newPPlan = new Program_Plan__c();
         newPPlan.Name = 'pp test ' + 3;
-        newPPlan.Account__c = accts[0].Id;
+        newPPlan.Academic_Program__c = accts[0].Id;
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
         Test.stopTest();
 
         //assert
-        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Academic_Program__c = :accts[0].Id];
         for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Id != newPPlan.Id) {
                 system.assertEquals(false, pPlan.Is_Primary__c);
@@ -126,7 +126,7 @@ private class PPlan_Primary_TEST {
         for (Integer i=0; i < 3; i++) {
             Program_Plan__c pPlan = new Program_Plan__c();
             pPlan.Name = 'pp test ' + i;
-            pPlan.Account__c = accts[0].Id;
+            pPlan.Academic_Program__c = accts[0].Id;
             pPlans.add(pPlan);
         }
         insert pPlans;
@@ -139,12 +139,12 @@ private class PPlan_Primary_TEST {
         newPPlan.Name = 'pp test ' + 3;
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
-        newPPlan.Account__c = accts[0].Id;
+        newPPlan.Academic_Program__c = accts[0].Id;
         update newPPlan;
         Test.stopTest();
 
         //assert
-        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Academic_Program__c = :accts[0].Id];
         for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Id != newPPlan.Id) {
                 system.assertEquals(false, pPlan.Is_Primary__c);

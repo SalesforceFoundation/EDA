@@ -9,7 +9,7 @@
         <value>Plan Requirements</value>
     </caseValues>
     <fields>
-        <help><!-- Category for the plan requirement --></help>
+        <help><!-- Specify a category for the the Plan Requirement. --></help>
         <label><!-- Category --></label>
         <name>Category__c</name>
         <picklistValues>
@@ -22,29 +22,29 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- Lookup field to Course --></help>
+        <help><!-- Click to search for a Course. --></help>
         <label><!-- Course --></label>
         <name>Course__c</name>
         <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Could be the credits for a specific course, or the total number of credits needed for type of requirement --></help>
+        <help><!-- Specify the number of credits a student receives when completing a course or another type of Plan Requirement (for example, a multi-course Plan Requirement). --></help>
         <label><!-- Credits --></label>
         <name>Credits__c</name>
     </fields>
     <fields>
-        <help><!-- The description of plan requirement --></help>
+        <help><!-- Describe the Plan Requirement. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- Lookup to Plan Requirement to support multiple levels of requirements. A generic requirement could have a list of optional courses that satisfy that requirement. --></help>
+        <help><!-- Click to search for a Plan Requirement. --></help>
         <label><!-- Plan Requirement --></label>
         <name>Plan_Requirement__c</name>
         <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Look up field to program plan --></help>
+        <help><!-- Click to search for a Program Plan. --></help>
         <label><!-- Program Plan --></label>
         <name>Program_Plan__c</name>
         <relationshipLabel><!-- Plan Requirements --></relationshipLabel>

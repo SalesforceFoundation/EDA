@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -57,10 +57,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>Academic_Program__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Look up field to find an Academic Program.</description>
         <externalId>false</externalId>
-        <label>Account</label>
+        <inlineHelpText>Click to search for an Academic Program to associate with the Program Plan.</inlineHelpText>
+        <label>Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Plans</relationshipLabel>
         <relationshipName>Program_Plans</relationshipName>
@@ -140,7 +142,6 @@
     <listViews>
         <fullName>Primary_Program_Plan</fullName>
         <columns>NAME</columns>
-        <columns>Account__c</columns>
         <columns>Start_Date__c</columns>
         <columns>End_Date__c</columns>
         <columns>Is_Primary__c</columns>
@@ -159,7 +160,7 @@
     </nameField>
     <pluralLabel>Program Plans</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Is_Primary__c</searchResultsAdditionalFields>

@@ -9,12 +9,13 @@
         <value>Program Plans</value>
     </caseValues>
     <fields>
-        <label><!-- Account --></label>
-        <name>Account__c</name>
+        <help><!-- Click to search for an Academic Program to associate with the Program Plan. --></help>
+        <label><!-- Academic Program --></label>
+        <name>Academic_Program__c</name>
         <relationshipLabel><!-- Program Plans --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The end date of the program plan --></help>
+        <help><!-- The end date for the Program Plan. --></help>
         <label><!-- End Date --></label>
         <name>End_Date__c</name>
     </fields>
@@ -24,12 +25,12 @@
         <name>Is_Primary__c</name>
     </fields>
     <fields>
-        <help><!-- The start date of a program plan --></help>
+        <help><!-- The date the Program Plan went into effect. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The status of the program plan --></help>
+        <help><!-- The status of the program plan. --></help>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
@@ -42,7 +43,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The version of the program plan --></help>
+        <help><!-- The version of the Program Plan. For example, “Spring 2019.” --></help>
         <label><!-- Version --></label>
         <name>Version__c</name>
     </fields>
