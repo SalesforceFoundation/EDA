@@ -57,9 +57,9 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 if (newPPlan.Is_Primary__c == true){
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
-                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Academic_Program__c))
+                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c))
                         primaryProgramIds.add(newPPlan.Id);
-                    acccountIdsNeedNonPrimarycount.add(newPPlan.Academic_Program__c);
+                    acccountIdsNeedNonPrimarycount.add(newPPlan.Account__c);
                 }
             }
         }
@@ -70,12 +70,12 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 Program_Plan__c oldPPlan = (Program_Plan__c)oldlist[i];
                 if (newPPlan.Is_Primary__c == true
                     && (newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c
-                        || newPPlan.Academic_Program__c != oldPPlan.Academic_Program__c)){
+                        || newPPlan.Account__c != oldPPlan.Account__c)){
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
-                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Academic_Program__c))
+                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c))
                         primaryProgramIds.add(newPPlan.Id);
-                    acccountIdsNeedNonPrimarycount.add(newPPlan.Academic_Program__c);
+                    acccountIdsNeedNonPrimarycount.add(newPPlan.Account__c);
                 }
             }
         }
@@ -95,7 +95,7 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
         for (Program_Plan__c pPlan : [SELECT Id,
                                             Is_Primary__c
                                     From Program_Plan__c
-                                    WHERE Academic_Program__c IN :accountIdsNeedNonPrimary
+                                    WHERE Account__c IN :accountIdsNeedNonPrimary
                                         AND Id NOT IN :primaryProgramIds]) {
             pPlan.Is_Primary__c = false;
             pPlansNeedNonPrimary.add(pPlan);

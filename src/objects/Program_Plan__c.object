@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -57,12 +57,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Academic_Program__c</fullName>
+        <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Look up field to find an Academic Program.</description>
+        <description>Lookup field to find an Account (often an Academic Program).</description>
         <externalId>false</externalId>
-        <inlineHelpText>Click to search for an Academic Program to associate with the Program Plan.</inlineHelpText>
-        <label>Academic Program</label>
+        <inlineHelpText>Click to search for an Account (often an Academic Program) to associate with the Program Plan.</inlineHelpText>
+        <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Program Plans</relationshipLabel>
         <relationshipName>Program_Plans</relationshipName>
@@ -142,6 +142,7 @@
     <listViews>
         <fullName>Primary_Program_Plan</fullName>
         <columns>NAME</columns>
+        <columns>Account__c</columns>
         <columns>Start_Date__c</columns>
         <columns>End_Date__c</columns>
         <columns>Is_Primary__c</columns>
@@ -160,7 +161,7 @@
     </nameField>
     <pluralLabel>Program Plans</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields xsi:nil="true"/>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Is_Primary__c</searchResultsAdditionalFields>

@@ -9,9 +9,9 @@
         <value>Program Plans</value>
     </caseValues>
     <fields>
-        <help><!-- Click to search for an Academic Program to associate with the Program Plan. --></help>
-        <label><!-- Academic Program --></label>
-        <name>Academic_Program__c</name>
+        <help><!-- Click to search for an Account (often an Academic Program) to associate with the Program Plan. --></help>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
         <relationshipLabel><!-- Program Plans --></relationshipLabel>
     </fields>
     <fields>

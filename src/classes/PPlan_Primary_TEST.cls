@@ -47,7 +47,7 @@ private class PPlan_Primary_TEST {
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
         for (Program_Plan__c pPlan : pPlans) {
-            pPlan.Academic_Program__c = accts[0].Id;
+            pPlan.Account__c = accts[0].Id;
         }
         insert pPlans;
 
@@ -60,7 +60,7 @@ private class PPlan_Primary_TEST {
         Test.stopTest();
 
         //assert
-        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Academic_Program__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
         for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Id != pPlans[1].Id) {
                 system.assertEquals(false, pPlan.Is_Primary__c);
@@ -81,7 +81,7 @@ private class PPlan_Primary_TEST {
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
         for (Program_Plan__c pPlan : pPlans) {
-            pPlan.Academic_Program__c = accts[0].Id;
+            pPlan.Account__c = accts[0].Id;
         }
         insert pPlans;
 
@@ -90,13 +90,13 @@ private class PPlan_Primary_TEST {
 
         Test.startTest();
         Program_Plan__c newPPlan = UTIL_UnitTestData_TEST.getProgramPlan();
-        newPPlan.Academic_Program__c = accts[0].Id;
+        newPPlan.Account__c = accts[0].Id;
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
         Test.stopTest();
 
         //assert
-        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Academic_Program__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
         for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Id != newPPlan.Id) {
                 system.assertEquals(false, pPlan.Is_Primary__c);
@@ -117,7 +117,7 @@ private class PPlan_Primary_TEST {
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
         for (Program_Plan__c pPlan : pPlans) {
-            pPlan.Academic_Program__c = accts[0].Id;
+            pPlan.Account__c = accts[0].Id;
         }
         insert pPlans;
 
@@ -128,12 +128,12 @@ private class PPlan_Primary_TEST {
         Program_Plan__c newPPlan = UTIL_UnitTestData_TEST.getProgramPlan();
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
-        newPPlan.Academic_Program__c = accts[0].Id;
+        newPPlan.Account__c = accts[0].Id;
         update newPPlan;
         Test.stopTest();
 
         //assert
-        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Academic_Program__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c FROM Program_Plan__c where Account__c = :accts[0].Id];
         for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Id != newPPlan.Id) {
                 system.assertEquals(false, pPlan.Is_Primary__c);
