@@ -39,23 +39,22 @@ public with sharing class PReq_CannotDelete_TEST {
 
     @isTest
     public static void pReqCannotDeleteWithPlanRequirement() {
-        List<Program_Plan__c> pPlans = new List<Program_Plan__c>();
-        Program_Plan__c pPlan = new Program_Plan__c(Name='pp test');
-        pPlans.add(pPlan);
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
         insert pPlans;
 
-        List<Plan_Requirement__c> prs = new List<Plan_Requirement__c>();
-        Plan_Requirement__c pr1 = new Plan_Requirement__c(Name='pr test 1', Program_Plan__c = pPlan.Id);
-        prs.add(pr1);
-        Plan_Requirement__c pr2 = new Plan_Requirement__c(Name='pr test 2', Program_Plan__c = pPlan.Id);
-        prs.add(pr2);
+        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
+        for (Plan_Requirement__c pr : prs) {
+            pr.Program_Plan__c = pPlans[0].Id;
+        }
         insert prs;
 
         Test.startTest();
-        Plan_Requirement__c pr3 = new Plan_Requirement__c(Name='pr test 3', Program_Plan__c = pPlan.Id, Plan_Requirement__c = pr1.Id);
-        insert pr3;
+        Plan_Requirement__c newPr = UTIL_UnitTestData_TEST.getPlanRequirement();
+        newPr.Program_Plan__c = pPlans[0].Id;
+        newPr.Plan_Requirement__c = prs[0].Id;
+        insert newPr;
         List<Plan_Requirement__c> prsToDelete = new List<Plan_Requirement__c>();
-        prsToDelete.add(pr1);
+        prsToDelete.add(prs[0]);
         Database.DeleteResult[] results = Database.delete(prsToDelete, false);
         Test.stopTest();
 

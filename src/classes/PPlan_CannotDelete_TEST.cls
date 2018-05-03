@@ -39,16 +39,13 @@ public with sharing class PPlan_CannotDelete_TEST {
 
     @isTest
     public static void pPlanCannotDeleteWithPlanRequirement() {
-        List<Program_Plan__c> pPlans = new List<Program_Plan__c>();
-        Program_Plan__c pPlan = new Program_Plan__c(Name='pp test');
-        pPlans.add(pPlan);
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
         insert pPlans;
 
-        List<Plan_Requirement__c> prs = new List<Plan_Requirement__c>();
-        Plan_Requirement__c pr1 = new Plan_Requirement__c(Name='pr test 1', Program_Plan__c = pPlan.Id);
-        prs.add(pr1);
-        Plan_Requirement__c pr2 = new Plan_Requirement__c(Name='pr test 2', Program_Plan__c = pPlan.Id);
-        prs.add(pr2);
+        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
+        for (Plan_Requirement__c pr : prs) {
+            pr.Program_Plan__c = pPlans[0].Id;
+        }
         insert prs;
 
         Test.startTest();

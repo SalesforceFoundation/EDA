@@ -45,12 +45,9 @@ private class PPlan_Primary_TEST {
         List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
         insert accts[0];
 
-        List<Program_Plan__c> pPlans = new List<Program_Plan__c>();
-        for (Integer i=0; i < 3; i++) {
-            Program_Plan__c pPlan = new Program_Plan__c();
-            pPlan.Name = 'pp test ' + i;
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
+        for (Program_Plan__c pPlan : pPlans) {
             pPlan.Academic_Program__c = accts[0].Id;
-            pPlans.add(pPlan);
         }
         insert pPlans;
 
@@ -82,12 +79,9 @@ private class PPlan_Primary_TEST {
         List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
         insert accts[0];
 
-        List<Program_Plan__c> pPlans = new List<Program_Plan__c>();
-        for (Integer i=0; i < 3; i++) {
-            Program_Plan__c pPlan = new Program_Plan__c();
-            pPlan.Name = 'pp test ' + i;
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
+        for (Program_Plan__c pPlan : pPlans) {
             pPlan.Academic_Program__c = accts[0].Id;
-            pPlans.add(pPlan);
         }
         insert pPlans;
 
@@ -95,8 +89,7 @@ private class PPlan_Primary_TEST {
         update pPlans[0];
 
         Test.startTest();
-        Program_Plan__c newPPlan = new Program_Plan__c();
-        newPPlan.Name = 'pp test ' + 3;
+        Program_Plan__c newPPlan = UTIL_UnitTestData_TEST.getProgramPlan();
         newPPlan.Academic_Program__c = accts[0].Id;
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
@@ -122,12 +115,9 @@ private class PPlan_Primary_TEST {
         List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
         insert accts[0];
 
-        List<Program_Plan__c> pPlans = new List<Program_Plan__c>();
-        for (Integer i=0; i < 3; i++) {
-            Program_Plan__c pPlan = new Program_Plan__c();
-            pPlan.Name = 'pp test ' + i;
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
+        for (Program_Plan__c pPlan : pPlans) {
             pPlan.Academic_Program__c = accts[0].Id;
-            pPlans.add(pPlan);
         }
         insert pPlans;
 
@@ -135,8 +125,7 @@ private class PPlan_Primary_TEST {
         update pPlans[0];
 
         Test.startTest();
-        Program_Plan__c newPPlan = new Program_Plan__c();
-        newPPlan.Name = 'pp test ' + 3;
+        Program_Plan__c newPPlan = UTIL_UnitTestData_TEST.getProgramPlan();
         newPPlan.Is_Primary__c = true;
         insert newPPlan;
         newPPlan.Academic_Program__c = accts[0].Id;
