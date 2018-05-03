@@ -301,4 +301,44 @@ public class UTIL_UnitTestData_TEST {
         public List<Contact> contacts { public get; public set; }
         public List<Address__c> addrs { public get; public set; }
     }
+
+    /*********************************************************************************************************
+    *@description Get a single Program Plan
+    **********************************************************************************************************/
+    public static Program_Plan__c getProgramPlan(){
+        Program_Plan__c programPlan = new Program_Plan__c();
+        programPlan.Name = 'Test Program Plan ' + Datetime.now().getTime();
+        return programPlan;
+    }
+
+    /*********************************************************************************************************
+    *@description Get a list of Program Plans
+    **********************************************************************************************************/
+    public static List<Program_Plan__c> getMultipleTestProgramPlans(Integer n) {
+        List<Program_Plan__c> programPlans = new List<Program_Plan__c>();
+        for(Integer i=0; i<n; i++) {
+            programPlans.add(getProgramPlan());
+        }
+        return programPlans;
+    }
+
+    /*********************************************************************************************************
+    *@description Get a single Plan Requirement
+    **********************************************************************************************************/
+    public static Plan_Requirement__c getPlanRequirement(){
+        Plan_Requirement__c planRequirement = new Plan_Requirement__c();
+        planRequirement.Name = 'Test Plan Requirement ' + Datetime.now().getTime();
+        return planRequirement;
+    }
+
+    /*********************************************************************************************************
+    *@description Get a list of Plan Requirements
+    **********************************************************************************************************/
+    public static List<Plan_Requirement__c> getMultipleTestPlanRequirements(Integer n) {
+        List<Plan_Requirement__c> planRequirements = new List<Plan_Requirement__c>();
+        for(Integer i=0; i<n; i++) {
+            planRequirements.add(getPlanRequirement());
+        }
+        return planRequirements;
+    }
 }
