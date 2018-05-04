@@ -57,6 +57,9 @@
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
+        <members>ERR_DeleteOutdated</members>
+        <members>ERR_DeleteOutdated_SCHED</members>
+        <members>ERR_DeleteOutdated_TEST</members>
         <members>ERR_ExceptionHandler</members>
         <members>ERR_ExceptionHandler_TEST</members>
         <members>ERR_Handler</members>
