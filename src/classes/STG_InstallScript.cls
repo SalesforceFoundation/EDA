@@ -82,7 +82,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
         scheduleJobIfNotScheduled('HEDA Async Apex Error Processing', '0 0 * * * ?', 'ERR_AsyncErrors_SCHED');
 
         //Schedule Error Cleaning recurring daily
-        scheduleJobIfNotScheduled('HEDA 90-day-old Error Cleaning', '0 0 0 * * ?', 'ERR_DeleteOutdated');
+        scheduleJobIfNotScheduled('HEDA 90-day-old Error Cleaning', '0 0 0 * * ?', 'ERR_DeleteOutdated_SCHED');
     }
 
     global static void reparentAdminAddrs(Version previousVersion) {

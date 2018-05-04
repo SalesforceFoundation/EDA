@@ -311,7 +311,7 @@ public with sharing class STG_InstallScript_TEST {
 
         //System should create the error schedule job after the installation.
         List<CronTrigger> errorSchedule = [SELECT ID, CronExpression, CronJobDetail.Name, CronJobDetailId, EndTime, NextFireTime, PreviousFireTime, StartTime, State, TimesTriggered FROM CronTrigger
-        where CronJobDetail.Name = 'HEDA 90-day-old Error Cleaning'];
+                                            WHERE CronJobDetail.Name = 'HEDA 90-day-old Error Cleaning'];
         System.assertEquals(1, errorSchedule.size());
     }
 
