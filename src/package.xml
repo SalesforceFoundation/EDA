@@ -616,6 +616,7 @@
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Error__c</members>
         <members>HEDA_Settings</members>
         <members>Program_Enrollment__c</members>
         <members>Relationship__c</members>
@@ -645,6 +646,7 @@
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+        <members>Error__c.All</members>
         <members>Program_Enrollment__c.All</members>
         <members>Relationship__c.All</members>
         <members>Term__c.All</members>

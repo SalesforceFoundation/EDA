@@ -150,6 +150,11 @@
         <visibleLines>10</visibleLines>
     </fields>
     <label>Error</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>{000000}</displayFormat>
         <label>Error Number</label>
