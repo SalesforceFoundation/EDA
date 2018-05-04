@@ -391,6 +391,7 @@
         <members>firstNameLastNameAdminACC</members>
         <members>firstNameLastNameFamily</members>
         <members>firstNameLastNameHH</members>
+        <members>giftProcessingConfigException</members>
         <members>hhAccNameFormat</members>
         <members>hhFamily</members>
         <members>lastNameAdminAcc</members>
