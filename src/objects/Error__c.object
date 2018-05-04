@@ -152,8 +152,16 @@
     <label>Error</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Datetime__c</columns>
+        <columns>Error_Type__c</columns>
+        <columns>Object_Type__c</columns>
+        <columns>Context_Type__c</columns>
+        <columns>Email_Sent__c</columns>
+        <columns>Posted_in_Chatter__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>{000000}</displayFormat>
