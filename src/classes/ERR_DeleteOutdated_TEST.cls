@@ -44,7 +44,11 @@ public class ERR_DeleteOutdated_TEST {
         insert errors;
 
         Test.startTest();
-        System.enqueueJob(new ERR_DeleteOutdated());
+        //call the batch job
+        Type classType = Type.forName('ERR_DeleteOutdated_BATCH');
+        Object classInstance = classType.newInstance();
+        Database.Batchable<SObject> batchInstance = (Database.Batchable<SObject>)classInstance;
+        Id batchInstanceId = Database.executeBatch(batchInstance);
         Test.stopTest();
 
         List<Error__c> assertErrors = [SELECT Id FROM Error__c];

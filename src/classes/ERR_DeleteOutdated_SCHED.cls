@@ -34,9 +34,13 @@
 
 public with sharing class ERR_DeleteOutdated_SCHED implements Schedulable {
     /**
-     * @description Schedulable execute method enqueues ERR_DeleteOutdated.
+     * @description Schedulable execute method runs ERR_DeleteOutdated_BATCH.
      */
         public void execute(SchedulableContext context) {
-            System.enqueueJob(new ERR_DeleteOutdated());
+            //call the batch job
+            Type classType = Type.forName('ERR_DeleteOutdated_BATCH');
+            Object classInstance = classType.newInstance();
+            Database.Batchable<SObject> batchInstance = (Database.Batchable<SObject>)classInstance;
+            Id batchInstanceId = Database.executeBatch(batchInstance);
         }
     }
