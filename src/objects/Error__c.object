@@ -169,6 +169,13 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Errors</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Datetime__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Error_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Object_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Context_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Email_Sent__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Posted_in_Chatter__c</customTabListAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
