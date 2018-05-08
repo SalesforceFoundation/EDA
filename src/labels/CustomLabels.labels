@@ -305,6 +305,13 @@
         <value>{!{!FirstName}} {!LastName} Household</value>
     </labels>
     <labels>
+        <fullName>giftProcessingConfigException</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Gift Processing configuration error</shortDescription>
+        <value>You are trying to access Gift Processing without the required configuration information. Contact your administrator for help.</value>
+    </labels>
+    <labels>
         <fullName>hhAccNameFormat</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
