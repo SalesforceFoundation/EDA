@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017, Salesforce.org
+    Copyright (c) 2018, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2017
+* @date 2018
 * @group TDTM
 * @group-content ../../ApexDocContent/TDTM.htm
 * @description Provides the Advancement Information to HEDA class.
@@ -56,31 +56,78 @@ public with sharing class Advancement_Info {
     * @return void
     */
     private static void setup() {
-        //Check if Advancement is installed and enabled.
-        try {
-            //This function checks if the current user is licensed to Advancement
-            //If the Advancement is not installed, then it will throw TypeException: Package corresponding to namespace prefix not found
-            Boolean isUserLicensed = UserInfo.isCurrentUserLicensed('adv1');
-            if(isUserLicensed) {
-                List<SObject> advSettings = Database.query('select adv1__Use_Advancement__c, adv1__API_HEDA_Class__c from adv1__Advancement_Setting__mdt');
-                useAdv = (Boolean) advSettings[0].get('adv1__Use_Advancement__c');
-                String apiHedaClass = (String) advSettings[0].get('adv1__API_HEDA_Class__c');
+        //Check if setup() is being called. If yes, just return
+        if (setupCalled) {
+            return;
+        }
 
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getOrgSettings();
+
+        //Determine if the current Adv code is inside a package
+        Boolean isManaged = false;
+
+        if (String.isBlank(hs.Advancement_Namespace__c)) {
+            hs.Advancement_Namespace__c = String.valueOf(Hierarchy_Settings__c.Advancement_Namespace__c.getDescribe().getDefaultValueFormula()).remove('\"');
+        }
+
+        //Check if Advancement is installed
+        try {
+            Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{hs.Advancement_Namespace__c + '__Advancement_Setting__mdt'});
+            isManaged = true;
+        } catch (Exception e) {
+            try {
+                Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{'Advancement_Setting__mdt'});
+            } catch (Exception ex) {
+                setupCalled = true;
+                return;
+            }
+        }
+
+
+        //If Adv is installed, we need to throw exception if Adv is not configured correctly
+        Boolean hasConfigError = true;
+
+        String advSettingQuery = 'select Use_Advancement__c, API_HEDA_Class__c from Advancement_Setting__mdt';
+        String useAdvStr = 'Use_Advancement__c';
+        String apiHedaClassStr = 'API_HEDA_Class__c';
+
+        if (isManaged == true) {
+            advSettingQuery = 'select ' + hs.Advancement_Namespace__c + '__' + 'Use_Advancement__c, ' +
+                    hs.Advancement_Namespace__c + '__' + 'API_HEDA_Class__c from ' +
+                    hs.Advancement_Namespace__c + '__' + 'Advancement_Setting__mdt';
+            useAdvStr = hs.Advancement_Namespace__c + '__' + 'Use_Advancement__c';
+            apiHedaClassStr = hs.Advancement_Namespace__c + '__' + 'API_HEDA_Class__c';
+
+        }
+
+        List<SObject> advSettings = Database.query(advSettingQuery);
+        if (advSettings != null && advSettings.size() > 0) {
+            useAdv = (Boolean) advSettings[0].get(useAdvStr);
+            if (useAdv) {
+                String apiHedaClass = (String) advSettings[0].get(apiHedaClassStr);
                 if (String.isNotBlank(apiHedaClass)) {
+                    if (isManaged == true) {
+                        apiHedaClass = hs.Advancement_Namespace__c + '.' + apiHedaClass;
+                    }
                     Type classType = Type.forName(apiHedaClass);
                     if (classType != null) {
                         Object classInstance = classType.newInstance();
                         if (classInstance instanceof Advancement_Adapter) {
                             apiHEDA = (Advancement_Adapter) classInstance;
+                            hasConfigError = false;
                         }
                     }
                 }
+            } else {
+                hasConfigError = false;
             }
-        } catch(Exception e) {
-            // Advancement not installed. Nothing to do.
         }
 
         setupCalled = true;
+
+        if(hasConfigError) {
+            throw new ADVException(Label.giftProcessingConfigException);
+        }
     }
 
     /*******************************************************************************************************
@@ -88,9 +135,7 @@ public with sharing class Advancement_Info {
     * @return useAdv The boolean value to determine if Adv project is installed.
     */
     public static Boolean useAdv() {
-        if(!setupCalled) {
-            setup();
-        }
+        setup();
         return useAdv;
     }
 
@@ -99,9 +144,12 @@ public with sharing class Advancement_Info {
     * @return Advancement_Adapter The adapter class from Adv to override the default behavior of Advancement_Adapter
     */
     public static Advancement_Adapter getApiHEDA() {
-        if(!setupCalled) {
-            setup();
-        }
+        setup();
         return apiHEDA;
     }
+
+    /*******************************************************************************************************
+    * @description This is the expection class for ADV_PackageInfo_SVC class
+    ********************************************************************************************************/
+    private class ADVException extends Exception{}
 }
