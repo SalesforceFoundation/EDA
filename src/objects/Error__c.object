@@ -176,6 +176,13 @@
         <customTabListAdditionalFields>Context_Type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Email_Sent__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Posted_in_Chatter__c</customTabListAdditionalFields>
+        <searchFilterFields>Context_Type__c</searchFilterFields>
+        <searchResultsAdditionalFields>Datetime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Error_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Object_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Context_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Email_Sent__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Posted_in_Chatter__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
