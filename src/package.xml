@@ -283,6 +283,7 @@
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
         <members>Hierarchy_Settings__c.Admin_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Admin_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Advancement_Namespace__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
@@ -393,6 +394,7 @@
         <members>firstNameLastNameAdminACC</members>
         <members>firstNameLastNameFamily</members>
         <members>firstNameLastNameHH</members>
+        <members>giftProcessingConfigException</members>
         <members>hhAccNameFormat</members>
         <members>hhFamily</members>
         <members>lastNameAdminAcc</members>

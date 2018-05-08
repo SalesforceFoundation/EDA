@@ -58,6 +58,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Advancement_Namespace__c</fullName>
+        <defaultValue>&quot;adv1&quot;</defaultValue>
+        <description>The namespace of the Gift Processing package.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The namespace of the Gift Processing package.</inlineHelpText>
+        <label>Advancement Namespace</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
         <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
         <externalId>false</externalId>
