@@ -301,4 +301,23 @@ public class UTIL_UnitTestData_TEST {
         public List<Contact> contacts { public get; public set; }
         public List<Address__c> addrs { public get; public set; }
     }
+
+    /*********************************************************************************************************
+    * @description Create an error record happens now
+    **********************************************************************************************************/
+    public static Error__c getError() {
+        Error__c error = new Error__c(Datetime__c = System.now());
+        return error;
+    }
+
+    /*********************************************************************************************************
+    * @description Create a list of error records happen now
+    **********************************************************************************************************/
+    public static List<Error__c> getListOfErrors(Integer n) {
+        List<Error__c> errors = new List<Error__c>();
+        for(Integer i=0; i<n; i++) {
+            errors.add(getError());
+        }
+        return errors;
+    }
 }
