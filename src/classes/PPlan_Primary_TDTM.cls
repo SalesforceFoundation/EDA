@@ -53,11 +53,12 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
         if ( newlist != null && triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Insert)) {
             for (integer i=0; i<newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
-                if (newPPlan.Is_Primary__c == true){
+                if (newPPlan.Is_Primary__c == true) {
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
-                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c))
+                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
                         primaryProgramIds.add(newPPlan.Id);
+                    }
                     acccountIdsNeedNonPrimarycount.add(newPPlan.Account__c);
                 }
             }
@@ -69,11 +70,12 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 Program_Plan__c oldPPlan = (Program_Plan__c)oldlist[i];
                 if (newPPlan.Is_Primary__c == true
                     && (newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c
-                        || newPPlan.Account__c != oldPPlan.Account__c)){
+                        || newPPlan.Account__c != oldPPlan.Account__c)) {
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
-                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c))
+                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
                         primaryProgramIds.add(newPPlan.Id);
+                    }
                     acccountIdsNeedNonPrimarycount.add(newPPlan.Account__c);
                 }
             }

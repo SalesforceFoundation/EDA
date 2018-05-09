@@ -313,6 +313,7 @@ public class UTIL_UnitTestData_TEST {
 
     /*********************************************************************************************************
     *@description Get a list of Program Plans
+    *@param n the number of Program Plans to create
     **********************************************************************************************************/
     public static List<Program_Plan__c> getMultipleTestProgramPlans(Integer n) {
         List<Program_Plan__c> programPlans = new List<Program_Plan__c>();
@@ -333,6 +334,7 @@ public class UTIL_UnitTestData_TEST {
 
     /*********************************************************************************************************
     *@description Get a list of Plan Requirements
+    *@param n the number of Plan Requirements to create
     **********************************************************************************************************/
     public static List<Plan_Requirement__c> getMultipleTestPlanRequirements(Integer n) {
         List<Plan_Requirement__c> planRequirements = new List<Plan_Requirement__c>();
