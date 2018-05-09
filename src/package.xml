@@ -57,6 +57,9 @@
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
+        <members>ERR_DeleteOutdated_BATCH</members>
+        <members>ERR_DeleteOutdated_SCHED</members>
+        <members>ERR_DeleteOutdated_TEST</members>
         <members>ERR_ExceptionHandler</members>
         <members>ERR_ExceptionHandler_TEST</members>
         <members>ERR_Handler</members>
@@ -618,6 +621,7 @@
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Error__c</members>
         <members>HEDA_Settings</members>
         <members>Program_Enrollment__c</members>
         <members>Relationship__c</members>
@@ -647,6 +651,7 @@
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+        <members>Error__c.All</members>
         <members>Program_Enrollment__c.All</members>
         <members>Relationship__c.All</members>
         <members>Term__c.All</members>

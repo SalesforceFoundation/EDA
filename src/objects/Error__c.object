@@ -150,12 +150,39 @@
         <visibleLines>10</visibleLines>
     </fields>
     <label>Error</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Datetime__c</columns>
+        <columns>Error_Type__c</columns>
+        <columns>Object_Type__c</columns>
+        <columns>Context_Type__c</columns>
+        <columns>Email_Sent__c</columns>
+        <columns>Posted_in_Chatter__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>{000000}</displayFormat>
         <label>Error Number</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Errors</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Datetime__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Error_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Object_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Context_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Email_Sent__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Posted_in_Chatter__c</customTabListAdditionalFields>
+        <searchFilterFields>Context_Type__c</searchFilterFields>
+        <searchResultsAdditionalFields>Datetime__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Error_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Object_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Context_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Email_Sent__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Posted_in_Chatter__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
