@@ -9,8 +9,7 @@
     <tab>%%%NAMESPACE%%%Course__c</tab>
     <tab>%%%NAMESPACE%%%Term__c</tab>
     <tab>%%%NAMESPACE%%%Course_Offering__c</tab>
-    <tab>%%%NAMESPACE%%%Trigger_Handler__c</tab
     <tab>%%%NAMESPACE%%%Error__c</tab>
-    <tab>%%%NAMESPACE%%%Program_Plan__c</tab>
+    <tab>%%%NAMESPACE%%%Trigger_Handler__c</tab>
     <tab>%%%NAMESPACE%%%HEDA_Settings</tab>
 </CustomApplication>
