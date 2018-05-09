@@ -303,27 +303,6 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    *@description Get a single Program Plan
-    **********************************************************************************************************/
-    public static Program_Plan__c getProgramPlan(){
-        Program_Plan__c programPlan = new Program_Plan__c();
-        programPlan.Name = 'Test Program Plan ' + Datetime.now().getTime();
-        return programPlan;
-    }
-
-    /*********************************************************************************************************
-    *@description Get a list of Program Plans
-    *@param n the number of Program Plans to create
-    **********************************************************************************************************/
-    public static List<Program_Plan__c> getMultipleTestProgramPlans(Integer n) {
-        List<Program_Plan__c> programPlans = new List<Program_Plan__c>();
-        for(Integer i=0; i<n; i++) {
-            programPlans.add(getProgramPlan());
-        }
-        return programPlans;
-    }
-
-    /*********************************************************************************************************
     * @description Create an error record happens now
     **********************************************************************************************************/
     public static Error__c getError() {
@@ -340,26 +319,5 @@ public class UTIL_UnitTestData_TEST {
             errors.add(getError());
         }
         return errors;
-    }
-    
-    /*********************************************************************************************************
-    *@description Get a single Plan Requirement
-    **********************************************************************************************************/
-    public static Plan_Requirement__c getPlanRequirement(){
-        Plan_Requirement__c planRequirement = new Plan_Requirement__c();
-        planRequirement.Name = 'Test Plan Requirement ' + Datetime.now().getTime();
-        return planRequirement;
-    }
-
-    /*********************************************************************************************************
-    *@description Get a list of Plan Requirements
-    *@param n the number of Plan Requirements to create
-    **********************************************************************************************************/
-    public static List<Plan_Requirement__c> getMultipleTestPlanRequirements(Integer n) {
-        List<Plan_Requirement__c> planRequirements = new List<Plan_Requirement__c>();
-        for(Integer i=0; i<n; i++) {
-            planRequirements.add(getPlanRequirement());
-        }
-        return planRequirements;
     }
 }
