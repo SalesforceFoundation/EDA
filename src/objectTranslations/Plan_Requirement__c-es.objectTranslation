@@ -39,7 +39,7 @@
     </fields>
     <fields>
         <help><!-- Click to search for a Plan Requirement. --></help>
-        <label><!-- Plan Requirement --></label>
+        <label><!-- Parent Plan Requirement --></label>
         <name>Plan_Requirement__c</name>
         <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
     </fields>
@@ -55,5 +55,12 @@
         <name>Sequence__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Plan Requirement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Plan Requirement Name --></nameFieldLabel>
 </CustomObjectTranslation>

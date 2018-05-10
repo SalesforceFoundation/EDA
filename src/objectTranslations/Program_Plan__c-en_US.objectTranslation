@@ -47,5 +47,12 @@
         <label><!-- Version --></label>
         <name>Version__c</name>
     </fields>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

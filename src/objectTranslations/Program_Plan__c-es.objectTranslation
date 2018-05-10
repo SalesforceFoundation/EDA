@@ -48,5 +48,12 @@
         <name>Version__c</name>
     </fields>
     <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Program Plan Name --></nameFieldLabel>
 </CustomObjectTranslation>

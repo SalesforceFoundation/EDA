@@ -121,7 +121,7 @@
         <description>Lookup to Plan Requirement to support multiple levels of requirements. A generic requirement could have a list of optional courses that satisfy that requirement.</description>
         <externalId>false</externalId>
         <inlineHelpText>Click to search for a Plan Requirement.</inlineHelpText>
-        <label>Plan Requirement</label>
+        <label>Parent Plan Requirement</label>
         <referenceTo>Plan_Requirement__c</referenceTo>
         <relationshipLabel>Plan Requirements</relationshipLabel>
         <relationshipName>Plan_Requirements</relationshipName>
