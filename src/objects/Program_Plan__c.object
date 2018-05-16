@@ -45,7 +45,14 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>HEDA_Program_Plan_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Program_Plan_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <label>HEDA Program Plan Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Links Courses to an Academic Program to create a path for students to follow. An Academic Program can list multiple Courses, and a Course can be associated with multiple Academic Programs.</description>
     <enableActivities>false</enableActivities>
