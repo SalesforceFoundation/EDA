@@ -338,6 +338,7 @@
         <members>Program_Enrollment__c.Plan__c</members>
         <members>Program_Enrollment__c.Start_Date__c</members>
         <members>Program_Plan__c.Account__c</members>
+        <members>Program_Plan__c.Description__c</members>
         <members>Program_Plan__c.End_Date__c</members>
         <members>Program_Plan__c.Is_Primary__c</members>
         <members>Program_Plan__c.Start_Date__c</members>

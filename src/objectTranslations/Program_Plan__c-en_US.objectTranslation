@@ -15,6 +15,11 @@
         <relationshipLabel><!-- Program Plans --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Describe the Program Plan. --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
         <help><!-- The end date for the Program Plan. --></help>
         <label><!-- End Date --></label>
         <name>End_Date__c</name>

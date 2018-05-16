@@ -78,6 +78,16 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Description__c</fullName>
+        <description>The description of Program Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Describe the Program Plan.</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>End_Date__c</fullName>
         <description>The end date for the Program Plan.</description>
         <externalId>false</externalId>
