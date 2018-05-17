@@ -46,6 +46,13 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Plan_Requirement_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Program_Plan__c</fields>
+        <fields>Category__c</fields>
+        <label>HEDA Plan Requirement Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object will be the various course requirements that would need to be met to achieve the particular Program Plan</description>
     <enableActivities>false</enableActivities>
