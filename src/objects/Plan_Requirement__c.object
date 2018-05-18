@@ -103,7 +103,7 @@
         <fullName>Credits__c</fullName>
         <description>A field that can contain the credits a student receives for completing a specific course, or the total number of credits needed for type of requirement.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Specify the number of credits a student receives when completing a course or another type of Plan Requirement (for example, a multi-course Plan Requirement).</inlineHelpText>
+        <inlineHelpText>Specify the number of credits a student receives when satisfying this requirement.</inlineHelpText>
         <label>Credits</label>
         <precision>6</precision>
         <required>false</required>

@@ -28,7 +28,7 @@
         <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- Specify the number of credits a student receives when completing a course or another type of Plan Requirement (for example, a multi-course Plan Requirement). --></help>
+        <help><!-- Specify the number of credits a student receives when satisfying this requirement. --></help>
         <label><!-- Credits --></label>
         <name>Credits__c</name>
     </fields>
