@@ -336,7 +336,7 @@
         <members>Program_Enrollment__c.Enrollment_Status__c</members>
         <members>Program_Enrollment__c.GPA__c</members>
         <members>Program_Enrollment__c.Graduation_Year__c</members>
-        <members>Program_Enrollment__c.Plan__c</members>
+        <members>Program_Enrollment__c.Program_Plan__c</members>
         <members>Program_Enrollment__c.Start_Date__c</members>
         <members>Program_Plan__c.Account__c</members>
         <members>Program_Plan__c.Description__c</members>

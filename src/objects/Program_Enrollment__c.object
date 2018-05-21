@@ -234,12 +234,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Plan__c</fullName>
+        <fullName>Program_Plan__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup field to the Program Plan encompassing all Program Requirements that a student should follow for this Program Enrollment.</description>
         <externalId>false</externalId>
         <inlineHelpText>Click to select a Program Plan that a student should follow for this Program Enrollment.</inlineHelpText>
-        <label>Plan</label>
+        <label>Program Plan</label>
         <referenceTo>Program_Plan__c</referenceTo>
         <relationshipLabel>Program Enrollments</relationshipLabel>
         <relationshipName>Program_Enrollments</relationshipName>
