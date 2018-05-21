@@ -96,8 +96,8 @@
     </fields>
     <fields>
         <help><!-- Click to select a Program Plan that a student should follow for this Program Enrollment. --></help>
-        <label><!-- Plan --></label>
-        <name>Plan__c</name>
+        <label><!-- Program Plan --></label>
+        <name>Program_Plan__c</name>
         <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
     </fields>
     <fields>
