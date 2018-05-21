@@ -361,4 +361,25 @@ public class UTIL_UnitTestData_TEST {
         }
         return planRequirements;
     }
+
+    /*********************************************************************************************************
+    *@description Get a single Program Enrollment
+    **********************************************************************************************************/
+    public static Program_Enrollment__c getProgramEnrollment(Id accId){
+        Program_Enrollment__c programEnrollment = new Program_Enrollment__c();
+        programEnrollment.Account__c = accId;
+        return programEnrollment;
+    }
+
+    /*********************************************************************************************************
+    *@description Get a list of Program Enrollments
+    *@param n the number of Program Enrollments to create
+    **********************************************************************************************************/
+    public static List<Program_Enrollment__c> getMultipleTestProgramEnrollments(Integer n, Id accId) {
+        List<Program_Enrollment__c> programEnrollments = new List<Program_Enrollment__c>();
+        for(Integer i=0; i<n; i++) {
+            programEnrollments.add(getProgramEnrollment(accId));
+        }
+        return programEnrollments;
+    }
 }

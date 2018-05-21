@@ -59,4 +59,30 @@ public with sharing class PPlan_CannotDelete_TEST {
         System.assertEquals(false, results[0].success);
         System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
     }
+
+    @isTest
+    public static void pPlanCannotDeleteWithProgramEnrollments() {
+        List<Account> academicPrograms = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAcademicAccRecTypeID());
+        insert academicPrograms;
+
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
+        insert pPlans;
+
+        List<Program_Enrollment__c> pes = UTIL_UnitTestData_TEST.getMultipleTestProgramEnrollments(2, academicPrograms[0].Id);
+        for (Program_Enrollment__c pe : pes) {
+            pe.Program_Plan__c = pPlans[0].Id;
+        }
+        insert pes;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(pPlans, false);
+        Test.stopTest();
+
+        //Verify pPlan was not successfully deleted
+        List<Program_Plan__c> assertPps = [select ID from Program_Plan__c];
+        System.assertEquals(1, assertPps.size());
+
+        System.assertEquals(false, results[0].success);
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
+    }
 }

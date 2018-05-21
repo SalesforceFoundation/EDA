@@ -32,12 +32,12 @@
 * @date 2018
 * @group Program Plan
 * @group-content ../../ApexDocContent/ProgramPlan.htm
-* @description Stops an Program Plan from being deleted if it has any Plan Requirement
+* @description Stops an Program Plan from being deleted if it links to any Plan Requirement or Program Enrollment
 */
 public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Stops an Program Plan from being deleted if it has any Plan Requirement
+    * @description Stops an Program Plan from being deleted if it links to any Plan Requirement or Program Enrollment
     * @param listNew the list of Program Plan from trigger new.
     * @param listOld the list of Program Plan from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
@@ -52,11 +52,13 @@ public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
 
             for (Program_Plan__c programPlan : [SELECT ID,
-                                                        (SELECT ID FROM Plan_Requirements__r)
+                                                        (SELECT ID FROM Plan_Requirements__r),
+                                                        (SELECT ID FROM Program_Enrollments__r)
                                                 FROM Program_Plan__c
                                                 WHERE ID IN :oldlist]) {
 
-                if(programPlan.Plan_Requirements__r.size() > 0 ) {
+                if(programPlan.Plan_Requirements__r.size() > 0
+                    || programPlan.Program_Enrollments__r.size() > 0) {
                     Program_Plan__c programplanInContext = (Program_Plan__c)oldmap.get(programPlan.ID);
                     programplanInContext.addError(Label.CannotDelete);
                 }
