@@ -95,6 +95,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Program_Plan__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Error__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

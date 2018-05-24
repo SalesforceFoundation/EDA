@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Plan Requirement --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Plan Requirement --></value>
+    </caseValues>
+    <fields>
+        <help><!-- Specify a category for the the Plan Requirement. --></help>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Optional</masterLabel>
+            <translation><!-- Optional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Click to search for a Course. --></help>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Specify the number of credits a student receives when satisfying this requirement. --></help>
+        <label><!-- Credits --></label>
+        <name>Credits__c</name>
+    </fields>
+    <fields>
+        <help><!-- Describe the Plan Requirement. --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Click to search for a Plan Requirement. --></help>
+        <label><!-- Parent Plan Requirement --></label>
+        <name>Plan_Requirement__c</name>
+        <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Click to search for a Program Plan. --></help>
+        <label><!-- Program Plan --></label>
+        <name>Program_Plan__c</name>
+        <relationshipLabel><!-- Plan Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The progression of courses --></help>
+        <label><!-- Sequence --></label>
+        <name>Sequence__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Plan Requirement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Plan Requirement Name --></nameFieldLabel>
+</CustomObjectTranslation>

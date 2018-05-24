@@ -55,11 +55,12 @@ public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
                         
             for (Account a : [select ID, (select ID from Account.Affl_Contacts__r), 
                                          (select ID from Account.Program_Enrollments__r), 
-                                         (select ID from Account.Course_Enrollments__r) 
+                                         (select ID from Account.Course_Enrollments__r),
+                                         (select ID from Account.Program_Plans__r)
                                          from Account where ID in :oldlist]) {
                 
                 if(a.Affl_Contacts__r.size() > 0 || a.Program_Enrollments__r.size() > 0 
-                || a.Course_Enrollments__r.size() > 0) {
+                || a.Course_Enrollments__r.size() > 0 || a.Program_Plans__r.size() > 0) {
 
                     Account accountInContext = (Account)oldmap.get(a.ID);
                     accountInContext.addError(Label.CannotDelete);

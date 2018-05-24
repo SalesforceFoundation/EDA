@@ -146,7 +146,7 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CON_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
                      
-        // Stops a Account from being deleted if it has any Affiliation, Program Enrollment or Course Enrollment children
+        // Stops a Account from being deleted if it has any Affiliation, Program Enrollment, Course Enrollment children or Program Plan
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ACCT_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Account', 
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
@@ -161,6 +161,20 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CCON_Faculty_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
 
+        // Set other Program Plan as non-primary when one Plan is marked as Primary
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'PPlan_Primary_TDTM', Load_Order__c = 1, Object__c = 'Program_Plan__c',
+                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+
+        // Stops a Program Plan from being deleted if it has any Plan Requirement
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'PPlan_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Program_Plan__c',
+                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
+
+        // Stops a Plan Requirement from being deleted if it has any child Plan Requirement
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'PReq_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Plan_Requirement__c',
+                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
         return handlers;
     }
 }
