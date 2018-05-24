@@ -522,6 +522,22 @@ public class UTIL_Describe {
         }
 	}
 
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Academic Program record type, if it exists.
+     * @return String The ID of the Academic Program record type as a String.
+     */
+    public static String getAcademicAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Academic_Program');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Account').values().size() > 2)
+                return getRecTypesMapByDevName('Account').values()[2];
+            else return null;
+        } else {
+            return recTypeId;
+        }
+    }
+
     /*******************************************************************************************************
      * @description Returns the ID of the Default Course Connection record type, if it exists. This record
      * type should only be used in testing.
