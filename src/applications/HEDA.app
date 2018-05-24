@@ -8,6 +8,7 @@
     <tab>Course__c</tab>
     <tab>Term__c</tab>
     <tab>Course_Offering__c</tab>
+    <tab>Program_Plan__c</tab>
     <tab>Error__c</tab>
     <tab>Trigger_Handler__c</tab>
     <tab>HEDA_Settings</tab>

@@ -95,6 +95,12 @@
         <name>Graduation_Year__c</name>
     </fields>
     <fields>
+        <help><!-- Click to select a Program Plan that a student should follow for this Program Enrollment. --></help>
+        <label><!-- Program Plan --></label>
+        <name>Program_Plan__c</name>
+        <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
+    </fields>
+    <fields>
         <label>Data d&apos;inici</label>
         <name>Start_Date__c</name>
     </fields>

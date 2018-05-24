@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>HEDA_Program_Plan_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Program_Plan_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <label>HEDA Program Plan Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Links Courses to an Academic Program to create a path for students to follow. An Academic Program can list multiple Courses, and a Course can be associated with multiple Academic Programs.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup field to find an Account (often an Academic Program).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click to search for an Account (often an Academic Program) to associate with the Program Plan.</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Program Plans</relationshipLabel>
+        <relationshipName>Program_Plans</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>The description of Program Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Describe the Program Plan.</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>The end date for the Program Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The end date for the Program Plan.</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Is_Primary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment</inlineHelpText>
+        <label>Is Primary</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <description>The date the Program Plan went into effect.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the Program Plan went into effect.</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>The status of the program plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The status of the program plan.</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Current</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Version__c</fullName>
+        <description>The version of the Program Plan. For example, “Spring 2019.”</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The version of the Program Plan. For example, “Spring 2019.”</inlineHelpText>
+        <label>Version</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Program Plan</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Primary_Program_Plan</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Is_Primary__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Is_Primary__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Primary Program Plan</label>
+    </listViews>
+    <nameField>
+        <label>Program Plan Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Program Plans</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Is_Primary__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
