@@ -69,7 +69,15 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
 					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
+			 	    String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
+				 	if (affl.Affiliation_Type__c == null) {
+						throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
+				 	}
+				 	if (lookupFieldLabel == null) {
+						throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+					}
+
+
 
 					Contact relatedContact = relatedContactsMap.get(affl.Contact__c);
 
