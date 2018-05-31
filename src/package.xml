@@ -552,6 +552,8 @@
         <members>stgTitleNewReciSetting</members>
         <members>stgTitleReciMethod</members>
         <members>stgToastError</members>
+        <members>afflAccoutMappingError</members>
+        <members>afflAccountNoRecordType</members> 
         <name>CustomLabel</name>
     </types>
     <types>

@@ -233,6 +233,22 @@
         <value>The format used for naming Administrative Accounts.</value>
     </labels>
     <labels>
+        <fullName>afflAccountNoRecordType</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflAccountNoRecordType</shortDescription>
+        <value>You cannot create an Affiliation for an Account that does not have a record type specified.</value>
+    </labels>
+    <labels>
+        <fullName>afflAccoutMappingError</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflAccoutMappingError</shortDescription>
+        <value>The record type-to-Affiliation mapping for this Account doesn&apos;t match. The record type for a Contact&apos;s primary fields (for example, Primary Business Organization) and the record type for mapped settings must match.</value>
+    </labels>
+    <labels>
         <fullName>afflNullPointerError</fullName>
         <categories>Error</categories>
         <language>en_US</language>
