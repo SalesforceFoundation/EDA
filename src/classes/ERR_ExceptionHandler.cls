@@ -40,7 +40,9 @@ public with sharing class ERR_ExceptionHandler {
     private static final Map<String, String> EXCEPTION_MESSAGES = new Map<String, String>{
         'FIELD_CUSTOM_VALIDATION_EXCEPTION' => Label.exceptionValidationRule,
         'REQUIRED_FIELD_MISSING' => Label.exceptionRequiredField,
-        'AfflNullPointerException' => Label.afflNullPointerError
+        'AfflNullPointerException' => Label.afflNullPointerError,
+        'AfflAccountNoRecordTypeException' => Label.afflAccountNoRecordType,
+        'AffAccountRecordTypeMappingsException' => Label.afflAccoutMappingError
     };
 
     /** @description Map of exception STATUS codes to the string that defines the start and end of the useful part of the message
@@ -83,4 +85,7 @@ public with sharing class ERR_ExceptionHandler {
         }
         return false;
     }
+
+    public class AfflAccountNoRecordTypeException extends Exception {}
+    public class AffAccountRecordTypeMappingsException extends Exception {}
 }
