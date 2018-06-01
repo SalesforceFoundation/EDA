@@ -149,7 +149,7 @@ flows:
 
     config_packaging:
         steps:
-            2:
+            1:
                 # Configure update_admin_profile
                 options:
                     managed: True
