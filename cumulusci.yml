@@ -103,86 +103,82 @@ tasks:
 flows:
     hedaectomy:
         description: Remove all the HEDA metadata in the target Org
-        tasks:
+        steps:
             1:
                 task: delete_dev_config
             2:
                 task: uninstall_packaged
 
-    ci_feature:
-        description: Deploys the unmanaged package metadata and all dependencies to the target org and runs tests without collecting debug logs
-        tasks:
-            5:
-                task: None
-            6.1:
-                task: update_admin_profile
-
-            6.2:
+    config_apextest:
+        steps:
+            3:
                 task: execute_install_apex
-    
-    ci_beta:
-        tasks:
-            6:
+
+    config_dev:
+        steps:
+            3:
+                task: execute_install_apex
+            4:
+                task: deploy_dev_config
+
+    config_dev_namespaced:
+        steps:
+            1:
+                task: deploy_post
                 options:
-                    managed: True  
+                    namespaced_org: True
+            2:
+                task: update_admin_profile
+                options:
+                    namespaced_org: True
+            3:
+                task: execute_install_apex
+            4:
+                task: deploy_dev_config
 
-    ci_beta_install:
-        tasks:
-            0.1: 
-                task: delete_dev_config
-                ignore_failure: True
-
-            6:
+    config_managed:
+        steps:
+            2:
+                # Configure update_admin_profile
                 options:
                     managed: True
-            7:
+            3:
                 task: deploy_dev_config
                 options:
                     unmanaged: False
 
-    ci_master:
-        tasks:
-            9:
+    config_packaging:
+        steps:
+            1:
+                # Configure update_admin_profile
                 options:
                     managed: True
                     namespaced_org: True
                     skip_record_types: True
 
-    ci_release:
-        tasks:
-            5:
-                options:
-                    managed: True  
-
-    dev_org:
-        tasks:
-            8:
-                task: deploy_dev_config
-            9:
+    config_qa:
+        steps:
+            3:
                 task: execute_install_apex
+            4:
+                task: deploy_dev_config
+
+    deploy_unmanaged:
+        steps:
+            4:
+                # Disable uninstall_packaged_incremental
+                task: None
 
     dev_org_namespaced:
-        tasks:
-            6:
+        steps:
+            3:
+                # Configure the config_dev flow for namespaced org
                 options:
-                    namespaced_org: True
-            8:
-                task: deploy_dev_config
-            9:
-                task: execute_install_apex
-
-    install_beta:
-        tasks:
-            5:
-                options:
-                    managed: True
-            6:
-                task: deploy_dev_config
-                options:
-                    unmanaged: False
+                    update_admin_profile:
+                        namespaced_org: True
 
     release_beta:
-        tasks:
+        steps:
             5:
                 task: mrbelvedere_publish
                 options:
@@ -190,7 +186,7 @@ flows:
 
     browsertests_firefox:
         description: Runs the browser tests locally against a managed package in Firefox
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -198,7 +194,7 @@ flows:
 
     browsertests_chrome:
         description: Runs the browser tests locally against a managed package in Chrome
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -206,7 +202,7 @@ flows:
 
     browsertests_unmanaged_firefox:
         description: Runs the browser tests via SauceLabs against the unmanaged metadata in Firefox
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -214,7 +210,7 @@ flows:
 
     browsertests_unmanaged_chrome:
         description: Runs the browser tests via SauceLabs against the unmanaged metadata in Chrome
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -222,7 +218,7 @@ flows:
 
     ci_browsertests_firefox:
         description: Runs the browser tests via SauceLabs against a managed package in Firefox
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -232,7 +228,7 @@ flows:
 
     ci_browsertests_chrome:
         description: Runs the browser tests via SauceLabs against a managed package in Chrome
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -242,7 +238,7 @@ flows:
 
     ci_browsertests_unmanaged_firefox:
         description: Runs the browser tests via SauceLabs against the unmanaged metadata in Firefox
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
@@ -252,7 +248,7 @@ flows:
 
     ci_browsertests_unmanaged_chrome:
         description: Runs the browser tests via SauceLabs against the unmanaged metadata in Chrome
-        tasks:
+        steps:
             1:
                 task: download_browser_tests
             2:
