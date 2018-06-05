@@ -86,6 +86,20 @@ public with sharing class ERR_ExceptionHandler {
         return false;
     }
 
+    public static void handleAfflException(Affiliation__c affl, String lookupFieldName) {
+        //If parent account exists for affiliation and account has no record type, display the error message
+        if (affl.Account__c != null && affl.Affiliation_Type__c == null) {
+            throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
+        }
+        //If can not find any related affliation-account mappings
+        //And affiliation type not equals admin
+        //And parent account exists
+        //Display the error message
+        if (affl.Account__c != null && affl.Affiliation_Type__c != 'Administrative' && lookupFieldName == null) {
+            throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+        }
+    }
+
     public class AfflAccountNoRecordTypeException extends Exception {}
     public class AffAccountRecordTypeMappingsException extends Exception {}
 }

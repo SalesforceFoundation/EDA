@@ -44,6 +44,8 @@ public with sharing class COFF_Affiliation_TEST {
     private static Contact faculty;
 
     private static void setup() {
+        STG_InstallScript.insertMappings();
+
         //Create university
         university = new Account(Name = 'Advanced University');
         insert university;

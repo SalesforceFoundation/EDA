@@ -413,7 +413,9 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/    
     @isTest
     public static void changeContact() {
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+    	STG_InstallScript.insertMappings();
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         Id orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         Id householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
