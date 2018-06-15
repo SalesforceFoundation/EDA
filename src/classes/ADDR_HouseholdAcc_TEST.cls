@@ -2190,4 +2190,34 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         System.assertEquals(listAddr[0].MailingStreet__c, con.MailingStreet);
         System.assertEquals(listAddr[0].MailingStreet__c, acc.BillingStreet);
     }
+
+    /*********************************************************************************************************
+    @description Insert admin account with blank address data but only primary address type
+    verify:
+        No blank address record is created
+    **********************************************************************************************************/
+    static testMethod void insertHHAccountWithOnlyPrimaryAddressType() {
+        configSettings();
+        ADDR_Contact_TEST.turnOffAllAddrTriggers();
+
+        List<Account> accs = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, householdRecTypeID);
+        insert accs;
+
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+
+        contacts[0].MailingStreet = 'new street';
+        contacts[0].Primary_Address_Type__c = 'Home';
+        contacts[0].AccountId = accs[0].Id;
+        contacts[1].AccountId = accs[0].Id;
+        contacts[1].Primary_Address_Type__c = 'Home';
+
+        ADDR_Contact_TEST.turnOnAllAddrTriggers();
+        Test.startTest();
+        insert contacts;
+        Test.stopTest();
+
+        List<Address__c> assertAddresses = [SELECT Id, Parent_Account__c FROM Address__c];
+        System.assertEquals(1, assertAddresses.size());
+        System.assertEquals(accs[0].Id, assertAddresses[0].Parent_Account__c);
+    }
 }
