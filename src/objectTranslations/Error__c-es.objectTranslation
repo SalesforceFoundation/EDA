@@ -54,12 +54,5 @@
         <name>Stack_Trace__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Error Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Error Number --></nameFieldLabel>
 </CustomObjectTranslation>
