@@ -41,7 +41,10 @@ private class TDTM_DMLgt200_TEST {
     /*********************************************************************************************************
     * @description Test Method for inserting large amounts of Contacts
     */
-	@isTest static void testInsertContact() {
+	@isTest
+    static void testInsertContact() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
 		// test data set up
 		List<Contact> testContacts = new List<Contact>();
 		for (Integer i = 0; i < inputSize; i++)
@@ -61,14 +64,15 @@ private class TDTM_DMLgt200_TEST {
     */
     @isTest
     public static void insertUpdateContact() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         String newContactMailingStreet = '123 Elm St';
 
 		List<Contact> testContacts = new List<Contact>();
 
-		for (Integer i = 0; i < inputSize; i++)
-		{
+		for (Integer i = 0; i < inputSize; i++) {
         	Contact con = new Contact(
             FirstName='Test',
             LastName='Contact_forTests',
@@ -81,7 +85,7 @@ private class TDTM_DMLgt200_TEST {
         }
         insert testContacts;
 
-        List<Contact> insertedContacts = [	Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,
+        List<Contact> insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,
         									   Account.BillingStreet 
         							    	from Contact];
 
@@ -89,8 +93,7 @@ private class TDTM_DMLgt200_TEST {
         system.assertEquals(inputSize, insertedContacts.size());
 
         //relationship should be bi-directional
-        for (Contact con : insertedContacts)
-        {
+        for (Contact con : insertedContacts) {
 	        system.assertEquals(con.id, con.Account.Primary_Contact__c);   
             con.LastName = 'Contact_forTestsChange';
         	con.OtherCity = 'Seattle';  
@@ -101,8 +104,7 @@ private class TDTM_DMLgt200_TEST {
                                          from Contact];
 
         //relationship should be bi-directional
-        for (Contact con : updatedContacts)
-        {
+        for (Contact con : updatedContacts) {
         	system.assertEquals(con.id, con.Account.Primary_Contact__c);
         }
         system.assertEquals(inputSize, updatedContacts.size());
@@ -113,13 +115,14 @@ private class TDTM_DMLgt200_TEST {
     */
      @isTest
      public static void deleteContactNoOpps() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
+         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
                     Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                     Accounts_to_Delete__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
-		List<Contact> testContacts = new List<Contact>();
-        for (Integer i = 0; i < inputSize; i++)
-        {
+		 List<Contact> testContacts = new List<Contact>();
+         for (Integer i = 0; i < inputSize; i++) {
 	        Contact con = new Contact(
 	            FirstName='Test',
 	            LastName='Contact_forTests',
@@ -129,18 +132,18 @@ private class TDTM_DMLgt200_TEST {
 	            WorkPhone__c = '206-777-8888',
 	            PreferredPhone__c = 'Work');
 	        testContacts.add(con);
-	    }
-        insert testContacts;
+	     }
+         insert testContacts;
 
-        List<Account> insertedAccounts = [Select Id from Account];
-        system.assertEquals(inputSize,insertedAccounts.size());
+         List<Account> insertedAccounts = [Select Id from Account];
+         System.assertEquals(inputSize,insertedAccounts.size());
 
-        Test.startTest();
-        delete testContacts;
-        Test.stopTest();
+         Test.startTest();
+         delete testContacts;
+         Test.stopTest();
 
-        insertedAccounts = [Select Id from Account];
-        system.assertEquals(0,insertedAccounts.size());
+         insertedAccounts = [Select Id from Account];
+         System.assertEquals(0,insertedAccounts.size());
     }
 
     /*********************************************************************************************************
@@ -149,6 +152,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/            
     @isTest 
     public static void updateDefaultAddr() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
@@ -185,6 +190,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/            
     @isTest 
     static void deleteDefaultAddr() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
@@ -215,6 +222,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/            
     @isTest
     static void deleteNonDefaultOverrideAddr() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
@@ -266,6 +275,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void updateNonDefaultAddr() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
@@ -304,6 +315,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void insertNewDefaultAddr() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true);
@@ -355,6 +368,8 @@ private class TDTM_DMLgt200_TEST {
 
 	@isTest
     public static void noContactToAccPropagation() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
@@ -375,7 +390,7 @@ private class TDTM_DMLgt200_TEST {
         //Verify parent account was automatically created
         List<Contact> insertedContacts = [select AccountID from Contact];
         Set<Id> setInsertedContactsIds = new Set<Id>();
-        for (Contact insertedContact : insertedContacts){
+        for (Contact insertedContact : insertedContacts) {
         	setInsertedContactsIds.add(insertedContact.Id);
         	System.assertNotEquals(null, contact.AccountID);
         }
@@ -394,8 +409,8 @@ private class TDTM_DMLgt200_TEST {
         
         //Verify parent account has no address info
         List<Account> accs = [select BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
-        from Account];
-        for (Account acc : accs){
+                                from Account];
+        for (Account acc : accs) {
 			System.assertEquals(null, acc.BillingStreet);
 	        System.assertEquals(null, acc.BillingState);
 	        System.assertEquals(null, acc.BillingPostalCode);
@@ -413,6 +428,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/    
     @isTest
     public static void changeContact() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
     	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         Id orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
@@ -422,7 +439,7 @@ private class TDTM_DMLgt200_TEST {
     	insert oldContact;
 
     	List<Contact> newContacts = new List<Contact>();
-    	for (Integer i = 0; i < inputSize; i++){
+    	for (Integer i = 0; i < inputSize; i++) {
     		Contact newContact = new Contact(FirstName = 'New' + i, LastName = 'Testerson');
     		newContacts.add(newContact);
     	}
@@ -449,7 +466,6 @@ private class TDTM_DMLgt200_TEST {
         //Confirm Primary Business Organization field has been cleared in contact
         Contact contact = [select Primary_Organization__c from Contact where Id =:oldContact.Id];
         System.assertEquals(null, contact.Primary_Organization__c);
-        
     }
 
     /*********************************************************************************************************
@@ -459,6 +475,8 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/    
     @isTest
     public static void createContactsWithOrg() {
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
+
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
@@ -474,7 +492,7 @@ private class TDTM_DMLgt200_TEST {
         insert bizOrg1;
 
         List<Contact> newContacts = new List<Contact>();
-        for (Integer i = 0; i < inputSize; i++){
+        for (Integer i = 0; i < inputSize; i++) {
             Contact newContact = new Contact(FirstName = 'New' + i, LastName = 'Testerson', Primary_Organization__c = bizOrg1.Id);
             newContacts.add(newContact);
         }
@@ -487,8 +505,7 @@ private class TDTM_DMLgt200_TEST {
         List<Affiliation__c> affls = [select Affiliation_Type__c, Account__c, Primary__c from Affiliation__c];
         System.assertEquals(inputSize, affls.size());
 
-        for (Affiliation__c affl : affls)
-        {
+        for (Affiliation__c affl : affls) {
             System.assertEquals('Business Organization', affl.Affiliation_Type__c);
         }
     }
