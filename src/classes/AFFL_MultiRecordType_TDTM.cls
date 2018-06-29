@@ -40,6 +40,11 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     public static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
 	/*******************************************************************************************************
+    * @description If affiliation type is enforced.
+    */
+	private static boolean isAfflTypeEnforced = UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c;
+
+	/*******************************************************************************************************
     * @description Handles Affiliation management.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -68,18 +73,20 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			 	 Integer i = 0;
 		    	 for (SObject so : newlist) {
 		            Affiliation__c affl = (Affiliation__c)so;
+
 					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 			 	    String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
-					 
-				 	ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
 
+					if (isAfflTypeEnforced) {
+						ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
+					}
 
-					Contact relatedContact = relatedContactsMap.get(affl.Contact__c);
+				 	Contact relatedContact = relatedContactsMap.get(affl.Contact__c);
 
 		            //BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for
 		            //affls of the same type.
 		            if (triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert)) {
-		                if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null) {
+		                if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null && affl.Affiliation_Type__c != null) {
 		            	    afflsMadePrimary.add(affl);
             				TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
 		            	    populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
@@ -91,7 +98,11 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
 		                //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
-		                if (afflOld.Primary__c && !affl.Primary__c && relatedContact.get(lookupFieldName) == affl.Account__c) {
+		                if (afflOld.Primary__c
+								&& !affl.Primary__c
+								&& lookupFieldName != null
+								&& UTIL_Describe.isValidField('Contact', lookupFieldName)
+								&& relatedContact.get(lookupFieldName) == affl.Account__c) {
 		                    UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
 		                	if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
 		                	     relatedContact.put(lookupFieldName, null);

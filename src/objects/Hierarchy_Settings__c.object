@@ -71,6 +71,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Affiliation_Record_Type_Enforced__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</inlineHelpText>
+        <label>Affiliation Record Type Enforced</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
         <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
         <externalId>false</externalId>

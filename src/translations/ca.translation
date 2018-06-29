@@ -129,6 +129,10 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
+        <label><!-- afflTypeEnforced --></label>
+        <name>afflTypeEnforced</name>
+    </customLabels>
+    <customLabels>
         <label><!-- automaticHHNaming --></label>
         <name>automaticHHNaming</name>
     </customLabels>
