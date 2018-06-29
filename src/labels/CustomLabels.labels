@@ -257,6 +257,14 @@
         <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
     </labels>
     <labels>
+        <fullName>afflTypeEnforced</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflTypeEnforced</shortDescription>
+        <value>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</value>
+    </labels>
+    <labels>
         <fullName>duplicateFieldInFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
