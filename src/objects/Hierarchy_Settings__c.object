@@ -73,9 +73,9 @@
     <fields>
         <fullName>Affiliation_Record_Type_Enforced__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</description>
+        <description>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</inlineHelpText>
+        <inlineHelpText>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</inlineHelpText>
         <label>Affiliation Record Type Enforced</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

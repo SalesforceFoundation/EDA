@@ -382,4 +382,34 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
         System.assertEquals(0, programEnrollments.size());
     }
+/*********************************************************************************************************
+* @description
+* Enable Affiliation Type Enforcement and make Affiliation-Account mapping mismatch
+* Make sure Affiliation is not created and a custom exception is thrown
+*/
+
+	@isTest
+	public static void incorrectAfflMappingsAfflTypeEnforced() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+
+		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+		mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organizations', Primary_Affl_Field__c = 'Primary Business Organization'));
+		insert mappings;
+
+		List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+		insert testAccounts;
+
+		Test.startTest();
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
+		Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
+		Database.SaveResult result = Database.insert(contact, false);
+		Test.stopTest();
+
+		//Assert
+		List<Affiliation__c> assertAffls = [select ID from Affiliation__c];
+		System.assertEquals(0, assertAffls.size());
+
+		System.assertEquals(false, result.success);
+		System.assertEquals(Label.exceptionValidationRule + ' ' + Label.afflAccoutMappingError, result.errors[0].message);
+	}
 }
