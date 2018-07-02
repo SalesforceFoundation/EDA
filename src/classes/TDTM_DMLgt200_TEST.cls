@@ -413,7 +413,7 @@ private class TDTM_DMLgt200_TEST {
     **********************************************************************************************************/    
     @isTest
     public static void changeContact() {
-    	STG_InstallScript.insertMappings();
+        if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
