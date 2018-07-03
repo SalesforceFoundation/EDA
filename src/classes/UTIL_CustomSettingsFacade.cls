@@ -106,6 +106,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
         hs.Automatic_Household_Naming__c = false;
+        hs.Affiliation_Record_Type_Enforced__c = true;
     }
 
     /*******************************************************************************************************
