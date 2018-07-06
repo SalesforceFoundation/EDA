@@ -101,7 +101,6 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                if (afflOld.Primary__c
 								&& !affl.Primary__c
 								&& lookupFieldName != null
-								&& UTIL_Describe.isValidField('Contact', lookupFieldName)
 								&& relatedContact.get(lookupFieldName) == affl.Account__c) {
 		                    UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
 		                	if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
