@@ -45,13 +45,12 @@ public with sharing class COFF_Affiliation_TEST {
 
     private static void setup() {
         STG_InstallScript.insertMappings();
-
-        //Create university
-        university = new Account(Name = 'Advanced University');
+        // Create university
+        university = new Account(Name = 'Advanced University', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
         insert university;
 
-        //Create department
-        dpt = new Account(Name = 'Biology Department', Parent = university);
+        // Create department
+        dpt = new Account(Name = 'Biology Department', Parent = university, RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
         insert dpt;
 
         //Create Course
@@ -596,10 +595,10 @@ public with sharing class COFF_Affiliation_TEST {
         Contact faculty4 = new Contact(FirstName = 'Test', LastName = 'Testerson4');
         insert new Contact[]{faculty1, faculty2, faculty3, faculty4};
 
-        Account dpt1 = new Account(Name = 'English Department', Parent = university);
-        Account dpt2 = new Account(Name = 'CS Department', Parent = university);
-        Account dpt3 = new Account(Name = 'Math Department', Parent = university);
-        Account dpt4 = new Account(Name = 'Law Department', Parent = university);
+        Account dpt1 = new Account(Name = 'English Department', Parent = university, RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
+        Account dpt2 = new Account(Name = 'CS Department', Parent = university, RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
+        Account dpt3 = new Account(Name = 'Math Department', Parent = university, RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
+        Account dpt4 = new Account(Name = 'Law Department', Parent = university, RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
         insert new Account[]{dpt1, dpt2, dpt3, dpt4};
 
         Affiliation__c aff1 = new Affiliation__c(Contact__c = faculty1.ID, Account__c = dpt1.ID);
