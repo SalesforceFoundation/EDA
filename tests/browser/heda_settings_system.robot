@@ -25,11 +25,12 @@ Go To Course Connections
     Click Link				//a[contains(text(),'Course Connections')]
     Wait Until Element Is visible 	//a[contains(text(),'Course Connections')]
 
-Go To Course Connections Backfill
-    Go To Heda Home
-    Select Frame			//iframe[contains(@id, "vfFrameId")]
-    Click Link                          //a[contains(text(), 'Backfill')]
-    Wait Until Element Is visible       //a[contains(text(), 'Backfill')]  
+# Need to repair this locator, so commenting out for now
+#Go To Course Connections Backfill
+#    Go To Heda Home
+#    Select Frame			//iframe[contains(@id, "vfFrameId")]
+#    Click Link                          //a[contains(text(), 'Backfill')]
+#    Wait Until Element Is visible       //a[contains(text(), 'Backfill')]  
 
 Go To Courses
     Go To Heda Home
