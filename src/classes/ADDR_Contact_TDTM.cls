@@ -170,6 +170,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 	                Contact contactOld = (Contact)listOld[i];
 	                
 	                Boolean addrInfoChanged = ADDR_Addresses_UTIL.isContactAddressChanged(contact, contactOld);
+                    Boolean addrInfoEmpty = ADDR_Addresses_UTIL.iscontactAddressEmpty(contact);
 	                Boolean addrInfoCleared = !ADDR_Addresses_UTIL.iscontactAddressEmpty(contactOld) && ADDR_Addresses_UTIL.iscontactAddressEmpty(contact);
 	                Boolean currentAddressChanged = contact.Current_Address__c != contactOld.Current_Address__c && contact.Current_Address__c != null;
 	                // if they are changing to a new Current Address, but address info doesn't change, refill from it (both household and not household)
@@ -186,7 +187,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 				            //If Contact Addresses are enabled, and the Contact is not the child of a HH
 				            if(!childOfHousehold && UTIL_CustomSettingsFacade.getSettings().Contacts_Addresses_Enabled__c == true) {
 				                //Non-household Contact addr info changed
-				                if(addrInfoChanged && !addrInfoCleared && !currentAddressChanged) {
+				                if(addrInfoChanged && !addrInfoCleared && !currentAddressChanged && !addrInfoEmpty) {
 				                   contactsCreateAddrFrom.add(contact);
 				                //Non-household Contact addr info cleared
 				                } else if(addrInfoCleared) {
@@ -197,7 +198,7 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 		                        if(contactOld != null && contact.AccountID != contactOld.AccountID && !currentAddressChanged) {
 		                            
 		                            // if no override, refill from the Default Address
-		                            if (!contact.is_Address_Override__c) {
+		                            if (!contact.is_Address_Override__c && !addrInfoEmpty) {
 		                                //Refilling address info from parent Household (unless parent account address info is empty),
 		                                //and unless we are coming from the automatic parent Account creation.
 		                                if(!afterAutomaticAccInsert) {
@@ -207,13 +208,13 @@ public class ADDR_Contact_TDTM extends TDTM_Runnable {
 		                                }
 		                            
 		                            //if override, create new Address record in new household
-		                            } else if(contact.is_Address_Override__c && !addrInfoChanged) {
+		                            } else if(contact.is_Address_Override__c && !addrInfoChanged && !addrInfoEmpty) {
 		                                contactsCreateAddrFrom.add(contact);
 		                            }
 				                //Contact not switching household
 		                        } else {
 					                // if household Contact addr info changed
-					                if (addrInfoChanged && !addrInfoCleared && !currentAddressChanged) {
+					                if (addrInfoChanged && !addrInfoCleared && !currentAddressChanged && !addrInfoEmpty) {
 				                        //create new Address as child of parent Account
 				                        contactsCreateAddrFrom.add(contact);
 				                        if(!contact.is_Address_Override__c)
