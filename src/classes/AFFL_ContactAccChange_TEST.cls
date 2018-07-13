@@ -98,6 +98,10 @@ public with sharing class AFFL_ContactAccChange_TEST {
         //Confirm Primary Business Organization field has been populated in contact2
         contact2 = [select Primary_Organization__c from Contact where ID =:contact2.ID];
         System.assertEquals(bizAffl1.Account__c, contact2.Primary_Organization__c);
+
+        //Make sure we are not creating duplicate affiliations
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
+        System.assertEquals(1, affls.size());
     }
     
     @isTest

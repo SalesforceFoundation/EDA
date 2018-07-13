@@ -97,9 +97,11 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 
 	                       //Populate same field in new Contact
 	                       newRelatedContact.put(lookupFieldName, affl.Account__c);
-	                       dmlWrapper.objectsToUpdate.add(newRelatedContact);
+						   TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
+						   dmlWrapper.objectsToUpdate.add(newRelatedContact);
+						   TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);
 
-	                       //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
+						   //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
                            //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
 	                   }
 
