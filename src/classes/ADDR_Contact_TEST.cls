@@ -1114,4 +1114,26 @@ public with sharing class ADDR_Contact_TEST {
             System.assertEquals(false, addrs[i].Default_Address__c);
         }              
     }
+
+    /*********************************************************************************************************
+    @description Insert admin account with blank address data but only primary address type
+    verify:
+        No blank address record is created
+    **********************************************************************************************************/
+    static testMethod void insertAdminAccountWithOnlyPrimaryAddressType() {
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+
+        contacts[0].MailingStreet = 'new street';
+        contacts[0].Primary_Address_Type__c = 'Home';
+        contacts[1].Primary_Address_Type__c = 'Home';
+
+        Test.startTest();
+        insert contacts;
+        Test.stopTest();
+
+        List<Address__c> assertAddresses = [SELECT Id, Parent_Contact__c FROM Address__c];
+        System.assertEquals(1, assertAddresses.size());
+        System.assertEquals(contacts[0].Id, assertAddresses[0].Parent_Contact__c);
+    }
+
 }
