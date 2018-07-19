@@ -31,50 +31,25 @@
     <div aura:id="tabs" id="tabs" class="slds-tabs--default">
         <ul class="slds-tabs--default__nav" role="tablist">
             <li aura:id="afflTab" id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="tab">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="afflTabBtn" value="#" label="{!$Label.hed.stgTabAffl}" click="{!c.tabNavigationClick}" class="afflTab affls-menu-item" />
-                    <aura:set attribute="else">
-                        <ui:outputURL aura:id="afflTabBtn" value="#" label="{!$Label.c.stgTabAffl}" click="{!c.tabNavigationClick}" class="afflTab affls-menu-item" />
-                    </aura:set>
-                </aura:if>
+                <ui:outputURL aura:id="afflTabBtn" value="#" label="{!$Label.c.stgTabAffl}" click="{!c.tabNavigationClick}" class="afflTab affls-menu-item" />
             </li>
             <li aura:id="relTab" id="relTab" class="slds-tabs__item slds-text-heading--label" title="Relationships" role="tab">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="relTabBtn" value="#" label="{!$Label.hed.stgTabRel}" click="{!c.tabNavigationClick}" class="relTab rels-menu-item" />
-                    <aura:set attribute="else">
-                        <ui:outputURL aura:id="relTabBtn" value="#" label="{!$Label.c.stgTabRel}" click="{!c.tabNavigationClick}" class="relTab rels-menu-item" />
-                    </aura:set>
-                </aura:if>
+                <ui:outputURL aura:id="relTabBtn" value="#" label="{!$Label.c.stgTabRel}" click="{!c.tabNavigationClick}" class="relTab rels-menu-item" />
             </li>
             <li aura:id="coursesTab" id="coursesTab" class="slds-tabs__item slds-text-heading--label" title="Courses" role="tab">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="coursesTabBtn" value="#" label="{!$Label.hed.stgTabCourse}" click="{!c.tabNavigationClick}" class="coursesTab course-con-menu-item" />
-                    <aura:set attribute="else">
-                        <ui:outputURL aura:id="coursesTabBtn" value="#" label="{!$Label.c.stgTabCourse}" click="{!c.tabNavigationClick}" class="coursesTab course-con-menu-item" />
-                    </aura:set>
-                </aura:if>
+                <ui:outputURL aura:id="coursesTabBtn" value="#" label="{!$Label.c.stgTabCourse}" click="{!c.tabNavigationClick}" class="coursesTab course-con-menu-item" />
             </li>
             <li aura:id="courseConTab" id="courseConTab" class="slds-tabs__item slds-text-heading--label" title="Course Connections" role="tab">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="courseConTabBtn" value="#" label="{!$Label.hed.stgTabCourseConn}" click="{!c.tabNavigationClick}" class="courseConTab course-con-menu-item" />                    
-                    <aura:set attribute="else">
-                        <ui:outputURL aura:id="courseConTabBtn" value="#" label="{!$Label.c.stgTabCourseConn}" click="{!c.tabNavigationClick}" class="courseConTab course-con-menu-item" />                    
-                    </aura:set>
-                </aura:if>
+                <ui:outputURL aura:id="courseConTabBtn" value="#" label="{!$Label.c.stgTabCourseConn}" click="{!c.tabNavigationClick}" class="courseConTab course-con-menu-item" />
             </li>
             <li aura:id="addrTab" id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Accounts and Contacts" role="tab">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="addrTabBtn" value="#" label="{!$Label.hed.stgTabAccCont}" click="{!c.tabNavigationClick}" class="addrTab accs-cons-menu-item" />
-                    <aura:set attribute="else">
-                        <ui:outputURL aura:id="addrTabBtn" value="#" label="{!$Label.c.stgTabAccCont}" click="{!c.tabNavigationClick}" class="addrTab accs-cons-menu-item" />
-                    </aura:set>
-                </aura:if>
+                <ui:outputURL aura:id="addrTabBtn" value="#" label="{!$Label.c.stgTabAccCont}" click="{!c.tabNavigationClick}" class="addrTab accs-cons-menu-item" />
             </li>
             <li aura:id="systemTab" id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="tab">
                 <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.hed.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />                    
+                    <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.hed.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />
                     <aura:set attribute="else">
-                    <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.c.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />                    
+                    <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.c.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />
                     </aura:set>
                 </aura:if>
             </li>
