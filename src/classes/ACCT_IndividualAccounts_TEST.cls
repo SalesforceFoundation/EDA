@@ -579,12 +579,12 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
     }
 
-/*********************************************************************************************************
-* @description
-* Update the custom setting of automatic household naming as true
-* Delete the contact linked to a Household Account
-* Make sure the Account's name is set back based on account naming setting.
-*/
+    /*********************************************************************************************************
+    * @description
+    * Update the custom setting of automatic household naming as true
+    * Delete the contact linked to a Household Account
+    * Make sure the Account's name is set back based on account naming setting.
+    */
     @isTest
     public static void deleteContactFromHHAccAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
@@ -617,12 +617,12 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
     }
 
-/*********************************************************************************************************
-* @description
-* Update the custom setting of automatic household naming as true
-* Disconnect the contact from a Household Account
-* Make sure the Account's name is set back based on account naming setting.
-*/
+    /*********************************************************************************************************
+    * @description
+    * Update the custom setting of automatic household naming as true
+    * Disconnect the contact from a Household Account
+    * Make sure the Account's name is set back based on account naming setting.
+    */
     @isTest
     public static void disconnectContactFromHHAccAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
@@ -657,12 +657,12 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
     }
 
-/*********************************************************************************************************
-* @description
-* Update the custom setting of automatic household naming as true
-* Delete all the contacts linked to a Household Account
-* Make sure the Account's name is set back based on account naming setting.
-*/
+    /*********************************************************************************************************
+    * @description
+    * Update the custom setting of automatic household naming as true
+    * Delete all the contacts linked to a Household Account
+    * Make sure the Account's name is set back based on account naming setting.
+    */
     @isTest
     public static void deleteAllContactsFromHHAccAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
@@ -696,11 +696,11 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals('Household', assertAccount.Name);
     }
 
-/*********************************************************************************************************
-* @description
-* Remove primary contact from household account
-* Make sure the primary contact of household account is cleared up
-*/
+    /*********************************************************************************************************
+    * @description
+    * Remove primary contact from household account
+    * Make sure the primary contact of household account is cleared up
+    */
     @isTest
     public static void hhAccountNoChildContactResetPrimaryContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
@@ -717,11 +717,11 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(null, assertAccount.Primary_Contact__c);
     }
 
-/*********************************************************************************************************
-* @description
-* Add a contact to a household account
-* Make sure the primary contact of household account is not changed
-*/
+    /*********************************************************************************************************
+    * @description
+    * Add a contact to a household account
+    * Make sure the primary contact of household account is not changed
+    */
     @isTest
     public static void hhAccountNewChildContactNotResetPrimaryContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
@@ -745,11 +745,11 @@ private class ACCT_IndividualAccounts_TEST {
 
     }
 
-/*********************************************************************************************************
-* @description
-* Switch contacts between two household accounts
-* Make sure primary contacts are updated correctly
-*/
+    /*********************************************************************************************************
+    * @description
+    * Switch contacts between two household accounts
+    * Make sure primary contacts are updated correctly
+    */
     @isTest
     public static void hhAccountSwitchChildContactResetPrimaryContact() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID()));
@@ -775,6 +775,30 @@ private class ACCT_IndividualAccounts_TEST {
         Account assertAccount2 = [Select Primary_Contact__c FROM Account WHERE Id = :acc2.Id LIMIT 1];
         system.assertEquals(con2.Id, assertAccount.Primary_Contact__c);
         system.assertEquals(con.Id, assertAccount2.Primary_Contact__c);
+    }
 
+    /**
+     * @description Validate that when inserting a new Account for a Contact, it uses the same OwnerId as the
+     * Contact that was inserted (especially if the Contact.OwnerId is set to a value other than the current user).
+     */
+    private static testMethod void test_insertAsOtherUser() {
+
+        // Create a single new User
+        Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User tempUser = new User(LastName = 'TestSysAdminUserA', Email = 'test_insertAsOtherUser@email.npsp',
+                ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
+                Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
+                LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+        insert tempUser;
+
+        Id currUserId = UserInfo.getUserId();
+        Contact c = UTIL_UnitTestData_TEST.getContact();
+        c.OwnerId = currUserId;
+        System.runAs(tempUser) {
+            insert c;
+            c = [SELECT Id, OwnerId, Account.OwnerId FROM Contact WHERE Id = :c.Id LIMIT 1];
+            system.assertEquals(c.OwnerId, currUserId, 'The Contact owner should be current system admin user');
+            system.assertEquals(c.Account.OwnerId, currUserId, 'The Account owner should be the same as the Contact Owner');
+        }
     }
 }
