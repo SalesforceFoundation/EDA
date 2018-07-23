@@ -39,12 +39,7 @@
               </ui:inputSelect>
           </div>
           <div class="slds-col slds-size--1-of-1">
-	            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                <ui:outputText value="{!$Label.hed.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
-					    <aura:set attribute="else">
-					        <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
-				      </aura:set>
-	            </aura:if>
+		        <ui:outputText value="{!$Label.c.stgHelpRelReciprocalMethod}" class="slds-text-body--small" />
           </div>
 			    <div class="slds-col slds-grid slds-m-top--medium">
 				    <div class="slds-col slds-size--1-of-2">

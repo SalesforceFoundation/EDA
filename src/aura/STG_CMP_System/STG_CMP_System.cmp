@@ -107,32 +107,17 @@
                 </div>
 
                 <div class="slds-hide slds-form-element slds-size--1-of-3" aura:id="errNoticeUserId" >
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <c:autocomplete aura:id="autocomplete"
-                                    label="{!$Label.hed.stgAutoCompleteSelectUser}"
-                                    placeholder="{!$Label.hed.stgAutoCompleteEnterUserName}"
-                                    searchContext="">
+                    <c:autocomplete aura:id="autocomplete"
+                                        label="{!$Label.c.stgAutoCompleteSelectUser}"
+                                        placeholder="{!$Label.c.stgAutoCompleteEnterUserName}"
+                                        searchContext="">
                         <aura:set attribute="dataProvider">
                             <c:autocompleteDataProvider sObjectType="User" />
                         </aura:set>
                         <aura:set attribute="itemTemplate">
                             <c:autocompleteOption value="{!item}" displayValue="{!item.label}" iconSprite="standard" iconName="user"/>
                         </aura:set>
-                        </c:autocomplete>                     
-                        <aura:set attribute="else">
-                            <c:autocomplete aura:id="autocomplete"
-                                        label="{!$Label.c.stgAutoCompleteSelectUser}"
-                                        placeholder="{!$Label.c.stgAutoCompleteEnterUserName}"
-                                        searchContext="">
-                                <aura:set attribute="dataProvider">
-                                    <c:autocompleteDataProvider sObjectType="User" />
-                                </aura:set>
-                                <aura:set attribute="itemTemplate">
-                                    <c:autocompleteOption value="{!item}" displayValue="{!item.label}" iconSprite="standard" iconName="user"/>
-                                </aura:set>
-                            </c:autocomplete>                 
-                        </aura:set>
-                    </aura:if> 
+                    </c:autocomplete> 
                 </div>
 
                 <div class="slds-hide slds-form-element slds-size--1-of-3" aura:id="errNoticeChatter">

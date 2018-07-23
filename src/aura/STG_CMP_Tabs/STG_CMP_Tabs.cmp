@@ -46,12 +46,7 @@
                 <ui:outputURL aura:id="addrTabBtn" value="#" label="{!$Label.c.stgTabAccCont}" click="{!c.tabNavigationClick}" class="addrTab accs-cons-menu-item" />
             </li>
             <li aura:id="systemTab" id="systemTab" class="slds-tabs__item slds-text-heading--label" title="System" role="tab">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.hed.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />
-                    <aura:set attribute="else">
-                    <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.c.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />
-                    </aura:set>
-                </aura:if>
+                <ui:outputURL aura:id="systemTabBtn" value="#" label="{!$Label.c.stgTabSystem}" click="{!c.tabNavigationClick}" class="systemTab system-menu-item" />
             </li>
         </ul>
 
