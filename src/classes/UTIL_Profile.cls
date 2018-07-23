@@ -35,7 +35,15 @@
 */
 public class UTIL_Profile {
     /** @description System Administrator Profile Name */
-    public static final String SYSTEM_ADMINISTRATOR = 'System Administrator';
+    public static final String SYSTEM_ADMINISTRATOR {
+        public get {
+            return [SELECT name FROM Profile
+                    WHERE (UserType = 'Standard'
+                            AND PermissionsCustomizeApplication = true)
+                    ORDER BY CreatedDate ASC limit 1][0].Name;
+        }
+        private set;
+    }
 
     /** @description static instance of the current class (UTIL_Profile). It is used as the instance in a Singleton context */
     private static UTIL_Profile utilProfile;
