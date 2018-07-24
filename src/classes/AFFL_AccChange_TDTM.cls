@@ -37,6 +37,11 @@
 public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
+    * @description If affiliation type is enforced.
+    */
+    private static boolean isAfflTypeEnforced = UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c;
+
+    /*******************************************************************************************************
     * @description Handles Affiliation management.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -66,6 +71,13 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                    Affiliation__c affl = (Affiliation__c)so;
                    String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
                    String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
+
+                   if (isAfflTypeEnforced) {
+                       ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
+                   } else if (lookupFieldName == null) {
+                       return dmlWrapper;
+                   }
+
 
                    Affiliation__c afflOld;
                    String lookupFieldLabelOld, lookupFieldNameOld;
