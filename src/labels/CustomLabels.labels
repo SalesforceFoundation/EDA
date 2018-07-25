@@ -262,7 +262,8 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflTypeEnforced</shortDescription>
-        <value>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</value>
+        <value>Enable Record Type Mismatch Notifications:</value>
+    </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
