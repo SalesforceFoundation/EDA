@@ -77,6 +77,14 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
+        <label><!-- acctNamingOther --></label>
+        <name>acctNamingOther</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Throw exception to external call --></label>
+        <name>adapterException</name>
+    </customLabels>
+    <customLabels>
         <label>Les enregistrements d&apos;adresse doivent être créés uniquement en tant qu&apos;enfants de Compte ou Contact.</label>
         <name>addrHhAdmAccountOnly</name>
     </customLabels>
@@ -119,6 +127,10 @@
     <customLabels>
         <label><!-- afflTypeEnforced --></label>
         <name>afflTypeEnforced</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflTypeEnforcedDescription --></label>
+        <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
         <label><!-- Error message for TDTM filtering functionality. --></label>

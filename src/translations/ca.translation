@@ -133,6 +133,10 @@
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
+        <label><!-- afflTypeEnforcedDescription --></label>
+        <name>afflTypeEnforcedDescription</name>
+    </customLabels>
+    <customLabels>
         <label><!-- automaticHHNaming --></label>
         <name>automaticHHNaming</name>
     </customLabels>
