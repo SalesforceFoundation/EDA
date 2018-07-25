@@ -121,6 +121,10 @@
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
+        <label><!-- afflTypeEnforcedDescription --></label>
+        <name>afflTypeEnforcedDescription</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Error message for TDTM filtering functionality. --></label>
         <name>duplicateFieldInFilter</name>
     </customLabels>

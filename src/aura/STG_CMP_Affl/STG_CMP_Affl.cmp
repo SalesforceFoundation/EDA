@@ -117,6 +117,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="slds-col slds-size--1-of-2">
+                            <ui:outputText value="{!$Label.c.afflTypeEnforcedDescription}" />
+                        </div>
                     </div>
                 </div>
             </div>
