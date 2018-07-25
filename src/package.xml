@@ -415,7 +415,6 @@
         <members>duplicateFieldInFilter</members>
         <members>duplicateWithHEDAField</members>
         <members>afflTypeEnforced</members>
-        <members>afflTypeEnforcedDescription</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
         <members>defaultNamingConnector</members>

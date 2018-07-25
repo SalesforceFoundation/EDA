@@ -121,10 +121,6 @@
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label><!-- afflTypeEnforcedDescription --></label>
-        <name>afflTypeEnforcedDescription</name>
-    </customLabels>
-    <customLabels>
         <label><!-- exceptionRequiredField --></label>
         <name>exceptionRequiredField</name>
     </customLabels>
