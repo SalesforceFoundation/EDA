@@ -246,7 +246,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflAccoutMappingError</shortDescription>
-        <value>The record type-to-Affiliation mapping for this Account doesn&apos;t match. The record type for a Contact&apos;s primary fields (for example, Primary Business Organization) and the record type for mapped settings must match.</value>
+        <value>The Record type to Affiliation mapping for this Account doesn&apos;t match. Please check your available Account Record types and make sure Account Record Types and Contact Primary Affl Fields match in HEDA Settings --&gt; Affiliation Mappings.</value>
     </labels>
     <labels>
         <fullName>afflNullPointerError</fullName>
@@ -262,7 +262,8 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflTypeEnforced</shortDescription>
-        <value>If checked, an error results when users populate a primary field on Contact (for example, Primary Bus Org) with an Account that has a record type that doesn&apos;t match the record type for the field in HEDA Settings. The Affiliation record is not created.</value>
+        <value>Enable Record Type Mismatch Notifications:</value>
+    </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
