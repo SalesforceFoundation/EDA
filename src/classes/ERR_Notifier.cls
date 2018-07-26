@@ -71,10 +71,12 @@ public class ERR_Notifier {
                 if (errorNotifRecipient instanceof id && errorNotifRecipient.startsWith(NotificationOptions.user)) {
                     List<User> useremaillist = new List<User>();
                     useremaillist = [select email from User where id = :errorNotifRecipient and isActive = true];
-                    for (User u : useremaillist)
+                    for (User u : useremaillist) {
                         sendList.add(u.email);
+                    }
                 } else if(errorNotifRecipient == NotificationOptions.sysAdmins) {
-                    list<User> sysadminlist = [select email from User where User.Profile.Name = 'System Administrator' and isActive = true];
+                    List<User> sysadminlist = [select email from User where User.Profile.Name = :UTIL_Profile.SYSTEM_ADMINISTRATOR
+                    and isActive = true];
                     for (User u : sysadminlist) {
                         sendList.add(u.email);
                     }
