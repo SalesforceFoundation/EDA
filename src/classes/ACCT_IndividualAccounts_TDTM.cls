@@ -457,6 +457,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
                 a.Phone = c.Phone;
                 a.Fax = c.Fax;
+                a.OwnerId = c.OwnerId;
 
                 if(defaultRecTypeID == UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c) {
                     ADDR_Addresses_UTIL.copyAddressStdSObj(c, 'Mailing', a, 'Billing');
