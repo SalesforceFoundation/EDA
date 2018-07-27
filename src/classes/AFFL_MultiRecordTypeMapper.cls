@@ -124,6 +124,10 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 			if(primaryAfflFieldLabelsSet.contains(field.getDescribe().getLabel())) {
 				primaryAfflFieldNames.add(field.getDescribe().getName());
 				primaryFields.add(field);
+			} else {
+				if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c) {
+					throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+				}
 			}
 		}
 		return primaryFields;
