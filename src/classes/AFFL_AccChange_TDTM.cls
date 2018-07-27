@@ -72,19 +72,18 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                    String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
                    String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
 
-                   if (isAfflTypeEnforced) {
-                       ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
-                   } else if (lookupFieldName == null) {
-                       return dmlWrapper;
-                   }
-
-
                    Affiliation__c afflOld;
                    String lookupFieldLabelOld, lookupFieldNameOld;
                    if(oldlist[i] != null) {
                        afflOld = (Affiliation__c)oldlist[i];
                        lookupFieldLabelOld = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
                        lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
+                   }
+
+                   if (isAfflTypeEnforced) {
+                       ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
+                   } else if (lookupFieldName == null || lookupFieldNameOld == null) {
+                       return dmlWrapper;
                    }
 
                    //AFTER UPDATE
