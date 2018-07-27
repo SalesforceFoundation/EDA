@@ -82,6 +82,9 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		
 		//List of primary affiliation Contact fields.
 		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
+		if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c && primaryAfflFieldLabels.size() != primaryAfflFields.size()) {
+			throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+		}
 		UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
     
@@ -124,10 +127,6 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 			if(primaryAfflFieldLabelsSet.contains(field.getDescribe().getLabel())) {
 				primaryAfflFieldNames.add(field.getDescribe().getName());
 				primaryFields.add(field);
-			} else {
-				if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c) {
-					throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
-				}
 			}
 		}
 		return primaryFields;
