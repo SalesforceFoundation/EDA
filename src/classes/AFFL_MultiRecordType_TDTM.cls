@@ -81,6 +81,12 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 						ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
 					}  else if (lookupFieldName == null) {
 						return dmlWrapper;
+				 	if (isAfflTypeEnforced) {
+						ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl);
+					} else {
+				 		if (lookupFieldName == null) {
+				 			return dmlWrapper;
+					 	}
 					}
 
 				 	Contact relatedContact = relatedContactsMap.get(affl.Contact__c);

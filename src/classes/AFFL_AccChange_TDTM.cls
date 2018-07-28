@@ -80,11 +80,13 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                        lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
                    }
 
-                   if (isAfflTypeEnforced) {
-                       ERR_ExceptionHandler.handleAfflException(affl, lookupFieldName);
-                   } else if (lookupFieldName == null || lookupFieldNameOld == null) {
-                       return dmlWrapper;
-                   }
+                    if (isAfflTypeEnforced) {
+                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl);
+                    } else {
+                        if (lookupFieldName == null || lookupFieldNameOld == null) {
+                            return dmlWrapper;
+                        }
+                    }
 
                    //AFTER UPDATE
                    if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {

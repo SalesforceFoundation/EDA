@@ -410,6 +410,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(0, assertAffls.size());
 
 		System.assertEquals(false, result.success);
-		System.assertEquals(Label.exceptionValidationRule + ' ' + Label.afflAccoutMappingError, result.errors[0].message);
+		System.assertEquals(Label.afflAccoutMappingError, result.errors[0].message);
 	}
 }

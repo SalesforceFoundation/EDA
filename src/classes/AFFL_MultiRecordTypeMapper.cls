@@ -82,9 +82,20 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		
 		//List of primary affiliation Contact fields.
 		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
-		if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c && primaryAfflFieldLabels.size() != primaryAfflFields.size()) {
+
+		//List of Account Record types in mappings
+		Set<String> accRecordTypesInMappings = mapAccRecTypeToContactLabel.keySet();
+
+		//List of Valid Account Record types in mappings
+		List<String> validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accRecordTypesInMappings);
+
+		//Check if any mismatch in mappings
+		if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c
+				&& (primaryAfflFieldLabels.size() != primaryAfflFields.size()
+					|| accRecordTypesInMappings.size() != validAccRecordTypesInMappings.size())) {
 			throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
 		}
+
 		UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
     
@@ -183,4 +194,19 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     	}
     	return false;
     }
+
+	/*******************************************************************************************************
+    * @description Returns valid record types in Account Record type and contact primary field mapping.
+    * @param accRecordTypesInMappings List of record types in mapping.
+    * @return List<String> List of Valid record types in mapping.
+    ********************************************************************************************************/
+	private List<String> getValidAccRecordTypesInMappings(Set<String> accRecordTypesInMappings) {
+		List<String> validAccRecordTypesInMappings = new List<String>();
+		for (String accRecordTypesInMapping : accRecordTypesInMappings) {
+			if (SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping)) {
+				validAccRecordTypesInMappings.add(accRecordTypesInMapping);
+			}
+		}
+		return validAccRecordTypesInMappings;
+	}
 }
