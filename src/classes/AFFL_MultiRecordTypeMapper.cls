@@ -53,7 +53,12 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     public Map<String, Boolean> accTypeToEnrollCreate;
     public Map<String, String> accTypeToEnrollCreateRole;
     public Map<String, String> accTypeToEnrollCreateStatus;
-    
+
+    /*******************************************************************************************************
+    * @description List of account record types in mappings.
+    ********************************************************************************************************/
+    public List<String> accountRecordTypes;
+
     /*******************************************************************************************************
     * @description List of primary affiliation lookup fields names on Contact.
     ********************************************************************************************************/
@@ -83,16 +88,16 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		//List of primary affiliation Contact fields.
 		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
 
-		//List of Account Record types in mappings
-		Set<String> accRecordTypesInMappings = mapAccRecTypeToContactLabel.keySet();
-
 		//List of Valid Account Record types in mappings
-		List<String> validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accRecordTypesInMappings);
+		List<String> validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
 
+        //List of Valid Primary Contact Fields in mappings
+        List<String> validContactAfflFields = getValidAfflFields(contactFields, primaryAfflFieldLabels);
+        
 		//Check if any mismatch in mappings
 		if (UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c
-				&& (primaryAfflFieldLabels.size() != primaryAfflFields.size()
-					|| accRecordTypesInMappings.size() != validAccRecordTypesInMappings.size())) {
+				&& (primaryAfflFieldLabels.size() != validContactAfflFields.size()
+					|| accountRecordTypes.size() != validAccRecordTypesInMappings.size())) {
 			throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
 		}
 
@@ -112,6 +117,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     	accTypeToEnrollCreate = new Map<String, Boolean>();
     	accTypeToEnrollCreateRole = new Map<String, String>();
     	accTypeToEnrollCreateStatus = new Map<String, String>();
+        accountRecordTypes = new List<String>();
 
 		//Put affl mappings in a map.
 		for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
@@ -120,7 +126,8 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 				accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
 				accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
 				accTypeToEnrollCreateStatus.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Status__c);
-			}
+                accountRecordTypes.add(mapping.Account_Record_Type__c);
+            }
 		}
 	}
 	
@@ -200,7 +207,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @param accRecordTypesInMappings List of record types in mapping.
     * @return List<String> List of Valid record types in mapping.
     ********************************************************************************************************/
-	private List<String> getValidAccRecordTypesInMappings(Set<String> accRecordTypesInMappings) {
+	private List<String> getValidAccRecordTypesInMappings(List<String> accRecordTypesInMappings) {
 		List<String> validAccRecordTypesInMappings = new List<String>();
 		for (String accRecordTypesInMapping : accRecordTypesInMappings) {
 			if (SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping)) {
@@ -209,4 +216,24 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		}
 		return validAccRecordTypesInMappings;
 	}
+
+    /*******************************************************************************************************
+    * @description Returns valid contact primary affiliation fields from mappings
+    * @param cf List of fields.
+    * @param primaryAfflFieldLabels List of field labels.
+    * @return List<SObjectField> List of valid contact primary affiliation fields from mappings.
+    ********************************************************************************************************/
+    private List<String> getValidAfflFields(List<SObjectField> cf, List<String> primaryAfflFieldLabels) {
+        Set<String> contactFieldStrings = new Set<String>();
+        List<String> validPrimaryFields = new List<String>();
+        for (SObjectField field : cf) {
+            contactFieldStrings.add(field.getDescribe().getLabel());
+        }
+        for(String primaryAfflFieldLabel : primaryAfflFieldLabels) {
+            if(contactFieldStrings.contains(primaryAfflFieldLabel)) {
+                validPrimaryFields.add(primaryAfflFieldLabel);
+            }
+        }
+        return validPrimaryFields;
+    }
 }
