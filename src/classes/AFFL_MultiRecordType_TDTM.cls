@@ -61,18 +61,18 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		 	|| !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
 		 	|| !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert)) {
 
-			 //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
-			 Map<ID, Contact> relatedContactsMap;
-			 if(newlist != null) {
-			 	relatedContactsMap = queryAfflLookupFields(newlist);
-			 } else if(oldlist != null) {
-			 	relatedContactsMap = queryAfflLookupFields(oldlist);
-			 }
+		 	//Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
+		 	Map<ID, Contact> relatedContactsMap;
+		 	if(newlist != null) {
+		 		relatedContactsMap = queryAfflLookupFields(newlist);
+		 	} else if(oldlist != null) {
+		 		relatedContactsMap = queryAfflLookupFields(oldlist);
+		 	}
 
-			 if(newlist != null && newlist.size() > 0) {
-			 	 Integer i = 0;
-		    	 for (SObject so : newlist) {
-		            Affiliation__c affl = (Affiliation__c)so;
+		 	if(newlist != null && newlist.size() > 0) {
+		 	 	Integer i = 0;
+	    	 	for (SObject so : newlist) {
+	            	Affiliation__c affl = (Affiliation__c)so;
 
 					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 			 	    String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
@@ -107,7 +107,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 								&& lookupFieldName != null
 								&& relatedContact.get(lookupFieldName) == affl.Account__c) {
 		                    UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
-		                	if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
+		                	if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
 		                	     relatedContact.put(lookupFieldName, null);
 		                	     dmlWrapper.objectsToUpdate.add(relatedContact);
 		                	}
@@ -122,22 +122,19 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		                }
 		            }
 		        	i++;
-		    	 }
-		    	 if (triggerAction == TDTM_Runnable.Action.BeforeInsert)
-		    	 {
-	             	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, true);
-	             }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate)
-	             {
+	    	 	}
+	    	 	if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+             		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, true);
+             	} else if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update, true);
+				}
+	    	 	if(afflsMadePrimary.size() > 0) {
+	    	     	uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
+	    	 	}
+		 	}
 
-	             }
-		    	 if(afflsMadePrimary.size() > 0) {
-		    	     uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
-		    	 }
-			 }
-
-	    	 if(oldlist != null && oldlist.size() > 0) {
-		    	 for(SObject so : oldlist) {
+    	 	if(oldlist != null && oldlist.size() > 0) {
+	    	 	for(SObject so : oldlist) {
 		    	 	Affiliation__c afflOld = (Affiliation__c)so;
 					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
@@ -148,28 +145,28 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
 		            	processAfflDeleted(afflOld, relatedContact, lookupFieldName, dmlWrapper);
 		            }
-		    	 }
-	    	 }
+	    	 	}
+    	 	}
         }
 
         //AFTER INSERT
         if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert) && triggerAction == TDTM_Runnable.Action.AfterInsert) {
-			 if(newlist != null && newlist.size() > 0) {
-		    	 for (SObject so : newlist) {
-		            Affiliation__c affl = (Affiliation__c)so;
+		 	if(newlist != null && newlist.size() > 0) {
+	    	 	for (SObject so : newlist) {
+	            	Affiliation__c affl = (Affiliation__c)so;
 					createProgramEnrollmentIfNecessary(affl, dmlWrapper);
-		    	 }
-			 }
+	    	 	}
+		 	}
            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert, true);
 		}
 		TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert, false);
-        }else if (triggerAction == TDTM_Runnable.Action.BeforeInsert){
+        }else if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
 			TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);        	
-        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
         	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update, false);
 			TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary);        	
         }
