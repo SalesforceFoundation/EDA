@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>AfflCopyProgEnrollStDt</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AfflCopyProgEnrollStDt</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the related Affiliation.</value>
+    </labels>
+    <labels>
         <fullName>AfflMappingsDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -241,6 +249,30 @@
         <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
     </labels>
     <labels>
+        <fullName>automaticHHNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>automaticHHNaming</shortDescription>
+        <value>Automatic Household Naming:</value>
+    </labels>
+    <labels>
+        <fullName>automaticHHNamingHelpText</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>automaticHHNamingHelpText</shortDescription>
+        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
+    </labels>
+    <labels>
+        <fullName>defaultNamingConnector</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>defaultNamingConnector</shortDescription>
+        <value>and</value>
+    </labels>
+    <labels>
         <fullName>duplicateFieldInFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
@@ -326,14 +358,6 @@
         <protected>true</protected>
         <shortDescription>hhAccNameFormatHelpText</shortDescription>
         <value>The format used for naming Household Accounts.</value>
-    </labels>
-    <labels>
-        <fullName>hhFamily</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>hhFamily</shortDescription>
-        <value>Family</value>
     </labels>
     <labels>
         <fullName>lastNameAdminAcc</fullName>
@@ -726,6 +750,22 @@
         <protected>true</protected>
         <shortDescription>stgContactMultiAddressesEnabled</shortDescription>
         <value>Contact Multi-Addresses Enabled:</value>
+    </labels>
+    <labels>
+        <fullName>stgCopyRelatedPrenStDtNo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgCopyRelatedPrenStDtNo</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>stgCopyRelatedPrenStDtYes</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgCopyRelatedPrenStDtYes</shortDescription>
+        <value>Yes</value>
     </labels>
     <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
@@ -1358,29 +1398,5 @@
         <protected>true</protected>
         <shortDescription>stgToastError</shortDescription>
         <value>Error</value>
-    </labels>
-    <labels>
-        <fullName>automaticHHNaming</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>automaticHHNaming</shortDescription>
-        <value>Automatic Household Naming:</value>
-    </labels>
-    <labels>
-        <fullName>automaticHHNamingHelpText</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>automaticHHNamingHelpText</shortDescription>
-        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
-    </labels>
-    <labels>
-        <fullName>defaultNamingConnector</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>defaultNamingConnector</shortDescription>
-        <value>and</value>
     </labels>
 </CustomLabels>
