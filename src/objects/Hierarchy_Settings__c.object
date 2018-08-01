@@ -71,6 +71,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Affl_ProgEnroll_CP_End_Dt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</inlineHelpText>
+        <label>Affiliation Program Enrollment CP End Dt</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
         <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
         <externalId>false</externalId>
