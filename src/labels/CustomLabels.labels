@@ -504,6 +504,38 @@
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
+        <fullName>stgAfflSetProgEnrollRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflSetProgEnrollRole</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, set the role of the affiliation.</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflSetProgEnrollStat</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflSetProgEnrollStat</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, set the status to:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflSetRelatedPrenRoleNo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflSetRelatedPrenRoleNo</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflSetRelatedPrenRoleYes</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgAfflSetRelatedPrenRoleYes</shortDescription>
+        <value>Yes. Set the Role to:</value>
+    </labels>
+    <labels>
         <fullName>stgAfterRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
