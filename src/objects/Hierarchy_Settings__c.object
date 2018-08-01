@@ -71,7 +71,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Affl_Program_Enrollment_CP_St_Dt__c</fullName>
+        <fullName>Affl_ProgEnroll_CP_St_Dt__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
         <externalId>false</externalId>
