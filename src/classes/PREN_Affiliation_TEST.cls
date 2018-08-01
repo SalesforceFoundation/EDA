@@ -70,7 +70,7 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment copies the related Affiliation End Date when 
-    * Affl_ProgEnroll_Del__c setting is set to true.
+    * Affl_ProgEnroll_CP_End_Dt__c setting is set to true.
     */
     @isTest
     public static void copyAfflFromProgramEnrollmentEndDateYes() {
@@ -102,7 +102,7 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment copies the related Affiliation End Date when 
-    * Affl_ProgEnroll_Del__c setting is set to false.
+    * Affl_ProgEnroll_CP_End_Dt__c setting is set to false.
     */
     @isTest
     public static void copyAfflFromProgramEnrollmentEndDateNo() {
@@ -130,6 +130,70 @@ public with sharing class PREN_Affiliation_TEST {
     	List<Affiliation__c> affls = [select EndDate__c from Affiliation__c where Account__r.ID = :acc.ID];
     	System.assertEquals(1, affls.size());
 		System.assertEquals(null, affls[0].EndDate__c);
+    }
+	
+    /*********************************************************************************************************
+    * @description Creating a Program Enrollment copies the related Affiliation Start Date when 
+    * Affl_ProgEnroll_CP_St_Dt__c setting is set to true.
+    */
+    @isTest
+    public static void copyAfflFromProgramEnrollmentStartDateYes() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_CP_St_Dt__c = true));
+    	
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+    	
+    	//Craete account of Business Organization record type
+    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc;
+		
+		//Test for end date
+		Date testDate = Date.newInstance(1970,1,1);
+    	
+    	//Create Program Enrollment
+    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, Start_Date__c = testDate);
+    	Test.startTest();
+    	insert enrollment;
+    	Test.stopTest();
+    	
+    	//An Affiliation should have been automatically created fron the Program Enrollment
+    	List<Affiliation__c> affls = [select StartDate__c from Affiliation__c where Account__r.ID = :acc.ID];
+    	System.assertEquals(1, affls.size());
+		System.assertEquals(testDate, affls[0].StartDate__c);
+    }
+	
+    /*********************************************************************************************************
+    * @description Creating a Program Enrollment copies the related Affiliation Start Date when 
+    * Affl_ProgEnroll_CP_St_Dt__c setting is set to false.
+    */
+    @isTest
+    public static void copyAfflFromProgramEnrollmentStartDateNo() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_CP_St_Dt__c = false));
+    	
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+    	
+    	//Craete account of Business Organization record type
+    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc;
+		
+		//Test for end date
+		Date testDate = Date.newInstance(1970,1,1);
+    	
+    	//Create Program Enrollment
+    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, Start_Date__c = testDate);
+    	Test.startTest();
+    	insert enrollment;
+    	Test.stopTest();
+    	
+    	//An Affiliation should have been automatically created fron the Program Enrollment
+    	List<Affiliation__c> affls = [select StartDate__c from Affiliation__c where Account__r.ID = :acc.ID];
+    	System.assertEquals(1, affls.size());
+		System.assertEquals(testDate, affls[0].StartDate__c);
     }
     
     /*********************************************************************************************************
