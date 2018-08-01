@@ -34,6 +34,13 @@
 		component.set("v.hierarchySettings", hierarchySettings);
 	},
 
+	setAfflProgEnrollCpStDt : function(component, event) {
+		var selected = event.getSource().get("v.text");
+		var hierarchySettings = component.get("v.hierarchySettings");
+		hierarchySettings.Affl_ProgEnroll_CP_St_Dt__c = selected;
+		component.set("v.hierarchySettings", hierarchySettings);
+	},
+
 	settsLinkClicked : function(component) {
 		$A.util.addClass(component.find("settsTab"), "slds-active");
 		$A.util.removeClass(component.find("mappingsTab"), "slds-active");
