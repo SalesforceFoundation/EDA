@@ -71,22 +71,58 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Affl_ProgEnroll_CP_St_Dt__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
+        <fullName>Affiliation_Program_Enrollment_Role_Map__c</fullName>
+        <defaultValue>&apos;Student&apos;</defaultValue>
+        <description>The role to set for a related affiliation created by creating a Program Enrollment.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
-        <label>Affiliation Program Enrollment CP St Dt</label>
+        <inlineHelpText>The role to set for a related affiliation created by creating a Program Enrollment.</inlineHelpText>
+        <label>Affiliation Program Enrollment Role Map</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Affiliation_Program_Enrollment_Set_Role__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set.</inlineHelpText>
+        <label>Affiliation Program Enrollment Set Role</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Affiliation_Program_Enrollment_Stat_Map__c</fullName>
+        <defaultValue>&apos;Current&apos;</defaultValue>
+        <description>The status to set for a related affiliation created by creating a Program Enrollment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The status to set for a related affiliation created by creating a Program Enrollment.</inlineHelpText>
+        <label>Affiliation Program Enrollment Stat Map</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_CP_End_Dt__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</description>
+        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines if the Affiliation automatically create by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</inlineHelpText>
+        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</inlineHelpText>
         <label>Affiliation Program Enrollment CP End Dt</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_CP_St_Dt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
+        <label>Affiliation Program Enrollment CP St Dt</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
