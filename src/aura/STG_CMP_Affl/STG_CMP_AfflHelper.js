@@ -48,6 +48,13 @@
 		component.set("v.hierarchySettings", hierarchySettings);
 	},
 
+	setAfflProgEnrollRole : function(component, event) {
+		var selected = event.getSource().get("v.text");
+		var hierarchySettings = component.get("v.hierarchySettings");
+		hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c = selected;
+		component.set("v.hierarchySettings", hierarchySettings);
+	},
+
 	settsLinkClicked : function(component) {
 		$A.util.addClass(component.find("settsTab"), "slds-active");
 		$A.util.removeClass(component.find("mappingsTab"), "slds-active");

@@ -15,6 +15,10 @@
 		helper.setAfflProgEnrollCpStDt(component, event);
 	},
 
+	setAfflProgEnrollRole : function(component, event, helper) {
+		helper.setAfflProgEnrollRole(component, event);
+	},
+
 	settsLinkClicked : function(component, event, helper) {
 		helper.settsLinkClicked(component);
 	},

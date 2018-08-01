@@ -95,6 +95,101 @@
                 </div>
             </div>
 			
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-1">
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollRole + ' '}" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgAfflSetProgEnrollRole + ' '}" />
+                    </aura:set>
+                    </aura:if>
+                </div>
+                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+                    
+                    <div class="slds-col slds-size--1-of-2">
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgAfflSetRelatedPrenRoleYes + ' '}" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgAfflSetRelatedPrenRoleYes + ' '}" />
+                        </aura:set>
+                        </aura:if>                        
+                    </div> 
+                    <div class="slds-col slds-size--1-of-2">
+                         <aura:if isTrue="{!v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c}">
+                            <ui:inputRadio aura:id="affl_pren_role_yes" name="applprenrole" value="true" text="true" disabled="{!v.isView}" 
+                                         change="{!c.setAfflProgEnrollRole}" />
+                             <aura:set attribute="else">
+                                <ui:inputRadio aura:id="affl_pren_role_yes" name="afflprenrole" value="false" text="true" disabled="{!v.isView}"
+                                         change="{!c.setAfflProgEnrollRole}" />
+                             </aura:set>
+                         </aura:if>
+                    </div>
+                            
+                    <div class="slds-col slds-size--1-of-2">
+                         <div class="slds-col slds-grid slds-wrap">
+                            <div class="slds-col slds-size--1-of-2">
+                                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                    <ui:outputText value="{!$Label.hed.stgAfflSetRelatedPrenRoleNo + ' '}" />
+                                <aura:set attribute="else">
+                                    <ui:outputText value="{!$Label.c.stgAfflSetRelatedPrenRoleNo + ' '}" />
+                                </aura:set>
+                                </aura:if> 
+                            </div>
+                            <div class="slds-col slds-size--1-of-2">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputText aura:id="ProgEnrollRoleMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
+                                                   class="progenroll-del-no-status" />
+                                 <aura:set attribute="else">
+                                    <ui:inputText aura:id="ProgEnrollRoleMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
+                                        label="{!'Role: ' + v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}" labelClass="slds-hide" 
+                                        class="progenroll-del-no-status"/>
+                                </aura:set>
+                                </aura:if>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                         <aura:if isTrue="{!v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c}">
+                            <ui:inputRadio aura:id="affl_pren_role_no" name="afflprenrole" value="false" text="false" disabled="{!v.isView}"
+                                     change="{!c.setAfflProgEnrollRole}" ></ui:inputRadio>
+                         <aura:set attribute="else">
+                            <ui:inputRadio aura:id="affl_pren_role_no" name="afflprenrole" value="true" text="false" disabled="{!v.isView}" 
+                                     change="{!c.setAfflProgEnrollRole}" />
+                         </aura:set>
+                         </aura:if>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-1">
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat + ' '}" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat + ' '}" />
+                    </aura:set>
+                    </aura:if>
+                </div>
+                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+                            
+                    <div class="slds-col slds-size--1-of-2">
+                         <div class="slds-col slds-grid slds-wrap">
+                            <div class="slds-col slds-size--1-of-2">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputText aura:id="ProgEnrollStatMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}"
+                                                   class="progenroll-del-no-status" />
+                                 <aura:set attribute="else">
+                                    <ui:inputText aura:id="ProgEnrollStatMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}"
+                                        label="{!'Status: ' + v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}" labelClass="slds-hide" 
+                                        class="progenroll-del-no-status"/>
+                                </aura:set>
+                                </aura:if>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+			
            <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size--1-of-1">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
