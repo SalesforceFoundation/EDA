@@ -65,7 +65,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
             Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
             
             if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                //Automatically create an Affiliation record if a Program Enrollment record has been manually created from a Contact.
+                //Automatically create an Affiliation record if a Program Enrollment record has been created without an affiliation.
                 if(enrollment.Contact__c != null && enrollment.Account__c != null && enrollment.Affiliation__c == null) {
                     Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Contact__c, Account__c = enrollment.Account__c);
                     newAffls.add(affl);
