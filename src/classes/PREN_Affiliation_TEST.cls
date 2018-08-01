@@ -101,7 +101,7 @@ public with sharing class PREN_Affiliation_TEST {
     }
 	
     /*********************************************************************************************************
-    * @description Creating a Program Enrollment copies the related Affiliation End Date when 
+    * @description Creating a Program Enrollment doesn't copy the related Affiliation End Date when 
     * Affl_ProgEnroll_CP_End_Dt__c setting is set to false.
     */
     @isTest
@@ -165,7 +165,7 @@ public with sharing class PREN_Affiliation_TEST {
     }
 	
     /*********************************************************************************************************
-    * @description Creating a Program Enrollment copies the related Affiliation Start Date when 
+    * @description Creating a Program Enrollment doesn't copy the related Affiliation Start Date when 
     * Affl_ProgEnroll_CP_St_Dt__c setting is set to false.
     */
     @isTest
@@ -194,6 +194,93 @@ public with sharing class PREN_Affiliation_TEST {
     	List<Affiliation__c> affls = [select StartDate__c from Affiliation__c where Account__r.ID = :acc.ID];
     	System.assertEquals(1, affls.size());
 		System.assertEquals(testDate, affls[0].StartDate__c);
+    }
+	
+    /*********************************************************************************************************
+    * @description Creating a Program Enrollment sets the related Affiliation Role when 
+    * Affiliation_Program_Enrollment_Set_Role__c setting is set to true.
+    */
+    @isTest
+    public static void setAfflFromProgramEnrollmentRoleYes() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = true,Affiliation_Program_Enrollment_Role_Map__c='Student'));
+    	
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+    	
+    	//Craete account of Business Organization record type
+    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc;
+    	
+    	//Create Program Enrollment
+    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID);
+    	Test.startTest();
+    	insert enrollment;
+    	Test.stopTest();
+    	
+    	//An Affiliation should have been automatically created fron the Program Enrollment
+    	List<Affiliation__c> affls = [select Role__c from Affiliation__c where Account__r.ID = :acc.ID];
+    	System.assertEquals(1, affls.size());
+		System.assertEquals('Student', affls[0].Role__c);
+    }
+	
+    /*********************************************************************************************************
+    * @description Creating a Program Enrollment does not set the related Affiliation Role when 
+    * Affiliation_Program_Enrollment_Set_Role__c setting is set to false.
+    */
+    @isTest
+    public static void setAfflFromProgramEnrollmentRoleNo() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = false,Affiliation_Program_Enrollment_Role_Map__c='Student'));
+    	
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+    	
+    	//Craete account of Business Organization record type
+    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc;
+    	
+    	//Create Program Enrollment
+    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID);
+    	Test.startTest();
+    	insert enrollment;
+    	Test.stopTest();
+    	
+    	//An Affiliation should have been automatically created fron the Program Enrollment
+    	List<Affiliation__c> affls = [select Role__c from Affiliation__c where Account__r.ID = :acc.ID];
+    	System.assertEquals(1, affls.size());
+		System.assertEquals(null, affls[0].Role__c);
+    }
+	
+    /*********************************************************************************************************
+    * @description Creating a Program Enrollment sets the related Affiliation Status when 
+    * to Affiliation_Program_Enrollment_Stat_Map.
+    */
+    @isTest
+    public static void setAfflFromProgramEnrollmentStatus() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Stat_Map__c='Former'));
+    	
+    	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+    	insert contact;
+    	
+    	ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+    	
+    	//Craete account of Business Organization record type
+    	Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+    	insert acc;
+    	
+    	//Create Program Enrollment
+    	Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID);
+    	Test.startTest();
+    	insert enrollment;
+    	Test.stopTest();
+    	
+    	//An Affiliation should have been automatically created fron the Program Enrollment
+    	List<Affiliation__c> affls = [select Status__c from Affiliation__c where Account__r.ID = :acc.ID];
+    	System.assertEquals(1, affls.size());
+		System.assertEquals('Former', affls[0].Status__c);
     }
     
     /*********************************************************************************************************
