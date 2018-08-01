@@ -34,6 +34,13 @@
 		component.set("v.hierarchySettings", hierarchySettings);
 	},
 
+	setAfflProgEnrollCpEndDt : function(component, event) {
+		var selected = event.getSource().get("v.text");
+		var hierarchySettings = component.get("v.hierarchySettings");
+		hierarchySettings.Affl_ProgEnroll_CP_End_Dt__c = selected;
+		component.set("v.hierarchySettings", hierarchySettings);
+	},
+
 	setAfflProgEnrollCpStDt : function(component, event) {
 		var selected = event.getSource().get("v.text");
 		var hierarchySettings = component.get("v.hierarchySettings");

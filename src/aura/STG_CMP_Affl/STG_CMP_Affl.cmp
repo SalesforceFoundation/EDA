@@ -98,6 +98,57 @@
            <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size--1-of-1">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                        <ui:outputText value="{!$Label.hed.AfflCopyProgEnrollEndDt + ' '}" />
+                    <aura:set attribute="else">
+                        <ui:outputText value="{!$Label.c.AfflCopyProgEnrollEndDt + ' '}" />
+                    </aura:set>
+                    </aura:if>
+                </div>
+                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+                    
+                    <div class="slds-col slds-size--1-of-2">
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgCopyRelatedPrenEndDtYes + ' '}" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgCopyRelatedPrenEndDtYes + ' '}" />
+                        </aura:set>
+                        </aura:if>                        
+                    </div> 
+                    <div class="slds-col slds-size--1-of-2">
+                         <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_CP_End_Dt__c}">
+                            <ui:inputRadio aura:id="affl_pren_cp_end_dt_yes" name="afflcpenddt" value="true" text="true" disabled="{!v.isView}" 
+                                         change="{!c.setAfflProgEnrollCpEndDt}" />
+                             <aura:set attribute="else">
+                                <ui:inputRadio aura:id="affl_pren_cp_end_dt_yes" name="afflcpenddt" value="false" text="true" disabled="{!v.isView}"
+                                         change="{!c.setAfflProgEnrollCpEndDt}" />
+                             </aura:set>
+                         </aura:if>
+                    </div>
+                    
+                    <div class="slds-col slds-size--1-of-2">
+                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                            <ui:outputText value="{!$Label.hed.stgCopyRelatedPrenEndDtNo + ' '}" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!$Label.c.stgCopyRelatedPrenEndDtNo + ' '}" />
+                        </aura:set>
+                        </aura:if>                        
+                    </div> 
+                    <div class="slds-col slds-size--1-of-2">
+                         <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_CP_St_Dt__c}">
+                            <ui:inputRadio aura:id="affl_pren_cp_st_end_no" name="afflcpenddt" value="false" text="true" disabled="{!v.isView}" 
+                                         change="{!c.setAfflProgEnrollCpEndDt}" />
+                             <aura:set attribute="else">
+                                <ui:inputRadio aura:id="affl_pren_cp_end_dt_no" name="afflcpenddt" value="true" text="true" disabled="{!v.isView}"
+                                         change="{!c.setAfflProgEnrollCpEndDt}" />
+                             </aura:set>
+                         </aura:if>
+                    </div>
+                </div>
+            </div>
+			
+           <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-1">
+                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.AfflCopyProgEnrollStDt + ' '}" />
                     <aura:set attribute="else">
                         <ui:outputText value="{!$Label.c.AfflCopyProgEnrollStDt + ' '}" />
