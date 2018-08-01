@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>AfflCopyProgEnrollEndDt</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AfflCopyProgEnrollEndDt</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the related Affiliation.</value>
+    </labels>
+    <labels>
         <fullName>AfflCopyProgEnrollStDt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>AfflCopyProgEnrollStDt</shortDescription>
         <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the related Affiliation.</value>
     </labels>
@@ -752,10 +760,26 @@
         <value>Contact Multi-Addresses Enabled:</value>
     </labels>
     <labels>
-        <fullName>stgCopyRelatedPrenStDtNo</fullName>
+        <fullName>stgCopyRelatedPrenEndDtNo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
+        <shortDescription>stgCopyRelatedPrenEndDtNo</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>stgCopyRelatedPrenEndDtYes</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgCopyRelatedPrenEndDtYes</shortDescription>
+        <value>Yes</value>
+    </labels>
+    <labels>
+        <fullName>stgCopyRelatedPrenStDtNo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
         <shortDescription>stgCopyRelatedPrenStDtNo</shortDescription>
         <value>No</value>
     </labels>
@@ -763,7 +787,7 @@
         <fullName>stgCopyRelatedPrenStDtYes</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgCopyRelatedPrenStDtYes</shortDescription>
         <value>Yes</value>
     </labels>
