@@ -113,6 +113,8 @@
         <members>UTIL_Describe_TEST</members>
         <members>UTIL_Namespace</members>
         <members>UTIL_Namespace_TEST</members>
+        <members>UTIL_Profile</members>
+        <members>UTIL_Profile_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
