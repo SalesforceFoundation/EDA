@@ -36,6 +36,9 @@
 */
 public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
+    //Get the primary affiliation fields defined in the Affiliation Mappings
+    public static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+
     /*******************************************************************************************************
     * @description If affiliation type is enforced.
     */
@@ -68,62 +71,60 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
 
                 Integer i = 0;
                 for (SObject so : newlist) {
-                   	Affiliation__c affl = (Affiliation__c)so;
-                   	String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-                   	String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
+                   Affiliation__c affl = (Affiliation__c)so;
+                   String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+                   String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
 
-                   	Affiliation__c afflOld;
-                   	String lookupFieldLabelOld, lookupFieldNameOld;
-                   	if(oldlist[i] != null) {
-                       	afflOld = (Affiliation__c)oldlist[i];
-                       	lookupFieldLabelOld = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
-                       	lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
-                   	}
+                   Affiliation__c afflOld;
+                   String lookupFieldLabelOld, lookupFieldNameOld;
+                   if(oldlist[i] != null) {
+                       afflOld = (Affiliation__c)oldlist[i];
+                       lookupFieldLabelOld = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
+                       lookupFieldNameOld = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabelOld);
+                   }
 
-                    if (isAfflTypeEnforced) {
-                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl);
-                    } else {
-                        if (lookupFieldName == null || lookupFieldNameOld == null) {
-                            return dmlWrapper;
-                        }
-                    }
+                   if (isAfflTypeEnforced) {
+                       ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
+                   }
 
-                   	//AFTER UPDATE
-                   	if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                   //AFTER UPDATE
+                   if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
-                       	Contact relatedContact;
-                       	relatedContact = relatedContactsMap.get(affl.Contact__c);
+                       Contact relatedContact;
+                       relatedContact = relatedContactsMap.get(affl.Contact__c);
 
-                       	//ACCOUNT FIELD CHANGED
-                       	if(affl.Primary__c && affl.Account__c != null && afflOld.Account__c != null
-                       	&& affl.Account__c != afflOld.Account__c) {
+                       //ACCOUNT FIELD CHANGED
+                       if(affl.Primary__c && affl.Account__c != null && afflOld.Account__c != null
+                       && affl.Account__c != afflOld.Account__c && lookupFieldName != null) {
 
-                           	if(affl.Affiliation_Type__c == afflOld.Affiliation_Type__c) {
-                               	//If the primary affl now points to an Account of the same type, update the
-                               	//same primary field in Contact.
-                               	relatedContact.put(lookupFieldName, affl.Account__c);
-                           	} else {
-                               	//If the primary affl now points to an Account of different type, clear the old
-                               	//primary field in Contact and populate the matching new field.
-                               	relatedContact.put(lookupFieldNameOld, null);
-                               	relatedContact.put(lookupFieldName, affl.Account__c);
-                           	}
-                           	dmlWrapper.objectsToUpdate.add(relatedContact);
+                           if(affl.Affiliation_Type__c == afflOld.Affiliation_Type__c) {
+                               //If the primary affl now points to an Account of the same type, update the
+                               //same primary field in Contact.
+                               relatedContact.put(lookupFieldName, affl.Account__c);
+                           } else {
+                               //If the primary affl now points to an Account of different type, clear the old
+                               //primary field in Contact and populate the matching new field.
+                               if (lookupFieldNameOld != null) {
+                                   relatedContact.put(lookupFieldNameOld, null);
+                                   relatedContact.put(lookupFieldName, affl.Account__c);
+                               }
+                           }
+                           dmlWrapper.objectsToUpdate.add(relatedContact);
 
-                           	//afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
-                           	//AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
-                       	}
+                           //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
+                           //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
+                       }
 
-                       	//ACCOUNT FIELD CLEARED - the matching primary field in Contact needs to be cleared.
-                       	if(affl.Primary__c && afflOld.Account__c != null && affl.Account__c == null) {
-                           	relatedContact.put(lookupFieldNameOld, null);
-                           	dmlWrapper.objectsToUpdate.add(relatedContact);
-                       	}
-                       	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccChange_TDTM, true);
-                   	}
-                   	i++;
-               	}
-           	}
+                       //ACCOUNT FIELD CLEARED - the matching primary field in Contact needs to be cleared.
+                       if(affl.Primary__c && afflOld.Account__c != null && affl.Account__c == null && lookupFieldNameOld != null) {
+                           relatedContact.put(lookupFieldNameOld, null);
+                           dmlWrapper.objectsToUpdate.add(relatedContact);
+                       }
+                       TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccChange_TDTM, true);
+                   }
+                   i++;
+               }
+           }
         }
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;  

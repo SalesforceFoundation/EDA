@@ -59,6 +59,11 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     ********************************************************************************************************/
     public List<String> accountRecordTypes;
 
+	/*******************************************************************************************************
+    * @description List of valid account record types in mappings.
+    ********************************************************************************************************/
+	public List<String> validAccRecordTypesInMappings;
+
     /*******************************************************************************************************
     * @description List of primary affiliation lookup fields names on Contact.
     ********************************************************************************************************/
@@ -89,7 +94,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
 
 		//List of Valid Account Record types in mappings
-		List<String> validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
+		validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
 
         //List of Valid Primary Contact Fields in mappings
         List<String> validContactAfflFields = getValidAfflFields(contactFields, primaryAfflFieldLabels);
