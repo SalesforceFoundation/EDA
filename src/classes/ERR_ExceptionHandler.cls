@@ -86,12 +86,14 @@ public with sharing class ERR_ExceptionHandler {
         return false;
     }
 
-    public static void handleAfflNullRecordTypeException(Affiliation__c affl) {
+    public static void handleAfflNullRecordTypeException(Affiliation__c affl, List<String> validRecordTypes) {
         if (affl.Account__c != null) {
             //If parent account exists for affiliation and account has no record type
             //display the error message
             if (affl.Affiliation_Type__c == null) {
                 throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
+            }else if (!validRecordTypes.contains(affl.Affiliation_Type__c)) {
+                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
             }
         }
     }
