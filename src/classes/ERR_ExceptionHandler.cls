@@ -52,6 +52,14 @@ public with sharing class ERR_ExceptionHandler {
         'REQUIRED_FIELD_MISSING' => new List<String>{': [',']'}
     };
 
+    /** @description Map of custom exception STATUS codes to the friendly error message
+    */
+    private static final Map<String, String> CUSTOMS_EXCEPTION_MESSAGES = new Map<String, String>{
+        'AfflAccountNoRecordTypeException' => EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get('AfflAccountNoRecordTypeException'),
+        'AffAccountRecordTypeMappingsException' => EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get('AffAccountRecordTypeMappingsException'),
+        'AfflNullPointerException' => EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get('AfflNullPointerException')
+    };
+
     /*******************************************************************************************************
     * @description Updates an exception's message to a more friendly format.
     * @param ex Exception to update.
@@ -64,8 +72,8 @@ public with sharing class ERR_ExceptionHandler {
             if (message.contains(STATUS)) {
                 if (SUBSTRINGS.keySet().contains(STATUS)) {
                     message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
-                } else {
-                    message = EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get(STATUS);
+                }else if (CUSTOMS_EXCEPTION_MESSAGES.keySet().contains(STATUS)) {
+                    message = CUSTOMS_EXCEPTION_MESSAGES.get(STATUS);
                 }
                 ex.setMessage(message);
                 break;
