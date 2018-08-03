@@ -62,7 +62,11 @@ public with sharing class ERR_ExceptionHandler {
         String typeName = ex.getTypeName();
         for (String STATUS : EXCEPTION_MESSAGES.keySet()) {
             if (message.contains(STATUS)) {
-                message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
+                if (SUBSTRINGS.keySet().contains(STATUS)) {
+                    message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
+                } else {
+                    message = EXCEPTION_MESSAGES.get(STATUS);
+                }
                 ex.setMessage(message);
                 break;
             }else if ((typeName.contains(STATUS))){
@@ -90,10 +94,10 @@ public with sharing class ERR_ExceptionHandler {
         if (affl.Account__c != null) {
             //If parent account exists for affiliation and account has no record type
             //display the error message
-            if (affl.Affiliation_Type__c == null) {
-                throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
-            }else if (!validRecordTypes.contains(affl.Affiliation_Type__c)) {
+            if (affl.Affiliation_Type__c != null && !validRecordTypes.contains(affl.Affiliation_Type__c)) {
                 throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+            }else if (affl.Affiliation_Type__c == null) {
+                throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
             }
         }
     }
