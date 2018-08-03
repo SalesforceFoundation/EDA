@@ -65,7 +65,7 @@ public with sharing class ERR_ExceptionHandler {
                 if (SUBSTRINGS.keySet().contains(STATUS)) {
                     message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
                 } else {
-                    message = EXCEPTION_MESSAGES.get(STATUS);
+                    message = EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get(STATUS);
                 }
                 ex.setMessage(message);
                 break;
