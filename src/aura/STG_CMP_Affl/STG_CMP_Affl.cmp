@@ -93,10 +93,8 @@
                          </aura:if>
                     </div>
                 </div>
-            </div>
-			
-            <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size--1-of-1">
+
+                <div class="slds-col slds-size--1-of-1 slds-m-top_x-large">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollRole + ' '}" />
                     <aura:set attribute="else">
@@ -159,10 +157,8 @@
                          </aura:if>
                     </div>
                 </div>
-            </div>
-
-            <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size--1-of-1">
+				
+                <div class="slds-col slds-size--1-of-1 slds-m-top_x-large">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat + ' '}" />
                     <aura:set attribute="else">
@@ -188,10 +184,8 @@
                          </div>
                     </div>
                 </div>
-            </div>
-			
-           <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size--1-of-1">
+				
+                <div class="slds-col slds-size--1-of-1 slds-m-top_x-large">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.AfflCopyProgEnrollEndDt + ' '}" />
                     <aura:set attribute="else">
@@ -239,10 +233,8 @@
                          </aura:if>
                     </div>
                 </div>
-            </div>
-			
-           <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size--1-of-1">
+				
+                <div class="slds-col slds-size--1-of-1 slds-m-top_x-large">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.AfflCopyProgEnrollStDt + ' '}" />
                     <aura:set attribute="else">
