@@ -104,14 +104,29 @@
                 </div>
                 <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
                     
-                    <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:outputText value="{!$Label.hed.stgAfflSetRelatedPrenRoleYes + ' '}" />
-                        <aura:set attribute="else">
-                            <ui:outputText value="{!$Label.c.stgAfflSetRelatedPrenRoleYes + ' '}" />
-                        </aura:set>
-                        </aura:if>                        
-                    </div> 
+                   <div class="slds-col slds-size--1-of-2">
+                         <div class="slds-col slds-grid slds-wrap">
+                            <div class="slds-col slds-size--1-of-2">
+                                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+                                    <ui:outputText value="{!$Label.hed.stgAfflSetRelatedPrenRoleYes + ' '}" />
+                                <aura:set attribute="else">
+                                    <ui:outputText value="{!$Label.c.stgAfflSetRelatedPrenRoleYes + ' '}" />
+                                </aura:set>
+                                </aura:if> 
+                            </div>
+                            <div class="slds-col slds-size--1-of-2">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputText aura:id="ProgEnrollRoleMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
+                                                   class="progenroll_set_yes_role" />
+                                 <aura:set attribute="else">
+                                    <ui:inputText aura:id="ProgEnrollRoleMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
+                                        label="{!'Role: ' + v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}" labelClass="slds-hide" 
+                                        class="progenroll_set_yes_role"/>
+                                </aura:set>
+                                </aura:if>
+                            </div>
+                         </div>
+                    </div>
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c}">
                             <ui:inputRadio aura:id="affl_pren_role_yes" name="applprenrole" value="true" text="true" disabled="{!v.isView}" 
@@ -124,27 +139,12 @@
                     </div>
                             
                     <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-col slds-grid slds-wrap">
-                            <div class="slds-col slds-size--1-of-2">
-                                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                                    <ui:outputText value="{!$Label.hed.stgAfflSetRelatedPrenRoleNo + ' '}" />
-                                <aura:set attribute="else">
-                                    <ui:outputText value="{!$Label.c.stgAfflSetRelatedPrenRoleNo + ' '}" />
-                                </aura:set>
-                                </aura:if> 
-                            </div>
-                            <div class="slds-col slds-size--1-of-2">
-                                <aura:if isTrue="{!v.isView}">
-                                    <ui:outputText aura:id="ProgEnrollRoleMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
-                                                   class="progenroll-del-no-status" />
-                                 <aura:set attribute="else">
-                                    <ui:inputText aura:id="ProgEnrollRoleMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
-                                        label="{!'Role: ' + v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}" labelClass="slds-hide" 
-                                        class="progenroll-del-no-status"/>
-                                </aura:set>
-                                </aura:if>
-                            </div>
-                         </div>
+						<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+							<ui:outputText value="{!$Label.hed.stgAfflSetRelatedPrenRoleNo + ' '}" />
+						<aura:set attribute="else">
+							<ui:outputText value="{!$Label.c.stgAfflSetRelatedPrenRoleNo + ' '}" />
+						</aura:set>
+						</aura:if> 
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <aura:if isTrue="{!v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c}">
