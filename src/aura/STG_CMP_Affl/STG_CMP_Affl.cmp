@@ -158,16 +158,16 @@
                     </div>
                 </div>
 				
-                <div class="slds-col slds-size--1-of-1 slds-m-top_x-large">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat + ' '}" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat + ' '}" />
-                    </aura:set>
-                    </aura:if>
-                </div>
-                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
-                            
+
+                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top_x-large">
+					<div class="slds-col slds-size--1-of-2">
+						<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+							<ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat + ' '}" />
+						<aura:set attribute="else">
+							<ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat + ' '}" />
+						</aura:set>
+						</aura:if>
+					</div>
                     <div class="slds-col slds-size--1-of-2">
                          <div class="slds-col slds-grid slds-wrap">
                             <div class="slds-col slds-size--1-of-2">
