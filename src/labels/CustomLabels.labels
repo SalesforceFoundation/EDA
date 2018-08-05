@@ -6,7 +6,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AfflCopyProgEnrollEndDt</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the related Affiliation.</value>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
+    </labels>
+    <labels>
+        <fullName>AfflCopyProgEnrollEndDtShort</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AfflCopyProgEnrollEndDtShort</shortDescription>
+        <value>Copy Program Enrollment End Date to Affiliation</value>
     </labels>
     <labels>
         <fullName>AfflCopyProgEnrollStDt</fullName>
@@ -14,7 +22,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AfflCopyProgEnrollStDt</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the related Affiliation.</value>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
     </labels>
     <labels>
         <fullName>AfflMappingsDescription</fullName>
@@ -509,7 +517,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflSetProgEnrollRole</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, set the role of the affiliation.</value>
+        <value>When a Program Enrollment is created without a related Affiliation, set the role of the Affiliation it creates.</value>
     </labels>
     <labels>
         <fullName>stgAfflSetProgEnrollStat</fullName>
@@ -517,7 +525,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflSetProgEnrollStat</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, set the status to:</value>
+        <value>When a Program Enrollment is created without a related Affiliation, set the status of the Affiliation it creates to:</value>
     </labels>
     <labels>
         <fullName>stgAfflSetRelatedPrenRoleNo</fullName>
@@ -790,22 +798,6 @@
         <protected>true</protected>
         <shortDescription>stgContactMultiAddressesEnabled</shortDescription>
         <value>Contact Multi-Addresses Enabled:</value>
-    </labels>
-    <labels>
-        <fullName>stgCopyRelatedPrenEndDtNo</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgCopyRelatedPrenEndDtNo</shortDescription>
-        <value>No</value>
-    </labels>
-    <labels>
-        <fullName>stgCopyRelatedPrenEndDtYes</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgCopyRelatedPrenEndDtYes</shortDescription>
-        <value>Yes</value>
     </labels>
     <labels>
         <fullName>stgCopyRelatedPrenStDtNo</fullName>
