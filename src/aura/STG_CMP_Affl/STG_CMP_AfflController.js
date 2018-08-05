@@ -7,10 +7,6 @@
 		helper.setAfflProgEnrollDel(component, event);
 	},
 
-	setAfflProgEnrollCpStDt : function(component, event, helper) {
-		helper.setAfflProgEnrollCpStDt(component, event);
-	},
-
 	setAfflProgEnrollRole : function(component, event, helper) {
 		helper.setAfflProgEnrollRole(component, event);
 	},
