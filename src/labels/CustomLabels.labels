@@ -1008,6 +1008,14 @@
         <value>The default record type when creating Course Connections for active students.</value>
     </labels>
     <labels>
+        <fullName>stgHelpEnableAfflPrenRoleSet</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpEnableAfflPrenRoleSet</shortDescription>
+        <value>You must enable Set Affiliation Role On Program Enrollment Creation before selecting a Role.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpEnableCourseConnBeforeBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

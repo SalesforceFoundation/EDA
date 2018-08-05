@@ -35,9 +35,9 @@
 				  <h2>
 					<lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
 					<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-					  <ui:outputText value="{!$Label.hed.stgHelpEnableCourseConnBeforeRecordTypes}" class="slds-text-body--small" />
+					  <ui:outputText value="{!$Label.hed.stgHelpEnableAfflPrenRoleSet}" class="slds-text-body--small" />
 					  <aura:set attribute="else">
-						<ui:outputText value="{!$Label.c.stgHelpEnableCourseConnBeforeRecordTypes}" class="slds-text-body--small" />
+						<ui:outputText value="{!$Label.c.stgHelpEnableAfflPrenRoleSet}" class="slds-text-body--small" />
 					  </aura:set>
 					</aura:if>
 				  </h2>
