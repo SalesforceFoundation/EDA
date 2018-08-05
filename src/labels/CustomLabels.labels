@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>AfflCopyProgEnrollEndDt</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AfflCopyProgEnrollEndDt</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
-    </labels>
-    <labels>
-        <fullName>AfflCopyProgEnrollEndDtShort</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>AfflCopyProgEnrollEndDtShort</shortDescription>
-        <value>Copy Program Enrollment End Date to Affiliation</value>
-    </labels>
-    <labels>
         <fullName>AfflCopyProgEnrollStDt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -550,6 +534,22 @@
         <protected>false</protected>
         <shortDescription>stgAfflSetRelatedPrenRoleYes</shortDescription>
         <value>Yes. Set the Role to:</value>
+    </labels>
+    <labels>
+        <fullName>stgAffliationCopyProgramEnrollmentEndDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffliationCopyProgramEnrollmentEndDate</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffliationCopyProgramEnrollmentEndDateShort</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffliationCopyProgramEnrollmentEndDateShort</shortDescription>
+        <value>Copy Program Enrollment End Date to Affiliation</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>

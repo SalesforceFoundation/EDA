@@ -27,6 +27,24 @@
                 </aura:if>
             </li>
         </ul>
+
+		  <span class="{!and(not(v.isView), not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c)) ? '' : 'slds-hide ' }">
+			<div class="slds-m-bottom--medium">
+			  <div class="slds-notify_container">
+				<div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+				  <h2>
+					<lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
+					<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+					  <ui:outputText value="{!$Label.hed.stgHelpEnableCourseConnBeforeRecordTypes}" class="slds-text-body--small" />
+					  <aura:set attribute="else">
+						<ui:outputText value="{!$Label.c.stgHelpEnableCourseConnBeforeRecordTypes}" class="slds-text-body--small" />
+					  </aura:set>
+					</aura:if>
+				  </h2>
+				</div>
+			  </div>
+			</div>
+		  </span>
         
         <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
             <div class="slds-grid slds-wrap">
@@ -188,9 +206,9 @@
 			    <div class="slds-col slds-grid slds-m-top--medium">
 				    <div class="slds-col slds-size--1-of-2">			    	
 				    	<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        	<ui:outputText value="{!$Label.hed.AfflCopyProgEnrollEndDtShort}"/>
+                        	<ui:outputText value="{!$Label.hed.stgAffliationCopyProgramEnrollmentEndDateShort}"/>
                         	<aura:set attribute="else">
-                            	<ui:outputText value="{!$Label.c.AfflCopyProgEnrollEndDtShort}"/>
+                            	<ui:outputText value="{!$Label.c.stgAffliationCopyProgramEnrollmentEndDateShort}"/>
                         	</aura:set>
                     	</aura:if>
                 	</div>
@@ -213,9 +231,9 @@
 			    </div>
 			    <div class="slds-col slds-size--1-of-1">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.AfflCopyProgEnrollEndDt}" class="slds-text-body--small" />
+                        <ui:outputText value="{!$Label.hed.stgAffliationCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
                     <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.AfflCopyProgEnrollEndDt}" class="slds-text-body--small" />
+                        <ui:outputText value="{!$Label.c.stgAffliationCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
                     </aura:set>
                     </aura:if>
                 </div>
