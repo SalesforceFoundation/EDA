@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>AfflCopyProgEnrollStDt</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AfflCopyProgEnrollStDt</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
-    </labels>
-    <labels>
-        <fullName>AfflCopyProgEnrollStDtShort</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>AfflCopyProgEnrollStDtShort</shortDescription>
-        <value>Copy Program Enrollment Start Date to Affiliation</value>
-    </labels>
-    <labels>
         <fullName>AfflMappingsDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -550,6 +534,22 @@
         <protected>true</protected>
         <shortDescription>stgAffliationCopyProgramEnrollmentEndDateShort</shortDescription>
         <value>Copy Program Enrollment End Date to Affiliation</value>
+    </labels>
+    <labels>
+        <fullName>stgAffliationCopyProgramEnrollmentStartDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffliationCopyProgramEnrollmentStartDate</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffliationCopyProgramEnrollmentStartDateShort</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffliationCopyProgramEnrollmentStartDateShort</shortDescription>
+        <value>Copy Program Enrollment Start Date to Affiliation</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
