@@ -29,6 +29,8 @@
 	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
 		        component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
 		        component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
+				component.set("v.affiliationRoleMapValue",v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c);
+				component.set("v.affiliationStatusMapValue",v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c);
 
 		        component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
 		        component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
@@ -39,7 +41,11 @@
 	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
 	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
 	    		        settingsNoPrefix.Household_Addresses_RecType__c);
-          // Get Course Connection Record Types
+				// Get Affiliation Role Picklist
+	    		this.getAffiliationRolePicklistEntries(component);
+				// Get Affiliation Status Picklist
+	    		this.getAffiliationStatusPicklistEntries(component);
+				// Get Course Connection Record Types
 	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Student_RecType__c,
 	    		        settingsNoPrefix.Faculty_RecType__c);
 	    	} else if(response.getState() === "ERROR") {
@@ -92,6 +98,62 @@
 	    });
 	    $A.enqueueAction(action);
 	},
+
+    getAffiliationRolePicklistEntries : function(component, roleValue) {
+        //Get all active affiliation role picklist entries
+        var action = component.get("c.fillPicklistEntriesForObject");
+        var prefix = component.get("v.namespacePrefix");
+        var objectName = prefix + 'Affiliation__c';
+        var fieldName = prefix + 'Role__c';
+        action.setParams({ "objectName" : objectName,"fieldName" : fieldName});
+        action.setCallback(this, function(response) {
+            if(response.getState() === "SUCCESS") {
+                var picklistValues = response.getReturnValue();
+                var affiliationRolePicklistEntries = [];
+                for(var property in affiliationStatusPicklistEntries) {
+                    if (affiliationRolePicklistEntries.hasOwnProperty(property)) {
+                        affiliationRolePicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
+                        if(picklistValues[property].indexOf(roleValue) > -1) {
+                            component.set("v.affiliationRoleMapLabel", property);
+                        }
+                    }
+                }
+                component.set("v.affiliationRolePicklistEntries", affiliationRolePicklistEntries);
+
+            } else if(response.getState() === "ERROR") {
+              this.displayError(response);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
+    getAffiliationStatusPicklistEntries : function(component, statusValue) {
+        //Get all active affiliation status picklist entries
+        var action = component.get("c.fillPicklistEntriesForObject");
+        var prefix = component.get("v.namespacePrefix");
+        var objectName = prefix + 'Affiliation__c';
+        var fieldName = prefix + 'Status__c';
+        action.setParams({ "objectName" : objectName,"fieldName" : fieldName});
+        action.setCallback(this, function(response) {
+            if(response.getState() === "SUCCESS") {
+                var picklistValues = response.getReturnValue();
+                var affiliationStatusPicklistEntries = [];
+                for(var property in affiliationStatusPicklistEntries) {
+                    if (affiliationStatusPicklistEntries.hasOwnProperty(property)) {
+                        affiliationStatusPicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
+                        if(picklistValues[property].indexOf(statusValue) > -1) {
+                            component.set("v.affiliationStatusMapLabel", property);
+                        }
+                    }
+                }
+                component.set("v.affiliationStatusPicklistEntries", affiliationStatusPicklistEntries);
+
+            } else if(response.getState() === "ERROR") {
+              this.displayError(response);
+            }
+        });
+        $A.enqueueAction(action);
+    },
 
     getCourseConnectionRecordTypes : function(component, studentTypeId, facultyTypeId) {
         //Get all available course connection record types

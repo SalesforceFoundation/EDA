@@ -180,6 +180,33 @@
                     </div>
                 </div>
 				
+                <div class="slds-col slds-grid slds-m-top_x-large">
+					<div class="slds-col slds-size--1-of-2">
+					  <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+						<ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat + ' '}" />
+					  <aura:set attribute="else">
+						<ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat + ' '}" />
+					  </aura:set>
+					  </aura:if>
+					</div>
+					<div class="slds-col slds-size--1-of-2">
+					  <c:CMP_Picklist_Dropdown class="affiliation-status-picklist"
+						setting="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}"
+						isView="{!v.isView}"
+						picklistValue="{!v.affiliationStatusMapValue}"
+						picklistLabel="{!v.affiliationStatusMapLabel}"
+						picklistEntries="{!v.affiliationStatusPicklistEntries}"
+					  />
+					</div>
+                </div>
+                <div class="slds-col slds-size--1-of-1">
+					<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+						<ui:outputText value="{!$Label.hed.stgHelpDefaultStudentType}" class="slds-text-body--small" />
+					<aura:set attribute="else">
+						<ui:outputText value="{!$Label.c.stgHelpDefaultStudentType}" class="slds-text-body--small" />
+					</aura:set>
+					</aura:if>
+                </div>
 
                 <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top_x-large">
 					<div class="slds-col slds-size--1-of-2">
