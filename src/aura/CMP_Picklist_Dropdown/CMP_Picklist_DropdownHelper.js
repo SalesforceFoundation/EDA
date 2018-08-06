@@ -4,7 +4,7 @@
         component.set("v.picklistValue", selectedVal);
     },
     
-   saveSetting : function(component) {        
+   saveSetting : function(component) {
         //Get selected value
         var picklistDropDown = component.find("picklistDropDown");
         var selectedPicklistValue = recTypesDropDown.get("v.value");

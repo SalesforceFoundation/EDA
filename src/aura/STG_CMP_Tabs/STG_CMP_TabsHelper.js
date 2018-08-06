@@ -110,12 +110,11 @@
             if(response.getState() === "SUCCESS") {
                 var picklistValues = response.getReturnValue();
                 var affiliationRolePicklistEntries = [];
-                for(var property in affiliationStatusPicklistEntries) {
-                    if (affiliationRolePicklistEntries.hasOwnProperty(property)) {
+                for(var property in picklistValues) {
+                    if (picklistValues.hasOwnProperty(property)) {
                         affiliationRolePicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
                         if(picklistValues[property].indexOf(roleValue) > -1) {
                             component.set("v.affiliationRoleMapLabel", property);
-							console.log(picklistValues[property]);
                         }
                     }
                 }
@@ -128,7 +127,7 @@
         $A.enqueueAction(action);
     },
 
-    getAffiliationStatusPicklistEntries : function(component, statusValue) {
+    getAffiliationStatusPicklistEntries : function(component, statusValue, deleteValue) {
         //Get all active affiliation status picklist entries
         var action = component.get("c.getPicklistActiveValuesMap");
         var prefix = component.get("v.namespacePrefix");
@@ -139,11 +138,14 @@
             if(response.getState() === "SUCCESS") {
                 var picklistValues = response.getReturnValue();
                 var affiliationStatusPicklistEntries = [];
-                for(var property in affiliationStatusPicklistEntries) {
-                    if (affiliationStatusPicklistEntries.hasOwnProperty(property)) {
+                for(var property in picklistValues) {
+                    if (picklistValues.hasOwnProperty(property)) {
                         affiliationStatusPicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
                         if(picklistValues[property].indexOf(statusValue) > -1) {
                             component.set("v.affiliationStatusMapLabel", property);
+                        }
+                        if(picklistValues[property].indexOf(deleteValue) > -1) {
+                            component.set("v.affiliationStatusDeleteMapLabel", property);
                         }
                     }
                 }
