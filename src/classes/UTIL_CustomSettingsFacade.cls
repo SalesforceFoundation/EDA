@@ -106,6 +106,11 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
         hs.Automatic_Household_Naming__c = false;
+		hs.Affiliation_Program_Enrollment_Role_Map__c='Student';
+		hs.Affiliation_Program_Enrollment_Set_Role__c=false;
+		hs.Affiliation_Program_Enrollment_Stat_Map__c='Current';
+		hs.Affl_ProgEnroll_CP_End_Dt__c=false;
+		hs.Affl_ProgEnroll_CP_St_Dt__c=false;
     }
 
     /*******************************************************************************************************
