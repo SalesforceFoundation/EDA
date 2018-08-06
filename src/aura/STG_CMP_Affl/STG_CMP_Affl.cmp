@@ -179,6 +179,34 @@
                          </aura:if>
                     </div>
                 </div>
+
+                <div class="slds-col slds-grid slds-m-top_x-large">
+					<div class="slds-col slds-size--1-of-2">
+					  <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+						<ui:outputText value="{!$Label.hed.setAfflProgEnrollRole + ' '}" />
+					  <aura:set attribute="else">
+						<ui:outputText value="{!$Label.c.setAfflProgEnrollRole + ' '}" />
+					  </aura:set>
+					  </aura:if>
+					</div>
+					<div class="slds-col slds-size--1-of-2">
+					  <c:CMP_Picklist_Dropdown class="affiliation-role-picklist"
+						setting="{!v.hierarchySettings.Affiliation_Program_Enrollment_Role_Map__c}"
+						isView="{!v.isView}"
+						picklistValue="{!v.affiliationRoleMapValue}"
+						picklistLabel="{!v.affiliationRoleMapLabel}"
+						picklistEntries="{!v.affiliationRolePicklistEntries}"
+					  />
+					</div>
+                </div>
+                <div class="slds-col slds-size--1-of-1">
+					<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
+						<ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat}" class="slds-text-body--small" />
+					<aura:set attribute="else">
+						<ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat}" class="slds-text-body--small" />
+					</aura:set>
+					</aura:if>
+                </div>
 				
                 <div class="slds-col slds-grid slds-m-top_x-large">
 					<div class="slds-col slds-size--1-of-2">
