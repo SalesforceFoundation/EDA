@@ -105,8 +105,24 @@
         <name>addrValidParentObjects</name>
     </customLabels>
     <customLabels>
+        <label><!-- afflAccountNoRecordType --></label>
+        <name>afflAccountNoRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflAccoutMappingError --></label>
+        <name>afflAccoutMappingError</name>
+    </customLabels>
+    <customLabels>
         <label>Le type d&apos;enregistrement de compte {0} n&apos;existe pas. Demandez à votre administrateur de vérifier les types d&apos;enregistrement dans les mappages d&apos;affiliation.</label>
         <name>afflNullPointerError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflTypeEnforced --></label>
+        <name>afflTypeEnforced</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflTypeEnforcedDescription --></label>
+        <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
         <label><!-- Error message for TDTM filtering functionality. --></label>

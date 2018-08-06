@@ -39,31 +39,18 @@ public with sharing class ACCT_CannotDelete_TEST {
 
     @isTest
     public static void cannotDelete() {
-        Contact c = new Contact(LastName = 'l1');
+        STG_InstallScript.insertMappings();
+
+        Contact c = UTIL_UnitTestData_TEST.getContact();
         insert c;
-        
-        //Create contact with child affl
-        Account acc1 = new Account(Name='test1');       
-        
-        //Create contact with child program enrollment
-        Account acc2 = new Account(Name='test2');
-        
-        //Create contact with child course enrollment
-        Account acc3 = new Account(Name='test3');
-        
-        //Create contact without affl, program enrollment, or course enrollment children
-        Account acc4 = new Account(Name='test4');
 
-        //Create contact with program plan
-        Account acc5 = new Account(Name='test5');
-
-        Account[] accs = new Account[] {acc1, acc2, acc3, acc4, acc5};
+        Account[] accs = UTIL_UnitTestData_TEST.getMultipleTestAccounts(5, UTIL_Describe_API.getBizAccRecTypeID());
         insert accs;
 
-        Affiliation__c affl = new Affiliation__c(Contact__c = c.ID, Account__c = acc1.ID);
-        Program_Enrollment__c programEnroll = new Program_Enrollment__c(Contact__c = c.ID, Account__c = acc2.ID);
-        Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = c.ID, Account__c = acc3.ID);
-        Program_Plan__c programPlan = NEW Program_Plan__c(Account__c = acc5.Id);
+        Affiliation__c affl = new Affiliation__c(Contact__c = c.ID, Account__c = accs[0].ID);
+        Program_Enrollment__c programEnroll = new Program_Enrollment__c(Contact__c = c.ID, Account__c = accs[1].ID);
+        Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = c.ID, Account__c = accs[2].ID);
+        Program_Plan__c programPlan = NEW Program_Plan__c(Account__c = accs[4].Id);
         insert new SObject[] {affl, programEnroll, courseEnroll, programPlan};
         
         Test.startTest();

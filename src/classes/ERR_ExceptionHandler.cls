@@ -40,7 +40,9 @@ public with sharing class ERR_ExceptionHandler {
     private static final Map<String, String> EXCEPTION_MESSAGES = new Map<String, String>{
         'FIELD_CUSTOM_VALIDATION_EXCEPTION' => Label.exceptionValidationRule,
         'REQUIRED_FIELD_MISSING' => Label.exceptionRequiredField,
-        'AfflNullPointerException' => Label.afflNullPointerError
+        'AfflNullPointerException' => Label.afflNullPointerError,
+        'AfflAccountNoRecordTypeException' => Label.afflAccountNoRecordType,
+        'AffAccountRecordTypeMappingsException' => Label.afflAccoutMappingError
     };
 
     /** @description Map of exception STATUS codes to the string that defines the start and end of the useful part of the message
@@ -48,6 +50,14 @@ public with sharing class ERR_ExceptionHandler {
     private static final Map<String, List<String>> SUBSTRINGS = new Map<String, List<String>>{
         'FIELD_CUSTOM_VALIDATION_EXCEPTION' => new List<String>{'FIELD_CUSTOM_VALIDATION_EXCEPTION,',':'},
         'REQUIRED_FIELD_MISSING' => new List<String>{': [',']'}
+    };
+
+    /** @description Map of custom exception STATUS codes to the friendly error message
+    */
+    private static final Map<String, String> CUSTOMS_EXCEPTION_MESSAGES = new Map<String, String>{
+        'AfflAccountNoRecordTypeException' => EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get('AfflAccountNoRecordTypeException'),
+        'AffAccountRecordTypeMappingsException' => EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get('AffAccountRecordTypeMappingsException'),
+        'AfflNullPointerException' => EXCEPTION_MESSAGES.get('FIELD_CUSTOM_VALIDATION_EXCEPTION') + EXCEPTION_MESSAGES.get('AfflNullPointerException')
     };
 
     /*******************************************************************************************************
@@ -60,7 +70,11 @@ public with sharing class ERR_ExceptionHandler {
         String typeName = ex.getTypeName();
         for (String STATUS : EXCEPTION_MESSAGES.keySet()) {
             if (message.contains(STATUS)) {
-                message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
+                if (SUBSTRINGS.keySet().contains(STATUS)) {
+                    message = EXCEPTION_MESSAGES.get(STATUS) + message.substringBetween(SUBSTRINGS.get(STATUS)[0], SUBSTRINGS.get(STATUS)[1]);
+                }else if (CUSTOMS_EXCEPTION_MESSAGES.keySet().contains(STATUS)) {
+                    message = CUSTOMS_EXCEPTION_MESSAGES.get(STATUS);
+                }
                 ex.setMessage(message);
                 break;
             }else if ((typeName.contains(STATUS))){
@@ -83,4 +97,19 @@ public with sharing class ERR_ExceptionHandler {
         }
         return false;
     }
+
+    public static void handleAfflNullRecordTypeException(Affiliation__c affl, List<String> validRecordTypes) {
+        if (affl.Account__c != null) {
+            //If parent account exists for affiliation and account has no record type
+            //display the error message
+            if (affl.Affiliation_Type__c != null && !validRecordTypes.contains(affl.Affiliation_Type__c)) {
+                throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+            }else if (affl.Affiliation_Type__c == null) {
+                throw new ERR_ExceptionHandler.AfflAccountNoRecordTypeException(Label.afflAccountNoRecordType);
+            }
+        }
+    }
+
+    public class AfflAccountNoRecordTypeException extends Exception {}
+    public class AffAccountRecordTypeMappingsException extends Exception {}
 }

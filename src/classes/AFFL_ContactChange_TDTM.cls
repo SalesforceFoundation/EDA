@@ -35,17 +35,16 @@
 * @description Handles the Contact in a primary Affiliation being changed or cleared.
 */
 public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
+	//Get the primary affiliation fields defined in the Affiliation Mappings
+	public static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
-    //Get the primary affiliation fields defined in the Affiliation Mappings
-    public static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-
-    /*******************************************************************************************************
+	/*******************************************************************************************************
     * @description If affiliation type is enforced.
     */
-    private static boolean isAfflTypeEnforced = UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c;
+	private static boolean isAfflTypeEnforced = UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c;
 
 
-    /*******************************************************************************************************
+	/*******************************************************************************************************
     * @description Handles Affiliation management.
     * @param listNew the list of Accounts from trigger new.
     * @param listOld the list of Accounts from trigger old.
@@ -75,57 +74,55 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
                        oldRelatedContactsMap = afflMulti.queryAfflLookupFields(oldlist);
                     }
                 }
-
-                for (SObject so : newlist) {
+	            for (SObject so : newlist) {
                     Affiliation__c affl = (Affiliation__c)so;
                     Affiliation__c afflOld;
-                    if(oldlist[i] != null)
-                        afflOld = (Affiliation__c)oldlist[i];
+               		if(oldlist[i] != null)
+                   		afflOld = (Affiliation__c)oldlist[i];
 
-                    String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-                    String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
+	               	String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+	               	String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
 
-                    if (isAfflTypeEnforced) {
-                        ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
-                    }
+					if (isAfflTypeEnforced) {
+						ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
+					}
 
-                    //AFTER UPDATE
-                    if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+	               	//AFTER UPDATE
+	               	if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
-                        Contact newRelatedContact, oldRelatedContact;
-                        if(newlist != null) {
-                            newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
-                        }
-                        if(oldlist != null) {
-                            oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
-                        }
+    		           	Contact newRelatedContact, oldRelatedContact;
+		               	if(newlist != null) {
+		                  	newRelatedContact = newRelatedContactsMap.get(affl.Contact__c);
+		               	}
+		               	if(oldlist != null) {
+		                  	oldRelatedContact = oldRelatedContactsMap.get(afflOld.Contact__c);
+		               	}
 
-                        //CONTACT FIELD CHANGED
-                        if(affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null
-                            && affl.Contact__c != afflOld.Contact__c && newRelatedContact != null && oldRelatedContact != null && lookupFieldName != null) {
+	                   	//CONTACT FIELD CHANGED
+	                   	if(affl.Primary__c && affl.Contact__c != null && afflOld.Contact__c != null
+	                   		&& affl.Contact__c != afflOld.Contact__c && newRelatedContact != null && oldRelatedContact != null && lookupFieldName != null) {
 
-                            //Clear matching primary affiliation field in old Contact
-                            oldRelatedContact.put(lookupFieldName, null);
-                            dmlWrapper.objectsToUpdate.add(oldRelatedContact);
+	                       	//Clear matching primary affiliation field in old Contact
+	                       	oldRelatedContact.put(lookupFieldName, null);
+	                       	dmlWrapper.objectsToUpdate.add(oldRelatedContact);
 
-                            //Populate same field in new Contact
-                            newRelatedContact.put(lookupFieldName, affl.Account__c);
-                            TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
-                            dmlWrapper.objectsToUpdate.add(newRelatedContact);
-                            TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);
-                            //afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
-                            //AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
-                        }
+	                       	//Populate same field in new Contact
+	                       	newRelatedContact.put(lookupFieldName, affl.Account__c);
+	                       	dmlWrapper.objectsToUpdate.add(newRelatedContact);
 
-                        //CONTACT FIELD CLEARED - same as if the Affiliation was deleted.
-                        if(affl.Primary__c && afflOld.Contact__c != null && affl.Contact__c == null && lookupFieldName != null) {
-                            afflMulti.processAfflDeleted(afflOld, oldRelatedContact, lookupFieldName, dmlWrapper);
-                        }
-                    }
-                    i++;
-                }
-            }
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM, true);
+	                       	//afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
+                           	//AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
+	                   	}
+
+	                   	//CONTACT FIELD CLEARED - same as if the Affiliation was deleted.
+	                   	if(affl.Primary__c && afflOld.Contact__c != null && affl.Contact__c == null && lookupFieldName != null) {
+	                       	afflMulti.processAfflDeleted(afflOld, oldRelatedContact, lookupFieldName, dmlWrapper);
+	                   	}
+	               	}
+	               	i++;
+	           	}
+	       	}
+           	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM, true);
         }
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;        
