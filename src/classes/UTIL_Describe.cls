@@ -395,6 +395,13 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
+    * @description Cache for the picklist values for Object Name to field name to values map. It is a Map with
+    * Object name as the key and Map as the value. The value Map is the Field Name to
+    * Field Picklist Values List
+    */
+    private static Map<String, Map<String, List<String>>> mapPicklistValues = new Map<String, Map<String, List<String>>>();
+
+    /*******************************************************************************************************
     * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
     * Object name as the key and Map as the value. The value Map is the RecordType Developer Name to
     * RecordType Id
