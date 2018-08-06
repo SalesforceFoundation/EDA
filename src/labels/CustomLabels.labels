@@ -504,36 +504,36 @@
         <value>Copy Program Enrollment Start Date to Affiliation on Creation</value>
     </labels>
     <labels>
-        <fullName>stgAfflSetProgEnrollRole</fullName>
+        <fullName>stgAfflDeleteProgramEnrollment</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflSetProgEnrollRole</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, set the role of the Affiliation it creates.</value>
+        <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
+        <value>Program Enrollment Related Affiliation Deletion Status:</value>
     </labels>
     <labels>
-        <fullName>stgAfflSetProgEnrollStat</fullName>
+        <fullName>stgAfflProgEnrollDeleteRelated</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflSetProgEnrollStat</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, set the status of the Affiliation it creates to:</value>
+        <shortDescription>stgAfflProgEnrollDeleteRelated</shortDescription>
+        <value>Delete Related Affiliation On Program Enroll Deletion</value>
     </labels>
     <labels>
-        <fullName>stgAfflSetRelatedPrenRoleNo</fullName>
+        <fullName>stgAfflProgEnrollSetRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAfflSetRelatedPrenRoleNo</shortDescription>
-        <value>No</value>
+        <shortDescription>stgAfflProgEnrollSetRole</shortDescription>
+        <value>Set Program Enrollment Related Affiliation Role on Creation</value>
     </labels>
     <labels>
-        <fullName>stgAfflSetRelatedPrenRoleYes</fullName>
+        <fullName>stgAfflProgEnrollSetRoleValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>stgAfflSetRelatedPrenRoleYes</shortDescription>
-        <value>Yes. Set the Role to:</value>
+        <protected>true</protected>
+        <shortDescription>stgAfflProgEnrollSetRoleValue</shortDescription>
+        <value>Program Enrollment Related Affiliation Created Role:</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
@@ -902,6 +902,30 @@
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
         <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflDeleteProgramEnrollment</shortDescription>
+        <value>The status set on the related Affiliation when a Program Enrollment is deleted.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflProgEnrollSetRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflProgEnrollSetRole</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, set the role of the Affiliation it creates.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflProgEnrollSetRoleValue</shortDescription>
+        <value>The role set on the related Affiliation when a Program Enrollment is created without a related affiliation.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>
