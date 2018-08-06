@@ -251,7 +251,7 @@
 			    </div>
 			    <div class="slds-col slds-size--1-of-1">
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAffliationCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
+                        <ui:outputText value="{!$Label.hed.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
                     <aura:set attribute="else">
                         <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
                     </aura:set>
@@ -261,7 +261,7 @@
 			    <div class="slds-col slds-grid slds-m-top--medium">
 				    <div class="slds-col slds-size--1-of-2">			    	
 				    	<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        	<ui:outputText value="{!$Label.hed.stgAffliCopyProgramEnrollmentStartDate}"/>
+                        	<ui:outputText value="{!$Label.hed.stgAfflCopyProgramEnrollmentStartDate}"/>
                         	<aura:set attribute="else">
                             	<ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentStartDate}"/>
                         	</aura:set>
