@@ -28,16 +28,20 @@
             </li>
         </ul>
 
-		  <span class="{!and(not(v.isView), not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c)) ? '' : 'slds-hide ' }">
+		  <span class="{!and(not(v.isView), or(not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c),v.hierarchySettings.Affl_ProgEnroll_Del__c)) ? '' : 'slds-hide ' }">
 			<div class="slds-m-bottom--medium">
 			  <div class="slds-notify_container">
 				<div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
 				  <h2>
 					<lightning:icon iconName="utility:warning" size="small" class="slds-m-right--small enable-connection-error-icon" />
 					<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-					  <ui:outputText value="{!$Label.hed.stgHelpEnableAfflPrenRoleSet}" class="slds-text-body--small" />
+						<ui:outputText value="{!$Label.hed.stgHelpEnableAfflPrenRoleSet}" class="{!not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c) ? 'slds-text-body--small ' : 'slds-hide ' }" />
+						<span class="{!and(not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c),v.hierarchySettings.Affl_ProgEnroll_Del__c) ? 'slds-text-body--small ' : 'slds-hide ' }" >&nbsp;</span>
+						<ui:outputText value="{!$Label.c.stgHelpDisableAfflPrenDel}" class="{!v.hierarchySettings.Affl_ProgEnroll_Del__c ? 'slds-text-body--small ' : 'slds-hide ' }" />
 					  <aura:set attribute="else">
-						<ui:outputText value="{!$Label.c.stgHelpEnableAfflPrenRoleSet}" class="slds-text-body--small" />
+						<ui:outputText value="{!$Label.c.stgHelpEnableAfflPrenRoleSet}" class="{!not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c) ? 'slds-text-body--small'  : 'slds-hide ' }" />
+						<span class="{!and(not(v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c),v.hierarchySettings.Affl_ProgEnroll_Del__c) ? 'slds-text-body--small ' : 'slds-hide ' }" >&nbsp;</span>
+						<ui:outputText value="{!$Label.c.stgHelpDisableAfflPrenDel}" class="{!v.hierarchySettings.Affl_ProgEnroll_Del__c ? 'slds-text-body--small ' : 'slds-hide ' }" />
 					  </aura:set>
 					</aura:if>
 				  </h2>
