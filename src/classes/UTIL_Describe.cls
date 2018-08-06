@@ -49,7 +49,7 @@ public class UTIL_Describe {
     private static Map<String, Schema.DescribeSObjectResult> objectDescribes = new Map<String, Schema.DescribeSObjectResult>();
     private static Map<String, Map<String, Schema.SObjectField>> fieldTokens = new Map<String,Map<String, Schema.SObjectField>>();
     private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribes = new Map<String,Map<String, Schema.DescribeFieldResult>>();
-    private static Map<String,Map<String, List<Schema.PicklistEnry>> fieldPicklistEntries = new Map<String,Map<String, List<Schema.PicklistEnry>>();
+    private static Map<String,Map<String, List<Schema.PicklistEntry>>> fieldPicklistEntries = new Map<String,Map<String, List<Schema.PicklistEntry>>>();
 
     /*******************************************
     * Gets describe maps for a new object
@@ -112,6 +112,33 @@ public class UTIL_Describe {
                 }
             }
         }
+    }
+	
+    /*******************************************
+    * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
+    ********************************************/
+    private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
+		
+		// make sure we have this field's schema mapped
+        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName))
+            fillFieldMapsForObject(objectName, fieldName);
+				
+		// Check for picklist.
+		if(getFieldType(objectName,fieldName) != 'PICKLIST') {
+			throw new SchemaDescribeException('Invalid Selection. Field name \'' + fieldName + '\' for object name \'' + objectName + '\' is not a picklist.');
+		}
+
+		// fill entries for the first time.
+		//Get the picklist values for the field
+		List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
+
+        if (!fieldPicklistEntries.containsKey(objectName)) {
+            fieldPicklistEntries.put(objectName, new Map<String, List<Schema.PicklistEntry>>());
+        }
+		
+		if(!fieldPicklistEntries.get(objectName).containsKey(fieldName)) {
+			fieldPicklistEntries.get(objectName).put(fieldName,picklistValues);
+		}
     }
 
     /*******************************************************************************************************
@@ -297,6 +324,22 @@ public class UTIL_Describe {
         } catch (Exception e) {
             return strField;
         }
+    }
+	
+    /*******************************************************************************************************
+    * @description Returns field PicklistEntry data
+    * @param objectName the name of the object to look up
+    * @param fieldName the name of the field to look up
+    * @return List<Schema.PicklistEntry> the picklist entry list for the given field
+    */
+    public static List<Schema.PicklistEntry> getFieldPicklistEntries(String objectName, String fieldName) {
+        // fields in our own package must not have their prefix for the Describe Field Map
+        fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
+		
+		//fill picklist value map for object. Will throw an exception if it is invalid.
+		fillPicklistEntriesForObject(objectName,fieldName);
+
+		return fieldPicklistEntries.get(objectName).get(fieldName);
     }
 
     /*******************************************************************************************************
