@@ -3,6 +3,10 @@
     
     <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />
     <aura:attribute name="noAfflMappings" type="String" />
+    <aura:attribute name="affiliationRoleMapValue" type="String" />
+    <aura:attribute name="affiliationRolePicklistEntries" type="Map" />
+    <aura:attribute name="affiliationStatusMapValue" type="String" />
+    <aura:attribute name="affiliationStatusPicklistEntries" type="Map" />
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}"/>

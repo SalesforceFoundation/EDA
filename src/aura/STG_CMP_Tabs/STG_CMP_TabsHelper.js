@@ -101,7 +101,7 @@
 
     getAffiliationRolePicklistEntries : function(component, roleValue) {
         //Get all active affiliation role picklist entries
-        var action = component.get("c.fillPicklistEntriesForObject");
+        var action = component.get("c.getPicklistActiveValuesMap");
         var prefix = component.get("v.namespacePrefix");
         var objectName = prefix + 'Affiliation__c';
         var fieldName = prefix + 'Role__c';
@@ -115,6 +115,7 @@
                         affiliationRolePicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
                         if(picklistValues[property].indexOf(roleValue) > -1) {
                             component.set("v.affiliationRoleMapLabel", property);
+							console.log(picklistValues[property]);
                         }
                     }
                 }
@@ -129,7 +130,7 @@
 
     getAffiliationStatusPicklistEntries : function(component, statusValue) {
         //Get all active affiliation status picklist entries
-        var action = component.get("c.fillPicklistEntriesForObject");
+        var action = component.get("c.getPicklistActiveValuesMap");
         var prefix = component.get("v.namespacePrefix");
         var objectName = prefix + 'Affiliation__c';
         var fieldName = prefix + 'Status__c';

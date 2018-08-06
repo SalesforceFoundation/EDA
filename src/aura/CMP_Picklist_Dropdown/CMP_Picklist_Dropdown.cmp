@@ -14,9 +14,9 @@
         <ui:outputText aura:id="picklistLabel" class="{!v.class + '-output-text'}" value="{!v.picklistLabel}"/>
     <aura:set attribute="else">
         <ui:inputSelect aura:id="pickListDropDown" class="{!v.class + '-input-select'}" change="{!c.onSelectChange}" disabled="{!v.dropdownDisabled}">
-            <aura:iteration items="{!v.pickListValues}" var="picklistValue">
-                <ui:inputSelectOption label="{!picklistValue.picklistLabel}" text="{!picklistValue.picklistLabel}" class="picklist-input"
-                    value="{!v.pickListValue == picklistValue.picklistLabel ? true : false}" />
+            <aura:iteration items="{!v.picklistEntries}" var="picklistItem">
+                <ui:inputSelectOption label="{!picklistItem.picklistLabel}" text="{!picklistItem.picklistValue}" class="picklist-input"
+                    value="{!v.pickListValue == picklistItem.picklistValue ? true : false}" />
             </aura:iteration>
         </ui:inputSelect>
     </aura:set>
