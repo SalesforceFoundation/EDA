@@ -106,6 +106,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
         hs.Automatic_Household_Naming__c = false;
+        hs.Affiliation_Record_Type_Enforced__c = true;
     }
 
     /*******************************************************************************************************
@@ -138,6 +139,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Disable_Preferred_Email_Enforcement__c = mySettings.Disable_Preferred_Email_Enforcement__c;
         settings.Household_Account_Naming_Format__c = mySettings.Household_Account_Naming_Format__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
+        settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
 
         orgSettings = settings;
         return settings;

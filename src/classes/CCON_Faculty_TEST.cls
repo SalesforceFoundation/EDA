@@ -47,12 +47,13 @@ public with sharing class CCON_Faculty_TEST {
     private static Contact faculty2;
 
     private static void setup() {
+        STG_InstallScript.insertMappings();
         // Create university
-        university = new Account(Name = 'Advanced University');
+        university = new Account(Name = 'Advanced University', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
         insert university;
 
         // Create department
-        dpt = new Account(Name = 'Biology Department', Parent = university);
+        dpt = new Account(Name = 'Biology Department', Parent = university, RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
         insert dpt;
 
         // Create Course

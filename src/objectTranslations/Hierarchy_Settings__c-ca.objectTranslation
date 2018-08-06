@@ -34,6 +34,16 @@
         <name>Admin_Other_Name_Setting__c</name>
     </fields>
     <fields>
+        <help><!-- The namespace of the Gift Processing package. --></help>
+        <label><!-- Advancement Namespace --></label>
+        <name>Advancement_Namespace__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
+        <label><!-- Affiliation Record Type Enforced --></label>
+        <name>Affiliation_Record_Type_Enforced__c</name>
+    </fields>
+    <fields>
         <help>Estat al qual s&apos;ha de canviar una Afiliació quan es suprimeix la inscripció de programa relacionada, si l&apos;opció seleccionada és canviar el seu estat en lloc de suprimir-lo.</help>
         <label>Estat afil. supressió inscripció prog.</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
