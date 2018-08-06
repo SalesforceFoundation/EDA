@@ -488,6 +488,22 @@
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
+        <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflCopyProgramEnrollmentEndDate</shortDescription>
+        <value>Copy Program Enrollment End Date to Affiliation on Creation</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflCopyProgramEnrollmentStartDate</shortDescription>
+        <value>Copy Program Enrollment Start Date to Affiliation on Creation</value>
+    </labels>
+    <labels>
         <fullName>stgAfflSetProgEnrollRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -518,38 +534,6 @@
         <protected>false</protected>
         <shortDescription>stgAfflSetRelatedPrenRoleYes</shortDescription>
         <value>Yes. Set the Role to:</value>
-    </labels>
-    <labels>
-        <fullName>stgAffliationCopyProgramEnrollmentEndDate</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAffliationCopyProgramEnrollmentEndDate</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
-    </labels>
-    <labels>
-        <fullName>stgAffliationCopyProgramEnrollmentEndDateShort</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAffliationCopyProgramEnrollmentEndDateShort</shortDescription>
-        <value>Copy Program Enrollment End Date to Affiliation</value>
-    </labels>
-    <labels>
-        <fullName>stgAffliationCopyProgramEnrollmentStartDate</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAffliationCopyProgramEnrollmentStartDate</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
-    </labels>
-    <labels>
-        <fullName>stgAffliationCopyProgramEnrollmentStartDateShort</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAffliationCopyProgramEnrollmentStartDateShort</shortDescription>
-        <value>Copy Program Enrollment Start Date to Affiliation</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
@@ -840,22 +824,6 @@
         <value>Default Active Student Record Type:</value>
     </labels>
     <labels>
-        <fullName>stgDeleteRelatedAfflNo</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgDeleteRelatedAfflNo</shortDescription>
-        <value>No, just change Status to:</value>
-    </labels>
-    <labels>
-        <fullName>stgDeleteRelatedAfflYes</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgDeleteRelatedAfflYes</shortDescription>
-        <value>Yes:</value>
-    </labels>
-    <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -926,6 +894,14 @@
         <protected>false</protected>
         <shortDescription>stgHelpAddressAccRecType</shortDescription>
         <value>The Account record types that support multiple address management.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflCopyProgramEnrollmentEndDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>
@@ -1006,14 +982,6 @@
         <protected>false</protected>
         <shortDescription>stgHelpDefaultStudentType</shortDescription>
         <value>The default record type when creating Course Connections for active students.</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpEnableAfflPrenRoleSet</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgHelpEnableAfflPrenRoleSet</shortDescription>
-        <value>You must enable Set Affiliation Role On Program Enrollment Creation before selecting a Role.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnableCourseConnBeforeBackfill</fullName>
