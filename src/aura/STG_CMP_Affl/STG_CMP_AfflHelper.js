@@ -27,13 +27,6 @@
 		$A.enqueueAction(action);
 	},
 
-	setAfflProgEnrollDel : function(component, event) {
-		var selected = event.getSource().get("v.text");
-		var hierarchySettings = component.get("v.hierarchySettings");
-		hierarchySettings.Affl_ProgEnroll_Del__c = selected;
-		component.set("v.hierarchySettings", hierarchySettings);
-	},
-
 	setAfflProgEnrollRole : function(component, event) {
 		var selected = event.getSource().get("v.text");
 		var hierarchySettings = component.get("v.hierarchySettings");
