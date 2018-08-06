@@ -201,37 +201,11 @@
                 </div>
                 <div class="slds-col slds-size--1-of-1">
 					<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-						<ui:outputText value="{!$Label.hed.stgHelpDefaultStudentType}" class="slds-text-body--small" />
+						<ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat}" class="slds-text-body--small" />
 					<aura:set attribute="else">
-						<ui:outputText value="{!$Label.c.stgHelpDefaultStudentType}" class="slds-text-body--small" />
+						<ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat}" class="slds-text-body--small" />
 					</aura:set>
 					</aura:if>
-                </div>
-
-                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top_x-large">
-					<div class="slds-col slds-size--1-of-2">
-						<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-							<ui:outputText value="{!$Label.hed.stgAfflSetProgEnrollStat + ' '}" />
-						<aura:set attribute="else">
-							<ui:outputText value="{!$Label.c.stgAfflSetProgEnrollStat + ' '}" />
-						</aura:set>
-						</aura:if>
-					</div>
-                    <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-col slds-grid slds-wrap">
-                            <div class="slds-col slds-size--1-of-2">
-                                <aura:if isTrue="{!v.isView}">
-                                    <ui:outputText aura:id="ProgEnrollStatMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}"
-                                                   class="progenroll-stat-map" />
-                                 <aura:set attribute="else">
-                                    <ui:inputText aura:id="ProgEnrollStatMap" value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}"
-                                        label="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}" labelClass="slds-hide" 
-                                        class="progenroll-stat-map"/>
-                                </aura:set>
-                                </aura:if>
-                            </div>
-                         </div>
-                    </div>
                 </div>
 
 			    <div class="slds-col slds-grid slds-m-top--medium">
