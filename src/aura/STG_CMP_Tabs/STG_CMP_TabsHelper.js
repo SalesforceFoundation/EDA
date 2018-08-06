@@ -31,7 +31,7 @@
 		        component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
 				component.set("v.affiliationRoleMapValue",settingsNoPrefix.Affiliation_Program_Enrollment_Role_Map__c);
 				component.set("v.affiliationStatusMapValue",settingsNoPrefix.Affiliation_Program_Enrollment_Stat_Map__c);
-				component.set("v.affiliationStatusDeleteMapValue",settingsNoPrefix.Affl_ProgEnroll_Del__c);
+				component.set("v.affiliationStatusDeleteMapValue",settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
 
 		        component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
 		        component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
@@ -45,7 +45,7 @@
 				// Get Affiliation Role Picklist
 	    		this.getAffiliationRolePicklistEntries(component,settingsNoPrefix.Affiliation_Program_Enrollment_Role_Map__c);
 				// Get Affiliation Status Picklist
-	    		this.getAffiliationStatusPicklistEntries(component,settingsNoPrefix.Affiliation_Program_Enrollment_Stat_Map__c);
+	    		this.getAffiliationStatusPicklistEntries(component,settingsNoPrefix.Affiliation_Program_Enrollment_Stat_Map__c,settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
 				// Get Course Connection Record Types
 	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Student_RecType__c,
 	    		        settingsNoPrefix.Faculty_RecType__c);
