@@ -341,6 +341,16 @@ public class UTIL_Describe {
 
 		return fieldPicklistEntries.get(objectName).get(fieldName);
     }
+	
+    /*******************************************************************************************************
+    * @description Returns field PicklistEntry data
+    * @param objectName the name of the object to look up
+    * @param fieldName the name of the field to look up
+    * @return List<Schema.PicklistEntry> the picklist entry list for the given field
+    */
+    public static List<Schema.PicklistEntry> getActiveFieldPicklistEntries(String objectName, String fieldName) {
+		return fieldPicklistEntries.get(objectName).get(fieldName);
+    }
 
     /*******************************************************************************************************
     * @description checks whether the field exists
@@ -436,6 +446,49 @@ public class UTIL_Describe {
             strFields += str + ',';
         }
         return strFields.substring(0, strFields.length()-1);
+    }
+	
+    /*******************************************************************************************************
+     * @description Returns a map of active, user-available picklist values and labels for a given
+     * SObjectType and field, keyed by picklist label with a value of picklist value.
+     * @param objectName Name of the object to retrieve picklist values for.
+     * @param fieldName Name of the field to retrieve picklist values for.
+     * False if we want it to be the friendly name.
+     * @return Map<String,String> Map of picklist labels to values for the object and field specified.
+     */
+    @AuraEnabled
+    public static Map<String,String> getPicklistActiveValuesMap(String objectName, String fieldName) {
+		Map<String,String> picklistValues = new Map<String,String>();
+		fillPicklistEntriesForObject(objectName,fieldName);
+		
+		for(Schema.PicklistEntry picklistEntry : fieldPicklistEntries.get(objectName).get(fieldName)) {
+			if(picklistEntry.isActive()) {
+				picklistValues.put(picklistEntry.getLabel(),picklistEntry.getValue());
+			}
+		}
+
+        return picklistValues;
+    }
+	
+    /*******************************************************************************************************
+     * @description Returns the picklist default value for a given SObjectType and field.
+     * @param objectName Name of the object to retrieve picklist values for.
+     * @param fieldName Name of the field to retrieve picklist values for.
+     * False if we want it to be the friendly name.
+     * @return String Default picklist label for the object and field specified.
+     */
+    @AuraEnabled
+    public static String getPicklistDefaultValueLabel(String objectName, String fieldName) {
+		fillPicklistEntriesForObject(objectName,fieldName);
+		
+		for(Schema.PicklistEntry picklistEntry : fieldPicklistEntries.get(objectName).get(fieldName)) {
+			if(picklistEntry.isDefaultValue()) {
+				return picklistEntry.getValue();
+			}
+		}
+
+		//This shouldn't happen, but it can.
+        throw new SchemaDescribeException('No default picklist value found for field name \'' + fieldName + '\' for object name \'' + objectName + '\'');
     }
 
     /*******************************************************************************************************
