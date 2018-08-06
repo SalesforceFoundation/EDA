@@ -77,8 +77,16 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
+        <name>Set_Program_Enrollment_Related_Affiliation_Status_on_Creation</name>
+    </customLabels>
+    <customLabels>
         <label><!-- acctNamingOther --></label>
         <name>acctNamingOther</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Throw exception to external call --></label>
+        <name>adapterException</name>
     </customLabels>
     <customLabels>
         <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
@@ -165,12 +173,20 @@
         <name>firstNameLastNameHH</name>
     </customLabels>
     <customLabels>
+        <label><!-- Gift Processing configuration error --></label>
+        <name>giftProcessingConfigException</name>
+    </customLabels>
+    <customLabels>
         <label><!-- hhAccNameFormat --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
         <label><!-- hhAccNameFormatHelpText --></label>
         <name>hhAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- hhFamily --></label>
+        <name>hhFamily</name>
     </customLabels>
     <customLabels>
         <label><!-- lastNameAdminAcc --></label>
@@ -239,6 +255,30 @@
     <customLabels>
         <label>Afegiu &quot;No hispà ni llatí&quot; com a valor de llista de selecció al camp Ètnia si és necessari.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflCopyProgramEnrollmentEndDate --></label>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflDeleteProgramEnrollment --></label>
+        <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollDeleteRelated --></label>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetRole --></label>
+        <name>stgAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetRoleValue --></label>
+        <name>stgAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
         <label>Després d&apos;executar el reenviament:</label>
@@ -427,6 +467,30 @@
     <customLabels>
         <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
         <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentEndDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetRole --></label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetRoleValue --></label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
@@ -688,4 +752,48 @@
         <label>Configuració de HEDA</label>
         <name>HEDA_Settings</name>
     </customTabs>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
 </Translations>
