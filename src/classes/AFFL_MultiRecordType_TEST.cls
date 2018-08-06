@@ -354,32 +354,64 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	}
 	
 	@isTest
-    public static void autoCreateProgramEnrollmentDifferentRole() {        
-        setup();
-        
-        //Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing 
-        Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
-        bizOrgMapping.Auto_Program_Enrollment__c = true;
-        bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
-        bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
-        update bizOrgMapping;
+	public static void autoCreateProgramEnrollmentDifferentRole() {
+		setup();
 
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
-        insert contact;
-    
-        //Craete account of Business Organization record type
-        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
-        insert acc;
-        
-        //Create Business affiliation
-        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
-        Test.startTest();
-        AFFL_ContactAccChange_TEST.resetAfflFlags();
-        insert affl;
-        Test.stopTest();
-        
-        //Verify Program Enrollment record has not been created
-        List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
-        System.assertEquals(0, programEnrollments.size());
-    }
+		//Turn on Academic Record auto-creation for Business Organization mapping - doesn't make a lot of sense for this type, but just for testing
+		Affl_Mappings__c bizOrgMapping = [select Auto_Program_Enrollment__c from Affl_Mappings__c where Name = 'Business Organization'];
+		bizOrgMapping.Auto_Program_Enrollment__c = true;
+		bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
+		bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
+		update bizOrgMapping;
+
+		Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+		insert contact;
+
+		//Craete account of Business Organization record type
+		Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+		insert acc;
+
+		//Create Business affiliation
+		Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Role__c = 'Teacher', Status__c = 'Current');
+		Test.startTest();
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
+		insert affl;
+		Test.stopTest();
+
+		//Verify Program Enrollment record has not been created
+		List<Program_Enrollment__c> programEnrollments = [select ID, Contact__c from Program_Enrollment__c where Affiliation__c = :affl.ID];
+		System.assertEquals(0, programEnrollments.size());
+	}
+
+
+/*********************************************************************************************************
+* @description
+* Enable Affiliation Type Enforcement and make Affiliation-Account mapping mismatch
+* Make sure Affiliation is not created and a custom exception is thrown
+*/
+
+	@isTest
+	public static void incorrectAfflMappingsAfflTypeEnforced() {
+		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+
+		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+		mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organizations', Primary_Affl_Field__c = 'Primary Business Organization'));
+		insert mappings;
+
+		List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+		insert testAccounts;
+
+		Test.startTest();
+		AFFL_ContactAccChange_TEST.resetAfflFlags();
+		Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson', Primary_Organization__c = testAccounts[0].Id);
+		Database.SaveResult result = Database.insert(contact, false);
+		Test.stopTest();
+
+		//Assert
+		List<Affiliation__c> assertAffls = [select ID from Affiliation__c];
+		System.assertEquals(0, assertAffls.size());
+
+		System.assertEquals(false, result.success);
+		System.assertEquals(Label.afflAccoutMappingError, result.errors[0].message);
+	}
 }

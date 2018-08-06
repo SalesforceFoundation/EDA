@@ -39,11 +39,13 @@ public with sharing class CENR_AcademicProgram_TEST {
     
     @isTest
     public static void testInsert() {
+        STG_InstallScript.insertMappings();
+
         Contact c = new Contact(LastName = 'Testerson');
         insert c;
         
-        Account academicProgram = new Account(Name = 'BS in Biology');
-        Account department = new Account(Name = 'Biology Department');
+        Account academicProgram = new Account(Name = 'BS in Biology', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
+        Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
         insert new Account[]{academicProgram, department};
         
         Program_Enrollment__c pEnroll = new Program_Enrollment__c(Contact__c = c.Id, Account__c = academicProgram.Id);
@@ -70,11 +72,13 @@ public with sharing class CENR_AcademicProgram_TEST {
     
     @isTest
     public static void testUpdate() {
+        STG_InstallScript.insertMappings();
+
         Contact c = new Contact(LastName = 'Testerson');
         insert c;
         
-        Account academicProgram = new Account(Name = 'BS in Biology');
-        Account department = new Account(Name = 'Biology Department');
+        Account academicProgram = new Account(Name = 'BS in Biology', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
+        Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
         insert new Account[]{academicProgram, department};
         
         Program_Enrollment__c pEnroll = new Program_Enrollment__c(Contact__c = c.Id, Account__c = academicProgram.Id);
