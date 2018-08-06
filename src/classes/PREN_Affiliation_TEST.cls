@@ -43,7 +43,8 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void createAfflFromProgramEnrollment() {
-    	
+    	STG_InstallScript.insertMappings();
+
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
     	
@@ -74,15 +75,15 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void deletePEnrollDelAfflYes() {
+        STG_InstallScript.insertMappings();
+
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = true));
         
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
-        
-        ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-        
+
         //Craete account of Business Organization record type
-        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
         
         //Create Program Enrollment
@@ -109,22 +110,22 @@ public with sharing class PREN_Affiliation_TEST {
     }
     
     /*********************************************************************************************************
-    * @description Deleting a Program Enrollment doesn't delet the related Affiliation when Affl_ProgEnroll_Del__c setting
+    * @description Deleting a Program Enrollment doesn't delete the related Affiliation when Affl_ProgEnroll_Del__c setting
     * is set to false. It just changes the status to what is defined in Affl_ProgEnroll_Del_Status__c.
     */
     @isTest
     public static void deletePEnrollDelAfflNo() {
+        STG_InstallScript.insertMappings();
+
         String afflStatus = 'Former';
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = false, 
         Affl_ProgEnroll_Del_Status__c = afflStatus));
-        
-        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
-        
-        ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-        
+
         //Craete account of Business Organization record type
-        Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
         
         //Create Program Enrollment

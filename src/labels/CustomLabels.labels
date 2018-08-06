@@ -233,12 +233,44 @@
         <value>The format used for naming Administrative Accounts.</value>
     </labels>
     <labels>
+        <fullName>afflAccountNoRecordType</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflAccountNoRecordType</shortDescription>
+        <value>We can&apos;t create this Affiliation because the specified Account doesn&apos;t have a record type.</value>
+    </labels>
+    <labels>
+        <fullName>afflAccoutMappingError</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflAccoutMappingError</shortDescription>
+        <value>We can&apos;t save this record because of an Account record type error in Affiliation Mappings. Ask your administrator to verify that Account Record Types are correctly mapped to Contact Primary Affiliations.</value>
+    </labels>
+    <labels>
         <fullName>afflNullPointerError</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflNullPointerError</shortDescription>
         <value>The {0} Account record type doesn&apos;&apos;t exist. Ask your admin to check record types in affiliation mappings.</value>
+    </labels>
+    <labels>
+        <fullName>afflTypeEnforced</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflTypeEnforced</shortDescription>
+        <value>Enable Record Type Validation:</value>
+    </labels>
+    <labels>
+        <fullName>afflTypeEnforcedDescription</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>afflTypeEnforcedDescription</shortDescription>
+        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, HEDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
     </labels>
     <labels>
         <fullName>duplicateFieldInFilter</fullName>

@@ -24,6 +24,11 @@
         <name>Accounts_to_Delete__c</name>
     </fields>
     <fields>
+        <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
+        <label><!-- Affiliation Record Type Enforced --></label>
+        <name>Affiliation_Record_Type_Enforced__c</name>
+    </fields>
+    <fields>
         <help>Estado al que se debe cambiar una afiliación cuando se elimina su inscripción en un programa relacionado, si la opción seleccionada es la de cambiar el estado en vez de eliminarlo.</help>
         <label>Estado de afil. al eliminar insc. prog.</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>

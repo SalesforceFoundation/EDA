@@ -429,8 +429,8 @@ private class TDTM_DMLgt200_TEST {
     @isTest
     public static void changeContact() {
         if(Advancement_Info.useAdv()) return; //Exit if advancement product installed
-
-    	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+      
+    	  UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         Id orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         Id householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
