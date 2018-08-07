@@ -22,8 +22,6 @@ Validate Edit Mode For Affiliations, Settings
 
 
     #Former 
-    #Go To Heda Home
-    #Select Frame                    //iframe[contains(@id, "vfFrameId")]
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
     Wait Until Element Is visible   //div[@data-aura-rendered-by='123:0']//input[@type='text']
 
