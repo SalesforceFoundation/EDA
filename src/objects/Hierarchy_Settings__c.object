@@ -71,19 +71,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Affiliation_Program_Enrollment_Role_Map__c</fullName>
-        <defaultValue>&apos;Student&apos;</defaultValue>
-        <description>The role to set for a related affiliation created by creating a Program Enrollment.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The role to set for a related affiliation created by creating a Program Enrollment.</inlineHelpText>
-        <label>Affiliation Program Enrollment Role Map</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Affiliation_Program_Enrollment_Set_Role__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set.</description>
@@ -147,6 +134,18 @@
         <label>Affiliation Program Enrollment deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Role_Map__c</fullName>
+        <description>The role to set for a related affiliation created by creating a Program Enrollment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The role to set for a related affiliation created by creating a Program Enrollment.</inlineHelpText>
+        <label>Affiliation Program Enrollment Role Map</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Allow_AutoCreated_Duplicates__c</fullName>

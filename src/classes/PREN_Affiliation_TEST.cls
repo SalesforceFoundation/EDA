@@ -202,7 +202,7 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void setAfflFromProgramEnrollmentRoleYes() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = true,Affiliation_Program_Enrollment_Role_Map__c='Student'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = true,Affl_ProgEnroll_Role_Map__c='Student'));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -231,7 +231,7 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void setAfflFromProgramEnrollmentRoleNo() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = false,Affiliation_Program_Enrollment_Role_Map__c='Student'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = false,Affl_ProgEnroll_Role_Map__c='Student'));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;

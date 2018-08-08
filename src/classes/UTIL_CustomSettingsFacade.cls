@@ -108,7 +108,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Automatic_Household_Naming__c = false;
         hs.Affl_ProgEnroll_CP_End_Dt__c = false;
         hs.Affl_ProgEnroll_CP_St_Dt__c = false;
-        hs.Affiliation_Program_Enrollment_Role_Map__c = 'Student';
+        hs.Affl_ProgEnroll_Role_Map__c = 'Student';
         hs.Affiliation_Program_Enrollment_Set_Role__c = false;
         hs.Affiliation_Program_Enrollment_Stat_Map__c = 'Current';
 
@@ -146,7 +146,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Affl_ProgEnroll_CP_End_Dt__c = mySettings.Affl_ProgEnroll_CP_End_Dt__c;
         settings.Affl_ProgEnroll_CP_St_Dt__c = mySettings.Affl_ProgEnroll_CP_St_Dt__c;
-        settings.Affiliation_Program_Enrollment_Role_Map__c = mySettings.Affiliation_Program_Enrollment_Role_Map__c;
+        settings.Affl_ProgEnroll_Role_Map__c = mySettings.Affl_ProgEnroll_Role_Map__c;
         settings.Affiliation_Program_Enrollment_Set_Role__c= mySettings.Affiliation_Program_Enrollment_Set_Role__c; 
         settings.Affiliation_Program_Enrollment_Stat_Map__c= mySettings.Affiliation_Program_Enrollment_Stat_Map__c;
 

@@ -177,7 +177,7 @@
 					</div>
 					<div class="slds-col slds-size--1-of-2">
 					  <c:CMP_Picklist_Dropdown class="affiliation-status-picklist"
-						setting="{!v.hierarchySettings.Affiliation_Program_Enrollment_Stat_Map__c}"
+						setting="{!v.hierarchySettings.Affl_ProgEnroll_Role_Map__c}"
 						isView="{!v.isView}"
 						picklistValue="{!v.affiliationStatusMapValue}"
 						picklistLabel="{!v.affiliationStatusMapLabel}"
