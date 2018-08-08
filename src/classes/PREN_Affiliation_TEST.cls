@@ -134,11 +134,11 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment copies the related Affiliation Start Date when 
-    * Affl_ProgEnroll_CP_St_Dt__c setting is set to true.
+    * Affl_ProgEnroll_Copy_Start_Date__c setting is set to true.
     */
     @isTest
     public static void copyAfflFromProgramEnrollmentStartDateYes() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_CP_St_Dt__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Copy_Start_Date__c = true));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -166,11 +166,11 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment doesn't copy the related Affiliation Start Date when 
-    * Affl_ProgEnroll_CP_St_Dt__c setting is set to false.
+    * Affl_ProgEnroll_Copy_Start_Date__c setting is set to false.
     */
     @isTest
     public static void copyAfflFromProgramEnrollmentStartDateNo() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_CP_St_Dt__c = false));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Copy_Start_Date__c = false));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -198,11 +198,11 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment sets the related Affiliation Role when 
-    * Affiliation_Program_Enrollment_Set_Role__c setting is set to true.
+    * Affl_ProgEnroll_Set_Role__c setting is set to true.
     */
     @isTest
     public static void setAfflFromProgramEnrollmentRoleYes() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = true,Affl_ProgEnroll_Role_Map__c='Student'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = true,Affl_ProgEnroll_Role_Map__c='Student'));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -227,11 +227,11 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment does not set the related Affiliation Role when 
-    * Affiliation_Program_Enrollment_Set_Role__c setting is set to false.
+    * Affl_ProgEnroll_Set_Role__c setting is set to false.
     */
     @isTest
     public static void setAfflFromProgramEnrollmentRoleNo() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Set_Role__c = false,Affl_ProgEnroll_Role_Map__c='Student'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = false,Affl_ProgEnroll_Role_Map__c='Student'));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -260,7 +260,7 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void setAfflFromProgramEnrollmentStatus() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Program_Enrollment_Stat_Map__c='Former'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Status_Map__c='Former'));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;

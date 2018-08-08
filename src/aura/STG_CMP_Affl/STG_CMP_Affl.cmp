@@ -117,9 +117,9 @@
 			                 <div class="slds-form-element__control">
 			                     <label class="slds-checkbox">
 							         <aura:if isTrue="{!v.isView}">
-							             <ui:outputCheckbox value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c}" class="copy-start-date" />
+							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
 							         <aura:set attribute="else">
-							             <ui:inputCheckbox value="{!v.hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c}" class="copy-start-date" />
+							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
 							             <span class="slds-checkbox--faux"></span>
 			                            <span class="slds-form-element__label"></span>
 							         </aura:set>
@@ -243,9 +243,9 @@
 			                 <div class="slds-form-element__control">
 			                     <label class="slds-checkbox">
 							         <aura:if isTrue="{!v.isView}">
-							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_CP_St_Dt__c}" class="copy-start-date" />
+							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
 							         <aura:set attribute="else">
-							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_CP_St_Dt__c}" class="copy-start-date" />
+							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
 							             <span class="slds-checkbox--faux"></span>
 			                            <span class="slds-form-element__label"></span>
 							         </aura:set>

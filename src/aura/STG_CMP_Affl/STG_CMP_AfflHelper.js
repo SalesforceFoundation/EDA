@@ -30,7 +30,7 @@
 	setAfflProgEnrollRole : function(component, event) {
 		var selected = event.getSource().get("v.text");
 		var hierarchySettings = component.get("v.hierarchySettings");
-		hierarchySettings.Affiliation_Program_Enrollment_Set_Role__c = selected;
+		hierarchySettings.Affl_ProgEnroll_Set_Role__c = selected;
 		component.set("v.hierarchySettings", hierarchySettings);
 	},
 

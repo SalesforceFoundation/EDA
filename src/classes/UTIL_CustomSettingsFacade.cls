@@ -107,10 +107,10 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
         hs.Automatic_Household_Naming__c = false;
         hs.Affl_ProgEnroll_Copy_End_Date__c = false;
-        hs.Affl_ProgEnroll_CP_St_Dt__c = false;
+        hs.Affl_ProgEnroll_Copy_Start_Date__c = false;
         hs.Affl_ProgEnroll_Role_Map__c = 'Student';
-        hs.Affiliation_Program_Enrollment_Set_Role__c = false;
-        hs.Affiliation_Program_Enrollment_Stat_Map__c = 'Current';
+        hs.Affl_ProgEnroll_Set_Role__c = false;
+        hs.Affl_ProgEnroll_Status_Map__c = 'Current';
 
     }
 
@@ -145,10 +145,10 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Household_Account_Naming_Format__c = mySettings.Household_Account_Naming_Format__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Affl_ProgEnroll_Copy_End_Date__c = mySettings.Affl_ProgEnroll_Copy_End_Date__c;
-        settings.Affl_ProgEnroll_CP_St_Dt__c = mySettings.Affl_ProgEnroll_CP_St_Dt__c;
+        settings.Affl_ProgEnroll_Copy_Start_Date__c = mySettings.Affl_ProgEnroll_Copy_Start_Date__c;
         settings.Affl_ProgEnroll_Role_Map__c = mySettings.Affl_ProgEnroll_Role_Map__c;
-        settings.Affiliation_Program_Enrollment_Set_Role__c= mySettings.Affiliation_Program_Enrollment_Set_Role__c; 
-        settings.Affiliation_Program_Enrollment_Stat_Map__c= mySettings.Affiliation_Program_Enrollment_Stat_Map__c;
+        settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c; 
+        settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
 
 
         orgSettings = settings;
