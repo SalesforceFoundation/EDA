@@ -7,20 +7,20 @@
    saveSetting : function(component) {        
         //Get selected value
         var picklistDropDown = component.find("picklistDropDown");
-        var selectedPicklistValue = recTypesDropDown.get("v.value");
+        var selectedPicklistValue = picklistDropDown.get("v.value");
 
-        //Set the selected value in the settings (so it gets saved)
+       //Set the selected value in the settings (so it gets saved)
         component.set("v.setting", selectedPicklistValue);
 
         //Set the value to display after save. 
         //We do this because we cannot get the selected label from the drop-down, only the value
-        var picklistEntries = component.get("v.recTypes");
-        var selectedRecTypeLabel = '';
+        var picklistEntries = component.get("v.picklistEntries");
+        var selectedPicklistLabel = '';
         for(var i = 0; i <picklistEntries.length; i += 1) {
             if(picklistEntries[i].picklistValue === selectedPicklistValue) {
-                selectedPicklistValue = picklistEntries[i].picklistLabel;
+                selectedPicklistLabel = picklistEntries[i].picklistLabel;
             }
         }
-        component.set("v.picklistLabel", selectedRecTypeLabel);
+        component.set("v.picklistLabel", selectedPicklistLabel);
     }
 })

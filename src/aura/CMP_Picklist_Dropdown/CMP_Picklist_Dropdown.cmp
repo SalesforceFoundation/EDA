@@ -5,7 +5,7 @@
     <aura:attribute name="isView" type="Boolean" default="true" />
     <aura:attribute name="picklistLabel" type="String" />
     <aura:attribute name="picklistValue" type="String" />
-    <aura:attribute name="picklistEntries" type="List" />
+    <aura:attribute name="picklistEntries" type="Object[]" />
     <aura:attribute name="dropdownDisabled" type="boolean" default="false" />
 
     <aura:attribute name="setting" type="String" />
@@ -13,10 +13,10 @@
     <aura:if isTrue="{!v.isView}">
         <ui:outputText aura:id="picklistLabel" class="{!v.class + '-output-text'}" value="{!v.picklistLabel}"/>
     <aura:set attribute="else">
-        <ui:inputSelect aura:id="pickListDropDown" class="{!v.class + '-input-select'}" change="{!c.onSelectChange}" disabled="{!v.dropdownDisabled}">
+        <ui:inputSelect aura:id="picklistDropDown" class="{!v.class + '-input-select'}" change="{!c.onSelectChange}" disabled="{!v.dropdownDisabled}">
             <aura:iteration items="{!v.picklistEntries}" var="picklistItem">
                 <ui:inputSelectOption label="{!picklistItem.picklistLabel}" text="{!picklistItem.picklistValue}" class="picklist-input"
-                    value="{!v.pickListValue == picklistItem.picklistValue ? true : false}" />
+                    value="{!v.picklistValue == picklistItem.picklistValue ? true : false}" />
             </aura:iteration>
         </ui:inputSelect>
     </aura:set>
