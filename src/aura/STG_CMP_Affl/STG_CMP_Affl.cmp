@@ -54,9 +54,9 @@
 			                 <div class="slds-form-element__control">
 			                     <label class="slds-checkbox">
 							         <aura:if isTrue="{!v.isView}">
-							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="copy-start-date" />
+							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
 							         <aura:set attribute="else">
-							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="copy-start-date" />
+							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
 							             <span class="slds-checkbox--faux"></span>
 			                            <span class="slds-form-element__label"></span>
 							         </aura:set>
@@ -86,11 +86,12 @@
 					</div>
 					<div class="slds-col slds-size--1-of-2">
 					  <c:CMP_Picklist_Dropdown class="affiliation-status-delete-picklist"
-						setting="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}"
+						setting="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
 						isView="{!v.isView}"
 						picklistValue="{!v.affiliationStatusDeleteMapValue}"
 						picklistLabel="{!v.affiliationStatusDeleteMapLabel}"
-						picklistEntries="{!v.affiliationStatusPicklistEntries}"
+						picklistEntries="{!v.affiliationStatusPicklistEntries}" 
+						dropdownDisabled="(!!v.hierarchySettings.Affl_ProgEnroll_Del__c)"
 					  />
 					</div>
                 </div>
@@ -136,7 +137,7 @@
                         <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRole}" class="slds-text-body--small" />
                     </aura:set>
                     </aura:if>
-                </div> 
+                </div>
 
                 <div class="slds-col slds-grid slds-m-top--medium">
 					<div class="slds-col slds-size--1-of-2">
@@ -177,7 +178,7 @@
 					</div>
 					<div class="slds-col slds-size--1-of-2">
 					  <c:CMP_Picklist_Dropdown class="affiliation-status-picklist"
-						setting="{!v.hierarchySettings.Affl_ProgEnroll_Role_Map__c}"
+						setting="{!v.hierarchySettings.Affl_ProgEnroll_Status_Map__c}"
 						isView="{!v.isView}"
 						picklistValue="{!v.affiliationStatusMapValue}"
 						picklistLabel="{!v.affiliationStatusMapLabel}"
