@@ -94,22 +94,22 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Affl_ProgEnroll_CP_End_Dt__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s End Date.</inlineHelpText>
-        <label>Affiliation Program Enrollment CP End Dt</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Affl_ProgEnroll_CP_St_Dt__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
         <externalId>false</externalId>
         <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
         <label>Affiliation Program Enrollment CP St Dt</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Affl_ProgEnroll_Copy_End_Date__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
+        <label>Affl End Date on Prog Enroll Creation</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

@@ -70,11 +70,11 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment copies the related Affiliation End Date when 
-    * Affl_ProgEnroll_CP_End_Dt__c setting is set to true.
+    * Affl_ProgEnroll_Copy_End_Date__c setting is set to true.
     */
     @isTest
     public static void copyAfflFromProgramEnrollmentEndDateYes() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_CP_End_Dt__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Copy_End_Date__c = true));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;
@@ -102,11 +102,11 @@ public with sharing class PREN_Affiliation_TEST {
 	
     /*********************************************************************************************************
     * @description Creating a Program Enrollment doesn't copy the related Affiliation End Date when 
-    * Affl_ProgEnroll_CP_End_Dt__c setting is set to false.
+    * Affl_ProgEnroll_Copy_End_Date__c setting is set to false.
     */
     @isTest
     public static void copyAfflFromProgramEnrollmentEndDateNo() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_CP_End_Dt__c = false));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Copy_End_Date__c = false));
     	
     	Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
     	insert contact;

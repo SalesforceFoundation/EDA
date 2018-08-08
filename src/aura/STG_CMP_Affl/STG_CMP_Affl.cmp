@@ -208,9 +208,9 @@
 			                 <div class="slds-form-element__control">
 			                     <label class="slds-checkbox">
 							         <aura:if isTrue="{!v.isView}">
-							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_CP_End_Dt__c}" class="copy-end-date" />
+							             <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
 							         <aura:set attribute="else">
-							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_CP_End_Dt__c}" class="copy-end-date" />
+							             <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
 							             <span class="slds-checkbox--faux"></span>
 			                            <span class="slds-form-element__label"></span>
 							         </aura:set>
