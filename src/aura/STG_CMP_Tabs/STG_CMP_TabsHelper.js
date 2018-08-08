@@ -113,8 +113,8 @@
                 var affiliationRolePicklistEntries = [];
                 for(var property in picklistValues) {
                     if (picklistValues.hasOwnProperty(property)) {
-                        affiliationRolePicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
-                        if(picklistValues[property].indexOf(roleValue) > -1) {
+                        affiliationRolePicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});
+                        if(property.indexOf(roleValue) > -1) {
                             component.set("v.affiliationRoleMapLabel", property);
                         }
                     }
@@ -141,11 +141,11 @@
                 var affiliationStatusPicklistEntries = [];
                 for(var property in picklistValues) {
                     if (picklistValues.hasOwnProperty(property)) {
-                        affiliationStatusPicklistEntries.push({picklistValue: property, picklistLabel: picklistValues[property]});
-                        if(picklistValues[property].indexOf(statusValue) > -1) {
+                        affiliationStatusPicklistEntries.push({picklistLabel: property, picklistValue: picklistValues[property]});
+                        if(property.indexOf(statusValue) > -1) {
                             component.set("v.affiliationStatusMapLabel", property);
                         }
-                        if(picklistValues[property].indexOf(deleteValue) > -1) {
+                        if(property.indexOf(deleteValue) > -1) {
                             component.set("v.affiliationStatusDeleteMapLabel", property);
                         }
                     }
