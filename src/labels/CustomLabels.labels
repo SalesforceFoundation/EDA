@@ -928,6 +928,14 @@
         <value>The role set on the related Affiliation when a Program Enrollment is created without a related affiliation.</value>
     </labels>
     <labels>
+        <fullName>stgHelpAfflProgEnrollSetStatusValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflProgEnrollSetStatusValue</shortDescription>
+        <value>The status set on the related Affiliation when a Program Enrollment is created without a related affiliation.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
