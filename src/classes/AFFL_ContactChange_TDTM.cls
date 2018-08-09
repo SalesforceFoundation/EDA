@@ -110,10 +110,7 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 
 	                       	//Populate same field in new Contact
 	                       	newRelatedContact.put(lookupFieldName, affl.Account__c);
-                            TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
                             dmlWrapper.objectsToUpdate.add(newRelatedContact);
-                            TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);
-
 
 	                       	//afflMulti.uncheckOtherPrimariesSameType(); --> we don't need to call this because
                            	//AFFL_MultiRecordType_TDTM will run after this class, and will take care of that.
@@ -125,6 +122,8 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
 	                   	}
 	               	}
 	               	i++;
+                    //Turn off CON_PrimaryAffls_TDTM_After_Update temporarily to avoid creating duplicate affiliation
+                    TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
 	           	}
 	       	}
            	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM, true);
@@ -132,6 +131,9 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;        
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_ContactChange_TDTM, false);
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+            TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
+        }
         return dmlWrapper;
     }
 }

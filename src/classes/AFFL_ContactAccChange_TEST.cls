@@ -136,6 +136,10 @@ public with sharing class AFFL_ContactAccChange_TEST {
         //Confirm primary field has been updated
         contact = [select Primary_Organization__c from Contact where ID =:contact.ID];
         System.assertEquals(bizOrg2.ID, contact.Primary_Organization__c);
+
+        //Make sure we are not creating duplicate affiliations
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
+        System.assertEquals(1, affls.size());
     }
     
     @isTest
@@ -159,6 +163,10 @@ public with sharing class AFFL_ContactAccChange_TEST {
         contact = [select Primary_Organization__c, Primary_Household__c from Contact where ID =:contact.ID];
         System.assertEquals(null, contact.Primary_Organization__c);
         System.assertEquals(householdOrg1.ID, contact.Primary_Household__c);
+
+        //Make sure we are not creating duplicate affiliations
+        List<Affiliation__c> affls = [select Id from Affiliation__c];
+        System.assertEquals(1, affls.size());
     }
     
     @isTest
