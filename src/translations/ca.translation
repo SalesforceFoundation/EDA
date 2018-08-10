@@ -441,14 +441,6 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>No, només s&apos;ha de canviar l&apos;estat a:</label>
-        <name>stgDeleteRelatedAfflNo</name>
-    </customLabels>
-    <customLabels>
-        <label>Sí:</label>
-        <name>stgDeleteRelatedAfflYes</name>
-    </customLabels>
-    <customLabels>
         <label>Desactiva el maneig d&apos;errors:</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
