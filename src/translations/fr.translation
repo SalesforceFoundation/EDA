@@ -421,14 +421,6 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Non, changez seulement le statut sur :</label>
-        <name>stgDeleteRelatedAfflNo</name>
-    </customLabels>
-    <customLabels>
-        <label>Oui :</label>
-        <name>stgDeleteRelatedAfflYes</name>
-    </customLabels>
-    <customLabels>
         <label>Désactiver la gestion des erreurs :</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>

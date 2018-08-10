@@ -413,14 +413,6 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgDeleteRelatedAfflNo --></label>
-        <name>stgDeleteRelatedAfflNo</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgDeleteRelatedAfflYes --></label>
-        <name>stgDeleteRelatedAfflYes</name>
-    </customLabels>
-    <customLabels>
         <label>Deshabilitar el tratamiento de errores:</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
