@@ -40,18 +40,14 @@ public with sharing class AFFL_ContactAccChange_TEST {
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
 
-    @testSetup 
-    static void dataSetup() {
+    private static void dataSetup() {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
 
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));  
-        mappings.add(new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'Household Account', Primary_Affl_Field__c = 'Primary Household'));
-        insert mappings;
+        STG_InstallScript.insertMappings();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         Contact contact2 = new Contact(FirstName = 'Test2', LastName = 'Testerson2');
@@ -71,7 +67,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void changeContact() {
-
+        dataSetup();
         Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
         
         //Confirm Primary Business Organization field has been populated in contact
@@ -102,6 +98,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void clearContact() {
+        dataSetup();
         Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
         Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
         Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];
@@ -119,6 +116,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void changeAccountSameType() {
+        dataSetup();
         Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
         Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
         Account bizOrg2 = [SELECT Id FROM Account WHERE Name = 'Acme2'];
@@ -138,7 +136,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void changeAccountDifferentType() {
-
+        dataSetup();
         Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
 
         Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
@@ -161,7 +159,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
     
     @isTest
     public static void clearAccount() {
-
+        dataSetup();
         Contact contact = [Select Primary_Organization__c from Contact WHERE FirstName = 'Test' AND Lastname = 'Testerson'];
         Account bizOrg1 = [SELECT Id FROM Account WHERE Name = 'Acme'];
         Affiliation__c bizAffl1 = [SELECT Account__c FROM Affiliation__c WHERE Contact__c =: contact.ID AND Account__c =: bizOrg1.ID];

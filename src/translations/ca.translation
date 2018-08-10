@@ -125,8 +125,24 @@
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
+        <label><!-- afflAccountNoRecordType --></label>
+        <name>afflAccountNoRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflAccoutMappingError --></label>
+        <name>afflAccoutMappingError</name>
+    </customLabels>
+    <customLabels>
         <label>El tipus de registre del compte {0} no existeix. Demaneu al vostre administrador que verifiqui els tipus de registre en les assignacions d&apos;afiliació.</label>
         <name>afflNullPointerError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflTypeEnforced --></label>
+        <name>afflTypeEnforced</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- afflTypeEnforcedDescription --></label>
+        <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
         <label><!-- automaticHHNaming --></label>

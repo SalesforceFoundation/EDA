@@ -117,36 +117,24 @@
         <name>addrValidParentObjects</name>
     </customLabels>
     <customLabels>
-        <label><!-- adminAccNameFormat --></label>
-        <name>adminAccNameFormat</name>
+        <label><!-- afflAccountNoRecordType --></label>
+        <name>afflAccountNoRecordType</name>
     </customLabels>
     <customLabels>
-        <label><!-- adminAccNameFormatHelpText --></label>
-        <name>adminAccNameFormatHelpText</name>
+        <label><!-- afflAccoutMappingError --></label>
+        <name>afflAccoutMappingError</name>
     </customLabels>
     <customLabels>
         <label><!-- afflNullPointerError --></label>
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label><!-- automaticHHNaming --></label>
-        <name>automaticHHNaming</name>
+        <label><!-- afflTypeEnforced --></label>
+        <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label><!-- automaticHHNamingHelpText --></label>
-        <name>automaticHHNamingHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- defaultNamingConnector --></label>
-        <name>defaultNamingConnector</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error message for TDTM filtering functionality. --></label>
-        <name>duplicateFieldInFilter</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error message for TDTM filtering functionality. --></label>
-        <name>duplicateWithHEDAField</name>
+        <label><!-- afflTypeEnforcedDescription --></label>
+        <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
         <label><!-- exceptionRequiredField --></label>
