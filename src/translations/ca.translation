@@ -77,10 +77,6 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
-        <name>Set_Program_Enrollment_Related_Affiliation_Status_on_Creation</name>
-    </customLabels>
-    <customLabels>
         <label><!-- acctNamingOther --></label>
         <name>acctNamingOther</name>
     </customLabels>
@@ -201,10 +197,6 @@
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
-        <label><!-- hhFamily --></label>
-        <name>hhFamily</name>
-    </customLabels>
-    <customLabels>
         <label><!-- lastNameAdminAcc --></label>
         <name>lastNameAdminAcc</name>
     </customLabels>
@@ -295,6 +287,10 @@
     <customLabels>
         <label><!-- stgAfflProgEnrollSetRoleValue --></label>
         <name>stgAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
         <label>Després d&apos;executar el reenviament:</label>
@@ -481,10 +477,6 @@
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpAfflCopyProgramEnrollmentStartDate --></label>
-        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-    </customLabels>
-    <customLabels>
         <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
@@ -499,6 +491,10 @@
     <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAffliCopyProgramEnrollmentStartDate --></label>
+        <name>stgHelpAffliCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>

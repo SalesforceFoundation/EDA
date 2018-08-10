@@ -24,9 +24,34 @@
         <name>Accounts_to_Delete__c</name>
     </fields>
     <fields>
+        <help><!-- This is the setting for admin account naming format --></help>
+        <label><!-- Admin Account Naming Format --></label>
+        <name>Admin_Account_Naming_Format__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store other naming setting for admin account --></help>
+        <label><!-- Admin Other Name Setting --></label>
+        <name>Admin_Other_Name_Setting__c</name>
+    </fields>
+    <fields>
+        <help><!-- The namespace of the Gift Processing package. --></help>
+        <label><!-- Advancement Namespace --></label>
+        <name>Advancement_Namespace__c</name>
+    </fields>
+    <fields>
         <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
         <label><!-- Affiliation Record Type Enforced --></label>
         <name>Affiliation_Record_Type_Enforced__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl End Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl Start Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     </fields>
     <fields>
         <help>Statut d&apos;une affiliation lors de la suppression de l&apos;inscription au programme associé. Si cette option est sélectionnée, l&apos;affiliation n&apos;est pas supprimée, mais son statut change.</help>
@@ -39,6 +64,21 @@
         <name>Affl_ProgEnroll_Del__c</name>
     </fields>
     <fields>
+        <help><!-- The role to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Role Map --></label>
+        <name>Affl_ProgEnroll_Role_Map__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set. --></help>
+        <label><!-- Affl set role on Prog Enrollment create --></label>
+        <name>Affl_ProgEnroll_Set_Role__c</name>
+    </fields>
+    <fields>
+        <help><!-- The status to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Stat Map --></label>
+        <name>Affl_ProgEnroll_Status_Map__c</name>
+    </fields>
+    <fields>
         <help>Les relations automatiquement créées sont dédupliquées pour empêcher la création d’enregistrements Relation en double entre deux contacts. Cochez cette case pour désactiver ce comportement et autoriser plusieurs relations de même type entre deux contacts</help>
         <label>Autoriser rel. dupliquées auto. créées</label>
         <name>Allow_AutoCreated_Duplicates__c</name>
@@ -46,6 +86,11 @@
     <fields>
         <label>Dernière exé. vérif. erreur asynchrone</label>
         <name>Async_Error_Check_Last_Run__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings. --></help>
+        <label><!-- Automatic Household Naming --></label>
+        <name>Automatic_Household_Naming__c</name>
     </fields>
     <fields>
         <help>Support gestion adresses des contacts.</help>
@@ -86,9 +131,19 @@
         <name>Faculty_RecType__c</name>
     </fields>
     <fields>
+        <help><!-- This is the setting for household account naming format --></help>
+        <label><!-- Household Account Naming Format --></label>
+        <name>Household_Account_Naming_Format__c</name>
+    </fields>
+    <fields>
         <help>Type d&apos;enregistrement de compte qui prend en charge le comportement des adresses du foyer.</help>
         <label>Type enregistr. compte adresses du foyer</label>
         <name>Household_Addresses_RecType__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store other name setting for household account --></help>
+        <label><!-- Household Other Name Setting --></label>
+        <name>Household_Other_Name_Setting__c</name>
     </fields>
     <fields>
         <help>Détermine la méthode de génération de la relation réciproque. Elle correspond à un paramètre de liste qui utilise des paramètres personnalisés par sexe ou à une inversion de valeur (de « Parent-Enfant » à « Enfant-Parent »)</help>

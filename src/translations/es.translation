@@ -77,10 +77,6 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
-        <name>Set_Program_Enrollment_Related_Affiliation_Status_on_Creation</name>
-    </customLabels>
-    <customLabels>
         <label><!-- acctNamingOther --></label>
         <name>acctNamingOther</name>
     </customLabels>
@@ -117,6 +113,14 @@
         <name>addrValidParentObjects</name>
     </customLabels>
     <customLabels>
+        <label><!-- adminAccNameFormat --></label>
+        <name>adminAccNameFormat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- adminAccNameFormatHelpText --></label>
+        <name>adminAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
         <label><!-- afflAccountNoRecordType --></label>
         <name>afflAccountNoRecordType</name>
     </customLabels>
@@ -135,6 +139,26 @@
     <customLabels>
         <label><!-- afflTypeEnforcedDescription --></label>
         <name>afflTypeEnforcedDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- automaticHHNaming --></label>
+        <name>automaticHHNaming</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- automaticHHNamingHelpText --></label>
+        <name>automaticHHNamingHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- defaultNamingConnector --></label>
+        <name>defaultNamingConnector</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for TDTM filtering functionality. --></label>
+        <name>duplicateFieldInFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message for TDTM filtering functionality. --></label>
+        <name>duplicateWithHEDAField</name>
     </customLabels>
     <customLabels>
         <label><!-- exceptionRequiredField --></label>
@@ -171,10 +195,6 @@
     <customLabels>
         <label><!-- hhAccNameFormatHelpText --></label>
         <name>hhAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- hhFamily --></label>
-        <name>hhFamily</name>
     </customLabels>
     <customLabels>
         <label><!-- lastNameAdminAcc --></label>
@@ -267,6 +287,10 @@
     <customLabels>
         <label><!-- stgAfflProgEnrollSetRoleValue --></label>
         <name>stgAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
         <label><!-- stgAfterRunBackfill --></label>
@@ -453,10 +477,6 @@
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpAfflCopyProgramEnrollmentStartDate --></label>
-        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-    </customLabels>
-    <customLabels>
         <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
@@ -471,6 +491,10 @@
     <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAffliCopyProgramEnrollmentStartDate --></label>
+        <name>stgHelpAffliCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
         <label>Seleccione esta opción para habilitar la administración de direcciones múltiples para Contactos.</label>

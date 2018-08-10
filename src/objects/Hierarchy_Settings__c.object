@@ -71,6 +71,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Affiliation_Record_Type_Enforced__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</inlineHelpText>
+        <label>Affiliation Record Type Enforced</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Affl_ProgEnroll_Copy_End_Date__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
@@ -87,16 +97,6 @@
         <externalId>false</externalId>
         <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
         <label>Affl Start Date on Prog Enroll Creation</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Affiliation_Record_Type_Enforced__c</fullName>
-        <defaultValue>true</defaultValue>
-        <description>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</description>
-        <externalId>false</externalId>
-        <inlineHelpText>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</inlineHelpText>
-        <label>Affiliation Record Type Enforced</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
