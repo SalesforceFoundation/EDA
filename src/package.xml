@@ -144,6 +144,7 @@
     </types>
     <types>
         <members>CMP_Acc_Naming_Dropdown</members>
+        <members>CMP_Picklist_Dropdown</members>
         <members>CMP_RecTypes</members>
         <members>CMP_RecTypes_Dropdown</members>
         <members>STG_App</members>
@@ -297,8 +298,13 @@
         <members>Hierarchy_Settings__c.Admin_Other_Name_Setting__c</members>
         <members>Hierarchy_Settings__c.Advancement_Namespace__c</members>
         <members>Hierarchy_Settings__c.Affiliation_Record_Type_Enforced__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Copy_End_Date__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Copy_Start_Date__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Role_Map__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Set_Role__c</members>
+        <members>Hierarchy_Settings__c.Affl_ProgEnroll_Status_Map__c</members>
         <members>Hierarchy_Settings__c.Allow_AutoCreated_Duplicates__c</members>
         <members>Hierarchy_Settings__c.Async_Error_Check_Last_Run__c</members>
         <members>Hierarchy_Settings__c.Automatic_Household_Naming__c</members>
@@ -414,29 +420,28 @@
         <members>afflAccountNoRecordType</members>
         <members>afflAccoutMappingError</members>
         <members>afflNullPointerError</members>
-        <members>duplicateFieldInFilter</members>
-        <members>duplicateWithHEDAField</members>
         <members>afflTypeEnforced</members>
         <members>afflTypeEnforcedDescription</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
         <members>defaultNamingConnector</members>
+        <members>duplicateFieldInFilter</members>
+        <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
+        <members>fieldWithHEDANamespace</members>
         <members>firstNameLastNameAdminACC</members>
         <members>firstNameLastNameFamily</members>
         <members>firstNameLastNameHH</members>
         <members>giftProcessingConfigException</members>
         <members>hhAccNameFormat</members>
-        <members>hhFamily</members>
+        <members>hhAccNameFormatHelpText</members>
         <members>lastNameAdminAcc</members>
         <members>lastNameFamily</members>
         <members>lastNameFirstNameAdminAcc</members>
         <members>lastNameFirstNameFamily</members>
         <members>lastNameFirstNameHH</members>
         <members>lastNameHH</members>
-        <members>fieldWithHEDANamespace</members>
-        <members>hhAccNameFormatHelpText</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
@@ -448,6 +453,12 @@
         <members>stgAccoutTypesWithoutContactsDelete</members>
         <members>stgAddHispanicOrLatinoPicklistValue</members>
         <members>stgAddNotHispanicOrLatinoPicklistValue</members>
+        <members>stgAfflCopyProgramEnrollmentEndDate</members>
+        <members>stgAfflCopyProgramEnrollmentStartDate</members>
+        <members>stgAfflDeleteProgramEnrollment</members>
+        <members>stgAfflProgEnrollDeleteRelated</members>
+        <members>stgAfflProgEnrollSetRole</members>
+        <members>stgAfflProgEnrollSetRoleValue</members>
         <members>stgAfterRunBackfill</members>
         <members>stgAutoCompleteEnterChatterGroupName</members>
         <members>stgAutoCompleteEnterUserName</members>
@@ -484,8 +495,6 @@
         <members>stgCourseDescriptionCopyEmailSubject</members>
         <members>stgDefaultFacultyTypeTitle</members>
         <members>stgDefaultStudentTypeTitle</members>
-        <members>stgDeleteRelatedAfflNo</members>
-        <members>stgDeleteRelatedAfflYes</members>
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgEnableCourseConnectionsTitle</members>
@@ -495,6 +504,11 @@
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
+        <members>stgHelpAfflCopyProgramEnrollmentEndDate</members>
+        <members>stgHelpAfflDeleteProgramEnrollment</members>
+        <members>stgHelpAfflProgEnrollSetRole</members>
+        <members>stgHelpAfflProgEnrollSetRoleValue</members>
+        <members>stgHelpAfflProgEnrollSetStatusValue</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpCopyQueuedEmailSent</members>
@@ -603,10 +617,6 @@
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
-        <members>Course__c-ca</members>
-        <members>Course__c-en_US</members>
-        <members>Course__c-es</members>
-        <members>Course__c-fr</members>
         <members>Course_Enrollment__c-ca</members>
         <members>Course_Enrollment__c-en_US</members>
         <members>Course_Enrollment__c-es</members>
@@ -615,6 +625,10 @@
         <members>Course_Offering__c-en_US</members>
         <members>Course_Offering__c-es</members>
         <members>Course_Offering__c-fr</members>
+        <members>Course__c-ca</members>
+        <members>Course__c-en_US</members>
+        <members>Course__c-es</members>
+        <members>Course__c-fr</members>
         <members>Error__c-ca</members>
         <members>Error__c-en_US</members>
         <members>Error__c-es</members>
@@ -631,10 +645,6 @@
         <members>Program_Enrollment__c-en_US</members>
         <members>Program_Enrollment__c-es</members>
         <members>Program_Enrollment__c-fr</members>
-        <members>Relationship__c-ca</members>
-        <members>Relationship__c-en_US</members>
-        <members>Relationship__c-es</members>
-        <members>Relationship__c-fr</members>
         <members>Program_Plan__c-ca</members>
         <members>Program_Plan__c-en_US</members>
         <members>Program_Plan__c-es</members>
@@ -647,6 +657,10 @@
         <members>Relationship_Lookup__c-en_US</members>
         <members>Relationship_Lookup__c-es</members>
         <members>Relationship_Lookup__c-fr</members>
+        <members>Relationship__c-ca</members>
+        <members>Relationship__c-en_US</members>
+        <members>Relationship__c-es</members>
+        <members>Relationship__c-fr</members>
         <members>Term__c-ca</members>
         <members>Term__c-en_US</members>
         <members>Term__c-es</members>
