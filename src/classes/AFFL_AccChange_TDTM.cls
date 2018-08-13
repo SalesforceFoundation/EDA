@@ -123,14 +123,18 @@ public with sharing class AFFL_AccChange_TDTM extends TDTM_Runnable {
                        	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccChange_TDTM, true);
                    	}
                    	i++;
+                    //Turn off CON_PrimaryAffls_TDTM_After_Update temporarily to avoid creating duplicate affiliation
+                    TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
                	}
            	}
         }
+
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;  
         if(triggerAction == TDTM_Runnable.Action.AfterUpdate)
         {      
           	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccChange_TDTM, false);
+            TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update);
         }
         return dmlWrapper;
     }
