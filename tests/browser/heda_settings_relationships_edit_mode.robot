@@ -9,28 +9,29 @@ Suite Teardown  Delete Records and Close Browser
 Go To Heda Home
     Go To Heda Home
     Select Frame			//iframe[contains(@id, "vfFrameId")]
-    Click Link				//a[contains(text(),'System')]
-    Wait Until Element Is visible	//a[contains(text(),'System')]
+    Click Link				//a[contains(text(),'Relationships')]
+    Wait Until Element Is visible	//a[contains(text(),'Relationships')]
     
 
-Validate Edit Mode For Affiliations, Settings
+Validate Edit Mode For Relationships, Settings
     
-    #Yes radio button
     Go To Heda Home
     Select Frame                    //iframe[contains(@id, "vfFrameId")]
-     #Select the 'Yes' radio button
-    Click Element                   //div[@data-aura-rendered-by='106:0']//input[@type='radio']
+    Click Link          		//a[contains(text(),'Relationships')]
+    Wait Until Element Is visible 	//a[contains(text(),'Relationships')]
 
-
-    #Set focus to the status field
+    #Go into Edit mode 
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@data-aura-rendered-by='123:0']//input[@type='text']
+    Wait Until Element Is visible   //div[@data-aura-rendered-by='28:0']
 
-     #Enter known value into status field, then save the form
-    Click Element                   //div[@data-aura-rendered-by='128:0']//input[@type='radio']
-    Input text                      //div[@data-aura-rendered-by='123:0']//input[@type='text']      StatusTest1
-    Textfield Value Should Be       //div[@data-aura-rendered-by='123:0']//input[@type='text']      StatusTest1
+    #List Setting 
+    Click Element                   //div[@data-aura-rendered-by='319:0']//option[contains(text(), 'List Setting')]
+    Wait Until Element Is visible   //div[@data-aura-rendered-by='319:0']//option[@value='List Setting']
 
+
+    #Value Inversion
+    Click Element                   //div[@data-aura-rendered-by='319:0']//option[contains(text(), 'Value Inversion')]
+    Wait Until Element Is visible   //div[@data-aura-rendered-by='319:0']//option[@value='Value Inversion']
 
     #Enable Record Type Validation
     Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']

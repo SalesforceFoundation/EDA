@@ -1,4 +1,3 @@
-
 *** Settings ***
 
 Resource        tests/HEDA.robot

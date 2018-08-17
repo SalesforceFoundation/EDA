@@ -9,8 +9,8 @@ Suite Teardown  Delete Records and Close Browser
 Go To Heda Home
     Go To Heda Home
     Select Frame			//iframe[contains(@id, "vfFrameId")]
-    Click Link				//a[contains(text(),'System')]
-    Wait Until Element Is visible	//a[contains(text(),'System')]
+    Click Link				//a[contains(text(),'Courses')]
+    Wait Until Element Is visible	//a[contains(text(),'Courses')]
     
 
 Validate Edit Mode For Affiliations, Settings
@@ -18,15 +18,14 @@ Validate Edit Mode For Affiliations, Settings
     #Yes radio button
     Go To Heda Home
     Select Frame                    //iframe[contains(@id, "vfFrameId")]
-     #Select the 'Yes' radio button
     Click Element                   //div[@data-aura-rendered-by='106:0']//input[@type='radio']
 
 
-    #Set focus to the status field
+    #Former 
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
     Wait Until Element Is visible   //div[@data-aura-rendered-by='123:0']//input[@type='text']
 
-     #Enter known value into status field, then save the form
+    #Enter known value into 'Former' field, then save the form
     Click Element                   //div[@data-aura-rendered-by='128:0']//input[@type='radio']
     Input text                      //div[@data-aura-rendered-by='123:0']//input[@type='text']      StatusTest1
     Textfield Value Should Be       //div[@data-aura-rendered-by='123:0']//input[@type='text']      StatusTest1
