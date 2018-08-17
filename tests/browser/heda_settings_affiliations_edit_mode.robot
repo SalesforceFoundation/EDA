@@ -9,8 +9,8 @@ Suite Teardown  Delete Records and Close Browser
 Go To Heda Home
     Go To Heda Home
     Select Frame			//iframe[contains(@id, "vfFrameId")]
-    Click Link				//a[contains(text(),'System')]
-    Wait Until Element Is visible	//a[contains(text(),'System')]
+    Click Link				//a[contains(text(),'Affiliations')]
+    Wait Until Element Is visible	//a[contains(text(),'Affiliations')]
     
 
 Validate Edit Mode For Affiliations, Settings
