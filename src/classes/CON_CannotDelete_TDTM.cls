@@ -53,9 +53,9 @@ public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
                         
-            for (Contact c : [select ID, (select ID from Contact.Affl_Accounts__r), 
-                                         (select ID from Contact.Program_Enrollments__r), 
-                                         (select ID from Contact.Student_Course_Enrollments__r) 
+            for (Contact c : [select ID, (select ID from Contact.Affl_Accounts__r LIMIT 1), 
+                                         (select ID from Contact.Program_Enrollments__r LIMIT 1), 
+                                         (select ID from Contact.Student_Course_Enrollments__r LIMIT 1) 
                                          from Contact where ID in :oldlist]) {
                 
                 if(c.Affl_Accounts__r.size() > 0 || c.Program_Enrollments__r.size() > 0 
