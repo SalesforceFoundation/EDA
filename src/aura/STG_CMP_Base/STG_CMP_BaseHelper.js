@@ -134,19 +134,5 @@
 			}
 		}
 		return settingArrayTrim;
-	},
-
-	//Labels built dynamically will only be available if they are being referenced somewhere in the code.
-	//Note that this method isn't even called from anywhere.
-	hugeHack : function() {
-		try {
-			$A.get("$Label.hed.noAfflMappings");
-			$A.get("$Label.hed.noRecSettings");
-			$A.get("$Label.hed.noAutoCreateSettings");
-		} catch(e) {
-			$A.get("$Label.c.noAfflMappings");
-			$A.get("$Label.c.noRecSettings");
-			$A.get("$Label.c.noAutoCreateSettings");
-		}
 	}
 })
