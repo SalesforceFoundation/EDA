@@ -161,7 +161,7 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CCON_Faculty_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
               Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
 
-        // Set other Program Plan as non-primary when one Plan is marked as Primary
+        // Set other Program Plan as non-primary when one Plan is marked as Primary, and to set Status to Current (if record marked as "Primary")
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'PPlan_Primary_TDTM', Load_Order__c = 1, Object__c = 'Program_Plan__c',
                 Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
