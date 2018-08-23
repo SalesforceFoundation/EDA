@@ -25,20 +25,10 @@
 
                     <div class="slds-media__body">
                         <p class="slds-text-heading--label">
-                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                                <ui:outputText value="{!$Label.hed.stgTitleHEDASettings}"/>
-                                <aura:set attribute="else">
-                                    <ui:outputText value="{!$Label.c.stgTitleHEDASettings}"/>
-                                </aura:set>
-                            </aura:if>
+                            <ui:outputText value="{!$Label.c.stgTitleHEDASettings}"/>
                         </p>
                         <h1 class="slds-text-heading--medium">
-                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                                <ui:outputText value="{!$Label.hed.stgTitleHEDAConfig}"/>
-                                <aura:set attribute="else">
-                                    <ui:outputText value="{!$Label.c.stgTitleHEDAConfig}"/>
-                                </aura:set>
-                            </aura:if>
+                            <ui:outputText value="{!$Label.c.stgTitleHEDAConfig}"/>
                         </h1>
                     </div>
 
@@ -50,25 +40,10 @@
             <div class="slds-col slds-no-flex slds-align-middle">
                 <div class="slds-button-group" role="group">
                     <aura:if isTrue="{!v.isView}">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:button class="slds-button slds-button--neutral settings-edit-bttn" label="{!$Label.hed.stgBtnEdit}" press="{!c.edit}"/>
-                            <aura:set attribute="else">
-                                <ui:button class="slds-button slds-button--neutral settings-edit-bttn" label="{!$Label.c.stgBtnEdit}" press="{!c.edit}"/>
-                            </aura:set>
-                        </aura:if>
+                        <ui:button class="slds-button slds-button--neutral settings-edit-bttn" label="{!$Label.c.stgBtnEdit}" press="{!c.edit}"/>
                     <aura:set attribute="else">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:button class="slds-button slds-button--neutral settings-save-bttn" label="{!$Label.hed.stgBtnSave}" press="{!c.save}"/>
-                            <aura:set attribute="else">
-                                <ui:button class="slds-button slds-button--neutral settings-save-bttn" label="{!$Label.c.stgBtnSave}" press="{!c.save}"/>
-                            </aura:set>
-                        </aura:if>
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:button class="slds-button slds-button--neutral settings-cancel-bttn" label="{!$Label.hed.stgBtnCancel}" press="{!c.cancel}"/>
-                            <aura:set attribute="else">
-                                <ui:button class="slds-button slds-button--neutral settings-cancel-bttn" label="{!$Label.c.stgBtnCancel}" press="{!c.cancel}"/>
-                            </aura:set>
-                        </aura:if>
+                        <ui:button class="slds-button slds-button--neutral settings-save-bttn" label="{!$Label.c.stgBtnSave}" press="{!c.save}"/>
+                        <ui:button class="slds-button slds-button--neutral settings-cancel-bttn" label="{!$Label.c.stgBtnCancel}" press="{!c.cancel}"/>
                     </aura:set>
                     </aura:if>
                 </div>
@@ -77,12 +52,7 @@
         </div>
         <!-- / LAYOUT GRID -->
         <p class="slds-text-body--small slds-m-top--x-small">
-            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                <ui:outputText value="{!$Label.hed.stgTitleAppwideSettings}"/>
-                <aura:set attribute="else">
-                    <ui:outputText value="{!$Label.c.stgTitleAppwideSettings}"/>
-                </aura:set>
-            </aura:if>
+            <ui:outputText value="{!$Label.c.stgTitleAppwideSettings}"/>
         </p>
     </div>
     <!-- / PAGE HEADER -->
