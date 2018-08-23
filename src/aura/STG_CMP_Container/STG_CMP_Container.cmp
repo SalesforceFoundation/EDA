@@ -8,12 +8,7 @@
 	<div class="slds-notify_container slds-hide" aura:id="notificationToast">
 		<div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
 			<span class="slds-assistive-text">
-                <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                    <ui:outputText value="{!$Label.hed.stgToastError}" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgToastError}" />
-                    </aura:set>
-                </aura:if>
+                <ui:outputText value="{!$Label.c.stgToastError}" />
 			</span>
 			<lightning:buttonIcon iconName="utility:close" variant="bare" onclick="{! c.hideToast }" alternativeText="Close" class="slds-icon slds-notify__close slds-button--icon-inverse" size="large" />
 			<div class="slds-notify__content slds-grid slds-align-middle">
