@@ -11,7 +11,7 @@ Go To Heda Home
     Select Frame			//iframe[contains(@id, "vfFrameId")]
     Click Link				//a[contains(text(),'System')]
     Wait Until Element Is visible	//a[contains(text(),'System')]
-    
+    Capture Page Screenshot
 
 Validate Edit Mode For HEDA Settings, SYSTEM
     
@@ -20,11 +20,12 @@ Validate Edit Mode For HEDA Settings, SYSTEM
 
     Click Link				        //a[contains(text(),'System')]
     Wait Until Element Is visible	//a[contains(text(),'System')]
+    Capture Page Screenshot
 
     #Go into Edit mode now
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
     Wait Until Element Is visible   //div[@data-aura-rendered-by='1163:0']//span[contains(text(), 'Default Account Model')]
-
+    Capture Page Screenshot
     
 
 *** Keywords ***

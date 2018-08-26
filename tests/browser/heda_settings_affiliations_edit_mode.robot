@@ -11,7 +11,7 @@ Go To Heda Home
     Select Frame			//iframe[contains(@id, "vfFrameId")]
     Click Link				//a[contains(text(),'Affiliations')]
     Wait Until Element Is visible	//a[contains(text(),'Affiliations')]
-    
+    Capture Page Screenshot
 
 Validate Edit Mode For Affiliations, Settings
     
@@ -21,6 +21,7 @@ Validate Edit Mode For Affiliations, Settings
      #Select the 'Yes' radio button
     Click Element                   //div[@data-aura-rendered-by='106:0']//input[@type='radio']
 
+    Capture Page Screenshot
 
     #Set focus to the status field
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
@@ -34,6 +35,7 @@ Validate Edit Mode For Affiliations, Settings
 
     #Enable Record Type Validation
     Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
+    Capture Page Screenshot
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
     
 
