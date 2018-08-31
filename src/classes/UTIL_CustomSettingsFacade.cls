@@ -111,7 +111,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Affl_ProgEnroll_Role_Map__c = 'Student';
         hs.Affl_ProgEnroll_Set_Role__c = false;
         hs.Affl_ProgEnroll_Status_Map__c = 'Current';
-        hs.Affiliation_Record_Type_Enforced__c = true;
+        hs.Affiliation_Record_Type_Enforced__c = false;
     }
 
     /*******************************************************************************************************
