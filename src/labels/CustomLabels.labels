@@ -944,11 +944,11 @@
         <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
     </labels>
     <labels>
-        <fullName>stgHelpAffliCopyProgramEnrollmentStartDate</fullName>
+        <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpAffliCopyProgramEnrollmentStartDate</shortDescription>
+        <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
         <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
     </labels>
     <labels>
