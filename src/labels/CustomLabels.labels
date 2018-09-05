@@ -568,6 +568,14 @@
         <value>Program Enrollment Related Affiliation Created Role:</value>
     </labels>
     <labels>
+        <fullName>stgAfflProgEnrollSetStatusValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflProgEnrollSetStatusValue</shortDescription>
+        <value>Program Enrollment Related Affiliation Created Status:</value>
+    </labels>
+    <labels>
         <fullName>stgAfterRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -934,6 +942,14 @@
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
         <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAffliCopyProgramEnrollmentStartDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAffliCopyProgramEnrollmentStartDate</shortDescription>
+        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
