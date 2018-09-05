@@ -459,6 +459,7 @@
         <members>stgAfflProgEnrollDeleteRelated</members>
         <members>stgAfflProgEnrollSetRole</members>
         <members>stgAfflProgEnrollSetRoleValue</members>
+        <members>stgAfflProgEnrollSetStatusValue</members>
         <members>stgAfterRunBackfill</members>
         <members>stgAutoCompleteEnterChatterGroupName</members>
         <members>stgAutoCompleteEnterUserName</members>
@@ -505,6 +506,7 @@
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
         <members>stgHelpAfflCopyProgramEnrollmentEndDate</members>
+        <members>stgHelpAfflCopyProgramEnrollmentStartDate</members>
         <members>stgHelpAfflDeleteProgramEnrollment</members>
         <members>stgHelpAfflProgEnrollSetRole</members>
         <members>stgHelpAfflProgEnrollSetRoleValue</members>
