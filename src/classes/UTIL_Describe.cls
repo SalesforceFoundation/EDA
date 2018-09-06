@@ -477,8 +477,8 @@ public class UTIL_Describe {
 			}
 		}
 
-		//This shouldn't happen, but it can.
-        throw new SchemaDescribeException('No default picklist value found for field name \'' + fieldName + '\' for object name \'' + objectName + '\'');
+		//This can happen without defaults.
+        return null;
     }
 
     /*******************************************************************************************************
