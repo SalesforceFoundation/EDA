@@ -280,7 +280,7 @@
                     <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
                         <ui:outputText value="{!$Label.hed.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
                     <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAffliCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
+                        <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
                     </aura:set>
                     </aura:if>
                 </div>
