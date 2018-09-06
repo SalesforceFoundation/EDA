@@ -341,16 +341,6 @@ public class UTIL_Describe {
 
 		return fieldPicklistEntries.get(objectName).get(fieldName);
     }
-	
-    /*******************************************************************************************************
-    * @description Returns field PicklistEntry data
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return List<Schema.PicklistEntry> the picklist entry list for the given field
-    */
-    public static List<Schema.PicklistEntry> getActiveFieldPicklistEntries(String objectName, String fieldName) {
-		return fieldPicklistEntries.get(objectName).get(fieldName);
-    }
 
     /*******************************************************************************************************
     * @description checks whether the field exists
