@@ -477,6 +477,10 @@
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
@@ -491,10 +495,6 @@
     <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgHelpAffliCopyProgramEnrollmentStartDate --></label>
-        <name>stgHelpAffliCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
