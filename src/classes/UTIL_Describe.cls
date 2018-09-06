@@ -129,14 +129,17 @@ public class UTIL_Describe {
 		}
 
 		// fill entries for the first time.
-		//Get the picklist values for the field
-		List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
-
+		
+		//Create object to field map for picklist if needed.
         if (!fieldPicklistEntries.containsKey(objectName)) {
             fieldPicklistEntries.put(objectName, new Map<String, List<Schema.PicklistEntry>>());
         }
 		
+		//Create object to picklist map if needed.
 		if(!fieldPicklistEntries.get(objectName).containsKey(fieldName)) {
+			//Get the picklist values for the field
+			List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
+
 			fieldPicklistEntries.get(objectName).put(fieldName,picklistValues);
 		}
     }
