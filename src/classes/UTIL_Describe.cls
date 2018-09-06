@@ -449,9 +449,8 @@ public class UTIL_Describe {
     @AuraEnabled
     public static Map<String,String> getPicklistActiveValuesMap(String objectName, String fieldName) {
 		Map<String,String> picklistValues = new Map<String,String>();
-		fillPicklistEntriesForObject(objectName,fieldName);
 		
-		for(Schema.PicklistEntry picklistEntry : fieldPicklistEntries.get(objectName).get(fieldName)) {
+		for(Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName,fieldName)) {
 			if(picklistEntry.isActive()) {
 				picklistValues.put(picklistEntry.getLabel(),picklistEntry.getValue());
 			}
