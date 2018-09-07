@@ -5,12 +5,7 @@
 				<div class="slds-media__body">
 					<h2>
 						<span class="slds-text-heading--small">
-							<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-				                <ui:outputText value="{!$Label.hed.stgTitleCoursesDescriptionDataMigration}" class="slds-text-body--small" />
-				                <aura:set attribute="else">
-				                    <ui:outputText value="{!$Label.c.stgTitleCoursesDescriptionDataMigration}" class="slds-text-body--small" />
-				                </aura:set>
-				            </aura:if>
+							<ui:outputText value="{!$Label.c.stgTitleCoursesDescriptionDataMigration}" class="slds-text-body--small" />
         				</span>
 					</h2>
 				</div>
@@ -18,47 +13,20 @@
 		</div>
 		<div class="slds-card__body">
 			<div class="slds-p-around--medium">
-				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                <ui:outputText value="{!$Label.hed.stgHelpCoursesDataMigration}" class="slds-text-body--small" />
-	                <aura:set attribute="else">
-	                    <ui:outputText value="{!$Label.c.stgHelpCoursesDataMigration}" class="slds-text-body--small" />
-	                </aura:set>
-	            </aura:if><br />
-				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                <ui:outputText value="{!$Label.hed.stgHelpCoursesDataMigrationCopiesValues}" class="slds-text-body--small" />
-	                <aura:set attribute="else">
-	                    <ui:outputText value="{!$Label.c.stgHelpCoursesDataMigrationCopiesValues}" class="slds-text-body--small" />
-	                </aura:set>
-	            </aura:if><br />
-				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                <ui:outputText value="{!$Label.hed.stgHelpCoursesDataMigrationDontOverwrite}" class="slds-text-body--small" />
-	                <aura:set attribute="else">
-	                    <ui:outputText value="{!$Label.c.stgHelpCoursesDataMigrationDontOverwrite}" class="slds-text-body--small" />
-	                </aura:set>
-	            </aura:if><br /><br />
+				<ui:outputText value="{!$Label.c.stgHelpCoursesDataMigration}" class="slds-text-body--small" />
+				<br />
+				<ui:outputText value="{!$Label.c.stgHelpCoursesDataMigrationCopiesValues}" class="slds-text-body--small" />
+				<br />
+				<ui:outputText value="{!$Label.c.stgHelpCoursesDataMigrationDontOverwrite}" class="slds-text-body--small" />
+				<br /><br />
 
-				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                <ui:outputText value="{!$Label.hed.stgHelpCoursesDataMigrationUpdatePageLayouts}" class="slds-text-body--small" />
-	                <aura:set attribute="else">
-	                    <ui:outputText value="{!$Label.c.stgHelpCoursesDataMigrationUpdatePageLayouts}" class="slds-text-body--small" />
-	                </aura:set>
-	            </aura:if>
+				<ui:outputText value="{!$Label.c.stgHelpCoursesDataMigrationUpdatePageLayouts}" class="slds-text-body--small" />
 			</div>
 		</div>
 		<div class="slds-card__footer">
 			<div class="slds-no-flex">
-				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-					<ui:outputText aura:id="descCopyMsg" value="{!$Label.hed.stgHelpCopyQueuedEmailSent}" class="slds-text-color--weak slds-hide slds-m-right--medium" />
-	                <aura:set attribute="else">
-						<ui:outputText aura:id="descCopyMsg" value="{!$Label.c.stgHelpCopyQueuedEmailSent}" class="slds-text-color--weak slds-hide slds-m-right--medium" />
-	                </aura:set>
-	            </aura:if>
-				<aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-	                <ui:outputText value="{!$Label.hed.stgBtnRunCopy}" class="slds-text-body--small" />
-	                <aura:set attribute="else">
-						<lightning:button variant="brand" label="{!$Label.c.stgBtnRunCopy}" iconName="utility:copy" iconPosition="left" onclick="{! c.startCourseDescriptionCopy }" aura:id="descCopyBtn" />
-	                </aura:set>
-	            </aura:if>
+				<ui:outputText aura:id="descCopyMsg" value="{!$Label.c.stgHelpCopyQueuedEmailSent}" class="slds-text-color--weak slds-hide slds-m-right--medium" />
+				<lightning:button variant="brand" label="{!$Label.c.stgBtnRunCopy}" iconName="utility:copy" iconPosition="left" onclick="{! c.startCourseDescriptionCopy }" aura:id="descCopyBtn" />
 			</div>
 		</div>
 	</div>
