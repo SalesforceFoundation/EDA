@@ -142,77 +142,77 @@ private class PPlan_Primary_TEST {
             }
         }
     }
-	
-	/*********************************************************************************************************
+    
+    /*********************************************************************************************************
      * @description Confirm Program Plan Status is set to "Current"
      * if program plan is set as Primary on insert
      */
     @IsTest
-	static void setProgramPlanStatusToCurrentIfPrimary_Insert() {
-		List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+    static void setProgramPlanStatusToCurrentIfPrimary_Insert() {
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
         insert accts[0];
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
         for (Program_Plan__c pPlan : pPlans) {
             pPlan.Account__c = accts[0].Id;
-			pplan.Status__c = PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL;
+            pplan.Status__c = PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL;
         }
-		
-		pplans[0].Is_Primary__c = true;
+        
+        pplans[0].Is_Primary__c = true;
 
         insert pPlans;
-		
-		List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c, Status__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c, Status__c FROM Program_Plan__c where Account__c = :accts[0].Id];
         Integer cntPrimary = 0;
-		for (Program_Plan__c pPlan : assertProgramPlans) {
+        for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Is_Primary__c) {
                 System.assertEquals(PPlan_Primary_TDTM.STATUS_CURRENT_VAL, pPlan.Status__c);
-				cntPrimary++;
+                cntPrimary++;
             }else {
                 system.assertEquals(PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL, pPlan.Status__c);
             }
         }
-		System.assertEquals (1, cntPrimary, 'One and only one primary program plan expected');
-	}
-	
-	/*********************************************************************************************************
+        System.assertEquals (1, cntPrimary, 'One and only one primary program plan expected');
+    }
+    
+    /*********************************************************************************************************
      * @description Confirm Program Plan Status is set to "Current"
      * if program plan is set as Primary on Update
      */
     @IsTest
-	static void setProgramPlanStatusToCurrentIfPrimary_Update() {
-		List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
+    static void setProgramPlanStatusToCurrentIfPrimary_Update() {
+        List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getAdminAccRecTypeID());
         insert accts[0];
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(3);
         for (Program_Plan__c pPlan : pPlans) {
             pPlan.Account__c = accts[0].Id;
-			pplan.Status__c = PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL;
+            pplan.Status__c = PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL;
         }
-		
+        
         insert pPlans;
 
-		List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c, Status__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        List<Program_Plan__c> assertProgramPlans = [SELECT Is_Primary__c, Status__c FROM Program_Plan__c where Account__c = :accts[0].Id];
         
-		for (Program_Plan__c pPlan : assertProgramPlans) {
-			System.assertEquals (PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL, pPlan.Status__c);
-		}
-		
-		pPlans[0].Is_Primary__c = true;
-		update pPlans;
-		
-		assertProgramPlans = [SELECT Is_Primary__c, Status__c FROM Program_Plan__c where Account__c = :accts[0].Id];
+        for (Program_Plan__c pPlan : assertProgramPlans) {
+            System.assertEquals (PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL, pPlan.Status__c);
+        }
+        
+        pPlans[0].Is_Primary__c = true;
+        update pPlans;
+        
+        assertProgramPlans = [SELECT Is_Primary__c, Status__c FROM Program_Plan__c where Account__c = :accts[0].Id];
         Integer cntPrimary = 0;
-		for (Program_Plan__c pPlan : assertProgramPlans) {
+        for (Program_Plan__c pPlan : assertProgramPlans) {
             if (pPlan.Is_Primary__c) {
                 System.assertEquals(pPlans[0].Id, pPlan.Id);
-				System.assertEquals(PPlan_Primary_TDTM.STATUS_CURRENT_VAL, pPlan.Status__c);
-				cntPrimary++;
+                System.assertEquals(PPlan_Primary_TDTM.STATUS_CURRENT_VAL, pPlan.Status__c);
+                cntPrimary++;
             }else {
                 system.assertEquals(PPlan_Primary_TDTM.STATUS_ARCHIVED_VAL, pPlan.Status__c);
             }
         }
-		System.assertEquals (1, cntPrimary, 'One and only one primary program plan expected');
-	}
+        System.assertEquals (1, cntPrimary, 'One and only one primary program plan expected');
+    }
     
 }
