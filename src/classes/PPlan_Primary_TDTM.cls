@@ -40,7 +40,10 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
     * @description The Plan status value of Current.
     */
     @testVisible private static final String STATUS_CURRENT_VAL = 'Current';
-	@testVisible private static final String STATUS_ARCHIVED_VAL = 'Archived';
+    /*******************************************************************************************************
+    * @description The Plan status value of Archived.
+    */
+    @testVisible private static final String STATUS_ARCHIVED_VAL = 'Archived';
    
     /*******************************************************************************************************
     * @description Handles primary program plans.
@@ -62,7 +65,7 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
                 if (newPPlan.Is_Primary__c == true) {
                     // Make Plan "Current" if "Is Primary" is checked.
-					newPPlan.Status__c = STATUS_CURRENT_VAL;
+                    newPPlan.Status__c = STATUS_CURRENT_VAL;
                 }
             }
         }
@@ -73,26 +76,25 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 if (newPPlan.Is_Primary__c == true) {
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
-					if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
+                    if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
                         primaryProgramIds.add(newPPlan.Id);
                     }
                     acccountIdsNeedNonPrimarycount.add(newPPlan.Account__c);
                 }
             }
         }
- 		// BEFORE UPDATE
+        // BEFORE UPDATE
         if ( newlist != null && triggerAction == TDTM_Runnable.Action.BeforeUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Update)) {
            for (integer i=0; i<newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
                 Program_Plan__c oldPPlan = (Program_Plan__c)oldlist[i];
-                if (newPPlan.Is_Primary__c == true&& newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c) {
-					// Make Plan "Current" if "Is Primary" is checked.
-					newPPlan.Status__c = STATUS_CURRENT_VAL;
+                if (newPPlan.Is_Primary__c == true && newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c) {
+                    // Make Plan "Current" if "Is Primary" is checked.
+                    newPPlan.Status__c = STATUS_CURRENT_VAL;
                 }
             }
 
         }
-		System.debug('Groucho');
         // AFTER UPDATE
         if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Update)) {
             for (integer i=0; i<newlist.size(); i++) {
@@ -101,7 +103,7 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 if (newPPlan.Is_Primary__c == true
                     && (newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c
                         || newPPlan.Account__c != oldPPlan.Account__c)) {
-					//if multiple program plans under one single account are set as primary in same transation
+                    //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
                     if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
                         primaryProgramIds.add(newPPlan.Id);
@@ -114,7 +116,7 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
         if (acccountIdsNeedNonPrimarycount.size()>0) {
             dmlWrapper.objectsToUpdate.addAll(makeOtherPPlanNotPrimary(acccountIdsNeedNonPrimarycount, primaryProgramIds));
         }
-		
+        
         if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Update, false);
         }else if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
