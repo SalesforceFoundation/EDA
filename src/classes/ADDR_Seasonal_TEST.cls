@@ -612,7 +612,7 @@ private with sharing class ADDR_Seasonal_TEST {
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true);
-        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        UTIL_CustomSettings_API.getSettingsForTests(hs);
 
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -733,7 +733,7 @@ private with sharing class ADDR_Seasonal_TEST {
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true);
-        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        UTIL_CustomSettings_API.getSettingsForTests(hs);
 
         // this creates a default Address for each Account
         UTIL_UnitTestData_TEST.AccsWithAddrs accsAddrs = UTIL_UnitTestData_TEST.createTestAccsAddrs(2, UTIL_Describe_API.getAdminAccRecTypeID());
@@ -848,7 +848,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void testSeasonalStartEndYearCurrent() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true));
@@ -884,7 +884,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void testSeasonalStartEndYearFromAcc() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true));
@@ -939,7 +939,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void testSeasonalStartEndYearUpdateInfo() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true));
@@ -981,7 +981,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void testSeasonalStartEndYearUpdateDates() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true));
@@ -1021,7 +1021,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void testSeasonalStartEndYearDelete() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Simple_Address_Change_Treated_as_Update__c = true));
@@ -1060,7 +1060,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void newSeasonalAddrForContact() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true));
@@ -1105,7 +1105,7 @@ private with sharing class ADDR_Seasonal_TEST {
 
     @isTest
     public static void secondSeasonalAddrForContact() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true));
