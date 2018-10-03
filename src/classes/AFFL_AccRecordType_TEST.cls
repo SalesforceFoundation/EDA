@@ -42,7 +42,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     private static ID householdRecTypeID;
     
     public static void setup() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         STG_InstallScript.insertMappings();
         

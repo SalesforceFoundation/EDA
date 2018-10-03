@@ -47,7 +47,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newRecordsWithAddrInfo() {            
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                       UTIL_Describe_API.getBizAccRecTypeID() + ';'));
  
         Integer cAcc = 3;
@@ -85,7 +85,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void updateRecordsWithAddrInfo() {         
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                             UTIL_Describe_API.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
@@ -133,7 +133,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newAddrForAccounts() {           
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = 
                                                                       UTIL_Describe_API.getBizAccRecTypeID() + ';'));
  
         // create accounts without addresses
@@ -180,7 +180,7 @@ public with sharing class ADDR_OtherAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void testDisabledAddr() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Accounts_Addresses_Enabled__c = null));
 
         List<Account> accs = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getAdminAccRecTypeID());
         for (Account acc : accs) {

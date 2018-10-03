@@ -77,7 +77,7 @@ public with sharing class PREN_Affiliation_TEST {
     public static void deletePEnrollDelAfflYes() {
         STG_InstallScript.insertMappings();
 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = true));
         
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
@@ -118,7 +118,7 @@ public with sharing class PREN_Affiliation_TEST {
         STG_InstallScript.insertMappings();
 
         String afflStatus = 'Former';
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = false, 
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = false, 
         Affl_ProgEnroll_Del_Status__c = afflStatus));
 
         Contact contact = UTIL_UnitTestData_TEST.getContact();

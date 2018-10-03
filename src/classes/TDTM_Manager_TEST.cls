@@ -398,7 +398,7 @@ private class TDTM_Manager_TEST {
 	//Test to make sure trigger handler is skipped if usernames_to_excluded contains current username
 	@isTest
 	public static void excludeUsernamesSingleUser() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+		UTIL_CustomSettings_API.getSettingsForTests(
 				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
 		//Get current user's username
@@ -424,7 +424,7 @@ private class TDTM_Manager_TEST {
 	//Test to make sure trigger handler is skipped if usernames_to_excluded contains multiple certain usernames
 	@isTest
 	public static void excludeUsernamesMultipleUser() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(
+		UTIL_CustomSettings_API.getSettingsForTests(
 				new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
 		//Get current user's username
