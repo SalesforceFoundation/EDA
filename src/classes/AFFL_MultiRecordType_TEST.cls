@@ -41,7 +41,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 	private static ID householdRecTypeID;
     
 	public static void setup() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+		UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
         		
 		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
     	mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));	
@@ -392,7 +392,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
 	@isTest
 	public static void incorrectAfflMappingsAfflTypeEnforced() {
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
+		UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true));
 
 		List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
 		mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organizations', Primary_Affl_Field__c = 'Primary Business Organization'));
