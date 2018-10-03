@@ -42,7 +42,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
 
     private static void dataSetup() {
 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
