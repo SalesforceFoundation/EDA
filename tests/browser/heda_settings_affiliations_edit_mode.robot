@@ -54,10 +54,5 @@ Validate Edit Mode For Affiliations, Settings
 *** Keywords ***
 
 
-Get Random Contact Info
-    ${first_name} =  Generate Random String
-    ${last_name} =  Generate Random String
-    Set Test Variable  ${first_name}  ${first_name}
-    Set Test Variable  ${last_name}  ${last_name}
 
 
