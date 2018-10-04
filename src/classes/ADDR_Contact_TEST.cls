@@ -41,7 +41,7 @@ public with sharing class ADDR_Contact_TEST {
     private static void configSettings() {
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true,
                                                Simple_Address_Change_Treated_as_Update__c = true);
-        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        UTIL_CustomSettings_API.getSettingsForTests(hs);
     }
     
     public static void turnOnAllAddrTriggers() {
@@ -63,7 +63,7 @@ public with sharing class ADDR_Contact_TEST {
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true);
-        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        UTIL_CustomSettings_API.getSettingsForTests(hs);
         
         Contact contact = new Contact(LastName = 'Testerson', MailingStreet = '123 Main St', 
         MailingCity = 'Austin', MailingState = 'Texas', MailingPostalcode = '78701', MailingCountry = 'United States');
@@ -102,7 +102,7 @@ public with sharing class ADDR_Contact_TEST {
             Accounts_Addresses_Enabled__c = UTIL_Describe_API.getAdminAccRecTypeID() + ';',
             Contacts_Addresses_Enabled__c = true,
             Simple_Address_Change_Treated_as_Update__c = true);
-        UTIL_CustomSettingsFacade.getSettingsForTests(hs);
+        UTIL_CustomSettings_API.getSettingsForTests(hs);
         
         Contact contact1 = new Contact(LastName = 'Testerson');
         insert contact1;
@@ -152,7 +152,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newRecordsWithAddrInfo() {            
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
  
         Integer contactCount = 3;
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(contactCount);
@@ -835,7 +835,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void insertMultilineStreetAddress() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
     
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Contact contact : contacts) {
@@ -959,7 +959,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void updateRecordsWithAddrInfo() {         
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
  
         // create Contacts without addresses
         Integer contactCount = 3;
@@ -1006,7 +1006,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void newAddrForContacts() {           
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
  
         // create Contacts without addresses
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(3);
@@ -1052,7 +1052,7 @@ public with sharing class ADDR_Contact_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void testDisabledAddr() {        
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = false));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = false));
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         for (Contact contact : contacts) {
@@ -1081,7 +1081,7 @@ public with sharing class ADDR_Contact_TEST {
         no new Address created
     **********************************************************************************************************/            
     static testMethod void clearAddrExisting() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Contacts_Addresses_Enabled__c = true));
                 
         // this creates a default Address for each Contact
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(4);
