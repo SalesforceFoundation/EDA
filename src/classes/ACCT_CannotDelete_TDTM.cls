@@ -53,10 +53,10 @@ public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
         
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
                         
-            for (Account a : [select ID, (select ID from Account.Affl_Contacts__r), 
-                                         (select ID from Account.Program_Enrollments__r), 
-                                         (select ID from Account.Course_Enrollments__r),
-                                         (select ID from Account.Program_Plans__r)
+            for (Account a : [select ID, (select ID from Account.Affl_Contacts__r LIMIT 1), 
+                                         (select ID from Account.Program_Enrollments__r LIMIT 1), 
+                                         (select ID from Account.Course_Enrollments__r LIMIT 1),
+                                         (select ID from Account.Program_Plans__r LIMIT 1)
                                          from Account where ID in :oldlist]) {
                 
                 if(a.Affl_Contacts__r.size() > 0 || a.Program_Enrollments__r.size() > 0 
