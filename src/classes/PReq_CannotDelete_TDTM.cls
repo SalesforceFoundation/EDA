@@ -50,7 +50,7 @@ public with sharing class PReq_CannotDelete_TDTM extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for (Plan_Requirement__c planReq : [SELECT ID,
-                                                        (SELECT ID FROM Plan_Requirements__r)
+                                                        (SELECT ID FROM Plan_Requirements__r LIMIT 1)
                                                     FROM Plan_Requirement__c
                                                     WHERE ID in :oldlist]) {
                 if(planReq.Plan_Requirements__r.size() > 0 ) {
