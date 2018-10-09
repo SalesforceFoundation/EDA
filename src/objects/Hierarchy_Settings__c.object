@@ -312,6 +312,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Hierarchy Settings</label>
+    <label>HEDA Hierarchy Settings</label>
     <visibility>Public</visibility>
 </CustomObject>

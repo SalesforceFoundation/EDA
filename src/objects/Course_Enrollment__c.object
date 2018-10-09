@@ -198,7 +198,7 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <label>Course Connection</label>
+    <label>HEDA Course Connection</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -209,7 +209,7 @@
         <label>Course Connection ID</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Course Connections</pluralLabel>
+    <pluralLabel>HEDA Course Connections</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

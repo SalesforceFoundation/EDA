@@ -49,6 +49,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Relationship Auto-Create</label>
+    <label>HEDA Relationship Auto-Create</label>
     <visibility>Public</visibility>
 </CustomObject>

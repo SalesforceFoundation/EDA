@@ -140,7 +140,7 @@
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-    <label>Course Offering</label>
+    <label>HEDA Course Offering</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -150,7 +150,7 @@
         <label>Course Offering ID</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Course Offerings</pluralLabel>
+    <pluralLabel>HEDA Course Offerings</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

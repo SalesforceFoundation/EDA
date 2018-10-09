@@ -149,13 +149,13 @@
         <type>LongTextArea</type>
         <visibleLines>10</visibleLines>
     </fields>
-    <label>Error</label>
+    <label>HEDA Error</label>
     <nameField>
         <displayFormat>{000000}</displayFormat>
         <label>Error Number</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Errors</pluralLabel>
+    <pluralLabel>HEDA Errors</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>Datetime__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Error_Type__c</customTabListAdditionalFields>

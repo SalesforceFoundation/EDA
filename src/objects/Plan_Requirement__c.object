@@ -163,7 +163,7 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <label>Plan Requirement</label>
+    <label>HEDA Plan Requirement</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -173,7 +173,7 @@
         <label>Plan Requirement Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Plan Requirements</pluralLabel>
+    <pluralLabel>HEDA Plan Requirements</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -677,7 +677,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <label>Address</label>
+    <label>HEDA Address</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -689,7 +689,7 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
         <trackFeedHistory>false</trackFeedHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Addresses</pluralLabel>
+    <pluralLabel>HEDA Addresses</pluralLabel>
     <searchLayouts>
         <lookupDialogsAdditionalFields>Formula_MailingAddress__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Parent_Account__c</lookupDialogsAdditionalFields>

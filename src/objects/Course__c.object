@@ -116,7 +116,7 @@
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
-    <label>Course</label>
+    <label>HEDA Course</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -126,7 +126,7 @@
         <label>Course Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Courses</pluralLabel>
+    <pluralLabel>HEDA Courses</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
