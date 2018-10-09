@@ -50,6 +50,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Relationship Lookup</label>
+    <label>HEDA Relationship Lookup</label>
     <visibility>Public</visibility>
 </CustomObject>

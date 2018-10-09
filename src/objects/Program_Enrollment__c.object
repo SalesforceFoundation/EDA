@@ -255,7 +255,7 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <label>Program Enrollment</label>
+    <label>HEDA Program Enrollment</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -266,7 +266,7 @@
         <label>Program Enrollment ID</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Program Enrollments</pluralLabel>
+    <pluralLabel>HEDA Program Enrollments</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

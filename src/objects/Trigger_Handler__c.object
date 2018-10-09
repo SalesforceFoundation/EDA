@@ -210,7 +210,7 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
-    <label>Trigger Handler</label>
+    <label>HEDA Trigger Handler</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -232,7 +232,7 @@
         <label>Trigger Handler Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Trigger Handlers</pluralLabel>
+    <pluralLabel>HEDA Trigger Handlers</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

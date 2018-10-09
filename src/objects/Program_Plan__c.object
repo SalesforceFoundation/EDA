@@ -150,7 +150,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Program Plan</label>
+    <label>HEDA Program Plan</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -176,7 +176,7 @@
         <label>Program Plan Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Program Plans</pluralLabel>
+    <pluralLabel>HEDA Program Plans</pluralLabel>
     <searchLayouts>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>

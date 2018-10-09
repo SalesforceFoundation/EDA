@@ -93,7 +93,7 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <label>Term</label>
+    <label>HEDA Term</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -103,7 +103,7 @@
         <label>Term Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Terms</pluralLabel>
+    <pluralLabel>HEDA Terms</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
