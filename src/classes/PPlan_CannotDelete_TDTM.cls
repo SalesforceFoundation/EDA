@@ -52,8 +52,8 @@ public with sharing class PPlan_CannotDelete_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
 
             for (Program_Plan__c programPlan : [SELECT ID,
-                                                        (SELECT ID FROM Plan_Requirements__r),
-                                                        (SELECT ID FROM Program_Enrollments__r)
+                                                        (SELECT ID FROM Plan_Requirements__r LIMIT 1),
+                                                        (SELECT ID FROM Program_Enrollments__r LIMIT 1)
                                                 FROM Program_Plan__c
                                                 WHERE ID IN :oldlist]) {
 
