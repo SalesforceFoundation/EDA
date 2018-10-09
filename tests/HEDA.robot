@@ -7,7 +7,7 @@ Library        tests/HEDA.py
 
 
 API Create Term
-    [Arguments]       ${account_id}
+    [Arguments]       ${account_id}  &{fields}
     ${term_name} =    Generate Random String
     ${term_id} =      Salesforce Insert  Term__c
     ...                   Name=${term_name}
