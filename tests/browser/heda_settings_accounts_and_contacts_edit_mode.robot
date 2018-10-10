@@ -11,20 +11,14 @@ Go To Heda Home
     Select Frame			//iframe[contains(@id, "vfFrameId")]
     Click Link				//a[contains(text(),'Accounts and Contacts')]
     Wait Until Element Is visible	//a[contains(text(),'Accounts and Contacts')]
-    #Capture Page Screenshot
 
 Validate Edit Mode For Accounts and Contacts, Settings
     
     
-    # Go To Heda Home
-    # Select Frame                    //iframe[contains(@id, "vfFrameId")]
-    # Click Element                   //div[@data-aura-rendered-by='106:0']//input[@type='radio']
-    # Capture Page Screenshot
 
     #Go into Edit mode 
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
     Wait Until Element Is visible   //div[@data-aura-rendered-by='28:0']
-    #Capture Page Screenshot
 
 
     # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Academic Program')]
@@ -57,9 +51,7 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Wait Until Element Is visible   //div[@class='slds-tabs--default']//span[contains(text(),'University Department')]
     Click Element                   //div[@class='slds-tabs--default']//span[contains(text(),'University Department')]
 
-    #Capture Page Screenshot
 
-    Sleep                           10
 
 
     Click Element                   //div[@class='slds-form-element__control']//span[contains(text(),'Academic Program')]
@@ -70,13 +62,10 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click Element                   //div[@class='slds-form-element__control']//span[contains(text(),'Household Account')]
     Click Element                   //div[@class='slds-form-element__control']//span[contains(text(),'Sports Organization')]
     Click Element                   //div[@class='slds-form-element__control']//span[contains(text(),'University Department')]
-    #Capture Page Screenshot
-    Sleep                           5
 
 
     #Save the changes
     Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
-    #Capture Page Screenshot
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
 
