@@ -12,6 +12,7 @@ API Create Term
     ${term_id} =      Salesforce Insert  Term__c
     ...                   Name=${term_name}
     ...                   Account__c=${account_id}
+    ...                   &{fields}
     &{term} =         Salesforce Get  Term__c  ${term_id}
     [return]          &{term}
 
