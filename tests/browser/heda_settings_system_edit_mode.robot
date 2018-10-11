@@ -6,15 +6,15 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Go To Heda Home
-    Go To Heda Home
+Go To Heda Settings
+    Go To Heda Settings
     Select Frame			//iframe[contains(@id, "vfFrameId")]
     Click Link				//a[contains(text(),'System')]
     Wait Until Element Is visible	//a[contains(text(),'System')]
 
 Validate Edit Mode For HEDA Settings, SYSTEM
     
-    Go To Heda Home
+    Go To Heda Settings
     Select Frame                    //iframe[contains(@id, "vfFrameId")]
 
     Click Link				        //a[contains(text(),'System')]
