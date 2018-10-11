@@ -18,16 +18,7 @@ Validate Edit Mode For Accounts and Contacts, Settings
 
     #Go into Edit mode 
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@data-aura-rendered-by='28:0']
-
-
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Academic Program')]
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Administrative')]
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Business Organization')]
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Educational Institution')]
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Household Account')]
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'Sports Organization')]
-    # Unselect Checkbox               //div[@class='slds-tabs--default']//span[contains(text(),'University Department')]
+    Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')] 
 
 
     Wait Until Element Is visible   //div[@class='slds-tabs--default']//span[contains(text(),'Academic Program')]
@@ -65,8 +56,8 @@ Validate Edit Mode For Accounts and Contacts, Settings
 
 
     #Save the changes
-    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
-    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
+    #Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
+    #Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
 
 *** Keywords ***

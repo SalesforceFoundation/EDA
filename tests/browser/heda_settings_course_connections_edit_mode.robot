@@ -19,10 +19,10 @@ Validate Edit Mode For Course Connections, Settings
 
     #Go into edit mode
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@data-aura-rendered-by='28:0']
+    Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
-    #Verify that the alert is visible
-    Element Should Be visible       //label[@class='slds-checkbox']//input[@type='checkbox']
-    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
+    #Verify that the checkbox is visible
+    #Element Should Be visible       //label[@class='slds-checkbox--faux']//input[@type='checkbox']
+    #Select Checkbox                 //label[@class='slds-checkbox--faux']//input[@type='checkbox']
 
 *** Keywords ***

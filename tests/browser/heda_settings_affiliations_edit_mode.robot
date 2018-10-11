@@ -18,23 +18,21 @@ Validate Edit Mode For Affiliations, Settings
     #Yes radio button
     Go To Heda Home
     Select Frame                    //iframe[contains(@id, "vfFrameId")]
-    #Select the 'Yes' radio button
-    Click Element                   //div[@data-aura-rendered-by='106:0']//input[@type='radio']
 
 
     #Set focus to the status field
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@data-aura-rendered-by='123:0']//input[@type='text']
-
+    Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
+    
     #Enter known value into status field, then save the form
-    Click Element                   //div[@data-aura-rendered-by='128:0']//input[@type='radio']
-    Input text                      //div[@data-aura-rendered-by='123:0']//input[@type='text']      StatusTest1
-    Textfield Value Should Be       //div[@data-aura-rendered-by='123:0']//input[@type='text']      StatusTest1
+    Click Element                   //div[@class='slds-tabs--scoped']//input[@type='radio']
+    Input text                      //div[@class='slds-tabs--scoped']//input[@type='text']      StatusTest1
+    Textfield Value Should Be       //div[@class='slds-tabs--scoped']//input[@type='text']      StatusTest1
 
 
-    #Save the changes
-    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
-    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
+#    #Save the changes
+#    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
+#    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
     
 
 *** Keywords ***

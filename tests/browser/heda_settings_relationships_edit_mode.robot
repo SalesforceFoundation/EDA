@@ -21,8 +21,7 @@ Validate Edit Mode For Relationships, Settings
 
     #Go into Edit mode 
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@data-aura-rendered-by='28:0']
-
+    Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
 *** Keywords ***
 
