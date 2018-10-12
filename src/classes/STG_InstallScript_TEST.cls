@@ -248,7 +248,7 @@ public with sharing class STG_InstallScript_TEST {
     @isTest
     public static void createAdminAccountForContactOnInstall() {
 
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         Contact cont = new Contact(
                 FirstName = 'Test',

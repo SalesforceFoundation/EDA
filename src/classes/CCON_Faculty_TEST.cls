@@ -87,7 +87,7 @@ public with sharing class CCON_Faculty_TEST {
     }
 
     private static void enableCourseConnections() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
+        UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Enable_Course_Connections__c = true,
                 Faculty_RecType__c = UTIL_Describe_API.getFacultyConnectionRecType()

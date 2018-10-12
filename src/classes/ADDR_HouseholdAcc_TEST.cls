@@ -42,7 +42,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     private static ID householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
     
     private static void configSettings() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
             Household_Addresses_RecType__c = UTIL_Describe_API.getHhAccRecTypeID(),
             Contacts_Addresses_Enabled__c = true,
@@ -1974,7 +1974,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
     **********************************************************************************************************/            
     @isTest
     public static void testDisabledHHAccountAddr() {        
-        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
+        Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
                                        Household_Addresses_RecType__c = null));
 

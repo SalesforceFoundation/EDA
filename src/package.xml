@@ -105,6 +105,7 @@
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
+        <members>UTIL_CustomSettings_API</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
         <members>UTIL_Debug</members>
