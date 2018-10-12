@@ -215,7 +215,7 @@ class Salesforce(object):
         url = self.cumulusci.org.lightning_base_url
         url = '{}/one/one.app#/n/HEDA_Settings'.format(url)
         self.selenium.go_to(url)
-        time.sleep(5)
+        time.sleep(5) 
         self._wait_until_loading_is_complete()
         
     def go_to_record_home(self, obj_id, filter_name=None):
