@@ -168,14 +168,14 @@ flows:
                     managed: True
                     namespaced_org: True
                     record_types:
-                        - record_type: "Account.{namespaced_org}Administrative"
+                        - record_type: "Account.Administrative"
                           default: true
-                        - record_type: "Account.{namespaced_org}Academic_Program"
-                        - record_type: "Account.{namespaced_org}Business_Organization"
-                        - record_type: "Account.{namespaced_org}Educational_Institution"
-                        - record_type: "Account.{namespaced_org}HH_Account"
-                        - record_type: "Account.{namespaced_org}Sports_Organization"
-                        - record_type: "Account.{namespaced_org}University_Department"
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
     config_qa:
         steps:
