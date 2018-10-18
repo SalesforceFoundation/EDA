@@ -68,6 +68,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
             List<Course_Enrollment__c> courseEnrllsToInsert = new List<Course_Enrollment__c>();
 
+            Map<Id, Course_Offering__c> mapNewFacultyIdToNewCourseOffering = new Map<Id, Course_Offering__c>();
+
             if(newlist != null) {
                 if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     //Query fields not available in the trigger
@@ -143,6 +145,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                             offsWithChangedFaculty.add(newOff.Id);
                             outdatedFacultyIDs.add(oldOff.Faculty__c);
                             updatedFacultyIDs.add(newOff.Faculty__c);
+                            mapNewFacultyIdToNewCourseOffering.put(newOff.Faculty__c, newOff);
 
                         //Faculty member has been removed from existing Course Offering
                         //   --> delete related Affiliation
@@ -188,7 +191,14 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                     // Course connections is enabled. Handle updating of objects
                     updateConnectionsOnFacultyChange(outdatedFacultyIDs, updatedFacultyIDs, offsWithChangedFaculty, objectsToInsert, objectsToUpdate);
                 } else {
-                    dmlWrapper.objectsToUpdate.addAll(getAfflsToUpdate(outdatedFacultyIDs, updatedFacultyIDs));
+                    List<Affiliation__c> newAffls = getAfflsToUpdate(outdatedFacultyIDs, updatedFacultyIDs, mapNewFacultyIdToNewCourseOffering);
+                    for (Affiliation__c newAffl : newAffls) {
+                        if (newAffl.Id != null) {
+                            dmlWrapper.objectsToUpdate.add(newAffl);
+                        }else {
+                            dmlWrapper.objectsToInsert.add(newAffl);
+                        }
+                    }
                     // Course connections is not enabled. Handle deletion and creation of course enrollments
                     updateEnrollments(outdatedFacultyIDs, updatedFacultyIDs, offsWithChangedFaculty, dmlWrapper); //Passing dmlWrapper because there's more than one DML to perform
                }
@@ -257,7 +267,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
    /*******************************************************************************************************
     * @description Sets each Affiliation pointing to the new Faculty member that is teaching the Course Offering.
     ********************************************************************************************************/
-    private List<SObject> getAfflsToUpdate(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs) {
+    private List<SObject> getAfflsToUpdate(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, Map<Id, Course_Offering__c> mapNewFacultyIdToNewCourseOffering) {
         List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where Contact__r.ID in :outdatedFacultyIDs and Role__c = 'Faculty'];
 
         Map<ID, Affiliation__c> oldFacultyToAfflMap = new Map<ID, Affiliation__c>();
@@ -267,8 +277,21 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
         //We have to make sure we are updating the correct Affiliations.
         for(Integer i = 0; i < outdatedFacultyIDs.size() ; i++) {
-            Affiliation__c oldAffl = oldFacultyToAfflMap.get(outdatedFacultyIDs[i]);
-            oldAffl.Contact__c = updatedFacultyIDs[i];
+            if (oldFacultyToAfflMap.keySet().contains(outdatedFacultyIDs[i])) {
+                Affiliation__c oldAffl = oldFacultyToAfflMap.get(outdatedFacultyIDs[i]);
+                oldAffl.Contact__c = updatedFacultyIDs[i];
+            } else {
+                if (mapNewFacultyIdToNewCourseOffering.keySet().contains(updatedFacultyIDs[i])
+                    && mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]) != null ) {
+                    Course_Offering__c offering = mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]);
+                    Affiliation__c newAffl = new Affiliation__c(Contact__c = offering.Faculty__c,
+                                                                Account__c = offering.Course__r.Account__c,
+                                                                Role__c = 'Faculty',
+                                                                StartDate__c = offering.Term__r.Start_Date__c,
+                                                                EndDate__c = offering.Term__r.End_Date__c);
+                    afflsWithContact.add(newAffl);
+                }
+            }
         }
         return afflsWithContact;
     }

@@ -886,4 +886,35 @@ public with sharing class COFF_Affiliation_TEST {
         //course offering has a different course connection
         system.assertNotEquals(conn.Id, resultConns[0].Id);
     }
+
+    @isTest
+    public static void testUpdateCourseOfferingWithPrimaryFacultyIfAfflMissing() {
+        setup();
+
+        //Create Course Offerings with same Faculty member
+        List<Course_Offering__c> offerings = new List<Course_Offering__c>();
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+                Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        offerings.add(offering);
+        insert offerings;
+
+        Contact newFaculty = UTIL_UnitTestData_TEST.getContact();
+        insert newFaculty;
+
+        Affiliation__c oldAffl = [SELECT Id FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+        delete oldAffl;
+
+        Test.startTest();
+        offering.Faculty__c = newFaculty.Id;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
+        update offering;
+        Test.stopTest();
+
+        //assert
+        List<Affiliation__c> affls = [SELECT Contact__c FROM Affiliation__c];
+        //There should be only one affliation
+        system.assertEquals(1, affls.size());
+        //The contact of affiliation should be new faculty
+        system.assertEquals(newFaculty.Id, affls[0].Contact__c);
+    }
 }
