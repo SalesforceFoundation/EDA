@@ -195,7 +195,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                     for (Affiliation__c newAffl : newAffls) {
                         if (newAffl.Id != null) {
                             dmlWrapper.objectsToUpdate.add(newAffl);
-                        }else {
+                        } else {
                             dmlWrapper.objectsToInsert.add(newAffl);
                         }
                     }
@@ -282,7 +282,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 oldAffl.Contact__c = updatedFacultyIDs[i];
             } else {
                 if (mapNewFacultyIdToNewCourseOffering.keySet().contains(updatedFacultyIDs[i])
-                    && mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]) != null ) {
+                    && mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]) != null) {
                     Course_Offering__c offering = mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]);
                     Affiliation__c newAffl = new Affiliation__c(Contact__c = offering.Faculty__c,
                                                                 Account__c = offering.Course__r.Account__c,
