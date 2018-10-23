@@ -104,7 +104,20 @@ tasks:
             output: tests/HEDA_Robot_Library.html
 
     update_admin_profile:
-        class_path: tasks.salesforce.UpdateAdminProfile
+        options:
+            record_types:
+                - record_type: "Account.{namespaced_org}Administrative"
+                  default: true
+                - record_type: "Account.{namespaced_org}Academic_Program"
+                - record_type: "Account.{namespaced_org}Business_Organization"
+                - record_type: "Account.{namespaced_org}Educational_Institution"
+                - record_type: "Account.{namespaced_org}HH_Account"
+                - record_type: "Account.{namespaced_org}Sports_Organization"
+                - record_type: "Account.{namespaced_org}University_Department"
+                - record_type: "{managed}Course_Enrollment__c.{namespaced_org}Default"
+                - record_type: "{managed}Course_Enrollment__c.{namespaced_org}Faculty"
+                - record_type: "{managed}Course_Enrollment__c.{namespaced_org}Student"
+                  default: true
 
 flows:
     hedaectomy:
@@ -160,7 +173,15 @@ flows:
                 options:
                     managed: True
                     namespaced_org: True
-                    skip_record_types: True
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
     config_qa:
         steps:
