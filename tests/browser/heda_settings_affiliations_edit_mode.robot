@@ -8,7 +8,7 @@ Suite Teardown  Delete Records and Close Browser
 
 
 Go To Heda Settings
-    Go To Heda Settings
+    [tags] unstable
     Select Frame			//iframe[contains(@id, "vfFrameId")]
     Click Link				//a[contains(text(),'Affiliations')]
     Wait Until Element Is visible	//a[contains(text(),'Affiliations')]
