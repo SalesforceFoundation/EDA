@@ -61,7 +61,7 @@ private class PREN_ProgramPlan_TEST {
         List<Program_Enrollment__c> resultPes = [SELECT Id, Program_Plan__c
                                                     FROM Program_Enrollment__c];
         //Make sure there is only one program enrollment created
-        System.assertEquals(1, resultPes);
+        System.assertEquals(1, resultPes.size());
         //Make sure the program plan is automatically populated for new program enrollment
         System.assertEquals(testPPs[0].Id, resultPes[0].Program_Plan__c);
     }
@@ -82,7 +82,7 @@ private class PREN_ProgramPlan_TEST {
         List<Program_Enrollment__c> resultPes = [SELECT Id, Program_Plan__c
         FROM Program_Enrollment__c];
         //Make sure there is only one program enrollment created
-        System.assertEquals(1, resultPes);
+        System.assertEquals(1, resultPes.size());
         //Make sure the program plan is empty for new program enrollment
         System.assertEquals(null, resultPes[0].Program_Plan__c);
     }
