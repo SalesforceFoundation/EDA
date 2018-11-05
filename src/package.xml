@@ -69,10 +69,10 @@
         <members>PPlan_CannotDelete_TEST</members>
         <members>PPlan_Primary_TDTM</members>
         <members>PPlan_Primary_TEST</members>
-        <members>PREN_ProgramPlan_TDTM</members>
-        <members>PREN_ProgramPlan_TEST</members>
         <members>PREN_Affiliation_TDTM</members>
         <members>PREN_Affiliation_TEST</members>
+        <members>PREN_ProgramPlan_TDTM</members>
+        <members>PREN_ProgramPlan_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
