@@ -48,14 +48,20 @@ public with sharing class PREN_ProgramPlan_TDTM extends TDTM_Runnable{
             TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
-
+                
         //Before Insert
-        if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+        if (newlist != null
+            	&& newlist.size() > 0
+            	&& triggerAction == TDTM_Runnable.Action.BeforeInsert 
+            	&& !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PREN_ProgramPlan_TDTM_Before_Insert)) {
             if(newlist != null && newlist.size() > 0) {
                 populatePrimaryProgramPlan(newlist);
             }
         }
-
+                
+		if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.PREN_ProgramPlan_TDTM_Before_Insert, false);
+        }
         return dmlWrapper;
     }
 
