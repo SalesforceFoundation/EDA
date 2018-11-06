@@ -265,3 +265,7 @@ Select Frame With Title
 Scroll Page To Location
     [Arguments]    ${x_location}    ${y_location}
     Execute JavaScript    window.scrollTo(${x_location},${y_location}) 
+
+Go To Heda Settings
+   Open App Launcher
+   Click Link   //a[@title= 'HEDA Settings']

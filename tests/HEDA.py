@@ -100,8 +100,8 @@ class HEDA(object):
         """To select row from a related list based on name and open the dropdown"""
         locators = heda_lex_locators["related_name"]
         list_ele = self.selenium.get_webelements(locators)
+        index = 1
         for locator in list_ele:
-            index = 1
             if locator.text != value:
                 index = index + 1
             else:
