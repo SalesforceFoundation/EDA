@@ -6,23 +6,26 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Go To Heda Settings
-    [tags] unstable
-    Select Frame			//iframe[contains(@id, "vfFrameId")]
-    Click Link				//a[contains(text(),'Course Connections')]
-    Wait Until Element Is visible	//a[contains(text(),'Course Connections')]
 
 Validate Edit Mode For Course Connections, Settings
     
+    [tags]  unstable
     Go To Heda Settings
-    Select Frame                    //iframe[contains(@id, "vfFrameId")]
+    Wait Until Element Is visible	//a[contains(text(),'Course Connections')]
+    Click Link				//a[contains(text(),'Course Connections')]
 
     #Go into edit mode
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
     Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
     #Verify that the checkbox is visible
-    #Element Should Be visible       //label[@class='slds-checkbox--faux']//input[@type='checkbox']
-    #Select Checkbox                 //label[@class='slds-checkbox--faux']//input[@type='checkbox']
+    Element Should Be visible       //input[contains(@class,'slds-checkbox')]/parent::label
+    Click Element                   //input[contains(@class,'slds-checkbox')]/parent::label
+
+    Select From List By Label       //select[contains(@class,'student-course-connection-record-type-input-select')]   Student
+    Select From List By Label       //select[contains(@class,'faculty-course-connection-record-type-input-select')]   Faculty
+
+    # Save, maybe?
+    # Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
 *** Keywords ***
