@@ -36,6 +36,9 @@
 */
 public with sharing class PREN_ProgramPlan_TDTM extends TDTM_Runnable{
 
+    //Variables for Process Control
+    static boolean beforeInsertRecursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PREN_ProgramPlan_TDTM_Before_Insert);
+
     /*******************************************************************************************************
     * @description Handles Program Plan management for Program Enrollment.
     * @param listNew the list of Program Enrollments from trigger new.
@@ -53,7 +56,7 @@ public with sharing class PREN_ProgramPlan_TDTM extends TDTM_Runnable{
         if (newlist != null
             	&& newlist.size() > 0
             	&& triggerAction == TDTM_Runnable.Action.BeforeInsert 
-            	&& !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PREN_ProgramPlan_TDTM_Before_Insert)) {
+            	&& !beforeInsertRecursionFlag) {
             if(newlist != null && newlist.size() > 0) {
                 populatePrimaryProgramPlan(newlist);
             }
@@ -92,7 +95,7 @@ public with sharing class PREN_ProgramPlan_TDTM extends TDTM_Runnable{
 
         //Loop through program enrollment again and populate primary program plan
         for (SObject so : newlist) {
-            Program_Enrollment__c newPe = (Program_Enrollment__c) so;
+            Program_Enrollment__c newPe = (Program_Enrollment__c)so;
             if (mapAcademicProgramIdToPrimaryPPId.containsKey(newPe.Account__c)
                     && mapAcademicProgramIdToPrimaryPPId.get(newPe.Account__c) != null) {
                 newPe.Program_Plan__c = mapAcademicProgramIdToPrimaryPPId.get(newPe.Account__c);

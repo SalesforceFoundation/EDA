@@ -80,7 +80,7 @@ private class PREN_ProgramPlan_TEST {
 
         //Assert the test
         List<Program_Enrollment__c> resultPes = [SELECT Id, Program_Plan__c
-        FROM Program_Enrollment__c];
+                                                    FROM Program_Enrollment__c];
         //Make sure there is only one program enrollment created
         System.assertEquals(1, resultPes.size());
         //Make sure the program plan is empty for new program enrollment
