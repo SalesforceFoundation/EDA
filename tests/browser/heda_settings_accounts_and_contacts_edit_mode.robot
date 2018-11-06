@@ -9,7 +9,6 @@ Suite Teardown  Delete Records and Close Browser
 Validate Edit Mode For Accounts and Contacts, Settings
     [tags]  unstable
     Go To Heda Settings
-    Select Frame			//iframe[contains(@id, "vfFrameId")]
     Wait Until Element Is visible	//a[contains(text(),'Accounts and Contacts')]
     Click Element                 //a[contains(text(),'Accounts and Contacts')]
 
