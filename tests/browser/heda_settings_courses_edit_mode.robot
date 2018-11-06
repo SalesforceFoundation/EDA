@@ -6,13 +6,12 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Go To Heda Settings
-    [tags] unstable
-    Select Frame			//iframe[contains(@id, "vfFrameId")]
-    Click Link				//a[contains(text(),'Courses')]
-    Wait Until Element Is visible	//a[contains(text(),'Courses')]
 
 Validate Edit Mode For Courses - Edit Mode, Settings
+    [tags]    unstable
+    Go To Heda Settings
+    Wait Until Element Is visible	//a[contains(text(),'Courses')]
+    Click Link				//a[contains(text(),'Courses')]
     
     #Former 
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
