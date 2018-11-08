@@ -101,7 +101,7 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
     * @param new PPlan new value of Program_Plan__c record
     * @return Boolean true if newly marked primary, or if currently primary and related Account__c was changed, false otherwise
     ********************************************************************************************************/
-    private static boolean isNewlyPrimaryOrPrimaryAndAccountChanged(Program_Plan__c oldPPlan, Program_Plan__c newPPlan) {
+    @testVisible private static boolean isNewlyPrimaryOrPrimaryAndAccountChanged(Program_Plan__c oldPPlan, Program_Plan__c newPPlan) {
         boolean wasPrimary = ((oldPPlan != null) && (oldPPlan.Is_Primary__c));
         boolean isPrimary = ((newPPlan != null) && (newPPlan.Is_Primary__c));  
         Id oldAcctId = (oldPPlan != null) ? oldPPlan.Account__c : null;
@@ -118,7 +118,8 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                                             Is_Primary__c
                                     From Program_Plan__c
                                     WHERE Account__c IN :accountIdsNeedNonPrimary
-                                        AND Id NOT IN :primaryProgramIds]) {
+                                        AND Id NOT IN :primaryProgramIds
+                                        AND IS_Primary__c = true]) {
             pPlan.Is_Primary__c = false;
             pPlansNeedNonPrimary.add(pPlan);
         }
