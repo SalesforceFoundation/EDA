@@ -50,8 +50,10 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
         Set<Id> acccountIdsNeedNonPrimarycount = new Set<Id>();
         Set<Id> primaryProgramIds = new Set<Id>();
         
+        boolean afterInsertRecursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Insert);
+
         // AFTER INSERT
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Insert)) {    
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert && !afterInsertRecursionFlag) {    
             for (integer i = 0; i < newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
                 if (isNewlyPrimaryOrPrimaryAndAccountChanged(null, newPPlan)) {
@@ -65,8 +67,10 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
             }
         }
 
+        boolean afterUpdateRecursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Update);
+    
         // AFTER UPDATE
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Update)) {                
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !afterUpdateRecursionFlag) {                
              for (integer i = 0; i < newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
                 Program_Plan__c oldPPlan = (Program_Plan__c)oldlist[i];
