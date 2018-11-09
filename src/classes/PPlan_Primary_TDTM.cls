@@ -49,11 +49,14 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
 
         Set<Id> acccountIdsNeedNonPrimarycount = new Set<Id>();
         Set<Id> primaryProgramIds = new Set<Id>();
-        // BEFORE INSERT
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Insert)) {
-            for (integer i=0; i<newlist.size(); i++) {
+        
+        boolean afterInsertRecursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Insert);
+
+        // AFTER INSERT
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert && !afterInsertRecursionFlag) {    
+            for (integer i = 0; i < newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
-                if (newPPlan.Is_Primary__c == true) {
+                if (isNewlyPrimaryOrPrimaryAndAccountChanged(null, newPPlan)) {
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
                     if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
@@ -63,14 +66,15 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 }
             }
         }
-        // BEFORE UPDATE
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.BeforeUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Update)) {
-            for (integer i=0; i<newlist.size(); i++) {
+
+        boolean afterUpdateRecursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Update);
+    
+        // AFTER UPDATE
+        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !afterUpdateRecursionFlag) {                
+             for (integer i = 0; i < newlist.size(); i++) {
                 Program_Plan__c newPPlan = (Program_Plan__c)newlist[i];
                 Program_Plan__c oldPPlan = (Program_Plan__c)oldlist[i];
-                if (newPPlan.Is_Primary__c == true
-                    && (newPPlan.Is_Primary__c != oldPPlan.Is_Primary__c
-                        || newPPlan.Account__c != oldPPlan.Account__c)) {
+                if (isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan)) {
                     //if multiple program plans under one single account are set as primary in same transation
                     //Use the first program plan as the primary
                     if (!acccountIdsNeedNonPrimarycount.contains(newPPlan.Account__c)) {
@@ -80,15 +84,36 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                 }
             }
         }
-        if (acccountIdsNeedNonPrimarycount.size()>0) {
+
+        if (acccountIdsNeedNonPrimarycount.size() > 0) {
             dmlWrapper.objectsToUpdate.addAll(makeOtherPPlanNotPrimary(acccountIdsNeedNonPrimarycount, primaryProgramIds));
         }
-        if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Update, false);
-        }else if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_Before_Insert, false);
+        
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Update, false);
+        } else if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.PPlan_Primary_TDTM_After_Insert, false);
         }
+        
         return dmlWrapper;
+    }
+
+    /*******************************************************************************************************
+    * @description Compares oldPPlan (if present), and newPPlan to see if newly Primary, or if Account was changed.
+    * Requires Is_Primary__c and Account__c fields to be populated.
+    * @param oldPPlan old value of Program_Plan__c record (or null if new record) 
+    * @param new PPlan new value of Program_Plan__c record
+    * @return Boolean true if newly marked primary, or if currently primary and related Account__c was changed, false otherwise
+    ********************************************************************************************************/
+    @testVisible private static boolean isNewlyPrimaryOrPrimaryAndAccountChanged(Program_Plan__c oldPPlan, Program_Plan__c newPPlan) {
+        boolean wasPrimary = ((oldPPlan != null) && (oldPPlan.Is_Primary__c));
+        boolean isPrimary = ((newPPlan != null) && (newPPlan.Is_Primary__c));  
+        Id oldAcctId = (oldPPlan != null) ? oldPPlan.Account__c : null;
+        Id newAcctId = (newPPlan != null) ? newPPlan.Account__c : null;
+
+        boolean acctChange = ((oldPPlan != null) && (oldAcctId != newAcctId));
+
+        return (isPrimary) && ((!wasPrimary) || (acctChange));
     }
 
     private List<Program_Plan__c> makeOtherPPlanNotPrimary(Set<Id> accountIdsNeedNonPrimary, Set<Id> primaryProgramIds) {
@@ -97,7 +122,8 @@ public with sharing class PPlan_Primary_TDTM extends TDTM_Runnable {
                                             Is_Primary__c
                                     From Program_Plan__c
                                     WHERE Account__c IN :accountIdsNeedNonPrimary
-                                        AND Id NOT IN :primaryProgramIds]) {
+                                        AND Id NOT IN :primaryProgramIds
+                                        AND IS_Primary__c = true]) {
             pPlan.Is_Primary__c = false;
             pPlansNeedNonPrimary.add(pPlan);
         }
