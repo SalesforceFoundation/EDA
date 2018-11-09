@@ -142,4 +142,66 @@ private class PPlan_Primary_TEST {
             }
         }
     }
+
+    /*********************************************************************************************************
+     * @description Confirm various scenarios with isNewlyPrimaryOrPrimaryAccountChanged method
+     *
+     */
+    @IsTest
+    static void isNewlyPrimaryOrPrimaryAndAccountChanged() {
+         List<Account> accts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(2, UTIL_Describe.getAdminAccRecTypeID());
+        insert accts[0];
+
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
+        for (Program_Plan__c pPlan : pPlans) {
+            pPlan.Account__c = accts[0].Id;
+        }
+        insert pPlans;
+        
+        Program_Plan__c oldPPlan = pPlans[0].clone(true, true, true, true);
+        Program_Plan__c newPPlan = pPlans[0].clone(true, true, true, true); 
+                
+        System.assertEquals (false, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(null, newPPlan), 'Test #1 - New Plan, Not Primary');
+        
+        newPPlan.IS_Primary__c = true;
+        System.assertEquals (true, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(null, newPPlan), 'Test #2 - New Plan, Primary');
+
+        oldPPlan.IS_Primary__c = false;
+        newPPlan.IS_Primary__c = false;
+
+        System.assertEquals (false, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #3 - Plan Update, neither are primary');
+
+        oldPPlan.Is_Primary__c = false;
+        newPPlan.Is_Primary__c = true;
+        System.assertEquals (true, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #4 - Plan Update, Old Plan Not Primary, New Plan Primary');
+
+        newPPlan.Is_Primary__c = true;
+        oldPPlan.Is_Primary__c = true;
+        System.assertEquals (false, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #5 - Plan Update, Old Plan Primary, New Plan Primary');
+
+        oldPPlan.Is_Primary__c = true;
+        newPPlan.Is_Primary__c = false;
+        System.assertEquals (false, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #6 - Plan Update, Old Plan Primary, New Plan Not Primary');
+
+        oldPPlan.Is_Primary__c = true;
+        newPPlan.Is_Primary__c = true;
+        newPPlan.Account__c = accts[1].Id;
+        System.assertEquals (true, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #7 - Plan Update, Old Plan Primary, New Plan Primary, New Plan Account Changed');
+
+        oldPPlan.Is_Primary__c = false;
+        newPPlan.Is_Primary__c = false;
+        newPPlan.Account__c = accts[1].Id;
+        System.assertEquals (false, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #7 - Plan Update, Old Plan Not Primary, New Plan Not Primary, New Plan Account Changed');
+
+        oldPPlan.Is_Primary__c = false;
+        newPPlan.Is_Primary__c = true;
+        newPPlan.Account__c = accts[1].Id;
+        System.assertEquals (true, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #8 - Plan Update, Old Plan Not Primary, New Plan Primary, New Plan Account Changed');
+
+        oldPPlan.Is_Primary__c = true;
+        newPPlan.Is_Primary__c = false;
+        newPPlan.Account__c = accts[1].Id;
+        System.assertEquals (false, PPlan_Primary_TDTM.isNewlyPrimaryOrPrimaryAndAccountChanged(oldPPlan, newPPlan), 'Test #9 - Plan Update, Old Plan Primary, New Plan Not Primary, New Plan Account Changed');
+
+    }
 }
