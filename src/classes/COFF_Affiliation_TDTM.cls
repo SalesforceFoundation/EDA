@@ -330,9 +330,12 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         List<Course_Enrollment__c> oldConns = [select Id, Affiliation__c, Account__c, Course_Offering__c, Primary__c
                                                  from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs
                                                  and Course_Offering__c in :offsWithChangedFaculty];
+                                                 and RecordTypeId = :facultyRecordTypeId];
 
         for(Integer i = 0; i < oldConns.size(); i++) {
-            if (offeringFacultyConnIds.get(oldConns[i].Course_Offering__c).containsKey(updatedFacultyIDs[i])) {
+            if (offeringFacultyConnIds.containsKey(oldConns[i].Course_Offering__c)
+                    && offeringFacultyConnIds.get(oldConns[i].Course_Offering__c) != null
+                    && offeringFacultyConnIds.get(oldConns[i].Course_Offering__c).containsKey(updatedFacultyIDs[i])) {
                 Course_Enrollment__c existingConn = offeringFacultyConnIds.get(oldConns[i].Course_Offering__c).get(updatedFacultyIDs[i]);
                 existingConn.Primary__c = true;
                 // Current Course Connection exists on Course Offering with Contact, mark as Primary
