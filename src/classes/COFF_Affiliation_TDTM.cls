@@ -327,11 +327,14 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     private void updateConnectionsOnFacultyChange(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, Set<Id> offsWithChangedFaculty, List<SObject> objectsToInsert, List<SObject> objectsToUpdate) {
         Id facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
         Map<Id, Map<Id, Course_Enrollment__c>> offeringFacultyConnIds = getOfferingIdFacultyIdConnection(offsWithChangedFaculty, facultyRecordTypeId);
-        List<Course_Enrollment__c> oldConns = [select Id, Affiliation__c, Account__c, Course_Offering__c, Primary__c
-                                                 from Course_Enrollment__c where Contact__c in :outdatedFacultyIDs
-                                                 and Course_Offering__c in :offsWithChangedFaculty
-                                                 and RecordTypeId = :facultyRecordTypeId];
-
+        String queryString = 'SELECT Id, Affiliation__c, Account__c, Course_Offering__c, Primary__c FROM Course_Enrollment__c';
+        queryString += ' WHERE Contact__c in :outdatedFacultyIDs';
+        queryString += ' and Course_Offering__c in :offsWithChangedFaculty';
+        //Record type of course enrollment not in the package
+        if (UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId') && facultyRecordTypeId != null) {
+            queryString += ' and RecordTypeId = :facultyRecordTypeId';
+        }
+        List<Course_Enrollment__c> oldConns = Database.query(queryString);
         for(Integer i = 0; i < oldConns.size(); i++) {
             if (offeringFacultyConnIds.containsKey(oldConns[i].Course_Offering__c)
                     && offeringFacultyConnIds.get(oldConns[i].Course_Offering__c) != null
