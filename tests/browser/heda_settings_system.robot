@@ -7,7 +7,6 @@ Suite Teardown  Delete Records and Close Browser
 *** Test Cases ***
 
 Test HEDA System Settings
-    [tags]  unstable
     Go To Heda Settings
     Wait Until Element Is visible	//a[contains(text(),'System')]
     Click Link				//a[contains(text(),'System')]

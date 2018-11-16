@@ -7,7 +7,6 @@ Suite Teardown  Delete Records and Close Browser
 *** Test Cases ***
 
 Validate Edit Mode For HEDA Settings, SYSTEM
-    [tags]    unstable
     Go To Heda Settings
 
     # Visit System tab

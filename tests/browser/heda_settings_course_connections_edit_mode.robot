@@ -8,8 +8,6 @@ Suite Teardown  Delete Records and Close Browser
 
 
 Validate Edit Mode For Course Connections, Settings
-    
-    [tags]  unstable
     Go To Heda Settings
     Wait Until Element Is visible	//a[contains(text(),'Course Connections')]
     Click Link				//a[contains(text(),'Course Connections')]

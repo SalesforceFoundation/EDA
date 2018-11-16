@@ -7,7 +7,6 @@ Suite Teardown  Delete Records and Close Browser
 *** Test Cases ***
 
 Validate Edit Mode For Relationships, Settings
-    [tags]    unstable
     Go To Heda Settings
     Wait Until Element Is visible	//a[contains(text(),'Relationships')]
     Click Link				//a[contains(text(),'Relationships')]
