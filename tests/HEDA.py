@@ -16,6 +16,7 @@ from locator import heda_lex_locators
 from selenium.webdriver import ActionChains
 
 
+@selenium_retry
 class HEDA(object):
 
     ROBOT_LIBRARY_SCOPE = "GLOBAL"
