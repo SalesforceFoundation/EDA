@@ -1,14 +1,10 @@
 {
   "packageDirectories": [
     {
-      "id": "0Ho46000000GmaJCAS",
-      "versionName": "1.0.0",
-      "versionDescription": "Initial release",
-      "versionNumber": "1.0.0.NEXT",
-      "path": "force-app",
+      "path": "src",
       "default": true
     }
   ],
   "namespace": "hed",
-  "sourceApiVersion": "41.0"
+  "sourceApiVersion": "35.0"
 }
