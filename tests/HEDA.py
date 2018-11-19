@@ -2,6 +2,7 @@ import logging
 import re
 import time
 
+from cumulusci.robotframework.utils import selenium_retry
 
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.common.exceptions import ElementNotInteractableException
@@ -38,10 +39,6 @@ class HEDA(object):
     @property
     def cumulusci(self):
         return self.builtin.get_library_instance("cumulusci.robotframework.CumulusCI")
-
-    @property
-    def selenium(self):
-        return self.builtin.get_library_instance("SeleniumLibrary")
 
     def populate_address(self, loc, value):
         """ Populate address with Place Holder aka Mailing Street etc as a locator
