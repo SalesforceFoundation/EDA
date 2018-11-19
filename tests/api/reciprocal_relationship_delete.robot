@@ -26,6 +26,7 @@ Delete Separately Reciprocal Last
     Run Keyword And Expect Error  *ENTITY_IS_DELETED*  Salesforce Delete    Relationship__c  &{rel}[ReciprocalRelationship__c]
 
 Delete Together
+    [tags]  unstable
     &{contact1} =        API Create Contact
     &{contact2} =        API Create Contact
     ${rel_id} =          Salesforce Insert  Relationship__c
