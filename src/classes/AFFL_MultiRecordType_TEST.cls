@@ -280,15 +280,17 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		update affl2;
 		Test.stopTest();
 		
-		//The second affiliation should be the only primary
-		List<Affiliation__c> affls = [select Account__c, Primary__c from Affiliation__c where Contact__c = :contact.ID order by Account__r.Name];
+		//The second affiliation should be the only primary so order by Primary ASC
+		//to ensure we recieve the Primary = True as the second record. Verify
+		//its affiliiation with acc2.
+		List<Affiliation__c> affls = [SELECT Account__c, Primary__c FROM Affiliation__c WHERE Contact__c = :contact.ID ORDER BY Primary__c ASC];
 		System.assertEquals(affls[0].Account__c, acc1.ID);
 		System.assertEquals(affls[0].Primary__c, false);
 		System.assertEquals(affls[1].Account__c, acc2.ID);
 		System.assertEquals(affls[1].Primary__c, true);
 		
 		//Verify key affl field has been updated
-    	contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
+    	contact = [SELECT Primary_Organization__c FROM Contact WHERE ID = :contact.ID];
 		System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
 	}
 	

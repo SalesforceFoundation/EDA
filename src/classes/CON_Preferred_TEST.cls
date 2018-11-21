@@ -54,12 +54,19 @@ public with sharing class CON_Preferred_TEST {
 		insert contacts;
 		Test.stopTest();
 		
-		contacts = [select Email, Phone, UniversityEmail__c, WorkEmail__c, AlternateEmail__c, HomePhone, WorkPhone__c, OtherPhone, MobilePhone 
-					from Contact where ID in :contacts order by LastName];
-		contact1 = contacts[0];
-		contact2 = contacts[1];
-		contact3 = contacts[2];
-		contact4 = contacts[3];
+		contacts = [SELECT Email, LastName, Phone, UniversityEmail__c, WorkEmail__c, AlternateEmail__c, HomePhone, WorkPhone__c, OtherPhone, MobilePhone 
+					FROM Contact where ID in :contacts];
+		
+		//ensure we can retrieve the contacts in a specific order/know which contact we are comparing
+		//can no longer user Name in filters if we want to be Shield compatible
+		Map<String, Contact> contactsByLastName = new Map<String, Contact>();
+		for(Contact c : contacts) {
+			contactsByLastName.put(c.LastName, c);
+		}
+		contact1 = contactsByLastName.get('TestersonA');
+		contact2 = contactsByLastName.get('TestersonB');
+		contact3 = contactsByLastName.get('TestersonC');
+		contact4 = contactsByLastName.get('TestersonD');
 		
 		System.assertEquals(contact1.UniversityEmail__c, contact1.Email);
 		System.assertEquals(contact2.WorkEmail__c, contact2.Email);
@@ -96,12 +103,19 @@ public with sharing class CON_Preferred_TEST {
 		update contacts;
 		Test.stopTest();
 				
-		contacts = [select Email, Phone, UniversityEmail__c, WorkEmail__c, AlternateEmail__c, HomePhone, WorkPhone__c, OtherPhone, MobilePhone 
-					from Contact where ID in :contacts order by LastName];
-		contact1 = contacts[0];
-		contact2 = contacts[1];
-		contact3 = contacts[2];
-		contact4 = contacts[3];
+		contacts = [SELECT Email, LastName, Phone, UniversityEmail__c, WorkEmail__c, AlternateEmail__c, HomePhone, WorkPhone__c, OtherPhone, MobilePhone 
+					FROM Contact where ID in :contacts];
+		
+		//ensure we can retrieve the contacts in a specific order/know which contact we are comparing
+		//can no longer user Name in filters if we want to be Shield compatible
+		Map<String, Contact> contactsByLastName = new Map<String, Contact>();
+		for(Contact c : contacts) {
+			contactsByLastName.put(c.LastName, c);
+		}
+		contact1 = contactsByLastName.get('TestersonE');
+		contact2 = contactsByLastName.get('TestersonF');
+		contact3 = contactsByLastName.get('TestersonG');
+		contact4 = contactsByLastName.get('TestersonH');
 		
 		System.assertEquals(contact1.UniversityEmail__c, contact1.Email);
 		System.assertEquals(contact2.WorkEmail__c, contact2.Email);

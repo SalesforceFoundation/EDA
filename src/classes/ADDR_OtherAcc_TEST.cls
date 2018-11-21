@@ -104,13 +104,12 @@ public with sharing class ADDR_OtherAcc_TEST {
         Test.stopTest();
 
         // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, 
-                   Current_Address__c from Account order by Account.Name];
+        listAcc = [SELECT Id, Name, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, 
+                   Current_Address__c FROM Account];
         system.assertEquals(cAcc, listAcc.size());
         
-        list<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
-        Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c 
-        order by Parent_Account__r.Name];
+        List<Address__c> listAddr = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
+        Parent_Account__c, Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
         system.assertEquals(cAcc, listAddr.size());
                 
         for (Integer i = 0; i < cAcc; i++) {
@@ -151,13 +150,13 @@ public with sharing class ADDR_OtherAcc_TEST {
         ADDR_Contact_TEST.turnOnAllAddrTriggers();
         
         // verify results
-        listAcc = [select Id, Name, BillingStreet, BillingCity, BillingState, 
+        listAcc = [SELECT Id, Name, BillingStreet, BillingCity, BillingState, 
         BillingPostalCode, BillingCountry, BillingLatitude, BillingLongitude, Current_Address__c 
-        from Account order by Account.Name];
+        FROM Account];
         system.assertEquals(3, listAcc.size());
         
-        addrs = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Parent_Account__r.Name];
+        addrs = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Account__c, 
+        Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
         system.assertEquals(3, addrs.size());
         
         for (Integer i = 0; i < listAcc.size(); i++) {
