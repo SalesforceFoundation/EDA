@@ -113,7 +113,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 listContactAccountDelete.add(c);
                 // Rename the account if a contact is deleted from a household account
                 if (c.AccountId != null
-                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false
+                        && !c.Exclude_from_Household_Name__c){
                     setAccountIdHHToRename.add(c.AccountId);
                 }
             }
@@ -139,7 +140,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             mapAccountIdContactId.put(c.AccountId, c.Id);
                         }
                         if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
-                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false)
+                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false
+                                && !c.Exclude_from_Household_Name__c)
                         {
                             setAccountIdHHToRename.add(c.AccountId);
                         }
@@ -164,14 +166,18 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
 
                             if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
-                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
-                                setAccountIdHHToRename.add(c.AccountId);
-                                if (oldContacts[i].AccountId != null){
+                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
+                                if (!c.Exclude_from_Household_Name__c) {
+                                    setAccountIdHHToRename.add(c.AccountId);
+                                }
+                                if (oldContacts[i].AccountId != null
+                                        && !oldContacts[i].Exclude_from_Household_Name__c) {
                                     setAccountIdHHToRename.add(oldContacts[i].AccountId);
                                 }
                             }
                         }else{
-                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false
+                                && !c.Exclude_from_Household_Name__c){
                                 setAccountIdHHToRename.add(oldContacts[i].AccountId);
                             }
                         }
@@ -202,7 +208,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 || c.FirstName != oldContacts[i].FirstName)
                             && c.AccountId != null
                             && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
-                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false
+                            && !c.Exclude_from_Household_Name__c) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
                 }
