@@ -541,6 +541,37 @@ private class ACCT_IndividualAccounts_TEST {
 
     /*********************************************************************************************************
     * @description
+    * Create a new contact and link it to an existing Household Account
+    * Set the new contact as excluded from household naming
+    * Make sure the Account's name is not set based on account naming setting.
+    */
+    @isTest
+    public static void newContactExistingHHAccExcludedFromNaming() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household', Automatic_Household_Naming__c = true));
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        insert con;
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
+        system.assertEquals('Household Account', assertAccount.RecordType.Name);
+        system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
+
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.AccountId = assertAccount.Id;
+        con2.FirstName = 'Test2';
+        con2.LastName = con.LastName + '2';
+        con2.Exclude_from_Household_Name__c = true;
+        insert con2;
+
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account];
+
+        system.assertEquals('Household Account', assertAccount.RecordType.Name);
+        system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
+    }
+
+    /*********************************************************************************************************
+    * @description
     * Update the custom setting of automatic household naming as false
     * Update the name of a contact linked to a Household Account
     * Make sure the Account's name is not set based on account naming setting.
