@@ -568,6 +568,14 @@ private class ACCT_IndividualAccounts_TEST {
 
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
+
+        con2.Exclude_from_Household_Name__c = false;
+        update con2;
+
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account];
+
+        system.assertEquals('Household Account', assertAccount.RecordType.Name);
+        system.assertEquals(con.FirstName + ' ' + con.LastName + ' and ' + con2.FirstName + ' ' + con2.LastName + ' Household', assertAccount.Name);
     }
 
     /*********************************************************************************************************

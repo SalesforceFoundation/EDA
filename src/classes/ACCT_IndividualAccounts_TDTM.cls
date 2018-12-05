@@ -206,6 +206,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
+
+                    // Rename the account if the Exclude_from_Household_Name__c field is changed
+                    if (c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c) {
+                        setAccountIdHHToRename.add(c.AccountId);
+                    }
                 }
                 i += 1;
             }
