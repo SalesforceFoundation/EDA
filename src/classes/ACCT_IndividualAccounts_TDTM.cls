@@ -812,7 +812,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
             strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
 
-        strSoql += 'Phone, Fax from Contacts WHERE Exclude_from_Household_Name__c!= true)';
+        strSoql += 'Phone, Fax from Contacts WHERE Exclude_from_Household_Name__c != true)';
         strSoql += ' FROM Account WHERE Id IN :accIdsToRename';
         list<Account> listAcc = database.query(strSoql);
 
