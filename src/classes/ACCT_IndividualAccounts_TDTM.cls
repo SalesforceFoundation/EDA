@@ -198,19 +198,16 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         listContactsChangedLastName.add(c);
                     }
 
-                    // Rename the account if the name of contact is changed and the account model is household account
+                    // Rename the Household account if the name of contact or Exclude_from_Household_Name__c is changed
                     if ((c.LastName != oldContacts[i].LastName
-                                || c.FirstName != oldContacts[i].FirstName)
+                                || c.FirstName != oldContacts[i].FirstName
+                                || c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c)
                             && c.AccountId != null
                             && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                             && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
 
-                    // Rename the account if the Exclude_from_Household_Name__c field is changed
-                    if (c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c) {
-                        setAccountIdHHToRename.add(c.AccountId);
-                    }
                 }
                 i += 1;
             }
