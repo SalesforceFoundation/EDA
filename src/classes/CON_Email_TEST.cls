@@ -96,10 +96,14 @@ private class CON_Email_TEST {
 		Test.stopTest();
 
 		//Contact newContAfter = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact WHERE Name = 'JohnnyTest JohnnyTest' LIMIT 1];
-		List<Contact> newContAfterList = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact];
-		System.assertEquals(1, newContAfterList.size());
-		Contact newContAfter = newContAfterList[0];
-
+		List<Contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact];
+		Map<String, Contact> contactsByLastName = new Map<String, Contact>();
+		
+		for(Contact con : newContAfterList) {
+			contactsByLastName.put(con.LastName, con);
+		}
+		
+		Contact newContAfter = contactsByLastName.get('JohnnyTest');
         System.assertEquals(newContAfter.Email, newContAfter.WorkEmail__c);
         System.assertEquals('Work', newContAfter.Preferred_Email__c);
 	}
