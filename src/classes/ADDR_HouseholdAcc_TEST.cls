@@ -1966,7 +1966,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             if (addr.Default_Address__c) {
                 System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
                 System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assertEquals('Direct Street Edit<br>Second Line<br>Direct City Edit, Washington Zip0<br>United States', addr.Formula_MailingStreetAddress__c);
+                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
             }
         }
 
