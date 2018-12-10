@@ -95,7 +95,9 @@ private class CON_Email_TEST {
         insert newCont;
 		Test.stopTest();
 
-		Contact newContAfter = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact WHERE Name = 'JohnnyTest JohnnyTest' LIMIT 1];
+		//Contact newContAfter = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact WHERE Name = 'JohnnyTest JohnnyTest' LIMIT 1];
+		Contact newContAfter = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact];
+		System.assertEquals(1, newContAfter.size());
 
         System.assertEquals(newContAfter.Email, newContAfter.WorkEmail__c);
         System.assertEquals('Work', newContAfter.Preferred_Email__c);
