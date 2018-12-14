@@ -35,8 +35,8 @@
 * @description Keeps Program Enrollment and Affiliation records for a Contact in sync.
 */
 public class PREN_Affiliation_TDTM extends TDTM_Runnable {
-	
-	/*******************************************************************************************************
+
+    /*******************************************************************************************************
     * @description Handles Affiliation management for Program Enrollment.
     * @param listNew the list of Accounts from trigger new. 
     * @param listOld the list of Accounts from trigger old. 
@@ -44,23 +44,23 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
     * @param objResult the describe for Program Enrollment. 
     * @return dmlWrapper.  
     ********************************************************************************************************/
-	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
-    	DmlWrapper dmlWrapper = new DmlWrapper();
+        DmlWrapper dmlWrapper = new DmlWrapper();
 
         if(newlist != null && newlist.size() > 0) {
-	 		createRelatedAffls(newlist, triggerAction);
+            createRelatedAffls(newlist, triggerAction);
         }
         
         if(oldlist != null && oldlist.size() > 0) {
-	 		updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), dmlWrapper);
+            updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), dmlWrapper);
         }
         return dmlWrapper;
     }
     
     private void createRelatedAffls(List<SObject> newlist, TDTM_Runnable.Action triggerAction) {
-	
+
         List<Affiliation__c> newAffls = new List<Affiliation__c>();
 
         for (SObject so : newlist) {
@@ -68,12 +68,12 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
             
             if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
 
-                Date afflEndDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_End_Date__c == true ? enrollment.End_Date__c : null);
-                Date afflStartDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_Start_Date__c == true ? enrollment.Start_Date__c : null);
-                String afflRole = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Set_Role__c == true ? UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Role_Map__c : null);
-
                 //Automatically create an Affiliation record if a Program Enrollment record has been created without an affiliation.
                 if(enrollment.Contact__c != null && enrollment.Account__c != null && enrollment.Affiliation__c == null) {
+                    Date afflEndDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_End_Date__c == true ? enrollment.End_Date__c : null);
+                    Date afflStartDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_Start_Date__c == true ? enrollment.Start_Date__c : null);
+                    String afflRole = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Set_Role__c == true ? UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Role_Map__c : null);
+
                     Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Contact__c, Account__c = enrollment.Account__c, EndDate__c = afflEndDate, StartDate__c = afflStartDate, Role__c = afflRole, Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Status_Map__c);
                     newAffls.add(affl);
                 }
