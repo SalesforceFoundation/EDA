@@ -77,8 +77,9 @@ public class UTIL_ACCT_Naming {
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
             strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
 
-        strSoql += 'Phone, Fax from Contacts) ';
+        strSoql += 'Phone, Fax from Contacts WHERE Exclude_from_Household_Name__c != true)';
         strSoql += 'FROM Account WHERE Id IN :accIdsToRename';
+
         listAccsToRename = database.query(strSoql);
 
         //Loop through listAccsToRename and modify the name accordingly
