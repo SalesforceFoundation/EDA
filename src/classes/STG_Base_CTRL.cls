@@ -146,7 +146,6 @@ public with sharing class STG_Base_CTRL {
     * @param autoEnroll The value of the Auto_Program_Enrollment__c field in the Affl_Mappings__c record to create.
     * @param autoEnrollStatus The value of the Auto_Program_Enrollment_Status__c field in the Affl_Mappings__c record to create.
     * @param autoEnrollRole The value of the Auto_Program_Enrollment_Role__c field in the Affl_Mappings__c record to create.
-    * @param autoEnrollRole The value of the Auto_Program_Enrollment_Role__c field in the Affl_Mappings__c record to create.
     * @return String The Id of the record that has just been created, as a String.
     **/
     @AuraEnabled
