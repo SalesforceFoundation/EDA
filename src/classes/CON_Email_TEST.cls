@@ -95,14 +95,29 @@ private class CON_Email_TEST {
         insert newCont;
 		Test.stopTest();
 
-		Contact newContAfter = [SELECT Id, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact WHERE Name = 'JohnnyTest JohnnyTest' LIMIT 1];
-
+		List<Contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, WorkEmail__c, Email, Preferred_Email__c FROM Contact];
+		Map<String, Contact> contactsByLastName = new Map<String, Contact>();
+		
+		for(Contact con : newContAfterList) {
+			contactsByLastName.put(con.LastName, con);
+		}
+		
+		Contact newContAfter = contactsByLastName.get('JohnnyTest');
         System.assertEquals(newContAfter.Email, newContAfter.WorkEmail__c);
         System.assertEquals('Work', newContAfter.Preferred_Email__c);
 	}
 
 	@isTest static void testPrefferedEmailInsertNoStd() {
-		List<Contact> contacts = [SELECT Id, Name, Email FROM Contact WHERE EMAIL != null LIMIT 2];
+		List<Contact> allContacts = [SELECT Id, Name, Email FROM Contact];
+		System.assert(allContacts.size() > 0);
+		List<Contact> contacts = new List<Contact>();
+		for(Contact c : allContacts) {
+			if(c.Email != '' && contacts.size() < 2) {
+				contacts.add(c);
+			}
+		}
+		System.assertEquals(2, contacts.size());
+		//List<Contact> contacts = [SELECT Id, Name, Email FROM Contact WHERE Email != null LIMIT 2];
 		List<String> contIds = new List<String>();
 
         for (Integer i = 0; i < contacts.size(); i++) {
@@ -117,7 +132,7 @@ private class CON_Email_TEST {
 
 		contacts = [SELECT Id, Name, AlternateEmail__c, Email FROM Contact WHERE Id in:contIds LIMIT 2];
 
-        if(contacts.size()>0) {
+        if(contacts.size() > 0) {
 	        for(Contact c : contacts) {
 	        	// Make sure the new values were copies to the standard email field
 	            System.assertEquals(c.Email, c.AlternateEmail__c);

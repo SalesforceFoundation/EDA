@@ -91,27 +91,30 @@ public with sharing class TERM_CourseOff_TEST {
         update term1;
         Test.stopTest();
         
-        coffs = [select Start_Date__c, End_Date__c from Course_Offering__c 
-        where ID IN :coffs order by Section_ID__c];
+        coffs = [SELECT Start_Date__c, End_Date__c, Section_ID__c FROM Course_Offering__c WHERE ID IN :coffs order by Section_ID__c];
+        Map<String, Course_Offering__c> courseOfferingsBySection = new Map<String, Course_Offering__c>();
+        for(Course_Offering__c co : coffs) {
+          courseOfferingsBySection.put(co.Section_ID__c, co);
+        }
         
         //course offering start and end date should have been copied from parent term 
-        System.assertEquals(term1.Start_Date__c, coffs[0].Start_Date__c);
-        System.assertEquals(term1.End_Date__c, coffs[0].End_Date__c);
+        System.assertEquals(term1.Start_Date__c, courseOfferingsBySection.get('BIO-101 Spring 16').Start_Date__c);
+        System.assertEquals(term1.End_Date__c, courseOfferingsBySection.get('BIO-101 Spring 16').End_Date__c);
         
         //only end date should have been copied from parent term
-        System.assertEquals(system.today().addMonths(6), coffs[1].Start_Date__c);
-        System.assertEquals(term1.End_Date__c, coffs[1].End_Date__c);
+        System.assertEquals(system.today().addMonths(6), courseOfferingsBySection.get('BIO-101 Spring 17').Start_Date__c);
+        System.assertEquals(term1.End_Date__c, courseOfferingsBySection.get('BIO-101 Spring 17').End_Date__c);
         
         //only start date should have been copied from parent term
-        System.assertEquals(term1.Start_Date__c, coffs[2].Start_Date__c);
-        System.assertEquals(system.today().addMonths(6), coffs[2].End_Date__c);
+        System.assertEquals(term1.Start_Date__c, courseOfferingsBySection.get('BIO-101 Spring 18').Start_Date__c);
+        System.assertEquals(system.today().addMonths(6), courseOfferingsBySection.get('BIO-101 Spring 18').End_Date__c);
         
         //neither start of end dates should have been copied from parent term
-        System.assertNotEquals(term1.Start_Date__c, coffs[3].Start_Date__c);
-        System.assertNotEquals(term1.End_Date__c, coffs[3].End_Date__c);
+        System.assertNotEquals(term1.Start_Date__c, courseOfferingsBySection.get('BIO-101 Spring 19').Start_Date__c);
+        System.assertNotEquals(term1.End_Date__c, courseOfferingsBySection.get('BIO-101 Spring 19').End_Date__c);
         
         //neither start of end dates should have been copied from parent term
-        System.assertEquals(null, coffs[4].Start_Date__c);
-        System.assertEquals(null, coffs[4].End_Date__c);
+        System.assertEquals(null, courseOfferingsBySection.get('BIO-101 Spring 20').Start_Date__c);
+        System.assertEquals(null, courseOfferingsBySection.get('BIO-101 Spring 20').End_Date__c);
     }
 }

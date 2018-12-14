@@ -735,7 +735,7 @@ public with sharing class ADDR_AdminAcc_TEST {
         for (Address__c addr : listAddr) {
             System.assertEquals('new street', addr.MailingStreet__c);
             System.assertEquals('second line', addr.MailingStreet2__c);
-            System.assertEquals('new street, second line', addr.Formula_MailingStreetAddress__c);
+            System.assertEquals('new street<br>second line<br>new city,', addr.Formula_MailingStreetAddress__c);
         }
 
         map<Id, Account> mapAccIdAcc = new map<Id, Account>([select Id, Name, BillingStreet, BillingCity, BillingState, 
@@ -829,7 +829,7 @@ public with sharing class ADDR_AdminAcc_TEST {
             if (addr.Default_Address__c) {
                 System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
                 System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
+                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
             }
         }
     }

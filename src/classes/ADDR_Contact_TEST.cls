@@ -852,7 +852,7 @@ public with sharing class ADDR_Contact_TEST {
         for (Address__c addr : ListAddr) {
             System.assertEquals('new street', addr.MailingStreet__c);
             System.assertEquals('second line', addr.MailingStreet2__c);
-            System.assertEquals('new street, second line', addr.Formula_MailingStreetAddress__c);
+            System.assertEquals('new street<br>second line<br>new city,', addr.Formula_MailingStreetAddress__c);
         }
 
         map<Id, Contact> mapAccIdAcc = new map<Id, Contact>([select Id, Name, MailingStreet, MailingCity, MailingState, 
@@ -946,7 +946,7 @@ public with sharing class ADDR_Contact_TEST {
             if (addr.Default_Address__c) {
                 System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
                 System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
+                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
             }
         }
     }
@@ -977,13 +977,12 @@ public with sharing class ADDR_Contact_TEST {
         Test.stopTest();
 
         // verify results
-        contacts = [select Id, Name, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, 
-                   Current_Address__c from Contact order by Contact.Name];
+        contacts = [SELECT Id, Name, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, 
+                   Current_Address__c FROM Contact];
         System.assertEquals(contactCount, contacts.size());
         
-        List<Address__c> ListAddr = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
-        Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c from Address__c 
-        order by Parent_Contact__r.Name];
+        List<Address__c> ListAddr = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, 
+        Parent_Contact__c, Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
         System.assertEquals(contactCount, ListAddr.size());
                 
         for (Integer i = 0; i < contactCount; i++) {
@@ -1023,13 +1022,13 @@ public with sharing class ADDR_Contact_TEST {
         turnOnAllAddrTriggers();
         
         // verify results
-        contacts = [select Id, Name, MailingStreet, MailingCity, MailingState, 
+        contacts = [SELECT Id, Name, MailingStreet, MailingCity, MailingState, 
         MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, is_Address_Override__c, Current_Address__c 
-        from Contact order by Contact.Name];
+        FROM Contact];
         System.assertEquals(3, contacts.size());
         
-        addrs = [select Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Contact__c, 
-        Latest_Start_Date__c, Latest_End_Date__c from Address__c order by Parent_Contact__r.Name];
+        addrs = [SELECT Id, Default_Address__c, MailingStreet__c, MailingCity__c, Parent_Contact__c, 
+        Latest_Start_Date__c, Latest_End_Date__c FROM Address__c];
         System.assertEquals(3, addrs.size());
         
         for (Integer i = 0; i < contacts.size(); i++) {

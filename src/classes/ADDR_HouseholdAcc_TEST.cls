@@ -1851,13 +1851,20 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         Test.stopTest();
         
         // verify the Address objects split street.
-        List<Address__c> listAddr = [select Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c 
-        where MailingStreet__c = 'new street'];
+        List<Address__c> addresses = [SELECT Id, MailingStreet__c, MailingStreet2__c, Formula_MailingStreetAddress__c from Address__c];
+        
+        List<Address__c> listAddr = new List<Address__c>();
+        for(Address__c addy : addresses) {
+            if(addy.MailingStreet__c == 'new street') {
+                listAddr.add(addy);
+            }
+        }
         System.assertEquals(2, listAddr.size());
+
         for (Address__c addr : listAddr) {
             System.assertEquals('new street', addr.MailingStreet__c);
             System.assertEquals('second line', addr.MailingStreet2__c);
-            System.assertEquals('new street, second line', addr.Formula_MailingStreetAddress__c);
+            System.assertEquals('new street<br>second line<br>new city,', addr.Formula_MailingStreetAddress__c);
         }
 
         // verify that the HH and Contacts share the same address
@@ -1959,7 +1966,7 @@ public with sharing class ADDR_HouseholdAcc_TEST {
             if (addr.Default_Address__c) {
                 System.assertEquals('Direct Street Edit', addr.MailingStreet__c);
                 System.assertEquals('Second Line', addr.MailingStreet2__c);
-                System.assertEquals('Direct Street Edit, Second Line', addr.Formula_MailingStreetAddress__c);
+                System.assert(addr.Formula_MailingStreetAddress__c.contains('Direct Street Edit<br>Second Line<br>Direct City Edit'));
             }
         }
 
@@ -2178,7 +2185,9 @@ public with sharing class ADDR_HouseholdAcc_TEST {
         Test.stopTest();
 
         // verify results
-        Account acc = [select Id, Name, BillingStreet from Account where Name like '%Household%'];
+        String hhAccRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
+        //Account acc = [select Id, Name, BillingStreet from Account where Name like '%Household%'];
+        Account acc = [select Id, Name, BillingStreet from Account where RecordTypeId = :hhAccRecTypeID];
         UTIL_Debug.debug('****Parent account: ' + JSON.serializePretty(acc));
         System.assertNotEquals(null, acc);
         List<Address__c> listAddr = [select Id, Default_Address__c, MailingStreet__c from Address__c];

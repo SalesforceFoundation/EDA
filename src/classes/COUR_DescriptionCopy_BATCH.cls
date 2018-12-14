@@ -44,7 +44,9 @@ global class COUR_DescriptionCopy_BATCH implements Database.Batchable<sObject> {
 	global Database.QueryLocator start(Database.BatchableContext BC) {
 
 		// Get all courses with a description
-		String query = 'SELECT Id, Name, Description__c, Extended_Description__c FROM Course__c WHERE Description__c != null';
+		//removing Description != null query filter here as it won't allow us to use encryption
+        //we manually filter them out later anyway in the execute method (line 61 at the time of this writing)
+        String query = 'SELECT Id, Name, Description__c, Extended_Description__c FROM Course__c';
 
 		return Database.getQueryLocator(query);
 	}

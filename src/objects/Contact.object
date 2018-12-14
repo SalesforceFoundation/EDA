@@ -3830,23 +3830,22 @@
         <description>Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.</description>
         <externalId>false</externalId>
         <formula>if(
-  ISPICKVAL(Primary_Address_Type__c,&quot;Work&quot;),
-  if(LEN(MailingStreet)&gt;0, MailingStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
-  if(LEN(MailingCity)&gt;0, MailingCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
-  if(LEN(MailingState)&gt;0, MailingState &amp; &quot; &quot; , &quot;&quot; )&amp; 
-  if(LEN(MailingPostalCode)&gt;0, MailingPostalCode,&quot;&quot;) &amp; 
-  If(LEN( MailingCountry ) &gt;0, &quot;, &quot; &amp;MailingCountry,&quot;&quot;)
-,
-if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
-  if(LEN(OtherStreet)&gt;0, OtherStreet &amp; &quot;, &quot; , &quot;&quot; ) &amp; 
-  if(LEN(OtherCity)&gt;0, OtherCity &amp; &quot;, &quot; , &quot;&quot; )&amp; 
-  if(LEN(OtherState)&gt;0, OtherState &amp; &quot; &quot; , &quot;&quot; )&amp; 
-  if(LEN(OtherPostalCode)&gt;0, OtherPostalCode,&quot;&quot;) &amp; 
-  If(LEN(OtherCountry ) &gt;0, &quot;, &quot; &amp; OtherCountry,&quot;&quot;)
-  ,&quot;&quot; 
-)
+    ISPICKVAL(Primary_Address_Type__c,&quot;Work&quot;),
+    if(ISBLANK(MailingStreet) , &quot;&quot; , MailingStreet &amp; &quot;, &quot;) &amp; 
+    if(ISBLANK(MailingCity) , &quot;&quot; , MailingCity &amp; &quot;, &quot;) &amp; 
+    if(ISBLANK(MailingState) , &quot;&quot; , MailingState &amp; &quot; &quot;) &amp; 
+    if(ISBLANK(MailingPostalCode) , &quot;&quot; , MailingPostalCode) &amp; 
+    If(ISBLANK(MailingCountry ) , &quot;&quot; , &quot;, &quot; &amp; MailingCountry)
+    ,
+    if(ISPICKVAL(Secondary_Address_Type__c,&quot;Work&quot;),
+    if(ISBLANK(OtherStreet) , &quot;&quot; , OtherStreet &amp; &quot;, &quot;) &amp; 
+    if(ISBLANK(OtherCity) , &quot;&quot; , OtherCity &amp; &quot;, &quot;) &amp; 
+    if(ISBLANK(OtherState) , &quot;&quot; , OtherState &amp; &quot; &quot;) &amp; 
+    if(ISBLANK(OtherPostalCode) , &quot;&quot; , OtherPostalCode) &amp; 
+    If(ISBLANK(OtherCountry ) , &quot;&quot; , &quot;, &quot; &amp; OtherCountry)
+    ,
+    &quot;&quot;)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.</inlineHelpText>
         <label>Work Address</label>
         <required>false</required>

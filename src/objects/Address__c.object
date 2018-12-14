@@ -106,11 +106,13 @@
     <fields>
         <fullName>Formula_MailingAddress__c</fullName>
         <externalId>false</externalId>
-        <formula>MailingStreet__c &amp; BR() &amp;
-MailingStreet2__c &amp; IF(LEN(MailingStreet2__c)&gt;0, BR(), &quot;&quot;) &amp; 
-MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;) &amp; MailingState__c &amp; &quot; &quot; &amp; MailingPostalCode__c 
-&amp; IF(LEN(MailingCountry__c)&gt;0, BR() &amp; MailingCountry__c, &quot;&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>MailingStreet__c &amp;
+BR() &amp; 
+IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
+IF(ISBLANK(MailingCity__c), &quot;&quot;, MailingCity__c &amp; &quot;, &quot;) &amp; 
+MailingState__c &amp; &quot; &quot; &amp; 
+MailingPostalCode__c 
+&amp; IF(ISBLANK(MailingCountry__c), &quot;&quot;, BR() &amp; MailingCountry__c)</formula>
         <label>Mailing Address</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -120,7 +122,13 @@ MailingCity__c &amp; IF(LEN(MailingCity__c) &gt; 0, &quot;, &quot;, &quot;&quot;
     <fields>
         <fullName>Formula_MailingStreetAddress__c</fullName>
         <externalId>false</externalId>
-        <formula>MailingStreet__c + IF(ISNULL(MailingStreet2__c), &apos;&apos;, &apos;, &apos; + TRIM(MailingStreet2__c))</formula>
+        <formula>MailingStreet__c &amp;
+BR() &amp; 
+IF(ISBLANK(MailingStreet2__c), &quot;&quot;, MailingStreet2__c &amp; BR()) &amp; 
+IF(ISBLANK(MailingCity__c), &quot;&quot;, MailingCity__c &amp; &quot;, &quot;) &amp; 
+MailingState__c &amp; &quot; &quot; &amp; 
+MailingPostalCode__c 
+&amp; IF(ISBLANK(MailingCountry__c), &quot;&quot;, BR() &amp; MailingCountry__c)</formula>
         <label>Mailing Street Address</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

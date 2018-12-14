@@ -63,7 +63,10 @@ public class TDTM_ProcessControl {
         AFFL_MultiRecordType_TDTM_afflMadePrimary,
         CON_PrimaryAffls_TDTM_keyAfflLookupUpdated,
         PPlan_Primary_TDTM_Before_Insert,
-        PPlan_Primary_TDTM_Before_Update
+        PPlan_Primary_TDTM_Before_Update,
+        PREN_ProgramPlan_TDTM_Before_Insert,
+        PPlan_Primary_TDTM_After_Insert,
+        PPlan_Primary_TDTM_After_Update
     }
 
     /*******************************************************************************************************
