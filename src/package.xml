@@ -439,6 +439,7 @@
         <members>giftProcessingConfigException</members>
         <members>hhAccNameFormat</members>
         <members>hhAccNameFormatHelpText</members>
+        <members>hhFamily</members>
         <members>lastNameAdminAcc</members>
         <members>lastNameFamily</members>
         <members>lastNameFirstNameAdminAcc</members>
