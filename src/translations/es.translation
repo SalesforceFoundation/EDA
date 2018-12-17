@@ -77,10 +77,6 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- acctNamingOther --></label>
-        <name>acctNamingOther</name>
-    </customLabels>
-    <customLabels>
         <label>Solo deben crearse los registros de direcciones como secundarios de Cuenta o Contacto.</label>
         <name>addrHhAdmAccountOnly</name>
     </customLabels>
@@ -109,14 +105,6 @@
         <name>addrValidParentObjects</name>
     </customLabels>
     <customLabels>
-        <label><!-- adminAccNameFormat --></label>
-        <name>adminAccNameFormat</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- adminAccNameFormatHelpText --></label>
-        <name>adminAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
         <label><!-- afflAccountNoRecordType --></label>
         <name>afflAccountNoRecordType</name>
     </customLabels>
@@ -137,80 +125,12 @@
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- automaticHHNaming --></label>
-        <name>automaticHHNaming</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- automaticHHNamingHelpText --></label>
-        <name>automaticHHNamingHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- defaultNamingConnector --></label>
-        <name>defaultNamingConnector</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error message for TDTM filtering functionality. --></label>
-        <name>duplicateFieldInFilter</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error message for TDTM filtering functionality. --></label>
-        <name>duplicateWithHEDAField</name>
-    </customLabels>
-    <customLabels>
         <label><!-- exceptionRequiredField --></label>
         <name>exceptionRequiredField</name>
     </customLabels>
     <customLabels>
         <label><!-- exceptionValidationRule --></label>
         <name>exceptionValidationRule</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error message for TDTM filtering functionality. --></label>
-        <name>fieldWithHEDANamespace</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- firstNameLastNameAdminACC --></label>
-        <name>firstNameLastNameAdminACC</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- firstNameLastNameFamily --></label>
-        <name>firstNameLastNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- firstNameLastNameHH --></label>
-        <name>firstNameLastNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- hhAccNameFormat --></label>
-        <name>hhAccNameFormat</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- hhAccNameFormatHelpText --></label>
-        <name>hhAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- lastNameAdminAcc --></label>
-        <name>lastNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- lastNameFamily --></label>
-        <name>lastNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- lastNameFirstNameAdminAcc --></label>
-        <name>lastNameFirstNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- lastNameFirstNameFamily --></label>
-        <name>lastNameFirstNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- lastNameFirstNameHH --></label>
-        <name>lastNameFirstNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- lastNameHH --></label>
-        <name>lastNameHH</name>
     </customLabels>
     <customLabels>
         <label>El tipo de registro de cuenta definido no existe:</label>
