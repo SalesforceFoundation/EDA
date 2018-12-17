@@ -24,21 +24,6 @@
         <name>Accounts_to_Delete__c</name>
     </fields>
     <fields>
-        <help><!-- This is the setting for admin account naming format --></help>
-        <label><!-- Admin Account Naming Format --></label>
-        <name>Admin_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help><!-- To store other naming setting for admin account --></help>
-        <label><!-- Admin Other Name Setting --></label>
-        <name>Admin_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help><!-- The namespace of the Gift Processing package. --></help>
-        <label><!-- Advancement Namespace --></label>
-        <name>Advancement_Namespace__c</name>
-    </fields>
-    <fields>
         <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
         <label><!-- Affiliation Record Type Enforced --></label>
         <name>Affiliation_Record_Type_Enforced__c</name>
@@ -88,11 +73,6 @@
         <name>Async_Error_Check_Last_Run__c</name>
     </fields>
     <fields>
-        <help><!-- If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings. --></help>
-        <label><!-- Automatic Household Naming --></label>
-        <name>Automatic_Household_Naming__c</name>
-    </fields>
-    <fields>
         <help><!-- Address management support for Contacts. --></help>
         <label><!-- Address management support for Contacts. --></label>
         <name>Contacts_Addresses_Enabled__c</name>
@@ -131,19 +111,9 @@
         <name>Faculty_RecType__c</name>
     </fields>
     <fields>
-        <help><!-- This is the setting for household account naming format --></help>
-        <label><!-- Household Account Naming Format --></label>
-        <name>Household_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
         <help><!-- Account record type that supports Household Addresses behavior. --></help>
         <label><!-- Household Addresses Acc Record Type --></label>
         <name>Household_Addresses_RecType__c</name>
-    </fields>
-    <fields>
-        <help><!-- To store other name setting for household account --></help>
-        <label><!-- Household Other Name Setting --></label>
-        <name>Household_Other_Name_Setting__c</name>
     </fields>
     <fields>
         <help><!-- Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;) --></help>
