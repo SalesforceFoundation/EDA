@@ -91,7 +91,10 @@ public with sharing class TERM_CourseOff_TEST {
         update term1;
         Test.stopTest();
         
-        coffs = [SELECT Start_Date__c, End_Date__c, Section_ID__c FROM Course_Offering__c WHERE ID IN :coffs order by Section_ID__c];
+        //To avoid using potentially encryptable fields to ensure a specific order in our testing
+        //we will create a map based on the above inserted test data to ensure we have the correct 
+        //record to test against rather than relying on order.
+        coffs = [SELECT Start_Date__c, End_Date__c, Section_ID__c FROM Course_Offering__c WHERE ID IN :coffs];
         Map<String, Course_Offering__c> courseOfferingsBySection = new Map<String, Course_Offering__c>();
         for(Course_Offering__c co : coffs) {
           courseOfferingsBySection.put(co.Section_ID__c, co);
