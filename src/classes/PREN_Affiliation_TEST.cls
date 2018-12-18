@@ -61,11 +61,11 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select Contact__c, Account__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT Contact__c, Account__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         
         //The Program Enrollment record should be related to the Affiliation just created
-        enrollment = [select Affiliation__r.ID from Program_Enrollment__c where ID = :enrollment.ID];
+        enrollment = [SELECT Affiliation__r.ID FROM Program_Enrollment__c WHERE ID = :enrollment.ID];
         System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
     }
     
@@ -96,7 +96,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select EndDate__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT EndDate__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(testDate, affls[0].EndDate__c);
     }
@@ -128,7 +128,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select EndDate__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT EndDate__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(null, affls[0].EndDate__c);
     }
@@ -160,7 +160,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select StartDate__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT StartDate__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(testDate, affls[0].StartDate__c);
     }
@@ -192,7 +192,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select StartDate__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT StartDate__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(testDate, affls[0].StartDate__c);
     }
@@ -221,7 +221,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select Role__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Student', affls[0].Role__c);
     }
@@ -250,7 +250,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select Role__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(null, affls[0].Role__c);
     }
@@ -279,7 +279,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select Status__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT Status__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Former', affls[0].Status__c);
     }
@@ -306,11 +306,11 @@ public with sharing class PREN_Affiliation_TEST {
         insert enrollment;
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select Contact__c, Account__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT Contact__c, Account__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         
         //The Program Enrollment record should be related to the Affiliation just created
-        enrollment = [select Affiliation__r.ID from Program_Enrollment__c where ID = :enrollment.ID];
+        enrollment = [SELECT Affiliation__r.ID FROM Program_Enrollment__c WHERE ID = :enrollment.ID];
         System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
         ID enrollmentAfflID = enrollment.Affiliation__r.ID; //Storing it to use it in next query
         
@@ -320,7 +320,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //Related Affiliation should have been automatically deleted
-        affls = [select ID from Affiliation__c where ID = :enrollmentAfflID];
+        affls = [SELECT ID FROM Affiliation__c WHERE ID = :enrollmentAfflID];
         System.assertEquals(0, affls.size());
     }
     
@@ -348,11 +348,11 @@ public with sharing class PREN_Affiliation_TEST {
         insert enrollment;
         
         //An Affiliation should have been automatically created fron the Program Enrollment
-        List<Affiliation__c> affls = [select Contact__c, Account__c from Affiliation__c where Account__r.ID = :acc.ID];
+        List<Affiliation__c> affls = [SELECT Contact__c, Account__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
         
         //The Program Enrollment record should be related to the Affiliation just created
-        enrollment = [select Affiliation__r.ID from Program_Enrollment__c where ID = :enrollment.ID];
+        enrollment = [SELECT Affiliation__r.ID FROM Program_Enrollment__c WHERE ID = :enrollment.ID];
         System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
         
         ID enrollmentAfflID = enrollment.Affiliation__r.ID; //Storing it to use it in next query
@@ -363,7 +363,7 @@ public with sharing class PREN_Affiliation_TEST {
         Test.stopTest();
         
         //Related Affiliation status should have been automatically updated
-        affls = [select Status__c from Affiliation__c where ID = :enrollmentAfflID];
+        affls = [SELECT Status__c FROM Affiliation__c WHERE ID = :enrollmentAfflID];
         System.assertEquals(1, affls.size());
         System.assertEquals(afflStatus, affls[0].Status__c);
     }
