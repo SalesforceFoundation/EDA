@@ -16,11 +16,13 @@
         //We do this because we cannot get the selected label from the drop-down, only the value
         var picklistEntries = component.get("v.picklistEntries");
         var selectedPicklistLabel = '';
-        for(var i = 0; i <picklistEntries.length; i += 1) {
+        
+        for(var i = 0; i < picklistEntries.length; i += 1) {
             if(picklistEntries[i].picklistValue === selectedPicklistValue) {
                 selectedPicklistLabel = picklistEntries[i].picklistLabel;
             }
         }
+      
         component.set("v.picklistLabel", selectedPicklistLabel);
     }
 })
