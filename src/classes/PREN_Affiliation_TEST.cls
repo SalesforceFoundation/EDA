@@ -87,7 +87,7 @@ public with sharing class PREN_Affiliation_TEST {
         insert acc;
         
         //Test for end date
-        Date testDate = Date.newInstance(1970,1,1);
+        Date testDate = Date.newInstance(1970, 1, 1);
         
         //Create Program Enrollment
         Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, End_Date__c = testDate);
@@ -119,7 +119,7 @@ public with sharing class PREN_Affiliation_TEST {
         insert acc;
         
         //Test for end date
-        Date testDate = Date.newInstance(1970,1,1);
+        Date testDate = Date.newInstance(1970, 1, 1);
         
         //Create Program Enrollment
         Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, End_Date__c = testDate);
@@ -151,7 +151,7 @@ public with sharing class PREN_Affiliation_TEST {
         insert acc;
         
         //Test for end date
-        Date testDate = Date.newInstance(1970,1,1);
+        Date testDate = Date.newInstance(1970, 1, 1);
         
         //Create Program Enrollment
         Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, Start_Date__c = testDate);
@@ -183,7 +183,7 @@ public with sharing class PREN_Affiliation_TEST {
         insert acc;
         
         //Test for end date
-        Date testDate = Date.newInstance(1970,1,1);
+        Date testDate = Date.newInstance(1970, 1, 1);
         
         //Create Program Enrollment
         Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, Start_Date__c = testDate);
@@ -203,7 +203,7 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void setAfflFromProgramEnrollmentRoleYes() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = true,Affl_ProgEnroll_Role_Map__c='Student'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = true, Affl_ProgEnroll_Role_Map__c='Student'));
         
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -232,7 +232,7 @@ public with sharing class PREN_Affiliation_TEST {
     */
     @isTest
     public static void setAfflFromProgramEnrollmentRoleNo() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = false,Affl_ProgEnroll_Role_Map__c='Student'));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = false, Affl_ProgEnroll_Role_Map__c='Student'));
         
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;

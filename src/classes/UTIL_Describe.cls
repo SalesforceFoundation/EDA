@@ -124,7 +124,7 @@ public class UTIL_Describe {
             fillFieldMapsForObject(objectName, fieldName);
                 
         // Check for picklist.
-        if(getFieldType(objectName,fieldName) != 'PICKLIST') {
+        if(getFieldType(objectName, fieldName) != 'PICKLIST') {
             throw new SchemaDescribeException('Invalid Selection. Field name \'' + fieldName + '\' for object name \'' + objectName + '\' is not a picklist.');
         }
         
@@ -138,7 +138,7 @@ public class UTIL_Describe {
             //Get the picklist values for the field
             List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
 
-            fieldPicklistEntries.get(objectName).put(fieldName,picklistValues);
+            fieldPicklistEntries.get(objectName).put(fieldName, picklistValues);
         }
     }
 
@@ -338,7 +338,7 @@ public class UTIL_Describe {
         fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
         
         //fill picklist value map for object. Will throw an exception if it is invalid.
-        fillPicklistEntriesForObject(objectName,fieldName);
+        fillPicklistEntriesForObject(objectName, fieldName);
 
         return fieldPicklistEntries.get(objectName).get(fieldName);
     }
@@ -445,15 +445,15 @@ public class UTIL_Describe {
      * @param objectName Name of the object to retrieve picklist values for.
      * @param fieldName Name of the field to retrieve picklist values for.
      * False if we want it to be the friendly name.
-     * @return Map<String,String> Map of picklist labels to values for the object and field specified.
+     * @return Map<String, String> Map of picklist labels to values for the object and field specified.
      */
     @AuraEnabled
-    public static Map<String,String> getPicklistActiveValuesMap(String objectName, String fieldName) {
-        Map<String,String> picklistValues = new Map<String,String>();
+    public static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
+        Map<String, String> picklistValues = new Map<String, String>();
         
-        for(Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName,fieldName)) {
+        for(Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, fieldName)) {
             if(picklistEntry.isActive()) {
-                picklistValues.put(picklistEntry.getLabel(),picklistEntry.getValue());
+                picklistValues.put(picklistEntry.getLabel(), picklistEntry.getValue());
             }
         }
 
@@ -469,7 +469,7 @@ public class UTIL_Describe {
      */
     @AuraEnabled
     public static String getPicklistDefaultValueLabel(String objectName, String fieldName) {
-        fillPicklistEntriesForObject(objectName,fieldName);
+        fillPicklistEntriesForObject(objectName, fieldName);
         
         for(Schema.PicklistEntry picklistEntry : fieldPicklistEntries.get(objectName).get(fieldName)) {
             if(picklistEntry.isDefaultValue()) {
@@ -537,7 +537,7 @@ public class UTIL_Describe {
             }
 
             // Obtain the RecordTypeInfos for this SObjectType objectType
-            Map<Id,Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+            Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
 
             for (SObject rt : results) {
                 // Check RecordType IS available for the running user
