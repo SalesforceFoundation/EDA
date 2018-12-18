@@ -127,8 +127,6 @@ public class UTIL_Describe {
 		if(getFieldType(objectName,fieldName) != 'PICKLIST') {
 			throw new SchemaDescribeException('Invalid Selection. Field name \'' + fieldName + '\' for object name \'' + objectName + '\' is not a picklist.');
 		}
-
-		// fill entries for the first time.
 		
 		//Create object to field map for picklist if needed.
         if (!fieldPicklistEntries.containsKey(objectName)) {
