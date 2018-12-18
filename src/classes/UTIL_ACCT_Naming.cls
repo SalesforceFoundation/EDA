@@ -34,18 +34,21 @@
 * @description Utility for Naming
 */
 public class UTIL_ACCT_Naming {
-    //TODO: COMMENTS
+    /*******************************************************************************************************
+    * @description update admin account names if any changes made to contacts' lastname
+    * @param listContactsChangedLastName list of contacts whose lastnames are changed
+    * @return list<Account>
+    */
     public static list<Account> updateAdminAccountsName(List<Contact> listContactsChangedLastName) {
-        list<Account> listAccToUpdate = new list<Account>();
-        map<Id, Contact> mapAccIdToCon = new map<Id, Contact>();
+        List<Account> listAccToUpdate = new List<Account>();
+        Map<Id, Contact> mapAccIdToCon = new Map<Id, Contact>();
         for (Contact con : listContactsChangedLastName) {
             mapAccIdToCon.put(con.AccountId, con);
         }
 
-        list<Account> listAcc = [SELECT Id, RecordTypeId
-        FROM Account
-        WHERE Id IN :mapAccIdToCon.keySet()];
-
+        List<Account> listAcc = [SELECT Id, RecordTypeId
+                                FROM Account
+                                WHERE Id IN :mapAccIdToCon.keySet()];
         for (Account acc : listAcc) {
             // only consider Admin Accounts
             if (acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
@@ -63,11 +66,11 @@ public class UTIL_ACCT_Naming {
     * @return void
     */
     public static void updateHHAccountsName(Set<Id> accIdsToRename) {
-        list<Account> listAccsToRename = new list<Account>();
+        List<Account> listAccsToRename = new List<Account>();
 
-        // requery to get correct Account values (and all the other fields we will look at)
-        string strSoql = 'select id, RecordTypeId, ';
-        strSoql += '(select id, AccountId,' +
+        //Build dynamic query string
+        string strSoql = 'SELECT id, RecordTypeId, ';
+        strSoql += '(SELECT id, AccountId,' +
                 'Account.RecordTypeID, ' +
                 'Account.Primary_Contact__c, Account.Name,' +
                 'firstname, lastname, OwnerId, Salutation,' +
@@ -77,9 +80,10 @@ public class UTIL_ACCT_Naming {
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
             strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
 
-        strSoql += 'Phone, Fax from Contacts WHERE Exclude_from_Household_Name__c != true)';
+        strSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true)';
         strSoql += 'FROM Account WHERE Id IN :accIdsToRename';
 
+        //Re-query to get correct Account values (and all the other fields we will look at)
         listAccsToRename = database.query(strSoql);
 
         //Loop through listAccsToRename and modify the name accordingly
@@ -106,9 +110,7 @@ public class UTIL_ACCT_Naming {
         if (hhAccNamingFormat!= null) {
             return formatAccountName(cons, hhAccNamingFormat);
         } else {
-
             Set<String> householdLastNames = new Set<String>();
-
             for (Contact con : cons) {
                 householdLastNames.add(con.LastName);
             }
@@ -121,7 +123,7 @@ public class UTIL_ACCT_Naming {
                     name += ' ' + Label.defaultNamingConnector +' ';
                 }
             }
-            return name + ' ' + system.label.DefaultHouseholdName;
+            return name + ' ' + System.label.DefaultHouseholdName;
         }
     }
 
@@ -140,7 +142,7 @@ public class UTIL_ACCT_Naming {
             cons.add(con);
             return formatAccountName(cons, adminAccNamingFormat);
         } else {
-            return con.LastName + ' ' + system.label.DefaultAdminName;
+            return con.LastName + ' ' + System.label.DefaultAdminName;
         }
     }
 
@@ -150,7 +152,7 @@ public class UTIL_ACCT_Naming {
     * @return string. the generic account name
     */
     public static String strNameAccountForContact(Contact con) {
-        return con.LastName + ' ' + system.label.DefaultAccountName;
+        return con.LastName + ' ' + System.label.DefaultAccountName;
     }
 
     /*******************************************************************************************************
@@ -161,7 +163,6 @@ public class UTIL_ACCT_Naming {
     */
 
     private static String formatAccountName(List<Contact> cons, String setting) {
-
         String result = '';
         String settingPrefix = '';
         String settingSuffix = '';
