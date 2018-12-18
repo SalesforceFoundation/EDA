@@ -213,11 +213,11 @@ global class UTIL_Describe_API {
      * @param objectName Name of the object to retrieve picklist values for.
      * @param fieldName Name of the field to retrieve picklist values for.
      * False if we want it to be the friendly name.
-     * @return Map<String,String> Map of picklist labels to values for the object and field specified.
+     * @return Map<String, String> Map of picklist labels to values for the object and field specified.
      */
     @AuraEnabled
-    global static Map<String,String> getPicklistActiveValuesMap(String objectName, String fieldName) {
-	    return UTIL_Describe.getPicklistActiveValuesMap(objectName,fieldName);        
+    global static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
+	    return UTIL_Describe.getPicklistActiveValuesMap(objectName, fieldName);        
     }
 	
     /*******************************************************************************************************
@@ -229,7 +229,7 @@ global class UTIL_Describe_API {
      */
     @AuraEnabled
     public static String getPicklistDefaultValueLabel(String objectName, String fieldName) {
-	    return UTIL_Describe.getPicklistDefaultValueLabel(objectName,fieldName);        
+	    return UTIL_Describe.getPicklistDefaultValueLabel(objectName, fieldName);        
     }
 
     /*******************************************************************************************************
