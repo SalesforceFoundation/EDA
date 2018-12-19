@@ -29,6 +29,16 @@
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
     <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl End Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl Start Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    </fields>
+    <fields>
         <help>Estado al que se debe cambiar una afiliación cuando se elimina su inscripción en un programa relacionado, si la opción seleccionada es la de cambiar el estado en vez de eliminarlo.</help>
         <label>Estado de afil. al eliminar insc. prog.</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
@@ -37,6 +47,21 @@
         <help>Determina si se eliminará automáticamente una afiliación cuando se elimine su inscripción en un programa relacionado. De lo contrario, el estado cambiará a Anterior.</help>
         <label>Eliminación inscripción prog. afiliación</label>
         <name>Affl_ProgEnroll_Del__c</name>
+    </fields>
+    <fields>
+        <help><!-- The role to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Role Map --></label>
+        <name>Affl_ProgEnroll_Role_Map__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set. --></help>
+        <label><!-- Affl set role on Prog Enrollment create --></label>
+        <name>Affl_ProgEnroll_Set_Role__c</name>
+    </fields>
+    <fields>
+        <help><!-- The status to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Stat Map --></label>
+        <name>Affl_ProgEnroll_Status_Map__c</name>
     </fields>
     <fields>
         <help>Las relaciones creadas automáticamente se desduplican para evitar la creación de registros de relaciones duplicados entre dos contactos. Marque para evitar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre contactos.</help>

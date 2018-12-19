@@ -177,6 +177,34 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAfflCopyProgramEnrollmentEndDate --></label>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflDeleteProgramEnrollment --></label>
+        <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollDeleteRelated --></label>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetRole --></label>
+        <name>stgAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetRoleValue --></label>
+        <name>stgAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgAfterRunBackfill --></label>
         <name>stgAfterRunBackfill</name>
     </customLabels>
@@ -321,14 +349,6 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgDeleteRelatedAfflNo --></label>
-        <name>stgDeleteRelatedAfflNo</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgDeleteRelatedAfflYes --></label>
-        <name>stgDeleteRelatedAfflYes</name>
-    </customLabels>
-    <customLabels>
         <label>Deshabilitar el tratamiento de errores:</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
@@ -363,6 +383,30 @@
     <customLabels>
         <label>Los tipos de registro de cuenta que admiten la gestión de direcciones múltiples.</label>
         <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentEndDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetRole --></label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetRoleValue --></label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
         <label>Seleccione esta opción para habilitar la administración de direcciones múltiples para Contactos.</label>

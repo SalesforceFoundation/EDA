@@ -47,22 +47,22 @@ public with sharing class UTIL_Describe_TEST {
         string s;
         
         Schema.DescribeSObjectResult res = UTIL_Describe_API.getObjectDescribe('Contact');        
-        system.assertEquals(res.getName(), 'Contact');
+        System.assertEquals(res.getName(), 'Contact');
         s = UTIL_Describe_API.getObjectLabel('Contact');
-        system.assertEquals (s, res.getLabel());
+        System.assertEquals (s, res.getLabel());
 
         account a = new account(name='Test');
         insert a;
-        system.assert(UTIL_Describe_API.isObjectIdThisType(a.id, 'Account'));
+        System.assert(UTIL_Describe_API.isObjectIdThisType(a.id, 'Account'));
         
         s = UTIL_Describe_API.getFieldLabelSafe('Account', 'LastModifiedDate');
         
         Schema.DescribeFieldResult fr = UTIL_Describe_API.getFieldDescribe('Account', 'CreatedDate');     
         s = UTIL_Describe_API.getFieldLabelSafe('Account', 'CreatedDate');
-        system.assertEquals (s, fr.getLabel());
+        System.assertEquals (s, fr.getLabel());
 
         Map<String, Schema.DescribeFieldResult> afd = UTIL_Describe_API.getAllFieldsDescribe('Account');
-        system.assertEquals ('BillingCity', afd.get('billingcity').getName());
+        System.assertEquals ('BillingCity', afd.get('billingcity').getName());
         afd = UTIL_Describe_API.getAllFieldsDescribe('Account');
 
         SObject acctObj = UTIL_Describe_API.getPrototypeObject('Account');
@@ -70,30 +70,40 @@ public with sharing class UTIL_Describe_TEST {
         account acct = (account)(acctObj);
 
         s = UTIL_Describe_API.getFieldType('Account', 'CreatedDate');
-        system.assertEquals('DATETIME', s);
+        System.assertEquals('DATETIME', s);
         
         try {
             s = UTIL_Describe_API.getObjectLabel('sdlkfjsdlkfjsldkfjlsdkfj');
         } catch (exception e) {
-            system.assertEquals('Invalid object name \'sdlkfjsdlkfjsldkfjlsdkfj\'', e.getMessage());
+            System.assertEquals('Invalid object name \'sdlkfjsdlkfjsldkfjlsdkfj\'', e.getMessage());
         } 
         try {
             s = UTIL_Describe_API.getFieldLabel('Opportunity', 'sdlkfjsdlkfjsldkfjlsdkfj');
         } catch (exception e) {
-            system.assertEquals('Invalid field name \'sdlkfjsdlkfjsldkfjlsdkfj\'', e.getMessage());
+            System.assertEquals('Invalid field name \'sdlkfjsdlkfjsldkfjlsdkfj\'', e.getMessage());
         }
 
-        system.assertEquals(true, 
+        System.assertEquals(true, 
             UTIL_Describe_API.canDisplaytypesCopy(Schema.Displaytype.DATE, Schema.Displaytype.DATETIME));
 
         Map<String, Id> acctTypesMap = UTIL_Describe_API.getRecTypesMapByName('Account');
-        system.assertEquals(true, acctTypesMap.size() > 1);
+        System.assertEquals(true, acctTypesMap.size() > 1);
 
-        system.assertEquals(Schema.Displaytype.DATETIME, 
+        System.assertEquals(Schema.Displaytype.DATETIME, 
             UTIL_Describe_API.getFieldDisplaytype('Account', 'CreatedDate'));
 
         Map<String, Schema.DescribeFieldResult> acctIdFieldMap = UTIL_Describe_API.getFieldsOfType('Account', 'ID');
-        system.assertEquals(1, acctIdFieldMap.size());
+        System.assertEquals(1, acctIdFieldMap.size());
+        
+        Map<String, String> picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'AccountSource');
+        System.assertEquals(1, picklistEntries.size());
+    
+        String defaultPicklistEntry = UTIL_Describe_API.getPicklistDefaultValueLabel('Account', 'AccountSource');
+        System.assertEquals(1, picklistEntries.size());
+        
+        try {
+            picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'id');
+        } catch(UTIL_Describe.SchemaDescribeException sde){}
     }       
 
 }
