@@ -194,7 +194,7 @@ public with sharing class PREN_Affiliation_TEST {
         //An Affiliation should have been automatically created fron the Program Enrollment
         List<Affiliation__c> affls = [SELECT StartDate__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
-        System.assertEquals(testDate, affls[0].StartDate__c);
+        System.assertNotEquals(testDate, affls[0].StartDate__c);
     }
     
     /*********************************************************************************************************
