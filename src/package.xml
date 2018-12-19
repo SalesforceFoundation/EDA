@@ -107,9 +107,9 @@
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
-        <members>UTIL_CustomSettings_API</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
+        <members>UTIL_CustomSettings_API</members>
         <members>UTIL_Debug</members>
         <members>UTIL_Describe</members>
         <members>UTIL_Describe_API</members>
@@ -370,7 +370,11 @@
         <members>Relationship__c.Type__c</members>
         <members>Term__c.Account__c</members>
         <members>Term__c.End_Date__c</members>
+        <members>Term__c.Grading_Period_Sequence__c</members>
+        <members>Term__c.Instructional_Days__c</members>
+        <members>Term__c.Parent_Term__c</members>
         <members>Term__c.Start_Date__c</members>
+        <members>Term__c.Type__c</members>
         <members>Trigger_Handler__c.Active__c</members>
         <members>Trigger_Handler__c.Asynchronous__c</members>
         <members>Trigger_Handler__c.Class__c</members>
@@ -417,20 +421,22 @@
         <members>afflAccountNoRecordType</members>
         <members>afflAccoutMappingError</members>
         <members>afflNullPointerError</members>
-        <members>duplicateFieldInFilter</members>
-        <members>duplicateWithHEDAField</members>
         <members>afflTypeEnforced</members>
         <members>afflTypeEnforcedDescription</members>
         <members>automaticHHNaming</members>
         <members>automaticHHNamingHelpText</members>
         <members>defaultNamingConnector</members>
+        <members>duplicateFieldInFilter</members>
+        <members>duplicateWithHEDAField</members>
         <members>exceptionRequiredField</members>
         <members>exceptionValidationRule</members>
+        <members>fieldWithHEDANamespace</members>
         <members>firstNameLastNameAdminACC</members>
         <members>firstNameLastNameFamily</members>
         <members>firstNameLastNameHH</members>
         <members>giftProcessingConfigException</members>
         <members>hhAccNameFormat</members>
+        <members>hhAccNameFormatHelpText</members>
         <members>hhFamily</members>
         <members>lastNameAdminAcc</members>
         <members>lastNameFamily</members>
@@ -438,8 +444,6 @@
         <members>lastNameFirstNameFamily</members>
         <members>lastNameFirstNameHH</members>
         <members>lastNameHH</members>
-        <members>fieldWithHEDANamespace</members>
-        <members>hhAccNameFormatHelpText</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
@@ -606,10 +610,6 @@
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
-        <members>Course__c-ca</members>
-        <members>Course__c-en_US</members>
-        <members>Course__c-es</members>
-        <members>Course__c-fr</members>
         <members>Course_Enrollment__c-ca</members>
         <members>Course_Enrollment__c-en_US</members>
         <members>Course_Enrollment__c-es</members>
@@ -618,6 +618,10 @@
         <members>Course_Offering__c-en_US</members>
         <members>Course_Offering__c-es</members>
         <members>Course_Offering__c-fr</members>
+        <members>Course__c-ca</members>
+        <members>Course__c-en_US</members>
+        <members>Course__c-es</members>
+        <members>Course__c-fr</members>
         <members>Error__c-ca</members>
         <members>Error__c-en_US</members>
         <members>Error__c-es</members>
@@ -634,10 +638,6 @@
         <members>Program_Enrollment__c-en_US</members>
         <members>Program_Enrollment__c-es</members>
         <members>Program_Enrollment__c-fr</members>
-        <members>Relationship__c-ca</members>
-        <members>Relationship__c-en_US</members>
-        <members>Relationship__c-es</members>
-        <members>Relationship__c-fr</members>
         <members>Program_Plan__c-ca</members>
         <members>Program_Plan__c-en_US</members>
         <members>Program_Plan__c-es</members>
@@ -650,6 +650,10 @@
         <members>Relationship_Lookup__c-en_US</members>
         <members>Relationship_Lookup__c-es</members>
         <members>Relationship_Lookup__c-fr</members>
+        <members>Relationship__c-ca</members>
+        <members>Relationship__c-en_US</members>
+        <members>Relationship__c-es</members>
+        <members>Relationship__c-fr</members>
         <members>Term__c-ca</members>
         <members>Term__c-en_US</members>
         <members>Term__c-es</members>
