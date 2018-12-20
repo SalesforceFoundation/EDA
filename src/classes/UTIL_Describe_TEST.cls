@@ -97,10 +97,7 @@ public with sharing class UTIL_Describe_TEST {
 
         Map<String, String> picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'AccountSource');
         System.assert(picklistEntries.size() > 0);
-    
-        String defaultPicklistEntry = UTIL_Describe_API.getPicklistDefaultValueLabel('Account', 'AccountSource');
-        System.assertEquals(1, picklistEntries.size());
-        
+
         try {
             picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'id');
         } catch(UTIL_Describe.SchemaDescribeException sde){}
