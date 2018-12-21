@@ -132,7 +132,7 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
-        <description>The type of term being configured. K12 terms can be quarters that roll up into semesters which roll up into a school year. (NOTE: this may make more sense as record types later, we shall see).</description>
+        <description>The type of term being configured.</description>
         <externalId>false</externalId>
         <label>Type</label>
         <required>false</required>
