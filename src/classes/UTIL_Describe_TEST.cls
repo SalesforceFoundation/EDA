@@ -94,13 +94,10 @@ public with sharing class UTIL_Describe_TEST {
 
         Map<String, Schema.DescribeFieldResult> acctIdFieldMap = UTIL_Describe_API.getFieldsOfType('Account', 'ID');
         System.assertEquals(1, acctIdFieldMap.size());
-        
+
         Map<String, String> picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'AccountSource');
-        System.assertEquals(1, picklistEntries.size());
-    
-        String defaultPicklistEntry = UTIL_Describe_API.getPicklistDefaultValueLabel('Account', 'AccountSource');
-        System.assertEquals(1, picklistEntries.size());
-        
+        System.assert(picklistEntries.size() > 0);
+
         try {
             picklistEntries = UTIL_Describe_API.getPicklistActiveValuesMap('Account', 'id');
         } catch(UTIL_Describe.SchemaDescribeException sde){}

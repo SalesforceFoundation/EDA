@@ -219,18 +219,6 @@ global class UTIL_Describe_API {
     global static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
 	    return UTIL_Describe.getPicklistActiveValuesMap(objectName, fieldName);        
     }
-	
-    /*******************************************************************************************************
-     * @description Returns the picklist default value for a given SObjectType and field.
-     * @param objectName Name of the object to retrieve picklist values for.
-     * @param fieldName Name of the field to retrieve picklist values for.
-     * False if we want it to be the friendly name.
-     * @return String Default picklist label for the object and field specified.
-     */
-    @AuraEnabled
-    public static String getPicklistDefaultValueLabel(String objectName, String fieldName) {
-	    return UTIL_Describe.getPicklistDefaultValueLabel(objectName, fieldName);        
-    }
 
     /*******************************************************************************************************
      * @description Returns the ID of the Administrative Account record type, if it exists.

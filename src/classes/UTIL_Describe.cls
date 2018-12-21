@@ -459,27 +459,6 @@ public class UTIL_Describe {
 
         return picklistValues;
     }
-    
-    /*******************************************************************************************************
-     * @description Returns the picklist default value for a given SObjectType and field.
-     * @param objectName Name of the object to retrieve picklist values for.
-     * @param fieldName Name of the field to retrieve picklist values for.
-     * False if we want it to be the friendly name.
-     * @return String Default picklist label for the object and field specified.
-     */
-    @AuraEnabled
-    public static String getPicklistDefaultValueLabel(String objectName, String fieldName) {
-        fillPicklistEntriesForObject(objectName, fieldName);
-        
-        for(Schema.PicklistEntry picklistEntry : fieldPicklistEntries.get(objectName).get(fieldName)) {
-            if(picklistEntry.isDefaultValue()) {
-                return picklistEntry.getValue();
-            }
-        }
-
-        //This can happen without defaults.
-        return null;
-    }
 
     /*******************************************************************************************************
     * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
