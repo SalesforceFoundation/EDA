@@ -150,6 +150,10 @@
                 <fullName>School Year</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Part of Term</fullName>
+                <default>false</default>
+            </picklistValues>
         </picklist>
         <type>Picklist</type>
     </fields>
