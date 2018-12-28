@@ -298,6 +298,7 @@
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
         <members>Hierarchy_Settings__c.Admin_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Admin_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Administrative_Account_Record_Type__c</members>
         <members>Hierarchy_Settings__c.Advancement_Namespace__c</members>
         <members>Hierarchy_Settings__c.Affiliation_Record_Type_Enforced__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
