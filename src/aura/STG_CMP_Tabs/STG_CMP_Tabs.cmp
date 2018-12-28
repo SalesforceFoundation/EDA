@@ -11,8 +11,6 @@
 
     <aura:attribute name="householdRecTypeId" type="String" />
     <aura:attribute name="householdRecTypeName" type="String" />
-    <aura:attribute name="adminAccRecTypeId" type="String" />
-    <aura:attribute name="adminAccRecTypeName" type="String" />
 
     <aura:attribute name="accTypesToDeleteSelected" type="String[]" />
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
@@ -71,8 +69,7 @@
         <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
              accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}"
-             accRecTypes="{!v.accRecTypes}" householdRecTypeId="{!v.householdRecTypeId}" householdRecTypeName="{!v.householdRecTypeName}"
-             adminAccRecTypeId="{!v.adminAccRecTypeId}" adminAccRecTypeName="{!v.adminAccRecTypeName}"  />
+             accRecTypes="{!v.accRecTypes}" householdRecTypeId="{!v.householdRecTypeId}" householdRecTypeName="{!v.householdRecTypeName}" />
         </div>
         <div aura:id="systemTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
              <c:STG_CMP_System hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
