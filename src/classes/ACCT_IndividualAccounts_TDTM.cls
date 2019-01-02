@@ -451,11 +451,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account();
 
                 // construct the Account name
-                if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
+                if(defaultRecTypeID == hhAccRecTypeID)
                 	a.Name = strNameHHAccountForContact(new List<Contact>{c});
-                //TODO: we should not be asking for the record type directly, and instead let the use tell us which record type
                 //represents an Administrative account.
-                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
+                else if(defaultRecTypeID == adminAccRecTypeID)
                 	a.Name = strNameAdmAccountForContact(c);
                 else
                     a.Name = strNameAccountForContact(c);
