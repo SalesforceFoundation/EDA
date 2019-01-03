@@ -74,6 +74,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <fields>Type__c</fields>
+        <fields>Instructional_Days__c</fields>
         <relatedList>Term__c.Parent_Term__c</relatedList>
     </relatedLists>
     <relatedLists>
