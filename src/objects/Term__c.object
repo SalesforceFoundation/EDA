@@ -86,14 +86,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Start_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Start Date</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Grading_Period_Sequence__c</fullName>
         <description>Such as 1 for the first six week, 2 for the second six weeks, etc.</description>
         <externalId>false</externalId>
@@ -131,12 +123,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Type__c</fullName>
         <description>The type of term being configured.</description>
         <externalId>false</externalId>
         <label>Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
         <picklist>
             <picklistValues>
                 <fullName>Quarter</fullName>
@@ -154,7 +152,10 @@
                 <fullName>Part of Term</fullName>
                 <default>false</default>
             </picklistValues>
+            <sorted>false</sorted>
         </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <label>Term</label>
