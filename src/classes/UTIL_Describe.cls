@@ -482,7 +482,22 @@ public class UTIL_Describe {
      * @return String The ID of the Administrative Account record type as a String.
      */
 	public static String getAdminAccRecTypeID() {
-	    String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
+	    String recTypeId = '';
+        //Get user defined admin record type id
+        String userDefinedAdminRecordTypeID = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
+        if (userDefinedAdminRecordTypeID != NULL
+                && userDefinedAdminRecordTypeID != '') {
+            //If user defined admin record type not blank, use user defined record type id
+            recTypeId = userDefinedAdminRecordTypeID;
+        }else {
+            //Otherwise, use default record type
+            String defaultAdminRecordTypeId = getRecTypesMapByDevName('Account').get('Administrative');
+            if (defaultAdminRecordTypeId != NULL
+                    && defaultAdminRecordTypeId != '') {
+                recTypeId = defaultAdminRecordTypeId;
+            }
+        }
+
 	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
 	        if(getRecTypesMapByDevName('Account').values().size() > 0)
                 return getRecTypesMapByDevName('Account').values()[0];
@@ -497,7 +512,22 @@ public class UTIL_Describe {
      * @return String The ID of the Household Account record type as a String.
      */
 	public static String getHhAccRecTypeID() {
-	    String recTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
+	    String recTypeId = '';
+        //Get user defined household record type id
+        String userDefinedHHRecordTypeID = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
+        if (userDefinedHHRecordTypeID != NULL
+                && userDefinedHHRecordTypeID != '') {
+            //If user defined household record type not blank, use user defined record type id
+            recTypeId = userDefinedHHRecordTypeID;
+        }else {
+            //Otherwise, use default household record type
+            String defaultHHRecordTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
+            if (defaultHHRecordTypeId != NULL
+                    && defaultHHRecordTypeId != '') {
+                recTypeId = defaultHHRecordTypeId;
+            }
+        }
+
 	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
 	        if(getRecTypesMapByDevName('Account').values().size() > 1)
 	           return getRecTypesMapByDevName('Account').values()[1];

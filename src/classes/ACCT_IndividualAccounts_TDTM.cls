@@ -42,16 +42,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private static ID defaultRecTypeID = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
 
     /*******************************************************************************************************
-    * @description The record type of Household Account.
-    */
-    private static ID hhAccRecTypeID = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
-
-    /*******************************************************************************************************
-    * @description The record type of Administrative Account.
-    */
-    private static ID adminAccRecTypeID = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
-
-    /*******************************************************************************************************
     * @description a set of languages that require different naming conventions
     */
     private static Set<String> EasternOrderLanguages = new Set<String>{
@@ -149,7 +139,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         if(c.Account.Primary_Contact__c == null) {
                             mapAccountIdContactId.put(c.AccountId, c.Id);
                         }
-                        if (c.Account.RecordTypeId == hhAccRecTypeID
+                        if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                                 && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                             setAccountIdHHToRename.add(c.AccountId);
                         }
@@ -173,7 +163,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             //Used to Adv to inject oppor logic
                             mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
 
-                            if (c.Account.RecordTypeId == hhAccRecTypeID
+                            if (c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                                     && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
 
                                 setAccountIdHHToRename.add(c.AccountId);
@@ -213,7 +203,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 || c.FirstName != oldContacts[i].FirstName
                                 || c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c)
                             && c.AccountId != null
-                            && c.Account.RecordTypeId == hhAccRecTypeID
+                            && c.Account.RecordTypeId == UTIL_Describe.getHhAccRecTypeID()
                             && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
@@ -451,10 +441,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 Account a = new Account();
 
                 // construct the Account name
-                if(defaultRecTypeID == hhAccRecTypeID)
+                if(defaultRecTypeID == UTIL_Describe.getHhAccRecTypeID())
                 	a.Name = strNameHHAccountForContact(new List<Contact>{c});
                 //represents an Administrative account.
-                else if(defaultRecTypeID == adminAccRecTypeID)
+                else if(defaultRecTypeID == UTIL_Describe.getAdminAccRecTypeID())
                 	a.Name = strNameAdmAccountForContact(c);
                 else
                     a.Name = strNameAccountForContact(c);
@@ -536,8 +526,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     // If there are no Opportunities for this Account, add it for deletion
                     if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                         accountsForDeletion.add(thisAccount);
-                    } else if (thisAccount.RecordTypeId == hhAccRecTypeID ||
-                    thisAccount.RecordTypeId == adminAccRecTypeID) {
+                    } else if (thisAccount.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() ||
+                    thisAccount.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
                         listAccountIdUpdate.add(thisAccount.Id);
                     }
                 }
@@ -571,8 +561,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             for (Account acc : listAcc) {
                 // only consider HH and Admin Accounts
                 //TODO: use setting to determine if Account owner should be changed (W-009780)
-                if (acc.RecordTypeId == hhAccRecTypeID ||
-                acc.RecordTypeId == adminAccRecTypeID) {
+                if (acc.RecordTypeId == UTIL_Describe.getHhAccRecTypeID() ||
+                acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
                     // if there is only 1 contact associated with this account
                     if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != null) {
                     	Contact c = mapContactIdContactOwnerChange.get(acc.Primary_Contact__c);
