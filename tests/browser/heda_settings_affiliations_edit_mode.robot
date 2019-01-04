@@ -15,17 +15,16 @@ Validate Edit Mode For Affiliations, Settings
     #Set focus to the status field
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
     Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
-    
-    #Enter known value into status field, then save the form
-    Click Element                   //div[@class='slds-tabs--scoped']//input[@type='radio']
-    Input text                      //div[@class='slds-tabs--scoped']//input[@type='text']      StatusTest1
     Textfield Value Should Be       //div[@class='slds-tabs--scoped']//input[@type='text']      StatusTest1
 
+    #Save the changes
+    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
 
-#    #Save the changes
-#    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
-#    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
-    
+    # Record Type Validation
+    Click Element                   //input[contains(@class,'store-errors')]/parent::label
+
+    # Save the form
+    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
 *** Keywords ***
 
