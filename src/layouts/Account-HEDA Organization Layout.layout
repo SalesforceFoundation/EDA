@@ -133,10 +133,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Term__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>Course_ID__c</fields>
         <fields>Credit_Hours__c</fields>
         <fields>Description__c</fields>
