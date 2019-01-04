@@ -1,9 +1,5 @@
-**Note: for support questions, please use [The Power of Us Hub](https://powerofus.force.com)**. This repository's issues are reserved for feature requests and bug reports.
-
-* **I'm submitting a ...**
-  - [ ] bug report
-  - [ ] feature request
-  - [ ] support request => Please do not submit support request here, see note at the top of this template.
+**Note: FOR INTERNAL USE ONLY. For support questions, please use the HEDA Chatter group in [The Power of Us Hub](https://powerofus.force.com).
+For feature requests, please use the Ideas tab in [The Power of Us Hub](https://powerofus.force.com).**
 
 * **Do you want to request a *feature* or report a *bug*?**
 
@@ -34,6 +30,3 @@
   - **Then**: I should hear the label of the button
   - **And When**: I press enter
   - **Then**: I should hear that an action has occurred
-
--------------
-Once we have figured out a more final version of our Definition of Ready it will be pasted below to use for copying into our Work items as a template/checklist to make sure the story is ready for dev/qa/doc work to begin. 
