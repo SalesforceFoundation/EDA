@@ -86,12 +86,77 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Grading_Period_Sequence__c</fullName>
+        <description>Such as 1 for the first six week, 2 for the second six weeks, etc.</description>
+        <externalId>false</externalId>
+        <label>Grading Period Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Instructional_Days__c</fullName>
+        <description>The total number of instructional days in this term</description>
+        <externalId>false</externalId>
+        <label>Instructional Days</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to group terms together, such as 1st Quarter of 1st Semester of School Year.</description>
+        <externalId>false</externalId>
+        <label>Parent Term</label>
+        <referenceTo>Term__c</referenceTo>
+        <relationshipLabel>Terms</relationshipLabel>
+        <relationshipName>Terms</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>The type of term being configured.</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Quarter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Semester</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>School Year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Part of Term</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <label>Term</label>
     <listViews>
