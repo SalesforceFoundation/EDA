@@ -376,7 +376,11 @@
         <members>Relationship__c.Type__c</members>
         <members>Term__c.Account__c</members>
         <members>Term__c.End_Date__c</members>
+        <members>Term__c.Grading_Period_Sequence__c</members>
+        <members>Term__c.Instructional_Days__c</members>
+        <members>Term__c.Parent_Term__c</members>
         <members>Term__c.Start_Date__c</members>
+        <members>Term__c.Type__c</members>
         <members>Trigger_Handler__c.Active__c</members>
         <members>Trigger_Handler__c.Asynchronous__c</members>
         <members>Trigger_Handler__c.Class__c</members>
