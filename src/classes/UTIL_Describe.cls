@@ -47,8 +47,9 @@ public class UTIL_Describe {
     //maps to hold the describe info
     private static Map<String, Schema.SObjectType> gd;
     private static Map<String, Schema.DescribeSObjectResult> objectDescribes = new Map<String, Schema.DescribeSObjectResult>();
-    private static Map<String, Map<String, Schema.SObjectField>> fieldTokens = new Map<String,Map<String, Schema.SObjectField>>();
-    private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribes = new Map<String,Map<String, Schema.DescribeFieldResult>>();
+    private static Map<String, Map<String, Schema.SObjectField>> fieldTokens = new Map<String, Map<String, Schema.SObjectField>>();
+    private static Map<String, Map<String, Schema.DescribeFieldResult>> fieldDescribes = new Map<String, Map<String, Schema.DescribeFieldResult>>();
+    private static Map<String, Map<String, List<Schema.PicklistEntry>>> fieldPicklistEntries = new Map<String, Map<String, List<Schema.PicklistEntry>>>();
 
     /*******************************************
     * Gets describe maps for a new object
@@ -110,6 +111,34 @@ public class UTIL_Describe {
                     fieldDescribes.get(objectName).put(fieldName, dfr);
                 }
             }
+        }
+    }
+    
+    /*******************************************
+    * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
+    ********************************************/
+    private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
+        
+        // make sure we have this field's schema mapped
+        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName))
+            fillFieldMapsForObject(objectName, fieldName);
+                
+        // Check for picklist.
+        if(getFieldType(objectName, fieldName) != 'PICKLIST') {
+            throw new SchemaDescribeException('Invalid Selection. Field name \'' + fieldName + '\' for object name \'' + objectName + '\' is not a picklist.');
+        }
+        
+        //Create object to field map for picklist if needed.
+        if (!fieldPicklistEntries.containsKey(objectName)) {
+            fieldPicklistEntries.put(objectName, new Map<String, List<Schema.PicklistEntry>>());
+        }
+        
+        //Create object to picklist map if needed.
+        if(!fieldPicklistEntries.get(objectName).containsKey(fieldName)) {
+            //Get the picklist values for the field
+            List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
+
+            fieldPicklistEntries.get(objectName).put(fieldName, picklistValues);
         }
     }
 
@@ -297,6 +326,22 @@ public class UTIL_Describe {
             return strField;
         }
     }
+    
+    /*******************************************************************************************************
+    * @description Returns field PicklistEntry data
+    * @param objectName the name of the object to look up
+    * @param fieldName the name of the field to look up
+    * @return List<Schema.PicklistEntry> the picklist entry list for the given field
+    */
+    public static List<Schema.PicklistEntry> getFieldPicklistEntries(String objectName, String fieldName) {
+        // fields in our own package must not have their prefix for the Describe Field Map
+        fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
+        
+        //fill picklist value map for object. Will throw an exception if it is invalid.
+        fillPicklistEntriesForObject(objectName, fieldName);
+
+        return fieldPicklistEntries.get(objectName).get(fieldName);
+    }
 
     /*******************************************************************************************************
     * @description checks whether the field exists
@@ -393,6 +438,27 @@ public class UTIL_Describe {
         }
         return strFields.substring(0, strFields.length()-1);
     }
+    
+    /*******************************************************************************************************
+     * @description Returns a map of active, user-available picklist values and labels for a given
+     * SObjectType and field, keyed by picklist label with a value of picklist value.
+     * @param objectName Name of the object to retrieve picklist values for.
+     * @param fieldName Name of the field to retrieve picklist values for.
+     * False if we want it to be the friendly name.
+     * @return Map<String, String> Map of picklist labels to values for the object and field specified.
+     */
+    @AuraEnabled
+    public static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
+        Map<String, String> picklistValues = new Map<String, String>();
+        
+        for(Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, fieldName)) {
+            if(picklistEntry.isActive()) {
+                picklistValues.put(picklistEntry.getLabel(), picklistEntry.getValue());
+            }
+        }
+
+        return picklistValues;
+    }
 
     /*******************************************************************************************************
     * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
@@ -408,10 +474,10 @@ public class UTIL_Describe {
      * @return Map<String, Id> Map of DeveloperName-to-ID of available record types for object specified.
      */
     public static Map<String, Id> getRecTypesMapByDevName(String objectName) {
-	    return getRecTypesMap(objectName, true);
-	}
+        return getRecTypesMap(objectName, true);
+    }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns a map of active, user-available RecordType IDs for a given SObjectType,
      * keyed by each RecordType's Name.
      * @param objectName Name of the object to retrieve record types for.
@@ -450,7 +516,7 @@ public class UTIL_Describe {
             }
 
             // Obtain the RecordTypeInfos for this SObjectType objectType
-            Map<Id,Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
+            Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
 
             for (SObject rt : results) {
                 // Check RecordType IS available for the running user
@@ -477,50 +543,50 @@ public class UTIL_Describe {
         return mapRecordTypes.get(objectName);
     }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns the ID of the Administrative Account record type, if it exists.
      * @return String The ID of the Administrative Account record type as a String.
      */
-	public static String getAdminAccRecTypeID() {
-	    String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
-	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 0)
+    public static String getAdminAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Account').values().size() > 0)
                 return getRecTypesMapByDevName('Account').values()[0];
-	        else return null;
+            else return null;
         } else {
             return recTypeId;
         }
-	}
+    }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns the ID of the Household Account record type, if it exists.
      * @return String The ID of the Household Account record type as a String.
      */
-	public static String getHhAccRecTypeID() {
-	    String recTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
-	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 1)
-	           return getRecTypesMapByDevName('Account').values()[1];
-	        else return null;
-	    } else {
-	        return recTypeId;
-	    }
-	}
+    public static String getHhAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Account').values().size() > 1)
+               return getRecTypesMapByDevName('Account').values()[1];
+            else return null;
+        } else {
+            return recTypeId;
+        }
+    }
 
-	/*******************************************************************************************************
+    /*******************************************************************************************************
      * @description Returns the ID of the Business Account record type, if it exists.
      * @return String The ID of the Business Account record type as a String.
      */
-	public static String getBizAccRecTypeID() {
-	    String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
-	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 2)
+    public static String getBizAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Account').values().size() > 2)
                 return getRecTypesMapByDevName('Account').values()[2];
             else return null;
         } else {
             return recTypeId;
         }
-	}
+    }
 
     /*******************************************************************************************************
     * @description Returns the ID of the Business Account record type, if it exists.

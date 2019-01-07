@@ -257,6 +257,34 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAfflCopyProgramEnrollmentEndDate --></label>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflDeleteProgramEnrollment --></label>
+        <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollDeleteRelated --></label>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetRole --></label>
+        <name>stgAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetRoleValue --></label>
+        <name>stgAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgAfflProgEnrollSetStatusValue --></label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
         <label>Després d&apos;executar el reenviament:</label>
         <name>stgAfterRunBackfill</name>
     </customLabels>
@@ -401,14 +429,6 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>No, només s&apos;ha de canviar l&apos;estat a:</label>
-        <name>stgDeleteRelatedAfflNo</name>
-    </customLabels>
-    <customLabels>
-        <label>Sí:</label>
-        <name>stgDeleteRelatedAfflYes</name>
-    </customLabels>
-    <customLabels>
         <label>Desactiva el maneig d&apos;errors:</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
@@ -443,6 +463,30 @@
     <customLabels>
         <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
         <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentEndDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCopyProgramEnrollmentStartDate --></label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetRole --></label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetRoleValue --></label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
