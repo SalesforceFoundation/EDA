@@ -27,8 +27,8 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
-				component.set("v.adminAccRecTypeId", settingsNoPrefix.Administrative_Account_Record_Type__c);
-				component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
+			component.set("v.adminAccRecTypeId", settingsNoPrefix.Administrative_Account_Record_Type__c);
+			component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
 		        component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
 
 		        component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
