@@ -1,7 +1,10 @@
-**Note: FOR INTERNAL USE ONLY. For support questions, please use the HEDA Chatter group in [The Power of Us Hub](https://powerofus.force.com).
-For feature requests, please use the Ideas tab in [The Power of Us Hub](https://powerofus.force.com).**
+*Note: FOR INTERNAL USE ONLY. For **support questions**, please use the HEDA Chatter group in [The Power of Us Hub](https://powerofus.force.com). For **feature requests**, please use the Ideas tab in [The Power of Us Hub](https://powerofus.force.com).*
+
+--------
 
 * **Do you want to request a *feature* or report a *bug*?**
+
+* **Was this item originated from the Community?**
 
 * **What is the current behavior?**
 
