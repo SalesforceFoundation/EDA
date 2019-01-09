@@ -489,7 +489,7 @@ public class UTIL_Describe {
                 && userDefinedAdminRecordTypeID != '') {
             //If user defined admin record type not blank, use user defined record type id
             recTypeId = userDefinedAdminRecordTypeID;
-        }else {
+        } else {
             //Otherwise, use default record type
             String defaultAdminRecordTypeId = getRecTypesMapByDevName('Account').get('Administrative');
             if (defaultAdminRecordTypeId != NULL
@@ -519,7 +519,7 @@ public class UTIL_Describe {
                 && userDefinedHHRecordTypeID != '') {
             //If user defined household record type not blank, use user defined record type id
             recTypeId = userDefinedHHRecordTypeID;
-        }else {
+        } else {
             //Otherwise, use default household record type
             String defaultHHRecordTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
             if (defaultHHRecordTypeId != NULL
