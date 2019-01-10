@@ -35,6 +35,11 @@
 */
 public class UTIL_ACCT_Naming {
     /*******************************************************************************************************
+    * @description The user defined Administrative Account record type.
+    */
+    private static ID userDefinedAdminRecordTypeId = Util_Describe.getAdminAccRecTypeID();
+
+    /*******************************************************************************************************
     * @description update admin account names if any changes made to contacts' lastname
     * @param listContactsChangedLastName list of contacts whose lastnames are changed
     * @return list<Account>
@@ -51,7 +56,7 @@ public class UTIL_ACCT_Naming {
                                 WHERE Id IN :mapAccIdToCon.keySet()];
         for (Account acc : listAcc) {
             // only consider Admin Accounts
-            if (acc.RecordTypeId == UTIL_Describe.getAdminAccRecTypeID()) {
+            if (acc.RecordTypeId == userDefinedAdminRecordTypeId) {
                 acc.Name = UTIL_ACCT_Naming.strNameAdmAccountForContact(mapAccIdToCon.get(acc.Id));
                 listAccToUpdate.add(acc);
             }
