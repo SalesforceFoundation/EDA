@@ -496,9 +496,11 @@ public class UTIL_Describe {
         }
 
 	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 0)
+	        if(getRecTypesMapByDevName('Account').values().size() > 0) {
                 return getRecTypesMapByDevName('Account').values()[0];
-	        else return null;
+            } else {
+                return null;
+            }
         } else {
             return recTypeId;
         }
@@ -523,9 +525,11 @@ public class UTIL_Describe {
         }
 
 	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 1)
-	           return getRecTypesMapByDevName('Account').values()[1];
-	        else return null;
+	        if(getRecTypesMapByDevName('Account').values().size() > 1) {
+                return getRecTypesMapByDevName('Account').values()[1];
+            } else {
+                return null;
+            }
 	    } else {
 	        return recTypeId;
 	    }
@@ -538,9 +542,11 @@ public class UTIL_Describe {
 	public static String getBizAccRecTypeID() {
 	    String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
 	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 2)
+	        if(getRecTypesMapByDevName('Account').values().size() > 2) {
                 return getRecTypesMapByDevName('Account').values()[2];
-            else return null;
+            } else {
+                return null;
+            }
         } else {
             return recTypeId;
         }
@@ -553,9 +559,11 @@ public class UTIL_Describe {
     public static String getDepAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Department');
         if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-            if(getRecTypesMapByDevName('Account').values().size() > 2)
+            if(getRecTypesMapByDevName('Account').values().size() > 2) {
                 return getRecTypesMapByDevName('Account').values()[2];
-            else return null;
+            } else {
+                return null;
+            }
         } else {
             return recTypeId;
         }
@@ -569,9 +577,11 @@ public class UTIL_Describe {
     public static String getAcademicAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Academic_Program');
         if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-            if(getRecTypesMapByDevName('Account').values().size() > 2)
+            if(getRecTypesMapByDevName('Account').values().size() > 2) {
                 return getRecTypesMapByDevName('Account').values()[2];
-            else return null;
+            } else {
+                return null;
+            }
         } else {
             return recTypeId;
         }
@@ -586,9 +596,11 @@ public class UTIL_Describe {
         Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
         String recTypeId = recTypes.get('Default');
         if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-            if(recTypes.values().size() > 2)
+            if(recTypes.values().size() > 2) {
                 return recTypes.values()[2];
-            else return null;
+            } else {
+                return null;
+            }
         } else {
             return recTypeId;
         }
