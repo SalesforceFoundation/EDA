@@ -82,8 +82,8 @@
                                         <aura:if isTrue="{!v.isView}">
                                             <ui:outputCheckbox value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}" class="store-errors" />
                                             <aura:set attribute="else">
-                                                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
-                                                                  class="store-errors" />
+                                                <ui:inputCheckbox aura:id="afflRecordTypeEnforced" value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
+                                                                  class="affl-record-type-enforced" />
                                                 <span class="slds-checkbox--faux"></span>
                                                 <span class="slds-form-element__label"></span>
                                             </aura:set>
