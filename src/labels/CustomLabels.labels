@@ -989,7 +989,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflProgEnrollSetStatusValue</shortDescription>
-        <value>The status set on the related Affiliation when a Program Enrollment is created without a related affiliation.</value>
+        <value>The Status value set on the Affiliation created with the Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>
