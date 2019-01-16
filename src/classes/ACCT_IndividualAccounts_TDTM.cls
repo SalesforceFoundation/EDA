@@ -153,7 +153,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         }
                         if (c.Account.RecordTypeId != null
                                 && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
+                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
                             setAccountIdHHToRename.add(c.AccountId);
                         }
                     }
@@ -178,7 +178,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
                             if (c.Account.RecordTypeId != null
                                     && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
+                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
 
                                 setAccountIdHHToRename.add(c.AccountId);
                                 if (oldContacts[i].AccountId != null
@@ -188,7 +188,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 }
                             }
                         }else{
-                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
+                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
                                 setAccountIdHHToRename.add(oldContacts[i].AccountId);
                             }
                         }
@@ -221,7 +221,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             && c.AccountId != null
                             && c.Account.RecordTypeId != null
                             && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
+                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
 
