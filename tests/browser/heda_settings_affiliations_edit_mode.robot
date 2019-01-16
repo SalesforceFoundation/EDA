@@ -21,7 +21,7 @@ Validate Edit Mode For Affiliations, Settings
     Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
 
     # Record Type Validation
-    Click Element                   //input[contains(@class,'store-errors')]/parent::label
+    Click Element                   //input[contains(@class,'affl-record-type-enforced')]/parent::label
 
     # Save the form
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
