@@ -533,7 +533,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>Copy Program Enrollment End Date to Affiliation on Creation</value>
+        <value>Copy Affiliation End Date from Program Enrollment:</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
