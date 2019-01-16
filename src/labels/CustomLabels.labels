@@ -981,7 +981,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflProgEnrollSetRoleValue</shortDescription>
-        <value>The role set on the related Affiliation when a Program Enrollment is created without a related affiliation.</value>
+        <value>The Role value set on the Affiliation created with the Program Enrollment, if Specify Role for Created Affiliations is selected.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetStatusValue</fullName>
