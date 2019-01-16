@@ -541,7 +541,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>Copy Program Enrollment Start Date to Affiliation on Creation</value>
+        <value>Copy Affiliation Start Date from Program Enrollment:</value>
     </labels>
     <labels>
         <fullName>stgAfflDeleteProgramEnrollment</fullName>
@@ -957,7 +957,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the Start Date to the Affiliation it creates.</value>
+        <value>If selected, copy the Program Enrollment's Start Date to the created Affiliation. Otherwise, leave the created Affiliation's Start Date blank</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
