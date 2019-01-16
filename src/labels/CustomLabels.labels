@@ -573,7 +573,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflProgEnrollSetRoleValue</shortDescription>
-        <value>Program Enrollment Related Affiliation Created Role:</value>
+        <value>Role Specified for Created Affiliations:</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetStatusValue</fullName>
