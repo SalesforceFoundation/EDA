@@ -973,7 +973,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflProgEnrollSetRole</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, set the role of the Affiliation it creates.</value>
+        <value>If selected, set the created Affiliation's Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation's Role blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
