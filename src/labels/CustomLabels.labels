@@ -557,7 +557,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflProgEnrollDeleteRelated</shortDescription>
-        <value>Delete Related Affiliation On Program Enroll Deletion</value>
+        <value>Delete Related Affiliation When Deleting Program Enrollment</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRole</fullName>
