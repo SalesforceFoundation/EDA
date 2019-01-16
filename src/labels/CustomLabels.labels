@@ -549,7 +549,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
-        <value>Program Enrollment Related Affiliation Deletion Status:</value>
+        <value>Status of Affiliation Related to Deleted Program Enrollment:</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
@@ -557,7 +557,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflProgEnrollDeleteRelated</shortDescription>
-        <value>Delete Related Affiliation When Deleting Program Enrollment</value>
+        <value>Delete Related Affiliation When Deleting Program Enrollment:</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRole</fullName>
