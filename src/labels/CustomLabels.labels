@@ -949,7 +949,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>When a Program Enrollment is created without a related Affiliation, copy the End Date to the Affiliation it creates.</value>
+        <value>If selected, copy the Program Enrollment's End Date to the created Affiliation. Otherwise, leave the created Affiliation's End Date blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
