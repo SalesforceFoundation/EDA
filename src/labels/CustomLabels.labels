@@ -565,7 +565,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflProgEnrollSetRole</shortDescription>
-        <value>Set Program Enrollment Related Affiliation Role on Creation</value>
+        <value>Specify Role for Created Affiliations:</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRoleValue</fullName>
