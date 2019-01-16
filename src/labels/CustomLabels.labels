@@ -965,7 +965,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflDeleteProgramEnrollment</shortDescription>
-        <value>The status set on the related Affiliation when a Program Enrollment is deleted.</value>
+        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn't also deleted.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRole</fullName>
