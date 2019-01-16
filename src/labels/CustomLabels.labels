@@ -14,7 +14,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AfflProgEnrollDeleted</shortDescription>
-        <value>When a Program Enrollment is deleted, delete the related Affiliation.</value>
+        <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status of Affiliation Related to Deleted Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>AutoCreateFieldError</fullName>
