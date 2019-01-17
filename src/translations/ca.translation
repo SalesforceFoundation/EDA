@@ -473,6 +473,14 @@
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpAfflCreateFromProgramEnrollmentHeader --></label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflCreateFromProgramEnrollmentInfo --></label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgHelpAfflDeleteProgramEnrollment --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
