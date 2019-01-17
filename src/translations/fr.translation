@@ -189,7 +189,6 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-<<<<<<< HEAD
         <label><!-- stgAfflCopyProgramEnrollmentEndDate --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -216,10 +215,10 @@
     <customLabels>
         <label><!-- stgAfflProgEnrollSetStatusValue --></label>
         <name>stgAfflProgEnrollSetStatusValue</name>
-=======
+    </customLabels>
+    <customLabels>
         <label><!-- stgAdminAccountRecordType --></label>
         <name>stgAdminAccountRecordType</name>
->>>>>>> master
     </customLabels>
     <customLabels>
         <label>Après avoir exécuté le remplissage :</label>
@@ -402,7 +401,6 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-<<<<<<< HEAD
         <label><!-- stgHelpAfflCopyProgramEnrollmentEndDate --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -441,10 +439,10 @@
     <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
-=======
+    </customLabels>
+    <customLabels>
         <label><!-- stgHelpAdminRecType --></label>
         <name>stgHelpAdminRecType</name>
->>>>>>> master
     </customLabels>
     <customLabels>
         <label>Sélectionnez cette option pour activer la gestion des adresses multiples pour les contacts.</label>
