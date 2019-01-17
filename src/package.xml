@@ -516,6 +516,7 @@
         <members>stgHelpAfflCopyProgramEnrollmentEndDate</members>
         <members>stgHelpAfflCopyProgramEnrollmentStartDate</members>
         <members>stgHelpAfflCreateFromProgramEnrollmentHeader</members>
+        <members>stgHelpAfflCreateFromProgramEnrollmentInfo</members>
         <members>stgHelpAfflDeleteProgramEnrollment</members>
         <members>stgHelpAfflDeleteProgramEnrollmentHeader</members>
         <members>stgHelpAfflDeleteProgramEnrollmentInfo</members>
