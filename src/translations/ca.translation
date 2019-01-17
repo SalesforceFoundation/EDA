@@ -257,6 +257,10 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAdminAccountRecordType --></label>
+        <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
         <label>Després d&apos;executar el reenviament:</label>
         <name>stgAfterRunBackfill</name>
     </customLabels>
@@ -443,6 +447,10 @@
     <customLabels>
         <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
         <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAdminRecType --></label>
+        <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>

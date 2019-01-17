@@ -298,6 +298,7 @@
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
         <members>Hierarchy_Settings__c.Admin_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Admin_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Administrative_Account_Record_Type__c</members>
         <members>Hierarchy_Settings__c.Advancement_Namespace__c</members>
         <members>Hierarchy_Settings__c.Affiliation_Record_Type_Enforced__c</members>
         <members>Hierarchy_Settings__c.Affl_ProgEnroll_Del_Status__c</members>
@@ -455,6 +456,7 @@
         <members>stgAccoutTypesWithoutContactsDelete</members>
         <members>stgAddHispanicOrLatinoPicklistValue</members>
         <members>stgAddNotHispanicOrLatinoPicklistValue</members>
+        <members>stgAdminAccountRecordType</members>
         <members>stgAfterRunBackfill</members>
         <members>stgAutoCompleteEnterChatterGroupName</members>
         <members>stgAutoCompleteEnterUserName</members>
@@ -502,6 +504,7 @@
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
+        <members>stgHelpAdminRecType</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpCopyQueuedEmailSent</members>

@@ -107,6 +107,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
         hs.Automatic_Household_Naming__c = false;
         hs.Affiliation_Record_Type_Enforced__c = false;
+        hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
+
     }
 
     /*******************************************************************************************************
@@ -140,7 +142,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Household_Account_Naming_Format__c = mySettings.Household_Account_Naming_Format__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
-
+        settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
+        
         orgSettings = settings;
         return settings;
     }
