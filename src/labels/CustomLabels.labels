@@ -976,6 +976,14 @@
         <value>Program Enrollment Deletions</value>
     </labels>
     <labels>
+        <fullName>stgHelpAfflDeleteProgramEnrollmentInfo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflDeleteProgramEnrollmentInfo</shortDescription>
+        <value>When deleting a Program Enrollment, its related Affiliation can either be deleted or have its Status changed.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAfflProgEnrollSetRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
