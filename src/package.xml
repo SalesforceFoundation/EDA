@@ -516,6 +516,7 @@
         <members>stgHelpAfflCopyProgramEnrollmentEndDate</members>
         <members>stgHelpAfflCopyProgramEnrollmentStartDate</members>
         <members>stgHelpAfflDeleteProgramEnrollment</members>
+        <members>stgHelpAfflDeleteProgramEnrollmentHeader</members>
         <members>stgHelpAfflProgEnrollSetRole</members>
         <members>stgHelpAfflProgEnrollSetRoleValue</members>
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
