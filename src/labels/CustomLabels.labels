@@ -469,7 +469,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAccountRecordTypeSupportsHHAddress</shortDescription>
-        <value>Account record type that supports Household Addresses:</value>
+        <value>Household Account Record Type:</value>
     </labels>
     <labels>
         <fullName>stgAccountTypesMultiAddressesEnabled</fullName>
@@ -502,6 +502,14 @@
         <protected>true</protected>
         <shortDescription>stgAddNotHispanicOrLatinoPicklistValue</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountRecordType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAdminAccountRecordType</shortDescription>
+        <value>Administrative Account Record Type:</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
@@ -880,6 +888,14 @@
         <value>The Account record types that support multiple address management.</value>
     </labels>
     <labels>
+        <fullName>stgHelpAdminRecType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAdminRecType</shortDescription>
+        <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1037,7 +1053,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpHouseholdRecType</shortDescription>
-        <value>The Account record type that best represents Households. HEDA uses the Household Account record type by default, but you can use another record type if you wish.</value>
+        <value>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpIfCustomValuesEthnicityCopyRace</fullName>

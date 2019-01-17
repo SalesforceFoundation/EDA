@@ -58,6 +58,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Administrative_Account_Record_Type__c</fullName>
+        <description>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</inlineHelpText>
+        <label>Administrative Account Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Advancement_Namespace__c</fullName>
         <defaultValue>&quot;adv1&quot;</defaultValue>
         <description>The namespace of the Gift Processing package.</description>
@@ -224,9 +236,9 @@
     </fields>
     <fields>
         <fullName>Household_Addresses_RecType__c</fullName>
-        <description>Account record type that supports Household Addresses behavior.</description>
+        <description>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Account record type that supports Household Addresses behavior.</inlineHelpText>
+        <inlineHelpText>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</inlineHelpText>
         <label>Household Addresses Acc Record Type</label>
         <length>255</length>
         <required>false</required>

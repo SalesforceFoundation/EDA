@@ -189,6 +189,10 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAdminAccountRecordType --></label>
+        <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
         <label>Après avoir exécuté le remplissage :</label>
         <name>stgAfterRunBackfill</name>
     </customLabels>
@@ -375,6 +379,10 @@
     <customLabels>
         <label>Les types d&apos;enregistrement de compte qui prennent en charge la gestion des adresses multiples.</label>
         <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAdminRecType --></label>
+        <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
         <label>Sélectionnez cette option pour activer la gestion des adresses multiples pour les contacts.</label>

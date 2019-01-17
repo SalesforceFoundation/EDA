@@ -27,7 +27,8 @@
 	    		//because this method is called after the init method of that component.
 	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
 	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
-		        component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
+			component.set("v.adminAccRecTypeId", settingsNoPrefix.Administrative_Account_Record_Type__c);
+			component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
 		        component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
 
 		        component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
@@ -38,7 +39,7 @@
 	    		//Get account record types
 	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
 	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
-	    		        settingsNoPrefix.Household_Addresses_RecType__c);
+	    		        settingsNoPrefix.Household_Addresses_RecType__c, settingsNoPrefix.Administrative_Account_Record_Type__c);
           // Get Course Connection Record Types
 	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Student_RecType__c,
 	    		        settingsNoPrefix.Faculty_RecType__c);
@@ -52,7 +53,7 @@
 	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
 	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in
 	//this helper. And we need the Account Processor value from HierarchySettings.
-	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId, householdTypeId) {
+	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId, householdTypeId, adminTypeId) {
 		//Get all available account record types
 		var action = component.get("c.getRecTypesMapByName");
 		action.setParams({ "objectName" : 'Account'});
@@ -72,6 +73,9 @@
 	    				if(recTypesObj[property].indexOf(householdTypeId) > -1) {
                             component.set("v.householdRecTypeName", property);
                         }
+						if(recTypesObj[property].indexOf(adminTypeId) > -1) {
+							component.set("v.adminAccRecTypeName", property);
+						}
 	    			}
 	    		}
 	    		component.set("v.accRecTypes", accRecTypes);

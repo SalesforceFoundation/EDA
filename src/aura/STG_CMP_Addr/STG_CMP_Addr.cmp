@@ -8,6 +8,8 @@
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="householdRecTypeName" type="String" />
     <aura:attribute name="householdRecTypeId" type="String" />
+    <aura:attribute name="adminAccRecTypeName" type="String" />
+    <aura:attribute name="adminAccRecTypeId" type="String" />
 
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-2">
@@ -82,15 +84,32 @@
         </div>
 
         <div class="slds-col slds-size--1-of-2">
+            <ui:outputText value="{!$Label.c.stgAdminAccountRecordType}" class="slds-text-body--small" />
+        </div>
+        <div class="slds-col slds-size--1-of-2">
+            <c:CMP_RecTypes_Dropdown class="hh-addresses-account-record-type"
+                                     setting="{!v.hierarchySettings.Administrative_Account_Record_Type__c}"
+                                     isView="{!v.isView}"
+                                     recTypeId="{!v.adminAccRecTypeId}"
+                                     recTypeName="{!v.adminAccRecTypeName}"
+                                     recTypes="{!v.accRecTypes}"
+            />
+        </div>
+
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <ui:outputText value="{!$Label.c.stgHelpAdminRecType}" class="slds-text-body--small" />
+        </div>
+
+        <div class="slds-col slds-size--1-of-2">
             <ui:outputText value="{!$Label.c.stgAccountRecordTypeSupportsHHAddress}" class="slds-text-body--small" />
         </div>
         <div class="slds-col slds-size--1-of-2">
             <c:CMP_RecTypes_Dropdown class="hh-addresses-account-record-type"
-              setting="{!v.hierarchySettings.Household_Addresses_RecType__c}"
-              isView="{!v.isView}"
-              recTypeId="{!v.householdRecTypeId}"
-              recTypeName="{!v.householdRecTypeName}"
-              recTypes="{!v.accRecTypes}"
+                                     setting="{!v.hierarchySettings.Household_Addresses_RecType__c}"
+                                     isView="{!v.isView}"
+                                     recTypeId="{!v.householdRecTypeId}"
+                                     recTypeName="{!v.householdRecTypeName}"
+                                     recTypes="{!v.accRecTypes}"
             />
         </div>
 
