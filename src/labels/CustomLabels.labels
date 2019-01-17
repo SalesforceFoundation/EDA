@@ -960,6 +960,14 @@
         <value>If selected, copy the Program Enrollment's Start Date to the created Affiliation. Otherwise, leave the created Affiliation's Start Date blank</value>
     </labels>
     <labels>
+        <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflCreateFromProgramEnrollmentHeader</shortDescription>
+        <value>Affiliations Created with Program Enrollments</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
