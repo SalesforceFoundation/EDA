@@ -973,7 +973,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCreateFromProgramEnrollmentInfo</shortDescription>
-        <value>AWhen creating a Program Enrollment without an existing related Affiliation, create an Affiliation with the values specified here.</value>
+        <value>When creating a Program Enrollment without an existing related Affiliation, create an Affiliation with the values specified here.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
