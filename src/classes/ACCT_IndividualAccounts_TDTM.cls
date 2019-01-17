@@ -120,11 +120,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         // AFTER DELETE
         if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
-            for (Contact c : oldContacts){
+            for (Contact c : oldContacts) {
                 listContactAccountDelete.add(c);
                 // Rename the account if a contact is deleted from a household account
                 if (c.AccountId != null
-                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                     setAccountIdHHToRename.add(c.AccountId);
                 }
             }
@@ -176,7 +176,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             if (c.Account.RecordTypeId == userDefinedHHRecordTypeId
                                     && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                                 setAccountIdHHToRename.add(c.AccountId);
-                                if (oldContacts[i].AccountId != null){
+                                if (oldContacts[i].AccountId != null) {
                                     setAccountIdHHToRename.add(oldContacts[i].AccountId);
                                 }
                             }
@@ -273,17 +273,17 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         //Rename household Accounts
-        if (setAccountIdHHToRename.size() > 0){
+        if (setAccountIdHHToRename.size() > 0) {
             UTIL_ACCT_Naming.updateHHAccountsName(setAccountIdHHToRename);
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert){
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, false);
-        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, false);
-        }else if (triggerAction == TDTM_Runnable.Action.AfterDelete){
+        }else if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);
         }
 
