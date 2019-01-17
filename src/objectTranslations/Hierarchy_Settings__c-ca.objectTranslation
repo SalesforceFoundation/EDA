@@ -34,6 +34,11 @@
         <name>Admin_Other_Name_Setting__c</name>
     </fields>
     <fields>
+        <help><!-- The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts. --></help>
+        <label><!-- Administrative Account Record Type --></label>
+        <name>Administrative_Account_Record_Type__c</name>
+    </fields>
+    <fields>
         <help><!-- The namespace of the Gift Processing package. --></help>
         <label><!-- Advancement Namespace --></label>
         <name>Advancement_Namespace__c</name>

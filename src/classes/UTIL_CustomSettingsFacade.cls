@@ -112,6 +112,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Affl_ProgEnroll_Set_Role__c = false;
         hs.Affl_ProgEnroll_Status_Map__c = 'Current';
         hs.Affiliation_Record_Type_Enforced__c = false;
+        hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
+
     }
 
     /*******************************************************************************************************
@@ -150,7 +152,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c; 
         settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
-
+        settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
+        
         orgSettings = settings;
         return settings;
     }

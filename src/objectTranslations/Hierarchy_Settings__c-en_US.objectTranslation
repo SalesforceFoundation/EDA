@@ -24,6 +24,11 @@
         <name>Accounts_to_Delete__c</name>
     </fields>
     <fields>
+        <help><!-- The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts. --></help>
+        <label><!-- Administrative Account Record Type --></label>
+        <name>Administrative_Account_Record_Type__c</name>
+    </fields>
+    <fields>
         <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
         <label><!-- Affiliation Record Type Enforced --></label>
         <name>Affiliation_Record_Type_Enforced__c</name>
@@ -111,7 +116,7 @@
         <name>Faculty_RecType__c</name>
     </fields>
     <fields>
-        <help><!-- Account record type that supports Household Addresses behavior. --></help>
+        <help><!-- The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts. --></help>
         <label><!-- Household Addresses Acc Record Type --></label>
         <name>Household_Addresses_RecType__c</name>
     </fields>

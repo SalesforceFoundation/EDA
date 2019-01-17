@@ -205,6 +205,10 @@
         <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAdminAccountRecordType --></label>
+        <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgAfterRunBackfill --></label>
         <name>stgAfterRunBackfill</name>
     </customLabels>
@@ -423,6 +427,10 @@
     <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAdminRecType --></label>
+        <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
         <label>Seleccione esta opción para habilitar la administración de direcciones múltiples para Contactos.</label>

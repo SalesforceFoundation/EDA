@@ -1,104 +1,108 @@
 ({
-    init : function(component) {
-        //Retrieving hierarchy settings
-        this.getHierarchySettings(component);
+	init : function(component) {
+		//Retrieving hierarchy settings
+		this.getHierarchySettings(component);
 
-        // since we can't call this.processTabs(component, 'afflTabBtn') from here
-        // well process the tabs manually here.
-        $A.util.addClass(component.find("afflTab"), "slds-active");
+		// since we can't call this.processTabs(component, 'afflTabBtn') from here
+		// well process the tabs manually here.
+		$A.util.addClass(component.find("afflTab"), "slds-active");
 
-        $A.util.addClass(component.find("afflTabContent"), "slds-show");
-        $A.util.addClass(component.find("relTabContent"), "slds-hide");
-        $A.util.addClass(component.find("addrTabContent"), "slds-hide");
-        $A.util.addClass(component.find("coursesTabContent"), "slds-hide");
-        $A.util.addClass(component.find("courseConTabContent"), "slds-hide");
-        $A.util.addClass(component.find("systemTabContent"), "slds-hide");
-    },
+		$A.util.addClass(component.find("afflTabContent"), "slds-show");
+		$A.util.addClass(component.find("relTabContent"), "slds-hide");
+		$A.util.addClass(component.find("addrTabContent"), "slds-hide");
+		$A.util.addClass(component.find("coursesTabContent"), "slds-hide");
+		$A.util.addClass(component.find("courseConTabContent"), "slds-hide");
+		$A.util.addClass(component.find("systemTabContent"), "slds-hide");
+	},
 
-    getHierarchySettings : function(component) {
-        var prefix = component.get("v.namespacePrefix");
-        var action = component.get("c.getSettings");
-        action.setCallback(this, function(response) {
-            if(response.getState() === "SUCCESS") {
-                var settings = response.getReturnValue();
-                var settingsNoPrefix = this.removePrefixHierarchySettings(settings, prefix);
-                component.set("v.hierarchySettings", settingsNoPrefix);
-                //Even though this property is only used but the CMP_System component, we set it here
-                //because this method is called after the init method of that component.
-                component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
-                component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
-                component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
-                component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
+	getHierarchySettings : function(component) {
+		var prefix = component.get("v.namespacePrefix");
+		var action = component.get("c.getSettings");
+	    action.setCallback(this, function(response) {
+	    	if(response.getState() === "SUCCESS") {
+	    		var settings = response.getReturnValue();
+	    		var settingsNoPrefix = this.removePrefixHierarchySettings(settings, prefix);
+	    		component.set("v.hierarchySettings", settingsNoPrefix);
+	    		//Even though this property is only used but the CMP_System component, we set it here
+	    		//because this method is called after the init method of that component.
+	    		component.set("v.accRecTypeId", settingsNoPrefix.Account_Processor__c);
+	    		component.set("v.householdRecTypeId", settingsNoPrefix.Household_Addresses_RecType__c);
+			    component.set("v.adminAccRecTypeId", settingsNoPrefix.Administrative_Account_Record_Type__c);
+			    component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
+		        component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
                 component.set("v.affiliationRoleMapValue",settingsNoPrefix.Affl_ProgEnroll_Role_Map__c);
                 component.set("v.affiliationStatusMapValue",settingsNoPrefix.Affl_ProgEnroll_Status_Map__c);
                 component.set("v.affiliationStatusDeleteMapValue",settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
 
-                component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
-                component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
-                component.set("v.adminOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
-                component.set("v.hhOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
+		        component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
+		        component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
+		        component.set("v.adminOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
+		        component.set("v.hhOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
 
-                //Get account record types
-                this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
-                        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
-                        settingsNoPrefix.Household_Addresses_RecType__c);
+	    		//Get account record types
+	    		this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
+	    		        settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
+	    		        settingsNoPrefix.Household_Addresses_RecType__c, settingsNoPrefix.Administrative_Account_Record_Type__c);
                 // Get Affiliation Role Picklist
                 this.getAffiliationRolePicklistEntries(component,settingsNoPrefix.Affl_ProgEnroll_Role_Map__c);
                 // Get Affiliation Status Picklist
                 this.getAffiliationStatusPicklistEntries(component,settingsNoPrefix.Affl_ProgEnroll_Status_Map__c,settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
                 // Get Course Connection Record Types
-                this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Student_RecType__c,
-                        settingsNoPrefix.Faculty_RecType__c);
-            } else if(response.getState() === "ERROR") {
-                this.displayError(response);
-            }
-        });
-        $A.enqueueAction(action);
-    },
+	    		this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Student_RecType__c,
+	    		        settingsNoPrefix.Faculty_RecType__c);
+	    	} else if(response.getState() === "ERROR") {
+	    		this.displayError(response);
+			}
+	    });
+	    $A.enqueueAction(action);
+	},
 
-    //We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
-    //getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in
-    //this helper. And we need the Account Processor value from HierarchySettings.
-    getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId, householdTypeId) {
-        //Get all available account record types
-        var action = component.get("c.getRecTypesMapByName");
-        action.setParams({ "objectName" : 'Account'});
-        action.setCallback(this, function(response) {
-            if(response.getState() === "SUCCESS") {
-                var recTypesObj = response.getReturnValue();
-                var accRecTypes = [];
-                for(var property in recTypesObj) {
-                    if (recTypesObj.hasOwnProperty(property)) {
-                        accRecTypes.push({name: property, id: recTypesObj[property]});
-                        //Find the name of the account record type that matches the stored ID.
-                        //We check if one string is contained in the other because in one case we have
-                        //the 15 digit id, and in the other the 18 digit one.
-                        if(recTypesObj[property].indexOf(accTypeId) > -1) {
-                            component.set("v.accRecTypeName", property);
-                        }
-                        if(recTypesObj[property].indexOf(householdTypeId) > -1) {
+	//We are calling this method here instead of in STG_CMP_SystemHelper because if we do so, the action
+	//getAccountRecordTypes in STG_CMP_SystemHelper gets called before the action getHierarchySettings in
+	//this helper. And we need the Account Processor value from HierarchySettings.
+	getAccountRecordTypes : function(component, accsToDelete, accsMultiAddr, accTypeId, householdTypeId, adminTypeId) {
+		//Get all available account record types
+		var action = component.get("c.getRecTypesMapByName");
+		action.setParams({ "objectName" : 'Account'});
+		action.setCallback(this, function(response) {
+	    	if(response.getState() === "SUCCESS") {
+	    		var recTypesObj = response.getReturnValue();
+	    		var accRecTypes = [];
+	    		for(var property in recTypesObj) {
+	    			if (recTypesObj.hasOwnProperty(property)) {
+	    				accRecTypes.push({name: property, id: recTypesObj[property]});
+	    				//Find the name of the account record type that matches the stored ID.
+	    				//We check if one string is contained in the other because in one case we have
+	    				//the 15 digit id, and in the other the 18 digit one.
+	    				if(recTypesObj[property].indexOf(accTypeId) > -1) {
+	    					component.set("v.accRecTypeName", property);
+	    				}
+	    				if(recTypesObj[property].indexOf(householdTypeId) > -1) {
                             component.set("v.householdRecTypeName", property);
                         }
-                    }
-                }
-                component.set("v.accRecTypes", accRecTypes);
+						if(recTypesObj[property].indexOf(adminTypeId) > -1) {
+							component.set("v.adminAccRecTypeName", property);
+						}
+	    			}
+	    		}
+	    		component.set("v.accRecTypes", accRecTypes);
 
-                //Get record types of accounts that can be deleted if all their children have been deleted. We need to call this
-                //method here because this logic is called after the init method in STG_CMP_AddrController.
-                var accTypesToDeleteSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
-                component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
+	    		//Get record types of accounts that can be deleted if all their children have been deleted. We need to call this
+	    		//method here because this logic is called after the init method in STG_CMP_AddrController.
+	    		var accTypesToDeleteSelected = this.getRecTypesSelected(component, accsToDelete, accRecTypes);
+	    		component.set("v.accTypesToDeleteSelected", accTypesToDeleteSelected);
 
-                //Get record types of accounts that have multi-address support enabled. We need to call this method here because this
-                //logic is called after the init method in STG_CMP_AddrController.
-                var accTypesAddrSelected = this.getRecTypesSelected(component, accsMultiAddr, accRecTypes);
-                component.set("v.accTypesAddrSelected", accTypesAddrSelected);
+	    		//Get record types of accounts that have multi-address support enabled. We need to call this method here because this
+	    		//logic is called after the init method in STG_CMP_AddrController.
+	    		var accTypesAddrSelected = this.getRecTypesSelected(component, accsMultiAddr, accRecTypes);
+	    		component.set("v.accTypesAddrSelected", accTypesAddrSelected);
 
-            } else if(response.getState() === "ERROR") {
-                this.displayError(response);
-            }
-        });
-        $A.enqueueAction(action);
-    },
+	    	} else if(response.getState() === "ERROR") {
+	    		this.displayError(response);
+			}
+	    });
+	    $A.enqueueAction(action);
+	},
 
     getAffiliationRolePicklistEntries : function(component, roleValue) {
         //Get all active affiliation role picklist entries
@@ -122,7 +126,7 @@
                 component.set("v.affiliationRolePicklistEntries", affiliationRolePicklistEntries);
 
             } else if(response.getState() === "ERROR") {
-              this.displayError(response);
+            this.displayError(response);
             }
         });
         $A.enqueueAction(action);
@@ -153,7 +157,7 @@
                 component.set("v.affiliationStatusPicklistEntries", affiliationStatusPicklistEntries);
 
             } else if(response.getState() === "ERROR") {
-              this.displayError(response);
+            this.displayError(response);
             }
         });
         $A.enqueueAction(action);
