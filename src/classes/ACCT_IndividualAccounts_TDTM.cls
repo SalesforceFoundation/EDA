@@ -124,9 +124,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 listContactAccountDelete.add(c);
                 // Rename the account if a contact is deleted from a household account
                 if (c.AccountId != null
-                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true
-                        && c.Account.RecordTypeId != null
-                        && c.Account.RecordTypeId == userDefinedHHRecordTypeId) {
+                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
                     setAccountIdHHToRename.add(c.AccountId);
                 }
             }
@@ -152,8 +150,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             mapAccountIdContactId.put(c.AccountId, c.Id);
                         }
                         if (c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false)
-                        {
+                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                             setAccountIdHHToRename.add(c.AccountId);
                         }
                     }
@@ -177,14 +174,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
 
                             if (c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                                 setAccountIdHHToRename.add(c.AccountId);
                                 if (oldContacts[i].AccountId != null){
                                     setAccountIdHHToRename.add(oldContacts[i].AccountId);
                                 }
                             }
                         }else{
-                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                                 setAccountIdHHToRename.add(oldContacts[i].AccountId);
                             }
                         }
@@ -216,7 +213,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 || c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c)
                             && c.AccountId != null
                             && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false){
+                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c != false) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
 
@@ -457,10 +454,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
                 // construct the Account name
                 if(defaultRecTypeID == userDefinedHHRecordTypeId)
-                	a.Name = strNameHHAccountForContact(new List<Contact>{c});
+                	a.Name = UTIL_ACCT_Naming.strNameHHAccountForContact(new List<Contact>{c});
                 //represents an Administrative account.
                 else if(defaultRecTypeID == userDefinedAdminRecordTypeId)
-                	a.Name = strNameAdmAccountForContact(c);
+                	a.Name = UTIL_ACCT_Naming.strNameAdmAccountForContact(c);
                 else
                     a.Name = UTIL_ACCT_Naming.strNameAccountForContact(c);
 
@@ -541,9 +538,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     // If there are no Opportunities for this Account, add it for deletion
                     if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                         accountsForDeletion.add(thisAccount);
-                    } else if (thisAccount.RecordTypeId != null
-                            && (thisAccount.RecordTypeId == userDefinedHHRecordTypeId
-                            || thisAccount.RecordTypeId == userDefinedAdminRecordTypeId)) {
+                    } else if (thisAccount.RecordTypeId == userDefinedHHRecordTypeId ||
+                    thisAccount.RecordTypeId == userDefinedAdminRecordTypeId) {
                         listAccountIdUpdate.add(thisAccount.Id);
                     }
                 }
