@@ -1051,7 +1051,7 @@
         <fullName>stgHelpHouseholdRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>stgHelpHouseholdRecType</shortDescription>
         <value>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</value>
     </labels>
