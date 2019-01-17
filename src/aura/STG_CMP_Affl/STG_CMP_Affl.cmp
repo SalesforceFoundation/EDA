@@ -31,12 +31,7 @@
 
             <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.afflTypeEnforced}" />
-                        <aura:set attribute="else">
-                            <ui:outputText value="{!$Label.c.afflTypeEnforced}" />
-                        </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.afflTypeEnforced}" />
                 </div>
                 <div class="slds-col slds-size--1-of-2">
                     <div class="slds-form-element">
@@ -70,22 +65,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflDeleteProgramEnrollmentInfo}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentInfo}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentInfo}" class="slds-text-body--small" />
                 </div>
                 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:outputText value="{!$Label.hed.stgAfflProgEnrollDeleteRelated}"/>
-                            <aura:set attribute="else">
-                                <ui:outputText value="{!$Label.c.stgAfflProgEnrollDeleteRelated}"/>
-                            </aura:set>
-                        </aura:if>
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollDeleteRelated}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <div class="slds-form-element">
@@ -105,22 +90,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.AfflProgEnrollDeleted}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted}" class="slds-text-body--small" />
                 </div>
             
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                      <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgAfflDeleteProgramEnrollment + ' '}" />
-                      <aura:set attribute="else">
                         <ui:outputText value="{!$Label.c.stgAfflDeleteProgramEnrollment + ' '}" />
-                      </aura:set>
-                      </aura:if>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                       <c:CMP_Picklist_Dropdown class="affiliation-status-delete-picklist"
@@ -134,12 +109,7 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflDeleteProgramEnrollment}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollment}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollment}" class="slds-text-body--small" />
                 </div>
             </div>
             
@@ -153,22 +123,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
                 </div>
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:outputText value="{!$Label.hed.stgAfflProgEnrollSetRole}"/>
-                            <aura:set attribute="else">
-                                <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}"/>
-                            </aura:set>
-                        </aura:if>
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <div class="slds-form-element">
@@ -188,22 +148,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflProgEnrollSetRole}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRole}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRole}" class="slds-text-body--small" />
                 </div>
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                      <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgAfflProgEnrollSetRoleValue + ' '}" />
-                      <aura:set attribute="else">
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRoleValue + ' '}" />
-                      </aura:set>
-                      </aura:if>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                       <c:CMP_Picklist_Dropdown class="affiliation-role-picklist"
@@ -216,22 +166,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
                 </div>
                 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                      <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgAfflProgEnrollSetStatusValue + ' '}" />
-                      <aura:set attribute="else">
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetStatusValue + ' '}" />
-                      </aura:set>
-                      </aura:if>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                       <c:CMP_Picklist_Dropdown class="affiliation-status-picklist"
@@ -244,22 +184,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflProgEnrollSetStatusValue}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetStatusValue}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetStatusValue}" class="slds-text-body--small" />
                 </div>
 
                 <div class="sslds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:outputText value="{!$Label.hed.stgAfflCopyProgramEnrollmentEndDate}"/>
-                            <aura:set attribute="else">
-                                <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentEndDate}"/>
-                            </aura:set>
-                        </aura:if>
+                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentEndDate}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <div class="slds-form-element">
@@ -279,22 +209,12 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
                 </div>
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                            <ui:outputText value="{!$Label.hed.stgAfflCopyProgramEnrollmentStartDate}"/>
-                            <aura:set attribute="else">
-                                <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentStartDate}"/>
-                            </aura:set>
-                        </aura:if>
+                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentStartDate}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
                          <div class="slds-form-element">
@@ -314,12 +234,7 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                        <ui:outputText value="{!$Label.hed.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
-                    <aura:set attribute="else">
-                        <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
-                    </aura:set>
-                    </aura:if>
+                    <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
                 </div>
             </div>
         </div>
