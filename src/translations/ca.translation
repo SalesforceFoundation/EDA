@@ -477,6 +477,14 @@
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpAfflDeleteProgramEnrollmentHeader --></label>
+        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpAfflDeleteProgramEnrollmentInfo --></label>
+        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetRole --></label>
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
