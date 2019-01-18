@@ -120,12 +120,25 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         // AFTER DELETE
         if (triggerAction == TDTM_Runnable.Action.AfterDelete && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
+            Set<Id> relatedAccountIds = new Set<Id>();
+            List<Account> relatedAccounts = new List<Account>();
             for (Contact c : oldContacts) {
                 listContactAccountDelete.add(c);
+                //Collect related account ids
+                relatedAccountIds.add(c.AccountId);
+            }
+
+            //Re-query to get correct Account values
+            relatedAccounts = [SELECT Id,
+                                    RecordType.Id
+                                FROM Account
+                                WHERE Id IN :relatedAccountIds];
+            for (Account account : relatedAccounts) {
                 // Rename the account if a contact is deleted from a household account
-                if (c.AccountId != null
+                if (account.RecordType.Id != null
+                        && account.RecordType.Id == userDefinedHHRecordTypeId
                         && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
-                    setAccountIdHHToRename.add(c.AccountId);
+                    setAccountIdHHToRename.add(account.Id);
                 }
             }
         } else {
