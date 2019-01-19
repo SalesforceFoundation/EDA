@@ -85,23 +85,25 @@ private class TDTM_DMLgt200_TEST {
         }
         insert testContacts;
 
-        List<Contact> insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,
-        									   Account.BillingStreet 
-        							    	from Contact];
+        List<Contact> insertedContacts = [SELECT FirstName, LastName, AccountId, Account.Name, Account.Primary_Contact__c, WorkEmail__c, WorkPhone__c, Email, Phone
+        							    	FROM Contact];
 
-        //one contact should have been created
+        //many contacts should have been created
         system.assertEquals(inputSize, insertedContacts.size());
 
         //relationship should be bi-directional
         for (Contact con : insertedContacts) {
-	        system.assertEquals(con.id, con.Account.Primary_Contact__c);   
+	        system.assertEquals(con.id, con.Account.Primary_Contact__c);
+            system.assertEquals(con.WorkEmail__c, con.Email);
+            system.assertEquals(con.WorkPhone__c, con.Phone);
+
             con.LastName = 'Contact_forTestsChange';
         	con.OtherCity = 'Seattle';  
         }
         update insertedContacts;
 
-        List<Contact> updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c
-                                         from Contact];
+        List<Contact> updatedContacts = [SELECT FirstName, LastName, AccountId, Account.Name, Account.Primary_Contact__c
+                                           FROM Contact];
 
         //relationship should be bi-directional
         for (Contact con : updatedContacts) {
