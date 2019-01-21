@@ -9,7 +9,7 @@
         <value>Hierarchy Settings</value>
     </caseValues>
     <fields>
-        <help><!-- Setting for the Account model. Should be &quot;One-to-one&quot; or &quot;Individual&quot;. Replaces the custom field Contact.SystemAccountProcessor__c --></help>
+        <help><!-- ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object. --></help>
         <label><!-- Account Processor --></label>
         <name>Account_Processor__c</name>
     </fields>
@@ -34,6 +34,16 @@
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
     <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl End Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl Start Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    </fields>
+    <fields>
         <help><!-- Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it. --></help>
         <label><!-- Affl status on Prog Enrollment deletion --></label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
@@ -42,6 +52,21 @@
         <help><!-- Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former. --></help>
         <label><!-- Affiliation Program Enrollment deletion --></label>
         <name>Affl_ProgEnroll_Del__c</name>
+    </fields>
+    <fields>
+        <help><!-- The role to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Role Map --></label>
+        <name>Affl_ProgEnroll_Role_Map__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set. --></help>
+        <label><!-- Affl set role on Prog Enrollment create --></label>
+        <name>Affl_ProgEnroll_Set_Role__c</name>
+    </fields>
+    <fields>
+        <help><!-- The status to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Stat Map --></label>
+        <name>Affl_ProgEnroll_Status_Map__c</name>
     </fields>
     <fields>
         <help><!-- Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behavior &amp; allow multiple Relationships of the same Type to be created between two Contacts --></help>

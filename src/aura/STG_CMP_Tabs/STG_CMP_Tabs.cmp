@@ -21,6 +21,14 @@
     <aura:attribute name="facultyRecTypeId" type="String" />
     <aura:attribute name="studentRecTypeName" type="String" />
     <aura:attribute name="facultyRecTypeName" type="String" />
+    <aura:attribute name="affiliationRoleMapValue" type="String" />
+    <aura:attribute name="affiliationRoleMapLabel" type="String" />
+    <aura:attribute name="affiliationRolePicklistEntries" type="Map" />
+    <aura:attribute name="affiliationStatusMapValue" type="String" />
+    <aura:attribute name="affiliationStatusMapLabel" type="String" />
+    <aura:attribute name="affiliationStatusDeleteMapValue" type="String" />
+    <aura:attribute name="affiliationStatusDeleteMapLabel" type="String" />
+    <aura:attribute name="affiliationStatusPicklistEntries" type="Map" />
 
     <aura:attribute name="adminNameFormat" type="String" />
     <aura:attribute name="hhNameFormat" type="String" />
@@ -54,7 +62,11 @@
 
         <div aura:id="afflTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
 
-            <c:STG_CMP_Affl hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
+            <c:STG_CMP_Affl hierarchySettings="{!v.hierarchySettings}"  affiliationRoleMapValue="{!v.affiliationRoleMapValue}"
+                affiliationRoleMapLabel="{!v.affiliationRoleMapLabel}"  affiliationRolePicklistEntries="{!v.affiliationRolePicklistEntries}"
+                affiliationStatusMapValue="{!v.affiliationStatusMapValue}"  affiliationStatusMapLabel="{!v.affiliationStatusMapLabel}"
+                affiliationStatusDeleteMapValue="{!v.affiliationStatusDeleteMapValue}"  affiliationStatusDeleteMapLabel="{!v.affiliationStatusDeleteMapLabel}"
+                affiliationStatusPicklistEntries="{!v.affiliationStatusPicklistEntries}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}" />
         </div>
         <div aura:id="relTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
 
