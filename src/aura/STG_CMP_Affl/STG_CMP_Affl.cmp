@@ -1,8 +1,17 @@
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     
+    <aura:attribute name="affiliationRolePicklistEntries" type="Map" />
+    <aura:attribute name="affiliationStatusPicklistEntries" type="Map" />
+    
     <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />
     <aura:attribute name="noAfflMappings" type="String" />
+    <aura:attribute name="affiliationRoleMapValue" type="String" />
+    <aura:attribute name="affiliationStatusMapValue" type="String" />
+    <aura:attribute name="affiliationRoleMapLabel" type="String" />
+    <aura:attribute name="affiliationStatusMapLabel" type="String" />
+    <aura:attribute name="affiliationStatusDeleteMapValue" type="String" />
+    <aura:attribute name="affiliationStatusDeleteMapLabel" type="String" />
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}"/>
@@ -19,83 +28,213 @@
         </ul>
         
         <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
-            <div class="slds-grid slds-wrap">
-                <div class="slds-col slds-size--1-of-1">
-                    <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted + ' '}" />
-                </div>
-                <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
-                    <div class="slds-col slds-size--1-of-2">
-                        <ui:outputText value="{!$Label.c.stgDeleteRelatedAfflYes + ' '}" />
-                    </div> 
-                    <div class="slds-col slds-size--1-of-2">
-                         <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
-                            <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="true" text="true" disabled="{!v.isView}" 
-                                         change="{!c.setAfflProgEnrollDel}" />
-                             <aura:set attribute="else">
-                                <ui:inputRadio aura:id="affl_del_yes" name="affldel" value="false" text="true" disabled="{!v.isView}"
-                                         change="{!c.setAfflProgEnrollDel}" />
-                             </aura:set>
-                         </aura:if>
-                    </div>
 
-                    <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-col slds-grid slds-wrap">
-                            <div class="slds-col slds-size--1-of-2">
-                                <ui:outputText value="{!$Label.c.stgDeleteRelatedAfflNo + ' '}" />
-                            </div>
-                            <div class="slds-col slds-size--1-of-2">
+            <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.afflTypeEnforced}" />
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
                                 <aura:if isTrue="{!v.isView}">
-                                    <ui:outputText aura:id="ProgEnrollDel" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
-                                                   class="progenroll-del-no-status" />
-                                 <aura:set attribute="else">
-                                    <ui:inputText aura:id="ProgEnrollDel" value="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
-                                        label="{!'Status: ' + v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}" labelClass="slds-hide" 
-                                        class="progenroll-del-no-status"/>
-                                </aura:set>
+                                    <ui:outputCheckbox value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}" class="affl-record-type-enforced" />
+                                    <aura:set attribute="else">
+                                        <ui:inputCheckbox aura:id="afflRecordTypeEnforced" value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
+                                                            class="affl-record-type-enforced" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                    </aura:set>
                                 </aura:if>
-                            </div>
-                         </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.afflTypeEnforcedDescription}" class="slds-text-body--small"/>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="slds-col slds-grid slds-wrap slds-size--1-of-1">
+
+                <div class="slds-col slds-grid slds-size--1-of-1">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentHeader}" />
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentInfo}" class="slds-text-body--small" />
+                </div>
+                
+                <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollDeleteRelated}"/>
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                         <aura:if isTrue="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}">
-                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="false" text="false" disabled="{!v.isView}"
-                                     change="{!c.setAfflProgEnrollDel}" ></ui:inputRadio>
-                         <aura:set attribute="else">
-                            <ui:inputRadio aura:id="affl_del_no" name="affldel" value="true" text="false" disabled="{!v.isView}" 
-                                     change="{!c.setAfflProgEnrollDel}" />
-                         </aura:set>
-                         </aura:if>
-                    </div>
-                    <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
-                        <div class="slds-col slds-size--1-of-2">
-                            <aura:if isTrue="{!v.namespacePrefix == 'hed__'}">
-                                <ui:outputText value="{!$Label.hed.afflTypeEnforced}" />
-                                <aura:set attribute="else">
-                                    <ui:outputText value="{!$Label.c.afflTypeEnforced}" />
-                                </aura:set>
-                            </aura:if>
-                        </div>
-                        <div class="slds-col slds-size--1-of-2">
-                            <div class="slds-form-element">
-                                <div class="slds-form-element__control">
-                                    <label class="slds-checkbox">
-                                        <aura:if isTrue="{!v.isView}">
-                                            <ui:outputCheckbox value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}" class="affl-record-type-enforced" />
-                                            <aura:set attribute="else">
-                                                <ui:inputCheckbox aura:id="afflRecordTypeEnforced" value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
-                                                                  class="affl-record-type-enforced" />
-                                                <span class="slds-checkbox--faux"></span>
-                                                <span class="slds-form-element__label"></span>
-                                            </aura:set>
-                                        </aura:if>
-                                    </label>
-                                </div>
+                         <div class="slds-form-element">
+                             <div class="slds-form-element__control">
+                                 <label class="slds-checkbox">
+                                     <aura:if isTrue="{!v.isView}">
+                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
+                                     <aura:set attribute="else">
+                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
+                                         <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                     </aura:set>
+                                     </aura:if>
+                                 </label>
                             </div>
                         </div>
-                        <div class="slds-col slds-size--1-of-2">
-                            <ui:outputText value="{!$Label.c.afflTypeEnforcedDescription}" />
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted}" class="slds-text-body--small" />
+                </div>
+            
+                <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflDeleteProgramEnrollment + ' '}" />
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                      <c:CMP_Picklist_Dropdown class="affiliation-status-delete-picklist"
+                        setting="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
+                        isView="{!v.isView}"
+                        picklistValue="{!v.affiliationStatusDeleteMapValue}"
+                        picklistLabel="{!v.affiliationStatusDeleteMapLabel}"
+                        picklistEntries="{!v.affiliationStatusPicklistEntries}" 
+                        dropdownDisabled="(!!v.hierarchySettings.Affl_ProgEnroll_Del__c)"
+                      />
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollment}" class="slds-text-body--small" />
+                </div>
+            </div>
+            
+            <hr/>
+
+            <div class="slds-grid slds-wrap">
+
+                <div class="slds-col slds-grid slds-size--1-of-1">
+                    <div class="slds-col slds-size--1-of-1">
+                        <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentHeader}" />
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
+                </div>
+
+                <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                         <div class="slds-form-element">
+                             <div class="slds-form-element__control">
+                                 <label class="slds-checkbox">
+                                     <aura:if isTrue="{!v.isView}">
+                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
+                                     <aura:set attribute="else">
+                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
+                                         <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                     </aura:set>
+                                     </aura:if>
+                                 </label>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRole}" class="slds-text-body--small" />
+                </div>
+
+                <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRoleValue + ' '}" />
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                      <c:CMP_Picklist_Dropdown class="affiliation-role-picklist"
+                        setting="{!v.hierarchySettings.Affl_ProgEnroll_Role_Map__c}"
+                        isView="{!v.isView}"
+                        picklistValue="{!v.affiliationRoleMapValue}"
+                        picklistLabel="{!v.affiliationRoleMapLabel}"
+                        picklistEntries="{!v.affiliationRolePicklistEntries}"
+                      />
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
+                </div>
+                
+                <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetStatusValue + ' '}" />
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                      <c:CMP_Picklist_Dropdown class="affiliation-status-picklist"
+                        setting="{!v.hierarchySettings.Affl_ProgEnroll_Status_Map__c}"
+                        isView="{!v.isView}"
+                        picklistValue="{!v.affiliationStatusMapValue}"
+                        picklistLabel="{!v.affiliationStatusMapLabel}"
+                        picklistEntries="{!v.affiliationStatusPicklistEntries}"
+                      />
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetStatusValue}" class="slds-text-body--small" />
+                </div>
+
+                <div class="sslds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentEndDate}"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                         <div class="slds-form-element">
+                             <div class="slds-form-element__control">
+                                 <label class="slds-checkbox">
+                                     <aura:if isTrue="{!v.isView}">
+                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
+                                     <aura:set attribute="else">
+                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
+                                         <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                     </aura:set>
+                                     </aura:if>
+                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
+                </div>
+
+                <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
+                    <div class="slds-col slds-size--1-of-2">
+                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentStartDate}"/>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2">
+                         <div class="slds-form-element">
+                             <div class="slds-form-element__control">
+                                 <label class="slds-checkbox">
+                                     <aura:if isTrue="{!v.isView}">
+                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
+                                     <aura:set attribute="else">
+                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
+                                         <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                     </aura:set>
+                                     </aura:if>
+                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
                 </div>
             </div>
         </div>

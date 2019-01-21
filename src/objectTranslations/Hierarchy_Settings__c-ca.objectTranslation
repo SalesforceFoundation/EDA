@@ -49,6 +49,16 @@
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
     <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl End Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
+        <label><!-- Affl Start Date on Prog Enroll Creation --></label>
+        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    </fields>
+    <fields>
         <help>Estat al qual s&apos;ha de canviar una Afiliació quan es suprimeix la inscripció de programa relacionada, si l&apos;opció seleccionada és canviar el seu estat en lloc de suprimir-lo.</help>
         <label>Estat afil. supressió inscripció prog.</label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
@@ -57,6 +67,21 @@
         <help>Determina si una afiliació s&apos;eliminarà automàticament quan se suprimeixi la inscripció relacionada del programa. En cas contrari, l&apos;estat es canviarà a antic.</help>
         <label>Supressió inscripció programa afiliació</label>
         <name>Affl_ProgEnroll_Del__c</name>
+    </fields>
+    <fields>
+        <help><!-- The role to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Role Map --></label>
+        <name>Affl_ProgEnroll_Role_Map__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set. --></help>
+        <label><!-- Affl set role on Prog Enrollment create --></label>
+        <name>Affl_ProgEnroll_Set_Role__c</name>
+    </fields>
+    <fields>
+        <help><!-- The status to set for a related affiliation created by creating a Program Enrollment. --></help>
+        <label><!-- Affiliation Program Enrollment Stat Map --></label>
+        <name>Affl_ProgEnroll_Status_Map__c</name>
     </fields>
     <fields>
         <help>Les relacions autocreades es dedueixen automàticament per evitar que es creïn registres duplicats entre dos contactes. Marqueu la casella per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</help>
