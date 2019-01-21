@@ -7,6 +7,7 @@
 build.properties
 salesforce.schema
 Referenced Packages
+/.sfdx
 /uninstall
 /uninstallsrc
 /installdeploy

@@ -14,7 +14,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AfflProgEnrollDeleted</shortDescription>
-        <value>When a Program Enrollment is deleted, delete the related Affiliation.</value>
+        <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status of Affiliation Related to Deleted Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>AutoCreateFieldError</fullName>
@@ -273,6 +273,30 @@
         <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, HEDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
     </labels>
     <labels>
+        <fullName>automaticHHNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>automaticHHNaming</shortDescription>
+        <value>Automatic Household Naming:</value>
+    </labels>
+    <labels>
+        <fullName>automaticHHNamingHelpText</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>automaticHHNamingHelpText</shortDescription>
+        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
+    </labels>
+    <labels>
+        <fullName>defaultNamingConnector</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>defaultNamingConnector</shortDescription>
+        <value>and</value>
+    </labels>
+    <labels>
         <fullName>duplicateFieldInFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
@@ -502,6 +526,62 @@
         <protected>true</protected>
         <shortDescription>stgAddNotHispanicOrLatinoPicklistValue</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflCopyProgramEnrollmentEndDate</shortDescription>
+        <value>Copy Affiliation End Date from Program Enrollment:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflCopyProgramEnrollmentStartDate</shortDescription>
+        <value>Copy Affiliation Start Date from Program Enrollment:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflDeleteProgramEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
+        <value>Status of Affiliation Related to Deleted Program Enrollment:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgEnrollDeleteRelated</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflProgEnrollDeleteRelated</shortDescription>
+        <value>Delete Related Affiliation When Deleting Program Enrollment:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgEnrollSetRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflProgEnrollSetRole</shortDescription>
+        <value>Specify Role for Created Affiliations:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgEnrollSetRoleValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflProgEnrollSetRoleValue</shortDescription>
+        <value>Role Specified for Created Affiliations:</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgEnrollSetStatusValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflProgEnrollSetStatusValue</shortDescription>
+        <value>Status Specified for Created Affiliations:</value>
     </labels>
     <labels>
         <fullName>stgAdminAccountRecordType</fullName>
@@ -800,22 +880,6 @@
         <value>Default Active Student Record Type:</value>
     </labels>
     <labels>
-        <fullName>stgDeleteRelatedAfflNo</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgDeleteRelatedAfflNo</shortDescription>
-        <value>No, just change Status to:</value>
-    </labels>
-    <labels>
-        <fullName>stgDeleteRelatedAfflYes</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgDeleteRelatedAfflYes</shortDescription>
-        <value>Yes:</value>
-    </labels>
-    <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -886,6 +950,86 @@
         <protected>false</protected>
         <shortDescription>stgHelpAddressAccRecType</shortDescription>
         <value>The Account record types that support multiple address management.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflCopyProgramEnrollmentEndDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
+        <value>If selected, copy the Program Enrollment's End Date to the created Affiliation. Otherwise, leave the created Affiliation's End Date blank.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
+        <value>If selected, copy the Program Enrollment's Start Date to the created Affiliation. Otherwise, leave the created Affiliation's Start Date blank</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflCreateFromProgramEnrollmentHeader</shortDescription>
+        <value>Affiliations Created with Program Enrollments</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflCreateFromProgramEnrollmentInfo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflCreateFromProgramEnrollmentInfo</shortDescription>
+        <value>When creating a Program Enrollment without an existing related Affiliation, create an Affiliation with the values specified here.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflDeleteProgramEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflDeleteProgramEnrollment</shortDescription>
+        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn't also deleted.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflDeleteProgramEnrollmentHeader</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflDeleteProgramEnrollmentHeader</shortDescription>
+        <value>Program Enrollment Deletions</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflDeleteProgramEnrollmentInfo</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflDeleteProgramEnrollmentInfo</shortDescription>
+        <value>When deleting a Program Enrollment, its related Affiliation can either be deleted or have its Status changed.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflProgEnrollSetRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflProgEnrollSetRole</shortDescription>
+        <value>If selected, set the created Affiliation's Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation's Role blank.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflProgEnrollSetRoleValue</shortDescription>
+        <value>The Role value set on the Affiliation created with the Program Enrollment, if Specify Role for Created Affiliations is selected.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpAfflProgEnrollSetStatusValue</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAfflProgEnrollSetStatusValue</shortDescription>
+        <value>The Status value set on the Affiliation created with the Program Enrollment.</value>
     </labels>
     <labels>
         <fullName>stgHelpAdminRecType</fullName>
@@ -1406,29 +1550,5 @@
         <protected>true</protected>
         <shortDescription>stgToastError</shortDescription>
         <value>Error</value>
-    </labels>
-    <labels>
-        <fullName>automaticHHNaming</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>automaticHHNaming</shortDescription>
-        <value>Automatic Household Naming:</value>
-    </labels>
-    <labels>
-        <fullName>automaticHHNamingHelpText</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>automaticHHNamingHelpText</shortDescription>
-        <value>Enables automatic renaming of Household Accounts, based on the names of Contacts in the Household. If enabled, we automatically rename Household Accounts when a new Contact is added to the Household or an existing Contact is renamed, deleted, or moved to another Household.</value>
-    </labels>
-    <labels>
-        <fullName>defaultNamingConnector</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>defaultNamingConnector</shortDescription>
-        <value>and</value>
     </labels>
 </CustomLabels>
