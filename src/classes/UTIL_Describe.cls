@@ -224,8 +224,6 @@ public class UTIL_Describe {
     * @return string the name of the of the field's type
     */
     public static string getFieldType(String objectName, String fieldName) {
-        // fields in our own package must not have their prefix for the Describe Field Map
-        fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
 
         // make sure we have this field's schema mapped
         if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName))
@@ -284,8 +282,6 @@ public class UTIL_Describe {
     * @return Schema.DescribeFieldResult the describe field result for the given field
     */
     public static Schema.DescribeFieldResult getFieldDescribe(String objectName, String fieldName) {
-        // fields in our own package must not have their prefix for the Describe Field Map
-        fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
 
         // make sure we have this field's schema mapped
         if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName))
@@ -334,8 +330,6 @@ public class UTIL_Describe {
     * @return List<Schema.PicklistEntry> the picklist entry list for the given field
     */
     public static List<Schema.PicklistEntry> getFieldPicklistEntries(String objectName, String fieldName) {
-        // fields in our own package must not have their prefix for the Describe Field Map
-        fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
         
         //fill picklist value map for object. Will throw an exception if it is invalid.
         fillPicklistEntriesForObject(objectName, fieldName);
