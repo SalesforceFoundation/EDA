@@ -30,6 +30,7 @@
         <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
 
             <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+                
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.afflTypeEnforced}" />
                 </div>
@@ -59,7 +60,6 @@
 
             <div class="slds-col slds-grid slds-wrap slds-size--1-of-1">
                 
-                <aura:if isTrue="0 > 1"> <!-- commented for bugfixes -->
                 <div class="slds-col slds-grid slds-size--1-of-1">
                     <div class="slds-col slds-size--1-of-2">
                         <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentHeader}" />
@@ -93,7 +93,6 @@
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted}" class="slds-text-body--small" />
                 </div>
-                </aura:if><!-- end comment for bugfixes -->
             
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
@@ -116,11 +115,10 @@
             </div>
 
             
-            <aura:if isTrue="0 > 1"><!-- comment for bugfixes -->
             <hr/>
 
             <div class="slds-grid slds-wrap">
-                
+
                 <div class="slds-col slds-grid slds-size--1-of-1">
                     <div class="slds-col slds-size--1-of-1">
                         <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentHeader}" />
@@ -130,6 +128,7 @@
                     <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
                 </div>
 
+                <aura:if isTrue="0 > 1"><!-- comment for bugfixes -->
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}"/>
@@ -172,7 +171,9 @@
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
                 </div>
-                
+                </aura:if><!-- end comment for bugfixes -->
+
+
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetStatusValue + ' '}" />
@@ -241,8 +242,6 @@
                     <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
                 </div>
             </div>
-            </aura:if><!-- end comment for bugfixes -->
-
         </div>
         
         <div aura:id="mappingsTabContent" class="slds-tabs__content" role="tabpanel">
