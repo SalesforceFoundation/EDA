@@ -463,6 +463,7 @@
         <members>stgAccoutTypesWithoutContactsDelete</members>
         <members>stgAddHispanicOrLatinoPicklistValue</members>
         <members>stgAddNotHispanicOrLatinoPicklistValue</members>
+        <members>stgAdminAccountRecordType</members>
         <members>stgAfflCopyProgramEnrollmentEndDate</members>
         <members>stgAfflCopyProgramEnrollmentStartDate</members>
         <members>stgAfflDeleteProgramEnrollment</members>
@@ -470,7 +471,6 @@
         <members>stgAfflProgEnrollSetRole</members>
         <members>stgAfflProgEnrollSetRoleValue</members>
         <members>stgAfflProgEnrollSetStatusValue</members>
-        <members>stgAdminAccountRecordType</members>
         <members>stgAfterRunBackfill</members>
         <members>stgAutoCompleteEnterChatterGroupName</members>
         <members>stgAutoCompleteEnterUserName</members>
@@ -516,6 +516,7 @@
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
+        <members>stgHelpAdminRecType</members>
         <members>stgHelpAfflCopyProgramEnrollmentEndDate</members>
         <members>stgHelpAfflCopyProgramEnrollmentStartDate</members>
         <members>stgHelpAfflCreateFromProgramEnrollmentHeader</members>
@@ -526,7 +527,6 @@
         <members>stgHelpAfflProgEnrollSetRole</members>
         <members>stgHelpAfflProgEnrollSetRoleValue</members>
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
-        <members>stgHelpAdminRecType</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpCopyQueuedEmailSent</members>
