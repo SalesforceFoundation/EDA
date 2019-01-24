@@ -13,14 +13,14 @@
 
     <aura:if isTrue="{!v.isView}">
         <aura:if isTrue="{!and(or(v.picklistValue == '', v.picklistValue == null), v.enableNoneOption)}">
-            <ui:outputText aura:id="picklistLabel" class="{!v.class + '-output-text'}" value="--None--" />    
+            <ui:outputText aura:id="picklistLabel" class="{!v.class + '-output-text'}" value="{!$Label.c.NoneOption}" />    
         <aura:set attribute="else">
             <ui:outputText aura:id="picklistLabel" class="{!v.class + '-output-text'}" value="{!v.picklistLabel}"/>
         </aura:set>
         </aura:if>
     <aura:set attribute="else">
         <ui:inputSelect aura:id="picklistDropDown" class="{!v.class + '-input-select'}" change="{!c.onSelectChange}" disabled="{!v.dropdownDisabled}">
-            <ui:inputSelectOption label="--None--" text="" class="picklist-input" value="{!v.picklistValue == '' ? true : false}" />
+            <ui:inputSelectOption label="{!$Label.c.NoneOption}" text="" class="picklist-input" value="{!v.picklistValue == '' ? true : false}" />
             <aura:iteration items="{!v.picklistEntries}" var="picklistItem">
                 <ui:inputSelectOption label="{!picklistItem.picklistLabel}" text="{!picklistItem.picklistValue}" class="picklist-input"
                     value="{!v.picklistValue == picklistItem.picklistValue ? true : false}" />
