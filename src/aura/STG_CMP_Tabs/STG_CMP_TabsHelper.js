@@ -121,7 +121,8 @@
                     if (picklistValues.hasOwnProperty(property)) {
                         affiliationRolePicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});
                         
-                        if(property.indexOf(roleValue) > -1 || property == '--None--') {
+                        //if(property.indexOf(roleValue) > -1 || property == '--None--') {
+                        if(property.indexOf(roleValue) > -1) {
                             component.set("v.affiliationRoleMapLabel", property);
                         }   
                     }
@@ -154,11 +155,13 @@
                     if (picklistValues.hasOwnProperty(property)) {
                         affiliationStatusPicklistEntries.push({picklistLabel: property, picklistValue: picklistValues[property]});
                         
-                        if(property.indexOf(statusValue) > -1 || property == '--None--') { 
+                        //if(property.indexOf(statusValue) > -1 || property == '--None--') { 
+                        if(property.indexOf(statusValue) > -1) { 
                             component.set("v.affiliationStatusMapLabel", property);
                         }
 
-                        if(property.indexOf(deleteValue) > -1 || property == '--None--') { 
+                        //if(property.indexOf(deleteValue) > -1 || property == '--None--') { 
+                        if(property.indexOf(deleteValue) > -1) {
                             component.set("v.affiliationStatusDeleteMapLabel", property);
                         }
 
