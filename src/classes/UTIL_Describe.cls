@@ -445,6 +445,8 @@ public class UTIL_Describe {
     public static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
         Map<String, String> picklistValues = new Map<String, String>();
         
+        //allow for nothing (probably convert --None-- to a label)
+        picklistValues.put('--None--', '');
         for(Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, fieldName)) {
             if(picklistEntry.isActive()) {
                 picklistValues.put(picklistEntry.getLabel(), picklistEntry.getValue());

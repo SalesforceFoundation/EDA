@@ -110,23 +110,27 @@
         var prefix = component.get("v.namespacePrefix");
         var objectName = prefix + 'Affiliation__c';
         var fieldName = prefix + 'Role__c';
+        
         action.setParams({ "objectName" : objectName,"fieldName" : fieldName});
         action.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
                 var picklistValues = response.getReturnValue();
                 var affiliationRolePicklistEntries = [];
+                
                 for(var property in picklistValues) {
                     if (picklistValues.hasOwnProperty(property)) {
                         affiliationRolePicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});
-                        if(property.indexOf(roleValue) > -1) {
+                        
+                        if(property.indexOf(roleValue) > -1 || property == '--None--') {
                             component.set("v.affiliationRoleMapLabel", property);
-                        }
+                        }   
                     }
                 }
+
                 component.set("v.affiliationRolePicklistEntries", affiliationRolePicklistEntries);
 
             } else if(response.getState() === "ERROR") {
-            this.displayError(response);
+                this.displayError(response);
             }
         });
         $A.enqueueAction(action);
@@ -138,26 +142,33 @@
         var prefix = component.get("v.namespacePrefix");
         var objectName = prefix + 'Affiliation__c';
         var fieldName = prefix + 'Status__c';
+
         action.setParams({ "objectName" : objectName,"fieldName" : fieldName});
         action.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
                 var picklistValues = response.getReturnValue();
                 var affiliationStatusPicklistEntries = [];
+        
                 for(var property in picklistValues) {
+                    
                     if (picklistValues.hasOwnProperty(property)) {
                         affiliationStatusPicklistEntries.push({picklistLabel: property, picklistValue: picklistValues[property]});
-                        if(property.indexOf(statusValue) > -1) {
+                        
+                        if(property.indexOf(statusValue) > -1 || property == '--None--') { 
                             component.set("v.affiliationStatusMapLabel", property);
                         }
-                        if(property.indexOf(deleteValue) > -1) {
+
+                        if(property.indexOf(deleteValue) > -1 || property == '--None--') { 
                             component.set("v.affiliationStatusDeleteMapLabel", property);
                         }
+
                     }
                 }
+
                 component.set("v.affiliationStatusPicklistEntries", affiliationStatusPicklistEntries);
 
             } else if(response.getState() === "ERROR") {
-            this.displayError(response);
+                this.displayError(response);
             }
         });
         $A.enqueueAction(action);
