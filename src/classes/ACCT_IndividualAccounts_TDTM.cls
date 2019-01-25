@@ -190,7 +190,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 }
                             }
                         }else{
-                            if (checkHouseholdNaming(oldContacts[i].Account.RecordTypeId)) {
+                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
                                 setAccountIdHHToRename.add(oldContacts[i].AccountId);
                             }
                         }
