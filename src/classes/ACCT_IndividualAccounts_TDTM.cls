@@ -130,14 +130,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //Re-query to get correct Account values
             relatedAccounts = [SELECT Id,
-                                    RecordType.Id
+                                    RecordTypeId
                                 FROM Account
                                 WHERE Id IN :relatedAccountIds];
             for (Account account : relatedAccounts) {
                 // Rename the account if a contact is deleted from a household account
-                if (account.RecordType.Id != null
-                        && account.RecordType.Id == userDefinedHHRecordTypeId
-                        && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+                if (checkHouseholdNaming(account.RecordTypeId)) {
                     setAccountIdHHToRename.add(account.Id);
                 }
             }
@@ -162,9 +160,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                         if(c.Account.Primary_Contact__c == null) {
                             mapAccountIdContactId.put(c.AccountId, c.Id);
                         }
-                        if (c.Account.RecordTypeId != null
-                                && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+                        if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                             setAccountIdHHToRename.add(c.AccountId);
                         }
                     }
@@ -187,16 +183,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                             //Used to Adv to inject oppor logic
                             mapContactIdAccountIdNewMoveOpps.put(c.Id, c.AccountId);
 
-                            if (c.Account.RecordTypeId != null
-                                    && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                                    && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+                            if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                                 setAccountIdHHToRename.add(c.AccountId);
                                 if (oldContacts[i].AccountId != null) {
                                     setAccountIdHHToRename.add(oldContacts[i].AccountId);
                                 }
                             }
                         }else{
-                            if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+                            if (checkHouseholdNaming(oldContacts[i].Account.RecordTypeId)) {
                                 setAccountIdHHToRename.add(oldContacts[i].AccountId);
                             }
                         }
@@ -227,9 +221,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                 || c.FirstName != oldContacts[i].FirstName
                                 || c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c)
                             && c.AccountId != null
-                            && c.Account.RecordTypeId != null
-                            && c.Account.RecordTypeId == userDefinedHHRecordTypeId
-                            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+                            && checkHouseholdNaming(c.Account.RecordTypeId)) {
                         setAccountIdHHToRename.add(c.AccountId);
                     }
 
@@ -611,6 +603,18 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
     }
 
-
-
+    /*******************************************************************************************************
+    * @description Check if all conditions for household naming are met
+    * @param accRecordTypeId the id of parent account's record type id
+    * @return boolean
+    */
+    public boolean checkHouseholdNaming(Id accRecordTypeId) {
+        if (accRecordTypeId != null
+                && accRecordTypeId == userDefinedHHRecordTypeId
+                && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
