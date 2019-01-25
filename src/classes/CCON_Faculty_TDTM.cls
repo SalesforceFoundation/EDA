@@ -102,9 +102,11 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
                         enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
 
-                        if (contactIdAccountIdAfflList.containsKey(enroll.Contact__c) && (
-                                contactIdAccountIdAfflList.get(enroll.Contact__c).containsKey(enroll.Account__c))) {
-                            enroll.Affiliation__c = contactIdAccountIdAfflList.get(enroll.Contact__c).get(enroll.Account__c)[0].Id;
+                        Map<Id, List<Affiliation__c>> affiliationsByAccountId = contactIdAccountIdAfflList.containsKey(enroll.Contact__c) ? 
+                            contactIdAccountIdAfflList.get(enroll.Contact__c) : null;
+
+                        if (affiliationsByAccountId != null && affiliationsByAccountId.containsKey(enroll.Account__c)) {
+                            enroll.Affiliation__c = affiliationsByAccountId.get(enroll.Account__c)[0].Id;
                         } else {
                             connsNeedingAffls.add(enroll);
                             
