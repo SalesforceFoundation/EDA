@@ -261,7 +261,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
     public static void populdateAdminRecordTypeSetting(Version previousVersion) {
         if(previousVersion != null && previousVersion.compareTo(new Version(1,70)) < 0) {
-            Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
             if(orgSettings.Administrative_Account_Record_Type__c == null || orgSettings.Administrative_Account_Record_Type__c == '') {
                 orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
             }
