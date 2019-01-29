@@ -65,6 +65,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
             Version previousVersion = context.previousVersion();
 
             disablePreferredEmailEnforcement(previousVersion);
+            
+            populdateAdminRecordTypeSetting(previousVersion);
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
                 // We need to handle a special case to populate the Owned_by_Namespace__c field for HEDA Orgs before 1.38.
@@ -251,5 +253,19 @@ global without sharing class STG_InstallScript implements InstallHandler {
         }
 
         update hedaHandlers;
+    }
+
+    /*******************************************************************************************************
+    * @description Populate Administrative record type custom setting when upgrading to 1.70
+    * @return void
+    */
+    public static void populdateAdminRecordTypeSetting(Version previousVersion) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,70)) < 0) {
+            Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+            if(orgSettings.Administrative_Account_Record_Type__c == null || orgSettings.Administrative_Account_Record_Type__c == '') {
+                orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
+            }
+            upsert orgSettings;
+        }
     }
 }
