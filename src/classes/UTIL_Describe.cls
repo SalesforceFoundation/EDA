@@ -542,22 +542,10 @@ public class UTIL_Describe {
      * @return String The ID of the Administrative Account record type as a String.
      */
 
-	public static String getAdminAccRecTypeID() {
-        //Get user defined Admin record type id if exists
-        String recTypeId = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
-        //If user defined Admin record type does not exist
-        if (recTypeId == NULL
-                || recTypeId == '') {
-            //Use default Admin record type
-            recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
-            //Set default Admin record type as user defined Admin record type setting
-            Hierarchy_Settings__c setting = Hierarchy_Settings__c.getInstance();
-            setting.Administrative_Account_Record_Type__c = recTypeId;
-            upsert setting;
-        }
-
-	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 0) {
+    public static String getAdminAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Account').values().size() > 0) {
                 return getRecTypesMapByDevName('Account').values()[0];
             } else {
                 return null;
@@ -568,34 +556,20 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-     * @description Returns the ID of the Household Account record type, if it exists.
-     * @return String The ID of the Household Account record type as a String.
-     */
-
-	public static String getHhAccRecTypeID() {
-        //Get user defined Household record type id
-        String recTypeId = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
-        //If user defined Household record type does not exist
-        if (recTypeId == NULL
-                || recTypeId == '') {
-            //Use default Household record type id
-            recTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
-            //Set default Household record type as user defined Household record type setting
-            Hierarchy_Settings__c setting = Hierarchy_Settings__c.getInstance();
-            setting.Household_Addresses_RecType__c = recTypeId;
-            upsert setting;
-        }
-
-	    if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-	        if(getRecTypesMapByDevName('Account').values().size() > 1) {
+    * @description Returns the ID of the Household Account record type, if it exists.
+    * @return String The ID of the Household Account record type as a String.
+    */
+    public static String getHhAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
+        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if(getRecTypesMapByDevName('Account').values().size() > 1) {
                 return getRecTypesMapByDevName('Account').values()[1];
-            } else {
-                return null;
             }
-	    } else {
-	        return recTypeId;
-	    }
-	}
+            else return null;
+        } else {
+            return recTypeId;
+        }
+    }
 
 	/*******************************************************************************************************
      * @description Returns the ID of the Business Account record type, if it exists.
