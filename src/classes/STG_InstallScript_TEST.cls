@@ -315,4 +315,20 @@ public with sharing class STG_InstallScript_TEST {
         System.assertEquals(1, errorSchedule.size());
     }
 
+    @isTest
+    public static void populateAdminRecordTypeSetting() {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Administrative_Account_Record_Type__c = '';
+        upsert orgSettings;
+
+        Test.startTest();
+        //Run the install script for orgs using HEDA 1.67
+        Test.testInstall(new STG_InstallScript(), new Version(1,67), true);
+        Test.stopTest();
+
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+        System.assertNotEquals(null, updatedSettings.Administrative_Account_Record_Type__c);
+        System.assertNotEquals('', updatedSettings.Administrative_Account_Record_Type__c);
+        system.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), orgSettings.Administrative_Account_Record_Type__c);
+    }
 }
