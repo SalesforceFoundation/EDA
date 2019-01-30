@@ -326,6 +326,9 @@ public with sharing class STG_InstallScript_TEST {
         Test.testInstall(new STG_InstallScript(), new Version(1,67), true);
         Test.stopTest();
 
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+        System.assertNotEquals(null, updatedSettings.Administrative_Account_Record_Type__c);
+        System.assertNotEquals('', updatedSettings.Administrative_Account_Record_Type__c);
         system.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), orgSettings.Administrative_Account_Record_Type__c);
     }
 }
