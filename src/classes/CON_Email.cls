@@ -192,15 +192,17 @@ public class CON_Email {
                 }
             }
 
-            for(String fieldName : contactEmailFieldMap.keySet() ) {
+            for(String fieldName : contactEmailFieldMap.keySet()) {
+                String fieldLabel = contactEmailFieldMap.get(fieldName).getLabel();
+                
                 //If the field is not a standard email field and it is not duplicate with HEDA email, then add it to the list
-                if ( fieldName != emailLabel && !(hedaEmailField.get(contactEmailFieldMap.get(fieldName).getLabel()) != null &&
-                                fieldName != hedaEmailField.get(contactEmailFieldMap.get(fieldName).getLabel()))) {
+                if (fieldName != emailLabel && 
+                        !(hedaEmailField.get(fieldLabel) != null && fieldName != hedaEmailField.get(fieldLabel))) {
                     String emailField = (String)contact.get(fieldName);
 
-                    allFields.add( new CON_EmailField( emailField, contactEmailFieldMap.get(fieldName).getLabel(), fieldName ) );
+                    allFields.add(new CON_EmailField(emailField, fieldLabel, fieldName));
                     if(String.isNotBlank(emailField)) {
-                        valuedFields.add( new CON_EmailField( emailField, contactEmailFieldMap.get(fieldName).getLabel(), fieldName ) );
+                        valuedFields.add(new CON_EmailField(emailField, fieldLabel, fieldName));
                     }
                 }
             }
