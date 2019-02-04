@@ -4,7 +4,6 @@
   "orgPreferences" : {
     "enabled": [
       "S1DesktopEnabled",
-      "Translation",
       "ChatterEnabled"
     ]
   }
