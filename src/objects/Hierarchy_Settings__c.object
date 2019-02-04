@@ -72,9 +72,9 @@
     <fields>
         <fullName>Advancement_Namespace__c</fullName>
         <defaultValue>&quot;adv1&quot;</defaultValue>
-        <description>The namespace of the Gift Processing package.</description>
+        <description>The namespace of the Gift Entry Management managed package.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The namespace of the Gift Processing package.</inlineHelpText>
+        <inlineHelpText>The namespace of the Gift Entry Management managed package.</inlineHelpText>
         <label>GEM Namespace</label>
         <length>10</length>
         <required>false</required>
