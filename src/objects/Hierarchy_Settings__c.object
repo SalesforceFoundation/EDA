@@ -75,7 +75,7 @@
         <description>The namespace of the Gift Processing package.</description>
         <externalId>false</externalId>
         <inlineHelpText>The namespace of the Gift Processing package.</inlineHelpText>
-        <label>Advancement Namespace</label>
+        <label>GEM Namespace</label>
         <length>10</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

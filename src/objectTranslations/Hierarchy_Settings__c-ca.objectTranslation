@@ -40,7 +40,7 @@
     </fields>
     <fields>
         <help><!-- The namespace of the Gift Processing package. --></help>
-        <label><!-- Advancement Namespace --></label>
+        <label><!-- GEM Namespace --></label>
         <name>Advancement_Namespace__c</name>
     </fields>
     <fields>
