@@ -70,35 +70,45 @@ public with sharing class Advancement_Info {
             hs.Advancement_Namespace__c = String.valueOf(Hierarchy_Settings__c.Advancement_Namespace__c.getDescribe().getDefaultValueFormula()).remove('\"');
         }
 
-        //Check if Advancement is installed
-        try {
-            Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{hs.Advancement_Namespace__c + '__Advancement_Setting__mdt'});
-            isManaged = true;
-        } catch (Exception e) {
-            try {
-                Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{'Advancement_Setting__mdt'});
-            } catch (Exception ex) {
-                setupCalled = true;
-                return;
+        //Check if GEM is installed
+        List<String> settingsObjs = new List<String> {'Advancement_Setting__mdt', 'GEM_API_Settings__mdt'};
+        List<String> useGEMFields = new List<String> {'Use_Advancement__c', 'Use_GEM__c'};
+
+        boolean found = false;
+
+        Integer i=0;
+        while (!found && i < settingsObjs.size()) {
+            try { // With Namespace
+                Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{hs.Advancement_Namespace__c + '__' + settingsObjs[i]});
+                isManaged = true;
+                found = true;
+            } catch (Exception e) {
+                try { // Without Namespace
+                    Schema.DescribeSObjectResult[] descResult = Schema.describeSObjects(new String[]{settingsObjs[i]});
+                    found = true;
+                } catch (Exception ex) {
+                    i++;
+                }
             }
         }
 
+        if (!found) {
+            setupCalled = true;
+            return;
+        }
+
+       String gemAPISettingsObj = settingsObjs[i];
+        String useGEMField= useGEMFields[i];
 
         //If Adv is installed, we need to throw exception if Adv is not configured correctly
         Boolean hasConfigError = true;
 
-        String advSettingQuery = 'select Use_Advancement__c, API_HEDA_Class__c from Advancement_Setting__mdt';
-        String useAdvStr = 'Use_Advancement__c';
-        String apiHedaClassStr = 'API_HEDA_Class__c';
+        String nsPrefixOrBlank = (isManaged) ? hs.Advancement_Namespace__c + '__' : '';
 
-        if (isManaged == true) {
-            advSettingQuery = 'select ' + hs.Advancement_Namespace__c + '__' + 'Use_Advancement__c, ' +
-                    hs.Advancement_Namespace__c + '__' + 'API_HEDA_Class__c from ' +
-                    hs.Advancement_Namespace__c + '__' + 'Advancement_Setting__mdt';
-            useAdvStr = hs.Advancement_Namespace__c + '__' + 'Use_Advancement__c';
-            apiHedaClassStr = hs.Advancement_Namespace__c + '__' + 'API_HEDA_Class__c';
+        String useAdvStr = nsPrefixOrBlank + useGEMField;
+        String apiHedaClassStr = nsPrefixOrBlank + 'API_HEDA_Class__c';
 
-        }
+        String advSettingQuery = 'select ' + useAdvStr + ', ' + apiHedaClassStr + ' from ' + nsPrefixOrBlank + gemAPISettingsObj;
 
         List<SObject> advSettings = Database.query(advSettingQuery);
         if (advSettings != null && advSettings.size() > 0) {
