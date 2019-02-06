@@ -408,6 +408,7 @@
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
+        <members>NoneOption</members>
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
