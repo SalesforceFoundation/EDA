@@ -121,43 +121,86 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(1, affls.size());
     }
 
+    /*********************************************************************************************************
+    * @description Verifies that a single Affiliation to the Department is automatically created when multiple
+    * Course Offerings with a value in the Faculty field are created and that Contact did not already have an 
+    * Affiliation to that Department.
+    */
     @isTest
-    public static void addFacultyToOfferingNoPrevAffl() {
+    public static void multipleNewCourseOfferingsWithSameDepartmentAndFaculty() {
         setup();
-        List<Affiliation__c> affls = [select ID from Affiliation__c];
-        Integer afflsSize1 = affls.size();
 
-        //Create Course Offering without Faculty member
+        //Create Course Offerings with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
-        Term__c = term.Id, Capacity__c = 200);
-        insert offering;
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-102 Summer 16', Course__c = course.ID,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
 
-        //No affiliation should have been created
-        affls = [select ID from Affiliation__c];
-        System.assertEquals(afflsSize1, affls.size());
-
-        //Add faculty to offering
-        offering.Faculty__c = faculty.Id;
         Test.startTest();
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
-        update offering;
+        insert new List<Course_Offering__c>{ offering, offering2 };
         Test.stopTest();
 
-        //An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Department
-        //already existed.
-        affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c
-        where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        //Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
+        List<Affiliation__c> affls = [SELECT Contact__c, Account__c, Role__c, StartDate__c, EndDate__c FROM Affiliation__c
+        WHERE Contact__c = :faculty.Id AND Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
         System.assertEquals('Faculty', affls[0].Role__c);
         System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
         System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
 
-        //A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
-        where Contact__r.Id = :faculty.Id];
-        System.assertEquals(1, enrolls.size());
-        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+        //A Course Enrollment should have been automatically created for each Course Offering
+        List<Course_Enrollment__c> enrolls = [SELECT Contact__c, Course_Offering__c, Affiliation__c FROM Course_Enrollment__c
+        WHERE Contact__c = :faculty.Id];
+        System.assertEquals(2, enrolls.size());
+        //The Course Enrollments should have been linked to the Affiliation that was automatically created
         System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
+        System.assertEquals(affls[0].ID, enrolls[1].Affiliation__c);
+    }
+
+    /*********************************************************************************************************
+    * @description Verifies that a single Affiliation to the Department is automatically created when multiple
+    * Course Offerings with a value in the Faculty field are updated and that Contact did not already have an 
+    * Affiliation to that Department.
+    */
+    @isTest
+    public static void addFacultyToMultipleCourseOfferingsNoPrevAffl() {
+        setup();
+        
+        //Create Course Offerings without Faculty member
+        Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
+        Term__c = term.Id, Capacity__c = 200);
+        Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-102 Spring 16', Course__c = course.ID,
+        Term__c = term.Id, Capacity__c = 200);
+        insert new List<Course_Offering__c>{ offering, offering2 };
+
+        //No affiliation should have been created
+        List<Affiliation__c> affls = [SELECT ID FROM Affiliation__c];
+        System.assertEquals(0, affls.size());
+
+        //Add faculty to offerings
+        offering.Faculty__c = faculty.Id;
+        offering2.Faculty__c = faculty.Id;
+        Test.startTest();
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);
+        update new List<Course_Offering__c>{ offering, offering2 };
+        Test.stopTest();
+
+        //An Affiliation should have been automatically created for the faculty member, if no Affiliation to that Department
+        //already existed.
+        affls = [SELECT Contact__c, Account__c, Role__c, StartDate__c, EndDate__c FROM Affiliation__c
+        WHERE Contact__c = :faculty.Id AND Role__c = 'Faculty'];
+        System.assertEquals(1, affls.size());
+        System.assertEquals('Faculty', affls[0].Role__c);
+        System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
+        System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
+
+        //A Course Enrollment should have been automatically created for each Course Offering
+        List<Course_Enrollment__c> enrolls = [SELECT Contact__c, Course_Offering__c, Affiliation__c FROM Course_Enrollment__c
+        WHERE Contact__c = :faculty.Id];
+        System.assertEquals(2, enrolls.size());
+        //The Course Enrollments should have been linked to the Affiliation that was automatically created
+        System.assertEquals(affls[0].ID, enrolls[0].Affiliation__c);
+        System.assertEquals(affls[0].ID, enrolls[1].Affiliation__c);
     }
 
     @isTest
@@ -199,56 +242,62 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(affls[0].Id, enrolls[0].Affiliation__c);
     }
 
+    /*********************************************************************************************************
+    * @description Verifies that changing the Faculty on multiple Course Offerings for the same Departmenet does
+    * not create duplicate Affiliation records and the existing Affiliation record is updated.
+    */
     @isTest
-    public static void changeFaculty() {
+    public static void changeFacultyWithMultipleCourseOfferings() {
         setup();
 
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
-        insert offering;
+        Course_Offering__c offering2 = new Course_Offering__c(Section_ID__c = 'BIO-102 Spring 16', Course__c = course.ID,
+        Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
+        insert new List<Course_Offering__c>{ offering, offering2 };
 
         //Since no previous Affl to the Dpt existed, an Affl should have been automatically created for the faculty member
-        List<Affiliation__c> affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c
-        where Contact__r.Id = :faculty.Id and Role__c = 'Faculty'];
+        List<Affiliation__c> affls = [SELECT Contact__c, Account__c, Role__c, StartDate__c, EndDate__c FROM Affiliation__c
+        WHERE Contact__c = :faculty.Id AND Role__c = 'Faculty'];
         System.assertEquals(1, affls.size());
 
-        //A Course Enrollment should have been automatically created
-        List<Course_Enrollment__c> enrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
-        where Contact__r.Id = :faculty.Id];
-        System.assertEquals(1, enrolls.size());
+        //A Course Enrollment should have been automatically created for each Course Offering
+        List<Course_Enrollment__c> enrolls = [SELECT Contact__c, Course_Offering__c, Affiliation__c FROM Course_Enrollment__c
+        WHERE Contact__c = :faculty.Id];
+        System.assertEquals(2, enrolls.size());
 
         //Create second faculty member
         Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert faculty2;
 
-        //Update Offering
+        //Update Offerings & create new course offerings
         offering.Faculty__c = faculty2.Id;
+        offering2.Faculty__c = faculty2.Id;
         Test.startTest();
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, false);        
-        update offering;
+        update new List<Course_Offering__c>{ offering, offering2 };
         Test.stopTest();
 
         //The affiliation should have been updated to point to the second faculty member
-        affls = [select Contact__c, Account__c, Role__c, StartDate__c, EndDate__c from Affiliation__c
-        where Contact__r.Id = :faculty2.Id and Role__c = 'Faculty' and ID = :affls[0].ID];
+        affls = [SELECT Contact__c, Account__c, Role__c, StartDate__c, EndDate__c FROM Affiliation__c
+        WHERE Contact__c = :faculty2.Id AND Role__c = 'Faculty' and ID = :affls[0].ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Faculty', affls[0].Role__c);
         System.assertEquals(term.Start_Date__c, affls[0].StartDate__c);
         System.assertEquals(term.End_Date__c, affls[0].EndDate__c);
 
-        //The Course Enrollment of the old Faculty member should have been deleted
-        enrolls = [select ID from Course_Enrollment__c where Contact__r.Id = :faculty.Id];
+        //The Course Enrollments of the old Faculty member should have been deleted
+        enrolls = [SELECT ID FROM Course_Enrollment__c WHERE Contact__c = :faculty.Id];
         System.assertEquals(0, enrolls.size());
 
-        //A Course Enrollment should have been automatically created for the new Faculty
-        List<Course_Enrollment__c> newEnrolls = [select Contact__c, Course_Offering__c, Affiliation__c from Course_Enrollment__c
-        where Contact__r.Id = :faculty2.Id];
-        System.assertEquals(1, newEnrolls.size());
-        //The Course Enrollment should have been linked to the Affiliation that was automatically created
+        //A Course Enrollment should have been automatically created for the new Faculty for each Course Offering
+        List<Course_Enrollment__c> newEnrolls = [SELECT Contact__c, Course_Offering__c, Affiliation__c FROM Course_Enrollment__c
+        WHERE Contact__c = :faculty2.Id];
+        System.assertEquals(2, newEnrolls.size());
+        //The Course Enrollment should have been linked to the Affiliation that was updated
         System.assertEquals(affls[0].ID, newEnrolls[0].Affiliation__c);
-
-
+        System.assertEquals(affls[0].ID, newEnrolls[1].Affiliation__c);
     }
 
     @isTest
