@@ -89,6 +89,14 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>NoneOption</fullName>
+        <categories>Picklist Options</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
+        <value>--None--</value>
+    </labels>
+    <labels>
         <fullName>PreferredEmailMatchMustExist</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
