@@ -108,7 +108,7 @@ public with sharing class Advancement_Info {
         String useAdvStr = nsPrefixOrBlank + useGEMField;
         String apiHedaClassStr = nsPrefixOrBlank + 'API_HEDA_Class__c';
 
-        String advSettingQuery = 'select ' + useAdvStr + ', ' + apiHedaClassStr + ' from ' + nsPrefixOrBlank + gemAPISettingsObj;
+        String advSettingQuery = 'SELECT ' + useAdvStr + ', ' + apiHedaClassStr + ' FROM ' + nsPrefixOrBlank + gemAPISettingsObj;
 
         List<SObject> advSettings = Database.query(advSettingQuery);
         if (advSettings != null && advSettings.size() > 0) {
