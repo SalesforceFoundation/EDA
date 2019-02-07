@@ -39,8 +39,8 @@
         <name>Administrative_Account_Record_Type__c</name>
     </fields>
     <fields>
-        <help><!-- The namespace of the Gift Processing package. --></help>
-        <label><!-- Advancement Namespace --></label>
+        <help><!-- The namespace of the Gift Entry Management managed package. --></help>
+        <label><!-- GEM Namespace --></label>
         <name>Advancement_Namespace__c</name>
     </fields>
     <fields>
