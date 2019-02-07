@@ -97,7 +97,7 @@ public with sharing class Advancement_Info {
             return;
         }
 
-       String gemAPISettingsObj = settingsObjs[i];
+        String gemAPISettingsObj = settingsObjs[i];
         String useGEMField= useGEMFields[i];
 
         //If Adv is installed, we need to throw exception if Adv is not configured correctly
