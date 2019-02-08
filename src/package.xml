@@ -231,6 +231,11 @@
         <members>Affl_Mappings__c.Auto_Program_Enrollment_Status__c</members>
         <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
         <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
+        <members>Class_Period__c.Account__c</members>
+        <members>Class_Period__c.Alternating__c</members>
+        <members>Class_Period__c.Day_Descriptor__c</members>
+        <members>Class_Period__c.End_Time__c</members>
+        <members>Class_Period__c.Start_Time__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Citizenship__c</members>
         <members>Contact.Country_of_Origin__c</members>
@@ -281,6 +286,16 @@
         <members>Course_Offering__c.Section_ID__c</members>
         <members>Course_Offering__c.Start_Date__c</members>
         <members>Course_Offering__c.Term__c</members>
+        <members>Course_Offering_Period__c.Class_Period__c</members>
+        <members>Course_Offering_Period__c.Course_Offering__c</members>
+        <members>Course_Offering_Period__c.Day_Descriptor__c</members>
+        <members>Course_Offering_Period__c.Friday__c</members>
+        <members>Course_Offering_Period__c.Monday__c</members>
+        <members>Course_Offering_Period__c.Saturday__c</members>
+        <members>Course_Offering_Period__c.Sunday__c</members>
+        <members>Course_Offering_Period__c.Thursday__c</members>
+        <members>Course_Offering_Period__c.Tuesday__c</members>
+        <members>Course_Offering_Period__c.Wednesday__c</members>
         <members>Course__c.Account__c</members>
         <members>Course__c.Course_ID__c</members>
         <members>Course__c.Credit_Hours__c</members>
@@ -602,6 +617,8 @@
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
+        <members>Class_Period__c</members>
+        <members>Course_Offering_Period__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The different periods associated with a given course offering.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Class_Period__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The class period (time, and alternating schedule) in which this course offering is being held.</description>
+        <externalId>false</externalId>
+        <label>Class Period</label>
+        <referenceTo>Class_Period__c</referenceTo>
+        <relationshipLabel>Course Offering Periods</relationshipLabel>
+        <relationshipName>Course_Offering_Periods</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Offering__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The course offering to which this period belongs</description>
+        <externalId>false</externalId>
+        <label>Course Offering</label>
+        <referenceTo>Course_Offering__c</referenceTo>
+        <relationshipLabel>Course Offering Periods</relationshipLabel>
+        <relationshipName>Course_Offering_Periods</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Day_Descriptor__c</fullName>
+        <description>If class period is alternating, display which day this takes place on via the descriptor</description>
+        <externalId>false</externalId>
+        <formula>IF( 
+   AND(
+       Class_Period__r.Alternating__c,
+       NOT(ISBLANK(Class_Period__r.Day_Descriptor__c)) 
+   ),
+   Class_Period__r.Day_Descriptor__c,
+   &apos;&apos;
+)</formula>
+        <label>Day Descriptor</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Friday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a Friday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Friday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Monday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a monday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Monday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Saturday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a Saturday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Saturday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sunday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a Sunday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Sunday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Thursday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a Thursday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Thursday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Tuesday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a Tuesday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Tuesday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Wednesday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Signifies this course offering period/location takes place on a Wednesday at the time specified by the parent class period.</description>
+        <externalId>false</externalId>
+        <label>Wednesday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Course Offering Period</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Course Offering Period Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Course Offering Periods</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
