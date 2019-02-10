@@ -50,7 +50,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -86,7 +86,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -122,7 +122,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -158,7 +158,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -194,7 +194,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -230,7 +230,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -263,7 +263,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -296,7 +296,7 @@ public with sharing class PREN_Affiliation_TEST {
         
         ID orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
         
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = new Account(Name='Acme', RecordTypeId = orgRecTypeID);
         insert acc;
         
@@ -364,7 +364,7 @@ public with sharing class PREN_Affiliation_TEST {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
 
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
         
@@ -380,15 +380,63 @@ public with sharing class PREN_Affiliation_TEST {
         enrollment = [SELECT Affiliation__r.ID FROM Program_Enrollment__c WHERE ID = :enrollment.ID];
         System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
         ID enrollmentAfflID = enrollment.Affiliation__r.ID; //Storing it to use it in next query
+
+        //Create additional Program Enrollment
+        Program_Enrollment__c enrollment2 = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, Affiliation__c = enrollmentAfflID);
+        insert enrollment2;
+        
+        //Delete both Program Enrollments
+        Test.startTest();
+        delete new List<Program_Enrollment__c>{ enrollment, enrollment2 };
+        Test.stopTest();
+        
+        //Related Affiliation should have been automatically deleted
+        affls = [SELECT ID FROM Affiliation__c WHERE ID = :enrollmentAfflID];
+        System.assertEquals(0, affls.size());
+    }
+
+    /*********************************************************************************************************
+    * @description Deleting a Program Enrollment does not delete the related Affiliation when Affl_ProgEnroll_Del__c setting
+    * is set to true but other Program Enrollments are associated to the same Affiliation.
+    */
+    @isTest
+    public static void deletePEnrollDelAfflYes_existingPEPreventsAffiliationDeletion() {
+        STG_InstallScript.insertMappings();
+
+        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = true));
+        
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        insert contact;
+
+        //Create account of Business Organization record type
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+        
+        //Create Program Enrollment
+        Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID);
+        insert enrollment;
+        
+        //An Affiliation should have been automatically created fron the Program Enrollment
+        List<Affiliation__c> affls = [SELECT Contact__c, Account__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
+        System.assertEquals(1, affls.size());
+        
+        //The Program Enrollment record should be related to the Affiliation just created
+        enrollment = [SELECT Affiliation__r.ID FROM Program_Enrollment__c WHERE ID = :enrollment.ID];
+        System.assertEquals(affls[0].ID, enrollment.Affiliation__r.ID);
+        ID enrollmentAfflID = enrollment.Affiliation__r.ID; //Storing it to use it in next query
+
+        //Create additional Program Enrollment
+        Program_Enrollment__c enrollment2 = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID, Affiliation__c = enrollmentAfflID);
+        insert enrollment2;
         
         //Delete Program Enrollment
         Test.startTest();
         delete enrollment;
         Test.stopTest();
         
-        //Related Affiliation should have been automatically deleted
+        //Related Affiliation should have NOT been automatically deleted
         affls = [SELECT ID FROM Affiliation__c WHERE ID = :enrollmentAfflID];
-        System.assertEquals(0, affls.size());
+        System.assertEquals(1, affls.size());
     }
     
     /*********************************************************************************************************
@@ -406,7 +454,7 @@ public with sharing class PREN_Affiliation_TEST {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
 
-        //Craete account of Business Organization record type
+        //Create account of Business Organization record type
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
         
