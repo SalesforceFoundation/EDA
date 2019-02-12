@@ -557,7 +557,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
-        <value>Status of Affiliation Related to Deleted Program Enrollment:</value>
+        <value>Status Specified for Affiliation Related to Deleted Program Enrollment:</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
@@ -973,7 +973,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>If selected, copy the Program Enrollment's Start Date to the created Affiliation. Otherwise, leave the created Affiliation's Start Date blank</value>
+        <value>If selected, copy the Program Enrollment's Start Date to the created Affiliation. Otherwise, leave the created Affiliation's Start Date blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
