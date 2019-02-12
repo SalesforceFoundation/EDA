@@ -269,4 +269,4 @@ Scroll Page To Location
 Go To Heda Settings
    Open App Launcher
    Click Link   //a[@title= 'HEDA Settings']
-   Select Frame			//iframe[contains(@id, "vfFrameId")]
+   Select Frame			//iframe[contains(@name, "vfFrameId")]
