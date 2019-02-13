@@ -114,9 +114,9 @@
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
-        <description>If the related setting, Affil Delete With Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrollment is deleted.</description>
+        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrollment is deleted.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If the related setting, Affil Delete With Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrollment is deleted.</inlineHelpText>
+        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrollment is deleted.</inlineHelpText>
         <label>Affil Status When Delete Prog Enroll</label>
         <length>255</length>
         <required>false</required>
