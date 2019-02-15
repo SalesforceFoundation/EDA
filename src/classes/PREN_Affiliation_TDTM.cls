@@ -124,11 +124,12 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
             }
             dmlWrapper.objectsToDelete.addAll((List<SObject>)afflsToUpdateDel);
         } else {
+            String affiliationStatusOnPEDelete = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
             List<Affiliation__c> potentialAffiliationsToUpdate = [SELECT Id, Status__c FROM Affiliation__c WHERE ID IN :afflsToUpdateDelIDs];
             for(Affiliation__c affl : potentialAffiliationsToUpdate) {
                 //Only update the Affiliation if there are no other Program Enrollment records associated to it.
                 if (!affiliationIdsToIgnore.contains(affl.Id)) {
-                    affl.Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
+                    affl.Status__c = affiliationStatusOnPEDelete;
                     afflsToUpdateDel.add(affl);
                 }
             }
