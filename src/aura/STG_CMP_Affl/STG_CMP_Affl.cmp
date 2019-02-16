@@ -129,7 +129,6 @@
                     <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
                 </div>
 
-                <aura:if isTrue="0 > 1"><!-- comment for bugfixes -->
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}"/>
@@ -173,8 +172,6 @@
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
                 </div>
-                </aura:if><!-- end comment for bugfixes -->
-
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
