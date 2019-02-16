@@ -157,7 +157,7 @@ public with sharing class CCON_Faculty_TEST {
 
             insert conn;
 
-            // Check that an Affilition was created.
+            // Check that an Affiliation was created.
             conn = [SELECT Id, Affiliation__c FROm Course_Enrollment__c WHERE Id = :conn.Id];
             System.assertNotEquals(null, conn.Affiliation__c);
 
@@ -372,7 +372,7 @@ public with sharing class CCON_Faculty_TEST {
 
             insert conn;
 
-            // Check that an Affilition was created.
+            // Check that an Affiliation was created.
             List<Affiliation__c> affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
             System.assertEquals(1, affls.size());
 
@@ -389,8 +389,52 @@ public with sharing class CCON_Faculty_TEST {
             insert conn2;
             Test.stopTest();
 
-            // Check that an additional Affilition was not created.
+            // Check that an additional Affiliation was not created.
             affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
+            System.assertEquals(1, affls.size());
+
+            //Check that the Affiliation Id is the same on both Course Connections. There should only be two.
+            List<Course_Enrollment__c> conns = [SELECT Id, Affiliation__c FROM Course_Enrollment__c];
+            System.assertEquals(2, conns.size());
+            System.assertEquals(conns[0].Affiliation__c, conns[1].Affiliation__c);
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description Verifies that an additional Affiliation is not created when two Course Connections with the
+    * same Faculty and Department are inserted at the same time.
+    */
+    @isTest
+    public static void multipleNewPrimaryCourseConnectionsForSameFaculty() {
+        // Do not run test if record types do not exist
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+            enableCourseConnections();
+            setup();
+
+            Id facultyRecordTypeId = UTIL_Describe_API.getFacultyConnectionRecType();
+
+            // Create two Course Connections on different Course Offerings in same Dept.
+            // Since both are for the same Faculty member, only one affiliation is created.
+            Course_Enrollment__c conn = new Course_Enrollment__c(
+                Contact__c = faculty.Id,
+                Course_Offering__c = offering.Id,
+                Primary__c = false
+            );
+            conn.put('RecordTypeId', facultyRecordTypeId);
+
+            Course_Enrollment__c conn2 = new Course_Enrollment__c(
+                Contact__c = faculty.Id,
+                Course_Offering__c = offering2.Id,
+                Primary__c = true
+            );
+            conn2.put('RecordTypeId', facultyRecordTypeId);
+
+            Test.startTest();
+            insert new List<Course_Enrollment__c>{ conn, conn2 };
+            Test.stopTest();
+
+            // Check that only one Affiliation was created.
+            List<Affiliation__c> affls = [SELECT Id, Contact__c FROM Affiliation__c WHERE Contact__c = :faculty.Id];
             System.assertEquals(1, affls.size());
 
             //Check that the Affiliation Id is the same on both Course Connections. There should only be two.
@@ -439,8 +483,8 @@ public with sharing class CCON_Faculty_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Verifies that when a Course Connection is removed the related Affiliation is also removed.
-    * The Affiliation should be removed because there will only be one Course Connection related to it.
+    * @description Verifies that when a Course Connection is removed the related Affiliation is not removed.
+    * The Affiliation should not be removed because there will still be one additional Course Connection related to it.
     */
     @isTest
     public static void deleteCourseConnectionKeepAffiliation() {
