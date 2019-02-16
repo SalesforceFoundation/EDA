@@ -238,23 +238,31 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
          Map<Id, List<Affiliation__c>> facultyIDtoAffls = getAfflsForContact(newFacultyIDs);
          //Automatically create an Affiliation record if a Course Offering record with a value in the Faculty field has been created,
          //and no Affl to the parent Department exists.
-         List<Affiliation__c> afflsToInsert = new List<Affiliation__c>();
+         Map<String, Affiliation__c> affiliationsToInsertByContactAccountString = new Map<String, Affiliation__c>();
          List<Affiliation__c> afflsTemp = new List<Affiliation__c>();
          for(Integer i = 0 ; i < offsWithNewFaculty.size(); i++) {
              Course_Offering__c offering = offsWithNewFaculty[i];
              Affiliation__c afflToDpt = affiliationToAccount(offering, facultyIDtoAffls);
+             
              if(afflToDpt == null) {
-                 UTIL_Debug.debug('****Affl to Dpt does not exist');
-                 Affiliation__c afflToInsert = new Affiliation__c(Contact__c = offering.Faculty__c, Account__c = offering.Course__r.Account__c,
-                                         Role__c = 'Faculty', StartDate__c = offering.Term__r.Start_Date__c, EndDate__c = offering.Term__r.End_Date__c);
-                afflsToInsert.add(afflToInsert);
+                UTIL_Debug.debug('****Affl to Dpt does not exist');
+                Affiliation__c afflToInsert;
+                
+                String contactAccountKey = offering.Faculty__c + '' + offering.Course__r.Account__c;
+                // Is the Affiliation already being inserted? If so, do not insert a duplicate.
+                if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
+                    afflToInsert = affiliationsToInsertByContactAccountString.get(contactAccountKey);
+                } else {
+                    afflToInsert = createAffiliationFromCourseOffering(offering);
+                    affiliationsToInsertByContactAccountString.put(contactAccountKey, afflToInsert);
+                }
                 afflsTemp.add(afflToInsert);
              } else {
                  UTIL_Debug.debug('****Affl to Dpt exists: ' + afflToDpt.Id);
                  afflsTemp.add(afflToDpt); // Add existing affl to link to Course Enrollment
              }
          }
-         insert afflsToInsert;
+         insert affiliationsToInsertByContactAccountString.values();
 
          //Link Course Enrollments to Affiliations
          for(Integer i = 0; i < afflsTemp.size(); i++) {
@@ -268,7 +276,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     * @description Sets each Affiliation pointing to the new Faculty member that is teaching the Course Offering.
     ********************************************************************************************************/
     private List<SObject> getAfflsToUpdate(List<ID> outdatedFacultyIDs, List<ID> updatedFacultyIDs, Map<Id, Course_Offering__c> mapNewFacultyIdToNewCourseOffering) {
-        List<Affiliation__c> afflsWithContact = [select Contact__c from Affiliation__c where Contact__r.ID in :outdatedFacultyIDs and Role__c = 'Faculty'];
+        List<Affiliation__c> afflsWithContact = [SELECT Contact__c FROM Affiliation__c WHERE Contact__c IN :outdatedFacultyIDs AND Role__c = 'Faculty'];
+        Map<String, Affiliation__c> affiliationsToInsertByContactAccountString = new Map<String, Affiliation__c>();
 
         Map<ID, Affiliation__c> oldFacultyToAfflMap = new Map<ID, Affiliation__c>();
         for(Affiliation__c affl : afflsWithContact) {
@@ -277,23 +286,43 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
         //We have to make sure we are updating the correct Affiliations.
         for(Integer i = 0; i < outdatedFacultyIDs.size() ; i++) {
-            if (oldFacultyToAfflMap.keySet().contains(outdatedFacultyIDs[i])) {
-                Affiliation__c oldAffl = oldFacultyToAfflMap.get(outdatedFacultyIDs[i]);
-                oldAffl.Contact__c = updatedFacultyIDs[i];
+            Id outdatedFacultyID = outdatedFacultyIDs[i];
+            Id updatedFacultyID = updatedFacultyIDs[i];
+            if (oldFacultyToAfflMap.keySet().contains(outdatedFacultyID)) {
+                Affiliation__c oldAffl = oldFacultyToAfflMap.get(outdatedFacultyID);
+                oldAffl.Contact__c = updatedFacultyID;
             } else {
-                if (mapNewFacultyIdToNewCourseOffering.keySet().contains(updatedFacultyIDs[i])
-                    && mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]) != null) {
-                    Course_Offering__c offering = mapNewFacultyIdToNewCourseOffering.get(updatedFacultyIDs[i]);
-                    Affiliation__c newAffl = new Affiliation__c(Contact__c = offering.Faculty__c,
-                                                                Account__c = offering.Course__r.Account__c,
-                                                                Role__c = 'Faculty',
-                                                                StartDate__c = offering.Term__r.Start_Date__c,
-                                                                EndDate__c = offering.Term__r.End_Date__c);
-                    afflsWithContact.add(newAffl);
+                if (mapNewFacultyIdToNewCourseOffering.keySet().contains(updatedFacultyID)
+                    && mapNewFacultyIdToNewCourseOffering.get(updatedFacultyID) != null) {
+                    
+                    Course_Offering__c offering = mapNewFacultyIdToNewCourseOffering.get(updatedFacultyID);
+                    String contactAccountKey = offering.Faculty__c + '' + offering.Course__r.Account__c;
+                    // Is the Affiliation already being inserted? If so, do not insert a duplicate.
+                    if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
+                        continue;
+                    }
+
+                    Affiliation__c newAffl = createAffiliationFromCourseOffering(offering);
+                    affiliationsToInsertByContactAccountString.put(contactAccountKey, newAffl);
                 }
             }
         }
+
+        afflsWithContact.addAll(affiliationsToInsertByContactAccountString.values());
         return afflsWithContact;
+    }
+
+    /*******************************************************************************************************
+    * @description Creates and returns a new Faculty Affiliation record from the given Course Offering.
+    * @return Affiliation__c The new Faculty Affiliation record.
+    ********************************************************************************************************/
+    private Affiliation__c createAffiliationFromCourseOffering(Course_Offering__c offering) {
+        return new Affiliation__c(Contact__c = offering.Faculty__c,
+                                  Account__c = offering.Course__r.Account__c,
+                                  Role__c = 'Faculty',
+                                  StartDate__c = offering.Term__r.Start_Date__c,
+                                  EndDate__c = offering.Term__r.End_Date__c
+        );
     }
 
    /*******************************************************************************************************
@@ -459,9 +488,10 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
     * @description Returns a map with the Contact ID of each faculty member as the key, and all its Affiliations
-    * as the values. Public only so it can be called from the tests.
+    * as the values.
     ********************************************************************************************************/
-    public Map<ID, List<Affiliation__c>> getAfflsForContact(List<ID> newFacultyIDs) {
+    @testVisible
+    private Map<ID, List<Affiliation__c>> getAfflsForContact(List<ID> newFacultyIDs) {
         UTIL_Debug.debug('****Number of newly assigned faculty: ' + newFacultyIDs.size());
         //Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
@@ -493,9 +523,9 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
    /*******************************************************************************************************
     * @description Returns a map with Course Offering Id as key and a value as a Map of Contact Id as
-    * key with the corresponding Course Connection as value. Public only so it can be called from the tests.
+    * key with the corresponding Course Connection as value.
     ********************************************************************************************************/
-    public Map<Id, Map<Id, Course_Enrollment__c>> getOfferingIdFacultyIdConnection(Set<Id> offeringIds, Id facultyRecordTypeId) {
+    private Map<Id, Map<Id, Course_Enrollment__c>> getOfferingIdFacultyIdConnection(Set<Id> offeringIds, Id facultyRecordTypeId) {
         // Map with Course Offering Id as key and a value as a Map of Contact Id as key with the corresponding Course Connection as value
         Map<Id, Map<Id, Course_Enrollment__c>> connToOfferingIdMap = new Map<Id, Map<Id, Course_Enrollment__c>>();
         String queryString = 'select Id, Course_Offering__c, Contact__c from Course_Enrollment__c where Course_Offering__c in :offeringIds';
