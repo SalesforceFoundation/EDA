@@ -53,9 +53,8 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
         Id facultyRecType = (Id)UTIL_Describe.getFacultyConnectionRecType();
 
         List<Course_Offering__c> courseOfferingsToUpdate = new List<Course_Offering__c>();
-        List<Course_Enrollment__c> courseConnsBeforeInsert = new List<Course_Enrollment__c>();
 
-        List<Affiliation__c> affiliationsToInsert = new List<Affiliation__c>();
+        Map<String, Affiliation__c> affiliationsToInsertByContactAccountString = new Map<String, Affiliation__c>();
         List<Course_Enrollment__c> connsNeedingAffls = new List<Course_Enrollment__c>();
 
         List<Affiliation__c> affiliationsToDelete = new List<Affiliation__c>();
@@ -96,29 +95,45 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                     for (Integer i = 0; i < newlist.size(); i++) {
                         Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
 
-                        if(enroll.get('RecordTypeId') == facultyRecType) {
-                            enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
+                        // Skip over the Course Connection if it is not for a Faculty.
+                        if(enroll.get('RecordTypeId') != facultyRecType) {
+                            continue;
+                        }
 
-                            if (contactIdAccountIdAfflList.containsKey(enroll.Contact__c) && (
-                                 contactIdAccountIdAfflList.get(enroll.Contact__c).containsKey(enroll.Account__c))) {
-                                enroll.Affiliation__c = contactIdAccountIdAfflList.get(enroll.Contact__c).get(enroll.Account__c)[0].Id;
-                            } else {
-                                Affiliation__c affl = new Affiliation__c(
-                                    Contact__c = enroll.Contact__c,
-                                    Account__c = enroll.Account__c,
-                                    Role__c = 'Faculty'
-                                );
-                                affiliationsToInsert.add(affl);
-                                connsNeedingAffls.add(enroll);
+                        enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
+
+                        Map<Id, List<Affiliation__c>> affiliationsByAccountId = contactIdAccountIdAfflList.containsKey(enroll.Contact__c) ? 
+                            contactIdAccountIdAfflList.get(enroll.Contact__c) : null;
+
+                        if (affiliationsByAccountId != null && affiliationsByAccountId.containsKey(enroll.Account__c)) {
+                            enroll.Affiliation__c = affiliationsByAccountId.get(enroll.Account__c)[0].Id;
+                        } else {
+                            connsNeedingAffls.add(enroll);
+                            
+                            // Is the Affiliation already being inserted? If so, do not insert a duplicate.
+                            String contactAccountKey = enroll.Contact__c + '' + enroll.Account__c;
+                            if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
+                                continue;
                             }
+
+                            Affiliation__c affl = new Affiliation__c(
+                                Contact__c = enroll.Contact__c,
+                                Account__c = enroll.Account__c,
+                                Role__c = 'Faculty'
+                            );
+                            affiliationsToInsertByContactAccountString.put(contactAccountKey, affl);
                         }
                     }
 
-                    if (affiliationsToInsert.size() > 0) {
-                        insert affiliationsToInsert;
+                    if (affiliationsToInsertByContactAccountString.size() > 0) {
+                        insert affiliationsToInsertByContactAccountString.values();
 
-                        for (Integer i = 0; i < affiliationsToInsert.size(); i++) {
-                            connsNeedingAffls[i].Affiliation__c = affiliationsToInsert[i].Id;
+                        for (Integer i = 0; i < connsNeedingAffls.size(); i++) {
+                            Course_Enrollment__c enroll = connsNeedingAffls[i];
+                            String contactAccountKey = enroll.Contact__c + '' + enroll.Account__c;
+                            if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
+                                enroll.Affiliation__c = affiliationsToInsertByContactAccountString.get(contactAccountKey).Id;
+                            }
                         }
                     }
                 }
