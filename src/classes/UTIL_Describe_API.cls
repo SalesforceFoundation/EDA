@@ -245,6 +245,14 @@ global class UTIL_Describe_API {
 	}
 
     /*******************************************************************************************************
+     * @description Returns the ID of the Academic Program record type, if it exists.
+     * @return String The ID of the Academic Program Account record type as a String.
+     */
+    global static String getAcademicAccRecTypeID() {
+        return UTIL_Describe.getAcademicAccRecTypeID();
+    }
+
+    /*******************************************************************************************************
      * @description Returns the ID of the Default Course Connection record type, if it exists. This record
      * type should only be used in testing.
      * @return String The ID of the Default Course Connection record type as a String.
