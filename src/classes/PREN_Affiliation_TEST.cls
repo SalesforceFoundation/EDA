@@ -67,6 +67,10 @@ public with sharing class PREN_Affiliation_TEST {
         //The Program Enrollment record should be related to the Affiliation just created
         enrollment = [SELECT Affiliation__c FROM Program_Enrollment__c WHERE ID = :enrollment.ID];
         System.assertEquals(affls[0].ID, enrollment.Affiliation__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -99,6 +103,10 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT EndDate__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(testDate, affls[0].EndDate__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -131,6 +139,10 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT EndDate__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(null, affls[0].EndDate__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -163,6 +175,10 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT StartDate__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(testDate, affls[0].StartDate__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -195,6 +211,10 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT StartDate__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertNotEquals(testDate, affls[0].StartDate__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -224,6 +244,10 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Student', affls[0].Role__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -253,6 +277,10 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals(null, affls[0].Role__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
     
     /*********************************************************************************************************
@@ -282,8 +310,47 @@ public with sharing class PREN_Affiliation_TEST {
         List<Affiliation__c> affls = [SELECT Status__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
         System.assertEquals('Former', affls[0].Status__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
     }
-    
+
+    /*********************************************************************************************************
+    * @description Creating a Program Enrollment sets the related Affiliation Role when
+    * Affl_ProgEnroll_Set_Role__c setting is set to true and sets the related Affiliation Status
+    * to Affiliation_Program_Enrollment_Stat_Map
+    */
+    @isTest
+    public static void setAfflFromProgramEnrollmentRoleYesStatus() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = true,
+                                                                                Affl_ProgEnroll_Role_Map__c='Student',
+                                                                                Affl_ProgEnroll_Status_Map__c='Current'));
+
+        STG_InstallScript.insertMappings();
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+
+        //Craete account of Business Organization record type
+        Account acc = new Account(Name='Acme', RecordTypeId = UTIL_Describe_API.getAcademicAccRecTypeID());
+        insert acc;
+
+        //Create Program Enrollment
+        Program_Enrollment__c enrollment = new Program_Enrollment__c(Contact__c = contact.ID, Account__c = acc.ID);
+        Test.startTest();
+        insert enrollment;
+        Test.stopTest();
+
+        //An Affiliation should have been automatically created fron the Program Enrollment
+        List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
+        System.assertEquals(1, affls.size());
+        System.assertEquals('Student', affls[0].Role__c);
+
+        //Only should one program enrollment exist
+        List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
+        System.assertEquals(1, assertProgramEnrollments.size());
+    }
     /*********************************************************************************************************
     * @description Deleting a Program Enrollment deletes the related Affiliation when Affl_ProgEnroll_Del__c setting
     * is set to true.
