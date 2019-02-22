@@ -48,6 +48,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Specify the number of credits a student needs to complete this program plan. --></help>
+        <label><!-- Total Required Credits --></label>
+        <name>Total_Required_Credits__c</name>
+    </fields>
+    <fields>
         <help><!-- The version of the Program Plan. For example, “Spring 2019.” --></help>
         <label><!-- Version --></label>
         <name>Version__c</name>

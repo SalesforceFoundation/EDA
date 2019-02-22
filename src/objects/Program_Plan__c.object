@@ -139,6 +139,19 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Total_Required_Credits__c</fullName>
+        <description>The total required credits to complete the program plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the number of credits a student needs to complete this program plan.</inlineHelpText>
+        <label>Total Required Credits</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Version__c</fullName>
         <description>The version of the Program Plan. For example, “Spring 2019.”</description>
         <externalId>false</externalId>
