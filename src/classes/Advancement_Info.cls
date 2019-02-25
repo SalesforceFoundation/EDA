@@ -103,7 +103,7 @@ public with sharing class Advancement_Info {
         //If Adv is installed, we need to throw exception if Adv is not configured correctly
         Boolean hasConfigError = true;
 
-        String nsPrefixOrBlank = (isManaged) ? hs.Advancement_Namespace__c + '__' : '';
+        String nsPrefixOrBlank = (isManaged) ? String.escapeSingleQuotes(hs.Advancement_Namespace__c) + '__' : '';
 
         String useAdvStr = nsPrefixOrBlank + useGEMField;
         String apiHedaClassStr = nsPrefixOrBlank + 'API_HEDA_Class__c';
@@ -117,7 +117,7 @@ public with sharing class Advancement_Info {
                 String apiHedaClass = (String) advSettings[0].get(apiHedaClassStr);
                 if (String.isNotBlank(apiHedaClass)) {
                     if (isManaged == true) {
-                        apiHedaClass = hs.Advancement_Namespace__c + '.' + apiHedaClass;
+                        apiHedaClass = String.escapeSingleQuotes(hs.Advancement_Namespace__c) + '.' + apiHedaClass;
                     }
                     Type classType = Type.forName(apiHedaClass);
                     if (classType != null) {
