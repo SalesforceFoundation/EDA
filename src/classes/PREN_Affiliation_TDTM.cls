@@ -54,33 +54,38 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         }
         
         if(oldlist != null && oldlist.size() > 0) {
-            updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), dmlWrapper);
+            updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), oldlist, dmlWrapper);
         }
         return dmlWrapper;
     }
-    
-    private void createRelatedAffls(List<SObject> newlist, TDTM_Runnable.Action triggerAction) {
 
+    private void createRelatedAffls(List<SObject> newlist, TDTM_Runnable.Action triggerAction) {
         List<Affiliation__c> newAffls = new List<Affiliation__c>();
 
         for (SObject so : newlist) {
             Program_Enrollment__c enrollment = (Program_Enrollment__c)so;
-            
-            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
 
+            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
                 //Automatically create an Affiliation record if a Program Enrollment record has been created without an affiliation.
                 if(enrollment.Contact__c != null && enrollment.Account__c != null && enrollment.Affiliation__c == null) {
                     Date afflEndDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_End_Date__c == true ? enrollment.End_Date__c : null);
                     Date afflStartDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_Start_Date__c == true ? enrollment.Start_Date__c : null);
                     String afflRole = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Set_Role__c == true ? UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Role_Map__c : null);
 
-                    Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Contact__c, Account__c = enrollment.Account__c, EndDate__c = afflEndDate, StartDate__c = afflStartDate, Role__c = afflRole, Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Status_Map__c);
+                    Affiliation__c affl = new Affiliation__c(Contact__c = enrollment.Contact__c,
+                                                            Account__c = enrollment.Account__c,
+                                                            EndDate__c = afflEndDate,
+                                                            StartDate__c = afflStartDate,
+                                                            Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Status_Map__c,
+                                                            Role__c = afflRole);
                     newAffls.add(affl);
                 }
             }
         }
         
         if(newAffls.size() > 0) {
+            //Turn off AFFL_MultiRecordType_TDTM_After_Insert so HEDA won't create duplicate program enrollment
+            TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert);
             //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
             insert newAffls;
             for(Integer i = 0; i < newAffls.size(); i++) {
@@ -93,10 +98,10 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
     
     private List<ID> getDeletedPEsAfflIDs(List<SObject> oldlist, TDTM_Runnable.Action triggerAction) {
         List<ID> afflsToUpdateDelIDs = new List<ID>();
-        for (SObject so : oldlist) {
-            Program_Enrollment__c oldEnrollment = (Program_Enrollment__c)so;
-            
-            if(triggerAction == TDTM_Runnable.Action.AfterDelete) {   
+        //Only need to loop through the list when deleting Program Enrollment records
+        if(triggerAction == TDTM_Runnable.Action.AfterDelete) {  
+            for (SObject so : oldlist) {            
+                Program_Enrollment__c oldEnrollment = (Program_Enrollment__c)so;
                 if(oldEnrollment.Affiliation__c != null) {
                     //Get related Affls ids
                     afflsToUpdateDelIDs.add(oldEnrollment.Affiliation__c);
@@ -106,16 +111,25 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         return afflsToUpdateDelIDs;
     }
     
-    private void updateDeleteRelatedAffls(List<ID> afflsToUpdateDelIDs, DmlWrapper dmlWrapper) {
+    private void updateDeleteRelatedAffls(List<ID> afflsToUpdateDelIDs, List<SObject> oldlist, DmlWrapper dmlWrapper) {
         //Delete or update related affiliations when Program Enrollment records are deleted.
         List<Affiliation__c> afflsToUpdateDel = new List<Affiliation__c>();
         if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del__c) {
-            for(ID id : afflsToUpdateDelIDs) {
-                afflsToUpdateDel.add(new Affiliation__c(ID = id));
+            List<Program_Enrollment__c> otherProgramEnrollments = [SELECT Id, Affiliation__c FROM Program_Enrollment__c WHERE Affiliation__c IN :afflsToUpdateDelIDs AND Id NOT IN :oldList];
+            Set<Id> affiliationIdsToIgnore = new Set<Id>();
+            for(Program_Enrollment__c otherProgramEnrollment : otherProgramEnrollments) {
+                affiliationIdsToIgnore.add(otherProgramEnrollment.Affiliation__c);
+            }
+
+            for(ID affiliationId : afflsToUpdateDelIDs) {
+                //Only delete the Affiliation if there are no other Program Enrollment records associated to it.
+                if (!affiliationIdsToIgnore.contains(affiliationId)) {
+                    afflsToUpdateDel.add(new Affiliation__c(ID = affiliationId));
+                }
             }
             dmlWrapper.objectsToDelete.addAll((List<SObject>)afflsToUpdateDel);
         } else {
-            afflsToUpdateDel = [select Status__c from Affiliation__c where ID in :afflsToUpdateDelIDs];
+            afflsToUpdateDel = [SELECT Status__c FROM Affiliation__c WHERE ID IN :afflsToUpdateDelIDs];
             for(Affiliation__c affl : afflsToUpdateDel) {
                 affl.Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
             }
