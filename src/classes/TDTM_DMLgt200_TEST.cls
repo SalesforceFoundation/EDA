@@ -69,39 +69,32 @@ private class TDTM_DMLgt200_TEST {
         UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         String newContactMailingStreet = '123 Elm St';
-
-		List<Contact> testContacts = new List<Contact>();
-
+		List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(inputSize);
 		for (Integer i = 0; i < inputSize; i++) {
-        	Contact con = new Contact(
-            FirstName='Test',
-            LastName='Contact_forTests',
-            MailingStreet = newContactMailingStreet,
-            WorkEmail__c = 'junk@test.net',
-            Preferred_Email__c = 'Work',
-            WorkPhone__c = '206-777-8888',
-            PreferredPhone__c = 'Work');
-            testContacts.add(con);
+            testContacts[i].OtherCity = null;
+            testContacts[i].MailingStreet = newContactMailingStreet;
         }
         insert testContacts;
 
-        List<Contact> insertedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c,MailingStreet,
-        									   Account.BillingStreet 
-        							    	from Contact];
+        List<Contact> insertedContacts = [SELECT FirstName, LastName, AccountId, Account.Name, Account.Primary_Contact__c, WorkEmail__c, WorkPhone__c, Email, Phone
+        							    	FROM Contact];
 
-        //one contact should have been created
+        //many contacts should have been created
         system.assertEquals(inputSize, insertedContacts.size());
 
         //relationship should be bi-directional
         for (Contact con : insertedContacts) {
-	        system.assertEquals(con.id, con.Account.Primary_Contact__c);   
+	        system.assertEquals(con.id, con.Account.Primary_Contact__c);
+            system.assertEquals(con.WorkEmail__c, con.Email);
+            system.assertEquals(con.WorkPhone__c, con.Phone);
+
             con.LastName = 'Contact_forTestsChange';
         	con.OtherCity = 'Seattle';  
         }
         update insertedContacts;
 
-        List<Contact> updatedContacts = [Select FirstName, LastName, AccountId, Account.Name,Account.Primary_Contact__c
-                                         from Contact];
+        List<Contact> updatedContacts = [SELECT FirstName, LastName, AccountId, Account.Name, Account.Primary_Contact__c
+                                           FROM Contact];
 
         //relationship should be bi-directional
         for (Contact con : updatedContacts) {
@@ -121,18 +114,7 @@ private class TDTM_DMLgt200_TEST {
                     Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                     Accounts_to_Delete__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
-		 List<Contact> testContacts = new List<Contact>();
-         for (Integer i = 0; i < inputSize; i++) {
-	        Contact con = new Contact(
-	            FirstName='Test',
-	            LastName='Contact_forTests',
-	            MailingStreet = '123 Elm St',
-	            WorkEmail__c = 'junk@test.net',
-	            Preferred_Email__c = 'Work',
-	            WorkPhone__c = '206-777-8888',
-	            PreferredPhone__c = 'Work');
-	        testContacts.add(con);
-	     }
+		 List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(inputSize);
          insert testContacts;
 
          List<Account> insertedAccounts = [Select Id from Account];
