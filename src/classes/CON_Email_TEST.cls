@@ -159,9 +159,7 @@ private class CON_Email_TEST {
         	contacts[0].WorkEmail__c = null;
         }
 
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
-
-		Test.startTest();
+        Test.startTest();
         update contacts;
 		Test.stopTest();
 
