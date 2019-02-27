@@ -48,7 +48,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- Specify the number of credits a student needs to complete this program plan. --></help>
+        <help><!-- Specify the total number of credits a student must complete to satisfy this program plan. --></help>
         <label><!-- Total Required Credits --></label>
         <name>Total_Required_Credits__c</name>
     </fields>

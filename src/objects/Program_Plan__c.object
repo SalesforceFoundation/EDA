@@ -140,9 +140,9 @@
     </fields>
     <fields>
         <fullName>Total_Required_Credits__c</fullName>
-        <description>The total required credits to complete the program plan.</description>
+        <description>The total number of credits a student must complete to satisfy this Program Plan.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Specify the number of credits a student needs to complete this program plan.</inlineHelpText>
+        <inlineHelpText>Specify the total number of credits a student must complete to satisfy this program plan.</inlineHelpText>
         <label>Total Required Credits</label>
         <precision>6</precision>
         <required>false</required>
