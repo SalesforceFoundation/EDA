@@ -162,6 +162,8 @@ public class CON_Email {
         }
     }
 
+    private static Map<String, Schema.DescribeFieldResult> contactEmailFieldMap;
+
     /*******************************************************************************************************
     * @description An inner wrapper class to contain a list of email fields and perform functions on them
     * @param Contact the contact to build list from.
@@ -176,26 +178,31 @@ public class CON_Email {
 
             this.allFields = new List<CON_EmailField>();
             this.valuedFields = new List<CON_EmailField>();
-            Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
-            this.emailLabel = fieldMap.get('Email').getLabel();
+
+            if (contactEmailFieldMap == null) {
+                contactEmailFieldMap = UTIL_Describe.getFieldsOfType('Contact', 'EMAIL');
+            }
+            this.emailLabel = contactEmailFieldMap.get('Email').getLabel();
 
             Map<String, String> hedaEmailField = new Map<String, String>();
             //build map for HEDA email field map (Label, API Name)
-            for(String fieldName : fieldMap.keySet() ) {
+            for(String fieldName : contactEmailFieldMap.keySet() ) {
                 if(String.isNotBlank(UTIL_Namespace.getNamespace()) && fieldName.startsWithIgnoreCase(UTIL_Namespace.getNamespace())) {
-                    hedaEmailField.put(fieldMap.get(fieldName).getLabel(), fieldName);
+                    hedaEmailField.put(contactEmailFieldMap.get(fieldName).getLabel(), fieldName);
                 }
             }
 
-            for(String fieldName : fieldMap.keySet() ) {
+            for(String fieldName : contactEmailFieldMap.keySet()) {
+                String fieldLabel = contactEmailFieldMap.get(fieldName).getLabel();
+                
                 //If the field is not a standard email field and it is not duplicate with HEDA email, then add it to the list
-                if ( fieldName != emailLabel && !(hedaEmailField.get(fieldMap.get(fieldName).getLabel()) != null &&
-                                fieldName != hedaEmailField.get(fieldMap.get(fieldName).getLabel()))) {
+                if (fieldName != emailLabel && 
+                        !(hedaEmailField.get(fieldLabel) != null && fieldName != hedaEmailField.get(fieldLabel))) {
                     String emailField = (String)contact.get(fieldName);
 
-                    allFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
+                    allFields.add(new CON_EmailField(emailField, fieldLabel, fieldName));
                     if(String.isNotBlank(emailField)) {
-                        valuedFields.add( new CON_EmailField( emailField, fieldMap.get(fieldName).getLabel(), fieldName ) );
+                        valuedFields.add(new CON_EmailField(emailField, fieldLabel, fieldName));
                     }
                 }
             }
