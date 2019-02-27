@@ -9,6 +9,7 @@
     <tab>Term__c</tab>
     <tab>Course_Offering__c</tab>
     <tab>Program_Plan__c</tab>
+    <tab>Language__c</tab>
     <tab>Trigger_Handler__c</tab>
     <tab>HEDA_Settings</tab>
 </CustomApplication>
