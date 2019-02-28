@@ -56,6 +56,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         if(oldlist != null && oldlist.size() > 0) {
             updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), oldlist, dmlWrapper);
         }
+        
         return dmlWrapper;
     }
 
@@ -88,6 +89,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert);
             //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
             insert newAffls;
+            
             for(Integer i = 0; i < newAffls.size(); i++) {
                 Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
                 enrollment.Affiliation__c = newAffls[i].ID;
@@ -100,13 +102,16 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         List<ID> afflsToUpdateDelIDs = new List<ID>();
         //Only need to loop through the list when deleting Program Enrollment records
         if(triggerAction == TDTM_Runnable.Action.AfterDelete) {  
+            
             for (SObject so : oldlist) {            
                 Program_Enrollment__c oldEnrollment = (Program_Enrollment__c)so;
+                
                 if(oldEnrollment.Affiliation__c != null) {
                     //Get related Affls ids
                     afflsToUpdateDelIDs.add(oldEnrollment.Affiliation__c);
                 }
             }
+            
         }
         return afflsToUpdateDelIDs;
     }
@@ -114,25 +119,36 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
     private void updateDeleteRelatedAffls(List<ID> afflsToUpdateDelIDs, List<SObject> oldlist, DmlWrapper dmlWrapper) {
         //Delete or update related affiliations when Program Enrollment records are deleted.
         List<Affiliation__c> afflsToUpdateDel = new List<Affiliation__c>();
+        
+        List<Program_Enrollment__c> otherProgramEnrollments = [SELECT Id, Affiliation__c FROM Program_Enrollment__c WHERE Affiliation__c IN :afflsToUpdateDelIDs AND Id NOT IN :oldList];
+        Set<Id> affiliationIdsToIgnore = new Set<Id>();
+        
+        for(Program_Enrollment__c otherProgramEnrollment : otherProgramEnrollments) {
+            affiliationIdsToIgnore.add(otherProgramEnrollment.Affiliation__c);
+        }
+        
         if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del__c) {
-            List<Program_Enrollment__c> otherProgramEnrollments = [SELECT Id, Affiliation__c FROM Program_Enrollment__c WHERE Affiliation__c IN :afflsToUpdateDelIDs AND Id NOT IN :oldList];
-            Set<Id> affiliationIdsToIgnore = new Set<Id>();
-            for(Program_Enrollment__c otherProgramEnrollment : otherProgramEnrollments) {
-                affiliationIdsToIgnore.add(otherProgramEnrollment.Affiliation__c);
-            }
-
+            
             for(ID affiliationId : afflsToUpdateDelIDs) {
                 //Only delete the Affiliation if there are no other Program Enrollment records associated to it.
                 if (!affiliationIdsToIgnore.contains(affiliationId)) {
                     afflsToUpdateDel.add(new Affiliation__c(ID = affiliationId));
                 }
             }
+            
             dmlWrapper.objectsToDelete.addAll((List<SObject>)afflsToUpdateDel);
         } else {
-            afflsToUpdateDel = [SELECT Status__c FROM Affiliation__c WHERE ID IN :afflsToUpdateDelIDs];
-            for(Affiliation__c affl : afflsToUpdateDel) {
-                affl.Status__c = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
+            String affiliationStatusOnPEDelete = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
+            List<Affiliation__c> potentialAffiliationsToUpdate = [SELECT Id, Status__c FROM Affiliation__c WHERE ID IN :afflsToUpdateDelIDs];
+            
+            for(Affiliation__c affl : potentialAffiliationsToUpdate) {
+                //Only update the Affiliation if there are no other Program Enrollment records associated to it.
+                if (!affiliationIdsToIgnore.contains(affl.Id)) {
+                    affl.Status__c = affiliationStatusOnPEDelete;
+                    afflsToUpdateDel.add(affl);
+                }
             }
+            
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)afflsToUpdateDel);
         }
     }
