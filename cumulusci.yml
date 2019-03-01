@@ -98,10 +98,9 @@ tasks:
                 - Military_Service__c
 
     robot_libdoc:
-        class_path: cumulusci.tasks.robotframework.RobotLibDoc
         options:
-            path: tests/HEDA.robot
-            output: tests/HEDA_Robot_Library.html
+            path: tests/HEDA.py,tests/HEDA.robot
+            output: tests/Keywords.html
 
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
