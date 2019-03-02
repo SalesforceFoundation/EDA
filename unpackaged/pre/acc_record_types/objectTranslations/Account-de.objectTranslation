@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Academic_Program</name>
+    <label>[Academic Program]o'介引]</label>
+    <description>[An Academic Program offered at the University.]o'介引户הаí先ร简аน]</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Administrative</name>
+    <label>[Administrative]o'介引]</label>
+    <description>[An administrative account.]o'介引户הа]</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Business_Organization</name>
+    <label>[Business Organization]o'介引户ה]</label>
+    <description>[A business organization.]o'介引户הа]</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Educational_Institution</name>
+    <label>[Educational Institution]o'介引户ה]</label>
+    <description>[An educational institution.]o'介引户הаí]</description>
+  </recordTypes>
+  <recordTypes>
+    <name>HH_Account</name>
+    <label>[Household Account]o'介引户]</label>
+    <description>[A Household containing one or more individuals.]o'介引户הаí先ร简аน取]</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Sports_Organization</name>
+    <label>[Sports Organization]o'介引户]</label>
+    <description>[A sports organization.]o'介引户ה]</description>
+  </recordTypes>
+  <recordTypes>
+    <name>University_Department</name>
+    <label>[University Department]o'介引户ה]</label>
+    <description>[A department in the university.]o'介引户הаí先]</description>
+  </recordTypes>
+</CustomObjectTranslation>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>[Courses]o']</relationshipLabel>
+    <label>[Department]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Course_ID__c</name>
+    <label>[Course ID]o'介]</label>
+  </fields>
+  <fields>
+    <name>Credit_Hours__c</name>
+    <label>[Credit Hours]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>[Description]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Extended_Description__c</name>
+    <label>[Extended Description]o'介引户ה]</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Layout</layout>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Course Name]o'介引]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Course Name]o'介引]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Course]gr'']</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Courses]gr'']</value>
+  </caseValues>
+</CustomObjectTranslation>

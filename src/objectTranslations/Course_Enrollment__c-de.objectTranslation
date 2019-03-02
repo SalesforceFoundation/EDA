@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>[The Academic Program the student is enrolled in.]o'介引户הаí先ร简аน取]</help>
+    <relationshipLabel>[Course Connections]o'介引户]</relationshipLabel>
+    <label>[Contact's Academic Program]o'介引户הа]</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <relationshipLabel>[Course Connection]o'介引户]</relationshipLabel>
+    <label>[Affiliation]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>[The student taking the course.]o'介引户הаí先]</help>
+    <relationshipLabel>[Course Connections]o'介引户]</relationshipLabel>
+    <label>[Contact]o']</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>[The Course Offering the student is enrolled in. It's a Course offered at a specific Term.]o'介引户הаí先ร简аน取정úσιмÜП介мのαş]</help>
+    <relationshipLabel>[Course Connection]o'介引户]</relationshipLabel>
+    <label>[Course Offering ID]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <label>[Credits Attempted]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <label>[Credits Earned]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Grade__c</name>
+    <label>[Grade]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>[Represents a Primary Course Connection.]o'介引户הаí先ร简]</help>
+    <label>[Primary]o']</label>
+  </fields>
+  <fields>
+    <name>Program_Enrollment__c</name>
+    <help>[The Program Enrollment record number for the Program the student is enrolled in. Links a student with an Academic Program.]o'介引户הаí先ร简аน取정úσιмÜП介мの]</help>
+    <relationshipLabel>[Course Connections]o'介引户]</relationshipLabel>
+    <label>[Program Enrollment ID]o'介引户ה]</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>[Represents the Status of the Course Connection.]o'介引户הаí先ร简аน取]</help>
+    <label>[Status]o']</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>[Current]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>[Former]o']</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Enrollment Layout</layout>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Course Connection ID]o'介引户ה]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Course Connection ID]o'介引户ה]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Course Connection]gr''介引户]</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Course Connections]gr''介引户]</value>
+  </caseValues>
+</CustomObjectTranslation>

@@ -1,0 +1,3655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>AlternateEmail__c</name>
+    <help>[Alternate Email is an optional email not captured in other email fields.]o'介引户הаí先ร简аน取정úσιмÜП]</help>
+    <label>[Alternate Email]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Citizenship__c</name>
+    <label>[Citizenship]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Afghanistan</masterLabel>
+      <translation>[Afghanistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Åland Islands</masterLabel>
+      <translation>[Åland Islands]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Albania</masterLabel>
+      <translation>[Albania]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Algeria</masterLabel>
+      <translation>[Algeria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>American Samoa</masterLabel>
+      <translation>[American Samoa]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Andorra</masterLabel>
+      <translation>[Andorra]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Angola</masterLabel>
+      <translation>[Angola]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Anguilla</masterLabel>
+      <translation>[Anguilla]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Antarctica</masterLabel>
+      <translation>[Antarctica]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Antigua and Barbuda</masterLabel>
+      <translation>[Antigua and Barbuda]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Argentina</masterLabel>
+      <translation>[Argentina]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Armenia</masterLabel>
+      <translation>[Armenia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Aruba</masterLabel>
+      <translation>[Aruba]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Australia</masterLabel>
+      <translation>[Australia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Austria</masterLabel>
+      <translation>[Austria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Azerbaijan</masterLabel>
+      <translation>[Azerbaijan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bahamas (the)</masterLabel>
+      <translation>[Bahamas (the)]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bahrain</masterLabel>
+      <translation>[Bahrain]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bangladesh</masterLabel>
+      <translation>[Bangladesh]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Barbados</masterLabel>
+      <translation>[Barbados]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belarus</masterLabel>
+      <translation>[Belarus]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belgium</masterLabel>
+      <translation>[Belgium]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belize</masterLabel>
+      <translation>[Belize]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Benin</masterLabel>
+      <translation>[Benin]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bermuda</masterLabel>
+      <translation>[Bermuda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bhutan</masterLabel>
+      <translation>[Bhutan]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bolivia (Plurinational State of)</masterLabel>
+      <translation>[Bolivia (Plurinational State of)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bonaire, Sint Eustatius and Saba</masterLabel>
+      <translation>[Bonaire, Sint Eustatius and Saba]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bosnia and Herzegovina</masterLabel>
+      <translation>[Bosnia and Herzegovina]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Botswana</masterLabel>
+      <translation>[Botswana]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bouvet Island</masterLabel>
+      <translation>[Bouvet Island]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Brazil</masterLabel>
+      <translation>[Brazil]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>British Antarctic Territory</masterLabel>
+      <translation>[British Antarctic Territory]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>British Indian Ocean Territory (the)</masterLabel>
+      <translation>[British Indian Ocean Territory (the)]o'介引户הаí先ร]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Brunei Darussalam</masterLabel>
+      <translation>[Brunei Darussalam]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bulgaria</masterLabel>
+      <translation>[Bulgaria]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burkina Faso</masterLabel>
+      <translation>[Burkina Faso]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burma</masterLabel>
+      <translation>[Burma]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burundi</masterLabel>
+      <translation>[Burundi]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Byelorussian SSR</masterLabel>
+      <translation>[Byelorussian SSR]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cabo Verde</masterLabel>
+      <translation>[Cabo Verde]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cambodia</masterLabel>
+      <translation>[Cambodia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cameroon</masterLabel>
+      <translation>[Cameroon]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Canada</masterLabel>
+      <translation>[Canada]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Canton and Enderbury Islands</masterLabel>
+      <translation>[Canton and Enderbury Islands]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cayman Islands (the)</masterLabel>
+      <translation>[Cayman Islands (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Central African Republic (the)</masterLabel>
+      <translation>[Central African Republic (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Chad</masterLabel>
+      <translation>[Chad]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Chile</masterLabel>
+      <translation>[Chile]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>China</masterLabel>
+      <translation>[China]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Christmas Island</masterLabel>
+      <translation>[Christmas Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cocos (Keeling) Islands (the)</masterLabel>
+      <translation>[Cocos (Keeling) Islands (the)]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Colombia</masterLabel>
+      <translation>[Colombia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Comoros (the)</masterLabel>
+      <translation>[Comoros (the)]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Congo (the Democratic Republic of the)</masterLabel>
+      <translation>[Congo (the Democratic Republic of the)]o'介引户הаí先ร简]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Congo (the)</masterLabel>
+      <translation>[Congo (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cook Islands (the)</masterLabel>
+      <translation>[Cook Islands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Costa Rica</masterLabel>
+      <translation>[Costa Rica]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Côte d'Ivoire</masterLabel>
+      <translation>[Côte d'Ivoire]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Croatia</masterLabel>
+      <translation>[Croatia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cuba</masterLabel>
+      <translation>[Cuba]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Curaçao</masterLabel>
+      <translation>[Curaçao]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cyprus</masterLabel>
+      <translation>[Cyprus]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Czech Republic (the)</masterLabel>
+      <translation>[Czech Republic (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Czechoslovakia</masterLabel>
+      <translation>[Czechoslovakia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dahomey</masterLabel>
+      <translation>[Dahomey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Denmark</masterLabel>
+      <translation>[Denmark]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Djibouti</masterLabel>
+      <translation>[Djibouti]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dominica</masterLabel>
+      <translation>[Dominica]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dominican Republic (the)</masterLabel>
+      <translation>[Dominican Republic (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dronning Maud Land</masterLabel>
+      <translation>[Dronning Maud Land]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>East Timor</masterLabel>
+      <translation>[East Timor]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ecuador</masterLabel>
+      <translation>[Ecuador]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Egypt</masterLabel>
+      <translation>[Egypt]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>El Salvador</masterLabel>
+      <translation>[El Salvador]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Equatorial Guinea</masterLabel>
+      <translation>[Equatorial Guinea]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Eritrea</masterLabel>
+      <translation>[Eritrea]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Estonia</masterLabel>
+      <translation>[Estonia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ethiopia</masterLabel>
+      <translation>[Ethiopia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Falkland Islands (the) [Malvinas]</masterLabel>
+      <translation>[Falkland Islands (the) [Malvinas]]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faroe Islands (the)</masterLabel>
+      <translation>[Faroe Islands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fiji</masterLabel>
+      <translation>[Fiji]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Finland</masterLabel>
+      <translation>[Finland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>France</masterLabel>
+      <translation>[France]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>France, Metropolitan</masterLabel>
+      <translation>[France, Metropolitan]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Afars and Issas</masterLabel>
+      <translation>[French Afars and Issas]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Guiana</masterLabel>
+      <translation>[French Guiana]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Polynesia</masterLabel>
+      <translation>[French Polynesia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Southern and Antarctic Territories</masterLabel>
+      <translation>[French Southern and Antarctic Territories]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Southern Territories (the)</masterLabel>
+      <translation>[French Southern Territories (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gabon</masterLabel>
+      <translation>[Gabon]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gambia (the)</masterLabel>
+      <translation>[Gambia (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Georgia</masterLabel>
+      <translation>[Georgia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>German Democratic Republic</masterLabel>
+      <translation>[German Democratic Republic]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Germany</masterLabel>
+      <translation>[Germany]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ghana</masterLabel>
+      <translation>[Ghana]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gibraltar</masterLabel>
+      <translation>[Gibraltar]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gilbert and Ellice Islands</masterLabel>
+      <translation>[Gilbert and Ellice Islands]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Greece</masterLabel>
+      <translation>[Greece]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Greenland</masterLabel>
+      <translation>[Greenland]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grenada</masterLabel>
+      <translation>[Grenada]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guadeloupe</masterLabel>
+      <translation>[Guadeloupe]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guam</masterLabel>
+      <translation>[Guam]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guatemala</masterLabel>
+      <translation>[Guatemala]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guernsey</masterLabel>
+      <translation>[Guernsey]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guinea</masterLabel>
+      <translation>[Guinea]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guinea-Bissau</masterLabel>
+      <translation>[Guinea-Bissau]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guyana</masterLabel>
+      <translation>[Guyana]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Haiti</masterLabel>
+      <translation>[Haiti]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Heard Island and McDonal Islands</masterLabel>
+      <translation>[Heard Island and McDonal Islands]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Holy See (the)</masterLabel>
+      <translation>[Holy See (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Honduras</masterLabel>
+      <translation>[Honduras]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hong Kong</masterLabel>
+      <translation>[Hong Kong]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hungary</masterLabel>
+      <translation>[Hungary]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iceland</masterLabel>
+      <translation>[Iceland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>India</masterLabel>
+      <translation>[India]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Indonesia</masterLabel>
+      <translation>[Indonesia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iran (Islamic Republic of)</masterLabel>
+      <translation>[Iran (Islamic Republic of)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iraq</masterLabel>
+      <translation>[Iraq]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ireland</masterLabel>
+      <translation>[Ireland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Isle of Man</masterLabel>
+      <translation>[Isle of Man]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Israel</masterLabel>
+      <translation>[Israel]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Italy</masterLabel>
+      <translation>[Italy]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jamaica</masterLabel>
+      <translation>[Jamaica]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Japan</masterLabel>
+      <translation>[Japan]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jersey</masterLabel>
+      <translation>[Jersey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Johnston Island</masterLabel>
+      <translation>[Johnston Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jordan</masterLabel>
+      <translation>[Jordan]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kazakhstan</masterLabel>
+      <translation>[Kazakhstan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kenya</masterLabel>
+      <translation>[Kenya]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kiribati</masterLabel>
+      <translation>[Kiribati]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Korea (the Democratic People's Republic of)</masterLabel>
+      <translation>[Korea (the Democratic People's Republic of)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Korea (the Republic of)</masterLabel>
+      <translation>[Korea (the Republic of)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kuwait</masterLabel>
+      <translation>[Kuwait]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kyrgyzstan</masterLabel>
+      <translation>[Kyrgyzstan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lao People's Democratic Republic (the)</masterLabel>
+      <translation>[Lao People's Democratic Republic (the)]o'介引户הаí先ร简]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Latvia</masterLabel>
+      <translation>[Latvia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lebanon</masterLabel>
+      <translation>[Lebanon]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lesotho</masterLabel>
+      <translation>[Lesotho]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Liberia</masterLabel>
+      <translation>[Liberia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Libya</masterLabel>
+      <translation>[Libya]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Liechtenstein</masterLabel>
+      <translation>[Liechtenstein]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lithuania</masterLabel>
+      <translation>[Lithuania]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Luxembourg</masterLabel>
+      <translation>[Luxembourg]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Macao</masterLabel>
+      <translation>[Macao]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Macedonia (the former Yugoslav Republic of)</masterLabel>
+      <translation>[Macedonia (the former Yugoslav Republic of)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Madagascar</masterLabel>
+      <translation>[Madagascar]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malawi</masterLabel>
+      <translation>[Malawi]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malaysia</masterLabel>
+      <translation>[Malaysia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mali</masterLabel>
+      <translation>[Mali]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malta</masterLabel>
+      <translation>[Malta]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Marshall Islands (the)</masterLabel>
+      <translation>[Marshall Islands (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Martinique</masterLabel>
+      <translation>[Martinique]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mauritania</masterLabel>
+      <translation>[Mauritania]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mauritius</masterLabel>
+      <translation>[Mauritius]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mayotte</masterLabel>
+      <translation>[Mayotte]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mexico</masterLabel>
+      <translation>[Mexico]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Micronesia (Federated States of)</masterLabel>
+      <translation>[Micronesia (Federated States of)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Midway Islands</masterLabel>
+      <translation>[Midway Islands]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Moldova (the Republic of)</masterLabel>
+      <translation>[Moldova (the Republic of)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Monaco</masterLabel>
+      <translation>[Monaco]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mongolia</masterLabel>
+      <translation>[Mongolia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Montenegro</masterLabel>
+      <translation>[Montenegro]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Montserrat</masterLabel>
+      <translation>[Montserrat]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Morocco</masterLabel>
+      <translation>[Morocco]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mozambique</masterLabel>
+      <translation>[Mozambique]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Myanmar</masterLabel>
+      <translation>[Myanmar]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Namibia</masterLabel>
+      <translation>[Namibia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nauru</masterLabel>
+      <translation>[Nauru]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nepal</masterLabel>
+      <translation>[Nepal]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Netherlands (the)</masterLabel>
+      <translation>[Netherlands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Netherlands Antilles</masterLabel>
+      <translation>[Netherlands Antilles]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Neutral Zone</masterLabel>
+      <translation>[Neutral Zone]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Caledonia</masterLabel>
+      <translation>[New Caledonia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Hebrides</masterLabel>
+      <translation>[New Hebrides]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Zealand</masterLabel>
+      <translation>[New Zealand]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nicaragua</masterLabel>
+      <translation>[Nicaragua]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niger (the)</masterLabel>
+      <translation>[Niger (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nigeria</masterLabel>
+      <translation>[Nigeria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niue</masterLabel>
+      <translation>[Niue]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Norfolk Island</masterLabel>
+      <translation>[Norfolk Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Northern Mariana Islands (the)</masterLabel>
+      <translation>[Northern Mariana Islands (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Norway</masterLabel>
+      <translation>[Norway]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Oman</masterLabel>
+      <translation>[Oman]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pacific Islands (Trust Territory)</masterLabel>
+      <translation>[Pacific Islands (Trust Territory)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pakistan</masterLabel>
+      <translation>[Pakistan]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Palau</masterLabel>
+      <translation>[Palau]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Palestine, State of</masterLabel>
+      <translation>[Palestine, State of]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Panama</masterLabel>
+      <translation>[Panama]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Panama Canal Zone</masterLabel>
+      <translation>[Panama Canal Zone]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Papua New Guinea</masterLabel>
+      <translation>[Papua New Guinea]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Paraguay</masterLabel>
+      <translation>[Paraguay]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Peru</masterLabel>
+      <translation>[Peru]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Philippines (the)</masterLabel>
+      <translation>[Philippines (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pitcairn</masterLabel>
+      <translation>[Pitcairn]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Poland</masterLabel>
+      <translation>[Poland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Portugal</masterLabel>
+      <translation>[Portugal]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Puerto Rico</masterLabel>
+      <translation>[Puerto Rico]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Qatar</masterLabel>
+      <translation>[Qatar]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Réunion</masterLabel>
+      <translation>[Réunion]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Romania</masterLabel>
+      <translation>[Romania]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Russian Federation (the)</masterLabel>
+      <translation>[Russian Federation (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Rwanda</masterLabel>
+      <translation>[Rwanda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Barthélemy</masterLabel>
+      <translation>[Saint Barthélemy]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Helena, Ascension and Tristan da Cunha</masterLabel>
+      <translation>[Saint Helena, Ascension and Tristan da Cunha]o'介引户הаí先ร简аน]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Kitts and Nevis</masterLabel>
+      <translation>[Saint Kitts and Nevis]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Lucia</masterLabel>
+      <translation>[Saint Lucia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Martin (French part)</masterLabel>
+      <translation>[Saint Martin (French part)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Pierre and Miquelon</masterLabel>
+      <translation>[Saint Pierre and Miquelon]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Vincent and the Grenadines</masterLabel>
+      <translation>[Saint Vincent and the Grenadines]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Samoa</masterLabel>
+      <translation>[Samoa]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>San Marino</masterLabel>
+      <translation>[San Marino]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sao Tome and Principe</masterLabel>
+      <translation>[Sao Tome and Principe]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saudi Arabia</masterLabel>
+      <translation>[Saudi Arabia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senegal</masterLabel>
+      <translation>[Senegal]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Serbia</masterLabel>
+      <translation>[Serbia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Serbia and Montenegro</masterLabel>
+      <translation>[Serbia and Montenegro]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Seychelles</masterLabel>
+      <translation>[Seychelles]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sierra Leone</masterLabel>
+      <translation>[Sierra Leone]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sikkim</masterLabel>
+      <translation>[Sikkim]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Singapore</masterLabel>
+      <translation>[Singapore]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sint Maarten (Dutch part)</masterLabel>
+      <translation>[Sint Maarten (Dutch part)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Slovakia</masterLabel>
+      <translation>[Slovakia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Slovenia</masterLabel>
+      <translation>[Slovenia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Solomon Islands</masterLabel>
+      <translation>[Solomon Islands]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Somalia</masterLabel>
+      <translation>[Somalia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Africa</masterLabel>
+      <translation>[South Africa]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Georgia and the South Sandwich Islands</masterLabel>
+      <translation>[South Georgia and the South Sandwich Islands]o'介引户הаí先ร简аน]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Sudan</masterLabel>
+      <translation>[South Sudan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Southern Rodesia</masterLabel>
+      <translation>[Southern Rodesia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Spain</masterLabel>
+      <translation>[Spain]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sri Lanka</masterLabel>
+      <translation>[Sri Lanka]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sudan (the)</masterLabel>
+      <translation>[Sudan (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Surinam</masterLabel>
+      <translation>[Surinam]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Svalbard and Jan Mayen</masterLabel>
+      <translation>[Svalbard and Jan Mayen]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Swaziland</masterLabel>
+      <translation>[Swaziland]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sweden</masterLabel>
+      <translation>[Sweden]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Switzerland</masterLabel>
+      <translation>[Switzerland]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Syrian Arab Republic</masterLabel>
+      <translation>[Syrian Arab Republic]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Taiwan (Province of China)</masterLabel>
+      <translation>[Taiwan (Province of China)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tajikistan</masterLabel>
+      <translation>[Tajikistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tanzania, United Republic of</masterLabel>
+      <translation>[Tanzania, United Republic of]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Thailand</masterLabel>
+      <translation>[Thailand]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Timor-Leste</masterLabel>
+      <translation>[Timor-Leste]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Togo</masterLabel>
+      <translation>[Togo]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tokelau</masterLabel>
+      <translation>[Tokelau]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tonga</masterLabel>
+      <translation>[Tonga]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Trinidad and Tobago</masterLabel>
+      <translation>[Trinidad and Tobago]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tunisia</masterLabel>
+      <translation>[Tunisia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turkey</masterLabel>
+      <translation>[Turkey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turkmenistan</masterLabel>
+      <translation>[Turkmenistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turks and Caicos Islands (the)</masterLabel>
+      <translation>[Turks and Caicos Islands (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tuvalu</masterLabel>
+      <translation>[Tuvalu]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uganda</masterLabel>
+      <translation>[Uganda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ukraine</masterLabel>
+      <translation>[Ukraine]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United Arab Emirates (the)</masterLabel>
+      <translation>[United Arab Emirates (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
+      <translation>[United Kingdom of Great Britain and Northern Ireland (the)]o'介引户הаí先ร简аน取정úσ]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
+      <translation>[United States Minor Outlying Islands (the)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
+      <translation>[Unites States Miscellaneous Pacific Islands]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United States of America (the)</masterLabel>
+      <translation>[United States of America (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Upper Volta</masterLabel>
+      <translation>[Upper Volta]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uruguay</masterLabel>
+      <translation>[Uruguay]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>USSR</masterLabel>
+      <translation>[USSR]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uzbekistan</masterLabel>
+      <translation>[Uzbekistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Vanuatu</masterLabel>
+      <translation>[Vanuatu]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Venezuela (Bolivarian Republic of)</masterLabel>
+      <translation>[Venezuela (Bolivarian Republic of)]o'介引户הаí先ร]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Viet Nam</masterLabel>
+      <translation>[Viet Nam]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Viet-Nam, Democratic Republic of</masterLabel>
+      <translation>[Viet-Nam, Democratic Republic of]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Virgin Islands (British)</masterLabel>
+      <translation>[Virgin Islands (British)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Virgin Islands (U.S.)</masterLabel>
+      <translation>[Virgin Islands (U.S.)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wake Island</masterLabel>
+      <translation>[Wake Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wallis and Futuna</masterLabel>
+      <translation>[Wallis and Futuna]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Western Sahara</masterLabel>
+      <translation>[Western Sahara]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yemen</masterLabel>
+      <translation>[Yemen]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yemen, Democratic</masterLabel>
+      <translation>[Yemen, Democratic]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yugoslavia</masterLabel>
+      <translation>[Yugoslavia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zaire</masterLabel>
+      <translation>[Zaire]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zambia</masterLabel>
+      <translation>[Zambia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zimbabwe</masterLabel>
+      <translation>[Zimbabwe]o'介]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Country_of_Origin__c</name>
+    <label>[Country of Origin]o'介引户]</label>
+    <picklistValues>
+      <masterLabel>Afghanistan</masterLabel>
+      <translation>[Afghanistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Åland Islands</masterLabel>
+      <translation>[Åland Islands]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Albania</masterLabel>
+      <translation>[Albania]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Algeria</masterLabel>
+      <translation>[Algeria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>American Samoa</masterLabel>
+      <translation>[American Samoa]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Andorra</masterLabel>
+      <translation>[Andorra]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Angola</masterLabel>
+      <translation>[Angola]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Anguilla</masterLabel>
+      <translation>[Anguilla]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Antarctica</masterLabel>
+      <translation>[Antarctica]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Antigua and Barbuda</masterLabel>
+      <translation>[Antigua and Barbuda]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Argentina</masterLabel>
+      <translation>[Argentina]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Armenia</masterLabel>
+      <translation>[Armenia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Aruba</masterLabel>
+      <translation>[Aruba]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Australia</masterLabel>
+      <translation>[Australia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Austria</masterLabel>
+      <translation>[Austria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Azerbaijan</masterLabel>
+      <translation>[Azerbaijan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bahamas (the)</masterLabel>
+      <translation>[Bahamas (the)]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bahrain</masterLabel>
+      <translation>[Bahrain]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bangladesh</masterLabel>
+      <translation>[Bangladesh]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Barbados</masterLabel>
+      <translation>[Barbados]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belarus</masterLabel>
+      <translation>[Belarus]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belgium</masterLabel>
+      <translation>[Belgium]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belize</masterLabel>
+      <translation>[Belize]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Benin</masterLabel>
+      <translation>[Benin]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bermuda</masterLabel>
+      <translation>[Bermuda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bhutan</masterLabel>
+      <translation>[Bhutan]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bolivia (Plurinational State of)</masterLabel>
+      <translation>[Bolivia (Plurinational State of)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bonaire, Sint Eustatius and Saba</masterLabel>
+      <translation>[Bonaire, Sint Eustatius and Saba]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bosnia and Herzegovina</masterLabel>
+      <translation>[Bosnia and Herzegovina]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Botswana</masterLabel>
+      <translation>[Botswana]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bouvet Island</masterLabel>
+      <translation>[Bouvet Island]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Brazil</masterLabel>
+      <translation>[Brazil]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>British Antarctic Territory</masterLabel>
+      <translation>[British Antarctic Territory]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>British Indian Ocean Territory (the)</masterLabel>
+      <translation>[British Indian Ocean Territory (the)]o'介引户הаí先ร]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Brunei Darussalam</masterLabel>
+      <translation>[Brunei Darussalam]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bulgaria</masterLabel>
+      <translation>[Bulgaria]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burkina Faso</masterLabel>
+      <translation>[Burkina Faso]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burma</masterLabel>
+      <translation>[Burma]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burundi</masterLabel>
+      <translation>[Burundi]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Byelorussian SSR</masterLabel>
+      <translation>[Byelorussian SSR]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cabo Verde</masterLabel>
+      <translation>[Cabo Verde]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cambodia</masterLabel>
+      <translation>[Cambodia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cameroon</masterLabel>
+      <translation>[Cameroon]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Canada</masterLabel>
+      <translation>[Canada]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Canton and Enderbury Islands</masterLabel>
+      <translation>[Canton and Enderbury Islands]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cayman Islands (the)</masterLabel>
+      <translation>[Cayman Islands (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Central African Republic (the)</masterLabel>
+      <translation>[Central African Republic (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Chad</masterLabel>
+      <translation>[Chad]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Chile</masterLabel>
+      <translation>[Chile]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>China</masterLabel>
+      <translation>[China]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Christmas Island</masterLabel>
+      <translation>[Christmas Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cocos (Keeling) Islands (the)</masterLabel>
+      <translation>[Cocos (Keeling) Islands (the)]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Colombia</masterLabel>
+      <translation>[Colombia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Comoros (the)</masterLabel>
+      <translation>[Comoros (the)]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Congo (the Democratic Republic of the)</masterLabel>
+      <translation>[Congo (the Democratic Republic of the)]o'介引户הаí先ร简]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Congo (the)</masterLabel>
+      <translation>[Congo (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cook Islands (the)</masterLabel>
+      <translation>[Cook Islands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Costa Rica</masterLabel>
+      <translation>[Costa Rica]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Côte d'Ivoire</masterLabel>
+      <translation>[Côte d'Ivoire]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Croatia</masterLabel>
+      <translation>[Croatia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cuba</masterLabel>
+      <translation>[Cuba]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Curaçao</masterLabel>
+      <translation>[Curaçao]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cyprus</masterLabel>
+      <translation>[Cyprus]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Czech Republic (the)</masterLabel>
+      <translation>[Czech Republic (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Czechoslovakia</masterLabel>
+      <translation>[Czechoslovakia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dahomey</masterLabel>
+      <translation>[Dahomey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Denmark</masterLabel>
+      <translation>[Denmark]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Djibouti</masterLabel>
+      <translation>[Djibouti]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dominica</masterLabel>
+      <translation>[Dominica]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dominican Republic (the)</masterLabel>
+      <translation>[Dominican Republic (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dronning Maud Land</masterLabel>
+      <translation>[Dronning Maud Land]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>East Timor</masterLabel>
+      <translation>[East Timor]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ecuador</masterLabel>
+      <translation>[Ecuador]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Egypt</masterLabel>
+      <translation>[Egypt]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>El Salvador</masterLabel>
+      <translation>[El Salvador]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Equatorial Guinea</masterLabel>
+      <translation>[Equatorial Guinea]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Eritrea</masterLabel>
+      <translation>[Eritrea]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Estonia</masterLabel>
+      <translation>[Estonia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ethiopia</masterLabel>
+      <translation>[Ethiopia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Falkland Islands (the) [Malvinas]</masterLabel>
+      <translation>[Falkland Islands (the) [Malvinas]]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faroe Islands (the)</masterLabel>
+      <translation>[Faroe Islands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fiji</masterLabel>
+      <translation>[Fiji]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Finland</masterLabel>
+      <translation>[Finland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>France</masterLabel>
+      <translation>[France]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>France, Metropolitan</masterLabel>
+      <translation>[France, Metropolitan]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Afars and Issas</masterLabel>
+      <translation>[French Afars and Issas]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Guiana</masterLabel>
+      <translation>[French Guiana]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Polynesia</masterLabel>
+      <translation>[French Polynesia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Southern and Antarctic Territories</masterLabel>
+      <translation>[French Southern and Antarctic Territories]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Southern Territories (the)</masterLabel>
+      <translation>[French Southern Territories (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gabon</masterLabel>
+      <translation>[Gabon]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gambia (the)</masterLabel>
+      <translation>[Gambia (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Georgia</masterLabel>
+      <translation>[Georgia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>German Democratic Republic</masterLabel>
+      <translation>[German Democratic Republic]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Germany</masterLabel>
+      <translation>[Germany]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ghana</masterLabel>
+      <translation>[Ghana]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gibraltar</masterLabel>
+      <translation>[Gibraltar]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gilbert and Ellice Islands</masterLabel>
+      <translation>[Gilbert and Ellice Islands]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Greece</masterLabel>
+      <translation>[Greece]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Greenland</masterLabel>
+      <translation>[Greenland]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grenada</masterLabel>
+      <translation>[Grenada]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guadeloupe</masterLabel>
+      <translation>[Guadeloupe]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guam</masterLabel>
+      <translation>[Guam]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guatemala</masterLabel>
+      <translation>[Guatemala]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guernsey</masterLabel>
+      <translation>[Guernsey]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guinea</masterLabel>
+      <translation>[Guinea]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guinea-Bissau</masterLabel>
+      <translation>[Guinea-Bissau]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guyana</masterLabel>
+      <translation>[Guyana]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Haiti</masterLabel>
+      <translation>[Haiti]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Heard Island and McDonal Islands</masterLabel>
+      <translation>[Heard Island and McDonal Islands]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Holy See (the)</masterLabel>
+      <translation>[Holy See (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Honduras</masterLabel>
+      <translation>[Honduras]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hong Kong</masterLabel>
+      <translation>[Hong Kong]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hungary</masterLabel>
+      <translation>[Hungary]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iceland</masterLabel>
+      <translation>[Iceland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>India</masterLabel>
+      <translation>[India]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Indonesia</masterLabel>
+      <translation>[Indonesia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iran (Islamic Republic of)</masterLabel>
+      <translation>[Iran (Islamic Republic of)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iraq</masterLabel>
+      <translation>[Iraq]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ireland</masterLabel>
+      <translation>[Ireland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Isle of Man</masterLabel>
+      <translation>[Isle of Man]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Israel</masterLabel>
+      <translation>[Israel]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Italy</masterLabel>
+      <translation>[Italy]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jamaica</masterLabel>
+      <translation>[Jamaica]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Japan</masterLabel>
+      <translation>[Japan]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jersey</masterLabel>
+      <translation>[Jersey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Johnston Island</masterLabel>
+      <translation>[Johnston Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jordan</masterLabel>
+      <translation>[Jordan]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kazakhstan</masterLabel>
+      <translation>[Kazakhstan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kenya</masterLabel>
+      <translation>[Kenya]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kiribati</masterLabel>
+      <translation>[Kiribati]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Korea (the Democratic People's Republic of)</masterLabel>
+      <translation>[Korea (the Democratic People's Republic of)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Korea (the Republic of)</masterLabel>
+      <translation>[Korea (the Republic of)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kuwait</masterLabel>
+      <translation>[Kuwait]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kyrgyzstan</masterLabel>
+      <translation>[Kyrgyzstan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lao People's Democratic Republic (the)</masterLabel>
+      <translation>[Lao People's Democratic Republic (the)]o'介引户הаí先ร简]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Latvia</masterLabel>
+      <translation>[Latvia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lebanon</masterLabel>
+      <translation>[Lebanon]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lesotho</masterLabel>
+      <translation>[Lesotho]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Liberia</masterLabel>
+      <translation>[Liberia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Libya</masterLabel>
+      <translation>[Libya]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Liechtenstein</masterLabel>
+      <translation>[Liechtenstein]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lithuania</masterLabel>
+      <translation>[Lithuania]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Luxembourg</masterLabel>
+      <translation>[Luxembourg]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Macao</masterLabel>
+      <translation>[Macao]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Macedonia (the former Yugoslav Republic of)</masterLabel>
+      <translation>[Macedonia (the former Yugoslav Republic of)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Madagascar</masterLabel>
+      <translation>[Madagascar]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malawi</masterLabel>
+      <translation>[Malawi]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malaysia</masterLabel>
+      <translation>[Malaysia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mali</masterLabel>
+      <translation>[Mali]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malta</masterLabel>
+      <translation>[Malta]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Marshall Islands (the)</masterLabel>
+      <translation>[Marshall Islands (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Martinique</masterLabel>
+      <translation>[Martinique]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mauritania</masterLabel>
+      <translation>[Mauritania]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mauritius</masterLabel>
+      <translation>[Mauritius]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mayotte</masterLabel>
+      <translation>[Mayotte]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mexico</masterLabel>
+      <translation>[Mexico]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Micronesia (Federated States of)</masterLabel>
+      <translation>[Micronesia (Federated States of)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Midway Islands</masterLabel>
+      <translation>[Midway Islands]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Moldova (the Republic of)</masterLabel>
+      <translation>[Moldova (the Republic of)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Monaco</masterLabel>
+      <translation>[Monaco]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mongolia</masterLabel>
+      <translation>[Mongolia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Montenegro</masterLabel>
+      <translation>[Montenegro]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Montserrat</masterLabel>
+      <translation>[Montserrat]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Morocco</masterLabel>
+      <translation>[Morocco]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mozambique</masterLabel>
+      <translation>[Mozambique]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Myanmar</masterLabel>
+      <translation>[Myanmar]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Namibia</masterLabel>
+      <translation>[Namibia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nauru</masterLabel>
+      <translation>[Nauru]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nepal</masterLabel>
+      <translation>[Nepal]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Netherlands (the)</masterLabel>
+      <translation>[Netherlands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Netherlands Antilles</masterLabel>
+      <translation>[Netherlands Antilles]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Neutral Zone</masterLabel>
+      <translation>[Neutral Zone]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Caledonia</masterLabel>
+      <translation>[New Caledonia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Hebrides</masterLabel>
+      <translation>[New Hebrides]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Zealand</masterLabel>
+      <translation>[New Zealand]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nicaragua</masterLabel>
+      <translation>[Nicaragua]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niger (the)</masterLabel>
+      <translation>[Niger (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nigeria</masterLabel>
+      <translation>[Nigeria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niue</masterLabel>
+      <translation>[Niue]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Norfolk Island</masterLabel>
+      <translation>[Norfolk Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Northern Mariana Islands (the)</masterLabel>
+      <translation>[Northern Mariana Islands (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Norway</masterLabel>
+      <translation>[Norway]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Oman</masterLabel>
+      <translation>[Oman]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pacific Islands (Trust Territory)</masterLabel>
+      <translation>[Pacific Islands (Trust Territory)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pakistan</masterLabel>
+      <translation>[Pakistan]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Palau</masterLabel>
+      <translation>[Palau]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Palestine, State of</masterLabel>
+      <translation>[Palestine, State of]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Panama</masterLabel>
+      <translation>[Panama]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Panama Canal Zone</masterLabel>
+      <translation>[Panama Canal Zone]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Papua New Guinea</masterLabel>
+      <translation>[Papua New Guinea]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Paraguay</masterLabel>
+      <translation>[Paraguay]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Peru</masterLabel>
+      <translation>[Peru]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Philippines (the)</masterLabel>
+      <translation>[Philippines (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pitcairn</masterLabel>
+      <translation>[Pitcairn]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Poland</masterLabel>
+      <translation>[Poland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Portugal</masterLabel>
+      <translation>[Portugal]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Puerto Rico</masterLabel>
+      <translation>[Puerto Rico]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Qatar</masterLabel>
+      <translation>[Qatar]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Réunion</masterLabel>
+      <translation>[Réunion]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Romania</masterLabel>
+      <translation>[Romania]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Russian Federation (the)</masterLabel>
+      <translation>[Russian Federation (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Rwanda</masterLabel>
+      <translation>[Rwanda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Barthélemy</masterLabel>
+      <translation>[Saint Barthélemy]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Helena, Ascension and Tristan da Cunha</masterLabel>
+      <translation>[Saint Helena, Ascension and Tristan da Cunha]o'介引户הаí先ร简аน]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Kitts and Nevis</masterLabel>
+      <translation>[Saint Kitts and Nevis]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Lucia</masterLabel>
+      <translation>[Saint Lucia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Martin (French part)</masterLabel>
+      <translation>[Saint Martin (French part)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Pierre and Miquelon</masterLabel>
+      <translation>[Saint Pierre and Miquelon]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Vincent and the Grenadines</masterLabel>
+      <translation>[Saint Vincent and the Grenadines]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Samoa</masterLabel>
+      <translation>[Samoa]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>San Marino</masterLabel>
+      <translation>[San Marino]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sao Tome and Principe</masterLabel>
+      <translation>[Sao Tome and Principe]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saudi Arabia</masterLabel>
+      <translation>[Saudi Arabia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senegal</masterLabel>
+      <translation>[Senegal]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Serbia</masterLabel>
+      <translation>[Serbia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Serbia and Montenegro</masterLabel>
+      <translation>[Serbia and Montenegro]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Seychelles</masterLabel>
+      <translation>[Seychelles]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sierra Leone</masterLabel>
+      <translation>[Sierra Leone]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sikkim</masterLabel>
+      <translation>[Sikkim]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Singapore</masterLabel>
+      <translation>[Singapore]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sint Maarten (Dutch part)</masterLabel>
+      <translation>[Sint Maarten (Dutch part)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Slovakia</masterLabel>
+      <translation>[Slovakia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Slovenia</masterLabel>
+      <translation>[Slovenia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Solomon Islands</masterLabel>
+      <translation>[Solomon Islands]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Somalia</masterLabel>
+      <translation>[Somalia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Africa</masterLabel>
+      <translation>[South Africa]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Georgia and the South Sandwich Islands</masterLabel>
+      <translation>[South Georgia and the South Sandwich Islands]o'介引户הаí先ร简аน]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Sudan</masterLabel>
+      <translation>[South Sudan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Southern Rodesia</masterLabel>
+      <translation>[Southern Rodesia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Spain</masterLabel>
+      <translation>[Spain]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sri Lanka</masterLabel>
+      <translation>[Sri Lanka]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sudan (the)</masterLabel>
+      <translation>[Sudan (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Surinam</masterLabel>
+      <translation>[Surinam]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Svalbard and Jan Mayen</masterLabel>
+      <translation>[Svalbard and Jan Mayen]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Swaziland</masterLabel>
+      <translation>[Swaziland]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sweden</masterLabel>
+      <translation>[Sweden]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Switzerland</masterLabel>
+      <translation>[Switzerland]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Syrian Arab Republic</masterLabel>
+      <translation>[Syrian Arab Republic]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Taiwan (Province of China)</masterLabel>
+      <translation>[Taiwan (Province of China)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tajikistan</masterLabel>
+      <translation>[Tajikistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tanzania, United Republic of</masterLabel>
+      <translation>[Tanzania, United Republic of]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Thailand</masterLabel>
+      <translation>[Thailand]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Timor-Leste</masterLabel>
+      <translation>[Timor-Leste]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Togo</masterLabel>
+      <translation>[Togo]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tokelau</masterLabel>
+      <translation>[Tokelau]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tonga</masterLabel>
+      <translation>[Tonga]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Trinidad and Tobago</masterLabel>
+      <translation>[Trinidad and Tobago]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tunisia</masterLabel>
+      <translation>[Tunisia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turkey</masterLabel>
+      <translation>[Turkey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turkmenistan</masterLabel>
+      <translation>[Turkmenistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turks and Caicos Islands (the)</masterLabel>
+      <translation>[Turks and Caicos Islands (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tuvalu</masterLabel>
+      <translation>[Tuvalu]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uganda</masterLabel>
+      <translation>[Uganda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ukraine</masterLabel>
+      <translation>[Ukraine]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United Arab Emirates (the)</masterLabel>
+      <translation>[United Arab Emirates (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
+      <translation>[United Kingdom of Great Britain and Northern Ireland (the)]o'介引户הаí先ร简аน取정úσ]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
+      <translation>[United States Minor Outlying Islands (the)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
+      <translation>[Unites States Miscellaneous Pacific Islands]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United States of America (the)</masterLabel>
+      <translation>[United States of America (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Upper Volta</masterLabel>
+      <translation>[Upper Volta]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uruguay</masterLabel>
+      <translation>[Uruguay]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>USSR</masterLabel>
+      <translation>[USSR]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uzbekistan</masterLabel>
+      <translation>[Uzbekistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Vanuatu</masterLabel>
+      <translation>[Vanuatu]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Venezuela (Bolivarian Republic of)</masterLabel>
+      <translation>[Venezuela (Bolivarian Republic of)]o'介引户הаí先ร]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Viet Nam</masterLabel>
+      <translation>[Viet Nam]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Viet-Nam, Democratic Republic of</masterLabel>
+      <translation>[Viet-Nam, Democratic Republic of]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Virgin Islands (British)</masterLabel>
+      <translation>[Virgin Islands (British)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Virgin Islands (U.S.)</masterLabel>
+      <translation>[Virgin Islands (U.S.)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wake Island</masterLabel>
+      <translation>[Wake Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wallis and Futuna</masterLabel>
+      <translation>[Wallis and Futuna]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Western Sahara</masterLabel>
+      <translation>[Western Sahara]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yemen</masterLabel>
+      <translation>[Yemen]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yemen, Democratic</masterLabel>
+      <translation>[Yemen, Democratic]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yugoslavia</masterLabel>
+      <translation>[Yugoslavia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zaire</masterLabel>
+      <translation>[Zaire]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zambia</masterLabel>
+      <translation>[Zambia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zimbabwe</masterLabel>
+      <translation>[Zimbabwe]o'介]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Current_Address__c</name>
+    <help>[The current Address that the Contact's mailing fields are filled with.]o'介引户הаí先ร简аน取정úσιмÜП]</help>
+    <relationshipLabel>[Contacts (Current Address)]o'介引户הа]</relationshipLabel>
+    <label>[Current Address]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Deceased__c</name>
+    <help>[When selected, this option marks the contact as deceased, and excludes them from household naming, emails, and phone calls.]o'介引户הаí先ร简аน取정úσιмÜП介мの]</help>
+    <label>[Deceased]o'介]</label>
+  </fields>
+  <fields>
+    <name>Do_Not_Contact__c</name>
+    <help>[When selected, this option excludes the contact from emails and phone calls.]o'介引户הаí先ร简аน取정úσιмÜП介]</help>
+    <label>[Do Not Contact]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Dual_Citizenship__c</name>
+    <help>[If this Contact has multiple citizenship it can be recorded here.]o'介引户הаí先ร简аน取정úσιм]</help>
+    <label>[Dual Citizenship]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Afghanistan</masterLabel>
+      <translation>[Afghanistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Åland Islands</masterLabel>
+      <translation>[Åland Islands]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Albania</masterLabel>
+      <translation>[Albania]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Algeria</masterLabel>
+      <translation>[Algeria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>American Samoa</masterLabel>
+      <translation>[American Samoa]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Andorra</masterLabel>
+      <translation>[Andorra]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Angola</masterLabel>
+      <translation>[Angola]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Anguilla</masterLabel>
+      <translation>[Anguilla]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Antarctica</masterLabel>
+      <translation>[Antarctica]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Antigua and Barbuda</masterLabel>
+      <translation>[Antigua and Barbuda]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Argentina</masterLabel>
+      <translation>[Argentina]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Armenia</masterLabel>
+      <translation>[Armenia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Aruba</masterLabel>
+      <translation>[Aruba]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Australia</masterLabel>
+      <translation>[Australia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Austria</masterLabel>
+      <translation>[Austria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Azerbaijan</masterLabel>
+      <translation>[Azerbaijan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bahamas (the)</masterLabel>
+      <translation>[Bahamas (the)]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bahrain</masterLabel>
+      <translation>[Bahrain]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bangladesh</masterLabel>
+      <translation>[Bangladesh]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Barbados</masterLabel>
+      <translation>[Barbados]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belarus</masterLabel>
+      <translation>[Belarus]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belgium</masterLabel>
+      <translation>[Belgium]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Belize</masterLabel>
+      <translation>[Belize]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Benin</masterLabel>
+      <translation>[Benin]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bermuda</masterLabel>
+      <translation>[Bermuda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bhutan</masterLabel>
+      <translation>[Bhutan]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bolivia (Plurinational State of)</masterLabel>
+      <translation>[Bolivia (Plurinational State of)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bonaire, Sint Eustatius and Saba</masterLabel>
+      <translation>[Bonaire, Sint Eustatius and Saba]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bosnia and Herzegovina</masterLabel>
+      <translation>[Bosnia and Herzegovina]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Botswana</masterLabel>
+      <translation>[Botswana]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bouvet Island</masterLabel>
+      <translation>[Bouvet Island]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Brazil</masterLabel>
+      <translation>[Brazil]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>British Antarctic Territory</masterLabel>
+      <translation>[British Antarctic Territory]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>British Indian Ocean Territory (the)</masterLabel>
+      <translation>[British Indian Ocean Territory (the)]o'介引户הаí先ร]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Brunei Darussalam</masterLabel>
+      <translation>[Brunei Darussalam]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Bulgaria</masterLabel>
+      <translation>[Bulgaria]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burkina Faso</masterLabel>
+      <translation>[Burkina Faso]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burma</masterLabel>
+      <translation>[Burma]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Burundi</masterLabel>
+      <translation>[Burundi]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Byelorussian SSR</masterLabel>
+      <translation>[Byelorussian SSR]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cabo Verde</masterLabel>
+      <translation>[Cabo Verde]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cambodia</masterLabel>
+      <translation>[Cambodia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cameroon</masterLabel>
+      <translation>[Cameroon]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Canada</masterLabel>
+      <translation>[Canada]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Canton and Enderbury Islands</masterLabel>
+      <translation>[Canton and Enderbury Islands]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cayman Islands (the)</masterLabel>
+      <translation>[Cayman Islands (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Central African Republic (the)</masterLabel>
+      <translation>[Central African Republic (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Chad</masterLabel>
+      <translation>[Chad]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Chile</masterLabel>
+      <translation>[Chile]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>China</masterLabel>
+      <translation>[China]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Christmas Island</masterLabel>
+      <translation>[Christmas Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cocos (Keeling) Islands (the)</masterLabel>
+      <translation>[Cocos (Keeling) Islands (the)]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Colombia</masterLabel>
+      <translation>[Colombia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Comoros (the)</masterLabel>
+      <translation>[Comoros (the)]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Congo (the Democratic Republic of the)</masterLabel>
+      <translation>[Congo (the Democratic Republic of the)]o'介引户הаí先ร简]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Congo (the)</masterLabel>
+      <translation>[Congo (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cook Islands (the)</masterLabel>
+      <translation>[Cook Islands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Costa Rica</masterLabel>
+      <translation>[Costa Rica]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Côte d'Ivoire</masterLabel>
+      <translation>[Côte d'Ivoire]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Croatia</masterLabel>
+      <translation>[Croatia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cuba</masterLabel>
+      <translation>[Cuba]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Curaçao</masterLabel>
+      <translation>[Curaçao]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cyprus</masterLabel>
+      <translation>[Cyprus]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Czech Republic (the)</masterLabel>
+      <translation>[Czech Republic (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Czechoslovakia</masterLabel>
+      <translation>[Czechoslovakia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dahomey</masterLabel>
+      <translation>[Dahomey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Denmark</masterLabel>
+      <translation>[Denmark]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Djibouti</masterLabel>
+      <translation>[Djibouti]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dominica</masterLabel>
+      <translation>[Dominica]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dominican Republic (the)</masterLabel>
+      <translation>[Dominican Republic (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dronning Maud Land</masterLabel>
+      <translation>[Dronning Maud Land]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>East Timor</masterLabel>
+      <translation>[East Timor]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ecuador</masterLabel>
+      <translation>[Ecuador]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Egypt</masterLabel>
+      <translation>[Egypt]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>El Salvador</masterLabel>
+      <translation>[El Salvador]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Equatorial Guinea</masterLabel>
+      <translation>[Equatorial Guinea]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Eritrea</masterLabel>
+      <translation>[Eritrea]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Estonia</masterLabel>
+      <translation>[Estonia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ethiopia</masterLabel>
+      <translation>[Ethiopia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Falkland Islands (the) [Malvinas]</masterLabel>
+      <translation>[Falkland Islands (the) [Malvinas]]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faroe Islands (the)</masterLabel>
+      <translation>[Faroe Islands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fiji</masterLabel>
+      <translation>[Fiji]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Finland</masterLabel>
+      <translation>[Finland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>France</masterLabel>
+      <translation>[France]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>France, Metropolitan</masterLabel>
+      <translation>[France, Metropolitan]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Afars and Issas</masterLabel>
+      <translation>[French Afars and Issas]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Guiana</masterLabel>
+      <translation>[French Guiana]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Polynesia</masterLabel>
+      <translation>[French Polynesia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Southern and Antarctic Territories</masterLabel>
+      <translation>[French Southern and Antarctic Territories]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>French Southern Territories (the)</masterLabel>
+      <translation>[French Southern Territories (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gabon</masterLabel>
+      <translation>[Gabon]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gambia (the)</masterLabel>
+      <translation>[Gambia (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Georgia</masterLabel>
+      <translation>[Georgia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>German Democratic Republic</masterLabel>
+      <translation>[German Democratic Republic]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Germany</masterLabel>
+      <translation>[Germany]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ghana</masterLabel>
+      <translation>[Ghana]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gibraltar</masterLabel>
+      <translation>[Gibraltar]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gilbert and Ellice Islands</masterLabel>
+      <translation>[Gilbert and Ellice Islands]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Greece</masterLabel>
+      <translation>[Greece]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Greenland</masterLabel>
+      <translation>[Greenland]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grenada</masterLabel>
+      <translation>[Grenada]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guadeloupe</masterLabel>
+      <translation>[Guadeloupe]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guam</masterLabel>
+      <translation>[Guam]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guatemala</masterLabel>
+      <translation>[Guatemala]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guernsey</masterLabel>
+      <translation>[Guernsey]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guinea</masterLabel>
+      <translation>[Guinea]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guinea-Bissau</masterLabel>
+      <translation>[Guinea-Bissau]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Guyana</masterLabel>
+      <translation>[Guyana]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Haiti</masterLabel>
+      <translation>[Haiti]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Heard Island and McDonal Islands</masterLabel>
+      <translation>[Heard Island and McDonal Islands]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Holy See (the)</masterLabel>
+      <translation>[Holy See (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Honduras</masterLabel>
+      <translation>[Honduras]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hong Kong</masterLabel>
+      <translation>[Hong Kong]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hungary</masterLabel>
+      <translation>[Hungary]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iceland</masterLabel>
+      <translation>[Iceland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>India</masterLabel>
+      <translation>[India]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Indonesia</masterLabel>
+      <translation>[Indonesia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iran (Islamic Republic of)</masterLabel>
+      <translation>[Iran (Islamic Republic of)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Iraq</masterLabel>
+      <translation>[Iraq]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ireland</masterLabel>
+      <translation>[Ireland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Isle of Man</masterLabel>
+      <translation>[Isle of Man]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Israel</masterLabel>
+      <translation>[Israel]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Italy</masterLabel>
+      <translation>[Italy]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jamaica</masterLabel>
+      <translation>[Jamaica]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Japan</masterLabel>
+      <translation>[Japan]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jersey</masterLabel>
+      <translation>[Jersey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Johnston Island</masterLabel>
+      <translation>[Johnston Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jordan</masterLabel>
+      <translation>[Jordan]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kazakhstan</masterLabel>
+      <translation>[Kazakhstan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kenya</masterLabel>
+      <translation>[Kenya]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kiribati</masterLabel>
+      <translation>[Kiribati]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Korea (the Democratic People's Republic of)</masterLabel>
+      <translation>[Korea (the Democratic People's Republic of)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Korea (the Republic of)</masterLabel>
+      <translation>[Korea (the Republic of)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kuwait</masterLabel>
+      <translation>[Kuwait]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Kyrgyzstan</masterLabel>
+      <translation>[Kyrgyzstan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lao People's Democratic Republic (the)</masterLabel>
+      <translation>[Lao People's Democratic Republic (the)]o'介引户הаí先ร简]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Latvia</masterLabel>
+      <translation>[Latvia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lebanon</masterLabel>
+      <translation>[Lebanon]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lesotho</masterLabel>
+      <translation>[Lesotho]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Liberia</masterLabel>
+      <translation>[Liberia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Libya</masterLabel>
+      <translation>[Libya]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Liechtenstein</masterLabel>
+      <translation>[Liechtenstein]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lithuania</masterLabel>
+      <translation>[Lithuania]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Luxembourg</masterLabel>
+      <translation>[Luxembourg]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Macao</masterLabel>
+      <translation>[Macao]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Macedonia (the former Yugoslav Republic of)</masterLabel>
+      <translation>[Macedonia (the former Yugoslav Republic of)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Madagascar</masterLabel>
+      <translation>[Madagascar]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malawi</masterLabel>
+      <translation>[Malawi]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malaysia</masterLabel>
+      <translation>[Malaysia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mali</masterLabel>
+      <translation>[Mali]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Malta</masterLabel>
+      <translation>[Malta]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Marshall Islands (the)</masterLabel>
+      <translation>[Marshall Islands (the)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Martinique</masterLabel>
+      <translation>[Martinique]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mauritania</masterLabel>
+      <translation>[Mauritania]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mauritius</masterLabel>
+      <translation>[Mauritius]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mayotte</masterLabel>
+      <translation>[Mayotte]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mexico</masterLabel>
+      <translation>[Mexico]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Micronesia (Federated States of)</masterLabel>
+      <translation>[Micronesia (Federated States of)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Midway Islands</masterLabel>
+      <translation>[Midway Islands]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Moldova (the Republic of)</masterLabel>
+      <translation>[Moldova (the Republic of)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Monaco</masterLabel>
+      <translation>[Monaco]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mongolia</masterLabel>
+      <translation>[Mongolia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Montenegro</masterLabel>
+      <translation>[Montenegro]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Montserrat</masterLabel>
+      <translation>[Montserrat]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Morocco</masterLabel>
+      <translation>[Morocco]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mozambique</masterLabel>
+      <translation>[Mozambique]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Myanmar</masterLabel>
+      <translation>[Myanmar]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Namibia</masterLabel>
+      <translation>[Namibia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nauru</masterLabel>
+      <translation>[Nauru]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nepal</masterLabel>
+      <translation>[Nepal]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Netherlands (the)</masterLabel>
+      <translation>[Netherlands (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Netherlands Antilles</masterLabel>
+      <translation>[Netherlands Antilles]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Neutral Zone</masterLabel>
+      <translation>[Neutral Zone]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Caledonia</masterLabel>
+      <translation>[New Caledonia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Hebrides</masterLabel>
+      <translation>[New Hebrides]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>New Zealand</masterLabel>
+      <translation>[New Zealand]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nicaragua</masterLabel>
+      <translation>[Nicaragua]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niger (the)</masterLabel>
+      <translation>[Niger (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Nigeria</masterLabel>
+      <translation>[Nigeria]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Niue</masterLabel>
+      <translation>[Niue]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Norfolk Island</masterLabel>
+      <translation>[Norfolk Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Northern Mariana Islands (the)</masterLabel>
+      <translation>[Northern Mariana Islands (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Norway</masterLabel>
+      <translation>[Norway]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Oman</masterLabel>
+      <translation>[Oman]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pacific Islands (Trust Territory)</masterLabel>
+      <translation>[Pacific Islands (Trust Territory)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pakistan</masterLabel>
+      <translation>[Pakistan]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Palau</masterLabel>
+      <translation>[Palau]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Palestine, State of</masterLabel>
+      <translation>[Palestine, State of]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Panama</masterLabel>
+      <translation>[Panama]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Panama Canal Zone</masterLabel>
+      <translation>[Panama Canal Zone]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Papua New Guinea</masterLabel>
+      <translation>[Papua New Guinea]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Paraguay</masterLabel>
+      <translation>[Paraguay]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Peru</masterLabel>
+      <translation>[Peru]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Philippines (the)</masterLabel>
+      <translation>[Philippines (the)]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pitcairn</masterLabel>
+      <translation>[Pitcairn]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Poland</masterLabel>
+      <translation>[Poland]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Portugal</masterLabel>
+      <translation>[Portugal]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Puerto Rico</masterLabel>
+      <translation>[Puerto Rico]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Qatar</masterLabel>
+      <translation>[Qatar]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Réunion</masterLabel>
+      <translation>[Réunion]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Romania</masterLabel>
+      <translation>[Romania]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Russian Federation (the)</masterLabel>
+      <translation>[Russian Federation (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Rwanda</masterLabel>
+      <translation>[Rwanda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Barthélemy</masterLabel>
+      <translation>[Saint Barthélemy]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Helena, Ascension and Tristan da Cunha</masterLabel>
+      <translation>[Saint Helena, Ascension and Tristan da Cunha]o'介引户הаí先ร简аน]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Kitts and Nevis</masterLabel>
+      <translation>[Saint Kitts and Nevis]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Lucia</masterLabel>
+      <translation>[Saint Lucia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Martin (French part)</masterLabel>
+      <translation>[Saint Martin (French part)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Pierre and Miquelon</masterLabel>
+      <translation>[Saint Pierre and Miquelon]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saint Vincent and the Grenadines</masterLabel>
+      <translation>[Saint Vincent and the Grenadines]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Samoa</masterLabel>
+      <translation>[Samoa]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>San Marino</masterLabel>
+      <translation>[San Marino]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sao Tome and Principe</masterLabel>
+      <translation>[Sao Tome and Principe]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Saudi Arabia</masterLabel>
+      <translation>[Saudi Arabia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senegal</masterLabel>
+      <translation>[Senegal]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Serbia</masterLabel>
+      <translation>[Serbia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Serbia and Montenegro</masterLabel>
+      <translation>[Serbia and Montenegro]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Seychelles</masterLabel>
+      <translation>[Seychelles]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sierra Leone</masterLabel>
+      <translation>[Sierra Leone]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sikkim</masterLabel>
+      <translation>[Sikkim]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Singapore</masterLabel>
+      <translation>[Singapore]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sint Maarten (Dutch part)</masterLabel>
+      <translation>[Sint Maarten (Dutch part)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Slovakia</masterLabel>
+      <translation>[Slovakia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Slovenia</masterLabel>
+      <translation>[Slovenia]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Solomon Islands</masterLabel>
+      <translation>[Solomon Islands]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Somalia</masterLabel>
+      <translation>[Somalia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Africa</masterLabel>
+      <translation>[South Africa]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Georgia and the South Sandwich Islands</masterLabel>
+      <translation>[South Georgia and the South Sandwich Islands]o'介引户הаí先ร简аน]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>South Sudan</masterLabel>
+      <translation>[South Sudan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Southern Rodesia</masterLabel>
+      <translation>[Southern Rodesia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Spain</masterLabel>
+      <translation>[Spain]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sri Lanka</masterLabel>
+      <translation>[Sri Lanka]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sudan (the)</masterLabel>
+      <translation>[Sudan (the)]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Surinam</masterLabel>
+      <translation>[Surinam]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Svalbard and Jan Mayen</masterLabel>
+      <translation>[Svalbard and Jan Mayen]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Swaziland</masterLabel>
+      <translation>[Swaziland]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sweden</masterLabel>
+      <translation>[Sweden]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Switzerland</masterLabel>
+      <translation>[Switzerland]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Syrian Arab Republic</masterLabel>
+      <translation>[Syrian Arab Republic]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Taiwan (Province of China)</masterLabel>
+      <translation>[Taiwan (Province of China)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tajikistan</masterLabel>
+      <translation>[Tajikistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tanzania, United Republic of</masterLabel>
+      <translation>[Tanzania, United Republic of]o'介引户הаí]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Thailand</masterLabel>
+      <translation>[Thailand]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Timor-Leste</masterLabel>
+      <translation>[Timor-Leste]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Togo</masterLabel>
+      <translation>[Togo]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tokelau</masterLabel>
+      <translation>[Tokelau]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tonga</masterLabel>
+      <translation>[Tonga]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Trinidad and Tobago</masterLabel>
+      <translation>[Trinidad and Tobago]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tunisia</masterLabel>
+      <translation>[Tunisia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turkey</masterLabel>
+      <translation>[Turkey]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turkmenistan</masterLabel>
+      <translation>[Turkmenistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Turks and Caicos Islands (the)</masterLabel>
+      <translation>[Turks and Caicos Islands (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Tuvalu</masterLabel>
+      <translation>[Tuvalu]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uganda</masterLabel>
+      <translation>[Uganda]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Ukraine</masterLabel>
+      <translation>[Ukraine]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United Arab Emirates (the)</masterLabel>
+      <translation>[United Arab Emirates (the)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
+      <translation>[United Kingdom of Great Britain and Northern Ireland (the)]o'介引户הаí先ร简аน取정úσ]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
+      <translation>[United States Minor Outlying Islands (the)]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
+      <translation>[Unites States Miscellaneous Pacific Islands]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>United States of America (the)</masterLabel>
+      <translation>[United States of America (the)]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Upper Volta</masterLabel>
+      <translation>[Upper Volta]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uruguay</masterLabel>
+      <translation>[Uruguay]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>USSR</masterLabel>
+      <translation>[USSR]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uzbekistan</masterLabel>
+      <translation>[Uzbekistan]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Vanuatu</masterLabel>
+      <translation>[Vanuatu]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Venezuela (Bolivarian Republic of)</masterLabel>
+      <translation>[Venezuela (Bolivarian Republic of)]o'介引户הаí先ร]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Viet Nam</masterLabel>
+      <translation>[Viet Nam]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Viet-Nam, Democratic Republic of</masterLabel>
+      <translation>[Viet-Nam, Democratic Republic of]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Virgin Islands (British)</masterLabel>
+      <translation>[Virgin Islands (British)]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Virgin Islands (U.S.)</masterLabel>
+      <translation>[Virgin Islands (U.S.)]o'介引户ה]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wake Island</masterLabel>
+      <translation>[Wake Island]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wallis and Futuna</masterLabel>
+      <translation>[Wallis and Futuna]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Western Sahara</masterLabel>
+      <translation>[Western Sahara]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yemen</masterLabel>
+      <translation>[Yemen]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yemen, Democratic</masterLabel>
+      <translation>[Yemen, Democratic]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Yugoslavia</masterLabel>
+      <translation>[Yugoslavia]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zaire</masterLabel>
+      <translation>[Zaire]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zambia</masterLabel>
+      <translation>[Zambia]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Zimbabwe</masterLabel>
+      <translation>[Zimbabwe]o'介]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Ethnicity__c</name>
+    <label>[Ethnicity]o'介]</label>
+    <picklistValues>
+      <masterLabel>Hispanic or Latino</masterLabel>
+      <translation>[Hispanic or Latino]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Not Hispanic or Latino</masterLabel>
+      <translation>[Not Hispanic or Latino]o'介引户ה]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Exclude_from_Household_Formal_Greeting__c</name>
+    <help>[Checking this box will exclude this contact from the Household Formal Greeting.]o'介引户הаí先ร简аน取정úσιмÜП介м]</help>
+    <label>[Exclude from Household Formal Greeting]o'介引户הаí先ร简]</label>
+  </fields>
+  <fields>
+    <name>Exclude_from_Household_Informal_Greeting__c</name>
+    <help>[Checking this box will exclude this contact from the Household Informal Greeting.]o'介引户הаí先ร简аน取정úσιмÜП介мの]</help>
+    <label>[Exclude from Household Informal Greeting]o'介引户הаí先ร简а]</label>
+  </fields>
+  <fields>
+    <name>Exclude_from_Household_Name__c</name>
+    <help>[Checking this box will exclude this contact from the Household Name.]o'介引户הаí先ร简аน取정úσιмÜ]</help>
+    <label>[Exclude from Household Name]o'介引户הаí]</label>
+  </fields>
+  <fields>
+    <name>FERPA__c</name>
+    <label>[FERPA]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Financial_Aid_Applicant__c</name>
+    <label>[Financial Aid Applicant]o'介引户ה]</label>
+  </fields>
+  <fields>
+    <name>Gender__c</name>
+    <label>[Gender]o']</label>
+    <picklistValues>
+      <masterLabel>Female</masterLabel>
+      <translation>[Female]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Male</masterLabel>
+      <translation>[Male]o'介引]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>HIPAA_Detail__c</name>
+    <label>[HIPAA Detail]o'介引]</label>
+  </fields>
+  <fields>
+    <name>HIPAA__c</name>
+    <label>[HIPAA]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Military_Background__c</name>
+    <label>[Military Background]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Military_Service__c</name>
+    <label>[Military Service]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Naming_Exclusions__c</name>
+    <help>[Determines which household names this contact is NOT included as part of.]o'介引户הаí先ร简аน取정úσιмÜП]</help>
+    <label>[Naming Exclusions]o'介引户]</label>
+    <picklistValues>
+      <masterLabel>Household__c.Name</masterLabel>
+      <translation>[Household__c.Name]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
+      <translation>[Household__c.Formal_Greeting__c]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
+      <translation>[Household__c.Informal_Greeting__c]o'介引户הаí先]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>PreferredPhone__c</name>
+    <help>[Which phone number should be used for most communications involving this Contact?]o'介引户הаí先ร简аน取정úσιмÜП介мの]</help>
+    <label>[Preferred Phone]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Home</masterLabel>
+      <translation>[Home]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Work</masterLabel>
+      <translation>[Work]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mobile</masterLabel>
+      <translation>[Mobile]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>[Other]o'介引户]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Preferred_Email__c</name>
+    <help>[Which email should be used for most communications involving this Contact?]o'介引户הаí先ร简аน取정úσιмÜП介]</help>
+    <label>[Preferred Email]o'介引]</label>
+    <picklistValues>
+      <masterLabel>University</masterLabel>
+      <translation>[University]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Work</masterLabel>
+      <translation>[Work]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Alternate</masterLabel>
+      <translation>[Alternate]o'介]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Primary_Address_Type__c</name>
+    <help>[Which type of address is the mailing address?]o'介引户הаí先ร简аน]</help>
+    <label>[Primary Address Type]o'介引户ה]</label>
+    <picklistValues>
+      <masterLabel>Home</masterLabel>
+      <translation>[Home]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Work</masterLabel>
+      <translation>[Work]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>[Other]o'介引户]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Primary_Household__c</name>
+    <relationshipLabel>[Contacts (Primary Household)]o'介引户הаí]</relationshipLabel>
+    <label>[Primary Household]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Primary_Organization__c</name>
+    <relationshipLabel>[Contacts (Primary Organization)]o'介引户הаí先]</relationshipLabel>
+    <label>[Primary Business Organization]o'介引户הаí]</label>
+  </fields>
+  <fields>
+    <name>Race__c</name>
+    <label>[Race]o'介引]</label>
+    <picklistValues>
+      <masterLabel>American Indian or Alaska Native</masterLabel>
+      <translation>[American Indian or Alaska Native]o'介引户הаí先]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Asian</masterLabel>
+      <translation>[Asian]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Black or African American</masterLabel>
+      <translation>[Black or African American]o'介引户הа]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hispanic or Latino</masterLabel>
+      <translation>[Hispanic or Latino]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Native Hawaiian or Other Pacific Islander</masterLabel>
+      <translation>[Native Hawaiian or Other Pacific Islander]o'介引户הаí先ร简а]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>White</masterLabel>
+      <translation>[White]o'介引户]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Religion__c</name>
+    <label>[Religion]o'介]</label>
+    <picklistValues>
+      <masterLabel>Atheist</masterLabel>
+      <translation>[Atheist]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Buddhist</masterLabel>
+      <translation>[Buddhist]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Christian</masterLabel>
+      <translation>[Christian]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Hindu</masterLabel>
+      <translation>[Hindu]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Jewish</masterLabel>
+      <translation>[Jewish]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Muslim</masterLabel>
+      <translation>[Muslim]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>[Other]o'介引户]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Secondary_Address_Type__c</name>
+    <help>[What type of address is the other address?]o'介引户הаí先ร简а]</help>
+    <label>[Secondary Address Type]o'介引户ה]</label>
+    <picklistValues>
+      <masterLabel>Home</masterLabel>
+      <translation>[Home]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Work</masterLabel>
+      <translation>[Work]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>[Other]o'介引户]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Social_Security_Number__c</name>
+    <label>[Social Security Number]o'介引户ה]</label>
+  </fields>
+  <fields>
+    <name>UniversityEmail__c</name>
+    <help>[Official University email address.]o'介引户הаí先ร]</help>
+    <label>[University Email]o'介引]</label>
+  </fields>
+  <fields>
+    <name>WorkEmail__c</name>
+    <help>[See Preferred Email field.]o'介引户הа]</help>
+    <label>[Work Email]o'介引]</label>
+  </fields>
+  <fields>
+    <name>WorkPhone__c</name>
+    <help>[See 'Preferred Phone' field.]o'介引户הаí]</help>
+    <label>[Work Phone]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Work_Address__c</name>
+    <help>[Formula: If the Primary Address Type is Work, the Mailing Address.  If the Secondary Address Type is Work, the Other Address.]o'介引户הаí先ร简аน取정úσιмÜП介мのα]</help>
+    <label>[Work Address]o'介引]</label>
+  </fields>
+  <fields>
+    <name>is_Address_Override__c</name>
+    <help>[If checked, the Contact's Current address overrides any new or seasonal address. (Applies to Household Contacts only.)]o'介引户הаí先ร简аน取정úσιмÜП介м]</help>
+    <label>[Do Not Automatically Update]o'介引户הаí]</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Contact Layout</layout>
+    <sections>
+      <label>[Contact Details]o'介引]</label>
+      <section>Contact Details</section>
+    </sections>
+    <sections>
+      <label>[Additional Information]o'介引户ה]</label>
+      <section>Additional Information</section>
+    </sections>
+    <sections>
+      <label>[Primary Affiliations]o'介引户ה]</label>
+      <section>Primary Affiliations</section>
+    </sections>
+    <sections>
+      <label>[Communication Preferences]o'介引户הа]</label>
+      <section>Communication Preferences</section>
+    </sections>
+  </layouts>
+</CustomObjectTranslation>

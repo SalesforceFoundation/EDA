@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Context_Type__c</name>
+    <help>[Context that generated the error, if known.]o'介引户הаí先ร简а]</help>
+    <label>[Context Type]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Datetime__c</name>
+    <help>[Date &amp; time the error occurred]o'介引户הаí先]</help>
+    <label>[Datetime]o'介]</label>
+  </fields>
+  <fields>
+    <name>Email_Sent__c</name>
+    <help>[Indicates whether an email notification has been sent regarding this error.]o'介引户הаí先ร简аน取정úσιмÜП介]</help>
+    <label>[Email Sent]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Error_Type__c</name>
+    <help>[Type of error that occurred]o'介引户הаí]</help>
+    <label>[Error Type]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Full_Message__c</name>
+    <help>[Full text of the error message]o'介引户הаí先]</help>
+    <label>[Full Message]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Object_Type__c</name>
+    <help>[Type of object on which the error occurred, if known.]o'介引户הаí先ร简аน取정]</help>
+    <label>[Object Type]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Posted_in_Chatter__c</name>
+    <help>[Indicates whether the error has been posted in Chatter.]o'介引户הаí先ร简аน取정ú]</help>
+    <label>[Posted in Chatter]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Record_URL__c</name>
+    <help>[A link to the record which caused the error, if available.]o'介引户הаí先ร简аน取정úσ]</help>
+    <label>[Record URL]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Stack_Trace__c</name>
+    <help>[Stack trace for the thrown error, if available at runtime.]o'介引户הаí先ร简аน取정úσ]</help>
+    <label>[Stack Trace]o'介引]</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Error Layout</layout>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Error Number]o'介引]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Error Number]o'介引]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Error]gr''介引户]</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Errors]gr'']</value>
+  </caseValues>
+</CustomObjectTranslation>

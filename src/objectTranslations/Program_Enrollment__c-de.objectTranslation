@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <help>[The program the student is enrolled in.]o'介引户הаí先ร简]</help>
+    <relationshipLabel>[Program Enrollments]o'介引户]</relationshipLabel>
+    <label>[Program]o']</label>
+  </fields>
+  <fields>
+    <name>Admission_Date__c</name>
+    <label>[Admission Date]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>[The Contact-Account relationship this academic information is related to.]o'介引户הаí先ร简аน取정úσιмÜП]</help>
+    <relationshipLabel>[Program Enrollments]o'介引户]</relationshipLabel>
+    <label>[Affiliation]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Application_Submitted_Date__c</name>
+    <label>[Application Submitted Date]o'介引户הа]</label>
+  </fields>
+  <fields>
+    <name>Class_Standing__c</name>
+    <label>[Class Standing]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Freshman</masterLabel>
+      <translation>[Freshman]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sophomore</masterLabel>
+      <translation>[Sophomore]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Junior</masterLabel>
+      <translation>[Junior]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senior</masterLabel>
+      <translation>[Senior]o']</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>[The parent Contact.]o'介引户]</help>
+    <relationshipLabel>[Program Enrollments]o'介引户]</relationshipLabel>
+    <label>[Contact]o']</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <label>[Credits Attempted]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <label>[Credits Earned]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Eligible_to_Enroll__c</name>
+    <label>[Eligible to Enroll]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>[End Date]o'介]</label>
+  </fields>
+  <fields>
+    <name>Enrollment_Status__c</name>
+    <label>[Enrollment Status]o'介引户]</label>
+    <picklistValues>
+      <masterLabel>Full-time</masterLabel>
+      <translation>[Full-time]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Half-time</masterLabel>
+      <translation>[Half-time]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Less than half-time</masterLabel>
+      <translation>[Less than half-time]o'介引户]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>GPA__c</name>
+    <label>[GPA]o'介]</label>
+  </fields>
+  <fields>
+    <name>Graduation_Year__c</name>
+    <label>[Class Year]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>[Click to select a Program Plan that a student should follow for this Program Enrollment.]o'介引户הаí先ร简аน取정úσιмÜП介мのαş]</help>
+    <relationshipLabel>[Program Enrollments]o'介引户]</relationshipLabel>
+    <label>[Program Plan]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>[Start Date]o'介引]</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Program Enrollment Layout</layout>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Program Enrollment ID]o'介引户ה]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Program Enrollment ID]o'介引户ה]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Program Enrollment]gr''介引户]</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Program Enrollments]gr''介引户]</value>
+  </caseValues>
+</CustomObjectTranslation>

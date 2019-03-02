@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Contact__c</name>
+    <help>[Related Contact is this Contact's ______.]o'介引户הаí先ร简а]</help>
+    <relationshipLabel>[Relationships]o'介]</relationshipLabel>
+    <label>[Contact]o']</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>[Additional information about this Relationship]o'介引户הаí先ร简аน]</help>
+    <label>[Description]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Emergency_Contact__c</name>
+    <help>[Is this an emergency contact.]o'介引户הаí]</help>
+    <label>[Emergency Contact]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>ReciprocalRelationship__c</name>
+    <help>[System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.]o'介引户הаí先ร简аน取정úσιмÜП介мのαşแةбй계ذะяřт紹소иЗ介]</help>
+    <relationshipLabel>[Relationships]o'介]</relationshipLabel>
+    <label>[Reciprocal Relationship]o'介引户ה]</label>
+  </fields>
+  <fields>
+    <name>RelatedContact__c</name>
+    <relationshipLabel>[Hidden Relationships List]o'介引户הа]</relationshipLabel>
+    <label>[Related Contact]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Relationship_Explanation__c</name>
+    <help>[Text formula that constructs a sentence explaining the relationship between the two Contacts]o'介引户הаí先ร简аน取정úσιмÜП介мのαşแ]</help>
+    <label>[Relationship Explanation]o'介引户הа]</label>
+  </fields>
+  <fields>
+    <name>SYSTEM_SystemCreated__c</name>
+    <help>[System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.]o'介引户הаí先ร简аน取정úσιмÜП介м]</help>
+    <label>[_SYSTEM: SystemCreated]o'介引户ה]</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>[Status of the Relationship.]o'介引户הаí]</help>
+    <label>[Status]o']</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>[Current]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>[Former]o']</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>[Field that describes how the Related Contact is connected to the Contact.]o'介引户הаí先ร简аน取정úσιмÜП]</help>
+    <label>[Type]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Friend</masterLabel>
+      <translation>[Friend]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Family</masterLabel>
+      <translation>[Family]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Coworker</masterLabel>
+      <translation>[Coworker]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Father</masterLabel>
+      <translation>[Father]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mother</masterLabel>
+      <translation>[Mother]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Parent</masterLabel>
+      <translation>[Parent]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Son</masterLabel>
+      <translation>[Son]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Daughter</masterLabel>
+      <translation>[Daughter]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Child</masterLabel>
+      <translation>[Child]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Aunt</masterLabel>
+      <translation>[Aunt]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uncle</masterLabel>
+      <translation>[Uncle]o'介引户]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Husband</masterLabel>
+      <translation>[Husband]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wife</masterLabel>
+      <translation>[Wife]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Partner</masterLabel>
+      <translation>[Partner]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cousin</masterLabel>
+      <translation>[Cousin]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandmother</masterLabel>
+      <translation>[Grandmother]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandfather</masterLabel>
+      <translation>[Grandfather]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandparent</masterLabel>
+      <translation>[Grandparent]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandson</masterLabel>
+      <translation>[Grandson]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Granddaughter</masterLabel>
+      <translation>[Granddaughter]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandchild</masterLabel>
+      <translation>[Grandchild]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employer</masterLabel>
+      <translation>[Employer]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>[Employee]o'介]</translation>
+    </picklistValues>
+  </fields>
+  <validationRules>
+    <errorMessage>[Rather than change the contacts in an existing relationship, delete this relationship and create a new on between the new contacts]o'介引户הаí先ร简аน取정úσιмÜП介мのαş]</errorMessage>
+    <name>Related_Contact_Do_Not_Change</name>
+  </validationRules>
+  <layouts>
+    <layout>HEDA Relationship Layout</layout>
+    <sections>
+      <label>[Relationship Information]o'介引户הа]</label>
+      <section>Relationship Information</section>
+    </sections>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Relationship Key]o'介引]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Relationship Key]o'介引]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Relationship]gr''介引]</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Relationships]gr''介]</value>
+  </caseValues>
+</CustomObjectTranslation>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>[Affiliated Contacts]o'介引户]</relationshipLabel>
+    <label>[Organization]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Type__c</name>
+    <label>[Affiliation Type]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <relationshipLabel>[Affiliated Accounts]o'介引户]</relationshipLabel>
+    <label>[Contact]o']</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>[Description]o'介引]</label>
+  </fields>
+  <fields>
+    <name>EndDate__c</name>
+    <label>[End Date]o'介]</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>[If checked, the Affiliation's Organization will be stored on the Contact record.]o'介引户הаí先ร简аน取정úσιмÜП介мの]</help>
+    <label>[Primary]o']</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <label>[Role]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Student</masterLabel>
+      <translation>[Student]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Prospect</masterLabel>
+      <translation>[Prospect]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Applicant</masterLabel>
+      <translation>[Applicant]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faculty</masterLabel>
+      <translation>[Faculty]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>[Employee]o'介]</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>StartDate__c</name>
+    <label>[Start Date]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <label>[Status]o']</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>[Current]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>[Former]o']</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Affiliation Layout</layout>
+    <sections>
+      <label>[Affiliation Information]o'介引户ה]</label>
+      <section>Affiliation Information</section>
+    </sections>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Affiliation Key]o'介引]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Affiliation Key]o'介引]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Affiliation]gr''介引]</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Affiliations]gr''介引]</value>
+  </caseValues>
+</CustomObjectTranslation>

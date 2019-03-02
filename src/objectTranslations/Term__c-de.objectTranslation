@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>[Terms]o'介引户]</relationshipLabel>
+    <label>[Account]o']</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>[End Date]o'介]</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <label>[Grading Period Sequence]o'介引户ה]</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <label>[Instructional Days]o'介引户]</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <relationshipLabel>[Terms]o'介引户]</relationshipLabel>
+    <label>[Parent Term]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>[Start Date]o'介引]</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <label>[Type]o'介引]</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>[Quarter]o']</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>[Semester]o'介]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>[School Year]o'介引]</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>[Part of Term]o'介引]</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>[Custom Links]o'介引]</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>[Term Name]o'介]</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>[Term Name]o'介]</label>
+  </standardFields>
+  <gender>Neuter</gender>
+  <caseValues>
+    <plural>false</plural>
+    <caseType>Nominative</caseType>
+    <value>[Term]gr''介引]</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <caseType>Nominative</caseType>
+    <value>[Terms]gr''介引户]</value>
+  </caseValues>
+</CustomObjectTranslation>
