@@ -358,6 +358,7 @@
         <members>Program_Plan__c.Is_Primary__c</members>
         <members>Program_Plan__c.Start_Date__c</members>
         <members>Program_Plan__c.Status__c</members>
+        <members>Program_Plan__c.Total_Required_Credits__c</members>
         <members>Program_Plan__c.Version__c</members>
         <members>Relationship_Auto_Create__c.Campaign_Types__c</members>
         <members>Relationship_Auto_Create__c.Field__c</members>
