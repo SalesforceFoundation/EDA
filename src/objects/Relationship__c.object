@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -61,6 +57,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -164,21 +161,25 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <externalId>false</externalId>
         <inlineHelpText>Status of the Relationship.</inlineHelpText>
         <label>Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Current</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Former</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Current</fullName>
+                    <default>true</default>
+                    <label>Current</label>
+                </value>
+                <value>
+                    <fullName>Former</fullName>
+                    <default>false</default>
+                    <label>Former</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Type__c</fullName>
@@ -186,105 +187,130 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <externalId>false</externalId>
         <inlineHelpText>Field that describes how the Related Contact is connected to the Contact.</inlineHelpText>
         <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Friend</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Family</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Coworker</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Father</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mother</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Parent</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Son</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Daughter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Child</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Aunt</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Uncle</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Husband</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Wife</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Partner</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cousin</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Grandmother</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Grandfather</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Grandparent</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Grandson</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Granddaughter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Grandchild</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Employer</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Employee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Friend</fullName>
+                    <default>false</default>
+                    <label>Friend</label>
+                </value>
+                <value>
+                    <fullName>Family</fullName>
+                    <default>false</default>
+                    <label>Family</label>
+                </value>
+                <value>
+                    <fullName>Coworker</fullName>
+                    <default>false</default>
+                    <label>Coworker</label>
+                </value>
+                <value>
+                    <fullName>Father</fullName>
+                    <default>false</default>
+                    <label>Father</label>
+                </value>
+                <value>
+                    <fullName>Mother</fullName>
+                    <default>false</default>
+                    <label>Mother</label>
+                </value>
+                <value>
+                    <fullName>Parent</fullName>
+                    <default>false</default>
+                    <label>Parent</label>
+                </value>
+                <value>
+                    <fullName>Son</fullName>
+                    <default>false</default>
+                    <label>Son</label>
+                </value>
+                <value>
+                    <fullName>Daughter</fullName>
+                    <default>false</default>
+                    <label>Daughter</label>
+                </value>
+                <value>
+                    <fullName>Child</fullName>
+                    <default>false</default>
+                    <label>Child</label>
+                </value>
+                <value>
+                    <fullName>Aunt</fullName>
+                    <default>false</default>
+                    <label>Aunt</label>
+                </value>
+                <value>
+                    <fullName>Uncle</fullName>
+                    <default>false</default>
+                    <label>Uncle</label>
+                </value>
+                <value>
+                    <fullName>Husband</fullName>
+                    <default>false</default>
+                    <label>Husband</label>
+                </value>
+                <value>
+                    <fullName>Wife</fullName>
+                    <default>false</default>
+                    <label>Wife</label>
+                </value>
+                <value>
+                    <fullName>Partner</fullName>
+                    <default>false</default>
+                    <label>Partner</label>
+                </value>
+                <value>
+                    <fullName>Cousin</fullName>
+                    <default>false</default>
+                    <label>Cousin</label>
+                </value>
+                <value>
+                    <fullName>Grandmother</fullName>
+                    <default>false</default>
+                    <label>Grandmother</label>
+                </value>
+                <value>
+                    <fullName>Grandfather</fullName>
+                    <default>false</default>
+                    <label>Grandfather</label>
+                </value>
+                <value>
+                    <fullName>Grandparent</fullName>
+                    <default>false</default>
+                    <label>Grandparent</label>
+                </value>
+                <value>
+                    <fullName>Grandson</fullName>
+                    <default>false</default>
+                    <label>Grandson</label>
+                </value>
+                <value>
+                    <fullName>Granddaughter</fullName>
+                    <default>false</default>
+                    <label>Granddaughter</label>
+                </value>
+                <value>
+                    <fullName>Grandchild</fullName>
+                    <default>false</default>
+                    <label>Grandchild</label>
+                </value>
+                <value>
+                    <fullName>Employer</fullName>
+                    <default>false</default>
+                    <label>Employer</label>
+                </value>
+                <value>
+                    <fullName>Employee</fullName>
+                    <default>false</default>
+                    <label>Employee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <label>Relationship</label>
     <listViews>
@@ -309,4 +335,5 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
         <errorDisplayField>RelatedContact__c</errorDisplayField>
         <errorMessage>Rather than change the contacts in an existing relationship, delete this relationship and create a new on between the new contacts</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -59,6 +55,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -123,20 +120,24 @@
         <externalId>false</externalId>
         <inlineHelpText>The status of the program plan.</inlineHelpText>
         <label>Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Current</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Current</fullName>
+                    <default>true</default>
+                    <label>Current</label>
+                </value>
+                <value>
+                    <fullName>Archived</fullName>
+                    <default>false</default>
+                    <label>Archived</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Total_Required_Credits__c</fullName>
@@ -198,4 +199,5 @@
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

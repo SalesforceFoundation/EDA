@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -61,6 +57,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -113,28 +110,34 @@
         <fullName>Class_Standing__c</fullName>
         <externalId>false</externalId>
         <label>Class Standing</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Freshman</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sophomore</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Junior</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Senior</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Freshman</fullName>
+                    <default>false</default>
+                    <label>Freshman</label>
+                </value>
+                <value>
+                    <fullName>Sophomore</fullName>
+                    <default>false</default>
+                    <label>Sophomore</label>
+                </value>
+                <value>
+                    <fullName>Junior</fullName>
+                    <default>false</default>
+                    <label>Junior</label>
+                </value>
+                <value>
+                    <fullName>Senior</fullName>
+                    <default>false</default>
+                    <label>Senior</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
@@ -192,24 +195,29 @@
         <fullName>Enrollment_Status__c</fullName>
         <externalId>false</externalId>
         <label>Enrollment Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Full-time</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Half-time</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Less than half-time</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Full-time</fullName>
+                    <default>false</default>
+                    <label>Full-time</label>
+                </value>
+                <value>
+                    <fullName>Half-time</fullName>
+                    <default>false</default>
+                    <label>Half-time</label>
+                </value>
+                <value>
+                    <fullName>Less than half-time</fullName>
+                    <default>false</default>
+                    <label>Less than half-time</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>GPA__c</fullName>
@@ -269,4 +277,5 @@
     <pluralLabel>Program Enrollments</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
