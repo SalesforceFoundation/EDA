@@ -2,13 +2,16 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-home</defaultLandingTab>
     <description>Higher Education Data Architecture</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>HEDA</label>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>Course__c</tab>
-    <tab>Term__c</tab>
-    <tab>Course_Offering__c</tab>
-    <tab>Program_Plan__c</tab>
-    <tab>Trigger_Handler__c</tab>
-    <tab>HEDA_Settings</tab>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>Course__c</tabs>
+    <tabs>Term__c</tabs>
+    <tabs>Course_Offering__c</tabs>
+    <tabs>Program_Plan__c</tabs>
+    <tabs>Trigger_Handler__c</tabs>
+    <tabs>HEDA_Settings</tabs>
 </CustomApplication>
