@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Attendance Event --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Attendance Event --></value>
+    </caseValues>
+    <fields>
+        <help><!-- In the case of Tardy events, the time the student arrived to school/class period. --></help>
+        <label><!-- Arrival Time --></label>
+        <name>Arrival_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The student who is either tardy or absent. --></help>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Attendance Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The class and period in which the student was either absent or tardy. --></help>
+        <label><!-- Course Connection --></label>
+        <name>Course_Connection__c</name>
+        <relationshipLabel><!-- Attendance Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The date when this event occurred. --></help>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- For pre-excused absences, the time when this absence will end. --></help>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The reason for the tardy/absence. --></help>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- The time when the pre-excused absence will start. --></help>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The type of absence or tardy. --></help>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>All Day Absence</masterLabel>
+            <translation><!-- All Day Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class Absence</masterLabel>
+            <translation><!-- Class Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class Tardy</masterLabel>
+            <translation><!-- Class Tardy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Tardy</masterLabel>
+            <translation><!-- School Tardy --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Indicates an unexcused tardy or absence. --></help>
+        <label><!-- Unexcused --></label>
+        <name>Unexcused__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <nameFieldLabel><!-- Attendance Event Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
