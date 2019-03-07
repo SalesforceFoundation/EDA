@@ -92,7 +92,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <description>A description of this facility.</description>
         <externalId>false</externalId>
+        <inlineHelpText>A description of this facility.</inlineHelpText>
         <label>Description</label>
         <length>255</length>
         <required>false</required>
@@ -103,7 +105,9 @@
     <fields>
         <fullName>Parent_Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Provides the ability for facilities to be part of larger facilities (Building→Classroom).</description>
         <externalId>false</externalId>
+        <inlineHelpText>Provides the ability for facilities to be part of larger facilities (Building→Classroom).</inlineHelpText>
         <label>Parent Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
@@ -114,7 +118,9 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <description>The type of facility.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The type of facility.</inlineHelpText>
         <label>Type</label>
         <picklist>
             <picklistValues>
@@ -130,11 +136,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Fitness</fullName>
+                <fullName>Food Hall/Cafeteria</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Lab</fullName>
+                <fullName>Health Center</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gymnasium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Laboratory</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
