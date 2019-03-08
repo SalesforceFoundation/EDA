@@ -71,7 +71,7 @@
     </fields>
     <fields>
         <fullName>Advancement_Namespace__c</fullName>
-        <defaultValue>&quot;adv1&quot;</defaultValue>
+        <defaultValue>&quot;gem0&quot;</defaultValue>
         <description>The namespace of the Gift Entry Management managed package.</description>
         <externalId>false</externalId>
         <inlineHelpText>The namespace of the Gift Entry Management managed package.</inlineHelpText>
