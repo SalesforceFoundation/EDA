@@ -9,16 +9,38 @@
         <value><!-- Contact Language --></value>
     </caseValues>
     <fields>
-        <help><!-- The person that is speaking this language. --></help>
+        <help><!-- The person who speaks this language. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Contact Languages --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The language this contact is associated with. --></help>
+        <help><!-- The fluency with which this person speaks this language. --></help>
+        <label><!-- Fluency --></label>
+        <name>Fluency__c</name>
+        <picklistValues>
+            <masterLabel>Beginner</masterLabel>
+            <translation><!-- Beginner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fluent</masterLabel>
+            <translation><!-- Fluent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intermediate</masterLabel>
+            <translation><!-- Intermediate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The language associated with this Contact. --></help>
         <label><!-- Language --></label>
         <name>Language__c</name>
         <relationshipLabel><!-- Contact Languages --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Indicates that this is the language of choice for this Contact. --></help>
+        <label><!-- Primary Language --></label>
+        <name>Primary_Language__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
     <layouts>

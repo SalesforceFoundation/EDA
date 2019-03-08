@@ -49,6 +49,10 @@
     <compactLayouts>
         <fullName>HEDA_Contact_Language_Compact_Layout</fullName>
         <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Language__c</fields>
+        <fields>Fluency__c</fields>
+        <fields>Primary_Language__c</fields>
         <label>HEDA Contact Language Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -63,24 +67,51 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The person that is speaking this language.</description>
+        <description>The person who speaks this language.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The person that is speaking this language.</inlineHelpText>
+        <inlineHelpText>The person who speaks this language.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Contact Languages</relationshipLabel>
         <relationshipName>Contact_Languages</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Fluency__c</fullName>
+        <description>The fluency with which this person speaks this language.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The fluency with which this person speaks this language.</inlineHelpText>
+        <label>Fluency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Fluent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Beginner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Language__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The language this contact is associated with.</description>
+        <description>The language associated with this Contact.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The language this contact is associated with.</inlineHelpText>
+        <inlineHelpText>The language associated with this Contact.</inlineHelpText>
         <label>Language</label>
         <referenceTo>Language__c</referenceTo>
         <relationshipLabel>Contact Languages</relationshipLabel>
@@ -88,6 +119,16 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Language__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates that this is the language of choice for this Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that this is the language of choice for this Contact.</inlineHelpText>
+        <label>Primary Language</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <label>Contact Language</label>
     <listViews>
@@ -111,5 +152,5 @@
         <searchResultsAdditionalFields>Language__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

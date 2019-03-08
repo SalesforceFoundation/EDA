@@ -255,6 +255,7 @@
         <members>Contact.Preferred_Email__c</members>
         <members>Contact.Primary_Address_Type__c</members>
         <members>Contact.Primary_Household__c</members>
+        <members>Contact.Primary_Language__c</members>
         <members>Contact.Primary_Organization__c</members>
         <members>Contact.Race__c</members>
         <members>Contact.Religion__c</members>
@@ -266,7 +267,9 @@
         <members>Contact.Work_Address__c</members>
         <members>Contact.is_Address_Override__c</members>
         <members>Contact_Language__c.Contact__c</members>
+        <members>Contact_Language__c.Fluency__c</members>
         <members>Contact_Language__c.Language__c</members>
+        <members>Contact_Language__c.Primary_Language__c</members>
         <members>Course_Enrollment__c.Account__c</members>
         <members>Course_Enrollment__c.Affiliation__c</members>
         <members>Course_Enrollment__c.Contact__c</members>

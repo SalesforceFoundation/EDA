@@ -3523,6 +3523,12 @@
         <relationshipLabel>Contacts (foyer principal)</relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The language the student prefers to use. --></help>
+        <label><!-- Primary Language --></label>
+        <name>Primary_Language__c</name>
+        <relationshipLabel><!-- Contacts --></relationshipLabel>
+    </fields>
+    <fields>
         <label>Organisation professionnelle principale</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contacts (organisation principale)</relationshipLabel>
