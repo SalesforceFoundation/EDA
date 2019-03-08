@@ -54,7 +54,7 @@
         <label>HEDA Facility Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Physical location of a building or room that allows an educational institution to house information with respect to where classes are being held and other school property assets.</description>
+    <description>The physical location of any school property asset, for example, a building or room where classes are being held.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -105,9 +105,9 @@
     <fields>
         <fullName>Parent_Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Provides the ability for facilities to be part of larger facilities (Building→Classroom).</description>
+        <description>Lets you identify a facility as part of a larger one (for example, a building might be a parent of a classroom).</description>
         <externalId>false</externalId>
-        <inlineHelpText>Provides the ability for facilities to be part of larger facilities (Building→Classroom).</inlineHelpText>
+        <inlineHelpText>Lets you identify a facility as part of a larger one (for example, a building might be a parent of a classroom).</inlineHelpText>
         <label>Parent Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>

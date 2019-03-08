@@ -100,9 +100,9 @@
     <fields>
         <fullName>Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The location in which this class is being held.</description>
+        <description>The location where this class is held.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The location in which this class is being held.</inlineHelpText>
+        <inlineHelpText>The location where this class is held.</inlineHelpText>
         <label>Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Course Offerings</relationshipLabel>

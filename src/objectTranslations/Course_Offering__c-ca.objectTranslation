@@ -22,7 +22,7 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The location in which this class is being held. --></help>
+        <help><!-- The location where this class is held. --></help>
         <label><!-- Facility --></label>
         <name>Facility__c</name>
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>

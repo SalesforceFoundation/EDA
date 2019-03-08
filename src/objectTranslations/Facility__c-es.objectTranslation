@@ -25,7 +25,7 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- Provides the ability for facilities to be part of larger facilities (Building→Classroom). --></help>
+        <help><!-- Lets you identify a facility as part of a larger one (for example, a building might be a parent of a classroom). --></help>
         <label><!-- Parent Facility --></label>
         <name>Parent_Facility__c</name>
         <relationshipLabel><!-- Facilities --></relationshipLabel>
