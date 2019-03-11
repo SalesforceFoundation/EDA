@@ -3523,7 +3523,7 @@
         <relationshipLabel>Contactos (domicilio principal)</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The language the student prefers to use. --></help>
+        <help><!-- The language the contact prefers to use. --></help>
         <label><!-- Primary Language --></label>
         <name>Primary_Language__c</name>
         <relationshipLabel><!-- Contacts --></relationshipLabel>

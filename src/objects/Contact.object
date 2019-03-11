@@ -3674,9 +3674,9 @@
     <fields>
         <fullName>Primary_Language__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The language the student prefers to use.</description>
+        <description>The language the contact prefers to use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The language the student prefers to use.</inlineHelpText>
+        <inlineHelpText>The language the contact prefers to use.</inlineHelpText>
         <label>Primary Language</label>
         <referenceTo>Contact_Language__c</referenceTo>
         <relationshipLabel>Contacts</relationshipLabel>
