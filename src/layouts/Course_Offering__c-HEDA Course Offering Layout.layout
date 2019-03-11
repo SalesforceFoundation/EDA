@@ -22,10 +22,6 @@
                 <behavior>Edit</behavior>
                 <field>Capacity__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Facility__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
