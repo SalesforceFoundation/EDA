@@ -52,6 +52,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Contact__c</fields>
+        <fields>Fluency__c</fields>
+        <fields>Primary_Language__c</fields>
         <relatedList>Contact_Language__c.Language__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

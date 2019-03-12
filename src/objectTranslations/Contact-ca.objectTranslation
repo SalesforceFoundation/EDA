@@ -4445,7 +4445,7 @@
         <relationshipLabel>Contactes (llar primària)</relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The language the contact prefers to use. --></help>
+        <help><!-- The language the Contact prefers to use. --></help>
         <label><!-- Primary Language --></label>
         <name>Primary_Language__c</name>
         <relationshipLabel><!-- Contacts --></relationshipLabel>
