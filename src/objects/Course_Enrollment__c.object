@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -58,7 +62,6 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -211,58 +214,6 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Course Connections</pluralLabel>
-    <recordTypes>
-        <fullName>Default</fullName>
-        <active>true</active>
-        <description>A Default Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators.</description>
-        <label>Default</label>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Current</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Former</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Faculty</fullName>
-        <active>true</active>
-        <description>A Faculty Course Connection</description>
-        <label>Faculty</label>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Current</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Former</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Student</fullName>
-        <active>true</active>
-        <description>A Student Course Connection</description>
-        <label>Student</label>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Current</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Former</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
-    <visibility>Public</visibility>
 </CustomObject>
