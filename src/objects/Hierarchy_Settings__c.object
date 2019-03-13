@@ -71,7 +71,7 @@
     </fields>
     <fields>
         <fullName>Advancement_Namespace__c</fullName>
-        <defaultValue>&quot;adv1&quot;</defaultValue>
+        <defaultValue>&quot;gem0&quot;</defaultValue>
         <description>The namespace of the Gift Entry Management managed package.</description>
         <externalId>false</externalId>
         <inlineHelpText>The namespace of the Gift Entry Management managed package.</inlineHelpText>
@@ -95,9 +95,9 @@
     <fields>
         <fullName>Affl_ProgEnroll_Copy_End_Date__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don't specify the Affiliation&apos;s End Date.</description>
+        <description>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don't specify the Affiliation&apos;s End Date.</inlineHelpText>
+        <inlineHelpText>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</inlineHelpText>
         <label>Affil End Date Copy from Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -105,18 +105,18 @@
     <fields>
         <fullName>Affl_ProgEnroll_Copy_Start_Date__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don't specify the Affiliation&apos;s Start Date.</description>
+        <description>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don't specify the Affiliation&apos;s Start Date.</inlineHelpText>
+        <inlineHelpText>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</inlineHelpText>
         <label>Affil Start Date Copy from Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
-        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrollment is deleted.</description>
+        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrollment is deleted.</inlineHelpText>
+        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</inlineHelpText>
         <label>Affil Status When Delete Prog Enroll</label>
         <length>255</length>
         <required>false</required>
