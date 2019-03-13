@@ -24,6 +24,16 @@
         <name>Accounts_to_Delete__c</name>
     </fields>
     <fields>
+        <help><!-- This is the setting for admin account naming format --></help>
+        <label><!-- Admin Account Naming Format --></label>
+        <name>Admin_Account_Naming_Format__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store other naming setting for admin account --></help>
+        <label><!-- Admin Other Name Setting --></label>
+        <name>Admin_Other_Name_Setting__c</name>
+    </fields>
+    <fields>
         <help><!-- The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts. --></help>
         <label><!-- Administrative Account Record Type --></label>
         <name>Administrative_Account_Record_Type__c</name>
@@ -39,38 +49,38 @@
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
     <fields>
-        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
-        <label><!-- Affl End Date on Prog Enroll Creation --></label>
+        <help><!-- Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date. --></help>
+        <label><!-- Affil End Date Copy from Prog Enroll --></label>
         <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date. --></help>
-        <label><!-- Affl Start Date on Prog Enroll Creation --></label>
+        <help><!-- Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date. --></help>
+        <label><!-- Affil Start Date Copy from Prog Enroll --></label>
         <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it. --></help>
-        <label><!-- Affl status on Prog Enrollment deletion --></label>
+        <help><!-- If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted. --></help>
+        <label><!-- Affil Status When Delete Prog Enroll --></label>
         <name>Affl_ProgEnroll_Del_Status__c</name>
     </fields>
     <fields>
-        <help><!-- Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former. --></help>
-        <label><!-- Affiliation Program Enrollment deletion --></label>
+        <help><!-- Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll. --></help>
+        <label><!-- Affil Delete When Delete Prog Enroll --></label>
         <name>Affl_ProgEnroll_Del__c</name>
     </fields>
     <fields>
-        <help><!-- The role to set for a related affiliation created by creating a Program Enrollment. --></help>
-        <label><!-- Affiliation Program Enrollment Role Map --></label>
+        <help><!-- If the related setting, Affil Set Role When Create Prog Enroll, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrollment. --></help>
+        <label><!-- Affil Role When Create Prog Enroll --></label>
         <name>Affl_ProgEnroll_Role_Map__c</name>
     </fields>
     <fields>
-        <help><!-- Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set. --></help>
-        <label><!-- Affl set role on Prog Enrollment create --></label>
+        <help><!-- Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role. --></help>
+        <label><!-- Affil Set Role When Create Prog Enroll --></label>
         <name>Affl_ProgEnroll_Set_Role__c</name>
     </fields>
     <fields>
-        <help><!-- The status to set for a related affiliation created by creating a Program Enrollment. --></help>
-        <label><!-- Affiliation Program Enrollment Stat Map --></label>
+        <help><!-- The Status value set on the Affiliation created with a Program Enrollment. --></help>
+        <label><!-- Affil Status When Create Prog Enroll --></label>
         <name>Affl_ProgEnroll_Status_Map__c</name>
     </fields>
     <fields>
@@ -81,6 +91,11 @@
     <fields>
         <label><!-- Async Error Check Last Run --></label>
         <name>Async_Error_Check_Last_Run__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings. --></help>
+        <label><!-- Automatic Household Naming --></label>
+        <name>Automatic_Household_Naming__c</name>
     </fields>
     <fields>
         <help><!-- Address management support for Contacts. --></help>
@@ -121,9 +136,19 @@
         <name>Faculty_RecType__c</name>
     </fields>
     <fields>
+        <help><!-- This is the setting for household account naming format --></help>
+        <label><!-- Household Account Naming Format --></label>
+        <name>Household_Account_Naming_Format__c</name>
+    </fields>
+    <fields>
         <help><!-- The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts. --></help>
         <label><!-- Household Addresses Acc Record Type --></label>
         <name>Household_Addresses_RecType__c</name>
+    </fields>
+    <fields>
+        <help><!-- To store other name setting for household account --></help>
+        <label><!-- Household Other Name Setting --></label>
+        <name>Household_Other_Name_Setting__c</name>
     </fields>
     <fields>
         <help><!-- Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;) --></help>
