@@ -49,6 +49,10 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
+        <label><!-- Provides a blank value option to custom built picklists --></label>
+        <name>NoneOption</name>
+    </customLabels>
+    <customLabels>
         <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l&apos;etiqueta del camp d&apos;un camp de correu electrònic personalitzat existent.</label>
         <name>PreferredEmailMatchMustExist</name>
     </customLabels>
@@ -79,6 +83,10 @@
     <customLabels>
         <label><!-- acctNamingOther --></label>
         <name>acctNamingOther</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Throw exception to external call --></label>
+        <name>adapterException</name>
     </customLabels>
     <customLabels>
         <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
@@ -181,12 +189,20 @@
         <name>firstNameLastNameHH</name>
     </customLabels>
     <customLabels>
+        <label><!-- Gift Processing configuration error --></label>
+        <name>giftProcessingConfigException</name>
+    </customLabels>
+    <customLabels>
         <label><!-- hhAccNameFormat --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
         <label><!-- hhAccNameFormatHelpText --></label>
         <name>hhAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- hhFamily --></label>
+        <name>hhFamily</name>
     </customLabels>
     <customLabels>
         <label><!-- lastNameAdminAcc --></label>
@@ -257,6 +273,10 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAdminAccountRecordType --></label>
+        <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgAfflCopyProgramEnrollmentEndDate --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -283,10 +303,6 @@
     <customLabels>
         <label><!-- stgAfflProgEnrollSetStatusValue --></label>
         <name>stgAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgAdminAccountRecordType --></label>
-        <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
         <label>Després d&apos;executar el reenviament:</label>
@@ -469,6 +485,10 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpAdminRecType --></label>
+        <name>stgHelpAdminRecType</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgHelpAfflCopyProgramEnrollmentEndDate --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -507,10 +527,6 @@
     <customLabels>
         <label><!-- stgHelpAfflProgEnrollSetStatusValue --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgHelpAdminRecType --></label>
-        <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
