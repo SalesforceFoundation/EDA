@@ -86,25 +86,30 @@
         <externalId>false</externalId>
         <inlineHelpText>The fluency with which this person speaks this language.</inlineHelpText>
         <label>Fluency</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Fluent</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Intermediate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Beginner</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Fluent</fullName>
+                    <default>false</default>
+                    <label>Fluent</label>
+                </value>
+                <value>
+                    <fullName>Intermediate</fullName>
+                    <default>false</default>
+                    <label>Intermediate</label>
+                </value>
+                <value>
+                    <fullName>Beginner</fullName>
+                    <default>false</default>
+                    <label>Beginner</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Language__c</fullName>
