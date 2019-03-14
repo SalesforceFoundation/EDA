@@ -66,9 +66,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The organization that owns/controls this facility.</description>
+        <description>The organization that is responsible for the Facility.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The organization that owns/controls this facility.</inlineHelpText>
+        <inlineHelpText>The organization that is responsible for the Facility.</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
@@ -79,9 +79,9 @@
     </fields>
     <fields>
         <fullName>Capacity__c</fullName>
-        <description>The max number of occupants this facility can hold.</description>
+        <description>The maximum number of occupants the Facility can hold.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The max number of occupants this facility can hold.</inlineHelpText>
+        <inlineHelpText>The maximum number of occupants the Facility can hold.</inlineHelpText>
         <label>Capacity</label>
         <precision>18</precision>
         <required>false</required>
@@ -92,9 +92,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>A description of this facility.</description>
+        <description>A description of this Facility.</description>
         <externalId>false</externalId>
-        <inlineHelpText>A description of this facility.</inlineHelpText>
+        <inlineHelpText>A description of this Facility.</inlineHelpText>
         <label>Description</label>
         <length>255</length>
         <required>false</required>
@@ -105,9 +105,9 @@
     <fields>
         <fullName>Parent_Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lets you identify a facility as part of a larger one (for example, a building might be a parent of a classroom).</description>
+        <description>If the Facility is part of a larger one, specifies the parent Facility (for example, a building might be a parent of a classroom).</description>
         <externalId>false</externalId>
-        <inlineHelpText>Lets you identify a facility as part of a larger one (for example, a building might be a parent of a classroom).</inlineHelpText>
+        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility (for example, a building might be a parent of a classroom).</inlineHelpText>
         <label>Parent Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
@@ -118,9 +118,9 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
-        <description>The type of facility.</description>
+        <description>The type of Facility.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The type of facility.</inlineHelpText>
+        <inlineHelpText>The type of Facility.</inlineHelpText>
         <label>Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
