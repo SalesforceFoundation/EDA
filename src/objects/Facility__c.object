@@ -122,49 +122,60 @@
         <externalId>false</externalId>
         <inlineHelpText>The type of facility.</inlineHelpText>
         <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Building</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Classroom</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Computer Lab</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Food Hall/Cafeteria</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Health Center</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gymnasium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Laboratory</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lecture Hall</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Library</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Building</fullName>
+                    <default>false</default>
+                    <label>Building</label>
+                </value>
+                <value>
+                    <fullName>Classroom</fullName>
+                    <default>false</default>
+                    <label>Classroom</label>
+                </value>
+                <value>
+                    <fullName>Computer Lab</fullName>
+                    <default>false</default>
+                    <label>Computer Lab</label>
+                </value>
+                <value>
+                    <fullName>Food Hall/Cafeteria</fullName>
+                    <default>false</default>
+                    <label>Food Hall/Cafeteria</label>
+                </value>
+                <value>
+                    <fullName>Health Center</fullName>
+                    <default>false</default>
+                    <label>Health Center</label>
+                </value>
+                <value>
+                    <fullName>Gymnasium</fullName>
+                    <default>false</default>
+                    <label>Gymnasium</label>
+                </value>
+                <value>
+                    <fullName>Laboratory</fullName>
+                    <default>false</default>
+                    <label>Laboratory</label>
+                </value>
+                <value>
+                    <fullName>Lecture Hall</fullName>
+                    <default>false</default>
+                    <label>Lecture Hall</label>
+                </value>
+                <value>
+                    <fullName>Library</fullName>
+                    <default>false</default>
+                    <label>Library</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <label>Facility</label>
     <listViews>
