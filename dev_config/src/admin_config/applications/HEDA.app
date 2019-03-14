@@ -4,12 +4,12 @@
     <description>Higher Education Data Architecture</description>
     <formFactors>Large</formFactors>
     <label>HEDA</label>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>%%%NAMESPACE%%%Course__c</tab>
-    <tab>%%%NAMESPACE%%%Term__c</tab>
-    <tab>%%%NAMESPACE%%%Course_Offering__c</tab>
-    <tab>%%%NAMESPACE%%%Program_Plan__c</tab>
-    <tab>%%%NAMESPACE%%%Trigger_Handler__c</tab>
-    <tab>%%%NAMESPACE%%%HEDA_Settings</tab>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>%%%NAMESPACE%%%Course__c</tabs>
+    <tabs>%%%NAMESPACE%%%Term__c</tabs>
+    <tabs>%%%NAMESPACE%%%Course_Offering__c</tabs>
+    <tabs>%%%NAMESPACE%%%Program_Plan__c</tabs>
+    <tabs>%%%NAMESPACE%%%Trigger_Handler__c</tabs>
+    <tabs>%%%NAMESPACE%%%HEDA_Settings</tabs>
 </CustomApplication>
