@@ -71,11 +71,11 @@
     </fields>
     <fields>
         <fullName>Advancement_Namespace__c</fullName>
-        <defaultValue>&quot;adv1&quot;</defaultValue>
-        <description>The namespace of the Gift Processing package.</description>
+        <defaultValue>&quot;gem0&quot;</defaultValue>
+        <description>The namespace of the Gift Entry Management managed package.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The namespace of the Gift Processing package.</inlineHelpText>
-        <label>Advancement Namespace</label>
+        <inlineHelpText>The namespace of the Gift Entry Management managed package.</inlineHelpText>
+        <label>GEM Namespace</label>
         <length>10</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -95,29 +95,29 @@
     <fields>
         <fullName>Affl_ProgEnroll_Copy_End_Date__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
+        <description>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
-        <label>Affl End Date on Prog Enroll Creation</label>
+        <inlineHelpText>Indicates whether to set the End Date of the Affiliation created with a Program Enrollment. If enabled, set the End Date to the Program Enrollment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</inlineHelpText>
+        <label>Affil End Date Copy from Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Copy_Start_Date__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</description>
+        <description>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will inherit the Program Enrollment&apos;s Start Date.</inlineHelpText>
-        <label>Affl Start Date on Prog Enroll Creation</label>
+        <inlineHelpText>Indicates whether to set the Start Date of the Affiliation created with a Program Enrollment. If enabled, set the Start Date to the Program Enrollment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</inlineHelpText>
+        <label>Affil Start Date Copy from Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Del_Status__c</fullName>
-        <description>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</description>
+        <description>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Status to change an Affilation to when the related Program Enrollment is deleted, if the option selected is to change its status instead of deleting it.</inlineHelpText>
-        <label>Affl status on Prog Enrollment deletion</label>
+        <inlineHelpText>If the related setting, Affil Delete When Delete Prog Enroll, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrollment is deleted.</inlineHelpText>
+        <label>Affil Status When Delete Prog Enroll</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -127,19 +127,19 @@
     <fields>
         <fullName>Affl_ProgEnroll_Del__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</description>
+        <description>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines if an Affiliation will be automatically deleted when the related Program Enrollment is deleted. Otherwise the status will be changed to Former.</inlineHelpText>
-        <label>Affiliation Program Enrollment deletion</label>
+        <inlineHelpText>Indicates whether to delete an Affiliation when its related Program Enrollment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enroll.</inlineHelpText>
+        <label>Affil Delete When Delete Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Role_Map__c</fullName>
-        <description>The role to set for a related affiliation created by creating a Program Enrollment.</description>
+        <description>If the related setting, Affil Set Role When Create Prog Enroll, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrollment.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The role to set for a related affiliation created by creating a Program Enrollment.</inlineHelpText>
-        <label>Affiliation Program Enrollment Role Map</label>
+        <inlineHelpText>If the related setting, Affil Set Role When Create Prog Enroll, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrollment.</inlineHelpText>
+        <label>Affil Role When Create Prog Enroll</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -149,19 +149,19 @@
     <fields>
         <fullName>Affl_ProgEnroll_Set_Role__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set.</description>
+        <description>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determines if the Affiliation automatically created by creating a Program Enrollment will have its role set.</inlineHelpText>
-        <label>Affl set role on Prog Enrollment create</label>
+        <inlineHelpText>Indicates whether to specify a Role for the Affiliation created with a Program Enrollment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enroll. If disabled, don&apos;t specify a Role.</inlineHelpText>
+        <label>Affil Set Role When Create Prog Enroll</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Affl_ProgEnroll_Status_Map__c</fullName>
-        <description>The status to set for a related affiliation created by creating a Program Enrollment.</description>
+        <description>The Status value set on the Affiliation created with a Program Enrollment.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The status to set for a related affiliation created by creating a Program Enrollment.</inlineHelpText>
-        <label>Affiliation Program Enrollment Stat Map</label>
+        <inlineHelpText>The Status value set on the Affiliation created with a Program Enrollment.</inlineHelpText>
+        <label>Affil Status When Create Prog Enroll</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

@@ -18,8 +18,41 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Grading Period Sequence --></label>
+        <name>Grading_Period_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instructional Days --></label>
+        <name>Instructional_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Term --></label>
+        <name>Parent_Term__c</name>
+        <relationshipLabel><!-- Terms --></relationshipLabel>
+    </fields>
+    <fields>
         <label>Date de début</label>
         <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Part of Term</masterLabel>
+            <translation><!-- Part of Term --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarter</masterLabel>
+            <translation><!-- Quarter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Year</masterLabel>
+            <translation><!-- School Year --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semester</masterLabel>
+            <translation><!-- Semester --></translation>
+        </picklistValues>
     </fields>
     <gender>Feminine</gender>
     <layouts>

@@ -56,7 +56,7 @@
     </fields>
     <gender><!-- Feminine --></gender>
     <layouts>
-        <layout>Plan Requirement Layout</layout>
+        <layout>HEDA Plan Requirement Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

@@ -536,6 +536,14 @@
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
+        <fullName>stgAdminAccountRecordType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAdminAccountRecordType</shortDescription>
+        <value>Administrative Account Record Type:</value>
+    </labels>
+    <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -557,7 +565,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflDeleteProgramEnrollment</shortDescription>
-        <value>Status of Affiliation Related to Deleted Program Enrollment:</value>
+        <value>Status Specified for Affiliations Not Deleted:</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
@@ -590,14 +598,6 @@
         <protected>true</protected>
         <shortDescription>stgAfflProgEnrollSetStatusValue</shortDescription>
         <value>Status Specified for Created Affiliations:</value>
-    </labels>
-    <labels>
-        <fullName>stgAdminAccountRecordType</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgAdminAccountRecordType</shortDescription>
-        <value>Administrative Account Record Type:</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
@@ -960,12 +960,20 @@
         <value>The Account record types that support multiple address management.</value>
     </labels>
     <labels>
+        <fullName>stgHelpAdminRecType</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpAdminRecType</shortDescription>
+        <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentEndDate</shortDescription>
-        <value>If selected, copy the Program Enrollment's End Date to the created Affiliation. Otherwise, leave the created Affiliation's End Date blank.</value>
+        <value>If selected, copy the Program Enrollment&apos;s End Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s End Date blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
@@ -973,7 +981,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflCopyProgramEnrollmentStartDate</shortDescription>
-        <value>If selected, copy the Program Enrollment's Start Date to the created Affiliation. Otherwise, leave the created Affiliation's Start Date blank</value>
+        <value>If selected, copy the Program Enrollment&apos;s Start Date to the created Affiliation. Otherwise, leave the created Affiliation&apos;s Start Date blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
@@ -997,7 +1005,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflDeleteProgramEnrollment</shortDescription>
-        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn't also deleted.</value>
+        <value>The Status value set on the Affiliation related to a deleted Program Enrollment, if the related Affiliation isn&apos;t also deleted.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollmentHeader</fullName>
@@ -1021,7 +1029,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpAfflProgEnrollSetRole</shortDescription>
-        <value>If selected, set the created Affiliation's Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation's Role blank.</value>
+        <value>If selected, set the created Affiliation&apos;s Role to the value defined in Role Specified for Created Affiliations. Otherwise, leave the Affiliation&apos;s Role blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetRoleValue</fullName>
@@ -1038,14 +1046,6 @@
         <protected>true</protected>
         <shortDescription>stgHelpAfflProgEnrollSetStatusValue</shortDescription>
         <value>The Status value set on the Affiliation created with the Program Enrollment.</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpAdminRecType</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgHelpAdminRecType</shortDescription>
-        <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>

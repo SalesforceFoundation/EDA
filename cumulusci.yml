@@ -3,7 +3,7 @@ project:
     package:
         name: HEDA
         namespace: hed
-        api_version: 35.0
+        api_version: 45.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
@@ -98,10 +98,9 @@ tasks:
                 - Military_Service__c
 
     robot_libdoc:
-        class_path: cumulusci.tasks.robotframework.RobotLibDoc
         options:
-            path: tests/HEDA.robot
-            output: tests/HEDA_Robot_Library.html
+            path: tests/HEDA.py,tests/HEDA.robot
+            output: tests/Keywords.html
 
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
@@ -275,3 +274,25 @@ orgs:
         dev_namespaced:
             config_file: orgs/dev.json
             namespaced: True
+
+plans:
+    install:
+        slug: install
+        title: Install
+        tier: primary
+        steps:
+            1:
+                flow: dependencies
+                ui_options:
+                    deploy_pre:
+                        acc_record_types:
+                            name: HEDA - Account Record Types
+                        contact_key_affl_fields:
+                            name: HEDA - Contact Key Affiliation Fields
+            2:
+                task: install_managed
+            3:
+                task: deploy_post
+                ui_options:
+                    course_connection_record_types:
+                        name: Course Connection Record Types for HEDA

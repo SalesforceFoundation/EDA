@@ -123,20 +123,37 @@
         <externalId>false</externalId>
         <inlineHelpText>The status of the program plan.</inlineHelpText>
         <label>Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Current</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Current</fullName>
+                    <default>true</default>
+                    <label>Current</label>
+                </value>
+                <value>
+                    <fullName>Archived</fullName>
+                    <default>false</default>
+                    <label>Archived</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Total_Required_Credits__c</fullName>
+        <description>The total number of credits a student must complete to satisfy this Program Plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the total number of credits a student must complete to satisfy this program plan.</inlineHelpText>
+        <label>Total Required Credits</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Version__c</fullName>

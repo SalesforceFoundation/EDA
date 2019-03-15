@@ -12,5 +12,5 @@
       <members>%%%NAMESPACE%%%Course_Enrollment__c.Default</members>
       <name>RecordType</name>
   </types>
-  <version>36.0</version>
+  <version>45.0</version>
 </Package>
