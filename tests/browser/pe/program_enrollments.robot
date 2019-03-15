@@ -1,36 +1,27 @@
 *** Settings ***
 
 Resource        tests/HEDA.robot
+Library         tests/HEDA.py
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-# Create A New Course
-
-#     Click Page Button       Next
-#     ${account_id} =  API Create Specific Organization Account      Test
-
-#      &{account} =  API Create Organization Account   
-#      ${course} =  API Create And Return Specific Course     ${account_id}   History
-
-
-
 Verify HEDA Settings
+    [tags]                          unstable
     Go To Heda Settings
-    Wait Until Element Is visible	        //a[contains(text(),'Affiliations')]
-    Click Link				                //a[contains(text(),'Affiliations')]
 
-    # Default Account Model
-    #Element Should be Visible               //span[contains(@class,'default-account-model-record-type-output-text')]
+    Wait for Locator                        heda_settings.affiliations_tab
+	Click on Element                        heda_settings.affiliations_tab
 
     #Go into Edit Mode - Note:  we are in Affiliations/Settings
     Click Button                            Edit
 
-    #Wait Until Element Is visible           //label[@class='slds-checkbox']//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']//following-sibling::span[@class='slds-checkbox--faux']
-    Wait Until Element Is visible           (//label[@class='slds-checkbox'])//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']
-    Select checkbox                         (//label[@class='slds-checkbox'])//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']
-    Checkbox Should Be Selected             (//label[@class='slds-checkbox'])//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']
+    Wait for Locator                        heda_settings.affiliations_role_checkbox
+
+    ${affiliations_role_checkbox} =  Get Heda Locator    heda_settings.affiliations_role_checkbox
+    Select checkbox                         ${affiliations_role_checkbox}        
+    Checkbox Should Be Selected             ${affiliations_role_checkbox}        
 
     #Save settings
     Click Button                            Save
@@ -38,8 +29,8 @@ Verify HEDA Settings
 
 
 
-    Wait Until Element Is visible           //a[contains(text(), 'Affiliation Mappings')]
-    Click Element                           //a[contains(text(), 'Affiliation Mappings')]
+    Wait for Locator                        heda_settings.affiliation_mappings_tab
+    Click on Element                        heda_settings.affiliation_mappings_tab
 
     #Go into Edit Mode
     Click Button                            Edit
@@ -49,51 +40,54 @@ Verify HEDA Settings
 
 
 Create A Contact
-
+    [tags]                          unstable
 
     Go To Object Home                       Contact
 
-    Wait Until Element Is visible           //a[@title='New']//div[@title='New']
-    Click Element                           //a[@title='New']//div[@title='New']
+    Wait for Locator                        contact.new_button
+    Click on Element                        contact.new_button
 
-    Wait Until Element Is visible           //input[contains(@class,'firstName')]
-    Click Element                           //input[contains(@class,'firstName')]
+    Wait for Locator                        contact.first_name
+    Click on Element                        contact.first_name
 
-    Input Text                              //input[contains(@class,'firstName')]    firstName
+    ${contact_first_name} =                 Get Heda Locator      contact.first_name
+    Input Text                              ${contact_first_name}   robotTestFirstName
 
-    Click Element                           //input[contains(@class,'lastName')]
-    Input Text                              //input[contains(@class,'lastName')]     lastName
+    ${contact_last_name} =                  Get Heda Locator      contact.last_name
+    Click Element                           ${contact_last_name}
+    Input Text                              ${contact_last_name}     robotTestLastName
 
-    Click Element                           //button[@title='Save']
+    Click on Element                        contact.save_button
 
-    Click Element                           (//following::div[@class='slds-no-flex']//div[@class='actionsContainer']//div[@title='New'])[4]
+    Click on Element                        contact.program_enrollment_new_button
 
-    Wait Until Element Is visible           //div[@class='autocompleteWrapper slds-grow']//input[@class=' default input uiInput uiInputTextForAutocomplete uiInput--default uiInput--input uiInput uiAutocomplete uiInput--default uiInput--lookup']
-    Populate Field                          Program    lastName Administrative Account
+    Wait for Locator                        programenrollment_account
+    Populate Field                          Program    robotTestLastName Administrative Account - this is just a robot test string
 
     #Create a New Account as part of this flow
-    Click Element                           //span[@title='New Account']
+    Click on Element                        new_account
 
     #Drop down and select Academic
-    Wait Until Element Is visible           //button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']
-    Wait Until Element Is visible           //span[contains(text(), 'Academic Program')]
-    Press Keys                              none    ARROW_DOWN
+    Wait for Locator                        list_of_departments
+    Wait for Locator                        academic_program
+    
+    Click on Element                        academic_program
 
-    Wait Until Element Is visible           //button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']
-    Click Element                           //button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']
+    Wait for Locator                        new_account_next_button
+    Click on Element                        new_account_next_button
 
-    Wait Until Element Is visible           //input[@class='input uiInput uiInputText uiInput--default uiInput--input']
+    Wait for Locator                        new_account_name
     Populate Field                          Account Name    Robot Account
 
-    Wait Until Element Is visible           (//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[contains(text(), 'Save')])[2]
-    Click Element                           (//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[contains(text(), 'Save')])[2]
+    Wait for Locator                        new_account_save_button
+    Click on Element                        new_account_save_button
 
-    Wait Until Element Is visible           //div[@class='modal-footer slds-modal__footer']//button[@title='Save']
-    Click Element                           //div[@class='modal-footer slds-modal__footer']//button[@title='Save']
+    Wait for Locator                        new_program_enrollment_save_button
+    Click on Element                        new_program_enrollment_save_button
 
     #Verify that we have ONE affiliated account
     Reload Page
-    Wait Until Element Is visible           (//span[@title='(1)'])[1]
+    Wait for Locator                        affiliated_accounts_count
 
     #Verify that we have ONE program enrollment
-    Wait Until Element Is visible           (//span[@title='(1)'])[2]
+    Wait for Locator                        program_enrollments_count
