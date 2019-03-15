@@ -25,7 +25,7 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- If the Facility is part of a larger one, specifies the parent Facility (for example, a building might be a parent of a classroom). --></help>
+        <help><!-- If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom. --></help>
         <label><!-- Parent Facility --></label>
         <name>Parent_Facility__c</name>
         <relationshipLabel><!-- Facilities --></relationshipLabel>
