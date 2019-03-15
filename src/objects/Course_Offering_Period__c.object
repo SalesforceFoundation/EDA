@@ -85,25 +85,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Day_Descriptor__c</fullName>
-        <description>If class period is alternating, display which day this takes place on via the descriptor</description>
-        <externalId>false</externalId>
-        <formula>IF( 
-   AND(
-       Class_Period__r.Alternating__c,
-       NOT(ISBLANK(Class_Period__r.Day_Descriptor__c)) 
-   ),
-   Class_Period__r.Day_Descriptor__c,
-   &apos;&apos;
-)</formula>
-        <label>Day Descriptor</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Friday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Signifies this course offering period/location takes place on a Friday at the time specified by the parent class period.</description>
