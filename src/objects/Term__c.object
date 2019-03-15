@@ -135,28 +135,34 @@
         <description>The type of term being configured.</description>
         <externalId>false</externalId>
         <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Quarter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Semester</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>School Year</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Part of Term</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Quarter</fullName>
+                    <default>false</default>
+                    <label>Quarter</label>
+                </value>
+                <value>
+                    <fullName>Semester</fullName>
+                    <default>false</default>
+                    <label>Semester</label>
+                </value>
+                <value>
+                    <fullName>School Year</fullName>
+                    <default>false</default>
+                    <label>School Year</label>
+                </value>
+                <value>
+                    <fullName>Part of Term</fullName>
+                    <default>false</default>
+                    <label>Part of Term</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <label>Term</label>
     <listViews>
