@@ -21,7 +21,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type__c</field>
+                <field>Facility_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -71,7 +71,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Type__c</fields>
+        <fields>Facility_Type__c</fields>
         <fields>Capacity__c</fields>
         <relatedList>Facility__c.Parent_Facility__c</relatedList>
     </relatedLists>

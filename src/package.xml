@@ -300,8 +300,8 @@
         <members>Facility__c.Account__c</members>
         <members>Facility__c.Capacity__c</members>
         <members>Facility__c.Description__c</members>
+        <members>Facility__c.Facility_Type__c</members>
         <members>Facility__c.Parent_Facility__c</members>
-        <members>Facility__c.Type__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
         <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>

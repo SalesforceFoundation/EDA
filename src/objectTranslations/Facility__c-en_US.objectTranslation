@@ -25,15 +25,9 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom. --></help>
-        <label><!-- Parent Facility --></label>
-        <name>Parent_Facility__c</name>
-        <relationshipLabel><!-- Facilities --></relationshipLabel>
-    </fields>
-    <fields>
         <help><!-- The type of Facility. --></help>
-        <label><!-- Type --></label>
-        <name>Type__c</name>
+        <label><!-- Facility Type --></label>
+        <name>Facility_Type__c</name>
         <picklistValues>
             <masterLabel>Building</masterLabel>
             <translation><!-- Building --></translation>
@@ -70,6 +64,12 @@
             <masterLabel>Library</masterLabel>
             <translation><!-- Library --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom. --></help>
+        <label><!-- Parent Facility --></label>
+        <name>Parent_Facility__c</name>
+        <relationshipLabel><!-- Facilities --></relationshipLabel>
     </fields>
     <layouts>
         <layout>HEDA Facility Layout</layout>

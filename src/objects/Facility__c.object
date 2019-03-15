@@ -49,7 +49,7 @@
     <compactLayouts>
         <fullName>HEDA_Facility_Compact_Layout</fullName>
         <fields>Name</fields>
-        <fields>Type__c</fields>
+        <fields>Facility_Type__c</fields>
         <fields>Capacity__c</fields>
         <label>HEDA Facility Compact Layout</label>
     </compactLayouts>
@@ -103,25 +103,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Parent_Facility__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom.</inlineHelpText>
-        <label>Parent Facility</label>
-        <referenceTo>Facility__c</referenceTo>
-        <relationshipLabel>Facilities</relationshipLabel>
-        <relationshipName>Facilities</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Type__c</fullName>
+        <fullName>Facility_Type__c</fullName>
         <description>The type of Facility.</description>
         <externalId>false</externalId>
         <inlineHelpText>The type of Facility.</inlineHelpText>
-        <label>Type</label>
+        <label>Facility Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -177,6 +163,20 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <fields>
+        <fullName>Parent_Facility__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom.</inlineHelpText>
+        <label>Parent Facility</label>
+        <referenceTo>Facility__c</referenceTo>
+        <relationshipLabel>Facilities</relationshipLabel>
+        <relationshipName>Facilities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Facility</label>
     <listViews>
         <fullName>All</fullName>
@@ -189,11 +189,11 @@
     </nameField>
     <pluralLabel>Facilities</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Facility_Type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Capacity__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Type__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Type__c</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <lookupDialogsAdditionalFields>Facility_Type__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Facility_Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Facility_Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Capacity__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
