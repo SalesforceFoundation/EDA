@@ -232,8 +232,6 @@
         <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
         <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
         <members>Class_Period__c.Account__c</members>
-        <members>Class_Period__c.Alternating__c</members>
-        <members>Class_Period__c.Day_Descriptor__c</members>
         <members>Class_Period__c.End_Time__c</members>
         <members>Class_Period__c.Start_Time__c</members>
         <members>Contact.AlternateEmail__c</members>
@@ -279,16 +277,8 @@
         <members>Course_Enrollment__c.Primary__c</members>
         <members>Course_Enrollment__c.Program_Enrollment__c</members>
         <members>Course_Enrollment__c.Status__c</members>
-        <members>Course_Offering__c.Capacity__c</members>
-        <members>Course_Offering__c.Course__c</members>
-        <members>Course_Offering__c.End_Date__c</members>
-        <members>Course_Offering__c.Faculty__c</members>
-        <members>Course_Offering__c.Section_ID__c</members>
-        <members>Course_Offering__c.Start_Date__c</members>
-        <members>Course_Offering__c.Term__c</members>
         <members>Course_Offering_Period__c.Class_Period__c</members>
         <members>Course_Offering_Period__c.Course_Offering__c</members>
-        <members>Course_Offering_Period__c.Day_Descriptor__c</members>
         <members>Course_Offering_Period__c.Friday__c</members>
         <members>Course_Offering_Period__c.Monday__c</members>
         <members>Course_Offering_Period__c.Saturday__c</members>
@@ -296,6 +286,13 @@
         <members>Course_Offering_Period__c.Thursday__c</members>
         <members>Course_Offering_Period__c.Tuesday__c</members>
         <members>Course_Offering_Period__c.Wednesday__c</members>
+        <members>Course_Offering__c.Capacity__c</members>
+        <members>Course_Offering__c.Course__c</members>
+        <members>Course_Offering__c.End_Date__c</members>
+        <members>Course_Offering__c.Faculty__c</members>
+        <members>Course_Offering__c.Section_ID__c</members>
+        <members>Course_Offering__c.Start_Date__c</members>
+        <members>Course_Offering__c.Term__c</members>
         <members>Course__c.Account__c</members>
         <members>Course__c.Course_ID__c</members>
         <members>Course__c.Credit_Hours__c</members>
@@ -618,8 +615,8 @@
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
         <members>Class_Period__c</members>
-        <members>Course_Offering_Period__c</members>
         <members>Course_Enrollment__c</members>
+        <members>Course_Offering_Period__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
         <members>Error__c</members>
@@ -743,7 +740,9 @@
     <types>
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
+        <members>Class_Period__c.All</members>
         <members>Course_Enrollment__c.All</members>
+        <members>Course_Offering_Period__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
         <members>Plan_Requirement__c.All</members>
