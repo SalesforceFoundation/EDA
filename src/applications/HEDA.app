@@ -3,13 +3,13 @@
     <defaultLandingTab>standard-home</defaultLandingTab>
     <description>Higher Education Data Architecture</description>
     <label>HEDA</label>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>Course__c</tab>
-    <tab>Term__c</tab>
-    <tab>Course_Offering__c</tab>
-    <tab>Program_Plan__c</tab>
-    <tab>Trigger_Handler__c</tab>
-    <tab>HEDA_Settings</tab>
-    <tab>Attendance_Event__c</tab>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>Course__c</tabs>
+    <tabs>Term__c</tabs>
+    <tabs>Course_Offering__c</tabs>
+    <tabs>Program_Plan__c</tabs>
+    <tabs>Trigger_Handler__c</tabs>
+    <tabs>HEDA_Settings</tabs>
+    <tabs>Attendance_Event__c</tabs>
 </CustomApplication>
