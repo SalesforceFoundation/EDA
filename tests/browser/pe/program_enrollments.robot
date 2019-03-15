@@ -76,7 +76,7 @@ Create A Contact
 
     #Drop down and select Academic
     Wait Until Element Is visible           //button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']
-    Sleep                                   5
+    Wait Until Element Is visible           //span[contains(text(), 'Academic Program')]
     Press Keys                              none    ARROW_DOWN
 
     Wait Until Element Is visible           //button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']
@@ -95,3 +95,5 @@ Create A Contact
     Reload Page
     Wait Until Element Is visible           (//span[@title='(1)'])[1]
 
+    #Verify that we have ONE program enrollment
+    Wait Until Element Is visible           (//span[@title='(1)'])[2]
