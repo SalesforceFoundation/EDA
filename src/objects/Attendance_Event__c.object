@@ -140,29 +140,35 @@
         <externalId>false</externalId>
         <inlineHelpText>The type of absence or tardy.</inlineHelpText>
         <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>All Day Absence</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Class Absence</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>School Tardy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Class Tardy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All Day Absence</fullName>
+                    <default>false</default>
+                    <label>All Day Absence</label>
+                </value>
+                <value>
+                    <fullName>Class Absence</fullName>
+                    <default>false</default>
+                    <label>Class Absence</label>
+                </value>
+                <value>
+                    <fullName>School Tardy</fullName>
+                    <default>false</default>
+                    <label>School Tardy</label>
+                </value>
+                <value>
+                    <fullName>Class Tardy</fullName>
+                    <default>false</default>
+                    <label>Class Tardy</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Unexcused__c</fullName>
