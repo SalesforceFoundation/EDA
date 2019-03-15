@@ -154,40 +154,49 @@
         <externalId>false</externalId>
         <inlineHelpText>Trigger Action in which this module should fire</inlineHelpText>
         <label>Trigger Action</label>
-        <picklist>
-            <picklistValues>
-                <fullName>BeforeInsert</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BeforeUpdate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BeforeDelete</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AfterInsert</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AfterUpdate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AfterDelete</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AfterUndelete</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>BeforeInsert</fullName>
+                    <default>false</default>
+                    <label>BeforeInsert</label>
+                </value>
+                <value>
+                    <fullName>BeforeUpdate</fullName>
+                    <default>false</default>
+                    <label>BeforeUpdate</label>
+                </value>
+                <value>
+                    <fullName>BeforeDelete</fullName>
+                    <default>false</default>
+                    <label>BeforeDelete</label>
+                </value>
+                <value>
+                    <fullName>AfterInsert</fullName>
+                    <default>false</default>
+                    <label>AfterInsert</label>
+                </value>
+                <value>
+                    <fullName>AfterUpdate</fullName>
+                    <default>false</default>
+                    <label>AfterUpdate</label>
+                </value>
+                <value>
+                    <fullName>AfterDelete</fullName>
+                    <default>false</default>
+                    <label>AfterDelete</label>
+                </value>
+                <value>
+                    <fullName>AfterUndelete</fullName>
+                    <default>false</default>
+                    <label>AfterUndelete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
         <visibleLines>7</visibleLines>
     </fields>
     <fields>

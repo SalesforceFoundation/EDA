@@ -766,5 +766,5 @@
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>
         <name>ValidationRule</name>
     </types>
-    <version>35.0</version>
+    <version>45.0</version>
 </Package>
