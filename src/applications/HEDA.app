@@ -11,4 +11,4 @@
     <tabs>Program_Plan__c</tabs>
     <tabs>Trigger_Handler__c</tabs>
     <tabs>HEDA_Settings</tabs>
-\</CustomApplication>
+</CustomApplication>
