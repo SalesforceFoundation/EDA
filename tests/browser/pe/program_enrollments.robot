@@ -8,7 +8,7 @@ Suite Teardown  Delete Records and Close Browser
 *** Test Cases ***
 
 Verify HEDA Settings
-    [tags]                          unstable
+#    [tags]                          unstable
     Go To Heda Settings
 
     Wait for Locator                        heda_settings.affiliations_tab
@@ -40,7 +40,7 @@ Verify HEDA Settings
 
 
 Create A Contact
-    [tags]                          unstable
+#   [tags]                          unstable
 
     Go To Object Home                       Contact
 
