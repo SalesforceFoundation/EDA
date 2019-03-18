@@ -140,9 +140,9 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>For pre-excused absences, the time when this absence will end.</description>
+        <description>For excused absences, the time when this absence will end.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For pre-excused absences, the time when this absence will end.</inlineHelpText>
+        <inlineHelpText>For excused absences, the time when this absence will end.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -161,9 +161,9 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>The time when the pre-excused absence will start.</description>
+        <description>The time when the excused absence will start.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time when the pre-excused absence will start.</inlineHelpText>
+        <inlineHelpText>The time when the excused absence will start.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

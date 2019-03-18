@@ -52,7 +52,7 @@
         <name>Date__c</name>
     </fields>
     <fields>
-        <help><!-- For pre-excused absences, the time when this absence will end. --></help>
+        <help><!-- For excused absences, the time when this absence will end. --></help>
         <label><!-- End Time --></label>
         <name>End_Time__c</name>
     </fields>
@@ -62,7 +62,7 @@
         <name>Reason__c</name>
     </fields>
     <fields>
-        <help><!-- The time when the pre-excused absence will start. --></help>
+        <help><!-- The time when the excused absence will start. --></help>
         <label><!-- Start Time --></label>
         <name>Start_Time__c</name>
     </fields>
