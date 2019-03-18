@@ -96,8 +96,6 @@
         <columns>NAME</columns>
         <columns>Start_Time__c</columns>
         <columns>End_Time__c</columns>
-        <columns>Day_Descriptor__c</columns>
-        <columns>Alternating__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
