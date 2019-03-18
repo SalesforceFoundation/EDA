@@ -63,6 +63,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Contact_Language__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Course_Enrollment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -76,6 +80,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%HEDA_Settings</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Language__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

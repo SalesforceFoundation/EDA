@@ -179,6 +179,7 @@
         <members>Address__c.HEDA_Address_Compact_Layout</members>
         <members>Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
         <members>Contact.HEDA_Contact_Compact_Layout</members>
+        <members>Contact_Language__c.HEDA_Contact_Language_Compact_Layout</members>
         <members>Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
         <members>Course_Offering__c.HEDA_Course_Offering_Compact_Layout</members>
         <members>Course__c.HEDA_Course_Compact_Layout</members>
@@ -254,6 +255,7 @@
         <members>Contact.Preferred_Email__c</members>
         <members>Contact.Primary_Address_Type__c</members>
         <members>Contact.Primary_Household__c</members>
+        <members>Contact.Primary_Language__c</members>
         <members>Contact.Primary_Organization__c</members>
         <members>Contact.Race__c</members>
         <members>Contact.Religion__c</members>
@@ -264,6 +266,10 @@
         <members>Contact.WorkPhone__c</members>
         <members>Contact.Work_Address__c</members>
         <members>Contact.is_Address_Override__c</members>
+        <members>Contact_Language__c.Contact__c</members>
+        <members>Contact_Language__c.Fluency__c</members>
+        <members>Contact_Language__c.Language__c</members>
+        <members>Contact_Language__c.Primary_Language__c</members>
         <members>Course_Enrollment__c.Account__c</members>
         <members>Course_Enrollment__c.Affiliation__c</members>
         <members>Course_Enrollment__c.Contact__c</members>
@@ -603,11 +609,13 @@
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
+        <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
         <members>Error__c</members>
         <members>Hierarchy_Settings__c</members>
+        <members>Language__c</members>
         <members>Plan_Requirement__c</members>
         <members>Program_Enrollment__c</members>
         <members>Program_Plan__c</members>
@@ -637,6 +645,10 @@
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
+        <members>Contact_Language__c-ca</members>
+        <members>Contact_Language__c-en_US</members>
+        <members>Contact_Language__c-es</members>
+        <members>Contact_Language__c-fr</members>
         <members>Course_Enrollment__c-ca</members>
         <members>Course_Enrollment__c-en_US</members>
         <members>Course_Enrollment__c-es</members>
@@ -657,6 +669,10 @@
         <members>Hierarchy_Settings__c-en_US</members>
         <members>Hierarchy_Settings__c-es</members>
         <members>Hierarchy_Settings__c-fr</members>
+        <members>Language__c-ca</members>
+        <members>Language__c-en_US</members>
+        <members>Language__c-es</members>
+        <members>Language__c-fr</members>
         <members>Plan_Requirement__c-ca</members>
         <members>Plan_Requirement__c-en_US</members>
         <members>Plan_Requirement__c-es</members>
@@ -694,10 +710,12 @@
     <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
+        <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
         <members>HEDA_Settings</members>
+        <members>Language__c</members>
         <members>Plan_Requirement__c</members>
         <members>Program_Enrollment__c</members>
         <members>Program_Plan__c</members>
@@ -712,10 +730,12 @@
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
         <members>Contact-HEDA Contact Layout</members>
+        <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
         <members>Error__c-HEDA Error Layout</members>
+        <members>Language__c-HEDA Language Layout</members>
         <members>Plan_Requirement__c-HEDA Plan Requirement Layout</members>
         <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
         <members>Program_Plan__c-HEDA Program Plan Layout</members>
@@ -727,9 +747,11 @@
     <types>
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
+        <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+        <members>Language__c.All</members>
         <members>Plan_Requirement__c.All</members>
         <members>Program_Enrollment__c.All</members>
         <members>Program_Plan__c.All</members>
