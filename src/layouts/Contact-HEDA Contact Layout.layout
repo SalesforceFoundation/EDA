@@ -323,6 +323,13 @@
         <relatedList>Course_Enrollment__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Language__c</fields>
+        <fields>Fluency__c</fields>
+        <fields>Primary_Language__c</fields>
+        <relatedList>Contact_Language__c.Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>CAMPAIGN.NAME</fields>
         <fields>CAMPAIGN.START_DATE</fields>
         <fields>CAMPAIGN.CAMPAIGN_TYPE</fields>
