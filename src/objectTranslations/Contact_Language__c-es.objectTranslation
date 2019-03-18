@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Contact Language --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Contact Language --></value>
+    </caseValues>
+    <fields>
+        <help><!-- The person who speaks this language. --></help>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Contact Languages --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The fluency with which this person speaks this language. --></help>
+        <label><!-- Fluency --></label>
+        <name>Fluency__c</name>
+        <picklistValues>
+            <masterLabel>Beginner</masterLabel>
+            <translation><!-- Beginner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fluent</masterLabel>
+            <translation><!-- Fluent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intermediate</masterLabel>
+            <translation><!-- Intermediate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The Language associated with this Contact. --></help>
+        <label><!-- Language --></label>
+        <name>Language__c</name>
+        <relationshipLabel><!-- Contact Languages --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Indicates that this is the language of choice for this Contact. --></help>
+        <label><!-- Primary Language --></label>
+        <name>Primary_Language__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Contact Language Name --></nameFieldLabel>
+</CustomObjectTranslation>
