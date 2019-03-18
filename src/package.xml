@@ -726,6 +726,7 @@
         <members>Account-HEDA Organization Layout</members>
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
+        <members>Attendance_Event__c-Attendance Event Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
