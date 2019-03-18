@@ -66,6 +66,41 @@
         <type>Time</type>
     </fields>
     <fields>
+        <fullName>Attendance_Type__c</fullName>
+        <description>The type of absence or tardy.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of absence or tardy.</inlineHelpText>
+        <label>Attendance Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All Day Absence</fullName>
+                    <default>false</default>
+                    <label>All Day Absence</label>
+                </value>
+                <value>
+                    <fullName>Class Absence</fullName>
+                    <default>false</default>
+                    <label>Class Absence</label>
+                </value>
+                <value>
+                    <fullName>School Tardy</fullName>
+                    <default>false</default>
+                    <label>School Tardy</label>
+                </value>
+                <value>
+                    <fullName>Class Tardy</fullName>
+                    <default>false</default>
+                    <label>Class Tardy</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The student who is either tardy or absent.</description>
@@ -133,42 +168,6 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Time</type>
-    </fields>
-    <fields>
-        <fullName>Type__c</fullName>
-        <description>The type of absence or tardy.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The type of absence or tardy.</inlineHelpText>
-        <label>Type</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>All Day Absence</fullName>
-                    <default>false</default>
-                    <label>All Day Absence</label>
-                </value>
-                <value>
-                    <fullName>Class Absence</fullName>
-                    <default>false</default>
-                    <label>Class Absence</label>
-                </value>
-                <value>
-                    <fullName>School Tardy</fullName>
-                    <default>false</default>
-                    <label>School Tardy</label>
-                </value>
-                <value>
-                    <fullName>Class Tardy</fullName>
-                    <default>false</default>
-                    <label>Class Tardy</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Unexcused__c</fullName>

@@ -232,13 +232,13 @@
         <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
         <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
         <members>Attendance_Event__c.Arrival_Time__c</members>
+        <members>Attendance_Event__c.Attendance_Type__c</members>
         <members>Attendance_Event__c.Contact__c</members>
         <members>Attendance_Event__c.Course_Connection__c</members>
         <members>Attendance_Event__c.Date__c</members>
         <members>Attendance_Event__c.End_Time__c</members>
         <members>Attendance_Event__c.Reason__c</members>
         <members>Attendance_Event__c.Start_Time__c</members>
-        <members>Attendance_Event__c.Type__c</members>
         <members>Attendance_Event__c.Unexcused__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Citizenship__c</members>

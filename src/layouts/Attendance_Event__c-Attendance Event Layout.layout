@@ -25,7 +25,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type__c</field>
+                <field>Attendance_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
