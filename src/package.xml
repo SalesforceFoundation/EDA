@@ -612,6 +612,7 @@
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
+        <members>Attendance_Event__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
@@ -708,6 +709,7 @@
     <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
+        <members>Attendance_Event__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
@@ -743,6 +745,7 @@
     <types>
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
+        <members>Attendance_Event__c.All</members>
         <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering__c.All</members>
