@@ -56,7 +56,7 @@
         <label>HEDA Contact Language Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Connection between a Language and a Contact for storing details about a Contact&apos;s language fluency.</description>
+    <description>Joins a Language and a Contact to store details about a Contact&apos;s language fluency.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -114,9 +114,9 @@
     <fields>
         <fullName>Language__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The language associated with this Contact.</description>
+        <description>The Language associated with this Contact.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The language associated with this Contact.</inlineHelpText>
+        <inlineHelpText>The Language associated with this Contact.</inlineHelpText>
         <label>Language</label>
         <referenceTo>Language__c</referenceTo>
         <relationshipLabel>Contact Languages</relationshipLabel>

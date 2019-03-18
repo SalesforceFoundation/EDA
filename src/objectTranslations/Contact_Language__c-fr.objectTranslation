@@ -32,7 +32,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The language associated with this Contact. --></help>
+        <help><!-- The Language associated with this Contact. --></help>
         <label><!-- Language --></label>
         <name>Language__c</name>
         <relationshipLabel><!-- Contact Languages --></relationshipLabel>
