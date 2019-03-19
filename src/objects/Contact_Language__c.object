@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>HEDA_Contact_Language_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>HEDA_Contact_Language_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Language__c</fields>
+        <fields>Fluency__c</fields>
+        <fields>Primary_Language__c</fields>
+        <label>HEDA Contact Language Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Joins a Language and a Contact to store details about a Contact&apos;s language fluency.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <description>The person who speaks this language.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The person who speaks this language.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Contact Languages</relationshipLabel>
+        <relationshipName>Contact_Languages</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Fluency__c</fullName>
+        <description>The fluency with which this person speaks this language.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The fluency with which this person speaks this language.</inlineHelpText>
+        <label>Fluency</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Fluent</fullName>
+                    <default>false</default>
+                    <label>Fluent</label>
+                </value>
+                <value>
+                    <fullName>Intermediate</fullName>
+                    <default>false</default>
+                    <label>Intermediate</label>
+                </value>
+                <value>
+                    <fullName>Beginner</fullName>
+                    <default>false</default>
+                    <label>Beginner</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Language__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Language associated with this Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Language associated with this Contact.</inlineHelpText>
+        <label>Language</label>
+        <referenceTo>Language__c</referenceTo>
+        <relationshipLabel>Contact Languages</relationshipLabel>
+        <relationshipName>Contact_Languages</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Language__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates that this is the language of choice for this Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates that this is the language of choice for this Contact.</inlineHelpText>
+        <label>Primary Language</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Contact Language</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CL-{000000}</displayFormat>
+        <label>Contact Language Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contact Languages</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Language__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Language__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Language__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Language__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>
