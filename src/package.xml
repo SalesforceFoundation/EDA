@@ -287,6 +287,7 @@
         <members>Course_Offering_Period__c.Tuesday__c</members>
         <members>Course_Offering_Period__c.Wednesday__c</members>
         <members>Course_Offering__c.Capacity__c</members>
+        <members>Course_Offering__c.Class_Period__c</members>
         <members>Course_Offering__c.Course__c</members>
         <members>Course_Offering__c.End_Date__c</members>
         <members>Course_Offering__c.Faculty__c</members>
