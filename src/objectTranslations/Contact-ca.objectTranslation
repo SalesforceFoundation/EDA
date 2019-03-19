@@ -4445,6 +4445,12 @@
         <relationshipLabel>Contactes (llar primària)</relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The language the Contact prefers to use. --></help>
+        <label><!-- Primary Language --></label>
+        <name>Primary_Language__c</name>
+        <relationshipLabel><!-- Contacts --></relationshipLabel>
+    </fields>
+    <fields>
         <label>Organització empresarial primària</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contactes (Organització primària)</relationshipLabel>
