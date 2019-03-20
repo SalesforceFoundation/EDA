@@ -17,10 +17,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Course_Connection__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -29,7 +25,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Reason__c</field>
+                <field>Course_Connection__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -52,6 +48,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Unexcused__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Reason__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
