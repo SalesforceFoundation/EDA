@@ -59,7 +59,7 @@
     <fields>
         <fullName>Class_Period__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class period (time, and alternating schedule) in which this course offering is being held.</description>
+        <description>The class period in which this course offering is being held.</description>
         <externalId>false</externalId>
         <label>Class Period</label>
         <referenceTo>Class_Period__c</referenceTo>
@@ -73,7 +73,7 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The course offering to which this period belongs</description>
+        <description>The course offering to which this record belongs</description>
         <externalId>false</externalId>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>

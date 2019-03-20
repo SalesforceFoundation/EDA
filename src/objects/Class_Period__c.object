@@ -57,11 +57,11 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Account__c</fullName>
+        <fullName>Education_Organization__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The account (likely an education organization) to which these class periods belong</description>
+        <description>The education organization associated with this period. For example, a school within a district.</description>
         <externalId>false</externalId>
-        <label>Account</label>
+        <label>Education Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Class Periods</relationshipLabel>
         <relationshipName>Class_Periods</relationshipName>
@@ -72,7 +72,7 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>The time of day when this class period ends</description>
+        <description>The time of day the period ends.</description>
         <externalId>false</externalId>
         <label>End Time</label>
         <required>false</required>
@@ -82,7 +82,7 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>The time of day in which the class period starts</description>
+        <description>The time of day the period starts.</description>
         <externalId>false</externalId>
         <label>Start Time</label>
         <required>false</required>
