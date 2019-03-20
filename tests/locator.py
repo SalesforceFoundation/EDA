@@ -19,7 +19,9 @@ heda_lex_locators = {
     },
     "heda_settings": {
         "affiliations_tab": "//a[contains(text(),'Affiliations')]",
-        "affiliations_role_checkbox": "(//label[@class='slds-checkbox'])//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']",
+        "affiliations_check": "//span[text()='Specify Role for Created Affiliations:']/../following-sibling::div/descendant::img[@class = 'copy-start-date checked' and @alt='True']",
+        "affiliations_role_checkbox": "//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
+        "affiliations_role_checkbox1": "(//label[@class='slds-checkbox']//span[@class='uiImage uiOutputCheckbox'])[3]//img",
         "affiliation_mappings_tab": "//a[contains(text(), 'Affiliation Mappings')]",
         "create_walkin_advising_event_button": "//div[@id='main']//button[contains(text(), 'New Walk-In')]",
         "duration": "//div[.//span[text()='Duration'] and contains(@class, 'slds-form-element') ]//select//option[@value='60']",

@@ -294,7 +294,20 @@ class HEDA(object):
         self.selenium.page_should_not_contain_element(locator)
 
 
+    def select_checkbox_in_heda_settings(self, loc_check, loc_checkbox):
+        """ Selects checkbox.  Does nothing if checkbox is already checked """
+        if self.check_if_element_exists(loc_check):
+            return
+        else:
+            self.selenium.click_button("Edit")
+            self.selenium.get_webelement(loc_checkbox).click()
+            self.selenium.click_button("Save")
+            self.selenium.wait_until_element_is_visible(loc_check)
+            return
 
+    def check_if_element_exists(self, xpath):
+        elements = int(self.selenium.get_matching_xpath_count(xpath))
+        return True if elements > 0 else False
 
     def get_heda_locator(self, path, *args, **kwargs):
         """ Returns a rendered locator string from the heda_lex_locators
