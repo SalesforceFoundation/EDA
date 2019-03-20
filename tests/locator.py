@@ -31,7 +31,8 @@ heda_lex_locators = {
         "first_name": "//input[contains(@class,'firstName')]",
         "last_name":  "//input[contains(@class,'lastName')]",
         "save_button": "//button[@title='Save']",
-        "program_enrollment_new_button": "//div[@class='container forceRelatedListSingleContainer']/following::span[@title='Program Enrollments']/following::a//div[@title='New']",
+        "oldprogram_enrollment_new_button": "//div[@class='container forceRelatedListSingleContainer']/following::span[@title='Program Enrollments']/following::a//div[@title='New']",
+        "program_enrollment_new_button": "//div[contains(@class, 'windowViewMode-normal')]//span[text()='Program Enrollments']/following-sibling::span[@title='(0)']/ancestor::header/following-sibling::div/descendant::a[@title='New']",
     },
 
     "new_account": "//span[@title='New Account']",
