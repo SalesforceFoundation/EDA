@@ -13,6 +13,11 @@
         <name>Capacity__c</name>
     </fields>
     <fields>
+        <label><!-- Class Period --></label>
+        <name>Class_Period__c</name>
+        <relationshipLabel><!-- Class Periods --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Course --></label>
         <name>Course__c</name>
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>
