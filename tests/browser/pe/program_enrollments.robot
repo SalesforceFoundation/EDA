@@ -45,6 +45,7 @@ Create A Contact
 
     Click on Element                        contact.save_button
 
+    Wait for Locator                        contact.program_enrollment_new_button
     Click on Element                        contact.program_enrollment_new_button
 
     Wait for Locator                        programenrollment_account
