@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Facility --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Facility --></value>
+    </caseValues>
+    <fields>
+        <help><!-- The organization that is responsible for the Facility. --></help>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Facilities --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The maximum number of occupants the Facility can hold. --></help>
+        <label><!-- Capacity --></label>
+        <name>Capacity__c</name>
+    </fields>
+    <fields>
+        <help><!-- A description of this Facility. --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- The type of Facility. --></help>
+        <label><!-- Facility Type --></label>
+        <name>Facility_Type__c</name>
+        <picklistValues>
+            <masterLabel>Building</masterLabel>
+            <translation><!-- Building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafeteria/Food Hall</masterLabel>
+            <translation><!-- Cafeteria/Food Hall --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Classroom</masterLabel>
+            <translation><!-- Classroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer Lab</masterLabel>
+            <translation><!-- Computer Lab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gymnasium</masterLabel>
+            <translation><!-- Gymnasium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Center</masterLabel>
+            <translation><!-- Health Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laboratory</masterLabel>
+            <translation><!-- Laboratory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lecture Hall</masterLabel>
+            <translation><!-- Lecture Hall --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Library</masterLabel>
+            <translation><!-- Library --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom. --></help>
+        <label><!-- Parent Facility --></label>
+        <name>Parent_Facility__c</name>
+        <relationshipLabel><!-- Facilities --></relationshipLabel>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Facility Name --></nameFieldLabel>
+</CustomObjectTranslation>
