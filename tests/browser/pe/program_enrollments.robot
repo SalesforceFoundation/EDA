@@ -45,6 +45,12 @@ Create A Contact
 
     Click on Element                        contact.save_button
 
+
+    ${pe_new_button} =  Get Heda Locator    contact.program_enrollment_new_button
+    Scroll Element Into View                ${pe_new_button}
+
+    Capture Page Screenshot 
+
     Wait for Locator                        contact.program_enrollment_new_button
     Click on Element                        contact.program_enrollment_new_button
 
