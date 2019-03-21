@@ -183,6 +183,7 @@
         <members>Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
         <members>Course_Offering__c.HEDA_Course_Offering_Compact_Layout</members>
         <members>Course__c.HEDA_Course_Compact_Layout</members>
+        <members>Facility__c.HEDA_Facility_Compact_Layout</members>
         <members>Plan_Requirement__c.HEDA_Plan_Requirement_Compact_Layout</members>
         <members>Program_Enrollment__c.HEDA_Program_Enrollment_Compact_Layout</members>
         <members>Program_Plan__c.HEDA_Program_Plan_Compact_Layout</members>
@@ -292,6 +293,7 @@
         <members>Course_Offering__c.Capacity__c</members>
         <members>Course_Offering__c.Course__c</members>
         <members>Course_Offering__c.End_Date__c</members>
+        <members>Course_Offering__c.Facility__c</members>
         <members>Course_Offering__c.Faculty__c</members>
         <members>Course_Offering__c.Section_ID__c</members>
         <members>Course_Offering__c.Start_Date__c</members>
@@ -310,6 +312,11 @@
         <members>Error__c.Posted_in_Chatter__c</members>
         <members>Error__c.Record_URL__c</members>
         <members>Error__c.Stack_Trace__c</members>
+        <members>Facility__c.Account__c</members>
+        <members>Facility__c.Capacity__c</members>
+        <members>Facility__c.Description__c</members>
+        <members>Facility__c.Facility_Type__c</members>
+        <members>Facility__c.Parent_Facility__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
         <members>Hierarchy_Settings__c.Accounts_Addresses_Enabled__c</members>
         <members>Hierarchy_Settings__c.Accounts_to_Delete__c</members>
@@ -624,6 +631,7 @@
         <members>Course_Offering__c</members>
         <members>Course__c</members>
         <members>Error__c</members>
+        <members>Facility__c</members>
         <members>Hierarchy_Settings__c</members>
         <members>Language__c</members>
         <members>Plan_Requirement__c</members>
@@ -679,6 +687,10 @@
         <members>Error__c-en_US</members>
         <members>Error__c-es</members>
         <members>Error__c-fr</members>
+        <members>Facility__c-ca</members>
+        <members>Facility__c-en_US</members>
+        <members>Facility__c-es</members>
+        <members>Facility__c-fr</members>
         <members>Hierarchy_Settings__c-ca</members>
         <members>Hierarchy_Settings__c-en_US</members>
         <members>Hierarchy_Settings__c-es</members>
@@ -729,6 +741,7 @@
         <members>Course_Enrollment__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
+        <members>Facility__c</members>
         <members>HEDA_Settings</members>
         <members>Language__c</members>
         <members>Plan_Requirement__c</members>
@@ -751,6 +764,7 @@
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
         <members>Error__c-HEDA Error Layout</members>
+        <members>Facility__c-HEDA Facility Layout</members>
         <members>Language__c-HEDA Language Layout</members>
         <members>Plan_Requirement__c-HEDA Plan Requirement Layout</members>
         <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
@@ -768,6 +782,7 @@
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
+        <members>Facility__c.All</members>
         <members>Language__c.All</members>
         <members>Plan_Requirement__c.All</members>
         <members>Program_Enrollment__c.All</members>
