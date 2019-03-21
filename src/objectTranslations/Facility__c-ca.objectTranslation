@@ -33,16 +33,16 @@
             <translation><!-- Building --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Cafeteria/Food Hall</masterLabel>
+            <translation><!-- Cafeteria/Food Hall --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Classroom</masterLabel>
             <translation><!-- Classroom --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Computer Lab</masterLabel>
             <translation><!-- Computer Lab --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Food Hall/Cafeteria</masterLabel>
-            <translation><!-- Food Hall/Cafeteria --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Gymnasium</masterLabel>
@@ -66,7 +66,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom. --></help>
+        <help><!-- If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom. --></help>
         <label><!-- Parent Facility --></label>
         <name>Parent_Facility__c</name>
         <relationshipLabel><!-- Facilities --></relationshipLabel>

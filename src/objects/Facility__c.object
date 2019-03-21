@@ -121,6 +121,11 @@
                     <label>Building</label>
                 </value>
                 <value>
+                    <fullName>Cafeteria/Food Hall</fullName>
+                    <default>false</default>
+                    <label>Cafeteria/Food Hall</label>
+                </value>
+                <value>
                     <fullName>Classroom</fullName>
                     <default>false</default>
                     <label>Classroom</label>
@@ -131,19 +136,14 @@
                     <label>Computer Lab</label>
                 </value>
                 <value>
-                    <fullName>Food Hall/Cafeteria</fullName>
+                    <fullName>Gymnasium</fullName>
                     <default>false</default>
-                    <label>Food Hall/Cafeteria</label>
+                    <label>Gymnasium</label>
                 </value>
                 <value>
                     <fullName>Health Center</fullName>
                     <default>false</default>
                     <label>Health Center</label>
-                </value>
-                <value>
-                    <fullName>Gymnasium</fullName>
-                    <default>false</default>
-                    <label>Gymnasium</label>
                 </value>
                 <value>
                     <fullName>Laboratory</fullName>
@@ -166,9 +166,9 @@
     <fields>
         <fullName>Parent_Facility__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom.</description>
+        <description>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility For example, a building might be a parent of a classroom.</inlineHelpText>
+        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</inlineHelpText>
         <label>Parent Facility</label>
         <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Facilities</relationshipLabel>
