@@ -22,6 +22,12 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
+        <help><!-- The Facility associated with the Course Offering. --></help>
+        <label><!-- Facility --></label>
+        <name>Facility__c</name>
+        <relationshipLabel><!-- Course Offerings --></relationshipLabel>
+    </fields>
+    <fields>
         <label>Profesor principal</label>
         <name>Faculty__c</name>
         <relationshipLabel>Ofertas de cursos</relationshipLabel>
