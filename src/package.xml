@@ -286,6 +286,7 @@
         <members>Course_Enrollment__c.Status__c</members>
         <members>Course_Offering_Period__c.Class_Period__c</members>
         <members>Course_Offering_Period__c.Course_Offering__c</members>
+        <members>Course_Offering_Period__c.Facility__c</members>
         <members>Course_Offering_Period__c.Friday__c</members>
         <members>Course_Offering_Period__c.Monday__c</members>
         <members>Course_Offering_Period__c.Saturday__c</members>

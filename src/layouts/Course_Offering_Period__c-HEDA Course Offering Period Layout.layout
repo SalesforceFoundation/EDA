@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>Sunday__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Facility__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -69,11 +69,27 @@
     </fields>
     <fields>
         <fullName>Course_Offering__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The course offering to which this record belongs</description>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>The Course Offering to which this record belongs.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Course Offering to which this record belongs.</inlineHelpText>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
+        <relationshipLabel>Course Offering Periods</relationshipLabel>
+        <relationshipName>Course_Offering_Periods</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Facility__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>The Facility associated with the Course Offering for the specified time and day of week.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Facility associated with the Course Offering for the specified time and day of week.</inlineHelpText>
+        <label>Facility</label>
+        <referenceTo>Facility__c</referenceTo>
         <relationshipLabel>Course Offering Periods</relationshipLabel>
         <relationshipName>Course_Offering_Periods</relationshipName>
         <required>false</required>
@@ -94,8 +110,9 @@
     <fields>
         <fullName>Monday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a monday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -114,8 +131,9 @@
     <fields>
         <fullName>Sunday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a Sunday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -124,8 +142,9 @@
     <fields>
         <fullName>Thursday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a Thursday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -134,8 +153,9 @@
     <fields>
         <fullName>Tuesday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a Tuesday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -144,8 +164,9 @@
     <fields>
         <fullName>Wednesday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a Wednesday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
