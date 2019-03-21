@@ -107,6 +107,20 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Facility__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Facility associated with the Course Offering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Facility associated with the Course Offering.</inlineHelpText>
+        <label>Facility</label>
+        <referenceTo>Facility__c</referenceTo>
+        <relationshipLabel>Course Offerings</relationshipLabel>
+        <relationshipName>Course_Offerings</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Faculty__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
