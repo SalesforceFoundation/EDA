@@ -28,28 +28,32 @@ Verify HEDA Settings
 
 
 Create A Contact
+    Set Window Size                         1024    1024
     Go To Object Home                       Contact
 
+    ${cnb} =                                Get Heda Locator        contact.new_button
+    Scroll Element Into View                ${cnb}
     Wait for Locator                        contact.new_button
     Click on Element                        contact.new_button
 
+    ${cfn} =                                Get Heda Locator        contact.first_name
+    Scroll Element Into View                ${cfn}
     Wait for Locator                        contact.first_name
     Click on Element                        contact.first_name
 
     ${contact_first_name} =                 Get Heda Locator        contact.first_name
+    Scroll Element Into View                ${contact_first_name}
     Input Text                              ${contact_first_name}   robotTestFirstName
 
     ${contact_last_name} =                  Get Heda Locator        contact.last_name
+    Scroll Element Into View                ${contact_last_name}
     Click Element                           ${contact_last_name}
     Input Text                              ${contact_last_name}    robotTestLastName
 
     Click on Element                        contact.save_button
 
-
     ${pe_new_button} =  Get Heda Locator    contact.program_enrollment_new_button
     Scroll Element Into View                ${pe_new_button}
-
-    Capture Page Screenshot 
 
     Wait for Locator                        contact.program_enrollment_new_button
     Click on Element                        contact.program_enrollment_new_button
@@ -80,7 +84,11 @@ Create A Contact
 
     #Verify that we have ONE affiliated account
     Reload Page
+    ${acc} =                                Get Heda Locator    affiliated_accounts_count
+    Scroll Element Into View                ${acc}
     Wait for Locator                        affiliated_accounts_count
 
     #Verify that we have ONE program enrollment
+    ${pec} =                                Get Heda Locator    program_enrollments_count
+    Scroll Element Into View                ${pec}
     Wait for Locator                        program_enrollments_count
