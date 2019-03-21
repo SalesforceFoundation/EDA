@@ -49,137 +49,137 @@ public without sharing class TDTM_DefaultConfig {
         // Account Management on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1.00, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
         //Supports changing or deleting Account in existing Affiliation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_AccChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
         
         //Supports changing or deleting Contact in existing Affiliation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_ContactChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
                     
         //Multi-Affiliation Type support on Affiliations - populates primary affl fields
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_MultiRecordType_TDTM', Load_Order__c = 3, Object__c = 'Affiliation__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
         
         //Multi-Affiliation Type support on Account - supports account record type change
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'AFFL_AccRecordType_TDTM', Load_Order__c = 1, Object__c = 'Account', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
                           
         // Relationships on CampaignMember
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'REL_Relationships_Cm_TDTM', Load_Order__c = 1, Object__c = 'CampaignMember', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
         
         // Relationships on Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'REL_Relationships_Con_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
         
         // Relationships on Relationship__c
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'REL_Relationships_TDTM', Load_Order__c = 1, Object__c = 'Relationship__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
           
         // Addresses on Address object - copies address from Address__c to Contact and Account
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ADDR_Addresses_TDTM', Load_Order__c = 1, Object__c = 'Address__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate;AfterDelete'));
                     
         // Addresses on Contact object - creates Address__c record from Contact
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ADDR_Contact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
         
         // Addresses on Account object - creates Address__c record from Account
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ADDR_Account_TDTM', Load_Order__c = 1, Object__c = 'Account', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate;AfterInsert;AfterUpdate'));
         
         // Do Not Contact and related operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_DoNotContact_TDTM', Load_Order__c = 2, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
         // Preferred fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_Preferred_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
         
         // Primary Affiliation fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_PrimaryAffls_TDTM', Load_Order__c = 4, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
               
         // Affiliation management on Program Enrollment record creation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'PREN_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Program_Enrollment__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;AfterDelete'));
         
         // Affiliation and Date management on Course Offering record creation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
               Class__c = 'COFF_Affiliation_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering__c',
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;BeforeDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;BeforeDelete'));
 
         // Validation on Trigger Handler record manipulation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'THAN_Filter_TDTM', Load_Order__c = 1, Object__c = 'Trigger_Handler__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
         // Clear the TDTM cache on Trigger Handler record manipulation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'THAN_ClearCache_TDTM', Load_Order__c = 2, Object__c = 'Trigger_Handler__c',
-                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
               
         // Default dates from Term to Course Offerings
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'TERM_CourseOff_TDTM', Load_Order__c = 1, Object__c = 'Term__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
         
         // Stops a Contact from being deleted if it has any Affiliation, Program Enrollment or Course Enrollment children
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Contact', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
                      
         // Stops a Account from being deleted if it has any Affiliation, Program Enrollment, Course Enrollment children or Program Plan
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'ACCT_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Account', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
               
         // Automatically populates the Academic Program field in a Course Enrollment
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CENR_AcademicProgram_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c', 
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
         // Course Connections Faculty Management on Course Enrollment object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CCON_Faculty_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
-              Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;AfterInsert;AfterUpdate;AfterDelete'));
 
         // Set other Program Plan as non-primary when one Plan is marked as Primary
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'PPlan_Primary_TDTM', Load_Order__c = 1, Object__c = 'Program_Plan__c',
-                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
 
         // Stops a Program Plan from being deleted if it has any Plan Requirement
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'PPlan_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Program_Plan__c',
-                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
 
         // Stops a Plan Requirement from being deleted if it has any child Plan Requirement
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'PReq_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Plan_Requirement__c',
-                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeDelete'));
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
 
         // Handles Program Enrollment and Program Plan
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'PREN_ProgramPlan_TDTM', Load_Order__c = 1, Object__c = 'Program_Enrollment__c',
-                Owned_by_Namespace__c = 'hed' ,Trigger_Action__c = 'BeforeInsert'));
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert'));
 
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'CLAN_PrimaryLanguage_TDTM', Load_Order__c = 1, Object__c = 'Contact_Language__c',

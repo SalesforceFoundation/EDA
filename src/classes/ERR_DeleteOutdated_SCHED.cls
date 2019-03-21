@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @group ErrorHandling
+* @group Error Handling
 * @description Schedules the recurring job that will detect errors which are more than 90 days old and delete them*/
 
 public with sharing class ERR_DeleteOutdated_SCHED implements Schedulable {

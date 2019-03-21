@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @group ErrorHandling
+* @group Error Handling
 * @description Schedules the recurring job that will detect errors from asynchronous jobs,
 * log and send notifications for those errors
 */

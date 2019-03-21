@@ -26,7 +26,7 @@
 */
 /**
 * @author Salesforce.org
-* @group ErrorHandling
+* @group Error Handling
 * @description A Batch job that detects errors which are more than 90 days old and delete them
 */
 public virtual class ERR_DeleteOutdated_BATCH implements Database.Batchable<SObject> {
