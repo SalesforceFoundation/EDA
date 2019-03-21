@@ -738,6 +738,7 @@
     <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
+        <members>Class_Period__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Period__c</members>
