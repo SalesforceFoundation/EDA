@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Class Period</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Class Periods</value>
+    </caseValues>
+    <fields>
+        <help><!-- The education organization associated with this period. For example, a school within a district. --></help>
+        <label><!-- Education Organization --></label>
+        <name>Education_Organization__c</name>
+        <relationshipLabel><!-- Class Periods --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The time of day the period ends. --></help>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The time of day the period starts. --></help>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <layouts>
+        <layout>Class Period Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HEDA Class Period Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
