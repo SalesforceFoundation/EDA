@@ -268,5 +268,13 @@ Scroll Page To Location
 
 Go To Heda Settings
    Open App Launcher
-   Click Link   //a[@title= 'HEDA Settings']
-   Select Frame			//iframe[contains(@name, "vfFrameId")]
+
+
+    # Check for HEDA Tile
+    Wait Until Element Is visible           //div[@class='slds-app-launcher__tile-body']//a[contains(text(),'HEDA')]
+
+    Wait Until Element Is visible           //a[@title='HEDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'HEDA Settings')]
+    Click Element                           //a[@title='HEDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'HEDA Settings')]
+
+    Select Frame			                //iframe[contains(@name, "vfFrameId")]
+
