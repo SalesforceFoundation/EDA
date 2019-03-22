@@ -32,52 +32,167 @@
 * @date 2019
 * @group Languages
 * @group-content ../../ApexDocContent/Languages.htm
-* @description TODO - FILL THIS IN
+* @description Keeps the Contact "Primary Language" lookup field in sync with the Language associated to the
+* Contact's primary Contact Language record.
 */
 public with sharing class CLAN_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description TODO - FILL THIS IN AND UPDATE PARAM DESCRIPTIONS
+    * @description Iterates over all Contact Language records being inserted, updated, or deleted and performs
+    * various actions for the records defined as the Primary Language or formerly defined as the Primary 
+    * Language. Associated Contact records are updated to reflect the current Primary Language.
     * @param listNew the list of Contact Languages from trigger new.
     * @param listOld the list of Contact Languages from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Contact Languages.
-    * @return dmlWrapper
+    * @return dmlWrapper Any Contact Language and Contact records that need to be updated.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
+        Map<Id, Contact> contactsToUpdate = new Map<Id, Contact>();
+        Map<Id, Contact_Language__c> contactLanguagesToUpdate = new Map<Id, Contact_Language__c>();
+        Map<Id, Id> existingPrimaryContactLanguageByContact = new Map<Id, Id>();
+
+        // TODO: Refactor similar logic. Pull out into private method(s)
+
         if (newlist != null && newlist.size() > 0) {
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                // For all new Contact Language records that are marked as the Primary Language, query for other
-                // existing Contact Language records that are already marked as the Primary Language for that
-                // Contact and unset them. Update the Primary Language lookup on the Contact to the Language 
-                // record of the Primary Language.
-            }
+                for (Contact_Language__c newContactLanguage : (List<Contact_Language__c>)newlist) {
+                    if (!newContactLanguage.Primary_Language__c) { 
+                        // This is not a Primary Language, so let's continue.
+                        continue;
+                    }
 
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                // For all updated Contact Language records that are marked as the Primary Language, query for other
-                // existing Contact Language records that are already marked as the Primary Language for that
-                // Contact and unset them. Update the Primary Language lookup on the Contact to the Language 
-                // record of the Primary Language.
+                    // Update the Primary Language lookup on the Contact to the Language record.
+                    Id contactId = newContactLanguage.Contact__c;
+                    contactsToUpdate.put(contactId, 
+                        new Contact(Id = contactId, Primary_Language__c = newContactLanguage.Language__c));
 
-                // For all updated Contact Language records that are no longer marked as the Primary Language,
-                // query for the Contact associated to those Primary Language records and unset the Primary Language
-                // lookup (if the Language matches the Language of the Contact Language being updated.)
-            }
+                    // Is there more than one Primary Language for the same Contact being set in the same transaction? That's not allowed, 
+                    // so set the other one to false.
+                    if (existingPrimaryContactLanguageByContact.containsKey(contactId)) {
+                        Id contactLanguageToUpdateId = existingPrimaryContactLanguageByContact.get(contactId);
+                        contactLanguagesToUpdate.put(contactLanguageToUpdateId, 
+                            new Contact_Language__c(Id = contactLanguageToUpdateId, Primary_Language__c = false));
+                    }
 
-            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-                // For all Contact Language records that are being deleted that were set as the Primary Language,
-                // query for the Contact associated to those Primary Language records and unset the Primary Language
-                // lookup (if the Language matches the Language of the Contact Language being deleted.)
+                    existingPrimaryContactLanguageByContact.put(contactId, newContactLanguage.Id);
+                }
+
+                if (contactsToUpdate.size() > 0) {
+                    // Query for any existing Contact Language records for the Contacts with Primary Language set to true.
+                    List<Contact_Language__c> oldPrimaryContactLanguages = 
+                        [SELECT Id, Primary_Language__c FROM Contact_Language__c 
+                            WHERE Id NOT IN :newlist AND Contact__c IN :contactsToUpdate.keySet() AND Primary_Language__c = true];
+                    
+                    // Update the Contact Language records to no longer be marked as the Primary Language.
+                    for (Contact_Language__c oldPrimaryContactLanguage : oldPrimaryContactLanguages) {
+                        oldPrimaryContactLanguage.Primary_Language__c = false;
+                        contactLanguagesToUpdate.put(oldPrimaryContactLanguage.Id, oldPrimaryContactLanguage);
+                    }
+                }
+            } else if (triggerAction == TDTM_Runnable.Action.AfterUpdate && oldlist != null && oldlist.size() > 0) {
+
+                Map<Id, Id> languageByContact = new Map<Id, Id>();
+
+                for (Integer i = 0; i < newlist.size(); i++) {
+                    Contact_Language__c newContactLanguage = (Contact_Language__c)newlist[i];
+                    Contact_Language__c oldContactLanguage = (Contact_Language__c)oldlist[i];
+
+                    if (newContactLanguage.Primary_Language__c == oldContactLanguage.Primary_Language__c) {
+                        // The Primary Language field isn't changing, so let's continue.
+                        continue;
+                    }
+
+                    // The Contact Language is being set as the Primary Language.
+                    if (newContactLanguage.Primary_Language__c) {
+                        // TODO: THIS CODE BLOCK IS BASICALLY THE SAME AS THE ABOVE.
+
+                        // Update the Primary Language lookup on the Contact to the Language record.
+                        Id contactId = newContactLanguage.Contact__c;
+                        contactsToUpdate.put(contactId, 
+                            new Contact(Id = contactId, Primary_Language__c = newContactLanguage.Language__c));
+
+                        // Is there more than one Primary Language for the same Contact being set in the same transaction? That's not allowed, 
+                        // so set the other one to false.
+                        if (existingPrimaryContactLanguageByContact.containsKey(contactId)) {
+                            Id contactLanguageToUpdateId = existingPrimaryContactLanguageByContact.get(contactId);
+                            contactLanguagesToUpdate.put(contactLanguageToUpdateId, 
+                                new Contact_Language__c(Id = contactLanguageToUpdateId, Primary_Language__c = false));
+                        }
+
+                        existingPrimaryContactLanguageByContact.put(contactId, newContactLanguage.Id);
+                    } else { // The Contact Language is no longer the Primary Language.
+                        languageByContact.put(newContactLanguage.Contact__c, newContactLanguage.Language__c);
+                    }
+                }
+
+                if (contactsToUpdate.size() > 0) {
+                    // Query for any existing Contact Language records for the Contacts with Primary Language set to true.
+                    List<Contact_Language__c> oldPrimaryContactLanguages = 
+                        [SELECT Id, Primary_Language__c FROM Contact_Language__c 
+                            WHERE Id NOT IN :newlist AND Contact__c IN :contactsToUpdate.keySet() AND Primary_Language__c = true];
+                    
+                    // Update the Contact Language records to no longer be marked as the Primary Language.
+                    for (Contact_Language__c oldPrimaryContactLanguage : oldPrimaryContactLanguages) {
+                        oldPrimaryContactLanguage.Primary_Language__c = false;
+                        contactLanguagesToUpdate.put(oldPrimaryContactLanguage.Id, oldPrimaryContactLanguage);
+                    }
+                }
+
+                // Finally, clear the Primary Language lookup for all Contacts that no longer have a Primary Language.
+                if (languageByContact.size() > 0) {
+                    contactsToUpdate.putAll(clearContactPrimaryLanguage(languageByContact));
+                }
             }
         }
 
-        // TODO: Remember to set recursion flag so that if we're updating contact language records we don't run through this trigger again?
-        //dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseOfferingsToUpdate);
+        if (triggerAction == TDTM_Runnable.Action.AfterDelete && oldlist != null && oldlist.size() > 0) {
+            // TODO: THIS CODE BLOCK IS BASICALLY THE SAME AS THE ABOVE. Mostly refactored, but could maybe be further refined.
+            Map<Id, Id> languageByContact = new Map<Id, Id>();
+
+            for (Contact_Language__c oldContactLanguage : (List<Contact_Language__c>)oldlist) {
+                if (!oldContactLanguage.Primary_Language__c) { 
+                    // This is not a Primary Language, so let's continue.
+                    continue;
+                }
+
+                languageByContact.put(oldContactLanguage.Contact__c, oldContactLanguage.Language__c);
+            }
+
+            // Clear the Primary Language lookup for all Contacts that no longer have a Primary Language.
+            if (languageByContact.size() > 0) {
+                contactsToUpdate.putAll(clearContactPrimaryLanguage(languageByContact));
+            }
+        }
+
+        // TODO: Remember to set recursion flag so that if we're updating contact language records to false we don't run through this trigger again.
+        dmlWrapper.objectsToUpdate.addAll((List<SObject>)contactsToUpdate.values());
+        dmlWrapper.objectsToUpdate.addAll((List<SObject>)contactLanguagesToUpdate.values());
 
         return dmlWrapper;
+    }
+
+    private Map<Id, Contact> clearContactPrimaryLanguage(Map<Id, Id> expectedLanguageByContact) {
+        Map<Id, Contact> contactsToUpdate = new Map<Id, Contact>();
+
+        if (expectedLanguageByContact == null || expectedLanguageByContact.size() == 0) {
+            return contactsToUpdate;
+        }
+
+        List<Contact> contactsToEvaluate = [SELECT Id, Primary_Language__c FROM Contact 
+            WHERE Id IN :expectedLanguageByContact.keySet() AND Primary_Language__c != null];
+
+        for (Contact contactToEvaluate : contactsToEvaluate) {
+            if (contactToEvaluate.Primary_Language__c == expectedLanguageByContact.get(contactToEvaluate.Id)) {
+                contactsToUpdate.put(contactToEvaluate.Id, 
+                    new Contact(Id = contactToEvaluate.Id, Primary_Language__c = null));
+            }
+        }
+
+        return contactsToUpdate;
     }
 }

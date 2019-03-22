@@ -181,6 +181,7 @@ public without sharing class TDTM_DefaultConfig {
                 Class__c = 'PREN_ProgramPlan_TDTM', Load_Order__c = 1, Object__c = 'Program_Enrollment__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert'));
 
+        // Handles Primary Language functionality
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'CLAN_PrimaryLanguage_TDTM', Load_Order__c = 1, Object__c = 'Contact_Language__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
