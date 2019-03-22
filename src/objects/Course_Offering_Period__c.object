@@ -58,6 +58,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The class period in which this course offering is being held.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The class period in which this course offering is being held.</inlineHelpText>
         <label>Class Period</label>
         <referenceTo>Class_Period__c</referenceTo>
         <relationshipLabel>Course Offering Periods</relationshipLabel>
@@ -100,8 +101,9 @@
     <fields>
         <fullName>Friday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a Friday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -121,8 +123,9 @@
     <fields>
         <fullName>Saturday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Signifies this course offering period/location takes place on a Saturday at the time specified by the parent class period.</description>
+        <description>The day on which the course is offered (Monday - Sunday).</description>
         <externalId>false</externalId>
+        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

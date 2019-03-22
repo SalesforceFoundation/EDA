@@ -58,6 +58,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The education organization associated with this period. For example, a school within a district.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The education organization associated with this period. For example, a school within a district.</inlineHelpText>
         <label>Education Organization</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Class Periods</relationshipLabel>
@@ -71,6 +72,7 @@
         <fullName>End_Time__c</fullName>
         <description>The time of day the period ends.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The time of day the period ends.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -81,6 +83,7 @@
         <fullName>Start_Time__c</fullName>
         <description>The time of day the period starts.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The time of day the period starts.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -93,6 +96,11 @@
         <columns>NAME</columns>
         <columns>Start_Time__c</columns>
         <columns>End_Time__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
