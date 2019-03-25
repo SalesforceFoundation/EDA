@@ -32,16 +32,18 @@
 * @date 2019
 * @group Languages
 * @group-content ../../ApexDocContent/Languages.htm
-* @description Tests specific to testing the logic around updating the Contact's "Primary Language" lookup field when Contact
-* Language records are modified.
+* @description Tests specific to testing the logic around updating the Contact's "Primary Language" lookup 
+* field when Contact Language records are modified.
 */
 @isTest
 private class CLAN_PrimaryLanguage_TEST {
-    // TODO - finish these and remember to add ApexDocs for all
-
+    
     private static Contact contact;
     private static Language__c language;
 
+    /*******************************************************************************************************
+    * @description Inserts a new Language and Contact record for testing. 
+    ********************************************************************************************************/
     private static void setup() {
         language = insertLanguage('English');
 
@@ -49,24 +51,46 @@ private class CLAN_PrimaryLanguage_TEST {
         insert contact;
     }
     
+    /*******************************************************************************************************
+    * @description Inserts a new Language record for testing. 
+    * @param name The name of the Language record.
+    * @return The inserted Language record.
+    ********************************************************************************************************/
     private static Language__c insertLanguage(String name) {
         Language__c languageToInsert = new Language__c(Name = name);
         insert languageToInsert;
         return languageToInsert;
     }
 
+    /*******************************************************************************************************
+    * @description Inserts a new Contact Language record for testing. 
+    * @param languageId The Language associated to the Contact Language record.
+    * @param isPrimaryLanguage Signifies whether or not the Contact Language should be marked as the Primary Language.
+    * @return The inserted Contact Language record.
+    ********************************************************************************************************/
     private static Contact_Language__c insertContactLanguage(Id languageId, Boolean isPrimaryLanguage) {
-        Contact_Language__c contactLanguageToInsert = new Contact_Language__c(Language__c = languageId, Contact__c = contact.Id, Primary_Language__c = isPrimaryLanguage);
+        Contact_Language__c contactLanguageToInsert = 
+            new Contact_Language__c(Language__c = languageId, Contact__c = contact.Id, Primary_Language__c = isPrimaryLanguage);
         insert contactLanguageToInsert;
         return contactLanguageToInsert;
     }
 
+    /*******************************************************************************************************
+    * @description Verifies/asserts that the given Language is specified as the Primary Language on the test
+    * Contact.
+    * @param languageId The Language that should be the Primary Language on the Contact. May be null.
+    ********************************************************************************************************/
     private static void assertPrimaryLanguageOnContact(Id languageId) {
         List<Contact> queriedContacts = [SELECT Primary_Language__c FROM Contact WHERE Id = :contact.Id];
         System.assertEquals(1, queriedContacts.size(), 'The expected Contact was not found.');
-        System.assertEquals(languageId, queriedContacts[0].Primary_Language__c, 'The Primary Language on the Contact was not set as expected.');
+        System.assertEquals(languageId, queriedContacts[0].Primary_Language__c, 
+            'The Primary Language on the Contact was not set as expected.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is created with Primary Language checked, the Primary
+    * Language is set on the associated Contact.
+    ********************************************************************************************************/
     @isTest
     private static void setPrimaryLanguageOnInsert() {
         setup();
@@ -80,6 +104,10 @@ private class CLAN_PrimaryLanguage_TEST {
         assertPrimaryLanguageOnContact(language.Id);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is updated with Primary Language checked, the Primary
+    * Language is set on the associated Contact.
+    ********************************************************************************************************/
     @isTest
     private static void setPrimaryLanguageOnUpdate() {
         setup();
@@ -95,6 +123,38 @@ private class CLAN_PrimaryLanguage_TEST {
         assertPrimaryLanguageOnContact(language.Id);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when multiple Contact Languages are updated with Primary Language checked, the 
+    * Primary Language is set on the associated Contact of the most recent Primary Language and the other
+    * Contact Language record is unset as the Primary Language.
+    ********************************************************************************************************/
+    @isTest
+    private static void setMultiplePrimaryLanguages() {
+        setup();
+
+        assertPrimaryLanguageOnContact(null);
+
+        Language__c newLanguage = insertLanguage('Spanish');
+        Contact_Language__c firstContactLanguage = insertContactLanguage(language.Id, false);
+        Contact_Language__c secondContactLanguage = insertContactLanguage(newLanguage.Id, false);
+
+        Test.startTest();
+        firstContactLanguage.Primary_Language__c = true;
+        secondContactLanguage.Primary_Language__c = true;
+        update new List<Contact_Language__c>{ firstContactLanguage, secondContactLanguage };
+        Test.stopTest();
+
+        assertPrimaryLanguageOnContact(newLanguage.Id);
+
+        firstContactLanguage = [SELECT Primary_Language__c FROM Contact_Language__c WHERE Id = :firstContactLanguage.Id];
+        System.assertEquals(false, firstContactLanguage.Primary_Language__c, 
+            'Expected the other Contact Language record to no longer be set as the Primary Language.');
+    }
+
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is updated with Primary Language no longer checked, the 
+    * Primary Language is cleared on the associated Contact.
+    ********************************************************************************************************/
     @isTest
     private static void unsetPrimaryLanguage() {
         setup();
@@ -110,6 +170,10 @@ private class CLAN_PrimaryLanguage_TEST {
         assertPrimaryLanguageOnContact(null);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is deleted that had Primary Language checked, the Primary
+    * Language is cleared on the associated Contact.
+    ********************************************************************************************************/
     @isTest
     private static void deletePrimaryLanguage() {
         setup();
@@ -124,6 +188,36 @@ private class CLAN_PrimaryLanguage_TEST {
         assertPrimaryLanguageOnContact(null);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is deleted that had Primary Language checked, the Primary
+    * Language is not cleared on the associated Contact if the Language does not match.
+    ********************************************************************************************************/
+    @isTest
+    private static void deletePrimaryLanguageWithNoMatchOnContact() {
+        setup();
+
+        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        assertPrimaryLanguageOnContact(language.Id);
+
+        // Manually update the lookup on the Contact to another value.
+        Language__c newLanguage = insertLanguage('Spanish');
+        contact.Primary_Language__c = newLanguage.Id;
+        update contact;
+
+        assertPrimaryLanguageOnContact(newLanguage.Id);
+
+        Test.startTest();
+        delete contactLanguage;
+        Test.stopTest();
+
+        assertPrimaryLanguageOnContact(newLanguage.Id);
+    }
+
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is updated with Primary Language checked and there had
+    * been another Primary Language, the Primary Language is updated on the associated Contact and the old
+    * Contact Language is unset as the Primary Language.
+    ********************************************************************************************************/
     @isTest
     private static void swapPrimaryLanguage() {
         setup();
@@ -143,15 +237,32 @@ private class CLAN_PrimaryLanguage_TEST {
         assertPrimaryLanguageOnContact(newLanguage.Id);
 
         contactLanguage = [SELECT Primary_Language__c FROM Contact_Language__c WHERE Id = :contactLanguage.Id];
-        System.assertEquals(false, contactLanguage.Primary_Language__c, 'Expected the other Contact Language record to no longer be set as the Primary Language.');
+        System.assertEquals(false, contactLanguage.Primary_Language__c, 
+            'Expected the other Contact Language record to no longer be set as the Primary Language.');
     }
 
-    // Other possible unit tests to add:
-    // Unset Primary Language - Primary Language not unset on Contact if not matching Language?
-    // Delete Primary Language - Primary Language not unset on Contact if not matching Language?
-    // Set Primary Language on one Contact Language and unset Primary Language on other Contact Language in same transaction
-    // Set Primary Language on one Contact Language and delete Primary Contact Language in same transaction
-    // Set multiple Contact Languages for the same Contact as the Primary Language in same transaction - which one wins
-    // Nothing happens if the trigger is disabled?
-    // Bulk Primary Language test?
+    /*******************************************************************************************************
+    * @description Tests that when a Contact Language is updated with Primary Language checked and the former
+    * Primary Contact Language is unset as the Primary Language in the same transaction, the Primary Language 
+    * is updated correctly on the associated Contact.
+    ********************************************************************************************************/
+    @isTest
+    private static void swapPrimaryLanguageInSameTransaction() {
+        setup();
+
+        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        assertPrimaryLanguageOnContact(language.Id);
+
+        Language__c newLanguage = insertLanguage('Spanish');
+        Contact_Language__c secondContactLanguage = insertContactLanguage(newLanguage.Id, false);
+        assertPrimaryLanguageOnContact(language.Id);
+
+        Test.startTest();
+        secondContactLanguage.Primary_Language__c = true;
+        contactLanguage.Primary_Language__c = false;
+        update new List<Contact_Language__c>{ contactLanguage, secondContactLanguage };
+        Test.stopTest();
+
+        assertPrimaryLanguageOnContact(newLanguage.Id);
+    }
 }
