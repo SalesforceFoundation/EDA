@@ -17,31 +17,6 @@ You can install HEDA utilizing our custom application installer into any Develop
 * <a href="https://powerofus.force.com/articles/Resource/Higher-Education-Data-Architecture-HEDA-Software-Requirements-Specification" target="_blank"> HEDA Software Requirements specification</a>
 * <a href="https://salesforce.quip.com/cAJzAnydf6gp" target="_blank">HEDA Data Dictionary</a>
 
-#### For Developers
-
-The Higher Education Data Architecture is released under the open source BSD license (see link below for additional license information).  Contributions (code and otherwise) are welcome and encouraged.  You can fork this repository and deploy the unmanaged version of the code into a Salesforce org of your choice.  
-
-* Fork the repository by clicking on the "Fork" button in the upper-righthand corner.  This creates your own copy of HEDA for your Github user.
-* Clone your fork to your local machine via the command line
-```sh
-$ git clone https://github.com/YOUR-USERNAME/hedap.git
-```
-* You now have a local copy on your machine.  HEDAP has some built-in scripts to make deploying to your Salesforce org easier.  Utilizing ant and the Force.com Migration tool, you can push your local copy of HEDAP to the org of your choice.  You'll need to provide a build.properties to tell ant where to deploy.  An example file might look like:
-
-```
-sf.username= YOUR_ORG_USERNAME
-sf.password = YOUR_ORG_PASSWORD
-sf.serverurl = https://login.salesforce.com ##or test.salesforce.com for sandbox environments
-sf.maxPoll = 20
-```
-
-* Now deploy to your org utilizing ant (note: you may need to deploy CumulusCI to your local machine to utilize the built-in scripts)
-
-```sh
-$ cd hedap
-$ ant deploy -buildfile PATH_TO_YOUR_BUILDFILE
-```
-
 #### Meta
 
 The Higher Education Data Architecture technology (“HEDA”) is an open-source package licensed by Salesforce.org (“SFDO”) under the BSD-3 Clause License, found at https://opensource.org/licenses/BSD-3-Clause. ANY MASTER SUBSCRIPTION AGREEMENT YOU OR YOUR ENTITY MAY HAVE WITH SFDO DOES NOT APPLY TO YOUR USE OF HEDA. HEDA IS PROVIDED “AS IS” AND AS AVAILABLE, AND SFDO MAKES NO WARRANTY OF ANY KIND REGARDING HEDA, WHETHER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, FREEDOM FROM DEFECTS OR NON-INFRINGEMENT, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.
