@@ -113,7 +113,7 @@
     </fields>
     <fields>
         <fullName>Language__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <deleteConstraint>Restrict</deleteConstraint>
         <description>The Language associated with this Contact.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Language associated with this Contact.</inlineHelpText>
