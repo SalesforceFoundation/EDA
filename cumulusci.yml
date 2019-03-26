@@ -296,3 +296,5 @@ plans:
                 ui_options:
                     course_connection_record_types:
                         name: Course Connection Record Types for HEDA
+                    facility_display_name:
+                        name: Facility Display Name Formula Field
