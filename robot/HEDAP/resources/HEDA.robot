@@ -1,7 +1,7 @@
 *** Settings ***
 
 Resource       cumulusci/robotframework/Salesforce.robot
-Library        tests/HEDA.py
+Library        HEDA.py
 
 *** Keywords ***
 
@@ -277,4 +277,3 @@ Go To Heda Settings
     Click Element                           //a[@title='HEDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'HEDA Settings')]
 
     Select Frame			                //iframe[contains(@name, "vfFrameId")]
-
