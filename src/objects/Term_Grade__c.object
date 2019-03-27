@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores student grades for a specific grading period within a Term.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -68,9 +69,9 @@
     <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class for which the student is receiving this grade.</description>
+        <description>The class in which the student is received this grade.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The class for which the student is receiving this grade.</inlineHelpText>
+        <inlineHelpText>The class in which the student is received this grade.</inlineHelpText>
         <label>Course Connection</label>
         <referenceTo>Course_Enrollment__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
@@ -94,9 +95,9 @@
     </fields>
     <fields>
         <fullName>Letter_Grade__c</fullName>
-        <description>The letter grade the student earned for this course (A+ through F).</description>
+        <description>The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The letter grade the student earned for this course (A+ through F).</inlineHelpText>
+        <inlineHelpText>The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value.</inlineHelpText>
         <label>Letter Grade</label>
         <length>255</length>
         <required>false</required>
@@ -119,9 +120,9 @@
     </fields>
     <fields>
         <fullName>Percent_Grade__c</fullName>
-        <description>The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivlent to a B letter grade in most cases.</description>
+        <description>The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivalent to a B letter grade in most cases.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivlent to a B letter grade in most cases.</inlineHelpText>
+        <inlineHelpText>The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivalent to a B letter grade in most cases.</inlineHelpText>
         <label>Percent Grade</label>
         <precision>18</precision>
         <required>false</required>
@@ -131,9 +132,9 @@
     </fields>
     <fields>
         <fullName>Result__c</fullName>
-        <description>The result of the student&apos;s performance for this grading period</description>
+        <description>The result of the student&apos;s performance for this grading period.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The result of the student&apos;s performance for this grading period</inlineHelpText>
+        <inlineHelpText>The result of the student&apos;s performance for this grading period.</inlineHelpText>
         <label>Result</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -143,14 +144,24 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Pass</fullName>
+                    <fullName>Audit</fullName>
                     <default>false</default>
-                    <label>Pass</label>
+                    <label>Audit</label>
+                </value>
+                <value>
+                    <fullName>Dropped</fullName>
+                    <default>false</default>
+                    <label>Dropped</label>
                 </value>
                 <value>
                     <fullName>Fail</fullName>
                     <default>false</default>
                     <label>Fail</label>
+                </value>
+                <value>
+                    <fullName>Pass</fullName>
+                    <default>false</default>
+                    <label>Pass</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -169,24 +180,24 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>Final Grade</fullName>
+                    <default>false</default>
+                    <label>Final Grade</label>
+                </value>
+                <value>
                     <fullName>Grading Period</fullName>
                     <default>false</default>
                     <label>Grading Period</label>
                 </value>
                 <value>
-                    <fullName>Semester</fullName>
+                    <fullName>Mid-Term Grade</fullName>
                     <default>false</default>
-                    <label>Semester</label>
+                    <label>Mid-Term Grade</label>
                 </value>
                 <value>
-                    <fullName>Final</fullName>
+                    <fullName>Exam Grade</fullName>
                     <default>false</default>
-                    <label>Final</label>
-                </value>
-                <value>
-                    <fullName>Mid Term</fullName>
-                    <default>false</default>
-                    <label>Mid Term</label>
+                    <label>Exam Grade</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
