@@ -1,7 +1,7 @@
 *** Settings ***
 
-Resource        tests/HEDA.robot
-Library         tests/HEDA.py
+Resource        robot/HEDAP/resources/HEDA.robot
+Library         robot/HEDAP/resources/HEDA.py
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
