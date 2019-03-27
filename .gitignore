@@ -14,6 +14,7 @@ Referenced Packages
 /installedPackages
 test_results.json
 test_results.xml
+robot/HEDAP/results/
 unpackaged/*/*/*.zip
 unpackaged/namespaced_zipped
 unpackaged/zipped
