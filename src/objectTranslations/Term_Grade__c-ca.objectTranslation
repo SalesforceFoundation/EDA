@@ -14,7 +14,7 @@
         <name>Attempted_Credits__c</name>
     </fields>
     <fields>
-        <help><!-- The class for which the student is receiving this grade. --></help>
+        <help><!-- The class in which the student is received this grade. --></help>
         <label><!-- Course Connection --></label>
         <name>Course_Connection__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
@@ -25,7 +25,7 @@
         <name>Earned_Credits__c</name>
     </fields>
     <fields>
-        <help><!-- The letter grade the student earned for this course (A+ through F). --></help>
+        <help><!-- The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value. --></help>
         <label><!-- Letter Grade --></label>
         <name>Letter_Grade__c</name>
     </fields>
@@ -35,14 +35,22 @@
         <name>Numerical_Grade__c</name>
     </fields>
     <fields>
-        <help><!-- The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivlent to a B letter grade in most cases. --></help>
+        <help><!-- The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivalent to a B letter grade in most cases. --></help>
         <label><!-- Percent Grade --></label>
         <name>Percent_Grade__c</name>
     </fields>
     <fields>
-        <help><!-- The result of the student&apos;s performance for this grading period --></help>
+        <help><!-- The result of the student&apos;s performance for this grading period. --></help>
         <label><!-- Result --></label>
         <name>Result__c</name>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation><!-- Audit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dropped</masterLabel>
+            <translation><!-- Dropped --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Fail</masterLabel>
             <translation><!-- Fail --></translation>
@@ -57,20 +65,20 @@
         <label><!-- Term Grade Type --></label>
         <name>Term_Grade_Type__c</name>
         <picklistValues>
-            <masterLabel>Final</masterLabel>
-            <translation><!-- Final --></translation>
+            <masterLabel>Exam Grade</masterLabel>
+            <translation><!-- Exam Grade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Grade</masterLabel>
+            <translation><!-- Final Grade --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Grading Period</masterLabel>
             <translation><!-- Grading Period --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Mid Term</masterLabel>
-            <translation><!-- Mid Term --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Semester</masterLabel>
-            <translation><!-- Semester --></translation>
+            <masterLabel>Mid-Term Grade</masterLabel>
+            <translation><!-- Mid-Term Grade --></translation>
         </picklistValues>
     </fields>
     <fields>
