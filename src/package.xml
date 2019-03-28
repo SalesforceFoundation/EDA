@@ -769,6 +769,7 @@
         <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
         <members>Program_Plan__c-HEDA Program Plan Layout</members>
         <members>Relationship__c-HEDA Relationship Layout</members>
+        <members>Term_Grade__c-HEDA Term Grade Layout</members>
         <members>Term_Grade__c-Term Grade Layout</members>
         <members>Term__c-HEDA Term Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>

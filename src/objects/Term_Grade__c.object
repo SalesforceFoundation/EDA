@@ -54,19 +54,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Attempted_Credits__c</fullName>
-        <description>The number of credits attempted for this course and grading period.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The number of credits attempted for this course and grading period.</inlineHelpText>
-        <label>Attempted Credits</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The class in which the student is received this grade.</description>
@@ -81,14 +68,27 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Earned_Credits__c</fullName>
+        <fullName>Credits_Attempted__c</fullName>
+        <description>The number of credits attempted for this course and grading period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of credits attempted for this course and grading period.</inlineHelpText>
+        <label>Credits Attempted</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credits_Earned__c</fullName>
         <description>The number of credits earned for this course and grading period.</description>
         <externalId>false</externalId>
         <inlineHelpText>The number of credits earned for this course and grading period.</inlineHelpText>
-        <label>Earned Credits</label>
-        <precision>18</precision>
+        <label>Credits Earned</label>
+        <precision>6</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>3</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>

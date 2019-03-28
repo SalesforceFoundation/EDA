@@ -9,20 +9,20 @@
         <value>Term Grades</value>
     </caseValues>
     <fields>
-        <help><!-- The number of credits attempted for this course and grading period. --></help>
-        <label><!-- Attempted Credits --></label>
-        <name>Attempted_Credits__c</name>
-    </fields>
-    <fields>
         <help><!-- The class in which the student is received this grade. --></help>
         <label><!-- Course Connection --></label>
         <name>Course_Connection__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The number of credits attempted for this course and grading period. --></help>
+        <label><!-- Credits Attempted --></label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
         <help><!-- The number of credits earned for this course and grading period. --></help>
-        <label><!-- Earned Credits --></label>
-        <name>Earned_Credits__c</name>
+        <label><!-- Credits Earned --></label>
+        <name>Credits_Earned__c</name>
     </fields>
     <fields>
         <help><!-- The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value. --></help>
