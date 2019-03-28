@@ -63,6 +63,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Class_Period__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Contact_Language__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -72,6 +76,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Course_Offering__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Course_Offering_Period__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

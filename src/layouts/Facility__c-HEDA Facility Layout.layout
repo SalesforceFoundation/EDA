@@ -82,6 +82,10 @@
         <fields>End_Date__c</fields>
         <relatedList>Course_Offering__c.Facility__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Course_Offering_Period__c.Facility__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

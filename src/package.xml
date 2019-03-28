@@ -666,6 +666,10 @@
         <members>Affl_Mappings__c-en_US</members>
         <members>Affl_Mappings__c-es</members>
         <members>Affl_Mappings__c-fr</members>
+        <members>Class_Period__c-ca</members>
+        <members>Class_Period__c-en_US</members>
+        <members>Class_Period__c-es</members>
+        <members>Class_Period__c-fr</members>
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
@@ -677,6 +681,10 @@
         <members>Course_Enrollment__c-en_US</members>
         <members>Course_Enrollment__c-es</members>
         <members>Course_Enrollment__c-fr</members>
+        <members>Course_Offering_Period__c-ca</members>
+        <members>Course_Offering_Period__c-en_US</members>
+        <members>Course_Offering_Period__c-es</members>
+        <members>Course_Offering_Period__c-fr</members>
         <members>Course_Offering__c-ca</members>
         <members>Course_Offering__c-en_US</members>
         <members>Course_Offering__c-es</members>
