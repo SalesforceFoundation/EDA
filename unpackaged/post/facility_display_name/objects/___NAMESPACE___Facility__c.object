@@ -5,9 +5,9 @@
         <description>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</description>
         <externalId>false</externalId>
         <formula>IF(
-    NOT(ISBLANK(Parent_Facility__c)), Parent_Facility__r.Name + &apos; - &apos; + Name,
+    NOT(ISBLANK(%%%NAMESPACE%%%Parent_Facility__c)), %%%NAMESPACE%%%Parent_Facility__r.Name + &apos; - &apos; + Name,
     IF(
-        NOT(ISBLANK(Account__c)), Account__r.Name + &apos; - &apos; + Name, 
+        NOT(ISBLANK(%%%NAMESPACE%%%Account__c)), %%%NAMESPACE%%%Account__r.Name + &apos; - &apos; + Name, 
         Name
     )
 )</formula>
