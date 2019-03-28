@@ -180,6 +180,11 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>Exam Grade</fullName>
+                    <default>false</default>
+                    <label>Exam Grade</label>
+                </value>
+                <value>
                     <fullName>Final Grade</fullName>
                     <default>false</default>
                     <label>Final Grade</label>
@@ -193,11 +198,6 @@
                     <fullName>Mid-Term Grade</fullName>
                     <default>false</default>
                     <label>Mid-Term Grade</label>
-                </value>
-                <value>
-                    <fullName>Exam Grade</fullName>
-                    <default>false</default>
-                    <label>Exam Grade</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
