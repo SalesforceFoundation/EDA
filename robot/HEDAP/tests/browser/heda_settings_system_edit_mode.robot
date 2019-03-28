@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource        tests/HEDA.robot
+Resource        robot/HEDAP/resources/HEDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 

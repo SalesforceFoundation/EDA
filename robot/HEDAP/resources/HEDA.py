@@ -292,3 +292,49 @@ class HEDA(object):
         """Validates if the specified record is present on the page"""
         locator = heda_lex_locators["object"]["record"].format(title)
         self.selenium.page_should_not_contain_element(locator)
+
+
+    def select_checkbox_in_heda_settings(self, loc_check, loc_checkbox):
+        """ Selects checkbox.  Does nothing if checkbox is already checked """
+        if self.check_if_element_exists(loc_check):
+            return
+        else:
+            self.selenium.click_button("Edit")
+            self.selenium.get_webelement(loc_checkbox).click()
+            self.selenium.click_button("Save")
+            self.selenium.wait_until_element_is_visible(loc_check)
+            return
+
+    def check_if_element_exists(self, xpath):
+        elements = int(self.selenium.get_matching_xpath_count(xpath))
+        return True if elements > 0 else False
+
+    def get_heda_locator(self, path, *args, **kwargs):
+        """ Returns a rendered locator string from the heda_lex_locators
+            dictionary.  This can be useful if you want to use an element in
+            a different way than the built in keywords allow.
+        """ 
+        locator = heda_lex_locators
+        for key in path.split('.'):
+            locator = locator[key]
+        main_loc = locator.format(*args, **kwargs)
+        return main_loc   
+        
+    def wait_for_locator(self, path, *args, **kwargs):
+        main_loc = self.get_heda_locator(path,*args, **kwargs)    
+        self.selenium.wait_until_element_is_visible(main_loc)
+            
+    def click_on_element(self,path, *args, **kwargs):
+        main_loc = self.get_heda_locator(path,*args, **kwargs)    
+        self.selenium.click_element(main_loc)
+
+    def populate_placeholder(self, loc, value):
+        """ Populate placeholder element as a locator
+            and actual value of the place holder.
+        """
+        xpath = heda_lex_locators["input_placeholder"].format(loc)
+        field = self.selenium.get_webelement(xpath)
+        field.send_keys(value)
+        time.sleep(1)
+#         if loc == ("Search Contacts" or "Search Accounts"):
+        field.send_keys(Keys.ENTER)

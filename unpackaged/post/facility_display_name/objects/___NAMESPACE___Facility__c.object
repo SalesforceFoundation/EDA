@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Display_Name__c</fullName>
+        <description>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</description>
+        <externalId>false</externalId>
+        <formula>IF(
+    NOT(ISBLANK(%%%NAMESPACE%%%Parent_Facility__c)), %%%NAMESPACE%%%Parent_Facility__r.Name + &apos; - &apos; + Name,
+    IF(
+        NOT(ISBLANK(%%%NAMESPACE%%%Account__c)), %%%NAMESPACE%%%Account__r.Name + &apos; - &apos; + Name, 
+        Name
+    )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</inlineHelpText>
+        <label>Display Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

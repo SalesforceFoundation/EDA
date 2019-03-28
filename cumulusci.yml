@@ -97,10 +97,16 @@ tasks:
                 - HIPAA__C
                 - Military_Service__c
 
+    robot:
+        options:
+            suites: robot/HEDAP/tests
+            options:
+                outputdir: robot/HEDAP/results
+
     robot_libdoc:
         options:
-            path: tests/HEDA.py,tests/HEDA.robot
-            output: tests/Keywords.html
+            path: robot/HEDAP/resources/HEDA.py,robot/HEDAP/resources/HEDA.robot
+            output: robot/HEDAP/doc/Keywords.html
 
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
@@ -296,3 +302,5 @@ plans:
                 ui_options:
                     course_connection_record_types:
                         name: Course Connection Record Types for HEDA
+                    facility_display_name:
+                        name: Facility Display Name Formula Field
