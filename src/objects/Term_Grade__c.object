@@ -223,8 +223,9 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <displayFormat>TG-{0000}</displayFormat>
         <label>Term Grade Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Term Grades</pluralLabel>
     <searchLayouts/>

@@ -88,5 +88,12 @@
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Term Grade Name --></nameFieldLabel>
 </CustomObjectTranslation>

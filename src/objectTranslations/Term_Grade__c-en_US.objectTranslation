@@ -87,5 +87,12 @@
         <name>Term__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
