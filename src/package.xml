@@ -390,9 +390,9 @@
         <members>Relationship__c.SYSTEM_SystemCreated__c</members>
         <members>Relationship__c.Status__c</members>
         <members>Relationship__c.Type__c</members>
-        <members>Term_Grade__c.Attempted_Credits__c</members>
         <members>Term_Grade__c.Course_Connection__c</members>
-        <members>Term_Grade__c.Earned_Credits__c</members>
+        <members>Term_Grade__c.Credits_Attempted__c</members>
+        <members>Term_Grade__c.Credits_Earned__c</members>
         <members>Term_Grade__c.Letter_Grade__c</members>
         <members>Term_Grade__c.Numerical_Grade__c</members>
         <members>Term_Grade__c.Percent_Grade__c</members>
@@ -770,7 +770,6 @@
         <members>Program_Plan__c-HEDA Program Plan Layout</members>
         <members>Relationship__c-HEDA Relationship Layout</members>
         <members>Term_Grade__c-HEDA Term Grade Layout</members>
-        <members>Term_Grade__c-Term Grade Layout</members>
         <members>Term__c-HEDA Term Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
         <name>Layout</name>
