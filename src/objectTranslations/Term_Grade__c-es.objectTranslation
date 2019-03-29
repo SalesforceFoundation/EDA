@@ -30,12 +30,12 @@
         <name>Letter_Grade__c</name>
     </fields>
     <fields>
-        <help><!-- The numerical grade the student earned for this course. --></help>
+        <help><!-- The numerical grade the The numerical grade the student earned for this course, which can be based on any number. For example, a student might receive 4 units for passing four of five exams for a given course. earned for this course. --></help>
         <label><!-- Numerical Grade --></label>
         <name>Numerical_Grade__c</name>
     </fields>
     <fields>
-        <help><!-- The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivalent to a B letter grade in most cases. --></help>
+        <help><!-- The percentage grade the student earned for this course. For example, 80%, which is equivalent to a B letter grade in most cases. This grade might be calculated from a numeric grade of 4/5. --></help>
         <label><!-- Percent Grade --></label>
         <name>Percent_Grade__c</name>
     </fields>

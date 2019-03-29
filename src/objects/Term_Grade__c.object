@@ -107,9 +107,9 @@
     </fields>
     <fields>
         <fullName>Numerical_Grade__c</fullName>
-        <description>The numerical grade the student earned for this course.</description>
+        <description>The numerical grade the student earned for this course, which can be based on any number. For example, a student might receive 4 units for passing four of five exams for a given course.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The numerical grade the student earned for this course.</inlineHelpText>
+        <inlineHelpText>The numerical grade the The numerical grade the student earned for this course, which can be based on any number. For example, a student might receive 4 units for passing four of five exams for a given course. earned for this course.</inlineHelpText>
         <label>Numerical Grade</label>
         <precision>18</precision>
         <required>false</required>
@@ -120,9 +120,9 @@
     </fields>
     <fields>
         <fullName>Percent_Grade__c</fullName>
-        <description>The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivalent to a B letter grade in most cases.</description>
+        <description>The percentage grade the student earned for this course. For example, 80%, which is equivalent to a B letter grade in most cases. This grade might be calculated from a numeric grade of 4/5.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The grade the student earned for this course represented as a percentage. For example, 87.5%, which is equivalent to a B letter grade in most cases.</inlineHelpText>
+        <inlineHelpText>The percentage grade the student earned for this course. For example, 80%, which is equivalent to a B letter grade in most cases. This grade might be calculated from a numeric grade of 4/5.</inlineHelpText>
         <label>Percent Grade</label>
         <precision>18</precision>
         <required>false</required>
