@@ -124,9 +124,9 @@
         <externalId>false</externalId>
         <inlineHelpText>The percentage grade the student earned for this course.</inlineHelpText>
         <label>Percent Grade</label>
-        <precision>18</precision>
+        <precision>6</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>3</scale>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
