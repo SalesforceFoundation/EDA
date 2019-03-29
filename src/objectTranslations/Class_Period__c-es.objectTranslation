@@ -10,8 +10,8 @@
     </caseValues>
     <fields>
         <help><!-- The education organization associated with this period. For example, a school within a district. --></help>
-        <label><!-- Education Organization --></label>
-        <name>Education_Organization__c</name>
+        <label><!-- Educational Institution --></label>
+        <name>Educational_Institution__c</name>
         <relationshipLabel><!-- Class Periods --></relationshipLabel>
     </fields>
     <fields>

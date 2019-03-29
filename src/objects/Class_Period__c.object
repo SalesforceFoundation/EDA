@@ -54,12 +54,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Education_Institution__c</fullName>
+        <fullName>Educational_Institution__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Education Institution associated with this period. For example, a school within a district.</description>
+        <description>The Educational Institution associated with this period. For example, a school within a district.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Education Institution associated with this period. For example, a school within a district.</inlineHelpText>
-        <label>Education Institution</label>
+        <inlineHelpText>The Educational Institution associated with this period. For example, a school within a district.</inlineHelpText>
+        <label>Educational Institution</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Class Periods</relationshipLabel>
         <relationshipName>Class_Periods</relationshipName>
