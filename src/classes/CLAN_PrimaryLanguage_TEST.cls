@@ -45,34 +45,10 @@ private class CLAN_PrimaryLanguage_TEST {
     * @description Inserts a new Language and Contact record for testing. 
     ********************************************************************************************************/
     private static void setup() {
-        language = insertLanguage('English');
+        language = UTIL_UnitTestData_TEST.createLanguage('English');
 
         contact = UTIL_UnitTestData_TEST.getContact();
         insert contact;
-    }
-    
-    /*******************************************************************************************************
-    * @description Inserts a new Language record for testing. 
-    * @param name The name of the Language record.
-    * @return The inserted Language record.
-    ********************************************************************************************************/
-    private static Language__c insertLanguage(String name) {
-        Language__c languageToInsert = new Language__c(Name = name);
-        insert languageToInsert;
-        return languageToInsert;
-    }
-
-    /*******************************************************************************************************
-    * @description Inserts a new Contact Language record for testing. 
-    * @param languageId The Language associated to the Contact Language record.
-    * @param isPrimaryLanguage Signifies whether or not the Contact Language should be marked as the Primary Language.
-    * @return The inserted Contact Language record.
-    ********************************************************************************************************/
-    private static Contact_Language__c insertContactLanguage(Id languageId, Boolean isPrimaryLanguage) {
-        Contact_Language__c contactLanguageToInsert = 
-            new Contact_Language__c(Language__c = languageId, Contact__c = contact.Id, Primary_Language__c = isPrimaryLanguage);
-        insert contactLanguageToInsert;
-        return contactLanguageToInsert;
     }
 
     /*******************************************************************************************************
@@ -98,7 +74,7 @@ private class CLAN_PrimaryLanguage_TEST {
         assertPrimaryLanguageOnContact(null);
 
         Test.startTest();
-        insertContactLanguage(language.Id, true);
+        UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, true);
         Test.stopTest();
 
         assertPrimaryLanguageOnContact(language.Id);
@@ -112,7 +88,7 @@ private class CLAN_PrimaryLanguage_TEST {
     private static void setPrimaryLanguageOnUpdate() {
         setup();
 
-        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, false);
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, false);
         assertPrimaryLanguageOnContact(null);
 
         Test.startTest();
@@ -125,8 +101,8 @@ private class CLAN_PrimaryLanguage_TEST {
 
     /*******************************************************************************************************
     * @description Tests that when multiple Contact Languages are updated with Primary Language checked, the 
-    * Primary Language is set on the associated Contact of the most recent Primary Language and the other
-    * Contact Language record is unset as the Primary Language.
+    * Primary Language is set on the associated Contact for one of the Contact Language records and the other
+    * Contact Language record is unset as a primary language.
     ********************************************************************************************************/
     @isTest
     private static void setMultiplePrimaryLanguages() {
@@ -134,9 +110,9 @@ private class CLAN_PrimaryLanguage_TEST {
 
         assertPrimaryLanguageOnContact(null);
 
-        Language__c newLanguage = insertLanguage('Spanish');
-        Contact_Language__c firstContactLanguage = insertContactLanguage(language.Id, false);
-        Contact_Language__c secondContactLanguage = insertContactLanguage(newLanguage.Id, false);
+        Language__c newLanguage = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Contact_Language__c firstContactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, false);
+        Contact_Language__c secondContactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(newLanguage.Id, contact.Id, false);
 
         Test.startTest();
         firstContactLanguage.Primary_Language__c = true;
@@ -144,11 +120,24 @@ private class CLAN_PrimaryLanguage_TEST {
         update new List<Contact_Language__c>{ firstContactLanguage, secondContactLanguage };
         Test.stopTest();
 
-        assertPrimaryLanguageOnContact(newLanguage.Id);
+        List<Contact_Language__c> contactLanguages = 
+            [SELECT Primary_Language__c, Language__c FROM Contact_Language__c WHERE Contact__c = :contact.Id];
+        System.assertEquals(2, contactLanguages.size(), 'Expected both Contact Language records to be returned.');
 
-        firstContactLanguage = [SELECT Primary_Language__c FROM Contact_Language__c WHERE Id = :firstContactLanguage.Id];
-        System.assertEquals(false, firstContactLanguage.Primary_Language__c, 
-            'Expected the other Contact Language record to no longer be set as the Primary Language.');
+        Contact_Language__c primaryLanguage;
+        Contact_Language__c secondaryLanguage;
+        for (Contact_Language__c contactLanguage : contactLanguages) {
+            if (contactLanguage.Primary_Language__c) {
+                primaryLanguage = contactLanguage;
+            } else {
+                secondaryLanguage = contactLanguage;
+            }
+        }
+
+        System.assert(primaryLanguage != null, 'Expected one Contact Language record to be set as the Primary Language.');
+        System.assert(secondaryLanguage != null, 'Expected one Contact Language record to no longer be set as the Primary Language.');
+
+        assertPrimaryLanguageOnContact(primaryLanguage.Language__c);
     }
 
     /*******************************************************************************************************
@@ -159,7 +148,7 @@ private class CLAN_PrimaryLanguage_TEST {
     private static void unsetPrimaryLanguage() {
         setup();
 
-        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, true);
         assertPrimaryLanguageOnContact(language.Id);
 
         Test.startTest();
@@ -178,7 +167,7 @@ private class CLAN_PrimaryLanguage_TEST {
     private static void deletePrimaryLanguage() {
         setup();
 
-        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, true);
         assertPrimaryLanguageOnContact(language.Id);
 
         Test.startTest();
@@ -196,11 +185,11 @@ private class CLAN_PrimaryLanguage_TEST {
     private static void deletePrimaryLanguageWithNoMatchOnContact() {
         setup();
 
-        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, true);
         assertPrimaryLanguageOnContact(language.Id);
 
         // Manually update the lookup on the Contact to another value.
-        Language__c newLanguage = insertLanguage('Spanish');
+        Language__c newLanguage = UTIL_UnitTestData_TEST.createLanguage('Spanish');
         contact.Primary_Language__c = newLanguage.Id;
         update contact;
 
@@ -222,11 +211,11 @@ private class CLAN_PrimaryLanguage_TEST {
     private static void swapPrimaryLanguage() {
         setup();
 
-        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, true);
         assertPrimaryLanguageOnContact(language.Id);
 
-        Language__c newLanguage = insertLanguage('Spanish');
-        Contact_Language__c secondContactLanguage = insertContactLanguage(newLanguage.Id, false);
+        Language__c newLanguage = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Contact_Language__c secondContactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(newLanguage.Id, contact.Id, false);
         assertPrimaryLanguageOnContact(language.Id);
 
         Test.startTest();
@@ -250,11 +239,11 @@ private class CLAN_PrimaryLanguage_TEST {
     private static void swapPrimaryLanguageInSameTransaction() {
         setup();
 
-        Contact_Language__c contactLanguage = insertContactLanguage(language.Id, true);
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(language.Id, contact.Id, true);
         assertPrimaryLanguageOnContact(language.Id);
 
-        Language__c newLanguage = insertLanguage('Spanish');
-        Contact_Language__c secondContactLanguage = insertContactLanguage(newLanguage.Id, false);
+        Language__c newLanguage = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+        Contact_Language__c secondContactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(newLanguage.Id, contact.Id, false);
         assertPrimaryLanguageOnContact(language.Id);
 
         Test.startTest();
