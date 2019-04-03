@@ -9,7 +9,7 @@
         <value><!-- Class Period --></value>
     </caseValues>
     <fields>
-        <help><!-- The education organization associated with this period. For example, a school within a district. --></help>
+        <help><!-- The Educational Institution associated with this period. For example, a school within a district. --></help>
         <label><!-- Educational Institution --></label>
         <name>Educational_Institution__c</name>
         <relationshipLabel><!-- Class Periods --></relationshipLabel>
@@ -25,13 +25,6 @@
         <name>Start_Time__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>Class Period Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <layouts>
         <layout>HEDA Class Period Layout</layout>
         <sections>

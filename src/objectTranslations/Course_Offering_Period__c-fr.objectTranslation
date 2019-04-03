@@ -63,13 +63,6 @@
     </fields>
     <gender><!-- Masculine --></gender>
     <layouts>
-        <layout>Course Offering Period Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
         <layout>HEDA Course Offering Period Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
