@@ -84,6 +84,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Class_Period__c</fields>
+        <fields>Course_Offering__c</fields>
         <relatedList>Course_Offering_Period__c.Facility__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -92,7 +94,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0v000000v2OX</masterLabel>
+        <masterLabel>00hL0000000pQvv</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
