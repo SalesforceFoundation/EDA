@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.org
 * @date 2018
-* @group ProgramPlan
+* @group Program Plan
 * @group-content ../../ApexDocContent/ProgramPlans.htm
 * @description Handles primary program plans under accounts
 */

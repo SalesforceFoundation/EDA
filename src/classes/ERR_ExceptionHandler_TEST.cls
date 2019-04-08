@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.org
 * @date 2017
-* @group ErrorHandling
+* @group Error Handling
 * @description Tests exception handler
 */
 @isTest
