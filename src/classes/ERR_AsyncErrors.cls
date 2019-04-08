@@ -26,7 +26,7 @@
 */
 /**
 * @author Salesforce.org
-* @group ErrorHandling
+* @group Error Handling
 * @description A recurring job that will detect errors from asynchronous jobs
 * and log and send notifications for those errors
 */
