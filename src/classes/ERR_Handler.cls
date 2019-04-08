@@ -31,7 +31,7 @@
 /**
 * @author Salesforce.org
 * @date 2014
-* @group ErrorHandling
+* @group Error Handling
 * @group-content ../../ApexDocContent/ErrorHandling.htm
 * @description Helps determine if errors occurred during the DML operations performed during the transaction, and with
 * the necessary storing and notification of these errors.
