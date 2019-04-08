@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @group ErrorHandling
+* @group Error Handling
 * @description Unit tests for ERR_AsyncErrors
 */
 @isTest

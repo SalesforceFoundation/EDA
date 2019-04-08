@@ -90,7 +90,7 @@ public class UTIL_UnitTestData_TEST {
     /*********************************************************************************************************
     * @description Initializes (but not inserts) N new Address objects.
     * @param addrCount the number of Address objects to create
-    * @return  void
+    * @return The list of Address__c objects
     **********************************************************************************************************/
     public static List<Address__c> getMultipleTestAddresses(Integer addrCount) {
         List<Address__c> addrs = new List<Address__c>();
@@ -111,9 +111,9 @@ public class UTIL_UnitTestData_TEST {
     
     /*********************************************************************************************************
     * @description Sets up common test data for Account Addresses tests.
-    * @param accCount Number of  Accounts to create.
+    * @param accCount Number of Accounts to create.
     * @param recTypeID The record type to use when creating Accounts.
-    * @return  void
+    * @return The instance of AccsWithAddrs inner class with lists of Accounts and Address__c objects
     **********************************************************************************************************/    
     public static AccsWithAddrs createTestAccsAddrs(Integer accCount, String recTypeID) { 
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
@@ -163,8 +163,8 @@ public class UTIL_UnitTestData_TEST {
     
     /*********************************************************************************************************
     * @description Sets up common test data for Contact Addresses tests.
-    * @param contactCount Number of  Contacts to create.
-    * @return  void
+    * @param contactCount Number of Contacts to create.
+    * @return The instance of ContactsWithAddrs inner class with lists of Contacts and Address__c objects
     **********************************************************************************************************/  
     public static ContactsWithAddrs createTestContactsAddrs(Integer contactCount) {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
@@ -221,7 +221,7 @@ public class UTIL_UnitTestData_TEST {
     *    - will also setup the default Account Processor to be HH Accounts
     * @param accCount the number of Household Accounts to create
     * @param contactCount the number of Contacts to create per Household
-    * @return  void
+    * @return The instance of ContactsAccsWithAddrs inner class with lists of Contacts, Accounts, and Address__c objects
     **********************************************************************************************************/
     public static ContactsAccsWithAddrs createTestConsAccsAddrs(Integer accCount, Integer contactCount, String recTypeID) {
         ADDR_Contact_TEST.turnOffAllAddrTriggers();
@@ -296,6 +296,7 @@ public class UTIL_UnitTestData_TEST {
     * @description Groups a list of Accounts, a list of Contacts, and a list of Addresses so they can be returned 
     * from a method together.
     **********************************************************************************************************/ 
+    // TODO - possible tech debt: can we get rid of the other two public inner classes and just use this one?
     public class ContactsAccsWithAddrs {
         public List<Account> accs { public get; public set; }
         public List<Contact> contacts { public get; public set; }
@@ -303,7 +304,7 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Create an error record happens now
+    * @description Create an error record for the current system time.
     **********************************************************************************************************/
     public static Error__c getError() {
         Error__c error = new Error__c(Datetime__c = System.now());
@@ -311,7 +312,7 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Create a list of error records happen now
+    * @description Create a list of error records for the current system time.
     **********************************************************************************************************/
     public static List<Error__c> getListOfErrors(Integer n) {
         List<Error__c> errors = new List<Error__c>();
@@ -322,7 +323,7 @@ public class UTIL_UnitTestData_TEST {
     }
   
     /*********************************************************************************************************
-    *@description Get a single Program Plan
+    * @description Get a single Program Plan
     **********************************************************************************************************/
     public static Program_Plan__c getProgramPlan(){
         Program_Plan__c programPlan = new Program_Plan__c();
@@ -331,8 +332,8 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    *@description Get a list of Program Plans
-    *@param n the number of Program Plans to create
+    * @description Get a list of Program Plans
+    * @param n the number of Program Plans to create
     **********************************************************************************************************/
     public static List<Program_Plan__c> getMultipleTestProgramPlans(Integer n) {
         List<Program_Plan__c> programPlans = new List<Program_Plan__c>();
@@ -341,8 +342,9 @@ public class UTIL_UnitTestData_TEST {
         }
         return programPlans;
     } 
+
     /*********************************************************************************************************
-    *@description Get a single Plan Requirement
+    * @description Get a single Plan Requirement
     **********************************************************************************************************/
     public static Plan_Requirement__c getPlanRequirement(){
         Plan_Requirement__c planRequirement = new Plan_Requirement__c();
@@ -351,8 +353,8 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    *@description Get a list of Plan Requirements
-    *@param n the number of Plan Requirements to create
+    * @description Get a list of Plan Requirements
+    * @param n the number of Plan Requirements to create
     **********************************************************************************************************/
     public static List<Plan_Requirement__c> getMultipleTestPlanRequirements(Integer n) {
         List<Plan_Requirement__c> planRequirements = new List<Plan_Requirement__c>();
@@ -363,7 +365,7 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    *@description Get a single Program Enrollment
+    * @description Get a single Program Enrollment
     **********************************************************************************************************/
     public static Program_Enrollment__c getProgramEnrollment(Id accId){
         Program_Enrollment__c programEnrollment = new Program_Enrollment__c();
@@ -372,8 +374,8 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-    *@description Get a list of Program Enrollments
-    *@param n the number of Program Enrollments to create
+    * @description Get a list of Program Enrollments
+    * @param n the number of Program Enrollments to create
     **********************************************************************************************************/
     public static List<Program_Enrollment__c> getMultipleTestProgramEnrollments(Integer n, Id accId) {
         List<Program_Enrollment__c> programEnrollments = new List<Program_Enrollment__c>();
@@ -381,5 +383,30 @@ public class UTIL_UnitTestData_TEST {
             programEnrollments.add(getProgramEnrollment(accId));
         }
         return programEnrollments;
+    }
+
+    /*******************************************************************************************************
+    * @description Inserts a new Language record for testing. 
+    * @param name The name of the Language record.
+    * @return The inserted Language record.
+    ********************************************************************************************************/
+    public static Language__c createLanguage(String name) {
+        Language__c languageToInsert = new Language__c(Name = name);
+        insert languageToInsert;
+        return languageToInsert;
+    }
+
+    /*******************************************************************************************************
+    * @description Inserts a new Contact Language record for testing. 
+    * @param languageId The Language associated to the Contact Language record.
+    * @param contactId The Contact associated to the Contact Language record.
+    * @param isPrimaryLanguage Signifies whether or not the Contact Language should be marked as the Primary Language.
+    * @return The inserted Contact Language record.
+    ********************************************************************************************************/
+    public static Contact_Language__c createContactLanguage(Id languageId, Id contactId, Boolean isPrimaryLanguage) {
+        Contact_Language__c contactLanguageToInsert = 
+            new Contact_Language__c(Language__c = languageId, Contact__c = contactId, Primary_Language__c = isPrimaryLanguage);
+        insert contactLanguageToInsert;
+        return contactLanguageToInsert;
     }
 }

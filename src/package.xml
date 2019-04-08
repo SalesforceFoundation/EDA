@@ -35,6 +35,8 @@
         <members>CCON_Faculty_TEST</members>
         <members>CENR_AcademicProgram_TDTM</members>
         <members>CENR_AcademicProgram_TEST</members>
+        <members>CLAN_PrimaryLanguage_TDTM</members>
+        <members>CLAN_PrimaryLanguage_TEST</members>
         <members>CMP_SettingsDataProvider</members>
         <members>CMP_SettingsDataProvider_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
@@ -134,6 +136,7 @@
         <members>TDTM_Campaign</members>
         <members>TDTM_CampaignMember</members>
         <members>TDTM_Contact</members>
+        <members>TDTM_ContactLanguage</members>
         <members>TDTM_Course</members>
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
