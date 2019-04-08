@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.org
 * @date 2014
-* @group ErrorHandling
+* @group Error Handling
 * @group-content ../../ApexDocContent/ErrorHandling.htm
 * @description Notifies specific users or groups by email or Chatter when error occurs.
 */

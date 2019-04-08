@@ -30,7 +30,7 @@
 /**
 * @author Salesforce.org
 * @date 2017
-* @group ErrorHandling
+* @group Error Handling
 * @description Exception handler for intercepting and modifying exception messages to be more user friendly,
 * and to remove cruft.
 */
