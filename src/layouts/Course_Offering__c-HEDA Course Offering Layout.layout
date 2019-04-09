@@ -78,6 +78,8 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Time_Block__c</fields>
+        <fields>Facility__c</fields>
         <relatedList>Course_Offering_Schedule__c.Course_Offering__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -95,7 +97,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3C000000upKf</masterLabel>
+        <masterLabel>00h3F000000r97a</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
