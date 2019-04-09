@@ -182,9 +182,10 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <displayFormat>CSH-{000000}</displayFormat>
         <label>Course Offering Schedule Name</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Course Offering Schedules</pluralLabel>
     <searchLayouts/>
