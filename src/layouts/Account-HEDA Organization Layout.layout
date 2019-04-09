@@ -152,7 +152,7 @@
         <fields>NAME</fields>
         <fields>Start_Time__c</fields>
         <fields>End_Time__c</fields>
-        <relatedList>Class_Period__c.Educational_Institution__c</relatedList>
+        <relatedList>Time_Block__c.Educational_Institution__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

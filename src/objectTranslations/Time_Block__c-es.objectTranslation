@@ -2,34 +2,35 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Class Period</value>
+        <value><!-- Time Block --></value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Class Periods</value>
+        <value><!-- Time Block --></value>
     </caseValues>
     <fields>
-        <help><!-- The Educational Institution associated with this period. For example, a school within a district. --></help>
+        <help><!-- The Educational Institution associated with this Time Block. For example, a school within a district. --></help>
         <label><!-- Educational Institution --></label>
         <name>Educational_Institution__c</name>
-        <relationshipLabel><!-- Class Periods --></relationshipLabel>
+        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The time of day the period ends. --></help>
+        <help><!-- The time of day the Time Block ends. --></help>
         <label><!-- End Time --></label>
         <name>End_Time__c</name>
     </fields>
     <fields>
-        <help><!-- The time of day the period starts. --></help>
+        <help><!-- The time of day the Time Block starts. --></help>
         <label><!-- Start Time --></label>
         <name>Start_Time__c</name>
     </fields>
+    <gender><!-- Feminine --></gender>
     <layouts>
-        <layout>HEDA Class Period Layout</layout>
+        <layout>EDA Time Block Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <startsWith>Consonant</startsWith>
+    <nameFieldLabel><!-- Time Block Name --></nameFieldLabel>
 </CustomObjectTranslation>

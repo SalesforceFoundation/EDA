@@ -2,29 +2,29 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Course Offering Period --></value>
+        <value><!-- Course Offering Schedule --></value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Course Offering Period --></value>
+        <value><!-- Course Offering Schedule --></value>
     </caseValues>
     <fields>
-        <help><!-- The class period in which this course offering is being held. --></help>
-        <label><!-- Class Period --></label>
-        <name>Class_Period__c</name>
-        <relationshipLabel><!-- Course Offering Periods --></relationshipLabel>
+        <help><!-- The time block in which this course offering is being held. --></help>
+        <label><!-- Time Block --></label>
+        <name>Time_Block__c</name>
+        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- The Course Offering to which this record belongs. --></help>
         <label><!-- Course Offering --></label>
         <name>Course_Offering__c</name>
-        <relationshipLabel><!-- Course Offering Periods --></relationshipLabel>
+        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- The Facility associated with the Course Offering for the specified time and day of week. --></help>
         <label><!-- Facility --></label>
         <name>Facility__c</name>
-        <relationshipLabel><!-- Course Offering Periods --></relationshipLabel>
+        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- The day on which the course is offered (Monday - Sunday). --></help>
@@ -61,14 +61,13 @@
         <label><!-- Wednesday --></label>
         <name>Wednesday__c</name>
     </fields>
-    <gender><!-- Masculine --></gender>
+    <gender><!-- Feminine --></gender>
     <layouts>
-        <layout>HEDA Course Offering Period Layout</layout>
+        <layout>HEDA Course Offering Schedule Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- Course Offering Period Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+    <nameFieldLabel><!-- Course Offering Schedule Name --></nameFieldLabel>
 </CustomObjectTranslation>

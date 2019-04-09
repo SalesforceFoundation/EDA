@@ -13,9 +13,9 @@
         <name>Capacity__c</name>
     </fields>
     <fields>
-        <label><!-- Class Period --></label>
-        <name>Class_Period__c</name>
-        <relationshipLabel><!-- Class Periods --></relationshipLabel>
+        <label><!-- Time Block --></label>
+        <name>Time_Block__c</name>
+        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Course --></label>

@@ -47,7 +47,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Period__c</field>
+                <field>Time_Block__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -38,7 +38,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Class_Period__c</field>
+                <field>Time_Block__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -78,7 +78,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Course_Offering_Period__c.Course_Offering__c</relatedList>
+        <relatedList>Course_Offering_Schedule__c.Course_Offering__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

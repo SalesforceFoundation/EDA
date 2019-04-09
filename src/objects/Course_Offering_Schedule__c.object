@@ -43,7 +43,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>The different periods associated with a given course offering.</description>
+    <description>The different schedules associated with a given course offering.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -54,15 +54,15 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Class_Period__c</fullName>
+        <fullName>Time_Block__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class period in which this course offering is being held.</description>
+        <description>The time block in which this course offering is being held.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The class period in which this course offering is being held.</inlineHelpText>
-        <label>Class Period</label>
-        <referenceTo>Class_Period__c</referenceTo>
-        <relationshipLabel>Course Offering Periods</relationshipLabel>
-        <relationshipName>Course_Offering_Periods</relationshipName>
+        <inlineHelpText>The time block in which this course offering is being held.</inlineHelpText>
+        <label>Time Block</label>
+        <referenceTo>Time_Block__c</referenceTo>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -76,8 +76,8 @@
         <inlineHelpText>The Course Offering to which this record belongs.</inlineHelpText>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
-        <relationshipLabel>Course Offering Periods</relationshipLabel>
-        <relationshipName>Course_Offering_Periods</relationshipName>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -91,8 +91,8 @@
         <inlineHelpText>The Facility associated with the Course Offering for the specified time and day of week.</inlineHelpText>
         <label>Facility</label>
         <referenceTo>Facility__c</referenceTo>
-        <relationshipLabel>Course Offering Periods</relationshipLabel>
-        <relationshipName>Course_Offering_Periods</relationshipName>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -175,18 +175,18 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <label>Course Offering Period</label>
+    <label>Course Offering Schedule</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Course Offering Period Name</label>
+        <label>Course Offering Schedule Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Course Offering Periods</pluralLabel>
+    <pluralLabel>Course Offering Schedules</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

@@ -74,13 +74,13 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Class_Period__c</fullName>
+        <fullName>Time_Block__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Class Period</label>
-        <referenceTo>Class_Period__c</referenceTo>
-        <relationshipLabel>Class Periods</relationshipLabel>
-        <relationshipName>Class_Periods</relationshipName>
+        <label>Time Block</label>
+        <referenceTo>Time_Block__c</referenceTo>
+        <relationshipLabel>Time Blocks</relationshipLabel>
+        <relationshipName>Time_Blocks</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
