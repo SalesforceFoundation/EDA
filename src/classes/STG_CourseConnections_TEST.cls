@@ -29,7 +29,7 @@
 /**
 * @author Salesforce.org
 * @date 2016
-* @group CourseEnrollments
+* @group Course Enrollments
 * @group-content ../../ApexDocContent/CourseEnrollments.htm
 * @description Test specific to Course Connection Settings.
 */
