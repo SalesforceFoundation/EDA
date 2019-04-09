@@ -67,7 +67,8 @@ public class TDTM_ProcessControl {
         PREN_ProgramPlan_TDTM_Before_Insert,
         PPlan_Primary_TDTM_After_Insert,
         PPlan_Primary_TDTM_After_Update,
-        CLAN_PrimaryLanguage_TDTM
+        CLAN_PrimaryLanguage_TDTM,
+        CON_PrimaryLanguage_TDTM
     }
 
     /*******************************************************************************************************

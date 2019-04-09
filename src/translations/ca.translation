@@ -441,6 +441,10 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgDefaultContactLanguageFluency --></label>
+        <name>stgDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
         <label>Tipus predeterminat de registre de la facultat:</label>
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
@@ -559,6 +563,10 @@
     <customLabels>
         <label>Un cop finalitzat el procés, recordeu actualitzar els dissenys de pàgines i altres àrees de l&apos;aplicació que fan referència als camps de la descripció.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpDefaultContactLanguageFluency --></label>
+        <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
         <label>El tipus de gravació predeterminat quan es creen connexions de curs per a un membre de la facultat.</label>

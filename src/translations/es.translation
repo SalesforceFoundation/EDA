@@ -441,6 +441,10 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgDefaultContactLanguageFluency --></label>
+        <name>stgDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
         <label>Tipo de registro de profesor predeterminado:</label>
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
@@ -559,6 +563,10 @@
     <customLabels>
         <label><!-- stgHelpCoursesDataMigrationUpdatePageLayouts --></label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpDefaultContactLanguageFluency --></label>
+        <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
         <label>El tipo de registro predeterminado cuando se crean Conexiones de curso para un profesor.</label>
