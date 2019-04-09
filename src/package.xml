@@ -404,6 +404,15 @@
         <members>Relationship__c.SYSTEM_SystemCreated__c</members>
         <members>Relationship__c.Status__c</members>
         <members>Relationship__c.Type__c</members>
+        <members>Term_Grade__c.Course_Connection__c</members>
+        <members>Term_Grade__c.Credits_Attempted__c</members>
+        <members>Term_Grade__c.Credits_Earned__c</members>
+        <members>Term_Grade__c.Letter_Grade__c</members>
+        <members>Term_Grade__c.Numerical_Grade__c</members>
+        <members>Term_Grade__c.Percent_Grade__c</members>
+        <members>Term_Grade__c.Result__c</members>
+        <members>Term_Grade__c.Term_Grade_Type__c</members>
+        <members>Term_Grade__c.Term__c</members>
         <members>Term__c.Account__c</members>
         <members>Term__c.End_Date__c</members>
         <members>Term__c.Grading_Period_Sequence__c</members>
@@ -648,6 +657,7 @@
         <members>Relationship_Auto_Create__c</members>
         <members>Relationship_Lookup__c</members>
         <members>Relationship__c</members>
+        <members>Term_Grade__c</members>
         <members>Term__c</members>
         <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
@@ -732,6 +742,10 @@
         <members>Relationship__c-en_US</members>
         <members>Relationship__c-es</members>
         <members>Relationship__c-fr</members>
+        <members>Term_Grade__c-ca</members>
+        <members>Term_Grade__c-en_US</members>
+        <members>Term_Grade__c-es</members>
+        <members>Term_Grade__c-fr</members>
         <members>Term__c-ca</members>
         <members>Term__c-en_US</members>
         <members>Term__c-es</members>
@@ -761,6 +775,7 @@
         <members>Program_Enrollment__c</members>
         <members>Program_Plan__c</members>
         <members>Relationship__c</members>
+        <members>Term_Grade__c</members>
         <members>Term__c</members>
         <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
@@ -784,6 +799,7 @@
         <members>Program_Enrollment__c-HEDA Program Enrollment Layout</members>
         <members>Program_Plan__c-HEDA Program Plan Layout</members>
         <members>Relationship__c-HEDA Relationship Layout</members>
+        <members>Term_Grade__c-HEDA Term Grade Layout</members>
         <members>Term__c-HEDA Term Layout</members>
         <members>Time_Block__c-EDA Time Block Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
@@ -804,6 +820,7 @@
         <members>Program_Plan__c.All</members>
         <members>Program_Plan__c.Primary_Program_Plan</members>
         <members>Relationship__c.All</members>
+        <members>Term_Grade__c.All</members>
         <members>Term__c.All</members>
         <members>Time_Block__c.All</members>
         <members>Trigger_Handler__c.All</members>
