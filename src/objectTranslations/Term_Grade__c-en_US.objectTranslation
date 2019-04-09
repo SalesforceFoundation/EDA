@@ -9,7 +9,7 @@
         <value>Term Grades</value>
     </caseValues>
     <fields>
-        <help><!-- The class in which the student is received this grade. --></help>
+        <help><!-- The class in which the student received this grade. --></help>
         <label><!-- Course Connection --></label>
         <name>Course_Connection__c</name>
         <relationshipLabel><!-- Term Grades --></relationshipLabel>

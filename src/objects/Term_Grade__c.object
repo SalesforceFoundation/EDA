@@ -56,9 +56,9 @@
     <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class in which the student is received this grade.</description>
+        <description>The class in which the student received this grade.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The class in which the student is received this grade.</inlineHelpText>
+        <inlineHelpText>The class in which the student received this grade.</inlineHelpText>
         <label>Course Connection</label>
         <referenceTo>Course_Enrollment__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
