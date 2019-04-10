@@ -1,13 +1,13 @@
 *** Settings ***
 
-Resource        robot/HEDAP/resources/HEDA.robot
+Resource        robot/EDAP/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
 Validate Edit Mode For Relationships, Settings
-    Go To Heda Settings
+    Go To Eda Settings
     Wait Until Element Is visible	//a[contains(text(),'Relationships')]
     Click Link				//a[contains(text(),'Relationships')]
 

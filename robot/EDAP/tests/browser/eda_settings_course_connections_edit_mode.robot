@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource        robot/HEDAP/resources/HEDA.robot
+Resource        robot/EDAP/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
@@ -8,7 +8,7 @@ Suite Teardown  Delete Records and Close Browser
 
 
 Validate Edit Mode For Course Connections, Settings
-    Go To Heda Settings
+    Go To Eda Settings
     Wait Until Element Is visible	//a[contains(text(),'Course Connections')]
     Click Link				//a[contains(text(),'Course Connections')]
 

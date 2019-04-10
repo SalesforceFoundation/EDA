@@ -1,13 +1,13 @@
 *** Settings ***
 
-Resource        robot/HEDAP/resources/HEDA.robot
+Resource        robot/EDAP/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Test HEDA System Settings
-    Go To Heda Settings
+Test EDA System Settings
+    Go To Eda Settings
     Wait Until Element Is visible	//a[contains(text(),'System')]
     Click Link				//a[contains(text(),'System')]
 
