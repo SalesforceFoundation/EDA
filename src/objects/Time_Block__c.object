@@ -43,7 +43,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Represent a block or blocks of time in which classes are being held.</description>
+    <description>Represents a block or blocks of time in which classes are being held.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -56,9 +56,9 @@
     <fields>
         <fullName>Educational_Institution__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Educational Institution associated with this time block. For example, a school within a district.</description>
+        <description>The Educational Institution associated with this Time Block. For example, a school within a district.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Educational Institution associated with this time block. For example, a school within a district.</inlineHelpText>
+        <inlineHelpText>The Educational Institution associated with this Time Block. For example, a school within a district.</inlineHelpText>
         <label>Educational Institution</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Time Blocks</relationshipLabel>
@@ -70,9 +70,9 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>The time of day the time block ends.</description>
+        <description>The time of day the Time Block ends.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time of day the time block ends.</inlineHelpText>
+        <inlineHelpText>The time of day the Time Block ends.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -81,9 +81,9 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>The time of day the time block starts.</description>
+        <description>The time of day the Time Block starts.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time of day the time block starts.</inlineHelpText>
+        <inlineHelpText>The time of day the Time Block starts.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
