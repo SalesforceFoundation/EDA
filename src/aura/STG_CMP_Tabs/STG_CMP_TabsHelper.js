@@ -231,6 +231,14 @@
         saveAction.setParams({"hierarchySettings" : hierarchySettings});
         saveAction.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
+                console.log('settings saved!');
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "Title" : "Success!",
+                    "message" : "Settings Saved."
+                });
+                console.log('firing toast event');
+                toastEvent.fire();
                 component.set("v.isView", true);
             } else if(response.getState() === "ERROR") {
                 component.set("v.isView", false);

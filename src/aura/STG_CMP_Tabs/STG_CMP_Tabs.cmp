@@ -35,6 +35,7 @@
     <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
     <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
 
+    <aura:registerEvent name="showToast" type="force:showToast"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
