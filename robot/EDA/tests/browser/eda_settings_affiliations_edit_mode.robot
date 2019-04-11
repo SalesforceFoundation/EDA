@@ -17,7 +17,6 @@ Validate Edit Mode For Affiliations, Settings
     Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
     #Save the changes
-#    Select Checkbox                 //label[@class='slds-checkbox']//input[@type='checkbox']
 
     # Record Type Validation
     Click Element                   //input[contains(@class,'affl-record-type-enforced')]/parent::label
