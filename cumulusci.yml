@@ -112,7 +112,7 @@ tasks:
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
-    edaectomy:
+    hedaectomy:
         description: Remove all the EDA metadata in the target Org
         steps:
             1:
