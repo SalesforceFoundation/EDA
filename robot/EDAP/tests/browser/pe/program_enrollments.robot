@@ -1,7 +1,7 @@
 *** Settings ***
 
-Resource        robot/EDAP/resources/EDA.robot
-Library         robot/EDAP/resources/EDA.py
+Resource        robot/EDA/resources/EDA.robot
+Library         robot/EDA/resources/EDA.py
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
@@ -11,7 +11,10 @@ Verify EDA Settings
     Go To Eda Settings
 
     Wait for Locator                            eda_settings.affiliations_tab
-	Click on Element                            eda_settings.affiliations_tab
+    Click on Element                            eda_settings.affiliations_tab
+
+    #Go into Edit Mode
+    Click Button                                Edit
 
     ${affl_check} =  Get Eda Locator           eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator   eda_settings.affiliations_role_checkbox
@@ -19,9 +22,6 @@ Verify EDA Settings
     
     Wait for Locator                            eda_settings.affiliation_mappings_tab
     Click on Element                            eda_settings.affiliation_mappings_tab
-
-    #Go into Edit Mode
-    Click Button                                Edit
 
     #Save settings
     Click Button                                Save

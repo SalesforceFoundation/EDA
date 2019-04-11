@@ -1,7 +1,7 @@
 *** Settings ***
 
-Resource        robot/EDAP/resources/EDA.robot
-Library         robot/EDAP/resources/EDA.py
+Resource        robot/EDA/resources/EDA.robot
+Library         robot/EDA/resources/EDA.py
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
