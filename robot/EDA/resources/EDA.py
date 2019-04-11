@@ -172,7 +172,7 @@ class EDA(object):
         locator = eda_lex_locators["header_field_value"].format(title, value)
         self.selenium.page_should_contain_element(locator)
 
-    def Verify_affiliated_contact(self, list_name, first_name, last_name, y):
+    def verify_affiliated_contact(self, list_name, first_name, last_name, y):
         """Validates if the affiliated contacts have the added contact details enter Y for positive case and N for negative case"""
         locator = eda_lex_locators["affiliated_contacts"].format(
             list_name, first_name, last_name
@@ -195,7 +195,7 @@ class EDA(object):
                 locator = locator + "input"
                 self.selenium.get_webelement(locator).send_keys(value)
 
-    def Verify_details_address(self, field, value):
+    def verify_details_address(self, field, value):
         """Validates if the details page address field has specified value"""
         locator = eda_lex_locators["detail_page"]["address"].format(field, value)
         self.selenium.page_should_contain_element(locator)
