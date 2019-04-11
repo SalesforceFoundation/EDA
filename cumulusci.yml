@@ -1,7 +1,7 @@
 project:
-    name: EDAP
+    name: HEDAP
     package:
-        name: EDA
+        name: HEDA
         namespace: hed
         api_version: 45.0
         install_class: STG_InstallScript
@@ -40,7 +40,7 @@ tasks:
                 TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
 
     download_browser_tests:
-        description: Downloads the browser tests from the EDA-Browser-Tests Github repository.
+        description: Downloads the browser tests from the HEDA-Browser-Tests Github repository.
         class_path: cumulusci.tasks.util.DownloadZip
         options:
             url: 'https://github.com/SalesforceFoundation/HEDA-Browser-Tests/archive/master.zip'
