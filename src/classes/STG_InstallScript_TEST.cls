@@ -32,7 +32,7 @@
 * @date 2014
 * @group Settings
 * @group-content ../../ApexDocContent/Settings.htm
-* @description Test Class for the Install Script for the HEDA package.
+* @description Test Class for the Install Script for the EDA package.
 */
 @isTest
 public with sharing class STG_InstallScript_TEST {
@@ -166,7 +166,7 @@ public with sharing class STG_InstallScript_TEST {
 
         List<Trigger_Handler__c> tdtmHandlers = [SELECT Id, Name, Owned_by_Namespace__c, Active__c, User_Managed__c, Class__c FROM Trigger_Handler__c];
 
-        // Verify the number of default records didn't change. We subtract one because the custom non-HEDAtriiger handler should still exist
+        // Verify the number of default records didn't change. We subtract one because the custom non-EDA trigger handler should still exist
         System.assertEquals(TDTM_DefaultConfig.getDefaultRecords().size(), tdtmHandlers.size()-1);
 
         for(Trigger_Handler__c h:tdtmHandlers){
@@ -322,7 +322,7 @@ public with sharing class STG_InstallScript_TEST {
         upsert orgSettings;
 
         Test.startTest();
-        //Run the install script for orgs using HEDA 1.67
+        //Run the install script for orgs using EDA 1.67
         Test.testInstall(new STG_InstallScript(), new Version(1,67), true);
         Test.stopTest();
 

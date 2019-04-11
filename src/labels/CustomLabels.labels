@@ -22,7 +22,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AutoCreateFieldError</shortDescription>
-        <value>Unable to find valid autocreation Relationship settings. Please check the settings under HEDA Settings | Relationships | Autocreation for valid fields and try again.</value>
+        <value>Unable to find valid autocreation Relationship settings. Please check the settings under EDA Settings | Relationships | Autocreation for valid fields and try again.</value>
     </labels>
     <labels>
         <fullName>BothFieldAndValue</fullName>
@@ -182,7 +182,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrNotEnabledAccount</shortDescription>
-        <value>The ability to add multiple addresses is disabled for this Account record type. To enable it, go to HEDA Settings, click on Accounts and Contacts, and select the appropriate checkbox next to Account Types with Multi-Addresses Enabled.</value>
+        <value>The ability to add multiple addresses is disabled for this Account record type. To enable it, go to EDA Settings, click on Accounts and Contacts, and select the appropriate checkbox next to Account Types with Multi-Addresses Enabled.</value>
     </labels>
     <labels>
         <fullName>addrNotEnabledContact</fullName>
@@ -190,7 +190,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>addrNotEnabledContact</shortDescription>
-        <value>The ability to add multiple addresses is disabled for Contacts. To enable it, go to HEDA Settings, click on Accounts and Contacts, then select the Contact Multi-Addresses Enabled checkbox.</value>
+        <value>The ability to add multiple addresses is disabled for Contacts. To enable it, go to EDA Settings, click on Accounts and Contacts, then select the Contact Multi-Addresses Enabled checkbox.</value>
     </labels>
     <labels>
         <fullName>addrSeasonalOverlap</fullName>
@@ -278,7 +278,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>afflTypeEnforcedDescription</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, HEDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, EDA requires that the Account have a record type and that all Account Record Type values are correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
@@ -318,7 +318,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>The Filter Field value names a duplicate of a HEDA field. We will filter according to the value in the HEDA field. To proceed with saving this record, either specify a non-duplicate field or acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
+        <value>The Filter Field value names a duplicate of an EDA field. We will filter according to the value in the EDA field. To proceed with saving this record, either specify a non-duplicate field or acknowledge that you accept this filtering logic by appending {0} after the field name. For example, if the duplicate field is Deceased__c, enter Deceased__c{0} as the Filter Field value.</value>
     </labels>
     <labels>
         <fullName>exceptionRequiredField</fullName>
@@ -342,7 +342,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error message for TDTM filtering functionality.</shortDescription>
-        <value>The Filter Field value can&apos;t include the HEDA namespace. Remove it from the field name.</value>
+        <value>The Filter Field value can&apos;t include the EDA namespace. Remove it from the field name.</value>
     </labels>
     <labels>
         <fullName>firstNameLastNameAdminACC</fullName>
@@ -1085,7 +1085,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpCoursesDataMigration</shortDescription>
-        <value>In HEDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
+        <value>In EDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigrationCopiesValues</fullName>
@@ -1165,7 +1165,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpErrorDisable</shortDescription>
-        <value>If checked, HEDA&apos;s error handling framework is disabled.</value>
+        <value>If checked, EDA&apos;s error handling framework is disabled.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
@@ -1189,7 +1189,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpEthnicityRaceBackfill</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before HEDA added the Race field and removed values from the Ethnicity field as of HEDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before EDA added the Race field and removed values from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
@@ -1245,7 +1245,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</shortDescription>
-        <value>Remove all picklist values from the Ethnicity field except for &quot;Hispanic or Latino&quot; and &quot;Not Hispanic or Latino.&quot; We recommend that you replace each removed value with one of the remaining valid values, rather than deleting them outright from existing records. As of HEDA version 1.28, the only valid Ethnicity values are &quot;Not Hispanic or Latino&quot; and &quot;Hispanic or Latino.&quot;</value>
+        <value>Remove all picklist values from the Ethnicity field except for &quot;Hispanic or Latino&quot; and &quot;Not Hispanic or Latino.&quot; We recommend that you replace each removed value with one of the remaining valid values, rather than deleting them outright from existing records. As of EDA version 1.28, the only valid Ethnicity values are &quot;Not Hispanic or Latino&quot; and &quot;Hispanic or Latino.&quot;</value>
     </labels>
     <labels>
         <fullName>stgHelpSimpleAddrChangeIsUpdate</fullName>
@@ -1525,7 +1525,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgTitleHEDASettings</shortDescription>
-        <value>HEDA Settings</value>
+        <value>EDA Settings</value>
     </labels>
     <labels>
         <fullName>stgTitleNewAutocreateSetting</fullName>

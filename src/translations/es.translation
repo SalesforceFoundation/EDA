@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- HEDA --></label>
+        <label><!-- EDA --></label>
         <name>HEDA</name>
     </customApplications>
     <customLabels>
@@ -13,7 +13,7 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
-        <label>No se puede encontrar configuraciones de creación automática de relación válidas. Compruebe la configuración en Configuración de HEDA | Relaciones | Autocreation para campos válidos y vuelva a intentarlo.</label>
+        <label>No se puede encontrar configuraciones de creación automática de relación válidas. Compruebe la configuración en Configuración de EDA | Relaciones | Autocreation para campos válidos y vuelva a intentarlo.</label>
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
@@ -93,11 +93,11 @@
         <name>addrHhAdmAccountOnly</name>
     </customLabels>
     <customLabels>
-        <label>La capacidad de agregar varias direcciones está deshabilitada para este tipo de registro de cuenta. Para activarla, vaya a Configuración de HEDA, haga clic en Cuentas y contactos y seleccione la casilla de verificación adecuada junto a Tipos de cuenta con direcciones múltiples activadas.</label>
+        <label>La capacidad de agregar varias direcciones está deshabilitada para este tipo de registro de cuenta. Para activarla, vaya a Configuración de EDA, haga clic en Cuentas y contactos y seleccione la casilla de verificación adecuada junto a Tipos de cuenta con direcciones múltiples activadas.</label>
         <name>addrNotEnabledAccount</name>
     </customLabels>
     <customLabels>
-        <label>La capacidad de agregar varias direcciones está deshabilitada para Contactos. Para habilitarla, vaya a Configuración de HEDA, haga clic en Cuentas y contactos y, a continuación, seleccione la casilla de verificación Contacto de direcciones múltiples habilitadas.</label>
+        <label>La capacidad de agregar varias direcciones está deshabilitada para Contactos. Para habilitarla, vaya a Configuración de EDA, haga clic en Cuentas y contactos y, a continuación, seleccione la casilla de verificación Contacto de direcciones múltiples habilitadas.</label>
         <name>addrNotEnabledContact</name>
     </customLabels>
     <customLabels>
@@ -585,7 +585,7 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, se deshabilita el marco de trabajo de control de errores de HEDA.</label>
+        <label>Si se selecciona, se deshabilita el marco de trabajo de control de errores de EDA.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
@@ -605,7 +605,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>El tipo de registro de cuenta que mejor representa a los domicilios. HEDA utiliza el tipo de registro de cuenta de domicilio de manera predeterminada, pero puede usar otro tipo de registro si lo desea.</label>
+        <label>El tipo de registro de cuenta que mejor representa a los domicilios. EDA utiliza el tipo de registro de cuenta de domicilio de manera predeterminada, pero puede usar otro tipo de registro si lo desea.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
@@ -785,7 +785,7 @@
         <name>stgToastError</name>
     </customLabels>
     <customTabs>
-        <label>Configuración de HEDA</label>
+        <label>Configuración de EDA</label>
         <name>HEDA_Settings</name>
     </customTabs>
 </Translations>
