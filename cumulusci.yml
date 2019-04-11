@@ -99,14 +99,14 @@ tasks:
 
     robot:
         options:
-            suites: robot/EDAP/tests
+            suites: robot/EDA/tests
             options:
-                outputdir: robot/EDAP/results
+                outputdir: robot/EDA/results
 
     robot_libdoc:
         options:
-            path: robot/EDAP/resources/EDA.py,robot/EDAP/resources/EDA.robot
-            output: robot/EDAP/doc/Keywords.html
+            path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
+            output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
