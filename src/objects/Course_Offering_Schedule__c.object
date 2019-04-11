@@ -54,21 +54,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Time_Block__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>The time block in which this course offering is being held.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>The time block in which this course offering is being held.</inlineHelpText>
-        <label>Time Block</label>
-        <referenceTo>Time_Block__c</referenceTo>
-        <relationshipLabel>Course Offering Schedules</relationshipLabel>
-        <relationshipName>Course_Offering_Schedules</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>The Course Offering to which this record belongs.</description>
@@ -101,9 +86,9 @@
     <fields>
         <fullName>Friday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Friday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -112,9 +97,9 @@
     <fields>
         <fullName>Monday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Monday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -123,9 +108,9 @@
     <fields>
         <fullName>Saturday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Saturday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -134,9 +119,9 @@
     <fields>
         <fullName>Sunday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Sunday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText>.</inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -145,20 +130,35 @@
     <fields>
         <fullName>Thursday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Thursday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Time_Block__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The time block in which this course offering is being held.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The time block in which this course offering is being held.</inlineHelpText>
+        <label>Time Block</label>
+        <referenceTo>Time_Block__c</referenceTo>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Tuesday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Tuesday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -167,9 +167,9 @@
     <fields>
         <fullName>Wednesday__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>The day on which the course is offered (Monday - Sunday).</description>
+        <description>The Course Offering Schedule includes Wednesday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The day on which the course is offered (Monday - Sunday).</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

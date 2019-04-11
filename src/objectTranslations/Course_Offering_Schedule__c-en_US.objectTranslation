@@ -9,12 +9,6 @@
         <value>Course Offering Schedules</value>
     </caseValues>
     <fields>
-        <help><!-- The time block in which this course offering is being held. --></help>
-        <label><!-- Time Block --></label>
-        <name>Time_Block__c</name>
-        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
-    </fields>
-    <fields>
         <help><!-- The Course Offering to which this record belongs. --></help>
         <label><!-- Course Offering --></label>
         <name>Course_Offering__c</name>
@@ -52,6 +46,12 @@
         <name>Thursday__c</name>
     </fields>
     <fields>
+        <help><!-- The time block in which this course offering is being held. --></help>
+        <label><!-- Time Block --></label>
+        <name>Time_Block__c</name>
+        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
+    </fields>
+    <fields>
         <help><!-- The day on which the course is offered (Monday - Sunday). --></help>
         <label><!-- Tuesday --></label>
         <name>Tuesday__c</name>
@@ -62,10 +62,14 @@
         <name>Wednesday__c</name>
     </fields>
     <layouts>
-        <layout>HEDA Course Offering Schedule Layout</layout>
+        <layout>EDA Course Offering Schedule Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Days of Week --></label>
+            <section>Days of Week</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
