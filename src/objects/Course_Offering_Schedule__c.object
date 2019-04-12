@@ -43,7 +43,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>The different schedules associated with a given course offering.</description>
+    <description>The different schedules associated with a given Course Offering.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -121,7 +121,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Sunday.</description>
         <externalId>false</externalId>
-        <inlineHelpText>.</inlineHelpText>
+        <inlineHelpText></inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -141,9 +141,9 @@
     <fields>
         <fullName>Time_Block__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The time block in which this course offering is being held.</description>
+        <description>The Time Block in which this Course Offering is being held.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time block in which this course offering is being held.</inlineHelpText>
+        <inlineHelpText>The Time Block in which this Course Offering is being held.</inlineHelpText>
         <label>Time Block</label>
         <referenceTo>Time_Block__c</referenceTo>
         <relationshipLabel>Course Offering Schedules</relationshipLabel>
