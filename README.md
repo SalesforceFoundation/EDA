@@ -14,7 +14,6 @@ You can install EDA utilizing our custom application installer into any Develope
 #### Resources
 
 * <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">EDA ApexDoc code documentation</a>
-* <a href="https://powerofus.force.com/articles/Resource/Higher-Education-Data-Architecture-HEDA-Software-Requirements-Specification" target="_blank">EDA Software Requirements specification</a>
 * <a href="https://salesforce.quip.com/cAJzAnydf6gp" target="_blank">EDA Data Dictionary</a>
 
 #### Meta
