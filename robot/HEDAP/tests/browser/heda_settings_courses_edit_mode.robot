@@ -9,13 +9,14 @@ Suite Teardown  Delete Records and Close Browser
 
 Validate Edit Mode For Courses - Edit Mode, Settings
     Go To Heda Settings
-    Wait Until Element Is visible	//a[contains(text(),'Courses')]
-    Click Link				//a[contains(text(),'Courses')]
+    Wait for Locator	            heda_settings.courses
+    Click on Element                heda_settings.courses
     
-    #Former 
-    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
-    
+    Click Button                    Edit
+
+    #For purposes of checking edit mode, we will go into edit mode, but will not execute the 'run copy' button
+
+    Click Button                    Save 
 
 *** Keywords ***
 
