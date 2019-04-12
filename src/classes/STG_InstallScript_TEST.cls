@@ -44,7 +44,7 @@ public with sharing class STG_InstallScript_TEST {
             LastName = 'Test',
             Email = 'joe@domain.com'
         );
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);// need to turn off the trigger for this test
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false); // need to turn off the trigger for this test
         insert cont;
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true); // back on for install script
@@ -64,6 +64,10 @@ public with sharing class STG_InstallScript_TEST {
             // Verify Owned by namespace field set on first item in list
             System.assertEquals('hed', h.Owned_by_Namespace__c);
         }
+
+        // Verify defaults are set on install
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        System.assertEquals('Fluent', orgSettings.Default_Contact_Language_Fluency__c);
 
         // Making sure the Batch process ran successfully
         Contact cont2 = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =: cont.Id];
@@ -329,6 +333,21 @@ public with sharing class STG_InstallScript_TEST {
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
         System.assertNotEquals(null, updatedSettings.Administrative_Account_Record_Type__c);
         System.assertNotEquals('', updatedSettings.Administrative_Account_Record_Type__c);
-        system.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), orgSettings.Administrative_Account_Record_Type__c);
+        System.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), orgSettings.Administrative_Account_Record_Type__c);
+    }
+
+    @isTest
+    private static void setDefaultContactLanguageFluencyOnUpgrade() {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Default_Contact_Language_Fluency__c = '';
+        upsert orgSettings;
+        
+        Test.startTest();
+        // Run the install script for orgs using HEDA 1.73
+        Test.testInstall(new STG_InstallScript(), new Version(1,73), true);
+        Test.stopTest();
+
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+        System.assertEquals('Fluent', updatedSettings.Default_Contact_Language_Fluency__c);
     }
 }
