@@ -35,10 +35,23 @@
     <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
     <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
 
-    <aura:registerEvent name="showToast" type="force:showToast"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
+    <div class="slds-hide" style="height: 4rem;" id="successToast" aura:id="successToast">
+        <div class="slds-notify_container slds-is-relative">
+            <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
+                <span class="slds-assistive-text">success</span>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small ">Settings Updated Successfully</h2>
+                </div>
+                <div class="slds-p-left_xx-large">
+                    <ui:button class="slds-button slds-button--neutral settings-edit-bttn" label="Close" press="{!c.closeToast}"/>
+                </div>
+                
+            </div>
+        </div>
+    </div>
     <div aura:id="tabs" id="tabs" class="slds-tabs--default">
         <ul class="slds-tabs--default__nav" role="tablist">
             <li aura:id="afflTab" id="afflTab" class="slds-tabs__item slds-text-heading--label" tile="Affiliations" role="tab">

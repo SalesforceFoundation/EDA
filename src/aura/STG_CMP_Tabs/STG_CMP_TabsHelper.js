@@ -2,7 +2,7 @@
 	init : function(component) {
 		//Retrieving hierarchy settings
 		this.getHierarchySettings(component);
-
+        console.log('running init');
 		// since we can't call this.processTabs(component, 'afflTabBtn') from here
 		// well process the tabs manually here.
 		$A.util.addClass(component.find("afflTab"), "slds-active");
@@ -12,7 +12,7 @@
 		$A.util.addClass(component.find("addrTabContent"), "slds-hide");
 		$A.util.addClass(component.find("coursesTabContent"), "slds-hide");
 		$A.util.addClass(component.find("courseConTabContent"), "slds-hide");
-		$A.util.addClass(component.find("systemTabContent"), "slds-hide");
+        $A.util.addClass(component.find("systemTabContent"), "slds-hide");
 	},
 
 	getHierarchySettings : function(component) {
@@ -231,21 +231,29 @@
         saveAction.setParams({"hierarchySettings" : hierarchySettings});
         saveAction.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
-                console.log('settings saved!');
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "Title" : "Success!",
-                    "message" : "Settings Saved."
-                });
-                console.log('firing toast event');
-                toastEvent.fire();
                 component.set("v.isView", true);
+                var tst = component.find("successToast");
+                $A.util.removeClass(tst, "slds-hide");
+                $A.util.addClass(tst, "slds-show");
+                window.setTimeout(
+                    $A.getCallback(function() {
+                        $A.util.removeClass(tst, "slds-show");
+                        $A.util.addClass(tst, "slds-hide");    
+                    }), 2500
+                );
+
             } else if(response.getState() === "ERROR") {
                 component.set("v.isView", false);
                 this.displayError(response);
             }
         });
         $A.enqueueAction(saveAction);
+    },
+
+    closeToast: function(component) {
+        var tst = component.find("successToast");
+        $A.util.removeClass(tst, "slds-show");
+        $A.util.addClass(tst, "slds-hide");
     },
 
     resetSettings : function(component) {
