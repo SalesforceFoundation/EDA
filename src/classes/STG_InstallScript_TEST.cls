@@ -67,7 +67,7 @@ public with sharing class STG_InstallScript_TEST {
 
         // Verify defaults are set on install
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
-        System.assertEquals('Fluent', orgSettings.Default_Contact_Language_Fluency__c);
+        System.assertEquals(Label.stgFluent, orgSettings.Default_Contact_Language_Fluency__c);
 
         // Making sure the Batch process ran successfully
         Contact cont2 = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =: cont.Id];
@@ -343,11 +343,11 @@ public with sharing class STG_InstallScript_TEST {
         upsert orgSettings;
         
         Test.startTest();
-        // Run the install script for orgs using HEDA 1.73
-        Test.testInstall(new STG_InstallScript(), new Version(1,73), true);
+        // Run the install script for orgs using HEDA 1.74
+        Test.testInstall(new STG_InstallScript(), new Version(1,74), true);
         Test.stopTest();
 
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
-        System.assertEquals('Fluent', updatedSettings.Default_Contact_Language_Fluency__c);
+        System.assertEquals(Label.stgFluent, updatedSettings.Default_Contact_Language_Fluency__c);
     }
 }

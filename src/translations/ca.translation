@@ -477,6 +477,10 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgFluent --></label>
+        <name>stgFluent</name>
+    </customLabels>
+    <customLabels>
         <label>Configuració del model de compte. &quot;Administratiu&quot; és el model recomanat.</label>
         <name>stgHelpAccountModel</name>
     </customLabels>

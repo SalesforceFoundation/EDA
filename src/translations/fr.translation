@@ -477,6 +477,10 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgFluent --></label>
+        <name>stgFluent</name>
+    </customLabels>
+    <customLabels>
         <label>Définition du modèle de compte. Le modèle recommandé est « Administratif ».</label>
         <name>stgHelpAccountModel</name>
     </customLabels>

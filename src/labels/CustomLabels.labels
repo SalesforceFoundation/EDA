@@ -944,6 +944,14 @@
         <value>Ethnicity and Race Backfill for Contacts</value>
     </labels>
     <labels>
+        <fullName>stgFluent</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgFluent</shortDescription>
+        <value>Fluent</value>
+    </labels>
+    <labels>
         <fullName>stgHelpAccountModel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

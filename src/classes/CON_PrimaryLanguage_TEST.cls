@@ -38,7 +38,7 @@ private class CON_PrimaryLanguage_TEST {
     private static Contact contact;
     private static Language__c language;
     private static Contact_Language__c contactLanguage;
-    private static final String DEFAULT_FLUENCY = 'Fluent';
+    private static final String DEFAULT_FLUENCY = Label.stgFluent;
 
     /*******************************************************************************************************
     * @description Inserts a new Language and Contact record for testing.

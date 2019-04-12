@@ -272,14 +272,14 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
     
     /*******************************************************************************************************
-    * @description Populate Default Contact Language Fluency custom setting when upgrading to 1.74
+    * @description Populate Default Contact Language Fluency custom setting when upgrading to 1.75
     * @return void
     */
     private static void setDefaultContactLanguageFluency(Version previousVersion) {
-        if(previousVersion != null && previousVersion.compareTo(new Version(1,74)) < 0) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,75)) < 0) {
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
             if(orgSettings.Default_Contact_Language_Fluency__c == null || orgSettings.Default_Contact_Language_Fluency__c == '') {
-                orgSettings.Default_Contact_Language_Fluency__c = 'Fluent';
+                orgSettings.Default_Contact_Language_Fluency__c = Label.stgFluent;
             }
             upsert orgSettings;
         }
