@@ -38,6 +38,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Time_Block__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Faculty__c</field>
             </layoutItems>
         </layoutColumns>
@@ -74,6 +78,12 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Time_Block__c</fields>
+        <fields>Facility__c</fields>
+        <relatedList>Course_Offering_Schedule__c.Course_Offering__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Contact__c</fields>
         <fields>Account__c</fields>
         <fields>Program_Enrollment__c</fields>
@@ -87,7 +97,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h41000000b0Gh</masterLabel>
+        <masterLabel>00h3F000000r97a</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
