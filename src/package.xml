@@ -286,6 +286,16 @@
         <members>Course_Enrollment__c.Primary__c</members>
         <members>Course_Enrollment__c.Program_Enrollment__c</members>
         <members>Course_Enrollment__c.Status__c</members>
+        <members>Course_Offering_Schedule__c.Course_Offering__c</members>
+        <members>Course_Offering_Schedule__c.Facility__c</members>
+        <members>Course_Offering_Schedule__c.Friday__c</members>
+        <members>Course_Offering_Schedule__c.Monday__c</members>
+        <members>Course_Offering_Schedule__c.Saturday__c</members>
+        <members>Course_Offering_Schedule__c.Sunday__c</members>
+        <members>Course_Offering_Schedule__c.Thursday__c</members>
+        <members>Course_Offering_Schedule__c.Time_Block__c</members>
+        <members>Course_Offering_Schedule__c.Tuesday__c</members>
+        <members>Course_Offering_Schedule__c.Wednesday__c</members>
         <members>Course_Offering__c.Capacity__c</members>
         <members>Course_Offering__c.Course__c</members>
         <members>Course_Offering__c.End_Date__c</members>
@@ -294,6 +304,7 @@
         <members>Course_Offering__c.Section_ID__c</members>
         <members>Course_Offering__c.Start_Date__c</members>
         <members>Course_Offering__c.Term__c</members>
+        <members>Course_Offering__c.Time_Block__c</members>
         <members>Course__c.Account__c</members>
         <members>Course__c.Course_ID__c</members>
         <members>Course__c.Credit_Hours__c</members>
@@ -412,6 +423,9 @@
         <members>Term__c.Parent_Term__c</members>
         <members>Term__c.Start_Date__c</members>
         <members>Term__c.Type__c</members>
+        <members>Time_Block__c.Educational_Institution__c</members>
+        <members>Time_Block__c.End_Time__c</members>
+        <members>Time_Block__c.Start_Time__c</members>
         <members>Trigger_Handler__c.Active__c</members>
         <members>Trigger_Handler__c.Asynchronous__c</members>
         <members>Trigger_Handler__c.Class__c</members>
@@ -636,6 +650,7 @@
         <members>Affl_Mappings__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
+        <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
         <members>Error__c</members>
@@ -650,6 +665,7 @@
         <members>Relationship__c</members>
         <members>Term_Grade__c</members>
         <members>Term__c</members>
+        <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
         <name>CustomObject</name>
     </types>
@@ -680,6 +696,10 @@
         <members>Course_Enrollment__c-en_US</members>
         <members>Course_Enrollment__c-es</members>
         <members>Course_Enrollment__c-fr</members>
+        <members>Course_Offering_Schedule__c-ca</members>
+        <members>Course_Offering_Schedule__c-en_US</members>
+        <members>Course_Offering_Schedule__c-es</members>
+        <members>Course_Offering_Schedule__c-fr</members>
         <members>Course_Offering__c-ca</members>
         <members>Course_Offering__c-en_US</members>
         <members>Course_Offering__c-es</members>
@@ -736,6 +756,10 @@
         <members>Term__c-en_US</members>
         <members>Term__c-es</members>
         <members>Term__c-fr</members>
+        <members>Time_Block__c-ca</members>
+        <members>Time_Block__c-en_US</members>
+        <members>Time_Block__c-es</members>
+        <members>Time_Block__c-fr</members>
         <members>Trigger_Handler__c-ca</members>
         <members>Trigger_Handler__c-en_US</members>
         <members>Trigger_Handler__c-es</members>
@@ -747,6 +771,7 @@
         <members>Affiliation__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
+        <members>Course_Offering_Schedule__c</members>
         <members>Course_Offering__c</members>
         <members>Course__c</members>
         <members>Facility__c</members>
@@ -758,6 +783,7 @@
         <members>Relationship__c</members>
         <members>Term_Grade__c</members>
         <members>Term__c</members>
+        <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
         <name>CustomTab</name>
     </types>
@@ -769,6 +795,7 @@
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
+        <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
         <members>Course_Offering__c-HEDA Course Offering Layout</members>
         <members>Course__c-HEDA Course Layout</members>
         <members>Error__c-HEDA Error Layout</members>
@@ -780,6 +807,7 @@
         <members>Relationship__c-HEDA Relationship Layout</members>
         <members>Term_Grade__c-HEDA Term Grade Layout</members>
         <members>Term__c-HEDA Term Layout</members>
+        <members>Time_Block__c-EDA Time Block Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
         <name>Layout</name>
     </types>
@@ -788,6 +816,7 @@
         <members>Affiliation__c.All</members>
         <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
+        <members>Course_Offering_Schedule__c.All</members>
         <members>Course_Offering__c.All</members>
         <members>Course__c.All</members>
         <members>Facility__c.All</members>
@@ -799,6 +828,7 @@
         <members>Relationship__c.All</members>
         <members>Term_Grade__c.All</members>
         <members>Term__c.All</members>
+        <members>Time_Block__c.All</members>
         <members>Trigger_Handler__c.All</members>
         <members>Trigger_Handler__c.All_Main_Fields</members>
         <name>ListView</name>
