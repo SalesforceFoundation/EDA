@@ -36,7 +36,7 @@
 @isTest
 private class TDTM_DMLgt200_TEST {
 	
-	static Integer inputSize = 500;
+	static Integer inputSize = 250;
 
     /*********************************************************************************************************
     * @description Test Method for inserting large amounts of Contacts
