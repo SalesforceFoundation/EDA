@@ -5,7 +5,8 @@ heda_lex_locators = {
         "button": "//div[@class='actionsContainer']/button[@title='{}']",
         "datepicker": "//div[contains(@class,'uiDatePickerGrid')]/table[@class='calGrid']//span[text()='{}']",
         "edit_button": '//*[@title="{}"]',
-        "list": "//div[contains(@class,'forcePageBlockSectionRow')]/div[contains(@class,'forcePageBlockItem')]/div[contains(@class,'slds-p-vertical_xx-small')]/div[@class='slds-form-element__control']/div[.//span[text()='{}']][//div[contains(@class,'uiMenu')]//a[@class='select']]",
+        "list_old": "//div[contains(@class,'forcePageBlockSectionRow')]/div[contains(@class,'forcePageBlockItem')]/div[contains(@class,'slds-p-vertical_xx-small')]/div[@class='slds-form-element__control']/div[.//span[text()='{}']][//div[contains(@class,'uiMenu')]//a[@class='select']]",
+        "list": "//div[contains(@class,'forcePageBlockItem')]//div//div//div//span//span[contains(text(), 'Primary Address Type')]/../../div/div/div/div/a[@class='select']",
         "dropdown": "//div[@class='select-options']/ul[@class='scrollable']/li[@class='uiMenuItem uiRadioMenuItem']/a[contains(text(),'{}')]",
         "related": {
             "button": "//article[contains(@class, 'forceRelatedListCardDesktop')][.//img][.//span[@title='{}']]//a[@title='{}']",
@@ -24,7 +25,24 @@ heda_lex_locators = {
         "affiliations_role_checkbox1": "(//label[@class='slds-checkbox']//span[@class='uiImage uiOutputCheckbox'])[3]//img",
         "affiliation_mappings_tab": "//a[contains(text(), 'Affiliation Mappings')]",
         "create_walkin_advising_event_button": "//div[@id='main']//button[contains(text(), 'New Walk-In')]",
+        "courses" : "//a[contains(text(),'Courses')]",
         "duration": "//div[.//span[text()='Duration'] and contains(@class, 'slds-form-element') ]//select//option[@value='60']",
+        "hh_naming_check" : "//input[@class='automatic-hh-acc uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
+        "hh_naming_role_checkbox" : "//select[@class='admin-account-naming-input-select select uiInput uiInputSelect uiInput--default uiInput--select']//option[@value='{!{!FirstName}} {!LastName} Administrative Account']",
+        "hh_adminfnamelname" : "//input[contains(@class,'firstName')]",
+    },
+    "tabs" : {
+        "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",
+    },
+    "account_types" : {
+        "administrative" : "//span[contains(text(),'Administrative')]/parent::*",
+        "academic" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Academic Program')]",
+        "administrativecheckbox" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Administrative')]",
+        "business" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Business Organization')]",
+        "educational" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Educational Institution')]",
+        "household" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Household Account')]",
+        "sports" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Sports Organization')]",
+        "university" : "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]",
     },
     "contact": {
         "new_button": "//a[@title='New']//div[@title='New']",
@@ -34,7 +52,18 @@ heda_lex_locators = {
         "oldprogram_enrollment_new_button": "//div[@class='container forceRelatedListSingleContainer']/following::span[@title='Program Enrollments']/following::a//div[@title='New']",
         "program_enrollment_new_button": "//div[contains(@class, 'windowViewMode-normal')]//span[text()='Program Enrollments']/following-sibling::span[@title='(0)']/ancestor::header/following-sibling::div/descendant::a[@title='New']",
     },
-
+    "program_plans": {
+        "main_drop": "(//div//one-app-nav-bar-item-root//a//span[contains(text(), 'Program Plans')]//..)[1]",
+        "new_button": "//a[@title='New']//div[@title='New']/..",
+        "pp_name": "//div//div//div//div//div//div//div//label//span[contains(text(), 'Program Plan Name')]//../following-sibling::input",
+        "save_button": "//button[@title='Save']",
+    },
+    "course_offering": {
+        "new_button": "//a[@title='New']//div[@title='New']/..",
+        "new_course_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Course')]",
+        "save_button": "(//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[@class=' label bBody' and contains(text(), 'Save')])[2]",
+    },
+    "heda_tile": "//div[@class='slds-app-launcher__tile-body']//a[contains(text(),'HEDA')]/../..",
     "new_account": "//span[@title='New Account']",
     "new_account_next_button": "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']",
     "new_account_name": "//input[@class='input uiInput uiInputText uiInput--default uiInput--input']",
@@ -63,7 +92,7 @@ heda_lex_locators = {
     "account_list": '//tbody/tr/th[.//span[contains(@class, "slds-grid")]]/descendant::a[text()="{}"]',
     "dd_options": '//*[@id="p3"]/option[text()="{}"]',
     "related_list_items": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "{}"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")][.//div[contains(@class, "outputLookupContainer")]]//a[text()="{}"]',
-    "header_field_value": '//li[contains(@class, "slds-page-header__detail")][.//p[contains(@class, "slds-text-heading--label")][@title="{}"]]//*[text()="{}"]',
+    "header_field_value": '//li[contains(@class,"slds-page-header__detail")]//div//span[contains(@title,"{}")]/following-sibling::div/div/div/a[contains(text(), "{}")]',
     "header_datepicker": '//li[contains(@class, "slds-page-header__detail")][.//p[contains(@class, "slds-text-heading--label")][@title="{}"]]//*[@class="uiOutputDate"]',
     "affiliated_contacts": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "{}"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")]//tbody//td/span[text()="{}"]/../following-sibling::td/span[text()="{}"]',
     "detail_page": {

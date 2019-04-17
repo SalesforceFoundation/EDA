@@ -9,36 +9,35 @@ Suite Teardown  Delete Records and Close Browser
 Validate Edit Mode For Accounts and Contacts, Settings
     [tags]  unstable
     Go To Heda Settings
-    Wait Until Element Is visible	//a[contains(text(),'Accounts and Contacts')]
-    Click Element                 //a[contains(text(),'Accounts and Contacts')]
-
+    Wait for Locator            	tabs.accountsandcontacts
+    Click on Element                tabs.accountsandcontacts
+    
     #Go into Edit mode 
-    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
-    Wait Until Element Is visible   //div[@class='slds-button-group']//span[contains(text(), 'Save')] 
+    Click Button                    Edit
 
     # Select Multi-Address Account Types
-    Click Element                   //span[contains(text(),'Administrative')]/parent::*
+    Click on Element                account_types.administrative
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Academic Program')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Academic Program')]
+    Wait for Locator                account_types.academic
+    Click on Element                account_types.academic
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Administrative')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Administrative')]
+    Wait for Locator                account_types.administrativecheckbox
+    Click on Element                account_types.administrativecheckbox
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Business Organization')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Business Organization')]
+    Wait for Locator                account_types.business
+    Click on Element                account_types.business
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Educational Institution')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Educational Institution')]
+    Wait for Locator                account_types.educational 
+    Click on Element                account_types.educational
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Household Account')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Household Account')]
+    Wait for Locator                account_types.household 
+    Click on Element                account_types.household
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Sports Organization')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Sports Organization')]
+    Wait for Locator                account_types.sports
+    Click on Element                account_types.sports
 
-    Wait Until Element Is visible   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]
-    Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]
+    Wait for Locator                account_types.university 
+    Click on Element                account_types.university 
 
 
     # Uncheck everything
@@ -53,6 +52,51 @@ Validate Edit Mode For Accounts and Contacts, Settings
     #Save the changes
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
+
+
+
+    # Select Multi-Address Account Types
+    Click on Element                account_types.administrative
+
+    Wait for Locator                account_types.academic
+    Click on Element                account_types.academic
+
+    Wait for Locator                account_types.administrativecheckbox
+    Click on Element                account_types.administrativecheckbox
+
+    Wait for Locator                account_types.business
+    Click on Element                account_types.business
+
+    Wait for Locator                account_types.educational 
+    Click on Element                account_types.educational
+
+    Wait for Locator                account_types.household 
+    Click on Element                account_types.household
+
+    Wait for Locator                account_types.sports
+    Click on Element                account_types.sports
+
+    Wait for Locator                account_types.university 
+    Click on Element                account_types.university 
+    
+    Click Button                    Save
+
+
+    # Now restore everything back to what it was before the test
+    Click Button                    Edit
+
+    # Uncheck everything
+    Wait for Locator                account_types.academic
+    Click on Element                account_types.academic
+    Click on Element                account_types.administrativecheckbox
+    Click on Element                account_types.business
+    Click on Element                account_types.educational
+    Click on Element                account_types.household
+    Click on Element                account_types.sports
+    Click on Element                account_types.university
+
+    #Save the changes
+    Click Button                    Save
 
 *** Keywords ***
 

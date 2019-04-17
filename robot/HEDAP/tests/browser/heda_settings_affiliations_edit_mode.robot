@@ -31,3 +31,36 @@ Validate Edit Mode For Affiliations, Settings
 
 
 
+*** Settings ***
+
+Resource        robot/HEDAP/resources/HEDA.robot
+Suite Setup     Open Test Browser
+Suite Teardown  Delete Records and Close Browser
+
+*** Test Cases ***
+
+Validate Edit Mode For Affiliations, Settings
+    [tags]  unstable
+    Go To Heda Settings
+
+    Wait for Locator                            heda_settings.affiliations_tab
+    Click on Element                            heda_settings.affiliations_tab
+
+
+    #Select Specify Role
+    ${affl_check} =  Get Heda Locator           heda_settings.affiliations_check
+    ${affl_role_checkbox} =  Get Heda Locator   heda_settings.affiliations_role_checkbox
+    Select Checkbox In Heda Settings            ${affl_check}        ${affl_role_checkbox}  
+
+
+    Click Button                                Edit
+
+    #will add additional tests here in next phase
+
+    Click Button                                Save
+
+*** Keywords ***
+
+
+
+
