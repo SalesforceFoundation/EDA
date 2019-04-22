@@ -235,6 +235,8 @@
                 var tst = component.find("successToast");
                 $A.util.removeClass(tst, "slds-hide");
                 $A.util.addClass(tst, "slds-show");
+                
+                //show manual toast
                 window.setTimeout(
                     $A.getCallback(function() {
                         $A.util.removeClass(tst, "slds-show");
