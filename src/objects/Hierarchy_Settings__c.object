@@ -209,9 +209,11 @@
     </fields>
     <fields>
         <fullName>Default_Contact_Language_Fluency__c</fullName>
-        <description>The Fluency to set for all Contact Language records automatically created when users set the Primary Language lookup field on the Contact. This value overrides any default defined on the Fluency picklist for these automatically created records.</description>
+        <description>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.
+This value overrides any default defined on the Fluency picklist for these automatically created records.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Fluency to set for all Contact Language records automatically created when users set the Primary Language lookup field on the Contact. This value overrides any default defined on the Fluency picklist for these automatically created records.</inlineHelpText>
+        <inlineHelpText>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.
+This value overrides any default defined on the Fluency picklist for these automatically created records.</inlineHelpText>
         <label>Default Contact Language Fluency</label>
         <length>255</length>
         <required>false</required>
