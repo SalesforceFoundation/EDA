@@ -132,4 +132,16 @@ Create A Course Offering
     Populate Field                          Department      robotTestLastName Administrative Account
     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
     Click on Element                        course_offering.save_button
-    
+    Click on Element                        term.search_terms
+    Click on Element                        term.new_term_button
+    Populate Field                          Term Name               Robot Automation Term 
+    Click on Element                        term.account
+    Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
+
+
+    Click on Element                        term.save_button
+    ${id_offering} =                        Generate Random String
+
+    Click on Element                        term.course_offering_id
+    Input Text                              //span[contains(text(), 'Course Offering ID')]//../following-sibling::input         ${id_offering}
+    Click on Element                        course_offering.next_save_button
