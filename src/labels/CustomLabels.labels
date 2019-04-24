@@ -1133,8 +1133,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpDefaultContactLanguageFluency</shortDescription>
-        <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.
-This value overrides any default defined on the Fluency picklist for these automatically created records.</value>
+        <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>

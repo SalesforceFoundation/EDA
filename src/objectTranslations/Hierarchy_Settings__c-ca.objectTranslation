@@ -103,8 +103,7 @@
         <name>Contacts_Addresses_Enabled__c</name>
     </fields>
     <fields>
-        <help><!-- The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.
-This value overrides any default defined on the Fluency picklist for these automatically created records. --></help>
+        <help><!-- The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact. --></help>
         <label><!-- Default Contact Language Fluency --></label>
         <name>Default_Contact_Language_Fluency__c</name>
     </fields>
