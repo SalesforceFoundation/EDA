@@ -68,6 +68,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             populateAdminRecordTypeSetting(previousVersion);
 
+            setDefaultContactLanguageFluency(previousVersion);
+
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
                 // We need to handle a special case to populate the Owned_by_Namespace__c field for HEDA Orgs before 1.38.
                 populateNamespaceHandlers();
@@ -264,6 +266,20 @@ global without sharing class STG_InstallScript implements InstallHandler {
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
             if(orgSettings.Administrative_Account_Record_Type__c == null || orgSettings.Administrative_Account_Record_Type__c == '') {
                 orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
+            }
+            upsert orgSettings;
+        }
+    }
+    
+    /*******************************************************************************************************
+    * @description Populate Default Contact Language Fluency custom setting when upgrading to 1.75
+    * @return void
+    */
+    global static void setDefaultContactLanguageFluency(Version previousVersion) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,75)) < 0) {
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+            if(orgSettings.Default_Contact_Language_Fluency__c == null || orgSettings.Default_Contact_Language_Fluency__c == '') {
+                orgSettings.Default_Contact_Language_Fluency__c = Label.stgFluent;
             }
             upsert orgSettings;
         }

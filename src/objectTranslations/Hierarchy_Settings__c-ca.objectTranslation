@@ -103,6 +103,11 @@
         <name>Contacts_Addresses_Enabled__c</name>
     </fields>
     <fields>
+        <help><!-- The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact. --></help>
+        <label><!-- Default Contact Language Fluency --></label>
+        <name>Default_Contact_Language_Fluency__c</name>
+    </fields>
+    <fields>
         <help>Si es marca, el marc de maneig d&apos;errors de HEDA està desactivat.</help>
         <label>Desactiva el maneig d&apos;errors</label>
         <name>Disable_Error_Handling__c</name>

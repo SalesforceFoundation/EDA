@@ -185,6 +185,10 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'CLAN_PrimaryLanguage_TDTM', Load_Order__c = 1, Object__c = 'Contact_Language__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
+
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'CON_PrimaryLanguage_TDTM', Load_Order__c = 5, Object__c = 'Contact',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
         return handlers;
     }
 }
