@@ -441,6 +441,10 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgDefaultContactLanguageFluency --></label>
+        <name>stgDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
         <label>Type d&apos;enregistrement de professeur par défaut :</label>
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
@@ -471,6 +475,10 @@
     <customLabels>
         <label>Remplissage de l&apos;appartenance ethnique et de la race pour les contacts</label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgFluent --></label>
+        <name>stgFluent</name>
     </customLabels>
     <customLabels>
         <label>Définition du modèle de compte. Le modèle recommandé est « Administratif ».</label>
@@ -559,6 +567,10 @@
     <customLabels>
         <label>Une fois le processus terminé, pensez à mettre à jour les présentations de page et les autres zones de l&apos;application qui référencent les champs Description.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpDefaultContactLanguageFluency --></label>
+        <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
         <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour un membre professeur.</label>
