@@ -208,6 +208,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Default_Contact_Language_Fluency__c</fullName>
+        <description>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</inlineHelpText>
+        <label>Default Contact Language Fluency</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
         <description>If checked, EDA&apos;s error handling framework is disabled.</description>

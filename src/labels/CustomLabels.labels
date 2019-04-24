@@ -872,6 +872,14 @@
         <value>Course Description Copy Job Completed with a status of:</value>
     </labels>
     <labels>
+        <fullName>stgDefaultContactLanguageFluency</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgDefaultContactLanguageFluency</shortDescription>
+        <value>Default Contact Language Fluency</value>
+    </labels>
+    <labels>
         <fullName>stgDefaultFacultyTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -934,6 +942,14 @@
         <protected>true</protected>
         <shortDescription>stgEthnicityRaceBackfillContacts</shortDescription>
         <value>Ethnicity and Race Backfill for Contacts</value>
+    </labels>
+    <labels>
+        <fullName>stgFluent</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgFluent</shortDescription>
+        <value>Fluent</value>
     </labels>
     <labels>
         <fullName>stgHelpAccountModel</fullName>
@@ -1110,6 +1126,14 @@
         <protected>true</protected>
         <shortDescription>stgHelpCoursesDataMigrationUpdatePageLayouts</shortDescription>
         <value>After the process is complete, remember to update page layouts and other areas of the application that refer to the Description fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpDefaultContactLanguageFluency</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgHelpDefaultContactLanguageFluency</shortDescription>
+        <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>

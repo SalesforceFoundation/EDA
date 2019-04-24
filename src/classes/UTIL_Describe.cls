@@ -438,7 +438,6 @@ public class UTIL_Describe {
      * SObjectType and field, keyed by picklist label with a value of picklist value.
      * @param objectName Name of the object to retrieve picklist values for.
      * @param fieldName Name of the field to retrieve picklist values for.
-     * False if we want it to be the friendly name.
      * @return Map<String, String> Map of picklist labels to values for the object and field specified.
      */
     @AuraEnabled
