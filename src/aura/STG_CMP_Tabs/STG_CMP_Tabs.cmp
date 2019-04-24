@@ -38,17 +38,21 @@
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveSettings}" />
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
-    <div class="slds-hide" style="height: 4rem;" id="successToast" aura:id="successToast">
-        <div class="slds-notify_container slds-is-relative">
-            <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
-                <span class="slds-assistive-text">success</span>
-                <div class="slds-notify__content">
-                    <h2 class="slds-text-heading_small ">Settings Updated Successfully</h2>
+    <div class="slds-hide" id="successToast" aura:id="successToast">
+        <div class="slds-box">
+            <div class="slds-notify_container slds-notify_container--inline">
+                <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                    <span class="slds-assistive-text">Success</span>
+                    <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1" onclick="{!c.closeToast}">
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close"/>
+                    </button>
+                    <div class="slds-notify__content slds-grid">
+                        <lightning:icon src="/assets/icons/utility-sprite/svg/symbols.svg#success" />
+                        <div class="slds-col slds-align-middle">
+                            <h2 class="slds-text-heading_small">Settings Saved Successfully.</h2>
+                        </div>
+                    </div>
                 </div>
-                <div class="slds-p-left_xx-large">
-                    <ui:button class="slds-button slds-button--neutral settings-edit-bttn" label="Close" press="{!c.closeToast}"/>
-                </div>
-                
             </div>
         </div>
     </div>
