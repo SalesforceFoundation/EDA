@@ -150,6 +150,12 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Start_Time__c</fields>
+        <fields>End_Time__c</fields>
+        <relatedList>Time_Block__c.Educational_Institution__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Course_Offering__c</fields>
         <fields>Credits_Attempted__c</fields>
         <fields>Credits_Earned__c</fields>
@@ -187,7 +193,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1D000000dfPU</masterLabel>
+        <masterLabel>00h3C000000upKq</masterLabel>
         <sizeX>1</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
