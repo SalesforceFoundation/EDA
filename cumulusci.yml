@@ -280,6 +280,8 @@ orgs:
         dev_namespaced:
             config_file: orgs/dev.json
             namespaced: True
+        prerelease:
+            config_file: orgs/prerelease.json
 
 plans:
     install:
