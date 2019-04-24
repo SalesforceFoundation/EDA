@@ -1,0 +1,12 @@
+{
+  "orgName": "EDA - Prerelease Dev Workspace",
+  "edition": "Developer",
+  "instance": "CS46",
+  "orgPreferences" : {
+    "enabled": [
+      "S1DesktopEnabled",
+      "Translation",
+      "ChatterEnabled"
+    ]
+  }
+}
