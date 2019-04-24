@@ -2,6 +2,10 @@
 
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
 
+    <aura:attribute name="defaultContactLanguageFluencyValue" type="String" />
+    <aura:attribute name="defaultContactLanguageFluencyLabel" type="String" />
+    <aura:attribute name="fluencyPicklistEntries" type="Map" />
+
     <aura:attribute name="accTypesToDeleteSelected" type="Object[]" />
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
 
@@ -12,6 +16,25 @@
     <aura:attribute name="adminAccRecTypeId" type="String" />
 
     <div class="slds-grid slds-wrap">
+
+        <div class="slds-col slds-size--1-of-2">
+            <ui:outputText value="{!$Label.c.stgDefaultContactLanguageFluency}" />
+        </div>
+        <div class="slds-col slds-size--1-of-2">
+            <c:CMP_Picklist_Dropdown class="contact-language-fluency-picklist"
+                setting="{!v.hierarchySettings.Default_Contact_Language_Fluency__c}"
+                isView="{!v.isView}"
+                picklistValue="{!v.defaultContactLanguageFluencyValue}"
+                picklistLabel="{!v.defaultContactLanguageFluencyLabel}"
+                picklistEntries="{!v.fluencyPicklistEntries}"
+                enableNoneOption="true" />
+        </div>
+        <div class="slds-col slds-size--1-of-1">
+            <ui:outputText value="{!$Label.c.stgHelpDefaultContactLanguageFluency}" class="slds-text-body--small" />
+        </div>
+
+        <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
+
         <div class="slds-col slds-size--1-of-2">
             <ui:outputText value="{!$Label.c.stgDisablePreferredEmailEnforcement}"/>
         </div>

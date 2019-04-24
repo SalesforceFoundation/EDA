@@ -54,6 +54,8 @@
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
         <members>CON_PrimaryAffls_TEST</members>
+        <members>CON_PrimaryLanguage_TDTM</members>
+        <members>CON_PrimaryLanguage_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>ERR_AsyncErrors</members>
@@ -350,6 +352,7 @@
         <members>Hierarchy_Settings__c.Async_Error_Check_Last_Run__c</members>
         <members>Hierarchy_Settings__c.Automatic_Household_Naming__c</members>
         <members>Hierarchy_Settings__c.Contacts_Addresses_Enabled__c</members>
+        <members>Hierarchy_Settings__c.Default_Contact_Language_Fluency__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Disable_Preferred_Email_Enforcement__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
@@ -555,6 +558,7 @@
         <members>stgContactMultiAddressesEnabled</members>
         <members>stgCourseDescriptionCopyEmailBody</members>
         <members>stgCourseDescriptionCopyEmailSubject</members>
+        <members>stgDefaultContactLanguageFluency</members>
         <members>stgDefaultFacultyTypeTitle</members>
         <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
@@ -563,6 +567,7 @@
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
+        <members>stgFluent</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -585,6 +590,7 @@
         <members>stgHelpCoursesDataMigrationCopiesValues</members>
         <members>stgHelpCoursesDataMigrationDontOverwrite</members>
         <members>stgHelpCoursesDataMigrationUpdatePageLayouts</members>
+        <members>stgHelpDefaultContactLanguageFluency</members>
         <members>stgHelpDefaultFacultyType</members>
         <members>stgHelpDefaultStudentType</members>
         <members>stgHelpEnableCourseConnBeforeBackfill</members>
