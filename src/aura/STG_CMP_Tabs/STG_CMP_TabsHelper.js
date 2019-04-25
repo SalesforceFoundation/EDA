@@ -38,7 +38,7 @@
                 component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
                 component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
                 component.set("v.adminOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
-		        component.set("v.hhOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
+                component.set("v.hhOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
 
                 //Get account record types
                 this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
@@ -238,7 +238,7 @@
         });
         $A.enqueueAction(action);
     },
-    
+
     //We want to compare the list of all available Account Record Types with the list of those that have been
     //marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
     getRecTypesSelected : function(component, setting, recTypes) {

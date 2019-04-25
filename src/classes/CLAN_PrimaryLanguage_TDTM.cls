@@ -56,7 +56,11 @@ public with sharing class CLAN_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM)) {
+        // Exit early if this trigger or the CON_PrimaryLanguage_TDTM trigger is currently running - the work
+        // was already done!
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM) 
+            || TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM)) {
+            
             return dmlWrapper;
         }
 
@@ -137,13 +141,14 @@ public with sharing class CLAN_PrimaryLanguage_TDTM extends TDTM_Runnable {
             }
         }
 
-        // Add Contact records to dmlWrapper to be updated by the TDTM_TriggerHandler class
+        // Add Contact records to dmlWrapper
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)contactsToUpdate.values());
 
-        // Are there any Contact Language records to update? Update them now so that we prevent trigger recursion.
-        if (contactLanguagesToUpdate.size() > 0) {
-            update contactLanguagesToUpdate.values();
-        }
+        // Add Contact Languages to the dmlWrapper
+        dmlWrapper.objectsToUpdate.addAll((List<SObject>)contactLanguagesToUpdate.values());
+
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
 
         // We're done with our updates, unset the recursion flag.
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CLAN_PrimaryLanguage_TDTM, false);
