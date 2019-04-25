@@ -2,6 +2,7 @@
     init : function(component) {
         //Retrieving hierarchy settings
         this.getHierarchySettings(component);
+
         // since we can't call this.processTabs(component, 'afflTabBtn') from here
         // well process the tabs manually here.
         $A.util.addClass(component.find("afflTab"), "slds-active");
@@ -29,26 +30,29 @@
                 component.set("v.adminAccRecTypeId", settingsNoPrefix.Administrative_Account_Record_Type__c);
                 component.set("v.studentRecTypeId", settingsNoPrefix.Student_RecType__c);
                 component.set("v.facultyRecTypeId", settingsNoPrefix.Faculty_RecType__c);
-                component.set("v.affiliationRoleMapValue",settingsNoPrefix.Affl_ProgEnroll_Role_Map__c);
-                component.set("v.affiliationStatusMapValue",settingsNoPrefix.Affl_ProgEnroll_Status_Map__c);
-                component.set("v.affiliationStatusDeleteMapValue",settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
+                component.set("v.affiliationRoleMapValue", settingsNoPrefix.Affl_ProgEnroll_Role_Map__c);
+                component.set("v.affiliationStatusMapValue", settingsNoPrefix.Affl_ProgEnroll_Status_Map__c);
+                component.set("v.affiliationStatusDeleteMapValue", settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
+                component.set("v.defaultContactLanguageFluencyValue", settingsNoPrefix.Default_Contact_Language_Fluency__c);
 
                 component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
                 component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
-                component.set("v.adminOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
-                component.set("v.hhOtherDisplay",this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
+                component.set("v.adminOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
+		        component.set("v.hhOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Household_Account_Naming_Format__c));
 
                 //Get account record types
                 this.getAccountRecordTypes(component, settingsNoPrefix.Accounts_to_Delete__c,
                         settingsNoPrefix.Accounts_Addresses_Enabled__c, settingsNoPrefix.Account_Processor__c,
                         settingsNoPrefix.Household_Addresses_RecType__c, settingsNoPrefix.Administrative_Account_Record_Type__c);
                 // Get Affiliation Role Picklist
-                this.getAffiliationRolePicklistEntries(component,settingsNoPrefix.Affl_ProgEnroll_Role_Map__c);
+                this.getAffiliationRolePicklistEntries(component, settingsNoPrefix.Affl_ProgEnroll_Role_Map__c);
                 // Get Affiliation Status Picklist
-                this.getAffiliationStatusPicklistEntries(component,settingsNoPrefix.Affl_ProgEnroll_Status_Map__c,settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
+                this.getAffiliationStatusPicklistEntries(component, settingsNoPrefix.Affl_ProgEnroll_Status_Map__c, settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
                 // Get Course Connection Record Types
                 this.getCourseConnectionRecordTypes(component, settingsNoPrefix.Student_RecType__c,
                         settingsNoPrefix.Faculty_RecType__c);
+                // Get Contact Language Fluency Picklist
+                this.getFluencyPicklistEntries(component, settingsNoPrefix.Default_Contact_Language_Fluency__c);
             } else if(response.getState() === "ERROR") {
                 this.displayError(response);
             }
@@ -203,6 +207,38 @@
         $A.enqueueAction(action);
     },
 
+    getFluencyPicklistEntries : function(component, fluencyValue) {
+        //Get all active Contact Language Fluency picklist entries
+        var action = component.get("c.getPicklistActiveValuesMap");
+        var prefix = component.get("v.namespacePrefix");
+        var objectName = prefix + 'Contact_Language__c';
+        var fieldName = prefix + 'Fluency__c';
+        
+        action.setParams({ "objectName" : objectName,"fieldName" : fieldName});
+        action.setCallback(this, function(response) {
+            if(response.getState() === "SUCCESS") {
+                var picklistValues = response.getReturnValue();
+                var fluencyPicklistEntries = [];
+                
+                for(var property in picklistValues) {
+                    if (picklistValues.hasOwnProperty(property)) {
+                        fluencyPicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});
+                        
+                        if(property.indexOf(fluencyValue) > -1) {
+                            component.set("v.defaultContactLanguageFluencyLabel", property);
+                        }   
+                    }
+                }
+
+                component.set("v.fluencyPicklistEntries", fluencyPicklistEntries);
+
+            } else if(response.getState() === "ERROR") {
+                this.displayError(response);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
     //We want to compare the list of all available Account Record Types with the list of those that have been
     //marked as having enabled in the setting. The setting stores a semi-colon separated list of record type IDs.
     getRecTypesSelected : function(component, setting, recTypes) {
@@ -309,5 +345,5 @@
             return false;
         }
     }
-    
+
 })
