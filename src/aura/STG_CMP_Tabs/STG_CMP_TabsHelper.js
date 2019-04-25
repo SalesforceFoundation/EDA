@@ -240,7 +240,7 @@
                     $A.getCallback(function() {
                         $A.util.removeClass(tst, "slds-show");
                         $A.util.addClass(tst, "slds-hide");    
-                    }), 2500
+                    }), 3750
                 );
 
             } else if(response.getState() === "ERROR") {

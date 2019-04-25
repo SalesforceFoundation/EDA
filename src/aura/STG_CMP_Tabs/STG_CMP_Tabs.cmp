@@ -42,13 +42,13 @@
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
                 <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
-                    <span class="slds-assistive-text">Success</span>
+                    <span class="slds-assistive-text">{!$Label.c.stgSuccess}</span>
                     <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
-                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.clostToast}" />
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" />
                     </button>
                     <div class="slds-notify__content slds-grid">
                         <div class="slds-col slds-align-middle">
-                            <h2 class="slds-text-heading_small">Settings Saved Successfully.</h2>
+                            <h2 class="slds-text-heading_small">{!$Label.c.stgSaveSettings}</h2>
                         </div>
                     </div>
                 </div>

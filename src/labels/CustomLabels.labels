@@ -1344,6 +1344,14 @@
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email requirement for the first time or after a period of not enforcing the requirement.</value>
     </labels>
     <labels>
+        <fullName>stgSaveSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgstgSaveSettings</shortDescription>
+        <value>Settings Saved Successfully.</value>
+    </labels>
+    <labels>
         <fullName>stgSelectReciType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1374,6 +1382,14 @@
         <protected>false</protected>
         <shortDescription>stgStoreErrorsTitle</shortDescription>
         <value>Store Errors:</value>
+    </labels>
+    <labels>
+        <fullName>stgSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stgSuccess</shortDescription>
+        <value>Success</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>
