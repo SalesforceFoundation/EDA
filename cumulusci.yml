@@ -1,13 +1,13 @@
 project:
-    name: HEDAP
+    name: EDA
     package:
-        name: HEDA
+        name: EDA
         namespace: hed
         api_version: 45.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
-        repo_url: https://github.com/SalesforceFoundation/HEDAP
+        repo_url: https://github.com/SalesforceFoundation/EDA
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -39,64 +39,6 @@ tasks:
                 STG_InstallScript.insertRelationshipLookups();
                 TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
 
-    download_browser_tests:
-        description: Downloads the browser tests from the HEDA-Browser-Tests Github repository.
-        class_path: cumulusci.tasks.util.DownloadZip
-        options:
-            url: 'https://github.com/SalesforceFoundation/HEDA-Browser-Tests/archive/master.zip'
-            dir: browser_tests
-            subfolder: HEDA-Browser-Tests-master
-
-    browsertests_firefox:
-        description: Runs the Ruby/Watir browser tests in the browsertests folder using Firefox
-        class_path: cumulusci.tasks.command.SalesforceBrowserTest
-        options:
-            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber --format pretty --format junit --out ../junit -c features/ --tags ~@flaky --tags ~@chrome'
-            dir: '.'
-            env:
-                SELENIUM_BROWSER: firefox
-
-    browsertests_chrome:
-        description: Runs the Ruby/Watir browser tests in the browsertests folder using Chrome
-        class_path: cumulusci.tasks.command.SalesforceBrowserTest
-        options:
-            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber --format pretty --format junit --out ../junit -c features/ --tags ~@firefox --tags ~@flaky'
-            dir: '.'
-            env:
-                SELENIUM_BROWSER: chrome
-
-    browsertests_unmanaged_firefox:
-        description: Runs the Ruby/Watir browser tests in the browsertests folder against unmanaged metadata in Firefox
-        class_path: cumulusci.tasks.command.SalesforceBrowserTest
-        options:
-            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber --format pretty --format junit --out ../junit -c features/ --tags ~@flaky --tags ~@chrome'
-            dir: '.'
-            env:
-                SELENIUM_BROWSER: firefox
-                TARGET_ORG: unmanaged
-
-    browsertests_unmanaged_chrome:
-        description: Runs the Ruby/Watir browser tests in the browsertests folder against unmanaged metadata in Chrome
-        class_path: cumulusci.tasks.command.SalesforceBrowserTest
-        options:
-            command: 'cd browser_tests; bundle install --quiet; bundle exec cucumber --format pretty --format junit --out ../junit -c features/ --tags ~@firefox --tags ~@flaky'
-            dir: '.'
-            env:
-                SELENIUM_BROWSER: chrome
-                TARGET_ORG: unmanaged
-    mockaroo_contacts:
-        class_path: cumulusci_mockaroo.tasks.MockarooToSql
-        options:
-            schema: 'HEDA: Contacts'
-            count: 10
-            database_url: 'sqlite:///testdata.db'
-            table: 'Contact'
-            boolean_fields:
-                - FERPA__c
-                - Financial_Aid_Applicant__c
-                - HIPAA__C
-                - Military_Service__c
-
     robot:
         options:
             suites: robot/HEDAP/tests
@@ -113,7 +55,7 @@ tasks:
 
 flows:
     hedaectomy:
-        description: Remove all the HEDA metadata in the target Org
+        description: Remove all the EDA metadata in the target Org
         steps:
             1:
                 task: delete_dev_config
@@ -303,7 +245,7 @@ plans:
                 task: deploy_post
                 ui_options:
                     course_connection_record_types:
-                        name: Course Connection Record Types for HEDA
+                        name: Course Connection Record Types for EDA
                     facility_display_name:
                         name: Facility Display Name Formula Field
                 options:
