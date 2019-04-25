@@ -1372,7 +1372,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgstgSaveSettings</shortDescription>
+        <shortDescription>stgSaveSettings</shortDescription>
         <value>Settings Saved Successfully.</value>
     </labels>
     <labels>
