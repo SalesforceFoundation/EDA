@@ -611,10 +611,12 @@
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
         <members>stgRunCleanUpEnableFirstTime</members>
+        <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>
         <members>stgSimpleAddressChangeUpdate</members>
         <members>stgStoreErrorsTitle</members>
+        <members>stgSuccess</members>
         <members>stgTabAccCont</members>
         <members>stgTabAffl</members>
         <members>stgTabAfflMappings</members>
