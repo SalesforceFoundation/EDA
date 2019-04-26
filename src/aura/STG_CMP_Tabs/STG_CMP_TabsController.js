@@ -13,5 +13,9 @@
 
 	tabNavigationClick : function(component, event, helper) {
         helper.tabNavClick(component, event);
-	}
+    },
+    
+    closeToast: function(component, event, helper) {
+        helper.closeToast(component);
+    }
 })
