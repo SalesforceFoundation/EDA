@@ -35,7 +35,36 @@
 * @description Provides automated generation of unit test data for tests throughout the org 
 */
 @isTest
-public class UTIL_UnitTestData_TEST { 
+public class UTIL_UnitTestData_TEST {
+
+    public static List<SObject> sObjectsToUpdate;
+
+    /*********************************************************************************************************
+    * @description Provides a simple TDTM implementation that does nothing unless the static List of 
+    * sObjectsToUpdate is not null.
+    * The main purpose of this test TDTM class is to test re-entrancy scenarios that might result from a custom
+    * TDTM class. For example, the AFFL_AccRecordType_TEST class uses this class as an AfterInsert and AfterUpdate
+    * Contact TDTM trigger that updates the account record that initially fired the AFFL_AccRecordType_TDTM logic.
+    **********************************************************************************************************/
+    public class Test_TDTM extends TDTM_Runnable {
+
+        /*******************************************************************************************************
+        * @description Does nothing unless the static List of sObjectsToUpdate is not null.
+        * @param listNew the list of SObjects from trigger new.
+        * @param listOld the list of SObjects from trigger old.
+        * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+        * @param objResult the describe for the SObject.
+        * @return dmlWrapper
+        ********************************************************************************************************/
+        public override TDTM_Runnable.DmlWrapper run(List<SObject> newList, List<SObject> oldList, TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+            UTIL_Debug.debug('****Entered the Test_TDTM Trigger');
+            if (sObjectsToUpdate != null) {
+                UTIL_Debug.debug('****Updating objects: ' + sObjectsToUpdate);
+                update sObjectsToUpdate;
+            }
+            return new TDTM_Runnable.DmlWrapper();
+        }
+    }
     
     public static Contact getContact() {
     	Contact contact =  new Contact(FirstName = 'Test', LastName = 'Testerson' + Datetime.now().getTime(), 
