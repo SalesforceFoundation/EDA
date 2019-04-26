@@ -48,10 +48,13 @@
                 <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
                     <span class="slds-assistive-text">{!$Label.c.stgSuccess}</span>
                     <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
-                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" />
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
                     </button>
-                    <div class="slds-notify__content slds-grid">
-                        <div class="slds-col slds-align-middle">
+                    <div class="slds-notify__content slds-grid slds-gutters">
+                        <div class="slds-col slds-align-left">
+                            <c:svgIcon name="check" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                        </div>
+                        <div class="slds-col slds-align-middle slds-gutters">
                             <h2 class="slds-text-heading_small">{!$Label.c.stgSaveSettings}</h2>
                         </div>
                     </div>
