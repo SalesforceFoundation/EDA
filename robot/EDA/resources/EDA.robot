@@ -1,7 +1,7 @@
 *** Settings ***
 
 Resource       cumulusci/robotframework/Salesforce.robot
-Library        HEDA.py
+Library        EDA.py
 
 *** Keywords ***
 
@@ -266,14 +266,14 @@ Scroll Page To Location
     [Arguments]    ${x_location}    ${y_location}
     Execute JavaScript    window.scrollTo(${x_location},${y_location}) 
 
-Go To Heda Settings
+Go To Eda Settings
    Open App Launcher
 
 
-    # Check for HEDA Tile
-    Wait Until Element Is visible           //div[@class='slds-app-launcher__tile-body']//a[contains(text(),'HEDA')]
+    # Check for EDA Tile
+    Wait Until Element Is visible           //div[@class='slds-app-launcher__tile-body']//a[contains(text(),'EDA')]
 
-    Wait Until Element Is visible           //a[@title='HEDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'HEDA Settings')]
-    Click Element                           //a[@title='HEDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'HEDA Settings')]
+    Wait Until Element Is visible           //a[@title='EDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'EDA Settings')]
+    Click Element                           //a[@title='EDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'EDA Settings')]
 
     Select Frame			                //iframe[contains(@name, "vfFrameId")]

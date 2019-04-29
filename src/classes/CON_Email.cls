@@ -131,7 +131,7 @@ public class CON_Email {
                     CON_EmailFieldList oldEmailFields = new CON_EmailFieldList( oldmap.get(contact.Id) );
 
                     // If this is an update and the contact contained previous emails we want to clear the standard email field
-                    // we do this because when a user deletes all email values in the HEDA contact without clearing
+                    // we do this because when a user deletes all email values in the EDA contact without clearing
                     // the value if email, there would be an email address that the user tried to delete.
                     if (oldEmailFields.valuedCount() > 0) {
                         contact.Email = null;
@@ -185,7 +185,7 @@ public class CON_Email {
             this.emailLabel = contactEmailFieldMap.get('Email').getLabel();
 
             Map<String, String> hedaEmailField = new Map<String, String>();
-            //build map for HEDA email field map (Label, API Name)
+            //build map for EDA email field map (Label, API Name)
             for(String fieldName : contactEmailFieldMap.keySet() ) {
                 if(String.isNotBlank(UTIL_Namespace.getNamespace()) && fieldName.startsWithIgnoreCase(UTIL_Namespace.getNamespace())) {
                     hedaEmailField.put(contactEmailFieldMap.get(fieldName).getLabel(), fieldName);
@@ -195,7 +195,7 @@ public class CON_Email {
             for(String fieldName : contactEmailFieldMap.keySet()) {
                 String fieldLabel = contactEmailFieldMap.get(fieldName).getLabel();
                 
-                //If the field is not a standard email field and it is not duplicate with HEDA email, then add it to the list
+                //If the field is not a standard email field and it is not duplicate with EDA email, then add it to the list
                 if (fieldName != emailLabel && 
                         !(hedaEmailField.get(fieldLabel) != null && fieldName != hedaEmailField.get(fieldLabel))) {
                     String emailField = (String)contact.get(fieldName);

@@ -56,7 +56,7 @@
         <label>HEDA Program Enrollment Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Contains details about the relationship a student Contact has with a Department or School (the degree-granting Account type for the University).</description>
+    <description>Contains details about the relationship a student Contact has with a Department or School (the degree-granting Account type for the educational institution).</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

@@ -32,7 +32,7 @@
 * @date 2014
 * @group Settings
 * @group-content ../../ApexDocContent/Settings.htm
-* @description Installs Script for the HEDA package.
+* @description Installs Script for the EDA package.
 */
 global without sharing class STG_InstallScript implements InstallHandler {
 
@@ -71,7 +71,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             setDefaultContactLanguageFluency(previousVersion);
 
             if(previousVersion != null && previousVersion.compareTo(new Version(1,38)) < 0) {
-                // We need to handle a special case to populate the Owned_by_Namespace__c field for HEDA Orgs before 1.38.
+                // We need to handle a special case to populate the Owned_by_Namespace__c field for EDA Orgs before 1.38.
                 populateNamespaceHandlers();
             }
 
@@ -234,7 +234,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
 
     /*******************************************************************************************************
-    * @description: Popualte the Owned by Namespace field for HEDA owned triggers. We have to update Trigger
+    * @description: Popualte the Owned by Namespace field for EDA owned triggers. We have to update Trigger
     * handlers even if they are marked as user managed.
     */
     private static void populateNamespaceHandlers(){
@@ -247,7 +247,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             classNames.add(token.className);
         }
 
-        // Get HEDA trigger Handlers from the database
+        // Get EDA trigger Handlers from the database
         List<Trigger_Handler__c> hedaHandlers = [SELECT Id, Name, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Class__c in: classNames AND Object__c in: objectTypes LIMIT 5000];
 
         for(Trigger_Handler__c t : hedaHandlers) {
