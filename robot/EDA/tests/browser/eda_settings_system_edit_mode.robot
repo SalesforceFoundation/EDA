@@ -1,13 +1,13 @@
 *** Settings ***
 
-Resource        robot/HEDAP/resources/HEDA.robot
+Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
-Validate Edit Mode For HEDA Settings, SYSTEM
-    Go To Heda Settings
+Validate Edit Mode For EDA Settings, SYSTEM
+    Go To Eda Settings
 
     # Visit System tab
     Click Link				        //a[contains(text(),'System')]

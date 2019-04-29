@@ -67,7 +67,7 @@ private class TDTM_Manager_TEST {
 	/* This test is installing the actual defaults to the database and checking the value of TDTM_Config.getTdtmConfig() */
 	@isTest
 	public static void verifyDefaultsConfig() {
-        // Install Default HEDA TDTM Configuration
+        // Install Default EDA TDTM Configuration
         List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
         TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
 
