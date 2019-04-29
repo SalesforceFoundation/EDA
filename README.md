@@ -1,8 +1,8 @@
 ![Salesforce Education Data Architecture](https://cloud.githubusercontent.com/assets/1894238/13441500/13d366ec-dfbd-11e5-9df6-d9dee50ce87d.jpg "Salesforce Education Data Architecture")
 
-The Salesforce Education Data Architecture (EDA) provides an Education specific platform for growth for organizations utilizing Salesforce.  EDA utilizes a Salesforce managed package and some light unmanaged customization to give Higher Education users a familiar nomenclature and data model for many higher education applications.  In addition, Higher Education developers and administrators can utilize EDA's advanced trigger management capabilities, robust error handling and pluggable framework to better manage and coordinate the data in their Salesforce instance.
+The Salesforce Education Data Architecture (EDA) provides an education-specific platform for growth for organizations utilizing Salesforce.  EDA utilizes a Salesforce managed package and some light unmanaged customization to give Educational Instituion users a familiar nomenclature and data model for many education applications.  In addition, Education developers and administrators can utilize EDA's advanced trigger management capabilities, robust error handling and pluggable framework to better manage and coordinate the data in their Salesforce instance.
 
-EDA is built from industry-wide best practices used across higher education and the Salesforce ecosystem and we welcome feedback and contributions for the project. See below for more information on how to get involved.
+EDA is built from industry-wide best practices used across education institutions and the Salesforce ecosystem and we welcome feedback and contributions for the project. See below for more information on how to get involved.
 
 #### Try it out
 
@@ -13,7 +13,6 @@ You can install EDA utilizing our custom application installer into any Develope
 #### Resources
 
 * <a href="http://developer.salesforce.org/EDA/ApexDocumentation/" target="_blank">EDA ApexDoc code documentation</a>
-* <a href="https://powerofus.force.com/articles/Resource/Higher-Education-Data-Architecture-HEDA-Software-Requirements-Specification" target="_blank"> EDA Software Requirements specification</a>
 * <a href="https://salesforce.quip.com/cAJzAnydf6gp" target="_blank">EDA Data Dictionary</a>
 
 #### Meta

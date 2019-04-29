@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource  robot/HEDAP/resources/HEDA.robot
+Resource  robot/EDA/resources/EDA.robot
 Suite Teardown  Delete Session Records
 
 *** Test Cases ***

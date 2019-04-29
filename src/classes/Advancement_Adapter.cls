@@ -32,15 +32,15 @@
 * @date 2017
 * @group TDTM
 * @group-content ../../ApexDocContent/TDTM.htm
-* @description Provides an adapter for other packages to be able to inject customizations into HEDA.
+* @description Provides an adapter for other packages to be able to inject customizations into EDA.
 **/
 
 global virtual with sharing class Advancement_Adapter {
 
     /*******************************************************************************************************
-    * @description To be called by the HEDA TDTM trigger dispatcher.
-    * It returns the HEDA TDTM tokens with the new one from Adv
-    * @return List<TDTM_Global_API.TdtmToken> A list of HEDA tokens.
+    * @description To be called by the EDA TDTM trigger dispatcher.
+    * It returns the EDA TDTM tokens with the new one from Adv
+    * @return List<TDTM_Global_API.TdtmToken> A list of EDA tokens.
     */
     global virtual List<TDTM_Global_API.TdtmToken> getDefaultTdtmConfigTokens() {
         if(!Advancement_Info.useAdv()) {
@@ -51,7 +51,7 @@ global virtual with sharing class Advancement_Adapter {
     }
 
     /*******************************************************************************************************
-    * @description This method is used to inject the NPSP rollup logic into HEDA Trigger Handler.
+    * @description This method is used to inject the NPSP rollup logic into EDA Trigger Handler.
     * @param listAccountId The list of Account (Id's) that need updating.
     * @return void
     */
@@ -60,11 +60,11 @@ global virtual with sharing class Advancement_Adapter {
             throw new AdapterException(Label.adapterException);
         }
 
-        //No logic for HEDA
+        //No logic for EDA
     }
 
     /*******************************************************************************************************
-    * @description This method is used to inject the NPSP opportunity logic info HEDA Trigger Handler.
+    * @description This method is used to inject the NPSP opportunity logic info EDA Trigger Handler.
     * @param mapContactIdAccountIdNew  A map of Contact Id to Account Id, for the Accounts to move opps to
     * @param mapContactIdAccountIdOld A map of Contact Id to Account Id, for the Accounts to move opps from
     * @return void
@@ -74,11 +74,11 @@ global virtual with sharing class Advancement_Adapter {
             throw new AdapterException(Label.adapterException);
         }
 
-        //No logic for HEDA
+        //No logic for EDA
     }
 
     /*******************************************************************************************************
-    * @description This method is used to populate NPSP's primary contact field in HEDA Trigger Handler
+    * @description This method is used to populate NPSP's primary contact field in EDA Trigger Handler
     * @param a The Account that need updating.
     * @param contactId The id of the primary contact
     * @return void
@@ -88,11 +88,11 @@ global virtual with sharing class Advancement_Adapter {
             throw new AdapterException(Label.adapterException);
         }
 
-        //No Logic for HEDA
+        //No Logic for EDA
     }
 
     /*******************************************************************************************************
-    * @description This method is used to populate NPSP's system account field in HEDA Trigger Handler
+    * @description This method is used to populate NPSP's system account field in EDA Trigger Handler
     * @param a The Account that need updating.
     * @return void
     */
@@ -101,7 +101,7 @@ global virtual with sharing class Advancement_Adapter {
             throw new AdapterException(Label.adapterException);
         }
 
-        //No Logic for HEDA
+        //No Logic for EDA
     }
 
     /*******************************************************************************************************

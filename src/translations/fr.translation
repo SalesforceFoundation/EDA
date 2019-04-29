@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- HEDA --></label>
+        <label><!-- EDA --></label>
         <name>HEDA</name>
     </customApplications>
     <customLabels>
@@ -13,7 +13,7 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Les paramètres de validité de création automatique de relations sont introuvables. Vérifiez les paramètres de validité des champs sous Paramètres HEDA | Relations | Création automatique, puis réessayez.</label>
+        <label>Les paramètres de validité de création automatique de relations sont introuvables. Vérifiez les paramètres de validité des champs sous Paramètres EDA | Relations | Création automatique, puis réessayez.</label>
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
@@ -93,11 +93,11 @@
         <name>addrHhAdmAccountOnly</name>
     </customLabels>
     <customLabels>
-        <label>La possibilité d&apos;ajouter plusieurs adresses est désactivée pour ce type d&apos;enregistrement Compte. Pour l&apos;activer, accédez à Paramètres HEDA, cliquez sur Comptes et Contacts, puis sélectionnez la case appropriée en regard de Types de compte avec plusieurs adresses activés.</label>
+        <label>La possibilité d&apos;ajouter plusieurs adresses est désactivée pour ce type d&apos;enregistrement Compte. Pour l&apos;activer, accédez à Paramètres EDA, cliquez sur Comptes et Contacts, puis sélectionnez la case appropriée en regard de Types de compte avec plusieurs adresses activés.</label>
         <name>addrNotEnabledAccount</name>
     </customLabels>
     <customLabels>
-        <label>La possibilité d&apos;ajouter plusieurs adresses est désactivée pour les Contacts. Pour l&apos;activer, accédez à Paramètres HEDA, cliquez sur Comptes et Contacts, puis sélectionnez la case en regard de Contacts avec plusieurs adresses activés.</label>
+        <label>La possibilité d&apos;ajouter plusieurs adresses est désactivée pour les Contacts. Pour l&apos;activer, accédez à Paramètres EDA, cliquez sur Comptes et Contacts, puis sélectionnez la case en regard de Contacts avec plusieurs adresses activés.</label>
         <name>addrNotEnabledContact</name>
     </customLabels>
     <customLabels>
@@ -553,7 +553,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>Dans HEDA 1.30, le champ Description étendue a été ajouté pour pouvoir saisir des descriptions de cours plus longues.</label>
+        <label>Dans EDA 1.30, le champ Description étendue a été ajouté pour pouvoir saisir des descriptions de cours plus longues.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -597,7 +597,7 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>Si cette case est cochée, l&apos;infrastructure de gestion des erreurs de l&apos;architecture HEDA est désactivée.</label>
+        <label>Si cette case est cochée, l&apos;infrastructure de gestion des erreurs de l&apos;architecture EDA est désactivée.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
@@ -609,7 +609,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Utilisez le Remplissage de l&apos;appartenance ethnique et de la race uniquement si votre organisation a utilisé le champ Appartenance ethnique avant l&apos;ajout du champ Race et le retrait des valeurs du champ Appartenance ethnique dans la version 1.28 d&apos;HEDA. Si la valeur Appartenance ethnique du contact est différente de « Non Hispanique ou Latino-Américain » ou « Hispanique ou Latino-Américain », le Remplissage copie les valeurs dans le champ Race. Les valeurs de liste de sélection standard et toutes les valeurs personnalisées que vous avez ajoutées sont éligibles pour la copie.</label>
+        <label>Utilisez le Remplissage de l&apos;appartenance ethnique et de la race uniquement si votre organisation a utilisé le champ Appartenance ethnique avant l&apos;ajout du champ Race et le retrait des valeurs du champ Appartenance ethnique dans la version 1.28 d&apos;EDA. Si la valeur Appartenance ethnique du contact est différente de « Non Hispanique ou Latino-Américain » ou « Hispanique ou Latino-Américain », le Remplissage copie les valeurs dans le champ Race. Les valeurs de liste de sélection standard et toutes les valeurs personnalisées que vous avez ajoutées sont éligibles pour la copie.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -617,7 +617,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement Compte qui représente le mieux les foyers. HEDA utilise par défaut le type d&apos;enregistrement Compte de foyer. Vous pouvez toutefois utiliser un autre type d&apos;enregistrement.</label>
+        <label>Le type d&apos;enregistrement Compte qui représente le mieux les foyers. EDA utilise par défaut le type d&apos;enregistrement Compte de foyer. Vous pouvez toutefois utiliser un autre type d&apos;enregistrement.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
@@ -637,7 +637,7 @@
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label>Retirez toutes les valeurs de liste de sélection du champ Appartenance ethnique, à l&apos;exception de « Non Hispanique ou Latino-Américain » et « Hispanique ou Latino-Américain ». Nous recommandons de remplacer chaque valeur retirée par l&apos;une des valeurs valides restantes, plutôt que de les supprimer des enregistrements existants. À compter de la version 1.28 d&apos;HEDA, « Non Hispanique ou Latino-Américain » et « Hispanique ou Latino-Américain » sont les seules valeurs d&apos;Appartenance ethnique valides.</label>
+        <label>Retirez toutes les valeurs de liste de sélection du champ Appartenance ethnique, à l&apos;exception de « Non Hispanique ou Latino-Américain » et « Hispanique ou Latino-Américain ». Nous recommandons de remplacer chaque valeur retirée par l&apos;une des valeurs valides restantes, plutôt que de les supprimer des enregistrements existants. À compter de la version 1.28 d&apos;EDA, « Non Hispanique ou Latino-Américain » et « Hispanique ou Latino-Américain » sont les seules valeurs d&apos;Appartenance ethnique valides.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
@@ -777,7 +777,7 @@
         <name>stgTitleHEDAConfig</name>
     </customLabels>
     <customLabels>
-        <label>Paramètres HEDA</label>
+        <label>Paramètres EDA</label>
         <name>stgTitleHEDASettings</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgToastError</name>
     </customLabels>
     <customTabs>
-        <label>Paramètres HEDA</label>
+        <label>Paramètres EDA</label>
         <name>HEDA_Settings</name>
     </customTabs>
 </Translations>

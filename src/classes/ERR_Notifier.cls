@@ -153,8 +153,8 @@ public class ERR_Notifier {
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         mail.setUseSignature(false);
         mail.setReplyTo('donotreply@salesforcefoundation.org');
-        mail.setSenderDisplayName('HEDA App');
-        mail.setSubject('HEDA Error');
+        mail.setSenderDisplayName('EDA App');
+        mail.setSubject('EDA Error');
         string bodyString = 'Organization: ' + UserInfo.getOrganizationName() + '(' + UserInfo.getOrganizationId() + ')\n';
         bodyString += 'User: ' + UserInfo.getUserName() + '(' + UserInfo.getUserId() + ')';
         bodyString += '\n\nErrors:';
@@ -184,7 +184,7 @@ public class ERR_Notifier {
                 List<SObject> postsToInsert = new List<SObject>();
                 for(Error__c error : errors) {
                     SObject post = (SObject)System.Type.forName('FeedItem').newInstance();
-                    post.put('Title', 'HEDA Error');
+                    post.put('Title', 'EDA Error');
                     String body = getErrorMessageBody(error);
                     post.put('Body', body);
                     post.put('ParentId', collaborationGroup.Id);
