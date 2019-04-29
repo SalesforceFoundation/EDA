@@ -248,14 +248,14 @@ public class UTIL_ACCT_Naming {
                             Integer conCounter = 0;
                             for (Contact con : mapLastNameContacts.get(lastName)) {
                                 conCounter++;
-                                if (mapLastNameContacts.get(lastName).size() > 1 && conCounter > 1) {
-                                    if (conCounter != mapLastNameContacts.get(lastName).size()) {
-                                        conNameString += ', ';
-                                    } else {
-                                        conNameString += ' ' + Label.defaultNamingConnector + ' ';
-                                    }
-                                }
                                 if (con.get(nameString) != null) {
+                                    if (mapLastNameContacts.get(lastName).size() > 1 && conCounter > 1) {
+                                        if (conCounter != mapLastNameContacts.get(lastName).size()) {
+                                            conNameString += ', ';
+                                        } else {
+                                            conNameString += ' ' + Label.defaultNamingConnector + ' ';
+                                        }
+                                    }
                                     conNameString += con.get(nameString);
                                 }
                             }
