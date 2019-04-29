@@ -3,7 +3,7 @@
     <recordTypes>
         <fullName>Academic_Program</fullName>
         <active>true</active>
-        <description>An Academic Program offered at the University.</description>
+        <description>An Academic Program offered at the educational institution.</description>
         <label>Academic Program</label>
     </recordTypes>
     <recordTypes>
@@ -39,7 +39,7 @@
     <recordTypes>
         <fullName>University_Department</fullName>
         <active>true</active>
-        <description>A department in the university.</description>
+        <description>A department in the educational institution.</description>
         <label>University Department</label>
     </recordTypes>
 </CustomObject>

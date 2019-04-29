@@ -55,7 +55,7 @@
         <label>HEDA Course Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Academic course that a Department or School (the degree-granting Account type for the University) offers.</description>
+    <description>Academic course that a Department or School (the degree-granting Account type for the educational institution) offers.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

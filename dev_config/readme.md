@@ -4,7 +4,7 @@ Developer Configuration Tasks
 
 Goal
 ----
-To automate the [HEDA configuration](https://powerofus.force.com/articles/Resource/Install-and-Configure-the-Higher-Education-Data-Architecture-HEDA) and to reverse it so a Beta can be removed.
+To automate the [EDA configuration](https://powerofus.force.com/articles/Resource/Install-and-Configure-the-Higher-Education-Data-Architecture-HEDA) and to reverse it so a Beta can be removed.
 
 
 New/Modified tasks
@@ -16,7 +16,7 @@ New/Modified tasks
 
 ### `deploy_dev_config`
   Deploys metadata found under /src/admin_config
-  On “deployment” this assigns the page layouts, tab visibilities for Admin, and sets HEDA App as default for Admin, and also sets the HEDA App as available in Lightning
+  On “deployment” this assigns the page layouts, tab visibilities for Admin, and sets EDA App as default for Admin, and also sets the EDA App as available in Lightning
   * Accepts 'managed' option (Boolean)
 
 
@@ -33,7 +33,7 @@ New/Modified Flows
 ------------------
 
 ### `hedaectomy`
-  Removes the config and non-managed HEDA metadata
+  Removes the config and non-managed EDA metadata
 
 
 ### `ci_beta_install`
