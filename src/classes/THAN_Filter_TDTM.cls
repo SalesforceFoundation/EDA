@@ -63,7 +63,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
 	                    if(!String.isBlank(filterField) && !String.isBlank(obj)) {
                             //those four type of fields are considered valid Filter field
                             //1. Standard Field e.g. FirstName
-                            //2. HEDA Field WITHOUT namespace e.g. Military_Service__c
+                            //2. EDA Field WITHOUT namespace e.g. Military_Service__c
                             //3. User's Custom Field e.g. MyField__c
                             //4. Field from another package with namespace e.g. NS__Field__c
                             //5. The relationship field e.g. Account.Id; Affiliation__c.Account__c.RecordType.Name
@@ -86,7 +86,7 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                     handler.Filter_Field__c = handler.Filter_Field__c.replace(Label.duplicateFieldInFilter, '');
                                 }
 
-                                //System should't allow a Filter Field with HEDA namespace
+                                //System should't allow a Filter Field with EDA namespace
                                 if(String.isNotBlank(hedaPrefix) && hasHEDAPrefix) {
                                     handler.addError(Label.InvalidFilter + handler.Class__c + '. ' + Label.fieldWithHEDANamespace);
                                 } else {
@@ -94,17 +94,17 @@ public class THAN_Filter_TDTM extends TDTM_Runnable {
                                     //Get Sobject keyset.
                                     Set<String> fieldSet = new Set<String>();
                                     try {
-                                        //If user put a HEDA object without namespace, we need to add the namespace because describe needs the exact api name
+                                        //If user put an EDA object without namespace, we need to add the namespace because describe needs the exact api name
                                         try {
                                             fieldSet = UTIL_Describe.getAllFieldsDescribe(obj).keySet();
                                         } catch (UTIL_Describe.SchemaDescribeException e) {
                                             fieldSet = UTIL_Describe.getAllFieldsDescribe(UTIL_Namespace.StrTokenNSPrefix(obj)).keySet();
                                         }
 
-                                        //First, test if the field exists outside HEDA
+                                        //First, test if the field exists outside EDA
                                         Boolean fieldExists = fieldSet.contains(filterField.toLowerCase());
 
-                                        //Second, add the HEDA namespace and test if the field exists in HEDA
+                                        //Second, add the EDA namespace and test if the field exists in EDA
                                         filterField = UTIL_Namespace.StrTokenNSPrefix(filterField);
                                         Boolean fieldExistsHEDA = fieldSet.contains(filterField.toLowerCase());
 

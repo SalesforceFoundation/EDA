@@ -1,4 +1,4 @@
-heda_lex_locators = {
+eda_lex_locators = {
     "mailing_address": "//*[contains(@placeholder,'{}')]",
     "object_dd": "//h1[contains(@class,'slds-page-header__title')]/a/div[contains(@class,'triggerLinkTextAndIconWrapper')][.//lightning-primitive-icon]",
     "record": {
@@ -17,7 +17,7 @@ heda_lex_locators = {
     "object": {
         "radio_button": "//div[contains(@class,'changeRecordTypeRightColumn')]/div/label[@class='slds-radio']/div[.//span[text()='{}']]/preceding::div[1]/span[@class='slds-radio--faux']",
     },
-    "heda_settings": {
+    "eda_settings": {
         "affiliations_tab": "//a[contains(text(),'Affiliations')]",
         "affiliations_check": "//span[text()='Specify Role for Created Affiliations:']/../following-sibling::div/descendant::img[@class = 'copy-start-date checked' and @alt='True']",
         "affiliations_role_checkbox": "//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",

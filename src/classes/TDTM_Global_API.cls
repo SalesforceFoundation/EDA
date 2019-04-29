@@ -34,7 +34,7 @@
 * @group TDTM
 * @group-content ../../ApexDocContent/API.htm
 * @description Provides methods to call the Trigger Handler class, which in turns calls the classes that need to
-* run for each DML action on a set of records, and to retrieve the default HEDA TDTM configuration. Includes
+* run for each DML action on a set of records, and to retrieve the default EDA TDTM configuration. Includes
 * methods to set default handlers isolated by namespace
 */
 global class TDTM_Global_API {
