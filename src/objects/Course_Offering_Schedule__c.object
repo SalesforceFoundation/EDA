@@ -88,6 +88,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Friday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -98,6 +99,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Monday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -108,6 +110,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Saturday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -118,6 +121,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Sunday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -128,6 +132,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Thursday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -153,6 +158,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Tuesday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -163,6 +169,7 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Wednesday.</description>
         <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

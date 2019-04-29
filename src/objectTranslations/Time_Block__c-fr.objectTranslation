@@ -26,7 +26,7 @@
     </fields>
     <gender><!-- Masculine --></gender>
     <layouts>
-        <layout>EDA Time Block Layout</layout>
+        <layout>HEDA Time Block Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

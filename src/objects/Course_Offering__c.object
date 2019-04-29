@@ -74,6 +74,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Time_Block__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Time Block</label>
+        <referenceTo>Time_Block__c</referenceTo>
+        <relationshipLabel>Time Blocks</relationshipLabel>
+        <relationshipName>Time_Blocks</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Course__c</fullName>
         <externalId>false</externalId>
         <label>Course</label>
@@ -150,18 +162,6 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>Time_Block__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Time Block</label>
-        <referenceTo>Time_Block__c</referenceTo>
-        <relationshipLabel>Time Blocks</relationshipLabel>
-        <relationshipName>Time_Blocks</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <label>Course Offering</label>
     <listViews>
