@@ -32,7 +32,7 @@
 * @date 2017
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Batch Class to process contacts on HEDA installation
+* @description Batch Class to process contacts on EDA installation
 */
 public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Stateful {
     public List<String> exception_List = new List<String>();

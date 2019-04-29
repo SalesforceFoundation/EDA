@@ -85,9 +85,9 @@
     <fields>
         <fullName>Affiliation_Record_Type_Enforced__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</description>
+        <description>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</inlineHelpText>
+        <inlineHelpText>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</inlineHelpText>
         <label>Affiliation Record Type Enforced</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -222,9 +222,9 @@
     <fields>
         <fullName>Disable_Error_Handling__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>If checked, HEDA&apos;s error handling framework is disabled.</description>
+        <description>If checked, EDA&apos;s error handling framework is disabled.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked, HEDA&apos;s error handling framework is disabled.</inlineHelpText>
+        <inlineHelpText>If checked, EDA&apos;s error handling framework is disabled.</inlineHelpText>
         <label>Disable Error Handling</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

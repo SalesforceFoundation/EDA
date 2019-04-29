@@ -44,7 +44,7 @@
         <name>Advancement_Namespace__c</name>
     </fields>
     <fields>
-        <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in HEDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
+        <help><!-- If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected --></help>
         <label><!-- Affiliation Record Type Enforced --></label>
         <name>Affiliation_Record_Type_Enforced__c</name>
     </fields>
@@ -108,7 +108,7 @@
         <name>Default_Contact_Language_Fluency__c</name>
     </fields>
     <fields>
-        <help>Si se selecciona esta opción, se deshabilita el marco de trabajo de control de errores de HEDA.</help>
+        <help>Si se selecciona esta opción, se deshabilita el marco de trabajo de control de errores de EDA.</help>
         <label>Deshabilitar control de errores</label>
         <name>Disable_Error_Handling__c</name>
     </fields>

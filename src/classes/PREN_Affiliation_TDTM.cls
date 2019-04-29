@@ -85,7 +85,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         }
         
         if(newAffls.size() > 0) {
-            //Turn off AFFL_MultiRecordType_TDTM_After_Insert so HEDA won't create duplicate program enrollment
+            //Turn off AFFL_MultiRecordType_TDTM_After_Insert so EDA won't create duplicate program enrollment
             TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert);
             //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
             insert newAffls;

@@ -32,7 +32,7 @@
 * @date 2018
 * @group TDTM
 * @group-content ../../ApexDocContent/TDTM.htm
-* @description Provides the Advancement Information to HEDA class.
+* @description Provides the Advancement Information to EDA class.
 **/
 
 public with sharing class Advancement_Info {

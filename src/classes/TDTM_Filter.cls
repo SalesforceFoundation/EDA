@@ -109,11 +109,13 @@ public class TDTM_Filter {
     public String handleNamespace(string filterField) {
         String theFilter = '';
         String hedaPrefix = String.isBlank(UTIL_Namespace.getNamespace()) ? '' : (UTIL_Namespace.getNamespace() + '__');
-        //If the filter has the heda namespace, then we need to add heda namespace again. Adding the namespace the second time will break the filter. However, that is the desire behavior here. Because, previously, we allow user to put heda namespace as the prefix of the filter field, but the filter does not work. We want to keep this logic so it will be backward compatible.
+        // If the filter has the EDA namespace, then we need to add EDA namespace again. Adding the namespace the second time will break the filter. 
+        // However, that is the desire behavior here. Because, previously, we allow user to put EDA namespace as the prefix of the filter field, but the filter does not work. 
+        // We want to keep this logic so it will be backward compatible.
         if(filterField.startsWithIgnoreCase(hedaPrefix)) {
             theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
         } else {
-            //We should always add HEDA namespace of the field (means system should always use heda field if it exits in heda). Unless,the field does not exists in heda
+            //We should always add EDA namespace of the field (means system should always use EDA field if it exists in EDA). Unless, the field does not exist in EDA
             theFilter = UTIL_Namespace.StrTokenNSPrefix(filterField);
             if(!describeObj.fields.getMap().keySet().contains(theFilter.toLowerCase())) {
                 theFilter = UTIL_Namespace.StrTokenRemoveNSPrefix(theFilter);
@@ -292,8 +294,8 @@ public class TDTM_Filter {
             //Fix the relationship filter here (If the parent chain in the relationship includes user's custom object, then the filter does not work)
             //Example: Say we have a filter Account.MyObj__r.MyField__c on Contact object (MyObj__r and MyField__c are user's object/field)
             //This filter won't work because fromRtoC method will add namespace to MyObj__r and MyField__c.
-            //Adding extra HEDA namespace to the field (e.g. MyField__c) is ok because objectDescribe.fields.getMap().get(xxx) will ignore extra HEDA namespace
-            //Adding extra HEDA namespace to the object (e.g. MyObj__c) is NOT because UTIL_Describe.getObjectDescribe(xxx) expect the exact api name
+            //Adding extra EDA namespace to the field (e.g. MyField__c) is ok because objectDescribe.fields.getMap().get(xxx) will ignore extra EDA namespace
+            //Adding extra EDA namespace to the object (e.g. MyObj__c) is NOT because UTIL_Describe.getObjectDescribe(xxx) expect the exact api name
             //The fix here is not ideal but it is safer than making a big change in fromRtoC method that has the risk to break other use cases
             try {
                 return getSOFieldHelper(UTIL_Namespace.StrTokenRemoveNSPrefix(parentObjectName), fieldName);
