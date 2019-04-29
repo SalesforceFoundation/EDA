@@ -260,7 +260,6 @@ public class UTIL_ACCT_Naming {
                                 }
                             }
                         }
-                        conNameString = conNameString.trim();
                         if (conNameString != null
                                 && conNameString != '') {
                             nameContactFieldsString += conNameString;
@@ -277,21 +276,20 @@ public class UTIL_ACCT_Naming {
                 if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
                     for (Contact con : cons) {
                         conCounter++;
-                        if (cons.size() > 1 && conCounter > 1) {
-                            if (conCounter != cons.size()) {
-                                conNameString += ', ';
-                            } else {
-                                conNameString += ' ' + Label.defaultNamingConnector + ' ';
-                            }
-                        }
                         if (con.get(nameString) != null) {
+                            if (cons.size() > 1 && conCounter > 1) {
+                                if (conCounter != cons.size()) {
+                                    conNameString += ', ';
+                                } else {
+                                    conNameString += ' ' + Label.defaultNamingConnector + ' ';
+                                }
+                            }
                             conNameString += con.get(nameString);
                         }
                     }
                 } else {
                     conNameString += nameString;
                 }
-                conNameString = conNameString.trim();
                 if (conNameString != null
                         && conNameString != '') {
                     nameContactFieldsString += conNameString;
