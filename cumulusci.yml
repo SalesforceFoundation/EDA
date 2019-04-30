@@ -1,13 +1,13 @@
 project:
-    name: HEDAP
+    name: EDA
     package:
-        name: HEDA
+        name: EDA
         namespace: hed
         api_version: 45.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
-        repo_url: https://github.com/SalesforceFoundation/HEDAP
+        repo_url: https://github.com/SalesforceFoundation/EDA
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
