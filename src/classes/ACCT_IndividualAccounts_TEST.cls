@@ -859,10 +859,10 @@ private class ACCT_IndividualAccounts_TEST {
     * @description Insert a new contact with empty name string to an existing Household Account
     * Make sure the Account's name is set based on account naming setting.
     */
-    /*@isTest
-    public static void newContactExistingHHEmptyString() {
+    @isTest
+    public static void newContactExistingHHNewConEmptyString() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                Household_Account_Naming_Format__c = 'Other', Household_Other_Name_Setting__c = '{!Salutation} {!FirstName} Family', Automatic_Household_Naming__c = true));
+                Household_Account_Naming_Format__c = Label.acctNamingOther, Household_Other_Name_Setting__c = '{!Salutation} {!FirstName} Family', Automatic_Household_Naming__c = true));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         Contact con = contacts[0];
@@ -886,5 +886,39 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.Salutation + ' ' + con.FirstName + ' Family', assertAccount.Name);
 
-    }*/
+    }
+    
+    /*********************************************************************************************************
+    * @description Insert a new contact to an existing Household Account with its child contact empty naming string
+    * Make sure the Account's name is set based on account naming setting.
+    */
+    @isTest
+    public static void newContactExistingHHExistingConEmptyString() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = Label.acctNamingOther, Household_Other_Name_Setting__c = '{!Salutation} {!FirstName} Family', Automatic_Household_Naming__c = true));
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        Contact con = contacts[0];
+        con.Salutation = '';
+        con.FirstName = '';
+        insert con;
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
+        system.assertEquals('Household Account', assertAccount.RecordType.Name);
+        system.assertEquals('Family', assertAccount.Name);
+
+        Contact con2 = contacts[1];
+        con2.AccountId = assertAccount.Id;
+        con2.Salutation = 'Mr.';
+        con2.FirstName = 'Test';
+        Test.startTest();
+        insert con2;
+        Test.stopTest();
+
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account];
+
+        system.assertEquals('Household Account', assertAccount.RecordType.Name);
+        system.assertEquals(con2.Salutation + ' ' + con2.FirstName + ' Family', assertAccount.Name);
+
+    }
 }

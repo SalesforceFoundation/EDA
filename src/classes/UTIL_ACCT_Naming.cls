@@ -231,7 +231,10 @@ public class UTIL_ACCT_Naming {
                 lnCounter++;
                 //Adding connector only if a last name has more than two contacts
                 //Starting at the second contact
-                if (mapLastNameContacts.keySet().size() > 1 && lnCounter > 1) {
+                if (nameContactFieldsString != null
+                    && nameContactFieldsString != ''
+                    && mapLastNameContacts.keySet().size() > 1 
+                    && lnCounter > 1) {
                     if (lnCounter != mapLastNameContacts.keySet().size()) {
                         nameContactFieldsString += ', ';
                     } else {
@@ -249,7 +252,10 @@ public class UTIL_ACCT_Naming {
                             for (Contact con : mapLastNameContacts.get(lastName)) {
                                 conCounter++;
                                 if (con.get(nameString) != null) {
-                                    if (mapLastNameContacts.get(lastName).size() > 1 && conCounter > 1) {
+                                    if (conNameString != null
+                                            && conNameString != ''
+                                            && mapLastNameContacts.get(lastName).size() > 1
+                                            && conCounter > 1) {
                                         if (conCounter != mapLastNameContacts.get(lastName).size()) {
                                             conNameString += ', ';
                                         } else {
@@ -277,7 +283,10 @@ public class UTIL_ACCT_Naming {
                     for (Contact con : cons) {
                         conCounter++;
                         if (con.get(nameString) != null) {
-                            if (cons.size() > 1 && conCounter > 1) {
+                            if (conNameString != null
+                                    && conNameString != ''
+                                    && cons.size() > 1
+                                    && conCounter > 1) {
                                 if (conCounter != cons.size()) {
                                     conNameString += ', ';
                                 } else {
