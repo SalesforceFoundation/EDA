@@ -130,13 +130,6 @@ flows:
                     update_admin_profile:
                         namespaced_org: True
 
-    release_beta:
-        steps:
-            5:
-                task: mrbelvedere_publish
-                options:
-                    tag: ^^github_release.tag_name
-
     browsertests_firefox:
         description: Runs the browser tests locally against a managed package in Firefox
         steps:
