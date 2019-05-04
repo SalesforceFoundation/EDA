@@ -15,8 +15,8 @@ Verify EDA Settings
 
      ${affl_check} =  Get Eda Locator           eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator   eda_settings.affiliations_role_checkbox
-    Select Checkbox In Eda Settings            ${affl_check}        ${affl_role_checkbox}                
-    
+    Select Checkbox In Eda Settings            ${affl_check}        ${affl_role_checkbox}
+
     Wait for Locator                            eda_settings.affiliation_mappings_tab
     Click on Element                            eda_settings.affiliation_mappings_tab
 
@@ -67,7 +67,6 @@ Create A Contact
     #Drop down and select Academic
     Wait for Locator                        list_of_departments
     Wait for Locator                        academic_program
-    
     Click on Element                        academic_program
 
     Wait for Locator                        new_account_next_button
@@ -81,6 +80,7 @@ Create A Contact
 
     Wait for Locator                        new_program_enrollment_save_button
     Click on Element                        new_program_enrollment_save_button
+    Sleep                                   1
 
     #Verify that we have ONE affiliated account
     Reload Page
