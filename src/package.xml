@@ -79,6 +79,7 @@
         <members>PREN_ProgramPlan_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>PReq_UniqueProgramPlan_TDTM</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
