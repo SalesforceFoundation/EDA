@@ -8,10 +8,8 @@ Suite Teardown  Delete Records and Close Browser
 
 Test EDA System Settings
     Go To Eda Settings
-    Wait Until Element Is visible	//a[contains(text(),'System')]
-    Click Link				//a[contains(text(),'System')]
+    Wait Until Element Is visible	    eda_settings.system_tab
+    Click Link                          eda_settings.system_tab
 
     # Default Account Model
-    Element Should be Visible   //span[contains(@class,'default-account-model-record-type-output-text')]
-
-*** Keywords ***
+    Element Should be Visible           //span[contains(@class,'default-account-model-record-type-output-text')]
