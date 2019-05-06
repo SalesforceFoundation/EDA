@@ -1,13 +1,13 @@
 project:
-    name: HEDAP
+    name: EDA
     package:
-        name: HEDA
+        name: EDA
         namespace: hed
         api_version: 45.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
-        repo_url: https://github.com/SalesforceFoundation/HEDAP
+        repo_url: https://github.com/SalesforceFoundation/EDA
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -87,7 +87,7 @@ tasks:
     mockaroo_contacts:
         class_path: cumulusci_mockaroo.tasks.MockarooToSql
         options:
-            schema: 'HEDA: Contacts'
+            schema: 'EDA: Contacts'
             count: 10
             database_url: 'sqlite:///testdata.db'
             table: 'Contact'
@@ -99,21 +99,21 @@ tasks:
 
     robot:
         options:
-            suites: robot/HEDAP/tests
+            suites: robot/EDA/tests
             options:
-                outputdir: robot/HEDAP/results
+                outputdir: robot/EDA/results
 
     robot_libdoc:
         options:
-            path: robot/HEDAP/resources/HEDA.py,robot/HEDAP/resources/HEDA.robot
-            output: robot/HEDAP/doc/Keywords.html
+            path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
+            output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
     hedaectomy:
-        description: Remove all the HEDA metadata in the target Org
+        description: Remove all the EDA metadata in the target Org
         steps:
             1:
                 task: delete_dev_config
@@ -187,13 +187,6 @@ flows:
                 options:
                     update_admin_profile:
                         namespaced_org: True
-
-    release_beta:
-        steps:
-            5:
-                task: mrbelvedere_publish
-                options:
-                    tag: ^^github_release.tag_name
 
     browsertests_firefox:
         description: Runs the browser tests locally against a managed package in Firefox
@@ -294,16 +287,16 @@ plans:
                 ui_options:
                     deploy_pre:
                         acc_record_types:
-                            name: HEDA - Account Record Types
+                            name: EDA - Account Record Types
                         contact_key_affl_fields:
-                            name: HEDA - Contact Key Affiliation Fields
+                            name: EDA - Contact Key Affiliation Fields
             2:
                 task: install_managed
             3:
                 task: deploy_post
                 ui_options:
                     course_connection_record_types:
-                        name: Course Connection Record Types for HEDA
+                        name: Course Connection Record Types for EDA
                     facility_display_name:
                         name: Facility Display Name Formula Field
                 options:

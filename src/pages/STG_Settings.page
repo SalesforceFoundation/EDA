@@ -23,7 +23,7 @@
         
         var namespace = '';
         var namespacePrefix = '';
-        //This should be a class unique to HEDA so the namespace comes through correctly
+        //This should be a class unique to EDA so the namespace comes through correctly
         var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'CCON_Faculty_TDTM' LIMIT 1"); 
         var getname = gettingnamespace.getArray("records");
 		if(getname.length > 0) { 

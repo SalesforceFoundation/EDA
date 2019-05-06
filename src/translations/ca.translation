@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- HEDA --></label>
+        <label><!-- EDA --></label>
         <name>HEDA</name>
     </customApplications>
     <customLabels>
@@ -13,7 +13,7 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
-        <label>No es pot trobar la configuració de la relació d&apos;autocreació vàlida. Verifiqueu la configuració a Configuració de HEDA | Relacions | Autocreació per a camps vàlids i torneu-ho a provar.</label>
+        <label>No es pot trobar la configuració de la relació d&apos;autocreació vàlida. Verifiqueu la configuració a Configuració de EDA | Relacions | Autocreació per a camps vàlids i torneu-ho a provar.</label>
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
@@ -93,11 +93,11 @@
         <name>addrHhAdmAccountOnly</name>
     </customLabels>
     <customLabels>
-        <label>La capacitat d&apos;afegir diverses adreces està desactivada per a aquest tipus de registre del compte. Per habilitar-lo, aneu a Configuració de HEDA, feu clic a Comptes i contactes i seleccioneu la casella corresponent al costat dels tipus de compte amb les adreces múltiples activades.</label>
+        <label>La capacitat d&apos;afegir diverses adreces està desactivada per a aquest tipus de registre del compte. Per habilitar-lo, aneu a Configuració de EDA, feu clic a Comptes i contactes i seleccioneu la casella corresponent al costat dels tipus de compte amb les adreces múltiples activades.</label>
         <name>addrNotEnabledAccount</name>
     </customLabels>
     <customLabels>
-        <label>La capacitat d&apos;afegir diverses adreces està desactivada per als contactes. Per activar-lo, aneu a Configuració de HEDA, feu clic a Comptes i contactes i, a continuació, seleccioneu la casella de selecció Contacte amb adreces múltiples activades.</label>
+        <label>La capacitat d&apos;afegir diverses adreces està desactivada per als contactes. Per activar-lo, aneu a Configuració de EDA, feu clic a Comptes i contactes i, a continuació, seleccioneu la casella de selecció Contacte amb adreces múltiples activades.</label>
         <name>addrNotEnabledContact</name>
     </customLabels>
     <customLabels>
@@ -553,7 +553,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>A HEDA 1.30, el camp de Descripció ampliada s&apos;ha afegit per donar cabuda a descripcions de cursos més llargues.</label>
+        <label>A EDA 1.30, el camp de Descripció ampliada s&apos;ha afegit per donar cabuda a descripcions de cursos més llargues.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -597,7 +597,7 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>Si es marca, el marc de maneig d&apos;errors de HEDA està desactivat.</label>
+        <label>Si es marca, el marc de maneig d&apos;errors de EDA està desactivat.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
@@ -609,7 +609,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Utilitzeu el reenviament d&apos;ètnia i raça només si la vostra organització utilitzava el camp d&apos;Ètnia abans que HEDA afegís el camp de la raça i elimineu els valors del camp Ètnia a partir de la versió HEDA 1.28. Si el valor del camp d&apos;origen de contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;hispà o llatí&quot;, el reenviament copia el valor al camp Raça. Els dos valors estàndard de la llista de selecció i els valors personalitzats que hàgiu afegit podran ser copiats.</label>
+        <label>Utilitzeu el reenviament d&apos;ètnia i raça només si la vostra organització utilitzava el camp d&apos;Ètnia abans que EDA afegís el camp de la raça i elimineu els valors del camp Ètnia a partir de la versió EDA 1.28. Si el valor del camp d&apos;origen de contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;hispà o llatí&quot;, el reenviament copia el valor al camp Raça. Els dos valors estàndard de la llista de selecció i els valors personalitzats que hàgiu afegit podran ser copiats.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -617,7 +617,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de registre del compte que millor representa les llars. HEDA utilitza el tipus de registre del compte de la llar de forma predeterminada, però podeu utilitzar un altre tipus de registre si ho desitgeu.</label>
+        <label>El tipus de registre del compte que millor representa les llars. EDA utilitza el tipus de registre del compte de la llar de forma predeterminada, però podeu utilitzar un altre tipus de registre si ho desitgeu.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
@@ -637,7 +637,7 @@
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label>Elimineu tots els valors de la llista de selecció del camp Ètnia, excepte &quot;Hispà o llatí&quot; i &quot;No hispà ni llatí&quot;. Recomanem que substituïu cada valor eliminat amb un dels valors vàlids restants, en comptes d&apos;eliminar-los directament dels registres existents. A partir de la versió HEDA 1.28, els únics valors ètnics vàlids són &quot;No hispà ni llatí&quot; i &quot;hispà o llatí&quot;.</label>
+        <label>Elimineu tots els valors de la llista de selecció del camp Ètnia, excepte &quot;Hispà o llatí&quot; i &quot;No hispà ni llatí&quot;. Recomanem que substituïu cada valor eliminat amb un dels valors vàlids restants, en comptes d&apos;eliminar-los directament dels registres existents. A partir de la versió EDA 1.28, els únics valors ètnics vàlids són &quot;No hispà ni llatí&quot; i &quot;hispà o llatí&quot;.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
@@ -777,7 +777,7 @@
         <name>stgTitleHEDAConfig</name>
     </customLabels>
     <customLabels>
-        <label>Configuració de HEDA</label>
+        <label>Configuració de EDA</label>
         <name>stgTitleHEDASettings</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgToastError</name>
     </customLabels>
     <customTabs>
-        <label>Configuració de HEDA</label>
+        <label>Configuració de EDA</label>
         <name>HEDA_Settings</name>
     </customTabs>
 </Translations>

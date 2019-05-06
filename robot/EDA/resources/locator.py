@@ -1,4 +1,4 @@
-heda_lex_locators = {
+eda_lex_locators = {
     "mailing_address": "//*[contains(@placeholder,'{}')]",
     "object_dd": "//h1[contains(@class,'slds-page-header__title')]/a/div[contains(@class,'triggerLinkTextAndIconWrapper')][.//lightning-primitive-icon]",
     "record": {
@@ -18,7 +18,7 @@ heda_lex_locators = {
     "object": {
         "radio_button": "//div[contains(@class,'changeRecordTypeRightColumn')]/div/label[@class='slds-radio']/div[.//span[text()='{}']]/preceding::div[1]/span[@class='slds-radio--faux']",
     },
-    "heda_settings": {
+    "eda_settings": {
         "affiliations_tab": "//a[contains(text(),'Affiliations')]",
         "affiliations_check": "//span[text()='Specify Role for Created Affiliations:']/../following-sibling::div/descendant::img[@class = 'copy-start-date checked' and @alt='True']",
         "affiliations_role_checkbox": "//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
@@ -30,6 +30,11 @@ heda_lex_locators = {
         "hh_naming_check" : "//input[@class='automatic-hh-acc uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
         "hh_naming_role_checkbox" : "//select[@class='admin-account-naming-input-select select uiInput uiInputSelect uiInput--default uiInput--select']//option[@value='{!{!FirstName}} {!LastName} Administrative Account']",
         "hh_adminfnamelname" : "//input[contains(@class,'firstName')]",
+        "course_connections_tab": "//a[contains(text(),'Course Connections')]",
+        "cc_checkbox": "//input[contains(@class,'slds-checkbox')]/parent::label",
+        "student_select": "//select[contains(@class,'student-course-connection-record-type-input-select')]",
+        "faculty_select": "//select[contains(@class,'faculty-course-connection-record-type-input-select')]",
+
     },
     "tabs" : {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",
@@ -71,17 +76,17 @@ heda_lex_locators = {
         "search_terms": "//input[@title='Search Terms']",
         "course_offering_id": "//span[contains(text(), 'Course Offering ID')]//../following-sibling::input",
     },
-    "heda_tile": "//div[@class='slds-app-launcher__tile-body']//a[contains(text(),'HEDA')]/../..",
+    "eda_tile": "//div[@class='slds-app-launcher__tile-body']//a[contains(text(),'EDA')]/../..",
     "new_account": "//span[@title='New Account']",
-    "new_account_next_button": "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']",
+    "new_account_next_button": "//button[contains(@class, 'slds-button')]//span[@class=' label bBody' and text()='Next']",
     "new_account_name": "//input[@class='input uiInput uiInputText uiInput--default uiInput--input']",
-    "new_account_save_button": "(//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[contains(text(), 'Save')])[2]",
+    "new_account_save_button": "(//button[contains(@class, 'slds-button') and @type='button' and @title='Save']/span[text()='Save'])[2]",
     "academic_program": "//span[contains(text(), 'Academic Program')]",
-    "new_program_enrollment_save_button": "//div[@class='modal-footer slds-modal__footer']//button[@title='Save']",
+    "new_program_enrollment_save_button": "//button[@title='Save']",
     "affiliated_accounts_count": "//span[text()='Affiliated Accounts']/following-sibling::span[contains(@title, '(1)')]",
     "program_enrollments_count": "//span[text()='Program Enrollments']/following-sibling::span[contains(@title, '(1)')]",
     "programenrollment_account": "//div[@class='autocompleteWrapper slds-grow']//input[@class=' default input uiInput uiInputTextForAutocomplete uiInput--default uiInput--input uiInput uiAutocomplete uiInput--default uiInput--lookup']",
-    "list_of_departments": "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton']//span[@class=' label bBody']",
+    "list_of_departments": "//button[contains(@class, 'slds-button slds-button--neutral')]//span[@class=' label bBody' and text()='Next']",
     "tab": "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
     "desktop_rendered": "css: div.desktop.container.oneOne.oneAppLayoutHost[data-aura-rendered-by]",
     "loading_box": "css: div.auraLoadingBox.oneLoadingBox",

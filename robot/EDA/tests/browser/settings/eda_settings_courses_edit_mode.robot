@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource        robot/HEDAP/resources/HEDA.robot
+Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
@@ -8,9 +8,9 @@ Suite Teardown  Delete Records and Close Browser
 
 
 Validate Edit Mode For Courses - Edit Mode, Settings
-    Go To Heda Settings
-    Wait for Locator	            heda_settings.courses
-    Click on Element                heda_settings.courses
+    Go To Eda Settings
+    Wait for Locator	            eda_settings.courses
+    Click on Element                eda_settings.courses
     
     Click Button                    Edit
 
