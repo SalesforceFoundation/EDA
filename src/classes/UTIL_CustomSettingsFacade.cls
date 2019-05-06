@@ -155,6 +155,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
         settings.Default_Contact_Language_Fluency__c = mySettings.Default_Contact_Language_Fluency__c;
         
+        settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
         orgSettings = settings;
         return settings;
     }
