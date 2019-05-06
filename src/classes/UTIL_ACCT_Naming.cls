@@ -113,7 +113,7 @@ public class UTIL_ACCT_Naming {
             hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
         }
         if (hhAccNamingFormat!= null) {
-            return formatAccountName(cons, hhAccNamingFormat);
+            return buildAccountName(cons, hhAccNamingFormat);
         } else {
             Set<String> householdLastNames = new Set<String>();
             for (Contact con : cons) {
@@ -145,7 +145,7 @@ public class UTIL_ACCT_Naming {
         if (adminAccNamingFormat != null) {
             List<Contact> cons = new List<Contact>();
             cons.add(con);
-            return formatAccountName(cons, adminAccNamingFormat);
+            return buildAccountName(cons, adminAccNamingFormat);
         } else {
             return con.LastName + ' ' + System.label.DefaultAdminName;
         }
@@ -167,10 +167,10 @@ public class UTIL_ACCT_Naming {
     * @return string. the formatted account name
     */
 
-    private static String formatAccountName(List<Contact> cons, String setting) {
-        String result = '';
-        String settingPrefix = '';
-        String settingSuffix = '';
+    private static String buildAccountName(List<Contact> cons, String setting) {
+        String nameContactFieldsString = '';
+        String namePrefix = '';
+        String nameSuffix = '';
         List<String> settingsSplitRightParenthesis = new List<String>();
         List<String> settingsSplitLeftParenthesis = new List<String>();
         Map<String, List<Contact>> mapLastNameContacts = new Map<String, List<Contact>>();
@@ -188,9 +188,9 @@ public class UTIL_ACCT_Naming {
             indexAfterLastParenthesis++;
         }
         //Build prefix
-        settingPrefix = setting.substring(0, indexFirstParenthesis);
+        namePrefix = setting.substring(0, indexFirstParenthesis);
         //Build Suffix
-        settingSuffix = setting.substring(indexAfterLastParenthesis+1, setting.length());
+        nameSuffix = setting.substring(indexAfterLastParenthesis+1, setting.length());
         setting = setting.substring(indexFirstParenthesis, indexAfterLastParenthesis+1);
 
         //Split strings into a list
@@ -221,53 +221,93 @@ public class UTIL_ACCT_Naming {
             }
             listNameStrings.add(' ');
         }
+        
+        //Build nameContactFieldsString
+        //If setContactFields has lastname, we need to group contacts by lastname
         if (setContactFields.contains('lastname')) {
-
-            Integer lnCounter = mapLastNameContacts.keySet().size();
-
+            //Counter for last name loop
+            Integer lnCounter = 0;
             for (String lastName : mapLastNameContacts.keySet()) {
+                lnCounter++;
+                //Adding connector only if a last name has more than two contacts
+                //Starting at the second contact
+                if (nameContactFieldsString != null
+                    && nameContactFieldsString != ''
+                    && mapLastNameContacts.keySet().size() > 1 
+                    && lnCounter > 1) {
+                    if (lnCounter != mapLastNameContacts.keySet().size()) {
+                        nameContactFieldsString += ', ';
+                    } else {
+                        nameContactFieldsString += Label.defaultNamingConnector + ' ';
+                    }
+                }
+
                 for (String nameString : listNameStrings) {
+                    String conNameString = '';
                     if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
                         if (nameString == 'lastname') {
-                            result += lastname;
+                            conNameString += lastname;
                         } else {
-                            Integer counter = mapLastNameContacts.get(lastName).size();
+                            Integer conCounter = 0;
                             for (Contact con : mapLastNameContacts.get(lastName)) {
-                                result += con.get(nameString) != null ? con.get(nameString) : '';
-                                counter--;
-                                if (counter > 0) {
-                                    result += ' ' + Label.defaultNamingConnector + ' ';
+                                conCounter++;
+                                if (con.get(nameString) != null) {
+                                    if (conNameString != null
+                                            && conNameString != ''
+                                            && mapLastNameContacts.get(lastName).size() > 1
+                                            && conCounter > 1) {
+                                        if (conCounter != mapLastNameContacts.get(lastName).size()) {
+                                            conNameString += ', ';
+                                        } else {
+                                            conNameString += ' ' + Label.defaultNamingConnector + ' ';
+                                        }
+                                    }
+                                    conNameString += con.get(nameString);
                                 }
                             }
                         }
+                        if (conNameString != null
+                                && conNameString != '') {
+                            nameContactFieldsString += conNameString;
+                        }
                     } else {
-                        result += nameString;
+                        nameContactFieldsString += nameString;
                     }
-                }
-                lnCounter--;
-                if (lnCounter > 0) {
-                    result += Label.defaultNamingConnector + ' ';
                 }
             }
         } else {
             for (String nameString : listNameStrings) {
+                String conNameString = '';
+                Integer conCounter = 0;
                 if (UTIL_Describe.isValidField('Contact', nameString.toLowerCase())) {
-                    Integer counter = cons.size();
                     for (Contact con : cons) {
-                        result += con.get(nameString) != null ? con.get(nameString) : '';
-                        counter--;
-                        if (counter > 0) {
-                            result += Label.defaultNamingConnector + ' ';
+                        conCounter++;
+                        if (con.get(nameString) != null) {
+                            if (conNameString != null
+                                    && conNameString != ''
+                                    && cons.size() > 1
+                                    && conCounter > 1) {
+                                if (conCounter != cons.size()) {
+                                    conNameString += ', ';
+                                } else {
+                                    conNameString += ' ' + Label.defaultNamingConnector + ' ';
+                                }
+                            }
+                            conNameString += con.get(nameString);
                         }
                     }
                 } else {
-                    result += nameString;
+                    conNameString += nameString;
+                }
+                if (conNameString != null
+                        && conNameString != '') {
+                    nameContactFieldsString += conNameString;
                 }
             }
         }
-        result = result.trim();
-        String output = settingPrefix + result + settingSuffix;
-        return output.trim();
+        nameContactFieldsString = nameContactFieldsString.trim();
+        String accountName = namePrefix + nameContactFieldsString + nameSuffix;
+        return accountName.trim();
 
     }
 
