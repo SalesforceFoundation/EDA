@@ -17,17 +17,17 @@ project:
 tasks:
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
-        class_path: cumulusci.tasks.salesforce.DeployBundles
+        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: dev_config/src
+            path: unpackaged/config/dev
             unmanaged: True
 
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
-            path: dev_config/delete
+            path: unpackaged/config/dev_delete
 
     execute_install_apex:
         description: Runs most of the install script methods from STG_InstallScript class
@@ -38,6 +38,27 @@ tasks:
                 STG_InstallScript.insertMappings();
                 STG_InstallScript.insertRelationshipLookups();
                 TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
+
+    retrieve_config_dev:
+        description: Retrieves the current changes in the scratch org into unpackaged/config/dev
+        class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
+        options:
+            path: unpackaged/config/dev
+            namespace_tokenize: $project_config.project__package__namespace
+
+    retrieve_config_qa:
+        description: Retrieves the current changes in the scratch org into unpackaged/config/qa
+        class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
+        options:
+            path: unpackaged/config/qa
+            namespace_tokenize: $project_config.project__package__namespace
+
+    retrieve_config_trial:
+        description: Retrieves the current changes in the scratch org into unpackaged/config/trial
+        class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
+        options:
+            path: unpackaged/config/trial
+            namespace_tokenize: $project_config.project__package__namespace
 
     robot:
         options:
@@ -130,77 +151,6 @@ flows:
                     update_admin_profile:
                         namespaced_org: True
 
-    browsertests_firefox:
-        description: Runs the browser tests locally against a managed package in Firefox
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_firefox
-
-    browsertests_chrome:
-        description: Runs the browser tests locally against a managed package in Chrome
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_chrome
-
-    browsertests_unmanaged_firefox:
-        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Firefox
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_unmanaged_firefox
-
-    browsertests_unmanaged_chrome:
-        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Chrome
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_unmanaged_chrome
-
-    ci_browsertests_firefox:
-        description: Runs the browser tests via SauceLabs against a managed package in Firefox
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_firefox
-                options:
-                    use_saucelabs: True
-
-    ci_browsertests_chrome:
-        description: Runs the browser tests via SauceLabs against a managed package in Chrome
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_chrome
-                options:
-                    use_saucelabs: True
-
-    ci_browsertests_unmanaged_firefox:
-        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Firefox
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_unmanaged_firefox
-                options:
-                    use_saucelabs: True
-
-    ci_browsertests_unmanaged_chrome:
-        description: Runs the browser tests via SauceLabs against the unmanaged metadata in Chrome
-        steps:
-            1:
-                task: download_browser_tests
-            2:
-                task: browsertests_unmanaged_chrome
-                options:
-                    use_saucelabs: True
 
 services:
     mockaroo:
