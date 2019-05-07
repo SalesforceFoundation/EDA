@@ -1599,4 +1599,12 @@
         <shortDescription>stgToastError</shortDescription>
         <value>Error</value>
     </labels>
+    <labels>
+        <fullName>uniqueProgramPlanExp</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>uniqueProgramPlanExp</shortDescription>
+        <value>Current plan requirement has different program plan to immediate parent plan requirement</value>
+    </labels>
 </CustomLabels>

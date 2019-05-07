@@ -641,6 +641,7 @@
         <members>stgTitleNewReciSetting</members>
         <members>stgTitleReciMethod</members>
         <members>stgToastError</members>
+        <members>uniqueProgramPlanExp</members>
         <name>CustomLabel</name>
     </types>
     <types>
