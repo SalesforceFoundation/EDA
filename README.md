@@ -13,7 +13,7 @@ You can install EDA utilizing our custom application installer into any Develope
 
 #### Resources
 
-* <a href="http://developer.salesforce.org/HEDAP/ApexDocumentation/" target="_blank">EDA ApexDoc code documentation</a>
+* <a href="http://developer.salesforce.org/EDA/ApexDocumentation/" target="_blank">EDA ApexDoc code documentation</a>
 * <a href="https://salesforce.quip.com/cAJzAnydf6gp" target="_blank">EDA Data Dictionary</a>
 
 #### Meta
