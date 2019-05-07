@@ -1,4 +1,4 @@
-<apex:page showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0" controller="STG_Base_CTRL">
+<apex:page title="{!$Label.stgTitleHEDASettings}" showHeader="true" standardStylesheets="false" applyBodyTag="false" docType="html-5.0" controller="STG_Base_CTRL">
     <script src="/soap/ajax/45.0/connection.js" type="text/javascript"></script>
     <script src="/soap/ajax/45.0/apex.js" type="text/javascript"></script>
     <script src="/lightning/lightning.out.js" type="text/javascript"></script>
