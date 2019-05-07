@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018, Salesforce.org
+    Copyright (c) 2019, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -47,16 +47,17 @@ public with sharing class PREQ_UniqueProgramPlan_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
             TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
-
-        if (triggerAction == TDTM_Runnable.Action.BeforeInsert
-            || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert
+            || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             for (Plan_Requirement__c planReq : [SELECT ID,
                                                     Program_Plan__c,
+                                                    Plan_Requirement__c,
                                                     Plan_Requirement__r.Program_Plan__c
                                                 FROM Plan_Requirement__c
-                                                WHERE ID in :oldlist]) {
-                if (planReq.Program_Plan__c != planReq.Plan_Requirement__r.Program_Plan__c) {
+                                                WHERE ID in :newlist]) {
+                if (planReq.Plan_Requirement__r.Program_Plan__c != null
+                        && planReq.Plan_Requirement__c != null
+                        && planReq.Program_Plan__c != planReq.Plan_Requirement__r.Program_Plan__c) {
                     //throw an error
                     throw new ERR_ExceptionHandler.UniqueProgramPlanException(Label.uniqueProgramPlanExp);
                 }
