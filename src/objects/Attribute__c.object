@@ -211,42 +211,6 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Generic</fullName>
-        <active>true</active>
-        <label>Generic</label>
-        <picklistValues>
-            <picklist>Attribute_Type__c</picklist>
-            <values>
-                <fullName>Accommodations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Endorsement</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Family Considerations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>International Student</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
         <fullName>Student_Characteristic</fullName>
         <active>true</active>
         <label>Student Characteristic</label>

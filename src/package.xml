@@ -852,7 +852,6 @@
     </types>
     <types>
         <members>Attribute__c.Credential</members>
-        <members>Attribute__c.Generic</members>
         <members>Attribute__c.Student_Characteristic</members>
         <name>RecordType</name>
     </types>
