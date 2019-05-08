@@ -8,8 +8,7 @@ EDA is built from industry-wide best practices used across education institution
 
 You can install EDA utilizing our custom application installer into any Developer Edition, Sandbox or Enterprise Edition Salesforce org.
 
-* <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/hed" target="_blank">EDA Installer</a>
-* <a href="https://mrbelvedere.salesforcefoundation.org/mpinstaller/hed/beta" target="_blank">EDA BETA Installer</a>
+* <a href="https://install.salesforce.org/products/eda" target="_blank">EDA Installer</a>
 
 #### Resources
 
