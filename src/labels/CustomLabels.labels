@@ -1488,6 +1488,14 @@
         <value>Primary Affl Field</value>
     </labels>
     <labels>
+        <fullName>stgTabProgramPlan</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabProgramPlan</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
         <fullName>stgTabReciprocalSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

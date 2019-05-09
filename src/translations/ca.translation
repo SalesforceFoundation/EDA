@@ -741,6 +741,10 @@
         <name>stgTabPrimaryAfflField</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgTabProgramPlan --></label>
+        <name>stgTabProgramPlan</name>
+    </customLabels>
+    <customLabels>
         <label>Configuració recíproca</label>
         <name>stgTabReciprocalSettings</name>
     </customLabels>
@@ -795,6 +799,10 @@
     <customLabels>
         <label><!-- stgToastError --></label>
         <name>stgToastError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- uniqueProgramPlanExp --></label>
+        <name>uniqueProgramPlanExp</name>
     </customLabels>
     <customTabs>
         <label>Configuració de EDA</label>

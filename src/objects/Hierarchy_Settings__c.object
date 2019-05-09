@@ -390,6 +390,14 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Unique_Program_Plan_Enforced__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Unique Program Plan Enforced</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Hierarchy Settings</label>
     <visibility>Public</visibility>
 </CustomObject>
