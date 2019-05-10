@@ -649,6 +649,10 @@
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpUniqueProgramPlan --></label>
+        <name>stgHelpUniqueProgramPlan</name>
+    </customLabels>
+    <customLabels>
         <label>Si teniu dependències que es basaven en els valors anteriors del camp Ètnia, com ara els informes, actualitzeu-los.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
@@ -799,6 +803,10 @@
     <customLabels>
         <label><!-- stgToastError --></label>
         <name>stgToastError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgUniqueProgramPlan --></label>
+        <name>stgUniqueProgramPlan</name>
     </customLabels>
     <customLabels>
         <label><!-- uniqueProgramPlanExp --></label>

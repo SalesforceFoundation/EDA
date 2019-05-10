@@ -184,5 +184,10 @@
         <label><!-- Student Record Type --></label>
         <name>Student_RecType__c</name>
     </fields>
+    <fields>
+        <help><!-- When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved. --></help>
+        <label><!-- Unique Program Plan Enforced --></label>
+        <name>Unique_Program_Plan_Enforced__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -5,7 +5,7 @@
 
         <!-- Unique Program Plan Enforcement-->
         <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="[Pending Setting Name]" />
+            <ui:outputText value="{!$Label.c.stgUniqueProgramPlan}" />
         </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="[Pending Help text]" class="slds-text-body--small" />
+            <ui:outputText value="{!$Label.c.stgHelpUniqueProgramPlan}" class="slds-text-body--small" />
         </div>
 
     </div>

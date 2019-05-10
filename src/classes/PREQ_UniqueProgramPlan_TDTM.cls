@@ -36,6 +36,11 @@
 */
 public with sharing class PREQ_UniqueProgramPlan_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
+    * @description If unique Program Plan for plan requirements validation enabled.
+    */
+    private static boolean stgUniqueProgramPlanEnabled = UTIL_CustomSettingsFacade.getSettings().Unique_Program_Plan_Enforced__c;
+
+    /*******************************************************************************************************
     * @description Populate an error when creating a Plan Requirement or updating a plan requirement who has
     * different program as its immediate parent plan requirement has
     * @param listNew the list of Plan Requirement from trigger new.
@@ -55,7 +60,8 @@ public with sharing class PREQ_UniqueProgramPlan_TDTM extends TDTM_Runnable {
                                                     Plan_Requirement__r.Program_Plan__c
                                                 FROM Plan_Requirement__c
                                                 WHERE ID in :newlist]) {
-                if (planReq.Plan_Requirement__r.Program_Plan__c != null
+                if (stgUniqueProgramPlanEnabled == true
+                        && planReq.Plan_Requirement__r.Program_Plan__c != null
                         && planReq.Plan_Requirement__c != null
                         && planReq.Program_Plan__c != planReq.Plan_Requirement__r.Program_Plan__c) {
                     //throw an error

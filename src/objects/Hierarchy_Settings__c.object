@@ -393,7 +393,9 @@
     <fields>
         <fullName>Unique_Program_Plan_Enforced__c</fullName>
         <defaultValue>true</defaultValue>
+        <description>When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved.</description>
         <externalId>false</externalId>
+        <inlineHelpText>When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved.</inlineHelpText>
         <label>Unique Program Plan Enforced</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

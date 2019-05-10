@@ -1288,6 +1288,14 @@
         <value>Check this if you&apos;d like errors to be stored in the database.</value>
     </labels>
     <labels>
+        <fullName>stgHelpUniqueProgramPlan</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpUniqueProgramPlan</shortDescription>
+        <value>When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1608,11 +1616,19 @@
         <value>Error</value>
     </labels>
     <labels>
+        <fullName>stgUniqueProgramPlan</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgUniqueProgramPlan</shortDescription>
+        <value>Enable Unique Program Plan Validation for Nested Plan Requirements</value>
+    </labels>
+    <labels>
         <fullName>uniqueProgramPlanExp</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>uniqueProgramPlanExp</shortDescription>
-        <value>Current plan requirement has different program plan to immediate parent plan requirement</value>
+        <value>The parent Plan Requirement specifies a different Program Plan. Change the Program Plan so that it matches the one specified by the parent Plan Requirement.</value>
     </labels>
 </CustomLabels>
