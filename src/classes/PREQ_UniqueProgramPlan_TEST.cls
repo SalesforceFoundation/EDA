@@ -39,6 +39,8 @@ private class PREQ_UniqueProgramPlan_TEST {
 
     @isTest
     public static void pReqInsertChildPRWithDifferentPP() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Unique_Program_Plan_Enforced__c = true));
+
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
         insert pPlans;
 
@@ -62,6 +64,8 @@ private class PREQ_UniqueProgramPlan_TEST {
 
     @isTest
     public static void pReqUpdateChildPRWithDifferentPP() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Unique_Program_Plan_Enforced__c = true));
+
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
         insert pPlans;
 
