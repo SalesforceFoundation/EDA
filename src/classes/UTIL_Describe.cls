@@ -72,9 +72,9 @@ public class UTIL_Describe {
         }
     }
 
-    /*******************************************
+    /********************************************
     * Gets a field map for a new object/field pair
-    ********************************************/
+    *********************************************/
     private static void fillFieldMapsForObject(string objectName, string fieldName) {
 
         // get the object map the first time
