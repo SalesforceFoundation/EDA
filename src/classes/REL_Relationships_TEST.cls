@@ -59,20 +59,20 @@ public class REL_Relationships_TEST {
 
             //add autocreate settings for CMs
             delete [SELECT Id FROM Relationship_Auto_Create__c];
-            insert new Relationship_Auto_Create__c(Name='AutoCreate',Object__c='CampaignMember',
-                                                    Field__c='ContactId',Relationship_Type__c = 'TestType',
+            insert new Relationship_Auto_Create__c(Name = 'AutoCreate', Object__c = 'CampaignMember',
+                                                    Field__c = 'ContactId', Relationship_Type__c = 'TestType',
                                                     Campaign_Types__c = 'Other;');
 
-            insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId',Relationship_Type__c = 'TestType');
+            insert new Relationship_Auto_Create__c(Name = 'AutoCreate2', Object__c = 'Contact',
+                                                    Field__c = 'ReportsToId', Relationship_Type__c = 'TestType');
 
             //add Reciprocal Relationship
             delete [SELECT Id FROM Relationship_Lookup__c];
-            insert new Relationship_Lookup__c(Name='TestLookupType',Male__c='TestMaleType',
-                                                Female__c='TestFemaleType',Neutral__c='TestNeutralType');
-            insert new Relationship_Lookup__c(Name='TestLookupType2',Male__c='TestMaleType2',
-                                                Female__c='TestFemaleType2',Neutral__c='TestNeutralType2',
-                                                Active__c=false);
+            insert new Relationship_Lookup__c(Name = 'TestLookupType', Male__c = 'TestMaleType',
+                                                Female__c = 'TestFemaleType', Neutral__c = 'TestNeutralType');
+            insert new Relationship_Lookup__c(Name = 'TestLookupType2', Male__c = 'TestMaleType2',
+                                                Female__c = 'TestFemaleType2', Neutral__c = 'TestNeutralType2',
+                                                Active__c = false);
 
             c1 = new Contact(Salutation = 'Mr.', FirstName = 'Walter_Test', LastName = 'Roosevelt_Test');
             c2 = new Contact(Salutation = 'Mrs.', FirstName = 'Jane_Test', LastName = 'Nixon_Test');
@@ -91,19 +91,19 @@ public class REL_Relationships_TEST {
         Relationship__c rel = new Relationship__c(
               Contact__c = c1.Id,
               RelatedContact__c = c2.Id,
-              Type__c='Friend',
-              Status__c='Active',
-              Description__c='notes');
+              Type__c = 'Friend',
+              Status__c = 'Active',
+              Description__c = 'notes');
         insert rel;
 
         // check that rel gets created
-        List<Relationship__c> relList = [SELECT Id,Contact__c,RelatedContact__c,Status__c,
+        List<Relationship__c> relList = [SELECT Id, Contact__c, RelatedContact__c, Status__c,
                                           Type__c, ReciprocalRelationship__c
-                                          FROM Relationship__c WHERE Id= :rel.Id LIMIT 1];
+                                          FROM Relationship__c WHERE Id = :rel.Id LIMIT 1];
         // check for mirror rel
-        List<Relationship__c> mirrorList = [SELECT Id,Contact__c,RelatedContact__c,Status__c,
-                                              Type__c,ReciprocalRelationship__c
-                                              FROM Relationship__c WHERE ReciprocalRelationship__c=:relList[0].Id LIMIT 1];
+        List<Relationship__c> mirrorList = [SELECT Id, Contact__c, RelatedContact__c, Status__c,
+                                              Type__c, ReciprocalRelationship__c
+                                              FROM Relationship__c WHERE ReciprocalRelationship__c = :relList[0].Id LIMIT 1];
 
 
         //reference eachother
@@ -123,7 +123,7 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         // test change to the rel
-        Relationship__c updated_original = [SELECT Id, Description__c, Type__c,ReciprocalRelationship__c
+        Relationship__c updated_original = [SELECT Id, Description__c, Type__c, ReciprocalRelationship__c
                                               FROM Relationship__c WHERE Id = :relList[0].Id LIMIT 1];
 
         //original should have updated relationship
@@ -154,18 +154,18 @@ public class REL_Relationships_TEST {
     public static void testOrphanedRelDelete() {
         setupRelationshipTestData(null);
 
-        Relationship__c crel = new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='Buddies');
+        Relationship__c crel = new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'Buddies');
         insert crel;
 
         // check that rel gets created
-        Relationship__c crel_original = [SELECT Id, Description__c,Type__c,ReciprocalRelationship__c
-                                        FROM Relationship__c WHERE Id=:crel.Id];
+        Relationship__c crel_original = [SELECT Id, Description__c, Type__c, ReciprocalRelationship__c
+                                        FROM Relationship__c WHERE Id = :crel.Id];
         //relationship should be set right
         System.assertEquals(crel_original.Type__c, 'Buddies');
 
         // check for mirror rel
         Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c
-                                        FROM Relationship__c WHERE ReciprocalRelationship__c=:crel_original.Id];
+                                        FROM Relationship__c WHERE ReciprocalRelationship__c = :crel_original.Id];
         //mirror should reference the original
         System.assertEquals(crel_mirror.ReciprocalRelationship__c, crel_original.Id);
         Test.startTest();
@@ -184,16 +184,16 @@ public class REL_Relationships_TEST {
     public static void testRelationshipDelete(){
         setupRelationshipTestData(null);
         Relationship__c crel_original = new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id,
-                                                                Type__c='Buddies');
+                                                                Type__c = 'Buddies');
         insert crel_original;
 
         crel_original = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c
-                                            FROM Relationship__c WHERE Id=:crel_original.Id];
+                                            FROM Relationship__c WHERE Id = :crel_original.Id];
         UTIL_Debug.debug('****Original relationship: ' + crel_original);
 
         // check mirror rel got created
         Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c
-                                            FROM Relationship__c WHERE ReciprocalRelationship__c=:crel_original.Id];
+                                            FROM Relationship__c WHERE ReciprocalRelationship__c = :crel_original.Id];
 
         UTIL_Debug.debug('****Mirror relationship: ' + crel_mirror);
 
@@ -218,7 +218,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(null);
 
         //Insert a campaign
-        Campaign campaign = new Campaign(Name='TestCampaign', IsActive=true, Type='Other');
+        Campaign campaign = new Campaign(Name = 'TestCampaign', IsActive = true, Type = 'Other');
         insert campaign;
 
         //Insert a campaign member
@@ -250,7 +250,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         //insert a campaignmember
-        Campaign c = new Campaign(Name='TestCampaign', IsActive=true, Type='Other');
+        Campaign c = new Campaign(Name = 'TestCampaign', IsActive = true, Type = 'Other');
         insert c;
         CampaignMember cm = new CampaignMember(ContactId = c2.Id, CampaignId = c.Id);
 
@@ -283,7 +283,7 @@ public class REL_Relationships_TEST {
         insert newTDTM;
 
         //Insert a campaign
-        Campaign campaign = new Campaign(Name='TestCampaign', IsActive=true, Type='Other');
+        Campaign campaign = new Campaign(Name = 'TestCampaign', IsActive = true, Type = 'Other');
         insert campaign;
 
         //Insert a campaign member
@@ -312,7 +312,7 @@ public class REL_Relationships_TEST {
     public static void testAutoCreateCampaignMemberUpdate(){
         setupRelationshipTestData(null);
         //insert a campaignmember
-        Campaign c = new Campaign(Name='TestCampaign', IsActive=true);
+        Campaign c = new Campaign(Name = 'TestCampaign', IsActive = true);
         insert c;
         CampaignMember cm = new CampaignMember(ContactId = c2.Id, CampaignId = c.Id);
         insert cm;
@@ -356,7 +356,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         //insert a new Contact
-        Contact c = new Contact(LastName='ReportingIn', ReportsToId = c1.Id);
+        Contact c = new Contact(LastName = 'ReportingIn', ReportsToId = c1.Id);
 
         Test.startTest();
         insert c;
@@ -379,7 +379,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(null);
 
         //insert a new Contact
-        Contact c = new Contact(LastName='ReportingIn', ReportsToId = c1.Id);
+        Contact c = new Contact(LastName = 'ReportingIn', ReportsToId = c1.Id);
         insert c;
         c.ReportsToId = c2.Id;
 
@@ -438,7 +438,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='Buddies-Friends')
+            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'Buddies-Friends')
         };
 
         Test.startTest();
@@ -446,12 +446,12 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         // check that rel gets created
-        Relationship__c crel_original = [SELECT Id, Description__c,Type__c,ReciprocalRelationship__c FROM Relationship__c WHERE Id=:crel[0].Id];
+        Relationship__c crel_original = [SELECT Id, Description__c, Type__c, ReciprocalRelationship__c FROM Relationship__c WHERE Id = :crel[0].Id];
         //relationship should be set right
         system.assertEquals(crel_original.Type__c, 'Buddies-Friends');
 
         // check for mirror rel
-        Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c FROM Relationship__c WHERE ReciprocalRelationship__c=:crel_original.Id];
+        Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c FROM Relationship__c WHERE ReciprocalRelationship__c = :crel_original.Id];
         //mirror should reference the original
         system.assertEquals(crel_mirror.ReciprocalRelationship__c, crel_original.Id);
         system.assertEquals('Friends-Buddies', crel_mirror.Type__c);
@@ -465,7 +465,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='BuddiesFriends')
+            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'BuddiesFriends')
         };
 
         Test.startTest();
@@ -473,12 +473,12 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         // check that rel gets created
-        Relationship__c crel_original = [SELECT Id, Description__c,Type__c,ReciprocalRelationship__c FROM Relationship__c WHERE Id=:crel[0].Id];
+        Relationship__c crel_original = [SELECT Id, Description__c, Type__c, ReciprocalRelationship__c FROM Relationship__c WHERE Id = :crel[0].Id];
         //relationship should be set right
         system.assertEquals(crel_original.Type__c, 'BuddiesFriends');
 
         // check for mirror rel
-        Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c FROM Relationship__c WHERE ReciprocalRelationship__c=:crel_original.Id];
+        Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c FROM Relationship__c WHERE ReciprocalRelationship__c = :crel_original.Id];
         //mirror should reference the original
         system.assertEquals(crel_mirror.ReciprocalRelationship__c, crel_original.Id);
         system.assertEquals('BuddiesFriends', crel_mirror.Type__c);
@@ -492,7 +492,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='BuddiesFriends')
+            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'BuddiesFriends')
         };
 
         Test.startTest();
@@ -500,12 +500,12 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         // check that rel gets created
-        Relationship__c crel_original = [SELECT Id, Description__c,Type__c,ReciprocalRelationship__c FROM Relationship__c WHERE Id=:crel[0].Id];
+        Relationship__c crel_original = [SELECT Id, Description__c, Type__c, ReciprocalRelationship__c FROM Relationship__c WHERE Id = :crel[0].Id];
         //relationship should be set right
         system.assertEquals(crel_original.Type__c, 'BuddiesFriends');
 
         // check for mirror rel
-        Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c FROM Relationship__c WHERE ReciprocalRelationship__c=:crel_original.Id];
+        Relationship__c crel_mirror = [SELECT Id, Description__c, ReciprocalRelationship__c, Type__c FROM Relationship__c WHERE ReciprocalRelationship__c = :crel_original.Id];
         //mirror should reference the original
         system.assertEquals(crel_mirror.ReciprocalRelationship__c, crel_original.Id);
         system.assertEquals('BuddiesFriends', crel_mirror.Type__c);
@@ -518,7 +518,7 @@ public class REL_Relationships_TEST {
     public static void testMaleSalutationReciprocal(){
         setupRelationshipTestData(null);
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -536,7 +536,7 @@ public class REL_Relationships_TEST {
     public static void testFemaleSalutationReciprocal(){
         setupRelationshipTestData(null);
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c2.Id, RelatedContact__c = c1.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c2.Id, RelatedContact__c = c1.Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -554,7 +554,7 @@ public class REL_Relationships_TEST {
     public static void testNeutralSalutationReciprocal(){
         setupRelationshipTestData(null);
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c3.Id, RelatedContact__c = c2.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c3.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -572,7 +572,7 @@ public class REL_Relationships_TEST {
     public static void testNeutralGenderFieldReciprocal(){
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c3.Id, RelatedContact__c = c2.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c3.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
         c3.Gender__c = 'Neutral';
         update c3;
@@ -594,7 +594,7 @@ public class REL_Relationships_TEST {
         c1.Gender__c = 'Male';
         update c1;
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -615,7 +615,7 @@ public class REL_Relationships_TEST {
         update c2;
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c2.Id, RelatedContact__c = c2.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c2.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -634,13 +634,13 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
-            new Contact(LastName='foo'),
-            new Contact(LastName='foo2')
+            new Contact(LastName = 'foo'),
+            new Contact(LastName = 'foo2')
         };
         insert conList;
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -662,13 +662,13 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
-            new Contact(LastName='foo'),
-            new Contact(LastName='foo2')
+            new Contact(LastName = 'foo'),
+            new Contact(LastName = 'foo2')
         };
         insert conList;
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c='TestMaleType')
+            new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c = 'TestMaleType')
         };
 
         Test.startTest();
@@ -706,13 +706,13 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
-            new Contact(LastName='foo', Gender__c='Female'),
-            new Contact(LastName='foo2', Gender__c='Male')
+            new Contact(LastName = 'foo', Gender__c = 'Female'),
+            new Contact(LastName = 'foo2', Gender__c = 'Male')
         };
         insert conList;
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c = 'TestLookupType')
         };
 
         insert crel;
@@ -744,7 +744,7 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(null);
 
         Relationship__c[] relationships = new Relationship__c[]{
-            new Relationship__c(Contact__c = c2.Id, Type__c='TestLookupType')
+            new Relationship__c(Contact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
         Test.startTest();
@@ -771,7 +771,7 @@ public class REL_Relationships_TEST {
         system.assertEquals(1, errors.errorRecords.size());
 
         //assert no additional error record was created on update
-        system.assertEquals(1, [SELECT count() from Error__c]);
+        system.assertEquals(1, [SELECT count() FROM Error__c]);
     }
 
     /*********************************************************************************************************
@@ -795,9 +795,9 @@ public class REL_Relationships_TEST {
         setupRelationshipTestData(null);
 
         Relationship__c[] crel = new Relationship__c[]{
-            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='TestType')
+            new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestType')
         };
-        crel.add(new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c='TestType2'));
+        crel.add(new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestType2'));
         insert crel;
 
         //update the ReportsToId to trigger autocreation
@@ -808,7 +808,7 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         //assert we only have one relationship since we've deduped the auto-created one
-        Relationship__c[] rel = [SELECT Id, Type__c, RelatedContact__c FROM Relationship__c WHERE Contact__c = :c1.Id and Type__c = 'TestType'];
+        Relationship__c[] rel = [SELECT Id, Type__c, RelatedContact__c FROM Relationship__c WHERE Contact__c = :c1.Id AND Type__c = 'TestType'];
         system.assertEquals('TestType', rel[0].Type__c);
         system.assertEquals(rel.size(), 1);
     }
@@ -855,14 +855,14 @@ public class REL_Relationships_TEST {
     @isTest
     public static void test2Rels1Transaction_v2() {
          // Create three contacts
-        Contact mainClient = new Contact(FirstName='Main',LastName='AAAClient');
-        Contact friend = new Contact(FirstName='Test',LastName='AAAFriend');
-        Contact coworker = new Contact(FirstName='Test',LastName='AAACoworker');
+        Contact mainClient = new Contact(FirstName = 'Main', LastName = 'AAAClient');
+        Contact friend = new Contact(FirstName = 'Test', LastName = 'AAAFriend');
+        Contact coworker = new Contact(FirstName = 'Test', LastName = 'AAACoworker');
         insert new Contact[] {mainClient, friend, coworker};
 
         // Create two relationships
-        Relationship__c r1 = new Relationship__c(Contact__c=mainClient.Id, RelatedContact__c=friend.Id, Type__c='Friend');
-        Relationship__c r2 = new Relationship__c(Contact__c=mainClient.Id, RelatedContact__c=coworker.Id, Type__c='Coworker');
+        Relationship__c r1 = new Relationship__c(Contact__c = mainClient.Id, RelatedContact__c = friend.Id, Type__c = 'Friend');
+        Relationship__c r2 = new Relationship__c(Contact__c = mainClient.Id, RelatedContact__c = coworker.Id, Type__c = 'Coworker');
 
         Test.startTest();
         insert new Relationship__c[] {r1, r2};
@@ -875,10 +875,10 @@ public class REL_Relationships_TEST {
         system.assert(nr2.ReciprocalRelationship__c != null);
 
         list<Relationship__c> rels = new list<Relationship__c>();
-        rels.add(new Relationship__c(Contact__c=mainClient.Id,RelatedContact__c=friend.Id,Type__c='Friend2'));
-        rels.add(new Relationship__c(Contact__c=mainClient.Id,RelatedContact__c=coworker.Id,Type__c='Coworker2'));
+        rels.add(new Relationship__c(Contact__c = mainClient.Id, RelatedContact__c = friend.Id, Type__c = 'Friend2'));
+        rels.add(new Relationship__c(Contact__c = mainClient.Id, RelatedContact__c = coworker.Id, Type__c = 'Coworker2'));
         insert rels;
-        list<Relationship__c> rels2 = [SELECT Id, ReciprocalRelationship__c FROM Relationship__c WHERE Id = :rels[0].Id or Id = :rels[1].Id];
+        list<Relationship__c> rels2 = [SELECT Id, ReciprocalRelationship__c FROM Relationship__c WHERE Id = :rels[0].Id OR Id = :rels[1].Id];
         system.assertEquals(2, rels2.size());
         system.assert(rels2[0].ReciprocalRelationship__c != null);
         system.assert(rels2[1].ReciprocalRelationship__c != null);
@@ -892,7 +892,7 @@ public class REL_Relationships_TEST {
     public static void deleteRelationshipAndReciRelationship() {
         setupRelationshipTestData(null);
 
-        Relationship__c rel = new Relationship__c( Contact__c = c1.Id, relatedContact__c = c2.Id, Type__c='Friend');
+        Relationship__c rel = new Relationship__c(Contact__c = c1.Id, relatedContact__c = c2.Id, Type__c = 'Friend');
         insert rel;
 
         //After insert the relationship, system should create the reciprocal relationship. So, we should have two relationships in the system.
