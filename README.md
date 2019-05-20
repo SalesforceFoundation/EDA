@@ -1,4 +1,4 @@
-![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/feature/eda-image/EDA%20GitHub.png "Salesforce Education Data Architecture")
+![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/master/EDA%20GitHub.png "Salesforce Education Data Architecture")
 
 The Salesforce Education Data Architecture (EDA) provides an education-specific platform for growth for organizations utilizing Salesforce.  EDA utilizes a Salesforce managed package and some light unmanaged customization to give Educational Institution users a familiar nomenclature and data model for many education applications.  In addition, Education developers and administrators can utilize EDA's advanced trigger management capabilities, robust error handling and pluggable framework to better manage and coordinate the data in their Salesforce instance.
 
