@@ -68,7 +68,7 @@ public class UTIL_Describe {
                 objectDescribes.put(objectName, gd.get(objectName).getDescribe());
             }    
         } else {
-             throw new SchemaDescribeException('Invalid object name \'' + objectName + '\'');
+            throw new SchemaDescribeException('Invalid object name \'' + objectName + '\'');
         }
     }
 
@@ -438,7 +438,7 @@ public class UTIL_Describe {
 
     // utility to return a list of strings from a field set.
     public static list<string> listStrFromFieldSet(string strObject, string strFS) {
-        list<string> listStrFields = new list<string>();
+        List<string> listStrFields = new List<string>();
         Schema.SObjectType targetType = Schema.getGlobalDescribe().get(strObject);
         Schema.DescribeSObjectResult d = targetType.getDescribe();
         Schema.FieldSet fs = d.fieldSets.getMap().get(strFS);
@@ -618,8 +618,7 @@ public class UTIL_Describe {
 
             if(getRecTypesMapByDevName('Account').values().size() > 1) {
                 return getRecTypesMapByDevName('Account').values()[1];
-            }
-            else {
+            }else {
                 return null;
             }
         } else {
