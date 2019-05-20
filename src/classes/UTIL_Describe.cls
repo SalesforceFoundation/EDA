@@ -618,7 +618,7 @@ public class UTIL_Describe {
 
             if(getRecTypesMapByDevName('Account').values().size() > 1) {
                 return getRecTypesMapByDevName('Account').values()[1];
-            }else {
+            } else {
                 return null;
             }
         } else {
