@@ -58,30 +58,78 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contact;
         
         //Verify default household account has been created for the contact
-        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
-        System.assertNotEquals(null, contact.Account.ID);
+        contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
+        System.assertNotEquals(null, contact.AccountId);
         System.assertEquals(null, contact.Primary_Household__c);
 
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.Id, Account__c = contact.AccountId, Primary__c = true);
 
         //Verify the primary household field was populated
-        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
-        Account acc = [select RecordTypeId from Account where ID=:contact.Account.ID];
+        Account acc = [SELECT RecordTypeId FROM Account WHERE Id = :contact.AccountId];
         //Change the account record type to Business Organization
         acc.RecordTypeId = orgRecTypeID;
         Test.startTest();
         update acc;
         Test.stopTest();
         
-        contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
+        contact = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
         //Verify primary household field has been cleared
         System.assertEquals(null, contact.Primary_Household__c);
         //Verify primary business organization field has been populated
-        System.assertEquals(acc.ID, contact.Primary_Organization__c);
+        System.assertEquals(acc.Id, contact.Primary_Organization__c);
+    }
+
+    @isTest
+    public static void changePrimaryAffiliationRecordTypeReentrancyCheck() {        
+        setup();
+
+        // Install Default HEDA TDTM Configuration
+        List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+        TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+
+        // Add the Test TDTM for the Contact object. This Test TDTM will simply update the account that caused the contact to be updated.
+        // So the flow would be: Account updated -> contact updated -> account updated again
+        Trigger_Handler__c newTDTM = new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+            Class__c = 'UTIL_UnitTestData_TEST.Test_TDTM', Load_Order__c = 1, Object__c = 'Contact',
+            Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate');
+        insert newTDTM;
+
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+
+        //Manually create an Affiliation to the household, since we are not automatically doing so any more.
+        contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
+        insert new Affiliation__c(Contact__c = contact.Id, Account__c = contact.AccountId, Primary__c = true);
+
+        //Verify the primary household field was populated
+        contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
+        System.assertNotEquals(null, contact.Primary_Household__c);
+        
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        
+        //Change the account record type to Business Organization
+        Account acc = new Account(Id = contact.AccountId, RecordTypeId = orgRecTypeID);
+
+        // Ensure that the account gets updated recursively
+        UTIL_UnitTestData_TEST.sObjectsToUpdate = new List<SObject>{ acc };
+
+        Test.startTest();
+        update acc;
+        Test.stopTest();
+        
+        contact = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        //Verify primary household field has been cleared
+        System.assertEquals(null, contact.Primary_Household__c);
+        //Verify primary business organization field has been populated
+        System.assertEquals(acc.Id, contact.Primary_Organization__c);
+
+        System.assert(AFFL_AccRecordType_TDTM.reentrancyPrevented == true, 
+            'Expected the reentrancy check to have prevented the AFFL_AccRecordType_TDTM trigger FROM processing again.');
     }
     
     @isTest
@@ -92,28 +140,28 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contact;
         
         //Verify default household account has been created for the contact
-        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
-        System.assertNotEquals(null, contact.Account.ID);
+        contact = [SELECT AccountId, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertNotEquals(null, contact.AccountId);
         System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more.
-        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.Id, Account__c = contact.AccountId, Primary__c = true);
 
         //Verify the primary household field was populated
-        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
         Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizOrg;
-        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg.Id, Primary__c = true);
         insert bizAffl;
         
         //Verify the primary business organization field was populated
-        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
-        System.assertEquals(bizOrg.ID, contact.Primary_Organization__c);
+        contact = [SELECT AccountId, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(bizOrg.Id, contact.Primary_Organization__c);
         
-        Account household = [select RecordTypeId from Account where ID=:contact.Account.ID];
+        Account household = [SELECT RecordTypeId FROM Account WHERE Id = :contact.AccountId];
         //Change the account record type of the household to Business Organization, and of the biz org to Household
         household.RecordTypeId = orgRecTypeID;
         bizOrg.RecordTypeId = householdRecTypeID;
@@ -122,11 +170,11 @@ public with sharing class AFFL_AccRecordType_TEST {
         update new Account[]{household, bizOrg};
         Test.stopTest();
         
-        contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
+        contact = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
         //Verify primary household field has changed to the biz org
-        System.assertEquals(bizOrg.ID, contact.Primary_Household__c);
+        System.assertEquals(bizOrg.Id, contact.Primary_Household__c);
         //Verify primary business organization field has changed to the household
-        System.assertEquals(household.ID, contact.Primary_Organization__c);
+        System.assertEquals(household.Id, contact.Primary_Organization__c);
     }
     
     @isTest
@@ -137,31 +185,31 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert contact;
         
         //Verify default household account has been created for the contact
-        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
-        System.assertNotEquals(null, contact.Account.ID);
+        contact = [SELECT AccountId, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertNotEquals(null, contact.AccountId);
         System.assertEquals(null, contact.Primary_Household__c);
         
         //Manually create an Affiliation to the household, since we are not automatically doing so any more
-        insert new Affiliation__c(Contact__c = contact.ID, Account__c = contact.Account.ID, Primary__c = true);
+        insert new Affiliation__c(Contact__c = contact.Id, Account__c = contact.AccountId, Primary__c = true);
 
         //Verify the primary household field was populated
-        contact = [select Account.ID, Primary_Household__c from Contact where ID =:Contact.ID];
+        contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
         System.assertNotEquals(null, contact.Primary_Household__c);
         
         //Create primary Affl to a Business Organization
         Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizOrg;
-        UTIL_Debug.debug('****Biz org ID: ' + bizOrg.ID);
-        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.ID, Account__c = bizOrg.ID, Primary__c = true);
+        UTIL_Debug.debug('****Biz org ID: ' + bizOrg.Id);
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg.Id, Primary__c = true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
         insert bizAffl;
         
         //Verify the primary business organization field was populated
-        contact = [select Account.ID, Primary_Household__c, Primary_Organization__c from Contact where ID =:Contact.ID];
-        System.assertEquals(bizOrg.ID, contact.Primary_Organization__c);
+        contact = [SELECT AccountId, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(bizOrg.Id, contact.Primary_Organization__c);
         
-        Account household = [select RecordTypeId from Account where ID=:contact.Account.ID];
-        UTIL_Debug.debug('****Household ID: ' + household.ID);
+        Account household = [SELECT RecordTypeId FROM Account WHERE Id = :contact.AccountId];
+        UTIL_Debug.debug('****Household ID: ' + household.Id);
         //Change the account record type of parent Household to Business Organization
         household.RecordTypeId = orgRecTypeID;
         Test.startTest();
@@ -169,14 +217,14 @@ public with sharing class AFFL_AccRecordType_TEST {
         update household;
         Test.stopTest();
         
-        contact = [select Primary_Household__c, Primary_Organization__c from Contact where ID=:contact.Id];
+        contact = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
         //Verify primary household field has been cleared
         System.assertEquals(null, contact.Primary_Household__c);
         //Verify primary business organization field has changed to the household
-        System.assertEquals(household.ID, contact.Primary_Organization__c);
+        System.assertEquals(household.Id, contact.Primary_Organization__c);
 
         //Verify the old primary business affiliation is not primary now
-        bizAffl = [select Primary__c from Affiliation__c where ID = :bizAffl.ID];
+        bizAffl = [SELECT Primary__c FROM Affiliation__c WHERE ID = :bizAffl.Id];
         System.assertEquals(false, bizAffl.Primary__c);
     }
 
@@ -191,12 +239,12 @@ public with sharing class AFFL_AccRecordType_TEST {
         //to the profile running the tests as default, we assign a different type to it. Profiles cannot be created in tests.
         Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
         insert acc;
-        Affiliation__c affl = new Affiliation__c(Contact__c = contact.ID, Account__c = acc.ID, Primary__c = true);
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = acc.Id, Primary__c = true);
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
         insert affl;
         
         //Verify Primary Business Organization field was not populated
-        contact = [select Primary_Organization__c from Contact where ID=:contact.Id];
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
         System.assertEquals(null, contact.Primary_Organization__c);
         
         //Give record type to that Account
@@ -206,8 +254,8 @@ public with sharing class AFFL_AccRecordType_TEST {
         Test.stopTest();
         
         //Verify Primary Business Organization field was populated
-        contact = [select Primary_Organization__c from Contact where ID=:contact.Id];
-        System.assertEquals(acc.ID, contact.Primary_Organization__c);
+        contact = [SELECT Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertEquals(acc.Id, contact.Primary_Organization__c);
     }
 
     @isTest
@@ -218,7 +266,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(10, UTIL_Describe_API.getAdminAccRecTypeID());
         insert adminAccList;
 
-        List<Account> theAccs = [Select Id from Account where RecordTypeId =: UTIL_Describe_API.getAdminAccRecTypeID()];
+        List<Account> theAccs = [SELECT Id FROM Account WHERE RecordTypeId = :UTIL_Describe_API.getAdminAccRecTypeID()];
         system.assertEquals(10, theAccs.size());
 
         //Change the record type of the Accounts to Biz type and HH type
@@ -235,10 +283,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         update theAccs;
         Test.stopTest();
 
-        List<Account> orgAccounts = [Select Id from Account where RecordTypeId =: orgRecTypeID];
+        List<Account> orgAccounts = [SELECT Id FROM Account WHERE RecordTypeId = :orgRecTypeID];
         system.assertEquals(5, orgAccounts.size());
 
-        List<Account> hhAccounts = [Select Id from Account where RecordTypeId =: householdRecTypeID];
+        List<Account> hhAccounts = [SELECT Id FROM Account WHERE RecordTypeId = :householdRecTypeID];
         system.assertEquals(5, hhAccounts.size());
     }
 
@@ -259,8 +307,8 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert accs;
 
         //Create Affiliations
-        Affiliation__c companyAffl = new Affiliation__c(Contact__c = john.ID, Account__c = company.ID, Primary__c = true);
-        Affiliation__c hhAffl = new Affiliation__c(Contact__c = mark.ID, Account__c = hh.ID, Primary__c = true);
+        Affiliation__c companyAffl = new Affiliation__c(Contact__c = john.Id, Account__c = company.Id, Primary__c = true);
+        Affiliation__c hhAffl = new Affiliation__c(Contact__c = mark.Id, Account__c = hh.Id, Primary__c = true);
         List<Affiliation__c> affls = new List<Affiliation__c>{companyAffl, hhAffl};
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,false);
         insert affls;
@@ -275,12 +323,12 @@ public with sharing class AFFL_AccRecordType_TEST {
         Test.stopTest();
 
         //Verify that the Primary Fields on Contacts get populated correctly
-        Contact johnUpdated = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: john.Id];
+        Contact johnUpdated = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :john.Id];
         system.assertEquals(null, johnUpdated.Primary_Household__c);
         system.assertEquals(company.Id, johnUpdated.Primary_Organization__c);
 
-        Contact markUpdated = [Select Primary_Household__c, Primary_Organization__c from Contact where Id =: mark.Id];
-        system.assertEquals(hh.id, markUpdated.Primary_Household__c);
+        Contact markUpdated = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :mark.Id];
+        system.assertEquals(hh.Id, markUpdated.Primary_Household__c);
         system.assertEquals(null, markUpdated.Primary_Organization__c);
     }
 }
