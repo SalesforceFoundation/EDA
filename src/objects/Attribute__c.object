@@ -77,7 +77,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -120,7 +119,7 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <deleteConstraint>Restrict</deleteConstraint>
         <description>The Contact to whom the Attribute is assigned.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Contact to whom the Attribute is assigned.</inlineHelpText>
