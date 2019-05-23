@@ -36,6 +36,9 @@
 */
 public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 
+    @testVisible
+    private static Boolean reentrancyPrevented;
+
 	/*******************************************************************************************************
     * @description Updates key affiliation lookups on contact, and any other primary affiliation of the new type.
     * @param listNew the list of Affiliations from trigger new.
@@ -48,6 +51,12 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
     	 DmlWrapper dmlWrapper = new DmlWrapper();
+
+         if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM)) {
+            reentrancyPrevented = true;
+            return dmlWrapper;
+         }
+
     	 //Accounts that did not have a record type before but now they do
     	 Map<ID, String> accsTypeAdded = new Map<ID, String>();
     	 //Accounts whose record type has changed
@@ -62,36 +71,47 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
          //    B. If that account did not have a record type:
          //         --> the key affl lookup field for that type in Contacts affiliated to it needs to be populated
     	 if(newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
-    	 	for (Integer i = 0; i < newlist.size(); i++) {
+    	 	
+             for (Integer i = 0; i < newlist.size(); i++) {
     	 	    SObject so = newlist[i];
     	 	    //AFTER UPDATE
     	 		if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 	    	 		Account acc = (Account)so;
 			        Account oldAcc = (Account)oldList[i];
 
-			        if(acc.RecordTypeId != oldAcc.RecordTypeId) {
-			        	AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+                    // If the record type isn't changing, move on
+                    if(acc.RecordTypeId == oldAcc.RecordTypeId) {
+                        continue;
+                    }
 
-			        	//Find the lookup field that matches the new record type
-                        String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
+			        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
-			        	//Find the lookup field that matches the old record type
-				        String keyAfflFieldOldType = afflMapper.getKeyAfflFieldByAccRecordType(oldAcc.RecordTypeId);
+                    //Find the lookup field that matches the new record type
+                    String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
 
-				       //Checking if keyAfflFieldOldType is null instead of acc.RecordTypeId because apparently that field
-				       //has a value even if the Account is created without populating that field in a test.
-				       if(keyAfflFieldOldType != null) {
-				        	//Add the account info to the list that tracks accounts that have changed type
-				        	accsTypeChanged.add(new AccNewOldType(acc.ID, keyAfflFieldOldType, keyAfflFieldNewType));
-			        	} else if (keyAfflFieldNewType != null) {
-			        	    accsTypeAdded.put(acc.Id, keyAfflFieldNewType);
-			        	}
-			        }
+                    //Find the lookup field that matches the old record type
+                    String keyAfflFieldOldType = afflMapper.getKeyAfflFieldByAccRecordType(oldAcc.RecordTypeId);
+
+                    //Checking if keyAfflFieldOldType is null instead of acc.RecordTypeId because apparently that field
+                    //has a value even if the Account is created without populating that field in a test.
+                    if(keyAfflFieldOldType != null) {
+                        //Add the account info to the list that tracks accounts that have changed type
+                        accsTypeChanged.add(new AccNewOldType(acc.ID, keyAfflFieldOldType, keyAfflFieldNewType));
+                    } else if (keyAfflFieldNewType != null) {
+                        accsTypeAdded.put(acc.Id, keyAfflFieldNewType);
+                    }
     	 		}
 		    }
+
 		    updatePrimaryAfflsOnChange(accsTypeChanged, dmlWrapper);
             updatePrimaryAfflsOnAdd(accsTypeAdded, dmlWrapper);
+
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM, true);
+            TDTM_TriggerHandler.processDML(dmlWrapper, true);
+            dmlWrapper = null;
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM, false);
     	 }
+
     	 return dmlWrapper;
     }
 
