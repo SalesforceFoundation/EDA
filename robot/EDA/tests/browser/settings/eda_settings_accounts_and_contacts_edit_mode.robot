@@ -13,7 +13,8 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                tabs.accountsandcontacts
     
     #Go into Edit mode 
-    Click Button                    Edit
+    #Click Button                    Edit
+    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
 
     # Select Multi-Address Account Types
     Click on Element                account_types.administrative
@@ -52,8 +53,10 @@ Validate Edit Mode For Accounts and Contacts, Settings
     #Save the changes
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
+    Sleep                           5
 
 
+    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
 
     # Select Multi-Address Account Types
     Click on Element                account_types.administrative
@@ -79,11 +82,14 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Wait for Locator                account_types.university 
     Click on Element                account_types.university 
     
-    Click Button                    Save
+    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
+    
+    #Click Button                    Save
 
-
+    Sleep                           5
     # Now restore everything back to what it was before the test
-    Click Button                    Edit
+    #Click Button                    Edit
+    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Edit')]
 
     # Uncheck everything
     Wait for Locator                account_types.academic
@@ -96,7 +102,8 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.university
 
     #Save the changes
-    Click Button                    Save
+    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
+    #Click Button                    Save
 
 *** Keywords ***
 
