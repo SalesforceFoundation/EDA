@@ -7,6 +7,7 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
+
 Verify EDA Settings
     Go To Eda Settings
 

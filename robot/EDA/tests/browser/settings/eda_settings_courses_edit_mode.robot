@@ -18,5 +18,6 @@ Validate Edit Mode For Courses - Edit Mode, Settings
 
     Click Button                    Save 
 
+
 *** Keywords ***
 

@@ -41,6 +41,7 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.university 
 
 
+
     # Uncheck everything
     Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Academic Program')]
     Click Element                   //div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Administrative')]

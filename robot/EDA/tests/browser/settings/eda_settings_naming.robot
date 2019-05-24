@@ -24,6 +24,7 @@ Open EDA Settings
     ${hh_role_checkbox} =  Get Eda Locator      eda_settings.hh_naming_role_checkbox
     Select Checkbox In Eda Settings             ${hh_naming_check}        ${hh_role_checkbox}
 
+
 #    #Go into Edit Mode, to set the Administrative Account Name Format
 #    Click Button                                Edit
 #

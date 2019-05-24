@@ -5,7 +5,7 @@ Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
-
+ 
     
 Create Contact And Verify
     ${contact_id} =  API Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    

@@ -24,5 +24,6 @@ Validate Edit Mode For Course Connections, Settings
     Select From List By Label       ${student_select}   Student
     Select From List By Label       ${faculty_select}   Faculty
 
+
     #Save settings
     Click Button                                Save
