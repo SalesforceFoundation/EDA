@@ -67,7 +67,8 @@ eda_lex_locators = {
         "new_button": "//a[@title='New']//div[@title='New']/..",
         "new_course_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Course')]",
         "save_button": "(//span[@class=' label bBody' and text()='Save']/ancestor::button[contains(@class, 'slds-button')])[3]",
-        "next_save_button": "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[@class=' label bBody' and contains(text(), 'Save')]",
+        "next_save_button_old": "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[@class=' label bBody' and contains(text(), 'Save')]",
+        "next_save_button": "(//span[@class=' label bBody' and contains(text(), 'Save')])[3]/..",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",
