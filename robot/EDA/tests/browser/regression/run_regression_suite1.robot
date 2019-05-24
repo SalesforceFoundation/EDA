@@ -1,5 +1,6 @@
 *** Settings ***
 
+
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
