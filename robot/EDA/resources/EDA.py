@@ -2,7 +2,6 @@ import logging
 import re
 import time
 
-
 from cumulusci.robotframework.utils import selenium_retry
 
 from robot.libraries.BuiltIn import BuiltIn
