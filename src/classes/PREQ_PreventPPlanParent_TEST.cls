@@ -83,7 +83,7 @@ private class PREQ_PreventPPlanParent_TEST {
         System.assertEquals(1, assertPReqs.size());
 
         System.assertEquals(false, results.success);
-        System.assertEquals(Label.uniqueProgramPlanExp, results.errors[0].message);
+        System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
     @isTest
@@ -111,7 +111,7 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 LIMIT 1];
         System.assertEquals(null, assertPReqs[0].Program_Plan__c);
         System.assertEquals(false, results.success);
-        System.assertEquals(Label.uniqueProgramPlanExp, results.errors[0].message);
+        System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
     @isTest
@@ -139,6 +139,6 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 LIMIT 1];
         System.assertEquals(null, assertPReqs[0].Program_Plan__c);
         System.assertEquals(false, results.success);
-        System.assertEquals(Label.uniqueProgramPlanExp, results.errors[0].message);
+        System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 }
