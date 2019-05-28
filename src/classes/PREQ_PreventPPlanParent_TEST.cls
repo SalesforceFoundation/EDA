@@ -39,7 +39,7 @@ private class PREQ_PreventPPlanParent_TEST {
 
     @isTest
     public static void pReqInsertChildPRWithSamePP() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Unique_Program_Plan_Enforced__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
         insert pPlans;
@@ -63,7 +63,7 @@ private class PREQ_PreventPPlanParent_TEST {
     }
 
     public static void pReqInsertChildPRWithDifferentPP() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Unique_Program_Plan_Enforced__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
         insert pPlans;
@@ -88,7 +88,7 @@ private class PREQ_PreventPPlanParent_TEST {
 
     @isTest
     public static void pReqUpdateChildPRWithSamePP() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Unique_Program_Plan_Enforced__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
         insert pPlans;
@@ -116,7 +116,7 @@ private class PREQ_PreventPPlanParent_TEST {
 
     @isTest
     public static void pReqUpdateChildPRWithDifferentPP() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Unique_Program_Plan_Enforced__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
         insert pPlans;

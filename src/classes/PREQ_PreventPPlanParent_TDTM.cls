@@ -38,7 +38,7 @@ public with sharing class PREQ_PreventPPlanParent_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description If unique Program Plan for plan requirements validation enabled.
     */
-    private static boolean stgUniqueProgramPlanEnabled = UTIL_CustomSettingsFacade.getSettings().Unique_Program_Plan_Enforced__c;
+    private static boolean stgUniqueProgramPlanEnabled = UTIL_CustomSettingsFacade.getSettings().Validate_Program_Plan_for_Nested_PR__c;
 
     /*******************************************************************************************************
     * @description Display an error when populating program plan on a child plan requirement
