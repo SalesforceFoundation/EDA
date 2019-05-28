@@ -5,16 +5,16 @@
 
         <!-- Unique Program Plan Enforcement-->
         <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.stgUniqueProgramPlan}" />
+            <ui:outputText value="{!$Label.c.stgNestedPlanRequirementPP}" />
         </div>
         <div class="slds-col slds-size--1-of-2">
             <div class="slds-form-element">
                 <div class="slds-form-element__control">
                     <label class="slds-checkbox">
                         <aura:if isTrue="{!v.isView}">
-                            <ui:outputCheckbox value="{!v.hierarchySettings.Unique_Program_Plan_Enforced__c}" class="unique-program-plan" />
+                            <ui:outputCheckbox value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}" class="unique-program-plan" />
                             <aura:set attribute="else">
-                                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Unique_Program_Plan_Enforced__c}"
+                                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}"
                                                   class="store-errors" />
                                 <span class="slds-checkbox--faux"></span>
                                 <span class="slds-form-element__label"></span>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpUniqueProgramPlan}" class="slds-text-body--small" />
+            <ui:outputText value="{!$Label.c.stgHelpNestedPlanRequirementPP}" class="slds-text-body--small" />
         </div>
 
     </div>
