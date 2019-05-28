@@ -59,7 +59,7 @@ private class PREQ_PreventPPlanParent_TEST {
         System.assertEquals(1, assertPReqs.size());
 
         System.assertEquals(false, results.success);
-        System.assertEquals(Label.uniqueProgramPlanExp, results.errors[0].message);
+        System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
     public static void pReqInsertChildPRWithDifferentPP() {

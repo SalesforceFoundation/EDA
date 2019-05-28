@@ -809,8 +809,8 @@
         <name>stgUniqueProgramPlan</name>
     </customLabels>
     <customLabels>
-        <label><!-- uniqueProgramPlanExp --></label>
-        <name>uniqueProgramPlanExp</name>
+        <label><!-- nestedPlanRequirementPPExp --></label>
+        <name>nestedPlanRequirementPPExp</name>
     </customLabels>
     <customTabs>
         <label>Paramètres EDA</label>
