@@ -605,7 +605,7 @@
         <members>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>
-        <members>stgHelpUniqueProgramPlan</members>
+        <members>stgHelpNestedPlanRequirementPP</members>
         <members>stgHelpUpdateReportIfDependenciesEthnicity</members>
         <members>stgNewAfflMapping</members>
         <members>stgOptAllSysAdmins</members>
@@ -646,8 +646,8 @@
         <members>stgTitleNewReciSetting</members>
         <members>stgTitleReciMethod</members>
         <members>stgToastError</members>
-        <members>stgUniqueProgramPlan</members>
-        <members>uniqueProgramPlanExp</members>
+        <members>stgNestedPlanRequirementPP</members>
+        <members>nestedPlanRequirementPPExp</members>
         <name>CustomLabel</name>
     </types>
     <types>

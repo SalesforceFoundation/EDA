@@ -1288,12 +1288,12 @@
         <value>Check this if you&apos;d like errors to be stored in the database.</value>
     </labels>
     <labels>
-        <fullName>stgHelpUniqueProgramPlan</fullName>
+        <fullName>stgHelpNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgHelpUniqueProgramPlan</shortDescription>
-        <value>When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved.</value>
+        <shortDescription>stgHelpNestedPlanRequirementPP</shortDescription>
+        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, validation fails and the Plan Requirement isn’t saved.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
@@ -1616,19 +1616,19 @@
         <value>Error</value>
     </labels>
     <labels>
-        <fullName>stgUniqueProgramPlan</fullName>
+        <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgUniqueProgramPlan</shortDescription>
-        <value>Enable Unique Program Plan Validation for Nested Plan Requirements</value>
+        <shortDescription>stgNestedPlanRequirementPP</shortDescription>
+        <value>Validate Program Plan for Nested Plan Requirements/value>
     </labels>
     <labels>
-        <fullName>uniqueProgramPlanExp</fullName>
+        <fullName>nestedPlanRequirementPPExp</fullName>
         <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>uniqueProgramPlanExp</shortDescription>
-        <value>The parent Plan Requirement specifies a different Program Plan. Change the Program Plan so that it matches the one specified by the parent Plan Requirement.</value>
+        <shortDescription>nestedPlanRequirementPPExp</shortDescription>
+        <value>Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.</value>
     </labels>
 </CustomLabels>
