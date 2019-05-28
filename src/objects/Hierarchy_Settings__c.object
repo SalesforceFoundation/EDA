@@ -391,12 +391,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Unique_Program_Plan_Enforced__c</fullName>
+        <fullName>Validate_Program_Plan_for_Nested_PR__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved.</description>
+        <description>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, validation fails and the Plan Requirement isn’t saved.</description>
         <externalId>false</externalId>
-        <inlineHelpText>When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved.</inlineHelpText>
-        <label>Unique Program Plan Enforced</label>
+        <inlineHelpText>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Progr</inlineHelpText>
+        <label>Validate Program Plan for Nested PR</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

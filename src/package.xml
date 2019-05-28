@@ -77,8 +77,6 @@
         <members>PREN_Affiliation_TEST</members>
         <members>PREN_ProgramPlan_TDTM</members>
         <members>PREN_ProgramPlan_TEST</members>
-        <members>PREQ_UniqueProgramPlan_TDTM</members>
-        <members>PREQ_UniqueProgramPlan_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
@@ -363,7 +361,7 @@
         <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
         <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
         <members>Hierarchy_Settings__c.Student_RecType__c</members>
-        <members>Hierarchy_Settings__c.Unique_Program_Plan_Enforced__c</members>
+        <members>Hierarchy_Settings__c.Validate_Program_Plan_for_Nested_PR__c</members>
         <members>Plan_Requirement__c.Category__c</members>
         <members>Plan_Requirement__c.Course__c</members>
         <members>Plan_Requirement__c.Credits__c</members>

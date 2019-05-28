@@ -154,7 +154,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
         settings.Default_Contact_Language_Fluency__c = mySettings.Default_Contact_Language_Fluency__c;
-        settings.Unique_Program_Plan_Enforced__c = mySettings.Unique_Program_Plan_Enforced__c;
+        settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
         settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
         orgSettings = settings;
         return settings;

@@ -185,9 +185,9 @@
         <name>Student_RecType__c</name>
     </fields>
     <fields>
-        <help><!-- When selected, EDA validates that a Plan Requirement looks up to only its parent Program Plan. If any other Program Plan is specified, validation fails and an error prevents the Plan Requirement from being saved. --></help>
-        <label><!-- Unique Program Plan Enforced --></label>
-        <name>Unique_Program_Plan_Enforced__c</name>
+        <help><!-- When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Progr --></help>
+        <label><!-- Validate Program Plan for Nested PR --></label>
+        <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
     <gender><!-- Feminine --></gender>
 </CustomObjectTranslation>
