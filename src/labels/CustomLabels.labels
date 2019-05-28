@@ -1621,7 +1621,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgNestedPlanRequirementPP</shortDescription>
-        <value>Validate Program Plan for Nested Plan Requirements/value>
+        <value>Validate Program Plan for Nested Plan Requirements</value>
     </labels>
     <labels>
         <fullName>nestedPlanRequirementPPExp</fullName>
