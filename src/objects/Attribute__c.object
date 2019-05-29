@@ -229,6 +229,10 @@
                 <fullName>International Student</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <searchLayouts/>
