@@ -173,7 +173,7 @@ private class PREQ_PreventPPlanParent_TEST {
         List<Plan_Requirement__c> assertPReqs = [select ID from Plan_Requirement__c];
         System.assertEquals(2, assertPReqs.size());
 
-        System.assertEquals(false, results.success);
+        System.assertEquals(true, results.success);
     }
 
     //Make sure no error is thrown when updating a Plan Requirement who is a child of another plan requirement,
