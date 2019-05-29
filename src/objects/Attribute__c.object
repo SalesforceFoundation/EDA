@@ -222,14 +222,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Certification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Endorsement</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Family Considerations</fullName>
                 <default>false</default>
             </values>
