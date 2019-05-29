@@ -153,7 +153,7 @@ private class PREQ_PreventPPlanParent_TEST {
     //Make sure no error is thrown when creating a Plan Requirement who is a child of another plan requirement,
     //linking to the same program plan and the setting of Validate_Program_Plan_for_Nested_PR__c is off
     @isTest
-    public static void pReqInsertChildPRWithSamePP() {
+    public static void pReqInsertChildPRWithSamePPSettingOff() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = false));
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
@@ -179,7 +179,7 @@ private class PREQ_PreventPPlanParent_TEST {
     //Make sure no error is thrown when updating a Plan Requirement who is a child of another plan requirement,
     //linking to a different program plan and the setting of Validate_Program_Plan_for_Nested_PR__c is off
     @isTest
-    public static void pReqUpdateChildPRWithDifferentPP() {
+    public static void pReqUpdateChildPRWithDifferentPPSettingOff() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = false));
 
         List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
