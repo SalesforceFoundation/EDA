@@ -64,7 +64,7 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Indicates that the expiration date has passed. Calculated automatically by a formula. --></help>
+        <help><!-- Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date. --></help>
         <label><!-- Expired --></label>
         <name>Expired__c</name>
     </fields>
@@ -76,14 +76,12 @@
     <gender><!-- Masculine --></gender>
     <nameFieldLabel><!-- Attribute Name --></nameFieldLabel>
     <recordTypes>
+        <description><!-- Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students. --></description>
         <label><!-- Credential --></label>
         <name>Credential</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Generic --></label>
-        <name>Generic</name>
-    </recordTypes>
-    <recordTypes>
+        <description><!-- Allows educational institutions to track important student characteristics that might impact their education. --></description>
         <label><!-- Student Characteristic --></label>
         <name>Student_Characteristic</name>
     </recordTypes>

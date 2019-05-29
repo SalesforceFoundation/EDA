@@ -154,11 +154,11 @@
     </fields>
     <fields>
         <fullName>Expired__c</fullName>
-        <description>Indicates that the expiration date has passed. Calculated automatically by a formula.</description>
+        <description>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</description>
         <externalId>false</externalId>
         <formula>TODAY() &gt;  End_Date__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Indicates that the expiration date has passed. Calculated automatically by a formula.</inlineHelpText>
+        <inlineHelpText>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</inlineHelpText>
         <label>Expired</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -188,6 +188,7 @@
     <recordTypes>
         <fullName>Credential</fullName>
         <active>true</active>
+        <description>Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students.</description>
         <label>Credential</label>
         <picklistValues>
             <picklist>Attribute_Type__c</picklist>
@@ -212,6 +213,7 @@
     <recordTypes>
         <fullName>Student_Characteristic</fullName>
         <active>true</active>
+        <description>Allows educational institutions to track important student characteristics that might impact their education.</description>
         <label>Student Characteristic</label>
         <picklistValues>
             <picklist>Attribute_Type__c</picklist>
