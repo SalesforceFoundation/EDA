@@ -14,8 +14,8 @@
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputCheckbox value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}" class="unique-program-plan" />
                             <aura:set attribute="else">
-                                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}"
-                                                  class="store-errors" />
+                                <ui:inputCheckbox aura:id="validatePPNestedPR" value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}"
+                                                  class="validate-PP-Nested-PR" />
                                 <span class="slds-checkbox--faux"></span>
                                 <span class="slds-form-element__label"></span>
                             </aura:set>

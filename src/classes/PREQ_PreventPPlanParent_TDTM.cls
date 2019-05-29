@@ -55,8 +55,7 @@ public with sharing class PREQ_PreventPPlanParent_TDTM extends TDTM_Runnable {
             || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             for (Plan_Requirement__c planReq : [SELECT ID,
                                                     Program_Plan__c,
-                                                    Plan_Requirement__c,
-                                                    Plan_Requirement__r.Program_Plan__c
+                                                    Plan_Requirement__c
                                                 FROM Plan_Requirement__c
                                                 WHERE ID in :newlist]) {
                 if (stgUniqueProgramPlanEnabled == true
