@@ -205,4 +205,31 @@ private class PREQ_PreventPPlanParent_TEST {
         System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
         System.assertEquals(true, results.success);
     }
+
+    //Make sure no error is thrown when inserting a Plan Requirement who is not a child of another plan requirement,
+    //linking to program plan and the setting of Validate_Program_Plan_for_Nested_PR__c is on
+    @isTest
+    public static void pReqInsertNonChildPRWithPPSettingOn() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
+
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
+        insert pPlans;
+
+        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
+        prs[0].Program_Plan__c = pPlans[0].Id;
+        insert prs;
+
+        Test.startTest();
+        prs[1].Program_Plan__c = pPlans[1].Id;
+        Database.saveResult results = Database.insert(prs[1], false);
+        Test.stopTest();
+
+        //Verify new plan requirement is not saved
+        List<Plan_Requirement__c> assertPReqs = [SELECT ID,Program_Plan__c
+                                                FROM Plan_Requirement__c
+                                                WHERE ID = :prs[1].Id
+                                                LIMIT 1];
+        System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
+        System.assertEquals(true, results.success);
+    }
 }
