@@ -59,7 +59,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
 
         // AFTER INSERT
-        if( newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert  && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert)) {
+        if (newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert)) {
             // Loop over contact list
             for (integer i=0; i<newlist.size(); i++) {
 
@@ -67,13 +67,13 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 
                 //If the Contact has been created with any of the Key Affiliation fields populated
                 //  --> Create a matching primary Affiliation for the Contact
-                for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
+                for (Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                     try {
-                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+                        if (newContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
                             UTIL_Debug.debug('****Contact has been created with one of the Key Affiliation fields populated');
                             createAfflFromLookup(newContact, j, afflsToInsert);
                         }
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         UTIL_Debug.debug('****Exception message: ' + e.getMessage());
                         UTIL_Debug.debug('****Stack trace: \n' + e.getStackTraceString());
                         newContact.addError(e.getMessage());
@@ -84,18 +84,22 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, true);
         }
 
-        // BEFORE UPDATE
-        if ( newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update)) {
-            for (integer i=0; i<newlist.size(); i++) {
+        // AFTER UPDATE
+        // Do not run if the reentrant flag is set OR if the contacts are being updated as a result of the AFFL_AccRecordType_TDTM trigger, as
+        // that TDTM class already handles the Affiliation record updates.
+        if (newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate 
+                && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update)
+                && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM)) {
+            for (Integer i=0; i<newlist.size(); i++) {
                 Contact newContact = (Contact)newlist[i];
                 Contact oldContact = (Contact)oldlist[i];
 
-                for(Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
+                for (Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                     try {
                         //If any Key Affiliation field has been set
                         //  --> Create a matching primary Affiliation for the Contact
                         //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility.
-                        if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
+                        if (newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
                            UTIL_Debug.debug('****Key Affiliation field has been set');
                            createAfflFromLookup(newContact, j, afflsToInsert);
                         }
@@ -105,8 +109,8 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
                         //         was his intention)
                         //  --> Make the old Affiliation non-primary. Although this could be AFFL_MultiRecordType_TDTM's responsibility, since the Affl type
                         //        is not yet defined (and the formula will run later), we'll do it here.
-                        else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j])
-                        != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
+                        else if (newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j])
+                                != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
                             UTIL_Debug.debug('****Key Affiliation field has been changed');
                             createAfflFromLookup(newContact, j, afflsToInsert);
                             populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
@@ -114,12 +118,12 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
 
                         //If any Key Affiliation field has been cleared
                         //  --> Make the matching Affiliation non-primary
-                        else if(newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+                        else if (newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
                             UTIL_Debug.debug('****Key Affiliation field has been cleared');
                             populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                         }
 
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         UTIL_Debug.debug('****Exception message: ' + e.getMessage());
                         UTIL_Debug.debug('****Stack trace: \n' + e.getStackTraceString());
                         newContact.addError(e.getMessage());
@@ -131,12 +135,12 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, true);
         }
 
-        if(afflsToInsert.size() > 0) {
+        if (afflsToInsert.size() > 0) {
             UTIL_Debug.debug('****Inserting ' + afflsToInsert.size() + ' affiliations.');
             dmlWrapper.objectsToInsert.addAll((List<SObject>)afflsToInsert);
         }
 
-        if(changedConToAccsMap.size() > 0) {
+        if (changedConToAccsMap.size() > 0) {
             dmlWrapper.objectsToUpdate.addAll((List<SObject>)makeOtherAfflsNotPrimary(changedConToAccsMap));
         }
 
@@ -145,7 +149,7 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterInsert){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert, false);
             TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);            
-        }else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
+        } else if (triggerAction == TDTM_Runnable.Action.AfterUpdate){
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, false);
             TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated);            
         }
@@ -153,10 +157,11 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     }
 
     private void createAfflFromLookup(Contact newContact, Integer j, List<Affiliation__c> afflsToInsert) {
-        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
+        if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
 	        ID accID = (ID)newContact.get(afflMapper.primaryAfflFieldNames[j]);
-	        if(accID != null)
-	          afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
+	        if (accID != null) {
+                afflsToInsert.add(new Affiliation__c(Contact__c = newContact.ID, Account__c = accID, Primary__c = true)); //Role and Status?
+            }
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated, true);
         }
     }
@@ -164,30 +169,35 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     private List<Affiliation__c> makeOtherAfflsNotPrimary(Map<ID, List<ID>> changedConToAccsMap) {
         //Find all the affiliations to make non-primary.
         List<Affiliation__c> afflsToMakeNonPrimary = new List<Affiliation__c>();
+        
         //Initially we get all possible affiliations from those contacts.
         List<Affiliation__c> afflsAll = [select Contact__c, Account__c, Primary__c from Affiliation__c where Contact__c in :changedConToAccsMap.keySet()];
         UTIL_Debug.debug('****All possible affls to make non-primary: ' + JSON.serializePretty(afflsAll));
+        
         //Then we refine the search - changedConToAccsMap should contain only the Acc IDs of those key Affl lookups that have been modified.
-        for(Affiliation__c affl : afflsAll) {
+        for (Affiliation__c affl : afflsAll) {
             List<ID> contactAccIDs = changedConToAccsMap.get(affl.Contact__c);
-            for(ID changedAccID : contactAccIDs) {
-                if(affl.Account__c == changedAccID) {
+            for (ID changedAccID : contactAccIDs) {
+                if (affl.Account__c == changedAccID) {
                     affl.Primary__c = false;
                     UTIL_Debug.debug('****Making affl ' + affl.ID + ' non-primary.');
                     afflsToMakeNonPrimary.add(affl);
                 }
             }
         }
+        
         return afflsToMakeNonPrimary;
     }
 
     private static void populateConToAccsMap(Contact newContact, Contact oldContact, Map<ID, List<ID>> changedConToAccsMap, Integer j) {
         List<ID> accIDs = changedConToAccsMap.get(newContact.ID);
-        if(accIDs == null) {
+        if (accIDs == null) {
             accIDs = new List<ID>();
         }
+
         accIDs.add((ID)oldContact.get(afflMapper.primaryAfflFieldNames[j]));
         UTIL_Debug.debug('****Adding contact ' + newContact.ID + ' and list of accs to map: ' + JSON.serializePretty(accIDs));
+        
         changedConToAccsMap.put(newContact.ID, accIDs);
     }
 }

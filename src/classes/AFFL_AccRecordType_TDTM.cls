@@ -164,8 +164,6 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
                 afflMulti.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
             }
         }
-
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update, true);
     }
 
     /*******************************************************************************************************
