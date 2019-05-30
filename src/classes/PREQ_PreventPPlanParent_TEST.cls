@@ -66,6 +66,7 @@ private class PREQ_PreventPPlanParent_TEST {
 
     //Make sure an error is thrown when creating a Plan Requirement who is a child of another plan requirement,
     //linking to a different program plan and the setting of Validate_Program_Plan_for_Nested_PR__c is on
+    @isTest
     public static void pReqInsertChildPRWithDifferentPP() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
 
