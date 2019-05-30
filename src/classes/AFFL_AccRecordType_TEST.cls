@@ -331,4 +331,42 @@ public with sharing class AFFL_AccRecordType_TEST {
         system.assertEquals(hh.Id, markUpdated.Primary_Household__c);
         system.assertEquals(null, markUpdated.Primary_Organization__c);
     }
+
+    @isTest
+    public static void duplicateAffiliationCheck() {        
+        setup();
+
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+        
+        //Verify default household account has been created for the contact
+        contact = [SELECT AccountId,  Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        contact.Primary_Organization__c = bizAcc.id;
+        update contact;
+        
+        //Verify 1 affiliation is created
+        List<Affiliation__c> affiliationList = new List<Affiliation__c>();
+        affiliationList = [SELECT id, name	 FROM Affiliation__c WHERE Contact__c = :contact.Id and Account__c = :bizAcc.Id] ;
+        System.assertEquals(1, affiliationList.size());
+        
+        // Update account recordtype
+        Test.startTest();
+
+        Account acc = [select id, RecordTypeId from account WHERE id = :bizAcc.Id];
+        acc.RecordTypeId = householdRecTypeID;
+        update acc;
+
+        Test.stopTest();
+
+        //Verify no duplicate affiliations are created
+        List<Affiliation__c> allAffiliationList = new List<Affiliation__c>();
+        allAffiliationList = [SELECT id, name	 FROM Affiliation__c WHERE Contact__c = :contact.Id and Account__c = :bizAcc.Id] ;
+        System.assertEquals(1, allAffiliationList.size());
+
+    }
 }
