@@ -58,9 +58,9 @@ private class PREQ_PreventPPlanParent_TEST {
 
         //Verify new plan requirement is not saved
         List<Plan_Requirement__c> assertPReqs = [select ID from Plan_Requirement__c];
-        System.assertEquals(1, assertPReqs.size());
 
-        System.assertEquals(false, results.success);
+        System.assertEquals(false, results.success);    
+        System.assertEquals(1, assertPReqs.size());
         System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
@@ -85,9 +85,9 @@ private class PREQ_PreventPPlanParent_TEST {
 
         //Verify new plan requirement is not saved
         List<Plan_Requirement__c> assertPReqs = [select ID from Plan_Requirement__c];
-        System.assertEquals(1, assertPReqs.size());
 
         System.assertEquals(false, results.success);
+        System.assertEquals(1, assertPReqs.size());
         System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
@@ -116,8 +116,9 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 FROM Plan_Requirement__c
                                                 WHERE ID = :prs[1].Id
                                                 LIMIT 1];
+
+        System.assertEquals(false, results.success);                                        
         System.assertEquals(null, assertPReqs[0].Program_Plan__c);
-        System.assertEquals(false, results.success);
         System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
@@ -146,8 +147,9 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 FROM Plan_Requirement__c
                                                 WHERE ID = :prs[1].Id
                                                 LIMIT 1];
+
+        System.assertEquals(false, results.success);                                        
         System.assertEquals(null, assertPReqs[0].Program_Plan__c);
-        System.assertEquals(false, results.success);
         System.assertEquals(Label.nestedPlanRequirementPPExp, results.errors[0].message);
     }
 
@@ -172,9 +174,9 @@ private class PREQ_PreventPPlanParent_TEST {
 
         //Verify new plan requirement is not saved
         List<Plan_Requirement__c> assertPReqs = [select ID from Plan_Requirement__c];
-        System.assertEquals(2, assertPReqs.size());
 
         System.assertEquals(true, results.success);
+        System.assertEquals(2, assertPReqs.size());
     }
 
     //Make sure no error is thrown when updating a Plan Requirement who is a child of another plan requirement,
@@ -202,8 +204,9 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 FROM Plan_Requirement__c
                                                 WHERE ID = :prs[1].Id
                                                 LIMIT 1];
-        System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
+
         System.assertEquals(true, results.success);
+        System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
     }
 
     //Make sure no error is thrown when inserting a Plan Requirement who is not a child of another plan requirement,
@@ -217,7 +220,7 @@ private class PREQ_PreventPPlanParent_TEST {
 
         List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
         prs[0].Program_Plan__c = pPlans[0].Id;
-        insert prs;
+        insert prs[0];
 
         Test.startTest();
         prs[1].Program_Plan__c = pPlans[1].Id;
@@ -229,7 +232,8 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 FROM Plan_Requirement__c
                                                 WHERE ID = :prs[1].Id
                                                 LIMIT 1];
-        System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
+
         System.assertEquals(true, results.success);
+        System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
     }
 }
