@@ -82,6 +82,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(null, contact.Primary_Household__c);
         //Verify primary business organization field has been populated
         System.assertEquals(acc.Id, contact.Primary_Organization__c);
+
+         //Verify no duplicate affiliations are created
+        List<Affiliation__c> allAffiliationList = [SELECT id, name	 FROM Affiliation__c WHERE Contact__c = :contact.Id and Account__c = : acc.Id] ;
+        System.assertEquals(1, allAffiliationList.size());
     }
 
     @isTest
