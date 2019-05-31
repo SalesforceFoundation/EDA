@@ -71,11 +71,20 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
             Map<Id, Course_Offering__c> mapNewFacultyIdToNewCourseOffering = new Map<Id, Course_Offering__c>();
 
             if(newlist != null) {
+                
                 if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     //Query fields not available in the trigger
-                    newList = [SELECT Course__c, Faculty__c, Start_Date__c, End_Date__c, Course__r.Account__c, Term__r.Start_Date__c,
-                                Term__r.End_Date__c FROM Course_Offering__c WHERE ID IN :newlist];
+                    newList = [SELECT Course__c
+                                      , Faculty__c
+                                      , Start_Date__c
+                                      , End_Date__c
+                                      , Course__r.Account__c
+                                      , Term__r.Start_Date__c
+                                      , Term__r.End_Date__c 
+                               FROM Course_Offering__c 
+                               WHERE ID IN :newlist];
                 }
+                
                 for (Integer i=0; i<newlist.size(); i++) {
                     Course_Offering__c newOff = (Course_Offering__c)newlist[i];
 
