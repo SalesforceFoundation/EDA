@@ -59,9 +59,10 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         Map<ID, List<ID>> changedConToAccsMap = new Map<ID, List<ID>>();
 
         // AFTER INSERT
-        if (newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert)) {
+        if (newlist != null && triggerAction == TDTM_Runnable.Action.AfterInsert 
+                && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Insert)) {
             // Loop over contact list
-            for (integer i=0; i<newlist.size(); i++) {
+            for (Integer i = 0; i < newlist.size(); i++) {
 
                 Contact newContact = (Contact)newlist[i];
 
@@ -90,35 +91,32 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         if (newlist != null && triggerAction == TDTM_Runnable.Action.AfterUpdate 
                 && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_After_Update)
                 && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM)) {
-            for (Integer i=0; i<newlist.size(); i++) {
+            for (Integer i = 0; i < newlist.size(); i++) {
                 Contact newContact = (Contact)newlist[i];
                 Contact oldContact = (Contact)oldlist[i];
 
                 for (Integer j = 0; j < afflMapper.primaryAfflFieldNames.size(); j++) {
                     try {
-                        //If any Key Affiliation field has been set
-                        //  --> Create a matching primary Affiliation for the Contact
-                        //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility.
+                        
                         if (newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) == null) {
+                            //If any Key Affiliation field has been set
+                            //  --> Create a matching primary Affiliation for the Contact
+                            //  --> If another Affl to the same Account exists, it should be made not primary. But this is AFFL_MultiRecordType_TDTM's responsibility.
                            UTIL_Debug.debug('****Key Affiliation field has been set');
                            createAfflFromLookup(newContact, j, afflsToInsert);
-                        }
-
-                        //If any Key Affiliation field has been changed to point to another Account
-                        //  --> Create new Affiliation (even if another one exists to the same Account - used should have made existing one primary if that
-                        //         was his intention)
-                        //  --> Make the old Affiliation non-primary. Although this could be AFFL_MultiRecordType_TDTM's responsibility, since the Affl type
-                        //        is not yet defined (and the formula will run later), we'll do it here.
-                        else if (newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j])
+                        } else if (newContact.get(afflMapper.primaryAfflFieldNames[j]) != null && newContact.get(afflMapper.primaryAfflFieldNames[j])
                                 != oldContact.get(afflMapper.primaryAfflFieldNames[j])) {
+                            //If any Key Affiliation field has been changed to point to another Account
+                            //  --> Create new Affiliation (even if another one exists to the same Account - user should have made existing one primary if that
+                            //         was their intention)
+                            //  --> Make the old Affiliation non-primary. Although this could be AFFL_MultiRecordType_TDTM's responsibility, since the Affl type
+                            //        is not yet defined (and the formula will run later), we'll do it here.
                             UTIL_Debug.debug('****Key Affiliation field has been changed');
                             createAfflFromLookup(newContact, j, afflsToInsert);
                             populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
-                        }
-
-                        //If any Key Affiliation field has been cleared
-                        //  --> Make the matching Affiliation non-primary
-                        else if (newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+                        } else if (newContact.get(afflMapper.primaryAfflFieldNames[j]) == null && oldContact.get(afflMapper.primaryAfflFieldNames[j]) != null) {
+                            //If any Key Affiliation field has been cleared
+                            //  --> Make the matching Affiliation non-primary
                             UTIL_Debug.debug('****Key Affiliation field has been cleared');
                             populateConToAccsMap(newContact, oldContact, changedConToAccsMap, j);
                         }
