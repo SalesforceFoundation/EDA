@@ -228,7 +228,7 @@ private class PREQ_PreventPPlanParent_TEST {
         //Verify new plan requirement is saved
         List<Plan_Requirement__c> assertPReqs = [SELECT ID,Program_Plan__c
                                                 FROM Plan_Requirement__c
-                                                WHERE ID = :prs[1].Id
+                                                WHERE ID = :prs[0].Id
                                                 LIMIT 1];
 
         System.assertEquals(true, results.success);
