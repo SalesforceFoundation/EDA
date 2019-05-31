@@ -84,7 +84,9 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(acc.Id, contact.Primary_Organization__c);
 
          //Verify no duplicate affiliations are created
-        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c WHERE Contact__c = :contact.Id and Account__c = : acc.Id] ;
+        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
+                                                   WHERE Contact__c = :contact.Id 
+                                                   AND Account__c = :acc.Id];
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
@@ -354,7 +356,9 @@ public with sharing class AFFL_AccRecordType_TEST {
         update contact;
         
         //Verify 1 affiliation is created
-        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c	FROM Affiliation__c WHERE Contact__c = :contact.Id and Account__c = :bizAcc.Id] ;
+        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c	FROM Affiliation__c 
+                                                WHERE Contact__c = :contact.Id 
+                                                AND Account__c = :bizAcc.Id] ;
         System.assertEquals(1, affiliationList.size());
         System.assertEquals(true, affiliationList[0].Primary__c);
         
@@ -368,7 +372,9 @@ public with sharing class AFFL_AccRecordType_TEST {
         Test.stopTest();
 
         //Verify no duplicate affiliations are created
-        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c WHERE Contact__c = :contact.Id and Account__c = :bizAcc.Id] ;
+        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
+                                                   WHERE Contact__c = :contact.Id 
+                                                   AND Account__c = :bizAcc.Id] ;
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
