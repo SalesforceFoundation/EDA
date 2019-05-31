@@ -43,7 +43,7 @@ public with sharing class ERR_ExceptionHandler {
         'AfflNullPointerException' => Label.afflNullPointerError,
         'AfflAccountNoRecordTypeException' => Label.afflAccountNoRecordType,
         'AffAccountRecordTypeMappingsException' => Label.afflAccoutMappingError,
-        'nestedPlanRequirementPPException' => Label.nestedPlanRequirementPPExp
+        'NestedPlanRequirementPPException' => Label.nestedPlanRequirementPPExp
     };
 
     /** @description Map of exception STATUS codes to the string that defines the start and end of the useful part of the message
@@ -113,5 +113,5 @@ public with sharing class ERR_ExceptionHandler {
 
     public class AfflAccountNoRecordTypeException extends Exception {}
     public class AffAccountRecordTypeMappingsException extends Exception {}
-    public class nestedPlanRequirementPPException extends Exception {}
+    public class NestedPlanRequirementPPException extends Exception {}
 }
