@@ -445,6 +445,26 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         }
     }
 
+    /*******************************************************************************************************
+    * @description Updates each Course Connection as not Primary for all Course Connections tied to Faculty 
+    * that are no longer the Primary Faculty for the given Course Offerings.
+    ********************************************************************************************************/
+    @testVisible
+    private void updateConnectionsOnFacultyRemove(List<ID> removedFacultyIDs, Set<Id> offsWithRemovedFaculty, List<SObject> objectsToUpdate) {
+        List<Course_Enrollment__c> oldConns = [SELECT Id
+                                                      , Course_Offering__c
+                                                      , Primary__c
+                                               FROM Course_Enrollment__c
+                                               WHERE Contact__c IN :removedFacultyIDs
+                                               AND Course_Offering__c IN :offsWithRemovedFaculty];
+
+        for (Course_Enrollment__c conn : oldConns) {
+            if (conn.Primary__c && offsWithRemovedFaculty.contains(conn.Course_Offering__c)) {
+                conn.Primary__c = false;
+                objectsToUpdate.add(conn);
+            }
+        }
+    }
 
    /*******************************************************************************************************
     * @description Deletes the Affiliations that had been automatically created from the Course Enrollments with
@@ -475,29 +495,6 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
             dmlWrapper.objectsToDelete.addAll((List<SObject>)[select Id from Affiliation__c where Id in :afflsToDeleteIds]);
         }
         dmlWrapper.objectsToDelete.addAll((List<SObject>)oldEnrolls);
-    }
-
-   /*******************************************************************************************************
-    * @description Deletes the Affiliations that had been automatically created from the Course Enrollments with
-    * assigned Faculty members. Also deletes the Course Enrollments themselves.
-    ********************************************************************************************************/
-    @testVisible
-    private void updateConnectionsOnFacultyRemove(List<ID> removedFacultyIDs, Set<Id> offsWithRemovedFaculty, List<SObject> objectsToUpdate) {
-        // TODO: This doesn't delete anything, just updates course connections - should it actually delete affiliations and course connections, 
-        // or is the description of this method incorrect?
-        List<Course_Enrollment__c> oldConns = [SELECT Id
-                                                      , Course_Offering__c
-                                                      , Primary__c
-                                               FROM Course_Enrollment__c
-                                               WHERE Contact__c IN :removedFacultyIDs
-                                               AND Course_Offering__c IN :offsWithRemovedFaculty];
-
-        for (Course_Enrollment__c conn : oldConns) {
-            if (conn.Primary__c && offsWithRemovedFaculty.contains(conn.Course_Offering__c)) {
-                conn.Primary__c = false;
-                objectsToUpdate.add(conn);
-            }
-        }
     }
 
    /*******************************************************************************************************
