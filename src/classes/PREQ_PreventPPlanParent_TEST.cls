@@ -215,16 +215,14 @@ private class PREQ_PreventPPlanParent_TEST {
     public static void pReqInsertNonChildPRWithPPSettingOn() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Validate_Program_Plan_for_Nested_PR__c = true));
 
-        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(2);
+        List<Program_Plan__c> pPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(1);
         insert pPlans;
 
-        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(2);
-        prs[0].Program_Plan__c = pPlans[0].Id;
-        insert prs[0];
+        List<Plan_Requirement__c> prs = UTIL_UnitTestData_TEST.getMultipleTestPlanRequirements(1);
 
         Test.startTest();
-        prs[1].Program_Plan__c = pPlans[1].Id;
-        Database.saveResult results = Database.insert(prs[1], false);
+        prs[0].Program_Plan__c = pPlans[0].Id;
+        Database.saveResult results = Database.insert(prs[0], false);
         Test.stopTest();
 
         //Verify new plan requirement is saved
@@ -234,6 +232,6 @@ private class PREQ_PreventPPlanParent_TEST {
                                                 LIMIT 1];
 
         System.assertEquals(true, results.success);
-        System.assertEquals(pPlans[1].Id, assertPReqs[0].Program_Plan__c);
+        System.assertEquals(pPlans[0].Id, assertPReqs[0].Program_Plan__c);
     }
 }
