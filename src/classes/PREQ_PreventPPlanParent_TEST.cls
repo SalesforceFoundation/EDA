@@ -172,7 +172,7 @@ private class PREQ_PreventPPlanParent_TEST {
         Database.saveResult results = Database.insert(prs[1], false);
         Test.stopTest();
 
-        //Verify new plan requirement is not saved
+        //Verify new plan requirement is saved
         List<Plan_Requirement__c> assertPReqs = [select ID from Plan_Requirement__c];
 
         System.assertEquals(true, results.success);
@@ -199,7 +199,7 @@ private class PREQ_PreventPPlanParent_TEST {
         Database.saveResult results = Database.update(prs[1], false);
         Test.stopTest();
 
-        //Verify new plan requirement is not saved
+        //Verify new plan requirement is saved
         List<Plan_Requirement__c> assertPReqs = [SELECT ID,Program_Plan__c
                                                 FROM Plan_Requirement__c
                                                 WHERE ID = :prs[1].Id
@@ -227,7 +227,7 @@ private class PREQ_PreventPPlanParent_TEST {
         Database.saveResult results = Database.insert(prs[1], false);
         Test.stopTest();
 
-        //Verify new plan requirement is not saved
+        //Verify new plan requirement is saved
         List<Plan_Requirement__c> assertPReqs = [SELECT ID,Program_Plan__c
                                                 FROM Plan_Requirement__c
                                                 WHERE ID = :prs[1].Id
