@@ -509,8 +509,10 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         UTIL_Debug.debug('****Number of newly assigned faculty: ' + newFacultyIDs.size());
         //Find all Affls for all Faculty members in the trigger.
         Map<ID, List<Affiliation__c>> facultyIDtoAffls = new Map<ID, List<Affiliation__c>>();
-        List<Affiliation__c> affls = [SELECT Id, Account__c, Contact__c FROM Affiliation__c WHERE Contact__c IN :newFacultyIDs
-                                        ORDER BY Contact__c];
+        List<Affiliation__c> affls = [SELECT Id, Account__c, Contact__c 
+                                      FROM Affiliation__c 
+                                      WHERE Contact__c IN :newFacultyIDs 
+                                      ORDER BY Contact__c];
         UTIL_Debug.debug('****Number of affls for existing faculty: ' + affls.size());
 
         if (affls.size() > 0) {
