@@ -148,7 +148,6 @@ Create A Course Offering
 
 
     Click on Element                        term.save_button
-#    Click Modal Button                      Save
     ${id_offering} =                        Generate Random String
 
     Click on Element                        term.course_offering_id
