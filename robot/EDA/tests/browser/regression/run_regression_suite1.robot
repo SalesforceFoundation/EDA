@@ -154,4 +154,3 @@ Create A Course Offering
     Click on Element                        term.course_offering_id
     Input Text                              //span[contains(text(), 'Course Offering ID')]//../following-sibling::input         ${id_offering}
     Click on Element                        course_offering.next_save_button
-#    Click Modal Button                      Save
