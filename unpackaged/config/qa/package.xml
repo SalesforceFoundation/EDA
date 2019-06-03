@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Account-___NAMESPACE___HEDA Organization Layout</members>
+        <members>Contact-___NAMESPACE___HEDA Contact Layout</members>
+        <members>___NAMESPACE___Course_Enrollment__c-___NAMESPACE___HEDA Course Enrollment Layout</members>
+        <members>___NAMESPACE___Course_Offering__c-___NAMESPACE___HEDA Course Offering Layout</members>
+        <members>___NAMESPACE___Facility__c-___NAMESPACE___HEDA Facility Layout</members>
+        <members>___NAMESPACE___Program_Enrollment__c-___NAMESPACE___HEDA Program Enrollment Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Account.All_Accounts</members>
+        <members>Contact.All_Contacts</members>
+        <name>ListView</name>
+    </types>
+    <version>45.0</version>
+</Package>
