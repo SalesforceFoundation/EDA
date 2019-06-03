@@ -139,7 +139,6 @@ Create A Course Offering
     #Click on Element                        course_offering.save_button
 
 
-#    Click Modal Button                      Save
     Click on Element                        term.search_terms
     Click on Element                        term.new_term_button
     Populate Field                          Term Name               Robot Automation Term 
