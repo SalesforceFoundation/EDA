@@ -69,7 +69,8 @@ public class TDTM_ProcessControl {
         PPlan_Primary_TDTM_After_Update,
         CLAN_PrimaryLanguage_TDTM,
         CON_PrimaryLanguage_TDTM,
-        AFFL_AccRecordType_TDTM
+        AFFL_AccRecordType_TDTM,
+        TERM_CourseOff_TDTM
     }
 
     /*******************************************************************************************************
