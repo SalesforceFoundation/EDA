@@ -1,6 +1,21 @@
 EDA Automation
 ==============
 
+**Table of Contents**
+
+- [EDA Automation](#eda-automation)
+    - [Key Tasks](#key-tasks)
+        - [`update_admin_profile`](#updateadminprofile)
+        - [`deploy_dev_config`](#deploydevconfig)
+        - [`deploy_qa_config`](#deployqaconfig)
+        - [`delete_dev_config`](#deletedevconfig)
+        - [`execute_install_apex`](#executeinstallapex)
+    - [Key Flows](#key-flows)
+        - [`edaectomy`](#edaectomy)
+        - [`dev_org`](#devorg)
+        - [`qa_org`](#qaorg)
+        - [`regression_org`](#regressionorg)
+
 
 Key Tasks
 ------------------
@@ -37,11 +52,11 @@ Key Flows
 
 
 ### `dev_org`
-  Modified - Deploys Dev configiguration and runs some post-install methods as the final tasks.
+  Modified - Deploys Dev configuration and runs some post-install methods as the final tasks.
 
 
 ### `qa_org`
-  Deploys Dev and additional QA configiguration for testing.
+  Deploys Dev and additional QA configuration for testing.
 
 ### `regression_org`
-  Installs the latest beta release and deploys Dev and additional QA configiguration for regression testing.
+  Installs the latest beta release and deploys Dev and additional QA configuration for regression testing.
