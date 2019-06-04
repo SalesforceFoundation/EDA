@@ -8,45 +8,37 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>%%%NAMESPACE%%%Course__c</field>
+                <field>%%%NAMESPACE%%%Contact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>%%%NAMESPACE%%%Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Name</field>
+                <field>%%%NAMESPACE%%%Course_Offering__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Start_Date__c</field>
+                <field>%%%NAMESPACE%%%Grade__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Facility__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Capacity__c</field>
+                <field>%%%NAMESPACE%%%Primary__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>%%%NAMESPACE%%%Term__c</field>
+                <behavior>Edit</behavior>
+                <field>%%%NAMESPACE%%%Program_Enrollment__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Section_ID__c</field>
+                <field>%%%NAMESPACE%%%Credits_Attempted__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%End_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Time_Block__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Faculty__c</field>
+                <field>%%%NAMESPACE%%%Credits_Earned__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -82,18 +74,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
-        <fields>%%%NAMESPACE%%%Facility__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Course_Offering__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Contact__c</fields>
-        <fields>%%%NAMESPACE%%%Account__c</fields>
-        <fields>%%%NAMESPACE%%%Program_Enrollment__c</fields>
-        <fields>%%%NAMESPACE%%%Credits_Attempted__c</fields>
-        <fields>%%%NAMESPACE%%%Primary__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Course_Offering__c</relatedList>
+        <fields>%%%NAMESPACE%%%Term__c</fields>
+        <fields>%%%NAMESPACE%%%Term_Grade_Type__c</fields>
+        <fields>%%%NAMESPACE%%%Letter_Grade__c</fields>
+        <relatedList>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Course_Connection__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -101,7 +85,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hS0000001GSUg</masterLabel>
+        <masterLabel>00hS0000001GSUe</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -8,4 +8,13 @@
         <fields>Website</fields>
         <label>HEDA Account Compact Layout</label>
     </compactLayouts>
+    <listViews>
+        <fullName>All_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Accounts</label>
+    </listViews>
 </CustomObject>

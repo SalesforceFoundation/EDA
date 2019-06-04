@@ -113,15 +113,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
-        <fields>%%%NAMESPACE%%%Capacity__c</fields>
-        <fields>%%%NAMESPACE%%%Parent_Facility__c</fields>
-        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Account__c</relatedList>
-        <sortField>NAME</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>%%%NAMESPACE%%%Contact__c</fields>
         <fields>%%%NAMESPACE%%%Role__c</fields>
         <fields>%%%NAMESPACE%%%Status__c</fields>
@@ -139,6 +130,16 @@
         <fields>%%%NAMESPACE%%%MailingState__c</fields>
         <fields>%%%NAMESPACE%%%MailingPostalCode__c</fields>
         <relatedList>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Parent_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Display_Name__c</fields>
+        <fields>%%%NAMESPACE%%%Parent_Facility__c</fields>
+        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
+        <fields>%%%NAMESPACE%%%Capacity__c</fields>
+        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Account__c</relatedList>
+        <sortField>Display_Name__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

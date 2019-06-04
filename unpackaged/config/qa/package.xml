@@ -20,6 +20,8 @@
     </types>
     <types>
         <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%All</members>
+        <members>Account.All_Accounts</members>
+        <members>Contact.All_Contacts</members>
         <name>ListView</name>
     </types>
     <types>

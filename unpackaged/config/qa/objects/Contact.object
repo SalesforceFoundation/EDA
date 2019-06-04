@@ -8,4 +8,15 @@
         <fields>%%%NAMESPACE%%%FERPA__c</fields>
         <label>HEDA Contact Compact Layout</label>
     </compactLayouts>
+    <listViews>
+        <fullName>All_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>%%%NAMESPACE%%%Primary_Language__c</columns>
+        <columns>Primary_Department__c</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Contacts</label>
+    </listViews>
 </CustomObject>
