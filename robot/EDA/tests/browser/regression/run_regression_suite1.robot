@@ -105,6 +105,7 @@ Verify Affiliations, Program Enrollments and No Duplicates
 
 
 Create A New Program Plan
+    Reload Page
     Open App Launcher
     
     Wait for Locator                        eda_tile
