@@ -18,6 +18,7 @@ Create Contact And Verify
     Verify Record    &{contact}[FirstName] &{contact}[LastName]
 
 Verify EDA Settings
+    Reload Page
     Go To Eda Settings
 
     Wait for Locator                            eda_settings.affiliations_tab
