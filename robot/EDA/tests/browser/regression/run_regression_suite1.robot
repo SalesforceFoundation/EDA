@@ -102,18 +102,19 @@ Verify Affiliations, Program Enrollments and No Duplicates
     ${pec} =                                Get Eda Locator     program_enrollments_count
     Scroll Element Into View                ${pec}
     Wait for Locator                        program_enrollments_count
-
+ 
 
 Create A New Program Plan
-    Reload Page
-    Open App Launcher
-    
-    Wait for Locator                        eda_tile
-    Click on Element                        eda_tile
 
-    Go To Object Home                       Program_Plan__c
-    
-    Click on Element                        program_plans.new_button
+    #Check for EDA Tile
+    Open App Launcher
+
+    Wait Until Element Is visible           (//a[@title='Program Plans'])[2]/span/span
+    Click Element                           (//a[@title='Program Plans'])[2]/span/span
+
+    Sleep                                   5
+    Click Object Button                     New
+
     Wait for Locator                        program_plans.pp_name
 
     Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
@@ -122,23 +123,29 @@ Create A New Program Plan
 
 
 Create A Course Offering
-    Go To Object Home                       Course_Offering__c
 
-    Wait for Locator                        course_offering.new_button     
-    Click on Element                        course_offering.new_button 
+    #Check for EDA Tile
+    Open App Launcher
+
+    Wait Until Element Is visible           (//a[@title='Course Offerings'])[2]
+    Click Element                           (//a[@title='Course Offerings'])[2]
+    Click Object Button                     New
+
+
+    Wait Until Element Is visible           //div/input[@title='Search Courses']
+    Click Element                           //div/input[@title='Search Courses']
 
     Wait for Locator                        course_offering.new_course_button
     Click on Element                        course_offering.new_course_button
 
     Populate Field                          Course Name     robotTest Course Name Test1 - this is just another robot test string in place of a course name
-    Populate Field                          Department      robotTestLastName Administrative Account
+    Populate Field                          Department      Robot Academic Program Account
     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
-    #Press Keys                              TAB 
     
 
-    Click Element                           (//span[@class=' label bBody' and text()='Save']/ancestor::button[contains(@class, 'slds-button')])[3]
-    #Click on Element                        course_offering.save_button
+    Click Element                           (//span[@class=' label bBody' and text()='Save'])[3]/ancestor::button
 
+    Sleep                                   10
 
     Click on Element                        term.search_terms
     Click on Element                        term.new_term_button
