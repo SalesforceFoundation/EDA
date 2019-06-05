@@ -58,17 +58,21 @@ eda_lex_locators = {
         "program_enrollment_new_button": "//div[contains(@class, 'windowViewMode-normal')]//span[text()='Program Enrollments']/following-sibling::span[@title='(0)']/ancestor::header/following-sibling::div/descendant::a[@title='New']",
     },
     "program_plans": {
+        "program_plan": "(//a[@title='Program Plans'])[2]/span/span",
         "main_drop": "(//div//one-app-nav-bar-item-root//a//span[contains(text(), 'Program Plans')]//..)[1]",
         "new_button": "//a[@title='New']//div[@title='New']/..",
         "pp_name": "//div//div//div//div//div//div//div//label//span[contains(text(), 'Program Plan Name')]//../following-sibling::input",
         "save_button": "//button[@title='Save']",
     },
     "course_offering": {
+        "main_tab": "(//a[@title='Course Offerings'])[2]",
+        "search_courses": "//div/input[@title='Search Courses']",
         "new_button": "//a[@title='New']//div[@title='New']/..",
         "new_course_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Course')]",
         "save_button": "(//span[@class=' label bBody' and text()='Save']/ancestor::button[contains(@class, 'slds-button')])[3]",
         "next_save_button_old": "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']//span[@class=' label bBody' and contains(text(), 'Save')]",
         "next_save_button": "(//span[@class=' label bBody' and contains(text(), 'Save')])[3]/..",
+        "final_save_button": "(//span[@class=' label bBody' and text()='Save'])[3]/ancestor::button",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",

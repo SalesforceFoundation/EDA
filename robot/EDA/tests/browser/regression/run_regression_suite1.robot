@@ -109,10 +109,9 @@ Create A New Program Plan
     #Check for EDA Tile
     Open App Launcher
 
-    Wait Until Element Is visible           (//a[@title='Program Plans'])[2]/span/span
-    Click Element                           (//a[@title='Program Plans'])[2]/span/span
+    Wait for Locator                        program_plans.program_plan
+    Click on Element                        program_plans.program_plan
 
-    Sleep                                   5
     Click Object Button                     New
 
     Wait for Locator                        program_plans.pp_name
@@ -127,13 +126,13 @@ Create A Course Offering
     #Check for EDA Tile
     Open App Launcher
 
-    Wait Until Element Is visible           (//a[@title='Course Offerings'])[2]
-    Click Element                           (//a[@title='Course Offerings'])[2]
+    Wait for Locator                        course_offering.main_tab
+    Click on Element                        course_offering.main_tab
     Click Object Button                     New
 
 
-    Wait Until Element Is visible           //div/input[@title='Search Courses']
-    Click Element                           //div/input[@title='Search Courses']
+    Wait for Locator                        course_offering.search_courses
+    Click on Element                        course_offering.search_courses
 
     Wait for Locator                        course_offering.new_course_button
     Click on Element                        course_offering.new_course_button
@@ -143,10 +142,9 @@ Create A Course Offering
     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
     
 
-    Click Element                           (//span[@class=' label bBody' and text()='Save'])[3]/ancestor::button
+    Click on Element                        course_offering.final_save_button
 
-    Sleep                                   10
-
+    
     Click on Element                        term.search_terms
     Click on Element                        term.new_term_button
     Populate Field                          Term Name               Robot Automation Term 
