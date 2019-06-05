@@ -107,6 +107,7 @@ Verify Affiliations, Program Enrollments and No Duplicates
 
 Create A New Program Plan
 
+    Reload Page
     #Check for EDA Tile
     Open App Launcher
 
@@ -124,6 +125,7 @@ Create A New Program Plan
 
 Create A Course Offering
 
+    Reload Page
     #Check for EDA Tile
     Open App Launcher
 
