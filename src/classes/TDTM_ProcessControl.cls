@@ -71,7 +71,8 @@ public class TDTM_ProcessControl {
         CON_PrimaryLanguage_TDTM,
         AFFL_AccRecordType_TDTM,
         REL_Relationships_Con_TDTM,
-        REL_Relationships_Cm_TDTM
+        REL_Relationships_Cm_TDTM,
+        REL_Relationships_TDTM_After_Update
     }
 
     /*******************************************************************************************************
