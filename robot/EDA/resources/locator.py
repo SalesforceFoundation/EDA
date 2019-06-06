@@ -65,7 +65,7 @@ eda_lex_locators = {
         "save_button": "//button[@title='Save']",
     },
     "course_offering": {
-        "main_tab": "(//a[@title='Course Offerings'])[2]",
+        "main_tab": "(//a[@title='Course Offerings'])[1]",
         "search_courses": "//div/input[@title='Search Courses']",
         "new_button": "//a[@title='New']//div[@title='New']/..",
         "new_course_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Course')]",
