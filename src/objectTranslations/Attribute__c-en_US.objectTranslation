@@ -9,7 +9,7 @@
         <value>Attributes</value>
     </caseValues>
     <fields>
-        <help><!-- The agency providing or certifying the credential or assigning the Attribute. --></help>
+        <help><!-- The agency that provided or certified the credential. --></help>
         <label><!-- Agency --></label>
         <name>Agency__c</name>
         <relationshipLabel><!-- Attributes --></relationshipLabel>
@@ -48,7 +48,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The Contact to whom the Attribute is assigned. --></help>
+        <help><!-- The Contact the Attribute is assigned to. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Attributes --></relationshipLabel>
@@ -69,17 +69,24 @@
         <name>Expired__c</name>
     </fields>
     <fields>
-        <help><!-- The date when the credential or Attribute is issued. --></help>
+        <help><!-- The date when the credential or Attribute was issued. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
+    <layouts>
+        <layout>EDA Attribute Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students. --></description>
         <label><!-- Credential --></label>
         <name>Credential</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Allows educational institutions to track important student characteristics that might impact their education. --></description>
+        <description><!-- Allows educational institutions to track important student characteristics that might affect students&apos; education. --></description>
         <label><!-- Student Characteristic --></label>
         <name>Student_Characteristic</name>
     </recordTypes>
