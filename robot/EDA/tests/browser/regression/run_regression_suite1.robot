@@ -1,12 +1,10 @@
 *** Settings ***
 
-
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
- 
     
 Create Contact And Verify
     ${contact_id} =  API Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    
@@ -144,16 +142,13 @@ Create A Course Offering
     Populate Field                          Department      Robot Academic Program Account
     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
     
-
     Click on Element                        course_offering.final_save_button
 
-    
     Click on Element                        term.search_terms
     Click on Element                        term.new_term_button
     Populate Field                          Term Name               Robot Automation Term 
     Click on Element                        term.account
     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
-
 
     Click on Element                        term.save_button
     ${id_offering} =                        Generate Random String
