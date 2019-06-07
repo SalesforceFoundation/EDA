@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -51,15 +47,16 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Arrival_Time__c</fullName>
-        <description>In the case of Tardy events, the time the student arrived to school/class period.</description>
+        <description>For tardy events, the time when the student arrived.</description>
         <externalId>false</externalId>
-        <inlineHelpText>In the case of Tardy events, the time the student arrived to school/class period.</inlineHelpText>
+        <inlineHelpText>For tardy events, the time when the student arrived.</inlineHelpText>
         <label>Arrival Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -78,19 +75,9 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>All Day Absence</fullName>
-                    <default>false</default>
-                    <label>All Day Absence</label>
-                </value>
-                <value>
                     <fullName>Class Absence</fullName>
                     <default>false</default>
                     <label>Class Absence</label>
-                </value>
-                <value>
-                    <fullName>School Tardy</fullName>
-                    <default>false</default>
-                    <label>School Tardy</label>
                 </value>
                 <value>
                     <fullName>Class Tardy</fullName>
@@ -129,6 +116,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Course_Name__c</fullName>
+        <description>The name derived from the Course Offering for which the student was either tardy or absent.</description>
+        <externalId>false</externalId>
+        <formula>Course_Connection__r.Course_Offering__r.Course__r.Name</formula>
+        <inlineHelpText>The name derived from the Course Offering for which the student was either tardy or absent.</inlineHelpText>
+        <label>Course Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Date__c</fullName>
         <description>The date when this event occurred.</description>
         <externalId>false</externalId>
@@ -140,30 +139,65 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>For excused absences, the time when this absence will end.</description>
+        <description>For excused absences, the time the absence ends.</description>
         <externalId>false</externalId>
-        <inlineHelpText>For excused absences, the time when this absence will end.</inlineHelpText>
+        <inlineHelpText>For excused absences, the time the absence ends.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Time</type>
     </fields>
     <fields>
-        <fullName>Reason__c</fullName>
-        <description>The reason for the tardy/absence.</description>
+        <fullName>Reason_Description__c</fullName>
+        <description>A description of the reason the student was either tardy or absent.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The reason for the tardy/absence.</inlineHelpText>
-        <label>Reason</label>
+        <inlineHelpText>A description of the reason the student was either tardy or absent.</inlineHelpText>
+        <label>Reason Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>Start_Time__c</fullName>
-        <description>The time when the excused absence will start.</description>
+        <fullName>Reason__c</fullName>
+        <description>The reason the student was either tardy or absent.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time when the excused absence will start.</inlineHelpText>
+        <inlineHelpText>The reason the student was either tardy or absent.</inlineHelpText>
+        <label>Reason</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Family</fullName>
+                    <default>false</default>
+                    <label>Family</label>
+                </value>
+                <value>
+                    <fullName>Medical</fullName>
+                    <default>false</default>
+                    <label>Medical</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Religious</fullName>
+                    <default>false</default>
+                    <label>Religious</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Start_Time__c</fullName>
+        <description>For excused absences, the time the absence starts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For excused absences, the time the absence starts.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

@@ -9,7 +9,7 @@
         <value><!-- Attendance Event --></value>
     </caseValues>
     <fields>
-        <help><!-- In the case of Tardy events, the time the student arrived to school/class period. --></help>
+        <help><!-- For tardy events, the time when the student arrived. --></help>
         <label><!-- Arrival Time --></label>
         <name>Arrival_Time__c</name>
     </fields>
@@ -18,20 +18,12 @@
         <label><!-- Attendance Type --></label>
         <name>Attendance_Type__c</name>
         <picklistValues>
-            <masterLabel>All Day Absence</masterLabel>
-            <translation><!-- All Day Absence --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Class Absence</masterLabel>
             <translation><!-- Class Absence --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Class Tardy</masterLabel>
             <translation><!-- Class Tardy --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Tardy</masterLabel>
-            <translation><!-- School Tardy --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -47,22 +39,48 @@
         <relationshipLabel><!-- Attendance Events --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The name derived from the Course Offering for which the student was either tardy or absent. --></help>
+        <label><!-- Course Name --></label>
+        <name>Course_Name__c</name>
+    </fields>
+    <fields>
         <help><!-- The date when this event occurred. --></help>
         <label><!-- Date --></label>
         <name>Date__c</name>
     </fields>
     <fields>
-        <help><!-- For excused absences, the time when this absence will end. --></help>
+        <help><!-- For excused absences, the time the absence ends. --></help>
         <label><!-- End Time --></label>
         <name>End_Time__c</name>
     </fields>
     <fields>
-        <help><!-- The reason for the tardy/absence. --></help>
-        <label><!-- Reason --></label>
-        <name>Reason__c</name>
+        <help><!-- A description of the reason the student was either tardy or absent. --></help>
+        <label><!-- Reason Description --></label>
+        <name>Reason_Description__c</name>
     </fields>
     <fields>
-        <help><!-- The time when the excused absence will start. --></help>
+        <help><!-- The reason the student was either tardy or absent. --></help>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation><!-- Family --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical</masterLabel>
+            <translation><!-- Medical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Religious</masterLabel>
+            <translation><!-- Religious --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- For excused absences, the time the absence starts. --></help>
         <label><!-- Start Time --></label>
         <name>Start_Time__c</name>
     </fields>
