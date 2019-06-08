@@ -122,7 +122,7 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'true',
         )
         self._set_record_type(
-            '{managed}Attribute__c.{namespaced_org}Student Characteristic'.format(**namespace_args),
+            '{managed}Attribute__c.{namespaced_org}Student_Characteristic'.format(**namespace_args),
             'false',
         )
 
