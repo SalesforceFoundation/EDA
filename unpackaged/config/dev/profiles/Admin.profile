@@ -55,7 +55,7 @@
         <recordType>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACED_ORG%%%Student</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Attribute__c-EDA Credential Layout-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <layout>Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
         <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Credential</recordType>
     </layoutAssignments>
     <layoutAssignments>
