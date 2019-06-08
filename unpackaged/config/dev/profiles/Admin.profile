@@ -54,6 +54,14 @@
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
         <recordType>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACED_ORG%%%Student</recordType>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>Attribute-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <recordType>Attribute.%%%NAMESPACED_ORG%%%Credential</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Attribute-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
+        <recordType>Attribute.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
+    </layoutAssignments>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Address__c</tab>
         <visibility>DefaultOn</visibility>
