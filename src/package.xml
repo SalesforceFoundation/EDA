@@ -56,6 +56,8 @@
         <members>CON_PrimaryAffls_TEST</members>
         <members>CON_PrimaryLanguage_TDTM</members>
         <members>CON_PrimaryLanguage_TEST</members>
+        <members>COS_StartEndTime_TDTM</members>
+        <members>COS_StartEndTime_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
         <members>ERR_AsyncErrors</members>
@@ -92,6 +94,8 @@
         <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
+        <members>TB_StartEndTime_TDTM</members>
+        <members>TB_StartEndTime_TEST</members>
         <members>TDTM_Config</members>
         <members>TDTM_DMLgt200_TEST</members>
         <members>TDTM_DefaultConfig</members>
@@ -142,12 +146,14 @@
         <members>TDTM_Course</members>
         <members>TDTM_CourseEnrollment</members>
         <members>TDTM_CourseOffering</members>
+        <members>TDTM_CourseOfferingSchedule</members>
         <members>TDTM_Opportunity</members>
         <members>TDTM_PlanRequirement</members>
         <members>TDTM_ProgramEnrollment</members>
         <members>TDTM_ProgramPlan</members>
         <members>TDTM_Relationship</members>
         <members>TDTM_Term</members>
+        <members>TDTM_TimeBlock</members>
         <members>TDTM_TriggerHandler</members>
         <name>ApexTrigger</name>
     </types>
@@ -287,10 +293,12 @@
         <members>Course_Enrollment__c.Program_Enrollment__c</members>
         <members>Course_Enrollment__c.Status__c</members>
         <members>Course_Offering_Schedule__c.Course_Offering__c</members>
+        <members>Course_Offering_Schedule__c.End_Time__c</members>
         <members>Course_Offering_Schedule__c.Facility__c</members>
         <members>Course_Offering_Schedule__c.Friday__c</members>
         <members>Course_Offering_Schedule__c.Monday__c</members>
         <members>Course_Offering_Schedule__c.Saturday__c</members>
+        <members>Course_Offering_Schedule__c.Start_Time__c</members>
         <members>Course_Offering_Schedule__c.Sunday__c</members>
         <members>Course_Offering_Schedule__c.Thursday__c</members>
         <members>Course_Offering_Schedule__c.Time_Block__c</members>

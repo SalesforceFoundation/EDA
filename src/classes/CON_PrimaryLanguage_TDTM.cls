@@ -42,13 +42,13 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     * @description Iterates over all Contact records being inserted, updated, or deleted and ensures that if
     * a Primary Language is set, updated, or cleared, the corresponding Contact Language record is created or
     * updated accordingly.
-    * @param listNew the list of Contacts from trigger new.
-    * @param listOld the list of Contacts from trigger old.
+    * @param newList the list of Contacts from trigger new.
+    * @param oldList the list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Contact.
     * @return dmlWrapper Any Contact Language records that need to be inserted or updated.
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
+    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
@@ -61,11 +61,11 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryLanguage_TDTM, true);
 
-        if (newlist != null && newlist.size() > 0) {
+        if (newList != null && newList.size() > 0) {
 
             // After Insert
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                for (Contact newContact : (List<Contact>)newlist) {
+                for (Contact newContact : (List<Contact>)newList) {
                     if (newContact.Primary_Language__c == null) { 
                         // No Primary Language, so let's continue.
                         continue;
@@ -76,10 +76,10 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
             } 
 
             // After Update
-            else if (triggerAction == TDTM_Runnable.Action.AfterUpdate && oldlist != null && oldlist.size() > 0) {
-                for (Integer i = 0; i < newlist.size(); i++) {
-                    Contact newContact = (Contact)newlist[i];
-                    Contact oldContact = (Contact)oldlist[i];
+            else if (triggerAction == TDTM_Runnable.Action.AfterUpdate && oldList != null && oldList.size() > 0) {
+                for (Integer i = 0; i < newList.size(); i++) {
+                    Contact newContact = (Contact)newList[i];
+                    Contact oldContact = (Contact)oldList[i];
 
                     if (newContact.Primary_Language__c == oldContact.Primary_Language__c) {
                         // The Primary Language field isn't changing, so let's continue.

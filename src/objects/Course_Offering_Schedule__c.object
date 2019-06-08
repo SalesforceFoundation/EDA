@@ -69,6 +69,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>End_Time__c</fullName>
+        <description>The time the class is scheduled to end.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The time the class is scheduled to end.</inlineHelpText>
+        <label>End Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
         <fullName>Facility__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <description>The Facility associated with the Course Offering for the specified time and day of week.</description>
@@ -88,7 +99,6 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Friday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Friday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -99,7 +109,6 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Monday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Monday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -110,18 +119,27 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Saturday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Saturday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Start_Time__c</fullName>
+        <description>The time the class is scheduled to start.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The time the class is scheduled to start.</inlineHelpText>
+        <label>Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
         <fullName>Sunday__c</fullName>
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Sunday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Sunday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -132,7 +150,6 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Thursday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Thursday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -158,7 +175,6 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Tuesday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Tuesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -169,7 +185,6 @@
         <defaultValue>false</defaultValue>
         <description>The Course Offering Schedule includes Wednesday.</description>
         <externalId>false</externalId>
-        <inlineHelpText></inlineHelpText>
         <label>Wednesday</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
