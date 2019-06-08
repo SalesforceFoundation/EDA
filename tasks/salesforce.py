@@ -116,6 +116,15 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'true',
         )
 
+        # Set record type visibilities for Attribute
+        self._set_record_type(
+            '{managed}Attribute__c.{namespaced_org}Credential'.format(**namespace_args),
+            'true',
+        )
+        self._set_record_type(
+            '{managed}Attribute__c.{namespaced_org}Student Characteristic'.format(**namespace_args),
+            'false',
+        )
 
     def _set_record_type(self, name, default):
         rt = rt_visibility_template.format(default, name)
