@@ -807,7 +807,8 @@
         <members>Account-HEDA Organization Layout</members>
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
-        <members>Attribute__c-EDA Attribute Layout</members>
+        <members>Attribute__c-EDA Credential Layout</members>
+        <members>Attribute__c-EDA Student Characteristic Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>

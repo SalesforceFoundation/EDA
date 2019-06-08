@@ -9,7 +9,7 @@
         <value>Attributes</value>
     </caseValues>
     <fields>
-        <help><!-- The agency that provided or certified the credential. --></help>
+        <help><!-- The agency providing or certifying the credential or assigning the Attribute. --></help>
         <label><!-- Agency --></label>
         <name>Agency__c</name>
         <relationshipLabel><!-- Attributes --></relationshipLabel>
@@ -19,8 +19,8 @@
         <label><!-- Attribute Type --></label>
         <name>Attribute_Type__c</name>
         <picklistValues>
-            <masterLabel>Accommodations</masterLabel>
-            <translation><!-- Accommodations --></translation>
+            <masterLabel>Accommodation</masterLabel>
+            <translation><!-- Accommodation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Certification</masterLabel>
@@ -48,7 +48,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The Contact the Attribute is assigned to. --></help>
+        <help><!-- The Contact to whom the Attribute is assigned. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Attributes --></relationshipLabel>
@@ -69,12 +69,19 @@
         <name>Expired__c</name>
     </fields>
     <fields>
-        <help><!-- The date when the credential or Attribute was issued. --></help>
+        <help><!-- The date when the credential or Attribute is issued. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
     <layouts>
         <layout>EDA Attribute Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
@@ -86,7 +93,7 @@
         <name>Credential</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Allows educational institutions to track important student characteristics that might affect students&apos; education. --></description>
+        <description><!-- Allows educational institutions to track important student characteristics that might impact their education. --></description>
         <label><!-- Student Characteristic --></label>
         <name>Student_Characteristic</name>
     </recordTypes>

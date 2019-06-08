@@ -56,9 +56,9 @@
     <fields>
         <fullName>Agency__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The agency that provided or certified the credential.</description>
+        <description>The agency providing or certifying the credential or assigning the Attribute.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The agency that provided or certified the credential.</inlineHelpText>
+        <inlineHelpText>The agency providing or certifying the credential or assigning the Attribute.</inlineHelpText>
         <label>Agency</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Attributes</relationshipLabel>
@@ -78,12 +78,7 @@
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>true</sorted>
-                <value>
-                    <fullName>Accommodations</fullName>
-                    <default>false</default>
-                    <label>Accommodations</label>
-                </value>
+                <sorted>false</sorted>
                 <value>
                     <fullName>Certification</fullName>
                     <default>false</default>
@@ -95,16 +90,6 @@
                     <label>Endorsement</label>
                 </value>
                 <value>
-                    <fullName>Family Considerations</fullName>
-                    <default>false</default>
-                    <label>Family Considerations</label>
-                </value>
-                <value>
-                    <fullName>International Student</fullName>
-                    <default>false</default>
-                    <label>International Student</label>
-                </value>
-                <value>
                     <fullName>Licensure</fullName>
                     <default>false</default>
                     <label>Licensure</label>
@@ -114,15 +99,30 @@
                     <default>false</default>
                     <label>Other</label>
                 </value>
+                <value>
+                    <fullName>Accommodation</fullName>
+                    <default>false</default>
+                    <label>Accommodation</label>
+                </value>
+                <value>
+                    <fullName>Family Considerations</fullName>
+                    <default>false</default>
+                    <label>Family Considerations</label>
+                </value>
+                <value>
+                    <fullName>International Student</fullName>
+                    <default>false</default>
+                    <label>International Student</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Contact the Attribute is assigned to.</description>
+        <description>The Contact to whom the Attribute is assigned.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact the Attribute is assigned to.</inlineHelpText>
+        <inlineHelpText>The Contact to whom the Attribute is assigned.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Attributes</relationshipLabel>
@@ -165,9 +165,9 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
-        <description>The date when the credential or Attribute was issued.</description>
+        <description>The date when the credential or Attribute is issued.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date when the credential or Attribute was issued.</inlineHelpText>
+        <inlineHelpText>The date when the credential or Attribute is issued.</inlineHelpText>
         <label>Start Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -213,12 +213,12 @@
     <recordTypes>
         <fullName>Student_Characteristic</fullName>
         <active>true</active>
-        <description>Allows educational institutions to track important student characteristics that might affect students&apos; education.</description>
+        <description>Allows educational institutions to track important student characteristics that might impact their education.</description>
         <label>Student Characteristic</label>
         <picklistValues>
             <picklist>Attribute_Type__c</picklist>
             <values>
-                <fullName>Accommodations</fullName>
+                <fullName>Accommodation</fullName>
                 <default>false</default>
             </values>
             <values>
