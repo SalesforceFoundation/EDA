@@ -242,8 +242,10 @@
         <members>Attendance_Event__c.Attendance_Type__c</members>
         <members>Attendance_Event__c.Contact__c</members>
         <members>Attendance_Event__c.Course_Connection__c</members>
+        <members>Attendance_Event__c.Course_Name__c</members>
         <members>Attendance_Event__c.Date__c</members>
         <members>Attendance_Event__c.End_Time__c</members>
+        <members>Attendance_Event__c.Reason_Description__c</members>
         <members>Attendance_Event__c.Reason__c</members>
         <members>Attendance_Event__c.Start_Time__c</members>
         <members>Attendance_Event__c.Unexcused__c</members>

@@ -33,7 +33,7 @@
         <relationshipLabel><!-- Attendance Events --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The class and period in which the student was either absent or tardy. --></help>
+        <help><!-- The class and period in which the student was either tardy or absent. --></help>
         <label><!-- Course Connection --></label>
         <name>Course_Connection__c</name>
         <relationshipLabel><!-- Attendance Events --></relationshipLabel>
@@ -44,7 +44,7 @@
         <name>Course_Name__c</name>
     </fields>
     <fields>
-        <help><!-- The date when this event occurred. --></help>
+        <help><!-- The date when the tardy or absence occurred. --></help>
         <label><!-- Date --></label>
         <name>Date__c</name>
     </fields>
@@ -91,7 +91,7 @@
     </fields>
     <gender><!-- Masculine --></gender>
     <layouts>
-        <layout>Attendance Event Layout</layout>
+        <layout>EDA Attendance Event Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

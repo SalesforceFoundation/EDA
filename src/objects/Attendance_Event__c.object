@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores information about a student&apos;s attendance.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -104,9 +105,9 @@
     <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class and period in which the student was either absent or tardy.</description>
+        <description>The class and period in which the student was either tardy or absent.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The class and period in which the student was either absent or tardy.</inlineHelpText>
+        <inlineHelpText>The class and period in which the student was either tardy or absent.</inlineHelpText>
         <label>Course Connection</label>
         <referenceTo>Course_Enrollment__c</referenceTo>
         <relationshipLabel>Attendance Events</relationshipLabel>
@@ -129,9 +130,9 @@
     </fields>
     <fields>
         <fullName>Date__c</fullName>
-        <description>The date when this event occurred.</description>
+        <description>The date when the tardy or absence occurred.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date when this event occurred.</inlineHelpText>
+        <inlineHelpText>The date when the tardy or absence occurred.</inlineHelpText>
         <label>Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
