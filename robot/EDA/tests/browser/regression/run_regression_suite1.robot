@@ -104,22 +104,21 @@ Verify Affiliations, Program Enrollments and No Duplicates
     Wait for Locator                        program_enrollments_count
  
 
-Create A New Program Plan
+# Create A New Program Plan
 
-    Reload Page
-    #Check for EDA Tile
-    Open App Launcher
+#     #Check for EDA Tile
+#     Open App Launcher
+#     Reload Page
+#     Wait for Locator                        program_plans.program_plan
+#     Click on Element                        program_plans.program_plan
 
-    Wait for Locator                        program_plans.program_plan
-    Click on Element                        program_plans.program_plan
+#     Click Object Button                     New
 
-    Click Object Button                     New
+#     Wait for Locator                        program_plans.pp_name
 
-    Wait for Locator                        program_plans.pp_name
+#     Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
 
-    Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
-
-    Click on Element                        program_plans.save_button
+#     Click on Element                        program_plans.save_button
 
 
 # Create A Course Offering
