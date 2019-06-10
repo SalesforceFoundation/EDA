@@ -9,7 +9,7 @@
         <value><!-- Attribute --></value>
     </caseValues>
     <fields>
-        <help><!-- The agency providing or certifying the credential or assigning the Attribute. --></help>
+        <help><!-- The agency that provided or certified the credential. --></help>
         <label><!-- Agency --></label>
         <name>Agency__c</name>
         <relationshipLabel><!-- Attributes --></relationshipLabel>
@@ -31,8 +31,8 @@
             <translation><!-- Endorsement --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Family Considerations</masterLabel>
-            <translation><!-- Family Considerations --></translation>
+            <masterLabel>Family Consideration</masterLabel>
+            <translation><!-- Family Consideration --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>International Student</masterLabel>
@@ -69,13 +69,13 @@
         <name>Expired__c</name>
     </fields>
     <fields>
-        <help><!-- The date when the credential or Attribute is issued. --></help>
+        <help><!-- The issue date for the credential or Attribute. --></help>
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
     <gender><!-- Masculine --></gender>
     <layouts>
-        <layout>EDA Attribute Layout</layout>
+        <layout>EDA Credential Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
@@ -95,7 +95,7 @@
         <name>Credential</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Allows educational institutions to track important student characteristics that might impact their education. --></description>
+        <description><!-- Allows educational institutions to track important student characteristics that might affect students&apos; education. --></description>
         <label><!-- Student Characteristic --></label>
         <name>Student_Characteristic</name>
     </recordTypes>

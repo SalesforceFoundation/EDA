@@ -37,6 +37,14 @@
         <recordType>Account.%%%NAMESPACED_ORG%%%University_Department</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Credential</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
+        <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -53,14 +61,6 @@
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
         <recordType>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACED_ORG%%%Student</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
-        <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Credential</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
-        <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Address__c</tab>
