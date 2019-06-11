@@ -24,7 +24,7 @@
                 <field>Course_Connection__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Attendance_Type__c</field>
             </layoutItems>
             <layoutItems>
@@ -34,11 +34,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Date__c</field>
             </layoutItems>
             <layoutItems>

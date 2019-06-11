@@ -14,7 +14,7 @@
         <name>Arrival_Time__c</name>
     </fields>
     <fields>
-        <help><!-- The type of absence or tardy. --></help>
+        <help><!-- The type of tardy or absence. --></help>
         <label><!-- Attendance Type --></label>
         <name>Attendance_Type__c</name>
         <picklistValues>
@@ -39,7 +39,7 @@
         <relationshipLabel><!-- Attendance Events --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The name derived from the Course Offering for which the student was either tardy or absent. --></help>
+        <help><!-- The name of the Course for which the student was either tardy or absent. --></help>
         <label><!-- Course Name --></label>
         <name>Course_Name__c</name>
     </fields>
