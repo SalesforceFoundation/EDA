@@ -180,9 +180,8 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>AT - {0000}</displayFormat>
         <label>Attribute Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Attributes</pluralLabel>
     <recordTypes>
