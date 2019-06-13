@@ -33,5 +33,97 @@
 */
 @isTest
 private class COS_StartEndTime_TEST {
-    // TODO
+    // TODO - finish these. ApexDocs for all methods!
+
+    private static Course_Offering__c courseOffering;
+    private static Course_Offering_Schedule__c courseOfferingSchedule;
+    private static Time_Block__c timeBlock;
+
+    private static Time startTime = Time.newInstance(8, 0, 0, 0);
+    private static Time endTime = Time.newInstance(10, 0, 0, 0);
+
+    private static void setup() {
+        // TODO: Move all of this to UTIL_UnitTestData_TEST?
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+        insert acct;
+
+        Term__c term = new Term__c(Name = '2019-2020 School Year', Account__c = acct.Id);
+        insert term;
+
+        Course__c course = new Course__c(Name = 'ECON 101', Account__c = acct.Id);
+        insert course;
+
+        courseOffering = new Course_Offering__c(Name = 'ECON-101-19-01', Course__c = course.Id, Term__c = term.Id);
+        insert courseOffering;
+
+        courseOfferingSchedule = new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id);
+
+        timeBlock = new Time_Block__c(Start_Time__c = startTime, End_Time__c = endTime);
+        insert timeBlock;
+    }
+
+    private static void assertTimes(Time expectedStartTime, Time expectedEndTime) {
+        Course_Offering_Schedule__c queriedCourseOfferingSchedule = [SELECT Start_Time__c, End_Time__c FROM Course_Offering_Schedule__c WHERE Id = :courseOfferingSchedule.Id];
+        System.assertEquals(expectedStartTime, queriedCourseOfferingSchedule.Start_Time__c, 'The Course Offering Schedule Start Time was not set as expected.');
+        System.assertEquals(expectedEndTime, queriedCourseOfferingSchedule.End_Time__c, 'The Course Offering Schedule End Time was not set as expected.');
+    }
+
+    @isTest
+    private static void setTimeBlockOnInsert() {
+        setup();
+
+        Test.startTest();
+        courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        insert courseOfferingSchedule;
+        Test.stopTest();
+
+        assertTimes(startTime, endTime);
+    }
+
+    @isTest
+    private static void setTimeBlockOnUpdate() {
+        setup();
+
+        insert courseOfferingSchedule;
+        assertTimes(null, null);
+
+        Test.startTest();
+        courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        update courseOfferingSchedule;
+        Test.stopTest();
+
+        assertTimes(startTime, endTime);
+    }
+
+    @isTest
+    private static void setTimeBlockOnUpdateWithExistingStartEndTimes() {
+        setup();
+
+        courseOfferingSchedule.Start_Time__c = Time.newInstance(3, 0, 0, 0);
+        courseOfferingSchedule.End_Time__c = Time.newInstance(5, 0, 0, 0);
+        insert courseOfferingSchedule;
+        assertTimes(Time.newInstance(3, 0, 0, 0), Time.newInstance(5, 0, 0, 0));
+
+        Test.startTest();
+        courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        update courseOfferingSchedule;
+        Test.stopTest();
+
+        // TODO: Do the Start/End Times get overwritten or is an error thrown? Or do the old values stay?
+        assertTimes(startTime, endTime);
+    }
+
+    @isTest
+    private static void courseOfferingHasTimeBlock() {
+        setup();
+
+        courseOffering.Time_Block__c = timeBlock.Id;
+        update courseOffering;
+
+        Test.startTest();
+        insert courseOfferingSchedule;
+        Test.stopTest();
+
+        assertTimes(startTime, endTime);
+    }
 }
