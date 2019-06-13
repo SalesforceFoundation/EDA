@@ -120,9 +120,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
-        <description>The Contact to whom the Attribute is assigned.</description>
+        <description>The Contact the Attribute is assigned to.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Contact to whom the Attribute is assigned.</inlineHelpText>
+        <inlineHelpText>The Contact the Attribute is assigned to.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Attributes</relationshipLabel>

@@ -48,7 +48,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The Contact to whom the Attribute is assigned. --></help>
+        <help><!-- The Contact the Attribute is assigned to. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Attributes --></relationshipLabel>
