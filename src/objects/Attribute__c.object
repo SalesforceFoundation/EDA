@@ -119,7 +119,7 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The Contact the Attribute is assigned to.</description>
         <externalId>false</externalId>
         <inlineHelpText>The Contact the Attribute is assigned to.</inlineHelpText>
