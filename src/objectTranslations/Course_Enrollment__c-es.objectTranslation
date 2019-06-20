@@ -1,91 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Connexió del curs --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Connexió del curs --></value>
-    </caseValues>
-    <fields>
-        <help>El programa académico en el que el estudiante está inscrito.</help>
-        <label>Programa académico del contacto</label>
-        <name>Account__c</name>
-        <relationshipLabel>Conexiones a cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Afiliación</label>
-        <name>Affiliation__c</name>
-        <relationshipLabel>Conexión al curso</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El estudiante que realiza el curso</help>
-        <label>Contacto</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Conexiones a cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <help>La oferta del curso en la que el estudiante está inscrito. Es un curso ofrecido en un período específico.</help>
-        <label>Id. de oferta del curso</label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel>Conexión al curso</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Créditos intentados</label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <label>Creditos ganados</label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <label>Nota</label>
-        <name>Grade__c</name>
-    </fields>
-    <fields>
-        <help>Representa una conexión principal a un curso.</help>
-        <label>Principal</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <help>El programa en el que el estudiante está inscrito. Une a un estudiante con un programa académico.</help>
-        <label>Id. de inscripción del programa</label>
-        <name>Program_Enrollment__c</name>
-        <relationshipLabel>Conexiones al curso</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Representa el estado de la conexión al curso.</help>
-        <label>Estado</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Actual</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Anterior</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Course Connection ID --></nameFieldLabel>
-    <recordTypes>
-        <label><!-- Default --></label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Faculty --></label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Student --></label>
-        <name>Student</name>
-    </recordTypes>
+  <fields>
+    <name>Account__c</name>
+    <help>El Programa académico en el que está inscrito el estudiante.</help>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
+    <label>Programa académico del contacto</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <relationshipLabel>Enlace de cursos</relationshipLabel>
+    <label>Afiliación</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>El estudiante siguiendo el curso.</help>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>La Oferta de cursos en la que el estudiante está inscrito. Es un curso ofrecido en un plazo determinado.</help>
+    <relationshipLabel>Enlace de cursos</relationshipLabel>
+    <label>Id. de Oferta de curso</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <label>Créditos intentados</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <label>Créditos obtenidos</label>
+  </fields>
+  <fields>
+    <name>Grade__c</name>
+    <label>Grado</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Representa un enlace de curso principal.</help>
+    <label>Principal</label>
+  </fields>
+  <fields>
+    <name>Program_Enrollment__c</name>
+    <help>El número de registro de Inscripción del programa para el programa en el que está inscrito el estudiante. Vincula un estudiante con un Programa académico.</help>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
+    <label>Id. de inscripción del programa</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Representa el estado del enlace de curso.</help>
+    <label>Estado</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Antiguo</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Enrollment Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Id. de Enlace de cursos</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Id. de Enlace de cursos</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Enlace de curso</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Enlaces de curso</value>
+  </caseValues>
 </CustomObjectTranslation>

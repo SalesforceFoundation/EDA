@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Capacity__c</name>
+    <label>Capacity</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Time Blocks</relationshipLabel>
+    <label>Time Block</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Course Offerings</relationshipLabel>
+    <label>Course</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>End Date</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>The Facility associated with the Course Offering.</help>
+    <relationshipLabel>Course Offerings</relationshipLabel>
+    <label>Facility</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <relationshipLabel>Course Offerings</relationshipLabel>
+    <label>Primary Faculty</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <label>Section ID</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Start Date</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Course Offerings</relationshipLabel>
+    <label>Term</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Custom Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Course Offering ID</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Course Offering ID</label>
+  </standardFields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Course Offering</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Course Offerings</value>
+  </caseValues>
+</CustomObjectTranslation>

@@ -1,70 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Program Plan</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Program Plans</value>
-    </caseValues>
-    <fields>
-        <help><!-- Click to search for an Account (often an Academic Program) to associate with the Program Plan. --></help>
-        <label><!-- Account --></label>
-        <name>Account__c</name>
-        <relationshipLabel><!-- Program Plans --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Describe the Program Plan. --></help>
-        <label><!-- Description --></label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help><!-- The end date for the Program Plan. --></help>
-        <label><!-- End Date --></label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment --></help>
-        <label><!-- Is Primary --></label>
-        <name>Is_Primary__c</name>
-    </fields>
-    <fields>
-        <help><!-- The date the Program Plan went into effect. --></help>
-        <label><!-- Start Date --></label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- The status of the program plan. --></help>
-        <label><!-- Status --></label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Archived</masterLabel>
-            <translation><!-- Archived --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation><!-- Current --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- Specify the total number of credits a student must complete to satisfy this program plan. --></help>
-        <label><!-- Total Required Credits --></label>
-        <name>Total_Required_Credits__c</name>
-    </fields>
-    <fields>
-        <help><!-- The version of the Program Plan. For example, “Spring 2019.” --></help>
-        <label><!-- Version --></label>
-        <name>Version__c</name>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Program Plan Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Program Plan Name --></nameFieldLabel>
-    <startsWith>Consonant</startsWith>
+  <fields>
+    <name>Account__c</name>
+    <help>Feu clic per cercar un compte (sovint un programa acadèmic) per associar al pla del programa.</help>
+    <relationshipLabel>Plans del programa</relationshipLabel>
+    <label>Compte</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Descriu el pla del programa.</help>
+    <label>Descripció</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La data final del pla del programa.</help>
+    <label>Data de finalització</label>
+  </fields>
+  <fields>
+    <name>Is_Primary__c</name>
+    <help>Casella de selecció per designar aquest pla com el que s'ha d'assignar a un estudiant quan es crea una inscripció de programa</help>
+    <label>És principal</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>La data en què va entrar en vigor el pla del programa.</help>
+    <label>Data d'inici</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>L'estat del pla del programa.</help>
+    <label>Estat</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Archived</masterLabel>
+      <translation>Arxivat</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Total_Required_Credits__c</name>
+    <help>Especifiqueu el nombre total de crèdits que ha de complir un estudiant per satisfer aquest pla del programa.</help>
+    <label>Total de crèdits necessaris</label>
+  </fields>
+  <fields>
+    <name>Version__c</name>
+    <help>La versió del pla del programa. Per exemple, "Primavera 2019".</help>
+    <label>Versió</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Program Plan Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom del pla del programa</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom del pla del programa</label>
+  </standardFields>
 </CustomObjectTranslation>

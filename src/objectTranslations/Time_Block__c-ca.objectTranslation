@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Time Block --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Time Block --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The Educational Institution associated with this Time Block. For example, a school within a district. --></help>
-        <label><!-- Educational Institution --></label>
-        <name>Educational_Institution__c</name>
-        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The time of day the Time Block ends. --></help>
-        <label><!-- End Time --></label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help><!-- The time of day the Time Block starts. --></help>
-        <label><!-- Start Time --></label>
-        <name>Start_Time__c</name>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Time Block Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Time Block Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Educational_Institution__c</name>
+    <help>La institució educativa associada a aquest bloc de temps. Per exemple, una escola d'un districte.</help>
+    <relationshipLabel>Blocs de temps</relationshipLabel>
+    <label>Institució educativa</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>Hora del dia en què acaba el bloc de temps.</help>
+    <label>Final del temps</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>Hora del dia en què comença el bloc de temps.</help>
+    <label>Hora inicial</label>
+  </fields>
+  <layouts>
+    <layout>EDA Time Block Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom del bloc de temps</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom del bloc de temps</label>
+  </standardFields>
 </CustomObjectTranslation>
