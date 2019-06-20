@@ -650,7 +650,6 @@
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
-        <members>Attribute__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
