@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Attendance Event</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Attendance Events</value>
+    </caseValues>
+    <fields>
+        <help><!-- For tardy events, the time when the student arrived. --></help>
+        <label><!-- Arrival Time --></label>
+        <name>Arrival_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The type of tardy or absence. --></help>
+        <label><!-- Attendance Type --></label>
+        <name>Attendance_Type__c</name>
+        <picklistValues>
+            <masterLabel>Class Absence</masterLabel>
+            <translation><!-- Class Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class Tardy</masterLabel>
+            <translation><!-- Class Tardy --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The student who is either tardy or absent. --></help>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Attendance Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The class and period in which the student was either tardy or absent. --></help>
+        <label><!-- Course Connection --></label>
+        <name>Course_Connection__c</name>
+        <relationshipLabel><!-- Attendance Events --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The name of the Course for which the student was either tardy or absent. --></help>
+        <label><!-- Course Name --></label>
+        <name>Course_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the tardy or absence occurred. --></help>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- For excused absences, the time the absence ends. --></help>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- A description of the reason the student was either tardy or absent. --></help>
+        <label><!-- Reason Description --></label>
+        <name>Reason_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- The reason the student was either tardy or absent. --></help>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation><!-- Family --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical</masterLabel>
+            <translation><!-- Medical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Religious</masterLabel>
+            <translation><!-- Religious --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- For excused absences, the time the absence starts. --></help>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates an unexcused tardy or absence. --></help>
+        <label><!-- Unexcused --></label>
+        <name>Unexcused__c</name>
+    </fields>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

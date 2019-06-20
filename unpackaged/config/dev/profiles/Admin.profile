@@ -119,6 +119,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Time_Block__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Trigger_Handler__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
