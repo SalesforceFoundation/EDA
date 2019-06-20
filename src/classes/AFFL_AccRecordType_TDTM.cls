@@ -146,9 +146,10 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
                     if (!containsNew(accsTypeChanged, accNewOldType.oldType)) {
                         contact.put(accNewOldType.oldType, null);
                     }
-                    contact.put(accNewOldType.newType, accNewOldType.accId);
-                    dmlWrapper.objectsToUpdate.add(contact);
-
+                    if (accNewOldType.newType!=NULL) {
+                        contact.put(accNewOldType.newType, accNewOldType.accId);
+                        dmlWrapper.objectsToUpdate.add(contact);
+                    }
                     //Save the Contact ID and the Account ID of the Affiliation that has been made
                     //primary so we can update all others of the same type for the same Contact and
                     //make them not primary.
