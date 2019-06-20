@@ -687,10 +687,6 @@
         <members>Affl_Mappings__c-en_US</members>
         <members>Affl_Mappings__c-es</members>
         <members>Affl_Mappings__c-fr</members>
-        <members>Attribute__c-ca</members>
-        <members>Attribute__c-en_US</members>
-        <members>Attribute__c-es</members>
-        <members>Attribute__c-fr</members>
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
@@ -775,7 +771,6 @@
     <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
-        <members>Attribute__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -799,8 +794,6 @@
         <members>Account-HEDA Organization Layout</members>
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
-        <members>Attribute__c-EDA Credential Layout</members>
-        <members>Attribute__c-EDA Student Characteristic Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
@@ -823,7 +816,6 @@
     <types>
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
-        <members>Attribute__c.All</members>
         <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering_Schedule__c.All</members>
@@ -844,8 +836,6 @@
         <name>ListView</name>
     </types>
     <types>
-        <members>Attribute__c.Credential</members>
-        <members>Attribute__c.Student_Characteristic</members>
         <name>RecordType</name>
     </types>
     <types>
