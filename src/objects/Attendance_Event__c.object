@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores information about a student&apos;s attendance.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Arrival_Time__c</fullName>
+        <description>For tardy events, the time when the student arrived.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For tardy events, the time when the student arrived.</inlineHelpText>
+        <label>Arrival Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Attendance_Type__c</fullName>
+        <description>The type of tardy or absence.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of tardy or absence.</inlineHelpText>
+        <label>Attendance Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Class Absence</fullName>
+                    <default>false</default>
+                    <label>Class Absence</label>
+                </value>
+                <value>
+                    <fullName>Class Tardy</fullName>
+                    <default>false</default>
+                    <label>Class Tardy</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The student who is either tardy or absent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The student who is either tardy or absent.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Attendance Events</relationshipLabel>
+        <relationshipName>Attendance_Events</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Connection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The class and period in which the student was either tardy or absent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The class and period in which the student was either tardy or absent.</inlineHelpText>
+        <label>Course Connection</label>
+        <referenceTo>Course_Enrollment__c</referenceTo>
+        <relationshipLabel>Attendance Events</relationshipLabel>
+        <relationshipName>Attendance_Events</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Name__c</fullName>
+        <description>The name of the Course for which the student was either tardy or absent.</description>
+        <externalId>false</externalId>
+        <formula>Course_Connection__r.Course_Offering__r.Course__r.Name</formula>
+        <inlineHelpText>The name of the Course for which the student was either tardy or absent.</inlineHelpText>
+        <label>Course Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <description>The date when the tardy or absence occurred.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the tardy or absence occurred.</inlineHelpText>
+        <label>Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>End_Time__c</fullName>
+        <description>For excused absences, the time the absence ends.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For excused absences, the time the absence ends.</inlineHelpText>
+        <label>End Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Description__c</fullName>
+        <description>A description of the reason the student was either tardy or absent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A description of the reason the student was either tardy or absent.</inlineHelpText>
+        <label>Reason Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reason__c</fullName>
+        <description>The reason the student was either tardy or absent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The reason the student was either tardy or absent.</inlineHelpText>
+        <label>Reason</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Family</fullName>
+                    <default>false</default>
+                    <label>Family</label>
+                </value>
+                <value>
+                    <fullName>Medical</fullName>
+                    <default>false</default>
+                    <label>Medical</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Religious</fullName>
+                    <default>false</default>
+                    <label>Religious</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Start_Time__c</fullName>
+        <description>For excused absences, the time the absence starts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For excused absences, the time the absence starts.</inlineHelpText>
+        <label>Start Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Unexcused__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates an unexcused tardy or absence.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates an unexcused tardy or absence.</inlineHelpText>
+        <label>Unexcused</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Attendance Event</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>AE-{0000}</displayFormat>
+        <label>Attendance Event Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Attendance Events</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
