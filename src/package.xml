@@ -249,6 +249,13 @@
         <members>Attendance_Event__c.Reason__c</members>
         <members>Attendance_Event__c.Start_Time__c</members>
         <members>Attendance_Event__c.Unexcused__c</members>
+        <members>Attribute__c.Agency__c</members>
+        <members>Attribute__c.Attribute_Type__c</members>
+        <members>Attribute__c.Contact__c</members>
+        <members>Attribute__c.Description__c</members>
+        <members>Attribute__c.End_Date__c</members>
+        <members>Attribute__c.Expired__c</members>
+        <members>Attribute__c.Start_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Citizenship__c</members>
         <members>Contact.Country_of_Origin__c</members>
@@ -662,6 +669,7 @@
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
         <members>Attendance_Event__c</members>
+        <members>Attribute__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -703,6 +711,10 @@
         <members>Attendance_Event__c-en_US</members>
         <members>Attendance_Event__c-es</members>
         <members>Attendance_Event__c-fr</members>
+        <members>Attribute__c-ca</members>
+        <members>Attribute__c-en_US</members>
+        <members>Attribute__c-es</members>
+        <members>Attribute__c-fr</members>
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
@@ -788,6 +800,7 @@
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Attendance_Event__c</members>
+        <members>Attribute__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -812,6 +825,8 @@
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
         <members>Attendance_Event__c-EDA Attendance Event Layout</members>
+        <members>Attribute__c-EDA Credential Layout</members>
+        <members>Attribute__c-EDA Student Characteristic Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
@@ -835,6 +850,7 @@
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
         <members>Attendance_Event__c.All</members>
+        <members>Attribute__c.All</members>
         <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering_Schedule__c.All</members>
@@ -853,6 +869,11 @@
         <members>Trigger_Handler__c.All</members>
         <members>Trigger_Handler__c.All_Main_Fields</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Attribute__c.Credential</members>
+        <members>Attribute__c.Student_Characteristic</members>
+        <name>RecordType</name>
     </types>
     <types>
         <members>ca</members>
