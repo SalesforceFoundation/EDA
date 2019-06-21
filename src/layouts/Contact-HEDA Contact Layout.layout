@@ -305,6 +305,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Attribute_Type__c</fields>
+        <fields>Description__c</fields>
+        <fields>Agency__c</fields>
+        <relatedList>Attribute__c.Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Account__c</fields>
         <fields>Eligible_to_Enroll__c</fields>
         <fields>Admission_Date__c</fields>
