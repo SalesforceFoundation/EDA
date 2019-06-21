@@ -385,10 +385,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         setup();
 
         //delete an affiliation mapping
-        List<Affl_Mappings__c> mappings = [select ID from Affl_Mappings__c where Name = 'Household Account'];
-        if(mappings.size() != 0) {
-            delete mappings;        
-        }
+        delete [SELECT Id FROM Affl_Mappings__c WHERE Name = 'Household Account'];
 
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
