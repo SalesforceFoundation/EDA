@@ -37,6 +37,14 @@
         <recordType>Account.%%%NAMESPACED_ORG%%%University_Department</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Credential</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
+        <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -60,6 +68,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Affiliation__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Attribute__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -112,6 +124,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Term_Grade__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Time_Block__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
