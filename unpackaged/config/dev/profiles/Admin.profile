@@ -37,11 +37,11 @@
         <recordType>Account.%%%NAMESPACED_ORG%%%University_Department</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
         <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Credential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
+        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
         <recordType>Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
