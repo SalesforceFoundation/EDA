@@ -52,10 +52,10 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
         self.namespace_prefix = namespace_prefix if self.options['managed'] else ''
         self.namespaced_org_prefix = namespace_prefix if self.options['namespaced_org'] else ''
 
-        
+
     def _process_metadata(self):
         super(UpdateAdminProfile, self)._process_metadata()
-       
+
         # Strip record type visibilities
         findReplaceRegex(
             '<recordTypeVisibilities>([^\$]+)</recordTypeVisibilities>',
@@ -68,7 +68,7 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'managed': self.namespace_prefix,
             'namespaced_org': self.namespaced_org_prefix,
         }
-        
+
         # Set record type visibilities for Accounts
         self._set_record_type(
             'Account.{namespaced_org}Administrative'.format(**namespace_args),
@@ -101,7 +101,7 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
 
         if self.options['skip_record_types']:
             return
- 
+
         # Set record type visibilities for Course Connections
         self._set_record_type(
             '{managed}Course_Enrollment__c.{namespaced_org}Default'.format(**namespace_args),
@@ -118,11 +118,11 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
 
         # Set record type visibilities for Attribute
         self._set_record_type(
-            '{managed}Attribute__c.{namespaced_org}Credential'.format(**namespace_args),
+            '{managed}Attribute__c.{managed}Credential'.format(**namespace_args),
             'true',
         )
         self._set_record_type(
-            '{managed}Attribute__c.{namespaced_org}Student_Characteristic'.format(**namespace_args),
+            '{managed}Attribute__c.{managed}Student_Characteristic'.format(**namespace_args),
             'false',
         )
 
