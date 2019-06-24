@@ -38,11 +38,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACED_ORG%%%Credential</recordType>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
