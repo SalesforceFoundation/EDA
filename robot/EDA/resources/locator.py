@@ -48,6 +48,9 @@ eda_lex_locators = {
         "household": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Household Account')]",
         "sports": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Sports Organization')]",
         "university": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]",
+        "save": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
+        "edit": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
+
     },
     "contact": {
         "new_button": "//a[@title='New']//div[@title='New']",
