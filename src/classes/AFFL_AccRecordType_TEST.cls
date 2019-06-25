@@ -420,6 +420,11 @@ public with sharing class AFFL_AccRecordType_TEST {
         List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
                                                    WHERE Contact__c = :contact.Id 
                                                    AND Account__c = :bizAcc.Id] ;
+        
+        //Verify Primary Organization is Null
+        Contact updatedContact = [SELECT id, Primary_Organization__c, Primary_Household__c FROM contact WHERE id = :contact.Id]; 
+
+        System.assertEquals(NULL, updatedContact.Primary_Organization__c);                                         
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
