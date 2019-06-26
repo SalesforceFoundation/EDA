@@ -1,3 +1,8 @@
+*** Settings ***
+
+Resource       cumulusci/robotframework/Salesforce.robot
+Library        EDA.py
+
 *** Keywords ***
 Create Test User
     [Documentation]  This creates a test user via the salesforce API
