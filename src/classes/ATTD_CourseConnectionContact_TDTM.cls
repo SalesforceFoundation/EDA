@@ -46,6 +46,8 @@ public with sharing class ATTD_CourseConnectionContact_TDTM {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
+        DmlWrapper dmlWrapper = new DmlWrapper();
+
         boolean recursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ATTD_CourseConnectionContact_TDTM);
 
         Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
