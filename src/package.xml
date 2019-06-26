@@ -135,6 +135,7 @@
         <members>TDTM_Account</members>
         <members>TDTM_Address</members>
         <members>TDTM_Affiliation</members>
+        <members>TDTM_Attendance</members>
         <members>TDTM_Campaign</members>
         <members>TDTM_CampaignMember</members>
         <members>TDTM_Contact</members>
