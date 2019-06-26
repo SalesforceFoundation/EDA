@@ -34,7 +34,7 @@
 * @group-content ../../ApexDocContent/AttendanceEvents.htm
 * @description Makes sure that linked course connection's contact matches contact lookup field
 */
-public with sharing class ATTD_CourseConnectionContact_TDTM {
+public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Makes sure that linked course connection's contact matches contact lookup field
     * @param listNew the list of Attendance Events from trigger new. 
@@ -57,14 +57,14 @@ public with sharing class ATTD_CourseConnectionContact_TDTM {
                     
             if (!recursionFlag) {
                 for (Attendance_Event__c attd : [SELECT Id,
-                                                        Contact__r.Id,
-                                                        Course_Connection__r.Contact__r.Id
+                                                        Contact__c,
+                                                        Course_Connection__r.Contact__c
                                                 FROM Attendance_Event__c 
                                                 WHERE Id IN :oldlist]) {
-                    if (attd.Course_Connection__r_Contact__r.Id != attd.Contact__c.Id
-                        && attd.Course_Connection__r_Contact__r.Id != null) {
-                        if (attd.Contact__r.Id == null) {
-                            attd.Contact__c = attd.Course_Connection__r_Contact__r.Id;
+                    if (attd.Course_Connection__r.Contact__c != attd.Contact__c
+                        && attd.Course_Connection__r.Contact__c != null) {
+                        if (attd.Contact__c == null) {
+                            attd.Contact__c = attd.Course_Connection__r.Contact__c;
                             //dmlWrapper.objectsToUpdate.add(attd);
                         } else {
                             //TODO: throw exception
