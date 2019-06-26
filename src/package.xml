@@ -29,6 +29,7 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>ATTD_CourseConnectionContact_TDTM</members>
         <members>CCON_ConnectionBackfill_BATCH</members>
         <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
