@@ -50,6 +50,7 @@ eda_lex_locators = {
         "university": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]",
         "save": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
         "edit": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
+        "cancel": "//div[@class='slds-button-group']//span[contains(text(), 'Cancel')]",
 
     },
     "contact": {
