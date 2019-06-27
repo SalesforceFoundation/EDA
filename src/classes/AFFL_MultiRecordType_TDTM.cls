@@ -141,7 +141,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);
 
 					//AFTER DELETE - delete lookup relationship, if necessary
-					if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldName != null) {
+					if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldName != null && relatedContact != null) {
 						processAfflDeleted(afflOld, relatedContact, lookupFieldName, dmlWrapper);
 					}
 				}
