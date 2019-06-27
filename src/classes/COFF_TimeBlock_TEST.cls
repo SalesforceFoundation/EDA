@@ -29,32 +29,9 @@
 * @date 2019
 * @group Course Offering
 * @group-content ../../ApexDocContent/CourseOfferings.htm
-* @description TBD
+* @description Tests specific to testing the logic around TBD
 */
-public with sharing class TB_StartEndTime_TDTM extends TDTM_Runnable {
-
-    /*******************************************************************************************************
-    * @description Iterates over all Time Block records TBD
-    * @param newList the list of Time Blocks from trigger new.
-    * @param oldList the list of Time Blocks from trigger old.
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Time Block.
-    * @return dmlWrapper TBD
-    ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
-        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-
-        DmlWrapper dmlWrapper = new DmlWrapper();
-
-        // This only runs on after update.
-
-        // TODO: If the Start Time and/or End Time is changing, query for all related Course Offering Schedules
-        // and update their Start Time and/or End Times if they are blank or if they were previously aligned
-        // with the Time Block's Start Time and End Time. When querying for related Course Offering Schedules,
-        // be sure to query for all Course Offering Schedules tied to Course Offerings with a Time Block as well.
-
-        // TODO: Make sure that reentrancy is prevented here.
-
-        return dmlWrapper;
-    }
+@isTest
+private class COFF_TimeBlock_TEST {
+    // TODO - finish these. ApexDocs for all methods!
 }

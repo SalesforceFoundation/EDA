@@ -41,6 +41,8 @@
         <members>CMP_SettingsDataProvider_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
+        <members>COFF_TimeBlock_TDTM</members>
+        <members>COFF_TimeBlock_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>

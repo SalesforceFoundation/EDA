@@ -31,14 +31,14 @@
 * @group-content ../../ApexDocContent/CourseOfferings.htm
 * @description TBD
 */
-public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
+public with sharing class COFF_TimeBlock_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Iterates over all Course Offering Schedule records TBD
-    * @param newList the list of Course Offering Schedules from trigger new.
-    * @param oldList the list of Course Offering Schedules from trigger old.
+    * @description Iterates over all Course Offering records TBD
+    * @param newList the list of Course Offerings from trigger new.
+    * @param oldList the list of Course Offerings from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Course Offering Schedule.
+    * @param objResult the describe for Course Offering.
     * @return dmlWrapper TBD
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
@@ -46,21 +46,16 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        // This only runs on before insert and before update.
-        
-        // TODO: Set the Start Time and End Time for the COS records that don't have it set, if there is a 
-        // Time Block associated to the record that has a Start Time and/or End Time. If updating to another
-        // Time Block, update the values of the Start Time and End Time to the new values.
+        // This only runs on after update.
 
-        // If there isn't a Time Block associated to the record, see if there is one associated to the
-        // Course Offering and use that instead.
+        // TODO: If the Time Block is being set or updated, query for all related Course Offering Schedules
+        // and update their Start Time and/or End Times if they are blank or if they were previously aligned
+        // with the old Time Block's Start Time and End Time. 
 
-        // TODO: Throw an error if there is a Time Block associated to the record and the Start Time and
-        // End Time does not match the Time Block Start Time and End Time (also if the values also don't match
-        // the values of the previous Time Block when updating to another Time Block)
+        // When querying for related Course Offering Schedules, exclude Course Offering Schedules that are 
+        // associated to their own Time Block record.
 
-        // TODO: The logic here may be similar to the logic implemented in the other TDTM classes - if so,
-        // we should refactor this out somehow.
+        // TODO: Make sure that reentrancy is prevented here.
 
         return dmlWrapper;
     }

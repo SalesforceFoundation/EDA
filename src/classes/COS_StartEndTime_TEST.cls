@@ -96,7 +96,20 @@ private class COS_StartEndTime_TEST {
     }
 
     @isTest
-    private static void setTimeBlockOnUpdateWithExistingStartEndTimes() {
+    private static void setTimeBlockOnInsertWithDifferentStartEndTimesThrowsError() {
+        setup();
+
+        Test.startTest();
+        courseOfferingSchedule.Start_Time__c = Time.newInstance(3, 0, 0, 0);
+        courseOfferingSchedule.End_Time__c = Time.newInstance(5, 0, 0, 0);
+        courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        // TODO: Error should be thrown
+        update courseOfferingSchedule;
+        Test.stopTest();
+    }
+
+    @isTest
+    private static void setTimeBlockOnUpdateWithExistingStartEndTimesThrowsError() {
         setup();
 
         courseOfferingSchedule.Start_Time__c = Time.newInstance(3, 0, 0, 0);
@@ -106,11 +119,30 @@ private class COS_StartEndTime_TEST {
 
         Test.startTest();
         courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        // TODO: Error should be thrown
+        update courseOfferingSchedule;
+        Test.stopTest();
+    }
+
+    @isTest
+    private static void swapTimeBlockOnUpdate() {
+        setup();
+
+        courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        insert courseOfferingSchedule;
+        assertTimes(startTime, endTime);
+
+        Time_Block__c newTimeBlock = new Time_Block__c(Start_Time__c = Time.newInstance(3, 0, 0, 0), End_Time__c = Time.newInstance(5, 0, 0, 0));
+        insert newTimeBlock;
+
+        Test.startTest();
+        // Assign a new Time Block to the Course Offering Schedule
+        courseOfferingSchedule.Time_Block__c = newTimeBlock.Id;
         update courseOfferingSchedule;
         Test.stopTest();
 
-        // TODO: Do the Start/End Times get overwritten or is an error thrown? Or do the old values stay?
-        assertTimes(startTime, endTime);
+        // Since the Time Block was updated, the Start Time and End Time on the Course Offering Schedule should be updated too.
+        assertTimes(Time.newInstance(3, 0, 0, 0), Time.newInstance(5, 0, 0, 0));
     }
 
     @isTest
