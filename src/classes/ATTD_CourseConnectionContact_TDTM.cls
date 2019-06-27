@@ -52,8 +52,8 @@ public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnabl
 
         Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
         
-        if (triggerAction == TDTM_Runnable.Action.BeforeInsert
-                || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert
+                || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
                     
             if (!recursionFlag) {
                 for (Attendance_Event__c attd : [SELECT Id,
