@@ -51,7 +51,7 @@ public with sharing class TB_StartEndTime_TDTM extends TDTM_Runnable {
         // TODO: If the Start Time and/or End Time is changing, query for all related Course Offering Schedules
         // and update their Start Time and/or End Times if they are blank or if they were previously aligned
         // with the Time Block's Start Time and End Time. When querying for related Course Offering Schedules,
-        // be sure to query for all Course Offering Schedules tied to Course Offerings with a Time Block as well.
+        // be sure to query for all Course Offering Schedules tied to Course Offerings with a Time Block as well (TBD).
 
         // TODO: Make sure that reentrancy is prevented here.
 

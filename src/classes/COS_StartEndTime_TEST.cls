@@ -96,21 +96,47 @@ private class COS_StartEndTime_TEST {
     }
 
     @isTest
-    private static void setTimeBlockOnInsertWithDifferentStartEndTimesThrowsError() {
+    private static void setTimeBlockOnInsertWithDifferentStartTimeThrowsError() {
         setup();
+        Boolean exceptionCaught = false;
 
         Test.startTest();
         courseOfferingSchedule.Start_Time__c = Time.newInstance(3, 0, 0, 0);
+        courseOfferingSchedule.Time_Block__c = timeBlock.Id;
+        try {
+            insert courseOfferingSchedule;
+        } catch (Exception ex) {
+            System.assert(ex.getMessage().contains(Label.timeBlockStartTimeMismatch));
+            exceptionCaught = true;
+        }
+        Test.stopTest();
+
+        System.assert(exceptionCaught, 'Expected the insert to fail due to mismatching Start Times.');
+    }
+
+    @isTest
+    private static void setTimeBlockOnInsertWithDifferentEndTimeThrowsError() {
+        setup();
+        Boolean exceptionCaught = false;
+
+        Test.startTest();
         courseOfferingSchedule.End_Time__c = Time.newInstance(5, 0, 0, 0);
         courseOfferingSchedule.Time_Block__c = timeBlock.Id;
-        // TODO: Error should be thrown
-        update courseOfferingSchedule;
+        try {
+            insert courseOfferingSchedule;
+        } catch (Exception ex) {
+            System.assert(ex.getMessage().contains(Label.timeBlockEndTimeMismatch));
+            exceptionCaught = true;
+        }
         Test.stopTest();
+
+        System.assert(exceptionCaught, 'Expected the insert to fail due to mismatching End Times.');
     }
 
     @isTest
     private static void setTimeBlockOnUpdateWithExistingStartEndTimesThrowsError() {
         setup();
+        Boolean exceptionCaught = false;
 
         courseOfferingSchedule.Start_Time__c = Time.newInstance(3, 0, 0, 0);
         courseOfferingSchedule.End_Time__c = Time.newInstance(5, 0, 0, 0);
@@ -119,9 +145,15 @@ private class COS_StartEndTime_TEST {
 
         Test.startTest();
         courseOfferingSchedule.Time_Block__c = timeBlock.Id;
-        // TODO: Error should be thrown
-        update courseOfferingSchedule;
+        try {
+            update courseOfferingSchedule;
+        } catch (Exception ex) {
+            System.assert(ex.getMessage().contains(Label.timeBlockStartTimeMismatch));
+            exceptionCaught = true;
+        }
         Test.stopTest();
+
+        System.assert(exceptionCaught, 'Expected the update to fail due to mismatching Start and End Times.');
     }
 
     @isTest
@@ -145,9 +177,11 @@ private class COS_StartEndTime_TEST {
         assertTimes(Time.newInstance(3, 0, 0, 0), Time.newInstance(5, 0, 0, 0));
     }
 
-    @isTest
+    /*@isTest
     private static void courseOfferingHasTimeBlock() {
         setup();
+
+        // TBD: we might not actually support this.
 
         courseOffering.Time_Block__c = timeBlock.Id;
         update courseOffering;
@@ -157,5 +191,5 @@ private class COS_StartEndTime_TEST {
         Test.stopTest();
 
         assertTimes(startTime, endTime);
-    }
+    }*/
 }

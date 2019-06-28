@@ -668,6 +668,8 @@
         <members>stgTitleNewReciSetting</members>
         <members>stgTitleReciMethod</members>
         <members>stgToastError</members>
+        <members>timeBlockEndTimeMismatch</members>
+        <members>timeBlockStartTimeMismatch</members>
         <name>CustomLabel</name>
     </types>
     <types>

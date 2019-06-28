@@ -46,6 +46,9 @@ public with sharing class COFF_TimeBlock_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
+        // TBD: We might not actually need this TDTM logic if we decide to not support flowing down from the CO's
+        // Time Block record.
+
         // This only runs on after update.
 
         // TODO: If the Time Block is being set or updated, query for all related Course Offering Schedules

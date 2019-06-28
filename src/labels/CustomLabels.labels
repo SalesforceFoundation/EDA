@@ -1599,4 +1599,20 @@
         <shortDescription>stgToastError</shortDescription>
         <value>Error</value>
     </labels>
+    <labels>
+        <fullName>timeBlockEndTimeMismatch</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>timeBlockEndTimeMismatch</shortDescription>
+        <value>The End Time on the Course Offering Schedule must match the End Time on the associated Time Block. Please correct the data in order to save the Course Offering Schedule.</value>
+    </labels>
+    <labels>
+        <fullName>timeBlockStartTimeMismatch</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>timeBlockStartTimeMismatch</shortDescription>
+        <value>The Start Time on the Course Offering Schedule must match the Start Time on the associated Time Block. Please correct the data in order to save the Course Offering Schedule.</value>
+    </labels>
 </CustomLabels>
