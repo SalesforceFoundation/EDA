@@ -51,13 +51,11 @@ public with sharing class PREQ_PreventPPlanParent_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
             TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
+        List<Plan_Requirement__c> planReqs = (List<Plan_Requirement__c>)newlist;
+                
         if (triggerAction == TDTM_Runnable.Action.AfterInsert
             || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            for (Plan_Requirement__c planReq : [SELECT ID,
-                                                    Program_Plan__c,
-                                                    Plan_Requirement__c
-                                                FROM Plan_Requirement__c
-                                                WHERE ID in :newlist]) {
+            for (Plan_Requirement__c planReq : planReqs) {
                 if (stgUniqueProgramPlanEnabled == true
                         && planReq.Plan_Requirement__c != null
                         && planReq.Program_Plan__c != null) {
