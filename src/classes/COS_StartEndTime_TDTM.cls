@@ -87,6 +87,11 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
             }
         }
 
+        // Do we need to do anything?
+        if (courseOfferingSchedulesToValidate.size() == 0) {
+            return dmlWrapper;
+        }
+
         Map<Id, Time_Block__c> timeBlocksMap = new Map<Id, Time_Block__c>([SELECT Start_Time__c, 
                                                                                End_Time__c 
                                                                         FROM Time_Block__c WHERE Id IN :timeBlocksIdsToQuery]);
