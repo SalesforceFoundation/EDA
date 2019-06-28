@@ -196,10 +196,6 @@ public without sharing class TDTM_DefaultConfig {
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
-                Class__c = 'COFF_TimeBlock_TDTM', Load_Order__c = 2, Object__c = 'Course_Offering__c',
-                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
-
-        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'TB_StartEndTime_TDTM', Load_Order__c = 1, Object__c = 'Time_Block__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
         return handlers;

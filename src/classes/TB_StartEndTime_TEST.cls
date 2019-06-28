@@ -34,4 +34,9 @@
 @isTest
 private class TB_StartEndTime_TEST {
     // TODO - finish these. ApexDocs for all methods!
+
+    // Start Time Updated - all COS are updated
+    // End Time Updated - all COS are updated
+    // Times Updated - COS only updated if the values matched previous values
+    // Reentrancy Prevented
 }

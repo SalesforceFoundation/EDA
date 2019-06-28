@@ -176,20 +176,4 @@ private class COS_StartEndTime_TEST {
         // Since the Time Block was updated, the Start Time and End Time on the Course Offering Schedule should be updated too.
         assertTimes(Time.newInstance(3, 0, 0, 0), Time.newInstance(5, 0, 0, 0));
     }
-
-    /*@isTest
-    private static void courseOfferingHasTimeBlock() {
-        setup();
-
-        // TBD: we might not actually support this.
-
-        courseOffering.Time_Block__c = timeBlock.Id;
-        update courseOffering;
-
-        Test.startTest();
-        insert courseOfferingSchedule;
-        Test.stopTest();
-
-        assertTimes(startTime, endTime);
-    }*/
 }
