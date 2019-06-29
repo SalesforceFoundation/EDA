@@ -145,9 +145,6 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
             }
         }
 
-        // TODO: The logic here may be similar to the logic implemented in the other TDTM classes - if so,
-        // we should refactor this out somehow.
-
         return dmlWrapper;
     }
 }

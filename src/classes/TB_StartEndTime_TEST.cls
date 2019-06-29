@@ -110,7 +110,41 @@ private class TB_StartEndTime_TEST {
         Test.stopTest();
 
         assertTimes(Time.newInstance(1, 0, 0, 0), Time.newInstance(3, 0, 0, 0));
+
+        System.assert(TB_StartEndTime_TDTM.reentrancyPrevented != true, 
+            'Did not expect the reentrancy check to have prevented the TB_StartEndTime_TDTM trigger from processing again.');
     }
 
-    // TODO: Reentrancy Prevented
+    @isTest
+    private static void updateTimeBlockTimesUpdatesCourseOfferingSchedulesReentrancyCheck() {
+        // Install Default EDA TDTM Configuration
+        List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+        TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+
+        // Add the Test TDTM for the Course Offering Schedule object. This Test TDTM will simply 
+        // update the Time Block that caused the Course Offering Schedule to be updated.
+        // So the flow would be: Time Block updated -> Course Offering Schedule updated -> Time Block updated again
+        Trigger_Handler__c newTDTM = new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+            Class__c = 'UTIL_UnitTestData_TEST.Test_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering_Schedule__c',
+            Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate');
+        insert newTDTM;
+        
+        setup(startTime, endTime);
+        assertTimes(startTime, endTime);
+
+        Test.startTest();
+        timeBlock.Start_Time__c = Time.newInstance(1, 0, 0, 0);
+        timeBlock.End_Time__c = Time.newInstance(3, 0, 0, 0);
+
+        // Ensure that the Time Block gets updated recursively
+        UTIL_UnitTestData_TEST.sObjectsToUpdate = new List<SObject>{ timeBlock };
+
+        update timeBlock;
+        Test.stopTest();
+
+        assertTimes(Time.newInstance(1, 0, 0, 0), Time.newInstance(3, 0, 0, 0));
+
+        System.assert(TB_StartEndTime_TDTM.reentrancyPrevented == true, 
+            'Expected the reentrancy check to have prevented the TB_StartEndTime_TDTM trigger from processing again.');
+    }
 }

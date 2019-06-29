@@ -33,6 +33,9 @@
 */
 public with sharing class TB_StartEndTime_TDTM extends TDTM_Runnable {
 
+    @testVisible
+    private static Boolean reentrancyPrevented;
+    
     /*******************************************************************************************************
     * @description Iterates over all Time Block records TBD
     * @param newList the list of Time Blocks from trigger new.
@@ -46,13 +49,14 @@ public with sharing class TB_StartEndTime_TDTM extends TDTM_Runnable {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        // This only runs on after update, but check it just to be safe.
-        if (triggerAction != TDTM_Runnable.Action.AfterUpdate) {
+        // Exit early if this trigger is currently running.
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.TB_StartEndTime_TDTM)) {
+            reentrancyPrevented = true;
             return dmlWrapper;
         }
 
-        // This shouldn't ever happen, but check it just to be safe.
-        if (newList == null || newList.size() == 0 || oldList == null || oldList.size() == 0) {
+        // This only runs on after update, but check just to be safe, as well as our parameters.
+        if (triggerAction != TDTM_Runnable.Action.AfterUpdate || newList == null || newList.size() == 0 || oldList == null || oldList.size() == 0) {
             return dmlWrapper;
         }
 
@@ -116,9 +120,10 @@ public with sharing class TB_StartEndTime_TDTM extends TDTM_Runnable {
             }
         }
 
-        // TODO: Make sure that reentrancy is prevented here.
         dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseOfferingSchedulesToUpdate);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.TB_StartEndTime_TDTM, true);
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.TB_StartEndTime_TDTM, false);
         dmlWrapper = null;
 
         return dmlWrapper;
