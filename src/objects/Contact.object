@@ -20,6 +20,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Chosen_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Chosen Full Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Citizenship__c</fullName>
         <externalId>false</externalId>
         <label>Citizenship</label>
