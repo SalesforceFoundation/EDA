@@ -60,10 +60,11 @@ public with sharing class PREQ_PreventPPlanParent_TDTM extends TDTM_Runnable {
                         && planReq.Plan_Requirement__c != null
                         && planReq.Program_Plan__c != null) {
                     //throw an error
-                    throw new ERR_ExceptionHandler.NestedPlanRequirementPPException(Label.nestedPlanRequirementPPExp);
+                    planReq.addError(Label.nestedPlanRequirementPPExp);
                 }
             }
         }
+            
         return new DmlWrapper();
     }
 }
