@@ -1,8 +1,17 @@
 *** Settings ***
 
-Resource        robot/EDA/resources/EDA.robot
-Resource        robot/EDA/resources/test_data.robot
-Suite Setup     Initialize Test Data AND Open Test Browser
+#Resource        robot/EDA/resources/EDA.robot
+#Resource        robot/EDA/resources/test_data.robot
+Resource        EDA.robot
+Resource        test_data.robot
+
+#Suite Setup     Open Test Browser
+Suite Setup     Run keywords
+...             Open Test Browser
+...             Initialize Test Data
+#...             Setup Variables
+
+#Suite Setup     Initialize Test Data
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
@@ -93,6 +102,8 @@ Verify Affiliations, Program Enrollments and No Duplicates
     Wait for Locator                        new_program_enrollment_save_button
     Click on Element                        new_program_enrollment_save_button
 
+    Sleep       20
+
     #Verify that we have ONE affiliated account
     Reload Page
     ${acc} =                                Get Eda Locator     affiliated_accounts_count
@@ -105,54 +116,70 @@ Verify Affiliations, Program Enrollments and No Duplicates
     Wait for Locator                        program_enrollments_count
  
 
-# Create A New Program Plan
+Create A New Program Plan
 
-#     #Check for EDA Tile
-#     Open App Launcher
-#     Reload Page
-#     Wait for Locator                        program_plans.program_plan
-#     Click on Element                        program_plans.program_plan
+    Sleep       10
+    #Check for EDA Tile
+   Open App Launcher
+    #Reload Page
+    #Wait for Locator                        program_plans.program_plan
+    #Click on Element                        program_plans.program_plan
+    #Sleep                   520
 
-#     Click Object Button                     New
+    ##Click Element                           //a[@title='Program Plans']/span
 
-#     Wait for Locator                        program_plans.pp_name
-
-#     Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
-
-#     Click on Element                        program_plans.save_button
-
-
-# Create A Course Offering
-
-#     #Check for EDA Tile
-#     Open App Launcher
-
-#     Wait for Locator                        course_offering.main_tab
-#     Click on Element                        course_offering.main_tab
-#     Click Object Button                     New
+    Wait Until Element Is visible           //a[@title='Program Plans']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Program Plans')]
+    Click Element                           //a[@title='Program Plans']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Program Plans')]
 
 
-#     Wait for Locator                        course_offering.search_courses
-#     Click on Element                        course_offering.search_courses
+    ##Click Object Button                     Program Plans
+    Sleep       10
 
-#     Wait for Locator                        course_offering.new_course_button
-#     Click on Element                        course_offering.new_course_button
 
-#     Populate Field                          Course Name     robotTest Course Name Test1 - this is just another robot test string in place of a course name
-#     Populate Field                          Department      Robot Academic Program Account
-#     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
+    Click Object Button                     New
+
+    Wait for Locator                        program_plans.pp_name
+
+    Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
+
+    Click on Element                        program_plans.save_button
+
+
+Create A Course Offering
+
+    #Check for EDA Tile
+    Open App Launcher
+
+    #Wait Until Element Is visible           //a[@title='Course Offerings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Course Offerings')]
+    #Click Element                           //a[@title='Course Offerings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Course Offerings')]
+
+
+    Wait for Locator                        course_offering.main_tab
+    Click on Element                        course_offering.main_tab
+    Click Object Button                     New
+
+
+    Wait for Locator                        course_offering.search_courses
+    Click on Element                        course_offering.search_courses
+
+    Wait for Locator                        course_offering.new_course_button
+    Click on Element                        course_offering.new_course_button
+
+    Populate Field                          Course Name     robotTest Course Name Test1 - this is just another robot test string in place of a course name
+    Populate Field                          Department      Robot Academic Program Account
+    Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
     
-#     Click on Element                        course_offering.final_save_button
+    Click on Element                        course_offering.final_save_button
 
-#     Click on Element                        term.search_terms
-#     Click on Element                        term.new_term_button
-#     Populate Field                          Term Name               Robot Automation Term 
-#     Click on Element                        term.account
-#     Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
+    Click on Element                        term.search_terms
+    Click on Element                        term.new_term_button
+    Populate Field                          Term Name               Robot Automation Term 
+    Click on Element                        term.account
+    Press Keys                              //input[@title='Search Accounts']          ARROW_DOWN+RETURN
 
-#     Click on Element                        term.save_button
-#     ${id_offering} =                        Generate Random String
+    Click on Element                        term.save_button
+    ${id_offering} =                        Generate Random String
 
-#     Click on Element                        term.course_offering_id
-#     Input Text                              //span[contains(text(), 'Course Offering ID')]//../following-sibling::input         ${id_offering}
-#     Click on Element                        course_offering.next_save_button
+    Click on Element                        term.course_offering_id
+    Input Text                              //span[contains(text(), 'Course Offering ID')]//../following-sibling::input         ${id_offering}
+    Click on Element                        course_offering.next_save_button
