@@ -70,9 +70,9 @@
     </fields>
     <fields>
         <fullName>End_Time__c</fullName>
-        <description>The time the class is scheduled to end.</description>
+        <description>The time of day the Course Offering ends.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time the class is scheduled to end.</inlineHelpText>
+        <inlineHelpText>The time of day the Course Offering ends.</inlineHelpText>
         <label>End Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -126,9 +126,9 @@
     </fields>
     <fields>
         <fullName>Start_Time__c</fullName>
-        <description>The time the class is scheduled to start.</description>
+        <description>The time of day the Course Offering starts.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The time the class is scheduled to start.</inlineHelpText>
+        <inlineHelpText>The time of day the Course Offering starts.</inlineHelpText>
         <label>Start Time</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

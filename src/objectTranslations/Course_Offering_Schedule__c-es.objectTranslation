@@ -15,7 +15,7 @@
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The time the class is scheduled to end. --></help>
+        <help><!-- The time of day the Course Offering ends. --></help>
         <label><!-- End Time --></label>
         <name>End_Time__c</name>
     </fields>
@@ -38,7 +38,7 @@
         <name>Saturday__c</name>
     </fields>
     <fields>
-        <help><!-- The time the class is scheduled to start. --></help>
+        <help><!-- The time of day the Course Offering starts. --></help>
         <label><!-- Start Time --></label>
         <name>Start_Time__c</name>
     </fields>

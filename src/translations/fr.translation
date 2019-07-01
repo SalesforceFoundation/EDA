@@ -796,6 +796,14 @@
         <label>Erreur</label>
         <name>stgToastError</name>
     </customLabels>
+    <customLabels>
+        <label><!-- timeBlockEndTimeMismatch --></label>
+        <name>timeBlockEndTimeMismatch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- timeBlockStartTimeMismatch --></label>
+        <name>timeBlockStartTimeMismatch</name>
+    </customLabels>
     <customTabs>
         <label>Paramètres EDA</label>
         <name>HEDA_Settings</name>
