@@ -1,17 +1,12 @@
 *** Settings ***
 
-#Resource        robot/EDA/resources/EDA.robot
-#Resource        robot/EDA/resources/test_data.robot
-Resource        EDA.robot
-Resource        test_data.robot
+Resource        robot/EDA/resources/EDA.robot
+Resource        robot/EDA/resources/test_data.robot
 
-#Suite Setup     Open Test Browser
 Suite Setup     Run keywords
 ...             Open Test Browser
 ...             Initialize Test Data
-#...             Setup Variables
 
-#Suite Setup     Initialize Test Data
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
@@ -118,30 +113,17 @@ Verify Affiliations, Program Enrollments and No Duplicates
 
 Create A New Program Plan
 
-    Sleep       10
     #Check for EDA Tile
    Open App Launcher
-    #Reload Page
-    #Wait for Locator                        program_plans.program_plan
-    #Click on Element                        program_plans.program_plan
-    #Sleep                   520
-
-    ##Click Element                           //a[@title='Program Plans']/span
-
-    Wait Until Element Is visible           //a[@title='Program Plans']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Program Plans')]
-    Click Element                           //a[@title='Program Plans']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Program Plans')]
 
 
-    ##Click Object Button                     Program Plans
-    Sleep       10
-
+    Wait for Locator                        program_plans.program_plan1
+    Click on Element                        program_plans.program_plan1
 
     Click Object Button                     New
-
     Wait for Locator                        program_plans.pp_name
 
     Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
-
     Click on Element                        program_plans.save_button
 
 
@@ -149,10 +131,6 @@ Create A Course Offering
 
     #Check for EDA Tile
     Open App Launcher
-
-    #Wait Until Element Is visible           //a[@title='Course Offerings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Course Offerings')]
-    #Click Element                           //a[@title='Course Offerings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Course Offerings')]
-
 
     Wait for Locator                        course_offering.main_tab
     Click on Element                        course_offering.main_tab

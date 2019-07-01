@@ -63,6 +63,7 @@ eda_lex_locators = {
     },
     "program_plans": {
         "program_plan": "(//a[@title='Program Plans'])[2]/span/span",
+        "program_plan1": "//a[@title='Program Plans']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Program Plans')]",
         "main_drop": "(//div//one-app-nav-bar-item-root//a//span[contains(text(), 'Program Plans')]//..)[1]",
         "new_button": "//a[@title='New']//div[@title='New']/..",
         "pp_name": "//div//div//div//div//div//div//div//label//span[contains(text(), 'Program Plan Name')]//../following-sibling::input",
