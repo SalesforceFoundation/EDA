@@ -156,7 +156,7 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                 updateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
             }
 
-            validateCourseOfferingSchedule(courseOfferingSchedule, timeBlock);
+            validateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
         }
     }
 
@@ -166,7 +166,7 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
     * @param courseOfferingSchedule The Course Offering Schedule record to validate.
     * @param timeBlock The Time Block record.
     ********************************************************************************************************/
-    private void validateCourseOfferingSchedule(Course_Offering_Schedule__c courseOfferingSchedule, Time_Block__c timeBlock) {
+    private void validateCourseOfferingScheduleTimes(Course_Offering_Schedule__c courseOfferingSchedule, Time_Block__c timeBlock) {
         if (courseOfferingSchedule.Start_Time__c != timeBlock.Start_Time__c) {
             courseOfferingSchedule.Start_Time__c.addError(Label.timeBlockStartTimeMismatch);
         }
