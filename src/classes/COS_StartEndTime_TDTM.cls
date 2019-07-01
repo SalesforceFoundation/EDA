@@ -29,17 +29,22 @@
 * @date 2019
 * @group Course Offering
 * @group-content ../../ApexDocContent/CourseOfferings.htm
-* @description TBD
+* @description Syncs the Start Time and End Time from the associated Time Block record on insert and update
+* of Course Offering Schedule records. Throws an error if the times on the Course Offering Schedule do not
+* match the times on the Time Block.
 */
 public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Iterates over all Course Offering Schedule records TBD
+    * @description Iterates over all Course Offering Schedule records and syncs the Start Time and End Time
+    * from the associated Time Block record. Throws errors if the times on the Course Offering Schedule do
+    * not match the times on the Time Block.
     * @param newList the list of Course Offering Schedules from trigger new.
     * @param oldList the list of Course Offering Schedules from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Course Offering Schedule.
-    * @return dmlWrapper TBD
+    * @return dmlWrapper A null or empty dmlWrapper, since this TDTM class does its own DML processing in a
+    * before insert or before update context.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -61,7 +66,7 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
         Map<Id, Course_Offering_Schedule__c> oldCourseOfferingSchedulesMap = (oldList != null && oldList.size() > 0) ? 
             new Map<Id, Course_Offering_Schedule__c>((List<Course_Offering_Schedule__c>)oldList) : new Map<Id, Course_Offering_Schedule__c>();
 
-        Set<Id> timeBlocksIdsToQuery = new Set<Id>();
+        Set<Id> timeBlockIdsToQuery = new Set<Id>();
         List<Course_Offering_Schedule__c> courseOfferingSchedulesToValidate = new List<Course_Offering_Schedule__c>();
 
         // Loop over the Course Offering Schedules - if there is a Time Block, we'll query the Time Block later to verify the times are valid,
@@ -73,7 +78,7 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                 continue;
             }
 
-            timeBlocksIdsToQuery.add(courseOfferingSchedule.Time_Block__c);
+            timeBlockIdsToQuery.add(courseOfferingSchedule.Time_Block__c);
             courseOfferingSchedulesToValidate.add(courseOfferingSchedule);
 
             if (isUpdateContext) {
@@ -82,19 +87,39 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                 // Is the Time Block changing? We'll need to grab the Start and End Times from both Time Block records before we update the
                 // Start and End Times on the Course Offering Schedule.
                 if (oldCourseOfferingSchedule != null && oldCourseOfferingSchedule.Time_Block__c != courseOfferingSchedule.Time_Block__c) {
-                    timeBlocksIdsToQuery.add(oldCourseOfferingSchedule.Time_Block__c);
+                    timeBlockIdsToQuery.add(oldCourseOfferingSchedule.Time_Block__c);
                 }
             }
         }
 
-        // Do we need to do anything?
+        // Exit early if there are no Course Offering Schedules to validate.
         if (courseOfferingSchedulesToValidate.size() == 0) {
             return dmlWrapper;
         }
 
+        // Query the Time Blocks to verify the times are valid and flow down the times to the Course Offering Schedules if necessary.
+        validateCourseOfferingSchedules(timeBlockIdsToQuery, courseOfferingSchedulesToValidate, oldCourseOfferingSchedulesMap, isUpdateContext);
+
+        return dmlWrapper;
+    }
+
+    /*******************************************************************************************************
+    * @description Queries for Time Blocks related to the Course Offering Schedules to validate. The times
+    * from these Time Block records are then flowed down to the Course Offering Schedules. An error is thrown
+    * if the times on the Course Offering Schedule do not match the times on the Time Block.
+    * @param timeBlockIdsToQuery The Set of Time Block IDs that should be queried.
+    * @param courseOfferingSchedulesToValidate The list of Course Offering Schedule records to validate and
+    * flow times down to.
+    * @param oldCourseOfferingSchedulesMap The map of old Course Offering Schedule records prior to the update,
+    * if in an update context.
+    * @param isUpdateContext True if the trigger is currently executing in a BeforeUpdate context.
+    ********************************************************************************************************/
+    private void validateCourseOfferingSchedules(Set<Id> timeBlockIdsToQuery, List<Course_Offering_Schedule__c> courseOfferingSchedulesToValidate, 
+            Map<Id, Course_Offering_Schedule__c> oldCourseOfferingSchedulesMap, Boolean isUpdateContext) {
+
         Map<Id, Time_Block__c> timeBlocksMap = new Map<Id, Time_Block__c>([SELECT Start_Time__c, 
-                                                                               End_Time__c 
-                                                                        FROM Time_Block__c WHERE Id IN :timeBlocksIdsToQuery]);
+                                                                                  End_Time__c 
+                                                                             FROM Time_Block__c WHERE Id IN :timeBlockIdsToQuery]);
 
         for (Course_Offering_Schedule__c courseOfferingSchedule : courseOfferingSchedulesToValidate) {
             Time_Block__c timeBlock = timeBlocksMap.get(courseOfferingSchedule.Time_Block__c);
@@ -102,11 +127,13 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                 continue;
             }
 
+            // We're updating an existing Course Offering Schedule
             if (isUpdateContext) {
                 Course_Offering_Schedule__c oldCourseOfferingSchedule = oldCourseOfferingSchedulesMap.get(courseOfferingSchedule.Id);
                 Time_Block__c oldTimeBlock = timeBlocksMap.get(oldCourseOfferingSchedule.Time_Block__c);
 
-                if (oldTimeBlock != null && oldTimeBlock.Id != timeBlock.Id) { // We're swapping a Time Block for another Time Block
+                // We're swapping a Time Block for another Time Block
+                if (oldTimeBlock != null && oldTimeBlock.Id != timeBlock.Id) {
                     
                     // Does the Start Time and End Time on the Course Offering Schedule match the values on the old Time Block? If so, 
                     // swap them with the new values.
@@ -116,35 +143,52 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                         courseOfferingSchedule.End_Time__c = timeBlock.End_Time__c;
                     }
 
-                } else if (oldTimeBlock == null) { // We're setting a Time Block on the Course Offering Schedule in an update
-                    if (courseOfferingSchedule.Start_Time__c == null) {
-                        courseOfferingSchedule.Start_Time__c = timeBlock.Start_Time__c;
-                    }
-
-                    if (courseOfferingSchedule.End_Time__c == null) {
-                        courseOfferingSchedule.End_Time__c = timeBlock.End_Time__c;
-                    }
+                } 
+                
+                // We're updating an existing Course Offering Schedule and setting the Time Block
+                else if (oldTimeBlock == null) {
+                    updateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
                 }
-            } else { // We're inserting a new Course Offering Schedule with a Time Block
-                if (courseOfferingSchedule.Start_Time__c == null) { // TODO: This is repeated logic from above and can be refactored.
-                    courseOfferingSchedule.Start_Time__c = timeBlock.Start_Time__c;
-                }
-
-                if (courseOfferingSchedule.End_Time__c == null) {
-                    courseOfferingSchedule.End_Time__c = timeBlock.End_Time__c;
-                }
+            } 
+            
+            // We're inserting a new Course Offering Schedule with a Time Block
+            else {
+                updateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
             }
 
-            // Do the Course Offering Schedule Start Time and End Time fields match the Time Block? If not, we have a problem.
-            if (courseOfferingSchedule.Start_Time__c != timeBlock.Start_Time__c) {
-                courseOfferingSchedule.Start_Time__c.addError(Label.timeBlockStartTimeMismatch);
-            }
+            validateCourseOfferingSchedule(courseOfferingSchedule, timeBlock);
+        }
+    }
 
-            if (courseOfferingSchedule.End_Time__c != timeBlock.End_Time__c) {
-                courseOfferingSchedule.End_Time__c.addError(Label.timeBlockEndTimeMismatch);
-            }
+    /*******************************************************************************************************
+    * @description Compares the Start Time and End Time on the Course Offering Schedule to the Start Time and
+    * End Time on the Time Block. If they do not match, an error is added to the Course Offering Schedule.
+    * @param courseOfferingSchedule The Course Offering Schedule record to validate.
+    * @param timeBlock The Time Block record.
+    ********************************************************************************************************/
+    private void validateCourseOfferingSchedule(Course_Offering_Schedule__c courseOfferingSchedule, Time_Block__c timeBlock) {
+        if (courseOfferingSchedule.Start_Time__c != timeBlock.Start_Time__c) {
+            courseOfferingSchedule.Start_Time__c.addError(Label.timeBlockStartTimeMismatch);
         }
 
-        return dmlWrapper;
+        if (courseOfferingSchedule.End_Time__c != timeBlock.End_Time__c) {
+            courseOfferingSchedule.End_Time__c.addError(Label.timeBlockEndTimeMismatch);
+        }
+    }
+
+    /*******************************************************************************************************
+    * @description Updates the Start Time and End Time on the Course Offering Schedule to the Start Time and 
+    * End Time on the Time Block if they are not currently set.
+    * @param courseOfferingSchedule The Course Offering Schedule record to update.
+    * @param timeBlock The Time Block record.
+    ********************************************************************************************************/
+    private void updateCourseOfferingScheduleTimes(Course_Offering_Schedule__c courseOfferingSchedule, Time_Block__c timeBlock) {
+        if (courseOfferingSchedule.Start_Time__c == null) {
+            courseOfferingSchedule.Start_Time__c = timeBlock.Start_Time__c;
+        }
+
+        if (courseOfferingSchedule.End_Time__c == null) {
+            courseOfferingSchedule.End_Time__c = timeBlock.End_Time__c;
+        }
     }
 }

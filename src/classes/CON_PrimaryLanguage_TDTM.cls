@@ -46,7 +46,7 @@ public with sharing class CON_PrimaryLanguage_TDTM extends TDTM_Runnable {
     * @param oldList the list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Contact.
-    * @return dmlWrapper Any Contact Language records that need to be inserted or updated.
+    * @return dmlWrapper A null or empty dmlWrapper, since this TDTM class does its own DML processing.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {

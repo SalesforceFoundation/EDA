@@ -29,12 +29,12 @@
 * @date 2019
 * @group Course Offering
 * @group-content ../../ApexDocContent/CourseOfferings.htm
-* @description Tests specific to testing the logic around TBD
+* @description Tests specific to testing the COS_StartEndTime_TDTM logic around setting the Start Time 
+* and End Time on the Course Offering Schedule record based on the associated Time Block record.
 */
 @isTest
 private class COS_StartEndTime_TEST {
-    // TODO - finish these. ApexDocs for all methods!
-
+    
     private static Course_Offering__c courseOffering;
     private static Course_Offering_Schedule__c courseOfferingSchedule;
     private static Time_Block__c timeBlock;
@@ -42,32 +42,33 @@ private class COS_StartEndTime_TEST {
     private static Time startTime = Time.newInstance(8, 0, 0, 0);
     private static Time endTime = Time.newInstance(10, 0, 0, 0);
 
+    /*******************************************************************************************************
+    * @description Inserts a Course Offering and Time Block record for testing. Instantiates a new
+    * Course Offering Schedule record but does not insert it.
+    ********************************************************************************************************/
     private static void setup() {
-        // TODO: Move all of this to UTIL_UnitTestData_TEST?
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
-        insert acct;
-
-        Term__c term = new Term__c(Name = '2019-2020 School Year', Account__c = acct.Id);
-        insert term;
-
-        Course__c course = new Course__c(Name = 'ECON 101', Account__c = acct.Id);
-        insert course;
-
-        courseOffering = new Course_Offering__c(Name = 'ECON-101-19-01', Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
+        courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
+        timeBlock = UTIL_UnitTestData_TEST.createTimeBlock(startTime, endTime);
 
         courseOfferingSchedule = new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id);
-
-        timeBlock = new Time_Block__c(Start_Time__c = startTime, End_Time__c = endTime);
-        insert timeBlock;
     }
 
+    /*******************************************************************************************************
+    * @description Asserts that the given Start Time and End Time match the Start Time and End Time on the
+    * Course Offering Schedule test record.
+    * @param expectedStartTime The expected Start Time.
+    * @param expectedEndTime The expected End Time.
+    ********************************************************************************************************/
     private static void assertTimes(Time expectedStartTime, Time expectedEndTime) {
         Course_Offering_Schedule__c queriedCourseOfferingSchedule = [SELECT Start_Time__c, End_Time__c FROM Course_Offering_Schedule__c WHERE Id = :courseOfferingSchedule.Id];
         System.assertEquals(expectedStartTime, queriedCourseOfferingSchedule.Start_Time__c, 'The Course Offering Schedule Start Time was not set as expected.');
         System.assertEquals(expectedEndTime, queriedCourseOfferingSchedule.End_Time__c, 'The Course Offering Schedule End Time was not set as expected.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block lookup field is set on insert of a Course Offering Schedule,
+    * the Start Time and End Time are sync'd from the Time Block's Start Time and End Time.
+    ********************************************************************************************************/
     @isTest
     private static void setTimeBlockOnInsert() {
         setup();
@@ -80,6 +81,10 @@ private class COS_StartEndTime_TEST {
         assertTimes(startTime, endTime);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block lookup field is set on update of a Course Offering Schedule,
+    * the Start Time and End Time are sync'd from the Time Block's Start Time and End Time.
+    ********************************************************************************************************/
     @isTest
     private static void setTimeBlockOnUpdate() {
         setup();
@@ -95,6 +100,11 @@ private class COS_StartEndTime_TEST {
         assertTimes(startTime, endTime);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that an error is thrown when the Time Block lookup field is set on insert of a 
+    * Course Offering Schedule and the Start Time on the Course Offering Schedule does not match the Time 
+    * Block's Start Time.
+    ********************************************************************************************************/
     @isTest
     private static void setTimeBlockOnInsertWithDifferentStartTimeThrowsError() {
         setup();
@@ -114,6 +124,11 @@ private class COS_StartEndTime_TEST {
         System.assert(exceptionCaught, 'Expected the insert to fail due to mismatching Start Times.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that an error is thrown when the Time Block lookup field is set on insert of a 
+    * Course Offering Schedule and the End Time on the Course Offering Schedule does not match the Time 
+    * Block's End Time.
+    ********************************************************************************************************/
     @isTest
     private static void setTimeBlockOnInsertWithDifferentEndTimeThrowsError() {
         setup();
@@ -133,6 +148,11 @@ private class COS_StartEndTime_TEST {
         System.assert(exceptionCaught, 'Expected the insert to fail due to mismatching End Times.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that an error is thrown when the Time Block lookup field is set on insert of a 
+    * Course Offering Schedule and the Start Time and End Time on the Course Offering Schedule do not match 
+    * the Time Block's Start Time and End Time.
+    ********************************************************************************************************/
     @isTest
     private static void setTimeBlockOnUpdateWithExistingStartEndTimesThrowsError() {
         setup();
@@ -156,6 +176,11 @@ private class COS_StartEndTime_TEST {
         System.assert(exceptionCaught, 'Expected the update to fail due to mismatching Start and End Times.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block lookup field is swapped for another Time Block record on 
+    * update of a Course Offering Schedule, the Start Time and End Time are sync'd from the new Time Block's 
+    * Start Time and End Time.
+    ********************************************************************************************************/
     @isTest
     private static void swapTimeBlockOnUpdate() {
         setup();

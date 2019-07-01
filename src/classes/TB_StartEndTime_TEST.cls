@@ -29,12 +29,13 @@
 * @date 2019
 * @group Course Offering
 * @group-content ../../ApexDocContent/CourseOfferings.htm
-* @description Tests specific to testing the logic around TBD
+* @description Tests specific to testing the TB_StartEndTime_TDTM logic around updating the Start Time 
+* and End Time on associated Course Offering Schedule records when the Time Block Start Time and/or
+* End Time is updated.
 */
 @isTest
 private class TB_StartEndTime_TEST {
-    // TODO - finish these. ApexDocs for all methods!
-
+    
     private static Course_Offering__c courseOffering;
     private static Course_Offering_Schedule__c courseOfferingSchedule;
     private static Time_Block__c timeBlock;
@@ -42,33 +43,36 @@ private class TB_StartEndTime_TEST {
     private static Time startTime = Time.newInstance(8, 0, 0, 0);
     private static Time endTime = Time.newInstance(10, 0, 0, 0);
 
+    /*******************************************************************************************************
+    * @description Inserts a Course Offering and Time Block record for testing. Instantiates a new
+    * Course Offering Schedule record but does not insert it.
+    * @param sTime The Start Time for the Time Block.
+    * @param eTime The End Time for the Time Block.
+    ********************************************************************************************************/
     private static void setup(Time sTime, Time eTime) {
-        // TODO: Move all of this to UTIL_UnitTestData_TEST?
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
-        insert acct;
-
-        Term__c term = new Term__c(Name = '2019-2020 School Year', Account__c = acct.Id);
-        insert term;
-
-        Course__c course = new Course__c(Name = 'ECON 101', Account__c = acct.Id);
-        insert course;
-
-        courseOffering = new Course_Offering__c(Name = 'ECON-101-19-01', Course__c = course.Id, Term__c = term.Id);
-        insert courseOffering;
-
-        timeBlock = new Time_Block__c(Start_Time__c = sTime, End_Time__c = eTime);
-        insert timeBlock;
+        courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
+        timeBlock = UTIL_UnitTestData_TEST.createTimeBlock(sTime, eTime);
 
         courseOfferingSchedule = new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Time_Block__c = timeBlock.Id);
         insert courseOfferingSchedule;
     }
 
+    /*******************************************************************************************************
+    * @description Asserts that the given Start Time and End Time match the Start Time and End Time on the
+    * Course Offering Schedule test record.
+    * @param expectedStartTime The expected Start Time.
+    * @param expectedEndTime The expected End Time.
+    ********************************************************************************************************/
     private static void assertTimes(Time expectedStartTime, Time expectedEndTime) {
         Course_Offering_Schedule__c queriedCourseOfferingSchedule = [SELECT Start_Time__c, End_Time__c FROM Course_Offering_Schedule__c WHERE Id = :courseOfferingSchedule.Id];
         System.assertEquals(expectedStartTime, queriedCourseOfferingSchedule.Start_Time__c, 'The Course Offering Schedule Start Time was not set as expected.');
         System.assertEquals(expectedEndTime, queriedCourseOfferingSchedule.End_Time__c, 'The Course Offering Schedule End Time was not set as expected.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block's Start Time is changed, any Course Offering Schedule tied
+    * to that Time Block record is also updated with the new Start Time.
+    ********************************************************************************************************/
     @isTest
     private static void updateTimeBlockStartTimeUpdatesCourseOfferingSchedules() {
         setup(null, null);
@@ -83,6 +87,10 @@ private class TB_StartEndTime_TEST {
         assertTimes(Time.newInstance(3, 0, 0, 0), null);
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block's End Time is changed, any Course Offering Schedule tied
+    * to that Time Block record is also updated with the new End Time.
+    ********************************************************************************************************/
     @isTest
     private static void updateTimeBlockEndTimeUpdatesCourseOfferingSchedules() {
         setup(null, null);
@@ -97,6 +105,10 @@ private class TB_StartEndTime_TEST {
         assertTimes(null, Time.newInstance(3, 0, 0, 0));
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block's Start Time and End Time is changed, any Course Offering 
+    * Schedule tied to that Time Block record is also updated with the new Start Time and End Time.
+    ********************************************************************************************************/
     @isTest
     private static void updateTimeBlockTimesUpdatesCourseOfferingSchedules() {
         setup(startTime, endTime);
@@ -115,6 +127,11 @@ private class TB_StartEndTime_TEST {
             'Did not expect the reentrancy check to have prevented the TB_StartEndTime_TDTM trigger from processing again.');
     }
 
+    /*******************************************************************************************************
+    * @description Tests that when the Time Block update causes Course Offering Schedules to update, any 
+    * custom logic that might recursively update Time Block records does not run the Time Block TDTM logic
+    * again. Reentrancy into the TB_StartEndTime_TDTM class is prevented.
+    ********************************************************************************************************/
     @isTest
     private static void updateTimeBlockTimesUpdatesCourseOfferingSchedulesReentrancyCheck() {
         // Install Default EDA TDTM Configuration
