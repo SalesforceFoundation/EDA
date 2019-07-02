@@ -649,6 +649,10 @@
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpUniqueProgramPlan --></label>
+        <name>stgHelpUniqueProgramPlan</name>
+    </customLabels>
+    <customLabels>
         <label>Si vous avez des dépendances aux valeurs antérieures du champ Appartenance ethnique, par exemple dans des rapports, mettez-les à jour.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
@@ -741,6 +745,10 @@
         <name>stgTabPrimaryAfflField</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgTabProgramPlan --></label>
+        <name>stgTabProgramPlan</name>
+    </customLabels>
+    <customLabels>
         <label>Paramètres de réciprocité</label>
         <name>stgTabReciprocalSettings</name>
     </customLabels>
@@ -795,6 +803,14 @@
     <customLabels>
         <label>Erreur</label>
         <name>stgToastError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgUniqueProgramPlan --></label>
+        <name>stgUniqueProgramPlan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- nestedPlanRequirementPPExp --></label>
+        <name>nestedPlanRequirementPPExp</name>
     </customLabels>
     <customTabs>
         <label>Paramètres EDA</label>
