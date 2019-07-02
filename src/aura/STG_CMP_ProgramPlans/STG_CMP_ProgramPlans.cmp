@@ -1,0 +1,33 @@
+<aura:component extends="c:STG_CMP_Base">
+    <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
+
+    <div class="slds-grid slds-wrap">
+
+        <!-- Unique Program Plan Enforcement-->
+        <div class="slds-col slds-size--1-of-2">
+            <ui:outputText value="{!$Label.c.stgNestedPlanRequirementPP}" />
+        </div>
+        <div class="slds-col slds-size--1-of-2">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputCheckbox value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}" class="unique-program-plan" />
+                            <aura:set attribute="else">
+                                <ui:inputCheckbox aura:id="validatePPNestedPR" value="{!v.hierarchySettings.Validate_Program_Plan_for_Nested_PR__c}"
+                                                  class="validate-PP-Nested-PR" />
+                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-form-element__label"></span>
+                            </aura:set>
+                        </aura:if>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <ui:outputText value="{!$Label.c.stgHelpNestedPlanRequirementPP}" class="slds-text-body--small" />
+        </div>
+
+    </div>
+</aura:component>
