@@ -63,8 +63,12 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
 
         Boolean isUpdateContext = (triggerAction == TDTM_Runnable.Action.BeforeUpdate);
         List<Course_Offering_Schedule__c> courseOfferingSchedules = (List<Course_Offering_Schedule__c>)newList;
-        Map<Id, Course_Offering_Schedule__c> oldCourseOfferingSchedulesMap = (oldList != null && oldList.size() > 0) ? 
-            new Map<Id, Course_Offering_Schedule__c>((List<Course_Offering_Schedule__c>)oldList) : new Map<Id, Course_Offering_Schedule__c>();
+        Map<Id, Course_Offering_Schedule__c> oldCourseOfferingSchedulesMap;
+        if (oldList != null && oldList.size() > 0) {
+            oldCourseOfferingSchedulesMap = new Map<Id, Course_Offering_Schedule__c>((List<Course_Offering_Schedule__c>)oldList);
+        } else {
+            oldCourseOfferingSchedulesMap = new Map<Id, Course_Offering_Schedule__c>();
+        }
 
         Set<Id> timeBlockIdsToQuery = new Set<Id>();
         List<Course_Offering_Schedule__c> courseOfferingSchedulesToValidate = new List<Course_Offering_Schedule__c>();
@@ -127,8 +131,10 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                 continue;
             }
 
-            // We're updating an existing Course Offering Schedule
-            if (isUpdateContext) {
+            // We're inserting a new Course Offering Schedule with a Time Block
+            if (!isUpdateContext) {
+                updateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
+            } else { // We're updating an existing Course Offering Schedule
                 Course_Offering_Schedule__c oldCourseOfferingSchedule = oldCourseOfferingSchedulesMap.get(courseOfferingSchedule.Id);
                 Time_Block__c oldTimeBlock = timeBlocksMap.get(oldCourseOfferingSchedule.Time_Block__c);
 
@@ -143,19 +149,12 @@ public with sharing class COS_StartEndTime_TDTM extends TDTM_Runnable {
                         courseOfferingSchedule.End_Time__c = timeBlock.End_Time__c;
                     }
 
-                } 
-                
-                // We're updating an existing Course Offering Schedule and setting the Time Block
-                else if (oldTimeBlock == null) {
+                } else if (oldTimeBlock == null) { // We're updating an existing Course Offering Schedule and setting the Time Block
                     updateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
                 }
-            } 
-            
-            // We're inserting a new Course Offering Schedule with a Time Block
-            else {
-                updateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
             }
 
+            // Finally, let's validate that the Start Time and End Time on the Course Offering Schedule matches the Time Block
             validateCourseOfferingScheduleTimes(courseOfferingSchedule, timeBlock);
         }
     }
