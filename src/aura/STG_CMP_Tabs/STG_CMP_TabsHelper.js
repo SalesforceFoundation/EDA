@@ -12,6 +12,7 @@
         $A.util.addClass(component.find("addrTabContent"), "slds-hide");
         $A.util.addClass(component.find("coursesTabContent"), "slds-hide");
         $A.util.addClass(component.find("courseConTabContent"), "slds-hide");
+        $A.util.addClass(component.find("programPlanTabContent"), "slds-hide");
         $A.util.addClass(component.find("systemTabContent"), "slds-hide");
     },
 
