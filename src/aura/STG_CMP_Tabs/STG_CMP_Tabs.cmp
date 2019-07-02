@@ -76,6 +76,9 @@
             <li aura:id="courseConTab" id="courseConTab" class="slds-tabs__item slds-text-heading--label" title="Course Connections" role="tab">
                 <ui:outputURL aura:id="courseConTabBtn" value="#" label="{!$Label.c.stgTabCourseConn}" click="{!c.tabNavigationClick}" class="courseConTab course-con-menu-item" />
             </li>
+            <li aura:id="programPlanTab" id="programPlanTab" class="slds-tabs__item slds-text-heading--label" title="Program Plan" role="tab">
+                <ui:outputURL aura:id="programPlanTabBtn" value="#" label="{!$Label.c.stgTabProgramPlan}" click="{!c.tabNavigationClick}" class="programPlanTab program-plan-menu-item" />
+            </li>
             <li aura:id="addrTab" id="addrTab" class="slds-tabs__item slds-text-heading--label" title="Accounts and Contacts" role="tab">
                 <ui:outputURL aura:id="addrTabBtn" value="#" label="{!$Label.c.stgTabAccCont}" click="{!c.tabNavigationClick}" class="addrTab accs-cons-menu-item" />
             </li>
@@ -103,6 +106,9 @@
             <c:STG_CMP_CourseConnections hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
                courseConnectionRecTypes="{!v.courseConnectionRecTypes}" studentRecTypeName="{!v.studentRecTypeName}" studentRecTypeId="{!v.studentRecTypeId}"
                facultyRecTypeName="{!v.facultyRecTypeName}" facultyRecTypeId="{!v.facultyRecTypeId}"/>
+        </div>
+        <div aura:id="programPlanTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
+            <c:STG_CMP_ProgramPlans hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}"/>
         </div>
         <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
