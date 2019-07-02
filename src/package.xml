@@ -79,10 +79,10 @@
         <members>PREN_Affiliation_TEST</members>
         <members>PREN_ProgramPlan_TDTM</members>
         <members>PREN_ProgramPlan_TEST</members>
-        <members>PReq_CannotDelete_TDTM</members>
-        <members>PReq_CannotDelete_TEST</members>
         <members>PREQ_PreventPPlanParent_TDTM</members>
         <members>PREQ_PreventPPlanParent_TEST</members>
+        <members>PReq_CannotDelete_TDTM</members>
+        <members>PReq_CannotDelete_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
@@ -626,13 +626,13 @@
         <members>stgHelpHouseAdmAccountAddressMgmt</members>
         <members>stgHelpHouseholdRecType</members>
         <members>stgHelpIfCustomValuesEthnicityCopyRace</members>
+        <members>stgHelpNestedPlanRequirementPP</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
         <members>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>
-        <members>stgHelpNestedPlanRequirementPP</members>
         <members>stgHelpUpdateReportIfDependenciesEthnicity</members>
         <members>stgNestedPlanRequirementPP</members>
         <members>stgNewAfflMapping</members>

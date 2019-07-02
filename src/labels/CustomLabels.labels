@@ -1248,6 +1248,14 @@
         <value>If your org previously added custom picklist values to the Ethnicity field that you want to be available in the Race field, copy those custom picklist values to the Race field.</value>
     </labels>
     <labels>
+        <fullName>stgHelpNestedPlanRequirementPP</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpNestedPlanRequirementPP</shortDescription>
+        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, validation fails and the Plan Requirement isn’t saved.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1296,14 +1304,6 @@
         <value>Check this if you&apos;d like errors to be stored in the database.</value>
     </labels>
     <labels>
-        <fullName>stgHelpNestedPlanRequirementPP</fullName>
-        <categories>Setting</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>stgHelpNestedPlanRequirementPP</shortDescription>
-        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, validation fails and the Plan Requirement isn’t saved.</value>
-    </labels>
-    <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1311,7 +1311,7 @@
         <shortDescription>stgHelpUpdateReportIfDependenciesEthnicity</shortDescription>
         <value>If you had dependencies that relied on the previous values in the Ethnicity field, such as in reports, update them.</value>
     </labels>
-    <labels>    
+    <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>

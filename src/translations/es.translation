@@ -629,6 +629,10 @@
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpNestedPlanRequirementPP --></label>
+        <name>stgHelpNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
         <label>Habilita direcciones para Cuentas de organización cuando se selecciona esta opción.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
@@ -653,12 +657,12 @@
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpUniqueProgramPlan --></label>
-        <name>stgHelpUniqueProgramPlan</name>
-    </customLabels>
-    <customLabels>
         <label><!-- stgHelpUpdateReportIfDependenciesEthnicity --></label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgNestedPlanRequirementPP --></label>
+        <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
         <label><!-- stgNewAfflMapping --></label>
@@ -807,10 +811,6 @@
     <customLabels>
         <label><!-- stgToastError --></label>
         <name>stgToastError</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgUniqueProgramPlan --></label>
-        <name>stgUniqueProgramPlan</name>
     </customLabels>
     <customLabels>
         <label><!-- timeBlockEndTimeMismatch --></label>
