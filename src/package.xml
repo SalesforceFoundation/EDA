@@ -81,6 +81,8 @@
         <members>PREN_ProgramPlan_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>PREQ_PreventPPlanParent_TDTM</members>
+        <members>PREQ_PreventPPlanParent_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
@@ -170,6 +172,7 @@
         <members>STG_CMP_CourseConnections</members>
         <members>STG_CMP_Courses</members>
         <members>STG_CMP_Header</members>
+        <members>STG_CMP_ProgramPlans</members>
         <members>STG_CMP_Rel</members>
         <members>STG_CMP_System</members>
         <members>STG_CMP_Tabs</members>
@@ -386,6 +389,7 @@
         <members>Hierarchy_Settings__c.Simple_Address_Change_Treated_as_Update__c</members>
         <members>Hierarchy_Settings__c.Store_Errors_On__c</members>
         <members>Hierarchy_Settings__c.Student_RecType__c</members>
+        <members>Hierarchy_Settings__c.Validate_Program_Plan_for_Nested_PR__c</members>
         <members>Plan_Requirement__c.Category__c</members>
         <members>Plan_Requirement__c.Course__c</members>
         <members>Plan_Requirement__c.Credits__c</members>
@@ -522,6 +526,7 @@
         <members>lastNameFirstNameFamily</members>
         <members>lastNameFirstNameHH</members>
         <members>lastNameHH</members>
+        <members>nestedPlanRequirementPPExp</members>
         <members>noAccRecType</members>
         <members>noAfflMappings</members>
         <members>noAutoCreateSettings</members>
@@ -627,7 +632,9 @@
         <members>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</members>
         <members>stgHelpSimpleAddrChangeIsUpdate</members>
         <members>stgHelpStoreErrorsOn</members>
+        <members>stgHelpNestedPlanRequirementPP</members>
         <members>stgHelpUpdateReportIfDependenciesEthnicity</members>
+        <members>stgNestedPlanRequirementPP</members>
         <members>stgNewAfflMapping</members>
         <members>stgOptAllSysAdmins</members>
         <members>stgOptChatterGroup</members>
@@ -652,6 +659,7 @@
         <members>stgTabCourseConn</members>
         <members>stgTabName</members>
         <members>stgTabPrimaryAfflField</members>
+        <members>stgTabProgramPlan</members>
         <members>stgTabReciprocalSettings</members>
         <members>stgTabRel</members>
         <members>stgTabSettings</members>
