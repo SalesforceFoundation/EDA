@@ -21,7 +21,9 @@
     </fields>
     <fields>
         <fullName>Chosen_Full_Name__c</fullName>
+        <description>The full name that the Contact prefers to use instead of a legal or official name.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The full name that the Contact prefers to use instead of a legal or official name.</inlineHelpText>
         <label>Chosen Full Name</label>
         <length>255</length>
         <required>false</required>
