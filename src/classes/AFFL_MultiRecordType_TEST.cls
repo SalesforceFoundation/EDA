@@ -416,7 +416,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(false, result.success);
 		System.assertEquals(Label.afflAccoutMappingError, result.errors[0].message);
 	}
-
+	
+/*********************************************************************************************************
+* @description
+* This method ensures there is no NPE when a primay affiliation 
+* with no contact is deleted
+*/
 	@isTest
     public static void affiliationDeleteNPECheck() {        
 
