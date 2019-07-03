@@ -1288,6 +1288,14 @@
         <value>Check this if you&apos;d like errors to be stored in the database.</value>
     </labels>
     <labels>
+        <fullName>stgHelpNestedPlanRequirementPP</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpNestedPlanRequirementPP</shortDescription>
+        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1488,6 +1496,14 @@
         <value>Primary Affl Field</value>
     </labels>
     <labels>
+        <fullName>stgTabProgramPlan</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgTabProgramPlan</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
         <fullName>stgTabReciprocalSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1598,5 +1614,21 @@
         <protected>true</protected>
         <shortDescription>stgToastError</shortDescription>
         <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>stgNestedPlanRequirementPP</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgNestedPlanRequirementPP</shortDescription>
+        <value>Validate Program Plan for Nested Plan Requirements</value>
+    </labels>
+    <labels>
+        <fullName>nestedPlanRequirementPPExp</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>nestedPlanRequirementPPExp</shortDescription>
+        <value>Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.</value>
     </labels>
 </CustomLabels>
