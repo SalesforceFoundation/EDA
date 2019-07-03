@@ -185,7 +185,7 @@
         <name>Student_RecType__c</name>
     </fields>
     <fields>
-        <help><!-- When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, validation fails and the Plan Requirement isn’t saved. --></help>
+        <help><!-- When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected. --></help>
         <label><!-- Validate Program Plan for Nested PR --></label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
