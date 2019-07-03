@@ -1293,7 +1293,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpNestedPlanRequirementPP</shortDescription>
-        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, validation fails and the Plan Requirement isn’t saved.</value>
+        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
