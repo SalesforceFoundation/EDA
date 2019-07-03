@@ -378,4 +378,55 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
+
+    @isTest
+    public static void checkNPE() {        
+        
+        setup();
+
+        //delete an affiliation mapping
+        delete [SELECT Id FROM Affl_Mappings__c WHERE Name = 'Household Account'];
+
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+        
+        //Insert an affiliation
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+        insert affl;
+        
+        //Verify 1 affiliation is created
+        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
+                                                WHERE Contact__c = :contact.Id 
+                                                AND Account__c = :bizAcc.Id] ;
+        System.assertEquals(1, affiliationList.size());
+        System.assertEquals(true, affiliationList[0].Primary__c);
+        
+        // Update the record type of the account
+        Test.startTest();
+        
+        Account acc = [SELECT Id, RecordTypeId FROM Account WHERE id = :bizAcc.Id];
+        acc.RecordTypeId = householdRecTypeID;
+        update acc;
+
+        Test.stopTest();
+
+        //Verify no duplicate affiliations are created and no NPE
+        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
+                                                   WHERE Contact__c = :contact.Id 
+                                                   AND Account__c = :bizAcc.Id] ;
+        
+        //Verify Primary Organization is Null
+        Contact updatedContact = [SELECT id, Primary_Organization__c, Primary_Household__c FROM contact WHERE id = :contact.Id]; 
+
+        System.assertEquals(NULL, updatedContact.Primary_Organization__c);                                         
+        System.assertEquals(1, allAffiliationList.size());
+        System.assertEquals(true, allAffiliationList[0].Primary__c);
+    }
+
 }
