@@ -13,11 +13,6 @@
         <name>Capacity__c</name>
     </fields>
     <fields>
-        <label><!-- Time Block --></label>
-        <name>Time_Block__c</name>
-        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
-    </fields>
-    <fields>
         <label>Cours</label>
         <name>Course__c</name>
         <relationshipLabel>Offres de cours</relationshipLabel>
@@ -49,6 +44,11 @@
         <label>Durée</label>
         <name>Term__c</name>
         <relationshipLabel>Offres de cours</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Time Block --></label>
+        <name>Time_Block__c</name>
+        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
     </fields>
     <gender>Feminine</gender>
     <layouts>
