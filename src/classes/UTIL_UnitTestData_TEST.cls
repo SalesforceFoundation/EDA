@@ -439,4 +439,50 @@ public class UTIL_UnitTestData_TEST {
         insert contactLanguageToInsert;
         return contactLanguageToInsert;
     }
+
+    /*********************************************************************************************************
+    * @description Inserts a new Course Offering record for testing.
+    * @param courseId The Course to which the Course Offering will be associated. If blank, a new Course record
+    * will be inserted.
+    * @param termId The Term to which the Course Offering will be associated. If blank, a new Term record will be
+    * inserted.
+    * @return The inserted Course Offering record.
+    **********************************************************************************************************/
+    public static Course_Offering__c createCourseOffering(Id courseId, Id termId) {
+        Account acct;
+        if (courseId == null || termId == null) {
+            acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+            insert acct;
+        }
+        
+        if (courseId == null) {
+            Course__c course = new Course__c(Name = 'ECON 101', Account__c = acct.Id);
+            insert course;
+            courseId = course.Id;
+        }
+
+        if (termId == null) {
+            Term__c term = new Term__c(Name = '2019-2020 School Year', Account__c = acct.Id);
+            insert term;
+            termId = term.Id;
+        }
+
+        Course_Offering__c courseOffering = new Course_Offering__c(Name = 'ECON-101-19-01', Course__c = courseId, Term__c = termId);
+        insert courseOffering;
+
+        return courseOffering;
+    }
+
+    /*********************************************************************************************************
+    * @description Inserts a new Time Block record for testing.
+    * @param startTime The Start Time for the Time Block.
+    * @param endTime The End Time for the Time Block.
+    * @return The inserted Time Block record.
+    **********************************************************************************************************/
+    public static Time_Block__c createTimeBlock(Time startTime, Time endTime) {
+        Time_Block__c timeBlock = new Time_Block__c(Start_Time__c = startTime, End_Time__c = endTime);
+        insert timeBlock;
+
+        return timeBlock;
+    }
 }

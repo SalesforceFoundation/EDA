@@ -15,33 +15,38 @@
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The time of day the Course Offering ends. --></help>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
         <help><!-- The Facility associated with the Course Offering for the specified time and day of week. --></help>
         <label><!-- Facility --></label>
         <name>Facility__c</name>
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Friday. --></help>
         <label><!-- Friday --></label>
         <name>Friday__c</name>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Monday. --></help>
         <label><!-- Monday --></label>
         <name>Monday__c</name>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Saturday. --></help>
         <label><!-- Saturday --></label>
         <name>Saturday__c</name>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Sunday. --></help>
+        <help><!-- The time of day the Course Offering starts. --></help>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
         <label><!-- Sunday --></label>
         <name>Sunday__c</name>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Thursday. --></help>
         <label><!-- Thursday --></label>
         <name>Thursday__c</name>
     </fields>
@@ -52,12 +57,10 @@
         <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Tuesday. --></help>
         <label><!-- Tuesday --></label>
         <name>Tuesday__c</name>
     </fields>
     <fields>
-        <help><!-- The Course Offering Schedule includes Wednesday. --></help>
         <label><!-- Wednesday --></label>
         <name>Wednesday__c</name>
     </fields>
