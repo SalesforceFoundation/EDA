@@ -229,6 +229,10 @@
         <name>lastNameHH</name>
     </customLabels>
     <customLabels>
+        <label><!-- nestedPlanRequirementPPExp --></label>
+        <name>nestedPlanRequirementPPExp</name>
+    </customLabels>
+    <customLabels>
         <label>El tipus de registre del compte definit no existeix:</label>
         <name>noAccRecType</name>
     </customLabels>
@@ -625,6 +629,10 @@
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpNestedPlanRequirementPP --></label>
+        <name>stgHelpNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
         <label>Activa la gestió d&apos;adreces dels comptes d&apos;organització quan es selecciona.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
     </customLabels>
@@ -649,12 +657,12 @@
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpUniqueProgramPlan --></label>
-        <name>stgHelpUniqueProgramPlan</name>
-    </customLabels>
-    <customLabels>
         <label>Si teniu dependències que es basaven en els valors anteriors del camp Ètnia, com ara els informes, actualitzeu-los.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgNestedPlanRequirementPP --></label>
+        <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
         <label>Nova assignació d&apos;afiliació</label>
@@ -805,12 +813,12 @@
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgUniqueProgramPlan --></label>
-        <name>stgUniqueProgramPlan</name>
+        <label><!-- timeBlockEndTimeMismatch --></label>
+        <name>timeBlockEndTimeMismatch</name>
     </customLabels>
     <customLabels>
-        <label><!-- nestedPlanRequirementPPExp --></label>
-        <name>nestedPlanRequirementPPExp</name>
+        <label><!-- timeBlockStartTimeMismatch --></label>
+        <name>timeBlockStartTimeMismatch</name>
     </customLabels>
     <customTabs>
         <label>Configuració de EDA</label>
