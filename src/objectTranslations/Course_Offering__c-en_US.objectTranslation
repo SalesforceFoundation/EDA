@@ -13,11 +13,6 @@
         <name>Capacity__c</name>
     </fields>
     <fields>
-        <label><!-- Time Block --></label>
-        <name>Time_Block__c</name>
-        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Course --></label>
         <name>Course__c</name>
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>
@@ -49,6 +44,11 @@
         <label><!-- Term --></label>
         <name>Term__c</name>
         <relationshipLabel><!-- Course Offerings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Time Block --></label>
+        <name>Time_Block__c</name>
+        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
     </fields>
     <layouts>
         <layout>HEDA Course Offering Layout</layout>
