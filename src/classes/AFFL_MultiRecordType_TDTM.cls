@@ -141,7 +141,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);
 
 					//AFTER DELETE - delete lookup relationship, if necessary
-					if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldName != null) {
+					if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldName != null ) {
 						processAfflDeleted(afflOld, relatedContact, lookupFieldName, dmlWrapper);
 					}
 				}
@@ -175,7 +175,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
 	public void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldName, DmlWrapper dmlWrapper) {
 		//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
-		if(afflOld.Primary__c && lookupFieldName != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
+		if(afflOld.Primary__c && lookupFieldName != null && relatedContact != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
 			if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
 				relatedContact.put(lookupFieldName, null);
 				dmlWrapper.objectsToUpdate.add(relatedContact);
