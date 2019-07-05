@@ -23,16 +23,44 @@
             <translation><!-- Accommodation --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Asylee</masterLabel>
+            <translation><!-- Asylee --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Certification</masterLabel>
             <translation><!-- Certification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economically Disadvantaged</masterLabel>
+            <translation><!-- Economically Disadvantaged --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Endorsement</masterLabel>
             <translation><!-- Endorsement --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>English Learners</masterLabel>
+            <translation><!-- English Learners --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Family Consideration</masterLabel>
             <translation><!-- Family Consideration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Care</masterLabel>
+            <translation><!-- Foster Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Lunch</masterLabel>
+            <translation><!-- Free Lunch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homeless</masterLabel>
+            <translation><!-- Homeless --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Immigrant</masterLabel>
+            <translation><!-- Immigrant --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>International Student</masterLabel>
@@ -45,6 +73,26 @@
         <picklistValues>
             <masterLabel>Other</masterLabel>
             <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent in Military</masterLabel>
+            <translation><!-- Parent in Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pregnant</masterLabel>
+            <translation><!-- Pregnant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reduced Price Lunch</masterLabel>
+            <translation><!-- Reduced Price Lunch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refugee</masterLabel>
+            <translation><!-- Refugee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Section 504 Handicapped</masterLabel>
+            <translation><!-- Section 504 Handicapped --></translation>
         </picklistValues>
     </fields>
     <fields>
