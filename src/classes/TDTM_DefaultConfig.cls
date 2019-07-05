@@ -190,12 +190,20 @@ public without sharing class TDTM_DefaultConfig {
                 Class__c = 'CON_PrimaryLanguage_TDTM', Load_Order__c = 5, Object__c = 'Contact',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
 
+        // Start Time and End Time functionality on the Course Offering Schedule
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'COS_StartEndTime_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering_Schedule__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'TB_StartEndTime_TDTM', Load_Order__c = 1, Object__c = 'Time_Block__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
+
         //Handle unique Program Plan for plan requirements
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'PREQ_PreventPPlanParent_TDTM', Load_Order__c = 1, Object__c = 'Plan_Requirement__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
 
         return handlers;
-
     }
 }
