@@ -416,4 +416,54 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		System.assertEquals(false, result.success);
 		System.assertEquals(Label.afflAccoutMappingError, result.errors[0].message);
 	}
+	
+/*********************************************************************************************************
+* @description
+* This method ensures there is no NPE when a primay affiliation 
+* with no contact is deleted
+*/
+	@isTest
+    public static void affiliationDeleteNPECheck() {        
+
+        setup();
+
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
+
+        //Insert a primary affiliation
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+        insert affl;
+
+        //Verify 1 affiliation is created
+        List<Affiliation__c> affiliationList = [SELECT Id, Name, Contact__c, Primary__c FROM Affiliation__c 
+                                                WHERE Contact__c = :contact.Id 
+                                                AND Account__c = :bizAcc.Id] ;
+												
+        System.assertEquals(1, affiliationList.size());
+        System.assertEquals(true, affiliationList[0].Primary__c);
+
+        // Clear the value of contact on affiliation
+        affiliationList[0].Contact__c = null;
+        update affiliationList;
+
+        // delete affiliation
+        Test.startTest();
+
+        delete affiliationList;
+
+        Test.stopTest();
+
+        //Verify affiliation is deleted and no NPE
+        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
+                                                   WHERE Contact__c = :contact.Id 
+                                                   AND Account__c = :bizAcc.Id] ;
+
+        System.assertEquals(0, allAffiliationList.size()); 
+
+	}	
 }
