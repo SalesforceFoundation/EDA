@@ -25,6 +25,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Chosen_Full_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>AccountId</field>
             </layoutItems>
             <layoutItems>
