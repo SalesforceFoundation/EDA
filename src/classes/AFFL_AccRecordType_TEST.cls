@@ -136,7 +136,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(acc.Id, contact.Primary_Organization__c);
 
         System.assert(AFFL_AccRecordType_TDTM.reentrancyPrevented == true, 
-            'Expected the reentrancy check to have prevented the AFFL_AccRecordType_TDTM trigger FROM processing again.');
+            'Expected the reentrancy check to have prevented the AFFL_AccRecordType_TDTM trigger from processing again.');
     }
     
     @isTest
