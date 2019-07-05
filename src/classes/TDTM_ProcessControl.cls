@@ -72,7 +72,8 @@ public class TDTM_ProcessControl {
         AFFL_AccRecordType_TDTM,
         TB_StartEndTime_TDTM,
         REL_Relationships_Con_TDTM,
-        REL_Relationships_Cm_TDTM
+        REL_Relationships_Cm_TDTM,
+        ATTD_CourseConnectionContact_TDTM
     }
 
     /*******************************************************************************************************
