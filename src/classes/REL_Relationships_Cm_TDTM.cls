@@ -36,6 +36,9 @@
 */
 public class REL_Relationships_Cm_TDTM extends TDTM_Runnable {
 
+    @testVisible
+    private static Boolean reentrancyPrevented;
+
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
@@ -44,62 +47,80 @@ public class REL_Relationships_Cm_TDTM extends TDTM_Runnable {
         Map<Id, CampaignMember> oldMap = new Map<Id, CampaignMember>(oldListCasted);
             
         DmlWrapper dmlWrapper = new DmlWrapper();
+
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Cm_TDTM)) {
+            reentrancyPrevented = true;
+            return dmlWrapper;
+         }
         
-        List<Id> ContactIds = new List<Id>();
-        List<Id> ReciprocalIds = new List<Id>();
-        List<String> Types = new List<String>();
+        List<Id> contactIds = new List<Id>();
+        List<Id> reciprocalIds = new List<Id>();
+        List<String> types = new List<String>();
         List<Id> cIds = new List<Id>();  
         
-        //CREATE CAMPAIGN MAP BASED ON newMAP KEYSET, THEN GET TYPE AND USE THAT MAP TO DETERMINE IF TYPE MATCHED 
-        //rac.CMType requery newMap to get Campaign type
+        // Create Campaign map based on newMap keyset, then get type and use that map to determine if type matched
         for (CampaignMember cm : newListCasted){
             cIds.add(cm.CampaignId);
         }
         
-        map<Id, Campaign> cMap = new Map<Id, Campaign>([select id, Type from Campaign where Id IN :cIds]);
+        Map<Id, Campaign> cMap = new Map<Id, Campaign>([SELECT Id, Type FROM Campaign WHERE Id IN :cIds]);
                 
         for (CampaignMember cm : newListCasted){
-            if (cm.ContactId != null){
-                for(String s : REL_Utils.getAutoCreateMap().keySet()){
-                    Relationship_Auto_Create__c rac = REL_Utils.getAutoCreateMap().get(s);
-                    //retrieve the campaign for matching type
-                    Campaign c = cMap.get(cm.CampaignId);
-                    UTIL_Debug.debug('****Current Campaign Type: ' + c.Type);
-                    //create a set from the rac
-                    if (rac.Object__c == 'CampaignMember' && rac.Campaign_Types__c != null){
-                        List<String> cTypeList = rac.Campaign_Types__c.split(';');
-                        UTIL_Debug.debug('****All Campaign Types: ' + cTypeList);
-                        Set<String> cTypeSet = new Set<String>();
-                        cTypeSet.addAll(cTypeList);                                             
-                        if (cTypeSet.contains(c.Type)){                     
-                            Id relatedContactId;
-                            try{
-                                //get the id from the field                        
-                                relatedContactId = (Id)cm.get(rac.Field__c);
-                            }catch(Exception e) {
-                                cm.addError(Label.AutoCreateFieldError); 
-                            }
-                            if(triggerAction == TDTM_Runnable.Action.afterInsert && relatedContactId != null) {                        
-                                ContactIds.add(cm.ContactId);
-                                ReciprocalIds.add(relatedContactId);
-                                Types.add(rac.Relationship_Type__c);
-                            }
-                            else if (triggerAction == TDTM_Runnable.Action.afterUpdate && relatedContactId != null 
-                            && relatedContactId != oldMap.get(cm.id).get(rac.Field__c)){
-                                ContactIds.add(cm.ContactId);
-                                ReciprocalIds.add(relatedContactId);
-                                Types.add(rac.Relationship_Type__c);
-                            }
-                        }                           
-                    }               
+            // Ignore campaign members for leads
+            if (cm.ContactId == null) {
+                continue;
+            }
+
+            for(String s : REL_Utils.getAutoCreateMap().keySet()){
+                Relationship_Auto_Create__c rac = REL_Utils.getAutoCreateMap().get(s);
+
+                if (rac.Object__c != 'CampaignMember' || rac.Campaign_Types__c == null) {
+                    continue;
                 }
-            }           
+                
+                //retrieve the campaign for matching type
+                Campaign c = cMap.get(cm.CampaignId);
+                UTIL_Debug.debug('****Current Campaign Type: ' + c.Type);
+                
+                //create a set from the rac
+                List<String> cTypeList = rac.Campaign_Types__c.split(';');
+                UTIL_Debug.debug('****All Campaign Types: ' + cTypeList);
+                Set<String> cTypeSet = new Set<String>();
+                cTypeSet.addAll(cTypeList);                            
+                
+                if (cTypeSet.contains(c.Type)){                     
+                    Id relatedContactId;
+                    try{
+                        //get the id from the field                        
+                        relatedContactId = (Id)cm.get(rac.Field__c);
+                    }catch(Exception e) {
+                        cm.addError(Label.AutoCreateFieldError); 
+                    }
+                    
+                    if(triggerAction == TDTM_Runnable.Action.afterInsert && relatedContactId != null) {                        
+                        contactIds.add(cm.ContactId);
+                        reciprocalIds.add(relatedContactId);
+                        types.add(rac.Relationship_Type__c);
+                    } else if (triggerAction == TDTM_Runnable.Action.afterUpdate && relatedContactId != null 
+                            && relatedContactId != oldMap.get(cm.id).get(rac.Field__c)){
+                        contactIds.add(cm.ContactId);
+                        reciprocalIds.add(relatedContactId);
+                        types.add(rac.Relationship_Type__c);
+                    }
+                }              
+            }         
         }   
 
-        if (!ContactIds.isEmpty()) {
-            DmlWrapper w = REL_Relationships_Con_TDTM.createNewRelationships(ContactIds, ReciprocalIds, Types);
+        if (!contactIds.isEmpty()) {
+            DmlWrapper w = REL_Relationships_Con_TDTM.createNewRelationships(contactIds, reciprocalIds, types);
             dmlWrapper.objectsToInsert.addAll(w.objectsToInsert);
         }
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Cm_TDTM, true);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Cm_TDTM, false);
+
         return dmlWrapper;
     }
 }

@@ -35,6 +35,9 @@
 * @description Implements relationships behavior on Contact.
 */
 public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
+
+    @testVisible
+    private static Boolean reentrancyPrevented;
 	
 	/*******************************************************************************************************
     * @description Trigger Handler on Contact that handles relationship autocreation and gender change.
@@ -53,38 +56,44 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         Map<Id, Contact> oldMap = new Map<Id, Contact>(oldListCasted);
                     
         DmlWrapper dmlWrapper = new DmlWrapper();
+
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM)) {
+            reentrancyPrevented = true;
+            return dmlWrapper;
+         }
         
-        List<Id> ContactIds = new List<Id>();
-        List<Id> ReciprocalIds = new List<Id>();
-        List<String> Types = new List<String>();
+        List<Id> contactIds = new List<Id>();
+        List<Id> reciprocalIds = new List<Id>();
+        List<String> types = new List<String>();
         
-        Set<Id> changedGender = new set<Id>();        
+        Set<Id> changedGender = new Set<Id>();        
         
         if(newlist != null && newlist.size() > 0) {
             for (Contact c : newListCasted){
                 for(String s : REL_Utils.getAutoCreateMap().keySet()){
                     Relationship_Auto_Create__c rac = REL_Utils.getAutoCreateMap().get(s);
-                    if (rac.Object__c == 'Contact'){
-                        Id relatedContactId;
-                        try{
-                            //get the id from the field                        
-                            relatedContactId = (Id)c.get(rac.Field__c);
-                        }catch(Exception e){
-                            c.addError(system.Label.AutoCreateFieldError);
-                        }    
-                        
-                        if(triggerAction == TDTM_Runnable.Action.afterInsert && relatedContactId != null) {                        
-                            ContactIds.add(c.Id);
-                            ReciprocalIds.add(relatedContactId);
-                            Types.add(rac.Relationship_Type__c);
-                        }
-                        else if (triggerAction == TDTM_Runnable.Action.afterUpdate && relatedContactId != null 
-                        && relatedContactId != oldMap.get(c.id).get(rac.Field__c)){
-                            ContactIds.add(c.Id);
-                            ReciprocalIds.add(relatedContactId);
-                            Types.add(rac.Relationship_Type__c);
-                        }
-                    }               
+                    if (rac.Object__c != 'Contact') {
+                        continue;
+                    }
+                    
+                    Id relatedContactId;
+                    try{
+                        //get the id from the field                        
+                        relatedContactId = (Id)c.get(rac.Field__c);
+                    }catch(Exception e){
+                        c.addError(system.Label.AutoCreateFieldError);
+                    }    
+                    
+                    if(triggerAction == TDTM_Runnable.Action.afterInsert && relatedContactId != null) {                        
+                        contactIds.add(c.Id);
+                        reciprocalIds.add(relatedContactId);
+                        types.add(rac.Relationship_Type__c);
+                    } else if (triggerAction == TDTM_Runnable.Action.afterUpdate && relatedContactId != null 
+                            && relatedContactId != oldMap.get(c.id).get(rac.Field__c)){
+                        contactIds.add(c.Id);
+                        reciprocalIds.add(relatedContactId);
+                        types.add(rac.Relationship_Type__c);
+                    }         
                 }
                 
                 //handle updates to the gender field
@@ -101,8 +110,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             dmlWrapper.objectsToDelete.addAll(w.objectsToDelete);
         }
         
-        if (!ContactIds.isEmpty()){
-            DmlWrapper w = createNewRelationships(ContactIds, ReciprocalIds, Types);
+        if (!contactIds.isEmpty()){
+            DmlWrapper w = createNewRelationships(contactIds, reciprocalIds, types);
             dmlWrapper.objectsToInsert.addAll(w.objectsToInsert);
         }
         
@@ -130,6 +139,11 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             REL_Relationships_TDTM.addType(listMirrorRels, listRelsForUpdate);
             dmlWrapper.objectsToUpdate.addAll((list<sObject>)listRelsForUpdate);
         }
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, true);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_Con_TDTM, false);
         
         return dmlWrapper;
     }
@@ -145,8 +159,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
 
         // The Contacts primary Relationships have already been cascade deleted in Contact After Delete context
         // Using ALL ROWS returns them in the query used to gather the mirror Relationships to be deleted 
-        for (Relationship__c r : [Select Id, ReciprocalRelationship__c from Relationship__c 
-            where Contact__c in :contacts.keySet() ALL ROWS]){
+        for (Relationship__c r : [SELECT Id, ReciprocalRelationship__c FROM Relationship__c 
+                WHERE Contact__c IN :contacts.keySet() ALL ROWS]){
             if (r.ReciprocalRelationship__c != null) {
                 relationshipsToDelete.add(new Relationship__c(Id = r.ReciprocalRelationship__c));
             }
@@ -157,7 +171,7 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         return dmlWrapper;
     }
     
-    public static DmlWrapper createNewRelationships(List<Id> ContactIds, List<Id> RelatedContactIds, List<String> Types) {
+    public static DmlWrapper createNewRelationships(List<Id> contactIds, List<Id> relatedContactIds, List<String> types) {
         
         DmlWrapper dmlWrapper = new DmlWrapper();
         Integer i = 0;
@@ -169,8 +183,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
         
         if (!UTIL_CustomSettingsFacade.getSettings().Allow_AutoCreated_Duplicates__c) {
             
-            existingRelationships = [select Id, Contact__c, RelatedContact__c, Type__c 
-            from Relationship__c where Contact__c IN :ContactIds limit 2000];
+            existingRelationships = [SELECT Id, Contact__c, RelatedContact__c, Type__c 
+                FROM Relationship__c WHERE Contact__c IN :contactIds LIMIT 2000];
             
             //sort by Contact__c so we can pull relationships based on the inserted Contact
             for(Relationship__c r : existingRelationships){
@@ -185,13 +199,13 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
             }        
         }        
             
-        for (Id conId : ContactIds){
+        for (Id conId : contactIds){
             boolean doNotCreate = false;
             
             //prevent duplicates from being created if they exist and setting is enabled
             if (relationshipsByContact.containsKey(conId)){
                 for (Relationship__c r : relationshipsByContact.get(conId)){
-                    if (r.Type__c == Types[i] && r.RelatedContact__c == RelatedContactIds[i]){
+                    if (r.Type__c == types[i] && r.RelatedContact__c == relatedContactIds[i]){
                         doNotCreate = true;                     
                         break;
                     }                   
@@ -202,8 +216,8 @@ public class REL_Relationships_Con_TDTM extends TDTM_Runnable {
                 UTIL_Debug.debug('****Creating relationship in createNewRelationships method');
                 Relationship__c r = new Relationship__c(
                     Contact__c = conId, 
-                    RelatedContact__c = RelatedContactIds[i],
-                    Type__c = Types[i],           
+                    RelatedContact__c = relatedContactIds[i],
+                    Type__c = types[i],           
                     Status__c = 'Current'                 
                 );
                 relationshipsForInsert.add(r);
