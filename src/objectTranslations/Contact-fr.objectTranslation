@@ -6,6 +6,11 @@
         <name>AlternateEmail__c</name>
     </fields>
     <fields>
+        <help><!-- The full name that the Contact prefers to use instead of a legal or official name. --></help>
+        <label><!-- Chosen Full Name --></label>
+        <name>Chosen_Full_Name__c</name>
+    </fields>
+    <fields>
         <label>Citoyenneté</label>
         <name>Citizenship__c</name>
         <picklistValues>
@@ -3501,6 +3506,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Primary Academic Program --></label>
+        <name>Primary_Academic_Program__c</name>
+        <relationshipLabel><!-- Students --></relationshipLabel>
+    </fields>
+    <fields>
         <help>Quel est le type de l’adresse postale ?</help>
         <label>Type d&apos;adresse principal</label>
         <name>Primary_Address_Type__c</name>
@@ -3518,6 +3528,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Primary Department --></label>
+        <name>Primary_Department__c</name>
+        <relationshipLabel><!-- Department Members --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Educational Institution --></label>
+        <name>Primary_Educational_Institution__c</name>
+        <relationshipLabel><!-- Institution Members --></relationshipLabel>
+    </fields>
+    <fields>
         <label>Foyer principal</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Contacts (foyer principal)</relationshipLabel>
@@ -3532,6 +3552,11 @@
         <label>Organisation professionnelle principale</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contacts (organisation principale)</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Sports Organization --></label>
+        <name>Primary_Sports_Organization__c</name>
+        <relationshipLabel><!-- Organization Members --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Race --></label>
