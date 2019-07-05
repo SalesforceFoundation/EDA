@@ -70,6 +70,7 @@ public class TDTM_ProcessControl {
         CLAN_PrimaryLanguage_TDTM,
         CON_PrimaryLanguage_TDTM,
         AFFL_AccRecordType_TDTM,
+        TB_StartEndTime_TDTM,
         REL_Relationships_Con_TDTM,
         REL_Relationships_Cm_TDTM,
         REL_Relationships_TDTM_After_Update
