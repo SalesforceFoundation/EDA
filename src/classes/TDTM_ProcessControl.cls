@@ -70,7 +70,7 @@ public class TDTM_ProcessControl {
         CLAN_PrimaryLanguage_TDTM,
         CON_PrimaryLanguage_TDTM,
         AFFL_AccRecordType_TDTM,
-        ATTD_CourseConnectionContact_TDTM
+        TB_StartEndTime_TDTM
     }
 
     /*******************************************************************************************************
