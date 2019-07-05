@@ -85,6 +85,16 @@
                     <default>false</default>
                     <label>Class Tardy</label>
                 </value>
+                <value>
+                    <fullName>Day Absence</fullName>
+                    <default>false</default>
+                    <label>Day Absence</label>
+                </value>
+                <value>
+                    <fullName>Day Tardy</fullName>
+                    <default>false</default>
+                    <label>Day Tardy</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
