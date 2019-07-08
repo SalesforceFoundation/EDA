@@ -82,8 +82,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Time__c</fields>
+        <fields>%%%NAMESPACE%%%End_Time__c</fields>
         <fields>%%%NAMESPACE%%%Facility__c</fields>
+        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
         <relatedList>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Course_Offering__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -101,7 +103,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hS0000001GSUg</masterLabel>
+        <masterLabel>00h2f000000HEpx</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
