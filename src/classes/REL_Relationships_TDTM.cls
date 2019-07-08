@@ -104,11 +104,13 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
             
             // AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {   
-                if (r.ReciprocalRelationship__c == oldList[i].ReciprocalRelationship__c 
-                        && r.RelatedContact__c != null) {
+                if (r.ReciprocalRelationship__c == oldList[i].ReciprocalRelationship__c && 
+                        r.RelatedContact__c != null) {
                     relationshipsToUpdate.add(r);
                     origRelationships.add(oldList[i]);
-                } if (r.RelatedContact__c == null) {
+                }
+                
+                if (r.RelatedContact__c == null) {
                     relationshipsToDelete.add(r);
                 }
             }
