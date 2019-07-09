@@ -42,7 +42,6 @@ Verify EDA Settings
 
 
 Verify Affiliations, Program Enrollments and No Duplicates
-    Reload Page
     Set Window Size                         1024    1024
     Go To Object Home                       Contact
 
@@ -80,7 +79,6 @@ Verify Affiliations, Program Enrollments and No Duplicates
     Click on Element                        new_account
 
     #Drop down and select Academic
-    Wait for Locator                        list_of_departments
     Wait for Locator                        academic_program
     
     Click on Element                        academic_program
@@ -97,9 +95,7 @@ Verify Affiliations, Program Enrollments and No Duplicates
     Wait for Locator                        new_program_enrollment_save_button
     Click on Element                        new_program_enrollment_save_button
 
-    Sleep       20
-
-    #Verify that we have ONE affiliated account
+    #Verify that we have ONE affiliated account, and we definitely need the reload to refresh this page to show the count
     Reload Page
     ${acc} =                                Get Eda Locator     affiliated_accounts_count
     Scroll Element Into View                ${acc}
