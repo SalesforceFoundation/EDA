@@ -485,4 +485,20 @@ public class UTIL_UnitTestData_TEST {
 
         return timeBlock;
     }
+    
+    /*********************************************************************************************************
+    * @description Gets a Course Connection for testing.
+    **********************************************************************************************************/
+    public static Course_Enrollment__c getCourseConnection() {
+        Course_Enrollment__c courseConnection = new Course_Enrollment__c();
+        return courseConnection;
+    }
+    
+    /*********************************************************************************************************
+    * @description Gets a Attendance Event for testing.
+    **********************************************************************************************************/
+    public static Attendance_Event__c getAttendanceEvent() {
+        Attendance_Event__c attd = new Attendance_Event__c();
+        return attd;
+    }
 }

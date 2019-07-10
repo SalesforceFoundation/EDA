@@ -27,6 +27,7 @@
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
         <members>ATTD_CourseConnectionContact_TDTM</members>
+        <members>ATTD_CourseConnectionContact_TEST</members>
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
