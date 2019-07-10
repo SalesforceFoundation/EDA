@@ -31,5 +31,5 @@ trigger TDTM_Attendance on Attendance_Event__c (after delete, after insert, afte
 after update, before delete, before insert, before update) {
 
     TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
-        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Campaign);
+        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Attendance_Event__c);
 }

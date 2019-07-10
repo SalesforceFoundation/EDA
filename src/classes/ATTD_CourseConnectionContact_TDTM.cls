@@ -50,7 +50,7 @@ public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnabl
 
         boolean recursionFlag = TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ATTD_CourseConnectionContact_TDTM);
 
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+        Map<ID, SObject> newmap = new Map<ID, SObject>(newlist);
         
         if (triggerAction == TDTM_Runnable.Action.AfterInsert
                 || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
@@ -58,17 +58,21 @@ public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnabl
             if (!recursionFlag) {
                 for (Attendance_Event__c attd : [SELECT Id,
                                                         Contact__c,
+                                                        Course_Connection__c,
                                                         Course_Connection__r.Contact__c
                                                 FROM Attendance_Event__c 
-                                                WHERE Id IN :oldlist]) {
-                    if (attd.Course_Connection__r.Contact__c != attd.Contact__c
-                        && attd.Course_Connection__r.Contact__c != null) {
+                                                WHERE Id IN :newlist]) {
+                    if (attd.Course_Connection__c != null
+                        && attd.Course_Connection__r.Contact__c != null
+                        && attd.Course_Connection__r.Contact__c != attd.Contact__c) {
                         if (attd.Contact__c == null) {
+                            //Auto-populdate contact lookup field on attendance event
                             attd.Contact__c = attd.Course_Connection__r.Contact__c;
-                            //dmlWrapper.objectsToUpdate.add(attd);
+                            dmlWrapper.objectsToUpdate.add(attd);
                         } else {
-                            //TODO: throw exception
-                            system.debug('throw exception');
+                            //If contact not null, throw an error and guide users to correct their data
+                            Attendance_Event__c attdInContext = (Attendance_Event__c)newmap.get(attd.ID);
+                            attdInContext.Contact__c.addError(Label.AttendanceCourseConnectionContactMismatch);
                         }
                     }
                 }
@@ -84,4 +88,3 @@ public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnabl
         return new DmlWrapper();
     }
 }
-
