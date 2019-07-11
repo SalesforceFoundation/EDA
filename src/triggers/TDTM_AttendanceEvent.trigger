@@ -27,7 +27,7 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
     POSSIBILITY OF SUCH DAMAGE.
 */
-trigger TDTM_Attendance on Attendance_Event__c (after delete, after insert, after undelete, 
+trigger TDTM_AttendanceEvent on Attendance_Event__c (after delete, after insert, after undelete, 
 after update, before delete, before insert, before update) {
 
     TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 

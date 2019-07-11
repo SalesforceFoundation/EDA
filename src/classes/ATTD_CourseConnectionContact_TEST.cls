@@ -35,11 +35,11 @@
 * @description Tests specific to Attendance Events
 */
 @isTest
-public class ATTD_CourseConnectionContact_TEST {
+private class ATTD_CourseConnectionContact_TEST {
 	
     /*Insert Attendance Event when Course Connection matches Contact lookup field*/
     @isTest
-    public static void insertAttendanceCourseConnectionContactMatch() {
+    private static void insertAttendanceCourseConnectionContactMatch() {
         //Test data setup
         Contact testContact = UTIL_UnitTestData_TEST.getContact();
         insert testContact;
@@ -62,7 +62,7 @@ public class ATTD_CourseConnectionContact_TEST {
 
     /*Update Attendance Event when Course Connection matches Contact lookup field*/
     @isTest
-    public static void updateAttendanceCourseConnectionContactMatch() {
+    private static void updateAttendanceCourseConnectionContactMatch() {
         //Test data setup
         Contact testContact = UTIL_UnitTestData_TEST.getContact();
         insert testContact;
@@ -87,7 +87,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Insert Attendance Event when Course Connection does not match Contact lookup field and both filled out*/
     @isTest
-    public static void insertAttendanceCourseConnectionContactMismatchBothFilled() {
+    private static void insertAttendanceCourseConnectionContactMismatchBothFilled() {
         //Test data setup
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert testContacts;
@@ -111,7 +111,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Update Attendance Event when Course Connection does not match Contact lookup field and both filled out*/
     @isTest
-    public static void updateAttendanceCourseConnectionContactMismatchBothFilled() {
+    private static void updateAttendanceCourseConnectionContactMismatchBothFilled() {
         //Test data setup
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert testContacts;
@@ -137,7 +137,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Insert Attendance Event when Course Connection does not match Contact lookup field and only Contact empty*/
     @isTest
-    public static void insertAttendanceCourseConnectionEmptyContactMismatch() {
+    private static void insertAttendanceCourseConnectionEmptyContactMismatch() {
         //Test data setup
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert testContacts;
@@ -160,7 +160,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Update Attendance Event when Course Connection does not match Contact lookup field and only Contact empty*/
     @isTest
-    public static void updateAttendanceCourseConnectionEmptyContactMismatch() {
+    private static void updateAttendanceCourseConnectionEmptyContactMismatch() {
         //Test data setup
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert testContacts;
@@ -186,7 +186,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Insert Attendance Event when Course Connection does not match Contact lookup field and only Course Connection empty*/
     @isTest
-    public static void insertAttendanceEmptyCourseConnectionContactMismatch() {
+    private static void insertAttendanceEmptyCourseConnectionContactMismatch() {
         //Test data setup
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert testContacts;
@@ -205,7 +205,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Update Attendance Event when Course Connection does not match Contact lookup field and only Course Connection empty*/
     @isTest
-    public static void updateAttendanceEmptyCourseConnectionContactMismatch() {
+    private static void updateAttendanceEmptyCourseConnectionContactMismatch() {
         //Test data setup
         List<Contact> testContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert testContacts;
@@ -226,7 +226,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Insert Attendance Event when Course Connection and Contact lookup field are both empty*/
     @isTest
-    public static void insertAttendanceCourseConnectionContactBothEmpty() {
+    private static void insertAttendanceCourseConnectionContactBothEmpty() {
         //Test data setup
         
         //Test run
@@ -241,7 +241,7 @@ public class ATTD_CourseConnectionContact_TEST {
     
     /*Update Attendance Event when Course Connection and Contact lookup field are both empty*/
     @isTest
-    public static void updateAttendanceCourseConnectionContactBothEmpty() {
+    private static void updateAttendanceCourseConnectionContactBothEmpty() {
         //Test data setup
 
         //Test run
