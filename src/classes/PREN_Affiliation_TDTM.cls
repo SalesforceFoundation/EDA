@@ -38,8 +38,8 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Handles Affiliation management for Program Enrollment.
-    * @param listNew the list of Accounts from trigger new. 
-    * @param listOld the list of Accounts from trigger old. 
+    * @param listNew the list of Program Enrollments from trigger new. 
+    * @param listOld the list of Program Enrollments from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
     * @param objResult the describe for Program Enrollment. 
     * @return dmlWrapper.  
@@ -49,11 +49,17 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
     
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if(newlist != null && newlist.size() > 0) {
+        if (newlist != null && newlist.size() > 0) {
+            // Because this runs on BeforeInsert, we don't need to worry about reentrancy here. The same program 
+            // enrollment can't be inserted more than once! If inserting affiliation records creates or deletes 
+            // more program enrollment records, we'd *want* these to be processed!
             createRelatedAffls(newlist, triggerAction);
         }
         
-        if(oldlist != null && oldlist.size() > 0) {
+        if (oldlist != null && oldlist.size() > 0) {
+            // Because this runs on AfterDelete, we don't need to worry about reentrancy here. The same program
+            // enrollment can't be deleted more than once! If updating affiliation records creates or deletes
+            // more program enrollment records, we'd *want* these to be processed!
             updateDeleteRelatedAffls(getDeletedPEsAfflIDs(oldlist, triggerAction), oldlist, dmlWrapper);
         }
         
@@ -68,7 +74,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
 
             if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
                 //Automatically create an Affiliation record if a Program Enrollment record has been created without an affiliation.
-                if(enrollment.Contact__c != null && enrollment.Account__c != null && enrollment.Affiliation__c == null) {
+                if (enrollment.Contact__c != null && enrollment.Account__c != null && enrollment.Affiliation__c == null) {
                     Date afflEndDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_End_Date__c == true ? enrollment.End_Date__c : null);
                     Date afflStartDate = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Copy_Start_Date__c == true ? enrollment.Start_Date__c : null);
                     String afflRole = (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Set_Role__c == true ? UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Role_Map__c : null);
@@ -84,13 +90,13 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
             }
         }
         
-        if(newAffls.size() > 0) {
+        if (newAffls.size() > 0) {
             //Turn off AFFL_MultiRecordType_TDTM_After_Insert so EDA won't create duplicate program enrollment
             TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert);
             //We manually insert the affiliations because we need the IDs, in order to link the Program Enrollments with the Affls.
             insert newAffls;
             
-            for(Integer i = 0; i < newAffls.size(); i++) {
+            for (Integer i = 0; i < newAffls.size(); i++) {
                 Program_Enrollment__c enrollment = (Program_Enrollment__c)newlist[i];
                 enrollment.Affiliation__c = newAffls[i].ID;
             }
@@ -101,18 +107,19 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
     private List<ID> getDeletedPEsAfflIDs(List<SObject> oldlist, TDTM_Runnable.Action triggerAction) {
         List<ID> afflsToUpdateDelIDs = new List<ID>();
         //Only need to loop through the list when deleting Program Enrollment records
-        if(triggerAction == TDTM_Runnable.Action.AfterDelete) {  
+        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {  
             
             for (SObject so : oldlist) {            
                 Program_Enrollment__c oldEnrollment = (Program_Enrollment__c)so;
                 
-                if(oldEnrollment.Affiliation__c != null) {
+                if (oldEnrollment.Affiliation__c != null) {
                     //Get related Affls ids
                     afflsToUpdateDelIDs.add(oldEnrollment.Affiliation__c);
                 }
             }
             
         }
+
         return afflsToUpdateDelIDs;
     }
     
@@ -123,13 +130,13 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
         List<Program_Enrollment__c> otherProgramEnrollments = [SELECT Id, Affiliation__c FROM Program_Enrollment__c WHERE Affiliation__c IN :afflsToUpdateDelIDs AND Id NOT IN :oldList];
         Set<Id> affiliationIdsToIgnore = new Set<Id>();
         
-        for(Program_Enrollment__c otherProgramEnrollment : otherProgramEnrollments) {
+        for (Program_Enrollment__c otherProgramEnrollment : otherProgramEnrollments) {
             affiliationIdsToIgnore.add(otherProgramEnrollment.Affiliation__c);
         }
         
-        if(UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del__c) {
+        if (UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del__c) {
             
-            for(ID affiliationId : afflsToUpdateDelIDs) {
+            for (ID affiliationId : afflsToUpdateDelIDs) {
                 //Only delete the Affiliation if there are no other Program Enrollment records associated to it.
                 if (!affiliationIdsToIgnore.contains(affiliationId)) {
                     afflsToUpdateDel.add(new Affiliation__c(ID = affiliationId));
@@ -141,7 +148,7 @@ public class PREN_Affiliation_TDTM extends TDTM_Runnable {
             String affiliationStatusOnPEDelete = UTIL_CustomSettingsFacade.getSettings().Affl_ProgEnroll_Del_Status__c;
             List<Affiliation__c> potentialAffiliationsToUpdate = [SELECT Id, Status__c FROM Affiliation__c WHERE ID IN :afflsToUpdateDelIDs];
             
-            for(Affiliation__c affl : potentialAffiliationsToUpdate) {
+            for (Affiliation__c affl : potentialAffiliationsToUpdate) {
                 //Only update the Affiliation if there are no other Program Enrollment records associated to it.
                 if (!affiliationIdsToIgnore.contains(affl.Id)) {
                     affl.Status__c = affiliationStatusOnPEDelete;
