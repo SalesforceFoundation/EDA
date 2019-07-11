@@ -66,10 +66,11 @@ public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnabl
                         && attd.Course_Connection__r.Contact__c != null) {
                         if (attd.Contact__c != null) {
                             if (attd.Course_Connection__r.Contact__c != attd.Contact__c) {
-                            //If contact not null and course connection contact does not match contact on attendance event
-                            //Throw an error and guide users to correct their data
-                            Attendance_Event__c attdInContext = (Attendance_Event__c)newmap.get(attd.ID);
-                            attdInContext.Contact__c.addError(Label.AttendanceCourseConnectionContactMismatch);
+                                //If contact not null and course connection contact does not match contact on attendance event
+                                //Throw an error and guide users to correct their data
+                                Attendance_Event__c attdInContext = (Attendance_Event__c)newmap.get(attd.ID);
+                                attdInContext.Contact__c.addError(Label.AttendanceCourseConnectionContactMismatch);
+                            }
                         } else {
                             //Auto-populdate contact lookup field on attendance event
                             attd.Contact__c = attd.Course_Connection__r.Contact__c;
