@@ -37,8 +37,8 @@
 public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Makes sure that linked course connection's contact matches contact lookup field
-    * @param listNew the list of Attendance Events from trigger new. 
-    * @param listOld the list of Attendance Events from trigger old. 
+    * @param newlist the list of Attendance Events from trigger new. 
+    * @param oldlist the list of Attendance Events from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
     * @param objResult the describe for Attendance Events 
     * @return dmlWrapper.  
@@ -79,6 +79,7 @@ public with sharing class ATTD_CourseConnectionContact_TDTM extends TDTM_Runnabl
 
                     }
                 }
+                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ATTD_CourseConnectionContact_TDTM, true);
             }     
         }
         
