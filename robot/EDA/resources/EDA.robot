@@ -43,7 +43,7 @@ API Create Course Enrollment
     &{enrollment} =   Salesforce Get  Course_Enrollment__c  ${enrollment_id}
     [return]          &{enrollment}
 
-API Populate Create And Return Contact with Address
+Populate Create And Return Contact with Address
     [Arguments]      ${first_name}      ${last_name}      ${mailing_street}      ${mailing_city}      ${mailing_zip}      ${mailing_state}      ${mailing_country}
     Go To Object Home         Contact
     Click Object Button       New

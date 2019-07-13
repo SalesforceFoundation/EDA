@@ -12,7 +12,7 @@ Suite Teardown  Delete Records and Close Browser
 *** Test Cases ***
     
 Create Contact And Verify
-    ${contact_id} =  API Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    
+    ${contact_id} =  Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab    Details 
@@ -27,15 +27,15 @@ Verify EDA Settings
     Wait for Locator                            eda_settings.affiliations_tab
     Click on Element                            eda_settings.affiliations_tab
 
+    #Go into Edit Mode
+    Click Button                                Edit
+
     ${affl_check} =  Get Eda Locator            eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator    eda_settings.affiliations_role_checkbox
     Select Checkbox In Eda Settings             ${affl_check}        ${affl_role_checkbox}
     
     Wait for Locator                            eda_settings.affiliation_mappings_tab
     Click on Element                            eda_settings.affiliation_mappings_tab
-
-    #Go into Edit Mode
-    Click Button                                Edit
 
     #Save settings
     Click Button                                Save
