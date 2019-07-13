@@ -27,8 +27,6 @@ Verify EDA Settings
     Wait for Locator                            eda_settings.affiliations_tab
     Click on Element                            eda_settings.affiliations_tab
 
-    #Go into Edit Mode
-    Click Button                                Edit
 
     ${affl_check} =  Get Eda Locator            eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator    eda_settings.affiliations_role_checkbox
@@ -36,6 +34,10 @@ Verify EDA Settings
     
     Wait for Locator                            eda_settings.affiliation_mappings_tab
     Click on Element                            eda_settings.affiliation_mappings_tab
+
+    #Go into Edit Mode
+    Click Button                                Edit
+
 
     #Save settings
     Click Button                                Save
