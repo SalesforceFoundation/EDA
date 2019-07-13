@@ -9,7 +9,7 @@ Suite Teardown  Delete Records and Close Browser
     
     
 Let Us Populate Create And Return Contact with Address
-    ${contact_id} =  API Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    
+    ${contact_id} =  Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab    Details 
@@ -18,7 +18,7 @@ Let Us Populate Create And Return Contact with Address
     Verify Record    &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Sandy Thompson
-    ${contact_id} =  API Populate Create And Return Contact with Address    Sandy       Thompson   534 Calero Ave             San Jose     95023     CA     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Sandy       Thompson   534 Calero Ave             San Jose     95023     CA     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -27,7 +27,7 @@ Create Contact Sandy Thompson
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Andy Wright
-    ${contact_id} =  API Populate Create And Return Contact with Address    Andy        Wright     9989 Blossom Hill Rd       Sacramento   95101     CA     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Andy        Wright     9989 Blossom Hill Rd       Sacramento   95101     CA     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -36,7 +36,7 @@ Create Contact Andy Wright
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Sam Sharp
-    ${contact_id} =  API Populate Create And Return Contact with Address    Sam         Sharp      11 King Street             Clearfield   84145     MI     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Sam         Sharp      11 King Street             Clearfield   84145     MI     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -45,7 +45,7 @@ Create Contact Sam Sharp
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact William Young
-    ${contact_id} =  API Populate Create And Return Contact with Address    William     Young      674 Dunne Street           Roy          83932     MA     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    William     Young      674 Dunne Street           Roy          83932     MA     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -54,7 +54,7 @@ Create Contact William Young
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Matthew Taylor
-    ${contact_id} =  API Populate Create And Return Contact with Address    Matthew     Taylor     711 First Avenue           Boston       93929     NY     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Matthew     Taylor     711 First Avenue           Boston       93929     NY     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -63,7 +63,7 @@ Create Contact Matthew Taylor
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Douglas Smith
-    ${contact_id} =  API Populate Create And Return Contact with Address    Douglas     Smith      15219 Sierra Madre         Alpine       84004     AZ     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Douglas     Smith      15219 Sierra Madre         Alpine       84004     AZ     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -72,7 +72,7 @@ Create Contact Douglas Smith
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Joseph Mazzocco
-    ${contact_id} =  API Populate Create And Return Contact with Address    Joseph      Mazzocco   544 Pebblewood Ct          San Jose     95022     CA     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Joseph      Mazzocco   544 Pebblewood Ct          San Jose     95022     CA     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -81,7 +81,7 @@ Create Contact Joseph Mazzocco
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Sally Moore
-    ${contact_id} =  API Populate Create And Return Contact with Address    Sally       Moore      800 Spring Grove Rd        Hollister    95004     KS     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Sally       Moore      800 Spring Grove Rd        Hollister    95004     KS     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
@@ -90,7 +90,7 @@ Create Contact Sally Moore
     Verify Record                   &{contact}[FirstName] &{contact}[LastName]
 
 Create Contact Betsy Miller
-    ${contact_id} =  API Populate Create And Return Contact with Address    Betsy       Miller     945 Fort Dutson Ln         Deerfield    82034     AK     USA
+    ${contact_id} =  Populate Create And Return Contact with Address    Betsy       Miller     945 Fort Dutson Ln         Deerfield    82034     AK     USA
     &{contact} =  Salesforce Get    Contact             ${contact_id}
     Header Field Value              Account Name        &{contact}[LastName] Administrative Account
     Select Tab                      Details
