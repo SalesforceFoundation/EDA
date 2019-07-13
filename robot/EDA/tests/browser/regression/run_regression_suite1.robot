@@ -128,6 +128,7 @@ Create A New Program Plan
 
 Create A Course Offering
 
+    Reload Page
     #Check for EDA Tile
     Open App Launcher
 
