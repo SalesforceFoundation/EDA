@@ -111,8 +111,9 @@ Verify Affiliations, Program Enrollments and No Duplicates
 
 Create A New Program Plan
 
+    Reload Page
     #Check for EDA Tile
-   Open App Launcher
+    Open App Launcher
 
 
     Wait for Locator                        program_plans.program_plan1
