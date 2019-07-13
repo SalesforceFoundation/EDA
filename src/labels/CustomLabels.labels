@@ -17,6 +17,14 @@
         <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status Specified for Affiliations Not Deleted.</value>
     </labels>
     <labels>
+        <fullName>AttendanceCourseConnectionContactMismatch</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AttendanceCourseConnectionContactMismatch</shortDescription>
+        <value>Specify a Course Connection that has the same Contact as you specified for this Attendance Event.</value>
+    </labels>
+    <labels>
         <fullName>AutoCreateFieldError</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>

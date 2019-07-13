@@ -13,6 +13,10 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
+        <label><!-- AttendanceCourseConnectionContactMismatch --></label>
+        <name>AttendanceCourseConnectionContactMismatch</name>
+    </customLabels>
+    <customLabels>
         <label>Les paramètres de validité de création automatique de relations sont introuvables. Vérifiez les paramètres de validité des champs sous Paramètres EDA | Relations | Création automatique, puis réessayez.</label>
         <name>AutoCreateFieldError</name>
     </customLabels>

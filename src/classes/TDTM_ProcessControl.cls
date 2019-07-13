@@ -73,7 +73,8 @@ public class TDTM_ProcessControl {
         TB_StartEndTime_TDTM,
         REL_Relationships_Con_TDTM,
         REL_Relationships_Cm_TDTM,
-        TERM_CourseOff_TDTM
+        TERM_CourseOff_TDTM,
+        ATTD_CourseConnectionContact_TDTM
     }
 
     /*******************************************************************************************************

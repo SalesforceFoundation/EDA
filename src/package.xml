@@ -26,6 +26,8 @@
         <members>AFFL_MultiRecordTypeMapper</members>
         <members>AFFL_MultiRecordType_TDTM</members>
         <members>AFFL_MultiRecordType_TEST</members>
+        <members>ATTD_CourseConnectionContact_TDTM</members>
+        <members>ATTD_CourseConnectionContact_TEST</members>
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
@@ -141,6 +143,7 @@
         <members>TDTM_Account</members>
         <members>TDTM_Address</members>
         <members>TDTM_Affiliation</members>
+        <members>TDTM_AttendanceEvent</members>
         <members>TDTM_Campaign</members>
         <members>TDTM_CampaignMember</members>
         <members>TDTM_Contact</members>
@@ -473,6 +476,7 @@
     <types>
         <members>AfflMappingsDescription</members>
         <members>AfflProgEnrollDeleted</members>
+        <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
         <members>BothFieldAndValue</members>
         <members>CannotDelete</members>
