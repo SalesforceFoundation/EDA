@@ -35,7 +35,7 @@
 * @description Testing for the Relationships classes.
 */
 @isTest
-public class REL_Relationships_TEST {
+private class REL_Relationships_TEST {
 
     private static Contact c1;//male
     private static Contact c2;//female
@@ -45,10 +45,10 @@ public class REL_Relationships_TEST {
     * @description Helper for test methods, creates a Auto Create Relationship settings and Relationship
     * Lookup settings.
     */
-    private static void setupRelationshipTestData(Hierarchy_Settings__c rs){
+    private static void setupRelationshipTestData(Hierarchy_Settings__c rs) {
 
         //set running user to avoid dml issue
-        System.runAs(new User(Id = UserInfo.getUserId())){
+        System.runAs(new User(Id = UserInfo.getUserId())) {
 
             if (rs != null) {
                 UTIL_CustomSettingsFacade.getSettingsForTests(rs);
@@ -77,7 +77,7 @@ public class REL_Relationships_TEST {
             c1 = new Contact(Salutation = 'Mr.', FirstName = 'Walter_Test', LastName = 'Roosevelt_Test');
             c2 = new Contact(Salutation = 'Mrs.', FirstName = 'Jane_Test', LastName = 'Nixon_Test');
             c3 = new Contact(Salutation = 'Dr.', FirstName = 'Pat_Test', LastName = 'Cleveland_Test');
-            insert new Contact[] {c1, c2, c3};
+            insert new List<Contact> {c1, c2, c3};
         }
     }
 
@@ -95,6 +95,9 @@ public class REL_Relationships_TEST {
               Status__c = 'Active',
               Description__c = 'notes');
         insert rel;
+
+        System.assert(REL_Relationships_TDTM.reentrancyPrevented != true, 
+            'Did not expect the reentrancy check to have prevented the REL_Relationships_TDTM trigger from processing again after an insert.');
 
         // check that rel gets created
         List<Relationship__c> relList = [SELECT Id, Contact__c, RelatedContact__c, Status__c,
@@ -122,6 +125,9 @@ public class REL_Relationships_TEST {
         update relList[0];
         Test.stopTest();
 
+        System.assert(REL_Relationships_TDTM.reentrancyPrevented == true, 
+            'Expected the reentrancy check to have prevented the REL_Relationships_TDTM trigger from processing again after an update.');
+
         // test change to the rel
         Relationship__c updated_original = [SELECT Id, Description__c, Type__c, ReciprocalRelationship__c
                                               FROM Relationship__c WHERE Id = :relList[0].Id LIMIT 1];
@@ -140,7 +146,7 @@ public class REL_Relationships_TEST {
 
         // test deleting the rel
         delete updated_original;
-        Relationship__c[] mirror_after_original_deleted = [SELECT Id
+        List<Relationship__c> mirror_after_original_deleted = [SELECT Id
                                                            FROM Relationship__c
                                                            WHERE ReciprocalRelationship__c = :rel.Id];
         //mirror should be deleted as well
@@ -173,7 +179,7 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         //original relationship should have been automatically deleted
-        Relationship__c[] orphanedCrel = [SELECT Id FROM Relationship__c WHERE Id = :crel_original.Id];
+        List<Relationship__c> orphanedCrel = [SELECT Id FROM Relationship__c WHERE Id = :crel_original.Id];
         System.assertEquals(0, orphanedCrel.size());
     }
 
@@ -181,7 +187,7 @@ public class REL_Relationships_TEST {
     * @description Test method for deleting the original, should delete the reciprocal
     */
     @isTest
-    public static void testRelationshipDelete(){
+    public static void testRelationshipDelete() {
         setupRelationshipTestData(null);
         Relationship__c crel_original = new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id,
                                                                 Type__c = 'Buddies');
@@ -214,7 +220,7 @@ public class REL_Relationships_TEST {
     * @description Test method for campaign member auto create relationships
     */
     @isTest
-    public static void testAutoCreateCampaignMemberInsert(){
+    public static void testAutoCreateCampaignMemberInsert() {
         setupRelationshipTestData(null);
 
         //Insert a campaign
@@ -246,7 +252,7 @@ public class REL_Relationships_TEST {
     * @description Test method for campaign member auto create relationships - synchronous
     */
     @isTest
-    public static void testAutoCreateCampaignMemberInsertSynch(){
+    public static void testAutoCreateCampaignMemberInsertSynch() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         //insert a campaignmember
@@ -268,7 +274,7 @@ public class REL_Relationships_TEST {
     * @description Test method for campaign member auto create relationships - reentrancy is prevented
     */
     @isTest
-    public static void testCampaignMemberReentrancyCheck(){
+    public static void testCampaignMemberReentrancyCheck() {
         setupRelationshipTestData(null);
 
         // Install Default HEDA TDTM Configuration
@@ -309,7 +315,7 @@ public class REL_Relationships_TEST {
     * We can't do a true test as ContactId is not updatable, but we'll hit the update for coverage.
     */
     @isTest
-    public static void testAutoCreateCampaignMemberUpdate(){
+    public static void testAutoCreateCampaignMemberUpdate() {
         setupRelationshipTestData(null);
         //insert a campaignmember
         Campaign c = new Campaign(Name = 'TestCampaign', IsActive = true);
@@ -329,7 +335,7 @@ public class REL_Relationships_TEST {
     * @description Test method for auto creating relationships based on contact fields on contact insert.
     */
     @isTest
-    public static void testAutoCreateContactInsert(){
+    public static void testAutoCreateContactInsert() {
         setupRelationshipTestData(null);
 
         //insert a new Contact
@@ -352,7 +358,7 @@ public class REL_Relationships_TEST {
     * @description Test method for auto creating relationships based on contact fields on contact insert - synchronous.
     */
     @isTest
-    public static void testAutoCreateContactInsertSynch(){
+    public static void testAutoCreateContactInsertSynch() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         //insert a new Contact
@@ -375,7 +381,7 @@ public class REL_Relationships_TEST {
     * @description Test method for auto creating relationships based on contact fields on contact update.
     */
     @isTest
-    public static void testAutoCreateContactUpdate(){
+    public static void testAutoCreateContactUpdate() {
         setupRelationshipTestData(null);
 
         //insert a new Contact
@@ -396,7 +402,7 @@ public class REL_Relationships_TEST {
     * @description Test method for auto creating relationships based on contact fields on contact update - reentrancy is prevented.
     */
     @isTest
-    public static void testContactUpdateReentrancyPrevented(){
+    public static void testContactUpdateReentrancyPrevented() {
         setupRelationshipTestData(null);
 
         // Install Default HEDA TDTM Configuration
@@ -434,10 +440,10 @@ public class REL_Relationships_TEST {
     * @description Test value inversion reciprocal method, verify type.
     */
     @isTest
-    public static void testInversionSettingsHaveType(){
+    public static void testInversionSettingsHaveType() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'Buddies-Friends')
         };
 
@@ -461,10 +467,10 @@ public class REL_Relationships_TEST {
     * @description Test value inversion reciprocal method, verify type.
     */
     @isTest
-    public static void testInversionSettingsNoType(){
+    public static void testInversionSettingsNoType() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'Value Inversion'));
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'BuddiesFriends')
         };
 
@@ -488,10 +494,10 @@ public class REL_Relationships_TEST {
     * @description Test invalid settings config, verify mirror relationship works correctly
     */
     @isTest
-    public static void testNoValidSettingsConfig(){
+    public static void testNoValidSettingsConfig() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'BAD_VALUE'));
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'BuddiesFriends')
         };
 
@@ -515,9 +521,9 @@ public class REL_Relationships_TEST {
     * @description Test male contact (by salutation) gets male relationship type
     */
     @isTest
-    public static void testMaleSalutationReciprocal(){
+    public static void testMaleSalutationReciprocal() {
         setupRelationshipTestData(null);
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
@@ -533,9 +539,9 @@ public class REL_Relationships_TEST {
     * @description Test female contact (by salutation) gets female relationship type
     */
     @isTest
-    public static void testFemaleSalutationReciprocal(){
+    public static void testFemaleSalutationReciprocal() {
         setupRelationshipTestData(null);
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c2.Id, RelatedContact__c = c1.Id, Type__c = 'TestLookupType')
         };
 
@@ -551,9 +557,9 @@ public class REL_Relationships_TEST {
     * @description Test neutral contact (by salutation) gets neutral relationship type
     */
     @isTest
-    public static void testNeutralSalutationReciprocal(){
+    public static void testNeutralSalutationReciprocal() {
         setupRelationshipTestData(null);
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c3.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
@@ -569,9 +575,9 @@ public class REL_Relationships_TEST {
     * @description Test neutral contact (by gender field) gets neutral relationship type
     */
     @isTest
-    public static void testNeutralGenderFieldReciprocal(){
+    public static void testNeutralGenderFieldReciprocal() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c3.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
         c3.Gender__c = 'Neutral';
@@ -589,11 +595,11 @@ public class REL_Relationships_TEST {
     * @description Test male contact (by gender field) gets male relationship type
     */
     @isTest
-    public static void testMaleGenderFieldReciprocal(){
+    public static void testMaleGenderFieldReciprocal() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         c1.Gender__c = 'Male';
         update c1;
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
@@ -609,12 +615,12 @@ public class REL_Relationships_TEST {
     * @description Test female contact (by gender field) gets female relationship type
     */
     @isTest
-    public static void testFemaleGenderFieldReciprocal(){
+    public static void testFemaleGenderFieldReciprocal() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
         c2.Gender__c = 'Female';
         update c2;
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c2.Id, RelatedContact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
@@ -630,7 +636,7 @@ public class REL_Relationships_TEST {
     * @description For two contacts with no gender, manually set a gendered relationship. Verify that it stays
     * and that the reciprocal gets the neutral type by default.
     */
-    static testMethod void testNoGenderManualRel(){
+    static testMethod void testNoGenderManualRel() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
@@ -639,7 +645,7 @@ public class REL_Relationships_TEST {
         };
         insert conList;
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c = 'TestLookupType')
         };
 
@@ -658,7 +664,7 @@ public class REL_Relationships_TEST {
     * @description For two contacts with no gender, manually set a gendered relationship. Change the status,
     * verify gendered relationship type hasn't changed, but that the status has changed.
     */
-    static testMethod void testNoGenderManualRelStatusChange(){
+    static testMethod void testNoGenderManualRelStatusChange() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
@@ -667,7 +673,7 @@ public class REL_Relationships_TEST {
         };
         insert conList;
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c = 'TestMaleType')
         };
 
@@ -702,7 +708,7 @@ public class REL_Relationships_TEST {
     * contacts. Verify the relationship's type has changed per the changed gender, and that the reciprocal
     * hasn't changed.
     */
-    static testMethod void testGenderChange(){
+    static testMethod void testGenderChange() {
         setupRelationshipTestData(new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting'));
 
         list<Contact> conList = new list<Contact>{
@@ -711,7 +717,7 @@ public class REL_Relationships_TEST {
         };
         insert conList;
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = conList[0].Id, RelatedContact__c = conList[1].Id, Type__c = 'TestLookupType')
         };
 
@@ -743,7 +749,7 @@ public class REL_Relationships_TEST {
     public static void testErrorRecordCreation() {
         setupRelationshipTestData(null);
 
-        Relationship__c[] relationships = new Relationship__c[]{
+        List<Relationship__c> relationships = new List<Relationship__c>{
             new Relationship__c(Contact__c = c2.Id, Type__c = 'TestLookupType')
         };
 
@@ -778,7 +784,7 @@ public class REL_Relationships_TEST {
     * @description Test method throws an exception for relationships and verifies an error is logged.
     */
     @isTest
-    public static void testExceptionRecordCreation(){
+    public static void testExceptionRecordCreation() {
         setupRelationshipTestData(null);
 
         ERR_Handler.processError(new MyException('TestException'), ERR_Handler.Context.REL);
@@ -791,10 +797,10 @@ public class REL_Relationships_TEST {
     * @description Test method for verifying automatic relationship creation won't create a duplicate.
     */
     @isTest
-    public static void testAutoCreateDupePrevention(){
+    public static void testAutoCreateDupePrevention() {
         setupRelationshipTestData(null);
 
-        Relationship__c[] crel = new Relationship__c[]{
+        List<Relationship__c> crel = new List<Relationship__c>{
             new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestType')
         };
         crel.add(new Relationship__c(Contact__c = c1.Id, RelatedContact__c = c2.Id, Type__c = 'TestType2'));
@@ -808,7 +814,7 @@ public class REL_Relationships_TEST {
         Test.stopTest();
 
         //assert we only have one relationship since we've deduped the auto-created one
-        Relationship__c[] rel = [SELECT Id, Type__c, RelatedContact__c FROM Relationship__c WHERE Contact__c = :c1.Id AND Type__c = 'TestType'];
+        List<Relationship__c> rel = [SELECT Id, Type__c, RelatedContact__c FROM Relationship__c WHERE Contact__c = :c1.Id AND Type__c = 'TestType'];
         system.assertEquals('TestType', rel[0].Type__c);
         system.assertEquals(rel.size(), 1);
     }
@@ -817,9 +823,9 @@ public class REL_Relationships_TEST {
     * @description Method to test the UTIL_CustomSettingsFacade class as a different user
     */
     @isTest
-    public static void testRelationshipUTILS(){
+    public static void testRelationshipUTILS() {
         //to test the Relationship_Utils class
-        System.runAs(new User(Id = UserInfo.getUserId())){
+        System.runAs(new User(Id = UserInfo.getUserId())) {
            Boolean cAuto = REL_Utils.hasContactAutoCreate;
            Boolean cmAuto = REL_Utils.hasCMAutoCreate;
            System.assertEquals(false, cAuto);
@@ -831,8 +837,8 @@ public class REL_Relationships_TEST {
     * @description Test method for REL_Utils class when auto create settings exist
     */
     @isTest
-    public static void testRelationshipUTILSAutoCreate(){
-      System.runAs(new User(Id = UserInfo.getUserId())){
+    public static void testRelationshipUTILSAutoCreate() {
+      System.runAs(new User(Id = UserInfo.getUserId())) {
         insert new Relationship_Auto_Create__c(Name = 'contacttest'+ system.now(),
                                                 Object__c = 'Contact', Field__c = 'coworker__c',
                                                 Relationship_Type__c = 'coworker',
@@ -858,14 +864,14 @@ public class REL_Relationships_TEST {
         Contact mainClient = new Contact(FirstName = 'Main', LastName = 'AAAClient');
         Contact friend = new Contact(FirstName = 'Test', LastName = 'AAAFriend');
         Contact coworker = new Contact(FirstName = 'Test', LastName = 'AAACoworker');
-        insert new Contact[] {mainClient, friend, coworker};
+        insert new List<Contact> {mainClient, friend, coworker};
 
         // Create two relationships
         Relationship__c r1 = new Relationship__c(Contact__c = mainClient.Id, RelatedContact__c = friend.Id, Type__c = 'Friend');
         Relationship__c r2 = new Relationship__c(Contact__c = mainClient.Id, RelatedContact__c = coworker.Id, Type__c = 'Coworker');
 
         Test.startTest();
-        insert new Relationship__c[] {r1, r2};
+        insert new List<Relationship__c> {r1, r2};
         Test.stopTest();
 
         Relationship__c nr = [SELECT Id, ReciprocalRelationship__c FROM Relationship__c WHERE Id = :r1.Id];
