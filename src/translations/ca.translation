@@ -13,6 +13,10 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
+        <label><!-- AttendanceCourseConnectionContactMismatch --></label>
+        <name>AttendanceCourseConnectionContactMismatch</name>
+    </customLabels>
+    <customLabels>
         <label>No es pot trobar la configuració de la relació d&apos;autocreació vàlida. Verifiqueu la configuració a Configuració de EDA | Relacions | Autocreació per a camps vàlids i torneu-ho a provar.</label>
         <name>AutoCreateFieldError</name>
     </customLabels>

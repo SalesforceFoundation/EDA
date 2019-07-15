@@ -37,65 +37,87 @@
 */
 public with sharing class TERM_CourseOff_TDTM extends TDTM_Runnable {
 
+    @testVisible
+    private static Boolean reentrancyPrevented;
+
     /*******************************************************************************************************
-    * @description Handles Affiliation management for Course Offering.
-                   Populates Start and End Date from Term, if fields are empty.
-    * @param listNew the list of Accounts from trigger new. 
-    * @param listOld the list of Accounts from trigger old. 
+    * @description Handles Start and End Date management for Course Offerings when Terms are updated.
+                   Populates Start and End Date from Term, if fields on the Course Offering are empty.
+    * @param listNew the list of Terms from trigger new. 
+    * @param listOld the list of Terms from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Course Offering.
+    * @param objResult the describe for Term.
     * @return dmlWrapper.  
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
         DmlWrapper dmlWrapper = new DmlWrapper();
+
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.TERM_CourseOff_TDTM)) {
+            reentrancyPrevented = true;
+            return dmlWrapper;
+         }
         
         //only pertinent for after update, because course offerings cannot be created without a parent term
-        if(oldlist != null && oldlist.size() > 0 && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+        if (oldlist != null && oldlist.size() > 0 && triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             List<Term__c> termsWithNewDates = new List<Term__c>();
             
             //find all the terms that didn't have start or end date and now have it
-            for (integer i=0; i<newlist.size(); i++) {
+            for (Integer i = 0; i < newlist.size(); i++) {
                 Term__c newTerm = (Term__c)newlist[i];
                 Term__c oldTerm = (Term__c)oldlist[i];
                 
-                if((newTerm.Start_Date__c != null && oldTerm.Start_Date__c == null) || 
-                (newTerm.End_Date__c != null && oldTerm.End_Date__c == null)) {
+                if ((newTerm.Start_Date__c != null && oldTerm.Start_Date__c == null) || 
+                        (newTerm.End_Date__c != null && oldTerm.End_Date__c == null)) {
                     termsWithNewDates.add(newTerm);
                 }
             }
  
             //find all children course offerings for all these terms
-            List<Term__c> termsWithCourseOffs = [select Start_Date__c, End_Date__c, (select Start_Date__c, 
-            End_Date__c from Course_Offerings__r) from Term__c where ID IN :termsWithNewDates];
+            List<Term__c> termsWithCourseOffs = [SELECT Start_Date__c, 
+                                                        End_Date__c, 
+                                                        (SELECT Start_Date__c, 
+                                                                End_Date__c 
+                                                        FROM Course_Offerings__r) 
+                                                FROM Term__c 
+                                                WHERE ID IN :termsWithNewDates];
             
             List<SObject> coffsToUpdate = new List<SObject>();
             
-            for(Term__c parentTerm : termsWithCourseOffs) {
+            for (Term__c parentTerm : termsWithCourseOffs) {
                 List<Course_Offering__c> childCoffs = parentTerm.Course_Offerings__r;
-                for(Course_Offering__c childOff : childCoffs) {
+                for (Course_Offering__c childOff : childCoffs) {
                     Boolean childOffModified = false;
-		            //in all those cases where the term has a start date but the children course offerings don't,
+		            
+                    //in all those cases where the term has a start date but the children course offerings don't,
 		            //copy the date from the term.
-		            if(parentTerm.Start_Date__c != null && childOff.Start_Date__c == null) {
+		            if (parentTerm.Start_Date__c != null && childOff.Start_Date__c == null) {
 		                childOff.Start_Date__c = parentTerm.Start_Date__c;
 		                childOffModified = true;
 		            }
-		            //in all those cases where the term has an end date but the children course offerings don't,
+		            
+                    //in all those cases where the term has an end date but the children course offerings don't,
 		            //copy the date from the term.
-                    if(parentTerm.End_Date__c != null && childOff.End_Date__c == null) {
+                    if (parentTerm.End_Date__c != null && childOff.End_Date__c == null) {
                         childOff.End_Date__c = parentTerm.End_Date__c;
                         childOffModified = true;
                     }
                     
-                    if(childOffModified) {
+                    if (childOffModified) {
                         coffsToUpdate.add(childOff);
                     }
                 }
             }
+
             dmlWrapper.objectsToUpdate.addAll(coffsToUpdate);
         }
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.TERM_CourseOff_TDTM, true);
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.TERM_CourseOff_TDTM, false);
+
         return dmlWrapper;
     }
 }
