@@ -50,41 +50,41 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
 	public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-    	 DmlWrapper dmlWrapper = new DmlWrapper();
+        DmlWrapper dmlWrapper = new DmlWrapper();
 
-         if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM)) {
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM)) {
             reentrancyPrevented = true;
             return dmlWrapper;
-         }
+        }
 
-    	 //Accounts that did not have a record type before but now they do
-    	 Map<ID, String> accsTypeAdded = new Map<ID, String>();
-    	 //Accounts whose record type has changed
-    	 List<AccNewOldType> accsTypeChanged = new List<AccNewOldType>();
+        //Accounts that did not have a record type before but now they do
+        Map<ID, String> accsTypeAdded = new Map<ID, String>();
+        //Accounts whose record type has changed
+        List<AccNewOldType> accsTypeChanged = new List<AccNewOldType>();
 
-    	 //When a user changes the record type of an Account:
-    	 //
-    	 //    A. If that account already had a record type and was part of any primary affiliation:
-         //         1. the key affl lookup field on Contacts affiliated to it needs to be updated
-         //         2. other primary affiliations of the same NEW type need to be changed to not primary
-         //
-         //    B. If that account did not have a record type:
-         //         --> the key affl lookup field for that type in Contacts affiliated to it needs to be populated
-    	 if (newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
-    	 	
+        //When a user changes the record type of an Account:
+        //
+        //    A. If that account already had a record type and was part of any primary affiliation:
+        //         1. the key affl lookup field on Contacts affiliated to it needs to be updated
+        //         2. other primary affiliations of the same NEW type need to be changed to not primary
+        //
+        //    B. If that account did not have a record type:
+        //         --> the key affl lookup field for that type in Contacts affiliated to it needs to be populated
+        if (newlist != null && newlist.size() > 0 && oldlist != null && oldlist.size() > 0) {
+        
             for (Integer i = 0; i < newlist.size(); i++) {
-    	 	    SObject so = newlist[i];
-    	 	    //AFTER UPDATE
-    	 	    if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-	    	 	    Account acc = (Account)so;
-			        Account oldAcc = (Account)oldList[i];
+                SObject so = newlist[i];
+                //AFTER UPDATE
+                if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                    Account acc = (Account)so;
+                    Account oldAcc = (Account)oldList[i];
 
                     // If the record type isn't changing, move on
                     if (acc.RecordTypeId == oldAcc.RecordTypeId) {
                         continue;
                     }
 
-			        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
+                    AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
                     //Find the lookup field that matches the new record type
                     String keyAfflFieldNewType = afflMapper.getKeyAfflFieldByAccRecordType(acc.RecordTypeId);
@@ -100,19 +100,19 @@ public class AFFL_AccRecordType_TDTM extends TDTM_Runnable {
                     } else if (keyAfflFieldNewType != null) {
                         accsTypeAdded.put(acc.Id, keyAfflFieldNewType);
                     }
-    	 		}
-		    }
+                }
+            }
 
-		    updatePrimaryAfflsOnChange(accsTypeChanged, dmlWrapper);
+            updatePrimaryAfflsOnChange(accsTypeChanged, dmlWrapper);
             updatePrimaryAfflsOnAdd(accsTypeAdded, dmlWrapper);
 
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM, true);
             TDTM_TriggerHandler.processDML(dmlWrapper, true);
             dmlWrapper = null;
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_AccRecordType_TDTM, false);
-    	 }
+        }
 
-    	 return dmlWrapper;
+        return dmlWrapper;
     }
 
     /*******************************************************************************************************
