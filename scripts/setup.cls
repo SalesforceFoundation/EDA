@@ -10,6 +10,10 @@ public static void enableCourseConnections() {
   %%%NAMESPACE%%%Hierarchy_Settings__c settings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
 
   settings.put('%%%NAMESPACE%%%Enable_Course_Connections__c', true);
+  settings.put('%%%NAMESPACE%%%Validate_Program_Plan_for_Nested_PR__c', true);
+  settings.put('%%%NAMESPACE%%%Affl_ProgEnroll_Set_Role__c', true);
+  settings.put('%%%NAMESPACE%%%Affl_ProgEnroll_Copy_End_Date__c', true);
+  settings.put('%%%NAMESPACE%%%Affl_ProgEnroll_Copy_Start_Date__c', true);
   settings.put('%%%NAMESPACE%%%Student_RecType__c', rtInfosByName.get('Student').getRecordTypeId());
   settings.put('%%%NAMESPACE%%%Faculty_RecType__c', rtInfosByName.get('Faculty').getRecordTypeId());
 
