@@ -1,221 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>%%%NAMESPACE%%%HEDA</members>
-        <members>HEDA</members>
-        <members>standard__AllTabSet</members>
-        <members>standard__AppLauncher</members>
-        <members>standard__Chatter</members>
-        <members>standard__Community</members>
-        <members>standard__Content</members>
-        <members>standard__Insights</members>
-        <members>standard__LightningBolt</members>
-        <members>standard__LightningSales</members>
-        <members>standard__Marketing</members>
-        <members>standard__Platform</members>
-        <members>standard__Sales</members>
-        <members>standard__Service</members>
-        <members>standard__ServiceConsole</members>
-        <members>standard__Sites</members>
+        <members>Account.%%%NAMESPACE%%%HEDA_Account_Compact_Layout</members>
+        <members>Contact.%%%NAMESPACE%%%HEDA_Contact_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%HEDA_Facility_Compact_Layout</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>*</members>
         <name>CustomApplication</name>
     </types>
     <types>
-        <members>%%%NAMESPACE%%%Error__c</members>
+        <members>*</members>
         <name>CustomTab</name>
     </types>
     <types>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</members>
-        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c-%%%NAMESPACE%%%EDA Course Offering Schedule Layout</members>
-        <members>%%%NAMESPACE%%%Course_Offering__c-%%%NAMESPACE%%%HEDA Course Offering Layout</members>
-        <members>%%%NAMESPACE%%%Facility__c-%%%NAMESPACE%%%HEDA Facility Layout</members>
-        <members>%%%NAMESPACE%%%Program_Enrollment__c-%%%NAMESPACE%%%HEDA Program Enrollment Layout</members>
-        <members>Account-%%%NAMESPACE%%%HEDA Organization Layout</members>
-        <members>Account-Account %28Marketing%29 Layout</members>
-        <members>Account-Account %28Sales%29 Layout</members>
-        <members>Account-Account %28Support%29 Layout</members>
-        <members>Account-Account Layout</members>
-        <members>Address-Address Layout</members>
-        <members>AssetRelationship-Asset Relationship Layout</members>
-        <members>Asset-Asset Layout</members>
-        <members>AssignedResource-Assigned Resource Layout</members>
-        <members>AssociatedLocation-Associated Location Layout</members>
-        <members>CampaignMember-Campaign Member Page Layout</members>
-        <members>Campaign-Campaign Layout</members>
-        <members>CaseClose-Close Case Layout</members>
-        <members>Case-Case %28Marketing%29 Layout</members>
-        <members>Case-Case %28Sales%29 Layout</members>
-        <members>Case-Case %28Support%29 Layout</members>
-        <members>Case-Case Layout</members>
-        <members>CommunityMemberLayout-Community Member Layout</members>
-        <members>ConsumptionRate-Consumption Rate Layout</members>
-        <members>ConsumptionSchedule-Consumption Schedule Layout</members>
-        <members>Contact-%%%NAMESPACE%%%HEDA Contact Layout</members>
-        <members>Contact-Contact %28Marketing%29 Layout</members>
-        <members>Contact-Contact %28Sales%29 Layout</members>
-        <members>Contact-Contact %28Support%29 Layout</members>
-        <members>Contact-Contact Layout</members>
-        <members>ContentVersion-Content Version Layout</members>
-        <members>Contract-Contract Layout</members>
-        <members>DandBCompany-D%26B Company Layout</members>
-        <members>DuplicateRecordSet-Duplicate Record Set Layout</members>
-        <members>EmailMessage-Email Message Layout</members>
-        <members>Event-Event Layout</members>
-        <members>Global-Global Layout</members>
-        <members>GoalLink-Goal Link Layout</members>
-        <members>Goal-Goal Layout</members>
-        <members>Idea-Idea Layout</members>
-        <members>Individual-Individual Layout</members>
-        <members>JobTracker-Job Tracker Layout</members>
-        <members>JobTracker-Job Tracker Layout - Summer %2715</members>
-        <members>JobTracker-Job Tracker Layout - Winter %2716</members>
-        <members>Lead-Lead %28Marketing%29 Layout</members>
-        <members>Lead-Lead %28Sales%29 Layout</members>
-        <members>Lead-Lead %28Support%29 Layout</members>
-        <members>Lead-Lead Layout</members>
-        <members>Location-Location Layout</members>
-        <members>Macro-Macro Layout</members>
-        <members>MaintenanceAsset-Maintenance Asset Layout</members>
-        <members>MaintenancePlan-Maintenance Plan Layout</members>
-        <members>MetricDataLink-Metric Data Link Layout</members>
-        <members>Metric-Completion Metric Layout</members>
-        <members>Metric-Metric Layout</members>
-        <members>OperatingHours-Operating Hours Layout</members>
-        <members>OpportunityLineItem-Opportunity Product Layout</members>
-        <members>Opportunity-Opportunity %28Marketing%29 Layout</members>
-        <members>Opportunity-Opportunity %28Sales%29 Layout</members>
-        <members>Opportunity-Opportunity %28Support%29 Layout</members>
-        <members>Opportunity-Opportunity Layout</members>
-        <members>OrderItem-Order Product Layout</members>
-        <members>Order-Order Layout</members>
-        <members>Pricebook2-Price Book Layout</members>
-        <members>PricebookEntry-Price Book Entry Layout</members>
-        <members>Product2-Product Layout</members>
-        <members>ProductConsumed-Product Consumed Layout</members>
-        <members>ProductConsumptionSchedule-Product Consumption Schedule Layout</members>
-        <members>ProductItemTransaction-Product Item Transaction Layout</members>
-        <members>ProductItem-Product Item Layout</members>
-        <members>ProductRequestLineItem-Product Request Line Item Layout</members>
-        <members>ProductRequest-Product Request Layout</members>
-        <members>ProductRequired-Product Required Layout</members>
-        <members>ProductTransfer-Product Transfer Layout</members>
-        <members>ProfileSkillEndorsement-Endorsement Layout</members>
-        <members>ProfileSkillUser-Skill User Layout</members>
-        <members>ProfileSkill-Skill Layout</members>
-        <members>QuickText-Quick Text Layout</members>
-        <members>ResourceAbsence-Resource Absence Layout</members>
-        <members>ResourcePreference-Resource Preference Layout</members>
-        <members>ReturnOrderLineItem-Return Order Line Item Layout</members>
-        <members>ReturnOrder-Return Order Layout</members>
-        <members>ScorecardAssociation-Scorecard Association Layout</members>
-        <members>ScorecardMetric-Scorecard Metric Layout</members>
-        <members>Scorecard-Scorecard Layout</members>
-        <members>ServiceAppointmentCapacityUsage-Service Appointment Capacity Usage Layout</members>
-        <members>ServiceAppointment-Service Appointment Layout</members>
-        <members>ServiceCrewMember-Service Crew Member Layout</members>
-        <members>ServiceCrew-Service Crew Layout</members>
-        <members>ServiceResourceCapacity-Resource Capacity Layout</members>
-        <members>ServiceResourceSkill-Service Resource Skill Layout</members>
-        <members>ServiceResource-Service Resource Layout</members>
-        <members>ServiceTerritoryMember-Service Territory Member Layout</members>
-        <members>ServiceTerritory-Service Territory Layout</members>
-        <members>Shift-Shift Layout</members>
-        <members>Shipment-Shipment Layout</members>
-        <members>SkillRequirement-Skill Requirement Layout</members>
-        <members>SocialPersona-Social Persona Layout</members>
-        <members>SocialPost-Social Post Layout</members>
-        <members>Solution-Solution Layout</members>
-        <members>Task-Task Layout</members>
-        <members>TimeSheetEntry-Time Sheet Entry Layout</members>
-        <members>TimeSheet-Time Sheet Layout</members>
-        <members>TimeSlot-Time Slot Layout</members>
-        <members>UserProvAccount-User Provisioning Account Layout</members>
-        <members>UserProvisioningLog-User Provisioning Log Layout</members>
-        <members>UserProvisioningRequest-User Provisioning Request Layout</members>
-        <members>User-User Layout</members>
-        <members>WorkAccess-Access Layout</members>
-        <members>WorkBadgeDefinition-Badge Layout</members>
-        <members>WorkBadge-Badge Received Layout</members>
-        <members>WorkCapacityLimit-Work Capacity Limit Layout</members>
-        <members>WorkCapacityUsage-Work Capacity Usage Layout</members>
-        <members>WorkCoaching-Coaching Layout</members>
-        <members>WorkFeedbackQuestionSet-Feedback Question Set Layout</members>
-        <members>WorkFeedbackQuestionSet-Feedback Question Set Layout - Summer %2715</members>
-        <members>WorkFeedbackQuestionSet-Feedback Question Set Layout - Winter %2716</members>
-        <members>WorkFeedbackQuestion-Feedback Question Layout</members>
-        <members>WorkFeedbackQuestion-Feedback Question Layout - Summer %2715</members>
-        <members>WorkFeedbackQuestion-Feedback Question Layout - Winter %2716</members>
-        <members>WorkFeedbackRequest-Feedback Request Layout</members>
-        <members>WorkFeedbackRequest-Feedback Request Layout - Summer %2715</members>
-        <members>WorkFeedbackRequest-Feedback Request Layout - Winter %2716</members>
-        <members>WorkFeedbackTemplate-Feedback Template Layout</members>
-        <members>WorkFeedback-Feedback Layout</members>
-        <members>WorkFeedback-Feedback Layout - Summer %2715</members>
-        <members>WorkFeedback-Feedback Layout - Winter %2716</members>
-        <members>WorkOrderLineItem-Work Order Line Item Layout</members>
-        <members>WorkOrder-Work Order Layout</members>
-        <members>WorkPerformanceCycle-Performance Cycle Layout</members>
-        <members>WorkPerformanceCycle-Performance Cycle Layout - Summer %2715</members>
-        <members>WorkPerformanceCycle-Performance Cycle Layout - Winter %2716</members>
-        <members>WorkRewardFundType-Reward Fund Type Layout</members>
-        <members>WorkRewardFund-Reward Fund Layout</members>
-        <members>WorkReward-Reward Layout</members>
-        <members>WorkThanks-Thanks Layout</members>
-        <members>WorkTypeGroup-Work Type Group Layout</members>
-        <members>WorkType-Work Type Layout</members>
+        <members>*</members>
         <name>Layout</name>
     </types>
     <types>
-        <members>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Program_Enrollment__c.%%%NAMESPACE%%%All</members>
-        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c.All</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.All</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.All</members>
+        <members>%%%NAMESPACE%%%Course__c.All</members>
+        <members>%%%NAMESPACE%%%Facility__c.All</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.All</members>
+        <members>%%%NAMESPACE%%%Program_Enrollment__c.All</members>
+        <members>%%%NAMESPACE%%%Term__c.All</members>
         <members>Account.All_Accounts</members>
         <members>Contact.All_Contacts</members>
         <name>ListView</name>
     </types>
     <types>
-        <members>Admin</members>
-        <members>Analytics Cloud Integration User</members>
-        <members>Analytics Cloud Security User</members>
-        <members>Authenticated Website</members>
-        <members>CPQ Integration User</members>
-        <members>Chatter External User</members>
-        <members>Chatter Free User</members>
-        <members>Chatter Moderator User</members>
-        <members>Company Communities User</members>
-        <members>ContractManager</members>
-        <members>Cross Org Data Proxy User</members>
-        <members>Custom%3A Marketing Profile</members>
-        <members>Custom%3A Sales Profile</members>
-        <members>Custom%3A Support Profile</members>
-        <members>Customer Community Login User</members>
-        <members>Customer Community Plus Login User</members>
-        <members>Customer Community Plus User</members>
-        <members>Customer Community User</members>
-        <members>Customer Portal Manager Custom</members>
-        <members>Customer Portal Manager Standard</members>
-        <members>External Identity User</members>
-        <members>Force%2Ecom - App Subscription User</members>
-        <members>Force%2Ecom - Free User</members>
-        <members>Gold Partner User</members>
-        <members>High Volume Customer Portal User</members>
-        <members>HighVolumePortal</members>
-        <members>Identity User</members>
-        <members>MarketingProfile</members>
-        <members>Partner App Subscription User</members>
-        <members>Partner Community Login User</members>
-        <members>Partner Community User</members>
-        <members>PlatformPortal</members>
-        <members>ReadOnly</members>
-        <members>Silver Partner User</members>
-        <members>SolutionManager</members>
-        <members>Standard</members>
-        <members>StandardAul</members>
-        <members>Work%2Ecom Only User</members>
+        <members>*</members>
         <name>Profile</name>
     </types>
     <types>
