@@ -194,6 +194,10 @@ public with sharing class CON_Phone {
                 contact.PreferredPhone__c = otherField.prefLabel;
                 contact.OtherPhone = contact.Phone;
             }
+            else {
+                contact.PreferredPhone__c = 'Other';
+                contact.OtherPhone = contact.Phone;
+            }
         }
     }
 

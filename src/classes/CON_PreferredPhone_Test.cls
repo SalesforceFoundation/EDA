@@ -90,7 +90,7 @@ public class CON_PreferredPhone_Test {
        to Other and update Other Phone to the value of Standard Phone.
     */
     @isTest 
-    static void testUpdatePrefPhone2Other() {
+    static void testUpdatePrefPhoneTOther() {
 
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
