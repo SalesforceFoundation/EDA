@@ -190,9 +190,10 @@ public with sharing class CON_Phone {
             String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
             // Retrieve field from field list using the known API name.
             CON_PhoneField otherField = fieldList.getFieldByApiName(prefix + 'OtherPhone');
-
-            contact.PreferredPhone__c = otherField.prefLabel;
-            contact.OtherPhone = contact.Phone;
+            if (otherField != NULL) {
+                contact.PreferredPhone__c = otherField.prefLabel;
+                contact.OtherPhone = contact.Phone;
+            }
         }
     }
 
