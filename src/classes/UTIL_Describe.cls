@@ -511,13 +511,13 @@ public class UTIL_Describe {
 
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, String> fields = new Map<String, String>();
-		System.debug('!!!!!! allFields'+allFields);
+       
         for(String fieldLabel: allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldLabel);
      
             if (String.valueOf( field.getType() ) == type) {
                 fields.put(fieldLabel, field.getName());
-                
+                //fields.put(field.getName(), field.getName());
             }
         }
 	

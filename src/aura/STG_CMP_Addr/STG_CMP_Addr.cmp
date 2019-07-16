@@ -146,8 +146,8 @@
                 picklistEntries="{!v.preferredPhonePicklistEntries}"
                 enableNoneOption="true" />
          </div>   
-
-      	 <!--  End of Preferred Phone -->
+      	
+        <!-- End of Preferred Phone -->
         
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
         
