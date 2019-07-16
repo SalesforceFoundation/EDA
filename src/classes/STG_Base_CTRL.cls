@@ -279,4 +279,19 @@ public with sharing class STG_Base_CTRL {
             return jobId;
         }
     }
+    
+    /*******************************************************************************************************
+    * @description Executes Batch to clean up data for Preferred Phone enforcement
+    * @return Id of Batch Job
+    */
+    @AuraEnabled
+    public static Id executePreferredPhoneCleanUpBatch() {
+        CON_Phone_BATCH contbatch = new CON_Phone_BATCH(null);
+        Id jobId = Database.executeBatch( contbatch , 200 );
+        if(jobId == null) {
+            throw new AuraHandledException('There was a problem starting the Batch.');
+        } else {
+            return jobId;
+        }
+    }
 }

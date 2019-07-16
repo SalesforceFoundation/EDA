@@ -5,6 +5,9 @@
     <aura:attribute name="defaultContactLanguageFluencyValue" type="String" />
     <aura:attribute name="defaultContactLanguageFluencyLabel" type="String" />
     <aura:attribute name="fluencyPicklistEntries" type="Map" />
+    <aura:attribute name="preferredPhonePicklistEntries" type="Map" />
+    <aura:attribute name="defaultPreferredPhoneValue" type="String" />
+    <aura:attribute name="defaultPreferredPhoneLabel" type="String" />
 
     <aura:attribute name="accTypesToDeleteSelected" type="Object[]" />
     <aura:attribute name="accTypesAddrSelected" type="Object[]" />
@@ -32,7 +35,7 @@
         <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpDefaultContactLanguageFluency}" class="slds-text-body--small" />
         </div>
-
+		<!-- Preferred Email -->
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
 
         <div class="slds-col slds-size--1-of-2">
@@ -51,7 +54,7 @@
                             <span class="slds-checkbox--faux"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
-                        </aura:if>
+                        </aura:if>                       
                     </label>
                 </div>
             </div>
@@ -78,7 +81,74 @@
             <br />
             <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
         </div>
+		<!-- End of Preferred Email -->
+        
+        <!--  Preferred Phone -->
+        
+		<hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
 
+        <div class="slds-col slds-size--1-of-2">
+            <ui:outputText value="{!$Label.c.stgDisablePreferredPhoneEnforcement}"/>
+        </div>
+        <div class="slds-col slds-size--1-of-2">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <label class="slds-checkbox">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
+                                               class="contact-addr-enabled" />
+                        <aura:set attribute="else">
+                            <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
+                                              class="contact-addr-enabled" />
+                            <span class="slds-checkbox--faux"></span>
+                            <span class="slds-form-element__label"></span>
+                        </aura:set>
+                        </aura:if>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhone}" class="slds-text-body--small" />
+        </div>
+
+        <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
+            <h2>
+                <ui:outputText value="{!$Label.c.stgPreferredPhoneDataCleanup}" class="slds-text-body--small" />
+            </h2>
+            <div class="slds-text-body--small">
+                <p>
+                    <ui:outputText value="{!$Label.c.stgRunPhoneCleanUpEnableFirstTime}" class="slds-text-body--small" />
+                </p>
+                <p>
+                    <ui:outputText value="{!$Label.c.stgHelpEnsureExistContactPreferPhone}" class="slds-text-body--small" />
+                </p>
+                
+                        	<ui:outputText value="{!$Label.c.stgPreferredPhoneSelection}"/>
+               
+            </div>
+        </div>
+        <div class="slds-col slds-size--1-of-2">
+            <lightning:button variant="brand" label="Run Phone Cleanup" iconName="utility:copy" iconPosition="left" onclick="{! c.runPhoneCleanUp }" aura:id="cleanUpPhoneBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c , v.isView), !v.isView)}"  />
+            <br />
+            <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgPhoneCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+       
+            <br />
+            <br />
+            <br />
+        
+          
+            <c:CMP_Picklist_Dropdown class="contact-language-fluency-picklist"
+                setting="{!v.hierarchySettings.Preferred_Phone_Selection__c}"
+                isView="{!v.isView}"               
+                picklistValue="{!v.defaultPreferredPhoneValue}"
+                picklistLabel="{!v.defaultPreferredPhoneLabel}"
+                picklistEntries="{!v.preferredPhonePicklistEntries}"
+                enableNoneOption="true" />
+         </div>   
+
+      	 <!--  End of Preferred Phone -->
+        
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
         
         <div class="slds-col slds-size--1-of-2">

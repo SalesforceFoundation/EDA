@@ -26,5 +26,19 @@
 		    }
 		});
 		$A.enqueueAction(runBatchAction);
+	},
+    runPhoneCleanUp : function (component) {
+		var runBatchAction = component.get("c.executePreferredPhoneCleanUpBatch");
+		runBatchAction.setCallback(this, function(response) {
+	        if(response.getState() === "SUCCESS") {
+
+			    var statusMsg = component.find("cleanUpMsg");
+			    $A.util.toggleClass(statusMsg, "slds-hide");
+
+	        } else if(response.getState() === "ERROR") {
+	        	this.displayError(response);
+		    }
+		});
+		$A.enqueueAction(runBatchAction);
 	}
 })

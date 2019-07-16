@@ -129,6 +129,30 @@
         <value>Tell us which email is preferred.</value>
     </labels>
     <labels>
+        <fullName>PreferredPhoneMatchMustExist</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PreferredPhoneMatchMustExist</shortDescription>
+        <value>We can&apos;t find the Phone specified in Preferred Phone. Make sure that you&apos;re entering the field label of an existing custom Phone field.</value>
+    </labels>
+    <labels>
+        <fullName>PreferredPhoneMatchNotNull</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PreferredPhoneMatchNotNull</shortDescription>
+        <value>The Phone selected for Preferred Phone can&apos;t be blank.</value>
+    </labels>
+    <labels>
+        <fullName>PreferredPhoneRequiredError</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PreferredPhoneRequiredError</shortDescription>
+        <value>Tell us which Phone is preferred.</value>
+    </labels>
+    <labels>
         <fullName>Relationship_Explanation_Connector</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -502,6 +526,14 @@
         <protected>true</protected>
         <shortDescription>preferredBatchDefaultEmail</shortDescription>
         <value>Email (standard)</value>
+    </labels>
+    <labels>
+        <fullName>preferredBatchDefaultPhone</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>preferredBatchDefaultPhone</shortDescription>
+        <value>Phone (standard)</value>
     </labels>
     <labels>
         <fullName>stgAccModelTitle</fullName>
@@ -928,6 +960,14 @@
         <value>Disable Preferred Email enforcement:</value>
     </labels>
     <labels>
+        <fullName>stgDisablePreferredPhoneEnforcement</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgDisablePreferredPhoneEnforcement</shortDescription>
+        <value>Disable Preferred Phone enforcement:</value>
+    </labels>
+    <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1096,6 +1136,14 @@
         <value>Do not require Contacts to have a Preferred Email.</value>
     </labels>
     <labels>
+        <fullName>stgHelpContactPreferredPhone</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpContactPreferredPhone</shortDescription>
+        <value>Do not require Contacts to have a Preferred Phone.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpCopyQueuedEmailSent</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1198,6 +1246,14 @@
         <protected>true</protected>
         <shortDescription>stgHelpEnsureExistContactPreferEmail</shortDescription>
         <value>For existing Contacts who haven&apos;t specified a Preferred Email, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses is set as the Preferred Email.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpEnsureExistContactPreferPhone</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpEnsureExistContactPreferPhone</shortDescription>
+        <value>For existing Contacts who haven&apos;t specified a Preferred Phone, the cleanup ensures that one of the Contact&apos;s standard or custom phone numbers is set as the Preferred Phone.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorDisable</fullName>
@@ -1368,6 +1424,14 @@
         <value>User</value>
     </labels>
     <labels>
+        <fullName>stgPhoneCleanupQueuedEmailSent</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgPhoneCleanupQueuedEmailSent</shortDescription>
+        <value>The Preferred Phone Cleanup was queued successfully. An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
@@ -1392,12 +1456,52 @@
         <value>Preferred Email Data Cleanup:</value>
     </labels>
     <labels>
+        <fullName>stgPreferredPhoneBatchEmailBody</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting Preferred Phone  Batch Email Body</shortDescription>
+        <value>The Preferred Phone batch Apex job processed {0} records with {1} failures.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneBatchSubject</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Setting Preferred Phone batch Subject</shortDescription>
+        <value>Preferred Phone batch Job completed with a status of:</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneDataCleanup</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgPreferredPhoneDataCleanup</shortDescription>
+        <value>Preferred Phone Data Cleanup:</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneSelection</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
+        <value>Select a field for Preferred Phone to copy the value from, when standard phone has no value and there are more than one 'Phone' fields with values.</value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUpEnableFirstTime</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRunCleanUpEnableFirstTime</shortDescription>
         <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email requirement for the first time or after a period of not enforcing the requirement.</value>
+    </labels>
+    <labels>
+        <fullName>stgRunPhoneCleanUpEnableFirstTime</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRunPhoneCleanUpEnableFirstTime</shortDescription>
+        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>

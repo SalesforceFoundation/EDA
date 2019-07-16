@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015, Salesforce.org
+    Copyright (c) 2019, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -29,49 +29,33 @@
 */
 /**
 * @author Salesforce.org
-* @date 2015
+* @date 2019
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Populates default email and phone fields according to user preferences.
+* @description Populates default phone field according to user preferences and/or enforces use of 'Preferred Phone'.
 */
-public class CON_Preferred_TDTM extends TDTM_Runnable {
-
-    /*******************************************************************************************************
-    * @description Updates default email and phone fields based to the preferred email and preferred phone values.
+public class CON_PreferredPhone_TDTM extends TDTM_Runnable{
+/*******************************************************************************************************
+    * @description Populates default phone field according to user preferences and/or enforces use of 'Preferred Phone'
     * @return dmlWrapper
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
              
-        if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM) 
+        if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM) 
             && (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {
 
             // While this logic is not performing any DML currently, the recursion flag is utilized here to be ready for any future logic changes.
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
-            
-            List<Trigger_Handler__c> preferredPhoneOnOff = [SELECT Active__c from Trigger_Handler__c where Class__c = 'CON_PreferredPhone_TDTM'];
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM, true);
 
-            for(SObject so : newlist) {
+            for (SObject so : newlist) {
                 Contact contact = (Contact)so;
 
-                // Process the Prefered Email
-                CON_Email.processPreferredEmail(contact, oldlist);
-                
-                // Process the Preferred Phone.
-                if(!String.isBlank(contact.PreferredPhone__c) && preferredPhoneOnOff != NULL && preferredPhoneOnOff.size() > 0 && preferredPhoneOnOff[0].Active__c == False) {
-                    if(contact.PreferredPhone__c == 'Home') {
-                        contact.Phone = contact.HomePhone;
-                    } else if(contact.PreferredPhone__c == 'Work') {
-                        contact.Phone = contact.WorkPhone__c;
-                    } else if(contact.PreferredPhone__c == 'Mobile') {
-                        contact.Phone = contact.MobilePhone;
-                    } else if(contact.PreferredPhone__c == 'Other') {
-                        contact.Phone = contact.OtherPhone;
-                    }
-                }
+                // Process the Prefered Phone
+                CON_Phone.processPreferredPhone(contact, oldlist);
             }
 
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, false);
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM, false);
         }
          
         return null;

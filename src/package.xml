@@ -52,6 +52,10 @@
         <members>CON_Email_TEST</members>
         <members>CON_EthnicityRace_BATCH</members>
         <members>CON_EthnicityRace_TEST</members>
+        <members>CON_Phone</members>
+        <members>CON_Phone_Batch</members>
+        <members>CON_PreferredPhone_TDTM</members>
+        <members>CON_PreferredPhone_Test</members>
         <members>CON_Preferred_TDTM</members>
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
@@ -379,6 +383,7 @@
         <members>Hierarchy_Settings__c.Default_Contact_Language_Fluency__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Disable_Preferred_Email_Enforcement__c</members>
+        <members>Hierarchy_Settings__c.Disable_Preferred_Phone_Enforcement__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
@@ -387,6 +392,7 @@
         <members>Hierarchy_Settings__c.Household_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Preferred_Phone_Selection__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
@@ -490,6 +496,9 @@
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
+        <members>PreferredPhoneMatchMustExist</members>
+        <members>PreferredPhoneMatchNotNull</members>
+        <members>PreferredPhoneRequiredError</members>
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>RelationshipsAutoDescription</members>
@@ -537,6 +546,7 @@
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
         <members>preferredBatchDefaultEmail</members>
+        <members>preferredBatchDefaultPhone</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
         <members>stgAccountTypesMultiAddressesEnabled</members>
@@ -590,6 +600,7 @@
         <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
+        <members>stgDisablePreferredPhoneEnforcement</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
@@ -611,6 +622,7 @@
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
+        <members>stgHelpContactPreferredPhone</members>
         <members>stgHelpCopyQueuedEmailSent</members>
         <members>stgHelpCourseConnBackfillDescription</members>
         <members>stgHelpCoursesDataMigration</members>
@@ -624,6 +636,7 @@
         <members>stgHelpEnableCourseConnBeforeRecordTypes</members>
         <members>stgHelpEnableCourseConnections</members>
         <members>stgHelpEnsureExistContactPreferEmail</members>
+        <members>stgHelpEnsureExistContactPreferPhone</members>
         <members>stgHelpErrorDisable</members>
         <members>stgHelpErrorNotifyOn</members>
         <members>stgHelpErrorNotifyTo</members>
@@ -645,10 +658,16 @@
         <members>stgOptChatterGroup</members>
         <members>stgOptSelect</members>
         <members>stgOptUser</members>
+        <members>stgPhoneCleanupQueuedEmailSent</members>
         <members>stgPreferredEmailBatchEmailBody</members>
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
+        <members>stgPreferredPhoneBatchEmailBody</members>
+        <members>stgPreferredPhoneBatchSubject</members>
+        <members>stgPreferredPhoneDataCleanup</members>
+        <members>stgPreferredPhoneSelection</members>
         <members>stgRunCleanUpEnableFirstTime</members>
+        <members>stgRunPhoneCleanUpEnableFirstTime</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>
         <members>stgSendErrorsTitle</members>

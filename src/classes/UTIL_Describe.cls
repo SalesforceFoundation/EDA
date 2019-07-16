@@ -286,14 +286,16 @@ public class UTIL_Describe {
     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
     * @return DescribeFieldResult Map of DescribeFieldResult
     */
+    
     public static Map<String, Schema.DescribeFieldResult> getFieldsOfType(String objectName, String type) {
 
+        
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, Schema.DescribeFieldResult> fields = new Map<String, Schema.DescribeFieldResult>();
 
         for(String fieldLabel: allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldLabel);
-     
+     		
             if (String.valueOf( field.getType() ) == type) {
                 fields.put(field.getName(), field );
             }
@@ -495,6 +497,31 @@ public class UTIL_Describe {
         }
 
         return picklistValues;
+    }
+    
+    /****
+     * @description Returns a map of active, user-available fields labels and api names for a given
+     * SObjectType and field type, keyed by  label with a value of  value.
+     * @param objectName Name of the object to retrieve values for.
+     * @param fieldName Name of the field to retrieve values for.
+     * @return Map<String, String> Map of labels to values for the object and field specified.
+     *****/
+    @AuraEnabled
+    public static Map<String, String> getPhoneFields(String objectName, String type) {
+
+        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
+        Map<String, String> fields = new Map<String, String>();
+		System.debug('!!!!!! allFields'+allFields);
+        for(String fieldLabel: allFields.keySet()) {
+            Schema.DescribeFieldResult field = allFields.get(fieldLabel);
+     
+            if (String.valueOf( field.getType() ) == type) {
+                fields.put(fieldLabel, field.getName());
+                
+            }
+        }
+	
+        return fields;
     }
 
     /*******************************************************************************************************
