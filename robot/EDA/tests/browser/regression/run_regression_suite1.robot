@@ -94,8 +94,13 @@ Verify Affiliations, Program Enrollments and No Duplicates
     Wait for Locator                        new_account_save_button
     Click on Element                        new_account_save_button
 
+    #Deliberate setting of 1s sleep to add delay so that modal window has time to close
+    Sleep                                   1
+
     Wait for Locator                        new_program_enrollment_save_button
     Click on Element                        new_program_enrollment_save_button
+
+    Sleep                                   1
 
     #Verify that we have ONE affiliated account, and we definitely need the reload to refresh this page to show the count
     Reload Page
@@ -111,13 +116,15 @@ Verify Affiliations, Program Enrollments and No Duplicates
 
 Create A New Program Plan
 
-    Reload Page
+    #Reload Page
     #Check for EDA Tile
     Open App Launcher
 
 
     Wait for Locator                        program_plans.program_plan1
     Click on Element                        program_plans.program_plan1
+
+
 
     Click Object Button                     New
     Wait for Locator                        program_plans.pp_name
@@ -128,7 +135,7 @@ Create A New Program Plan
 
 Create A Course Offering
 
-    Reload Page
+    #Reload Page
     #Check for EDA Tile
     Open App Launcher
 
