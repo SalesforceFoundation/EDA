@@ -35,30 +35,45 @@
 * @description Implements relationships behavior on Relationship__c.
 */
 public class REL_Relationships_TDTM extends TDTM_Runnable {
-
-    /* @description Provides process control to prevent relationship creation recursion in triggers. */ 
-    public static boolean hasRun = false;
     
+    @testVisible
+    private static Boolean reentrancyPrevented;
+    
+    /*******************************************************************************************************
+    * @description Handles Relationship management.
+    * @param newList the list of Relationships from trigger new. 
+    * @param oldList the list of Relationships from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @param objResult the describe for Relationship.
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
-    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update)) {
+            reentrancyPrevented = true;
+            return new DmlWrapper();
+        }
     	
     	List<Relationship__c> newListCasted = (newList == null ? new List<Relationship__c>(): (List<Relationship__c>)newList);
         List<Relationship__c> oldListCasted = (oldList == null ? new List<Relationship__c>(): (List<Relationship__c>)oldList);
     	
-    	if(triggerAction != TDTM_Runnable.Action.afterDelete) {
+    	if (triggerAction != TDTM_Runnable.Action.AfterDelete) {
     		return runForRelationships(newListCasted, oldListCasted, triggerAction);
         } else {
         	return runForRelationships(oldListCasted, null, triggerAction);
         }
     }
     
-    /// <name> REL_Relationships </name>
-    /// <summary> Overloads the REL_Relationships object constructor to handle Relationship processing </summary>
-    /// <param name="Relationships"> Relationship objects that are being triggered </param>
-    /// <param name="oldRelationships"> Relationships object values before trigger event </param>
-    /// <param name="ta"> Trigger action that is occurring </param>
+    /*******************************************************************************************************
+    * @description Handles Relationship management.
+    * @param newList the list of Relationships from trigger new. 
+    * @param oldList the list of Relationships from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
+    * @return dmlWrapper.  
+    ********************************************************************************************************/
     private DmlWrapper runForRelationships(List<Relationship__c> newList, List<Relationship__c> oldList, 
-    TDTM_Runnable.Action triggerAction) {
+        TDTM_Runnable.Action triggerAction) {
     	    
     	DmlWrapper mainWrapper = new DmlWrapper();
     	
@@ -72,40 +87,36 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         //Keeps track of relationships that have already been deleted to prevent Entity is Deleted error
         Set<Id> hasBeenDeleted = new Set<Id>();
 
-        if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
-            hasRun = true;
-        }
-
-        if (triggerAction == TDTM_Runnable.Action.afterDelete) {
+        if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             hasBeenDeleted.addAll((new Map<Id, Relationship__c>(newList)).keySet());
         }
         
         Integer i = 0;          // processing counter            
-        for(Relationship__c r : newList) {
+        for (Relationship__c r : newList) {
             // AFTER INSERT
-            if (triggerAction == TDTM_Runnable.Action.afterInsert) {
+            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 if (r.ReciprocalRelationship__c == null) {
                     relationshipsToCreate.add(r);
-                }
-                if (r.ReciprocalRelationship__c != null) {
+                } else {
                     reciprocalsToUpdate.add(r);
                 }
             }
             
             // AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.afterUpdate) {   
-                if (r.ReciprocalRelationship__c == oldList[i].ReciprocalRelationship__c 
-                && r.RelatedContact__c != null) {
+            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {   
+                if (r.ReciprocalRelationship__c == oldList[i].ReciprocalRelationship__c && 
+                        r.RelatedContact__c != null) {
                     relationshipsToUpdate.add(r);
                     origRelationships.add(oldList[i]);
                 }
+                
                 if (r.RelatedContact__c == null) {
                     relationshipsToDelete.add(r);
                 }
             }
 
             // AFTER DELETE
-            if (triggerAction == TDTM_Runnable.Action.afterDelete) {
+            if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
                 if (r.ReciprocalRelationship__c != null && !hasBeenDeleted.contains(r.ReciprocalRelationship__c)) {
                     relationshipsToDelete.add(r);
                 }
@@ -114,80 +125,92 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
             i++;
         }
 
-        if (relationshipsToCreate.size() > 0 ) {
+        if (relationshipsToCreate.size() > 0) {
         	DmlWrapper wrapper = createRelationship(relationshipsToCreate);
             mainWrapper.objectsToInsert.addAll(wrapper.objectsToInsert);
             mainWrapper.objectsToUpdate.addAll(wrapper.objectsToUpdate);
         }
-        if (relationshipsToUpdate.size() > 0 ) {
+
+        if (relationshipsToUpdate.size() > 0) {
+            // relationshipsToUpdate is only populated in the AfterUpdate sequence.
+            // In this sequence, we're updating reciprocal relationships after the other relationship has been updated.
+            // So, let's prevent reentrancy here so that the code doesn't run through for a second time.
             DmlWrapper wrapper = updateRelationship(relationshipsToUpdate, origRelationships);
-            mainWrapper.objectsToUpdate.addAll(wrapper.objectsToUpdate);
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, true);
+            TDTM_TriggerHandler.processDML(wrapper, true);
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.REL_Relationships_TDTM_After_Update, false);
         }
-        if (reciprocalsToUpdate.size() > 0 ) {
+        
+        if (reciprocalsToUpdate.size() > 0) {
             DmlWrapper wrapper = reciprocate(reciprocalsToUpdate);
             mainWrapper.objectsToUpdate.addAll(wrapper.objectsToUpdate);
-            
         }
-        if (relationshipsToDelete.size() > 0 ) {
+        
+        if (relationshipsToDelete.size() > 0) {
             DmlWrapper wrapper = deleteRelationships(relationshipsToDelete);
             mainWrapper.objectsToDelete.addAll(wrapper.objectsToDelete);
         }
 
-        if (triggerAction == TDTM_Runnable.Action.afterUpdate) {
-            hasRun = false;
-        }
         return mainWrapper;
     }
 
-
-    /// <name> deleteRelationships </name>
-    /// <summary> Deletes Reciprocal Relationships when a Relationship is deleted </summary>
-    /// <param name="relationships">  </param>
-    public static DmlWrapper deleteRelationships(Relationship__c[] relationships) {
+    /*******************************************************************************************************
+    * @description Deletes Reciprocal Relationships when a Relationship is deleted
+    * @param relationships the list of Relationships that are being deleted
+    * @return dmlWrapper 
+    ********************************************************************************************************/
+    private static DmlWrapper deleteRelationships(List<Relationship__c> relationships) {
     	UTIL_Debug.debug('****Deleting relationships: ' + relationships);
     	DmlWrapper dmlWrapper = new DmlWrapper();
         List<SObject> relationshipsToDelete = new List<SObject>();
-        for(Relationship__c r : Relationships) {
+        
+        for (Relationship__c r : relationships) {
         	Relationship__c relationshipToDelete;
-            if(r.ReciprocalRelationship__c != null) {
+            if (r.ReciprocalRelationship__c != null) {
             	relationshipToDelete = new Relationship__c(Id = r.ReciprocalRelationship__c);
-            } else if(r.RelatedContact__c == null) {
+            } else if (r.RelatedContact__c == null) {
             	relationshipToDelete = new Relationship__c(Id = r.Id);
 	        }
+
 	        relationshipsToDelete.add(relationshipToDelete);
         }
-        if ( relationshipsToDelete.size() > 0 ) {
-            dmlWrapper.objectsToDelete.addAll(relationshipsToDelete);
-        }
+        
+        dmlWrapper.objectsToDelete.addAll(relationshipsToDelete);
         return dmlWrapper;
     }
     
-    /// <name> reciprocate </name>
-    /// <summary>  </summary>
-    /// <param name="Relationships">  </param>
-    public static DmlWrapper reciprocate(Relationship__c[] Relationships) {
+    /*******************************************************************************************************
+    * @description Updates the existing Reciprocal Relationships for new Relationship records
+    * @param relationships the list of new Relationships
+    * @return dmlWrapper 
+    ********************************************************************************************************/
+    private static DmlWrapper reciprocate(List<Relationship__c> relationships) {
     	DmlWrapper dmlWrapper = new DmlWrapper();
         List<SObject> relationshipsToUpdate = new List<SObject>();
-        for(Relationship__c r : Relationships) {
-        	UTIL_Debug.debug('****Creating reciprocal relatioship');
+        
+        for (Relationship__c r : relationships) {
+        	UTIL_Debug.debug('****Updating reciprocal relationship');
             Relationship__c copy = new Relationship__c(Id = r.ReciprocalRelationship__c, 
-                                                                    ReciprocalRelationship__c = r.Id);
+                                                        ReciprocalRelationship__c = r.Id);
             relationshipsToUpdate.add(copy);
         }
+        
         dmlWrapper.objectsToUpdate.addAll(relationshipsToUpdate);
         return dmlWrapper;
     }
     
-    /// <name> createRelationship </name>
-    /// <summary> Inserts a new reciprocal Relationship After a relationship is Inserted</summary>
-    /// <param name="Relationships">  </param>
-    public static DmlWrapper createRelationship(Relationship__c[] Relationships) {
+    /*******************************************************************************************************
+    * @description Creates the new Reciprocal Relationships for new Relationship records
+    * @param relationships the list of new Relationships
+    * @return dmlWrapper 
+    ********************************************************************************************************/
+    private static DmlWrapper createRelationship(List<Relationship__c> relationships) {
     	
     	DmlWrapper dmlWrapper = new DmlWrapper();
     	
         List<SObject> relationshipsToCreate = new List<SObject>();
                 
-        for(Relationship__c r : Relationships) {
+        for (Relationship__c r : relationships) {
         	UTIL_Debug.debug('****Creating relationship in createRelationship method');
             Relationship__c copy = new Relationship__c();              
             copy.Contact__c = r.RelatedContact__c;
@@ -200,19 +223,20 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         }
         
         //evaluate and add the type
-        addType(Relationships, relationshipstoCreate);      
+        addType(relationships, relationshipsToCreate);      
         dmlWrapper.objectsToInsert.addAll(relationshipsToCreate);
-        //inspectSaveResults(sr, relationshipsToCreate);
         
         return dmlWrapper;
     }
 
-    /// <name> updateRelationship </name>
-    /// <summary> Updates the Status and/or Type of a relationship After its reciprocal has been updated </summary>
-    /// <param name="Relationships">  </param>
-    /// <param name="oldRelationships">  </param>
-    public static DmlWrapper updateRelationship(Relationship__c[] Relationships, 
-    Relationship__c[] oldRelationships){
+    /*******************************************************************************************************
+    * @description Updates the Status and/or Type of a Relationship after its reciprocal has been updated
+    * @param relationships the list of Reciprocal Relationships that were updated
+    * @param oldRelationships the old list of Reciprocal Relationships prior to the update
+    * @return dmlWrapper 
+    ********************************************************************************************************/
+    private static DmlWrapper updateRelationship(List<Relationship__c> relationships, 
+            List<Relationship__c> oldRelationships) {
     	
     	DmlWrapper dmlWrapper = new DmlWrapper();
     	
@@ -221,20 +245,22 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
         List<SObject> reciprocalsToUpdate = new List<SObject>();
         Integer counter = 0;                                            // processing counter       
 
-        for(Relationship__c r : Relationships) {
+        for (Relationship__c r : relationships) {
         	
             //SWA 2009-05-13 removed a duplicate check for change to Status__c from this OR statement
             if ((r.Status__c != oldRelationships[counter].Status__c 
-            || r.Type__c != oldRelationships[counter].Type__c 
-            || r.Description__c != oldRelationships[counter].Description__c) 
-            && r.ReciprocalRelationship__c != null) {
-            	UTIL_Debug.debug('****Creating relationship in updateRelationship method');
-                Relationship__c copy = new Relationship__c(Id=r.ReciprocalRelationship__c);
+                    || r.Type__c != oldRelationships[counter].Type__c 
+                    || r.Description__c != oldRelationships[counter].Description__c) 
+                    && r.ReciprocalRelationship__c != null) {
+            	
+                UTIL_Debug.debug('****Updating relationship in updateRelationship method');
+                Relationship__c copy = new Relationship__c(Id = r.ReciprocalRelationship__c);
                 
                 //SWA 2009-05-13 - only attempt to modify the Contact field if the Related Contact  has changed
-                if(oldRelationships[counter].RelatedContact__c!=r.RelatedContact__c) {
+                if (oldRelationships[counter].RelatedContact__c != r.RelatedContact__c) {
                     copy.Contact__c = r.RelatedContact__c;
                 }
+
                 copy.Status__c = r.Status__c;
                 copy.Description__c = r.Description__c;
                 
@@ -249,101 +275,104 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
             }
             counter++;
         }
+
         //add type info as needed and update
         if (!originalRelationships.isEmpty() && !relationshipsTypesToUpdate.isEmpty()) {
             addType(originalRelationships, relationshipsTypesToUpdate);
             dmlWrapper.objectsToUpdate.addAll(relationshipsTypesToUpdate);
         }
+        
         //update reciprocals without type change
-        if (!reciprocalsToUpdate.isEmpty()){
-            dmlWrapper.objectsToUpdate.addAll(reciprocalsToUpdate);
-        }
+        dmlWrapper.objectsToUpdate.addAll(reciprocalsToUpdate);
+        
         return dmlWrapper;
     }
     
+    /*******************************************************************************************************
+    * @description Updates the Type of a list of Relationships based on the defined settings in the org.
+    * @param rList the original list of new or updated Relationships
+    * @param rCopy the reciprocals of the original list of new or updated Relationships
+    ********************************************************************************************************/
     public static void addType(List<Relationship__c> rList, List<SObject> rCopy) {
         
         Hierarchy_Settings__c rs = UTIL_CustomSettingsFacade.getSettings();
         
         //used for tracking place in array
-        integer counter = 0;            
+        Integer counter = 0;            
         
-        if (rs.Reciprocal_Method__c == 'List Setting'){ 
+        if (rs.Reciprocal_Method__c == 'List Setting') { 
             List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings().clone();           
             Map<String, Relationship_Lookup__c> rlMap = new Map<String, Relationship_Lookup__c>();
-            for(Relationship_Lookup__c setting : settings) {
+            for (Relationship_Lookup__c setting : settings) {
                 rlMap.put(setting.Name, setting);
             }
         
             //remove inactive values
-            for(String s : rlMap.keySet()){
+            for (String s : rlMap.keySet()) {
                 Relationship_Lookup__c thisRl = rlMap.get(s);
-                if (thisRl.Active__c != true){
+                if (thisRl.Active__c != true) {
                     rlMap.remove(s);
                 }
             }
         
-            List<id> rIDs = new List<id>();
-                
-            for (Relationship__c r : rList){
-            //    rIDs.add(r.RelatedContact__c);
+            List<Id> rIDs = new List<Id>();
+            for (Relationship__c r : rList) {
                 rIDs.add(r.Contact__c);
             }            
             
-            String query_String = 'select id, Salutation, Gender__c from Contact where Id IN :rIDs';                         
+            String queryString = 'SELECT Id, Salutation, Gender__c FROM Contact WHERE Id IN :rIDs';                         
             
-            Map<id, Contact> cMap = new Map<id,Contact>((List<Contact>)database.query(query_String));
+            Map<Id, Contact> cMap = new Map<Id, Contact>((List<Contact>)Database.query(queryString));
             
-            for(Relationship__c r : rList){
+            for (Relationship__c r : rList) {
                 
                 Relationship__c copy = (Relationship__c)rCopy[counter];
 
                 Contact relatedContact = cMap.get(r.Contact__c);
             
-                if (rlMap.containsKey(r.Type__c)){
+                if (rlMap.containsKey(r.Type__c)) {
                     List<String> maleList = system.label.Male.split(',');                                                                                                        
                     List<String> femaleList = system.label.Female.split(',');
                     
-                    Set<String> maleset = new Set<String>();
-                    Set<String> femaleset = new Set<String>();
-                    maleset.addAll(maleList);
-                    femaleset.addAll(femaleList);                    
+                    Set<String> maleSet = new Set<String>();
+                    Set<String> femaleSet = new Set<String>();
+                    maleSet.addAll(maleList);
+                    femaleSet.addAll(femaleList);                    
                                         
                     //was a gender field defined? 
-                    if (relatedContact.Gender__c != null){
+                    if (relatedContact.Gender__c != null) {
                         String match_type = '';                        
                         
                         //try male
-                        for (String s : maleList){
-                            if (relatedContact.Gender__c.toLowerCase() == s.toLowerCase().trim()){
+                        for (String s : maleList) {
+                            if (relatedContact.Gender__c.toLowerCase() == s.toLowerCase().trim()) {
                                 match_type = 'male';
                                 break;
                             }
                         }
+
                         //if we haven't found it, try female
-                        if(match_type == ''){
-                            for (String s : femaleList){
-                                if (relatedContact.Gender__c.toLowerCase() == s.toLowerCase().trim()){
+                        if (match_type == '') {
+                            for (String s : femaleList) {
+                                if (relatedContact.Gender__c.toLowerCase() == s.toLowerCase().trim()) {
                                     match_type = 'female';
                                     break;
                                 }
                             }
                         }     
                         
-                        if (match_type == 'male' && rlMap.get(r.Type__c).Male__c != null)
+                        if (match_type == 'male' && rlMap.get(r.Type__c).Male__c != null) {
                             copy.Type__c = rlMap.get(r.Type__c).Male__c;
-                        else if (match_type == 'female' && rlMap.get(r.Type__c).Female__c != null)                            
+                        } else if (match_type == 'female' && rlMap.get(r.Type__c).Female__c != null) {
                             copy.Type__c = rlMap.get(r.Type__c).Female__c;
-                        else
+                        } else {
                             copy.Type__c = rlMap.get(r.Type__c).Neutral__c;
-                    }
-                    else if ((relatedContact.Salutation == 'Mr.' || maleset.contains(relatedContact.Salutation))  
-                    && rlMap.get(r.Type__c).Male__c != null){
+                        }
+                    } else if ((relatedContact.Salutation == 'Mr.' || maleSet.contains(relatedContact.Salutation))  
+                            && rlMap.get(r.Type__c).Male__c != null) {
                         copy.Type__c = rlMap.get(r.Type__c).Male__c;
-                    }
-                    else if (((relatedContact.Salutation == 'Ms.' || relatedContact.Salutation == 'Mrs.') 
-                    || femaleset.contains(relatedContact.Salutation)) && rlMap.get(r.Type__c).Female__c 
-                    != null){
+                    } else if (((relatedContact.Salutation == 'Ms.' || relatedContact.Salutation == 'Mrs.') 
+                            || femaleSet.contains(relatedContact.Salutation)) && rlMap.get(r.Type__c).Female__c != null) {
                         copy.Type__c = rlMap.get(r.Type__c).Female__c;
                     
                     //can't match up gender, bad field or otherwise
@@ -356,10 +385,9 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                 }                
                 counter++;
             }            
-        }
-        
-        else if(rs.Reciprocal_Method__c == 'Value Inversion'){
-            for (Relationship__c r : rList){                           
+        } else if (rs.Reciprocal_Method__c == 'Value Inversion') {
+            
+            for (Relationship__c r : rList) {                           
                 //instead lets split the type
                 List<String> splitrelationship = r.Type__c.split(system.label.Relationship_Split);
                 String newString = '';
@@ -372,9 +400,8 @@ public class REL_Relationships_TDTM extends TDTM_Runnable {
                 castedObject.Type__c = newString;
                 counter++;
             }
-        }
-        else{
-            for (Relationship__c r : rList){
+        } else {
+            for (Relationship__c r : rList) {
             	Relationship__c castedObject = (Relationship__c)rCopy[counter];
                 castedObject.Type__c = r.Type__c;
                 counter++; 
