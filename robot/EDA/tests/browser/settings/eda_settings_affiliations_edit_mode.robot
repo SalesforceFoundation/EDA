@@ -24,6 +24,7 @@ Validate Edit Mode For Affiliations, Settings
     # Save the form
     Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
 
+
 *** Keywords ***
 
 

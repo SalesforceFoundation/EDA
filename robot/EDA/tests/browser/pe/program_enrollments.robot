@@ -7,7 +7,9 @@ Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
 
+
 Verify EDA Settings
+    [tags]  unstable
     Go To Eda Settings
 
     Wait for Locator                            eda_settings.affiliations_tab
