@@ -24,6 +24,7 @@ Validate Edit Mode For Relationships, Settings
 
     # Autocreation tab
     Click Element                   //a[contains(@class,'rel-autoc-settings-menulink')]
+    
 *** Keywords ***
 
 
