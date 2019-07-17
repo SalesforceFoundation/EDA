@@ -9,6 +9,6 @@ runCleanUp : function (component, event, helper) {
 	helper.runCleanUp(component);
 },
 runPhoneCleanUp : function (component, event, helper) {
-helper.runPhoneCleanUp(component);
+    helper.runPhoneCleanUp(component);
 }
 })

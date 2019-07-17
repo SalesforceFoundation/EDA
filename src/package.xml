@@ -55,7 +55,7 @@
         <members>CON_Phone</members>
         <members>CON_Phone_Batch</members>
         <members>CON_PreferredPhone_TDTM</members>
-        <members>CON_PreferredPhone_Test</members>
+        <members>CON_PreferredPhone_TEST</members>
         <members>CON_Preferred_TDTM</members>
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>

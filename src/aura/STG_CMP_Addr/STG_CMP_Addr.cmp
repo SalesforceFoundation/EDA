@@ -133,11 +133,8 @@
             <br />
             <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgPhoneCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
        
-            <br />
-            <br />
-            <br />
-        
-          
+            <div class="slds-p-top_xx-large"> </div>
+                 
             <c:CMP_Picklist_Dropdown class="contact-language-fluency-picklist"
                 setting="{!v.hierarchySettings.Preferred_Phone_Selection__c}"
                 isView="{!v.isView}"               

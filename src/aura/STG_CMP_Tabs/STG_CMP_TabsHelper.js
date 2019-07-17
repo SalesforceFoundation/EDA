@@ -35,7 +35,7 @@
                 component.set("v.affiliationStatusMapValue", settingsNoPrefix.Affl_ProgEnroll_Status_Map__c);
                 component.set("v.affiliationStatusDeleteMapValue", settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
                 component.set("v.defaultContactLanguageFluencyValue", settingsNoPrefix.Default_Contact_Language_Fluency__c);
-				component.set("v.defaultPreferredPhoneValue", settingsNoPrefix.Preferred_Phone_Selection__c );
+                component.set("v.defaultPreferredPhoneValue", settingsNoPrefix.Preferred_Phone_Selection__c );
                 component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
                 component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
                 component.set("v.adminOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
@@ -55,7 +55,7 @@
                 // Get Contact Language Fluency Picklist
                 this.getFluencyPicklistEntries(component, settingsNoPrefix.Default_Contact_Language_Fluency__c);
                 // Get Preferrd Phone Picklists
-                this.getpreferredPhonePicklistEntries(component, settingsNoPrefix.Preferred_Phone_Selection__c);
+                this.getPreferredPhonePicklistEntries(component, settingsNoPrefix.Preferred_Phone_Selection__c);
                 
             } else if(response.getState() === "ERROR") {
                 this.displayError(response);
@@ -243,12 +243,11 @@
         $A.enqueueAction(action);
     },
     
-    getpreferredPhonePicklistEntries : function(component, preferredValue) {
+    getPreferredPhonePicklistEntries : function(component, preferredValue) {
         //Get all active Contact Phone data type picklist entries
         var action = component.get("c.getPhoneFields");
-        var prefix = component.get("v.namespacePrefix");
-        var objectName = prefix +'Contact';
-        var type = prefix +'Phone';
+        var objectName = 'Contact';
+        var type = 'Phone';
         
         action.setParams({ "objectName" : objectName,"type" : type});
         action.setCallback(this, function(response) {
@@ -261,7 +260,7 @@
                     if (picklistValues.hasOwnProperty(property) && property != 'phone') {
                         preferredPhonePicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});  
                         
-                    if(property.indexOf(preferredValue.toLowerCase()) > -1) {
+                        if(preferredValue==undefined || (preferredValue != undefined && property.indexOf(preferredValue.toLowerCase())) > -1) {
                             component.set("v.defaultPreferredPhoneLabel", property);
                         
                         } 
