@@ -35,7 +35,7 @@
 * @description Unit tests for Preferred Phone
 */
 @isTest
-public class CON_PreferredPhone_TEST {
+public class CON_PreferredPhone_Test {
     
     @testSetup
     static void dataSetup() {
