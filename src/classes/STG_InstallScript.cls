@@ -66,6 +66,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             disablePreferredEmailEnforcement(previousVersion);
 
+            disablePreferredPhoneEnforcement(previousVersion);            
+
             populateAdminRecordTypeSetting(previousVersion);
 
             setDefaultContactLanguageFluency(previousVersion);
@@ -228,8 +230,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
     
     global static void disablePreferredPhoneEnforcement(Version previousVersion) {
-        if(previousVersion != null && previousVersion.compareTo(new Version(1,79)) < 0) {
-            UTIL_Debug.debug('***Upgrading to version 1.79');
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,81)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.81');
             Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgSettings.Disable_Preferred_Phone_Enforcement__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c != true) {
                 orgSettings.Disable_Preferred_Phone_Enforcement__c = true;

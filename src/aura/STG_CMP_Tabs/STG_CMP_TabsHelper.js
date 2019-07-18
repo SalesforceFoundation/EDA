@@ -260,7 +260,7 @@
                     if (picklistValues.hasOwnProperty(property) && property != 'phone') {
                         preferredPhonePicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});  
                         
-                        if(preferredValue==undefined || (preferredValue != undefined && property.indexOf(preferredValue.toLowerCase())) > -1) {
+                        if(preferredValue == undefined || (preferredValue != undefined && property.indexOf(preferredValue.toLowerCase())) > -1) {
                             component.set("v.defaultPreferredPhoneLabel", property);
                         
                         } 

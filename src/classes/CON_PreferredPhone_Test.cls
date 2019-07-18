@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017, Salesforce.org
+    Copyright (c) 2019, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2017
+* @date 2019
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Unit tests for Preferred Phone
@@ -74,14 +74,8 @@ public class CON_PreferredPhone_Test {
         insert newCont;
         Test.stopTest();
 
-        List<Contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
-        Map<String, Contact> contactsByLastName = new Map<String, Contact>();
+        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
         
-        for(Contact con : newContAfterList) {
-            contactsByLastName.put(con.LastName, con);
-        }
-        
-        Contact newContAfter = contactsByLastName.get('JohnnyTest');
         System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
         System.assertEquals('Work', newContAfter.PreferredPhone__c);
     }
@@ -98,13 +92,12 @@ public class CON_PreferredPhone_Test {
         );
         insert newCont;
         
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone  FROM Contact where LastName = 'JohnnyTest'];
         Test.startTest();
-            newContAfter.Phone = '0000000000';
-            update newContAfter;
+            newCont.Phone = '0000000000';
+            update newCont;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact];
+        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact WHERE Id =: newCont.Id];
         
          
         System.assertEquals('0000000000', newContAfterList.OtherPhone);
@@ -252,7 +245,7 @@ public class CON_PreferredPhone_Test {
             Test.stopTest();
             
         }catch(Exception error) {
-             System.assert(error.getMessage().contains('Tell us which Phone is preferred.'));
+             System.assert(error.getMessage().contains(Label.PreferredPhoneRequiredError));
 
       } 
         
@@ -274,7 +267,7 @@ public class CON_PreferredPhone_Test {
             Test.stopTest();
             
         }catch(Exception error) {
-             System.assert(error.getMessage().contains('The Phone selected for Preferred Phone can\'t be blank.'));
+             System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
 
       } 
     }     
@@ -295,7 +288,7 @@ public class CON_PreferredPhone_Test {
             Test.stopTest();
             
         }catch(Exception error) {
-             System.assert(error.getMessage().contains('We can\'t find the Phone specified in Preferred Phone. Make sure that you\'re entering the field label of an existing custom Phone field.'));
+             System.assert(error.getMessage().contains(Label.PreferredPhoneMatchMustExist));
         }     
     } 
     

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019, Salesforce.com Foundation
+    Copyright (c) 2019, Salesforce.org Foundation
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -10,7 +10,7 @@
     * Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-    * Neither the name of the Salesforce.com Foundation nor the names of
+    * Neither the name of the Salesforce.org Foundation nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
 
@@ -46,15 +46,15 @@ public class CON_Phone_Batch implements Database.Batchable<sObject>,Database.Sta
         this.context = ic;
     }
 
-  public Database.QueryLocator start(Database.BatchableContext BC) {
-    return Database.getQueryLocator(query);
-  }
+    public Database.QueryLocator start(Database.BatchableContext BC) {
+        return Database.getQueryLocator(query);
+    }
 
-     public void execute(Database.BatchableContext BC, List<sObject> scope) {
+    public void execute(Database.BatchableContext BC, List<sObject> scope) {
     List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
 
         // Just run updates because the processing is part of the trigger
-        //update contacts;
+
         Database.SaveResult[] SaveResultList = Database.update(contacts,false); 
 
         for(integer i =0; i<SaveResultList.size();i++){
@@ -98,7 +98,7 @@ public class CON_Phone_Batch implements Database.Batchable<sObject>,Database.Sta
         String toAddress= a.CreatedBy.Email; // Store user email that stated batch
         if(this.context != null) {
             // Get the user who initiated the install if this is called from the install script
-            User u = [Select Id, Email from User where Id =:context.installerID()];  
+            User u = [Select Id, Email FROM User WHERE Id =:context.installerID()];  
             toAddress= u.Email; // Store manual user address
         }
 

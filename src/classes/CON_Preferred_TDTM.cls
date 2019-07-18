@@ -49,7 +49,7 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
             // While this logic is not performing any DML currently, the recursion flag is utilized here to be ready for any future logic changes.
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
             
-            List<Trigger_Handler__c> preferredPhoneOnOff = [SELECT Active__c from Trigger_Handler__c where Class__c = 'CON_PreferredPhone_TDTM'];
+            List<Trigger_Handler__c> preferredPhoneOnOff = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
 
             for(SObject so : newlist) {
                 Contact contact = (Contact)so;
@@ -58,7 +58,7 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                 CON_Email.processPreferredEmail(contact, oldlist);
                 
                 // Process the Preferred Phone.
-                if(!String.isBlank(contact.PreferredPhone__c) && preferredPhoneOnOff != NULL && preferredPhoneOnOff.size() > 0 && preferredPhoneOnOff[0].Active__c == False) {
+                if(!String.isBlank(contact.PreferredPhone__c) && (preferredPhoneOnOff == null || preferredPhoneOnOff.size() == 0 || preferredPhoneOnOff[0].Active__c == False)) {
                     if(contact.PreferredPhone__c == 'Home') {
                         contact.Phone = contact.HomePhone;
                     } else if(contact.PreferredPhone__c == 'Work') {

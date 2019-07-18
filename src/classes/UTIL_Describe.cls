@@ -517,7 +517,6 @@ public class UTIL_Describe {
      
             if (String.valueOf( field.getType() ) == type) {
                 fields.put(fieldLabel, field.getName());
-                //fields.put(field.getName(), field.getName());
             }
         }
 	
