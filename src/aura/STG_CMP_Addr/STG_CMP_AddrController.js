@@ -1,5 +1,5 @@
 ({
-	toggleIsView : function(component, event) {
+toggleIsView : function(component, event) {
 	component.set("v.isView", event.getParam("isView"));
 },
 runBackfill : function (component, event, helper) {

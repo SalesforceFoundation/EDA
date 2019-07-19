@@ -40,22 +40,20 @@ public with sharing class CON_Phone {
     * @param Contact the contact to update
     * @param oldlist list of old contacts from update or delete context of a trigger
     */
-    public static void processPreferredPhone(Contact contact, List<Contact> oldlist) {
+     
+    public static void processPreferredPhone(Contact contact, Contact oldContact, Boolean validatePreferredPhone, String selectedPreferredPhone) {
         
-        Boolean validatePreferredPhone = !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Phone_Enforcement__c;
-        String selectedPreferredPhone = UTIL_CustomSettingsFacade.getSettings().Preferred_Phone_Selection__c; 
-       
         // No need to run if we are in a delete context
         if (contact == null) {
             return;
         }
 
-        Boolean isUpdateOrDelete = (oldlist != null) ? true : false;
+         Boolean isUpdate = (oldContact != null) ? true : false;
 
         // Build the list of phone fields
         CON_PhoneFieldList phoneFields = new CON_PhoneFieldList(contact);
 
-        if( phoneFields.valuedCount() > 0 ) {
+        if( phoneFields.valuedFields.size() > 0 ) {
             // Check the presence of a special cases when running a batch process.
             // This will prevent some validation errors below to allow batches to complete successfully.
             if( validatePreferredPhone && System.isBatch() ) {
@@ -78,50 +76,42 @@ public with sharing class CON_Phone {
                 // is not made in EDA settings.
                 if(String.isBlank(contact.Phone) ) {
                     
-                    if (phoneFields.valuedFields.size() > 1 && selectedPreferredPhone != NULL && selectedPreferredPhone != '') {
+                    if (phoneFields.valuedFields.size() > 1 && String.isNotEmpty(selectedPreferredPhone)) {
                     
                         for (CON_PhoneField eachField : phoneFields.valuedFields)  {
                                                      
                             if (eachField.apiName == selectedPreferredPhone) {
-                            
-                                contact.Phone = eachField.value;
-                                contact.PreferredPhone__c = eachField.prefLabel;
                                 
+                                setPhoneFields(contact, eachField.value, eachField.prefLabel);
+                                break;
                             }    
                             
                         }
 
                         if (contact.Phone == NULL && Contact.PreferredPhone__c == NULL) {
-
-                              contact.Phone = phoneFields.valuedFields[0].value;
-                              contact.PreferredPhone__c = phoneFields.valuedFields[0].prefLabel;
-
+                              setPhoneFields(contact, phoneFields.valuedFields[0].value, phoneFields.valuedFields[0].prefLabel);
                         }
                     }
                     
                      // Get the first item from the list either one or many
                      
                     else {
-                        
-                        contact.Phone = phoneFields.valuedFields[0].value;
-                        contact.PreferredPhone__c = phoneFields.valuedFields[0].prefLabel;
-                        
+                        setPhoneFields(contact, phoneFields.valuedFields[0].value, phoneFields.valuedFields[0].prefLabel);
                     }
                 }
             }
 
             // Only one phone field, so we can intelligently set Preferred Phone.
-            if(validatePreferredPhone && phoneFields.valuedCount() == 1 && String.isBlank(contact.PreferredPhone__c)){
-
-                contact.PreferredPhone__c = phoneFields.valuedFields[0].prefLabel;
-                contact.Phone = phoneFields.valuedFields[0].value;
-
+            if(validatePreferredPhone && phoneFields.valuedFields.size() == 1 && String.isBlank(contact.PreferredPhone__c)){
+                setPhoneFields(contact, phoneFields.valuedFields[0].value, phoneFields.valuedFields[0].prefLabel);
+                
             // Enforce Preferred Phone field unless validation is disabled
             } else if(validatePreferredPhone && String.isBlank(contact.PreferredPhone__c)){
 
                 contact.addError( Label.PreferredPhoneRequiredError );
 
-            // Make Sure preferred isn't blank making an exception for a special case to prevent errors.
+            // Check if the field selected for Preferred Phone matches the label
+            // throw an error if it doesn't match or update according if there is a match
             } else if ( String.isNotBlank(contact.PreferredPhone__c) && contact.PreferredPhone__c != Label.preferredBatchDefaultPhone && contact.PreferredPhone__c != phoneFields.phoneLabel ) {
 
                 CON_PhoneField field = phoneFields.getFieldByPrefLabel(contact.PreferredPhone__c);
@@ -153,16 +143,16 @@ public with sharing class CON_Phone {
                 // oldlist is NULL on insert so we check to make sure this logic only applies on updates.
                 // We make sure this isn't a batch, because the batch relies on this trigger while
                 // updating contacts
-                if( isUpdateOrDelete && !System.isBatch() ) {
-                    Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
+                if( isUpdate && !System.isBatch() ) {
+                   // Map<ID, Contact> oldmap = new Map<ID, Contact>( (List<Contact>)oldlist);
 
                     // Get the old phone values - if any - to compare.
-                    CON_PhoneFieldList oldPhoneFields = new CON_PhoneFieldList( oldmap.get(contact.Id) );
-
+                    //CON_PhoneFieldList oldPhoneFields = new CON_PhoneFieldList( oldmap.get(contact.Id) );
+                     CON_PhoneFieldList oldPhoneFields = new CON_PhoneFieldList(Oldcontact);
                     // If this is an update and the contact contained previous phones we want to clear the standard phone field
                     // we do this because when a user deletes all phone values in the EDA contact without clearing
                     // the value if phone, there would be an phone number that the user tried to delete.
-                    if (oldPhoneFields.valuedCount() > 0) {
+                    if (oldPhoneFields.valuedFields.size() > 0) {
                         contact.Phone = null;
                     } else {
 
@@ -187,25 +177,32 @@ public with sharing class CON_Phone {
         if(contact.Phone != null) {
 
             String namespace = UTIL_Namespace.getNamespace();
-            String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
             // Retrieve field from field list using the known API name.
-            CON_PhoneField otherField = fieldList.getFieldByApiName(prefix + 'OtherPhone');
-            if (otherField != NULL) {
+            CON_PhoneField otherField = fieldList.getFieldByApiName('OtherPhone');
+
                 contact.PreferredPhone__c = otherField.prefLabel;
                 contact.OtherPhone = contact.Phone;
-            }
-            else {
-                contact.PreferredPhone__c = 'Other';
-                contact.OtherPhone = contact.Phone;
-            }
+
+            
         }
+    }
+    
+    /*******************************************************************************************************
+    * @description Copies the value of the standard Phone field to the Other Phone field if Phone has a value and no other phones.
+    * @param contact the contact to change
+    * @param phone the value that needs to be set for standard phone
+    * @param preferredPhone the preferred phone label
+    */
+
+    private static void setPhoneFields(Contact contact, String phone, String preferredPhone) {
+        contact.Phone = phone;
+        contact.PreferredPhone__c = preferredPhone;
     }
 
     private static Map<String, Schema.DescribeFieldResult> contactPhoneFieldMap;
 
     /*******************************************************************************************************
     * @description An inner wrapper class to contain a list of phone fields and perform functions on them
-    * @param Contact the contact to build list from.
     */
 
     private class CON_PhoneFieldList {
@@ -213,6 +210,11 @@ public with sharing class CON_Phone {
         private List<CON_PhoneField> allFields {get;set;}
         private List<CON_PhoneField> valuedFields {get;set;}
         public String phoneLabel {get;set;}
+        
+        /************************************************************
+        *@description Constructor for the wrapper class
+        *@param Contact in context
+        */
 
         public CON_PhoneFieldList(Contact contact) {
 
@@ -235,9 +237,9 @@ public with sharing class CON_Phone {
             for(String fieldName : contactPhoneFieldMap.keySet()) {
                 String fieldLabel = contactPhoneFieldMap.get(fieldName).getLabel();
                 
-                //If the field is not a standard phone field and it is not duplicate with EDA phone, then add it to the list
-                if (fieldName != phoneLabel && 
-                        !(edaPhoneField.get(fieldLabel) != null && fieldName != edaPhoneField.get(fieldLabel)) && fieldName != 'Phone') {
+                // Add the phone field to valued fields if it is not a standard phone
+                // If named field check if it is in edaPhoneField Map
+                if (fieldName != 'Phone' && !(edaPhoneField.get(fieldLabel) != null && fieldName != edaPhoneField.get(fieldLabel))){
                     String phoneField = (String)contact.get(fieldName);
 
                     allFields.add(new CON_PhoneField(phoneField, fieldLabel, fieldName));
@@ -246,14 +248,6 @@ public with sharing class CON_Phone {
                     }
                 }
             }
-        }
-
-        public Integer valuedCount() {
-            Integer count = 0;
-            for(CON_PhoneField field : this.allFields) {
-                count += (field.hasValue()) ? 1 : 0;
-            }
-            return count;
         }
 
         public CON_PhoneField getFieldByPrefLabel(String labelSearch) {
@@ -285,27 +279,22 @@ public with sharing class CON_Phone {
         }
 
         //Check if transalted picklist value of preferred phone exist
-        private String getCustomPicklistValue(String lableSearch)
-        {       
+        private String getCustomPicklistValue(String labelSearch) {       
             Map<String,String> apiLabelMappings = new Map<String,String>();       
             Schema.DescribeFieldResult fieldResult = Contact.PreferredPhone__c.getDescribe();
             List<Schema.PicklistEntry> picklistEntries = fieldResult.getPicklistValues();
             for( Schema.PicklistEntry entry : fieldResult.getPicklistValues()) {
-                if (entry.getValue() == lableSearch)
-                {
+                if (entry.getValue() == labelSearch) {
                     return entry.getLabel();
                 }
             }
-            return lableSearch;         
+            return labelSearch;         
         }
 
     }
 
     /*******************************************************************************************************
     * @description An inner wrapper class to represent a phone field on a contact
-    * @param val The value of the phone field
-    * @param lbl The label of the phone field
-    * @param api The API name of the phone field
     */
     private class CON_PhoneField {
 
@@ -313,7 +302,13 @@ public with sharing class CON_Phone {
         public String label {get;set;}
         public String apiName {get;set;}
         public String prefLabel {get;set;}
-
+        
+        /*******************************************************************************************************
+        Constructor for wrapper class
+        * @param val The value of the phone field
+        * @param lbl The label of the phone field
+        * @param api The API name of the phone field
+        */
         public CON_PhoneField(String val, String lbl, String api ) {
             // Store default phone field mappings to preferred phone pick list.
             Map<String,String> preferredPhoneMappings = new Map<String,String>{
@@ -328,9 +323,6 @@ public with sharing class CON_Phone {
             this.apiName = api;
             this.prefLabel = (preferredPhoneMappings.containsKey(lbl)) ? preferredPhoneMappings.get(lbl) : lbl;
         }
-
-        public Boolean hasValue(){
-            return String.isNotBlank(this.value);
-        }
+        
     }   
 }

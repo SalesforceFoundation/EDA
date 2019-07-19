@@ -33,6 +33,14 @@
         <value>Unable to find valid autocreation Relationship settings. Please check the settings under EDA Settings | Relationships | Autocreation for valid fields and try again.</value>
     </labels>
     <labels>
+        <fullName>BatchJobRunningProblem</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Batch message when it has a problem starting.</shortDescription>
+        <value>There was a problem starting the Batch.</value>
+    </labels>
+    <labels>
         <fullName>BothFieldAndValue</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>

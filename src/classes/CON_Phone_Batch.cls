@@ -32,7 +32,7 @@
 * @date 2019
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Batch Class to process contacts on EDA installation
+* @description Batch Class to process contacts for Preferred Phone when run from EDA Settings
 */
 public class CON_Phone_Batch implements Database.Batchable<sObject>,Database.Stateful {
     public List<String> exception_List = new List<String>();
@@ -51,7 +51,8 @@ public class CON_Phone_Batch implements Database.Batchable<sObject>,Database.Sta
     }
 
     public void execute(Database.BatchableContext BC, List<sObject> scope) {
-    List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
+    
+        List<Contact> contacts = (List<Contact> ) scope; //Cast list of contacts
 
         // Just run updates because the processing is part of the trigger
 

@@ -501,13 +501,13 @@ public class UTIL_Describe {
     
     /****
      * @description Returns a map of active, user-available fields labels and api names for a given
-     * SObjectType and field type, keyed by  label with a value of  value.
+     * SObjectType and field type, keyed by  label with a value of api name.
      * @param objectName Name of the object to retrieve values for.
-     * @param fieldName Name of the field to retrieve values for.
-     * @return Map<String, String> Map of labels to values for the object and field specified.
+     * @param type data type of the fields to retrieve values for.
+     * @return Map<String, String> Map of labels to values for the object and field type specified.
      *****/
     @AuraEnabled
-    public static Map<String, String> getPhoneFields(String objectName, String type) {
+    public static Map<String, String> getFieldsOfTypeAura(String objectName, String type) {
 
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, String> fields = new Map<String, String>();

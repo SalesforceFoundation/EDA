@@ -80,6 +80,14 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Upgrade TDTM Configuration
             List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
             TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+            
+            // Set CON_PreferredPhone_TDTM to false
+            List<Trigger_Handler__c> turnOffPreferredPhone = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
+
+            if(turnOffPreferredPhone != NULL && turnOffPreferredPhone.size() != 0 && previousVersion.compareTo(new Version(1,81)) < 0) {
+                 turnOffPreferredPhone[0].Active__c = False;
+                 update turnOffPreferredPhone[0];
+            }
          }
 
          reparentAdminAddrs(context.previousVersion());
@@ -225,14 +233,14 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
 
      /*******************************************************************************************************
-    * @description Disables Preferred Phone handling when upgrading to 1.79
+    * @description Disables Preferred Phone handling when upgrading to 1.81
     * @return void
     */
     
     global static void disablePreferredPhoneEnforcement(Version previousVersion) {
         if(previousVersion != null && previousVersion.compareTo(new Version(1,81)) < 0) {
             UTIL_Debug.debug('***Upgrading to version 1.81');
-            Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
             if(orgSettings.Disable_Preferred_Phone_Enforcement__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c != true) {
                 orgSettings.Disable_Preferred_Phone_Enforcement__c = true;
             }

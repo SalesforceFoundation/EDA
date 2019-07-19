@@ -245,7 +245,7 @@
     
     getPreferredPhonePicklistEntries : function(component, preferredValue) {
         //Get all active Contact Phone data type picklist entries
-        var action = component.get("c.getPhoneFields");
+        var action = component.get("c.getFieldsOfTypeAura");
         var objectName = 'Contact';
         var type = 'Phone';
         

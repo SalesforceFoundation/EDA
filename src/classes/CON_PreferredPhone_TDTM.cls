@@ -47,12 +47,26 @@ public class CON_PreferredPhone_TDTM extends TDTM_Runnable{
 
             // While this logic is not performing any DML currently, the recursion flag is utilized here to be ready for any future logic changes.
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM, true);
-
+            
+            Boolean validatePreferredPhone = !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Phone_Enforcement__c;
+            String selectedPreferredPhone = UTIL_CustomSettingsFacade.getSettings().Preferred_Phone_Selection__c;   
+ 
             for (SObject so : newlist) {
                 Contact contact = (Contact)so;
 
                 // Process the Prefered Phone
-                CON_Phone.processPreferredPhone(contact, oldlist);
+
+                if (oldList != NULL) {
+
+                     Map<ID, Contact> oldContactMap = new Map<ID, Contact>((List<Contact>)oldlist);
+                     contact OldContact = oldContactMap.get(contact.Id);
+                     CON_Phone.processPreferredPhone(contact, OldContact, validatePreferredPhone, selectedPreferredPhone);
+                }
+                
+                else {
+                    
+                    CON_Phone.processPreferredPhone(contact, null, validatePreferredPhone, selectedPreferredPhone);
+                }
             }
 
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM, false);

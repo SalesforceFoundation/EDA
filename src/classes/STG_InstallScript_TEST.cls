@@ -350,4 +350,23 @@ public with sharing class STG_InstallScript_TEST {
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
         System.assertEquals(Label.stgFluent, updatedSettings.Default_Contact_Language_Fluency__c);
     }
+    
+    @isTest
+    private static void disablePreferredPhoneOnUpgrade() {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        orgSettings.Disable_Preferred_Phone_Enforcement__c = False;
+        upsert orgSettings;
+        
+        Test.startTest();
+        // Run the install script for orgs using HEDA 1.80
+        Test.testInstall(new STG_InstallScript(), new Version(1,80), true);
+        Test.stopTest();
+
+        List<Trigger_Handler__c> turnOffPreferredPhone = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
+        Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
+        
+        System.assertEquals(True, updatedSettings.Disable_Preferred_Phone_Enforcement__c);
+        System.assertEquals(False, turnOffPreferredPhone[0].Active__c);
+
+    }
 }

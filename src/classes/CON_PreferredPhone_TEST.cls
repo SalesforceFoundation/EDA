@@ -35,7 +35,7 @@
 * @description Unit tests for Preferred Phone
 */
 @isTest
-public class CON_PreferredPhone_Test {
+public class CON_PreferredPhone_TEST {
     
     @testSetup
     static void dataSetup() {
@@ -439,5 +439,33 @@ public class CON_PreferredPhone_Test {
         System.assert(newContAfterList.otherPhone == '0000000000');
 
     } 
+    
+     /* When Standard Phone is not null and Preferred Phone is enforced update Preferred Phone
+       to Other and update Other Phone to the value of Standard Phone.
+    */
+    @isTest 
+    static void testUpdatePrefPhoneTOtherBulk() {
+        
+        List<contact> contactsToInsert = new List<contact>();
+        for(Integer i = 0; i < 100; i++) {
+            Contact a = new Contact(FirstName='TestAccount' + i, LastName = 'JohnnyTest' + i );
+            contactsToInsert.add(a);
+        }
+        insert contactsToInsert;
+    
+        Test.startTest();
+        for (contact each: contactsToInsert) {
+            each.Phone = '0000000000';
+        }
+            update contactsToInsert;
+        Test.stopTest();
+
+        List<contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact];
+        
+        for (contact each: newContAfterList) { 
+            System.assertEquals('0000000000', each.OtherPhone);
+            System.assertEquals('Other', each.PreferredPhone__c);
+        }
+    }
   
 }
