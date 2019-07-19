@@ -234,6 +234,55 @@ public with sharing class CCON_Faculty_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Verifies that an existing Course Connection that is marked as Primary is populated on the
+    * Course Offering and reentrancy is prevented.
+    */
+    @isTest
+    public static void existingCourseConnectionMadePrimaryWithReentrancyCheck() {
+        // Do not run test if record types do not exist
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+            // Install Default HEDA TDTM Configuration
+            List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
+            TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+
+            // Add the Test TDTM for the Course Offering object. This Test TDTM will simply update the Course Connection 
+            // that caused the Course Offering to be updated.
+            // So the flow would be: course connection updated -> course offering updated -> course connection updated again
+            Trigger_Handler__c newTDTM = new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'UTIL_UnitTestData_TEST.Test_TDTM', Load_Order__c = 2, Object__c = 'Course_Offering__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate');
+            insert newTDTM;
+
+            enableCourseConnections();
+            setup();
+
+            // Create Primary Course Connection
+            Course_Enrollment__c conn = new Course_Enrollment__c(
+                Contact__c = faculty.Id,
+                Course_Offering__c = offering.Id,
+                Primary__c = false
+            );
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
+
+            insert conn;
+
+            // Ensure that the course connection gets updated recursively
+            UTIL_UnitTestData_TEST.sObjectsToUpdate = new List<SObject>{ conn };
+
+            Test.startTest();
+            conn.Primary__c = true;
+            update conn;
+            Test.stopTest();
+
+            offering = [SELECT Id, Faculty__c FROM Course_Offering__c WHERE Id = :offering.Id];
+            System.assertEquals(faculty.Id, offering.Faculty__c);
+
+            System.assert(CCON_Faculty_TDTM.reentrancyPrevented == true, 
+                'Expected the reentrancy check to have prevented the CCON_Faculty_TDTM trigger from processing again.');
+        }
+    }
+
+    /*********************************************************************************************************
     * @description Verifies that an existing Primary Course Connection that is marked as not Primary is
     * removed from the Course Offering.
     */

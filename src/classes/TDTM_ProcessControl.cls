@@ -75,6 +75,7 @@ public class TDTM_ProcessControl {
         REL_Relationships_Con_TDTM,
         REL_Relationships_Cm_TDTM,
         REL_Relationships_TDTM_After_Update,
+        CCON_Faculty_TDTM,
         TERM_CourseOff_TDTM,
         ATTD_CourseConnectionContact_TDTM
     }

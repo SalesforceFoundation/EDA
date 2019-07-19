@@ -36,11 +36,14 @@
 */
 public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
 
+    @testVisible
+    private static Boolean reentrancyPrevented;
+    
     /*******************************************************************************************************
     * @description Updates Course Offerings based on a Course Connection being made Primary. Sets Academic
     * Program on create and manages Affiliation creation and deletion for Faculty Course Connections.
     * @param listNew the list of Course Connections from trigger new.
-    * @param listOld the list of Coursen Connections from trigger old.
+    * @param listOld the list of Course Connections from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Course Connections.
     * @return dmlWrapper
@@ -65,169 +68,179 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
         Set<Id> contactIds = new Set<Id>();
         Map<Id, Course_Offering__c> offerings = new Map<Id, Course_Offering__c>();
 
-        // Check that Course Connections is enabled
-        if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+        // Check that Course Connections is enabled - if not, exit early
+        if (!UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
+            return dmlWrapper;
+        }
 
-            if(newlist != null && newlist.size() > 0) {
-                for (Integer i = 0; i < newlist.size(); i++) {
-                    Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
-                    if (enroll.get('RecordTypeId') == facultyRecType) {
-                        courseOfferingIds.add(enroll.Course_Offering__c);
-                        contactIds.add(enroll.Contact__c);
-                    }
+        // Are we in recursion? If so, exit
+        if (TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CCON_Faculty_TDTM)) {
+            reentrancyPrevented = true;
+            return dmlWrapper;
+        }
+
+        if (newlist != null && newlist.size() > 0) {
+            for (Integer i = 0; i < newlist.size(); i++) {
+                Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+                if (enroll.get('RecordTypeId') == facultyRecType) {
+                    courseOfferingIds.add(enroll.Course_Offering__c);
+                    contactIds.add(enroll.Contact__c);
                 }
-            }
-
-            if (courseOfferingIds.size() > 0) {
-                // Query for all the related Course Offerings
-                offerings = getCourseOfferings(courseOfferingIds);
-            }
-
-            if(newlist != null && newlist.size() > 0) {
-
-                //BEFORE INSERT
-                if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-
-                    if (offerings.size() > 0) {
-                        contactIdAccountIdAfflList = getContactIdAccountIdAffiliationsList(contactIds);
-                    }
-
-                    for (Integer i = 0; i < newlist.size(); i++) {
-                        Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
-
-                        // Skip over the Course Connection if it is not for a Faculty.
-                        if(enroll.get('RecordTypeId') != facultyRecType) {
-                            continue;
-                        }
-
-                        enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
-
-                        Map<Id, List<Affiliation__c>> affiliationsByAccountId = contactIdAccountIdAfflList.containsKey(enroll.Contact__c) ? 
-                            contactIdAccountIdAfflList.get(enroll.Contact__c) : null;
-
-                        if (affiliationsByAccountId != null && affiliationsByAccountId.containsKey(enroll.Account__c)) {
-                            enroll.Affiliation__c = affiliationsByAccountId.get(enroll.Account__c)[0].Id;
-                        } else {
-                            connsNeedingAffls.add(enroll);
-                            
-                            // Is the Affiliation already being inserted? If so, do not insert a duplicate.
-                            String contactAccountKey = enroll.Contact__c + '' + enroll.Account__c;
-                            if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
-                                continue;
-                            }
-
-                            Affiliation__c affl = new Affiliation__c(
-                                Contact__c = enroll.Contact__c,
-                                Account__c = enroll.Account__c,
-                                Role__c = 'Faculty'
-                            );
-                            affiliationsToInsertByContactAccountString.put(contactAccountKey, affl);
-                        }
-                    }
-
-                    if (affiliationsToInsertByContactAccountString.size() > 0) {
-                        insert affiliationsToInsertByContactAccountString.values();
-
-                        for (Integer i = 0; i < connsNeedingAffls.size(); i++) {
-                            Course_Enrollment__c enroll = connsNeedingAffls[i];
-                            String contactAccountKey = enroll.Contact__c + '' + enroll.Account__c;
-                            if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
-                                enroll.Affiliation__c = affiliationsToInsertByContactAccountString.get(contactAccountKey).Id;
-                            }
-                        }
-                    }
-                }
-
-                for (Integer i = 0; i < newlist.size(); i++) {
-                    Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
-
-                    //AFTER INSERT
-                    if(triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                        // Faculty Marked as Primary on Insert
-                        if(enroll.get('RecordTypeId') == facultyRecType &&
-                           enroll.Primary__c) {
-                            Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
-                            if (offering.Faculty__c != enroll.Contact__c) {
-                                offering.Faculty__c = enroll.Contact__c;
-                                courseOfferingsToUpdate.add(offering);
-                            }
-                        }
-                    }
-
-                    //AFTER UPDATE
-                    if(triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                        Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
-
-                        if (enroll.get('RecordTypeId') == facultyRecType) {
-                            if (enroll.Primary__c && !oldEnroll.Primary__c) {
-                                // Update Course Offering to add new Primary Faculty
-                                Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
-                                if (offering.Faculty__c != enroll.Contact__c) {
-                                    offering.Faculty__c = enroll.Contact__c;
-                                }
-                                courseOfferingsToUpdate.add(offering);
-                            } else if (!enroll.Primary__c && oldEnroll.Primary__c) {
-                                // Update Course Offering to remove Primary Faculty
-                                Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
-                                if (offering.Faculty__c == oldEnroll.Contact__c) {
-                                    offering.Faculty__c = null;
-                                }
-                                courseOfferingsToUpdate.add(offering);
-                            }
-                        }
-                    }
-                }
-            }
-
-            //AFTER DELETE
-            if(triggerAction == TDTM_Runnable.Action.AfterDelete) {
-
-                Set<Id> potentialAfflDeletionsIds = new Set<Id>();
-                Map<Id, Affiliation__c> potentialAfflDeletions = new Map<Id, Affiliation__c>();
-                Set<Id> afflIdsToDelete = new Set<Id>();
-
-                if(oldList != null && oldList.size() > 0) {
-
-                    for (Integer i = 0; i < oldList.size(); i++) {
-                        Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
-                        potentialAfflDeletionsIds.add(oldEnroll.Affiliation__c);
-                    }
-
-                    potentialAfflDeletions = getAffiliations(potentialAfflDeletionsIds);
-
-                    for (Integer i = 0; i < oldList.size(); i++) {
-
-                        Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
-
-                        if (oldEnroll.get('RecordTypeId') == facultyRecType) {
-                            if (potentialAfflDeletions.containsKey(oldEnroll.Affiliation__c)) {
-                                Affiliation__c affl = potentialAfflDeletions.get(oldEnroll.Affiliation__c);
-                                if (affl.Course_Enrollment__r.size() == 0) {
-                                    affiliationsToDelete.add(affl);
-                                }
-                            }
-                            if (oldEnroll.Primary__c) {
-                                // Update Course Offering to remove Primary Faculty
-                                Course_Offering__c cOff = new Course_Offering__c(
-                                    Id = oldEnroll.Course_Offering__c,
-                                    Faculty__c = null
-                                );
-                                courseOfferingsToUpdate.add(cOff);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if(courseOfferingsToUpdate.size() > 0) {
-                dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseOfferingsToUpdate);
-            }
-
-            if(affiliationsToDelete.size() > 0) {
-                dmlWrapper.objectsToDelete.addAll((List<SObject>)affiliationsToDelete);
             }
         }
 
+        if (courseOfferingIds.size() > 0) {
+            // Query for all the related Course Offerings
+            offerings = getCourseOfferings(courseOfferingIds);
+        }
+
+        if (newlist != null && newlist.size() > 0) {
+
+            //BEFORE INSERT
+            if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+
+                if (offerings.size() > 0) {
+                    contactIdAccountIdAfflList = getContactIdAccountIdAffiliationsList(contactIds);
+                }
+
+                for (Integer i = 0; i < newlist.size(); i++) {
+                    Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+
+                    // Skip over the Course Connection if it is not for a Faculty.
+                    if (enroll.get('RecordTypeId') != facultyRecType) {
+                        continue;
+                    }
+
+                    enroll.Account__c = offerings.get(enroll.Course_Offering__c).Course__r.Account__c;
+
+                    Map<Id, List<Affiliation__c>> affiliationsByAccountId = contactIdAccountIdAfflList.containsKey(enroll.Contact__c) ? 
+                        contactIdAccountIdAfflList.get(enroll.Contact__c) : null;
+
+                    if (affiliationsByAccountId != null && affiliationsByAccountId.containsKey(enroll.Account__c)) {
+                        enroll.Affiliation__c = affiliationsByAccountId.get(enroll.Account__c)[0].Id;
+                    } else {
+                        connsNeedingAffls.add(enroll);
+                        
+                        // Is the Affiliation already being inserted? If so, do not insert a duplicate.
+                        String contactAccountKey = enroll.Contact__c + '' + enroll.Account__c;
+                        if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
+                            continue;
+                        }
+
+                        Affiliation__c affl = new Affiliation__c(
+                            Contact__c = enroll.Contact__c,
+                            Account__c = enroll.Account__c,
+                            Role__c = 'Faculty'
+                        );
+                        affiliationsToInsertByContactAccountString.put(contactAccountKey, affl);
+                    }
+                }
+
+                if (affiliationsToInsertByContactAccountString.size() > 0) {
+                    insert affiliationsToInsertByContactAccountString.values();
+
+                    for (Integer i = 0; i < connsNeedingAffls.size(); i++) {
+                        Course_Enrollment__c enroll = connsNeedingAffls[i];
+                        String contactAccountKey = enroll.Contact__c + '' + enroll.Account__c;
+                        if (affiliationsToInsertByContactAccountString.containsKey(contactAccountKey)) {
+                            enroll.Affiliation__c = affiliationsToInsertByContactAccountString.get(contactAccountKey).Id;
+                        }
+                    }
+                }
+            }
+
+            for (Integer i = 0; i < newlist.size(); i++) {
+                Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+
+                //AFTER INSERT
+                if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                    // Faculty Marked as Primary on Insert
+                    if (enroll.get('RecordTypeId') == facultyRecType && enroll.Primary__c) {
+                        Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
+                        if (offering.Faculty__c != enroll.Contact__c) {
+                            offering.Faculty__c = enroll.Contact__c;
+                            courseOfferingsToUpdate.add(offering);
+                        }
+                    }
+                }
+
+                //AFTER UPDATE
+                if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                    Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
+                    if (enroll.get('RecordTypeId') != facultyRecType) {
+                        continue;
+                    }
+
+                    if (enroll.Primary__c && !oldEnroll.Primary__c) {
+                        // Update Course Offering to add new Primary Faculty
+                        Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
+                        if (offering.Faculty__c != enroll.Contact__c) {
+                            offering.Faculty__c = enroll.Contact__c;
+                        }
+                        courseOfferingsToUpdate.add(offering);
+                    } else if (!enroll.Primary__c && oldEnroll.Primary__c) {
+                        // Update Course Offering to remove Primary Faculty
+                        Course_Offering__c offering = offerings.get(enroll.Course_Offering__c);
+                        if (offering.Faculty__c == oldEnroll.Contact__c) {
+                            offering.Faculty__c = null;
+                        }
+                        courseOfferingsToUpdate.add(offering);
+                    }
+                }
+            }
+        }
+
+        //AFTER DELETE
+        if(triggerAction == TDTM_Runnable.Action.AfterDelete && oldList != null && oldList.size() > 0) {
+
+            Set<Id> potentialAfflDeletionsIds = new Set<Id>();
+            Map<Id, Affiliation__c> potentialAfflDeletions = new Map<Id, Affiliation__c>();
+            Set<Id> afflIdsToDelete = new Set<Id>();
+
+            for (Integer i = 0; i < oldList.size(); i++) {
+                Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
+                potentialAfflDeletionsIds.add(oldEnroll.Affiliation__c);
+            }
+
+            potentialAfflDeletions = getAffiliations(potentialAfflDeletionsIds);
+
+            for (Integer i = 0; i < oldList.size(); i++) {
+
+                Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
+                if (oldEnroll.get('RecordTypeId') != facultyRecType) {
+                    continue;
+                }
+
+                if (potentialAfflDeletions.containsKey(oldEnroll.Affiliation__c)) {
+                    Affiliation__c affl = potentialAfflDeletions.get(oldEnroll.Affiliation__c);
+                    if (affl.Course_Enrollment__r.size() == 0) {
+                        affiliationsToDelete.add(affl);
+                    }
+                }
+
+                if (oldEnroll.Primary__c) {
+                    // Update Course Offering to remove Primary Faculty
+                    Course_Offering__c cOff = new Course_Offering__c(
+                        Id = oldEnroll.Course_Offering__c,
+                        Faculty__c = null
+                    );
+                    courseOfferingsToUpdate.add(cOff);
+                }
+            }
+        }
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CCON_Faculty_TDTM, true);
+        if(courseOfferingsToUpdate.size() > 0) {
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>)courseOfferingsToUpdate);
+        }
+
+        if(affiliationsToDelete.size() > 0) {
+            dmlWrapper.objectsToDelete.addAll((List<SObject>)affiliationsToDelete);
+        }
+        
+        TDTM_TriggerHandler.processDML(dmlWrapper, true);
+        dmlWrapper = null;
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CCON_Faculty_TDTM, false);
 
         return dmlWrapper;
     }
