@@ -176,14 +176,11 @@ public with sharing class CON_Phone {
     public static void copyStdPhoneToOther(Contact contact, CON_PhoneFieldList fieldList) {
         if(contact.Phone != null) {
 
-            String namespace = UTIL_Namespace.getNamespace();
             // Retrieve field from field list using the known API name.
             CON_PhoneField otherField = fieldList.getFieldByApiName('OtherPhone');
 
                 contact.PreferredPhone__c = otherField.prefLabel;
-                contact.OtherPhone = contact.Phone;
-
-            
+                contact.OtherPhone = contact.Phone;          
         }
     }
     
