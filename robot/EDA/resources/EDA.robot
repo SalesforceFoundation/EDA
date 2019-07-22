@@ -4,8 +4,6 @@ Resource       cumulusci/robotframework/Salesforce.robot
 Library        EDA.py
 
 *** Keywords ***
-
-
 API Create Term
     [Arguments]       ${account_id}  &{fields}
     ${term_name} =    Generate Random String
@@ -64,8 +62,6 @@ Populate Create And Return Contact with Address
     Store Session Record      Contact  ${contact_id}
     [return]                  ${contact_id}
 
-
-
 API Create Department
     [Arguments]       ${record_type}=University_Department
     ${dept_name} =    Generate Random String
@@ -86,6 +82,37 @@ API Create Program
     &{program} =      Salesforce Get  Account  ${prog_id}
     [return]          &{program}
 
+API create program plan
+    [Documentation]         Creating a Program Plan through API call
+    [Arguments]             ${program_plan_name}    &{fields}
+
+    ${ns} =                 Get EDA namespace prefix
+    ${prog_plan_id} =       Salesforce Insert       ${ns}Program_Plan__c
+    ...                         Name=${program_plan_name}
+    ...                         &{fields}
+    &{program_plan} =       Salesforce Get          ${ns}Program_Plan__c   ${prog_plan_id}
+    [return]                &{program_plan}
+
+API create plan requirement
+    [Documentation]         Creating a Plan Requirement through API call
+    [Arguments]             ${plan_req_name}        ${program_plan_id}      &{fields}
+
+    ${ns} =                 Get EDA namespace prefix
+    ${prog_req_id} =        Salesforce Insert       ${ns}Plan_Requirement__c
+    ...                         Name=${plan_req_name}
+    ...                         ${ns}Program_Plan__c=${program_plan_id}
+    ...                         &{fields}
+    &{plan_requirement} =   Salesforce Get          ${ns}Plan_Requirement__c   ${prog_req_id}
+    [return]                &{plan_requirement}
+
+API Get ID
+    [Documentation]         Returns the ID of a record identified by the given field_name and field_value input for a specific object
+    [Arguments]             ${obj_name}             ${field_name}               ${field_value}
+    @{records} =            Salesforce Query        ${obj_name}
+    ...                         select=Id
+    ...                         ${field_name}=${field_value}
+    &{Id} =                 Get From List           ${records}      0
+    [return]                &{Id}[Id]
 
 Create Course Enrollment
     [Arguments]                ${contact_id}  ${offering_name}
@@ -161,9 +188,8 @@ Create Contact with Email
     Wait Until Modal Is Closed
     ${contact_id} =           Get Current Record Id
     Store Session Record      Contact  ${contact_id}
-    [return]                  ${contact_id}    
-    
-    
+    [return]                  ${contact_id}
+
 Create Contact with Address
     ${first_name} =           Generate Random String
     ${last_name} =            Generate Random String
@@ -230,72 +256,65 @@ Create HouseHold
 
 Create Primary Affiliation
     # Create Organization Account
-    ${account_id} =  Create Organization Foundation
-    &{account} =  Salesforce Get  Account  ${account_id}
+    ${account_id} =             Create Organization Foundation
+    &{account} =                Salesforce Get  Account  ${account_id}
     
     # Create Contact
-    ${contact_id} =  Create Contact with Email
-    &{contact} =  Salesforce Get  Contact  ${contact_id}   
-    Select Tab    Details
-    Scroll Page To Location    100    300
-    Click Edit Button    Edit Primary Affiliation
-    Populate Lookup Field    Primary Affiliation    &{account}[Name]
-    Click Record Button    Save 
-    [Return]         ${account_id}    ${contact_id}   
+    ${contact_id} =             Create Contact with Email
+    &{contact} =                Salesforce Get  Contact  ${contact_id}
+    Select Tab                  Details
+    Scroll Page To Location     100    300
+    Click Edit Button           Edit Primary Affiliation
+    Populate Lookup Field       Primary Affiliation    &{account}[Name]
+    Click Record Button         Save
+    [Return]                    ${account_id}    ${contact_id}
 
 Create Secondary Affiliation
     # Create Organization Account
-    ${account_id} =  Create Organization Foundation
-    &{account} =  Salesforce Get  Account  ${account_id}
+    ${account_id} =             Create Organization Foundation
+    &{account} =                Salesforce Get  Account  ${account_id}
     
     # Create Contact
-    ${contact_id} =  Create Contact with Email
-    &{contact} =  Salesforce Get  Contact  ${contact_id}   
-    Scroll Page To Location    50    400
+    ${contact_id} =             Create Contact with Email
+    &{contact} =                Salesforce Get  Contact  ${contact_id}
+    Scroll Page To Location     50    400
     Click Related List Button   Organization Affiliations    New
-    Populate Lookup Field    Organization    &{account}[Name]
-    Click Modal Button    Save
-    [Return]         ${account_id}    ${contact_id}
+    Populate Lookup Field       Organization    &{account}[Name]
+    Click Modal Button          Save
+    [Return]                    ${account_id}    ${contact_id}
     
 Create Opportunities
-    [Arguments]    ${opp_name}    ${hh_name}  
+    [Arguments]                 ${opp_name}    ${hh_name}
     Select Window
-    Sleep    2   
+    Sleep                       2
     Populate Form
-    ...                       Opportunity Name= ${opp_name}
-    ...                       Amount=100 
-    Click Dropdown    Stage
-    Click Link    link=Closed Won
-    Populate Lookup Field    Account Name    ${hh_name}
-    Click Dropdown    Close Date
-    Pick Date    10
-    Select Modal Checkbox    Do Not Automatically Create Payment
-    Click Modal Button        Save
-    
-    
+    ...                         Opportunity Name= ${opp_name}
+    ...                         Amount=100
+    Click Dropdown              Stage
+    Click Link                  link=Closed Won
+    Populate Lookup Field       Account Name    ${hh_name}
+    Click Dropdown              Close Date
+    Pick Date                   10
+    Select Modal Checkbox       Do Not Automatically Create Payment
+    Click Modal Button          Save
+
 Choose Frame
-    [Arguments]    ${frame}
-    Select Frame    //iframe[contains(@title,'${frame}')]
+    [Arguments]                 ${frame}
+    Select Frame                //iframe[contains(@title,'${frame}')]
     
 Select Frame with ID
-    [Arguments]    ${id}
-    Select Frame    //iframe[contains(@id, '${id}')]    
+    [Arguments]                 ${id}
+    Select Frame                //iframe[contains(@id, '${id}')]
     
 Select Frame With Title
-    [Arguments]    ${name}
-    Select Frame    //iframe[@title= '${name}']    
+    [Arguments]                 ${name}
+    Select Frame                //iframe[@title= '${name}']
     
 Scroll Page To Location
-    [Arguments]    ${x_location}    ${y_location}
-    Execute JavaScript    window.scrollTo(${x_location},${y_location}) 
+    [Arguments]                 ${x_location}    ${y_location}
+    Execute JavaScript          window.scrollTo(${x_location},${y_location})
 
-Go To Eda Settings
-   Open App Launcher
-
-    # Check for EDA Tile
-    Wait Until Element Is visible           //div[@class='slds-app-launcher__tile-body']//a[contains(text(),'EDA')]
-
-    Wait Until Element Is visible           //a[@title='EDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'EDA Settings')]
-    Click Element                           //a[@title='EDA Settings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'EDA Settings')]
-
-    Select Frame			                //iframe[contains(@name, "vfFrameId")]
+Go to EDA settings
+    [Documentation]             Clicks on App Waffle and selects 'EDA Settings' tab
+    Select app launcher tab     EDA Settings
+    Select frame with title     accessibility title

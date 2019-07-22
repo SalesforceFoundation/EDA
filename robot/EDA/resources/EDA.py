@@ -1,20 +1,11 @@
 import logging
-import re
 import time
 
 from cumulusci.robotframework.utils import selenium_retry
 
 from robot.libraries.BuiltIn import BuiltIn
-from selenium.common.exceptions import ElementNotInteractableException
-from selenium.common.exceptions import StaleElementReferenceException
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
-from SeleniumLibrary.errors import ElementNotFound
-from simple_salesforce import SalesforceMalformedRequest
-from simple_salesforce import SalesforceResourceNotFound
 from locator import eda_lex_locators
-from selenium.webdriver import ActionChains
 
 
 @selenium_retry
@@ -39,6 +30,10 @@ class EDA(object):
     @property
     def cumulusci(self):
         return self.builtin.get_library_instance("cumulusci.robotframework.CumulusCI")
+
+    @property
+    def selenium(self):
+        return self.builtin.get_library_instance("SeleniumLibrary")
 
     def populate_address(self, loc, value):
         """ Populate address with Place Holder aka Mailing Street etc as a locator
@@ -200,7 +195,6 @@ class EDA(object):
         locator = eda_lex_locators["detail_page"]["address"].format(field, value)
         self.selenium.page_should_contain_element(locator)
 
-    # def DnD(self):
     def validate_checkbox(self, name, checkbox_title):
         """validates all 3 checkboxes for contact on manage hh page and returns locator for the checkbox thats required"""
 
@@ -293,7 +287,6 @@ class EDA(object):
         locator = eda_lex_locators["object"]["record"].format(title)
         self.selenium.page_should_not_contain_element(locator)
 
-
     def select_checkbox_in_eda_settings(self, loc_check, loc_checkbox):
         """ Selects checkbox.  Does nothing if checkbox is already checked """
         if self.check_if_element_exists(loc_check):
@@ -337,4 +330,49 @@ class EDA(object):
         field.send_keys(value)
         time.sleep(1)
 #         if loc == ("Search Contacts" or "Search Accounts"):
-        field.send_keys(Keys.ENTER)
+        field.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
+
+    def edit_eda_settings_checkbox(self, checkbox_label, checkbox_toggle):
+        """ Updates the checkbox_label value to checkbox_toggle in the EDA settings page """
+        locator_checkbox_default = eda_lex_locators["eda_settings"]["checkbox_default"].format(checkbox_label)
+        locator_checkbox = eda_lex_locators["eda_settings"]["checkbox"].format(checkbox_label)
+        locator_edit = eda_lex_locators["eda_settings"]["edit"]
+        locator_save = eda_lex_locators["eda_settings"]["save"]
+
+        checkbox_default = self.selenium.get_element_attribute(locator_checkbox_default, "alt")
+        if checkbox_default == checkbox_toggle:
+            return
+        else:
+            self.selenium.click_element(locator_edit)
+            self.selenium.wait_until_page_contains_element(locator_checkbox,
+                                                           error="Checkbox not found on the page")
+            self.selenium.click_element(locator_checkbox)
+            self.selenium.click_element(locator_save)
+            self.verify_toast_message("Settings Saved Successfully.")
+
+    def verify_toast_message(self, value):
+        """ Verifies the toast message """
+        locator = eda_lex_locators["toast_message"].format(value)
+        self.selenium.wait_until_page_contains_element(locator)
+
+    def get_eda_namespace_prefix(self):
+        """ Returns the EDA namespace value if the target org is a managed org else returns blank value """
+        if not hasattr(self.cumulusci, '_describe_result'):
+            self.cumulusci._describe_result = self.cumulusci.sf.describe()
+        objects = self.cumulusci._describe_result['sobjects']
+        for o in objects:
+            if o['label'] == "Program Plan":
+                print(o)
+        level_object = [o for o in objects if o['label'] == 'Program Plan'][0]
+        return self.get_namespace_prefix(level_object['name'])
+
+    def get_namespace_prefix(self, name):
+        """" This is a helper function to capture the EDA namespace prefix of the target org """
+        parts = name.split('__')
+        print(len(parts))
+        if parts[-1] == 'c':
+            parts = parts[:-1]
+        if len(parts) > 1:
+            return parts[0] + '__'
+        else:
+            return ''
