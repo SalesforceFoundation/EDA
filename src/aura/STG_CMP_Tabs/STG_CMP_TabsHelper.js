@@ -258,11 +258,10 @@
                 for(var property in picklistValues) {                     
                    
                     if (picklistValues.hasOwnProperty(property) && property != 'phone') {
-                        preferredPhonePicklistEntries.push({picklistLabel: property, picklistValue : picklistValues[property]});  
+                        preferredPhonePicklistEntries.push({picklistLabel: property, picklistValue : property});  
                         
-                        if(preferredValue == undefined || (preferredValue != undefined && property.indexOf(preferredValue.toLowerCase())) > -1) {
-                            component.set("v.defaultPreferredPhoneLabel", property);
-                        
+                        if(preferredValue == undefined || (preferredValue != undefined && property.indexOf(preferredValue)) > -1) {
+                            component.set("v.defaultPreferredPhoneLabel", property);                        
                         } 
                     }
                     

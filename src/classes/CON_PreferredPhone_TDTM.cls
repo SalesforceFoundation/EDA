@@ -49,26 +49,21 @@ public class CON_PreferredPhone_TDTM extends TDTM_Runnable{
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM, true);
             
             Boolean validatePreferredPhone = !UTIL_CustomSettingsFacade.getSettings().Disable_Preferred_Phone_Enforcement__c;
-            String selectedPreferredPhone = UTIL_CustomSettingsFacade.getSettings().Preferred_Phone_Selection__c;   
- 
-            for (SObject so : newlist) {
-                Contact contact = (Contact)so;
+            String selectedPreferredPhone = UTIL_CustomSettingsFacade.getSettings().Preferred_Phone_Selection__c;
 
-                // Process the Prefered Phone
-
-                if (oldList != NULL) {
-
-                     Map<ID, Contact> oldContactMap = new Map<ID, Contact>((List<Contact>)oldlist);
-                     contact OldContact = oldContactMap.get(contact.Id);
-                     CON_Phone.processPreferredPhone(contact, OldContact, validatePreferredPhone, selectedPreferredPhone);
-                }
+            String preferredPhoneAPI = UTIL_Describe.getFieldAPIName('Contact', selectedPreferredPhone); 
                 
-                else {
-                    
-                    CON_Phone.processPreferredPhone(contact, null, validatePreferredPhone, selectedPreferredPhone);
-                }
-            }
+            Map<Id, Contact> oldContactMap = new Map<Id, Contact>();
+                
+			      if (oldList != null) {
+    			      oldContactMap = new Map<ID, Contact>((List<Contact>)oldlist);
+			      }
 
+			      for (SObject so : newList) {
+    			      Contact contact = (Contact)so;
+    			      CON_Phone.processPreferredPhone(contact, oldContactMap.get(contact.Id), validatePreferredPhone, preferredPhoneAPI);
+			      }
+ 			
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM, false);
         }
          

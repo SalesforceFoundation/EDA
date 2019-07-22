@@ -499,29 +499,53 @@ public class UTIL_Describe {
         return picklistValues;
     }
     
-    /****
-     * @description Returns a map of active, user-available fields labels and api names for a given
+    /*********************************************************************************************************
+     * @description Returns a map of active, user-available fields labels and API name for a given
      * SObjectType and field type, keyed by  label with a value of api name.
      * @param objectName Name of the object to retrieve values for.
      * @param type data type of the fields to retrieve values for.
-     * @return Map<String, String> Map of labels to values for the object and field type specified.
+     * @return Map<String, String> Map of labels to api name for the object and field type specified.
      *****/
     @AuraEnabled
     public static Map<String, String> getFieldsOfTypeAura(String objectName, String type) {
-
+		
+        //API name and Schema of field
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, String> fields = new Map<String, String>();
-       
-        for(String fieldLabel: allFields.keySet()) {
-            Schema.DescribeFieldResult field = allFields.get(fieldLabel);
+        for(String fieldAPI: allFields.keySet()) {
+            Schema.DescribeFieldResult field = allFields.get(fieldAPI);
      
             if (String.valueOf( field.getType() ) == type) {
-                fields.put(fieldLabel, field.getName());
+                 fields.put(field.getLabel(), fieldAPI);
             }
         }
 	
         return fields;
     }
+    
+
+    /*********************************************************************************************************
+     * @description Returns field API name for a given object and field label
+     * @param objectName Name of the object to retrieve values for.
+     * @param fieldLabel Label of the field
+     * @return String API Name of the field retrieved
+     *****/
+
+    public static String getFieldAPIName (String objectName, String fieldLabel) {
+    SObjectType objType = Schema.getGlobalDescribe().get(objectName);
+    Map<String, Schema.SObjectField> allFields = objType.getDescribe().fields.getMap();
+    String fieldAPIName = '';    
+    for (String strField: allFields.keySet()) {
+        SObjectField fieldAPI = allFields.get(strField);
+        Schema.DisplayType fielddataType = fieldAPI.getDescribe().getType();
+        if(fieldLabel == fieldAPI.getDescribe().getlabel()) {
+            fieldAPIName = strField;
+            break;
+        }
+    }
+        
+    return fieldAPIName;
+}
 
     /*******************************************************************************************************
     * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
