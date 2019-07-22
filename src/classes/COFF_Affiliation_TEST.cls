@@ -735,6 +735,7 @@ public with sharing class COFF_Affiliation_TEST {
     @isTest
     public static void testUpdateConnectionsOnFacultyChangeUpdateExisting() {
         setup();
+
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         //Create Course Offering with Faculty member
@@ -742,7 +743,8 @@ public with sharing class COFF_Affiliation_TEST {
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
 
-        Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id);
+        //Create Primary Course Connection for the Faculty member
+        Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id, Primary__c = true);
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
@@ -751,6 +753,7 @@ public with sharing class COFF_Affiliation_TEST {
         Contact faculty2 = new Contact(FirstName = 'Test', LastName = 'Testerson2');
         insert faculty2;
 
+        //Create Non-Primary Course Connection for the Faculty member
         Course_Enrollment__c conn2 = new Course_Enrollment__c(Contact__c = faculty2.Id, Course_Offering__c = offering.Id);
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn2.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
@@ -788,7 +791,8 @@ public with sharing class COFF_Affiliation_TEST {
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
 
-        Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id);
+        //Create Primary Course Connection for the Faculty member
+        Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id, Primary__c = true);
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
             conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
@@ -820,10 +824,19 @@ public with sharing class COFF_Affiliation_TEST {
     public static void testUpdateConnectionsOnFacultyRemove() {
         setup();
 
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
+
         //Create Course Offering with Faculty member
         Course_Offering__c offering = new Course_Offering__c(Section_ID__c = 'BIO-101 Spring 16', Course__c = course.ID,
         Faculty__c = faculty.Id, Term__c = term.Id, Capacity__c = 200);
         insert offering;
+
+        //Create Primary Course Connection for the Faculty member
+        Course_Enrollment__c conn = new Course_Enrollment__c(Contact__c = faculty.Id, Course_Offering__c = offering.Id, Primary__c = true);
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {
+            conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
+        }
+        insert conn;
 
         List<Id> removedFacultyIds = new List<Id>{faculty.Id};
         Set<Id> offsWithRemovedFaculty = new Set<Id>{offering.Id};
