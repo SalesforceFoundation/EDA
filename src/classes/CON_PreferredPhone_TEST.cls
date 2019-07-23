@@ -35,14 +35,14 @@
 * @description Unit tests for Preferred Phone
 */
 @isTest
-public class CON_PreferredPhone_TEST {
+private class CON_PreferredPhone_TEST {
     
     @testSetup
     static void dataSetup() {
         
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
-            );
+        );
         
         // Simulate a user adding their own handler, should not need User_Managed__c to be true
         Trigger_Handler__c newHandler = new Trigger_Handler__c(

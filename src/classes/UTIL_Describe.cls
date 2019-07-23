@@ -532,20 +532,26 @@ public class UTIL_Describe {
      *****/
 
     public static String getFieldAPIName (String objectName, String fieldLabel) {
-    SObjectType objType = Schema.getGlobalDescribe().get(objectName);
-    Map<String, Schema.SObjectField> allFields = objType.getDescribe().fields.getMap();
-    String fieldAPIName = '';    
-    for (String strField: allFields.keySet()) {
-        SObjectField fieldAPI = allFields.get(strField);
-        Schema.DisplayType fielddataType = fieldAPI.getDescribe().getType();
-        if(fieldLabel == fieldAPI.getDescribe().getlabel()) {
-            fieldAPIName = strField;
-            break;
-        }
-    }
         
-    return fieldAPIName;
-}
+        // get the object map the first time
+        if (gd == null) {
+            gd = Schema.getGlobalDescribe();
+        }
+        
+        SObjectType objType = gd.get(objectName);
+        Map<String, Schema.SObjectField> allFields = objType.getDescribe().fields.getMap();
+        String fieldAPIName = '';    
+        for (String strField: allFields.keySet()) {
+            SObjectField fieldAPI = allFields.get(strField);
+            Schema.DisplayType fielddataType = fieldAPI.getDescribe().getType();
+            if(fieldLabel == fieldAPI.getDescribe().getlabel()) {
+                fieldAPIName = strField;
+                break;
+            }
+        }   
+        
+        return fieldAPIName;
+    }
 
     /*******************************************************************************************************
     * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with

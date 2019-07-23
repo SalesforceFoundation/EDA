@@ -55,9 +55,9 @@ public class CON_PreferredPhone_TDTM extends TDTM_Runnable{
                 
             Map<Id, Contact> oldContactMap = new Map<Id, Contact>();
                 
-			      if (oldList != null) {
-    			      oldContactMap = new Map<ID, Contact>((List<Contact>)oldlist);
-			      }
+            if (oldList != null) {
+                oldContactMap = new Map<ID, Contact>((List<Contact>)oldlist);
+            }
 
 			      for (SObject so : newList) {
     			      Contact contact = (Contact)so;

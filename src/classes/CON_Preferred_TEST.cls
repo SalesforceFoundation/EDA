@@ -41,12 +41,11 @@ public with sharing class CON_Preferred_TEST {
     public static void preferredEmailPhoneInsert() {
     
         Test.testInstall(new STG_InstallScript(), null);
-        List<trigger_handler__c> preferredPhoneHandler = [select id, class__c, active__c from trigger_handler__c WHERE class__c = 'CON_PreferredPhone_TDTM' AND Object__c = 'Contact'];
+        List<trigger_handler__c> preferredPhoneHandler = [SELECT id, class__c, active__c FROM trigger_handler__c WHERE class__c = 'CON_PreferredPhone_TDTM' AND Object__c = 'Contact'];
         
         System.assertEquals(1,preferredPhoneHandler.size());
         System.assertEquals(true, preferredPhoneHandler[0].active__c);
       
-        
         if (preferredPhoneHandler != NULL && preferredPhoneHandler.size() > 0) {
         
             preferredPhoneHandler[0].active__c = false;
