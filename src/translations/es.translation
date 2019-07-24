@@ -888,48 +888,4 @@
         <label>Configuración de EDA</label>
         <name>HEDA_Settings</name>
     </customTabs>
-    <quickActions>
-        <label><!-- LogACall --></label>
-        <name>LogACall</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewAccount --></label>
-        <name>NewAccount</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewCase --></label>
-        <name>NewCase</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewContact --></label>
-        <name>NewContact</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewEvent --></label>
-        <name>NewEvent</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewGroup --></label>
-        <name>NewGroup</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewLead --></label>
-        <name>NewLead</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewNote --></label>
-        <name>NewNote</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewOpportunity --></label>
-        <name>NewOpportunity</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- NewTask --></label>
-        <name>NewTask</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- SendEmail --></label>
-        <name>SendEmail</name>
-    </quickActions>
 </Translations>
