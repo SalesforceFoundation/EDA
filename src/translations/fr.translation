@@ -69,6 +69,18 @@
         <name>PreferredEmailRequiredError</name>
     </customLabels>
     <customLabels>
+        <label><!-- PreferredPhoneMatchMustExist --></label>
+        <name>PreferredPhoneMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredPhoneMatchNotNull --></label>
+        <name>PreferredPhoneMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredPhoneRequiredError --></label>
+        <name>PreferredPhoneRequiredError</name>
+    </customLabels>
+    <customLabels>
         <label>est</label>
         <name>Relationship_Explanation_Connector</name>
     </customLabels>
@@ -255,6 +267,10 @@
     <customLabels>
         <label>E-mail (standard)</label>
         <name>preferredBatchDefaultEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- preferredBatchDefaultPhone --></label>
+        <name>preferredBatchDefaultPhone</name>
     </customLabels>
     <customLabels>
         <label>Modèle de compte par défaut :</label>
@@ -469,6 +485,10 @@
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgDisablePreferredPhoneEnforcement --></label>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
         <label>Activer les connexions aux cours :</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
@@ -553,6 +573,10 @@
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpContactPreferredPhone --></label>
+        <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
         <label>Le processus a été mis en file d&apos;attente avec succès. Un e-mail sera envoyé une fois la tâche terminée.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
@@ -603,6 +627,10 @@
     <customLabels>
         <label>Pour les contacts existants qui n&apos;ont pas spécifié d&apos;adresse e-mail préférée, le processus de nettoyage vérifie qu&apos;une adresse e-mail standard ou personnalisée du contact est définie en tant qu&apos;adresse e-mail préférée.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpEnsureExistContactPreferPhone --></label>
+        <name>stgHelpEnsureExistContactPreferPhone</name>
     </customLabels>
     <customLabels>
         <label>Si cette case est cochée, l&apos;infrastructure de gestion des erreurs de l&apos;architecture EDA est désactivée.</label>
@@ -689,6 +717,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgPhoneCleanupQueuedEmailSent --></label>
+        <name>stgPhoneCleanupQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
         <label>La tâche Apex par lot a traité {0} enregistrements avec {1} échecs.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
@@ -701,8 +733,32 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Setting Preferred Phone  Batch Email Body --></label>
+        <name>stgPreferredPhoneBatchEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Setting Preferred Phone batch Subject --></label>
+        <name>stgPreferredPhoneBatchSubject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgPreferredPhoneDataCleanup --></label>
+        <name>stgPreferredPhoneDataCleanup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select a desired picklist value for the batch job to selct a value from --></label>
+        <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgRunPhoneCleanUpEnableFirstTime --></label>
+        <name>stgRunPhoneCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSaveSettings --></label>
+        <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
         <label>Sélectionner un type de destinataire</label>
@@ -719,6 +775,10 @@
     <customLabels>
         <label>Stocker les erreurs :</label>
         <name>stgStoreErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSuccess --></label>
+        <name>stgSuccess</name>
     </customLabels>
     <customLabels>
         <label>Comptes et contacts</label>
@@ -828,4 +888,48 @@
         <label>Paramètres EDA</label>
         <name>HEDA_Settings</name>
     </customTabs>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
 </Translations>
