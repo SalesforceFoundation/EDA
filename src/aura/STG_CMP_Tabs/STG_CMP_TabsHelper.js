@@ -257,7 +257,7 @@
                 
                 for(var property in picklistValues) {                     
                    
-                    if (picklistValues.hasOwnProperty(property) && property != 'phone') {
+                    if (picklistValues.hasOwnProperty(property) && property != 'phone' && property != 'Business Phone') {
                         preferredPhonePicklistEntries.push({picklistLabel: property, picklistValue : property});  
                         
                         if(preferredValue == undefined || (preferredValue != undefined && property.indexOf(preferredValue)) > -1) {
