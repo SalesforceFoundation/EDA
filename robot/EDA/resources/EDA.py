@@ -355,21 +355,22 @@ class EDA(object):
         locator = eda_lex_locators["toast_message"].format(value)
         self.selenium.wait_until_page_contains_element(locator)
 
+    def close_toast_message(self):
+        """ Close the toast message banner """
+        locator = eda_lex_locators["toast_close"]
+        self.selenium.click_element(locator)
+
     def get_eda_namespace_prefix(self):
         """ Returns the EDA namespace value if the target org is a managed org else returns blank value """
         if not hasattr(self.cumulusci, '_describe_result'):
             self.cumulusci._describe_result = self.cumulusci.sf.describe()
         objects = self.cumulusci._describe_result['sobjects']
-        for o in objects:
-            if o['label'] == "Program Plan":
-                print(o)
         level_object = [o for o in objects if o['label'] == 'Program Plan'][0]
         return self.get_namespace_prefix(level_object['name'])
 
     def get_namespace_prefix(self, name):
         """" This is a helper function to capture the EDA namespace prefix of the target org """
         parts = name.split('__')
-        print(len(parts))
         if parts[-1] == 'c':
             parts = parts[:-1]
         if len(parts) > 1:

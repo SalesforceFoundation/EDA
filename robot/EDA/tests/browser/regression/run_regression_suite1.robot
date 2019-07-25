@@ -44,6 +44,7 @@ Verify EDA Settings
 
 
 Verify Affiliations, Program Enrollments and No Duplicates
+    [tags]                                  unstable
     Set Window Size                         1024    1024
     Go To Object Home                       Contact
 

@@ -58,9 +58,9 @@ eda_lex_locators = {
         "household": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Household Account')]",
         "sports": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Sports Organization')]",
         "university": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]",
-        "save": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
-        "edit": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
-        "cancel": "//div[@class='slds-button-group']//span[contains(text(), 'Cancel')]",
+        "save": "//button[contains(@class, 'slds-button')]/span[text()='Save']/..",
+        "edit": "//button[contains(@class, 'slds-button')]/span[text()='Edit']/..",
+        "cancel": "//button[contains(@class, 'slds-button')]/span[text()='Cancel']/..",
     },
     "contact": {
         "new_button": "//a[@title='New']//div[@title='New']",
@@ -154,5 +154,6 @@ eda_lex_locators = {
         "contact_role": '//div[contains(@class,"listItemBody")][./h3//a[text()="{}"]]//parent::h3/following-sibling::ul/li/div[contains(@class,"forceListRecordItem")]/div[@title="Role:"]/following-sibling::div/span[text()="{}"]',
     },
     "toast_message": "//div[contains(@class, 'slds-notify--toast')]/descendant::h2[contains(@class, 'slds-text-heading') and text()='{}']",
+    "toast_close": "//div[contains(@class, 'slds-theme--success')]/button[contains(@class, 'slds-notify__close')]",
     "input_placeholder": "//input[contains(@placeholder,'{}')]",
 }

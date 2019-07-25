@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-...     Verify Plan Requirement with both Program Plan & Parent Plan Requirement cannot be created when setting is enabled
+...     Verify Plan Requirement with both Program Plan & Parent Plan Requirement cannot be created or updated when setting is enabled
 
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Run keywords
@@ -9,7 +9,7 @@ Suite Setup     Run keywords
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
-Validate creation of Program Plan for Nested Plan Requirements - Setting enabled
+Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     [Documentation]                 Verify Plan Requirement cannot be created with both Program Plan & Parent Plan Requirement when setting is enabled
     [tags]                          stable
 
@@ -38,7 +38,7 @@ Validate creation of Program Plan for Nested Plan Requirements - Setting enabled
     Set suite variable              ${plan_requirement_2}
     Store session record            ${ns}Plan_Requirement__c        ${plan_requirement_2}
 
-Validate updation of Program Plan for Nested Plan Requirements - Setting enabled
+Validate updation of Plan Requirement - Nested Plan Requirement setting enabled
     [Documentation]                 Verify Plan Requirement cannot be updated with both Program Plan & Parent Plan Requirement when setting is enabled
     [tags]                          stable
 

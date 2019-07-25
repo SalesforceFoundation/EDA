@@ -9,7 +9,7 @@ Suite Setup     Run keywords
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
-Validate creation of Program Plan for Nested Plan Requirements - Setting disabled
+Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
     [Documentation]                 Verify Plan Requirement can be created with both Program Plan & Parent Plan Requirement when setting is disabled
     [tags]                          stable
 
