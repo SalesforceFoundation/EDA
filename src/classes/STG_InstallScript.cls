@@ -294,8 +294,12 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * understanding of how our customers use our application.
     */
     private static void sendTelemetryData() {
+        sendTelemetryDataMethodCalled = true;
         if (!Test.isRunningTest()) {
             UTIL_OrgTelemetry.dispatchTelemetryBatchJob();
         }
     }
+
+    @testVisible
+    private static Boolean sendTelemetryDataMethodCalled = false;
 }

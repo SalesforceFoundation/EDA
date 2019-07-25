@@ -32,27 +32,25 @@
 * @date 2019
 * @group Utilities
 * @group-content ../../ApexDocContent/Utilities.htm
-* @description Contains unit tests for testing the UTIL_OrgTelemetry and UTIL_OrgTelemetry_BATCH functionality.
+* @description Wrapper class to allow for FeatureManagement method mocking in tests.
 */
-@isTest
-private class UTIL_OrgTelemetry_TEST {
+public class UTIL_FeatureManagement {
     
-    // TODO: Not used yet
-    private static UTIL_FeatureManagement_TEST.Mock featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
-    
-    // TODO: See NPSP's implementation of the unit tests for telemetry when working on these.
+    /**
+     * @description Wrapper for System.FeatureManagement.setPackageBooleanValue
+     * @param apiName The name of the Feature Parameter
+     * @param value The value of the Feature Parameter
+     */
+    public void setPackageBooleanValue(String apiName, Boolean value) {
+        System.FeatureManagement.setPackageBooleanValue(apiName, value);
+    }
 
-    /*******************************************************************************************************
-    * @description Executes the EDA Telemetry batch job and asserts that it runs properly.
-    ********************************************************************************************************/
-    @isTest
-    private static void validateTelemetryBatchJob() {
-        Test.startTest();
-        UTIL_OrgTelemetry.dispatchTelemetryBatchJob();
-        Test.stopTest();
-
-        System.assertEquals(true, UTIL_OrgTelemetry_BATCH.jobProcessed, 'Expected the EDA Telemetry batch job to process.');
-
-        // TODO: We can add more assertions here in W-033621
+    /**
+     * @description Wrapper for System.FeatureManagement.setPackageIntegerValue
+     * @param apiName The name of the Feature Parameter
+     * @param value The value of the Feature Parameter
+     */
+    public void setPackageIntegerValue(String apiName, Integer value) {
+        System.FeatureManagement.setPackageIntegerValue(apiName, value);
     }
 }

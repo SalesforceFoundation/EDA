@@ -46,17 +46,16 @@
 * returned by this class.
 */
 public without sharing class UTIL_OrgTelemetry_BATCH implements Database.Batchable<UTIL_OrgTelemetry.TelemetryBatchCategory> {
-
-
-    //@testVisible
-    //private UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
+    
+    @testVisible
+    private static Boolean jobProcessed = false;
 
     /**
      * @description List of High Level Telemetry Data Types to be processed asynchronously by this batch job.
      */
     private final List<UTIL_OrgTelemetry.TelemetryBatchCategory> telemetryTypes =
         new List<UTIL_OrgTelemetry.TelemetryBatchCategory>{
-            //
+            UTIL_OrgTelemetry.TelemetryBatchCategory.EDA_Settings
         };
 
     /**
@@ -68,7 +67,7 @@ public without sharing class UTIL_OrgTelemetry_BATCH implements Database.Batchab
         if (!Test.isRunningTest()) {
             return telemetryTypes;
         } else {
-            return new List<UTIL_OrgTelemetry.TelemetryBatchCategory>{  };
+            return new List<UTIL_OrgTelemetry.TelemetryBatchCategory>{ UTIL_OrgTelemetry.TelemetryBatchCategory.EDA_Settings };
         }
     }
 
@@ -88,6 +87,8 @@ public without sharing class UTIL_OrgTelemetry_BATCH implements Database.Batchab
     * @param BC BatchableContext (not used)
     */
     public void finish(Database.BatchableContext BC) {
-        //
+        if (Test.isRunningTest()) {
+            jobProcessed = true;
+        }
     }
 }

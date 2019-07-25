@@ -127,6 +127,8 @@
         <members>UTIL_Describe</members>
         <members>UTIL_Describe_API</members>
         <members>UTIL_Describe_TEST</members>
+        <members>UTIL_FeatureManagement</members>
+        <members>UTIL_FeatureManagement_TEST</members>
         <members>UTIL_Namespace</members>
         <members>UTIL_Namespace_TEST</members>
         <members>UTIL_OrgTelemetry</members>

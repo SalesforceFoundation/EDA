@@ -60,7 +60,8 @@ public without sharing class UTIL_OrgTelemetry {
      * @description Each of these corresponds to the exact name of a FeatureParameter in the managed package.
      */
     public enum TelemetryParameterName {
-        IsEnabled_AutomaticHouseholdNaming//,
+        IsEnabled_AutomaticHouseholdNaming,
+        Org_CountActiveCourseConnectionRecordTypes//,
         // TODO: Add more feature parameters here in W-033621
     }
 
