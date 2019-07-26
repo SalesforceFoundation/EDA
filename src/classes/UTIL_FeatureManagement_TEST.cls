@@ -42,22 +42,22 @@ public class UTIL_FeatureManagement_TEST {
     * @description Calls setPackageBooleanValue() method in UTIL_FeatureManagement.
     ********************************************************************************************************/
     @isTest
-    private static void callsSetPackageBooleanValue() { // TODO: Uncomment when completing W-033621
-        /*new UTIL_FeatureManagement().setPackageBooleanValue(
+    private static void callsSetPackageBooleanValue() {
+        new UTIL_FeatureManagement().setPackageBooleanValue(
             UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(),
             false
-        );*/
+        );
     }
 
     /*******************************************************************************************************
     * @description Calls setPackageIntegerValue() method in UTIL_FeatureManagement.
     ********************************************************************************************************/
     @isTest
-    private static void callsSetPackageIntegerValue() { // TODO: Uncomment when completing W-033621
-        /*new UTIL_FeatureManagement().setPackageIntegerValue(
+    private static void callsSetPackageIntegerValue() {
+        new UTIL_FeatureManagement().setPackageIntegerValue(
             UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(),
             3
-        );*/
+        );
     }
 
     /*******************************************************************************************************************

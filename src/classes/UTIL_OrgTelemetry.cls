@@ -44,6 +44,9 @@
 */
 public without sharing class UTIL_OrgTelemetry {
 
+    @testVisible
+    private UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
+    
     /**
      * @description A complete list of the Telemetry Types (at a high level) that are handled by this service class.
      * These are used by the batch job to process feature parameters in asynchronous groups to avoid governor
@@ -52,17 +55,40 @@ public without sharing class UTIL_OrgTelemetry {
      * against a table were to fail.
      */
     public enum TelemetryBatchCategory {
-        EDA_Settings//,
-        // TODO: Add more categories here in W-033621
+        EDA_Settings,
+        Org_Environment,
+        Object_Usage
     }
 
     /**
      * @description Each of these corresponds to the exact name of a FeatureParameter in the managed package.
      */
     public enum TelemetryParameterName {
+        Data_CountAdministrativeAccounts,
+        Data_CountHouseholdAccounts,
+        Org_CountActiveCourseConnectionRecordTypes,
+        Data_CountCampaignMemberRelationshipRules,
+        Data_CountContactRelationshipRules,
+        Data_CountCourseConnections,
+        Data_CountCourseOfferingSchedules,
+        Data_CountErrorLog,
+        Data_CountLanguages,
+        Data_CountPlanRequirements,
+        Data_CountProgramPlans,
+        Data_CountTermGrades,
         IsEnabled_AutomaticHouseholdNaming,
-        Org_CountActiveCourseConnectionRecordTypes//,
-        // TODO: Add more feature parameters here in W-033621
+        IsEnabled_CourseConnections,
+        HasDefaultAdministrativeAccountModel,
+        HasDefaultHouseholdAccountModel,
+        IsEnabled_ErrorHandling,
+        HasCustomAdministrativeAccountNaming,
+        HasCustomHouseholdAccountNaming,
+        HasEDAInactiveTDTM,
+        HasUserManagedTDTM,
+        HasValueInversionReciprocalMethod,
+        IsEnabled_StoreErrors,
+        UsingOldContactEthnicity,
+        UsingOldCourseDescription
     }
 
     /**
@@ -85,10 +111,94 @@ public without sharing class UTIL_OrgTelemetry {
 
         switch on (telemetryCategory) {
             when EDA_Settings {
-                // TODO: Finish in W-033621
+                handleEDASettingsTelemetry();
             }
 
-            // TODO: Finish in W-033621
+            when Org_Environment {
+                handleOrgEnvironmentTelemetry();
+            }
+
+            when Object_Usage {
+                handleObjectUsageTelemetry();
+            }
         }
+    }
+
+    /**
+     * @description Handles the calculation of all EDA feature telemetry that involves the EDA
+     * custom settings.
+     */
+    private void handleEDASettingsTelemetry() {
+        Hierarchy_Settings__c edaSettings = UTIL_CustomSettingsFacade.getSettings();
+
+        Integer campaignMemberRelationshipRules = 0;
+        Integer contactRelationshipRules = 0;
+        for (Relationship_Auto_Create__c rac : UTIL_CustomSettingsFacade.getAutoCreateSettings()) {
+            if (rac.Object__c == 'CampaignMember') {
+                campaignMemberRelationshipRules++;
+            } else if (rac.Object__c == 'Contact') {
+                contactRelationshipRules++;
+            }
+        }
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(), campaignMemberRelationshipRules);
+        
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountContactRelationshipRules.name(), contactRelationshipRules);
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(), edaSettings.Automatic_Household_Naming__c);
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_CourseConnections.name(), UTIL_CustomSettingsFacade.courseConnectionsEnabled());
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(), 
+            edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID());
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultHouseholdAccountModel.name(), 
+            edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID());
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_ErrorHandling.name(), edaSettings.Disable_Error_Handling__c == false);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(), edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasCustomHouseholdAccountNaming.name(), edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasValueInversionReciprocalMethod.name(), edaSettings.Reciprocal_Method__c == 'Value Inversion');
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_StoreErrors.name(), edaSettings.Store_Errors_On__c);
+    }
+
+    /**
+     * @description Handles the calculation of all EDA feature telemetry that involves org-related
+     configuration.
+     */
+    private void handleOrgEnvironmentTelemetry() {
+        // TODO
+
+        /*
+        Org_CountActiveCourseConnectionRecordTypes,
+        HasEDAInactiveTDTM,
+        HasUserManagedTDTM,
+        UsingOldContactEthnicity,
+        UsingOldCourseDescription
+        */
+    }
+
+    /**
+     * @description Handles the calculation of all EDA feature telemetry that involves counting
+     * custom object record count.
+     */
+    private void handleObjectUsageTelemetry() {
+        // TODO
+
+        /*
+        Data_CountAdministrativeAccounts,
+        Data_CountHouseholdAccounts,
+        Data_CountCourseConnections,
+        Data_CountCourseOfferingSchedules,
+        Data_CountErrorLog,
+        Data_CountLanguages,
+        Data_CountPlanRequirements,
+        Data_CountProgramPlans,
+        Data_CountTermGrades,
+        */
     }
 }

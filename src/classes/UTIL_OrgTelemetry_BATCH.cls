@@ -55,7 +55,9 @@ public without sharing class UTIL_OrgTelemetry_BATCH implements Database.Batchab
      */
     private final List<UTIL_OrgTelemetry.TelemetryBatchCategory> telemetryTypes =
         new List<UTIL_OrgTelemetry.TelemetryBatchCategory>{
-            UTIL_OrgTelemetry.TelemetryBatchCategory.EDA_Settings
+            UTIL_OrgTelemetry.TelemetryBatchCategory.EDA_Settings,
+            UTIL_OrgTelemetry.TelemetryBatchCategory.Org_Environment,
+            UTIL_OrgTelemetry.TelemetryBatchCategory.Object_Usage
         };
 
     /**

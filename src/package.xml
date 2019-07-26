@@ -848,6 +848,37 @@
         <name>CustomTab</name>
     </types>
     <types>
+        <members>HasCustomAdministrativeAccountNaming</members>
+        <members>HasCustomHouseholdAccountNaming</members>
+        <members>HasDefaultAdministrativeAccountModel</members>
+        <members>HasDefaultHouseholdAccountModel</members>
+        <members>HasEDAInactiveTDTM</members>
+        <members>HasUserManagedTDTM</members>
+        <members>HasValueInversionReciprocalMethod</members>
+        <members>IsEnabled_AutomaticHouseholdNaming</members>
+        <members>IsEnabled_CourseConnections</members>
+        <members>IsEnabled_ErrorHandling</members>
+        <members>IsEnabled_StoreErrors</members>
+        <members>UsingOldContactEthnicity</members>
+        <members>UsingOldCourseDescription</members>
+        <name>FeatureParameterBoolean</name>
+    </types>
+    <types>
+        <members>Data_CountAdministrativeAccounts</members>
+        <members>Data_CountCampaignMemberRelationshipRules</members>
+        <members>Data_CountContactRelationshipRules</members>
+        <members>Data_CountCourseConnections</members>
+        <members>Data_CountCourseOfferingSchedules</members>
+        <members>Data_CountErrorLog</members>
+        <members>Data_CountFacilities</members>
+        <members>Data_CountHouseholdAccounts</members>
+        <members>Data_CountPlanRequirements</members>
+        <members>Data_CountProgramPlans</members>
+        <members>Data_CountTermGrades</members>
+        <members>Org_CountActiveCourseConnectionRecordTypes</members>
+        <name>FeatureParameterInteger</name>
+    </types>
+    <types>
         <members>Account-HEDA Household Layout</members>
         <members>Account-HEDA Organization Layout</members>
         <members>Address__c-HEDA Address Layout</members>
