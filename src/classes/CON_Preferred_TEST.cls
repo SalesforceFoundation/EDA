@@ -95,7 +95,7 @@ public with sharing class CON_Preferred_TEST {
     public static void preferredEmailPhoneUpdate() {
     
         Test.testInstall(new STG_InstallScript(), null);
-        List<trigger_handler__c> preferredPhoneHandler = [select id, name, active__c from trigger_handler__c WHERE class__c = 'CON_PreferredPhone_TDTM' AND Object__c = 'Contact'];
+        List<trigger_handler__c> preferredPhoneHandler = [SELECT id, name, active__c FROM trigger_handler__c WHERE class__c = 'CON_PreferredPhone_TDTM' AND Object__c = 'Contact'];
         
         if (preferredPhoneHandler != NULL && preferredPhoneHandler.size() > 0) {
         
