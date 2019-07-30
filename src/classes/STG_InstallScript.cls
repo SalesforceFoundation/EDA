@@ -252,13 +252,14 @@ global without sharing class STG_InstallScript implements InstallHandler {
         List<CronTrigger> scheduledJobs = [select Id, CronJobDetail.Id from CronTrigger
                     where CronJobDetail.Name = :JobName and CronJobDetail.JobType = '7'];
 
-        if(scheduledJobs.size() == 0) {
+        if (scheduledJobs.size() == 0) {
             Type classType = Type.forName(className);
 
-            if(classType != null) {
+            if (classType != null) {
                Object instance = classType.newInstance();
-               if(instance instanceof Schedulable)
+               if (instance instanceof Schedulable) {
                    return System.schedule(JobName, frequency, (Schedulable)instance);
+               }
             }
         }
         return null;
@@ -273,7 +274,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
         Set<String> objectTypes = new Set<String>();
         Set<String> classNames = new Set<String>();
 
-        for(TDTM_Global_API.TdtmToken token : TDTM_Global_API.getDefaultTdtmConfig() ) {
+        for (TDTM_Global_API.TdtmToken token : TDTM_Global_API.getDefaultTdtmConfig()) {
             objectTypes.add(token.targetObject);
             classNames.add(token.className);
         }
@@ -281,7 +282,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
         // Get EDA trigger Handlers from the database
         List<Trigger_Handler__c> hedaHandlers = [SELECT Id, Name, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Class__c in: classNames AND Object__c in: objectTypes LIMIT 5000];
 
-        for(Trigger_Handler__c t : hedaHandlers) {
+        for (Trigger_Handler__c t : hedaHandlers) {
             t.Owned_by_Namespace__c = 'hed';
         }
 
