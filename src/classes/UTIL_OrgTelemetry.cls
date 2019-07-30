@@ -72,7 +72,7 @@ public without sharing class UTIL_OrgTelemetry {
         Data_CountCourseConnections,
         Data_CountCourseOfferingSchedules,
         Data_CountErrorLog,
-        Data_CountLanguages,
+        Data_CountFacilities,
         Data_CountPlanRequirements,
         Data_CountProgramPlans,
         Data_CountTermGrades,
@@ -133,6 +133,8 @@ public without sharing class UTIL_OrgTelemetry {
 
         Integer campaignMemberRelationshipRules = 0;
         Integer contactRelationshipRules = 0;
+
+        // Count the number of CampaignMember and Contact auto-create relationship rules.
         for (Relationship_Auto_Create__c rac : UTIL_CustomSettingsFacade.getAutoCreateSettings()) {
             if (rac.Object__c == 'CampaignMember') {
                 campaignMemberRelationshipRules++;
@@ -171,15 +173,41 @@ public without sharing class UTIL_OrgTelemetry {
      configuration.
      */
     private void handleOrgEnvironmentTelemetry() {
-        // TODO
+        Integer activeCourseConnectionRecordTypes = 0;
+        Integer activeEthnicityPicklistValues = 0;
 
-        /*
-        Org_CountActiveCourseConnectionRecordTypes,
-        HasEDAInactiveTDTM,
-        HasUserManagedTDTM,
-        UsingOldContactEthnicity,
-        UsingOldCourseDescription
-        */
+        // Determine the number of active Course Connection record types.
+        Map<String, Schema.RecordTypeInfo> courseConnectionRecordTypesByDeveloperName = 
+                Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByDeveloperName();
+        for (String developerName : courseConnectionRecordTypesByDeveloperName.keySet()) {
+            Schema.RecordTypeInfo rti = courseConnectionRecordTypesByDeveloperName.get(developerName);
+            if (rti.getDeveloperName() != 'Master' && rti.isActive()) {
+                activeCourseConnectionRecordTypes++;
+            }
+        }
+
+        // Determine the number of active Ethnicity picklist values.
+        Schema.DescribeFieldResult fieldResult = Contact.Ethnicity__c.getDescribe();
+        List<Schema.PicklistEntry> picklistEntries = fieldResult.getPicklistValues();
+        for (Schema.PicklistEntry pe : picklistEntries) {
+            if (pe.isActive()) {
+                activeEthnicityPicklistValues++;
+            }
+        }
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(), activeCourseConnectionRecordTypes);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasEDAInactiveTDTM.name(), 
+                [SELECT COUNT() FROM Trigger_Handler__c WHERE Owned_By_Namespace__c = 'hed' AND Active__c = false] > 0);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasUserManagedTDTM.name(), 
+                [SELECT COUNT() FROM Trigger_Handler__c WHERE User_Managed__c = true AND Active__c = true] > 0);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldContactEthnicity.name(), activeEthnicityPicklistValues > 2);
+
+        // TODO: Do we actually want to do this? We can't filter on Extended_Description__c and may not be able to select Description__c if its encrypted...
+        //featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldCourseDescription.name(), 
+                //[SELECT Id FROM Course__c WHERE Extended_Description__c = null AND Description__c != null LIMIT 1] > 0);
     }
 
     /**
@@ -187,18 +215,32 @@ public without sharing class UTIL_OrgTelemetry {
      * custom object record count.
      */
     private void handleObjectUsageTelemetry() {
-        // TODO
+        Integer countAdministrativeAccounts = 0;
+        if (UTIL_Describe.getAdminAccRecTypeID() != null) {
+            countAdministrativeAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getAdminAccRecTypeID()];
+        }
 
-        /*
-        Data_CountAdministrativeAccounts,
-        Data_CountHouseholdAccounts,
-        Data_CountCourseConnections,
-        Data_CountCourseOfferingSchedules,
-        Data_CountErrorLog,
-        Data_CountLanguages,
-        Data_CountPlanRequirements,
-        Data_CountProgramPlans,
-        Data_CountTermGrades,
-        */
+        Integer countHouseholdAccounts = 0;
+        if (UTIL_Describe.getHhAccRecTypeID() != null) {
+            countHouseholdAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getHhAccRecTypeID()];
+        }
+        
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountAdministrativeAccounts.name(), countAdministrativeAccounts);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountHouseholdAccounts.name(), countHouseholdAccounts);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCourseConnections.name(), [SELECT COUNT() FROM Course_Enrollment__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCourseOfferingSchedules.name(), [SELECT COUNT() FROM Course_Offering_Schedule__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountErrorLog.name(), [SELECT COUNT() FROM Error__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountFacilities.name(), [SELECT COUNT() FROM Facility__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountPlanRequirements.name(), [SELECT COUNT() FROM Plan_Requirement__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountProgramPlans.name(), [SELECT COUNT() FROM Program_Plan__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountTermGrades.name(), [SELECT COUNT() FROM Term_Grade__c]);
     }
 }
