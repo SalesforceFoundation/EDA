@@ -175,6 +175,7 @@ public without sharing class UTIL_OrgTelemetry {
     private void handleOrgEnvironmentTelemetry() {
         Integer activeCourseConnectionRecordTypes = 0;
         Integer activeEthnicityPicklistValues = 0;
+        Boolean usingOldCourseDescription = false;
 
         // Determine the number of active Course Connection record types.
         Map<String, Schema.RecordTypeInfo> courseConnectionRecordTypesByDeveloperName = 
@@ -195,6 +196,16 @@ public without sharing class UTIL_OrgTelemetry {
             }
         }
 
+        // Determine if the customer is using the new Extended Description field on the Course object.
+        // For this, we look at the 500 most recently modified Course records.
+        List<Course__c> courses = [SELECT Description__c, Extended_Description__c FROM Course__c ORDER BY LastModifiedDate DESC LIMIT 500];
+        for (Course__c course : courses) {
+            if (course.Description__c != null && course.Extended_Description__c == null) {
+                usingOldCourseDescription = true;
+                break;
+            }
+        }
+
         featureManager.setPackageIntegerValue(TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(), activeCourseConnectionRecordTypes);
 
         featureManager.setPackageBooleanValue(TelemetryParameterName.HasEDAInactiveTDTM.name(), 
@@ -205,9 +216,7 @@ public without sharing class UTIL_OrgTelemetry {
 
         featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldContactEthnicity.name(), activeEthnicityPicklistValues > 2);
 
-        // TODO: Do we actually want to do this? We can't filter on Extended_Description__c and may not be able to select Description__c if its encrypted...
-        //featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldCourseDescription.name(), 
-                //[SELECT Id FROM Course__c WHERE Extended_Description__c = null AND Description__c != null LIMIT 1] > 0);
+        featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldCourseDescription.name(), usingOldCourseDescription);
     }
 
     /**

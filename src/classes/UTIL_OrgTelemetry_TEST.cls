@@ -37,7 +37,7 @@
 @isTest
 private class UTIL_OrgTelemetry_TEST {
 
-    private static UTIL_FeatureManagement_TEST.Mock featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
+    private static UTIL_FeatureManagement_TEST.Mock featureManagementMock;
 
     /*******************************************************************************************************
     * @description Executes the EDA Telemetry batch job and asserts that it runs properly.
@@ -60,100 +60,55 @@ private class UTIL_OrgTelemetry_TEST {
     private static void validateEDASettingsTelemetry() {
         Hierarchy_Settings__c edaSettings = UTIL_CustomSettingsFacade.getSettings();
         
-        UTIL_FeatureManagement_TEST.Mock featureManagerMock = new UTIL_FeatureManagement_TEST.Mock();
+        featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
-        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagerMock);
+        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagementMock);
 
         Test.startTest();
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.EDA_Settings);
         Test.stopTest();
 
-        System.assertEquals(
-            0,
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountCampaignMemberRelationshipRules'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(), 0
         );
 
-        System.assertEquals(
-            0,
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountContactRelationshipRules.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountContactRelationshipRules'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountContactRelationshipRules.name(), 0
         );
 
-        System.assertEquals(
-            edaSettings.Automatic_Household_Naming__c,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature IsEnabled_AutomaticHouseholdNaming'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(), edaSettings.Automatic_Household_Naming__c
+        );
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_CourseConnections.name(), UTIL_CustomSettingsFacade.courseConnectionsEnabled()
         );
 
-        System.assertEquals(
-            UTIL_CustomSettingsFacade.courseConnectionsEnabled(),
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_CourseConnections.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature IsEnabled_CourseConnections'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(), edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID()
         );
 
-        System.assertEquals(
-            edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID(),
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultAdministrativeAccountModel.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasDefaultAdministrativeAccountModel'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultHouseholdAccountModel.name(), edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID()
         );
 
-        System.assertEquals(
-            edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID(),
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultHouseholdAccountModel.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasDefaultHouseholdAccountModel'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_ErrorHandling.name(), edaSettings.Disable_Error_Handling__c == false
         );
 
-        System.assertEquals(
-            edaSettings.Disable_Error_Handling__c == false,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_ErrorHandling.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature IsEnabled_ErrorHandling'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(), edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther
         );
 
-        System.assertEquals(
-            edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasCustomAdministrativeAccountNaming.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasCustomAdministrativeAccountNaming'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasCustomHouseholdAccountNaming.name(), edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther
         );
 
-        System.assertEquals(
-            edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasCustomHouseholdAccountNaming.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasCustomHouseholdAccountNaming'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasValueInversionReciprocalMethod.name(), edaSettings.Reciprocal_Method__c == 'Value Inversion'
         );
 
-        System.assertEquals(
-            edaSettings.Reciprocal_Method__c == 'Value Inversion',
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasValueInversionReciprocalMethod.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasValueInversionReciprocalMethod'
-        );
-
-        System.assertEquals(
-            edaSettings.Store_Errors_On__c,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_StoreErrors.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature IsEnabled_StoreErrors'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_StoreErrors.name(), edaSettings.Store_Errors_On__c
         );
     }
 
@@ -181,54 +136,62 @@ private class UTIL_OrgTelemetry_TEST {
         );
         insert userManagedHandler;
 
-        UTIL_FeatureManagement_TEST.Mock featureManagerMock = new UTIL_FeatureManagement_TEST.Mock();
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
+        Course__c testCourse = new Course__c(Id = courseOffering.Course__c, Description__c = 'Test Description', Extended_Description__c = 'Test Description');
+        update testCourse;
+
+        featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
-        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagerMock);
+        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagementMock);
 
         Test.startTest();
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Org_Environment);
         Test.stopTest();
 
-        System.assertEquals(
-            3,
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Org_CountActiveCourseConnectionRecordTypes'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(), 3
         );
 
-        System.assertEquals(
-            true,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasEDAInactiveTDTM'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name(), true
         );
 
-        System.assertEquals(
-            true,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature HasUserManagedTDTM'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name(), true
         );
 
-        System.assertEquals(
-            false,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.UsingOldContactEthnicity.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature UsingOldContactEthnicity'
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.UsingOldContactEthnicity.name(), false
         );
 
-        // TODO:
-        /*System.assertNotEquals(
-            null,
-            featureManagerMock.packageBooleanValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name()
-            ),
-            'setPackageBooleanValue should have been called with the feature UsingOldCourseDescription'
-        );*/
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name(), false
+        );
+
+        // Make a few configuration changes to test different parameter values.
+        defaultTDTM[0].Active__c = true;
+        update defaultTDTM;
+
+        delete userManagedHandler;
+
+        testCourse.Extended_Description__c = null;
+        update testCourse;
+
+        // Process the Org Environment feature telemetry again.
+        orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Org_Environment);
+
+        // Assert the parameter values that should have changed.
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name(), false
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name(), false
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name(), true
+        );
     }
 
     /*******************************************************************************************************
@@ -280,84 +243,64 @@ private class UTIL_OrgTelemetry_TEST {
         List<Program_Plan__c> programPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(12);
         insert programPlans;
         
-        UTIL_FeatureManagement_TEST.Mock featureManagerMock = new UTIL_FeatureManagement_TEST.Mock();
+        featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
-        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagerMock);
+        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagementMock);
 
         Test.startTest();
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Object_Usage);
         Test.stopTest();
 
-        System.assertEquals(
-            expectedAdministrativeAccounts,
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAdministrativeAccounts.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountAdministrativeAccounts'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAdministrativeAccounts.name(), expectedAdministrativeAccounts
         );
 
-        System.assertEquals(
-            expectedHouseholdAccounts,
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountHouseholdAccounts.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountHouseholdAccounts'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountHouseholdAccounts.name(), expectedHouseholdAccounts
         );
 
-        System.assertEquals(
-            courseConnections.size(),
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseConnections.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountCourseConnections'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseConnections.name(), courseConnections.size()
         );
 
-        System.assertEquals(
-            courseOfferingSchedules.size(),
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseOfferingSchedules.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountCourseOfferingSchedules'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseOfferingSchedules.name(), courseOfferingSchedules.size()
         );
 
-        System.assertEquals(
-            errors.size(),
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountErrorLog.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountErrorLog'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountErrorLog.name(), errors.size()
         );
 
-        System.assertEquals(
-            facilities.size(),
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountFacilities.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountFacilities'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountFacilities.name(), facilities.size()
         );
 
-        System.assertEquals(
-            planRequirements.size(),
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountPlanRequirements.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountPlanRequirements'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountPlanRequirements.name(), planRequirements.size()
         );
 
-        System.assertEquals(
-            programPlans.size(),
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountProgramPlans.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountProgramPlans'
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountProgramPlans.name(), programPlans.size()
         );
 
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountTermGrades.name(), 0
+        );
+    }
+
+    private static void assertBooleanValue(String parameterValue, Boolean expectedResult) {
         System.assertEquals(
-            0,
-            featureManagerMock.packageIntegerValuesByName.get(
-                UTIL_OrgTelemetry.TelemetryParameterName.Data_CountTermGrades.name()
-            ),
-            'setPackageIntegerValue should have been called with the feature Data_CountTermGrades'
+            expectedResult,
+            featureManagementMock.packageBooleanValuesByName.get(parameterValue),
+            'setPackageBooleanValue should have been called with the feature ' + parameterValue
+        );
+    }
+
+    private static void assertIntegerValue(String parameterValue, Integer expectedResult) {
+        System.assertEquals(
+            expectedResult,
+            featureManagementMock.packageIntegerValuesByName.get(parameterValue),
+            'setPackageIntegerValue should have been called with the feature ' + parameterValue
         );
     }
 }
