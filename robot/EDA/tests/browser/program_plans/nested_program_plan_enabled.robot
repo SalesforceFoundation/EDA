@@ -5,8 +5,8 @@ Documentation
 Resource        robot/EDA/resources/EDA.robot
 Suite Setup     Run keywords
 ...             Initialize test data
-...             Open Test Browser
-Suite Teardown  Delete Records and Close Browser
+...             Open test browser
+Suite Teardown  Delete records and close browser
 
 *** Test Cases ***
 Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
@@ -18,6 +18,8 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     Edit EDA settings checkbox      Validate Program Plan for Nested Plan Requirements      true
 
     Go to record home               &{program_plan}[Id]
+    Set Window Size                 1024    1024
+    Capture page screenshot
     Click on element                record.tab_header               Related
     Click on element                record.related.new              Plan Requirements
     Wait until modal is open

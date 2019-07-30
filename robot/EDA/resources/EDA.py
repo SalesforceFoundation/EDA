@@ -358,7 +358,10 @@ class EDA(object):
     def close_toast_message(self):
         """ Close the toast message banner """
         locator = eda_lex_locators["toast_close"]
-        self.selenium.click_element(locator)
+        try:
+            self.selenium.click_element(locator)
+        except Exception:
+            return
 
     def get_eda_namespace_prefix(self):
         """ Returns the EDA namespace value if the target org is a managed org else returns blank value """
