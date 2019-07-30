@@ -2,31 +2,32 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Resource        robot/EDA/resources/test_data.robot
-
 Suite Setup     Run keywords
 ...             Open Test Browser
 ...             Initialize Test Data
-
 Suite Teardown  Delete Records and Close Browser
 
 *** Test Cases ***
-    
 Create Contact And Verify
-    ${contact_id} =  Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA    
-    &{contact} =  Salesforce Get    Contact             ${contact_id}
-    Header Field Value              Account Name        &{contact}[LastName] Administrative Account
-    Select Tab    Details 
-    Page Should Contain    5345 Calero Ave  
-    Go To Object Home         Contact
-    Verify Record    &{contact}[FirstName] &{contact}[LastName]
+    [tags]                                      unstable
+
+    ${contact_id} =             Populate Create And Return Contact with Address    Joe      Mazzocco   5345 Calero Ave             San Jose     95023     CA     USA
+    &{contact} =                Salesforce Get    Contact             ${contact_id}
+
+    Header Field Value          Account Name        &{contact}[LastName] Administrative Account
+    Select Tab                  Details
+    Page Should Contain         5345 Calero Ave
+    Go To Object Home           Contact
+    Verify Record               &{contact}[FirstName] &{contact}[LastName]
 
 Verify EDA Settings
+    [tags]                                      unstable
+
     Reload Page
     Go To Eda Settings
 
     Wait for Locator                            eda_settings.affiliations_tab
     Click on Element                            eda_settings.affiliations_tab
-
 
     ${affl_check} =  Get Eda Locator            eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator    eda_settings.affiliations_role_checkbox
@@ -37,14 +38,12 @@ Verify EDA Settings
 
     #Go into Edit Mode
     Click Button                                Edit
-
-
     #Save settings
     Click Button                                Save
 
-
 Verify Affiliations, Program Enrollments and No Duplicates
     [tags]                                  unstable
+
     Set Window Size                         1024    1024
     Go To Object Home                       Contact
 
@@ -116,16 +115,11 @@ Verify Affiliations, Program Enrollments and No Duplicates
  
 
 Create A New Program Plan
+    [tags]                                  unstable
 
-    #Reload Page
-    #Check for EDA Tile
     Open App Launcher
-
-
     Wait for Locator                        program_plans.program_plan1
     Click on Element                        program_plans.program_plan1
-
-
 
     Click Object Button                     New
     Wait for Locator                        program_plans.pp_name
@@ -133,17 +127,13 @@ Create A New Program Plan
     Populate Field                          Program Plan Name   robotTest Program Plan Name Test Program - this is just a robot test string
     Click on Element                        program_plans.save_button
 
-
 Create A Course Offering
+    [tags]                                  unstable
 
-    #Reload Page
-    #Check for EDA Tile
     Open App Launcher
-
     Wait for Locator                        course_offering.main_tab
     Click on Element                        course_offering.main_tab
     Click Object Button                     New
-
 
     Wait for Locator                        course_offering.search_courses
     Click on Element                        course_offering.search_courses
