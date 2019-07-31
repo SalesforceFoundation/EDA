@@ -23,6 +23,7 @@ unpackaged_stage
 packaged
 .*.swp
 *.pyc
+robot/EDA/results/
 
 # macOS Specific Ignores
 # https://github.com/github/gitignore/blob/master/Global/macOS.gitignore

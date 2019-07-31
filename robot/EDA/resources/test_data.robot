@@ -19,9 +19,7 @@ Create Test User
 
 
 Initialize Test Data
-
     Open Test Browser
-
     Create Test User  Joe      Mazzocco   5345 Calero Ave        San Jose     CA     USA    
     Create Test User  Sandy    Thompson   534 Calero Ave         San Jose     CA     USA
     Create Test User  Andy     Wright     9989 Blossom Hill Rd   Sacramento   CA     USA
