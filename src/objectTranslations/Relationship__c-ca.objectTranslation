@@ -170,6 +170,10 @@
     <nameFieldLabel>Clau de relació</nameFieldLabel>
     <startsWith>Consonant</startsWith>
     <validationRules>
+        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>En lloc de canviar els contactes en una relació existent, elimineu aquesta relació i creeu-ne un d&apos;entre els nous contactes</errorMessage>
         <name>Related_Contact_Do_Not_Change</name>
     </validationRules>
