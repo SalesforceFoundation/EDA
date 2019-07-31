@@ -311,7 +311,7 @@ public with sharing class CON_Phone {
             Map<String,String> preferredPhoneMappings = new Map<String,String>{
                 'Home Phone' => 'Home',
                 'Work Phone' => 'Work',
-                'Mobile' => 'Mobile',
+                'Mobile Phone' => 'Mobile',
                 'Other Phone' => 'Other'
             };
 
