@@ -2,6 +2,8 @@ eda_lex_locators = {
     "mailing_address": "//*[contains(@placeholder,'{}')]",
     "object_dd": "//h1[contains(@class,'slds-page-header__title')]/a/div[contains(@class,'triggerLinkTextAndIconWrapper')][.//lightning-primitive-icon]",
     "record": {
+        "actions": "//div[contains(@class, 'actionsContainer')]/descendant::a[@title='{}']",
+        "tab_header": "//div[@role='tablist']/descendant::a[contains(@class, 'tabHeader') and @title='{}']",
         "button": "//div[@class='actionsContainer']/button[@title='{}']",
         "datepicker": "//div[contains(@class,'uiDatePickerGrid')]/table[@class='calGrid']//span[text()='{}']",
         "edit_button": '//*[@title="{}"]',
@@ -9,6 +11,7 @@ eda_lex_locators = {
         "list": "//div[contains(@class,'forcePageBlockItem')]//div//div//div//span//span[contains(text(), 'Primary Address Type')]/../../div/div/div/div/a[@class='select']",
         "dropdown": "//div[@class='select-options']/ul[@class='scrollable']/li[@class='uiMenuItem uiRadioMenuItem']/a[contains(text(),'{}')]",
         "related": {
+            "new": "//div[@class='container']/descendant::div[contains(@class, 'slds-card__header')]/header/descendant::span[text()='{}']/ancestor::header/following-sibling::div/descendant::a[@title='New']",
             "button": "//article[contains(@class, 'forceRelatedListCardDesktop')][.//img][.//span[@title='{}']]//a[@title='{}']",
             "check_occurence": '//h2/a/span[@title="{}"]/following-sibling::span[text()=" ({})"]',
             "drop-down": '//div[contains(@class, "slds-card")]/header[.//span[@title="{}"]]/parent::*/div/div/div/a[contains(@class, "slds-button")]',
@@ -17,8 +20,15 @@ eda_lex_locators = {
     },
     "object": {
         "radio_button": "//div[contains(@class,'changeRecordTypeRightColumn')]/div/label[@class='slds-radio']/div[.//span[text()='{}']]/preceding::div[1]/span[@class='slds-radio--faux']",
+        "contact_role": '//tbody//a[text()= "{}"]/../../following-sibling::td/span/span[text() = "{}"]',
+        "record": '//tbody//a[text()= "{}"]',
     },
     "eda_settings": {
+        "tab": "//div[@id='tabs']/descendant::li[contains(@class, 'slds-text-heading--label')]/a[text()='{}']",
+        "edit": "//button[contains(@class, 'slds-button') and @type='button']/span[text()='Edit']/..",
+        "checkbox_default": "//span[text()='{}']/../following-sibling::div/descendant::img",
+        "checkbox": "//span[text()='{}']/../following-sibling::div/descendant::label[contains(@class,'slds-checkbox')]/span[contains(@class, 'slds-checkbox--faux')]",
+        "save": "//div[contains(@class, 'slds-page-header')]/descendant::button[contains(@class, 'settings-save-bttn')]",
         "system_tab": "//a[contains(text(),'System')]",
         "affiliations_tab": "//a[contains(text(),'Affiliations')]",
         "affiliations_check": "//span[text()='Specify Role for Created Affiliations:']/../following-sibling::div/div/div/label/span/img[@class = 'copy-start-date checked' and @alt='True']",
@@ -48,10 +58,9 @@ eda_lex_locators = {
         "household": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Household Account')]",
         "sports": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'Sports Organization')]",
         "university": "//div[contains(@class,'slds-form-element__control')]//span[contains(text(),'University Department')]",
-        "save": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
-        "edit": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
-        "cancel": "//div[@class='slds-button-group']//span[contains(text(), 'Cancel')]",
-
+        "save": "//button[contains(@class, 'slds-button')]/span[text()='Save']/..",
+        "edit": "//button[contains(@class, 'slds-button')]/span[text()='Edit']/..",
+        "cancel": "//button[contains(@class, 'slds-button')]/span[text()='Cancel']/..",
     },
     "contact": {
         "new_button": "//a[@title='New']//div[@title='New']",
@@ -68,6 +77,14 @@ eda_lex_locators = {
         "new_button": "//a[@title='New']//div[@title='New']/..",
         "pp_name": "//div//div//div//div//div//div//div//label//span[contains(text(), 'Program Plan Name')]//../following-sibling::input",
         "save_button": "//div[contains(@class, 'inlineFooter')]/descendant::button[@title='Save']",
+    },
+    "plan_requirement": {
+        "error": "//div[contains(@class, 'pageLevelErrors')]/descendant::li[text()='{}']",
+        "parent_plan_req_name": "//div[contains(@class, 'slds-modal__container')]/descendant::span[text()='Parent Plan Requirement']/../following-sibling::div/descendant::span[text()='{}']",
+        "plan_requirement_name": "//div[contains(@class, 'slds-modal__container')]/descendant::span[text()='Plan Requirement Name']/../following-sibling::input",
+        "program_plan": "//div[contains(@class, 'slds-modal__container')]/descendant::span[text()='Program Plan']/../following-sibling::div/descendant::span[text()='{}']",
+        "delete_field": "//div[contains(@class, 'slds-modal__container')]/descendant::span[text()='{}']/../following-sibling::div/descendant::span[text()='{}']/following-sibling::a[@class='deleteAction']",
+        "toast_message": "//lightning-icon[contains(@class, 'toastIcon') and contains(@class, 'slds-icon-utility-success')]",
     },
     "course_offering": {
         "main_tab": "//a[@title='Course Offerings']//span[@class='label-ctr slds-app-launcher__tile-body slds-app-launcher__tile-body--small']//span[contains(text(), 'Course Offerings')]",
@@ -130,19 +147,13 @@ eda_lex_locators = {
         "mhh_button": '//span[text()="{}"]',
     },
     "modal": {
-        "checkbox": '//div[contains(@class,"uiInputCheckbox")]/label/span[text()="{}"]/../following-sibling::input[@type="checkbox"]'
+        "checkbox": '//div[contains(@class,"uiInputCheckbox")]/label/span[text()="{}"]/../following-sibling::input[@type="checkbox"]',
+        "save": "//div[contains(@class, 'footer') or contains(@class, 'Footer')]/descendant::button[@title='Save']",
     },
     "opportunity": {
-        "contact_role": '//div[contains(@class,"listItemBody")][./h3//a[text()="{}"]]//parent::h3/following-sibling::ul/li/div[contains(@class,"forceListRecordItem")]/div[@title="Role:"]/following-sibling::div/span[text()="{}"]'
+        "contact_role": '//div[contains(@class,"listItemBody")][./h3//a[text()="{}"]]//parent::h3/following-sibling::ul/li/div[contains(@class,"forceListRecordItem")]/div[@title="Role:"]/following-sibling::div/span[text()="{}"]',
     },
-    "object": {
-        "contact_role": '//tbody//a[text()= "{}"]/../../following-sibling::td/span/span[text() = "{}"]',
-        "record": '//tbody//a[text()= "{}"]',
-    },
+    "toast_message": "//div[contains(@class, 'slds-notify--toast')]/descendant::h2[contains(@class, 'slds-text-heading') and text()='{}']",
+    "toast_close": "//div[contains(@class, 'slds-theme--success')]/button[contains(@class, 'slds-notify__close')]",
+    "input_placeholder": "//input[contains(@placeholder,'{}')]",
 }
-
-
-extra_locators = {
-    "related_list_items1": '//div[@class = "forceRelatedListContainer"][.//a[contains(@class, "slds-card")]]//span[text() = "Relationships"]/ancestor::div[contains(@class, "slds-card")]/following-sibling::div[contains(@class, "slds-card")]//tbody//td/span[text()="{}"]'
-}
-dnd = {""}
