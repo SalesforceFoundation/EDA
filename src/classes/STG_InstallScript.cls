@@ -289,6 +289,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
         update hedaHandlers;
     }
 
+    @testVisible
+    private static Boolean sendTelemetryDataMethodCalled = false;
+
     /*******************************************************************************************************
     * @description Calls the UTIL_OrgTelemetry_BATCH class to collect information about the current org and 
     * EDA setup information and sends it back to the EDA License Management Application to assist with better
@@ -300,7 +303,4 @@ global without sharing class STG_InstallScript implements InstallHandler {
             UTIL_OrgTelemetry.dispatchTelemetryBatchJob();
         }
     }
-
-    @testVisible
-    private static Boolean sendTelemetryDataMethodCalled = false;
 }

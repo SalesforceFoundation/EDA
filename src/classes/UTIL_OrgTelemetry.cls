@@ -44,6 +44,9 @@
 */
 public without sharing class UTIL_OrgTelemetry {
 
+    @testVisible
+    private UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
+    
     /**
      * @description A complete list of the Telemetry Types (at a high level) that are handled by this service class.
      * These are used by the batch job to process feature parameters in asynchronous groups to avoid governor
@@ -52,17 +55,40 @@ public without sharing class UTIL_OrgTelemetry {
      * against a table were to fail.
      */
     public enum TelemetryBatchCategory {
-        EDA_Settings//,
-        // TODO: Add more categories here in W-033621
+        EDA_Settings,
+        Org_Environment,
+        Object_Usage
     }
 
     /**
      * @description Each of these corresponds to the exact name of a FeatureParameter in the managed package.
      */
     public enum TelemetryParameterName {
+        Data_CountAdministrativeAccounts,
+        Data_CountHouseholdAccounts,
+        Org_CountActiveCourseConnectionRecordTypes,
+        Data_CountCampaignMemberRelationshipRules,
+        Data_CountContactRelationshipRules,
+        Data_CountCourseConnections,
+        Data_CountCourseOfferingSchedules,
+        Data_CountErrorLog,
+        Data_CountFacilities,
+        Data_CountPlanRequirements,
+        Data_CountProgramPlans,
+        Data_CountTermGrades,
         IsEnabled_AutomaticHouseholdNaming,
-        Org_CountActiveCourseConnectionRecordTypes//,
-        // TODO: Add more feature parameters here in W-033621
+        IsEnabled_CourseConnections,
+        HasDefaultAdministrativeAccountModel,
+        HasDefaultHouseholdAccountModel,
+        IsEnabled_ErrorHandling,
+        HasCustomAdministrativeAccountNaming,
+        HasCustomHouseholdAccountNaming,
+        HasEDAInactiveTDTM,
+        HasUserManagedTDTM,
+        HasValueInversionReciprocalMethod,
+        IsEnabled_StoreErrors,
+        UsingOldContactEthnicity,
+        UsingOldCourseDescription
     }
 
     /**
@@ -85,10 +111,145 @@ public without sharing class UTIL_OrgTelemetry {
 
         switch on (telemetryCategory) {
             when EDA_Settings {
-                // TODO: Finish in W-033621
+                handleEDASettingsTelemetry();
             }
 
-            // TODO: Finish in W-033621
+            when Org_Environment {
+                handleOrgEnvironmentTelemetry();
+            }
+
+            when Object_Usage {
+                handleObjectUsageTelemetry();
+            }
         }
+    }
+
+    /**
+     * @description Handles the calculation of all EDA feature telemetry that involves the EDA
+     * custom settings.
+     */
+    private void handleEDASettingsTelemetry() {
+        Hierarchy_Settings__c edaSettings = UTIL_CustomSettingsFacade.getSettings();
+
+        Integer campaignMemberRelationshipRules = 0;
+        Integer contactRelationshipRules = 0;
+
+        // Count the number of CampaignMember and Contact auto-create relationship rules.
+        for (Relationship_Auto_Create__c rac : UTIL_CustomSettingsFacade.getAutoCreateSettings()) {
+            if (rac.Object__c == 'CampaignMember') {
+                campaignMemberRelationshipRules++;
+            } else if (rac.Object__c == 'Contact') {
+                contactRelationshipRules++;
+            }
+        }
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(), campaignMemberRelationshipRules);
+        
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountContactRelationshipRules.name(), contactRelationshipRules);
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(), edaSettings.Automatic_Household_Naming__c);
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_CourseConnections.name(), UTIL_CustomSettingsFacade.courseConnectionsEnabled());
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(), 
+            edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID());
+        
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultHouseholdAccountModel.name(), 
+            edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID());
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_ErrorHandling.name(), edaSettings.Disable_Error_Handling__c == false);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(), edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasCustomHouseholdAccountNaming.name(), edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasValueInversionReciprocalMethod.name(), edaSettings.Reciprocal_Method__c == 'Value Inversion');
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_StoreErrors.name(), edaSettings.Store_Errors_On__c);
+    }
+
+    /**
+     * @description Handles the calculation of all EDA feature telemetry that involves org-related
+     configuration.
+     */
+    private void handleOrgEnvironmentTelemetry() {
+        Integer activeCourseConnectionRecordTypes = 0;
+        Integer activeEthnicityPicklistValues = 0;
+        Boolean usingOldCourseDescription = false;
+
+        // Determine the number of active Course Connection record types.
+        Map<String, Schema.RecordTypeInfo> courseConnectionRecordTypesByDeveloperName = 
+                Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByDeveloperName();
+        for (String developerName : courseConnectionRecordTypesByDeveloperName.keySet()) {
+            Schema.RecordTypeInfo rti = courseConnectionRecordTypesByDeveloperName.get(developerName);
+            if (rti.getDeveloperName() != 'Master' && rti.isActive()) {
+                activeCourseConnectionRecordTypes++;
+            }
+        }
+
+        // Determine the number of active Ethnicity picklist values.
+        Schema.DescribeFieldResult fieldResult = Contact.Ethnicity__c.getDescribe();
+        List<Schema.PicklistEntry> picklistEntries = fieldResult.getPicklistValues();
+        for (Schema.PicklistEntry pe : picklistEntries) {
+            if (pe.isActive()) {
+                activeEthnicityPicklistValues++;
+            }
+        }
+
+        // Determine if the customer is using the new Extended Description field on the Course object.
+        // For this, we look at the 500 most recently modified Course records.
+        List<Course__c> courses = [SELECT Description__c, Extended_Description__c FROM Course__c ORDER BY LastModifiedDate DESC LIMIT 500];
+        for (Course__c course : courses) {
+            if (course.Description__c != null && course.Extended_Description__c == null) {
+                usingOldCourseDescription = true;
+                break;
+            }
+        }
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(), activeCourseConnectionRecordTypes);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasEDAInactiveTDTM.name(), 
+                [SELECT COUNT() FROM Trigger_Handler__c WHERE Owned_By_Namespace__c = 'hed' AND Active__c = false] > 0);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.HasUserManagedTDTM.name(), 
+                [SELECT COUNT() FROM Trigger_Handler__c WHERE User_Managed__c = true AND Active__c = true] > 0);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldContactEthnicity.name(), activeEthnicityPicklistValues > 2);
+
+        featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldCourseDescription.name(), usingOldCourseDescription);
+    }
+
+    /**
+     * @description Handles the calculation of all EDA feature telemetry that involves counting
+     * custom object record count.
+     */
+    private void handleObjectUsageTelemetry() {
+        Integer countAdministrativeAccounts = 0;
+        if (UTIL_Describe.getAdminAccRecTypeID() != null) {
+            countAdministrativeAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getAdminAccRecTypeID()];
+        }
+
+        Integer countHouseholdAccounts = 0;
+        if (UTIL_Describe.getHhAccRecTypeID() != null) {
+            countHouseholdAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getHhAccRecTypeID()];
+        }
+        
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountAdministrativeAccounts.name(), countAdministrativeAccounts);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountHouseholdAccounts.name(), countHouseholdAccounts);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCourseConnections.name(), [SELECT COUNT() FROM Course_Enrollment__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCourseOfferingSchedules.name(), [SELECT COUNT() FROM Course_Offering_Schedule__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountErrorLog.name(), [SELECT COUNT() FROM Error__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountFacilities.name(), [SELECT COUNT() FROM Facility__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountPlanRequirements.name(), [SELECT COUNT() FROM Plan_Requirement__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountProgramPlans.name(), [SELECT COUNT() FROM Program_Plan__c]);
+
+        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountTermGrades.name(), [SELECT COUNT() FROM Term_Grade__c]);
     }
 }
