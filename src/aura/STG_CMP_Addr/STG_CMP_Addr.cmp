@@ -131,7 +131,7 @@
         <div class="slds-col slds-size--1-of-2">
             <lightning:button variant="brand" label="Run Phone Cleanup" iconName="utility:copy" iconPosition="left" onclick="{! c.runPhoneCleanUp }" aura:id="cleanUpPhoneBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c , v.isView), !v.isView)}"  />
             <br />
-            <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgPhoneCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+            <ui:outputText aura:id="phoneCleanUpMsg" value="{!$Label.c.stgPhoneCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
        
             <div class="slds-p-top_xx-large"> </div>
                  

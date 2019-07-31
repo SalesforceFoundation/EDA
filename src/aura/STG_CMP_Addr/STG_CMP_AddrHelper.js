@@ -32,7 +32,7 @@
 		runBatchAction.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
 
-				var statusMsg = component.find("cleanUpMsg");
+				var statusMsg = component.find("phoneCleanUpMsg");
 				$A.util.toggleClass(statusMsg, "slds-hide");
 
             } else if(response.getState() === "ERROR") {
