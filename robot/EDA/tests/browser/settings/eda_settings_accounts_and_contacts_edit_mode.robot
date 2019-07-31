@@ -7,13 +7,11 @@ Suite Teardown  Delete Records and Close Browser
 *** Test Cases ***
 
 Validate Edit Mode For Accounts and Contacts, Settings
-    [tags]  unstable
+    [tags]                          unstable
     Go To Eda Settings
     Wait for Locator            	tabs.accountsandcontacts
     Click on Element                tabs.accountsandcontacts
-    
-    #Go into Edit mode 
-    #Click Button                    Edit
+
     Click on Element                account_types.edit
 
     # Select Multi-Address Account Types
@@ -41,10 +39,9 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.university 
 
     Click on Element                account_types.save
-
+    Close toast message
 
     Click on Element                account_types.edit
-
 
     # Uncheck everything
    Click on Element                account_types.administrative
@@ -69,12 +66,11 @@ Validate Edit Mode For Accounts and Contacts, Settings
 
     Wait for Locator                account_types.university 
     Click on Element                account_types.university 
-    #Save the changes
-    Click on Element                account_types.save
 
+    Click on Element                account_types.save
+    Close toast message
 
     #test save and edit again
-
     Click on Element                account_types.edit
 
     # Select Multi-Address Account Types
@@ -102,10 +98,9 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.university 
     
     Click on Element                account_types.save
-    #Click Button                    Save
+    Close toast message
 
     # Now restore everything back to what it was before the test
-    #Click Button                    Edit
     Click on Element                account_types.edit
 
     # Uncheck everything
@@ -117,10 +112,5 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.household
     Click on Element                account_types.sports
     Click on Element                account_types.university
-
-    #Save the changes
-    Click Element                   //div[@class='slds-button-group']//span[contains(text(), 'Save')]
-    #Click Button                    Save
-
-*** Keywords ***
-
+    Click on Element                account_types.save
+    Close toast message
