@@ -18,8 +18,8 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
     Edit EDA settings checkbox      Validate Program Plan for Nested Plan Requirements      false
 
     Go to record home               &{program_plan}[Id]
-    Set Window Size                 1024    1024
-    Capture page screenshot
+    Wait until loading is complete
+    Sleep                           3
     Click on element                record.tab_header               Related
     Click on element                record.related.new              Plan Requirements
     Wait until modal is open
