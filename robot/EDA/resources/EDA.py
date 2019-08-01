@@ -56,7 +56,8 @@ class EDA(object):
         """ Switch between different tabs on a record page like Related, Details, News, Activity and Chatter
             Pass title of the tab
         """
-        locator = eda_lex_locators["tab"].format(title)
+        locator = eda_lex_locators["tab"]
+        locator = self.format_all(locator, title)
         self.selenium.capture_page_screenshot()
         self.selenium.log_source()
         self.selenium.wait_until_page_contains_element(locator, timeout=60,
@@ -333,8 +334,21 @@ class EDA(object):
         field = self.selenium.get_webelement(xpath)
         field.send_keys(value)
         time.sleep(1)
-#         if loc == ("Search Contacts" or "Search Accounts"):
         field.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
+
+    def format_all(self, loc, value):
+        """ Formats the given locator with the value for all {} occurrences """
+        count = 0
+        for s in loc:
+            if s is '{':
+                count += 1
+
+        if count == 1:
+            return loc.format(value)
+        elif count == 2:
+            return loc.format(value, value)
+        elif count == 3:
+            return loc.format(value, value, value)
 
     def edit_eda_settings_checkbox(self, checkbox_label, checkbox_toggle):
         """ Updates the checkbox_label value to checkbox_toggle in the EDA settings page """
