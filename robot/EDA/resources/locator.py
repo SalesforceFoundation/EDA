@@ -114,7 +114,7 @@ eda_lex_locators = {
     "program_enrollments_count": "//span[text()='Program Enrollments']/following-sibling::span[contains(@title, '(1)')]",
     "programenrollment_account": "//div[@class='autocompleteWrapper slds-grow']//input[@class=' default input uiInput uiInputTextForAutocomplete uiInput--default uiInput--input uiInput uiAutocomplete uiInput--default uiInput--lookup']",
     "list_of_departments": "//button[contains(@class, 'slds-button slds-button--neutral')]//span[@class=' label bBody' and text()='Next']",
-    "tab": "//div[@class='uiTabBar']/ul[@class='tabs__nav']/li[contains(@class,'uiTabItem')]/a[@class='tabHeader']/span[contains(text(), '{}')]",
+    "tab": "//div[@class='uiTabBar']//a[@class='tabHeader' and @title='{}']",
     "desktop_rendered": "css: div.desktop.container.oneOne.oneAppLayoutHost[data-aura-rendered-by]",
     "loading_box": "css: div.auraLoadingBox.oneLoadingBox",
     "spinner": "css: div.slds-spinner",
