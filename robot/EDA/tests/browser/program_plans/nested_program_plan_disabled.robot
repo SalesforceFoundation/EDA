@@ -19,7 +19,7 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
 
     Go to record home               &{program_plan}[Id]
     Wait until loading is complete
-    Sleep                           3
+    Sleep                           5
     Select tab                      Related
     Click on element                record.related.new              Plan Requirements
     Wait until modal is open
