@@ -57,6 +57,8 @@ class EDA(object):
             Pass title of the tab
         """
         locator = eda_lex_locators["tab"].format(title)
+        self.selenium.wait_until_page_contains_element(locator,
+                                                       error=title + " list header is not available on the page")
         self.selenium.set_focus_to_element(locator)
         button = self.selenium.get_webelement(locator)
         button.click()
