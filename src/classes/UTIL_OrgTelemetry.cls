@@ -198,8 +198,7 @@ public without sharing class UTIL_OrgTelemetry {
 
         // Determine if the customer is using the new Extended Description field on the Course object.
         // For this, we look at the 500 most recently modified Course records.
-        List<Course__c> courses = [SELECT Description__c, Extended_Description__c FROM Course__c ORDER BY LastModifiedDate DESC LIMIT 500];
-        for (Course__c course : courses) {
+        for (Course__c course : [SELECT Description__c, Extended_Description__c FROM Course__c ORDER BY LastModifiedDate DESC LIMIT 500]) {
             if (course.Description__c != null && course.Extended_Description__c == null) {
                 usingOldCourseDescription = true;
                 break;
