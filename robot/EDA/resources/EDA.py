@@ -59,10 +59,8 @@ class EDA(object):
         locator = eda_lex_locators["tab"]
         locator = self.format_all(locator, title)
         self.selenium.capture_page_screenshot()
-        self.selenium.log_source()
         self.selenium.wait_until_page_contains_element(locator, timeout=60,
-                                                       error=title + " list header is not available on the page")
-        self.selenium.capture_page_screenshot()
+                                                       error="'" + title + "' list header is not available on the page")
         self.selenium.set_focus_to_element(locator)
         self.selenium.get_webelement(locator).click()
         time.sleep(5)
