@@ -1,62 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Course Offering --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Course Offering --></value>
-    </caseValues>
-    <fields>
-        <label>Capacidad</label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <label>Curso</label>
-        <name>Course__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Fecha de finalización</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- The Facility associated with the Course Offering. --></help>
-        <label><!-- Facility --></label>
-        <name>Facility__c</name>
-        <relationshipLabel><!-- Course Offerings --></relationshipLabel>
-    </fields>
-    <fields>
-        <label>Profesor principal</label>
-        <name>Faculty__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Id. de la sección</label>
-        <name>Section_ID__c</name>
-    </fields>
-    <fields>
-        <label>Fecha de inicio</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Período</label>
-        <name>Term__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Time Block --></label>
-        <name>Time_Block__c</name>
-        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Course Offering ID --></nameFieldLabel>
+  <fields>
+    <name>Capacity__c</name>
+    <label>Capacidad</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Bloques de tiempo</relationshipLabel>
+    <label>Bloque de tiempo</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Curso</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>Fecha de finalización</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>La instalación asociada con la oferta de curso.</help>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Instalación</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Facultad principal</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <label>Id. de Sección</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Fecha de inicio</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Ofertas de cursos</relationshipLabel>
+    <label>Plazo</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Id. de Oferta de curso</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Id. de Oferta de curso</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Oferta de curso</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Ofertas de curso</value>
+  </caseValues>
 </CustomObjectTranslation>
