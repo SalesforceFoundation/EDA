@@ -192,6 +192,10 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Case.Behavior Management</members>
+        <name>BusinessProcess</name>
+    </types>
+    <types>
         <members>Account.HEDA_Account_Compact_Layout</members>
         <members>Address__c.HEDA_Address_Compact_Layout</members>
         <members>Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
@@ -278,6 +282,8 @@
         <members>Behavior_Response__c.Start_Date__c</members>
         <members>Behavior_Response__c.Status__c</members>
         <members>Behavior_Response__c.Type__c</members>
+        <members>Case.Category__c</members>
+        <members>Case.Location__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
@@ -874,6 +880,7 @@
         <members>Attribute__c-EDA Student Characteristic Layout</members>
         <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
         <members>Behavior_Response__c-EDA Behavior Response Layout</members>
+        <members>Case-EDA Incident Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
@@ -922,6 +929,7 @@
     <types>
         <members>Attribute__c.Credential</members>
         <members>Attribute__c.Student_Characteristic</members>
+        <members>Case.Incident</members>
         <name>RecordType</name>
     </types>
     <types>
