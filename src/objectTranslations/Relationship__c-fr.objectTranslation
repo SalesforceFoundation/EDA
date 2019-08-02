@@ -170,6 +170,10 @@
     <nameFieldLabel><!-- Relationship Key --></nameFieldLabel>
     <startsWith>Consonant</startsWith>
     <validationRules>
+        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Au lieu de modifier les contacts d’une relation existante, supprimez cette relation et créez une autre relation entre les nouveaux contacts.</errorMessage>
         <name>Related_Contact_Do_Not_Change</name>
     </validationRules>
