@@ -150,8 +150,11 @@ private class UTIL_OrgTelemetry_TEST {
 
         System.assertNotEquals(
             0,
-            featureManagementMock.packageIntegerValuesByName.get(UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()),
-            'setPackageIntegerValue should have been called with the feature ' + UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
+            featureManagementMock.packageIntegerValuesByName.get(
+                UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
+            ),
+            'setPackageIntegerValue should have been called with the feature ' + 
+                UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
         );
 
         assertBooleanValue(
