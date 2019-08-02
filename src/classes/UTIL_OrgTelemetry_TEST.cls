@@ -149,7 +149,7 @@ private class UTIL_OrgTelemetry_TEST {
         Test.stopTest();
 
         System.assertNotEquals(
-            0,
+            null,
             featureManagementMock.packageIntegerValuesByName.get(
                 UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
             ),
