@@ -169,6 +169,10 @@
     </layouts>
     <nameFieldLabel><!-- Relationship Key --></nameFieldLabel>
     <validationRules>
+        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva entre los nuevos contactos</errorMessage>
         <name>Related_Contact_Do_Not_Change</name>
     </validationRules>
