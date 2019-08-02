@@ -168,15 +168,11 @@
     </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
-<<<<<<< HEAD
         <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
         <name>Contact_Do_Not_Change</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
-=======
-        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one.--></errorMessage>
->>>>>>> 3fdf6f30690e76da6fe877c014a8812c032096c1
         <name>Related_Contact_Do_Not_Change</name>
     </validationRules>
 </CustomObjectTranslation>

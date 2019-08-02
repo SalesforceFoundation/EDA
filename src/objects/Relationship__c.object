@@ -331,7 +331,6 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
-<<<<<<< HEAD
             <fullName>Contact_Do_Not_Change</fullName>
             <active>true</active>
             <description>Do not allow users to change the Contact value as it damages the paired relationship data.</description>
@@ -346,13 +345,5 @@ TEXT(Contact__r.Salutation) + &quot; &quot; + Contact__r.FirstName + &quot; &quo
             <errorConditionFormula>and(not( ISNEW()), ISCHANGED( RelatedContact__c ))</errorConditionFormula>
             <errorDisplayField>RelatedContact__c</errorDisplayField>
             <errorMessage>Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one.</errorMessage>
-=======
-        <fullName>Related_Contact_Do_Not_Change</fullName>
-        <active>true</active>
-        <description>Do not allow user to change Related Contact value as it damages the paired relationship data</description>
-        <errorConditionFormula>and(not( ISNEW()), ISCHANGED( RelatedContact__c ))</errorConditionFormula>
-        <errorDisplayField>RelatedContact__c</errorDisplayField>
-        <errorMessage>Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one.</errorMessage>
->>>>>>> 3fdf6f30690e76da6fe877c014a8812c032096c1
     </validationRules>
 </CustomObject>
