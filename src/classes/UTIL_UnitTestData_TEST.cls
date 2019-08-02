@@ -451,7 +451,7 @@ public class UTIL_UnitTestData_TEST {
     public static Course_Offering__c createCourseOffering(Id courseId, Id termId) {
         Account acct;
         if (courseId == null || termId == null) {
-            acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
+            acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAcademicAccRecTypeID())[0];
             insert acct;
         }
         
@@ -488,17 +488,42 @@ public class UTIL_UnitTestData_TEST {
     
     /*********************************************************************************************************
     * @description Gets a Course Connection for testing.
+    * @return The Course Connection record.
     **********************************************************************************************************/
     public static Course_Enrollment__c getCourseConnection() {
         Course_Enrollment__c courseConnection = new Course_Enrollment__c();
         return courseConnection;
     }
+
+    /*********************************************************************************************************
+    * @description Gets a Course Connection for testing.
+    * @param contactId The Contact of the Course Connection.
+    * @param courseOfferingId The Course Offering of the Course Connection.
+    * @return The Course Connection record.
+    **********************************************************************************************************/
+    public static Course_Enrollment__c getCourseConnection(Id contactId, Id courseOfferingId) {
+        Course_Enrollment__c courseConnection = new Course_Enrollment__c(
+            Contact__c = contactId, 
+            Course_Offering__c = courseOfferingId
+        );
+        return courseConnection;
+    }
     
     /*********************************************************************************************************
     * @description Gets a Attendance Event for testing.
+    * @return The Attendance Event record.
     **********************************************************************************************************/
     public static Attendance_Event__c getAttendanceEvent() {
         Attendance_Event__c attd = new Attendance_Event__c();
         return attd;
+    }
+
+    /*********************************************************************************************************
+    * @description Gets a Facility for testing.
+    * @return The Facility record.
+    **********************************************************************************************************/
+    public static Facility__c getFacility() {
+        Facility__c facility = new Facility__c(Name = 'Test Facility ' + Datetime.now().getTime());
+        return facility;
     }
 }

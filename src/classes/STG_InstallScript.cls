@@ -78,6 +78,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Upgrade TDTM Configuration
             List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
             TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+
+            // Submit telemetry data back to the LMO using Feature Management
+            sendTelemetryData();
          }
 
          reparentAdminAddrs(context.previousVersion());
@@ -182,32 +185,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
 
     /*******************************************************************************************************
-    * @description Schedules a class that implements the Schedulable interface, if it's not already scheduled.
-    * @param JobName The name to give the scheduled job.
-    * @param frequency The frequency to schedule the job at.
-    * @param className The class to schedule. Should implement the Schedulable interface.
-    * @return The ID of the scheduled job.
-    */
-    public static String scheduleJobIfNotScheduled(String JobName, String frequency, String className) {
-
-        //Check if the job is already scheduled - CronJobDetail is the parent and CronTrigger is the child
-        //Type '7' is for scheduled Apex
-        List<CronTrigger> scheduledJobs = [select Id, CronJobDetail.Id from CronTrigger
-                    where CronJobDetail.Name = :JobName and CronJobDetail.JobType = '7'];
-
-        if(scheduledJobs.size() == 0) {
-            Type classType = Type.forName(className);
-
-            if(classType != null) {
-               Object instance = classType.newInstance();
-               if(instance instanceof Schedulable)
-                   return System.schedule(JobName, frequency, (Schedulable)instance);
-            }
-        }
-        return null;
-    }
-
-    /*******************************************************************************************************
     * @description Disables Preferred Email handling when upgrading to 1.33
     * @return void
     */
@@ -231,30 +208,6 @@ global without sharing class STG_InstallScript implements InstallHandler {
      //cumulusci-managed@deprecated
      global static void updateDefaultTdtmConfig(List<TDTM_Global_API.TdtmToken> defaultTdtmConfig) {
         TDTM_Global_API.setTdtmConfig(defaultTdtmConfig);
-    }
-
-    /*******************************************************************************************************
-    * @description: Popualte the Owned by Namespace field for EDA owned triggers. We have to update Trigger
-    * handlers even if they are marked as user managed.
-    */
-    private static void populateNamespaceHandlers(){
-        // Populate filters for soql query
-        Set<String> objectTypes = new Set<String>();
-        Set<String> classNames = new Set<String>();
-
-        for(TDTM_Global_API.TdtmToken token : TDTM_Global_API.getDefaultTdtmConfig() ) {
-            objectTypes.add(token.targetObject);
-            classNames.add(token.className);
-        }
-
-        // Get EDA trigger Handlers from the database
-        List<Trigger_Handler__c> hedaHandlers = [SELECT Id, Name, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Class__c in: classNames AND Object__c in: objectTypes LIMIT 5000];
-
-        for(Trigger_Handler__c t : hedaHandlers) {
-            t.Owned_by_Namespace__c = 'hed';
-        }
-
-        update hedaHandlers;
     }
 
     /*******************************************************************************************************
@@ -282,6 +235,72 @@ global without sharing class STG_InstallScript implements InstallHandler {
                 orgSettings.Default_Contact_Language_Fluency__c = Label.stgFluent;
             }
             upsert orgSettings;
+        }
+    }
+
+    /*******************************************************************************************************
+    * @description Schedules a class that implements the Schedulable interface, if it's not already scheduled.
+    * @param JobName The name to give the scheduled job.
+    * @param frequency The frequency to schedule the job at.
+    * @param className The class to schedule. Should implement the Schedulable interface.
+    * @return The ID of the scheduled job.
+    */
+    public static String scheduleJobIfNotScheduled(String JobName, String frequency, String className) {
+
+        //Check if the job is already scheduled - CronJobDetail is the parent and CronTrigger is the child
+        //Type '7' is for scheduled Apex
+        List<CronTrigger> scheduledJobs = [select Id, CronJobDetail.Id from CronTrigger
+                    where CronJobDetail.Name = :JobName and CronJobDetail.JobType = '7'];
+
+        if (scheduledJobs.size() == 0) {
+            Type classType = Type.forName(className);
+
+            if (classType != null) {
+               Object instance = classType.newInstance();
+               if (instance instanceof Schedulable) {
+                   return System.schedule(JobName, frequency, (Schedulable)instance);
+               }
+            }
+        }
+        return null;
+    }
+
+    /*******************************************************************************************************
+    * @description: Populate the Owned by Namespace field for EDA owned triggers. We have to update Trigger
+    * handlers even if they are marked as user managed.
+    */
+    private static void populateNamespaceHandlers() {
+        // Populate filters for soql query
+        Set<String> objectTypes = new Set<String>();
+        Set<String> classNames = new Set<String>();
+
+        for (TDTM_Global_API.TdtmToken token : TDTM_Global_API.getDefaultTdtmConfig()) {
+            objectTypes.add(token.targetObject);
+            classNames.add(token.className);
+        }
+
+        // Get EDA trigger Handlers from the database
+        List<Trigger_Handler__c> hedaHandlers = [SELECT Id, Name, Owned_by_Namespace__c FROM Trigger_Handler__c WHERE Class__c in: classNames AND Object__c in: objectTypes LIMIT 5000];
+
+        for (Trigger_Handler__c t : hedaHandlers) {
+            t.Owned_by_Namespace__c = 'hed';
+        }
+
+        update hedaHandlers;
+    }
+
+    @testVisible
+    private static Boolean sendTelemetryDataMethodCalled = false;
+
+    /*******************************************************************************************************
+    * @description Calls the UTIL_OrgTelemetry_BATCH class to collect information about the current org and 
+    * EDA setup information and sends it back to the EDA License Management Application to assist with better
+    * understanding of how our customers use our application.
+    */
+    private static void sendTelemetryData() {
+        sendTelemetryDataMethodCalled = true;
+        if (!Test.isRunningTest()) {
+            UTIL_OrgTelemetry.dispatchTelemetryBatchJob();
         }
     }
 }

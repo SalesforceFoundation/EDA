@@ -127,8 +127,13 @@
         <members>UTIL_Describe</members>
         <members>UTIL_Describe_API</members>
         <members>UTIL_Describe_TEST</members>
+        <members>UTIL_FeatureManagement</members>
+        <members>UTIL_FeatureManagement_TEST</members>
         <members>UTIL_Namespace</members>
         <members>UTIL_Namespace_TEST</members>
+        <members>UTIL_OrgTelemetry</members>
+        <members>UTIL_OrgTelemetry_BATCH</members>
+        <members>UTIL_OrgTelemetry_TEST</members>
         <members>UTIL_Profile</members>
         <members>UTIL_Profile_TEST</members>
         <members>UTIL_UnitTestData_API</members>
@@ -841,6 +846,37 @@
         <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <members>HasCustomAdministrativeAccountNaming</members>
+        <members>HasCustomHouseholdAccountNaming</members>
+        <members>HasDefaultAdministrativeAccountModel</members>
+        <members>HasDefaultHouseholdAccountModel</members>
+        <members>HasEDAInactiveTDTM</members>
+        <members>HasUserManagedTDTM</members>
+        <members>HasValueInversionReciprocalMethod</members>
+        <members>IsEnabled_AutomaticHouseholdNaming</members>
+        <members>IsEnabled_CourseConnections</members>
+        <members>IsEnabled_ErrorHandling</members>
+        <members>IsEnabled_StoreErrors</members>
+        <members>UsingOldContactEthnicity</members>
+        <members>UsingOldCourseDescription</members>
+        <name>FeatureParameterBoolean</name>
+    </types>
+    <types>
+        <members>Data_CountAdministrativeAccounts</members>
+        <members>Data_CountCampaignMemberRelationshipRules</members>
+        <members>Data_CountContactRelationshipRules</members>
+        <members>Data_CountCourseConnections</members>
+        <members>Data_CountCourseOfferingSchedules</members>
+        <members>Data_CountErrorLog</members>
+        <members>Data_CountFacilities</members>
+        <members>Data_CountHouseholdAccounts</members>
+        <members>Data_CountPlanRequirements</members>
+        <members>Data_CountProgramPlans</members>
+        <members>Data_CountTermGrades</members>
+        <members>Org_CountActiveCourseConnectionRecordTypes</members>
+        <name>FeatureParameterInteger</name>
     </types>
     <types>
         <members>Account-HEDA Household Layout</members>
