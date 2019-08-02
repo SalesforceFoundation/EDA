@@ -729,6 +729,10 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for button on Settings UI --></label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
         <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>

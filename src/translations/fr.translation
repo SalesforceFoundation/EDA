@@ -729,6 +729,10 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for button on Settings UI --></label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>

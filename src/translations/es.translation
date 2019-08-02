@@ -729,6 +729,10 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for button on Settings UI --></label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- stgRunCleanUpEnableFirstTime --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
