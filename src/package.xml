@@ -941,6 +941,7 @@
         <name>Translations</name>
     </types>
     <types>
+        <members>Relationship__c.Contact_Do_Not_Change</members>
         <members>Relationship__c.Related_Contact_Do_Not_Change</members>
         <name>ValidationRule</name>
     </types>
