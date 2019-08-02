@@ -32,7 +32,9 @@
 * @date 2017
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Batch Class to process contacts on EDA installation
+* @description Batch Class to process Batch Class to process contacts on EDA installation
+* or from the EDA Settings UI via the "Run Cleanup" button. This class queries and updates 
+* all contacts to process them through both the Preferred Email and Preferred Phone functionality.
 */
 public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Stateful {
     public List<String> exception_List = new List<String>();

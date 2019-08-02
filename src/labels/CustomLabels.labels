@@ -1456,6 +1456,14 @@
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one 'Phone' field is defined.</value>
     </labels>
     <labels>
+        <fullName>stgRunCleanUp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for button on Settings UI</shortDescription>
+        <value>Run Cleanup</value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUpEnableFirstTime</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

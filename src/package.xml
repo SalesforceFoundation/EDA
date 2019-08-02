@@ -53,7 +53,6 @@
         <members>CON_EthnicityRace_BATCH</members>
         <members>CON_EthnicityRace_TEST</members>
         <members>CON_Phone</members>
-        <members>CON_Phone_Batch</members>
         <members>CON_PreferredPhone_TDTM</members>
         <members>CON_PreferredPhone_TEST</members>
         <members>CON_Preferred_TDTM</members>
@@ -662,6 +661,7 @@
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
         <members>stgPreferredPhoneSelection</members>
+        <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>

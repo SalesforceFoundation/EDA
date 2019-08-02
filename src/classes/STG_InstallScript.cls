@@ -230,7 +230,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
 
      /*******************************************************************************************************
-    * @description Disables Preferred Phone handling when upgrading to 1.81
+    * @description Disables Preferred Phone handling when upgrading to 1.82
     * @return void
     */
     
