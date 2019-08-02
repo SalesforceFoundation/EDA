@@ -59,34 +59,11 @@
                 </div>
             </div>
         </div>
+                
         <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
             <ui:outputText value="{!$Label.c.stgHelpContactPreferredEmail}" class="slds-text-body--small" />
         </div>
-
-        <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
-            <h2>
-                <ui:outputText value="{!$Label.c.stgPreferredEmailDataCleanup}" class="slds-text-body--small" />
-            </h2>
-            <div class="slds-text-body--small">
-                <p>
-                    <ui:outputText value="{!$Label.c.stgRunCleanUpEnableFirstTime}" class="slds-text-body--small" />
-                </p>
-                <p>
-                    <ui:outputText value="{!$Label.c.stgHelpEnsureExistContactPreferEmail}" class="slds-text-body--small" />
-                </p>
-            </div>
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <lightning:button variant="brand" label="Run Cleanup" iconName="utility:copy" iconPosition="left" onclick="{! c.runCleanUp }" aura:id="cleanUpBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Email_Enforcement__c , v.isView), !v.isView)}"  />
-            <br />
-            <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
-        </div>
-		<!-- End of Preferred Email -->
         
-        <!--  Preferred Phone -->
-        
-		<hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
-
         <div class="slds-col slds-size--1-of-2">
             <ui:outputText value="{!$Label.c.stgDisablePreferredPhoneEnforcement}"/>
         </div>
@@ -114,26 +91,26 @@
 
         <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
             <h2>
-                <ui:outputText value="{!$Label.c.stgPreferredPhoneDataCleanup}" class="slds-text-body--small" />
+                <ui:outputText value="{!$Label.c.stgPreferredEmailDataCleanup}" class="slds-text-body--small" />
             </h2>
             <div class="slds-text-body--small">
                 <p>
-                    <ui:outputText value="{!$Label.c.stgRunPhoneCleanUpEnableFirstTime}" class="slds-text-body--small" />
+                    <ui:outputText value="{!$Label.c.stgRunCleanUpEnableFirstTime}" class="slds-text-body--small" />
                 </p>
                 <p>
-                    <ui:outputText value="{!$Label.c.stgHelpEnsureExistContactPreferPhone}" class="slds-text-body--small" />
+                    <ui:outputText value="{!$Label.c.stgHelpEnsureExistContactPreferEmail}" class="slds-text-body--small" />
                 </p>
                 
-                        	<ui:outputText value="{!$Label.c.stgPreferredPhoneSelection}"/>
-               
+                <ui:outputText value="{!$Label.c.stgPreferredPhoneSelection}"/>
+                
             </div>
         </div>
         <div class="slds-col slds-size--1-of-2">
-            <lightning:button variant="brand" label="Run Phone Cleanup" iconName="utility:copy" iconPosition="left" onclick="{! c.runPhoneCleanUp }" aura:id="cleanUpPhoneBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c , v.isView), !v.isView)}"  />
+            <lightning:button variant="brand" label="Run Cleanup" iconName="utility:copy" iconPosition="left" onclick="{! c.runCleanUp }" aura:id="cleanUpBtn" disabled="{!or(and(v.hierarchySettings.Disable_Preferred_Email_Enforcement__c , v.isView), !v.isView)}"  />
             <br />
-            <ui:outputText aura:id="phoneCleanUpMsg" value="{!$Label.c.stgPhoneCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
-       
-            <div class="slds-p-top_xx-large"> </div>
+            <ui:outputText aura:id="cleanUpMsg" value="{!$Label.c.stgCleanupQueuedEmailSent}" class="slds-text-color--weak slds-hide" />
+        
+        <div class="slds-p-top_xx-large"> </div>
                  
             <c:CMP_Picklist_Dropdown class="contact-preferred-phone-picklist"
                 setting="{!v.hierarchySettings.Preferred_Phone_Selection__c}"
@@ -142,9 +119,11 @@
                 picklistLabel="{!v.defaultPreferredPhoneLabel}"
                 picklistEntries="{!v.preferredPhonePicklistEntries}"
                 enableNoneOption="true" />
-         </div>   
-      	
-        <!-- End of Preferred Phone -->
+        
+        
+        </div>
+        
+	<!-- End of Preferred Email -->
         
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
         

@@ -1,10 +1,8 @@
 /*
     Copyright (c) 2014, Salesforce.org
     All rights reserved.
-
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-
     * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -13,7 +11,6 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -84,7 +81,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Set CON_PreferredPhone_TDTM to false
             List<Trigger_Handler__c> turnOffPreferredPhone = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
 
-            if(turnOffPreferredPhone != NULL && turnOffPreferredPhone.size() != 0 && previousVersion.compareTo(new Version(1,81)) < 0) {
+            if(turnOffPreferredPhone != NULL && turnOffPreferredPhone.size() != 0 && previousVersion.compareTo(new Version(1,82)) < 0) {
                  turnOffPreferredPhone[0].Active__c = False;
                  update turnOffPreferredPhone[0];
             }
@@ -238,8 +235,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
     */
     
     global static void disablePreferredPhoneEnforcement(Version previousVersion) {
-        if(previousVersion != null && previousVersion.compareTo(new Version(1,81)) < 0) {
-            UTIL_Debug.debug('***Upgrading to version 1.81');
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,82)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.82');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
             if(orgSettings.Disable_Preferred_Phone_Enforcement__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c != true) {
                 orgSettings.Disable_Preferred_Phone_Enforcement__c = true;

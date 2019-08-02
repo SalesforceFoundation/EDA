@@ -629,10 +629,6 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpEnsureExistContactPreferPhone --></label>
-        <name>stgHelpEnsureExistContactPreferPhone</name>
-    </customLabels>
-    <customLabels>
         <label>Si es marca, el marc de maneig d&apos;errors de EDA està desactivat.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
@@ -717,10 +713,6 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgPhoneCleanupQueuedEmailSent --></label>
-        <name>stgPhoneCleanupQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
         <label>El treball Apex per lots ha processat {0} registres amb {1} errors.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
@@ -733,28 +725,12 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Setting Preferred Phone  Batch Email Body --></label>
-        <name>stgPreferredPhoneBatchEmailBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Setting Preferred Phone batch Subject --></label>
-        <name>stgPreferredPhoneBatchSubject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgPreferredPhoneDataCleanup --></label>
-        <name>stgPreferredPhoneDataCleanup</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Select a desired picklist value for the batch job to selct a value from --></label>
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
         <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- stgRunPhoneCleanUpEnableFirstTime --></label>
-        <name>stgRunPhoneCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
         <label><!-- stgSaveSettings --></label>

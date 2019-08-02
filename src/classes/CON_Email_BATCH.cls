@@ -38,7 +38,7 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
     public List<String> exception_List = new List<String>();
     public Integer recordCount = 0;
 	
-    String query = 'SELECT Id, Name, Email, Preferred_Email__c '+getCustomFields()+' FROM Contact';
+    String query = 'SELECT Id, Name, Email, Preferred_Email__c, Phone, PreferredPhone__c '+getCustomFields()+getPhoneFields()+' FROM Contact';
 
     private InstallContext context;
 
@@ -130,6 +130,21 @@ public class CON_Email_BATCH implements Database.Batchable<sObject>,Database.Sta
         }
 
         return customFieldQuery;
+    }
+
+    // Dynamically build SOQL query to include all phone fields
+    private String getPhoneFields() {
+        Map<String, Schema.DescribeFieldResult> fieldMap = UTIL_Describe.getFieldsOfType('Contact', 'PHONE');
+        String customFieldQuery = '';
+        
+        for(String fieldName : fieldMap.keySet() ) {
+            if ( fieldName != 'Phone' ) {
+                customFieldQuery += ', ' + fieldName;
+            }
+        }
+
+        return customFieldQuery;
+
     }
 	
 }

@@ -183,7 +183,7 @@ private class CON_PreferredPhone_TEST {
             UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
             );
-            CON_Phone_BATCH batch = new CON_Phone_BATCH(null);
+            CON_Email_BATCH batch = new CON_Email_BATCH(null);
              Database.executeBatch(batch);
         Test.stopTest();
 
@@ -218,7 +218,7 @@ private class CON_PreferredPhone_TEST {
             UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
             );
-            CON_Phone_BATCH batch = new CON_Phone_BATCH(null);
+            CON_Email_BATCH batch = new CON_Email_BATCH(null);
              Database.executeBatch(batch);
         Test.stopTest();
 
@@ -320,7 +320,7 @@ private class CON_PreferredPhone_TEST {
             new Hierarchy_Settings__c(Preferred_Phone_Selection__c = 'homePhone')
             );    
         
-            CON_Phone_BATCH batch = new CON_Phone_BATCH(null);
+            CON_Email_BATCH batch = new CON_Email_BATCH(null);
              Database.executeBatch(batch);
         Test.stopTest();
 
@@ -358,7 +358,7 @@ private class CON_PreferredPhone_TEST {
             );
                 
         
-            CON_Phone_BATCH batch = new CON_Phone_BATCH(null);
+            CON_Email_BATCH batch = new CON_Email_BATCH(null);
              Database.executeBatch(batch);
         Test.stopTest();
 
@@ -400,7 +400,7 @@ private class CON_PreferredPhone_TEST {
             new Hierarchy_Settings__c(Preferred_Phone_Selection__c = 'homePhone')
             );
             
-            CON_Phone_BATCH batch = new CON_Phone_BATCH(null);
+            CON_Email_BATCH batch = new CON_Email_BATCH(null);
              Database.executeBatch(batch);
         Test.stopTest();
 
