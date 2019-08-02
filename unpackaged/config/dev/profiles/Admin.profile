@@ -75,7 +75,11 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>%%%NAMESPACE%%%Time_Block__c</tab>
+        <tab>%%%NAMESPACE%%%Behavior_Involvement__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Behavior_Response__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

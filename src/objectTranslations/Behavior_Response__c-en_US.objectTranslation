@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Behavior Response</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Behavior Responses</value>
+    </caseValues>
+    <fields>
+        <help><!-- A person involved with this event. --></help>
+        <label><!-- Behavior Involvement --></label>
+        <name>Behavior_Involvement__c</name>
+        <relationshipLabel><!-- Behavior Responses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+    </fields>
+    <fields>
+        <help><!-- The description of the Behavior Response. --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the response ends. --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the response starts. --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status of the response taken. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postponed</masterLabel>
+            <translation><!-- Postponed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The type of response taken. --></help>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Academic Probation</masterLabel>
+            <translation><!-- Academic Probation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expulsion</masterLabel>
+            <translation><!-- Expulsion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
