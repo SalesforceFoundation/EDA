@@ -11,7 +11,7 @@ Suite Teardown  Delete records and close browser
 *** Test Cases ***
 Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     [Documentation]                 Verify Plan Requirement cannot be created with both Program Plan & Parent Plan Requirement when setting is enabled
-    [tags]                          stable
+    [tags]                          unstable
 
     Go to EDA settings
     Click on element                eda_settings.tab                Program Plans
@@ -42,7 +42,7 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
 
 Validate updation of Plan Requirement - Nested Plan Requirement setting enabled
     [Documentation]                 Verify Plan Requirement cannot be updated with both Program Plan & Parent Plan Requirement when setting is enabled
-    [tags]                          stable
+    [tags]                          unstable
 
     Go to record home               ${plan_requirement_2}
     Click on element                record.actions          Edit

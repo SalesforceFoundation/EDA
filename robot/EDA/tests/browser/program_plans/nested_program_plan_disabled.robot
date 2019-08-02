@@ -11,7 +11,7 @@ Suite Teardown  Delete records and close browser
 *** Test Cases ***
 Validate creation of Plan Requirement - Nested Plan Requirement setting disabled
     [Documentation]                 Verify Plan Requirement can be created with both Program Plan & Parent Plan Requirement when setting is disabled
-    [tags]                          stable
+    [tags]                          unstable
 
     Go to EDA settings
     Click on element                eda_settings.tab                Program Plans
