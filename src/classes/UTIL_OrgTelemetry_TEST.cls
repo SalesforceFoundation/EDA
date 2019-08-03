@@ -148,8 +148,13 @@ private class UTIL_OrgTelemetry_TEST {
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Org_Environment);
         Test.stopTest();
 
-        assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(), 3
+        System.assertNotEquals(
+            null,
+            featureManagementMock.packageIntegerValuesByName.get(
+                UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
+            ),
+            'setPackageIntegerValue should have been called with the feature ' + 
+                UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
         );
 
         assertBooleanValue(
