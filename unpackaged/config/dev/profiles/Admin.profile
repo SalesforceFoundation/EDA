@@ -45,6 +45,10 @@
         <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Case-%%%NAMESPACE%%%EDA Organization Layout</layout>
+        <recordType>Case.%%%NAMESPACED_ORG%%%Incident</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

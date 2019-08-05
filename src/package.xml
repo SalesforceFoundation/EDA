@@ -917,7 +917,7 @@
         <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
         <members>Behavior_Response__c-EDA Behavior Response Layout</members>
         <members>Case-EDA Incident Layout</members>
-        <members>Contact-EDA Contact Layout</members>
+        <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
         <members>Course_Offering_Schedule__c-EDA Course Offering Schedule Layout</members>
