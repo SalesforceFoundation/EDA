@@ -1253,7 +1253,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpEnsureExistContactPreferEmail</shortDescription>
-        <value>For existing Contacts who haven&apos;t specified a Preferred Email/Phone, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses is set as the Preferred Email and standard or custom phone numbers is set as the Preferred Phone.</value>
+        <value>For existing Contacts who haven&apos;t specified a Preferred Email or Preferred Phone, the cleanup ensures that one of the Contact&apos;s standard or custom email addresses or phone numbers are set as the preferred value.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorDisable</fullName>
@@ -1469,7 +1469,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRunCleanUpEnableFirstTime</shortDescription>
-        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email/Phone requirement for the first time or after a period of not enforcing the requirement.</value>
+        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
