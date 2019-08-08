@@ -35,7 +35,7 @@
                 component.set("v.affiliationStatusMapValue", settingsNoPrefix.Affl_ProgEnroll_Status_Map__c);
                 component.set("v.affiliationStatusDeleteMapValue", settingsNoPrefix.Affl_ProgEnroll_Del_Status__c);
                 component.set("v.defaultContactLanguageFluencyValue", settingsNoPrefix.Default_Contact_Language_Fluency__c);
-
+                component.set("v.defaultPreferredPhoneValue", settingsNoPrefix.Preferred_Phone_Selection__c );
                 component.set("v.adminNameFormat", settingsNoPrefix.Admin_Account_Naming_Format__c);
                 component.set("v.hhNameFormat", settingsNoPrefix.Household_Account_Naming_Format__c);
                 component.set("v.adminOtherDisplay", this.getOtherDisplay(component, settingsNoPrefix.Admin_Account_Naming_Format__c));
@@ -54,6 +54,9 @@
                         settingsNoPrefix.Faculty_RecType__c);
                 // Get Contact Language Fluency Picklist
                 this.getFluencyPicklistEntries(component, settingsNoPrefix.Default_Contact_Language_Fluency__c);
+                // Get Preferrd Phone Picklists
+                this.getPreferredPhonePicklistEntries(component, settingsNoPrefix.Preferred_Phone_Selection__c);
+                
             } else if(response.getState() === "ERROR") {
                 this.displayError(response);
             }
@@ -233,6 +236,39 @@
 
                 component.set("v.fluencyPicklistEntries", fluencyPicklistEntries);
 
+            } else if(response.getState() === "ERROR") {
+                this.displayError(response);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    getPreferredPhonePicklistEntries : function(component, preferredValue) {
+        //Get all active Contact Phone data type picklist entries
+        var action = component.get("c.getFieldsOfTypeAura");
+        var objectName = 'Contact';
+        var type = 'Phone';
+        
+        action.setParams({ "objectName" : objectName,"type" : type});
+        action.setCallback(this, function(response) {
+            if(response.getState() === "SUCCESS") {
+                var picklistValues = response.getReturnValue();
+                var preferredPhonePicklistEntries = [];
+                
+                for(var property in picklistValues) {                     
+                   
+                    if (picklistValues.hasOwnProperty(property) && property != 'Business Phone') {
+                        preferredPhonePicklistEntries.push({picklistLabel: property, picklistValue : property});  
+                        
+                        if(preferredValue == undefined || (preferredValue != undefined && property.indexOf(preferredValue)) > -1) {
+                            component.set("v.defaultPreferredPhoneLabel", property);                        
+                        } 
+                    }
+                    
+                }
+
+                component.set("v.preferredPhonePicklistEntries", preferredPhonePicklistEntries);
+				
             } else if(response.getState() === "ERROR") {
                 this.displayError(response);
             }

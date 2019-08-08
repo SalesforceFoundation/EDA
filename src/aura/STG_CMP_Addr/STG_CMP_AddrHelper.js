@@ -21,10 +21,10 @@
 			    var statusMsg = component.find("cleanUpMsg");
 			    $A.util.toggleClass(statusMsg, "slds-hide");
 
-	        } else if(response.getState() === "ERROR") {
+            } else if(response.getState() === "ERROR") {
 	        	this.displayError(response);
 		    }
 		});
 		$A.enqueueAction(runBatchAction);
-	}
+	},
 })

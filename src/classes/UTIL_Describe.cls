@@ -286,14 +286,16 @@ public class UTIL_Describe {
     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
     * @return DescribeFieldResult Map of DescribeFieldResult
     */
+    
     public static Map<String, Schema.DescribeFieldResult> getFieldsOfType(String objectName, String type) {
 
+        
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, Schema.DescribeFieldResult> fields = new Map<String, Schema.DescribeFieldResult>();
 
         for(String fieldLabel: allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldLabel);
-     
+     		
             if (String.valueOf( field.getType() ) == type) {
                 fields.put(field.getName(), field );
             }
@@ -495,6 +497,60 @@ public class UTIL_Describe {
         }
 
         return picklistValues;
+    }
+    
+    /*********************************************************************************************************
+     * @description Returns a map of active, user-available fields labels and API name for a given
+     * SObjectType and field type, keyed by  label with a value of api name.
+     * @param objectName Name of the object to retrieve values for.
+     * @param type data type of the fields to retrieve values for.
+     * @return Map<String, String> Map of labels to api name for the object and field type specified.
+     *****/
+    @AuraEnabled
+    public static Map<String, String> getFieldsOfTypeAura(String objectName, String type) {
+		
+        //API name and Schema of field
+        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
+        Map<String, String> fields = new Map<String, String>();
+        for(String fieldAPI: allFields.keySet()) {
+            Schema.DescribeFieldResult field = allFields.get(fieldAPI);
+     
+            if (String.valueOf( field.getType() ) == type) {
+                 fields.put(field.getLabel(), fieldAPI);
+            }
+        }
+	
+        return fields;
+    }
+    
+
+    /*********************************************************************************************************
+     * @description Returns field API name for a given object and field label
+     * @param objectName Name of the object to retrieve values for.
+     * @param fieldLabel Label of the field
+     * @return String API Name of the field retrieved
+     *****/
+
+    public static String getFieldAPIName (String objectName, String fieldLabel) {
+        
+        // get the object map the first time
+        if (gd == null) {
+            gd = Schema.getGlobalDescribe();
+        }
+        
+        SObjectType objType = gd.get(objectName);
+        Map<String, Schema.SObjectField> allFields = objType.getDescribe().fields.getMap();
+        String fieldAPIName = '';    
+        for (String strField: allFields.keySet()) {
+            SObjectField fieldAPI = allFields.get(strField);
+            Schema.DisplayType fielddataType = fieldAPI.getDescribe().getType();
+            if(fieldLabel == fieldAPI.getDescribe().getlabel()) {
+                fieldAPIName = strField;
+                break;
+            }
+        }   
+        
+        return fieldAPIName;
     }
 
     /*******************************************************************************************************

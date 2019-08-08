@@ -52,6 +52,9 @@
         <members>CON_Email_TEST</members>
         <members>CON_EthnicityRace_BATCH</members>
         <members>CON_EthnicityRace_TEST</members>
+        <members>CON_Phone</members>
+        <members>CON_PreferredPhone_TDTM</members>
+        <members>CON_PreferredPhone_TEST</members>
         <members>CON_Preferred_TDTM</members>
         <members>CON_Preferred_TEST</members>
         <members>CON_PrimaryAffls_TDTM</members>
@@ -384,6 +387,7 @@
         <members>Hierarchy_Settings__c.Default_Contact_Language_Fluency__c</members>
         <members>Hierarchy_Settings__c.Disable_Error_Handling__c</members>
         <members>Hierarchy_Settings__c.Disable_Preferred_Email_Enforcement__c</members>
+        <members>Hierarchy_Settings__c.Disable_Preferred_Phone_Enforcement__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
@@ -392,6 +396,7 @@
         <members>Hierarchy_Settings__c.Household_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Preferred_Phone_Selection__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
@@ -483,6 +488,7 @@
         <members>AfflProgEnrollDeleted</members>
         <members>AttendanceCourseConnectionContactMismatch</members>
         <members>AutoCreateFieldError</members>
+        <members>BatchJobRunningProblem</members>
         <members>BothFieldAndValue</members>
         <members>CannotDelete</members>
         <members>DefaultAccountName</members>
@@ -495,6 +501,9 @@
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
+        <members>PreferredPhoneMatchMustExist</members>
+        <members>PreferredPhoneMatchNotNull</members>
+        <members>PreferredPhoneRequiredError</members>
         <members>Relationship_Explanation_Connector</members>
         <members>Relationship_Split</members>
         <members>RelationshipsAutoDescription</members>
@@ -542,6 +551,7 @@
         <members>noAutoCreateSettings</members>
         <members>noRecSettings</members>
         <members>preferredBatchDefaultEmail</members>
+        <members>preferredBatchDefaultPhone</members>
         <members>stgAccModelTitle</members>
         <members>stgAccountRecordTypeSupportsHHAddress</members>
         <members>stgAccountTypesMultiAddressesEnabled</members>
@@ -595,6 +605,7 @@
         <members>stgDefaultStudentTypeTitle</members>
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
+        <members>stgDisablePreferredPhoneEnforcement</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
@@ -616,6 +627,7 @@
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
+        <members>stgHelpContactPreferredPhone</members>
         <members>stgHelpCopyQueuedEmailSent</members>
         <members>stgHelpCourseConnBackfillDescription</members>
         <members>stgHelpCoursesDataMigration</members>
@@ -653,6 +665,8 @@
         <members>stgPreferredEmailBatchEmailBody</members>
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
+        <members>stgPreferredPhoneSelection</members>
+        <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
         <members>stgSaveSettings</members>
         <members>stgSelectReciType</members>

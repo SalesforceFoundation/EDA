@@ -118,6 +118,11 @@
         <name>Disable_Preferred_Email_Enforcement__c</name>
     </fields>
     <fields>
+        <help><!-- Select this box to disable the enforcement of the Preferred Phone field for Contacts. --></help>
+        <label><!-- Disable Preferred Phone Enforcement --></label>
+        <name>Disable_Preferred_Phone_Enforcement__c</name>
+    </fields>
+    <fields>
         <label>Habilitar conexiones al curso</label>
         <name>Enable_Course_Connections__c</name>
     </fields>
@@ -154,6 +159,11 @@
         <help><!-- To store other name setting for household account --></help>
         <label><!-- Household Other Name Setting --></label>
         <name>Household_Other_Name_Setting__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select a desired Preferred Phone when the Batch Job runs. --></help>
+        <label><!-- Preferred Phone Selection --></label>
+        <name>Preferred_Phone_Selection__c</name>
     </fields>
     <fields>
         <help>Determina el método utilizado para generar la relación recíproca. Puede ser Configuración de lista que utiliza configuraciones personalizadas por sexo o Inversión de valor, que invierte el tipo si es apropiado (Padre-hijo a Hijo-padre)</help>

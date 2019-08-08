@@ -69,6 +69,18 @@
         <name>PreferredEmailRequiredError</name>
     </customLabels>
     <customLabels>
+        <label><!-- PreferredPhoneMatchMustExist --></label>
+        <name>PreferredPhoneMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredPhoneMatchNotNull --></label>
+        <name>PreferredPhoneMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredPhoneRequiredError --></label>
+        <name>PreferredPhoneRequiredError</name>
+    </customLabels>
+    <customLabels>
         <label>és</label>
         <name>Relationship_Explanation_Connector</name>
     </customLabels>
@@ -255,6 +267,10 @@
     <customLabels>
         <label>Correu electrònic (estàndard)</label>
         <name>preferredBatchDefaultEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- preferredBatchDefaultPhone --></label>
+        <name>preferredBatchDefaultPhone</name>
     </customLabels>
     <customLabels>
         <label>Model de compte predeterminat:</label>
@@ -469,6 +485,10 @@
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgDisablePreferredPhoneEnforcement --></label>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
         <label>Activa les connexions del curs:</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
@@ -551,6 +571,10 @@
     <customLabels>
         <label>No requereix que els contactes tinguin un correu electrònic preferit.</label>
         <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredPhone --></label>
+        <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
         <label>El procés s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el treball.</label>
@@ -701,8 +725,20 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Select a desired picklist value for the batch job to selct a value from --></label>
+        <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for button on Settings UI --></label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
         <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSaveSettings --></label>
+        <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu el tipus de destinatari</label>
@@ -719,6 +755,10 @@
     <customLabels>
         <label>Errors d&apos;emmagatzematge:</label>
         <name>stgStoreErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSuccess --></label>
+        <name>stgSuccess</name>
     </customLabels>
     <customLabels>
         <label>Comptes i contactes</label>

@@ -1,10 +1,8 @@
 /*
     Copyright (c) 2014, Salesforce.org
     All rights reserved.
-
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-
     * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -13,7 +11,6 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -66,6 +63,8 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             disablePreferredEmailEnforcement(previousVersion);
 
+            disablePreferredPhoneEnforcement(previousVersion);            
+
             populateAdminRecordTypeSetting(previousVersion);
 
             setDefaultContactLanguageFluency(previousVersion);
@@ -78,6 +77,14 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Upgrade TDTM Configuration
             List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
             TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
+            
+            // Set CON_PreferredPhone_TDTM to false
+            List<Trigger_Handler__c> turnOffPreferredPhone = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
+
+            if(turnOffPreferredPhone != NULL && turnOffPreferredPhone.size() != 0 && previousVersion.compareTo(new Version(1,82)) < 0) {
+                 turnOffPreferredPhone[0].Active__c = False;
+                 update turnOffPreferredPhone[0];
+            }
 
             // Submit telemetry data back to the LMO using Feature Management
             sendTelemetryData();
@@ -194,6 +201,22 @@ global without sharing class STG_InstallScript implements InstallHandler {
             Hierarchy_Settings__c orgSettings = Hierarchy_Settings__c.getOrgDefaults();
             if(orgSettings.Disable_Preferred_Email_Enforcement__c == null || orgSettings.Disable_Preferred_Email_Enforcement__c != true) {
                 orgSettings.Disable_Preferred_Email_Enforcement__c = true;
+            }
+            upsert orgSettings;
+        }
+    }
+
+     /*******************************************************************************************************
+    * @description Disables Preferred Phone handling when upgrading to 1.82
+    * @return void
+    */
+    
+    global static void disablePreferredPhoneEnforcement(Version previousVersion) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,82)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.82');
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+            if(orgSettings.Disable_Preferred_Phone_Enforcement__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c != true) {
+                orgSettings.Disable_Preferred_Phone_Enforcement__c = true;
             }
             upsert orgSettings;
         }
