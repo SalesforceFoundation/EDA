@@ -111,6 +111,11 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'CON_Preferred_TDTM', Load_Order__c = 3, Object__c = 'Contact', 
               Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
         
+        // Preferred Phone fields operations on Contact object
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
+              Class__c = 'CON_PreferredPhone_TDTM', Load_Order__c = 4, Object__c = 'Contact', 
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
+        
         // Primary Affiliation fields operations on Contact object
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false, 
               Class__c = 'CON_PrimaryAffls_TDTM', Load_Order__c = 4, Object__c = 'Contact', 

@@ -15,7 +15,7 @@ Verify EDA Settings
     Wait for Locator                            eda_settings.affiliations_tab
     Click on Element                            eda_settings.affiliations_tab
 
-     ${affl_check} =  Get Eda Locator           eda_settings.affiliations_check
+    ${affl_check} =  Get Eda Locator           eda_settings.affiliations_check
     ${affl_role_checkbox} =  Get Eda Locator   eda_settings.affiliations_role_checkbox
     Select Checkbox In Eda Settings            ${affl_check}        ${affl_role_checkbox}
 
