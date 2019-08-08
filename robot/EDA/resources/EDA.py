@@ -57,9 +57,10 @@ class EDA(object):
             Pass title of the tab
         """
         locator = eda_lex_locators["tab"].format(title)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60,
+                                                       error="'" + title + "' list header is not available on the page")
         self.selenium.set_focus_to_element(locator)
-        button = self.selenium.get_webelement(locator)
-        button.click()
+        self.selenium.get_webelement(locator).click()
         time.sleep(5)
 
     def click_special_related_list_button(self, heading, button_title):
@@ -318,7 +319,7 @@ class EDA(object):
         self.selenium.wait_until_element_is_visible(main_loc)
             
     def click_on_element(self,path, *args, **kwargs):
-        main_loc = self.get_eda_locator(path,*args, **kwargs)    
+        main_loc = self.get_eda_locator(path,*args, **kwargs)
         self.selenium.click_element(main_loc)
 
     def populate_placeholder(self, loc, value):
