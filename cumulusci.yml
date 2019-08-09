@@ -212,8 +212,6 @@ plans:
                             name: EDA - Account Record Types
                         contact_key_affl_fields:
                             name: EDA - Contact Key Affiliation Fields
-                        case_behavior_business_process:
-                            name: EDA - Case Behavior Business Process
                         case_behavior_record_types:
                             name: EDA - Case Behavior Record Types
             2:
