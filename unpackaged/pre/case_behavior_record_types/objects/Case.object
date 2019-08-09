@@ -23,7 +23,7 @@
     <recordTypes>
         <fullName>Incident</fullName>
         <active>true</active>
-        <description></description>
+        <description>An event that’s being tracked by this Case.</description>
         <label>Incident</label>
     </recordTypes>
 </CustomObject>
