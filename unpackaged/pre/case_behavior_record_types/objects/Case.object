@@ -23,6 +23,7 @@
     <recordTypes>
         <fullName>Incident</fullName>
         <active>true</active>
+        <businessProcess>Behavior Management</businessProcess>
         <description>An event that’s being tracked by this Case.</description>
         <label>Incident</label>
     </recordTypes>
