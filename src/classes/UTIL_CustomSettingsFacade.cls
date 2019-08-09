@@ -144,6 +144,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
         settings.Student_RecType__c = mySettings.Student_RecType__c;
         settings.Disable_Preferred_Email_Enforcement__c = mySettings.Disable_Preferred_Email_Enforcement__c;
+        settings.Disable_Preferred_Phone_Enforcement__c = mySettings.Disable_Preferred_Phone_Enforcement__c;
         settings.Household_Account_Naming_Format__c = mySettings.Household_Account_Naming_Format__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Affl_ProgEnroll_Copy_End_Date__c = mySettings.Affl_ProgEnroll_Copy_End_Date__c;
@@ -155,6 +156,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
         settings.Default_Contact_Language_Fluency__c = mySettings.Default_Contact_Language_Fluency__c;
         settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
+        settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;   
         settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
         orgSettings = settings;
         return settings;

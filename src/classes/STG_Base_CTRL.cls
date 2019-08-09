@@ -274,9 +274,10 @@ public with sharing class STG_Base_CTRL {
         CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
         Id jobId = Database.executeBatch( contbatch , 200 );
         if(jobId == null) {
-            throw new AuraHandledException('There was a problem starting the Batch.');
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
         } else {
             return jobId;
         }
     }
+       
 }

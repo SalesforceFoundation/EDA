@@ -69,6 +69,18 @@
         <name>PreferredEmailRequiredError</name>
     </customLabels>
     <customLabels>
+        <label><!-- PreferredPhoneMatchMustExist --></label>
+        <name>PreferredPhoneMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredPhoneMatchNotNull --></label>
+        <name>PreferredPhoneMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PreferredPhoneRequiredError --></label>
+        <name>PreferredPhoneRequiredError</name>
+    </customLabels>
+    <customLabels>
         <label>est</label>
         <name>Relationship_Explanation_Connector</name>
     </customLabels>
@@ -255,6 +267,10 @@
     <customLabels>
         <label>E-mail (standard)</label>
         <name>preferredBatchDefaultEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- preferredBatchDefaultPhone --></label>
+        <name>preferredBatchDefaultPhone</name>
     </customLabels>
     <customLabels>
         <label>Modèle de compte par défaut :</label>
@@ -469,6 +485,10 @@
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgDisablePreferredPhoneEnforcement --></label>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
         <label>Activer les connexions aux cours :</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
@@ -551,6 +571,10 @@
     <customLabels>
         <label>Ne pas exiger une adresse e-mail préférée pour les contacts.</label>
         <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredPhone --></label>
+        <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
         <label>Le processus a été mis en file d&apos;attente avec succès. Un e-mail sera envoyé une fois la tâche terminée.</label>
@@ -701,8 +725,20 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Select a desired picklist value for the batch job to selct a value from --></label>
+        <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for button on Settings UI --></label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSaveSettings --></label>
+        <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
         <label>Sélectionner un type de destinataire</label>
@@ -719,6 +755,10 @@
     <customLabels>
         <label>Stocker les erreurs :</label>
         <name>stgStoreErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgSuccess --></label>
+        <name>stgSuccess</name>
     </customLabels>
     <customLabels>
         <label>Comptes et contacts</label>

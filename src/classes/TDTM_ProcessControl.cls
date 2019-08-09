@@ -58,6 +58,7 @@ public class TDTM_ProcessControl {
         AFFL_MultiRecordType_TDTM_After_Update,
         COFF_Affiliation_TDTM,
         CON_Preferred_TDTM,
+        CON_PreferredPhone_TDTM,
         CON_PrimaryAffls_TDTM_After_Insert,
         CON_PrimaryAffls_TDTM_After_Update,
         AFFL_MultiRecordType_TDTM_afflMadePrimary,

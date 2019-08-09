@@ -6,7 +6,11 @@
     <aura:attribute name="defaultContactLanguageFluencyValue" type="String" />
     <aura:attribute name="defaultContactLanguageFluencyLabel" type="String" />
     <aura:attribute name="fluencyPicklistEntries" type="Map" />
-
+    <aura:attribute name="preferredPhonePicklistEntries" type="Map" />
+    <aura:attribute name="defaultPreferredPhoneValue" type="String" />
+    <aura:attribute name="defaultPreferredPhoneLabel" type="String" />
+   
+	
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="courseConnectionRecTypes" type="Map" />
 
@@ -113,7 +117,8 @@
         <div aura:id="addrTabContent" class="site-code--content slds-scrollable--x slds-tabs__content" role="tabpanel">
             <c:STG_CMP_Addr hierarchySettings="{!v.hierarchySettings}" isView="{!v.isView}" namespacePrefix="{!v.namespacePrefix}"
                 defaultContactLanguageFluencyValue="{!v.defaultContactLanguageFluencyValue}" defaultContactLanguageFluencyLabel="{!v.defaultContactLanguageFluencyLabel}" 
-                fluencyPicklistEntries="{!v.fluencyPicklistEntries}" accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}"
+                fluencyPicklistEntries="{!v.fluencyPicklistEntries}" defaultPreferredPhoneValue="{!v.defaultPreferredPhoneValue}" defaultPreferredPhoneLabel="{!v.defaultPreferredPhoneLabel}"
+                preferredPhonePicklistEntries="{!v.preferredPhonePicklistEntries}" accTypesToDeleteSelected="{!v.accTypesToDeleteSelected}" accTypesAddrSelected="{!v.accTypesAddrSelected}"
                 accRecTypes="{!v.accRecTypes}" householdRecTypeId="{!v.householdRecTypeId}" householdRecTypeName="{!v.householdRecTypeName}"
                 adminAccRecTypeId="{!v.adminAccRecTypeId}" adminAccRecTypeName="{!v.adminAccRecTypeName}"  />
         </div>
