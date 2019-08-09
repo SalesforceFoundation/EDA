@@ -128,7 +128,7 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
 
         # Set record type visibilities for Case
         self._set_record_type(
-            'Case.{managed}Incident'.format(**namespace_args),
+            'Case.{namespaced_org}Incident'.format(**namespace_args),
             'true',
         )
 
