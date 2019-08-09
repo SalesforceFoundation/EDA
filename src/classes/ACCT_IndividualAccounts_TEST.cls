@@ -209,10 +209,11 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test Method for detaching a Contact from an org account. It should land in Administrative account.
+    * @description Test Method for detaching a Contact from an already existing account 
+    * which is the default account model.
     */
     @isTest
-    public static void detachFromNormalAccountToAdministrative() {
+    public static void detachFromDefaultAccount() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getAdminAccRecTypeID())[0];
@@ -222,19 +223,21 @@ private class ACCT_IndividualAccounts_TEST {
         con.AccountId = acct.id;
         insert con;
 
-        Contact[] insertedContacts = [Select Account.Name, AccountId from Contact where id=:con.id];
+        Contact[] insertedContacts = [SELECT Account.Name, AccountId FROM Contact WHERE id=:con.id];
         //the contact should be connected to the account
-        system.assertEquals(acct.id,insertedContacts[0].AccountId);
+        System.assertEquals(acct.id, insertedContacts[0].AccountId);
 
-        con.AccountId = null;
+        con.AccountId = NULL;
         Test.startTest();
         update con;
         Test.stopTest();
 
-        Contact[] updatedContacts = [Select Account.Name,AccountId from Contact where id=:con.id];
+        Contact[] updatedContacts = [SELECT Account.Name,AccountId FROM Contact WHERE id=:con.id];
+        Account[] relatedAccount = [SELECT Primary_Contact__c FROM Account];
 
         //the account should not be the one we started with
-        system.assertNotEquals(acct.id,updatedContacts[0].AccountId);
+        System.assertEquals(acct.id, updatedContacts[0].AccountId);
+        System.assertNotEquals(NULL, relatedAccount[0].Primary_Contact__c);
     }
 
     /*********************************************************************************************************
@@ -750,7 +753,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description
     * Remove primary contact from household account
-    * Make sure the primary contact of household account is cleared up
+    * Make sure the primary contact of household account is repopulated
     */
     @isTest
     public static void hhAccountNoChildContactResetPrimaryContact() {
@@ -760,12 +763,14 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Test.startTest();
-        con.AccountId = null;
+        con.AccountId = NULL;
         update con;
         Test.stopTest();
 
-        Account assertAccount = [Select Primary_Contact__c FROM Account LIMIT 1];
-        system.assertEquals(null, assertAccount.Primary_Contact__c);
+        Account assertAccount = [SELECT Primary_Contact__c FROM Account LIMIT 1];
+        Contact[] relatedCOntact = [SELECT AccountId FROM Contact];
+        System.assertNotEquals(NULL, assertAccount.Primary_Contact__c);
+        System.assertNotEquals(NULL, relatedCOntact[0].AccountId);
     }
 
     /*********************************************************************************************************
@@ -919,6 +924,37 @@ private class ACCT_IndividualAccounts_TEST {
 
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con2.Salutation + ' ' + con2.FirstName + ' Family', assertAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method for detaching a Contact from an already existing account 
+    * which is not the default account model.
+    */
+    @isTest
+    public static void detachFromBizAccountToAdministrative() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acct;
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.AccountId = acct.id;
+        insert con;
+
+        Contact[] insertedContacts = [SELECT Account.Name, AccountId FROM Contact where id=:con.id];
+        //the contact should be connected to the account
+        System.assertEquals(acct.id, insertedContacts[0].AccountId);
+
+        con.AccountId = NULL;
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Contact[] updatedContacts = [SELECT Account.Name, AccountId FROM Contact where id=:con.id];
+
+        //the account should not be the one we started with
+        System.assertNotEquals(acct.id, updatedContacts[0].AccountId);
 
     }
 }
