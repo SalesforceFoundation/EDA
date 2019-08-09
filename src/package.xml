@@ -200,10 +200,6 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>Case.Behavior Management</members>
-        <name>BusinessProcess</name>
-    </types>
-    <types>
         <members>Account.HEDA_Account_Compact_Layout</members>
         <members>Address__c.HEDA_Address_Compact_Layout</members>
         <members>Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
@@ -979,7 +975,6 @@
     <types>
         <members>Attribute__c.Credential</members>
         <members>Attribute__c.Student_Characteristic</members>
-        <members>Case.Incident</members>
         <name>RecordType</name>
     </types>
     <types>
