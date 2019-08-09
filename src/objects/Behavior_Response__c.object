@@ -70,7 +70,7 @@
     <fields>
         <fullName>Contact__c</fullName>
         <externalId>false</externalId>
-        <formula>Behavior_Involvement__r.Contact__r.FirstName + &apos; &apos; +  Behavior_Involvement__r.Contact__r.LastName</formula>
+        <formula>HYPERLINK(&quot;/&quot; + Behavior_Involvement__r.Contact__c, Behavior_Involvement__r.Contact__r.FirstName + &quot; &quot; + Behavior_Involvement__r.Contact__r.LastName)</formula>
         <label>Contact</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
