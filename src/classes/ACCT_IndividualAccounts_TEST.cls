@@ -223,7 +223,7 @@ private class ACCT_IndividualAccounts_TEST {
         con.AccountId = acct.id;
         insert con;
 
-        Contact[] insertedContacts = [SELECT Account.Name, AccountId FROM Contact WHERE id=:con.id];
+        List<Contact> insertedContacts = [SELECT Account.Name, AccountId FROM Contact WHERE id=:con.id];
         //the contact should be connected to the account
         System.assertEquals(acct.id, insertedContacts[0].AccountId);
 
@@ -232,12 +232,13 @@ private class ACCT_IndividualAccounts_TEST {
         update con;
         Test.stopTest();
 
-        Contact[] updatedContacts = [SELECT Account.Name,AccountId FROM Contact WHERE id=:con.id];
-        Account[] relatedAccount = [SELECT Primary_Contact__c FROM Account];
+        List<Contact> updatedContacts = [SELECT Account.Name, AccountId, id FROM Contact WHERE id=:con.id];
+        List<Account> relatedAccount = [SELECT Primary_Contact__c FROM Account];
 
         //the account should not be the one we started with
         System.assertEquals(acct.id, updatedContacts[0].AccountId);
         System.assertNotEquals(NULL, relatedAccount[0].Primary_Contact__c);
+        System.assertEquals(updatedContacts[0].id, relatedAccount[0].Primary_Contact__c);
     }
 
     /*********************************************************************************************************
@@ -767,10 +768,13 @@ private class ACCT_IndividualAccounts_TEST {
         update con;
         Test.stopTest();
 
-        Account assertAccount = [SELECT Primary_Contact__c FROM Account LIMIT 1];
-        Contact[] relatedCOntact = [SELECT AccountId FROM Contact];
+        Account assertAccount = [SELECT Id, Primary_Contact__c FROM Account LIMIT 1];
+        List<Contact> relatedContact = [SELECT Id, AccountId FROM Contact];
+
         System.assertNotEquals(NULL, assertAccount.Primary_Contact__c);
-        System.assertNotEquals(NULL, relatedCOntact[0].AccountId);
+        System.assertNotEquals(NULL, relatedContact[0].AccountId);
+        System.assertEquals(assertAccount.Primary_Contact__c, relatedContact[0].Id);
+        System.assertEquals(relatedContact[0].AccountId, assertAccount.Id);
     }
 
     /*********************************************************************************************************
@@ -942,7 +946,7 @@ private class ACCT_IndividualAccounts_TEST {
         con.AccountId = acct.id;
         insert con;
 
-        Contact[] insertedContacts = [SELECT Account.Name, AccountId FROM Contact where id=:con.id];
+        List<Contact> insertedContacts = [SELECT Account.Name, AccountId FROM Contact where id=:con.id];
         //the contact should be connected to the account
         System.assertEquals(acct.id, insertedContacts[0].AccountId);
 
@@ -951,10 +955,13 @@ private class ACCT_IndividualAccounts_TEST {
         update con;
         Test.stopTest();
 
-        Contact[] updatedContacts = [SELECT Account.Name, AccountId FROM Contact where id=:con.id];
+        List<contact> updatedContacts = [SELECT Account.Name, AccountId, Account.RecordTypeId FROM Contact where id=:con.id];
 
-        //the account should not be the one we started with
+        //The account should not be the one we started with        
+        System.assertNotEquals(NULL, updatedContacts[0].AccountId);
         System.assertNotEquals(acct.id, updatedContacts[0].AccountId);
+        System.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), updatedContacts[0].Account.RecordTypeId);
+
 
     }
 }
