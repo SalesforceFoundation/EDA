@@ -779,6 +779,9 @@
         <members>Behavior_Response__c-en_US</members>
         <members>Behavior_Response__c-es</members>
         <members>Behavior_Response__c-fr</members>
+        <members>Case-ca</members>
+        <members>Case-es</members>
+        <members>Case-fr</members>
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>

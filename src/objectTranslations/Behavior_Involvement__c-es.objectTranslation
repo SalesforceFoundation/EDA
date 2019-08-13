@@ -43,7 +43,7 @@
     </fields>
     <gender><!-- Feminine --></gender>
     <layouts>
-        <layout>Behavior Involvement Layout</layout>
+        <layout>EDA Behavior Involvement Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
