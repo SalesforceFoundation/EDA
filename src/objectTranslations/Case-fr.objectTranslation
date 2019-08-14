@@ -53,9 +53,4 @@
         <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
-    <recordTypes>
-        <description><!-- Record Type for Incident --></description>
-        <label><!-- Incident --></label>
-        <name>Incident</name>
-    </recordTypes>
 </CustomObjectTranslation>
