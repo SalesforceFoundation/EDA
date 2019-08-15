@@ -9,7 +9,6 @@ build.properties
 salesforce.schema
 Referenced Packages
 /.sfdx
-**/.vscode/
 /uninstall
 /uninstallsrc
 /installdeploy
