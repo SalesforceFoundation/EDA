@@ -58,6 +58,10 @@ Populate Create And Return Contact with Address
     Click Modal Button        Save
     Wait Until Modal Is Closed
 
+    ${contact_id} =           Get Current Record Id
+    Store Session Record      Contact  ${contact_id}
+    [return]                  ${contact_id}
+
 Populate Create And Return Contact with Home Phone
     [Arguments]      ${first_name}      ${last_name}    ${home_phone}
     Go To Object Home         Contact
