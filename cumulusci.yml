@@ -222,6 +222,6 @@ plans:
                     facility_display_name:
                         name: Facility Display Name Formula Field
                     case_behavior_record_types:
-                            name: EDA - Case Behavior Record Types
+                        name: EDA - Case Behavior Record Types
                 options:
                     unmanaged: false
