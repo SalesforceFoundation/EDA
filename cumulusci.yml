@@ -218,7 +218,7 @@ plans:
                 task: deploy_post
                 ui_options:
                     course_connection_record_types:
-                        name: EDA - Course Connection Record Types for EDA
+                        name: EDA - Course Connection Record Types
                     facility_display_name:
                         name: EDA - Facility Display Name Formula Field
                     case_behavior_record_types:
