@@ -247,7 +247,7 @@
         <div aura:id="mappingsTabContent" class="slds-tabs__content" role="tabpanel">
             <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                 <ui:outputText value="{!$Label.c.AfflMappingsDescription + ' '}" class="slds-text-body--small" />
-                <ui:outputURL value="http://powerofus.force.com/HEDA_Affiliations" class="slds-text-body--small slds-type-focus" 
+                <ui:outputURL value="https://powerofus.force.com/s/article/EDA-Create-Accounts-and-Affiliations" class="slds-text-body--small slds-type-focus" 
                     label="EDA documentation." target="_blank" />
             </div>
             <div class="slds-grid slds-wrap">
