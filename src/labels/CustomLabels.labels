@@ -1021,7 +1021,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>stgHelpAccountModel</shortDescription>
-        <value>Setting for the Account model. &quot;Administrative&quot; is the recommended model.</value>
+        <value>For Higher Education institutions, we recommend the &quot;Administrative&quot; Account model. For K-20 schools, we recommend the &quot;Household&quot; Account model.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccoutsDeletedIfChildContactsDeleted</fullName>
