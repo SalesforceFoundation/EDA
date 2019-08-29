@@ -233,6 +233,102 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+    <fields>
+        <fullName>Subject_Area__c</fullName>
+        <description>The content or subject area that a credential is for.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The content or subject area that a credential is for.</inlineHelpText>
+        <label>Subject Area</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Biology</fullName>
+                    <default>false</default>
+                    <label>Biology</label>
+                </value>
+                <value>
+                    <fullName>Career and Technical Education</fullName>
+                    <default>false</default>
+                    <label>Career and Technical Education</label>
+                </value>
+                <value>
+                    <fullName>Economics</fullName>
+                    <default>false</default>
+                    <label>Economics</label>
+                </value>
+                <value>
+                    <fullName>English Language Arts</fullName>
+                    <default>false</default>
+                    <label>English Language Arts</label>
+                </value>
+                <value>
+                    <fullName>Fine and Performing Arts</fullName>
+                    <default>false</default>
+                    <label>Fine and Performing Arts</label>
+                </value>
+                <value>
+                    <fullName>Foreign Language</fullName>
+                    <default>false</default>
+                    <label>Foreign Language</label>
+                </value>
+                <value>
+                    <fullName>History</fullName>
+                    <default>false</default>
+                    <label>History</label>
+                </value>
+                <value>
+                    <fullName>Life and Physical Sciences</fullName>
+                    <default>false</default>
+                    <label>Life and Physical Sciences</label>
+                </value>
+                <value>
+                    <fullName>Mathematics</fullName>
+                    <default>false</default>
+                    <label>Mathematics</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Physical, Health, and Safety Education</fullName>
+                    <default>false</default>
+                    <label>Physical, Health, and Safety Education</label>
+                </value>
+                <value>
+                    <fullName>Physics</fullName>
+                    <default>false</default>
+                    <label>Physics</label>
+                </value>
+                <value>
+                    <fullName>Psychology</fullName>
+                    <default>false</default>
+                    <label>Psychology</label>
+                </value>
+                <value>
+                    <fullName>Science</fullName>
+                    <default>false</default>
+                    <label>Science</label>
+                </value>
+                <value>
+                    <fullName>Social Studies</fullName>
+                    <default>false</default>
+                    <label>Social Studies</label>
+                </value>
+                <value>
+                    <fullName>Sociology</fullName>
+                    <default>false</default>
+                    <label>Sociology</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <label>Attribute</label>
     <listViews>
         <fullName>All</fullName>
@@ -265,6 +361,73 @@
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject_Area__c</picklist>
+            <values>
+                <fullName>Biology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Career and Technical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociology</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -338,6 +501,73 @@
             </values>
             <values>
                 <fullName>Section 504 Handicapped</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject_Area__c</picklist>
+            <values>
+                <fullName>Biology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Career and Technical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociology</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

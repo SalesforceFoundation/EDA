@@ -276,6 +276,7 @@
         <members>Attribute__c.End_Date__c</members>
         <members>Attribute__c.Expired__c</members>
         <members>Attribute__c.Start_Date__c</members>
+        <members>Attribute__c.Subject_Area__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
