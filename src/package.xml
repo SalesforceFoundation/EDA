@@ -289,6 +289,7 @@
         <members>Behavior_Response__c.Type__c</members>
         <members>Case.Category__c</members>
         <members>Case.Location__c</members>
+        <members>Case.Occurence_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>

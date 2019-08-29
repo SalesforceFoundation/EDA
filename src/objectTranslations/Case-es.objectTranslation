@@ -38,6 +38,11 @@
             <translation><!-- Other --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <help><!-- The date when the behavior event that triggered the Case occurred. --></help>
+        <label><!-- Occurence Date --></label>
+        <name>Occurence_Date__c</name>
+    </fields>
     <layouts>
         <layout>EDA Incident Layout</layout>
         <sections>
