@@ -56,9 +56,9 @@
     <fields>
         <fullName>Behavior_Involvement__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>A person involved with this event.</description>
+        <description>The system-generated number associated with this event. Format: BI-{0000}.</description>
         <externalId>false</externalId>
-        <inlineHelpText>A person involved with this event.</inlineHelpText>
+        <inlineHelpText>The system-generated number associated with this event. Format: BI-{0000}.</inlineHelpText>
         <label>Behavior Involvement</label>
         <referenceTo>Behavior_Involvement__c</referenceTo>
         <relationshipLabel>Behavior Responses</relationshipLabel>
@@ -69,8 +69,10 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
+        <description>The person involved with this response.</description>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; + Behavior_Involvement__r.Contact__c, Behavior_Involvement__r.Contact__r.FirstName + &quot; &quot; + Behavior_Involvement__r.Contact__r.LastName)</formula>
+        <inlineHelpText>The person involved with this response.</inlineHelpText>
         <label>Contact</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

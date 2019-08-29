@@ -9,12 +9,13 @@
         <value>Behavior Responses</value>
     </caseValues>
     <fields>
-        <help><!-- A person involved with this event. --></help>
+        <help><!-- The system-generated number associated with this event. Format: BI-{0000}. --></help>
         <label><!-- Behavior Involvement --></label>
         <name>Behavior_Involvement__c</name>
         <relationshipLabel><!-- Behavior Responses --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The person involved with this response. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
     </fields>
