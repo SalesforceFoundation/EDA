@@ -41,7 +41,15 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>EDA_Behavior_Response_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>EDA_Behavior_Response_Compact_Layout</fullName>
+        <fields>Contact__c</fields>
+        <fields>Behavior_Involvement__c</fields>
+        <fields>Status__c</fields>
+        <fields>Type__c</fields>
+        <label>EDA Behavior Response Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores information about the response to a behavior event.</description>
     <enableActivities>true</enableActivities>
@@ -189,7 +197,12 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Behavior Responses</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Behavior_Involvement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

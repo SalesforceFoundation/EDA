@@ -41,7 +41,14 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Behavior_Involvement_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Behavior_Involvement_Compact_Layout</fullName>
+        <fields>Contact__c</fields>
+        <fields>Case__c</fields>
+        <fields>Role__c</fields>
+        <label>Behavior Involvement Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores information about the people involved in a Case that represents a behavior event.</description>
     <enableActivities>true</enableActivities>
@@ -134,7 +141,14 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Behavior Involvements</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Role__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Role__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
