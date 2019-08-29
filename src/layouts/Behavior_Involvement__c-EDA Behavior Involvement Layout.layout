@@ -63,6 +63,8 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Contact__c</fields>
+        <fields>Type__c</fields>
         <relatedList>Behavior_Response__c.Behavior_Involvement__c</relatedList>
     </relatedLists>
     <relatedLists>

@@ -14,12 +14,7 @@
         <valueSet>
             <restricted>true</restricted>
             <valueSetDefinition>
-                <sorted>true</sorted>
-                <value>
-                    <fullName>Other</fullName>
-                    <default>false</default>
-                    <label>Other</label>
-                </value>
+                <sorted>false</sorted>
                 <value>
                     <fullName>School Code of Conduct</fullName>
                     <default>false</default>
@@ -34,6 +29,11 @@
                     <fullName>State Offense</fullName>
                     <default>false</default>
                     <label>State Offense</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -54,14 +54,19 @@
             <valueSetDefinition>
                 <sorted>true</sorted>
                 <value>
-                    <fullName>Off campus</fullName>
+                    <fullName>Off Campus</fullName>
                     <default>false</default>
-                    <label>Off campus</label>
+                    <label>Off Campus</label>
                 </value>
                 <value>
-                    <fullName>On campus</fullName>
+                    <fullName>On Campus</fullName>
                     <default>false</default>
-                    <label>On campus</label>
+                    <label>On Campus</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
                 </value>
             </valueSetDefinition>
         </valueSet>

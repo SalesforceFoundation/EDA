@@ -26,12 +26,16 @@
         <label><!-- Location --></label>
         <name>Location__c</name>
         <picklistValues>
-            <masterLabel>Off campus</masterLabel>
-            <translation><!-- Off campus --></translation>
+            <masterLabel>Off Campus</masterLabel>
+            <translation><!-- Off Campus --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>On campus</masterLabel>
-            <translation><!-- On campus --></translation>
+            <masterLabel>On Campus</masterLabel>
+            <translation><!-- On Campus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
         </picklistValues>
     </fields>
     <layouts>

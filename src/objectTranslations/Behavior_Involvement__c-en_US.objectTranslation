@@ -25,6 +25,10 @@
         <label><!-- Role --></label>
         <name>Role__c</name>
         <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Perpetrator</masterLabel>
             <translation><!-- Perpetrator --></translation>
         </picklistValues>

@@ -373,6 +373,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Case__c</fields>
+        <fields>Role__c</fields>
         <relatedList>Behavior_Involvement__c.Contact__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
