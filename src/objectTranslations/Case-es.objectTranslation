@@ -40,8 +40,8 @@
     </fields>
     <fields>
         <help><!-- The date and time when the behavior event that triggered the Case occurred. --></help>
-        <label><!-- Occurence Date/Time --></label>
-        <name>Occurrence_Datetime__c</name>
+        <label><!-- Occurrence Date --></label>
+        <name>Occurrence_Date__c</name>
     </fields>
     <layouts>
         <layout>EDA Incident Layout</layout>

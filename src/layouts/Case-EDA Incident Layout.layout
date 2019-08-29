@@ -35,7 +35,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Occurrence_Datetime__c</field>
+                <field>Occurrence_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
