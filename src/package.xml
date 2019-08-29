@@ -276,20 +276,6 @@
         <members>Attribute__c.End_Date__c</members>
         <members>Attribute__c.Expired__c</members>
         <members>Attribute__c.Start_Date__c</members>
-        <members>Attribute__c.Subject_Area__c</members>
-        <members>Behavior_Involvement__c.Case__c</members>
-        <members>Behavior_Involvement__c.Contact__c</members>
-        <members>Behavior_Involvement__c.Role__c</members>
-        <members>Behavior_Response__c.Behavior_Involvement__c</members>
-        <members>Behavior_Response__c.Contact__c</members>
-        <members>Behavior_Response__c.Description__c</members>
-        <members>Behavior_Response__c.End_Date__c</members>
-        <members>Behavior_Response__c.Start_Date__c</members>
-        <members>Behavior_Response__c.Status__c</members>
-        <members>Behavior_Response__c.Type__c</members>
-        <members>Case.Category__c</members>
-        <members>Case.Location__c</members>
-        <members>Case.Occurence_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
