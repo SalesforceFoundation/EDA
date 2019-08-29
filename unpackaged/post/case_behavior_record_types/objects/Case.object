@@ -29,10 +29,6 @@
         <picklistValues>
             <picklist>Category__c</picklist>
             <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>School Code of Conduct</fullName>
                 <default>false</default>
             </values>
@@ -44,15 +40,23 @@
                 <fullName>State Offense</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Location__c</picklist>
             <values>
-                <fullName>Off campus</fullName>
+                <fullName>Off Campus</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>On campus</fullName>
+                <fullName>On Campus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

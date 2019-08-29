@@ -39,9 +39,9 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The date when the behavior event that triggered the Case occurred. --></help>
-        <label><!-- Occurence Date --></label>
-        <name>Occurence_Date__c</name>
+        <help><!-- The date and time when the behavior event that triggered the Case occurred. --></help>
+        <label><!-- Occurence Date/Time --></label>
+        <name>Occurrence_Datetime__c</name>
     </fields>
     <layouts>
         <layout>EDA Incident Layout</layout>

@@ -34,8 +34,8 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Occurence_Date__c</field>
+                <behavior>Required</behavior>
+                <field>Occurrence_Datetime__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>

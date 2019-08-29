@@ -72,11 +72,11 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Occurence_Date__c</fullName>
-        <description>The date when the behavior event that triggered the Case occurred.</description>
+        <fullName>Occurrence_Datetime__c</fullName>
+        <description>The date and time when the behavior event that triggered the Case occurred.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date when the behavior event that triggered the Case occurred.</inlineHelpText>
-        <label>Occurence Date</label>
+        <inlineHelpText>The date and time when the behavior event that triggered the Case occurred.</inlineHelpText>
+        <label>Occurence Date/Time</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
