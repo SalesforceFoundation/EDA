@@ -41,13 +41,13 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>Behavior_Involvement_Compact_Layout</compactLayoutAssignment>
+    <compactLayoutAssignment>EDA_Behavior_Involvement_Compact_Layout</compactLayoutAssignment>
     <compactLayouts>
-        <fullName>Behavior_Involvement_Compact_Layout</fullName>
+        <fullName>EDA_Behavior_Involvement_Compact_Layout</fullName>
         <fields>Contact__c</fields>
         <fields>Case__c</fields>
         <fields>Role__c</fields>
-        <label>Behavior Involvement Compact Layout</label>
+        <label>EDA Behavior Involvement Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores information about the people involved in a Case that represents a behavior event.</description>
