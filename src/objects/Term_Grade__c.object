@@ -41,7 +41,14 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Term_Grade_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Term_Grade_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Course_Offering__c</fields>
+        <label>Term Grade Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores student grades for a specific grading period within a Term.</description>
     <enableActivities>true</enableActivities>
@@ -54,6 +61,20 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The student for whom the grade is being recorded.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The student for whom the grade is being recorded.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The class in which the student received this grade.</description>
@@ -61,6 +82,20 @@
         <inlineHelpText>The class in which the student received this grade.</inlineHelpText>
         <label>Course Connection</label>
         <referenceTo>Course_Enrollment__c</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Offering__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Course Offering associated with the grade being recorded.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Course Offering associated with the grade being recorded.</inlineHelpText>
+        <label>Course Offering</label>
+        <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
         <relationshipName>Term_Grades</relationshipName>
         <required>false</required>
@@ -228,7 +263,19 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Term Grades</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Course_Offering__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Course_Offering__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Course_Offering__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Contact__c</searchFilterFields>
+        <searchFilterFields>Course_Offering__c</searchFilterFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Course_Offering__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

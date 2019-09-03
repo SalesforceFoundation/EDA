@@ -213,6 +213,11 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'ATTD_CourseConnectionContact_TDTM', Load_Order__c = 1, Object__c = 'Attendance_Event__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate'));
+                
+        // Makes sure that the chosen Course Connection matches the chosen Contact and Course Offering
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'TG_ValidateData_TDTM ', Load_Order__c = 1, Object__c = 'Term_Grade__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));  
       
         return handlers;
     }

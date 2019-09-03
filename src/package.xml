@@ -118,6 +118,8 @@
         <members>TDTM_TriggerScaffolds_TEST</members>
         <members>TERM_CourseOff_TDTM</members>
         <members>TERM_CourseOff_TEST</members>
+        <members>TG_ValidateData_TDTM</members>
+        <members>TG_ValidateData_TEST</members>
         <members>THAN_ClearCache_TDTM</members>
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
@@ -166,6 +168,7 @@
         <members>TDTM_ProgramPlan</members>
         <members>TDTM_Relationship</members>
         <members>TDTM_Term</members>
+        <members>TDTM_TermGrade</members>
         <members>TDTM_TimeBlock</members>
         <members>TDTM_TriggerHandler</members>
         <name>ApexTrigger</name>
@@ -213,6 +216,7 @@
         <members>Program_Enrollment__c.HEDA_Program_Enrollment_Compact_Layout</members>
         <members>Program_Plan__c.HEDA_Program_Plan_Compact_Layout</members>
         <members>Relationship__c.HEDA_Relationship_Compact_Layout</members>
+        <members>Term_Grade__c.Term_Grade_Compact_Layout</members>
         <members>Term__c.HEDA_Term_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
@@ -451,7 +455,9 @@
         <members>Relationship__c.SYSTEM_SystemCreated__c</members>
         <members>Relationship__c.Status__c</members>
         <members>Relationship__c.Type__c</members>
+        <members>Term_Grade__c.Contact__c</members>
         <members>Term_Grade__c.Course_Connection__c</members>
+        <members>Term_Grade__c.Course_Offering__c</members>
         <members>Term_Grade__c.Credits_Attempted__c</members>
         <members>Term_Grade__c.Credits_Earned__c</members>
         <members>Term_Grade__c.Letter_Grade__c</members>
@@ -497,7 +503,16 @@
         <members>Female</members>
         <members>InvalidFilter</members>
         <members>Male</members>
+        <members>MultipleCourseConnection</members>
+        <members>NoContactFound</members>
+        <members>NoCourseConnection</members>
+        <members>NoCourseOffering</members>
+        <members>NoDataMatch</members>
+        <members>NoFieldsPopulated</members>
         <members>NoneOption</members>
+        <members>OnlyContactPopulated</members>
+        <members>OnlyCourseConnectionPopulated</members>
+        <members>OnlyCourseOfferingPopulated</members>
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>
