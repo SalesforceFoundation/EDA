@@ -116,238 +116,268 @@ private class TG_ValidateData_TEST {
     @isTest 
     static void testPositiveOnlyCourseConnectionPopulated() {
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
-        
-        Contact student = [SELECT id FROM Contact LIMIT 1];
-        
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-        
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id, recordTypeId = studentRecTypeId);
-        insert courseEnrollment;
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) {  
 
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
-        insert termGrade;
-            
-        Term_Grade__c updatedTermGrade = [SELECT contact__c, Course_Offering__c FROM Term_Grade__c LIMIT 1];
-            
-        System.assertEquals(updatedTermGrade.contact__c, student.id);
-        System.assertEquals(updatedTermGrade.Course_Offering__c, courseOffering.id);
-            
+            Contact student = [SELECT id FROM Contact LIMIT 1];
+        
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
 
+            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
+            insert termGrade;
+            
+            Term_Grade__c updatedTermGrade = [SELECT contact__c, Course_Offering__c FROM Term_Grade__c LIMIT 1];
+            
+            System.assertEquals(updatedTermGrade.contact__c, student.id);
+            System.assertEquals(updatedTermGrade.Course_Offering__c, courseOffering.id);
+            
+        }
      } 
      
      // Test for error when no Contact and Course Offering is found for a Course Connection
     
     @isTest 
     static void testNegativeOnlyCourseConnectionPopulated() {
+
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c();
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId);
-        insert courseEnrollment;
-        
-        try {
-            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
-            insert termGrade;
-        }catch(Exception error) {
-             System.assert(error.getMessage().contains(Label.OnlyCourseConnectionPopulated));
+            try {
+                Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
+                insert termGrade;
+            }catch(Exception error) {
+                 System.assert(error.getMessage().contains(Label.OnlyCourseConnectionPopulated));
             
-        }  
+            }  
             
-     } 
+        }
+
+    }     
      
      // Test auto-population of Course-Offering when the Term Grade has Course Connection and Contact
      
      @isTest 
      static void testPoitiveNoCourseOffering() {
+
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, contact__c = student.id);
+            insert termGrade;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Contact__c = student.id, Course_Offering__c = courseOffering.Id);
-        insert courseEnrollment;
+            Term_Grade__c updatedTermGrade = [SELECT Course_Offering__c FROM Term_Grade__c LIMIT 1];
         
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, contact__c = student.id);
-        insert termGrade;
-        
-        Term_Grade__c updatedTermGrade = [SELECT Course_Offering__c FROM Term_Grade__c LIMIT 1];
-        
-        System.assertEquals(updatedTermGrade.Course_Offering__c, courseOffering.id);
-           
+            System.assertEquals(updatedTermGrade.Course_Offering__c, courseOffering.id);
+
+        }   
      }   
      
      // Test for error when no Course Offering is found for a Term Grade with Course Connection and Contact
      
      @isTest 
      static void testNegativeNoCourseOffering() {
+
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-        
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Contact__c = student.id);
-        insert courseEnrollment;
-        
-        try {
-            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, contact__c = student.id);
-            insert termGrade;
-        }catch(Exception error) {
-             System.assert(error.getMessage().contains(Label.NoCourseOffering));
+            try {
+                Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, contact__c = student.id);
+                insert termGrade;
+            }catch(Exception error) {
+                System.assert(error.getMessage().contains(Label.NoCourseOffering));
             
-        }  
+           }  
             
-     }    
+       }
+
+     }      
     
       // Test auto-population of a Contact when the Term Grade has Course Connection and Course Offering 
      
      @isTest 
      static void testPoitiveNoContact() {
+
+     // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(contact__c = student.id, Course_Offering__c = courseOffering.Id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id);
+            insert termGrade;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, contact__c = student.id, Course_Offering__c = courseOffering.Id);
-        insert courseEnrollment;
+            Term_Grade__c updatedTermGrade = [SELECT contact__c FROM Term_Grade__c LIMIT 1];
         
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id);
-        insert termGrade;
-        
-        Term_Grade__c updatedTermGrade = [SELECT contact__c FROM Term_Grade__c LIMIT 1];
-        
-        System.assertEquals(updatedTermGrade.Contact__c, student.id);
+            System.assertEquals(updatedTermGrade.Contact__c, student.id);
            
-     }  
+        }
+     }      
      
      // Test for error when no Contact is found for a Term Grade with Course Connection and Course Offering
      
      @isTest 
      static void testNegativeNoContact() {
+
+     // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-        
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOffering.Id);
-        insert courseEnrollment;
-        
-        try {
-            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id);
-            insert termGrade;
-        }catch(Exception error) {
-             System.assert(error.getMessage().contains(Label.NoContactFound));
+            try {
+                Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id);
+                insert termGrade;
+            }catch(Exception error) {
+                System.assert(error.getMessage().contains(Label.NoContactFound));
             
-        }  
+            }  
            
-     } 
+        } 
+     }   
      
      // Test for error when Contact and Course Offering on Term Grade do not match with the ones on Course Connection
      
      @isTest 
      static void testDataNoMatch() {
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Term__c term = [SELECT Id FROM Term__C LIMIT 1];
         
-        Term__c term = [SELECT Id FROM Term__C LIMIT 1];
+            Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOffering.Id);
-        insert courseEnrollment;
+            Contact newStudent = new Contact(lastName = 'studentTest');
+            insert newStudent;
         
-        Contact newStudent = new Contact(lastName = 'studentTest');
-        insert newStudent;
+            Course_Offering__c courseOfferingNew = new Course_Offering__c(Course__c = course.id, Term__c = term.id, Name = 'ENG-201');
+            insert courseOfferingNew;
         
-        Course_Offering__c courseOfferingNew = new Course_Offering__c(Course__c = course.id, Term__c = term.id, Name = 'ENG-201');
-        insert courseOfferingNew;
-        
-        try {
-            Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOfferingNew.id, contact__c = newStudent.id);
-            insert termGrade;
-        }catch(Exception error) {
-             System.assert(error.getMessage().contains(Label.NoDataMatch));
+            try {
+                Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOfferingNew.id, contact__c = newStudent.id);
+                insert termGrade;
+            }catch(Exception error) {
+                System.assert(error.getMessage().contains(Label.NoDataMatch));
             
-        }  
+            }  
            
-     } 
+        } 
+     }    
     
      // Test auto-populate Course Connection when the Term Grade has Contact and Course Offering populated
      
      @isTest 
      static void testPoitiveNoCourseConnection() {
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOffering.Id, contact__c = student.id);
-        insert courseEnrollment;
+            Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.id, contact__c = Student.id);
+            insert termGrade;
         
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.id, contact__c = Student.id);
-        insert termGrade;
-        
-        Term_Grade__c updatedTermGrade = [SELECT Course_Connection__c FROM Term_Grade__c LIMIT 1];
+            Term_Grade__c updatedTermGrade = [SELECT Course_Connection__c FROM Term_Grade__c LIMIT 1];
              
-        System.assertEquals(updatedTermGrade.Course_Connection__c, courseEnrollment.id);  
+            System.assertEquals(updatedTermGrade.Course_Connection__c, courseEnrollment.id);  
            
-     }  
+        }
+
+     }      
     
      // Test for error when more than one Course Connection is found with same Contact and Course Offering for a given Term Grade
      
      @isTest 
      static void testMultipleCourseConnection() {
+
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Term__c term = [SELECT Id FROM Term__C LIMIT 1];
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Account department = [SELECT id FROM Account LIMIT 1];
         
-        Term__c term = [SELECT Id FROM Term__C LIMIT 1];
+            Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         
-        Account department = [SELECT id FROM Account LIMIT 1];
-        
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-        
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOffering.Id, contact__c = student.id);
-        insert courseEnrollment;
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
                 
-        Term__c newTerm = new Term__c(Name = 'Fall 18', Account__c = department.id);
-        insert newTerm;
+            Term__c newTerm = new Term__c(Name = 'Fall 18', Account__c = department.id);
+            insert newTerm;
                 
-        Course_Offering__c newCourseOffering = new Course_Offering__c(Course__c = course.id, Term__c = newTerm.id, Name = 'ENG-101');
-        insert newCourseOffering;
+            Course_Offering__c newCourseOffering = new Course_Offering__c(Course__c = course.id, Term__c = newTerm.id, Name = 'ENG-101');
+            insert newCourseOffering;
                 
-        Course_Enrollment__c courseEnrollmentWTerm = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = CourseOffering.Id, contact__c = student.id);
-        insert courseEnrollmentWTerm;
+            Course_Enrollment__c courseEnrollmentWTerm = new Course_Enrollment__c(Course_Offering__c = CourseOffering.Id, contact__c = student.id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollmentWTerm;
         
-        try {
-            Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.id, contact__c = Student.id, Term__c = newTerm.Id);
-            insert termGrade;
-        }catch(Exception error) {
+            try {
+                Term_Grade__c termGrade = new Term_Grade__c(Course_Offering__c = courseOffering.id, contact__c = Student.id, Term__c = newTerm.Id);
+                insert termGrade;
+            }catch(Exception error) {
         
-             System.assert(error.getMessage().contains(Label.MultipleCourseConnection));
+                 System.assert(error.getMessage().contains(Label.MultipleCourseConnection));
              
-        }   
+            }
+
+        }       
            
      }   
      
@@ -376,67 +406,76 @@ private class TG_ValidateData_TEST {
     @isTest 
     static void testOnlyCourseConnectionPopulatedWMultipleTG() {
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id, recordTypeId = studentRecTypeId);
-        insert courseEnrollment;
+            List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
+            Term_Grade__c termGrade1 = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
+            termGrades.add(termGrade1);
         
-        List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
-        Term_Grade__c termGrade1 = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
-        termGrades.add(termGrade1);
+            Term_Grade__c termGrade2 = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
+            termGrades.add(termGrade2);
         
-        Term_Grade__c termGrade2 = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
-        termGrades.add(termGrade2);
-        
-        insert termGrades;
+            insert termGrades;
             
-        Term_Grade__c updatedTermGrade = [SELECT contact__c, Course_Offering__c FROM Term_Grade__c LIMIT 1];
+            Term_Grade__c updatedTermGrade = [SELECT contact__c, Course_Offering__c FROM Term_Grade__c LIMIT 1];
             
-        System.assertEquals(updatedTermGrade.contact__c, student.id);
-        System.assertEquals(updatedTermGrade.Course_Offering__c, courseOffering.id);
+            System.assertEquals(updatedTermGrade.contact__c, student.id);
+            System.assertEquals(updatedTermGrade.Course_Offering__c, courseOffering.id);
             
-     }
+        }
+
+    }    
      
      // Test insertion of multiple Term Grades with same Contact and different Course Offering
      
      @isTest 
      static void testNoCourseConnectionWMultipleTG() {
+
+        // Do not run test if record types do not exist 
+        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
+
+            Contact student = [SELECT id FROM Contact LIMIT 1];
         
-        ID studentRecTypeId = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByName().get('Student').getRecordTypeId();
+            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
         
-        Contact student = [SELECT id FROM Contact LIMIT 1];
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollment;
         
-        Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
+            Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+         
+            Term__c term = [SELECT Id FROM Term__C LIMIT 1];
+         
+            Course_Offering__c courseOfferingNew = new Course_Offering__c(Course__c = course.id, Term__c = term.id, Name = 'ENG-201');
+            insert courseOfferingNew;
+         
+            Course_Enrollment__c courseEnrollmentNew = new Course_Enrollment__c(Course_Offering__c = courseOfferingNew.Id, contact__c = student.id);
+            courseEnrollmentNew.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
+            insert courseEnrollmentNew;
+         
+            List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
+            Term_Grade__c termGrade1 = new Term_Grade__c(Course_Offering__c = courseOffering.id, contact__c = Student.id);
+            termGrades.add(termGrade1);
+         
+            Term_Grade__c termGrade2 = new Term_Grade__c(Course_Offering__c = courseOfferingNew.id, contact__c = Student.id);
+            termGrades.add(termGrade2);
+         
+            insert termGrades;
         
-        Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOffering.Id, contact__c = student.id);
-        insert courseEnrollment;
-        
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-         
-        Term__c term = [SELECT Id FROM Term__C LIMIT 1];
-         
-        Course_Offering__c courseOfferingNew = new Course_Offering__c(Course__c = course.id, Term__c = term.id, Name = 'ENG-201');
-        insert courseOfferingNew;
-         
-        Course_Enrollment__c courseEnrollmentNew = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOfferingNew.Id, contact__c = student.id);
-        insert courseEnrollmentNew;
-         
-        List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
-        Term_Grade__c termGrade1 = new Term_Grade__c(Course_Offering__c = courseOffering.id, contact__c = Student.id);
-        termGrades.add(termGrade1);
-         
-        Term_Grade__c termGrade2 = new Term_Grade__c(Course_Offering__c = courseOfferingNew.id, contact__c = Student.id);
-        termGrades.add(termGrade2);
-         
-        insert termGrades;
-        
-        Term_Grade__c updatedTermGrade = [SELECT Course_Connection__c FROM Term_Grade__c WHERE Course_Offering__c =:courseOffering.id LIMIT 1];
+            Term_Grade__c updatedTermGrade = [SELECT Course_Connection__c FROM Term_Grade__c WHERE Course_Offering__c =:courseOffering.id LIMIT 1];
              
-        System.assertEquals(updatedTermGrade.Course_Connection__c, courseEnrollment.id);  
+            System.assertEquals(updatedTermGrade.Course_Connection__c, courseEnrollment.id);  
            
-     }
+        }
+
+     }   
 }
