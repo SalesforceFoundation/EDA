@@ -29,45 +29,52 @@
 */
 /**
 * @author Salesforce.org
-* @date 2016
-* @group Contacts
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests for CON_CannotDelete_TDTM.
+* @date 2019
+* @group Course Offering
+* @group-content ../../ApexDocContent/CourseOffering.htm
+* @description Tests for COFF_CannotDelete_TDTM.
 */
 @isTest
-public with sharing class CON_CannotDelete_TEST {
-
+public with sharing class COFF_CannotDelete_TEST {
+	
     @isTest
     public static void cannotDelete() {
-        STG_InstallScript.insertMappings();
-
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];//new Account(Name='test');
         insert acc;
         
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(4);
         insert contacts;
 
-        Affiliation__c affl = new Affiliation__c(Contact__c = contacts[0].ID, Account__c = acc.ID);
-        Program_Enrollment__c programEnroll = new Program_Enrollment__c(Contact__c = contacts[1].ID, Account__c = acc.ID);
-        Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = contacts[2].ID, Account__c = acc.ID);
-        insert new SObject[] {affl, programEnroll, courseEnroll}; 
-        
-        Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+        List<Term__c> terms = new List<Term__c>{
+            new Term__c(Name = 'Fall Term', Account__c = acc.Id),
+            new Term__c(Name = 'Spring Term', Account__c = acc.Id)}; 
+        insert terms; 
+        Course__c course = new Course__c(Name = 'Intro Course', Account__c = acc.Id, Course_ID__c = 'Intro101'); 
+        insert course; 
+        List<Course_Offering__c> courseOffering = new List<Course_Offering__c>{
+            new Course_Offering__c(Name = 'Intro Course 101', Course__c = course.Id, Term__c = terms[0].Id),
+            new Course_Offering__c(Name = 'Intro Course 102', Course__c = course.Id, Term__c = terms[1].Id)}; 
+        insert courseOffering; 
+        List<Course_Enrollment__c> courseConnection = new List<Course_Enrollment__c>{
+        	new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering[0].Id),
+            new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = courseOffering[1].Id)};
+        insert courseConnection; 
+     	Term_Grade__c termGrade = new Term_Grade__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering[0].Id, Course_Connection__c = courseConnection[0].Id);
+        insert termGrade; 
+
+		Test.startTest();
+        Database.DeleteResult[] results = Database.delete(courseOffering, false);
         Test.stopTest();
-        
         UTIL_Debug.debug('****Delete results: ' + JSON.serializePretty(results));
         
-        //Verify only c4 was successfully deleted
-        contacts = [select ID from Contact where ID in :contacts];
-        System.assertEquals(3, contacts.size());
+        //Verifies only 1 Course Offering was deleted 
+        List<Course_Offering__c> returnCourseOffering = [SELECT Id FROM Course_Offering__c WHERE Id in: courseOffering];
+        System.assertEquals(1, returnCourseOffering.size()); 
         
+        //Verifies Course Offering with Term Grade was not deleted 
         System.assertEquals(false, results[0].success);
-        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
-        System.assertEquals(false, results[1].success);
-        System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
-        System.assertEquals(false, results[2].success);
-        System.assertEquals(Label.CannotDelete, results[2].errors[0].message);
-        System.assertEquals(true, results[3].success);
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message); 
+        
+
     }
 }

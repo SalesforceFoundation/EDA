@@ -218,7 +218,17 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'TG_ValidateData_TDTM', Load_Order__c = 1, Object__c = 'Term_Grade__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));  
+
+        // Stops a Course Connection from being deleted if it has any Term Grade or Attendance Event
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'CCON_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete')); 
       
+        // Stops a Course Offering from being deleted if it has any Term Grade
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+        		Class__c = 'COFF_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete')); 
+        
         return handlers;
     }
 }
