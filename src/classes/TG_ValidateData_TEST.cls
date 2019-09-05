@@ -307,7 +307,8 @@ private class TG_ValidateData_TEST {
             Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
             Term__c term = [SELECT Id FROM Term__C LIMIT 1];
             Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(recordTypeId = studentRecTypeId, Course_Offering__c = courseOffering.Id, contact__c = student.id);
+            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
+            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
             insert courseEnrollment;
                     
             Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id, contact__c = Student.id);
