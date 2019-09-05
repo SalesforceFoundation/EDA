@@ -276,7 +276,8 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     }   
 
     /*******************************************************************************************************
-    * @description An inner wrapper class to check for conditions
+    * @description An inner wrapper class to if Contact and Course Offerings on Term Grade match the values
+    * on its corresponding Course Connection
     ********************************************************************************************************/
 
     private class validate_CourseContact {

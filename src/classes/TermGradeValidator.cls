@@ -38,7 +38,6 @@
 public class TermGradeValidator  { 
 
     private String errorMsg;
-    private Boolean isValid;
     private String contactId;
     private String courseConnectionId;
     private String courseOfferingId;
