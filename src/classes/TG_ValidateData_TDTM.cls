@@ -32,9 +32,12 @@
 * @date 2019
 * @group
 * @group-content ../../ApexDocContent/TermGrades.htm
-* @description This class ensures that the chosen Course Connection matches the 
-* chosen Contact and Course Offering. It attempts to populate the missing data based
-* on the data provided.
+* @description This class ensures that the Course Connection specified for the 
+* Term Grade is valid for the specified Contact and Course Offering. It also 
+* attempts to populate empty fields on Term Grade for Contact, Course Offering, 
+* and Course Connection based on the data that is available. For example, 
+* if a Course Connection is specified, but no Contact or Course Offering are specified, 
+* it attempts to populate the empty fields with the data specified on the Course Connection.
 */
 public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     
@@ -46,12 +49,14 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     * @param oldlist the list of Accounts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, BeforeUpdate).
     * @param objResult the describe for Term Frade
-    * @return NULL.
+    * @return dmlWrapper.
     ********************************************************************************************************/
     
     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-    
+        
+        DmlWrapper dmlWrapper = new DmlWrapper();
+
         if (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
         
             List<Term_Grade__c> findCourseConnectionList = new List<Term_Grade__c>();
@@ -65,123 +70,56 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
             Map<Id, List<Term_Grade__c>> contactTermGradeMap = new Map<Id, List<Term_Grade__c>>();
             
             for (SObject so : newlist) {
-            
                 Term_Grade__c termGrade = (Term_Grade__c)so;
-        
-                // No Course Connection, Contact and Course Offering
-        
-                if (termGrade.Course_Connection__c == NULL && termGrade.Contact__c == NULL && termGrade.Course_Offering__c == NULL) {
-        
-                    termGrade.addError(Label.NoFieldsPopulated);
-        
-                }
-        
-                // Only Contact is populated
-        
-                else if (termGrade.Course_Connection__c == NULL && termGrade.Contact__c != NULL && termGrade.Course_Offering__c == NULL) {
-        
-                    termGrade.addError(Label.OnlyContactPopulated);
-        
-                }
-        
-                // Only Course Offering is populated
-        
-                else if (termGrade.Course_Connection__c == NULL && termGrade.Contact__c == NULL && termGrade.Course_Offering__c != NULL) {
-        
-                    termGrade.addError(Label.OnlyCourseOfferingPopulated);
-        
-                }
-        
-                // Contact and Course Offering is populated with no Course Connection
 
-                else if (termGrade.Course_Connection__c == NULL && termGrade.Contact__c != NULL && termGrade.Course_Offering__c != NULL) {
-            
+                TermGradeValidator validator = new TermGradeValidator(termGrade);
+                if (!validator.hasValidFields()) {
+                    termGrade.addError(validator.getError());
+                    //consider maybe returning here as well if addError doesn't stop loop
+                } else if (validator.needsCourseConnection()) {
                     findCourseConnectionList.add(termGrade);                    
                     termGradeContacts.add(termGrade.contact__c);
                     termGradeCourseOffering.add(termGrade.course_offering__c);
                     
-                    if(contactTermGradeMap.containsKey(termGrade.contact__c)) {
-
+                    if (contactTermGradeMap.containsKey(termGrade.contact__c)) {
                         contactTermGradeMap.get(termGrade.contact__c).add(termGrade);
-
-                    }else {
-
+                    } else {
                         contactTermGradeMap.put(termGrade.contact__c, new List<Term_Grade__c>{termGrade});
                     }
-
-                }
-        
-                // Course Connection, Contact and Course Offering are populated
-        
-                else if (termGrade.Course_Connection__c != NULL && termGrade.Contact__c != NULL && termGrade.Course_Offering__c != NULL) {
-
-                    checkCourseContactList.add(termGrade);
-                    
-                }
-        
-                // Course Connection, Course Offering are populated with no Contact
-        
-                else if (termGrade.Course_Connection__c != NULL && termGrade.Contact__c == NULL && termGrade.Course_Offering__c != NULL) {
-            
+                } else if (validator.needsContact()) {
                     findContactList.add(termGrade);
-                    
-                }
-        
-                // Course Connection, Contact is populated with no COurse Offering
-        
-                else if (termGrade.Course_Connection__c != NULL && termGrade.Contact__c != NULL && termGrade.Course_Offering__c == NULL) {
-            
+                } else if (validator.needsCourseOffering()) {
                     findCourseOfferingList.add(termGrade); 
-                }
-        
-                // Only Course Connection is populated with no Contact and Course Offering
-        
-                else if (termGrade.Course_Connection__c != NULL && termGrade.Contact__c == NULL && termGrade.Course_Offering__c == NULL) {
-            
+                } else if (validator.needsContactAndCourseOffering()) {
                     findContactCourseOfferingList.add(termGrade); 
-        
+                } else if (validator.hasAllFields()) {
+                    // Course Connection, Contact and Course Offering are populated
+                    checkCourseContactList.add(termGrade);
                 }
+            }
                
+            if (findCourseConnectionList != NULL && findCourseConnectionList.size() > 0) {           
+                findCourseConnection(findCourseConnectionList, termGradeContacts, termGradeCourseOffering, contactTermGradeMap);       
             }
-        
-        
-            if (findCourseConnectionList != NULL && findCourseConnectionList.size() > 0) {
-            
-                findCourseConnection(findCourseConnectionList, termGradeContacts, termGradeCourseOffering, contactTermGradeMap);
-        
-            }
-        
-        
-            if (checkCourseContactList != NULL && checkCourseContactList.size() > 0) {
-            
-                validateCourseContact(checkCourseContactList);
-        
+               
+            if (checkCourseContactList != NULL && checkCourseContactList.size() > 0) {            
+                validateCourseContact(checkCourseContactList);        
             }       
-        
-        
-            if (findContactList != NULL && findContactList.size() > 0) {
-                                
+               
+            if (findContactList != NULL && findContactList.size() > 0) {                               
                 findContact(findContactList);
             }
-        
-        
-            if (findCourseOfferingList != NULL && findCourseOfferingList.size() > 0) {
-        
+               
+            if (findCourseOfferingList != NULL && findCourseOfferingList.size() > 0) {               
                 findCourseOffering(findCourseOfferingList);     
-        
             }
-        
-        
-            if (findContactCourseOfferingList != NULL && findContactCourseOfferingList.size() > 0) {
-            
+                
+            if (findContactCourseOfferingList != NULL && findContactCourseOfferingList.size() > 0) {           
                 findContactCourseOffering(findContactCourseOfferingList);
-        
-            }
-        
+            }       
        }
     
-        return NULL;
-
+        return dmlWrapper;
     }
     
     /*******************************************************************************************************
@@ -193,77 +131,49 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     
     private void findCourseConnection(List<Term_Grade__c> termGrades, List<Id> termGradeContacts, List<Id> termGradeCourseOffering, Map<Id, List<Term_Grade__c>> contactTermGradeMap) {
             
-        Map<Id, List<Term_Grade__c>> courseOfferTermGrade = new Map<Id, List<Term_Grade__c>>();
         Map<Term_Grade__c, List<Course_Enrollment__c>> termGradeEnrollmentMap = new Map<Term_Grade__c, List<Course_Enrollment__c>>();
-        Map<Term_Grade__c, List<Course_Enrollment__c>> termGradeEnrollmentTermMap = new Map<Term_Grade__c, List<Course_Enrollment__c>>();
-    
-        for (Course_Enrollment__c eachEnrollment: [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Contact__c IN:termGradeContacts AND Course_Offering__c IN:termGradeCourseOffering]) { 
         
-            if (eachEnrollment != NULL){ 
-                
-                for(Term_Grade__c tg : contactTermGradeMap.get(eachEnrollment.Contact__c)) {
-            
-                    if (eachEnrollment.course_offering__c == tg.course_offering__c) {
-                
-                        if(termGradeEnrollmentMap.containsKey(tg)) {
-
+        for (Course_Enrollment__c eachEnrollment: [SELECT id, contact__c, course_offering__c FROM course_enrollment__c WHERE contact__c IN:termGradeContacts AND course_offering__c IN:termGradeCourseOffering]) {        
+            if (eachEnrollment != NULL){                
+                for(Term_Grade__c tg : contactTermGradeMap.get(eachEnrollment.contact__c)) {           
+                    if (eachEnrollment.course_offering__c == tg.course_offering__c) {               
+                        if (termGradeEnrollmentMap.containsKey(tg)) {
                             termGradeEnrollmentMap.get(tg).add(eachEnrollment);
-
-                        }else {
-
-                            termGradeEnrollmentMap.put(tg, new List<Course_Enrollment__c>{eachEnrollment});
+                        } else {
+                            termGradeEnrollmentMap.put(tg, new List<course_enrollment__c>{eachEnrollment});
                         }
-                
-                    }  
-            
-                }    
-            }          
+                    }
+                }
+            }
         }
         
         Set<Term_grade__c> allTermGrades = new Set<Term_grade__c>();
         allTermGrades.addAll(termGrades);
                      
-        if (!termGradeEnrollmentMap.isEmpty()) {
-        
-            Set<Term_grade__c> termGradeWEnrollments = new Set<Term_grade__c>();
-                
+        if (!termGradeEnrollmentMap.isEmpty()) {  
+            Set<Term_grade__c> termGradeWEnrollments = new Set<Term_grade__c>();               
             termGradeWEnrollments = termGradeEnrollmentMap.KeySet();
-            
-        
-            for (Term_grade__c each: termGradeWEnrollments) {
-        
-                if (allTermGrades.contains(each)) {
-            
-                    allTermGrades.remove(each);    
-            
-                }
-        
+                   
+            for (Term_grade__c each: termGradeWEnrollments) {       
+                if (allTermGrades.contains(each)) {           
+                    allTermGrades.remove(each);             
+                }    
             }
         }  
         
-        if (allTermGrades.size() > 0) {
-        
-            for (Term_grade__c each: allTermGrades) {
-        
-                each.addError(Label.NoCourseConnection);
-        
+        if (allTermGrades.size() > 0) {       
+            for (Term_grade__c each: allTermGrades) {       
+                each.addError(Label.NoCourseConnection);        
             }
         } 
         
-        for (Term_Grade__c tg : termGradeEnrollmentMap.keySet()) {
-                       
-            if (termGradeEnrollmentMap.get(tg).size() == 1) {
-            
-                tg.Course_Connection__c = termGradeEnrollmentMap.get(tg)[0].Id;    
-            
-            } else {
-                            
-                tg.addError(Label.MultipleCourseConnection);
-                                   
+        for (Term_Grade__c tg : termGradeEnrollmentMap.keySet()) {                      
+            if (termGradeEnrollmentMap.get(tg).size() == 1) {            
+                tg.course_connection__c = termGradeEnrollmentMap.get(tg)[0].Id;               
+            } else {                           
+                tg.addError(Label.MultipleCourseConnection);                               
             }    
-        }
-    
-        
+        }       
     }    
     
     /*******************************************************************************************************
@@ -274,22 +184,15 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
      
     private void validateCourseContact(List<Term_Grade__c> termGrades) {
     
-        Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);
-        
-        for (Course_Enrollment__c eachEnrollment: [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {             
-       
-            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id)) {
-                
-               if (((eachEnrollment.contact__c != NULL && eachEnrollment.contact__c != tg.Contact__c) || (eachEnrollment.Course_Offering__c != NULL && eachEnrollment.Course_Offering__c != eachEnrollment.Course_Offering__c)) || (eachEnrollment.contact__c == NULL || eachEnrollment.Course_Offering__c == NULL)) {
-                
-                    tg.addError(Label.NoDataMatch);
-                          
-                    
-                } 
+        Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);        
+        for (Course_Enrollment__c eachEnrollment: [SELECT id, contact__c, course_offering__c FROM course_enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {             
+            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id)) {   
+                validate_CourseContact courseConValidation = new validate_CourseContact(tg, eachEnrollment);         
+                if (courseConValidation.dataNoMatch()) {
+                    tg.addError(Label.NoDataMatch); 
+                }                                           
             }
-    
-        }
-                
+        }               
     }
     
     /*******************************************************************************************************
@@ -300,26 +203,16 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     
     private void findContact(List<Term_Grade__c> termGrades) {
     
-        Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);
-        
-        for (Course_Enrollment__c eachEnrollment: [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {
-        
-            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id)) {
-            
-                if (tg.Course_Offering__c == eachEnrollment.Course_Offering__c && eachEnrollment.Contact__c != NULL) {
-                
-                    tg.Contact__c = eachEnrollment.Contact__c;
-                                
-                } else {
-                
-                    tg.addError(Label.NoContactFound);
-                
+        Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);       
+        for (Course_Enrollment__c eachEnrollment: [SELECT id, contact__c, course_offering__c FROM course_enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {       
+            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id)) {        
+                if (tg.course_offering__c == eachEnrollment.course_offering__c && eachEnrollment.contact__c != NULL) {              
+                    tg.contact__c = eachEnrollment.contact__c;                              
+                } else {               
+                    tg.addError(Label.NoContactFound);              
                 }
-            
             }
-        
-        }
-        
+        }   
     }
     
     /*******************************************************************************************************
@@ -330,26 +223,16 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     
     private void findCourseOffering(List<Term_Grade__c> termGrades) {
     
-        Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);
-        
-        for (Course_Enrollment__c eachEnrollment: [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {
-        
-            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id)) {
-            
-                if (tg.Contact__c == eachEnrollment.Contact__c && eachEnrollment.Course_Offering__c != NULL) {
-                
-                    tg.Course_Offering__c = eachEnrollment.Course_Offering__c;
-                                
-                } else {
-                
-                    tg.addError(Label.NoCourseOffering);
-                
-                }
-            
-            }
-        
-        }
-    
+        Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);      
+        for (Course_Enrollment__c eachEnrollment: [SELECT id, contact__c, course_offering__c FROM course_enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {       
+            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id)) {          
+                if (tg.Contact__c == eachEnrollment.Contact__c && eachEnrollment.course_offering__c != NULL) {                
+                    tg.Course_Offering__c = eachEnrollment.course_offering__c;                               
+                } else {               
+                    tg.addError(Label.NoCourseOffering);              
+                }           
+            }        
+        }    
     }
     
         
@@ -361,25 +244,16 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     private void findContactCourseOffering(List<Term_Grade__c> termGrades) {
     
         Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);
-    
-        for (Course_Enrollment__c eachEnrollment: [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {             
-       
-            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id )) {
-                
-                if (eachEnrollment.contact__c != NULL && eachEnrollment.Course_Offering__c != NULL) {
-                
-                    tg.Contact__c = eachEnrollment.Contact__c;
-                    tg.Course_Offering__c = eachEnrollment.Course_Offering__c;
-                    
-                } else {
-                    
-                    tg.addError(Label.OnlyCourseConnectionPopulated);
-                    
+        for (Course_Enrollment__c eachEnrollment: [SELECT id, contact__c, course_offering__c FROM course_enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {                   
+            for (Term_Grade__c tg : courseConnIdTermGradeMap.get(eachEnrollment.id )) {            
+                if (eachEnrollment.contact__c != NULL && eachEnrollment.course_offering__c != NULL) {              
+                    tg.contact__c = eachEnrollment.contact__c;
+                    tg.course_offering__c = eachEnrollment.course_offering__c;                   
+                } else {                   
+                    tg.addError(Label.OnlyCourseConnectionPopulated);                    
                 }
-            }
-    
-        }
-    
+            }    
+        }    
     }
     
    
@@ -390,22 +264,42 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/    
     private Map<Id, List<Term_Grade__c>> createCourseConnTermGradeMap(List<Term_Grade__c> termGrades) {
     
-        Map<Id, List<Term_Grade__c>> createCourseConnTermGradeMap = new Map<Id, List<Term_Grade__c>>();
-    
-        for (Term_Grade__c each: termGrades) {
-        
-            if (createCourseConnTermGradeMap.containsKey(each.Course_Connection__c)) {
-
-                createCourseConnTermGradeMap.get(each.Course_Connection__c).add(each);
-
-            }else {
-
-                createCourseConnTermGradeMap.put(each.Course_Connection__c, new List<Term_Grade__c>{each});
+        Map<Id, List<Term_Grade__c>> createCourseConnTermGradeMap = new Map<Id, List<Term_Grade__c>>();   
+        for (Term_Grade__c each: termGrades) {       
+            if (createCourseConnTermGradeMap.containsKey(each.course_connection__c)) {
+                createCourseConnTermGradeMap.get(each.course_connection__c).add(each);
+            } else {
+                createCourseConnTermGradeMap.put(each.course_connection__c, new List<Term_Grade__c>{each});
             }
-
-        }
-        
+        }       
         return createCourseConnTermGradeMap;
-    }    
+    }   
 
+    /*******************************************************************************************************
+    * @description An inner wrapper class to check for conditions
+    ********************************************************************************************************/
+
+    private class validate_CourseContact {
+    
+        private String enrollmentContact;
+        private String termGradeContact;
+        private String enrollmentCourseoffering;
+        private String termGradeCourseOffering;
+
+        public validate_CourseContact(Term_Grade__c termGrade, Course_Enrollment__c courseConnection) {
+            this.enrollmentContact = courseConnection.contact__c;
+            this.termGradeContact = termGrade.contact__c;
+            this.enrollmentCourseoffering = courseConnection.course_offering__c;
+            this.termGradeCourseOffering = termGrade.course_offering__c;
+        }
+
+        public Boolean dataNoMatch() {
+            // if Contact and Course Offerings on Course COnnection are not null and if not equal to the values on Term Grade returns True
+            if (((this.enrollmentContact != NULL && this.enrollmentContact  != this.termGradeContact) || (this.enrollmentCourseoffering!= NULL && this.enrollmentCourseoffering != this.termGradeCourseOffering)) || (this.enrollmentContact == NULL || this.enrollmentCourseoffering == NULL)) {                                     
+                return true;
+            }    
+            return false;
+        } 
+
+    }    
 }

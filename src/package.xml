@@ -124,6 +124,7 @@
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
+        <members>TermGradeValidator</members>
         <members>UTIL_ACCT_Naming</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
