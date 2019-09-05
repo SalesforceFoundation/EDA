@@ -294,7 +294,7 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
         }
 
         public Boolean dataNoMatch() {
-            // if Contact and Course Offerings on Course COnnection are not null and if not equal to the values on Term Grade returns True
+            // if Contact and Course Offerings on Course Connection not null AND if not equal to the respective values on Term Grade OR if the values are NULL on Course Connecton then returns True
             if (((this.enrollmentContact != NULL && this.enrollmentContact  != this.termGradeContact) || (this.enrollmentCourseoffering!= NULL && this.enrollmentCourseoffering != this.termGradeCourseOffering)) || (this.enrollmentContact == NULL || this.enrollmentCourseoffering == NULL)) {                                     
                 return true;
             }    
