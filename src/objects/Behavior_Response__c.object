@@ -78,10 +78,10 @@
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
-        <description>The person involved with this response.</description>
+        <description>The recipient of this response.</description>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; + Behavior_Involvement__r.Contact__c, Behavior_Involvement__r.Contact__r.FirstName + &quot; &quot; + Behavior_Involvement__r.Contact__r.LastName)</formula>
-        <inlineHelpText>The person involved with this response.</inlineHelpText>
+        <inlineHelpText>The recipient of this response.</inlineHelpText>
         <label>Contact</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -121,9 +121,9 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <description>Status of the response taken.</description>
+        <description>The status of the response taken.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Status of the response taken.</inlineHelpText>
+        <inlineHelpText>The status of the response taken.</inlineHelpText>
         <label>Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

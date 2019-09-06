@@ -15,7 +15,7 @@
         <relationshipLabel><!-- Behavior Responses --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- The person involved with this response. --></help>
+        <help><!-- The recipient of this response. --></help>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
     </fields>
@@ -35,7 +35,7 @@
         <name>Start_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Status of the response taken. --></help>
+        <help><!-- The status of the response taken. --></help>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
