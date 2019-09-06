@@ -90,6 +90,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Description__c</fullName>
+        <description>Stores information about a person&apos;s involvement in a behavior event.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores information about a person&apos;s involvement in a behavior event.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Role__c</fullName>
         <description>The role this person played in the event.</description>
         <externalId>false</externalId>

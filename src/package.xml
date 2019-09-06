@@ -281,6 +281,7 @@
         <members>Attribute__c.Subject_Area__c</members>
         <members>Behavior_Involvement__c.Case__c</members>
         <members>Behavior_Involvement__c.Contact__c</members>
+        <members>Behavior_Involvement__c.Description__c</members>
         <members>Behavior_Involvement__c.Role__c</members>
         <members>Behavior_Response__c.Behavior_Involvement__c</members>
         <members>Behavior_Response__c.Contact__c</members>
