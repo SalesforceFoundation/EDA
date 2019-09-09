@@ -116,7 +116,7 @@ private class CON_PreferredPhone_TEST {
         );
         insert newCont;
         
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, otherPhone, PreferredPhone__c  FROM Contact where LastName = 'JohnnyTest'];
+        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, otherPhone, PreferredPhone__c  FROM Contact];
         Test.startTest();
             newContAfter.otherPhone = '';
             newContAfter.PreferredPhone__c = '';
@@ -144,14 +144,14 @@ private class CON_PreferredPhone_TEST {
         );
         insert newCont;
         
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, otherPhone, WorkPhone__c, PreferredPhone__c  FROM Contact where LastName = 'JohnnyTest'];
+        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, otherPhone, WorkPhone__c, PreferredPhone__c FROM Contact];
         Test.startTest();
             newContAfter.WorkPhone__c = '';
             newContAfter.PreferredPhone__c = '';
             update newContAfter;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c  FROM Contact];
+        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
                 
         System.assertEquals('Other', newContAfterList.PreferredPhone__c);
         System.assertEquals('0000000000', newContAfterList.Phone);
@@ -187,7 +187,7 @@ private class CON_PreferredPhone_TEST {
              Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c  FROM Contact];
+        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c FROM Contact];
         
         System.assertEquals('Phone (standard)', newContAfterList.PreferredPhone__c);
 
