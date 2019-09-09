@@ -90,9 +90,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>The description of the Behavior Response.</description>
+        <description>A description of the Behavior Response.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The description of the Behavior Response.</inlineHelpText>
+        <inlineHelpText>A description of the Behavior Response.</inlineHelpText>
         <label>Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>

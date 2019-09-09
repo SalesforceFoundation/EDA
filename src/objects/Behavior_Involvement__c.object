@@ -91,9 +91,9 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <description>Stores information about a person&apos;s involvement in a behavior event.</description>
+        <description>A description of a person&apos;s involvement in a behavior event.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Stores information about a person&apos;s involvement in a behavior event.</inlineHelpText>
+        <inlineHelpText>A description of a person&apos;s involvement in a behavior event.</inlineHelpText>
         <label>Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
