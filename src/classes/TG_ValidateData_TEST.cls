@@ -476,14 +476,9 @@ private class TG_ValidateData_TEST {
         
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
-            
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
+
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Contact__c = student.id, Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id);
+            Term_Grade__c tg = new Term_Grade__c(Contact__c = UTIL_UnitTestData_Test.getFakeId(Contact.SObjectType), Course_Connection__c = UTIL_UnitTestData_Test.getFakeId(Course_Enrollment__c.SObjectType), Course_Offering__c = UTIL_UnitTestData_Test.getFakeId(Course_Offering__c.SObjectType));
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(true, tgv.hasValidFields());
@@ -511,14 +506,9 @@ private class TG_ValidateData_TEST {
         
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
-        
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
+
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Contact__c = student.id);
+            Term_Grade__c tg = new Term_Grade__c(Contact__c = UTIL_UnitTestData_Test.getFakeId(Contact.SObjectType));
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(false, tgv.hasValidFields());
@@ -534,14 +524,9 @@ private class TG_ValidateData_TEST {
         
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
-        
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Contact__c = student.id, Course_Offering__c = courseOffering.Id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
+  
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Course_Offering__c = courseOffering.Id);
+            Term_Grade__c tg = new Term_Grade__c(Course_Offering__c = UTIL_UnitTestData_Test.getFakeId(Course_Offering__c.SObjectType));
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(false, tgv.hasValidFields());
@@ -557,14 +542,9 @@ private class TG_ValidateData_TEST {
         
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
-        
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(contact__c = student.id, Course_Offering__c = courseOffering.Id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
+
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, Course_Offering__c = courseOffering.id);
+            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = UTIL_UnitTestData_Test.getFakeId(Course_Enrollment__c.SObjectType), Course_Offering__c = UTIL_UnitTestData_Test.getFakeId(Course_Offering__c.SObjectType));
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(true, tgv.hasValidFields());
@@ -580,13 +560,8 @@ private class TG_ValidateData_TEST {
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
 
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, contact__c = Student.id);   
+            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = UTIL_UnitTestData_Test.getFakeId(Course_Enrollment__c.SObjectType), contact__c = UTIL_UnitTestData_Test.getFakeId(Contact.SObjectType));   
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(true, tgv.hasValidFields());
@@ -603,13 +578,8 @@ private class TG_ValidateData_TEST {
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
 
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = courseEnrollment.id);
+            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = UTIL_UnitTestData_Test.getFakeId(Course_Enrollment__c.SObjectType));
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(true, tgv.hasValidFields());
@@ -626,13 +596,12 @@ private class TG_ValidateData_TEST {
         // Do not run test if record types do not exist 
         if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),'RecordTypeId')) { 
 
-            Contact student = [SELECT id FROM Contact LIMIT 1];
-            Course_Offering__c courseOffering = [SELECT id FROM Course_Offering__c LIMIT 1];
-            Course_Enrollment__c courseEnrollment = new Course_Enrollment__c(Course_Offering__c = courseOffering.Id, contact__c = student.id);
-            courseEnrollment.put('RecordTypeId', UTIL_Describe_API.getStudentConnectionRecType());
-            insert courseEnrollment;
             Test.startTest();
-            Term_Grade__c tg = new Term_Grade__c(Course_Connection__c = courseEnrollment.id, contact__c = Student.id, Course_Offering__c = courseOffering.id);
+            Term_Grade__c tg = new Term_Grade__c(
+                Contact__c = UTIL_UnitTestData_Test.getFakeId(Contact.SObjectType),
+                Course_Connection__c = UTIL_UnitTestData_Test.getFakeId(Course_Enrollment__c.SObjectType),
+                Course_Offering__c = UTIL_UnitTestData_Test.getFakeId(Course_Offering__c.SObjectType)
+            );
             TermGradeValidator tgv = new TermGradeValidator(tg);
             Test.stopTest();
             System.AssertEquals(true, tgv.hasValidFields());         
