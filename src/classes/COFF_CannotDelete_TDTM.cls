@@ -31,16 +31,16 @@
 * @author Salesforce.org
 * @date 2019
 * @group Course Offering
-* @group-content ../../ApexDocContent/CourseOffering.htm
-* @description This class prevents the Course Offering record from being deleted if it has any Term Grade or Attendance Event association. 
+* @group-content ../../ApexDocContent/CourseOfferings.htm
+* @description This class prevents the Course Offering record from being deleted if it has any associated Term Grades. 
 */
 public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable{
 	/*******************************************************************************************************
-    * @description Stops a Course Connection from being deleted if it has any Attendance Event or Term Grade association.  
+    * @description Stops a Course Connection from being deleted if it has any associated Term Grades.  
     * @param listNew the list of Course Offering from trigger new. 
     * @param listOld the list of Course Offering from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).  
-    * @param objResult the describe for Accounts 
+    * @param objResult the describe for Course Offering
     * @return dmlWrapper.  
     ********************************************************************************************************/
      public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
@@ -48,12 +48,12 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable{
         
         Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
          
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete){
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for(Course_Offering__c co : [SELECT Id, 
                                         (SELECT Id FROM Term_Grades__r LIMIT 1)
-                                        FROM Course_Offering__c WHERE Id in : oldlist]){
-            	if(co.Term_Grades__r.size() > 0){
-            		Course_Offering__c courseOfferingInContext = (Course_Offering__c)oldmap.get(co.Id); 
+                                        FROM Course_Offering__c WHERE Id in : oldlist]) {
+				      if(co.Term_Grades__r.size() > 0) {
+					      Course_Offering__c courseOfferingInContext = (Course_Offering__c)oldmap.get(co.Id); 
                 	courseOfferingInContext.addError(Label.CannotDelete);
             	}   
             }

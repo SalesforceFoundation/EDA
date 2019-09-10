@@ -33,42 +33,38 @@
 * @group Accounts
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Stops a Contact from being deleted if it has any Affiliation, 
-* Program Enrollment or Course Enrollment children.
+* Program Enrollment, Term Grade, Attendance Event,or Course Enrollment children.
 */
 public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
     * @description Stops a Contact from being deleted if it has any Affiliation, 
-    * Program Enrollment or Course Enrollment children.
+    * Program Enrollment, Term Grade, Attendance Event,or Course Enrollment children.
     * @param listNew the list of Contacts from trigger new. 
     * @param listOld the list of Contacts from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Accounts 
+    * @param objResult the describe for Contact 
     * @return dmlWrapper.  
     ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
-    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+  public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
+  TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
       
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+    Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
         
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-                        
-            for (Contact c : [select ID, (select ID from Contact.Affl_Accounts__r LIMIT 1),
-                                         (select ID from Contact.Program_Enrollments__r LIMIT 1), 
-                                         (select ID from Contact.Student_Course_Enrollments__r LIMIT 1),
-                                         (select ID from Contact.Term_Grades__r LIMIT 1), 
-                                         (select ID from Contact.Attendance_Events__r LIMIT 1)
-                                         from Contact where ID in :oldlist]) {
-                
-                if(c.Affl_Accounts__r.size() > 0 || c.Program_Enrollments__r.size() > 0 || c.Student_Course_Enrollments__r.size() > 0  
-                || c.Term_Grades__r.size() > 0 || c.Attendance_Events__r.size() > 0) {
-                  
-                    Contact contactInContext = (Contact)oldmap.get(c.ID);
-                    contactInContext.addError(Label.CannotDelete);
-                }
-            }     
+    if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
+      for (Contact c : [select ID, (select ID from Contact.Affl_Accounts__r LIMIT 1),
+                        (select ID from Contact.Program_Enrollments__r LIMIT 1), 
+                        (select ID from Contact.Student_Course_Enrollments__r LIMIT 1),
+                        (select ID from Contact.Term_Grades__r LIMIT 1), 
+                        (select ID from Contact.Attendance_Events__r LIMIT 1)
+                        from Contact where ID in :oldlist]) {
+              if(c.Affl_Accounts__r.size() > 0 || c.Program_Enrollments__r.size() > 0 || c.Student_Course_Enrollments__r.size() > 0  
+              || c.Term_Grades__r.size() > 0 || c.Attendance_Events__r.size() > 0) {
+                Contact contactInContext = (Contact)oldmap.get(c.ID);
+                contactInContext.addError(Label.CannotDelete);
+              }
+            }
         }
-        
-        return new DmlWrapper();
+      return new DmlWrapper();
     }
 }

@@ -35,13 +35,13 @@
 * @description Tests for CON_CannotDelete_TDTM.
 */
 @isTest
-public with sharing class CON_CannotDelete_TEST {
+private with sharing class CON_CannotDelete_TEST {
 
     @isTest
-    public static void cannotDelete() {
+    private static void cannotDelete() {
         STG_InstallScript.insertMappings();
 
-        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];//new Account(Name='test');
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
         
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(4);
@@ -49,8 +49,12 @@ public with sharing class CON_CannotDelete_TEST {
 
         Affiliation__c affl = new Affiliation__c(Contact__c = contacts[0].ID, Account__c = acc.ID);
         Program_Enrollment__c programEnroll = new Program_Enrollment__c(Contact__c = contacts[1].ID, Account__c = acc.ID);
-        Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = contacts[2].ID, Account__c = acc.ID);
-        insert new SObject[] {affl, programEnroll, courseEnroll}; 
+        insert new SObject[] {affl, programEnroll}; 
+            
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL); 
+        Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = contacts[2].ID, Account__c = acc.ID, Course_Offering__c = courseOffering.Id);
+        Attendance_Event__c attendanceEvent = new Attendance_Event__c(Contact__c = contacts[2].Id, Date__c = System.today(), Course_Connection__c = courseEnroll.Id); 
+		    insert new SObject[] {courseEnroll, attendanceEvent}; 
         
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(contacts, false);

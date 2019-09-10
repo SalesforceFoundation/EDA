@@ -30,8 +30,8 @@
 /**
 * @author Salesforce.org
 * @date 2019
-* @group
-* @group-content ../../ApexDocContent/CourseConnection.htm
+* @group Course Enrollments
+* @group-content ../../ApexDocContent/CourseEnrollments.htm
 * @description This class prevents the Course Connection record from being deleted if it has any Term Grade or Attendance Event association. 
 */
 public with sharing class CCON_CannotDelete_TDTM extends TDTM_Runnable {
@@ -40,7 +40,7 @@ public with sharing class CCON_CannotDelete_TDTM extends TDTM_Runnable {
     * @param listNew the list of Course Offering from trigger new. 
     * @param listOld the list of Course Offering from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).  
-    * @param objResult the describe for Accounts 
+    * @param objResult the describe for Course Connections 
     * @return dmlWrapper.  
     ********************************************************************************************************/
      public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
@@ -48,15 +48,15 @@ public with sharing class CCON_CannotDelete_TDTM extends TDTM_Runnable {
         
         Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
 
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete){
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
             for(Course_Enrollment__c ce : [SELECT Id, 
                                           (SELECT Id FROM Term_Grades__r LIMIT 1),
                                           (SELECT Id FROM Attendance_Events__r LIMIT 1)
-                                          FROM Course_Enrollment__c WHERE Id in: oldlist]){
-                if(ce.Term_Grades__r.size() > 0 || ce.Attendance_Events__r.size() > 0){
-                    Course_Enrollment__c courseEnrollmentInContext = (Course_Enrollment__c)oldmap.get(ce.ID);
-                    courseEnrollmentInContext.addError(Label.CannotDelete);
-                }
+                                          FROM Course_Enrollment__c WHERE Id in: oldlist]) {
+              if(ce.Term_Grades__r.size() > 0 || ce.Attendance_Events__r.size() > 0) {
+                  Course_Enrollment__c courseEnrollmentInContext = (Course_Enrollment__c)oldmap.get(ce.ID);
+                  courseEnrollmentInContext.addError(Label.CannotDelete);
+              }
             }
          }
          return new DmlWrapper();

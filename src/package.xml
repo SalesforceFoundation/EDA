@@ -31,6 +31,8 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>CCON_CannotDelete_TDTM</members>
+        <members>CCON_CannotDelete_TEST</members>
         <members>CCON_ConnectionBackfill_BATCH</members>
         <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
@@ -43,6 +45,8 @@
         <members>CMP_SettingsDataProvider_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
+        <members>COFF_CannotDelete_TDTM</members>
+        <members>COFF_CannotDelete_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
@@ -368,6 +372,7 @@
         <members>Facility__c.Account__c</members>
         <members>Facility__c.Capacity__c</members>
         <members>Facility__c.Description__c</members>
+        <members>Facility__c.Display_Name__c</members>
         <members>Facility__c.Facility_Type__c</members>
         <members>Facility__c.Parent_Facility__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
@@ -960,8 +965,15 @@
         <name>ListView</name>
     </types>
     <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <types>
         <members>Attribute__c.Credential</members>
         <members>Attribute__c.Student_Characteristic</members>
+        <members>Course_Enrollment__c.Default</members>
+        <members>Course_Enrollment__c.Faculty</members>
+        <members>Course_Enrollment__c.Student</members>
         <name>RecordType</name>
     </types>
     <types>
