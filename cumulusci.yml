@@ -197,6 +197,9 @@ orgs:
             namespaced: True
         prerelease:
             config_file: orgs/prerelease.json
+        prerelease_namespaced:
+            config_file: orgs/prerelease.json
+            namespaced: True
 
 plans:
     install:
