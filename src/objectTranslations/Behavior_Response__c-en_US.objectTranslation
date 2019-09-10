@@ -20,7 +20,7 @@
         <name>Contact__c</name>
     </fields>
     <fields>
-        <help><!-- The description of the Behavior Response. --></help>
+        <help><!-- A description of the Behavior Response. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
