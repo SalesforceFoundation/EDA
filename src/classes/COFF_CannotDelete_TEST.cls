@@ -14,7 +14,7 @@
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
  
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORSå
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
     FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
@@ -36,7 +36,6 @@
 */
 @isTest
 private with sharing class COFF_CannotDelete_TEST {
-	
     @isTest
     private static void cannotDelete() {
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -47,13 +46,13 @@ private with sharing class COFF_CannotDelete_TEST {
 		
         List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>(); 
         for(Integer i=0; i<2; i++){
-            Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
-            courseOfferings.add(courseOffering); 
+          Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
+          courseOfferings.add(courseOffering); 
         }
         
         List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>{
-        	new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOfferings[0].Id),
-            new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = courseOfferings[1].Id)};
+          new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOfferings[0].Id),
+          new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = courseOfferings[1].Id)};
         insert courseConnections; 
         
      	  Term_Grade__c termGrade = new Term_Grade__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOfferings[0].Id, Course_Connection__c = courseConnections[0].Id);

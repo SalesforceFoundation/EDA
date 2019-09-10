@@ -59,7 +59,6 @@ private with sharing class CON_CannotDelete_TEST {
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(contacts, false);
         Test.stopTest();
-        
         UTIL_Debug.debug('****Delete results: ' + JSON.serializePretty(results));
         
         //Verify only c4 was successfully deleted

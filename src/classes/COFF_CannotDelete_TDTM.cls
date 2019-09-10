@@ -36,7 +36,7 @@
 */
 public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable{
 	/*******************************************************************************************************
-    * @description Stops a Course Connection from being deleted if it has any associated Term Grades.  
+    * @description Stops a Course Offering from being deleted if it has any associated Term Grades.  
     * @param listNew the list of Course Offering from trigger new. 
     * @param listOld the list of Course Offering from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).  
@@ -52,12 +52,12 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable{
             for(Course_Offering__c co : [SELECT Id, 
                                         (SELECT Id FROM Term_Grades__r LIMIT 1)
                                         FROM Course_Offering__c WHERE Id in : oldlist]) {
-				      if(co.Term_Grades__r.size() > 0) {
-					      Course_Offering__c courseOfferingInContext = (Course_Offering__c)oldmap.get(co.Id); 
-                	courseOfferingInContext.addError(Label.CannotDelete);
-            	}   
-            }
+				    if(co.Term_Grades__r.size() > 0) {
+					    Course_Offering__c courseOfferingInContext = (Course_Offering__c)oldmap.get(co.Id); 
+              courseOfferingInContext.addError(Label.CannotDelete);
+            }   
+          }
         }
-         return new DmlWrapper();
-     }
+      return new DmlWrapper();
+    }
 }
