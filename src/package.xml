@@ -211,6 +211,8 @@
         <members>Account.HEDA_Account_Compact_Layout</members>
         <members>Address__c.HEDA_Address_Compact_Layout</members>
         <members>Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
+        <members>Behavior_Involvement__c.EDA_Behavior_Involvement_Compact_Layout</members>
+        <members>Behavior_Response__c.EDA_Behavior_Response_Compact_Layout</members>
         <members>Contact.HEDA_Contact_Compact_Layout</members>
         <members>Contact_Language__c.HEDA_Contact_Language_Compact_Layout</members>
         <members>Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
@@ -286,6 +288,20 @@
         <members>Attribute__c.Expired__c</members>
         <members>Attribute__c.Start_Date__c</members>
         <members>Attribute__c.Subject_Area__c</members>
+        <members>Behavior_Involvement__c.Case__c</members>
+        <members>Behavior_Involvement__c.Contact__c</members>
+        <members>Behavior_Involvement__c.Description__c</members>
+        <members>Behavior_Involvement__c.Role__c</members>
+        <members>Behavior_Response__c.Behavior_Involvement__c</members>
+        <members>Behavior_Response__c.Contact__c</members>
+        <members>Behavior_Response__c.Description__c</members>
+        <members>Behavior_Response__c.End_Date__c</members>
+        <members>Behavior_Response__c.Start_Date__c</members>
+        <members>Behavior_Response__c.Status__c</members>
+        <members>Behavior_Response__c.Type__c</members>
+        <members>Case.Category__c</members>
+        <members>Case.Location__c</members>
+        <members>Case.Occurrence_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
@@ -733,6 +749,8 @@
         <members>Affl_Mappings__c</members>
         <members>Attendance_Event__c</members>
         <members>Attribute__c</members>
+        <members>Behavior_Involvement__c</members>
+        <members>Behavior_Response__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -778,6 +796,17 @@
         <members>Attribute__c-en_US</members>
         <members>Attribute__c-es</members>
         <members>Attribute__c-fr</members>
+        <members>Behavior_Involvement__c-ca</members>
+        <members>Behavior_Involvement__c-en_US</members>
+        <members>Behavior_Involvement__c-es</members>
+        <members>Behavior_Involvement__c-fr</members>
+        <members>Behavior_Response__c-ca</members>
+        <members>Behavior_Response__c-en_US</members>
+        <members>Behavior_Response__c-es</members>
+        <members>Behavior_Response__c-fr</members>
+        <members>Case-ca</members>
+        <members>Case-es</members>
+        <members>Case-fr</members>
         <members>Contact-ca</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
@@ -864,6 +893,8 @@
         <members>Affiliation__c</members>
         <members>Attendance_Event__c</members>
         <members>Attribute__c</members>
+        <members>Behavior_Involvement__c</members>
+        <members>Behavior_Response__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -921,6 +952,9 @@
         <members>Attendance_Event__c-EDA Attendance Event Layout</members>
         <members>Attribute__c-EDA Credential Layout</members>
         <members>Attribute__c-EDA Student Characteristic Layout</members>
+        <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
+        <members>Behavior_Response__c-EDA Behavior Response Layout</members>
+        <members>Case-EDA Incident Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
@@ -945,6 +979,8 @@
         <members>Affiliation__c.All</members>
         <members>Attendance_Event__c.All</members>
         <members>Attribute__c.All</members>
+        <members>Behavior_Involvement__c.All</members>
+        <members>Behavior_Response__c.All</members>
         <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering_Schedule__c.All</members>
