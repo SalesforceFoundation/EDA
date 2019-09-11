@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <businessProcesses>
+        <fullName>Behavior Management</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Working</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <recordTypes>
+        <fullName>Incident</fullName>
+        <active>true</active>
+        <businessProcess>Behavior Management</businessProcess>
+        <description>An event that’s being tracked by this Case.</description>
+        <label>Incident</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>School Code of Conduct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Offense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Location__c</picklist>
+            <values>
+                <fullName>Off Campus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Campus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+</CustomObject>
