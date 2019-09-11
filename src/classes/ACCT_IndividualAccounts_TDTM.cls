@@ -445,6 +445,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         List<Account> accountInserts = new List<Account>();
+        List<Contact> contactsToUpdate = new List<Contact>();
 
         for (Contact c : contacts) {
             // if we found an Account already connected to this Contact, connect the Contact to that Account if it
@@ -454,6 +455,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 UTIL_Debug.debug('****Account already existed');
                 // if a user has blanked out the Account for a Contact, this will put it right back
                 c.AccountId = acc.Id;
+                contactsToUpdate.add(c);
             } else {
             	UTIL_Debug.debug('****Creating new account');
 
@@ -503,7 +505,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }
 
-        List<Contact> contactsToUpdate = new List<Contact>();
         if (accountInserts.size() > 0) {
         	UTIL_Debug.debug('****Number of accounts to insert: ' + accountInserts.size());
             // we can't use dmlWrapper because we need to get the new AccountID's into the Contacts.
