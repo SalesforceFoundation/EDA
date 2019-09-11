@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016, Salesforce.org
+    Copyright (c) 2019, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -29,42 +29,36 @@
 */
 /**
 * @author Salesforce.org
-* @date 2016
-* @group Accounts
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Stops a Contact from being deleted if it has any Affiliation, 
-* Program Enrollment, Term Grade, Attendance Event,or Course Enrollment children.
+* @date 2019
+* @group Course Enrollments
+* @group-content ../../ApexDocContent/CourseEnrollments.htm
+* @description This class prevents the Course Enrollments record from being deleted if it has any Term Grade or Attendance Event association. 
 */
-public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
-
+public with sharing class CCON_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
-    * @description Stops a Contact from being deleted if it has any Affiliation, 
-    * Program Enrollment, Term Grade, Attendance Event,or Course Enrollment children.
-    * @param listNew the list of Contacts from trigger new. 
-    * @param listOld the list of Contacts from trigger old. 
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.). 
-    * @param objResult the describe for Contact 
+    * @description Stops a Course Enrollments from being deleted if it has any Attendance Event or Term Grade association.  
+    * @param listNew the list of Course Enrollments from trigger new. 
+    * @param listOld the list of Course Enrollments from trigger old. 
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).  
+    * @param objResult the describe for Course Enrollments 
     * @return dmlWrapper.  
     ********************************************************************************************************/
-  public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
-  TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-    
-    Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
+     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         
-    if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-      for (Contact c : [select ID, (select ID from Contact.Affl_Accounts__r LIMIT 1),
-                        (select ID from Contact.Program_Enrollments__r LIMIT 1), 
-                        (select ID from Contact.Student_Course_Enrollments__r LIMIT 1),
-                        (select ID from Contact.Term_Grades__r LIMIT 1), 
-                        (select ID from Contact.Attendance_Events__r LIMIT 1)
-                        from Contact where ID in :oldlist]) {
-            if(c.Affl_Accounts__r.size() > 0 || c.Program_Enrollments__r.size() > 0 || c.Student_Course_Enrollments__r.size() > 0  
-            || c.Term_Grades__r.size() > 0 || c.Attendance_Events__r.size() > 0) {
-              Contact contactInContext = (Contact)oldmap.get(c.ID);
-              contactInContext.addError(Label.CannotDelete);
+        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
+
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
+            for(Course_Enrollment__c ce : [SELECT Id, 
+                                          (SELECT Id FROM Term_Grades__r LIMIT 1),
+                                          (SELECT Id FROM Attendance_Events__r LIMIT 1)
+                                          FROM Course_Enrollment__c WHERE Id in: oldlist]) {
+              if(ce.Term_Grades__r.size() > 0 || ce.Attendance_Events__r.size() > 0) {
+                  Course_Enrollment__c courseEnrollmentInContext = (Course_Enrollment__c)oldmap.get(ce.ID);
+                  courseEnrollmentInContext.addError(Label.CannotDelete);
+              }
             }
-          }
-        }
+         }
       return new DmlWrapper();
     }
 }
