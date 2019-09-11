@@ -126,6 +126,12 @@ class UpdateAdminProfile(BaseUpdateAdminProfile):
             'false',
         )
 
+        # Set record type visibilities for Case
+        self._set_record_type(
+            'Case.{namespaced_org}Incident'.format(**namespace_args),
+            'true',
+        )
+
     def _set_record_type(self, name, default):
         rt = rt_visibility_template.format(default, name)
         findReplace(
