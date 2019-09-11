@@ -27,7 +27,7 @@
         <description>An event that’s being tracked by this Case.</description>
         <label>Incident</label>
         <picklistValues>
-            <picklist>Category__c</picklist>
+            <picklist>%%%NAMESPACE%%%Category__c</picklist>
             <values>
                 <fullName>School Code of Conduct</fullName>
                 <default>false</default>
@@ -46,7 +46,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Location__c</picklist>
+            <picklist>%%%NAMESPACE%%%Location__c</picklist>
             <values>
                 <fullName>Off Campus</fullName>
                 <default>false</default>
