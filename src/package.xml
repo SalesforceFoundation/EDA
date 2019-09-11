@@ -223,7 +223,6 @@
         <members>Program_Enrollment__c.HEDA_Program_Enrollment_Compact_Layout</members>
         <members>Program_Plan__c.HEDA_Program_Plan_Compact_Layout</members>
         <members>Relationship__c.HEDA_Relationship_Compact_Layout</members>
-        <members>Term_Grade__c.Term_Grade_Compact_Layout</members>
         <members>Term__c.HEDA_Term_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
