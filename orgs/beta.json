@@ -1,6 +1,6 @@
 {
   "orgName": "EDA - Beta Test Org",
-  "edition": "Developer",
+  "edition": "Enterprise",
   "settings" : {
     "orgPreferenceSettings": {
         "s1DesktopEnabled": true,

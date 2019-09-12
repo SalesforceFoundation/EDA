@@ -1,6 +1,6 @@
 {
   "orgName": "EDA - Release Test Org",
-  "edition": "Developer",
+  "edition": "Enterprise",
   "settings" : {
     "orgPreferenceSettings": {
         "s1DesktopEnabled": true,
