@@ -63,7 +63,7 @@ private class CCON_PreventUpdate_TEST {
     static void testUpdateCourseConnWithNoRelatedRecords() {
     
         //Insert a contact
-        Contact newCon = New Contact__c();
+        Contact newCon = New Contact();
         newCon.FirstName = 'TestNew01';
         newCon.LastName = 'LastNew01';
         newCon.Email = 'LastNew01@sfdo.com';
@@ -101,7 +101,7 @@ private class CCON_PreventUpdate_TEST {
         insert termGrade;
         
         //Insert a contact
-        Contact newCon = New Contact__c();
+        Contact newCon = New Contact();
         newCon.FirstName = 'TestNew02';
         newCon.LastName = 'LastNew02';
         newCon.Email = 'Last02@sfdo.com';
@@ -140,7 +140,7 @@ private class CCON_PreventUpdate_TEST {
         insert AttendanceEvent;
         
         //Insert a contact
-        Contact newCon = New Contact__c();
+        Contact newCon = New Contact();
         newCon.FirstName = 'TestNew03';
         newCon.LastName = 'LastNew03';
         newCon.Email = 'LastNew03@sfdo.com';
@@ -183,7 +183,7 @@ private class CCON_PreventUpdate_TEST {
         insert AttendanceEvent;
         
         //Insert a contact
-        Contact newCon = UTIL_UnitTestData_TEST.getContact();
+        Contact newCon = New Contact();
         newCon.FirstName = 'TestNew';
         newCon.LastName = 'LastNew01';
         newCon.Email = 'test14@sfdo.com';
