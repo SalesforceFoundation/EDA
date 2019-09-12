@@ -41,14 +41,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>Term_Grade_Compact_Layout</compactLayoutAssignment>
-    <compactLayouts>
-        <fullName>Term_Grade_Compact_Layout</fullName>
-        <fields>Name</fields>
-        <fields>Contact__c</fields>
-        <fields>Course_Offering__c</fields>
-        <label>Term Grade Compact Layout</label>
-    </compactLayouts>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores student grades for a specific grading period within a Term.</description>
     <enableActivities>true</enableActivities>
