@@ -177,4 +177,13 @@
     <plural>true</plural>
     <value>Eventos de asistencia</value>
   </caseValues>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Evento de asistencia</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Eventos de asistencia</value>
+  </caseValues>
 </CustomObjectTranslation>

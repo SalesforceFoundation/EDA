@@ -351,4 +351,13 @@
     <plural>true</plural>
     <value>Atributos</value>
   </caseValues>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Atributo</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Atributos</value>
+  </caseValues>
 </CustomObjectTranslation>
