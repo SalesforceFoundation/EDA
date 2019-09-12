@@ -64,6 +64,7 @@ private class CCON_PreventUpdate_TEST {
     
         //Insert a contact
         Contact newCon = UTIL_UnitTestData_TEST.getContact();
+        newCon.FirstName = 'TestNew';
         insert newCon;
         
         // Insert a Course Offering
@@ -98,6 +99,7 @@ private class CCON_PreventUpdate_TEST {
         
         //Insert a contact
         Contact newCon = UTIL_UnitTestData_TEST.getContact();
+        newCon.FirstName = 'TestNew';
         insert newCon;
         
         // Insert a Course Offering
@@ -133,6 +135,7 @@ private class CCON_PreventUpdate_TEST {
         
         //Insert a contact
         Contact newCon = UTIL_UnitTestData_TEST.getContact();
+        newCon.FirstName = 'TestNew';
         insert newCon;
         
         // Insert a Course Offering
@@ -172,6 +175,7 @@ private class CCON_PreventUpdate_TEST {
         
         //Insert a contact
         Contact newCon = UTIL_UnitTestData_TEST.getContact();
+        newCon.FirstName = 'TestNew';
         insert newCon;
         
         // Insert a Course Offering
