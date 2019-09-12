@@ -211,8 +211,6 @@
         <members>Account.HEDA_Account_Compact_Layout</members>
         <members>Address__c.HEDA_Address_Compact_Layout</members>
         <members>Affiliation__c.HEDA_Affiliation_Compact_Layout</members>
-        <members>Behavior_Involvement__c.EDA_Behavior_Involvement_Compact_Layout</members>
-        <members>Behavior_Response__c.EDA_Behavior_Response_Compact_Layout</members>
         <members>Contact.HEDA_Contact_Compact_Layout</members>
         <members>Contact_Language__c.HEDA_Contact_Language_Compact_Layout</members>
         <members>Course_Enrollment__c.HEDA_Course_Enrollment_Compact_Layout</members>
