@@ -35,14 +35,14 @@
 * @description This class is used along TG_ValidateData_TDTM to check for 
 * Contact, Course Offering and Course Connection fields on Term Grade record.
 */
-public class TermGradeValidator  { 
+public class TGRD_TermGradeValidator  { 
 
     private String errorMsg;
     private String contactId;
     private String courseConnectionId;
     private String courseOfferingId;
 
-    public TermGradeValidator(Term_Grade__c termGrade) {
+    public TGRD_TermGradeValidator(Term_Grade__c termGrade) {
         this.contactId = termGrade.Contact__c;
         this.courseConnectionId = termGrade.Course_Connection__c;
         this.courseOfferingId = termGrade.Course_Offering__c;

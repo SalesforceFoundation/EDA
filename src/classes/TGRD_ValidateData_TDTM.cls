@@ -39,7 +39,7 @@
 * if a Course Connection is specified, but no Contact or Course Offering are specified, 
 * it attempts to populate the empty fields with the data specified on the Course Connection.
 */
-public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
+public with sharing class TGRD_ValidateData_TDTM extends TDTM_Runnable {
     
     /*******************************************************************************************************
     * @description This class ensures that the chosen Course Connection matches the 
@@ -72,7 +72,7 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
             for (SObject so : newlist) {
                 Term_Grade__c termGrade = (Term_Grade__c)so;
 
-                TermGradeValidator validator = new TermGradeValidator(termGrade);
+                TGRD_TermGradeValidator validator = new TGRD_TermGradeValidator(termGrade);
                 if (!validator.hasValidFields()) {
                     termGrade.addError(validator.getError());
                     //consider maybe returning here as well if addError doesn't stop loop
@@ -133,14 +133,14 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
             
         Map<Term_Grade__c, List<Course_Enrollment__c>> termGradeEnrollmentMap = new Map<Term_Grade__c, List<Course_Enrollment__c>>();
         
-        for (Course_Enrollment__c eachEnrollment: [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Contact__c IN:termGradeContacts AND Course_Offering__c IN:termGradeCourseOffering]) {        
+        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Contact__c IN :termGradeContacts AND Course_Offering__c IN :termGradeCourseOffering]) {        
             if (eachEnrollment != NULL){                
                 for(Term_Grade__c termGrade : contactTermGradeMap.get(eachEnrollment.Contact__c)) {           
                     if (eachEnrollment.Course_Offering__c == termGrade.Course_Offering__c) {               
                         if (termGradeEnrollmentMap.containsKey(termGrade)) {
                             termGradeEnrollmentMap.get(termGrade).add(eachEnrollment);
                         } else {
-                            termGradeEnrollmentMap.put(termGrade, new List<course_enrollment__c>{eachEnrollment});
+                            termGradeEnrollmentMap.put(termGrade, new List<Course_Enrollment__c>{eachEnrollment});
                         }
                     }
                 }
@@ -185,7 +185,7 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     private void validateCourseContact(List<Term_Grade__c> termGrades) {
     
         Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);        
-        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {             
+        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN :courseConnIdTermGradeMap.keySet()]) {             
             for (Term_Grade__c termGrade : courseConnIdTermGradeMap.get(eachEnrollment.Id)) {   
                 validate_CourseContact courseConValidation = new validate_CourseContact(termGrade, eachEnrollment);         
                 if (courseConValidation.dataNoMatch()) {
@@ -204,7 +204,7 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     private void findContact(List<Term_Grade__c> termGrades) {
     
         Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);       
-        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {       
+        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN :courseConnIdTermGradeMap.keySet()]) {       
             for (Term_Grade__c termGrade : courseConnIdTermGradeMap.get(eachEnrollment.Id)) {        
                 if (termGrade.Course_Offering__c == eachEnrollment.Course_Offering__c && eachEnrollment.Contact__c != NULL) {              
                     termGrade.Contact__c = eachEnrollment.Contact__c;                              
@@ -224,7 +224,7 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     private void findCourseOffering(List<Term_Grade__c> termGrades) {
     
         Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);      
-        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {       
+        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN :courseConnIdTermGradeMap.keySet()]) {       
             for (Term_Grade__c termGrade : courseConnIdTermGradeMap.get(eachEnrollment.Id)) {          
                 if (termGrade.Contact__c == eachEnrollment.Contact__c && eachEnrollment.Course_Offering__c != NULL) {                
                     termGrade.Course_Offering__c = eachEnrollment.Course_Offering__c;                               
@@ -244,7 +244,7 @@ public with sharing class TG_ValidateData_TDTM extends TDTM_Runnable {
     private void findContactCourseOffering(List<Term_Grade__c> termGrades) {
     
         Map<Id, List<Term_Grade__c>> courseConnIdTermGradeMap = createCourseConnTermGradeMap(termGrades);
-        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN:courseConnIdTermGradeMap.keySet()]) {                   
+        for (Course_Enrollment__c eachEnrollment : [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c WHERE Id IN :courseConnIdTermGradeMap.keySet()]) {                   
             for (Term_Grade__c termGrade : courseConnIdTermGradeMap.get(eachEnrollment.Id )) {            
                 if (eachEnrollment.Contact__c != NULL && eachEnrollment.Course_Offering__c != NULL) {              
                     termGrade.Contact__c = eachEnrollment.Contact__c;
