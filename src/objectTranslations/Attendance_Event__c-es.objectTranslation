@@ -1,17 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <caseValues>
-    <plural>false</plural>
-    <value>
-      <!-- Attendance Event -->
-    </value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>
-      <!-- Attendance Event -->
-    </value>
-  </caseValues>
   <fields>
     <help>
       <!-- For tardy events, the time when the student arrived. -->
@@ -153,9 +141,6 @@
     </label>
     <name>Unexcused__c</name>
   </fields>
-  <gender>
-    <!-- Feminine -->
-  </gender>
   <layouts>
     <layout>EDA Attendance Event Layout</layout>
     <sections>
@@ -168,15 +153,6 @@
   <nameFieldLabel>
     <!-- Attendance Event Name -->
   </nameFieldLabel>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Evento de asistencia</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Eventos de asistencia</value>
-  </caseValues>
   <gender>Masculine</gender>
   <caseValues>
     <plural>false</plural>

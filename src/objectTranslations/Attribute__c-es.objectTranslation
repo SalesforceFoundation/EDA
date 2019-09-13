@@ -1,17 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <caseValues>
-    <plural>false</plural>
-    <value>
-      <!-- Attribute -->
-    </value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>
-      <!-- Attribute -->
-    </value>
-  </caseValues>
   <fields>
     <help>
       <!-- The agency that provided or certified the credential. -->
@@ -300,9 +288,6 @@
       </translation>
     </picklistValues>
   </fields>
-  <gender>
-    <!-- Feminine -->
-  </gender>
   <layouts>
     <layout>EDA Credential Layout</layout>
     <sections>
@@ -342,15 +327,6 @@
     </label>
     <name>Student_Characteristic</name>
   </recordTypes>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Atributo</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Atributos</value>
-  </caseValues>
   <gender>Masculine</gender>
   <caseValues>
     <plural>false</plural>
