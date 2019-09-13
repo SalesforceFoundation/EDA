@@ -34,7 +34,7 @@
 * @group-content ../../ApexDocContent/CourseEnrollments.htm
 * @description Unit tests for CCON_PreventUpdate_TDTM. These tests
 * make sure Contact or Course Offering on a Course Connection do not
-* change when Term Grades or Attendance Events are assocaited it.
+* change when Term Grades or Attendance Events are assocaited to it.
 */
 
 
@@ -52,7 +52,7 @@ private class CCON_PreventUpdate_TEST {
         Course_offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
         
         // Insert Course Connection
-        course_Enrollment__c courseEnrollment = UTIL_UnitTestData_TEST.getCourseConnection(con.Id, courseOffering.Id);
+        Course_Enrollment__c courseEnrollment = UTIL_UnitTestData_TEST.getCourseConnection(con.Id, courseOffering.Id);
         insert courseEnrollment;
         
     }
@@ -63,17 +63,13 @@ private class CCON_PreventUpdate_TEST {
     static void testUpdateCourseConnWithNoRelatedRecords() {
     
         //Insert a contact
-        Contact newCon = New Contact();
-        newCon.FirstName = 'TestNew01';
-        newCon.LastName = 'LastNew01';
-        newCon.Email = 'LastNew01@sfdo.com';
-        newCon.Phone = '0987123456';
+        Contact newCon = UTIL_UnitTestData_TEST.getUniqueContact(01);
         insert newCon;
         
         // Insert a Course Offering
         Course_offering__c newCourseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
         
-        course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
+        Course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
         courseEnrollment.Contact__c = newCon.Id;
         courseEnrollment.Course_offering__c = newCourseOffering.Id;
         Test.startTest();
@@ -90,22 +86,18 @@ private class CCON_PreventUpdate_TEST {
     @isTest 
     static void testUpdateCourseConnWithTermGrade() {
     
-        course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
-        course_offering__c courseOffering = [SELECT Id FROM Course_Offering__c LIMIT 1];
+        Course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
+        Course_offering__c courseOffering = [SELECT Id FROM Course_Offering__c LIMIT 1];
         Contact con = [SELECT Id FROM Contact LIMIT 1];
         courseEnrollment.Course_Offering__c = courseOffering.Id;
         update courseEnrollment;
         
-        // Insert Term Grades
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.Id, Course_Offering__c = courseOffering.Id, Contact__c = con.Id);
+        // Insert Term Grade
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(con.Id, courseOffering.Id, courseEnrollment.Id);
         insert termGrade;
         
         //Insert a contact
-        Contact newCon = New Contact();
-        newCon.FirstName = 'TestNew02';
-        newCon.LastName = 'LastNew02';
-        newCon.Email = 'Last02@sfdo.com';
-        newCon.Phone = '7676876788';
+        Contact newCon = UTIL_UnitTestData_TEST.getUniqueContact(02);
         insert newCon;
         
         // Insert a Course Offering
@@ -127,8 +119,8 @@ private class CCON_PreventUpdate_TEST {
     @isTest 
     static void testUpdateCourseConnWithAttendance() {
     
-        course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
-        course_offering__c courseOffering = [SELECT Id FROM Course_Offering__c LIMIT 1];
+        Course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
+        Course_offering__c courseOffering = [SELECT Id FROM Course_Offering__c LIMIT 1];
         Contact con = [SELECT Id FROM Contact LIMIT 1];
         courseEnrollment.Course_Offering__c = courseOffering.Id;
         update courseEnrollment;
@@ -140,11 +132,7 @@ private class CCON_PreventUpdate_TEST {
         insert AttendanceEvent;
         
         //Insert a contact
-        Contact newCon = New Contact();
-        newCon.FirstName = 'TestNew03';
-        newCon.LastName = 'LastNew03';
-        newCon.Email = 'LastNew03@sfdo.com';
-        newCon.Phone = '454689889';
+        Contact newCon = UTIL_UnitTestData_TEST.getUniqueContact(03);
         insert newCon;
         
         // Insert a Course Offering
@@ -166,14 +154,14 @@ private class CCON_PreventUpdate_TEST {
     @isTest 
     static void testUpdateCourseConnWithRelatedRecords() {
     
-        course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
-        course_offering__c courseOffering = [SELECT Id FROM Course_Offering__c LIMIT 1];
+        Course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
+        Course_offering__c courseOffering = [SELECT Id FROM Course_Offering__c LIMIT 1];
         Contact con = [SELECT Id FROM Contact LIMIT 1];
         courseEnrollment.Course_Offering__c = courseOffering.Id;
         update courseEnrollment;
         
-        // Insert Term Grades
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.Id, Course_Offering__c = courseOffering.Id, Contact__c = con.Id);
+        // Insert Term Grade
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(con.Id, courseOffering.Id, courseEnrollment.Id);
         insert termGrade;
         
         // Insert Attendance Event
@@ -183,11 +171,7 @@ private class CCON_PreventUpdate_TEST {
         insert AttendanceEvent;
         
         //Insert a contact
-        Contact newCon = New Contact();
-        newCon.FirstName = 'TestNew';
-        newCon.LastName = 'LastNew01';
-        newCon.Email = 'test14@sfdo.com';
-        newCon.Phone = '67867687';
+        Contact newCon = UTIL_UnitTestData_TEST.getUniqueContact(04);
         insert newCon;
         
         // Insert a Course Offering

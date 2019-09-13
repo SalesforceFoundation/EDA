@@ -92,7 +92,7 @@ private class COFF_PreventUpdate_TEST {
         insert courseEnrollment;
         
         // Insert Term Grade
-        Term_Grade__c termGrade = new Term_Grade__c(Course_Connection__c = courseEnrollment.Id, Course_Offering__c = courseOffering.Id, Contact__c = con.Id);
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(con.Id, courseOffering.Id, courseEnrollment.Id);
         insert termGrade;
          
         try {

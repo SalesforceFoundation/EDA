@@ -40,8 +40,8 @@ public with sharing class COFF_PreventUpdate_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description This class prevents changes to the Course lookup field on 
     * Course Offering if there are Term Grades associated with it.
-    * @param listNew the list of Course Connections from trigger new.
-    * @param listOld the list of Course Connections from trigger old.
+    * @param listNew the list of Course Offerings from trigger new.
+    * @param listOld the list of Course Offerings from trigger old.
     * @param triggerAction which trigger event (BeforeUpdate).
     * @param objResult the describe for Course Offerings.
     * @return dmlWrapper

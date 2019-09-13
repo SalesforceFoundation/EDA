@@ -77,6 +77,23 @@ public class UTIL_UnitTestData_TEST {
         return contact;
     }
     
+    /*********************************************************************************************************
+    * @description Gets a Unique Contact for testing based on the parameter.
+    * @param n An integer to create unique Contact records.
+    * @param courseOfferingId The Course Offering of the Term Grade.
+    * @param courseConnectionId The Course Connection of the Term Grade.
+    * @return The Contact record.
+    **********************************************************************************************************/
+
+    public static Contact getUniqueContact(Integer n) {
+    	Contact contact =  new Contact(FirstName = 'TestNew'+n, LastName = 'LastNew'+n , 
+    	                   Email = 'last'+n+'@sfdo.com', Phone = '979578'+n);
+    	Database.DMLOptions dmo = new Database.DMLOptions();
+        dmo.DuplicateRuleHeader.AllowSave = true;
+        contact.setOptions(dmo);
+        return contact;
+    }
+    
     public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = new List<contact>();
         for(Integer i=0; i<n; i++) {
@@ -507,6 +524,22 @@ public class UTIL_UnitTestData_TEST {
             Course_Offering__c = courseOfferingId
         );
         return courseConnection;
+    }
+    
+    /*********************************************************************************************************
+    * @description Gets a Term Grade for testing.
+    * @param contactId The Contact of the Course Term Grade.
+    * @param courseOfferingId The Course Offering of the Term Grade.
+    * @param courseConnectionId The Course Connection of the Term Grade.
+    * @return The Term Grade record.
+    **********************************************************************************************************/
+    public static Term_Grade__c getTermGrade(Id contactId, Id courseOfferingId, Id courseConnectionId) {
+        Term_Grade__c termGrade = new Term_Grade__c(
+            Contact__c = contactId, 
+            Course_Offering__c = courseOfferingId,
+            Course_Connection__c = courseConnectionId
+        );
+        return termGrade;
     }
     
     /*********************************************************************************************************

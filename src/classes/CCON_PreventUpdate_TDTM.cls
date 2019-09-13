@@ -38,7 +38,7 @@
 public with sharing class CCON_PreventUpdate_TDTM extends TDTM_Runnable {
    
     /*******************************************************************************************************
-    * @description When a Term Grade or an Attendace Event is present on a Course Connection,
+    * @description When a Term Grade or an Attendance Event is present on a Course Connection,
     * this class prevents changes to a Contact or Course Offering fields on the record.
     * @param listNew the list of Course Connections from trigger new.
     * @param listOld the list of Course Connections from trigger old.
@@ -56,11 +56,11 @@ public with sharing class CCON_PreventUpdate_TDTM extends TDTM_Runnable {
       
                 Boolean contactChanged = (courseEnrollment.Contact__c != ((Course_Enrollment__c)newMap.get(courseEnrollment.Id)).Contact__c);
                 Boolean courseOfferingChanged = (courseEnrollment.Course_Offering__c != ((Course_Enrollment__c)newMap.get(courseEnrollment.Id)).Course_Offering__c);
-                Boolean hasTermGradesOrAttendaceEvents = (courseEnrollment.Term_Grades__r.size() > 0 || courseEnrollment.Attendance_Events__r.size() > 0);
+                Boolean hasTermGradesOrAttendanceEvents = (courseEnrollment.Term_Grades__r.size() > 0 || courseEnrollment.Attendance_Events__r.size() > 0);
                 
-                // Prevent changes to Course Offering and Contact look ups if there are Term Grades or Attendance Events associated with the Course Connection
+                // Prevent changes to Course Offering or Contact look ups if there are Term Grades or Attendance Events associated with the Course Connection
 
-                if ((contactChanged || courseOfferingChanged) && hasTermGradesOrAttendaceEvents) {                   
+                if ((contactChanged || courseOfferingChanged) && hasTermGradesOrAttendanceEvents) {                   
                     Course_Enrollment__c courseEnrollmentInContext = ((Course_Enrollment__c)newMap.get(courseEnrollment.Id));
                     courseEnrollmentInContext.addError(Label.CannotChangeContactAndCourseOffering);                
                }           
