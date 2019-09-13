@@ -1,36 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Time Block --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Time Block --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The Educational Institution associated with this Time Block. For example, a school within a district. --></help>
-        <label><!-- Educational Institution --></label>
-        <name>Educational_Institution__c</name>
-        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The time of day the Time Block ends. --></help>
-        <label><!-- End Time --></label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help><!-- The time of day the Time Block starts. --></help>
-        <label><!-- Start Time --></label>
-        <name>Start_Time__c</name>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Time Block Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Time Block Name --></nameFieldLabel>
+  <fields>
+    <name>Educational_Institution__c</name>
+    <help>La institución educativa asociada con este bloque de tiempo. Por ejemplo, una escuela en un distrito.</help>
+    <relationshipLabel>Bloques de tiempo</relationshipLabel>
+    <label>Institución educativa</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>La hora del día en que finaliza el bloque de tiempo.</help>
+    <label>Hora de finalización</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>La hora del día en que se inicia el bloque de tiempo.</help>
+    <label>Hora de inicio</label>
+  </fields>
+  <layouts>
+    <layout>EDA Time Block Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de bloque de tiempo</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de bloque de tiempo</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Bloque de tiempo</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Bloques de tiempo</value>
+  </caseValues>
 </CustomObjectTranslation>

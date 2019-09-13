@@ -1,67 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Durée</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Durées</value>
-    </caseValues>
-    <fields>
-        <label>Compte</label>
-        <name>Account__c</name>
-        <relationshipLabel>Durée</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date de fin</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <label><!-- Grading Period Sequence --></label>
-        <name>Grading_Period_Sequence__c</name>
-    </fields>
-    <fields>
-        <label><!-- Instructional Days --></label>
-        <name>Instructional_Days__c</name>
-    </fields>
-    <fields>
-        <label><!-- Parent Term --></label>
-        <name>Parent_Term__c</name>
-        <relationshipLabel><!-- Terms --></relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date de début</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label><!-- Type --></label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Part of Term</masterLabel>
-            <translation><!-- Part of Term --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quarter</masterLabel>
-            <translation><!-- Quarter --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Year</masterLabel>
-            <translation><!-- School Year --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Semester</masterLabel>
-            <translation><!-- Semester --></translation>
-        </picklistValues>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la durée</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Durées</relationshipLabel>
+    <label>Compte</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>Date de fin</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <label>Séquence de périodes de notation</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <label>Journées d'enseignement</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <relationshipLabel>Durées</relationshipLabel>
+    <label>Durée parente</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Date de début</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <label>Type</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>Trimestre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>Semestre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>Année scolaire</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>Partie de la durée</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de la durée</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de la durée</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Durée</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Durées</value>
+  </caseValues>
 </CustomObjectTranslation>

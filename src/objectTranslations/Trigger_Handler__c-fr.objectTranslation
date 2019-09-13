@@ -1,103 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Gestionnaire de déclencheur</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Gestionnaires de déclencheurs</value>
-    </caseValues>
-    <fields>
-        <help>Indique que ce module est actif</help>
-        <label>Actif</label>
-        <name>Active__c</name>
-    </fields>
-    <fields>
-        <help>Indique que ce module doit être exécuté de façon asynchrone dans cette transaction</help>
-        <label>Asynchrone</label>
-        <name>Asynchronous__c</name>
-    </fields>
-    <fields>
-        <help>Nom de la classe à exécuter</help>
-        <label>Classe</label>
-        <name>Class__c</name>
-    </fields>
-    <fields>
-        <help>Nom du champ utilisé pour le filtrage.</help>
-        <label>Champ de filtrage</label>
-        <name>Filter_Field__c</name>
-    </fields>
-    <fields>
-        <help>Valeur du champ utilisé pour le filtrage.</help>
-        <label>Valeur de filtrage</label>
-        <name>Filter_Value__c</name>
-    </fields>
-    <fields>
-        <help>Ordre dans lequel ce module doit être exécuté. Aide à maintenir les dépendances dans les modules et les données.</help>
-        <label>Ordre de chargement</label>
-        <name>Load_Order__c</name>
-    </fields>
-    <fields>
-        <help>Nom de l’objet pour lequel ce gestionnaire doit être exécuté</help>
-        <label>Objet</label>
-        <name>Object__c</name>
-    </fields>
-    <fields>
-        <label>Propriété par espace de noms</label>
-        <name>Owned_by_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>Action dans laquelle ce module doit être déclenché</help>
-        <label>Action de déclencheur</label>
-        <name>Trigger_Action__c</name>
-        <picklistValues>
-            <masterLabel>AfterDelete</masterLabel>
-            <translation><!-- AfterDelete --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterInsert</masterLabel>
-            <translation><!-- AfterInsert --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterUndelete</masterLabel>
-            <translation><!-- AfterUndelete --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterUpdate</masterLabel>
-            <translation><!-- AfterUpdate --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeDelete</masterLabel>
-            <translation><!-- BeforeDelete --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeInsert</masterLabel>
-            <translation><!-- BeforeInsert --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeUpdate</masterLabel>
-            <translation><!-- BeforeUpdate --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Cochez cette case si vous comptez gérer l’enregistrement vous-même. Notez que les mises à jour du package ne mettent pas à jour l’enregistrement.</help>
-        <label>Géré par l&apos;utilisateur</label>
-        <name>User_Managed__c</name>
-    </fields>
-    <fields>
-        <help><!-- Semicolon separated list of Salesforce usernames that this trigger will NOT run for. Leave blank to run for all users. --></help>
-        <label><!-- Usernames to Exclude --></label>
-        <name>Usernames_to_Exclude__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom du gestionnaire de déclencheur</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
+  <fields>
+    <name>Active__c</name>
+    <help>Indique que ce module est actif</help>
+    <label>Actif</label>
+  </fields>
+  <fields>
+    <name>Asynchronous__c</name>
+    <help>Indique que ce module doit être exécuté de façon asynchrone dans cette transaction</help>
+    <label>Asynchrone</label>
+  </fields>
+  <fields>
+    <name>Class__c</name>
+    <help>Nom de la classe à exécuter</help>
+    <label>Classe</label>
+  </fields>
+  <fields>
+    <name>Filter_Field__c</name>
+    <help>Nom du champ utilisé pour le filtrage.</help>
+    <label>Champ de filtrage</label>
+  </fields>
+  <fields>
+    <name>Filter_Value__c</name>
+    <help>Valeur du champ utilisé pour le filtrage.</help>
+    <label>Valeur de filtrage</label>
+  </fields>
+  <fields>
+    <name>Load_Order__c</name>
+    <help>Ordre dans lequel ce module doit être exécuté. Aide à maintenir les dépendances dans les modules et les données.</help>
+    <label>Ordre de chargement</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>Nom de l’objet pour lequel ce gestionnaire doit être exécuté</help>
+    <label>Objet</label>
+  </fields>
+  <fields>
+    <name>Owned_by_Namespace__c</name>
+    <label>Propriété par espace de noms</label>
+  </fields>
+  <fields>
+    <name>Trigger_Action__c</name>
+    <help>Action dans laquelle ce module doit être déclenché</help>
+    <label>Action de déclencheur</label>
+    <picklistValues>
+      <masterLabel>BeforeInsert</masterLabel>
+      <translation>BeforeInsert</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeUpdate</masterLabel>
+      <translation>BeforeUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeDelete</masterLabel>
+      <translation>BeforeDelete</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterInsert</masterLabel>
+      <translation>AfterInsert</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUpdate</masterLabel>
+      <translation>AfterUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterDelete</masterLabel>
+      <translation>AfterDelete</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUndelete</masterLabel>
+      <translation>AfterUndelete</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>User_Managed__c</name>
+    <help>Cochez cette case si vous comptez gérer l’enregistrement vous-même. Notez que les mises à jour du package ne mettent pas à jour l’enregistrement.</help>
+    <label>Géré par l'utilisateur</label>
+  </fields>
+  <fields>
+    <name>Usernames_to_Exclude__c</name>
+    <help>Liste de noms d'utilisateur Salesforce, séparés par un point virgule, pour lesquels ce déclencheur ne sera pas exécuté. Si vous souhaitez l'exécuter pour tous les utilisateurs, laissez cette zone vide.</help>
+    <label>Noms d'utilisateur à exclure</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Trigger Handler Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom du gestionnaire de déclencheur</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom du gestionnaire de déclencheur</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Gestionnaire de déclencheur</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Gestionnaires de déclencheur</value>
+  </caseValues>
 </CustomObjectTranslation>
