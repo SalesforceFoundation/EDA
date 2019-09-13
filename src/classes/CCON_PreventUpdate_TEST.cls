@@ -71,7 +71,7 @@ private class CCON_PreventUpdate_TEST {
         
         Course_Enrollment__c courseEnrollment = [SELECT Id, Contact__c, Course_Offering__c FROM Course_Enrollment__c LIMIT 1];
         courseEnrollment.Contact__c = newCon.Id;
-        courseEnrollment.Course_offering__c = newCourseOffering.Id;
+        courseEnrollment.Course_Offering__c = newCourseOffering.Id;
         Test.startTest();
             update courseEnrollment;
         Test.stopTest();    
@@ -138,7 +138,7 @@ private class CCON_PreventUpdate_TEST {
         // Insert a Course Offering
         Course_offering__c newCourseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
         
-        courseEnrollment.Course_offering__c = newCourseOffering.Id;
+        courseEnrollment.Course_Offering__c = newCourseOffering.Id;
         courseEnrollment.Contact__c = newCon.Id;
         try {
             Test.startTest();
@@ -177,7 +177,7 @@ private class CCON_PreventUpdate_TEST {
         // Insert a Course Offering
         Course_offering__c newCourseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
         
-        courseEnrollment.Course_offering__c = newCourseOffering.Id;
+        courseEnrollment.Course_Offering__c = newCourseOffering.Id;
         courseEnrollment.Contact__c = newCon.Id;
         try {
             Test.startTest();
