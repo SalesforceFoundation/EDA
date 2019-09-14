@@ -15,21 +15,18 @@ Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify preferred phone functionality
-#    [tags]                                  unstable
-
     Select app launcher                     EDA
     Close all tabs
 
-#    Load page object                        Home            Contacts
-#    Select tab                              Contacts
 
-    Load page object                        Home            TriggerHandlers
     # As a prerequisite, we need to verify that the following trigger handler 
     # exists, and if not then we need to bail/fail:
+    Load page object                        Home            TriggerHandlers
     Select app launcher tab                 Trigger Handlers
     Verify trigger handler                  CON_PreferredPhone_TDTM
     Set trigger to active                   CON_PreferredPhone_TDTM
 
+    # Load the Contacts objects
     Current page should be                  Home           Contacts
     Select tab                              Contacts
     Write To Console                        Click on contact: ${CONTACT.FirstName} ${CONTACT.LastName}
