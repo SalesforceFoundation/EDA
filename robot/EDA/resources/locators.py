@@ -200,6 +200,7 @@ contacts_locators = {
     "home_phone": "//input[@type='tel']/preceding-sibling::label/span[contains(text(),'Home Phone')]",
     "preferred_error_message": "//li[contains(text(), 'The phone selected for Preferred Phone can')]",
     "field_for_home_phone": "//div//label//span[contains(text(),'Home Phone')]/../following-sibling::input",
+    "toast_message": "//span[contains(@class, 'toastMessage') and contains(text(),'{}')]",
 }
 
 trigger_handlers_locators = {

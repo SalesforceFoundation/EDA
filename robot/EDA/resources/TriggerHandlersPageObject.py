@@ -132,7 +132,6 @@ class TriggerHandlersHomePage(BasePage):
             error="Unable to find Preferred Phone Trigger Handler "
         )
         self.selenium.click_element(locator_handler)
-        time.sleep(10)
 
     def select_active_checkbox(self, loc_check, loc_checkbox):
         """ Selects checkbox.  Does nothing if checkbox is already checked """

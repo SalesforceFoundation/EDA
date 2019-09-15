@@ -155,8 +155,18 @@ class ContactsHomePage(BasePage):
             locator_for_home_phone,
             error="Home Phone field not found on Contacts form"
             )
-        self.selenium.click_element(locator_for_home_phone)
+        #self.selenium.click_element(locator_for_home_phone)
+        self.selenium.get_webelement(locator_for_home_phone).send_keys("555-555-1212")
 
         # Save the form - this time successfully
         contact_save = contacts_locators["contact_save"]
         self.selenium.click_element(contact_save)
+
+#        locator = contacts_locators["toast_message"].format("was saved")
+#        self.selenium.wait_until_page_contains_element(locator)
+
+
+    def verify_toast_message(self, value):
+        """ Verifies the toast message """
+        locator = contacts_locators["toast_message"].format(value)
+        self.selenium.wait_until_page_contains_element(locator)

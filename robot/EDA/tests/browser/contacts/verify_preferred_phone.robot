@@ -34,7 +34,7 @@ Verify preferred phone functionality
 
     # Select the newly created contact and test the preferred phone functionality
     Validate preferred phone form
-    
+   # Verify toast message                    was saved    
 
 *** Keywords ***
 Initialize test data
