@@ -51,7 +51,6 @@
     <customLabels>
         <name>Male</name>
         <label>Home</label>
-<<<<<<< HEAD
     </customLabels>
     <customLabels>
         <label><!-- MultipleCourseConnection --></label>
@@ -74,32 +73,25 @@
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoFieldsPopulated --></label>
-        <name>NoFieldsPopulated</name>
-=======
->>>>>>> 73661e60350add7eaf6e7437e0d7693a04570f17
-    </customLabels>
-    <customLabels>
-        <name>NoneOption</name>
+            <label><!-- NoFieldsPopulated --></label>
+            <name>NoFieldsPopulated</name>
+        </customLabels>
+        <customLabels><name>NoneOption</name>
         <label>--Cap--</label>
-<<<<<<< HEAD
     </customLabels>
     <customLabels>
-        <label><!-- OnlyContactPopulated --></label>
-        <name>OnlyContactPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- OnlyCourseConnectionPopulated --></label>
-        <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- OnlyCourseOfferingPopulated --></label>
-        <name>OnlyCourseOfferingPopulated</name>
-=======
->>>>>>> 73661e60350add7eaf6e7437e0d7693a04570f17
-    </customLabels>
-    <customLabels>
-        <name>PreferredEmailMatchMustExist</name>
+            <label><!-- OnlyContactPopulated --></label>
+            <name>OnlyContactPopulated</name>
+        </customLabels>
+        <customLabels>
+            <label><!-- OnlyCourseConnectionPopulated --></label>
+            <name>OnlyCourseConnectionPopulated</name>
+        </customLabels>
+        <customLabels>
+            <label><!-- OnlyCourseOfferingPopulated --></label>
+            <name>OnlyCourseOfferingPopulated</name>
+        </customLabels>
+        <customLabels><name>PreferredEmailMatchMustExist</name>
         <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l'etiqueta del camp d'un camp de correu electrònic personalitzat existent.</label>
     </customLabels>
     <customLabels>
@@ -914,8 +906,4 @@
         <name>HEDA</name>
         <label>EDA</label>
     </customApplications>
-<<<<<<< HEAD
 </Translations>
-=======
-</Translations>
->>>>>>> 73661e60350add7eaf6e7437e0d7693a04570f17
