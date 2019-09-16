@@ -1,84 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Facility --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Facility --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The organization that is responsible for the Facility. --></help>
-        <label><!-- Account --></label>
-        <name>Account__c</name>
-        <relationshipLabel><!-- Facilities --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The maximum number of occupants the Facility can hold. --></help>
-        <label><!-- Capacity --></label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <help><!-- A description of this Facility. --></help>
-        <label><!-- Description --></label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help><!-- The type of Facility. --></help>
-        <label><!-- Facility Type --></label>
-        <name>Facility_Type__c</name>
-        <picklistValues>
-            <masterLabel>Building</masterLabel>
-            <translation><!-- Building --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Cafeteria/Food Hall</masterLabel>
-            <translation><!-- Cafeteria/Food Hall --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Classroom</masterLabel>
-            <translation><!-- Classroom --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Computer Lab</masterLabel>
-            <translation><!-- Computer Lab --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Gymnasium</masterLabel>
-            <translation><!-- Gymnasium --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Health Center</masterLabel>
-            <translation><!-- Health Center --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Laboratory</masterLabel>
-            <translation><!-- Laboratory --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Lecture Hall</masterLabel>
-            <translation><!-- Lecture Hall --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Library</masterLabel>
-            <translation><!-- Library --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom. --></help>
-        <label><!-- Parent Facility --></label>
-        <name>Parent_Facility__c</name>
-        <relationshipLabel><!-- Facilities --></relationshipLabel>
-    </fields>
-    <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>HEDA Facility Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Facility Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account__c</name>
+    <help>L'organisation responsable de l'établissement.</help>
+    <relationshipLabel>Établissement</relationshipLabel>
+    <label>Compte</label>
+  </fields>
+  <fields>
+    <name>Capacity__c</name>
+    <help>Le nombre maximal de personnes que l'établissement peut accueillir.</help>
+    <label>Capacité</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Une description de cet établissement.</help>
+    <label>Description</label>
+  </fields>
+  <fields>
+    <name>Facility_Type__c</name>
+    <help>Le type de l'établissement.</help>
+    <label>Type d'établissement</label>
+    <picklistValues>
+      <masterLabel>Building</masterLabel>
+      <translation>Bâtiment</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cafeteria/Food Hall</masterLabel>
+      <translation>Cafétéria / réfectoire</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Classroom</masterLabel>
+      <translation>Classe</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Computer Lab</masterLabel>
+      <translation>Salle informatique</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gymnasium</masterLabel>
+      <translation>Gymnase</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Health Center</masterLabel>
+      <translation>Centre de soins</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Laboratory</masterLabel>
+      <translation>Laboratoire</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lecture Hall</masterLabel>
+      <translation>Amphithéâtre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Library</masterLabel>
+      <translation>Bibliothèque</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Parent_Facility__c</name>
+    <help>Si l'établissement fait partie d'une structure plus importante, spécifie l'établissement parent. Par exemple, un bâtiment peut être le parent d'une classe.</help>
+    <relationshipLabel>Établissement</relationshipLabel>
+    <label>Établissement parent</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Facility Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de l'établissement</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de l'établissement</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <startsWith>Vowel</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Établissement</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Établissements</value>
+  </caseValues>
 </CustomObjectTranslation>

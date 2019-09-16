@@ -1,179 +1,183 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Relationship --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Relationship --></value>
-    </caseValues>
-    <fields>
-        <help>El contacto relacionado es el/la ____ de este contacto.</help>
-        <label>Contacto</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Relaciones</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Información adicional sobre esta relación</help>
-        <label>Descripción</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>Es este un contacto de emergencia.</help>
-        <label>Contacto de emergencia</label>
-        <name>Emergency_Contact__c</name>
-    </fields>
-    <fields>
-        <help>Campo del sistema que vincula los dos lados de la relación. Este campo no debe modificarse directamente. La Relación recíproca tendrá el tipo opuesto, si está disponible, de esta Relación.</help>
-        <label>Relación reciproca</label>
-        <name>ReciprocalRelationship__c</name>
-        <relationshipLabel>Relaciones</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Contacto relacionado</label>
-        <name>RelatedContact__c</name>
-        <relationshipLabel>Lista de relaciones oculta</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Fórmula de texto que construye una oración que explica la relación entre dos contactos.</help>
-        <label>Explicación de la relación</label>
-        <name>Relationship_Explanation__c</name>
-    </fields>
-    <fields>
-        <help>Campo del sistema que indica si esta relación fue creada automáticamente como una relación reciproca con otra relación.</help>
-        <label><!-- _SYSTEM: SystemCreated --></label>
-        <name>SYSTEM_SystemCreated__c</name>
-    </fields>
-    <fields>
-        <help>Estado de la relación.</help>
-        <label>Estado</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Actual</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Anterior</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Campo que describe el modo en que el contacto relacionado se conecta con el contacto.</help>
-        <label>Tipo</label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Aunt</masterLabel>
-            <translation>Tía</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Child</masterLabel>
-            <translation>Hijo/a</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Cousin</masterLabel>
-            <translation>Primo/a</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Coworker</masterLabel>
-            <translation>Compañero de trabajo</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Daughter</masterLabel>
-            <translation>Hija</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Employee</masterLabel>
-            <translation>Empleado</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Employer</masterLabel>
-            <translation>Empleador</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Family</masterLabel>
-            <translation>Familiares</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Father</masterLabel>
-            <translation>Padre</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Friend</masterLabel>
-            <translation>Amigos</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Grandchild</masterLabel>
-            <translation>Nieto</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Granddaughter</masterLabel>
-            <translation>Nieta</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Grandfather</masterLabel>
-            <translation>Abuelo</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Grandmother</masterLabel>
-            <translation>Abuela</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Grandparent</masterLabel>
-            <translation>Abuelo/a</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Grandson</masterLabel>
-            <translation>Nieto</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Husband</masterLabel>
-            <translation>Marido</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Mother</masterLabel>
-            <translation>Madre</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Parent</masterLabel>
-            <translation>Progenitor</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Partner</masterLabel>
-            <translation>Pareja</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Son</masterLabel>
-            <translation>Hijo</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Uncle</masterLabel>
-            <translation>Tío</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Wife</masterLabel>
-            <translation>Esposa</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Relationship Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Información de la relación</label>
-            <section>Relationship Information</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Relationship Key --></nameFieldLabel>
-    <validationRules>
-        <errorMessage><!-- Rather than change the Contacts in an existing Relationship, delete this Relationship and create a new one. --></errorMessage>
-        <name>Contact_Do_Not_Change</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva entre los nuevos contactos</errorMessage>
-        <name>Related_Contact_Do_Not_Change</name>
-    </validationRules>
+  <fields>
+    <name>Contact__c</name>
+    <help>El contacto relacionado es ______ de este contacto.</help>
+    <relationshipLabel>Relaciones</relationshipLabel>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Información adicional acerca de esta relación</help>
+    <label>Descripción</label>
+  </fields>
+  <fields>
+    <name>Emergency_Contact__c</name>
+    <help>Es este un contacto de emergencia.</help>
+    <label>Contacto de emergencia</label>
+  </fields>
+  <fields>
+    <name>ReciprocalRelationship__c</name>
+    <help>Campo de sistema que vincula a los dos lados de la relación juntos. Este campo no se debe modificar directamente. La relación recíproca tendrá el tipo opuesto, si disponible, de esta relación.</help>
+    <relationshipLabel>Relaciones</relationshipLabel>
+    <label>Relación recíproca</label>
+  </fields>
+  <fields>
+    <name>RelatedContact__c</name>
+    <relationshipLabel>Lista de relaciones oculta</relationshipLabel>
+    <label>Contacto relacionado</label>
+  </fields>
+  <fields>
+    <name>Relationship_Explanation__c</name>
+    <help>Fórmula de texto que crea una frase explicando la relación entre los dos contactos.</help>
+    <label>Explicación de relación</label>
+  </fields>
+  <fields>
+    <name>SYSTEM_SystemCreated__c</name>
+    <help>Campo del sistema que indica si esta relación se creó automáticamente como la recíproca de otras relaciones.</help>
+    <label>_SYSTEM: SystemCreated</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Estado de la relación.</help>
+    <label>Estado</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Antiguo</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>Campo que describe cómo está conectado el contacto relacionado con el contacto.</help>
+    <label>Tipo</label>
+    <picklistValues>
+      <masterLabel>Friend</masterLabel>
+      <translation>Amigo</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Family</masterLabel>
+      <translation>Familia</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Coworker</masterLabel>
+      <translation>Compañero de trabajo</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Father</masterLabel>
+      <translation>Padre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mother</masterLabel>
+      <translation>Madre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Parent</masterLabel>
+      <translation>Familiar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Son</masterLabel>
+      <translation>Hijo</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Daughter</masterLabel>
+      <translation>Hija</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Child</masterLabel>
+      <translation>Niño</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Aunt</masterLabel>
+      <translation>Tía</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Uncle</masterLabel>
+      <translation>Tío</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Husband</masterLabel>
+      <translation>Marido</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Wife</masterLabel>
+      <translation>Mujer</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Partner</masterLabel>
+      <translation>Socio</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cousin</masterLabel>
+      <translation>Primo</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandmother</masterLabel>
+      <translation>Abuela</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandfather</masterLabel>
+      <translation>Abuelo</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandparent</masterLabel>
+      <translation>Abuelo/a</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandson</masterLabel>
+      <translation>Nieto</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Granddaughter</masterLabel>
+      <translation>Nieta</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grandchild</masterLabel>
+      <translation>Nieto/a</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employer</masterLabel>
+      <translation>Empleador</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>Empleado</translation>
+    </picklistValues>
+  </fields>
+  <validationRules>
+    <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva.</errorMessage>
+    <name>Contact_Do_Not_Change</name>
+  </validationRules>
+  <validationRules>
+    <errorMessage>En lugar de cambiar los contactos en una relación existente, elimine esta relación y cree una nueva.</errorMessage>
+    <name>Related_Contact_Do_Not_Change</name>
+  </validationRules>
+  <layouts>
+    <layout>HEDA Relationship Layout</layout>
+    <sections>
+      <label>Información de relación</label>
+      <section>Relationship Information</section>
+    </sections>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Clave de relación</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Clave de relación</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Relación</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Relaciones</value>
+  </caseValues>
 </CustomObjectTranslation>

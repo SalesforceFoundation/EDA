@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Affiliated Contacts</relationshipLabel>
+    <label>Organisation</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Type__c</name>
+    <label>Affiliation Type</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <relationshipLabel>Affiliated Accounts</relationshipLabel>
+    <label>Contact</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Description</label>
+  </fields>
+  <fields>
+    <name>EndDate__c</name>
+    <label>End Date</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>If checked, the Affiliation's Organisation will be stored on the Contact record.</help>
+    <label>Primary</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <label>Role</label>
+    <picklistValues>
+      <masterLabel>Student</masterLabel>
+      <translation>Student</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Prospect</masterLabel>
+      <translation>Prospect</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Applicant</masterLabel>
+      <translation>Applicant</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faculty</masterLabel>
+      <translation>Faculty</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>Employee</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>StartDate__c</name>
+    <label>Start Date</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <label>Status</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Current</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Former</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Affiliation Layout</layout>
+    <sections>
+      <label>Affiliation Information</label>
+      <section>Affiliation Information</section>
+    </sections>
+    <sections>
+      <label>Custom Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Affiliation Key</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Affiliation Key</label>
+  </standardFields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Affiliation</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Affiliations</value>
+  </caseValues>
+</CustomObjectTranslation>
