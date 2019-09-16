@@ -2,92 +2,92 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
     <name>Address_Type__c</name>
-    <label>Type d’adresse</label>
+    <label>Address Type</label>
     <picklistValues>
       <masterLabel>Home</masterLabel>
-      <translation>Domicile</translation>
+      <translation>Home</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Work</masterLabel>
-      <translation>Professionnel</translation>
+      <translation>Work</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Vacation Residence</masterLabel>
-      <translation>Résidence de vacances</translation>
+      <translation>Vacation Residence</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Other</masterLabel>
-      <translation>Autre</translation>
+      <translation>Other</translation>
     </picklistValues>
   </fields>
   <fields>
     <name>Default_Address__c</name>
-    <help>Cette adresse est-elle l’adresse par défaut à utiliser pour le compte et ses contacts ?</help>
-    <label>Adresse par défaut</label>
+    <help>Is this the Default Address to use for the Account and its Contacts?</help>
+    <label>Default Address</label>
   </fields>
   <fields>
     <name>Formula_MailingAddress__c</name>
-    <label>Adresse postale</label>
+    <label>Postal Address</label>
   </fields>
   <fields>
     <name>Formula_MailingStreetAddress__c</name>
-    <label>Rue (courrier)</label>
+    <label>Postal Street Address</label>
   </fields>
   <fields>
     <name>Geolocation__c</name>
-    <help>Latitude et longitude exprimées du lieu.</help>
-    <label>Géolocalisation</label>
+    <help>Location expressed as latitude and longitude.</help>
+    <label>Geolocation</label>
   </fields>
   <fields>
     <name>Latest_End_Date__c</name>
-    <help>La date de fin la plus récente à laquelle cette adresse a été utilisée.</help>
-    <label>Dernière date de fin</label>
+    <help>The most recent ending date this Address was used.</help>
+    <label>Latest End Date</label>
   </fields>
   <fields>
     <name>Latest_Start_Date__c</name>
-    <help>La date de début la plus récente à laquelle cette adresse a été utilisée.</help>
-    <label>Dernière date de début</label>
+    <help>The most recent starting date this Address was used.</help>
+    <label>Latest Start Date</label>
   </fields>
   <fields>
     <name>MailingCity__c</name>
-    <label>Ville (courrier)</label>
+    <label>Postal City</label>
   </fields>
   <fields>
     <name>MailingCountry__c</name>
-    <label>Pays (courrier)</label>
+    <label>Postal Country</label>
   </fields>
   <fields>
     <name>MailingPostalCode__c</name>
-    <label>Code postal (courrier)</label>
+    <label>Zip/Postal Code</label>
   </fields>
   <fields>
     <name>MailingState__c</name>
-    <label>Région/Province (courrier)</label>
+    <label>Postal State/Province</label>
   </fields>
   <fields>
     <name>MailingStreet2__c</name>
-    <label>Rue 2 (courrier)</label>
+    <label>Postal Street2</label>
   </fields>
   <fields>
     <name>MailingStreet__c</name>
-    <label>Rue (courrier)</label>
+    <label>Postal Street</label>
   </fields>
   <fields>
     <name>Parent_Account__c</name>
-    <help>Le compte auquel cette adresse correspond.</help>
-    <relationshipLabel>Adresses</relationshipLabel>
-    <label>Compte parent</label>
+    <help>The Account this Address is for.</help>
+    <relationshipLabel>Addresses</relationshipLabel>
+    <label>Parent Account</label>
   </fields>
   <fields>
     <name>Parent_Contact__c</name>
-    <help>Le contact auquel cette adresse correspond.</help>
-    <relationshipLabel>Adresses</relationshipLabel>
-    <label>Contact parent</label>
+    <help>The Contact this address is for.</help>
+    <relationshipLabel>Addresses</relationshipLabel>
+    <label>Parent Contact</label>
   </fields>
   <fields>
     <name>Seasonal_End_Day__c</name>
-    <help>Le jour du mois à partir duquel cette adresse ne remplace plus l’adresse par défaut.</help>
-    <label>Jour de fin de saison</label>
+    <help>The day of the month when this address no longer replaces the default address.</help>
+    <label>Seasonal End Day</label>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -215,8 +215,8 @@
   </fields>
   <fields>
     <name>Seasonal_End_Month__c</name>
-    <help>Le mois de l’année à partir duquel cette adresse ne remplace plus l’adresse par défaut.</help>
-    <label>Mois de fin de saison</label>
+    <help>The month of the year when this address no longer replaces the default address.</help>
+    <label>Seasonal End Month</label>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -268,13 +268,13 @@
   </fields>
   <fields>
     <name>Seasonal_End_Year__c</name>
-    <help>L’année à partir de laquelle cette adresse ne remplace plus l’adresse par défaut.</help>
-    <label>Année de fin de saison</label>
+    <help>The year when this address no longer replaces the default address.</help>
+    <label>Seasonal End Year</label>
   </fields>
   <fields>
     <name>Seasonal_Start_Day__c</name>
-    <help>Le jour du mois à partir duquel cette adresse remplace l’adresse par défaut.</help>
-    <label>Jour de début de saison</label>
+    <help>The day of the month when this address replaces the default address.</help>
+    <label>Seasonal Start Day</label>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -402,8 +402,8 @@
   </fields>
   <fields>
     <name>Seasonal_Start_Month__c</name>
-    <help>Le mois de l’année à partir duquel cette adresse remplace l’adresse par défaut.</help>
-    <label>Mois de début de saison</label>
+    <help>The month of the year when this address replaces the default address.</help>
+    <label>Seasonal Start Month</label>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -455,29 +455,28 @@
   </fields>
   <fields>
     <name>Seasonal_Start_Year__c</name>
-    <help>L’année à partir de laquelle cette adresse remplace l’adresse par défaut.</help>
-    <label>Année de début de saison</label>
+    <help>The year when this address replaces the default address.</help>
+    <label>Seasonal Start Year</label>
   </fields>
   <layouts>
     <layout>HEDA Address Layout</layout>
     <sections>
-      <label>Liens personnalisés</label>
+      <label>Custom Links</label>
       <section>Custom Links</section>
     </sections>
   </layouts>
-  <nameFieldLabel>ID d'adresse</nameFieldLabel>
+  <nameFieldLabel>Address ID</nameFieldLabel>
   <standardFields>
     <name>Name</name>
-    <label>ID d'adresse</label>
+    <label>Address ID</label>
   </standardFields>
-  <gender>Feminine</gender>
   <startsWith>Vowel</startsWith>
   <caseValues>
     <plural>false</plural>
-    <value>Adresse</value>
+    <value>Address</value>
   </caseValues>
   <caseValues>
     <plural>true</plural>
-    <value>Adresses</value>
+    <value>Addresses</value>
   </caseValues>
 </CustomObjectTranslation>
