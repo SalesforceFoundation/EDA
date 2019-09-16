@@ -13,10 +13,10 @@
     <label>Connexió del curs</label>
   </fields>
   <fields>
-      <help><!-- The Course Offering associated with the grade being recorded. --></help>
-      <label><!-- Course Offering --></label>
-      <name>Course_Offering__c</name>
-      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+        <help><!-- The Course Offering associated with the grade being recorded. --></help>
+        <label><!-- Course Offering --></label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel><!-- Term Grades --></relationshipLabel>
   </fields>
   <fields>
     <name>Credits_Attempted__c</name>

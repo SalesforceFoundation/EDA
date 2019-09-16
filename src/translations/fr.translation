@@ -86,7 +86,6 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label><!-- Provides a blank value option to custom built picklists --></label>
         <name>NoneOption</name>
         <label>- Aucun -</label>
     </customLabels>
@@ -103,7 +102,6 @@
         <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
-        <label>L&apos;e-mail spécifié dans Adresse e-mail préférée est introuvable. Assurez-vous de saisir l&apos;étiquette d&apos;un champ d&apos;adresse e-mail personnalisé existant.</label>
         <name>PreferredEmailMatchMustExist</name>
         <label>L'e-mail spécifié dans Adresse e-mail préférée est introuvable. Assurez-vous de saisir l'étiquette d'un champ d'adresse e-mail personnalisé existant.</label>
     </customLabels>

@@ -86,7 +86,6 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label><!-- Provides a blank value option to custom built picklists --></label>
         <name>NoneOption</name>
         <label>--Ninguno--</label>
     </customLabels>
@@ -103,7 +102,6 @@
         <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
-        <label><!-- PreferredEmailMatchMustExist --></label>
         <name>PreferredEmailMatchMustExist</name>
         <label>No podemos encontrar el correo electrónico especificado en Correo electrónico preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo de correo electrónico personalizado existente.</label>
     </customLabels>
