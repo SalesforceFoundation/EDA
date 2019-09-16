@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Campaign_Types__c</name>
+    <help>Eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create)</help>
+    <label>Campaign Types</label>
+  </fields>
+  <fields>
+    <name>Field__c</name>
+    <help>The field insert or update that triggers the creation of this Relationship</help>
+    <label>Field</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>The object this Auto-Relationship is associated with</help>
+    <label>Object</label>
+  </fields>
+  <fields>
+    <name>Relationship_Type__c</name>
+    <help>The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available.</help>
+    <label>Relationship Type</label>
+  </fields>
+</CustomObjectTranslation>

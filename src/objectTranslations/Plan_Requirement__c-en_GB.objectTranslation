@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Category__c</name>
+    <help>Specify a category for the the Plan Requirement.</help>
+    <label>Category</label>
+    <picklistValues>
+      <masterLabel>Required</masterLabel>
+      <translation>Required</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Optional</masterLabel>
+      <translation>Optional</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <help>Click to search for a Course.</help>
+    <relationshipLabel>Plan Requirements</relationshipLabel>
+    <label>Course</label>
+  </fields>
+  <fields>
+    <name>Credits__c</name>
+    <help>Specify the number of credits a student receives when satisfying this requirement.</help>
+    <label>Credits</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Describe the Plan Requirement.</help>
+    <label>Description</label>
+  </fields>
+  <fields>
+    <name>Plan_Requirement__c</name>
+    <help>Click to search for a Plan Requirement.</help>
+    <relationshipLabel>Plan Requirements</relationshipLabel>
+    <label>Parent Plan Requirement</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>Click to search for a Program Plan.</help>
+    <relationshipLabel>Plan Requirements</relationshipLabel>
+    <label>Program Plan</label>
+  </fields>
+  <fields>
+    <name>Sequence__c</name>
+    <help>The progression of courses</help>
+    <label>Sequence</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Plan Requirement Layout</layout>
+    <sections>
+      <label>Custom Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Plan Requirement Name</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Plan Requirement Name</label>
+  </standardFields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Plan Requirement</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Plan Requirements</value>
+  </caseValues>
+</CustomObjectTranslation>

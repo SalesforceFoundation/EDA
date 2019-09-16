@@ -1,63 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Offre de cours</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Offres de cours</value>
-    </caseValues>
-    <fields>
-        <label>Capacité</label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <label>Cours</label>
-        <name>Course__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date de fin</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- The Facility associated with the Course Offering. --></help>
-        <label><!-- Facility --></label>
-        <name>Facility__c</name>
-        <relationshipLabel><!-- Course Offerings --></relationshipLabel>
-    </fields>
-    <fields>
-        <label>Professeur principal</label>
-        <name>Faculty__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
-    </fields>
-    <fields>
-        <label>ID de section</label>
-        <name>Section_ID__c</name>
-    </fields>
-    <fields>
-        <label>Date de début</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Durée</label>
-        <name>Term__c</name>
-        <relationshipLabel>Offres de cours</relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Time Block --></label>
-        <name>Time_Block__c</name>
-        <relationshipLabel><!-- Time Blocks --></relationshipLabel>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Course Offering Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;offre de cours</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
+  <fields>
+    <name>Capacity__c</name>
+    <label>Capacité</label>
+  </fields>
+  <fields>
+    <name>Course__c</name>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Cours</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>Date de fin</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>L'établissement associé à cette offre de cours.</help>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Établissement</label>
+  </fields>
+  <fields>
+    <name>Faculty__c</name>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Professeur principal</label>
+  </fields>
+  <fields>
+    <name>Section_ID__c</name>
+    <label>ID de section</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Date de début</label>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Durée</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Blocs de temps</relationshipLabel>
+    <label>Bloc de temps</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Course Offering Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>ID d'offre de cours</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>ID d'offre de cours</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <startsWith>Vowel</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Offre de cours</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Offres de cours</value>
+  </caseValues>
 </CustomObjectTranslation>
