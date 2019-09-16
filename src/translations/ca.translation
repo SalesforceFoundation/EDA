@@ -35,7 +35,6 @@
     <customLabels>
         <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
         <name>CannotDelete</name>
-        <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
     </customLabels>
     <customLabels>
         <name>DefaultAccountName</name>

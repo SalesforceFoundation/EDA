@@ -35,7 +35,6 @@
     <customLabels>
         <label>Impossible de supprimer l&apos;enregistrement, car des enregistrements enfants existent. Supprimez d&apos;abord les enregistrements enfants.</label>
         <name>CannotDelete</name>
-        <label>Impossible de supprimer l'enregistrement, car des enregistrements enfants existent. Supprimez d'abord les enregistrements enfants.</label>
     </customLabels>
     <customLabels>
         <name>DefaultAccountName</name>

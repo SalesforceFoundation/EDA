@@ -35,7 +35,6 @@
     <customLabels>
         <label>No se puede eliminar el registro porque existen registros de relacionados. Elimine primero los registros secundarios.</label>
         <name>CannotDelete</name>
-        <label>No se puede eliminar el registro porque existen registros secundarios. Elimine los secundarios primero.</label>
     </customLabels>
     <customLabels>
         <name>DefaultAccountName</name>
