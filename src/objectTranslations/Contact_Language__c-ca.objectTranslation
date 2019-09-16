@@ -1,55 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Contact Language --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Contact Language --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The person who speaks this language. --></help>
-        <label><!-- Contact --></label>
-        <name>Contact__c</name>
-        <relationshipLabel><!-- Contact Languages --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The fluency with which this person speaks this language. --></help>
-        <label><!-- Fluency --></label>
-        <name>Fluency__c</name>
-        <picklistValues>
-            <masterLabel>Beginner</masterLabel>
-            <translation><!-- Beginner --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fluent</masterLabel>
-            <translation><!-- Fluent --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Intermediate</masterLabel>
-            <translation><!-- Intermediate --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- The Language associated with this Contact. --></help>
-        <label><!-- Language --></label>
-        <name>Language__c</name>
-        <relationshipLabel><!-- Contact Languages --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Indicates that this is the language of choice for this Contact. --></help>
-        <label><!-- Primary Language --></label>
-        <name>Primary_Language__c</name>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Contact Language Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Contact Language Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Contact__c</name>
+    <help>La persona que parla aquest idioma.</help>
+    <relationshipLabel>Idiomes de contacte</relationshipLabel>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Fluency__c</name>
+    <help>La fluïdesa amb què aquesta persona parla aquest idioma.</help>
+    <label>Domini</label>
+    <picklistValues>
+      <masterLabel>Fluent</masterLabel>
+      <translation>Avançat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Intermediate</masterLabel>
+      <translation>Intermedi</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Beginner</masterLabel>
+      <translation>Principiant</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Language__c</name>
+    <help>L'idioma associat a aquest contacte.</help>
+    <relationshipLabel>Idiomes de contacte</relationshipLabel>
+    <label>Idiomes</label>
+  </fields>
+  <fields>
+    <name>Primary_Language__c</name>
+    <help>Indica que aquest és l'idioma preferit per aquest contacte.</help>
+    <label>Idioma principal</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Contact Language Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de l’idioma de contacte</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de l’idioma de contacte</label>
+  </standardFields>
 </CustomObjectTranslation>

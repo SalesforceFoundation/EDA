@@ -1,81 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Course Offering Schedule --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Course Offering Schedule --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The Course Offering to which this record belongs. --></help>
-        <label><!-- Course Offering --></label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The time of day the Course Offering ends. --></help>
-        <label><!-- End Time --></label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help><!-- The Facility associated with the Course Offering for the specified time and day of week. --></help>
-        <label><!-- Facility --></label>
-        <name>Facility__c</name>
-        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Friday --></label>
-        <name>Friday__c</name>
-    </fields>
-    <fields>
-        <label><!-- Monday --></label>
-        <name>Monday__c</name>
-    </fields>
-    <fields>
-        <label><!-- Saturday --></label>
-        <name>Saturday__c</name>
-    </fields>
-    <fields>
-        <help><!-- The time of day the Course Offering starts. --></help>
-        <label><!-- Start Time --></label>
-        <name>Start_Time__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sunday --></label>
-        <name>Sunday__c</name>
-    </fields>
-    <fields>
-        <label><!-- Thursday --></label>
-        <name>Thursday__c</name>
-    </fields>
-    <fields>
-        <help><!-- The Time Block in which this Course Offering is being held. --></help>
-        <label><!-- Time Block --></label>
-        <name>Time_Block__c</name>
-        <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Tuesday --></label>
-        <name>Tuesday__c</name>
-    </fields>
-    <fields>
-        <label><!-- Wednesday --></label>
-        <name>Wednesday__c</name>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Course Offering Schedule Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Days of Week --></label>
-            <section>Days of Week</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Course Offering Schedule Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>L’oferta de curs a la qual pertany aquest registre.</help>
+    <relationshipLabel>Horaris de l’oferta de cursos</relationshipLabel>
+    <label>Oferta de curs</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>Hora del dia en què acaba l'oferta de cursos.</help>
+    <label>Hora de finalització</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>La instal·lació associada a l’oferta del curs per l’hora i el dia de la setmana especificats.</help>
+    <relationshipLabel>Horaris de l’oferta de cursos</relationshipLabel>
+    <label>Instal·lació</label>
+  </fields>
+  <fields>
+    <name>Friday__c</name>
+    <label>Divendres</label>
+  </fields>
+  <fields>
+    <name>Monday__c</name>
+    <label>Dilluns</label>
+  </fields>
+  <fields>
+    <name>Saturday__c</name>
+    <label>Dissabte</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>Hora del dia en què comença l'oferta de cursos.</help>
+    <label>Hora inicial</label>
+  </fields>
+  <fields>
+    <name>Sunday__c</name>
+    <label>Diumenge</label>
+  </fields>
+  <fields>
+    <name>Thursday__c</name>
+    <label>Dijous</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <help>El bloc de temps en què es realitza l’oferta de cursos.</help>
+    <relationshipLabel>Horaris de l’oferta de cursos</relationshipLabel>
+    <label>Bloc de temps</label>
+  </fields>
+  <fields>
+    <name>Tuesday__c</name>
+    <label>Dimarts</label>
+  </fields>
+  <fields>
+    <name>Wednesday__c</name>
+    <label>Dimecres</label>
+  </fields>
+  <layouts>
+    <layout>EDA Course Offering Schedule Layout</layout>
+    <sections>
+      <label>Dies de la setmana</label>
+      <section>Days of Week</section>
+    </sections>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de l’horari de l’oferta de cursos</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de l’horari de l’oferta de cursos</label>
+  </standardFields>
 </CustomObjectTranslation>

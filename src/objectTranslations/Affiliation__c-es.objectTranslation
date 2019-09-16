@@ -1,91 +1,95 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Affiliation --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Affiliation --></value>
-    </caseValues>
-    <fields>
-        <label>Cuenta</label>
-        <name>Account__c</name>
-        <relationshipLabel>Contactos afiliados</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Tipo de afiliación</label>
-        <name>Affiliation_Type__c</name>
-    </fields>
-    <fields>
-        <label>Contacto</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Cuentas afiliadas</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Descripción</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <label>Fecha de finalización</label>
-        <name>EndDate__c</name>
-    </fields>
-    <fields>
-        <help>Si se selecciona, la organización de la afiliación se almacenará en el registro Contacto.</help>
-        <label>Principal</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <label>Función</label>
-        <name>Role__c</name>
-        <picklistValues>
-            <masterLabel>Applicant</masterLabel>
-            <translation>Solicitante</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Employee</masterLabel>
-            <translation>Empleador</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Faculty</masterLabel>
-            <translation>Profesor</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Prospect</masterLabel>
-            <translation>Cliente potencial</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Student</masterLabel>
-            <translation>Estudiante</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label>Fecha de inicio</label>
-        <name>StartDate__c</name>
-    </fields>
-    <fields>
-        <label>Estado</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Actual</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Anterior</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Información de la afiliación</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Affiliation Key --></nameFieldLabel>
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Contactos afiliados</relationshipLabel>
+    <label>Organización</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Type__c</name>
+    <label>Tipo de afiliación</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <relationshipLabel>Cuentas afiliadas</relationshipLabel>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Descripción</label>
+  </fields>
+  <fields>
+    <name>EndDate__c</name>
+    <label>Fecha de Finalización</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Si se selecciona, la cuenta en la afiliación se guardará en el contacto.</help>
+    <label>Principal</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <label>Función</label>
+    <picklistValues>
+      <masterLabel>Student</masterLabel>
+      <translation>Estudiante</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Prospect</masterLabel>
+      <translation>Posibilidad</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Applicant</masterLabel>
+      <translation>Solicitante</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faculty</masterLabel>
+      <translation>Facultad</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>Empleador</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>StartDate__c</name>
+    <label>Fecha de Inicio</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <label>Estado</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Current</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Antiguo</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Affiliation Layout</layout>
+    <sections>
+      <label>Información de la afiliación</label>
+      <section>Affiliation Information</section>
+    </sections>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Clave de afiliación</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Clave de afiliación</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Afiliación</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Afiliaciones</value>
+  </caseValues>
 </CustomObjectTranslation>
