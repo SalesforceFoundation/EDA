@@ -30,7 +30,7 @@
   </fields>
   <fields>
     <name>Letter_Grade__c</name>
-    <help>La lettre correspondant à la note que l'étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
+    <help>La lettre correspondant à la note que l'étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
     <label>Note en lettre</label>
   </fields>
   <fields>

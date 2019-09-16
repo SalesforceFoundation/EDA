@@ -190,7 +190,7 @@
     </customLabels>
     <customLabels>
         <name>afflTypeEnforced</name>
-        <label>Activer la validation du type d'enregistrement :</label>
+        <label>Activer la validation du type d'enregistrement :</label>
     </customLabels>
     <customLabels>
         <name>afflTypeEnforcedDescription</name>
@@ -314,7 +314,7 @@
     </customLabels>
     <customLabels>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
-        <label>Type d’enregistrement de compte de foyer :</label>
+        <label>Type d’enregistrement de compte de foyer :</label>
     </customLabels>
     <customLabels>
         <name>stgAccountTypesMultiAddressesEnabled</name>
@@ -334,35 +334,35 @@
     </customLabels>
     <customLabels>
         <name>stgAdminAccountRecordType</name>
-        <label>Type enregistrement compte administratif :</label>
+        <label>Type enregistrement compte administratif :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
-        <label>Copier la date de fin de l'affiliation depuis l'inscription au programme :</label>
+        <label>Copier la date de fin de l'affiliation depuis l'inscription au programme :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
-        <label>Copier la date de début de l'affiliation depuis l'inscription au programme :</label>
+        <label>Copier la date de début de l'affiliation depuis l'inscription au programme :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflDeleteProgramEnrollment</name>
-        <label>Statut spécifié pour les affiliations non supprimées :</label>
+        <label>Statut spécifié pour les affiliations non supprimées :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollDeleteRelated</name>
-        <label>Supprimer l'affiliation associée lorsque l'inscription au programme est supprimée :</label>
+        <label>Supprimer l'affiliation associée lorsque l'inscription au programme est supprimée :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollSetRole</name>
-        <label>Spécifier un rôle pour les affiliations créées :</label>
+        <label>Spécifier un rôle pour les affiliations créées :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollSetRoleValue</name>
-        <label>Rôle spécifié pour les affiliations créées :</label>
+        <label>Rôle spécifié pour les affiliations créées :</label>
     </customLabels>
     <customLabels>
         <name>stgAfflProgEnrollSetStatusValue</name>
-        <label>Statut spécifié pour les affiliations créées :</label>
+        <label>Statut spécifié pour les affiliations créées :</label>
     </customLabels>
     <customLabels>
         <name>stgAfterRunBackfill</name>
@@ -522,7 +522,7 @@
     </customLabels>
     <customLabels>
         <name>stgDisablePreferredPhoneEnforcement</name>
-        <label>Désactiver l’application du téléphone préféré :</label>
+        <label>Désactiver l’application du téléphone préféré :</label>
     </customLabels>
     <customLabels>
         <name>stgEnableCourseConnectionsTitle</name>
@@ -546,7 +546,7 @@
     </customLabels>
     <customLabels>
         <name>stgHelpAccountModel</name>
-        <label>Pour les établissements d’enseignement supérieur, nous recommandons le modèle de compte « administratif ». Pour les écoles de niveau primaire et secondaire, nous recommandons le modèle de compte « foyer ».</label>
+        <label>Pour les établissements d’enseignement supérieur, nous recommandons le modèle de compte « administratif ». Pour les écoles de niveau primaire et secondaire, nous recommandons le modèle de compte « foyer ».</label>
     </customLabels>
     <customLabels>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
@@ -706,7 +706,7 @@
     </customLabels>
     <customLabels>
         <name>stgHelpRelReciprocalMethod</name>
-        <label>Détermine la méthode de génération de la relation réciproque : soit un paramètre de liste qui utilise des paramètres personnalisés par genre (voir l’onglet de relations réciproques), soit une inversion de valeur (de « Parent-Enfant » à « Enfant-Parent »)</label>
+        <label>Détermine la méthode de génération de la relation réciproque : soit un paramètre de liste qui utilise des paramètres personnalisés par genre (voir l’onglet de relations réciproques), soit une inversion de valeur (de « Parent-Enfant » à « Enfant-Parent »)</label>
     </customLabels>
     <customLabels>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
