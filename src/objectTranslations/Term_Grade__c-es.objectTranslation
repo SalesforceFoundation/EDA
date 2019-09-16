@@ -5,7 +5,7 @@
     <label><!-- Contact --></label>
     <name>Contact__c</name>
     <relationshipLabel><!-- Term Grades --></relationshipLabel>
-  </fields>
+  </fields>  
   <fields>
     <name>Course_Connection__c</name>
     <help>La clase en que el estudiante recibió este evaluación.</help>
@@ -17,7 +17,7 @@
     <label><!-- Course Offering --></label>
     <name>Course_Offering__c</name>
     <relationshipLabel><!-- Term Grades --></relationshipLabel>
- </fields>
+  </fields>
   <fields>
     <name>Credits_Attempted__c</name>
     <help>El número de créditos intentados para este curso y periodo de evaluación.</help>

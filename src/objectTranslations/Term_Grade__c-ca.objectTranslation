@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fields>
-        <help><!-- The student for whom the grade is being recorded. --></help>
-        <label><!-- Contact --></label>
-        <name>Contact__c</name>
-        <relationshipLabel><!-- Term Grades --></relationshipLabel>
-    </fields>
-    <fields>
+  <fields>
+      <help><!-- The student for whom the grade is being recorded. --></help>
+      <label><!-- Contact --></label>
+      <name>Contact__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+  </fields>
+  <fields>
     <name>Course_Connection__c</name>
     <help>La classe en què l'alumne ha rebut aquesta qualificació.</help>
     <relationshipLabel>Qualificacions del període</relationshipLabel>
     <label>Connexió del curs</label>
   </fields>
   <fields>
-    <help><!-- The Course Offering associated with the grade being recorded. --></help>
-    <label><!-- Course Offering --></label>
-    <name>Course_Offering__c</name>
-    <relationshipLabel><!-- Term Grades --></relationshipLabel>
-</fields>
+        <help><!-- The Course Offering associated with the grade being recorded. --></help>
+        <label><!-- Course Offering --></label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel><!-- Term Grades --></relationshipLabel>
+  </fields>
   <fields>
     <name>Credits_Attempted__c</name>
     <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>
