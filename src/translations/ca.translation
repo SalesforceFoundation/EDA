@@ -51,6 +51,7 @@
     <customLabels>
         <name>Male</name>
         <label>Home</label>
+<<<<<<< HEAD
     </customLabels>
     <customLabels>
         <label><!-- MultipleCourseConnection --></label>
@@ -75,10 +76,13 @@
     <customLabels>
         <label><!-- NoFieldsPopulated --></label>
         <name>NoFieldsPopulated</name>
+=======
+>>>>>>> 73661e60350add7eaf6e7437e0d7693a04570f17
     </customLabels>
     <customLabels>
         <name>NoneOption</name>
         <label>--Cap--</label>
+<<<<<<< HEAD
     </customLabels>
     <customLabels>
         <label><!-- OnlyContactPopulated --></label>
@@ -91,6 +95,8 @@
     <customLabels>
         <label><!-- OnlyCourseOfferingPopulated --></label>
         <name>OnlyCourseOfferingPopulated</name>
+=======
+>>>>>>> 73661e60350add7eaf6e7437e0d7693a04570f17
     </customLabels>
     <customLabels>
         <name>PreferredEmailMatchMustExist</name>
@@ -908,4 +914,8 @@
         <name>HEDA</name>
         <label>EDA</label>
     </customApplications>
+<<<<<<< HEAD
 </Translations>
+=======
+</Translations>
+>>>>>>> 73661e60350add7eaf6e7437e0d7693a04570f17

@@ -30,7 +30,7 @@
   </fields>
   <fields>
     <name>Letter_Grade__c</name>
-    <help>La qualificació amb lletres que ha obtingut l’estudiant per aquest curs. Per exemple, "A +" o qualsevol altre valor de text.</help>
+    <help>La qualificació amb lletres que ha obtingut l’estudiant per aquest curs. Per exemple, "A +" o qualsevol altre valor de text.</help>
     <label>Qualificació amb lletres</label>
   </fields>
   <fields>
