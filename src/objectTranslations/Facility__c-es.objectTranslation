@@ -25,11 +25,6 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot; --></help>
-        <label><!-- Display Name --></label>
-        <name>Display_Name__c</name>
-    </fields>
-    <fields>
         <help>El tipo de instalación.</help>
         <label>Tipo de instalación</label>
         <name>Facility_Type__c</name>

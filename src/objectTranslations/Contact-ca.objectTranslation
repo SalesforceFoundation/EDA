@@ -3506,11 +3506,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Primary Academic Program --></label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel><!-- Students --></relationshipLabel>
-    </fields>
-    <fields>
         <help>Quin tipus d&apos;adreça és l&apos;adreça de correu?</help>
         <label>Tipus d&apos;adreça primari</label>
         <name>Primary_Address_Type__c</name>
@@ -3528,16 +3523,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Primary Department --></label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel><!-- Department Members --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Primary Educational Institution --></label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel><!-- Institution Members --></relationshipLabel>
-    </fields>
-    <fields>
         <label>Llar primària</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Contactes (llar primària)</relationshipLabel>
@@ -3552,11 +3537,6 @@
         <label>Organització empresarial primària</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contactes (Organització primària)</relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Primary Sports Organization --></label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel><!-- Organization Members --></relationshipLabel>
     </fields>
     <fields>
         <label>Raça</label>

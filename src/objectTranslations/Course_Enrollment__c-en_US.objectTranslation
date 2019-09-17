@@ -74,20 +74,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <recordTypes>
-        <description><!-- A Default Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators. --></description>
-        <label><!-- Default --></label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- A Faculty Course Connection --></description>
-        <label><!-- Faculty --></label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- A Student Course Connection --></description>
-        <label><!-- Student --></label>
-        <name>Student</name>
-    </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

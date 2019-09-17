@@ -3506,11 +3506,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Primary Academic Program --></label>
-        <name>Primary_Academic_Program__c</name>
-        <relationshipLabel><!-- Students --></relationshipLabel>
-    </fields>
-    <fields>
         <help>¿Qué tipo de dirección es la dirección de correo?</help>
         <label>Tipo de dirección de correo</label>
         <name>Primary_Address_Type__c</name>
@@ -3528,16 +3523,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Primary Department --></label>
-        <name>Primary_Department__c</name>
-        <relationshipLabel><!-- Department Members --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Primary Educational Institution --></label>
-        <name>Primary_Educational_Institution__c</name>
-        <relationshipLabel><!-- Institution Members --></relationshipLabel>
-    </fields>
-    <fields>
         <label>Domicilio principal</label>
         <name>Primary_Household__c</name>
         <relationshipLabel>Contactos (Dirección principal)</relationshipLabel>
@@ -3552,11 +3537,6 @@
         <label>Organización comercial principal</label>
         <name>Primary_Organization__c</name>
         <relationshipLabel>Contactos (Organización principal)</relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Primary Sports Organization --></label>
-        <name>Primary_Sports_Organization__c</name>
-        <relationshipLabel><!-- Organization Members --></relationshipLabel>
     </fields>
     <fields>
         <label>Raza</label>
