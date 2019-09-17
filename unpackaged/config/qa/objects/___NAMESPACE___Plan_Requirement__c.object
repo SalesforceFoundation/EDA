@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>%%%NAMESPACE%%%HEDA_Plan_Requirement_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>%%%NAMESPACE%%%HEDA_Plan_Requirement_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>%%%NAMESPACE%%%Program_Plan__c</fields>
+        <fields>%%%NAMESPACE%%%Category__c</fields>
+        <label>HEDA Plan Requirement Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>This object will be the various course requirements that would need to be met to achieve the particular Program Plan</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Category for the Plan Requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify a category for the the Plan Requirement.</inlineHelpText>
+        <label>Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Required</fullName>
+                    <default>false</default>
+                    <label>Required</label>
+                </value>
+                <value>
+                    <fullName>Optional</fullName>
+                    <default>false</default>
+                    <label>Optional</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Course__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup field to find a Course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click to search for a Course.</inlineHelpText>
+        <label>Course</label>
+        <referenceTo>%%%NAMESPACE%%%Course__c</referenceTo>
+        <relationshipLabel>Plan Requirements</relationshipLabel>
+        <relationshipName>Plan_Requirements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Credits__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A field that can contain the credits a student receives for completing a specific course, or the total number of credits needed for type of requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the number of credits a student receives when satisfying this requirement.</inlineHelpText>
+        <label>Credits</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The description of Plan Requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Describe the Plan Requirement.</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Plan_Requirement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to Plan Requirement to support multiple levels of requirements. A generic requirement could have a list of optional courses that satisfy that requirement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click to search for a Plan Requirement.</inlineHelpText>
+        <label>Parent Plan Requirement</label>
+        <referenceTo>%%%NAMESPACE%%%Plan_Requirement__c</referenceTo>
+        <relationshipLabel>Plan Requirements</relationshipLabel>
+        <relationshipName>Plan_Requirements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Program_Plan__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Look up field to program plan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click to search for a Program Plan.</inlineHelpText>
+        <label>Program Plan</label>
+        <referenceTo>%%%NAMESPACE%%%Program_Plan__c</referenceTo>
+        <relationshipLabel>Plan Requirements</relationshipLabel>
+        <relationshipName>Plan_Requirements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Sequence__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The progression of courses</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The progression of courses</inlineHelpText>
+        <label>Sequence</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Plan Requirement</label>
+    <listViews>
+        <fullName>%%%NAMESPACE%%%All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Plan Requirement Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Plan Requirements</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Plan_Requirement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Program_Plan__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Course__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

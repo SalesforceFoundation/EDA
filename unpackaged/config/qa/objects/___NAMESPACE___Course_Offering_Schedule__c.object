@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Joins Course Offering to Time Block and provides a way to specify the days and location for a Course.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Course_Offering__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The Course Offering to which this record belongs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Course Offering to which this record belongs.</inlineHelpText>
+        <label>Course Offering</label>
+        <referenceTo>%%%NAMESPACE%%%Course_Offering__c</referenceTo>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%End_Time__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The time of day the Course Offering ends.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The time of day the Course Offering ends.</inlineHelpText>
+        <label>End Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Facility__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The Facility associated with the Course Offering for the specified time and day of week.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Facility associated with the Course Offering for the specified time and day of week.</inlineHelpText>
+        <label>Facility</label>
+        <referenceTo>%%%NAMESPACE%%%Facility__c</referenceTo>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Friday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Friday.</description>
+        <externalId>false</externalId>
+        <label>Friday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Monday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Monday.</description>
+        <externalId>false</externalId>
+        <label>Monday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Saturday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Saturday.</description>
+        <externalId>false</externalId>
+        <label>Saturday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Start_Time__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The time of day the Course Offering starts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The time of day the Course Offering starts.</inlineHelpText>
+        <label>Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Sunday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Sunday.</description>
+        <externalId>false</externalId>
+        <label>Sunday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Thursday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Thursday.</description>
+        <externalId>false</externalId>
+        <label>Thursday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Time_Block__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The Time Block in which this Course Offering is being held.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Time Block in which this Course Offering is being held.</inlineHelpText>
+        <label>Time Block</label>
+        <referenceTo>%%%NAMESPACE%%%Time_Block__c</referenceTo>
+        <relationshipLabel>Course Offering Schedules</relationshipLabel>
+        <relationshipName>Course_Offering_Schedules</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Tuesday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Tuesday.</description>
+        <externalId>false</externalId>
+        <label>Tuesday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Wednesday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The Course Offering Schedule includes Wednesday.</description>
+        <externalId>false</externalId>
+        <label>Wednesday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Course Offering Schedule</label>
+    <listViews>
+        <fullName>%%%NAMESPACE%%%All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CSH-{000000}</displayFormat>
+        <label>Course Offering Schedule Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Course Offering Schedules</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Course_Offering__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Time_Block__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Start_Time__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%End_Time__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

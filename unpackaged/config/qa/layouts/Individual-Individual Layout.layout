@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Information</label>
         <layoutColumns>
@@ -12,37 +11,57 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Display_Name__c</field>
+                <behavior>Edit</behavior>
+                <field>BirthDate</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Account__c</field>
+                <field>HasOptedOutProcessing</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Parent_Facility__c</field>
+                <field>HasOptedOutSolicit</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SendIndividualData</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CanStorePiiElsewhere</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Facility_Type__c</field>
+                <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Description__c</field>
+                <field>HasOptedOutGeoTracking</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Capacity__c</field>
+                <field>HasOptedOutProfiling</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HasOptedOutTracking</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ShouldForget</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IndividualsAge</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
@@ -50,53 +69,48 @@
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CreatedDate</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>LastModifiedDate</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
+        <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <editHeading>false</editHeading>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
-        <fields>%%%NAMESPACE%%%Capacity__c</fields>
-        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Parent_Facility__c</relatedList>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Section_ID__c</fields>
-        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
-        <fields>%%%NAMESPACE%%%End_Date__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Facility__c</relatedList>
+        <fields>FULL_NAME</fields>
+        <fields>CONTACT.TITLE</fields>
+        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.PHONE1</fields>
+        <relatedList>RelatedContactListIndividual</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
-        <fields>%%%NAMESPACE%%%Course_Offering__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Facility__c</relatedList>
+        <fields>FULL_NAME</fields>
+        <fields>LEAD.TITLE</fields>
+        <fields>LEAD.EMAIL</fields>
+        <fields>LEAD.PHONE</fields>
+        <relatedList>RelatedLeadListIndividual</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>false</showHighlightsPanel>
-    <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
-    <summaryLayout>
-        <masterLabel>00h54000001F9w9</masterLabel>
-        <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
 </Layout>

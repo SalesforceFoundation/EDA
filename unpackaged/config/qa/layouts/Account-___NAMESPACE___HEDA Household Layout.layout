@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
     <excludeButtons>Share</excludeButtons>
@@ -18,11 +17,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>RecordTypeId</field>
+                <field>ParentId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Phone</field>
+                <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -32,11 +31,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ParentId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Website</field>
+                <field>Phone</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -130,54 +125,12 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Address_Type__c</fields>
         <fields>%%%NAMESPACE%%%MailingStreet__c</fields>
         <fields>%%%NAMESPACE%%%MailingStreet2__c</fields>
         <fields>%%%NAMESPACE%%%MailingCity__c</fields>
         <fields>%%%NAMESPACE%%%MailingState__c</fields>
         <fields>%%%NAMESPACE%%%MailingPostalCode__c</fields>
         <relatedList>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Parent_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Display_Name__c</fields>
-        <fields>%%%NAMESPACE%%%Parent_Facility__c</fields>
-        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
-        <fields>%%%NAMESPACE%%%Capacity__c</fields>
-        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Account__c</relatedList>
-        <sortField>Display_Name__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Course_ID__c</fields>
-        <fields>%%%NAMESPACE%%%Credit_Hours__c</fields>
-        <fields>%%%NAMESPACE%%%Description__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Application_Submitted_Date__c</fields>
-        <fields>%%%NAMESPACE%%%Eligible_to_Enroll__c</fields>
-        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
-        <fields>%%%NAMESPACE%%%Credits_Attempted__c</fields>
-        <fields>%%%NAMESPACE%%%Credits_Earned__c</fields>
-        <fields>%%%NAMESPACE%%%GPA__c</fields>
-        <relatedList>%%%NAMESPACE%%%Program_Enrollment__c.%%%NAMESPACE%%%Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Start_Time__c</fields>
-        <fields>%%%NAMESPACE%%%End_Time__c</fields>
-        <relatedList>%%%NAMESPACE%%%Time_Block__c.%%%NAMESPACE%%%Educational_Institution__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Course_Offering__c</fields>
-        <fields>%%%NAMESPACE%%%Credits_Attempted__c</fields>
-        <fields>%%%NAMESPACE%%%Credits_Earned__c</fields>
-        <fields>%%%NAMESPACE%%%Grade__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
@@ -205,13 +158,13 @@
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>true</showHighlightsPanel>
+    <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h54000001F9wK</masterLabel>
-        <sizeX>1</sizeX>
+        <masterLabel>00h54000001F9wJ</masterLabel>
+        <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>

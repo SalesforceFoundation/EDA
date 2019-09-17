@@ -1,32 +1,285 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Account.%%%NAMESPACE%%%HEDA_Account_Compact_Layout</members>
-        <members>Contact.%%%NAMESPACE%%%HEDA_Contact_Compact_Layout</members>
+        <members>Case.BehMgt 2</members>
+        <name>BusinessProcess</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%HEDA_Course_Offering_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%HEDA_Course_Compact_Layout</members>
         <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%HEDA_Facility_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%HEDA_Plan_Requirement_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%HEDA_Relationship_Compact_Layout</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%HEDA_Term_Compact_Layout</members>
+        <members>Contact.%%%NAMESPACE%%%HEDA_Contact_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>*</members>
+        <members>%%%NAMESPACE%%%HEDA</members>
+        <members>Chatter_Answers_Moderator</members>
+        <members>HEDA</members>
+        <members>Service_Cloud_Console</members>
+        <members>standard__AllTabSet</members>
+        <members>standard__AppLauncher</members>
+        <members>standard__Chatter</members>
+        <members>standard__Community</members>
+        <members>standard__Insights</members>
+        <members>standard__LightningBolt</members>
+        <members>standard__LightningSales</members>
+        <members>standard__Marketing</members>
+        <members>standard__Platform</members>
+        <members>standard__Sales</members>
+        <members>standard__Service</members>
+        <members>standard__ServiceConsole</members>
         <name>CustomApplication</name>
     </types>
     <types>
-        <members>*</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Agency__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Attribute_Type__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%End_Date__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Expired__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Subject_Area__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Course_Offering__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%End_Time__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Facility__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Friday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Monday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Saturday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Start_Time__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Sunday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Thursday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Time_Block__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Tuesday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Wednesday__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Capacity__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Course__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%End_Date__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Facility__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Faculty__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Section_ID__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Term__c</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Time_Block__c</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Course_ID__c</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Credit_Hours__c</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Extended_Description__c</members>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Capacity__c</members>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Facility_Type__c</members>
+        <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Parent_Facility__c</members>
+        <members>%%%NAMESPACE%%%Facility__c.Display_Name__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Category__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Course__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Credits__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Plan_Requirement__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Program_Plan__c</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%Sequence__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Contact__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Description__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Emergency_Contact__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%ReciprocalRelationship__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%RelatedContact__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Relationship_Explanation__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%SYSTEM_SystemCreated__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Status__c</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Type__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Course_Connection__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Credits_Attempted__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Credits_Earned__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Letter_Grade__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Numerical_Grade__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Percent_Grade__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Result__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Term_Grade_Type__c</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%Term__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Account__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%End_Date__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Grading_Period_Sequence__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Instructional_Days__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Parent_Term__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Start_Date__c</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%Type__c</members>
+        <members>Contact.%%%NAMESPACE%%%AlternateEmail__c</members>
+        <members>Contact.%%%NAMESPACE%%%Chosen_Full_Name__c</members>
+        <members>Contact.%%%NAMESPACE%%%Citizenship__c</members>
+        <members>Contact.%%%NAMESPACE%%%Country_of_Origin__c</members>
+        <members>Contact.%%%NAMESPACE%%%Current_Address__c</members>
+        <members>Contact.%%%NAMESPACE%%%Deceased__c</members>
+        <members>Contact.%%%NAMESPACE%%%Do_Not_Contact__c</members>
+        <members>Contact.%%%NAMESPACE%%%Dual_Citizenship__c</members>
+        <members>Contact.%%%NAMESPACE%%%Ethnicity__c</members>
+        <members>Contact.%%%NAMESPACE%%%Exclude_from_Household_Formal_Greeting__c</members>
+        <members>Contact.%%%NAMESPACE%%%Exclude_from_Household_Informal_Greeting__c</members>
+        <members>Contact.%%%NAMESPACE%%%Exclude_from_Household_Name__c</members>
+        <members>Contact.%%%NAMESPACE%%%FERPA__c</members>
+        <members>Contact.%%%NAMESPACE%%%Financial_Aid_Applicant__c</members>
+        <members>Contact.%%%NAMESPACE%%%Gender__c</members>
+        <members>Contact.%%%NAMESPACE%%%HIPAA_Detail__c</members>
+        <members>Contact.%%%NAMESPACE%%%HIPAA__c</members>
+        <members>Contact.%%%NAMESPACE%%%Military_Background__c</members>
+        <members>Contact.%%%NAMESPACE%%%Military_Service__c</members>
+        <members>Contact.%%%NAMESPACE%%%Naming_Exclusions__c</members>
+        <members>Contact.%%%NAMESPACE%%%PreferredPhone__c</members>
+        <members>Contact.%%%NAMESPACE%%%Preferred_Email__c</members>
+        <members>Contact.%%%NAMESPACE%%%Primary_Address_Type__c</members>
+        <members>Contact.%%%NAMESPACE%%%Primary_Household__c</members>
+        <members>Contact.%%%NAMESPACE%%%Primary_Language__c</members>
+        <members>Contact.%%%NAMESPACE%%%Primary_Organization__c</members>
+        <members>Contact.%%%NAMESPACE%%%Race__c</members>
+        <members>Contact.%%%NAMESPACE%%%Religion__c</members>
+        <members>Contact.%%%NAMESPACE%%%Secondary_Address_Type__c</members>
+        <members>Contact.%%%NAMESPACE%%%Social_Security_Number__c</members>
+        <members>Contact.%%%NAMESPACE%%%UniversityEmail__c</members>
+        <members>Contact.%%%NAMESPACE%%%WorkEmail__c</members>
+        <members>Contact.%%%NAMESPACE%%%WorkPhone__c</members>
+        <members>Contact.%%%NAMESPACE%%%Work_Address__c</members>
+        <members>Contact.%%%NAMESPACE%%%is_Address_Override__c</members>
+        <members>Contact.AccountId</members>
+        <members>Contact.AssistantName</members>
+        <members>Contact.AssistantPhone</members>
+        <members>Contact.Birthdate</members>
+        <members>Contact.CanAllowPortalSelfReg</members>
+        <members>Contact.Department</members>
+        <members>Contact.Description</members>
+        <members>Contact.DoNotCall</members>
+        <members>Contact.Email</members>
+        <members>Contact.Fax</members>
+        <members>Contact.HasOptedOutOfEmail</members>
+        <members>Contact.HasOptedOutOfFax</members>
+        <members>Contact.HomePhone</members>
+        <members>Contact.IndividualId</members>
+        <members>Contact.Jigsaw</members>
+        <members>Contact.LastCURequestDate</members>
+        <members>Contact.LastCUUpdateDate</members>
+        <members>Contact.LeadSource</members>
+        <members>Contact.MailingAddress</members>
+        <members>Contact.MobilePhone</members>
+        <members>Contact.Name</members>
+        <members>Contact.OtherAddress</members>
+        <members>Contact.OtherPhone</members>
+        <members>Contact.OwnerId</members>
+        <members>Contact.Phone</members>
+        <members>Contact.Primary_Academic_Program__c</members>
+        <members>Contact.Primary_Department__c</members>
+        <members>Contact.Primary_Educational_Institution__c</members>
+        <members>Contact.Primary_Sports_Organization__c</members>
+        <members>Contact.ReportsToId</members>
+        <members>Contact.Title</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Error__c</members>
         <name>CustomTab</name>
     </types>
     <types>
-        <members>*</members>
+        <members>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c-%%%NAMESPACE%%%HEDA Course Offering Layout</members>
+        <members>%%%NAMESPACE%%%Facility__c-%%%NAMESPACE%%%HEDA Facility Layout</members>
+        <members>%%%NAMESPACE%%%Program_Enrollment__c-%%%NAMESPACE%%%HEDA Program Enrollment Layout</members>
+        <members>AccountBrand-Account Brand Layout</members>
+        <members>Account-%%%NAMESPACE%%%HEDA Household Layout</members>
+        <members>Account-%%%NAMESPACE%%%HEDA Organization Layout</members>
+        <members>Account-Account Layout</members>
+        <members>AssetRelationship-Asset Relationship Layout</members>
+        <members>Asset-Asset Layout</members>
+        <members>CampaignMember-Campaign Member Page Layout</members>
+        <members>Campaign-Campaign Layout</members>
+        <members>CaseClose-Close Case Layout</members>
+        <members>CaseInteraction-Case Feed Layout</members>
+        <members>CaseMilestone-Case Milestone Layout</members>
+        <members>Case-Case Layout</members>
+        <members>Case-Portal Case Layout</members>
+        <members>CommunityMemberLayout-Community Member Layout</members>
+        <members>Contact-%%%NAMESPACE%%%HEDA Contact Layout</members>
+        <members>Contact-Contact Layout</members>
+        <members>ContractLineItem-Contract Line Item Layout</members>
+        <members>Contract-Contract Layout</members>
+        <members>DuplicateRecordSet-Duplicate Record Set Layout</members>
+        <members>EmailMessage-Email Message Layout - Email-to-Case</members>
+        <members>Entitlement-Entitlement Layout</members>
+        <members>EntityMilestone-Object Milestone Layout</members>
+        <members>Event-Event Layout</members>
+        <members>FeedItem-Feed Item Layout</members>
+        <members>Global-Global Layout</members>
+        <members>Idea-Idea Layout</members>
+        <members>Individual-Individual Layout</members>
+        <members>Lead-Lead Layout</members>
+        <members>Macro-Macro Layout</members>
+        <members>OpportunityLineItem-Opportunity Product Layout</members>
+        <members>Opportunity-Opportunity Layout</members>
+        <members>OrderItem-Order Product Layout</members>
+        <members>Order-Order Layout</members>
+        <members>Pricebook2-Price Book Layout</members>
+        <members>PricebookEntry-Price Book Entry Layout</members>
+        <members>Product2-Product Layout</members>
+        <members>Question-Question Layout</members>
+        <members>QuickText-Quick Text Layout</members>
+        <members>Reply-Reply Layout</members>
+        <members>ScorecardAssociation-Scorecard Association Layout</members>
+        <members>ScorecardMetric-Scorecard Metric Layout</members>
+        <members>Scorecard-Scorecard Layout</members>
+        <members>ServiceContract-Service Contract Layout</members>
+        <members>SocialPersona-Social Persona Layout</members>
+        <members>SocialPost-Social Post Layout</members>
+        <members>Solution-Solution Layout</members>
+        <members>Task-Task Layout</members>
+        <members>UserProvAccount-User Provisioning Account Layout</members>
+        <members>UserProvisioningLog-User Provisioning Log Layout</members>
+        <members>UserProvisioningRequest-User Provisioning Request Layout</members>
+        <members>User-User Layout</members>
+        <members>Knowledge__kav-Knowledge Layout</members>
         <name>Layout</name>
     </types>
     <types>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%All</members>
         <members>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Plan_Requirement__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Term_Grade__c.%%%NAMESPACE%%%All</members>
+        <members>%%%NAMESPACE%%%Term__c.%%%NAMESPACE%%%All</members>
         <members>Account.All_Accounts</members>
         <members>Contact.All_Contacts</members>
         <name>ListView</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Admin</members>
+        <members>Analytics Cloud Integration User</members>
+        <members>Analytics Cloud Security User</members>
+        <members>CPQ Integration User</members>
+        <members>Chatter External User</members>
+        <members>Chatter Free User</members>
+        <members>Chatter Moderator User</members>
+        <members>Company Communities User</members>
+        <members>ContractManager</members>
+        <members>Guest License User</members>
+        <members>High Volume Customer Portal User</members>
+        <members>MarketingProfile</members>
+        <members>ReadOnly</members>
+        <members>ServiceCloud</members>
+        <members>SolutionManager</members>
+        <members>Standard</members>
+        <members>Trial Customer Portal User</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</members>
+        <members>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Contact_Do_Not_Change</members>
+        <members>%%%NAMESPACE%%%Relationship__c.%%%NAMESPACE%%%Related_Contact_Do_Not_Change</members>
+        <name>ValidationRule</name>
     </types>
     <version>45.0</version>
 </Package>

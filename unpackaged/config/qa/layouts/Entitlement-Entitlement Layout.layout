@@ -5,44 +5,72 @@
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
-        <label>Information</label>
+        <label>Entitlement Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Display_Name__c</field>
+                <behavior>Edit</behavior>
+                <field>Type</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>AccountId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Account__c</field>
+                <field>ServiceContractId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Parent_Facility__c</field>
+                <field>AssetId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsPerIncident</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CasesPerEntitlement</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Facility_Type__c</field>
+                <behavior>Readonly</behavior>
+                <field>Status</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>StatusIndicator</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Description__c</field>
+                <field>StartDate</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Capacity__c</field>
+                <field>EndDate</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BusinessHoursId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SlaProcessId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RemainingCases</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
@@ -60,9 +88,9 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
+        <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
+        <editHeading>false</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>
@@ -70,33 +98,28 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
-        <fields>%%%NAMESPACE%%%Capacity__c</fields>
-        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Parent_Facility__c</relatedList>
+        <fields>MT.MILESTONE</fields>
+        <fields>MT.DESCRIPTION</fields>
+        <fields>M.CRITERIA</fields>
+        <fields>M.MINUTES_TO_COMPLETE</fields>
+        <relatedList>RelatedMilestoneList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>CASES.CASE_NUMBER</fields>
         <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Section_ID__c</fields>
-        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
-        <fields>%%%NAMESPACE%%%End_Date__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Facility__c</relatedList>
+        <fields>CASES.SUBJECT</fields>
+        <fields>CASES.PRIORITY</fields>
+        <fields>CASES.CREATED_DATE</fields>
+        <fields>CASES.STATUS</fields>
+        <fields>OWNER_NAME</fields>
+        <relatedList>RelatedCaseList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
-        <fields>%%%NAMESPACE%%%Course_Offering__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Facility__c</relatedList>
+        <fields>CONTACT.NAME</fields>
+        <fields>CREATEDBY_USER.NAME</fields>
+        <relatedList>RelatedEntitlementContactList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>false</showHighlightsPanel>
-    <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
-    <summaryLayout>
-        <masterLabel>00h54000001F9w9</masterLabel>
-        <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
 </Layout>

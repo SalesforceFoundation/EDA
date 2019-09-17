@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Stores student grades for a specific grading period within a Term.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Course_Connection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The class in which the student received this grade.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The class in which the student received this grade.</inlineHelpText>
+        <label>Course Connection</label>
+        <referenceTo>%%%NAMESPACE%%%Course_Enrollment__c</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Credits_Attempted__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of credits attempted for this course and grading period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of credits attempted for this course and grading period.</inlineHelpText>
+        <label>Credits Attempted</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Credits_Earned__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of credits earned for this course and grading period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of credits earned for this course and grading period.</inlineHelpText>
+        <label>Credits Earned</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Letter_Grade__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value.</inlineHelpText>
+        <label>Letter Grade</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Numerical_Grade__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The numerical grade the student earned for this course, which can be based on any non-percentage number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The numerical grade the student earned for this course, which can be based on any non-percentage number.</inlineHelpText>
+        <label>Numerical Grade</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Percent_Grade__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The percentage grade the student earned for this course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The percentage grade the student earned for this course.</inlineHelpText>
+        <label>Percent Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Result__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The result of the student&apos;s performance for this grading period.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The result of the student&apos;s performance for this grading period.</inlineHelpText>
+        <label>Result</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Audit</fullName>
+                    <default>false</default>
+                    <label>Audit</label>
+                </value>
+                <value>
+                    <fullName>Dropped</fullName>
+                    <default>false</default>
+                    <label>Dropped</label>
+                </value>
+                <value>
+                    <fullName>Fail</fullName>
+                    <default>false</default>
+                    <label>Fail</label>
+                </value>
+                <value>
+                    <fullName>Pass</fullName>
+                    <default>false</default>
+                    <label>Pass</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Term_Grade_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of term or grading period for which this grade is being recorded.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of term or grading period for which this grade is being recorded.</inlineHelpText>
+        <label>Term Grade Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Exam Grade</fullName>
+                    <default>false</default>
+                    <label>Exam Grade</label>
+                </value>
+                <value>
+                    <fullName>Final Grade</fullName>
+                    <default>false</default>
+                    <label>Final Grade</label>
+                </value>
+                <value>
+                    <fullName>Grading Period</fullName>
+                    <default>false</default>
+                    <label>Grading Period</label>
+                </value>
+                <value>
+                    <fullName>Mid-Term Grade</fullName>
+                    <default>false</default>
+                    <label>Mid-Term Grade</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The term or grading period for which this grade is being recorded.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The term or grading period for which this grade is being recorded.</inlineHelpText>
+        <label>Term</label>
+        <referenceTo>%%%NAMESPACE%%%Term__c</referenceTo>
+        <relationshipLabel>Term Grades</relationshipLabel>
+        <relationshipName>Term_Grades</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Term Grade</label>
+    <listViews>
+        <fullName>%%%NAMESPACE%%%All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TG-{0000}</displayFormat>
+        <label>Term Grade Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Term Grades</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Course_Connection__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Term__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Term_Grade_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Letter_Grade__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

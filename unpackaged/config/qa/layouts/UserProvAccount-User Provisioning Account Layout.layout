@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Display_Name__c</field>
+                <behavior>Required</behavior>
+                <field>Status</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>SalesforceUserId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Account__c</field>
+                <field>ExternalUsername</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Parent_Facility__c</field>
+                <field>ExternalFirstName</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Facility_Type__c</field>
+                <field>ConnectedAppId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>LinkState</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Description__c</field>
+                <field>ExternalUserId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>%%%NAMESPACE%%%Capacity__c</field>
+                <field>ExternalEmail</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ExternalLastName</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
@@ -60,43 +71,13 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
+        <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <editHeading>false</editHeading>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
-        <fields>%%%NAMESPACE%%%Capacity__c</fields>
-        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Parent_Facility__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Section_ID__c</fields>
-        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
-        <fields>%%%NAMESPACE%%%End_Date__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering__c.%%%NAMESPACE%%%Facility__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>%%%NAMESPACE%%%Time_Block__c</fields>
-        <fields>%%%NAMESPACE%%%Course_Offering__c</fields>
-        <relatedList>%%%NAMESPACE%%%Course_Offering_Schedule__c.%%%NAMESPACE%%%Facility__c</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>false</showHighlightsPanel>
-    <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
-    <summaryLayout>
-        <masterLabel>00h54000001F9w9</masterLabel>
-        <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
 </Layout>

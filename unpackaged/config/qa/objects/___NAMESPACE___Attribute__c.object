@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>A characteristic of or a credential held by the associated Contact. For example, an Attribute record with a Credential record type can indicate that a faculty member has a Multiple Subject Teaching Credential.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Agency__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The agency that provided or certified the credential.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The agency that provided or certified the credential.</inlineHelpText>
+        <label>Agency</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Attributes</relationshipLabel>
+        <relationshipName>Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Attribute_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of credential or Attribute.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of credential or Attribute.</inlineHelpText>
+        <label>Attribute Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Certification</fullName>
+                    <default>false</default>
+                    <label>Certification</label>
+                </value>
+                <value>
+                    <fullName>Endorsement</fullName>
+                    <default>false</default>
+                    <label>Endorsement</label>
+                </value>
+                <value>
+                    <fullName>Licensure</fullName>
+                    <default>false</default>
+                    <label>Licensure</label>
+                </value>
+                <value>
+                    <fullName>Accommodation</fullName>
+                    <default>false</default>
+                    <label>Accommodation</label>
+                </value>
+                <value>
+                    <fullName>Asylee</fullName>
+                    <default>false</default>
+                    <label>Asylee</label>
+                </value>
+                <value>
+                    <fullName>Economically Disadvantaged</fullName>
+                    <default>false</default>
+                    <label>Economically Disadvantaged</label>
+                </value>
+                <value>
+                    <fullName>English Learners</fullName>
+                    <default>false</default>
+                    <label>English Learners</label>
+                </value>
+                <value>
+                    <fullName>Family Consideration</fullName>
+                    <default>false</default>
+                    <label>Family Consideration</label>
+                </value>
+                <value>
+                    <fullName>Foster Care</fullName>
+                    <default>false</default>
+                    <label>Foster Care</label>
+                </value>
+                <value>
+                    <fullName>Free Lunch</fullName>
+                    <default>false</default>
+                    <label>Free Lunch</label>
+                </value>
+                <value>
+                    <fullName>Homeless</fullName>
+                    <default>false</default>
+                    <label>Homeless</label>
+                </value>
+                <value>
+                    <fullName>Immigrant</fullName>
+                    <default>false</default>
+                    <label>Immigrant</label>
+                </value>
+                <value>
+                    <fullName>International Student</fullName>
+                    <default>false</default>
+                    <label>International Student</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Parent in Military</fullName>
+                    <default>false</default>
+                    <label>Parent in Military</label>
+                </value>
+                <value>
+                    <fullName>Pregnant</fullName>
+                    <default>false</default>
+                    <label>Pregnant</label>
+                </value>
+                <value>
+                    <fullName>Reduced Price Lunch</fullName>
+                    <default>false</default>
+                    <label>Reduced Price Lunch</label>
+                </value>
+                <value>
+                    <fullName>Refugee</fullName>
+                    <default>false</default>
+                    <label>Refugee</label>
+                </value>
+                <value>
+                    <fullName>Section 504 Handicapped</fullName>
+                    <default>false</default>
+                    <label>Section 504 Handicapped</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The Contact the Attribute is assigned to.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact the Attribute is assigned to.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Attributes</relationshipLabel>
+        <relationshipName>Attributes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A description of the credential or Attribute.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A description of the credential or Attribute.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%End_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date when the credential or Attribute expires or requires renewal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the credential or Attribute expires or requires renewal.</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Expired__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</description>
+        <externalId>false</externalId>
+        <formula>TODAY() &gt;  %%%NAMESPACE%%%End_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</inlineHelpText>
+        <label>Expired</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Start_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The issue date for the credential or Attribute.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The issue date for the credential or Attribute.</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Subject_Area__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The content or subject area that a credential is for.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The content or subject area that a credential is for.</inlineHelpText>
+        <label>Subject Area</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Biology</fullName>
+                    <default>false</default>
+                    <label>Biology</label>
+                </value>
+                <value>
+                    <fullName>Career and Technical Education</fullName>
+                    <default>false</default>
+                    <label>Career and Technical Education</label>
+                </value>
+                <value>
+                    <fullName>Economics</fullName>
+                    <default>false</default>
+                    <label>Economics</label>
+                </value>
+                <value>
+                    <fullName>English Language Arts</fullName>
+                    <default>false</default>
+                    <label>English Language Arts</label>
+                </value>
+                <value>
+                    <fullName>Fine and Performing Arts</fullName>
+                    <default>false</default>
+                    <label>Fine and Performing Arts</label>
+                </value>
+                <value>
+                    <fullName>Foreign Language</fullName>
+                    <default>false</default>
+                    <label>Foreign Language</label>
+                </value>
+                <value>
+                    <fullName>History</fullName>
+                    <default>false</default>
+                    <label>History</label>
+                </value>
+                <value>
+                    <fullName>Life and Physical Sciences</fullName>
+                    <default>false</default>
+                    <label>Life and Physical Sciences</label>
+                </value>
+                <value>
+                    <fullName>Mathematics</fullName>
+                    <default>false</default>
+                    <label>Mathematics</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Physical, Health, and Safety Education</fullName>
+                    <default>false</default>
+                    <label>Physical, Health, and Safety Education</label>
+                </value>
+                <value>
+                    <fullName>Physics</fullName>
+                    <default>false</default>
+                    <label>Physics</label>
+                </value>
+                <value>
+                    <fullName>Psychology</fullName>
+                    <default>false</default>
+                    <label>Psychology</label>
+                </value>
+                <value>
+                    <fullName>Science</fullName>
+                    <default>false</default>
+                    <label>Science</label>
+                </value>
+                <value>
+                    <fullName>Social Studies</fullName>
+                    <default>false</default>
+                    <label>Social Studies</label>
+                </value>
+                <value>
+                    <fullName>Sociology</fullName>
+                    <default>false</default>
+                    <label>Sociology</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Attribute</label>
+    <listViews>
+        <fullName>%%%NAMESPACE%%%All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Attribute Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Attributes</pluralLabel>
+    <recordTypes>
+        <fullName>%%%NAMESPACE%%%Credential</fullName>
+        <active>true</active>
+        <description>Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students.</description>
+        <label>Credential</label>
+        <picklistValues>
+            <picklist>%%%NAMESPACE%%%Attribute_Type__c</picklist>
+            <values>
+                <fullName>Certification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Endorsement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Licensure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>%%%NAMESPACE%%%Subject_Area__c</picklist>
+            <values>
+                <fullName>Biology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Career and Technical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>%%%NAMESPACE%%%Student_Characteristic</fullName>
+        <active>true</active>
+        <description>Allows educational institutions to track important student characteristics that might affect students&apos; education.</description>
+        <label>Student Characteristic</label>
+        <picklistValues>
+            <picklist>%%%NAMESPACE%%%Attribute_Type__c</picklist>
+            <values>
+                <fullName>Accommodation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asylee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economically Disadvantaged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Learners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Family Consideration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foster Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Lunch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homeless</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Immigrant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Student</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parent in Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pregnant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reduced Price Lunch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refugee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Section 504 Handicapped</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>%%%NAMESPACE%%%Subject_Area__c</picklist>
+            <values>
+                <fullName>Biology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Career and Technical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Attribute_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Agency__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Subject_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Expired__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%End_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

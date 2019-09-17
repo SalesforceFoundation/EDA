@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>%%%NAMESPACE%%%HEDA_Facility_Compact_Layout</compactLayoutAssignment>
     <compactLayouts>
         <fullName>%%%NAMESPACE%%%HEDA_Facility_Compact_Layout</fullName>
@@ -9,21 +50,179 @@
         <fields>Display_Name__c</fields>
         <label>HEDA Facility Compact Layout</label>
     </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>A school property asset. For example, a classroom, lecture hall, or laboratory.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Display_Name__c</fullName>
+        <description>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</description>
+        <externalId>false</externalId>
+        <formula>IF(
+    NOT(ISBLANK(%%%NAMESPACE%%%Parent_Facility__c)), %%%NAMESPACE%%%Parent_Facility__r.Name + &apos; - &apos; + Name,
+    IF(
+        NOT(ISBLANK(%%%NAMESPACE%%%Account__c)), %%%NAMESPACE%%%Account__r.Name + &apos; - &apos; + Name, 
+        Name
+    )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The full name of the Facility. For example, &quot;Thomas Edison Building - Room 201.&quot;</inlineHelpText>
+        <label>Display Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The organization that is responsible for the Facility.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The organization that is responsible for the Facility.</inlineHelpText>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Facilities</relationshipLabel>
+        <relationshipName>Facilities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Capacity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The maximum number of occupants the Facility can hold.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The maximum number of occupants the Facility can hold.</inlineHelpText>
+        <label>Capacity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A description of this Facility.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A description of this Facility.</inlineHelpText>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Facility_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of Facility.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of Facility.</inlineHelpText>
+        <label>Facility Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Building</fullName>
+                    <default>false</default>
+                    <label>Building</label>
+                </value>
+                <value>
+                    <fullName>Cafeteria/Food Hall</fullName>
+                    <default>false</default>
+                    <label>Cafeteria/Food Hall</label>
+                </value>
+                <value>
+                    <fullName>Classroom</fullName>
+                    <default>false</default>
+                    <label>Classroom</label>
+                </value>
+                <value>
+                    <fullName>Computer Lab</fullName>
+                    <default>false</default>
+                    <label>Computer Lab</label>
+                </value>
+                <value>
+                    <fullName>Gymnasium</fullName>
+                    <default>false</default>
+                    <label>Gymnasium</label>
+                </value>
+                <value>
+                    <fullName>Health Center</fullName>
+                    <default>false</default>
+                    <label>Health Center</label>
+                </value>
+                <value>
+                    <fullName>Laboratory</fullName>
+                    <default>false</default>
+                    <label>Laboratory</label>
+                </value>
+                <value>
+                    <fullName>Lecture Hall</fullName>
+                    <default>false</default>
+                    <label>Lecture Hall</label>
+                </value>
+                <value>
+                    <fullName>Library</fullName>
+                    <default>false</default>
+                    <label>Library</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>%%%NAMESPACE%%%Parent_Facility__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</inlineHelpText>
+        <label>Parent Facility</label>
+        <referenceTo>%%%NAMESPACE%%%Facility__c</referenceTo>
+        <relationshipLabel>Facilities</relationshipLabel>
+        <relationshipName>Facilities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Facility</label>
     <listViews>
         <fullName>%%%NAMESPACE%%%All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <nameField>
+        <label>Facility Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Facilities</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>%%%NAMESPACE%%%Capacity__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Display_Name__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Display_Name__c</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Display_Name__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Display_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Parent_Facility__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>%%%NAMESPACE%%%Capacity__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Display_Name__c</searchResultsAdditionalFields>
     </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

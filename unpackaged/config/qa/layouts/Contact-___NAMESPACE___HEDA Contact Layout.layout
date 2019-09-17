@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>Clone</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortal</excludeButtons>
     <excludeButtons>DisablePartnerPortal</excludeButtons>
     <excludeButtons>DisablePrmSuperUser</excludeButtons>
@@ -9,7 +8,6 @@
     <excludeButtons>EnablePrmSuperUser</excludeButtons>
     <excludeButtons>EnableSelfService</excludeButtons>
     <excludeButtons>RequestUpdate</excludeButtons>
-    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <excludeButtons>ViewPartnerPortalUser</excludeButtons>
@@ -23,6 +21,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>%%%NAMESPACE%%%Chosen_Full_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -326,6 +328,20 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <relatedList>%%%NAMESPACE%%%Attendance_Event__c.%%%NAMESPACE%%%Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>%%%NAMESPACE%%%Role__c</fields>
+        <fields>%%%NAMESPACE%%%Case__c</fields>
+        <relatedList>%%%NAMESPACE%%%Behavior_Involvement__c.%%%NAMESPACE%%%Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>%%%NAMESPACE%%%Account__c</fields>
         <fields>%%%NAMESPACE%%%Eligible_to_Enroll__c</fields>
         <fields>%%%NAMESPACE%%%Admission_Date__c</fields>
@@ -388,7 +404,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hS0000001GSUv</masterLabel>
+        <masterLabel>00h54000001F9wM</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
