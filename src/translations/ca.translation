@@ -73,25 +73,26 @@
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-            <label><!-- NoFieldsPopulated --></label>
-            <name>NoFieldsPopulated</name>
-        </customLabels>
-        <customLabels><name>NoneOption</name>
+        <label><!-- NoFieldsPopulated --></label>
+        <name>NoFieldsPopulated</name>
+    </customLabels>
+    <customLabels>
+        <name>NoneOption</name>
         <label>--Cap--</label>
     </customLabels>
     <customLabels>
-            <label><!-- OnlyContactPopulated --></label>
-            <name>OnlyContactPopulated</name>
-        </customLabels>
+        <label><!-- OnlyContactPopulated --></label>
+        <name>OnlyContactPopulated</name>
+    </customLabels>
         <customLabels>
-            <label><!-- OnlyCourseConnectionPopulated --></label>
-            <name>OnlyCourseConnectionPopulated</name>
-        </customLabels>
-        <customLabels>
-            <label><!-- OnlyCourseOfferingPopulated --></label>
-            <name>OnlyCourseOfferingPopulated</name>
-        </customLabels>
-        <customLabels>
+        <label><!-- OnlyCourseConnectionPopulated --></label>
+        <name>OnlyCourseConnectionPopulated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OnlyCourseOfferingPopulated --></label>
+        <name>OnlyCourseOfferingPopulated</name>
+    </customLabels>
+    <customLabels>
         <name>PreferredEmailMatchMustExist</name>
         <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l'etiqueta del camp d'un camp de correu electrònic personalitzat existent.</label>
     </customLabels>
