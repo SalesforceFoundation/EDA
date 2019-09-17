@@ -80,8 +80,6 @@ public class UTIL_UnitTestData_TEST {
     /*********************************************************************************************************
     * @description Gets a Unique Contact for testing based on the parameter.
     * @param n An integer to create unique Contact records.
-    * @param courseOfferingId The Course Offering of the Term Grade.
-    * @param courseConnectionId The Course Connection of the Term Grade.
     * @return The Contact record.
     **********************************************************************************************************/
 
@@ -553,7 +551,10 @@ public class UTIL_UnitTestData_TEST {
 
     /*********************************************************************************************************
     * @description Gets a Attendance Event with fields for testing.
-    * @param ContactId, CourseConnectionID, attendanceType, Reason 
+    * @param contactId The contact to be associated with the Attendance Event
+    * @param courseConnectionID The Course Connection to be associated with the Attendance Event
+    * @param attendanceType The type of Attendance Event
+    * @param reason The reason for Attendance Event
     * @return The Attendance Event record.
     **********************************************************************************************************/
     public static Attendance_Event__c getAttendanceEvent(Id contactId, Id courseConnectionID, String attendanceType, String reason) {
