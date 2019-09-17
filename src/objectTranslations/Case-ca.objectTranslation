@@ -62,4 +62,9 @@
         <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
+    <recordTypes>
+        <description><!-- An event that’s being tracked by this Case. --></description>
+        <label><!-- Incident --></label>
+        <name>Incident</name>
+    </recordTypes>
 </CustomObjectTranslation>

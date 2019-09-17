@@ -1,70 +1,66 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Plazos</relationshipLabel>
-    <label>Cuenta</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <label>Fecha de finalización</label>
-  </fields>
-  <fields>
-    <name>Grading_Period_Sequence__c</name>
-    <label>Secuencia de periodo de evaluación</label>
-  </fields>
-  <fields>
-    <name>Instructional_Days__c</name>
-    <label>Jornadas didácticas</label>
-  </fields>
-  <fields>
-    <name>Parent_Term__c</name>
-    <relationshipLabel>Plazos</relationshipLabel>
-    <label>Plazo principal</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <label>Fecha de inicio</label>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <label>Tipo</label>
-    <picklistValues>
-      <masterLabel>Quarter</masterLabel>
-      <translation>Trimestre</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Semester</masterLabel>
-      <translation>Semestre</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>School Year</masterLabel>
-      <translation>Curso lectivo</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Part of Term</masterLabel>
-      <translation>Parte de plazo</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>HEDA Term Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de plazo</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de plazo</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Plazo</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Plazos</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Plazo</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Plazos</value>
+    </caseValues>
+    <fields>
+        <label>Cuenta</label>
+        <name>Account__c</name>
+        <relationshipLabel>Plazos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Fecha de finalización</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Secuencia de periodo de evaluación</label>
+        <name>Grading_Period_Sequence__c</name>
+    </fields>
+    <fields>
+        <label>Jornadas didácticas</label>
+        <name>Instructional_Days__c</name>
+    </fields>
+    <fields>
+        <label>Plazo principal</label>
+        <name>Parent_Term__c</name>
+        <relationshipLabel>Plazos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Fecha de inicio</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Tipo</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Part of Term</masterLabel>
+            <translation>Parte de plazo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarter</masterLabel>
+            <translation>Trimestre</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Year</masterLabel>
+            <translation>Curso lectivo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semester</masterLabel>
+            <translation>Semestre</translation>
+        </picklistValues>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Term Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de plazo</nameFieldLabel>
 </CustomObjectTranslation>
