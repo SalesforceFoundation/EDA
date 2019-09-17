@@ -552,6 +552,20 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Gets a Attendance Event with fields for testing.
+    * @param ContactId, CourseConnectionID, attendanceType, Reason 
+    * @return The Attendance Event record.
+    **********************************************************************************************************/
+    public static Attendance_Event__c getAttendanceEvent(Id contactId, Id courseConnectionID, String attendanceType, String reason) {
+        Attendance_Event__c attd = new Attendance_Event__c();
+        attd.Contact__c = contactId;
+        attd.Course_Connection__c = courseConnectionID;
+        attd.Attendance_Type__c = attendanceType;
+        attd.Reason__c = reason;
+        return attd;
+    }
+
+    /*********************************************************************************************************
     * @description Gets a Facility for testing.
     * @return The Facility record.
     **********************************************************************************************************/

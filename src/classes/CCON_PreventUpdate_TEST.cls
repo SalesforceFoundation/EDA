@@ -126,10 +126,8 @@ private class CCON_PreventUpdate_TEST {
         update courseEnrollment;
         
         // Insert Attendance Event
-        Attendance_Event__c AttendanceEvent = UTIL_UnitTestData_TEST.getAttendanceEvent();
-        AttendanceEvent.Contact__c = con.Id;
-        AttendanceEvent.Course_Connection__c = courseEnrollment.Id;
-        insert AttendanceEvent;
+        Attendance_Event__c attendanceEvent = UTIL_UnitTestData_TEST.getAttendanceEvent(con.Id, courseEnrollment.Id, 'Class Absence', 'Medical');
+        insert attendanceEvent;
         
         //Insert a contact
         Contact newCon = UTIL_UnitTestData_TEST.getUniqueContact(03);
@@ -165,10 +163,8 @@ private class CCON_PreventUpdate_TEST {
         insert termGrade;
         
         // Insert Attendance Event
-        Attendance_Event__c AttendanceEvent = UTIL_UnitTestData_TEST.getAttendanceEvent();
-        AttendanceEvent.Contact__c = con.Id;
-        AttendanceEvent.Course_Connection__c = courseEnrollment.Id;
-        insert AttendanceEvent;
+        Attendance_Event__c attendanceEvent = UTIL_UnitTestData_TEST.getAttendanceEvent(con.Id, courseEnrollment.Id, 'Class Absence', 'Medical');
+        insert attendanceEvent;
         
         //Insert a contact
         Contact newCon = UTIL_UnitTestData_TEST.getUniqueContact(04);

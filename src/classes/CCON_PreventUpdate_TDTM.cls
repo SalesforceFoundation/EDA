@@ -49,19 +49,20 @@ public with sharing class CCON_PreventUpdate_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
-        Map<ID, sObject> newMap = new Map<ID, sObject>(newList);
+        Map<Id, Course_Enrollment__c> newMap = new Map<Id, Course_Enrollment__c>((List<Course_Enrollment__c>)newList);
         
         if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) { 
             for (Course_Enrollment__c courseEnrollment: [SELECT Id, Contact__c, Course_Offering__c, (SELECT Id FROM Term_Grades__r LIMIT 1), (SELECT Id FROM Attendance_Events__r LIMIT 1) FROM Course_Enrollment__c WHERE Id IN :newlist]) {
       
-                Boolean contactChanged = (courseEnrollment.Contact__c != ((Course_Enrollment__c)newMap.get(courseEnrollment.Id)).Contact__c);
-                Boolean courseOfferingChanged = (courseEnrollment.Course_Offering__c != ((Course_Enrollment__c)newMap.get(courseEnrollment.Id)).Course_Offering__c);
+                Boolean contactChanged = (courseEnrollment.Contact__c != (newMap.get(courseEnrollment.Id)).Contact__c);
+                Boolean courseOfferingChanged = (courseEnrollment.Course_Offering__c != (newMap.get(courseEnrollment.Id)).Course_Offering__c);
+
                 Boolean hasTermGradesOrAttendanceEvents = (courseEnrollment.Term_Grades__r.size() > 0 || courseEnrollment.Attendance_Events__r.size() > 0);
                 
                 // Prevent changes to Course Offering or Contact look ups if there are Term Grades or Attendance Events associated with the Course Connection
 
                 if ((contactChanged || courseOfferingChanged) && hasTermGradesOrAttendanceEvents) {                   
-                    Course_Enrollment__c courseEnrollmentInContext = ((Course_Enrollment__c)newMap.get(courseEnrollment.Id));
+                    Course_Enrollment__c courseEnrollmentInContext = newMap.get(courseEnrollment.Id);
                     courseEnrollmentInContext.addError(Label.CannotChangeContactAndCourseOffering);                
                }           
             }
