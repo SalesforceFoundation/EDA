@@ -45,8 +45,6 @@
         <members>CMP_SettingsDataProvider_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
-        <members>COFF_PreventUpdate_TDTM</members>
-        <members>COFF_PreventUpdate_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
@@ -516,7 +514,6 @@
         <members>BatchJobRunningProblem</members>
         <members>BothFieldAndValue</members>
         <members>CannotChangeContactAndCourseOffering</members>
-        <members>CannotChangeCourse</members>
         <members>CannotDelete</members>
         <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
@@ -802,14 +799,17 @@
         <members>Attribute__c-es</members>
         <members>Attribute__c-fr</members>
         <members>Behavior_Involvement__c-ca</members>
+        <members>Behavior_Involvement__c-en_GB</members>
         <members>Behavior_Involvement__c-en_US</members>
         <members>Behavior_Involvement__c-es</members>
         <members>Behavior_Involvement__c-fr</members>
         <members>Behavior_Response__c-ca</members>
+        <members>Behavior_Response__c-en_GB</members>
         <members>Behavior_Response__c-en_US</members>
         <members>Behavior_Response__c-es</members>
         <members>Behavior_Response__c-fr</members>
         <members>Case-ca</members>
+        <members>Case-en_GB</members>
         <members>Case-es</members>
         <members>Case-fr</members>
         <members>Contact-ca</members>

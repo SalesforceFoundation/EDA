@@ -27,11 +27,7 @@
     <customLabels>
         <label><!-- Cannot Change Contact And Course Offering --></label>
         <name>CannotChangeContactAndCourseOffering</name>
-    </customLabels>
-    <customLabels>
-            <label><!-- Cannot Change Course --></label>
-            <name>CannotChangeCourse</name>
-        </customLabels>    
+    </customLabels>  
     <customLabels>
         <name>CannotDelete</name>
         <label>Record cannot be deleted because children records exist. Delete children first.</label>

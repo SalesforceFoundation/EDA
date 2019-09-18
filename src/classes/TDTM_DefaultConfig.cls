@@ -218,11 +218,6 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'TGRD_ValidateData_TDTM', Load_Order__c = 1, Object__c = 'Term_Grade__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));  
-      
-        // Prevents changes to the Course lookup field on a Course Offering if there are Term Grades associated with it.
-        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
-                Class__c = 'COFF_PreventUpdate_TDTM', Load_Order__c = 2, Object__c = 'Course_Offering__c',
-                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeUpdate'));
                 
         // Prevents changes to a Contact or Course Offering on a Course Connection when a Term Grade or an Attendance Event is present on the Course Connection.
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,

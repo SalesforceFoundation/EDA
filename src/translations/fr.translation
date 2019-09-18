@@ -29,10 +29,6 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label><!-- Cannot Change Course --></label>
-        <name>CannotChangeCourse</name>
-    </customLabels>
-    <customLabels>
         <label>Impossible de supprimer l&apos;enregistrement, car des enregistrements enfants existent. Supprimez d&apos;abord les enregistrements enfants.</label>
         <name>CannotDelete</name>
     </customLabels>

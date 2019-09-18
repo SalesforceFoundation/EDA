@@ -29,10 +29,6 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label><!-- Cannot Change Course --></label>
-        <name>CannotChangeCourse</name>
-    </customLabels>
-    <customLabels>
         <label>No se puede eliminar el registro porque existen registros de relacionados. Elimine primero los registros secundarios.</label>
         <name>CannotDelete</name>
     </customLabels>
