@@ -29,8 +29,8 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>No se puede eliminar el registro porque existen registros secundarios. Elimine los secundarios primero.</label>
         <name>CannotDelete</name>
+        <label>No se puede eliminar el registro porque existen registros secundarios. Elimine los secundarios primero.</label>
     </customLabels>
     <customLabels>
         <name>DefaultAccountName</name>
