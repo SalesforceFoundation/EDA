@@ -57,6 +57,14 @@
         <value>Record cannot be deleted because children records exist. Delete children first.</value>
     </labels>
     <labels>
+        <fullName>CannotDeleteTerm</fullName>
+        <categories>Terms</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CannotDeleteTerms</shortDescription>
+        <value>Can&apos;t delete a Term that has associated Term Grades.</value>
+    </labels>
+    <labels>
         <fullName>DefaultAccountName</fullName>
         <categories>Account Naming</categories>
         <language>en_US</language>

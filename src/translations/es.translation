@@ -29,6 +29,10 @@
         <label>No se puede eliminar el registro porque existen registros secundarios. Elimine los secundarios primero.</label>
     </customLabels>
     <customLabels>
+        <label><!-- CannotDeleteTerms --></label>
+        <name>CannotDeleteTerm</name>
+    </customLabels>
+    <customLabels>
         <name>DefaultAccountName</name>
         <label>Cuenta</label>
     </customLabels>

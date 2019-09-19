@@ -218,6 +218,11 @@ public without sharing class TDTM_DefaultConfig {
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
                 Class__c = 'TGRD_ValidateData_TDTM', Load_Order__c = 1, Object__c = 'Term_Grade__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));  
+       
+        // Prevents deletion of Terms when the records are associated with Term Grades
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'TERM_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Term__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
       
         return handlers;
     }

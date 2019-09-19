@@ -116,15 +116,17 @@
         <members>TDTM_TriggerActionHelper</members>
         <members>TDTM_TriggerHandler</members>
         <members>TDTM_TriggerScaffolds_TEST</members>
+        <members>TERM_CannotDelete_TDTM</members>
+        <members>TERM_CannotDelete_TEST</members>
         <members>TERM_CourseOff_TDTM</members>
         <members>TERM_CourseOff_TEST</members>
+        <members>TGRD_TermGradeValidator</members>
         <members>TGRD_ValidateData_TDTM</members>
         <members>TGRD_ValidateData_TEST</members>
         <members>THAN_ClearCache_TDTM</members>
         <members>THAN_ClearCache_TEST</members>
         <members>THAN_Filter_TDTM</members>
         <members>THAN_Filter_TEST</members>
-        <members>TGRD_TermGradeValidator</members>
         <members>UTIL_ACCT_Naming</members>
         <members>UTIL_CustomSettingsFacade</members>
         <members>UTIL_CustomSettingsFacade_TEST</members>
@@ -512,6 +514,7 @@
         <members>BatchJobRunningProblem</members>
         <members>BothFieldAndValue</members>
         <members>CannotDelete</members>
+        <members>CannotDeleteTerm</members>
         <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>

@@ -29,6 +29,10 @@
         <label>Impossible de supprimer l'enregistrement, car des enregistrements enfants existent. Supprimez d'abord les enregistrements enfants.</label>
     </customLabels>
     <customLabels>
+        <label><!-- CannotDeleteTerms --></label>
+        <name>CannotDeleteTerm</name>
+    </customLabels>
+    <customLabels>
         <name>DefaultAccountName</name>
         <label>Compte</label>
     </customLabels>

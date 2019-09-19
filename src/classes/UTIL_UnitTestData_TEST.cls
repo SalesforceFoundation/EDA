@@ -441,6 +441,19 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Gets a Term for testing.
+    * @param accountId Account to assocaite Term with.
+    * @param termName The Term.
+    * @return The Term record.
+    **********************************************************************************************************/
+    public static Term__c getTerm(Id accountID, String termName) {
+        Term__c term = new Term__c();
+        term.Account__c = accountID;
+        term.Name = termName;
+        return term;
+    }
+
+    /*********************************************************************************************************
     * @description Inserts a new Course Offering record for testing.
     * @param courseId The Course to which the Course Offering will be associated. If blank, a new Course record
     * will be inserted.

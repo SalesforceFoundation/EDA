@@ -29,6 +29,10 @@
         <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
     </customLabels>
     <customLabels>
+        <label><!-- CannotDeleteTerms --></label>
+        <name>CannotDeleteTerm</name>
+    </customLabels>
+    <customLabels>
         <name>DefaultAccountName</name>
         <label>Compte</label>
     </customLabels>
