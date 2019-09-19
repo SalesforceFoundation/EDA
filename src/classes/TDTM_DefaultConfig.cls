@@ -221,7 +221,7 @@ public without sharing class TDTM_DefaultConfig {
                 
         // Prevents changes to a Contact or Course Offering on a Course Connection when a Term Grade or an Attendance Event is present on the Course Connection.
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
-                Class__c = 'CCON_PreventUpdate_TDTM', Load_Order__c = 3, Object__c = 'Course_Enrollment__c',
+                Class__c = 'CCON_PreventUpdate_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeUpdate'));          
       
         return handlers;
