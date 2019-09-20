@@ -76,7 +76,7 @@ private class TERM_CannotDelete_TEST {
                 delete term;
             Test.stopTest();    
         } catch (Exception error) {
-            System.assert(error.getMessage().contains(Label.CannotDeleteTerm));      
+            System.assert(error.getMessage().contains(Label.CannotDelete));      
         }
     }
 

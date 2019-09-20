@@ -29,10 +29,6 @@
         <label>Record cannot be deleted because children records exist. Delete children first.</label>
     </customLabels>
     <customLabels>
-        <label><!-- CannotDeleteTerms --></label>
-        <name>CannotDeleteTerm</name>
-    </customLabels>
-    <customLabels>
         <name>DefaultAccountName</name>
         <label>Account</label>
     </customLabels>

@@ -514,7 +514,6 @@
         <members>BatchJobRunningProblem</members>
         <members>BothFieldAndValue</members>
         <members>CannotDelete</members>
-        <members>CannotDeleteTerm</members>
         <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
         <members>DefaultHouseholdName</members>

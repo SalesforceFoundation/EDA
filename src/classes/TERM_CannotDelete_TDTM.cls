@@ -52,7 +52,7 @@ public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
             for (Term__c term : [SELECT Id, (SELECT Id FROM Term_Grades__r LIMIT 1) FROM Term__c WHERE Id IN :oldlist]) {
                 if (term.Term_Grades__r.size() > 0) {
                     Term__c termInContext = oldmap.get(term.Id);
-                    termInContext.addError(Label.CannotDeleteTerm);
+                    termInContext.addError(Label.CannotDelete);
                 }
             }
         }
