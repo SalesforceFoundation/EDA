@@ -37,8 +37,8 @@
 public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Prevents Term records from being deleted if it has any Term Grade associations.   
-    * @param listNew the list of Terms from trigger new. 
-    * @param listOld the list of Terms from trigger old. 
+    * @param newList the list of Terms from trigger new. 
+    * @param oldList the list of Terms from trigger old. 
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).  
     * @param objResult the describe for Terms
     * @return dmlWrapper.  

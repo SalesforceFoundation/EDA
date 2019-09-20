@@ -54,26 +54,21 @@ private class TERM_CannotDelete_TEST {
     @isTest 
     static void testDeleteTermsWithTermGrades() {
         
+        Term__c term = [SELECT Id FROM Term__c LIMIT 1];
+
         // Insert Course Offering
-        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, term.Id);
         
         // Insert Contact
-        Contact student = UTIL_UnitTestData_TEST.getContact();
-        student.LastName = 'Term Grade';
-        student.Email = 'termGrade@salesforce.org';
-        student.Phone = '12341234';   
+        Contact student = UTIL_UnitTestData_TEST.getContact();  
         insert student;
         
         // Insert Course Connection
         Course_Enrollment__c courseConnection = UTIL_UnitTestData_TEST.getCourseConnection(student.Id, courseOffering.Id);
         insert courseConnection;
         
-        Term__c term = [SELECT Id FROM Term__c LIMIT 1];
-        
         // Insert Term Grade
-        Term_Grade__c termGrade = new Term_Grade__c();
-        termGrade.Term__c = term.Id;
-        termGrade.Course_Connection__c = courseConnection.Id;
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGradeWTermCourseConn(term.Id, courseConnection.Id);
         insert termGrade;
         
         try {
