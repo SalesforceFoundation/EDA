@@ -442,7 +442,7 @@ public class UTIL_UnitTestData_TEST {
 
     /*********************************************************************************************************
     * @description Gets a Term for testing.
-    * @param accountId Account to assocaite Term with.
+    * @param accountId Account to associate Term with.
     * @param termName The Term.
     * @return The Term record.
     **********************************************************************************************************/
@@ -455,7 +455,7 @@ public class UTIL_UnitTestData_TEST {
 
     /*********************************************************************************************************
     * @description Gets a TermGrade with Term and Course Connection for testing.
-    * @param termID Account to assocaite Term Grade with.
+    * @param termID Term to associate Term Grade with.
     * @param courseConnectionId CourseConnection to associate Term Grade with. 
     * @return The Term Grade record.
     **********************************************************************************************************/

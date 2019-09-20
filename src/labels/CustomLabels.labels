@@ -49,14 +49,6 @@
         <value>Please set Filter Field, or both Filter Field and Filter Value.</value>
     </labels>
     <labels>
-        <fullName>CannotDelete</fullName>
-        <categories>Contacts, Accounts</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CannotDelete</shortDescription>
-        <value>Record cannot be deleted because children records exist. Delete children first.</value>
-    </labels>
-    <labels>
         <fullName>CannotDeleteTerm</fullName>
         <categories>Terms</categories>
         <language>en_US</language>
