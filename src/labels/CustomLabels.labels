@@ -49,12 +49,12 @@
         <value>Please set Filter Field, or both Filter Field and Filter Value.</value>
     </labels>
     <labels>
-        <fullName>CannotDeleteTerm</fullName>
-        <categories>Terms</categories>
+        <fullName>CannotDelete</fullName>
+        <categories>Contacts, Accounts</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CannotDeleteTerms</shortDescription>
-        <value>Can&apos;t delete a Term that has associated Term Grades.</value>
+        <shortDescription>CannotDelete</shortDescription>
+        <value>Record cannot be deleted because children records exist. Delete children first.</value>
     </labels>
     <labels>
         <fullName>DefaultAccountName</fullName>
