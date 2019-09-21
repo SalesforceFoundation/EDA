@@ -200,7 +200,15 @@ contacts_locators = {
     "home_phone": "//input[@type='tel']/preceding-sibling::label/span[contains(text(),'Home Phone')]",
     "preferred_error_message": "//li[contains(text(), 'The phone selected for Preferred Phone can')]",
     "field_for_home_phone": "//div//label//span[contains(text(),'Home Phone')]/../following-sibling::input",
+    "field_for_phone": "//div//label//span[text()='Phone']/../following-sibling::input",
+    "footer_cancel": "//div[contains(@class,'modal-footer')]//span[text()='Cancel']",
     "toast_message": "//span[contains(@class, 'toastMessage') and contains(text(),'{}')]",
+    "disable_preferred_phone": "//span[contains(text(),'Disable Preferred Phone')]/../following-sibling::div//div//div//label//span//img[@class='contact-addr-enabled unchecked' and @alt='False']",
+    "disable_checked": "(//span[text()='Disable Preferred Phone enforcement:']/following::div/div/div/label/input/following-sibling::span)[1]",
+    "accounts_contacts": "//a[contains(text(),'Accounts and Contacts')]",
+    "tab_menu": "//a[@title='{}']",
+    "tab_tab": "//a[@title='Contacts']/../descendant::a[@title='{}']",
+    "details_tab": "//span[contains(@class,'title') and text()='Details']",
 }
 
 trigger_handlers_locators = {
@@ -213,7 +221,8 @@ trigger_handlers_locators = {
     "trigger": "//a[@title='Trigger Handlers']/../descendant::a[@title='{}']",
     "tab_menu": "//a[@title='{}']",
     "tab_tab": "//a[@title='Trigger Handlers']/../descendant::a[@title='{}']",
-    "trigger_handler": "//th[@scope='row']//span",
+    #"trigger_handler": "//th[@scope='row']//span",
+    "trigger_handler": "//span/a[@data-special-link='true']",
     "trigger_active_check": "//span[@class='test-id__field-label' and contains(text(), 'Active')]/../following::div/span/span/img[@class = ' checked' and @alt='True']",
     "trigger_checkbox": "(//div/input[@type='checkbox'])[1]",
     "trigger_save": "//div[contains(@class,'button-container')]//button//span[contains(text(),'Save')]",

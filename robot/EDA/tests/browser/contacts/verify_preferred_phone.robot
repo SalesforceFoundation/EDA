@@ -14,10 +14,9 @@ Suite Setup     Run keywords
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
-Verify preferred phone functionality
+Verify basic preferred phone functionality
     Select app launcher                     EDA
     Close all tabs
-
 
     # As a prerequisite, we need to verify that the following trigger handler 
     # exists, and if not then we need to bail/fail:
@@ -35,6 +34,44 @@ Verify preferred phone functionality
     # Select the newly created contact and test the preferred phone functionality
     Validate preferred phone form
    # Verify toast message                    was saved    
+
+Verify disable preferred phone enforcement
+    Select app launcher                     EDA
+    Close all tabs
+
+    Current page should be                  Home           Contacts
+
+    # Verify the EDA Setting 'Disable Preferred Phone enforcement'
+    Select app launcher tab                 EDA Settings
+
+    # The following places us inside an iFrame.  Remember to jump back out when done.
+    Select frame with title                 accessibility title
+    Write To Console                        Clear the 'Disable Preferred Phone enforcement' checkbox
+    Verify setting of disable preferred phone enforcement
+
+    Close all tabs
+    Current page should be                  Home            Contacts
+    Select tab                              Contacts
+
+    Write To Console                        Click on contact: ${CONTACT.FirstName} ${CONTACT.LastName}
+    Select contact                          ${CONTACT.FirstName}                   ${CONTACT.LastName}
+    Test home phone functionality           ${CONTACT.FirstName}                   ${CONTACT.LastName}
+
+Verify batch functionality of preferred phone
+    Select app launcher                     EDA
+    Close all tabs
+
+    Current page should be                  Home           Contacts
+
+    # Verify the EDA Setting 'Disable Preferred Phone enforcement'
+    Select app launcher tab                 EDA Settings
+
+    # The following places us inside an iFrame.  Remember to jump back out when done.
+    Select frame with title                 accessibility title
+    Write To Console                        Set the 'Disable Preferred Phone enforcement' checkbox
+    Set the disable preferred phone enforcement
+
+
 
 *** Keywords ***
 Initialize test data

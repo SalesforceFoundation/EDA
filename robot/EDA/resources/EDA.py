@@ -5,6 +5,7 @@ import pytz
 
 from cumulusci.robotframework.utils import selenium_retry
 from locators import eda_lex_locators
+from locators import contacts_locators
 
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.common.keys import Keys

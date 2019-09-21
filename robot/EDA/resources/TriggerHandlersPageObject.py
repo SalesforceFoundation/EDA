@@ -127,6 +127,7 @@ class TriggerHandlersHomePage(BasePage):
             error="CON_PreferredPhone_TDTM not found in Trigger Handler list"
         )
 
+        time.sleep(1)
         self.selenium.wait_until_page_contains_element(
             locator_handler,
             error="Unable to find Preferred Phone Trigger Handler "
@@ -143,7 +144,6 @@ class TriggerHandlersHomePage(BasePage):
             self.selenium.click_button("Save")
             self.selenium.wait_until_element_is_visible(loc_check)
             return
-
 
     def set_trigger_to_active(self, trigger):
         """ Set Preferred Phone trigger to Active.  Leave Active if already checked """
