@@ -228,6 +228,10 @@ class ContactsHomePage(BasePage):
             Clear the checkbox if it is set
             Do nothing if the checkbox is already empty
         """
+
+        locator_accounts_and_contacts = contacts_locators["accounts_contacts"]
+        locator_disable_preferred_phone = contacts_locators["disable_preferred_phone"]
+        locator_disable_checked = contacts_locators["disable_checked"]
         self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
 
         # Checkbox for 'Disable Preferred Phone enforcement' should be empty
