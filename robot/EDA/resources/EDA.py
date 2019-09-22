@@ -595,6 +595,15 @@ class EDA(object):
         self.builtin.log("Timed out waiting for window with title " + title)
         return window_found
 
+    def shift_to_default_content(self):
+        self.selenium.driver.switch_to.default_content()
+        currentFrame = self.selenium.driver.execute_script("return self.name")
+        #self.selenium.driver.execute_script("arguments[0].scrollIntoView()", element_menu)
+        self.builtin.log(
+            "Current frame 2: " + currentFrame
+        )
+        return
+
     def write_to_console(self, message):
         """ Writes a message to console on a new line """
         logger.console("\n" + message)

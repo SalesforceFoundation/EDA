@@ -71,8 +71,10 @@ class TriggerHandlersHomePage(BasePage):
     def select_action(self, action):
         """ Select the action shortcut """
         locator = trigger_handlers_locators["action_shortcut"].format(action)
-        self.selenium.wait_until_page_contains_element(locator,
-                                                       error="Action '" + action + "' doesn't exist in the list of Action Shortcuts")
+        self.selenium.wait_until_page_contains_element(
+            locator,
+            error="Action '" + action + "' doesn't exist in the list of Action Shortcuts"
+        )
         self.selenium.click_element(locator)
 
     def select_EDA_tab(self, tab):
@@ -103,36 +105,36 @@ class TriggerHandlersHomePage(BasePage):
         locator_handler = trigger_handlers_locators["trigger_handler"]
 
         self.selenium.wait_until_page_contains_element(
-            locator_dropdown,
+            trigger_handlers_locators["recently_viewed"],
             error=locator_trigger + " locator is not available in Trigger Handlers page"
         )
-        self.selenium.click_element(locator_dropdown)
+        self.selenium.click_element(trigger_handlers_locators["recently_viewed"])
 
         self.selenium.wait_until_page_contains_element(
-            locator_all_main,
-            error=locator_all_main + " locator is not available in Trigger Handlers page"
+            trigger_handlers_locators["all_main_fields"],
+            error=trigger_handlers_locators["all_main_fields"] + " locator is not available in Trigger Handlers page"
         )
-        self.selenium.click_element(locator_all_main)
+        self.selenium.click_element(trigger_handlers_locators["all_main_fields"])
 
         self.selenium.wait_until_page_contains_element(
-            locator,
+            trigger_handlers_locators["search_exists"],
             error=trigger + " object not found in Trigger Handlers"
         )
-        self.selenium.click_element(locator)
-        self.selenium.get_webelement(locator).send_keys(trigger + Keys.RETURN)
+        self.selenium.click_element(trigger_handlers_locators["search_exists"])
+        self.selenium.get_webelement(trigger_handlers_locators["search_exists"]).send_keys(trigger + Keys.RETURN)
 
         # Verify that the CON_PreferredPhone_TDTM object has been found
         self.selenium.wait_until_page_contains_element(
-            locator_preferred_phone,
+            trigger_handlers_locators["preferred_phone"],
             error="CON_PreferredPhone_TDTM not found in Trigger Handler list"
         )
 
-        time.sleep(1)
+        time.sleep(2)
         self.selenium.wait_until_page_contains_element(
-            locator_handler,
+            trigger_handlers_locators["trigger_handler"],
             error="Unable to find Preferred Phone Trigger Handler "
         )
-        self.selenium.click_element(locator_handler)
+        self.selenium.click_element(trigger_handlers_locators["trigger_handler"])
 
     def select_active_checkbox(self, loc_check, loc_checkbox):
         """ Selects checkbox.  Does nothing if checkbox is already checked """
@@ -145,23 +147,71 @@ class TriggerHandlersHomePage(BasePage):
             self.selenium.wait_until_element_is_visible(loc_check)
             return
 
-    def set_trigger_to_active(self, trigger):
-        """ Set Preferred Phone trigger to Active.  Leave Active if already checked """
-        locator_dropdown = trigger_handlers_locators["recently_viewed"]
-
-        locator_check = trigger_handlers_locators["trigger_active_check"]
-        locator_checkbox = trigger_handlers_locators["trigger_checkbox"]
-        locator_save = trigger_handlers_locators["trigger_save"]
-
-        if self.check_if_element_exists(locator_check):
+    def set_trigger_status(self,locator,status):
+        """ Set Preferred Phone trigger according to arguments:  True is checked, False is not checked """
+        if self.selenium.check_if_element_exists(locator):
             return
         else:
             self.selenium.click_button("Edit Active")
-
-            self.selenium.wait_until_element_is_visible(locator_checkbox)
-            self.selenium.get_webelement(locator_checkbox).click()
-
+            self.click_item(locator, "cannot find active checkbox", True)
             self.selenium.click_element(locator_save)
             time.sleep(1)
             self.selenium.wait_until_element_is_visible(locator_check)
             return
+
+
+
+    def set_trigger_to_active(self, trigger):
+        """ Set Preferred Phone trigger to Active.  Leave Active if already checked """
+
+        if self.check_if_element_exists(trigger_handlers_locators["checked_and_active"]) or self.check_if_element_exists(trigger_handlers_locators["trigger_active_check"]):
+            return
+        else:
+            self.selenium.click_button("Edit Active")
+
+            self.click_item(
+                trigger_handlers_locators["edit_unchecked"], 
+                "cannot find active checkbox", 
+                True
+            )
+            
+            self.selenium.click_element(trigger_handlers_locators["trigger_save"])
+            time.sleep(1)
+            self.selenium.wait_until_element_is_visible(trigger_handlers_locators["trigger_active_check"])
+            return
+
+    def Clear_the_check_on_active_checkbox(self):
+        """ Clear the Preferred Phone trigger """
+
+        if not self.check_if_element_exists(trigger_handlers_locators["trigger_active_check"]):
+            return
+        else:
+            self.selenium.click_button("Edit Active")
+
+            self.click_item(
+                trigger_handlers_locators["checked_and_active"], 
+                "cannot find active checkbox", 
+                True
+            )
+            
+            self.selenium.click_element(trigger_handlers_locators["trigger_save"])
+            time.sleep(1)
+            self.selenium.wait_until_element_is_visible(trigger_handlers_locators["unchecked_and_not_active"])
+            return
+
+    def click_item(self, locator, error_message, capture_screen):
+        """ Click on the provided locator  """
+
+        self.selenium.wait_until_page_contains_element(
+            self.selenium.driver.find_element_by_xpath(locator),
+            error=error_message
+        )
+        # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(locator)
+            )
+        if capture_screen:
+            self.selenium.capture_page_screenshot()
+        return
+
