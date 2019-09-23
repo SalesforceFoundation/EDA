@@ -54,7 +54,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CannotDelete</shortDescription>
-        <value>This record can't be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don't see related records, or if you're unable to delete them, contact your System Administrator for assistance.</value>
+        <value>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</value>
     </labels>
     <labels>
         <fullName>DefaultAccountName</fullName>
