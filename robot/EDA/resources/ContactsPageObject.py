@@ -406,7 +406,10 @@ class ContactsHomePage(BasePage):
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
 
+        time.sleep(10)
         self.selenium.driver.refresh()
+        time.sleep(10)
+        
 
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
