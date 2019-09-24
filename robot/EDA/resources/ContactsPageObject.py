@@ -22,19 +22,17 @@ class ContactsHomePage(BasePage):
 
     def click_action_button(self):
         """ Clicks on the 'Action' button in Contacts """
-        locator = contacts_locators["action"]
-        locator_close_action = contacts_locators["action_close"]
 
         # In some cases, the action dialog opens by default,
         # hence making sure it is closed, before opening it otherwise it would nullify the click command
-        if self.eda.check_if_element_exists(locator_close_action):
-            self.selenium.click_element(locator_close_action)
+        if self.eda.check_if_element_exists(contacts_locators["action_close"]):
+            self.selenium.click_element(contacts_locators["action_close"])
 
         self.selenium.wait_until_page_contains_element(
-            locator,
+            contacts_locators["action"],
             error="'Action' button is not available on Contacts page"
         )
-        self.selenium.click_element(locator)
+        self.selenium.click_element(contacts_locators["action"])
 
     def _is_current_page(self):
         """ Verify we are on the Contacts page
@@ -53,40 +51,38 @@ class ContactsHomePage(BasePage):
 
     def click_new_contact_button(self):
         """ Clicks on the 'New Contact' button in Contacts """
-        locator = contacts_locators["new_contact_button"]
-        element = self.selenium.driver.find_element_by_xpath(locator)
-        self.selenium.wait_until_page_contains_element(locator)
-        self.selenium.driver.execute_script("arguments[0].click()", element)
-
+        self.selenium.wait_until_page_contains_element(contacts_locators["new_contact_button"])
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["new_contact_button"])
+        )
 
     def refresh_contacts(self):
         """ Refresh the contacts list by clicking on the refresh button """
-        locator = contacts_locators["refresh"]
-        self.selenium.click_element(locator)
+        self.selenium.click_element(contacts_locators["refresh"])
 
 
     def select_action(self, action):
         """ Select the action shortcut """
-        locator = contacts_locators["action_shortcut"].format(action)
-        self.selenium.wait_until_page_contains_element(locator,
-        error="Action '" + action + "' doesn't exist in the list of Action Shortcuts")
-        self.selenium.click_element(locator)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["action_shortcut"].format(action),
+            error="Action '" + action + "' doesn't exist in the list of Action Shortcuts"
+        )
+        self.selenium.click_element(contacts_locators["action_shortcut"].format(action))
 
    
     def open_app_launcher(self, app_name):
         """ Navigates to a Salesforce App via the App Launcher """
-        locator = eda_lex_locators["app_launcher"]["app_link"].format(app_name)
+        
         self.builtin.log("Opening the App Launcher")
         self.salesforce.open_app_launcher()
         time.sleep(1)
         self.builtin.log("Getting the web element for the app")
         self.selenium.set_focus_to_element(locator)
-        elem = self.selenium.get_webelement(locator)
         self.builtin.log("Getting the parent link from the web element")
-        link = elem.find_element_by_xpath("../../..")
-        self.selenium.set_focus_to_element(link)
+        self.selenium.set_focus_to_element(elem.find_element_by_xpath("../../.."))
         self.builtin.log("Clicking the link")
-        link.click()
+        self.selenium.get_webelement(eda_lex_locators["app_launcher"]["app_link"].format(app_name)).find_element_by_xpath("../../..").click()
         self.builtin.log("Waiting for modal to close")
         self.salesforce.wait_until_modal_is_closed()
 
@@ -96,47 +92,42 @@ class ContactsHomePage(BasePage):
             there is currently an open bug on this,
             once fixed, the keyword needs to be modified to check for a specific timezone
         """
-        locator = contacts_locators["timezone"]
-        self.selenium.page_should_contain_element(locator)
+        self.selenium.page_should_contain_element(contacts_locators["timezone"])
         self.builtin.log("Actual timezone isn't checked; waiting for bug to be fixed", "WARN")
 
     def select_contact(self,contact_firstname, contact_lastname):
         """ Select the contact from the Contacts Recently Viewed list """
-        locator_contact = contacts_locators["select_contact"].format(contact_firstname, contact_lastname)
         self.selenium.wait_until_page_contains_element(
-            locator_contact,
+            contacts_locators["select_contact"].format(contact_firstname, contact_lastname),
             error="Contact named: " + contact_firstname + " " + contact_lastname + " not found in Recently Viewed list"
         )
-        self.selenium.click_element(locator_contact)
+        self.selenium.click_element(contacts_locators["select_contact"].format(contact_firstname, contact_lastname))
 
     def validate_preferred_phone_form(self):
         """ Test the preferred phone fields and functionality """
 
+        self.selenium.wait_until_page_contains_element(contacts_locators["edit_contact"], error="Edit button not found for Contact")
         self.open_item(contacts_locators["edit_contact"], "Edit button not found for Contact", False)
 
-        locator_menu = contacts_locators["preferred_phone"]
-        element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
-        locator_tab = contacts_locators["preferred_tab"]
-        self.selenium.driver.execute_script("arguments[0].scrollIntoView()", element_menu)
+        self.selenium.driver.execute_script(
+            "arguments[0].scrollIntoView()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone"])
+        )
 
-        locator_preferred_phone_home_menu_dropdown = contacts_locators["preferred_phone_home_dropdown"]
-        element_menu_home = self.selenium.driver.find_element_by_xpath(locator_preferred_phone_home_menu_dropdown)
+        element_menu_home = self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone_home_dropdown"])
 
-        if not self.check_if_element_exists(locator_tab):
+        if not self.check_if_element_exists(contacts_locators["preferred_tab"]):
             self.selenium.driver.execute_script("arguments[0].click()", element_menu_home)
             time.sleep(1)
 
         self.open_item(contacts_locators["preferred_tab"], "Home Phone not found as an option on Preferred Phone", False)
 
         # Attempt to Save the form
-        contact_save = contacts_locators["contact_save"]
-        self.selenium.click_element(contact_save)
-
+        self.selenium.click_element(contacts_locators["contact_save"])
         time.sleep(1)
 
         # Verify the error message that pops up
-        locator = contacts_locators["preferred_error_message"]
-        self.selenium.wait_until_page_contains_element(locator)
+        self.selenium.wait_until_page_contains_element(contacts_locators["preferred_error_message"])
         
         # Enter a value for Home Phone and then save the Contact form
         # After entering a value for Home Phone the form should save 
@@ -160,8 +151,7 @@ class ContactsHomePage(BasePage):
 
     def verify_toast_message(self, value):
         """ Verifies the toast message """
-        locator = contacts_locators["toast_message"].format(value)
-        self.selenium.wait_until_page_contains_element(locator)
+        self.selenium.wait_until_page_contains_element(contacts_locators["toast_message"].format(value))
 
     def Test_home_phone_functionality(self, contact_firstname, contact_lastname):
         """ Validate Home Phone functionality """
@@ -173,13 +163,14 @@ class ContactsHomePage(BasePage):
             contact_lastname
         )
         # Navigate to Detail tab
+        self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"], error="Details Tab not found on contact")
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
         # Open EDIT mode
         self.open_item(contacts_locators["edit_contact"], "Edit button not found on contact", False)
         # Place specific field in view, because it's off-screen at the moment
         self.place_in_view(contacts_locators["field_for_phone"])
         self.open_item(contacts_locators["footer_cancel"], "Cancel button not avaible on EDIT Contact page", False)
-#        time.sleep(1)
+        time.sleep(1)
 
     def place_in_view(self,locator):
         """ Scroll the field or object into the current view 
@@ -206,11 +197,9 @@ class ContactsHomePage(BasePage):
             Lookup the locator
             Wait until the element shows on the page, and clicks the element 
         """
-        locator_menu = contacts_locators["tab_menu"].format(tab)
-        element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
-        locator_tab = contacts_locators["tab_tab"].format(tab)
+        element_menu = self.selenium.driver.find_element_by_xpath(contacts_locators["tab_menu"].format(tab))
         self.selenium.wait_until_page_contains_element(
-            locator_menu,
+            contacts_locators["tab_menu"].format(tab),
             error="Contact tab unavailable"
         )
         # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
@@ -218,8 +207,11 @@ class ContactsHomePage(BasePage):
         time.sleep(1)
 
         # Sometimes, single click fails. Hence an additional condition to click on it again
-        if not self.check_if_element_exists(locator_tab):
-            self.selenium.driver.execute_script("arguments[0].click()", element_menu)
+        if not self.check_if_element_exists(contacts_locators["tab_tab"].format(tab)):
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["tab_menu"].format(tab))
+            )
             time.sleep(1)
 
 
@@ -229,13 +221,12 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already empty
         """
 
-        locator_accounts_and_contacts = contacts_locators["accounts_contacts"]
-        locator_disable_preferred_phone = contacts_locators["disable_preferred_phone"]
-        locator_disable_checked = contacts_locators["disable_checked"]
+        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
+
         self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
 
         # Checkbox for 'Disable Preferred Phone enforcement' should be empty
-        if self.check_if_element_exists(locator_disable_preferred_phone):
+        if self.check_if_element_exists(contacts_locators["disable_preferred_phone"]):
             self.builtin.log("Disable Preferred Phone enforcement is empty.")
         else: 
             self.builtin.log(
@@ -244,7 +235,7 @@ class ContactsHomePage(BasePage):
             )
             self.selenium.click_button("Edit")
             self.builtin.log("Removing checkmark from 'Disable Preferred Phone enforcement' checkbox.")
-            self.selenium.get_webelement(locator_disable_checked).click()
+            self.selenium.get_webelement(contacts_locators["disable_checked"]).click()
             self.selenium.click_button("Save")
             self.builtin.log(
                 "Disable Preferred Phone enforcement setting has been cleared.\n" +
@@ -258,7 +249,10 @@ class ContactsHomePage(BasePage):
             Clear the checkbox if it is set
             Do nothing if the checkbox is already empty
         """
+        
+        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
         self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+
 
         # Checkbox for 'Disable Preferred Phone enforcement' should be empty
         if self.check_if_element_exists(contacts_locators["preferred_phone_active"]):
@@ -274,6 +268,7 @@ class ContactsHomePage(BasePage):
             self.builtin.log("Setting 'Disable Preferred Phone enforcement' checkbox.")
             time.sleep(1)
 
+            self.selenium.wait_until_page_contains_element(contacts_locators["disable_checked"])
             self.selenium.driver.execute_script(
                 "arguments[0].click()", 
                 self.selenium.driver.find_element_by_xpath(contacts_locators["disable_checked"])
@@ -295,6 +290,7 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already empty
         """
 
+        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
         self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
 
         # Click on Edit button
@@ -370,8 +366,8 @@ class ContactsHomePage(BasePage):
         self.selenium.wait_until_page_contains_element(contacts_locators["successful_run"])
         self.selenium.capture_page_screenshot()
 
-        # Give 'Run Cleanup' five seconds run time, then continue
-        time.sleep(5)
+        # Give 'Run Cleanup' fifteen seconds run time, then continue
+        time.sleep(15)
 
         return
 
@@ -410,8 +406,6 @@ class ContactsHomePage(BasePage):
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
 
-
-        time.sleep(10)
         self.selenium.driver.refresh()
 
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
