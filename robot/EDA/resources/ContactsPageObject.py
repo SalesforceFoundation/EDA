@@ -274,7 +274,7 @@ class ContactsHomePage(BasePage):
                 self.selenium.driver.find_element_by_xpath(contacts_locators["disable_checked"])
             )
             self.selenium.click_button("Save")
-#            time.sleep(1)
+            time.sleep(1)
             self.builtin.log(
                 "Disable Preferred Phone enforcement setting has been set.\n" +
                 "Saving changes.\n" +
@@ -308,7 +308,7 @@ class ContactsHomePage(BasePage):
                 "Opening EDIT mode"
             )
             self.builtin.log("Setting 'Disable Preferred Phone enforcement' checkbox.")
-#            time.sleep(1)
+            time.sleep(1)
 
             # place a check in the checkbox
             self.selenium.driver.execute_script(
