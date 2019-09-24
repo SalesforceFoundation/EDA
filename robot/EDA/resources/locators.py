@@ -217,6 +217,9 @@ contacts_locators = {
     "phone_field": "//div//span[text()='Phone']/../following-sibling::div//span//span[text()='123-123-1234']",
     "phone_verify": "//div//span[text()='Phone']/../following-sibling::div//span//span[text()='123-123-1234']",
     "home_phone_verify": "//span[text()='Home Phone']/../following::div//span//span[text()='123-123-1234']",
+    "copy_from": "//select[@class='contact-preferred-phone-picklist-input-select select uiInput uiInputSelect uiInput--default uiInput--select']",
+    "copy_from_home_phone": "//select[@class='contact-preferred-phone-picklist-input-select select uiInput uiInputSelect uiInput--default uiInput--select']//option[@value='Home Phone']",
+    "successful_run": "//span[text()='The process was queued successfully. An email will be sent at the completion of the job.']",
 }
 
 trigger_handlers_locators = {

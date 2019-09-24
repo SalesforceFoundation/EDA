@@ -97,12 +97,8 @@ class TriggerHandlersHomePage(BasePage):
 
     def verify_trigger_handler(self, trigger):
         """ Verify that trigger handler exists """
-        locator_dropdown = trigger_handlers_locators["recently_viewed"]
-        locator = trigger_handlers_locators["search_exists"]
+
         locator_trigger = trigger_handlers_locators["trigger"].format(trigger)
-        locator_all_main = trigger_handlers_locators["all_main_fields"]
-        locator_preferred_phone = trigger_handlers_locators["preferred_phone"]
-        locator_handler = trigger_handlers_locators["trigger_handler"]
 
         self.selenium.wait_until_page_contains_element(
             trigger_handlers_locators["recently_viewed"],

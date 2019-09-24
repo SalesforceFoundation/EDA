@@ -53,44 +53,52 @@ Verify batch functionality of preferred phone
     Current page should be                  Home           Contacts
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
-    # The following places us inside an iFrame.  Remember to jump back out when done.
+    
+    # The following places us inside an iFrame.  Remember to jump 
+    # back out when done.
+
+    # Make sure the 'Disable Preferred Phone enforcement' checkbox 
+    # has a check in the checkbox
     Open EDA Settings Tab menu item
-
     Set the disable preferred phone enforcement
-
     Shift to default content
 
+    # Clear the 'Active' checkbox
     Load page object                        Home            TriggerHandlers
     Deactivate trigger handler
 
+    # Create a new contact and add some phone numbers
+    # Note:  The trigger handler is NOT set to Active, 
+    #        and the 'Disable Preferred Phone enforcement'
+    #        is NOT being enforced
     Select app launcher                     EDA
     Current page should be                  Home           Contacts
     Create new contact
     Select tab                              Contacts
+    # Note:  look in ContactsPageObject.py to see that the following
+    #        test does indeed verify the phone numbers
     Add home phone to contact and verify    ${CONTACT2.FirstName}
     ...                                     ${CONTACT2.LastName}
 
-    Open EDA Settings Tab menu item
-    Clear the disable preferred phone enforcement
-    Shift to default content
+    # Now we'll reconfigure the trigger and EDA Setting
+    # and run another test to check 'Run Cleanup'
 
     Enable trigger handler
+
     Select app launcher                     EDA
     Current page should be                  Home           Contacts
-
-    Shift to default content
-    Open EDA Settings Tab menu item    
-
-    Capture page screenshot
+    Open EDA Settings Tab menu item
+    Clear the disable preferred phone enforcement
     Run phone cleanup
-
+    Capture page screenshot
     Shift to default content
 
+    # Verify that 'Run Cleanup' produced correct results
+    # The code is found in ContactsPageObject.py
     Select tab                              Contacts
     Shift to default content
     Verify contact values                   ${CONTACT2.FirstName}
     ...                                     ${CONTACT2.LastName}
-
 
     # Restore Settings
     Open EDA Settings Tab menu item
