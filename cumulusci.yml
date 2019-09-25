@@ -37,6 +37,27 @@ tasks:
         options:
             path: unpackaged/config/dev_delete
 
+    deploy_encryption_permset:
+        group: 'Shield Platform Encryption'
+        description: Deploys "Manage Encryption Keys" permission set.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/spe
+
+    assign_encryption_permset:
+        group: 'Shield Platform Encryption'
+        description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options:
+            command: 'force:user:permset:assign -n Encryption'
+    
+    create_tenant_secret:
+        group: 'Shield Platform Encryption'
+        description: Creates a new tenant secret for Shield Platform Encryption testing.
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options:
+            command: 'force:data:record:create -s TenantSecret -v "Description=Testing"'
+
     execute_install_apex:
         description: Runs most of the install script methods from STG_InstallScript class
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
@@ -90,6 +111,16 @@ tasks:
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
+    setup_encryption:
+        description: Sets up Shield Platform Encrption in the target Org
+        steps:
+            1:
+                task: deploy_encryption_permset
+            2:
+                task: assign_encryption_permset
+            3:
+                task: create_tenant_secret
+                
     edaectomy:
         description: Remove all the EDA metadata in the target Org
         steps:
