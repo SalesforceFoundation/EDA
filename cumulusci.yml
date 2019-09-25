@@ -112,7 +112,7 @@ tasks:
 
 flows:
     setup_encryption:
-        description: Sets up Shield Platform Encrption in the target Org
+        description: Sets up Shield Platform Encryption in the target Org
         steps:
             1:
                 task: deploy_encryption_permset
@@ -120,7 +120,7 @@ flows:
                 task: assign_encryption_permset
             3:
                 task: create_tenant_secret
-                
+
     edaectomy:
         description: Remove all the EDA metadata in the target Org
         steps:
