@@ -254,7 +254,7 @@ class ContactsHomePage(BasePage):
         self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
 
 
-        # Checkbox for 'Disable Preferred Phone enforcement' should be empty
+        # Checkbox for 'Disable Preferred Phone enforcement' needs to be marked as checked
         if self.check_if_element_exists(contacts_locators["preferred_phone_active"]):
             self.builtin.log("Disable Preferred Phone enforcement is checked.")
             return
@@ -406,26 +406,21 @@ class ContactsHomePage(BasePage):
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
 
-        time.sleep(10)
-        self.selenium.driver.refresh()
-        time.sleep(10)
-        self.selenium.driver.refresh()
-        time.sleep(10)
+########################################################################
+#        time.sleep(10)
+#        self.selenium.driver.refresh()
+# Choosing to leave this commented code - both lines above - intentional
+########################################################################
+        time.sleep(1)
         
-
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
 
-
-        self.selenium.driver.execute_script(
-            "arguments[0].scrollIntoView()", 
-            self.selenium.driver.find_element_by_xpath(contacts_locators["phone_verify"])
-        )
-
         self.selenium.wait_until_page_contains_element(contacts_locators["phone_verify"])
+
         self.selenium.driver.execute_script(
             "arguments[0].scrollIntoView()", 
-            self.selenium.driver.find_element_by_xpath(contacts_locators["phone_verify"])
+            self.selenium.driver.find_element_by_xpath(contacts_locators["home_phone_verify"])
         )
 
         self.selenium.wait_until_page_contains_element(contacts_locators["home_phone_verify"])

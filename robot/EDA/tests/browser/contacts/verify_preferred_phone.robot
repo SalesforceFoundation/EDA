@@ -45,6 +45,7 @@ Verify disable preferred phone enforcement
 
     Test home phone functionality           ${CONTACT.FirstName}
     ...                                     ${CONTACT.LastName}
+    Sleep                                   1
 
 Verify batch functionality of preferred phone
     Select app launcher                     EDA
