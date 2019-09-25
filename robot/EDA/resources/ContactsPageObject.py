@@ -409,6 +409,8 @@ class ContactsHomePage(BasePage):
         time.sleep(10)
         self.selenium.driver.refresh()
         time.sleep(10)
+        self.selenium.driver.refresh()
+        time.sleep(10)
         
 
         self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
