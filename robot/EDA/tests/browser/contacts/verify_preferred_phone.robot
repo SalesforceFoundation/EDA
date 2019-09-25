@@ -113,10 +113,6 @@ Verify batch functionality of preferred phone
 Initialize test data
     [Documentation]             Create a contact with a randomly generated firstname and lastname via API
 
-    ${event_date} =             Get Current Date   result_format=%Y-%m-%d       increment=1 day
-    ${start_date} =             Convert Date       ${event_date} 10:00:00       date_format=%Y-%m-%d %H:%M:%S
-    ${end_date} =               Convert Date       ${event_date} 10:30:00       date_format=%Y-%m-%d %H:%M:%S
-
     &{CONTACT} =   API Create Contact
     #Write To Console            Contact successfully created, with first name: ${CONTACT.FirstName} and last name: ${CONTACT.LastName}
     Set suite variable          &{CONTACT}
@@ -126,10 +122,6 @@ Initialize test data
 
 Create new contact
     [Documentation]             Create a new contact with a randomly generated firstname and lastname via API
-
-    ${event_date} =             Get Current Date   result_format=%Y-%m-%d       increment=1 day
-    ${start_date} =             Convert Date       ${event_date} 10:00:00       date_format=%Y-%m-%d %H:%M:%S
-    ${end_date} =               Convert Date       ${event_date} 10:30:00       date_format=%Y-%m-%d %H:%M:%S
 
     &{CONTACT2} =   API Create Contact
     #Write To Console            Contact successfully created, with first name: ${CONTACT2.FirstName} and last name: ${CONTACT2.LastName}
