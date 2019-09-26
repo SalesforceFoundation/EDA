@@ -413,6 +413,7 @@
         <members>Hierarchy_Settings__c.Disable_Preferred_Phone_Enforcement__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
+        <members>Hierarchy_Settings__c.Enable_New_Preferred_Phone_Sync__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
         <members>Hierarchy_Settings__c.Faculty_RecType__c</members>
@@ -641,6 +642,7 @@
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgDisablePreferredPhoneEnforcement</members>
         <members>stgEnableCourseConnectionsTitle</members>
+        <members>stgEnablePreferredPhoneSync</members>
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
@@ -662,6 +664,7 @@
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpContactPreferredPhone</members>
+        <members>stgHelpContactPreferredPhoneSync</members>
         <members>stgHelpCopyQueuedEmailSent</members>
         <members>stgHelpCourseConnBackfillDescription</members>
         <members>stgHelpCoursesDataMigration</members>
