@@ -49,7 +49,8 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
             // While this logic is not performing any DML currently, the recursion flag is utilized here to be ready for any future logic changes.
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_Preferred_TDTM, true);
             
-            List<Trigger_Handler__c> preferredPhoneOnOff = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
+            // Is the new Preferred Phone functionality enabled?
+            Boolean isNewPreferredPhoneFunctionalityEnabled = (UTIL_CustomSettingsFacade.getSettings().Enable_New_Preferred_Phone_Sync__c == true);
 
             for(SObject so : newlist) {
                 Contact contact = (Contact)so;
@@ -57,8 +58,8 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                 // Process the Prefered Email
                 CON_Email.processPreferredEmail(contact, oldlist);
                 
-                // Process the Preferred Phone.
-                if(!String.isBlank(contact.PreferredPhone__c) && (preferredPhoneOnOff == null || preferredPhoneOnOff.size() == 0 || preferredPhoneOnOff[0].Active__c == False)) {
+                // Process the Preferred Phone if there's a Preferred Phone value set and the new Preferred Phone functionality is disabled.
+                if(!String.isBlank(contact.PreferredPhone__c) && !isNewPreferredPhoneFunctionalityEnabled) {
                     if(contact.PreferredPhone__c == 'Home') {
                         contact.Phone = contact.HomePhone;
                     } else if(contact.PreferredPhone__c == 'Work') {
