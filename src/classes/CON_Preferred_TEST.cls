@@ -39,19 +39,6 @@ public with sharing class CON_Preferred_TEST {
 
     @isTest
     public static void preferredEmailPhoneInsert() {
-    
-        Test.testInstall(new STG_InstallScript(), null);
-        List<trigger_handler__c> preferredPhoneHandler = [SELECT id, class__c, active__c FROM trigger_handler__c WHERE class__c = 'CON_PreferredPhone_TDTM' AND Object__c = 'Contact'];
-        
-        System.assertEquals(1,preferredPhoneHandler.size());
-        System.assertEquals(true, preferredPhoneHandler[0].active__c);
-      
-        if (preferredPhoneHandler != NULL && preferredPhoneHandler.size() > 0) {
-        
-            preferredPhoneHandler[0].active__c = false;
-            update preferredPhoneHandler[0];
-        
-        }
         
         Contact contact1 = new Contact(LastName = 'TestersonA', UniversityEmail__c = 'fake@test1.com', Preferred_Email__c = 'University', 
             HomePhone = '555-432-4433', PreferredPhone__c = 'Home');
@@ -93,16 +80,6 @@ public with sharing class CON_Preferred_TEST {
     
     @isTest
     public static void preferredEmailPhoneUpdate() {
-    
-        Test.testInstall(new STG_InstallScript(), null);
-        List<trigger_handler__c> preferredPhoneHandler = [SELECT id, name, active__c FROM trigger_handler__c WHERE class__c = 'CON_PreferredPhone_TDTM' AND Object__c = 'Contact'];
-        
-        if (preferredPhoneHandler != NULL && preferredPhoneHandler.size() > 0) {
-        
-            preferredPhoneHandler[0].active__c = false;
-            update preferredPhoneHandler[0];
-        
-        }
         
         // Preferred email is required to pass checks in preferred trigger
         Contact contact1 = new Contact(LastName = 'TestersonE', UniversityEmail__c = 'fake@test5.com', HomePhone = '555-432-4433',Preferred_Email__c = 'University');
