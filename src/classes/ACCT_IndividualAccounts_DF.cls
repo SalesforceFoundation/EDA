@@ -96,7 +96,7 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         	}
         }
 
-        wrapperHandlesAfter wrapperList;
+        HandleWrapperLogic wrapperReturn;
 
         System.debug('triggerAction -->' + triggerAction);
         System.debug('triggerAction Insert -->' + (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)));
@@ -105,15 +105,15 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
 				!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
            		System.debug('InsideTriggerInsert&Update -->');
-                wrapperList = handlesAfter(contacts, oldContacts, triggerAction);
-                handleProcessing(wrapperList, NULL, NULL);
+                wrapperReturn = handlesAfter(contacts, oldContacts, triggerAction);
+                handleProcessing(wrapperReturn, NULL, NULL);
         }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             	!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
         		System.debug('InsideTriggerAfter --->');
-               	wrapperList = handlesAfter(contacts, oldContacts, triggerAction);
-                handleProcessing(wrapperList, NULL, NULL);
+               	wrapperReturn = handlesAfter(contacts, oldContacts, triggerAction);
+                handleProcessing(wrapperReturn, NULL, NULL);
         }
 
        	if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
@@ -121,9 +121,6 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
                 System.debug('InsideTriggerDelete -->');
                 handlesAfterDelete(oldContacts);
         }
-
-		System.debug('BeforeSetting TDTM_ProcessControl --->');
-
         dmlWrapper = null;
     	return dmlWrapper;
 	}
@@ -146,73 +143,49 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         strSoql += 'Phone, Fax FROM Contact WHERE Id IN :contacts';
 
         returnedContacts = database.query(strSoql);
-        System.debug('contactReturnQueryMethod -->' + returnedContacts);
         return returnedContacts;
     }
 
-    private wrapperHandlesAfter handlesAfter(Contact [] contacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
-        wrapperHandlesAfter wrapper;
+    private HandleWrapperLogic handlesAfter(Contact [] contacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
+        HandleWrapperLogic wrapperReturn;
 
         System.debug('CheckTriggerContext -->' + triggerAction);
         //AfterInsert
-        System.debug('handlesAfter triggerActionInsertResult -->' + (triggerAction == TDTM_Runnable.Action.AfterInsert &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)));
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
                 System.debug('HandleAfterMethod Insert --->');
-                wrapper = new wrapperHandlesAfter (contacts, oldContacts, triggerAction);
-                System.debug('Wrapper insert -->' + wrapper);
-            }
+                wrapperReturn = new HandleWrapperLogic (contacts, oldContacts, triggerAction);
+                System.debug('Wrapper insert -->' + wrapperReturn);
+        }
 
         //AfterUpdate
-        System.debug('handlesAfter triggerActionInsertResult -->' + (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)));
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
                 System.debug('HandleAfterMethod Update --->');
-                wrapper = new wrapperHandlesAfter (contacts, oldContacts, triggerAction);
-				System.debug('Wrapper insert -->' + wrapper);
-            }
+                wrapperReturn = new HandleWrapperLogic (contacts, oldContacts, triggerAction);
+				System.debug('Wrapper insert -->' + wrapperReturn);
+        }
 
         System.debug('SettingRecursionFlagSection --->');
-       	//Set recursion flags
-       	/*if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-				System.debug('SettingRecursion==InsertTrue -->');
-	       		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
-       		}
+       		//Set recursion flags
+       	if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+			System.debug('SettingRecursion==InsertTrue -->');
+	       	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
+       	}
 
        	if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            	System.debug('SettingRecursion==UpdateTrue -->');
-           		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, true);
-       		}
+            System.debug('SettingRecursion==UpdateTrue -->');
+           	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, true);
+       	}
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-            	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
-       		}*/
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
+       	}
 
-       	System.debug('handleProcessingCall Before -->');
-       	//handleProcessing(wrapper, NULL, NULL);
-       	System.debug('handleProcessingCall After -->');
-        return wrapper;
+        return wrapperReturn;
     }
-	/*******************************************************************************************************
-		* @description Check if all conditions for household naming are met
-		* @param accRecordTypeId the id of parent account's record type id
-		* @return boolean
-		*/
-    	public  static boolean checkHouseholdNaming(Id accRecordTypeId) {
-            System.debug('checkHouseholdNaming Method -->');
-        	if (accRecordTypeId != null
-            	&& accRecordTypeId == userDefinedHHRecordTypeId
-            	&& UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
-                    System.debug('checkHouseholdNaming True -->');
-                	return true;
-            } else {
-                System.debug('checkHouseholdNaming False -->');
-                return false;
-            }
-    	}
-    private class wrapperHandlesAfter {
+
+    private class HandleWrapperLogic {
         public Map<Id,Id> mapAccountIdContactId = new Map<Id,Id>();
         public Map<Id,Id> mapContactIdAccountIdNewMoveOpps = new Map<Id,Id>();
         public Map<Id,Id> mapContactIdAccountIdOldMoveOpps = new Map<Id,Id>();
@@ -222,11 +195,9 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         public List<Contact> listContactNeedAccount = new List<Contact>();
         public List<Contact> listContactsChangedLastName = new List<Contact>();
 
-        private wrapperHandlesAfter(Contact[] contacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
+        private HandleWrapperLogic(Contact[] contacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
             System.debug('InsideWrapperHandlesAfter Method -->');
             Integer i = 0;
-            System.debug('CheckInteger -->' + i);
-
             for (Contact c : contacts) {
                 System.debug('InsideWrapperHandlesAfter ForLoop -->');
 
@@ -331,26 +302,7 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
                 }
                 i += 1;
             }
-
-            System.debug('SettingRecursionFlagSection --->');
-       		//Set recursion flags
-       		if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-				System.debug('SettingRecursion==InsertTrue -->');
-	       		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert, true);
-       			}
-
-       		if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            	System.debug('SettingRecursion==UpdateTrue -->');
-           		TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update, true);
-       		}
-
-        	if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
-            	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
-       		}
-
         }
-
-
     }
 
     private void handlesAfterDelete(Contact[] oldContacts) {
@@ -358,8 +310,6 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
     	List<Account> relatedAccounts = new List<Account>();
    		Set<Id> setAccountIdHHToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
-        wrapperHandlesAfter wp;
-
 
         System.debug('handlesAfterDelete -->');
         for (Contact c : oldContacts) {
@@ -377,8 +327,6 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
 
         for (Account account : relatedAccounts) {
            	System.debug('handlesAfterDelete InsideAccForLoop -->');
-
-            //Boolean recordTypeCheck = wrapperHandlesAfter.checkHouseholdNaming(account.RecordTypeId);
             if (checkHouseholdNaming(account.RecordTypeID)) {
                 System.debug('handlesAfterDelete InsideRecordTypeCheck -->');
                 setAccountIdHHToRename.add(account.Id);
@@ -390,99 +338,54 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         System.debug('HandlePRocessingAFTER DELETE-->');
     }
 
-     	public boolean checkHouseholdNamingDelete(Id accRecordTypeId) {
-            System.debug('checkHouseholdNaming Method -->');
-        	if (accRecordTypeId != null
-            	&& accRecordTypeId == userDefinedHHRecordTypeId
-            	&& UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true) {
-                    System.debug('checkHouseholdNaming True -->');
-                	return true;
-            } else {
-                System.debug('checkHouseholdNaming False -->');
-                return false;
-            }
-    	}
-
-    private void handleProcessing(wrapperHandlesAfter wp, Set<Id> setAccountIdHHToRename, List<Contact> listContactAccountDelete) {
-        System.debug('handleProcessing wp -->' + wp);
+    private void handleProcessing(HandleWrapperLogic wrapper, Set<Id> setAccountIdHHToRename, List<Contact> listContactAccountDelete) {
+        System.debug('handleProcessing wp -->' + wrapper);
 
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        //AfterInsert
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+        //AFTER INSERT OR AFTER UPDATE
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            List<Contact> createNewAccountsForContacts = wrapper.listContactNeedAccount;
+            List<Id> accountIdHHToUpdate = wrapper.listAccountIdHHToUpdate;
+            Map<Id,Id> updateAccPrimaryContact = wrapper.mapAccountIdContactId;
+         	Set<Id> accountIdHHToRename = wrapper.setAccountIdHHToRenameWP;
 
-                System.debug('HandleProcessing InsideInsert&Update --->');
-                List<Contact> createNewAccountsForContacts = wp.listContactNeedAccount;
-				Set<Id> accountIdHHToRename = wp.setAccountIdHHToRenameWP;
-				Map<Id,Id> updateAccPrimaryContact = wp.mapAccountIdContactId;
-                //Creates new Account
-        		if (createNewAccountsForContacts.size() > 0) {
-                    System.debug('createNewAccountsForContacts -->' + createNewAccountsForContacts);
-            		UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + createNewAccountsForContacts.size());
-            		insertContactAccount(createNewAccountsForContacts, dmlWrapper);
-        		}
+            //Creates new Account
+        	if (createNewAccountsForContacts.size() > 0) {
+            	System.debug('createNewAccountsForContacts -->' + createNewAccountsForContacts);
+            	UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + createNewAccountsForContacts.size());
+            	insertContactAccount(createNewAccountsForContacts, dmlWrapper);
+        	}
+            //Updates the Primary Contact Field on New Account
+            if (updateAccPrimaryContact.size() > 0) {
+            	System.debug('Inside updateAccPrimaryContact -->' + updateAccPrimaryContact);
+            	//update Accounts that have newly created Contacts connected to them
+            	updateAccountPrimaryContact(updateAccPrimaryContact, dmlWrapper);
+        	}
+            //Updates existing Account Primary Contact
+			if (accountIdHHToUpdate.size() > 0) {
+                System.debug('accountIdHHToUpdateIF --->');
+            	updateParentAcc(accountIdHHToUpdate, dmlWrapper);
+        	}
+            //Updates Household Account name
+            if (accountIdHHToRename.size() > 0) {
+            	System.debug('accountIdHHToRename IF -->' + accountIdHHToRename);
+            	UTIL_ACCT_Naming.updateHHAccountsName(accountIdHHToRename);
+        	}
+        }
 
-            	//Updates the Primary COntact Field on Account
-            	if (updateAccPrimaryContact.size() > 0) {
-            		System.debug('Inside updateAccPrimaryContact -->' + updateAccPrimaryContact);
-            		//update Accounts that have newly created Contacts connected to them
-            		updateAccountPrimaryContact(updateAccPrimaryContact, dmlWrapper);
-            		//we also need to create affiliations for those contacts that have been created as children of existing accounts,
-            		//and we have to populate the key affiliation field on those contacts
-            		//createAfflsToExistingAccs(mapAccountIdContactId, dmlWrapper);
-        		}
-
-            	//Updates HH Account name : KD TO DO - Do I need this in here?
-                if (accountIdHHToRename.size() > 0) {
-                    System.debug('accountIdHHToRename IF -->' + accountIdHHToRename);
-            		UTIL_ACCT_Naming.updateHHAccountsName(accountIdHHToRename);
-        		}
-            }
-
-
-
-        //AfterUpdate
+        //AFTER UPDATE
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate ) {
-
                 System.debug('HandleProcessing UpdateONLY --->');
-                List<Contact> listContactChangeLastName = wp.listContactsChangedLastName;
-                List<Id> accountIdHHToUpdate = wp.listAccountIdHHToUpdate;
-                Map<Id,Contact> mapContactOwnerChange = wp.mapContactIdContactOwnerChange;
-                Map<Id,Id> mapContactIdAccountIdNewMoveOpp = wp.mapContactIdAccountIdNewMoveOpps;
-                Map<Id,Id> mapContactIdAccountIdOldMoveOpp = wp.mapContactIdAccountIdOldMoveOpps;
-				Set<Id> accountIdHHToRename = wp.setAccountIdHHToRenameWP;
-				Map<Id,Id> updateAccPrimaryContact = wp.mapAccountIdContactId;
-				List<Contact> createNewAccountsForContacts = wp.listContactNeedAccount;
-
-            	if (createNewAccountsForContacts.size() > 0) {
-                    System.debug('createNewAccountsForContacts -->' + createNewAccountsForContacts);
-            		UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + createNewAccountsForContacts.size());
-            		insertContactAccount(createNewAccountsForContacts, dmlWrapper);
-        		}
-
-            	//Updates existing Account Primary Contact
-				if (accountIdHHToUpdate.size() > 0) {
-                    System.debug('accountIdHHToUpdateIF --->');
-            		updateParentAcc(accountIdHHToUpdate, dmlWrapper);
-        		}
-
-            	if (updateAccPrimaryContact.size() > 0) {
-            		System.debug('Inside mapAccountIdContactId -->' + updateAccPrimaryContact);
-            		//update Accounts that have newly created Contacts connected to them
-            		updateAccountPrimaryContact(updateAccPrimaryContact, dmlWrapper);
-
-        		}
+                List<Contact> listContactChangeLastName = wrapper.listContactsChangedLastName;
+                Map<Id,Contact> mapContactOwnerChange = wrapper.mapContactIdContactOwnerChange;
+                Map<Id,Id> mapContactIdAccountIdNewMoveOpp = wrapper.mapContactIdAccountIdNewMoveOpps;
+                Map<Id,Id> mapContactIdAccountIdOldMoveOpp = wrapper.mapContactIdAccountIdOldMoveOpps;
 
         		//Updates Account Owner to match Contact Owner change
         		if (mapContactOwnerChange.size() > 0) {
                     System.debug('mapContactOwnerChangeIF --->');
             		updateOwners(mapContactOwnerChange, dmlWrapper);
-        		}
-
-            	//Updates HH Account name
-                if (accountIdHHToRename.size() > 0) {
-                    System.debug('accountIdHHToRename IF -->' + accountIdHHToRename);
-            		UTIL_ACCT_Naming.updateHHAccountsName(accountIdHHToRename);
         		}
         		//Updates Admin Account Name : KD TO DO
         		if (listContactChangeLastName.size() > 0) {
@@ -496,12 +399,11 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         		}
 		}
 
-        //AfterDELETE
-        //KD: TO DO
+        //AFTER DELETE
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             	System.debug('HandleProcessing DELETEONLY --->');
 
-				//Updates Account name
+				//Updates Household Account name
 				if (setAccountIdHHToRename.size() > 0) {
             		UTIL_ACCT_Naming.updateHHAccountsName(setAccountIdHHToRename);
         		}
@@ -886,6 +788,24 @@ public class ACCT_IndividualAccounts_DF extends TDTM_Runnable {
         //Update any HH accounts that just lost a contact
         if (listAccountIdUpdate.size() > 0) {
 			updateParentAcc(listAccountIdUpdate, dmlWrapper);
+        }
+    }
+    /*******************************************************************************************************
+	* @description Check if all conditions for household naming are met
+	* @param accRecordTypeId the id of parent account's record type id
+	* @return boolean
+	*/
+    public static boolean checkHouseholdNaming(Id accRecordTypeId) {
+        System.debug('checkHouseholdNaming Method -->');
+       	if (accRecordTypeId != null
+            && accRecordTypeId == userDefinedHHRecordTypeId
+           	&& UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true)
+        {
+            System.debug('checkHouseholdNaming True -->');
+            return true;
+        } else {
+        	System.debug('checkHouseholdNaming False -->');
+            return false;
         }
     }
 }
