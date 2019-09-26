@@ -144,10 +144,8 @@ flows:
             3:
                 task: execute_install_apex
             4:
-                task: deploy_dev_config
-            5:
                 task: execute_qa_apex
-            6:
+            5:
                 task: deploy_qa_config
 
     config_regression:
