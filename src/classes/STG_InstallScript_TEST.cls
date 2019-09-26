@@ -65,6 +65,11 @@ public with sharing class STG_InstallScript_TEST {
         // Verify defaults are set on install
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         System.assertEquals(Label.stgFluent, orgSettings.Default_Contact_Language_Fluency__c);
+        
+        System.assertEquals(true, orgSettings.Enable_New_Preferred_Phone_Sync__c,
+            'Expected the new Preferred Phone sync to be enabled on install.');
+        System.assertEquals(false, orgSettings.Disable_Preferred_Phone_Enforcement__c,
+            'Expected the Preferred Phone enforcement to be enabled on install.');
 
         // Making sure the Batch process ran successfully
         Contact cont2 = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =: cont.Id];
@@ -363,11 +368,11 @@ public with sharing class STG_InstallScript_TEST {
         Test.testInstall(new STG_InstallScript(), new Version(1,81), true);
         Test.stopTest();
 
-        List<Trigger_Handler__c> turnOffPreferredPhone = [SELECT Active__c FROM Trigger_Handler__c WHERE Class__c = 'CON_PreferredPhone_TDTM'];
         Hierarchy_Settings__c updatedSettings = UTIL_CustomSettingsFacade.getSettings();
         
-        System.assertEquals(True, updatedSettings.Disable_Preferred_Phone_Enforcement__c);
-        System.assertEquals(False, turnOffPreferredPhone[0].Active__c);
-
+        System.assertEquals(true, updatedSettings.Disable_Preferred_Phone_Enforcement__c,
+            'Expected the Preferred Phone enforcement to be disabled.');
+        System.assertEquals(false, updatedSettings.Enable_New_Preferred_Phone_Sync__c, 
+            'Expected the new Preferred Phone sync to be disabled.');
     }
 }
