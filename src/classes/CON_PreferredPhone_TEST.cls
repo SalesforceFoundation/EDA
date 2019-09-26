@@ -97,7 +97,7 @@ private class CON_PreferredPhone_TEST {
             update newCont;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact WHERE Id =: newCont.Id];
+        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, Phone, PreferredPhone__c FROM Contact WHERE Id =: newCont.Id];
         
         System.assertEquals('0000000000', newContAfterList.OtherPhone);
         System.assertEquals('Other', newContAfterList.PreferredPhone__c);
@@ -123,7 +123,7 @@ private class CON_PreferredPhone_TEST {
             update newContAfter;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone , Phone FROM Contact];
+        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, Phone FROM Contact];
         
         System.assertEquals(null, newContAfterList.Phone);
 
@@ -422,7 +422,7 @@ private class CON_PreferredPhone_TEST {
             update contactsToInsert;
         Test.stopTest();
 
-        List<Contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact];
+        List<Contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, Phone, PreferredPhone__c FROM Contact];
         
         for (Contact each : newContAfterList) { 
             System.assertEquals('0000000000', each.OtherPhone);
