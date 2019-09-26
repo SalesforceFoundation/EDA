@@ -269,6 +269,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Enable_New_Preferred_Phone_Sync__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Turns on the Preferred Phone functionality that was released in EDA 1.82. This functionality syncs the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</inlineHelpText>
+        <label>Enable New Preferred Phone Sync</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Error_Notifications_On__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Flag that determines whether to send error notifications.</description>

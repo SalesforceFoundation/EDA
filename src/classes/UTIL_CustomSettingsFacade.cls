@@ -141,6 +141,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Enable_Course_Connections__c = mySettings.Enable_Course_Connections__c;
+        settings.Enable_New_Preferred_Phone_Sync__c = mySettings.Enable_New_Preferred_Phone_Sync__c;
         settings.Faculty_RecType__c = mySettings.Faculty_RecType__c;
         settings.Student_RecType__c = mySettings.Student_RecType__c;
         settings.Disable_Preferred_Email_Enforcement__c = mySettings.Disable_Preferred_Email_Enforcement__c;
