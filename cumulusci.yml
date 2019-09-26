@@ -87,7 +87,8 @@ tasks:
             output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
-        description: Sets record type visibilities for System Administrative profile
+        description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
+        group: Custom Tasks
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
