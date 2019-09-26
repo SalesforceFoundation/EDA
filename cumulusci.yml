@@ -16,7 +16,7 @@ project:
 
 tasks:
     deploy_dev_config:
-        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
@@ -87,6 +87,7 @@ tasks:
             output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
+        description: Sets record type visibilities for System Administrative profile
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
