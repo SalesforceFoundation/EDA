@@ -197,6 +197,9 @@ orgs:
             namespaced: True
         prerelease:
             config_file: orgs/prerelease.json
+        prerelease_namespaced:
+            config_file: orgs/prerelease.json
+            namespaced: True
 
 plans:
     install:
@@ -218,8 +221,10 @@ plans:
                 task: deploy_post
                 ui_options:
                     course_connection_record_types:
-                        name: Course Connection Record Types for EDA
+                        name: EDA - Course Connection Record Types
                     facility_display_name:
-                        name: Facility Display Name Formula Field
+                        name: EDA - Facility Display Name Formula Field
+                    case_behavior_record_types:
+                        name: EDA - Case Behavior Record Types
                 options:
                     unmanaged: false

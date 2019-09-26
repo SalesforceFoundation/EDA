@@ -1,99 +1,103 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Term Grade --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Term Grade --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The class in which the student received this grade. --></help>
-        <label><!-- Course Connection --></label>
-        <name>Course_Connection__c</name>
-        <relationshipLabel><!-- Term Grades --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The number of credits attempted for this course and grading period. --></help>
-        <label><!-- Credits Attempted --></label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <help><!-- The number of credits earned for this course and grading period. --></help>
-        <label><!-- Credits Earned --></label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <help><!-- The letter grade the student earned for this course. For example, &quot;A+&quot; or any other text value. --></help>
-        <label><!-- Letter Grade --></label>
-        <name>Letter_Grade__c</name>
-    </fields>
-    <fields>
-        <help><!-- The numerical grade the student earned for this course, which can be based on any non-percentage number. --></help>
-        <label><!-- Numerical Grade --></label>
-        <name>Numerical_Grade__c</name>
-    </fields>
-    <fields>
-        <help><!-- The percentage grade the student earned for this course. --></help>
-        <label><!-- Percent Grade --></label>
-        <name>Percent_Grade__c</name>
-    </fields>
-    <fields>
-        <help><!-- The result of the student&apos;s performance for this grading period. --></help>
-        <label><!-- Result --></label>
-        <name>Result__c</name>
-        <picklistValues>
-            <masterLabel>Audit</masterLabel>
-            <translation><!-- Audit --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Dropped</masterLabel>
-            <translation><!-- Dropped --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fail</masterLabel>
-            <translation><!-- Fail --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Pass</masterLabel>
-            <translation><!-- Pass --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- The type of term or grading period for which this grade is being recorded. --></help>
-        <label><!-- Term Grade Type --></label>
-        <name>Term_Grade_Type__c</name>
-        <picklistValues>
-            <masterLabel>Exam Grade</masterLabel>
-            <translation><!-- Exam Grade --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Final Grade</masterLabel>
-            <translation><!-- Final Grade --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Grading Period</masterLabel>
-            <translation><!-- Grading Period --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Mid-Term Grade</masterLabel>
-            <translation><!-- Mid-Term Grade --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- The term or grading period for which this grade is being recorded. --></help>
-        <label><!-- Term --></label>
-        <name>Term__c</name>
-        <relationshipLabel><!-- Term Grades --></relationshipLabel>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Term Grade Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Term Grade Name --></nameFieldLabel>
+  <fields>
+    <name>Course_Connection__c</name>
+    <help>La clase en que el estudiante recibió este evaluación.</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Enlace de cursos</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>El número de créditos intentados para este curso y periodo de evaluación.</help>
+    <label>Créditos intentados</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>El número de créditos obtenidos para este curso y periodo de evaluación.</help>
+    <label>Créditos obtenidos</label>
+  </fields>
+  <fields>
+    <name>Letter_Grade__c</name>
+    <help>La evaluación de letra que obtuvo el estudiante para este curso. Por ejemplo "A+" u otro valor de texto.</help>
+    <label>Evaluación de letra</label>
+  </fields>
+  <fields>
+    <name>Numerical_Grade__c</name>
+    <help>La evaluación numérica que obtuvo el estudiante para este curso, que puede ser basada en cualquier número no de porcentaje.</help>
+    <label>Evaluación numérica</label>
+  </fields>
+  <fields>
+    <name>Percent_Grade__c</name>
+    <help>La evaluación de porcentaje que el estudiante obtuvo para este curso.</help>
+    <label>Evaluación de porcentaje</label>
+  </fields>
+  <fields>
+    <name>Result__c</name>
+    <help>El resultado del rendimiento del estudiante para este periodo de evaluación.</help>
+    <label>Resultado</label>
+    <picklistValues>
+      <masterLabel>Audit</masterLabel>
+      <translation>Auditoría</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dropped</masterLabel>
+      <translation>Eliminado</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fail</masterLabel>
+      <translation>Fracaso</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pass</masterLabel>
+      <translation>Aprobado</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term_Grade_Type__c</name>
+    <help>El tipo de periodo de evaluación o plazo para el que se registró esta evaluación.</help>
+    <label>Tipo de evaluación de periodo</label>
+    <picklistValues>
+      <masterLabel>Exam Grade</masterLabel>
+      <translation>Evaluación de examen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Final Grade</masterLabel>
+      <translation>Evaluación final</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grading Period</masterLabel>
+      <translation>Periodo de evaluación</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mid-Term Grade</masterLabel>
+      <translation>Evaluación a medio plazo</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <help>El periodo de evaluación o plazo para el que se registró esta evaluación.</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Plazo</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Grade Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de evaluación de periodo</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de evaluación de periodo</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Evaluación de periodo</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Evaluaciones de periodo</value>
+  </caseValues>
 </CustomObjectTranslation>

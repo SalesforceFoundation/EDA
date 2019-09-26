@@ -277,6 +277,20 @@
         <members>Attribute__c.Expired__c</members>
         <members>Attribute__c.Start_Date__c</members>
         <members>Attribute__c.Subject_Area__c</members>
+        <members>Behavior_Involvement__c.Case__c</members>
+        <members>Behavior_Involvement__c.Contact__c</members>
+        <members>Behavior_Involvement__c.Description__c</members>
+        <members>Behavior_Involvement__c.Role__c</members>
+        <members>Behavior_Response__c.Behavior_Involvement__c</members>
+        <members>Behavior_Response__c.Contact__c</members>
+        <members>Behavior_Response__c.Description__c</members>
+        <members>Behavior_Response__c.End_Date__c</members>
+        <members>Behavior_Response__c.Start_Date__c</members>
+        <members>Behavior_Response__c.Status__c</members>
+        <members>Behavior_Response__c.Type__c</members>
+        <members>Case.Category__c</members>
+        <members>Case.Location__c</members>
+        <members>Case.Occurrence_Date__c</members>
         <members>Contact.AlternateEmail__c</members>
         <members>Contact.Chosen_Full_Name__c</members>
         <members>Contact.Citizenship__c</members>
@@ -391,6 +405,7 @@
         <members>Hierarchy_Settings__c.Disable_Preferred_Phone_Enforcement__c</members>
         <members>Hierarchy_Settings__c.Enable_Course_Connections__c</members>
         <members>Hierarchy_Settings__c.Enable_Debug__c</members>
+        <members>Hierarchy_Settings__c.Enable_New_Preferred_Phone_Sync__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_On__c</members>
         <members>Hierarchy_Settings__c.Error_Notifications_To__c</members>
         <members>Hierarchy_Settings__c.Faculty_RecType__c</members>
@@ -608,6 +623,7 @@
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgDisablePreferredPhoneEnforcement</members>
         <members>stgEnableCourseConnectionsTitle</members>
+        <members>stgEnablePreferredPhoneSync</members>
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
@@ -629,6 +645,7 @@
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpContactPreferredPhone</members>
+        <members>stgHelpContactPreferredPhoneSync</members>
         <members>stgHelpCopyQueuedEmailSent</members>
         <members>stgHelpCourseConnBackfillDescription</members>
         <members>stgHelpCoursesDataMigration</members>
@@ -713,6 +730,8 @@
         <members>Affl_Mappings__c</members>
         <members>Attendance_Event__c</members>
         <members>Attribute__c</members>
+        <members>Behavior_Involvement__c</members>
+        <members>Behavior_Response__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -736,104 +755,141 @@
     </types>
     <types>
         <members>Account-ca</members>
+        <members>Account-en_GB</members>
         <members>Account-es</members>
         <members>Account-fr</members>
         <members>Address__c-ca</members>
+        <members>Address__c-en_GB</members>
         <members>Address__c-en_US</members>
         <members>Address__c-es</members>
         <members>Address__c-fr</members>
         <members>Affiliation__c-ca</members>
+        <members>Affiliation__c-en_GB</members>
         <members>Affiliation__c-en_US</members>
         <members>Affiliation__c-es</members>
         <members>Affiliation__c-fr</members>
         <members>Affl_Mappings__c-ca</members>
+        <members>Affl_Mappings__c-en_GB</members>
         <members>Affl_Mappings__c-en_US</members>
         <members>Affl_Mappings__c-es</members>
         <members>Affl_Mappings__c-fr</members>
         <members>Attendance_Event__c-ca</members>
+        <members>Attendance_Event__c-en_GB</members>
         <members>Attendance_Event__c-en_US</members>
         <members>Attendance_Event__c-es</members>
         <members>Attendance_Event__c-fr</members>
         <members>Attribute__c-ca</members>
+        <members>Attribute__c-en_GB</members>
         <members>Attribute__c-en_US</members>
         <members>Attribute__c-es</members>
         <members>Attribute__c-fr</members>
+        <members>Behavior_Involvement__c-ca</members>
+        <members>Behavior_Involvement__c-en_US</members>
+        <members>Behavior_Involvement__c-es</members>
+        <members>Behavior_Involvement__c-fr</members>
+        <members>Behavior_Response__c-ca</members>
+        <members>Behavior_Response__c-en_US</members>
+        <members>Behavior_Response__c-es</members>
+        <members>Behavior_Response__c-fr</members>
+        <members>Case-ca</members>
+        <members>Case-es</members>
+        <members>Case-fr</members>
         <members>Contact-ca</members>
+        <members>Contact-en_GB</members>
         <members>Contact-es</members>
         <members>Contact-fr</members>
         <members>Contact_Language__c-ca</members>
+        <members>Contact_Language__c-en_GB</members>
         <members>Contact_Language__c-en_US</members>
         <members>Contact_Language__c-es</members>
         <members>Contact_Language__c-fr</members>
         <members>Course_Enrollment__c-ca</members>
+        <members>Course_Enrollment__c-en_GB</members>
         <members>Course_Enrollment__c-en_US</members>
         <members>Course_Enrollment__c-es</members>
         <members>Course_Enrollment__c-fr</members>
         <members>Course_Offering_Schedule__c-ca</members>
+        <members>Course_Offering_Schedule__c-en_GB</members>
         <members>Course_Offering_Schedule__c-en_US</members>
         <members>Course_Offering_Schedule__c-es</members>
         <members>Course_Offering_Schedule__c-fr</members>
         <members>Course_Offering__c-ca</members>
+        <members>Course_Offering__c-en_GB</members>
         <members>Course_Offering__c-en_US</members>
         <members>Course_Offering__c-es</members>
         <members>Course_Offering__c-fr</members>
         <members>Course__c-ca</members>
+        <members>Course__c-en_GB</members>
         <members>Course__c-en_US</members>
         <members>Course__c-es</members>
         <members>Course__c-fr</members>
         <members>Error__c-ca</members>
+        <members>Error__c-en_GB</members>
         <members>Error__c-en_US</members>
         <members>Error__c-es</members>
         <members>Error__c-fr</members>
         <members>Facility__c-ca</members>
+        <members>Facility__c-en_GB</members>
         <members>Facility__c-en_US</members>
         <members>Facility__c-es</members>
         <members>Facility__c-fr</members>
         <members>Hierarchy_Settings__c-ca</members>
+        <members>Hierarchy_Settings__c-en_GB</members>
         <members>Hierarchy_Settings__c-en_US</members>
         <members>Hierarchy_Settings__c-es</members>
         <members>Hierarchy_Settings__c-fr</members>
         <members>Language__c-ca</members>
+        <members>Language__c-en_GB</members>
         <members>Language__c-en_US</members>
         <members>Language__c-es</members>
         <members>Language__c-fr</members>
         <members>Plan_Requirement__c-ca</members>
+        <members>Plan_Requirement__c-en_GB</members>
         <members>Plan_Requirement__c-en_US</members>
         <members>Plan_Requirement__c-es</members>
         <members>Plan_Requirement__c-fr</members>
         <members>Program_Enrollment__c-ca</members>
+        <members>Program_Enrollment__c-en_GB</members>
         <members>Program_Enrollment__c-en_US</members>
         <members>Program_Enrollment__c-es</members>
         <members>Program_Enrollment__c-fr</members>
         <members>Program_Plan__c-ca</members>
+        <members>Program_Plan__c-en_GB</members>
         <members>Program_Plan__c-en_US</members>
         <members>Program_Plan__c-es</members>
         <members>Program_Plan__c-fr</members>
         <members>Relationship_Auto_Create__c-ca</members>
+        <members>Relationship_Auto_Create__c-en_GB</members>
         <members>Relationship_Auto_Create__c-en_US</members>
         <members>Relationship_Auto_Create__c-es</members>
         <members>Relationship_Auto_Create__c-fr</members>
         <members>Relationship_Lookup__c-ca</members>
+        <members>Relationship_Lookup__c-en_GB</members>
         <members>Relationship_Lookup__c-en_US</members>
         <members>Relationship_Lookup__c-es</members>
         <members>Relationship_Lookup__c-fr</members>
         <members>Relationship__c-ca</members>
+        <members>Relationship__c-en_GB</members>
         <members>Relationship__c-en_US</members>
         <members>Relationship__c-es</members>
         <members>Relationship__c-fr</members>
         <members>Term_Grade__c-ca</members>
+        <members>Term_Grade__c-en_GB</members>
         <members>Term_Grade__c-en_US</members>
         <members>Term_Grade__c-es</members>
         <members>Term_Grade__c-fr</members>
         <members>Term__c-ca</members>
+        <members>Term__c-en_GB</members>
         <members>Term__c-en_US</members>
         <members>Term__c-es</members>
         <members>Term__c-fr</members>
         <members>Time_Block__c-ca</members>
+        <members>Time_Block__c-en_GB</members>
         <members>Time_Block__c-en_US</members>
         <members>Time_Block__c-es</members>
         <members>Time_Block__c-fr</members>
         <members>Trigger_Handler__c-ca</members>
+        <members>Trigger_Handler__c-en_GB</members>
         <members>Trigger_Handler__c-en_US</members>
         <members>Trigger_Handler__c-es</members>
         <members>Trigger_Handler__c-fr</members>
@@ -844,6 +900,8 @@
         <members>Affiliation__c</members>
         <members>Attendance_Event__c</members>
         <members>Attribute__c</members>
+        <members>Behavior_Involvement__c</members>
+        <members>Behavior_Response__c</members>
         <members>Contact_Language__c</members>
         <members>Course_Enrollment__c</members>
         <members>Course_Offering_Schedule__c</members>
@@ -901,6 +959,9 @@
         <members>Attendance_Event__c-EDA Attendance Event Layout</members>
         <members>Attribute__c-EDA Credential Layout</members>
         <members>Attribute__c-EDA Student Characteristic Layout</members>
+        <members>Behavior_Involvement__c-EDA Behavior Involvement Layout</members>
+        <members>Behavior_Response__c-EDA Behavior Response Layout</members>
+        <members>Case-EDA Incident Layout</members>
         <members>Contact-HEDA Contact Layout</members>
         <members>Contact_Language__c-HEDA Contact Language Layout</members>
         <members>Course_Enrollment__c-HEDA Course Enrollment Layout</members>
@@ -925,6 +986,8 @@
         <members>Affiliation__c.All</members>
         <members>Attendance_Event__c.All</members>
         <members>Attribute__c.All</members>
+        <members>Behavior_Involvement__c.All</members>
+        <members>Behavior_Response__c.All</members>
         <members>Contact_Language__c.All</members>
         <members>Course_Enrollment__c.All</members>
         <members>Course_Offering_Schedule__c.All</members>
@@ -951,6 +1014,7 @@
     </types>
     <types>
         <members>ca</members>
+        <members>en_GB</members>
         <members>es</members>
         <members>fr</members>
         <name>Translations</name>

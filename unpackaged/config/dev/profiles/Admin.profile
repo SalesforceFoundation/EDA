@@ -45,6 +45,10 @@
         <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Case-%%%NAMESPACE%%%EDA Incident Layout</layout>
+        <recordType>Case.%%%NAMESPACED_ORG%%%Incident</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-%%%NAMESPACE%%%HEDA Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -75,7 +79,11 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>%%%NAMESPACE%%%Time_Block__c</tab>
+        <tab>%%%NAMESPACE%%%Behavior_Involvement__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Behavior_Response__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

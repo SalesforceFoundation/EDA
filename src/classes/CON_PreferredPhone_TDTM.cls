@@ -34,13 +34,21 @@
 * @group-content ../../ApexDocContent/Contacts.htm
 * @description Populates default phone field according to user preferences and/or enforces use of 'Preferred Phone'.
 */
-public class CON_PreferredPhone_TDTM extends TDTM_Runnable{
+public class CON_PreferredPhone_TDTM extends TDTM_Runnable {
 /*******************************************************************************************************
     * @description Populates default phone field according to user preferences and/or enforces use of 'Preferred Phone'
+    * Exits early if the "Enable New Preferred Phone Sync" custom setting is not enabled.
     * @return dmlWrapper
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+
+        // Is the new Preferred Phone functionality enabled? If not, exit immediately.
+        Boolean isNewPreferredPhoneFunctionalityEnabled = (UTIL_CustomSettingsFacade.getSettings().Enable_New_Preferred_Phone_Sync__c == true);
+
+        if (!isNewPreferredPhoneFunctionalityEnabled) {
+            return null;
+        }
              
         if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PreferredPhone_TDTM) 
             && (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) && newlist != null) {

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- The type of Case being tracked. --></help>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Code of Conduct</masterLabel>
+            <translation><!-- School Code of Conduct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Violation</masterLabel>
+            <translation><!-- School Violation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State Offense</masterLabel>
+            <translation><!-- State Offense --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The location where the Case took place. --></help>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+        <picklistValues>
+            <masterLabel>Off Campus</masterLabel>
+            <translation><!-- Off Campus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Campus</masterLabel>
+            <translation><!-- On Campus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The date and time when the behavior event that triggered the Case occurred. --></help>
+        <label><!-- Occurrence Date --></label>
+        <name>Occurrence_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>EDA Incident Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewChildCase --></label>
+        <name>NewChildCase</name>
+    </quickActions>
+</CustomObjectTranslation>
