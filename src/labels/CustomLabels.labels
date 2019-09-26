@@ -1056,6 +1056,14 @@
         <value>Enable Course Connections:</value>
     </labels>
     <labels>
+        <fullName>stgEnablePreferredPhoneSync</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgEnablePreferredPhoneSync</shortDescription>
+        <value>Enable Enhanced Preferred Phone Functionality:</value>
+    </labels>
+    <labels>
         <fullName>stgErrorNotiTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1222,6 +1230,14 @@
         <protected>true</protected>
         <shortDescription>stgHelpContactPreferredPhone</shortDescription>
         <value>Do not require Contacts to have a Preferred Phone.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpContactPreferredPhoneSync</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpContactPreferredPhoneSync</shortDescription>
+        <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
     </labels>
     <labels>
         <fullName>stgHelpCopyQueuedEmailSent</fullName>

@@ -1,11 +1,17 @@
 ({
-toggleIsView : function(component, event) {
-	component.set("v.isView", event.getParam("isView"));
-},
-runBackfill : function (component, event, helper) {
-	helper.runBackfill(component);
-},
-runCleanUp : function (component, event, helper) {
-	helper.runCleanUp(component);
-},
+    toggleIsView : function(component, event, helper) {
+        component.set("v.isView", event.getParam("isView"));
+        var enablePrefPhone = component.find("enablePrefPhoneEdit").get("v.value");
+
+        helper.toggleDisablePhoneEnforcementCheckbox(component, enablePrefPhone);
+    },
+    runBackfill : function (component, event, helper) {
+        helper.runBackfill(component);
+    },
+    runCleanUp : function (component, event, helper) {
+        helper.runCleanUp(component);
+    },
+    handlePhoneSync : function (component, event, helper) {
+        helper.handlePhoneSync(component, event);
+    },
 })
