@@ -101,11 +101,13 @@ flows:
                 task: uninstall_packaged
 
     config_apextest:
+        description: Configure an org to run apex tests after package metadata is deployed
         steps:
             3:
                 task: execute_install_apex
 
     config_dev:
+        description: Configure an org for use as a dev org after package metadata is deployed
         steps:
             3:
                 task: execute_install_apex
@@ -113,6 +115,7 @@ flows:
                 task: deploy_dev_config
 
     config_dev_namespaced:
+        description: Configure an org for use as a namespaced dev org after package metadata is deployed
         steps:
             1:
                 task: deploy_post
@@ -128,26 +131,15 @@ flows:
                 task: deploy_dev_config
 
     config_managed:
+        description: Configure an org for use as a dev org after package metadata is deployed
         steps:
             2:
-                # Configure update_admin_profile
-                options:
-                    managed: True
-            3:
                 task: deploy_dev_config
                 options:
                     unmanaged: False
 
-    config_packaging:
-        steps:
-            1:
-                # Configure update_admin_profile
-                options:
-                    managed: True
-                    namespaced_org: True
-                    skip_record_types: True
-
     config_qa:
+        descripton: Configure an org for use as a QA org after package metadata is deployed
         steps:
             3:
                 task: execute_install_apex
@@ -159,6 +151,7 @@ flows:
                 task: deploy_qa_config
 
     config_regression:
+        description: Configure an org for QA regression after the package is installed
         steps:
             2:
                 task: execute_qa_apex
@@ -168,21 +161,6 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
-
-    deploy_unmanaged:
-        steps:
-            4:
-                # Disable uninstall_packaged_incremental
-                task: None
-
-    dev_org_namespaced:
-        steps:
-            3:
-                # Configure the config_dev flow for namespaced org
-                options:
-                    update_admin_profile:
-                        namespaced_org: True
-
 
 services:
     mockaroo:
