@@ -26,5 +26,16 @@
 		    }
 		});
 		$A.enqueueAction(runBatchAction);
-	},
+    },
+    handlePhoneSync : function (component, event) {
+        var enablePrefPhone = event.getSource().get("v.value");
+        
+        if(enablePrefPhone) {
+        	component.set("v.prefPhoneErrorsDisabled", false);
+        } else {
+        	component.set("v.prefPhoneErrorsDisabled", true);
+        }
+        
+        $A.get('e.force:refreshView').fire();
+    },
 })

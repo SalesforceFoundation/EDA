@@ -17,6 +17,7 @@
     <aura:attribute name="householdRecTypeId" type="String" />
     <aura:attribute name="adminAccRecTypeName" type="String" />
     <aura:attribute name="adminAccRecTypeId" type="String" />
+    <aura:attribute name="prefPhoneErrorsDisabled" type="Boolean" default="false" />
 
     <div class="slds-grid slds-wrap">
 
@@ -73,10 +74,13 @@
                     <label class="slds-checkbox">
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
-                                               class="contact-addr-enabled" />
+                                               class="contact-addr-enabled"
+                                               aura:id="disablePhoneErrors" />
                         <aura:set attribute="else">
                             <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
-                                              class="contact-addr-enabled" />
+                                              class="contact-addr-enabled"
+                                              aura:id="disablePhoneErrors"
+                                              disabled="{!v.prefPhoneErrorsDisabled}"/>
                             <span class="slds-checkbox--faux"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
@@ -98,10 +102,13 @@
                     <label class="slds-checkbox">
                         <aura:if isTrue="{!v.isView}">
                             <ui:outputCheckbox value="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}"
-                                               class="contact-preferred-phone-sync-enabled" />
+                                               class="contact-preferred-phone-sync-enabled"
+                                               aura:id="enablePrefPhone" />
                         <aura:set attribute="else">
                             <ui:inputCheckbox value="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}"
-                                              class="contact-preferred-phone-sync-enabled" />
+                                              class="contact-preferred-phone-sync-enabled"
+                                              aura:id="enablePrefPhone" 
+                                              click="{!c.handlePhoneSync}"/>
                             <span class="slds-checkbox--faux"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
