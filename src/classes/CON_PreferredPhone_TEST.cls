@@ -36,26 +36,24 @@
 */
 @isTest
 private class CON_PreferredPhone_TEST {
-    
-    @testSetup
-    static void dataSetup() {
-        
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
+
+    private static Hierarchy_Settings__c enablePreferredPhone() {
+        return UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Disable_Preferred_Phone_Enforcement__c = false, 
+                Enable_New_Preferred_Phone_Sync__c = true
+            )
         );
-        
-        // Simulate a user adding their own handler, should not need User_Managed__c to be true
-        Trigger_Handler__c newHandler = new Trigger_Handler__c(
-            Active__c = true,
-            Asynchronous__c = false,
-            Class__c = 'CON_PreferredPhone_TDTM',
-            Load_Order__c = 0.2,
-            Object__c = 'Contact',
-            Trigger_Action__c = 'BeforeInsert;BeforeUpdate'
-        );
-        insert newHandler;
     }
-  
+
+    private static Hierarchy_Settings__c disablePreferredPhone() {
+        return UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Disable_Preferred_Phone_Enforcement__c = true, 
+                Enable_New_Preferred_Phone_Sync__c = false
+            )
+        );
+    }
   
     /* When Preferred Phone is blank and the count of valued phone fields is one
         update Preferred Phone to label of valued phone and copy the value to 
@@ -63,6 +61,7 @@ private class CON_PreferredPhone_TEST {
     */
     @isTest 
     static void testSinglePhoneSmartSet() {
+        enablePreferredPhone();
 
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
@@ -84,7 +83,8 @@ private class CON_PreferredPhone_TEST {
        to Other and update Other Phone to the value of Standard Phone.
     */
     @isTest 
-    static void testUpdatePrefPhoneTOther() {
+    static void testUpdatePrefPhoneToOther() {
+        enablePreferredPhone();
 
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
@@ -99,7 +99,6 @@ private class CON_PreferredPhone_TEST {
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact WHERE Id =: newCont.Id];
         
-         
         System.assertEquals('0000000000', newContAfterList.OtherPhone);
         System.assertEquals('Other', newContAfterList.PreferredPhone__c);
     }
@@ -107,24 +106,24 @@ private class CON_PreferredPhone_TEST {
     /* Clear the value in Standard Phone when the other valued Phone is cleared */
     @isTest 
     static void testClearPhoneValue() {
+        enablePreferredPhone();
 
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone = '111111111',
-            otherPhone = '0000000000'
+            OtherPhone = '0000000000'
         );
         insert newCont;
         
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, otherPhone, PreferredPhone__c  FROM Contact];
+        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, OtherPhone, PreferredPhone__c  FROM Contact];
         Test.startTest();
-            newContAfter.otherPhone = '';
+            newContAfter.OtherPhone = '';
             newContAfter.PreferredPhone__c = '';
             update newContAfter;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone FROM Contact];
-        
+        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone , Phone FROM Contact];
         
         System.assertEquals(null, newContAfterList.Phone);
 
@@ -134,13 +133,14 @@ private class CON_PreferredPhone_TEST {
     the label of another Phone.  */
     @isTest 
     static void testOnClearOther() {
-                 
+        enablePreferredPhone();
+
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             WorkPhone__c  = '111111111',
             PreferredPhone__c = 'Work',
-            OtherPhone  = '0000000000'
+            OtherPhone = '0000000000'
         );
         insert newCont;
         
@@ -162,29 +162,22 @@ private class CON_PreferredPhone_TEST {
      Update Preferred Phone to 'Phone (Standard)' when standard Phone's value is not same as 
      any other Phone values and when Preferred Phone is Blank and the Context is batch.
     */
-
     @isTest 
     static void testBatchPhoneNull() {
-         
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = True)
-            );
+        disablePreferredPhone();
         
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone  = '111111111',
-            OtherPhone  = '0000000000'
+            OtherPhone = '0000000000'
         );
         insert newCont;
         
-        
         Test.startTest();
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
-            );
+            enablePreferredPhone();
             CON_Email_BATCH batch = new CON_Email_BATCH(null);
-             Database.executeBatch(batch);
+            Database.executeBatch(batch);
         Test.stopTest();
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c FROM Contact];
@@ -197,29 +190,22 @@ private class CON_PreferredPhone_TEST {
      Updates Preferred Phone to the label of the Phone field that has a value which is not same as 
      standard phone
     */
-
     @isTest 
     static void testBatchOther() {
-         
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = True)
-            );
+        disablePreferredPhone();
         
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone  = '111111111',
-            OtherPhone  = '111111111'
+            OtherPhone = '111111111'
         );
         insert newCont;
         
-        
         Test.startTest();
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
-            );
+            enablePreferredPhone();
             CON_Email_BATCH batch = new CON_Email_BATCH(null);
-             Database.executeBatch(batch);
+            Database.executeBatch(batch);
         Test.stopTest();
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c  FROM Contact];
@@ -231,63 +217,67 @@ private class CON_PreferredPhone_TEST {
     /*  Validation when there are more than one phone fields but not Preferred Phone */
     @isTest 
     static void testErrorPrefBlank() {
-        
+        enablePreferredPhone();
+
         try {
             Contact newCont = new Contact(
                 FirstName = 'JohnnyTest1',
                 LastName = 'JohnnyTest',
                 WorkPhone__c  = '111111111',
-                OtherPhone  = '0000000000'
-        );
+                OtherPhone = '0000000000'
+            );
+            
             Test.startTest();
             insert newCont;
-            
             Test.stopTest();
             
-        }catch(Exception error) {
+        } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneRequiredError));
 
       } 
         
     } 
    
-     /* Validation when Preferred Phone is selected but no other Phone Fields have a value */
+    /* Validation when Preferred Phone is selected but no other Phone Fields have a value */
     @isTest 
     static void testPrefPhoneNotBlank() {
-        
+        enablePreferredPhone();
+
         try {
             Contact newCont = new Contact(
                 FirstName = 'JohnnyTest1',
                 LastName = 'JohnnyTest',
                 PreferredPhone__c  = 'Work'
-        );
+            );
+            
             Test.startTest();
             insert newCont;
-            
             Test.stopTest();
             
-        }catch(Exception error) {
+        } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
 
       } 
-    }     
+    }
+
     /* Validation when Preferred Phone label doesn't match any of the other fields */
     @isTest 
     static void testPrefDiffValue() {
-        
+        enablePreferredPhone();
+
         try {
             Contact newCont = new Contact(
                 FirstName = 'JohnnyTest1',
                 LastName = 'JohnnyTest',
                 WorkPhone__c  = '111111111',
                 PreferredPhone__c  = 'ForTestingPurposes'
-        );
+            );
+
             Test.startTest();
             insert newCont;
-            
             Test.stopTest();
             
-        }catch(Exception error) {
+        } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneMatchMustExist));
         }     
     } 
@@ -297,31 +287,23 @@ private class CON_PreferredPhone_TEST {
     */
     @isTest 
     static void testBatchWPreferredPhoneSelection() {
-         
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = True)
-            );
-            
+        disablePreferredPhone();
         
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
-            OtherPhone  = '0000000000',
-            homePhone = '111111111'
+            OtherPhone = '0000000000',
+            HomePhone = '111111111'
         );
         insert newCont;
         
-        
         Test.startTest();
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
-            );
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Preferred_Phone_Selection__c = 'homePhone')
-            );    
+            Hierarchy_Settings__c settings = enablePreferredPhone();
+            settings.Preferred_Phone_Selection__c = 'homePhone';
+            UTIL_CustomSettingsFacade.getSettingsForTests(settings);    
         
             CON_Email_BATCH batch = new CON_Email_BATCH(null);
-             Database.executeBatch(batch);
+            Database.executeBatch(batch);
         Test.stopTest();
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c  FROM Contact];
@@ -332,34 +314,25 @@ private class CON_PreferredPhone_TEST {
     }   
 
     /*
-    Update Preferred Phone  and Phone when Phone Clean Up batch job is run with no selection done in EDA Settings. 
+    Update Preferred Phone and Phone when Phone Clean Up batch job is run with no selection done in EDA Settings. 
     */
-
     @isTest 
     static void testBatchWNoPreferredPhoneSelection() {
-         
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = True)
-            );
-            
+        disablePreferredPhone();
         
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
-            OtherPhone  = '0000000000',
-            homePhone = '111111111'
+            OtherPhone = '0000000000',
+            HomePhone = '111111111'
         );
         insert newCont;
         
         
         Test.startTest();
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
-            );
-                
-        
+            enablePreferredPhone();
             CON_Email_BATCH batch = new CON_Email_BATCH(null);
-             Database.executeBatch(batch);
+            Database.executeBatch(batch);
         Test.stopTest();
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c  FROM Contact];
@@ -376,32 +349,23 @@ private class CON_PreferredPhone_TEST {
 
     @isTest 
     static void testBatchWPreferredPhoneSelectionMisMatch() {
-         
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = True)
-            );
-            
-        
+        disablePreferredPhone();
+
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
-            OtherPhone  = '0000000000',
+            OtherPhone = '0000000000',
             MobilePhone  = '0000000000'
         );
         insert newCont;
         
-        
         Test.startTest();
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Disable_Preferred_Phone_Enforcement__c = False)
-            );
-                
-            UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Preferred_Phone_Selection__c = 'homePhone')
-            );
+            Hierarchy_Settings__c settings = enablePreferredPhone();
+            settings.Preferred_Phone_Selection__c = 'homePhone';
+            UTIL_CustomSettingsFacade.getSettingsForTests(settings);  
             
             CON_Email_BATCH batch = new CON_Email_BATCH(null);
-             Database.executeBatch(batch);
+            Database.executeBatch(batch);
         Test.stopTest();
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c  FROM Contact];
@@ -415,21 +379,18 @@ private class CON_PreferredPhone_TEST {
      Copy value of Standard Phone Field to Other when Preferred Phone is Null, Standard Phone is not null and
      all other phones are null.
     */
-
     @isTest 
     static void testCopyStdPhoneToOther() {
-         
-               
+        enablePreferredPhone();
+
         Test.startTest();
             Contact newCont = new Contact(
-            FirstName = 'JohnnyTest1',
-            LastName = 'JohnnyTest',
-            Phone  = '0000000000'
+                FirstName = 'JohnnyTest1',
+                LastName = 'JohnnyTest',
+                Phone  = '0000000000'
+            );
         
-        );
-        
-        
-        insert newCont;
+            insert newCont;
  
         Test.stopTest();
 
@@ -445,27 +406,27 @@ private class CON_PreferredPhone_TEST {
     */
     @isTest 
     static void testUpdatePrefPhoneTOtherBulk() {
-        
-        List<contact> contactsToInsert = new List<contact>();
-        for(Integer i = 0; i < 100; i++) {
+        enablePreferredPhone();
+
+        List<Contact> contactsToInsert = new List<Contact>();
+        for (Integer i = 0; i < 100; i++) {
             Contact a = new Contact(FirstName='TestAccount' + i, LastName = 'JohnnyTest' + i );
             contactsToInsert.add(a);
         }
         insert contactsToInsert;
     
         Test.startTest();
-        for (contact each: contactsToInsert) {
-            each.Phone = '0000000000';
-        }
+            for (Contact each : contactsToInsert) {
+                each.Phone = '0000000000';
+            }
             update contactsToInsert;
         Test.stopTest();
 
-        List<contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact];
+        List<Contact> newContAfterList = [SELECT Id, FirstName, LastName, Name, otherPhone , Phone, PreferredPhone__c FROM Contact];
         
-        for (contact each: newContAfterList) { 
+        for (Contact each : newContAfterList) { 
             System.assertEquals('0000000000', each.OtherPhone);
             System.assertEquals('Other', each.PreferredPhone__c);
         }
     }
-  
 }
