@@ -212,13 +212,11 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 	* @return void
 	*/
     private class HandleWrapperLogic {
-        public Map<Id,Id> mapAccountIdContactId = new Map<Id,Id>();
         public Map<Id,Id> mapContactIdAccountIdNewMoveOpps = new Map<Id,Id>();
         public Map<Id,Id> mapContactIdAccountIdOldMoveOpps = new Map<Id,Id>();
         public Map<Id,Contact> mapContactIdContactOwnerChange = new Map<Id,Contact>();
         public Set<Id> setAccountIdHHToRenameWP = new Set<Id>();
         public List<Id> listAccountIdHHToUpdate = new List<Id>();
-        public List<Contact> listContactNeedAccount = new List<Contact>();
         public List<Contact> listContactsChangedLastName = new List<Contact>();
 
         private HandleWrapperLogic(Contact c, Contact [] oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
