@@ -96,12 +96,12 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
 				!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
-                handlesAfter(contacts, oldContacts, triggerAction);
+                handlesAfterInsertUpdate(contacts, oldContacts, triggerAction);
         }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             	!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
-               	handlesAfter(contacts, oldContacts, triggerAction);
+               	handlesAfterInsertUpdate(contacts, oldContacts, triggerAction);
         }
 
        	if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
@@ -144,10 +144,10 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 	* @param wrapperReturn contains the records that needs to be processed.
 	* @return wrapperReturn.
 	*/
-    private void handlesAfter(Contact [] contacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
+    private void handlesAfterInsertUpdate(Contact [] contacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
         List<Contact> listContactNeedAccount = new List<Contact>();
-        HandleWrapperLogic wrapperReturn;
-		HandleAfterInsertWrapperLogic wrapperAfterInsert;
+        HandleUpdateWrapperLogic updateWrapper;
+		HandleInsertWrapperLogic insertWrapper;
 
 		Integer i = 0;
 		for (Contact c : contacts) {
@@ -160,13 +160,13 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 			//AFTER INSERT
         	if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             	!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
-                wrapperAfterInsert = new HandleAfterInsertWrapperLogic (c);
+                insertWrapper = new HandleInsertWrapperLogic (c);
         	}
 
         	//AFTER UPDATE
         	if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             	!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
-                wrapperReturn = new HandleWrapperLogic (c, oldContacts, triggerAction, i);
+                updateWrapper = new HandleUpdateWrapperLogic (c, oldContacts, triggerAction, i);
         	}
             i += 1;
 		}
@@ -184,14 +184,14 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
        	}
 
-        handleProcessing(wrapperReturn, wrapperAfterInsert,listContactNeedAccount, NULL, NULL);
+        handleProcessing(updateWrapper, insertWrapper,listContactNeedAccount, NULL, NULL);
 
     }
-	private class HandleAfterInsertWrapperLogic {
+	private class HandleInsertWrapperLogic {
 		public Map<Id,Id> mapAccountIdContactId = new Map<Id,Id>();
 		public Set<Id> setAccountIdHHToRenameWP = new Set<Id>();
 
-		private HandleAfterInsertWrapperLogic(Contact c) {
+		private HandleInsertWrapperLogic(Contact c) {
 			if (c.AccountId != NULL) {
                 //(1) If the Contact is connected to an Account but Primary_Contact__c on Account is NULL
                 if (c.Account.Primary_Contact__c == NULL) {
@@ -211,7 +211,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 	* @param setAccountIdHHToRenameWP holds the list of Accounts records to be renamed.
 	* @return void
 	*/
-    private class HandleWrapperLogic {
+    private class HandleUpdateWrapperLogic {
         public Map<Id,Id> mapContactIdAccountIdNewMoveOpps = new Map<Id,Id>();
         public Map<Id,Id> mapContactIdAccountIdOldMoveOpps = new Map<Id,Id>();
         public Map<Id,Contact> mapContactIdContactOwnerChange = new Map<Id,Contact>();
@@ -219,7 +219,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
         public List<Id> listAccountIdHHToUpdate = new List<Id>();
         public List<Contact> listContactsChangedLastName = new List<Contact>();
 
-        private HandleWrapperLogic(Contact c, Contact [] oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
+        private HandleUpdateWrapperLogic(Contact c, Contact [] oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContacts[i].AccountId) {
                 if(c.AccountId != NULL) {
@@ -293,7 +293,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
         handleProcessing(NULL, NULL, NULL, setAccountIdHHToRename, listContactAccountDelete);
     }
 
-    private void handleProcessing(HandleWrapperLogic wrapper, HandleAfterInsertWrapperLogic wrapperInsert,
+    private void handleProcessing(HandleUpdateWrapperLogic updateWrapper, HandleInsertWrapperLogic insertWrapper,
 									Contact[] listContactNeedAccount, Set<Id> setAccountIdHHToRename, Contact[] listContactAccountDelete) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
@@ -308,8 +308,8 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
         //AFTER INSERT
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-			Map<Id,Id> updateAccPrimaryContact = wrapperInsert.mapAccountIdContactId;
-            Set<Id> accountIdHHToRename = wrapperInsert.setAccountIdHHToRenameWP;
+			Map<Id,Id> updateAccPrimaryContact = insertWrapper.mapAccountIdContactId;
+            Set<Id> accountIdHHToRename = insertWrapper.setAccountIdHHToRenameWP;
 
             //Updates the Primary Contact Field on New Account
             if (updateAccPrimaryContact.size() > 0) {
@@ -324,12 +324,12 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
         //AFTER UPDATE
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            List<Contact> listContactChangeLastName = wrapper.listContactsChangedLastName;
-			List<Id> accountIdHHToUpdate = wrapper.listAccountIdHHToUpdate;
-           	Set<Id> accountIdHHToRename = wrapper.setAccountIdHHToRenameWP;
-            Map<Id,Contact> mapContactOwnerChange = wrapper.mapContactIdContactOwnerChange;
-            Map<Id,Id> mapContactIdAccountIdNewMoveOpp = wrapper.mapContactIdAccountIdNewMoveOpps;
-            Map<Id,Id> mapContactIdAccountIdOldMoveOpp = wrapper.mapContactIdAccountIdOldMoveOpps;
+            List<Contact> listContactChangeLastName = updateWrapper.listContactsChangedLastName;
+			List<Id> accountIdHHToUpdate = updateWrapper.listAccountIdHHToUpdate;
+           	Set<Id> accountIdHHToRename = updateWrapper.setAccountIdHHToRenameWP;
+            Map<Id,Contact> mapContactOwnerChange = updateWrapper.mapContactIdContactOwnerChange;
+            Map<Id,Id> mapContactIdAccountIdNewMoveOpp = updateWrapper.mapContactIdAccountIdNewMoveOpps;
+            Map<Id,Id> mapContactIdAccountIdOldMoveOpp = updateWrapper.mapContactIdAccountIdOldMoveOpps;
 
             //Updates Household Account name
             if (accountIdHHToRename.size() > 0) {
