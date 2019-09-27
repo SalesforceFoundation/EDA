@@ -497,6 +497,10 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
         <label>Error Notifications To:</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
@@ -579,6 +583,10 @@
     <customLabels>
         <label>Do not require Contacts to have a Preferred Phone.</label>
         <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
         <label>The process was queued successfully. An email will be sent at the completion of the job.</label>

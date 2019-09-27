@@ -497,6 +497,10 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
         <label>Notificacions d&apos;errors a:</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
@@ -579,6 +583,10 @@
     <customLabels>
         <label>No requereix que els contactes tinguin un telèfon preferit.</label>
         <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
         <label>El procés s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el treball.</label>

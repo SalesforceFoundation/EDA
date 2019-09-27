@@ -497,6 +497,10 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
         <label>Notificaciones de error en:</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
@@ -579,6 +583,10 @@
     <customLabels>
         <label>No requiere que Contactos tenga un Teléfono preferido.</label>
         <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
         <label>El proceso se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el trabajo.</label>

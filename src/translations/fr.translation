@@ -497,6 +497,10 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
         <label>Notifications d’erreur à :</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
@@ -579,6 +583,10 @@
     <customLabels>
         <label>Ne pas exiger un téléphone préféré pour les contacts.</label>
         <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
         <label>Le processus a été mis en file d&apos;attente avec succès. Un e-mail sera envoyé une fois la tâche terminée.</label>
