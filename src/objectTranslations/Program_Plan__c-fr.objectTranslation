@@ -1,74 +1,70 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>Cliquez pour rechercher un compte (souvent un programme académique) à associer au plan du programme.</help>
-    <relationshipLabel>Plans du programme</relationshipLabel>
-    <label>Compte</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Décrit le plan du programme.</help>
-    <label>Description</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>La date de fin du plan du programme.</help>
-    <label>Date de fin</label>
-  </fields>
-  <fields>
-    <name>Is_Primary__c</name>
-    <help>Case à cocher indiquant que ce plan doit être attribué à l'étudiant lors de la création d'une inscription au programme.</help>
-    <label>Principal</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>La date à laquelle le plan du programme prend effet.</help>
-    <label>Date de début</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>Le statut du plan du programme.</help>
-    <label>Statut</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>En cours</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Archived</masterLabel>
-      <translation>Archivé</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Total_Required_Credits__c</name>
-    <help>Spécifiez le nombre total de crédits qu'un étudiant doit obtenir pour satisfaire ce plan de programme.</help>
-    <label>Nombre total de crédit requis</label>
-  </fields>
-  <fields>
-    <name>Version__c</name>
-    <help>La version du plan du programme, par exemple, « Spring 2019 ».</help>
-    <label>Version</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Program Plan Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom du plan du programme</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom du plan du programme</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Plan du programme</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Plans de programme</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Plan du programme</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Plans de programme</value>
+    </caseValues>
+    <fields>
+        <help>Cliquez pour rechercher un compte (souvent un programme académique) à associer au plan du programme.</help>
+        <label>Compte</label>
+        <name>Account__c</name>
+        <relationshipLabel>Plans du programme</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Décrit le plan du programme.</help>
+        <label>Description</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>La date de fin du plan du programme.</help>
+        <label>Date de fin</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>Case à cocher indiquant que ce plan doit être attribué à l&apos;étudiant lors de la création d&apos;une inscription au programme.</help>
+        <label>Principal</label>
+        <name>Is_Primary__c</name>
+    </fields>
+    <fields>
+        <help>La date à laquelle le plan du programme prend effet.</help>
+        <label>Date de début</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help>Le statut du plan du programme.</help>
+        <label>Statut</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Archived</masterLabel>
+            <translation>Archivé</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>En cours</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Spécifiez le nombre total de crédits qu&apos;un étudiant doit obtenir pour satisfaire ce plan de programme.</help>
+        <label>Nombre total de crédit requis</label>
+        <name>Total_Required_Credits__c</name>
+    </fields>
+    <fields>
+        <help>La version du plan du programme, par exemple, « Spring 2019 ».</help>
+        <label>Version</label>
+        <name>Version__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du plan du programme</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

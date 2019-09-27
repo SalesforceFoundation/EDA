@@ -25,6 +25,14 @@
             <masterLabel>Class Tardy</masterLabel>
             <translation><!-- Class Tardy --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Day Absence</masterLabel>
+            <translation><!-- Day Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Day Tardy</masterLabel>
+            <translation><!-- Day Tardy --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- The student who is either tardy or absent. --></help>

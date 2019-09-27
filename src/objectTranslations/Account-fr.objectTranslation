@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Current_Address__c</name>
-    <help>L’adresse actuellement renseignée dans les champs de facturation du compte.</help>
-    <relationshipLabel>Comptes (adresse actuelle)</relationshipLabel>
-    <label>Adresse actuelle</label>
-  </fields>
-  <fields>
-    <name>Primary_Contact__c</name>
-    <relationshipLabel>Compte</relationshipLabel>
-    <label>_SYSTEM: One2OneContact</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Organization Layout</layout>
-    <sections>
-      <label>Champs</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Adresse</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Description</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <layouts>
-    <layout>HEDA Household Layout</layout>
-    <sections>
-      <label>Champs</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Adresse</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Description</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
+    <fields>
+        <help>L’adresse actuellement renseignée dans les champs de facturation du compte.</help>
+        <label>Adresse actuelle</label>
+        <name>Current_Address__c</name>
+        <relationshipLabel>Comptes (adresse actuelle)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>_SYSTEM: One2OneContact</label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel>Compte</relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>HEDA Household Layout</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Description</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Champs</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HEDA Organization Layout</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Description</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Champs</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
 </CustomObjectTranslation>

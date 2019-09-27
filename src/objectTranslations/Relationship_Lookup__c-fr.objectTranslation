@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Active__c</name>
-    <help>Indique si ce lien réciproque est actif.</help>
-    <label>Actif</label>
-  </fields>
-  <fields>
-    <name>Female__c</name>
-    <help>La valeur utilisée par le champ de sexe du contact correspond aux valeurs de l’étiquette personnalisée Féminin, ou la formule de salutation du contact indique le sexe.</help>
-    <label>Féminin</label>
-  </fields>
-  <fields>
-    <name>Male__c</name>
-    <help>La valeur utilisée par le champ de sexe du contact correspond aux valeurs de l’étiquette personnalisée Masculin, ou la formule de salutation du contact indique le sexe.</help>
-    <label>Masculin</label>
-  </fields>
-  <fields>
-    <name>Neutral__c</name>
-    <help>La valeur utilisée par le champ de sexe de ce contact ne correspond pas aux valeurs des étiquettes personnalisées Féminin ou Masculin, et la formule de salutation du contact n’indique pas le sexe.</help>
-    <label>Neutre</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Relationship Lookup --></value>
+    </caseValues>
+    <fields>
+        <help>Indique si ce lien réciproque est actif.</help>
+        <label>Actif</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help>La valeur utilisée par le champ de sexe du contact correspond aux valeurs de l’étiquette personnalisée Féminin, ou la formule de salutation du contact indique le sexe.</help>
+        <label>Féminin</label>
+        <name>Female__c</name>
+    </fields>
+    <fields>
+        <help>La valeur utilisée par le champ de sexe du contact correspond aux valeurs de l’étiquette personnalisée Masculin, ou la formule de salutation du contact indique le sexe.</help>
+        <label>Masculin</label>
+        <name>Male__c</name>
+    </fields>
+    <fields>
+        <help>La valeur utilisée par le champ de sexe de ce contact ne correspond pas aux valeurs des étiquettes personnalisées Féminin ou Masculin, et la formule de salutation du contact n’indique pas le sexe.</help>
+        <label>Neutre</label>
+        <name>Neutral__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>
