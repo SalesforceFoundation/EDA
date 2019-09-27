@@ -135,7 +135,7 @@ flows:
     config_managed:
         description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
-            2:
+            3:
                 task: deploy_dev_config
                 options:
                     unmanaged: False
