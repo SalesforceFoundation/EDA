@@ -37,8 +37,8 @@ tasks:
         options:
             path: unpackaged/config/dev_delete
 
-    execute_install_apex:
-        description: Runs most of the install script methods from STG_InstallScript class
+    execute_dev_apex:
+        description: Runs anonymous apex from STG_InstallScript class to config settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -48,40 +48,42 @@ tasks:
                 TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
 
     execute_qa_apex:
-        description: Runs Apex setup for QA orgs.
+        description: Runs anonymous apex from script/setup class to enable course connections.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             path: scripts/setup.cls
             apex: qaSetup();
 
     retrieve_config_dev:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/dev
+        description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/dev
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_qa:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/qa
+        description: Retrieves the current changes in the scratch org into unpackaged/config/qa.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/qa
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_trial:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/trial
+        description: Retrieves the current changes in the scratch org into unpackaged/config/trial.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/trial
             namespace_tokenize: $project_config.project__package__namespace
 
     robot:
+        description: Runs a Robot Framework test from a .robot file.
         options:
             suites: robot/EDA/tests
             options:
                 outputdir: robot/EDA/results
 
     robot_libdoc:
+        description: Generates documentation for project keyword files.
         options:
             path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
             output: robot/EDA/doc/Keywords.html
@@ -93,7 +95,7 @@ tasks:
 
 flows:
     edaectomy:
-        description: Remove all the EDA metadata in the target Org
+        description: Remove all the EDA metadata in the target Org.
         steps:
             1:
                 task: delete_dev_config
@@ -101,21 +103,21 @@ flows:
                 task: uninstall_packaged
 
     config_apextest:
-        description: Configure an org to run apex tests after package metadata is deployed
+        description: Configure an org to run apex tests after package metadata is deployed.
         steps:
             3:
-                task: execute_install_apex
+                task: execute_dev_apex
 
     config_dev:
-        description: Configure an org for use as a dev org after package metadata is deployed
+        description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
             3:
-                task: execute_install_apex
+                task: execute_dev_apex
             4:
                 task: deploy_dev_config
 
     config_dev_namespaced:
-        description: Configure an org for use as a namespaced dev org after package metadata is deployed
+        description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
             1:
                 task: deploy_post
@@ -126,12 +128,12 @@ flows:
                 options:
                     namespaced_org: True
             3:
-                task: execute_install_apex
+                task: execute_dev_apex
             4:
                 task: deploy_dev_config
 
     config_managed:
-        description: Configure an org for use as a dev org after package metadata is deployed
+        description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
             2:
                 task: deploy_dev_config
@@ -139,17 +141,17 @@ flows:
                     unmanaged: False
 
     config_qa:
-        descripton: Configure an org for use as a QA org after package metadata is deployed
+        descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
             3:
-                task: execute_install_apex
+                task: execute_dev_apex
             4:
                 task: execute_qa_apex
             5:
                 task: deploy_qa_config
 
     config_regression:
-        description: Configure an org for QA regression after the package is installed
+        description: Configure an org for QA regression after the package is installed.
         steps:
             2:
                 task: execute_qa_apex
