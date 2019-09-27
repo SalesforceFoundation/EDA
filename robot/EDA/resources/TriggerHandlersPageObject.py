@@ -171,7 +171,7 @@ class TriggerHandlersHomePage(BasePage):
             )
             self.selenium.click_element(trigger_handlers_locators["trigger_save"])
             time.sleep(1)
-            self.selenium.wait_until_element_is_visible(trigger_handlers_locators["trigger_active_check"])
+            #self.selenium.wait_until_element_is_visible(trigger_handlers_locators["trigger_active_check"])
             return
 
     def Clear_the_check_on_active_checkbox(self):
