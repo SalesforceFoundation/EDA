@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -24,7 +23,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Primary_Contact__c</field>
+                <field>%%%NAMESPACE%%%Primary_Contact__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -47,7 +46,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Current_Address__c</field>
+                <field>%%%NAMESPACE%%%Current_Address__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -107,29 +106,71 @@
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.BIRTHDATE</fields>
-        <fields>FERPA__c</fields>
+        <fields>%%%NAMESPACE%%%FERPA__c</fields>
         <fields>CONTACT.PHONE1</fields>
-        <fields>UniversityEmail__c</fields>
+        <fields>%%%NAMESPACE%%%UniversityEmail__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact__c</fields>
-        <fields>Role__c</fields>
-        <fields>Status__c</fields>
-        <fields>StartDate__c</fields>
-        <fields>EndDate__c</fields>
-        <fields>Primary__c</fields>
-        <relatedList>Affiliation__c.Account__c</relatedList>
+        <fields>%%%NAMESPACE%%%Contact__c</fields>
+        <fields>%%%NAMESPACE%%%Role__c</fields>
+        <fields>%%%NAMESPACE%%%Status__c</fields>
+        <fields>%%%NAMESPACE%%%StartDate__c</fields>
+        <fields>%%%NAMESPACE%%%EndDate__c</fields>
+        <fields>%%%NAMESPACE%%%Primary__c</fields>
+        <relatedList>%%%NAMESPACE%%%Affiliation__c.%%%NAMESPACE%%%Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>MailingStreet__c</fields>
-        <fields>MailingStreet2__c</fields>
-        <fields>MailingCity__c</fields>
-        <fields>MailingState__c</fields>
-        <fields>MailingPostalCode__c</fields>
-        <relatedList>Address__c.Parent_Account__c</relatedList>
+        <fields>%%%NAMESPACE%%%Address_Type__c</fields>
+        <fields>%%%NAMESPACE%%%MailingStreet__c</fields>
+        <fields>%%%NAMESPACE%%%MailingStreet2__c</fields>
+        <fields>%%%NAMESPACE%%%MailingCity__c</fields>
+        <fields>%%%NAMESPACE%%%MailingState__c</fields>
+        <fields>%%%NAMESPACE%%%MailingPostalCode__c</fields>
+        <relatedList>%%%NAMESPACE%%%Address__c.%%%NAMESPACE%%%Parent_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Display_Name__c</fields>
+        <fields>%%%NAMESPACE%%%Parent_Facility__c</fields>
+        <fields>%%%NAMESPACE%%%Facility_Type__c</fields>
+        <fields>%%%NAMESPACE%%%Capacity__c</fields>
+        <relatedList>%%%NAMESPACE%%%Facility__c.%%%NAMESPACE%%%Account__c</relatedList>
+        <sortField>Display_Name__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>%%%NAMESPACE%%%Course_ID__c</fields>
+        <fields>%%%NAMESPACE%%%Credit_Hours__c</fields>
+        <fields>%%%NAMESPACE%%%Description__c</fields>
+        <relatedList>%%%NAMESPACE%%%Course__c.%%%NAMESPACE%%%Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>%%%NAMESPACE%%%Application_Submitted_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Eligible_to_Enroll__c</fields>
+        <fields>%%%NAMESPACE%%%Start_Date__c</fields>
+        <fields>%%%NAMESPACE%%%Credits_Attempted__c</fields>
+        <fields>%%%NAMESPACE%%%Credits_Earned__c</fields>
+        <fields>%%%NAMESPACE%%%GPA__c</fields>
+        <relatedList>%%%NAMESPACE%%%Program_Enrollment__c.%%%NAMESPACE%%%Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>%%%NAMESPACE%%%Start_Time__c</fields>
+        <fields>%%%NAMESPACE%%%End_Time__c</fields>
+        <relatedList>%%%NAMESPACE%%%Time_Block__c.%%%NAMESPACE%%%Educational_Institution__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>%%%NAMESPACE%%%Course_Offering__c</fields>
+        <fields>%%%NAMESPACE%%%Credits_Attempted__c</fields>
+        <fields>%%%NAMESPACE%%%Credits_Earned__c</fields>
+        <fields>%%%NAMESPACE%%%Grade__c</fields>
+        <relatedList>%%%NAMESPACE%%%Course_Enrollment__c.%%%NAMESPACE%%%Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
@@ -157,13 +198,13 @@
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>false</showHighlightsPanel>
+    <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h17000003VZyW</masterLabel>
-        <sizeX>4</sizeX>
+        <masterLabel>00h0q000000ymBn</masterLabel>
+        <sizeX>1</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
