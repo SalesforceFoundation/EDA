@@ -1,0 +1,5 @@
+    <searchLayouts>
+        <searchResultsAdditionalFields>Course_ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+    </searchLayouts>
