@@ -38,7 +38,7 @@ tasks:
             path: unpackaged/config/dev_delete
 
     execute_dev_apex:
-        description: Runs anonymous apex from STG_InstallScript class to config settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
+        description: Runs anonymous apex for dev to config settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -48,7 +48,7 @@ tasks:
                 TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
 
     execute_qa_apex:
-        description: Runs anonymous apex from script/setup class to enable course connections.
+        description: Runs anonymous apex for qa to enable course connections.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             path: scripts/setup.cls
