@@ -1,0 +1,6 @@
+    <searchLayouts>
+        <searchResultsAdditionalFields>Course_Offering__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Time_Block__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Time__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Time__c</searchResultsAdditionalFields>
+    </searchLayouts>
