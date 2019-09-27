@@ -1,73 +1,69 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>Click to search for an Account (often an Academic Program) to associate with the Program Plan.</help>
-    <relationshipLabel>Program Plans</relationshipLabel>
-    <label>Account</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Describe the Program Plan.</help>
-    <label>Description</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>The end date for the Program Plan.</help>
-    <label>End Date</label>
-  </fields>
-  <fields>
-    <name>Is_Primary__c</name>
-    <help>Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrolment</help>
-    <label>Is Primary</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>The date the Program Plan went into effect.</help>
-    <label>Start Date</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>The status of the program plan.</help>
-    <label>Status</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>Current</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Archived</masterLabel>
-      <translation>Archived</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Total_Required_Credits__c</name>
-    <help>Specify the total number of credits a student must complete to satisfy this program plan.</help>
-    <label>Total Required Credits</label>
-  </fields>
-  <fields>
-    <name>Version__c</name>
-    <help>The version of the Program Plan. For example, “Spring 2019.”</help>
-    <label>Version</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Program Plan Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Program Plan Name</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Program Plan Name</label>
-  </standardFields>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Program Plan</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Program Plans</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Program Plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Program Plans</value>
+    </caseValues>
+    <fields>
+        <help>Click to search for an Account (often an Academic Program) to associate with the Program Plan.</help>
+        <label>Account</label>
+        <name>Account__c</name>
+        <relationshipLabel>Program Plans</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Describe the Program Plan.</help>
+        <label>Description</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>The end date for the Program Plan.</help>
+        <label>End Date</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrolment</help>
+        <label>Is Primary</label>
+        <name>Is_Primary__c</name>
+    </fields>
+    <fields>
+        <help>The date the Program Plan went into effect.</help>
+        <label>Start Date</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help>The status of the program plan.</help>
+        <label>Status</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Archived</masterLabel>
+            <translation>Archived</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Current</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Specify the total number of credits a student must complete to satisfy this program plan.</help>
+        <label>Total Required Credits</label>
+        <name>Total_Required_Credits__c</name>
+    </fields>
+    <fields>
+        <help>The version of the Program Plan. For example, “Spring 2019.”</help>
+        <label>Version</label>
+        <name>Version__c</name>
+    </fields>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Program Plan Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
