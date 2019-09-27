@@ -244,7 +244,8 @@ trigger_handlers_locators = {
     "trigger_active_check": "//span[@class='test-id__field-label' and contains(text(), 'Active')]/../following::div/span/span/img[@class = ' checked' and @alt='True']",
     "checked_and_active": "//label//span[text()='Active']/following::div/following::input[@type='checkbox' and @checked='checked']",
     "unchecked_and_not_active": "//span[@class='test-id__field-label' and text()='Active']/../following-sibling::div//span//span//img[@class=' unchecked' and @alt='False']",
-    "edit_unchecked": "//span[text()='Active']/../span[1]",
+    "edit_unchecked": "//span[@class='test-id__field-label' and contains(text(), 'Active')]/../following::div[1]/span/span/img[@class = ' unchecked' and @alt='False']",
+    "edit_mode_unchecked": "//div[@class='slds-form-element slds-hint-parent']//span[text()='Active']/following-sibling::div/../following::input[1]",
     "trigger_checkbox": "(//div/input[@type='checkbox'])[1]",
-    "trigger_save": "//div[contains(@class,'button-container')]//button//span[contains(text(),'Save')]",
+    "trigger_save": "//div[@class='actionsContainer']//button//span[text()='Save']",
 }

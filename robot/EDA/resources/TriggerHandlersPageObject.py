@@ -160,17 +160,15 @@ class TriggerHandlersHomePage(BasePage):
     def set_trigger_to_active(self, trigger):
         """ Set Preferred Phone trigger to Active.  Leave Active if already checked """
 
-        if self.check_if_element_exists(trigger_handlers_locators["checked_and_active"]) or self.check_if_element_exists(trigger_handlers_locators["trigger_active_check"]):
+        if self.check_if_element_exists(trigger_handlers_locators["checked_and_active"]):
             return
         else:
             self.selenium.click_button("Edit Active")
-
             self.click_item(
-                trigger_handlers_locators["edit_unchecked"], 
+                trigger_handlers_locators["edit_mode_unchecked"], 
                 "cannot find active checkbox", 
                 True
             )
-            
             self.selenium.click_element(trigger_handlers_locators["trigger_save"])
             time.sleep(1)
             self.selenium.wait_until_element_is_visible(trigger_handlers_locators["trigger_active_check"])
@@ -179,7 +177,7 @@ class TriggerHandlersHomePage(BasePage):
     def Clear_the_check_on_active_checkbox(self):
         """ Clear the Preferred Phone trigger """
 
-        if not self.check_if_element_exists(trigger_handlers_locators["trigger_active_check"]):
+        if self.check_if_element_exists(trigger_handlers_locators["edit_unchecked"]):
             return
         else:
             self.selenium.click_button("Edit Active")

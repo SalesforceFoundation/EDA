@@ -18,7 +18,16 @@ Suite Teardown  Capture screenshot and delete records and close browser
 Verify basic preferred phone functionality
     Select app launcher                     EDA
     Close all tabs
+
+    Current page should be                  Home
+    ...                                     Contacts
+
+    Open EDA Settings Tab menu item
+    Enable enchanced checkbox
+    Shift to default content
+
     Enable trigger handler
+
     Current page should be                  Home
     ...                                     Contacts
     Select tab                              Contacts

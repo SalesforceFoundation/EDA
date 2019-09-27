@@ -359,8 +359,21 @@ class ContactsHomePage(BasePage):
         self.selenium.wait_until_page_contains_element(contacts_locators["successful_run"])
         self.selenium.capture_page_screenshot()
 
+
+        if self.check_if_element_exists(contacts_locators["run_cleanup"]):
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["run_cleanup"])
+            )
+            self.builtin.log("Run Cleanup executed")
+            time.sleep(1)
+
+        self.selenium.wait_until_page_contains_element(contacts_locators["successful_run"])
+        self.selenium.capture_page_screenshot()
+
+
         # Give 'Run Cleanup' fifteen seconds run time, then continue
-        time.sleep(15)
+        time.sleep(65)
         return
 
 
@@ -399,8 +412,8 @@ class ContactsHomePage(BasePage):
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
 
 ########################################################################
-#        time.sleep(10)
-#        self.selenium.driver.refresh()
+        time.sleep(60)
+        self.selenium.driver.refresh()
 # Choosing to leave this commented code - both lines above - intentional
 ########################################################################
         time.sleep(1)
