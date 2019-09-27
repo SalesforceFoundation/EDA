@@ -1,70 +1,66 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Category__c</name>
-    <help>Especifique una categoría para el Requisito del plan.</help>
-    <label>Categoría</label>
-    <picklistValues>
-      <masterLabel>Required</masterLabel>
-      <translation>Obligatorio</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Optional</masterLabel>
-      <translation>Opcional</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Course__c</name>
-    <help>Haga clic para buscar un curso.</help>
-    <relationshipLabel>Requisitos del plan</relationshipLabel>
-    <label>Curso</label>
-  </fields>
-  <fields>
-    <name>Credits__c</name>
-    <help>Especifique el número de créditos que recibe un estudiante al satisfacer este requisito.</help>
-    <label>Créditos</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Describa el requisito del plan.</help>
-    <label>Descripción</label>
-  </fields>
-  <fields>
-    <name>Plan_Requirement__c</name>
-    <help>Haga clic para buscar un requisito del plan.</help>
-    <relationshipLabel>Requisitos del plan</relationshipLabel>
-    <label>Requisito del plan principal</label>
-  </fields>
-  <fields>
-    <name>Program_Plan__c</name>
-    <help>Haga clic para buscar un plan del programa.</help>
-    <relationshipLabel>Requisitos del plan</relationshipLabel>
-    <label>Plan del programa</label>
-  </fields>
-  <fields>
-    <name>Sequence__c</name>
-    <help>La evolución de cursos</help>
-    <label>Secuencia</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Plan Requirement Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de requisito de plan</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Requisito del plan</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Requisitos del plan</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Requisito del plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requisitos del plan</value>
+    </caseValues>
+    <fields>
+        <help>Especifique una categoría para el Requisito del plan.</help>
+        <label>Categoría</label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Optional</masterLabel>
+            <translation>Opcional</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation>Obligatorio</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Haga clic para buscar un curso.</help>
+        <label>Curso</label>
+        <name>Course__c</name>
+        <relationshipLabel>Requisitos del plan</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Especifique el número de créditos que recibe un estudiante al satisfacer este requisito.</help>
+        <label>Créditos</label>
+        <name>Credits__c</name>
+    </fields>
+    <fields>
+        <help>Describa el requisito del plan.</help>
+        <label>Descripción</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>Haga clic para buscar un requisito del plan.</help>
+        <label>Requisito del plan principal</label>
+        <name>Plan_Requirement__c</name>
+        <relationshipLabel>Requisitos del plan</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Haga clic para buscar un plan del programa.</help>
+        <label>Plan del programa</label>
+        <name>Program_Plan__c</name>
+        <relationshipLabel>Requisitos del plan</relationshipLabel>
+    </fields>
+    <fields>
+        <help>La evolución de cursos</help>
+        <label>Secuencia</label>
+        <name>Sequence__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Plan Requirement Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
 </CustomObjectTranslation>
