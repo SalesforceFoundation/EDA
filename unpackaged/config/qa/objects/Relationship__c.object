@@ -1,0 +1,7 @@
+    <searchLayouts>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RelatedContact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ReciprocalRelationship__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Relationship_Explanation__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+    </searchLayouts>
