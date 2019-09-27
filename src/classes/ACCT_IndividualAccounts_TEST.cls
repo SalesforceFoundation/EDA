@@ -42,8 +42,7 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void insertContactTriggerOff() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         // turn off all TDTM triggers for this component
         TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert);
@@ -67,8 +66,7 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void newContact() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         Contact con = UTIL_UnitTestData_API.getContact();
 
@@ -77,6 +75,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
 
         Contact insertedContact = [Select Account.Name, AccountId from Contact where id=:con.id];
+        System.debug('insertedContact -->' + insertedContact);
 
         //the contact should have the right type
         system.assertEquals(con.LastName + ' ' + Label.DefaultAdminName, insertedcontact.Account.Name);
@@ -122,7 +121,7 @@ private class ACCT_IndividualAccounts_TEST {
     */
     @isTest
     public static void contactAddedToExistingAcc() {
-       UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+       	UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
         mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = 'Primary Business Organization'));
@@ -180,7 +179,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
     * @description Update a contact's Lastname in the Account
     * Based on latest requirement, if there is a change on contact's last name,
-    * admin account's lastname should be changed accordingly. 
+    * admin account's lastname should be changed accordingly.
     */
     @isTest
     public static void contactInNormalOrgNameChangem() {
@@ -209,7 +208,7 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test Method for detaching a Contact from an already existing account 
+    * @description Test Method for detaching a Contact from an already existing account
     * which is the default account model.
     */
     @isTest
@@ -496,6 +495,7 @@ private class ACCT_IndividualAccounts_TEST {
         Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account limit 1];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
+        System.debug('AccountNameCheck 1 -->' + assertAccount);
 
         Contact con2 = contacts[1];
         con2.AccountId = assertAccount.Id;
@@ -507,6 +507,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' and ' + con2.FirstName + ' ' + con2.LastName + ' Household', assertAccount.Name);
+        System.debug('AccountNameCheck 2 -->' + assertAccount);
 
         con2.FirstName = 'Test3';
         con2.LastName = 'Contact_forTests3';
@@ -516,6 +517,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         assertAccount = [SELECT Id, RecordType.Name, Name FROM Account];
         system.assertEquals('Household Account', assertAccount.RecordType.Name);
+        System.debug('AccountNameCheck 3 -->' + assertAccount);
         system.assertEquals(con.FirstName + ' ' + con.LastName + ' and ' + con2.FirstName + ' ' + con2.LastName + ' Household', assertAccount.Name);
     }
 
@@ -769,6 +771,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
 
         Account assertAccount = [SELECT Id, Primary_Contact__c FROM Account LIMIT 1];
+        System.debug('assertAccount -->' + assertAccount.Primary_Contact__c);
         List<Contact> relatedContact = [SELECT Id, AccountId FROM Contact];
 
         System.assertNotEquals(NULL, assertAccount.Primary_Contact__c);
@@ -819,12 +822,11 @@ private class ACCT_IndividualAccounts_TEST {
         Contact con = contacts[0];
         insert con;
 
-        Account acc = [SELECT Id FROM Account LIMIT 1];
-
+        Account acc = [SELECT Id, Name FROM Account LIMIT 1 ];
         Contact con2 = contacts[1];
         insert con2;
 
-        Account acc2 = [SELECT Id FROM Account where Id != :acc.Id LIMIT 1];
+        Account acc2 = [SELECT Id, Name FROM Account where Id != :acc.Id LIMIT 1];
 
         Test.startTest();
         con2.AccountId = acc.Id;
@@ -833,24 +835,23 @@ private class ACCT_IndividualAccounts_TEST {
         update con;
         Test.stopTest();
 
-        Account assertAccount = [Select Primary_Contact__c FROM Account WHERE Id = :acc.Id LIMIT 1];
-        Account assertAccount2 = [Select Primary_Contact__c FROM Account WHERE Id = :acc2.Id LIMIT 1];
+        Account assertAccount = [Select Primary_Contact__c, Name FROM Account WHERE Id = :acc.Id LIMIT 1];
+        Account assertAccount2 = [Select Primary_Contact__c, Name FROM Account WHERE Id = :acc2.Id LIMIT 1];
         system.assertEquals(con2.Id, assertAccount.Primary_Contact__c);
         system.assertEquals(con.Id, assertAccount2.Primary_Contact__c);
     }
 
-    /**
+    /********************************************************************************************************
      * @description Validate that when inserting a new Account for a Contact, it uses the same OwnerId as the
      * Contact that was inserted (especially if the Contact.OwnerId is set to a value other than the current user).
      */
     private static testMethod void test_insertAsOtherUser() {
-
         // Create a single new User
         Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
         User tempUser = new User(LastName = 'TestSysAdminUserA', Email = 'test_insertAsOtherUser@email.npsp',
-                ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
-                Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
-                LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+									ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
+         							Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
+                					LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
         insert tempUser;
 
         Id currUserId = UserInfo.getUserId();
@@ -896,7 +897,7 @@ private class ACCT_IndividualAccounts_TEST {
         system.assertEquals(con.Salutation + ' ' + con.FirstName + ' Family', assertAccount.Name);
 
     }
-    
+
     /*********************************************************************************************************
     * @description Insert a new contact to an existing Household Account with its child contact empty naming string
     * Make sure the Account's name is set based on account naming setting.
@@ -932,7 +933,7 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-    * @description Test Method for detaching a Contact from an already existing account 
+    * @description Test Method for detaching a Contact from an already existing account
     * which is not the default account model.
     */
     @isTest
@@ -957,10 +958,33 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<contact> updatedContacts = [SELECT Account.Name, AccountId, Account.RecordTypeId FROM Contact where id=:con.id];
 
-        //The account should not be the one we started with        
+        //The account should not be the one we started with
         System.assertNotEquals(NULL, updatedContacts[0].AccountId);
         System.assertNotEquals(acct.id, updatedContacts[0].AccountId);
         System.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), updatedContacts[0].Account.RecordTypeId);
+    }
+
+    @isTest
+    private static void contactOwnerChange() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+
+		Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User adminUser = new User(LastName = 'TestAdmin', Email = 'testAdminUser@emailtest.edatest',
+									ProfileId = sysAdminProfileId, isActive = true, UserName = 'testAdminUser@emailtest.edatest',
+         							Alias = 'tAdmin0', TimeZoneSidKey = 'America/Los_Angeles',
+                					LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+        insert adminUser;
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        insert con;
+
+		con.OwnerId = adminUser.Id;
+		Test.startTest();
+		update con;
+		Test.stopTest();
+
+		Contact updatedContact = [SELECT Id, Account.OwnerId FROM Contact WHERE Id =: con.Id];
+		System.assertEquals(adminUser.Id, updatedContact.Account.OwnerId);
 
 
     }
