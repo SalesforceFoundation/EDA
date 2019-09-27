@@ -33,6 +33,7 @@ Verify disable preferred phone enforcement
     ...                                     Contacts
 
     Open EDA Settings Tab menu item
+    Enable enchanced checkbox
     Verify setting of disable preferred phone enforcement
     Shift to default content
 
@@ -61,11 +62,14 @@ Verify batch functionality of preferred phone
     # Make sure the 'Disable Preferred Phone enforcement' checkbox 
     # has a check in the checkbox
     Open EDA Settings Tab menu item
+    Enable enchanced checkbox    
     Set the disable preferred phone enforcement
+    Disable enchanced checkbox    
     Shift to default content
 
     # Clear the 'Active' checkbox
     Load page object                        Home            TriggerHandlers
+
     Deactivate trigger handler
 
     # Create a new contact and add some phone numbers
@@ -89,6 +93,7 @@ Verify batch functionality of preferred phone
     Select app launcher                     EDA
     Current page should be                  Home           Contacts
     Open EDA Settings Tab menu item
+    Enable enchanced checkbox    
     Clear the disable preferred phone enforcement
     Run phone cleanup
     Capture page screenshot

@@ -242,12 +242,12 @@ class ContactsHomePage(BasePage):
                 "Saving changes.\n" +
                 "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
             )
-        self.eda.shift_to_default_content()
+        #self.eda.shift_to_default_content()
 
     def Set_the_disable_preferred_phone_enforcement(self):
-        """ Verify that Disable Preferred Phone enforcement checkbox is not checked 
-            Clear the checkbox if it is set
-            Do nothing if the checkbox is already empty
+        """ Verify that Disable Preferred Phone enforcement checkbox is checked 
+            Set the checkbox if it is clear
+            Do nothing if the checkbox is already checked
         """
         
         self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
@@ -276,17 +276,16 @@ class ContactsHomePage(BasePage):
             self.selenium.click_button("Save")
             time.sleep(1)
             self.builtin.log(
-                "Disable Preferred Phone enforcement setting has been set.\n" +
+                "Disable Preferred Phone enforcement checkbox has been checked.\n" +
                 "Saving changes.\n" +
                 "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
             )
             self.selenium.capture_page_screenshot()
 
-        self.eda.shift_to_default_content()
 
     def Clear_the_disable_preferred_phone_enforcement(self):
-        """ Verify that Disable Preferred Phone enforcement checkbox is checked 
-            Set the checkbox if it is clear
+        """ Verify that Disable Preferred Phone enforcement checkbox is not checked 
+            Clear the checkbox if it is set
             Do nothing if the checkbox is already empty
         """
 
@@ -297,7 +296,6 @@ class ContactsHomePage(BasePage):
         self.selenium.click_button("Edit")
         self.selenium.capture_page_screenshot()
         self.builtin.log("Setting 'Disable Preferred Phone enforcement' checkbox.")
-#        time.sleep(1)
 
         # Checkbox for 'Disable Preferred Phone enforcement' should be empty
         if self.check_if_element_exists(contacts_locators["disable_preferred_phone"]):
@@ -307,10 +305,9 @@ class ContactsHomePage(BasePage):
                 "Disable Preferred Phone enforcement is checked.\n" +
                 "Opening EDIT mode"
             )
-            self.builtin.log("Setting 'Disable Preferred Phone enforcement' checkbox.")
+            self.builtin.log("Clearing 'Disable Preferred Phone enforcement' checkbox.")
             time.sleep(1)
 
-            # place a check in the checkbox
             self.selenium.driver.execute_script(
                 "arguments[0].click()", 
                 self.selenium.driver.find_element_by_xpath(contacts_locators["disable_checked"])
@@ -329,14 +326,13 @@ class ContactsHomePage(BasePage):
             )
 
         self.selenium.get_webelement(contacts_locators["copy_from"]).send_keys("H" + Keys.ENTER)
-
         self.selenium.capture_page_screenshot()
 
         # Click Save
         self.selenium.click_button("Save")
         time.sleep(1)
         self.builtin.log(
-            "Disable Preferred Phone enforcement setting has been set.\n" +
+            "Disable Preferred Phone enforcement checkbox has been cleared.\n" +
             "Saving changes.\n" +
             "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
         )
@@ -349,10 +345,7 @@ class ContactsHomePage(BasePage):
     def Run_phone_cleanup(self):
         """ Click on the 'Run Phone Cleanup' button """
 
-#        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
-
         self.selenium.wait_until_page_contains_element(contacts_locators["run_cleanup"])
-
         time.sleep(1)
 
         if self.check_if_element_exists(contacts_locators["run_cleanup"]):
@@ -368,7 +361,6 @@ class ContactsHomePage(BasePage):
 
         # Give 'Run Cleanup' fifteen seconds run time, then continue
         time.sleep(15)
-
         return
 
 
@@ -427,3 +419,87 @@ class ContactsHomePage(BasePage):
         self.selenium.capture_page_screenshot()
 
         return
+
+    def Enable_enchanced_checkbox(self):
+        """ Ensure that the Enhanced Preferred Phone Functionality checkbox is checked 
+            Set the checkbox if it is not set
+            Do nothing if the checkbox is already set
+        """
+        
+        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
+        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+
+
+        # Checkbox for 'Disable Preferred Phone enforcement' needs to be marked as checked
+        if self.check_if_element_exists(contacts_locators["enhanced_preferred_set"]):
+            self.builtin.log("Enable Enhanced Preferred Phone Functionality is checked.")
+            return
+        else: 
+            self.builtin.log(
+                "Enable Enhanced Preferred Phone Functionality is NOT checked.\n" +
+                "Opening EDIT mode"
+            )
+            self.selenium.click_button("Edit")
+            self.selenium.capture_page_screenshot()
+            self.builtin.log("Setting 'Enable Enhanced Preferred Phone Functionality' checkbox.")
+            time.sleep(1)
+
+            self.selenium.wait_until_page_contains_element(contacts_locators["enhanced_preferred_clear_faux"])
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["enhanced_preferred_clear_faux"])
+            )
+            self.selenium.click_button("Save")
+            time.sleep(1)
+            self.builtin.log(
+                "Enable Enhanced Preferred Phone Functionality setting has been set.\n" +
+                "Saving changes.\n" +
+                "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
+            )
+            self.selenium.capture_page_screenshot()
+
+
+    def Disable_enchanced_checkbox(self):
+        """ Verify that Enable Enhanced Preferred Phone Functionality checkbox is not checked 
+            Clear the checkbox if it is set
+            Do nothing if the checkbox is already empty
+        """
+
+        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
+        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+
+        # Click on Edit button
+        self.selenium.click_button("Edit")
+        self.selenium.capture_page_screenshot()
+        self.builtin.log("Clearing 'Enable Enhanced Preferred Phone Functionality' checkbox.")
+
+        # Checkbox for 'Enable Enhanced Preferred Phone Functionality' should be empty
+        if self.check_if_element_exists(contacts_locators["enhanced_preferred_clear"]):
+            self.builtin.log("Enable Enhanced Preferred Phone Functionality is clear.")
+            return
+        else: 
+            self.builtin.log(
+                "Enable Enhanced Preferred Phone Functionality is checked.\n" +
+                "Opening EDIT mode"
+            )
+            self.builtin.log("Clearing 'Enable Enhanced Preferred Phone Functionality' checkbox.")
+            time.sleep(1)
+
+            # Clear the check in the checkbox
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["enhanced_preferred_set_faux"])
+            )
+            self.selenium.capture_page_screenshot()
+
+
+        # Click Save
+        self.selenium.click_button("Save")
+        time.sleep(1)
+        self.builtin.log(
+            "Enable Enhanced Preferred Phone Functionality setting has been cleared.\n" +
+            "Saving changes.\n" +
+            "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
+        )
+        time.sleep(1)
+        self.selenium.capture_page_screenshot()

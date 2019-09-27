@@ -220,6 +220,11 @@ contacts_locators = {
     "copy_from": "//select[@class='contact-preferred-phone-picklist-input-select select uiInput uiInputSelect uiInput--default uiInput--select']",
     "copy_from_home_phone": "//select[@class='contact-preferred-phone-picklist-input-select select uiInput uiInputSelect uiInput--default uiInput--select']//option[@value='Home Phone']",
     "successful_run": "//span[text()='The process was queued successfully. An email will be sent at the completion of the job.']",
+    "enhanced_preferred_clear": "//div/span[text()='Enable Enhanced Preferred Phone Functionality:']/following::div[1]/div/div/label/span/img[@alt='False']",
+    "enhanced_preferred_clear_faux": "//span[text()='Enable Enhanced Preferred Phone Functionality:']/following::div[1]/div/div/label/input/following::span[1]",
+    "enhanced_preferred_set": "//span[text()='Enable Enhanced Preferred Phone Functionality:']/following::div[1]/div/div/label/span/img[@alt='True']",
+    "enhanced_preferred_set_faux": "//span[text()='Enable Enhanced Preferred Phone Functionality:']/following::div[1]/div/div/label/input/following::span[1]",
+
 }
 
 trigger_handlers_locators = {
