@@ -1,46 +1,42 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Cours</relationshipLabel>
-    <label>Service</label>
-  </fields>
-  <fields>
-    <name>Course_ID__c</name>
-    <label>ID du cours</label>
-  </fields>
-  <fields>
-    <name>Credit_Hours__c</name>
-    <label>Heures de crédit</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Description</label>
-  </fields>
-  <fields>
-    <name>Extended_Description__c</name>
-    <label>Description étendue</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom du cours</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom du cours</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Cours</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Cours</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Cours</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Cours</value>
+    </caseValues>
+    <fields>
+        <label>Service</label>
+        <name>Account__c</name>
+        <relationshipLabel>Cours</relationshipLabel>
+    </fields>
+    <fields>
+        <label>ID du cours</label>
+        <name>Course_ID__c</name>
+    </fields>
+    <fields>
+        <label>Heures de crédit</label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label>Description</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Description étendue</label>
+        <name>Extended_Description__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du cours</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
