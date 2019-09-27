@@ -250,18 +250,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Preferred_Phone_Selection__c</fullName>
-        <description>To select a desired Preferred Phone when Phone clean up Batch job runs</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Select a desired Preferred Phone when the Batch Job runs.</inlineHelpText>
-        <label>Preferred Phone Selection</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Enable_Course_Connections__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Enables Course Connections. Requires that at least two record types exist for Course Connections to be used for the default Active Student and Faculty.</description>
@@ -349,6 +337,18 @@
         <externalId>false</externalId>
         <inlineHelpText>To store other name setting for household account</inlineHelpText>
         <label>Household Other Name Setting</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Preferred_Phone_Selection__c</fullName>
+        <description>To select a desired Preferred Phone when Phone clean up Batch job runs</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select a desired Preferred Phone when the Batch Job runs.</inlineHelpText>
+        <label>Preferred Phone Selection</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
