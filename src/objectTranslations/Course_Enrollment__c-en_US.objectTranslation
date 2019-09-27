@@ -74,17 +74,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <recordTypes>
-        <label><!-- Default --></label>
-        <name>Default</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Faculty --></label>
-        <name>Faculty</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Student --></label>
-        <name>Student</name>
-    </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
