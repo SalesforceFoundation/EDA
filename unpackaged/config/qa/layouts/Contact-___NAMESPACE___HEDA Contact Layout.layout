@@ -330,6 +330,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>%%%NAMESPACE%%%Attribute_Type__c</fields>
+        <fields>%%%NAMESPACE%%%Description__c</fields>
+        <fields>%%%NAMESPACE%%%Agency__c</fields>
+        <relatedList>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>%%%NAMESPACE%%%Account__c</fields>
         <fields>%%%NAMESPACE%%%Eligible_to_Enroll__c</fields>
         <fields>%%%NAMESPACE%%%Admission_Date__c</fields>
