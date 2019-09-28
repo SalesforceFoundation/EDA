@@ -190,7 +190,7 @@ eda_lex_locators = {
 
 contacts_locators = {
     "action_shortcut": "//div[contains(@class, 'slds-utility-panel')]/descendant::button[@type='button' and text()='{}']",
-    "contact_save": "//div[contains(@class,'modal-footer')]//button[@title='Save']//span[contains(text(),'Save')]",
+    "contact_save": "(//div[contains(@class,'modal-footer')]//button[@title='Save']//span[contains(text(),'Save')])[1]",
     "header": "//a[@title='Contacts']//span",
     "select_contact": "//a[@title='{} {}']",
     "edit_contact": "//div[contains(@class,'windowViewMode-normal')]/descendant::div//a[@title='Edit']//div[@title='Edit']",
