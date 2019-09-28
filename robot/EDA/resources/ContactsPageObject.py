@@ -70,23 +70,6 @@ class ContactsHomePage(BasePage):
         )
         self.selenium.click_element(contacts_locators["action_shortcut"].format(action))
 
-   
-    def open_app_launcher(self, app_name):
-        """ Navigates to a Salesforce App via the App Launcher """
-        
-        self.builtin.log("Opening the App Launcher")
-        self.salesforce.open_app_launcher()
-        time.sleep(1)
-        self.builtin.log("Getting the web element for the app")
-        self.selenium.set_focus_to_element(locator)
-        self.builtin.log("Getting the parent link from the web element")
-        self.selenium.set_focus_to_element(elem.find_element_by_xpath("../../.."))
-        self.builtin.log("Clicking the link")
-        self.selenium.get_webelement(eda_lex_locators["app_launcher"]["app_link"].format(app_name)).find_element_by_xpath("../../..").click()
-        self.builtin.log("Waiting for modal to close")
-        self.salesforce.wait_until_modal_is_closed()
-
-
     def verify_timezone(self):
         """ Verify that a timezone value exists
             there is currently an open bug on this,
@@ -114,10 +97,10 @@ class ContactsHomePage(BasePage):
             self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone"])
         )
 
-        element_menu_home = self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone_home_dropdown"])
-
+        time.sleep(1)
         if not self.check_if_element_exists(contacts_locators["preferred_tab"]):
-            self.selenium.driver.execute_script("arguments[0].click()", element_menu_home)
+            self.selenium.driver.execute_script("arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone_home_dropdown"]))
             time.sleep(1)
 
         self.open_item(contacts_locators["preferred_tab"], "Home Phone not found as an option on Preferred Phone", False)
@@ -373,7 +356,7 @@ class ContactsHomePage(BasePage):
 
 
         # Give 'Run Cleanup' fifteen seconds run time, then continue
-        time.sleep(65)
+        time.sleep(15)
         return
 
 
@@ -412,8 +395,8 @@ class ContactsHomePage(BasePage):
         self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
 
 ########################################################################
-        time.sleep(60)
-        self.selenium.driver.refresh()
+#        time.sleep(60)
+#        self.selenium.driver.refresh()
 # Choosing to leave this commented code - both lines above - intentional
 ########################################################################
         time.sleep(1)
@@ -441,7 +424,7 @@ class ContactsHomePage(BasePage):
         
         self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
         self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
-
+        time.sleep(1)
 
         # Checkbox for 'Disable Preferred Phone enforcement' needs to be marked as checked
         if self.check_if_element_exists(contacts_locators["enhanced_preferred_set"]):

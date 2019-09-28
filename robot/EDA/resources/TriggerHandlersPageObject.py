@@ -22,10 +22,8 @@ class TriggerHandlersHomePage(BasePage):
         """ Verify we are on the Trigger Handlers page
             by verifying that the header title is 'Trigger Handlers'
         """
-        locator = trigger_handlers_locators["header"]
-        #self.selenium.click_element(locator)
         self.selenium.page_should_contain_element(
-            locator,
+            trigger_handlers_locators["header"],
             message="Header with text 'Trigger Handlers' is not available on the page"
         )
 
@@ -143,24 +141,10 @@ class TriggerHandlersHomePage(BasePage):
             self.selenium.wait_until_element_is_visible(loc_check)
             return
 
-    def set_trigger_status(self,locator,status):
-        """ Set Preferred Phone trigger according to arguments:  True is checked, False is not checked """
-        if self.selenium.check_if_element_exists(locator):
-            return
-        else:
-            self.selenium.click_button("Edit Active")
-            self.click_item(locator, "cannot find active checkbox", True)
-            self.selenium.click_element(locator_save)
-            time.sleep(1)
-            self.selenium.wait_until_element_is_visible(locator_check)
-            return
-
-
-
     def set_trigger_to_active(self, trigger):
         """ Set Preferred Phone trigger to Active.  Leave Active if already checked """
 
-        if self.check_if_element_exists(trigger_handlers_locators["checked_and_active"]):
+        if self.check_if_element_exists(trigger_handlers_locators["checked_and_active"]) or self.check_if_element_exists(trigger_handlers_locators["trigger_active_check"]):
             return
         else:
             self.selenium.click_button("Edit Active")

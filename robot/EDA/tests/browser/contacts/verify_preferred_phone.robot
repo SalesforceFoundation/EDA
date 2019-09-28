@@ -24,6 +24,7 @@ Verify basic preferred phone functionality
 
     Open EDA Settings Tab menu item
     Enable enchanced checkbox
+    Clear the disable preferred phone enforcement
     Shift to default content
 
     Enable trigger handler
