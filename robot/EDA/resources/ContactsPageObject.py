@@ -124,7 +124,7 @@ class ContactsHomePage(BasePage):
 
         # Attempt to Save the form
         self.selenium.click_element(contacts_locators["contact_save"])
-        time.sleep(1)
+        time.sleep(3)
 
         # Verify the error message that pops up
         self.selenium.wait_until_page_contains_element(contacts_locators["preferred_error_message"])
