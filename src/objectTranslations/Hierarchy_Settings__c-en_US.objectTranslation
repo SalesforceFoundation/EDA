@@ -132,6 +132,11 @@
         <name>Enable_Debug__c</name>
     </fields>
     <fields>
+        <help><!-- Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value. --></help>
+        <label><!-- Enable New Preferred Phone Sync --></label>
+        <name>Enable_New_Preferred_Phone_Sync__c</name>
+    </fields>
+    <fields>
         <help><!-- Check this if you&apos;d like the system to post notifications for certain type of errors. --></help>
         <label><!-- Error Notifications --></label>
         <name>Error_Notifications_On__c</name>
