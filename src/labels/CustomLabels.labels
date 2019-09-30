@@ -110,7 +110,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>MultipleCourseConnection</shortDescription>
-        <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
+        <value>We&apos;ve found more than one Course Connection associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
     </labels>
     <labels>
         <fullName>NoContactFound</fullName>
@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoContactFound</shortDescription>
-        <value>There is no Contact associated with this Course Connection. Go back to the Course Connection and associate a Contact before creating a Term Grade.</value>
+        <value>We can&apos;t find a Contact associated with this Course Connection. Verify that the Course Connection is related to an existing Contact record and Course Offering record.</value>
     </labels>
     <labels>
         <fullName>NoCourseConnection</fullName>
@@ -126,7 +126,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoCourseConnection</shortDescription>
-        <value>There is no Course Connection associated with this Contact and Course Offering. If this student is enrolled in this Course Offering, create a Course Connection.</value>
+        <value>We can&apos;t find a Course Connection associated with this Contact and Course Offering. Verify that this student is enrolled in (has a Course Connection to) the specified Course Offering.</value>
     </labels>
     <labels>
         <fullName>NoCourseOffering</fullName>
@@ -134,7 +134,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoCourseOffering</shortDescription>
-        <value>There is no Course Offering associated with this Course Connection. Go back to the Course Connection and associate a Course Offering before creating a Term Grade.</value>
+        <value>We can&apos;t find a Course Offering associated with this Course Connection. Verify that the Course Connection is associated with an existing Course Offering record and the correct Contact.</value>
     </labels>
     <labels>
         <fullName>NoDataMatch</fullName>
@@ -142,7 +142,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoDataMatch</shortDescription>
-        <value>The chosen Course Connection isn&apos;t associated with the Contact or Course Offering. Choose a valid Course Connection for the specified Contact and Course Offering. If one doesn&apos;t exist, create one.</value>
+        <value>The chosen Course Connection isn&apos;t associated with the Contact or Course Offering specified. Verify that the Contact and Course Offering you&apos;ve selected match the chosen Course Connection information.</value>
     </labels>
     <labels>
         <fullName>NoFieldsPopulated</fullName>
@@ -174,7 +174,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>OnlyCourseConnectionPopulated</shortDescription>
-        <value>There is no Contact and Course Offering associated with this Course Connection. Choose a valid Course Connection.</value>
+        <value>We can&apos;t find a Contact or Course Offering associated with this Course Connection. Verify  that the Course Connection is associated with existing Contact and Course Offering records or specify the correct  values for Contact and Course Offering.</value>
     </labels>
     <labels>
         <fullName>OnlyCourseOfferingPopulated</fullName>
