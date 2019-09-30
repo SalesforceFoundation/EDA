@@ -40,12 +40,17 @@ public class UTIL_ACCT_Naming_DF {
     private static ID userDefinedAdminRecordTypeId = Util_Describe.getAdminAccRecTypeID();
 
     private static ID defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
+	private static ID hhAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
+	private static ID adminAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
 
     private static String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
 
     private static String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
 
-    //KD TO DO: Need to replace this from ACCT_INdividualAccounts_TDTM and make this method more generic. 
+	//1. KD TO DO: updateAdminAccountsNmae();
+
+
+    //KD TO DO: Need to replace this from ACCT_INdividualAccounts_TDTM and make this method more generic.
     public static void updateHHAccountsName(Set<Id> accIdsToRename) {
         List<Account> listAccsToRename = new List<Account>();
 
@@ -85,16 +90,16 @@ public class UTIL_ACCT_Naming_DF {
 
 		return returnedContacts;
 	}
-	//This replaced strNameAdmAccountForContact && strNameHHAccountForContact : 
+	//This replaced strNameAdmAccountForContact && strNameHHAccountForContact && strNameAccountForContact:
 	//KD TO DO :  Need to check ACCT_IndividualAccounts_TDTM and replace the methods it is calling
-	//KD TO DO :  strNameAccountForContact --> Need to incorporate this in here to add to the "genericness"
+	//KD TO DO : updateHHAccountsName --> Need to incorporate this into updateName() to make it generic and update ACCT_IndividualAccounts_TDTM that's referencing this method.
 	public static String updateName(Contact[] cons) {
 		String accountNamingFormat;
 		String finalAccountName;
 		accountNamingFormat = checkAccountType();
 
 		if (accountNamingFormat != NULL) {
-			//return buildAccountName(cons, accountNamingFormat);
+			return buildAccountName(cons, accountNamingFormat);
 		} else {
 			finalAccountName = defaultAccountName(cons, accountNamingFormat);
 
@@ -105,18 +110,17 @@ public class UTIL_ACCT_Naming_DF {
 	public static String checkAccountType () {
 		String accountNamingFormat;
 
-		if (defaultRecTypeId == hhAccNamingFormat) {
+		if (defaultRecTypeId == hhAccountRecordTypeId) {
 			accountNamingFormat = hhAccNamingFormat;
 			if (accountNamingFormat == Label.acctNamingOther) {
 				accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
 			}
-		} else if (defaultRecTypeId == adminAccNamingFormat) {
+		} else if (defaultRecTypeId == adminAccountRecordTypeId) {
 			accountNamingFormat = adminAccNamingFormat;
 			if (accountNamingFormat == Label.acctNamingOther) {
 				accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
 			}
 		}
-
 		return accountNamingFormat;
 	}
 
@@ -125,22 +129,26 @@ public class UTIL_ACCT_Naming_DF {
 		String finalAccountName;
 
 		for (Contact con : cons) {
-			if (accountNamingFormat == adminAccNamingFormat) {
+			if (accountNamingFormat == hhAccNamingFormat) {
+				householdLastNames.add(con.LastName);
+			} else if (accountNamingFormat == adminAccNamingFormat) {
 				finalAccountName = con.LastName + ' ' + System.label.DefaultAdminName;
 				break;
 			} else {
-				householdLastNames.add(con.LastName);
+				finalAccountName = con.LastName + ' ' + System.label.DefaultAccountName;
+				break;
 			}
         }
         if (householdLastNames.size() > 0) {
             String name = '';
+			String strAnd = ' ' + Label.defaultNamingConnector + ' ';
         	Integer counter = 0;
 
         	for (String lastName : householdLastNames) {
             	name += lastName;
             	counter++;
             	if (counter < householdLastNames.size()) {
-                	name += ' ' + Label.defaultNamingConnector + ' ';
+                	name += strAnd;
             	}
         	}
 			if (accountNamingFormat == hhAccNamingFormat) {
@@ -148,5 +156,91 @@ public class UTIL_ACCT_Naming_DF {
     		}
         }
 		return finalAccountName;
+	}
+
+	private static String chLToken = '{!';
+    private static String chRToken = '}';
+
+	private class NameSpec {
+		private String namePrefix = new String();
+        private String nameSuffix = new String();
+        private String strFirstNameSpec { get; set; }
+        private String strFullNameSpec { get; set; }
+        private String strAnd { get; set; }
+        //private string strOverrun { get; set; }
+        //private integer cMaxUseOverrun { get; set; }
+        private string strAcctNameFormat { get; set; }
+
+		//accountNamingFormat should return  Household_Account_Naming_Format__c
+		private NameSpec(String accountNamingFormat) {
+			//strNameSpec should return value ie. {!LastName} Family OR {!LastName} {!FirstName} Family
+			String strNameSpec = NULL;
+			if (accountNamingFormat != NULL) {
+				if (accountNamingFormat == hhAccNamingFormat) {
+					strNameSpec = String.valueOf(hhAccNamingFormat);
+				} else if (accountNamingFormat == adminAccNamingFormat) {
+					strNameSpec = String.valueOf(adminAccNamingFormat);
+				}
+			}
+		}
+
+		private void parseNameSpec(String strNameSpec) {
+			namePrefix = '';
+            nameSuffix = '';
+            strFirstNameSpec = '';
+            strFullNameSpec = '';
+
+			if (accountNamingFormat == NULL) {
+				return;
+			}
+
+			Integer indexFirstParenthesis = accountNamingFormat.indexOf(chLToken); //Should return 0
+			Integer indexAfterLastParenthesis = accountNamingFormat.indexOf(chRToken); //Should return more than 0
+
+			//Retrieving the Prefix
+			if (indexFirstParenthesis > 0) {
+				namePrefix = accountNamingFormat.left(chLToken);
+				strAcctNameFormat = accountNamingFormat.subString(chLToken);
+			}
+			//Retrieving the Suffix
+			if (indexAfterLastParenthesis > 0) {
+				while (indexAfterLastParenthesis < accountNamingFormat.length()-1 && accountNamingFormat.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' ') {
+					indexAfterLastParenthesis++;
+				}
+				nameSuffix = indexAfterLastParenthesis.subString(indexAfterLastParenthesis+1); //Retrieves the suffix ie. Family/Household
+				strAcctNameFormat = accountNamingFormat.left(indexAfterLastParenthesis+1); //Retrieves just the format without the suffix ie. {!LastName}
+			}
+			//Retrieve FirstNameSpec
+			String strFirstName = strFNameSpecFromStrNameSpec(strAcctNameFormat);
+			Integer indexOfLeft = strFirstName.indexOf(chLToken); // -1 for {!LastName} Family scenario
+			Integer indexOfRight = strFirstName.lastIndextOf(chRToken); // -1 for {!LastName} Family scenario
+			if (indexOfLeft >= 0 && indexOfRight > 0) {
+				strFirstNameSpec = accountNamingFormat.replace(strFirstName, 'FirstNameSpec');
+				strFullNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
+			} else {
+				strFirstNameSpec = strAcctNameFormat;
+			}
+		}
+		public set<string> setStrFieldsInNameSpec() {
+            System.debug('setStrFieldsInNameSpec Method in NameSpec -->');
+            set<string> setStrField = new set<string>();
+            if (strFirstNameSpec != null)
+                setStrField.addAll(setStrFieldFromStrFSpec(strFirstNameSpec));
+            if (strFullNameSpec != null)
+                setStrField.addAll(setStrFieldFromStrFSpec(strFullNameSpec));
+            setStrField.add('LastName');
+            return setStrField;
+        }
+
+	}
+	private static String strFNameSpecFromStrNameSpec(String strAcctNameFormat) {
+		Pattern MyPattern = Pattern.compile('\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}');
+		Matcher MyMatcher = MyPattern.matcher(strAcctNameFormat);
+
+		if (MyMatcher.find()) {
+			return strAcctNameFormat.subString(MyMatcher.start(), MyMatcher.end());
+		} else {
+			return '';
+		}
 	}
 }
