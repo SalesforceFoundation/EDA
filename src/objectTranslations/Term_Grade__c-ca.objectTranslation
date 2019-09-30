@@ -13,7 +13,7 @@
       <label><!-- Contact --></label>
       <name>Contact__c</name>
       <relationshipLabel><!-- Term Grades --></relationshipLabel>
-  </fields>
+    </fields>
     <fields>
         <help>La classe en què l&apos;alumne ha rebut aquesta qualificació.</help>
         <label>Connexió del curs</label>
