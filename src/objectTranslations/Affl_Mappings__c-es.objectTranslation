@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Record_Type__c</name>
-    <help>La etiqueta Tipo de registro de cuenta</help>
-    <label>Tipo de registro de cuenta</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Role__c</name>
-    <label>Función de Inscripción automática</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Status__c</name>
-    <label>Estado de Inscripción automática</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment__c</name>
-    <help>Si se selecciona, se creará un registro Inscripción del programa automáticamente cuando el usuario cree una Afiliación a una Cuenta de este tipo.</help>
-    <label>Inscripción automática</label>
-  </fields>
-  <fields>
-    <name>Primary_Affl_Field__c</name>
-    <help>La etiqueta del campo de búsqueda en Contacto que apunta a la Cuenta principal del Tipo de registro especificado.</help>
-    <label>Campo de afiliación principal</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Affl Mappings --></value>
+    </caseValues>
+    <fields>
+        <help>La etiqueta Tipo de registro de cuenta</help>
+        <label>Tipo de registro de cuenta</label>
+        <name>Account_Record_Type__c</name>
+    </fields>
+    <fields>
+        <label>Función de Inscripción automática</label>
+        <name>Auto_Program_Enrollment_Role__c</name>
+    </fields>
+    <fields>
+        <label>Estado de Inscripción automática</label>
+        <name>Auto_Program_Enrollment_Status__c</name>
+    </fields>
+    <fields>
+        <help>Si se selecciona, se creará un registro Inscripción del programa automáticamente cuando el usuario cree una Afiliación a una Cuenta de este tipo.</help>
+        <label>Inscripción automática</label>
+        <name>Auto_Program_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help>La etiqueta del campo de búsqueda en Contacto que apunta a la Cuenta principal del Tipo de registro especificado.</help>
+        <label>Campo de afiliación principal</label>
+        <name>Primary_Affl_Field__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
 </CustomObjectTranslation>

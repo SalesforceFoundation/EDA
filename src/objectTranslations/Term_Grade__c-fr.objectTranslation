@@ -1,104 +1,100 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>La classe dans laquelle l'étudiant a reçu cette note.</help>
-    <relationshipLabel>Notes</relationshipLabel>
-    <label>Connexion au cours</label>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <help>Le nombre de crédits tentés pour ce cours et la période de notation.</help>
-    <label>Crédits tentés</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <help>Le nombre de crédits obtenus pour ce cours et la période de notation.</help>
-    <label>Crédits obtenus</label>
-  </fields>
-  <fields>
-    <name>Letter_Grade__c</name>
-    <help>La lettre correspondant à la note que l'étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
-    <label>Note en lettre</label>
-  </fields>
-  <fields>
-    <name>Numerical_Grade__c</name>
-    <help>La note numérique obtenue par l'étudiant pour ce cours, qui peut être basée sur n'importe quel chiffre autre qu'un pourcentage.</help>
-    <label>Note numérique</label>
-  </fields>
-  <fields>
-    <name>Percent_Grade__c</name>
-    <help>La note en pourcentage obtenue par l'étudiant pour ce cours.</help>
-    <label>Note en pourcentage</label>
-  </fields>
-  <fields>
-    <name>Result__c</name>
-    <help>Le résultat de l'étudiant pendant cette période de notation.</help>
-    <label>Résultat</label>
-    <picklistValues>
-      <masterLabel>Audit</masterLabel>
-      <translation>Audit</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dropped</masterLabel>
-      <translation>Abandon</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Fail</masterLabel>
-      <translation>Échec</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Pass</masterLabel>
-      <translation>Réussite</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term_Grade_Type__c</name>
-    <help>Le type de la durée ou de la période de notation pour laquelle cette note est enregistrée.</help>
-    <label>Type de note à la classe</label>
-    <picklistValues>
-      <masterLabel>Exam Grade</masterLabel>
-      <translation>Note à l'examen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Final Grade</masterLabel>
-      <translation>Note finale</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grading Period</masterLabel>
-      <translation>Période de notation</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mid-Term Grade</masterLabel>
-      <translation>Note intermédiaire</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <help>La classe ou la période de notation pour laquelle cette note est enregistrée.</help>
-    <relationshipLabel>Notes</relationshipLabel>
-    <label>Durée</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Term Grade Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom de la note à la classe</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom de la note à la classe</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Note</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Notes</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Note</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Notes</value>
+    </caseValues>
+    <fields>
+        <help>La classe dans laquelle l&apos;étudiant a reçu cette note.</help>
+        <label>Connexion au cours</label>
+        <name>Course_Connection__c</name>
+        <relationshipLabel>Notes</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Le nombre de crédits tentés pour ce cours et la période de notation.</help>
+        <label>Crédits tentés</label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <help>Le nombre de crédits obtenus pour ce cours et la période de notation.</help>
+        <label>Crédits obtenus</label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <help>La lettre correspondant à la note que l&apos;étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
+        <label>Note en lettre</label>
+        <name>Letter_Grade__c</name>
+    </fields>
+    <fields>
+        <help>La note numérique obtenue par l&apos;étudiant pour ce cours, qui peut être basée sur n&apos;importe quel chiffre autre qu&apos;un pourcentage.</help>
+        <label>Note numérique</label>
+        <name>Numerical_Grade__c</name>
+    </fields>
+    <fields>
+        <help>La note en pourcentage obtenue par l&apos;étudiant pour ce cours.</help>
+        <label>Note en pourcentage</label>
+        <name>Percent_Grade__c</name>
+    </fields>
+    <fields>
+        <help>Le résultat de l&apos;étudiant pendant cette période de notation.</help>
+        <label>Résultat</label>
+        <name>Result__c</name>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation>Audit</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dropped</masterLabel>
+            <translation>Abandon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation>Échec</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation>Réussite</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Le type de la durée ou de la période de notation pour laquelle cette note est enregistrée.</help>
+        <label>Type de note à la classe</label>
+        <name>Term_Grade_Type__c</name>
+        <picklistValues>
+            <masterLabel>Exam Grade</masterLabel>
+            <translation>Note à l&apos;examen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Grade</masterLabel>
+            <translation>Note finale</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grading Period</masterLabel>
+            <translation>Période de notation</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Term Grade</masterLabel>
+            <translation>Note intermédiaire</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>La classe ou la période de notation pour laquelle cette note est enregistrée.</help>
+        <label>Durée</label>
+        <name>Term__c</name>
+        <relationshipLabel>Notes</relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la note à la classe</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
