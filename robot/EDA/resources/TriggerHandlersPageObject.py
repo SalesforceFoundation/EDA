@@ -123,7 +123,6 @@ class TriggerHandlersHomePage(BasePage):
             error="CON_PreferredPhone_TDTM not found in Trigger Handler list"
         )
 
-        time.sleep(2)
         self.selenium.wait_until_page_contains_element(
             trigger_handlers_locators["trigger_handler"],
             error="Unable to find Preferred Phone Trigger Handler "
@@ -158,8 +157,8 @@ class TriggerHandlersHomePage(BasePage):
             #self.selenium.wait_until_element_is_visible(trigger_handlers_locators["trigger_active_check"])
             return
 
-    def Clear_the_check_on_active_checkbox(self):
-        """ Clear the Preferred Phone trigger """
+    def clear_the_check_on_active_checkbox(self):
+        """ Clear the check in the Active checkbox """
 
         if self.check_if_element_exists(trigger_handlers_locators["edit_unchecked"]):
             return

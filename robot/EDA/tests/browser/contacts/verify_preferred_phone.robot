@@ -4,8 +4,8 @@ Documentation
 
 
 Resource        robot/EDA/resources/EDA.robot
+Library         robot/EDA/resources/EDA.py
 Library         DateTime
-Library         SeleniumLibrary
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ContactsPageObject.py
 ...             robot/EDA/resources/TriggerHandlersPageObject.py
@@ -16,7 +16,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify basic preferred phone functionality
-    Select app launcher                     EDA
+    Select App Launcher App                 EDA
     Close all tabs
 
     Current page should be                  Home
@@ -27,39 +27,34 @@ Verify basic preferred phone functionality
     Clear the disable preferred phone enforcement
     Shift to default content
 
-#    Enable trigger handler
-
-#    Current page should be                  Home
-#    ...                                     Contacts
     Select tab                              Contacts
     Select contact                          ${CONTACT.FirstName}
     ...                                     ${CONTACT.LastName}
     Validate preferred phone form
 
 Verify disable preferred phone enforcement
-    Select app launcher                     EDA
+    Sleep    15
+
+    Select App Launcher App                 EDA
     Close all tabs
     Current page should be                  Home
     ...                                     Contacts
+
 
     Open EDA Settings Tab menu item
     Enable enchanced checkbox
     Verify setting of disable preferred phone enforcement
     Shift to default content
 
-#    Close all tabs
-#    Current page should be                  Home            
-#    ...                                     Contacts
     Select tab                              Contacts
     Select contact                          ${CONTACT.FirstName}
     ...                                     ${CONTACT.LastName}
 
     Test home phone functionality           ${CONTACT.FirstName}
     ...                                     ${CONTACT.LastName}
-    Sleep                                   1
 
 Verify batch functionality of preferred phone
-    Select app launcher                     EDA
+    Select App Launcher App                 EDA
     Close all tabs
 
     Current page should be                  Home           Contacts
@@ -77,17 +72,11 @@ Verify batch functionality of preferred phone
     Disable enchanced checkbox    
     Shift to default content
 
-    # Clear the 'Active' checkbox
-#    Load page object                        Home            TriggerHandlers
-
-#    Deactivate trigger handler
 
     # Create a new contact and add some phone numbers
     # Note:  The trigger handler is NOT set to Active, 
     #        and the 'Disable Preferred Phone enforcement'
     #        is NOT being enforced
-#    Select app launcher                     EDA
-#    Current page should be                  Home           Contacts
     Create new contact
     Select tab                              Contacts
     # Note:  look in ContactsPageObject.py to see that the following
@@ -98,10 +87,6 @@ Verify batch functionality of preferred phone
     # Now we'll reconfigure the trigger and EDA Setting
     # and run another test to check 'Run Cleanup'
 
-#    Enable trigger handler
-
-#    Select app launcher                     EDA
-#    Current page should be                  Home           Contacts
     Open EDA Settings Tab menu item
     Enable enchanced checkbox    
     Clear the disable preferred phone enforcement
@@ -120,9 +105,6 @@ Verify batch functionality of preferred phone
     Open EDA Settings Tab menu item
     Set the disable preferred phone enforcement
     Shift to default content
-#    Enable trigger handler
-
-
 
 *** Keywords ***
 Initialize test data
@@ -151,7 +133,6 @@ Enable trigger handler
     ...                                     Home
     ...                                     TriggerHandlers
     Get trigger handler
-#    Set trigger to active                   CON_PreferredPhone_TDTM
 
 Get trigger handler
     Click item     

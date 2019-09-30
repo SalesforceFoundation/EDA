@@ -9,7 +9,12 @@ from locators import contacts_locators
 from locators import eda_lex_locators
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+
 
 
 @pageobject("Home", "Contacts")
@@ -89,28 +94,42 @@ class ContactsHomePage(BasePage):
     def validate_preferred_phone_form(self):
         """ Test the preferred phone fields and functionality """
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["edit_contact"], error="Edit button not found for Contact")
-        self.open_item(contacts_locators["edit_contact"], "Edit button not found for Contact", False)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["edit_contact"], 
+            timeout=60,
+            error="Edit button not found for Contact"
+        )
+        self.open_item(
+            contacts_locators["edit_contact"], 
+            "Edit button not found for Contact", 
+            False
+        )
 
         self.selenium.driver.execute_script(
             "arguments[0].scrollIntoView()", 
             self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone"])
         )
 
-        time.sleep(1)
         if not self.check_if_element_exists(contacts_locators["preferred_tab"]):
-            self.selenium.driver.execute_script("arguments[0].click()", 
-            self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone_home_dropdown"]))
-            time.sleep(1)
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["preferred_phone_home_dropdown"])
+            )
 
-        self.open_item(contacts_locators["preferred_tab"], "Home Phone not found as an option on Preferred Phone", False)
+        self.open_item(
+            contacts_locators["preferred_tab"], 
+            "Home Phone not found as an option on Preferred Phone", 
+            False
+        )
 
         # Attempt to Save the form
         self.selenium.click_element(contacts_locators["contact_save"])
-        time.sleep(3)
 
         # Verify the error message that pops up
-        self.selenium.wait_until_page_contains_element(contacts_locators["preferred_error_message"])
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["preferred_error_message"],
+            timeout=60
+        )
         
         # Enter a value for Home Phone and then save the Contact form
         # After entering a value for Home Phone the form should save 
@@ -118,19 +137,15 @@ class ContactsHomePage(BasePage):
 
         self.selenium.wait_until_page_contains_element(
             contacts_locators["field_for_home_phone"],
+            timeout=60,
             error="Home Phone field not found on Contacts form"
-            )
+        )
         self.selenium.get_webelement(contacts_locators["field_for_home_phone"]).send_keys("555-555-1212")
+        time.sleep(3) # if we don't wait, then the field doesn't complete the input of the phone number
 
         # Save the form - this time successfully
         self.selenium.click_element(contacts_locators["contact_save"])
-
         self.selenium.driver.switch_to.default_content()
-        # Grab the current frame
-        currentFrame = self.selenium.driver.execute_script("return self.name")
-        self.builtin.log(
-            "Current frame 1: " + currentFrame
-        )
 
     def verify_toast_message(self, value):
         """ Verifies the toast message """
@@ -146,13 +161,29 @@ class ContactsHomePage(BasePage):
             contact_lastname
         )
         # Navigate to Detail tab
-        self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"], error="Details Tab not found on contact")
-        self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["details_tab"], 
+            timeout=60,
+            error="Details Tab not found on contact"
+        )
+        self.open_item(
+            contacts_locators["details_tab"], 
+            "Details tab not found on contact", 
+            True
+        )
         # Open EDIT mode
-        self.open_item(contacts_locators["edit_contact"], "Edit button not found on contact", False)
+        self.open_item(
+            contacts_locators["edit_contact"], 
+            "Edit button not found on contact", 
+            False
+        )
         # Place specific field in view, because it's off-screen at the moment
         self.place_in_view(contacts_locators["field_for_phone"])
-        self.open_item(contacts_locators["footer_cancel"], "Cancel button not avaible on EDIT Contact page", False)
+        self.open_item(
+            contacts_locators["footer_cancel"], 
+            "Cancel button not avaible on EDIT Contact page", 
+            False
+        )
         time.sleep(1)
 
     def place_in_view(self,locator):
@@ -170,7 +201,11 @@ class ContactsHomePage(BasePage):
 
     def open_item(self, locator, error_message, capture_screen):
         """ Performs a wait until the element shows on the page, and clicks the element """
-        self.selenium.wait_until_page_contains_element(locator, error=error_message)
+        self.selenium.wait_until_page_contains_element(
+            locator, 
+            timeout=60,
+            error=error_message
+        )
         self.selenium.click_element(locator)
         if capture_screen:
             self.selenium.capture_page_screenshot()
@@ -204,9 +239,16 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already empty
         """
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["accounts_contacts"],
+            timeout=60
+        )
 
-        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+        self.open_item(
+            contacts_locators["accounts_contacts"],
+            "Cannot find Account and Contacts on EDA Settings page", 
+            True
+        )
 
         # Checkbox for 'Disable Preferred Phone enforcement' should be empty
         if self.check_if_element_exists(contacts_locators["disable_preferred_phone"]):
@@ -225,7 +267,6 @@ class ContactsHomePage(BasePage):
                 "Saving changes.\n" +
                 "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
             )
-        #self.eda.shift_to_default_content()
 
     def Set_the_disable_preferred_phone_enforcement(self):
         """ Verify that Disable Preferred Phone enforcement checkbox is checked 
@@ -233,8 +274,15 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already checked
         """
         
-        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
-        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["accounts_contacts"],
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["accounts_contacts"],
+            "Cannot find Account and Contacts on EDA Settings page", 
+            True
+        )
 
 
         # Checkbox for 'Disable Preferred Phone enforcement' needs to be marked as checked
@@ -249,15 +297,16 @@ class ContactsHomePage(BasePage):
             self.selenium.click_button("Edit")
             self.selenium.capture_page_screenshot()
             self.builtin.log("Setting 'Disable Preferred Phone enforcement' checkbox.")
-            time.sleep(1)
 
-            self.selenium.wait_until_page_contains_element(contacts_locators["disable_checked"])
+            self.selenium.wait_until_page_contains_element(
+                contacts_locators["disable_checked"],
+                timeout=60,
+            )
             self.selenium.driver.execute_script(
                 "arguments[0].click()", 
                 self.selenium.driver.find_element_by_xpath(contacts_locators["disable_checked"])
             )
             self.selenium.click_button("Save")
-            time.sleep(1)
             self.builtin.log(
                 "Disable Preferred Phone enforcement checkbox has been checked.\n" +
                 "Saving changes.\n" +
@@ -272,8 +321,15 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already empty
         """
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
-        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["accounts_contacts"],
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["accounts_contacts"],
+            "Cannot find Account and Contacts on EDA Settings page", 
+            True
+        )
 
         # Click on Edit button
         self.selenium.click_button("Edit")
@@ -322,14 +378,15 @@ class ContactsHomePage(BasePage):
         time.sleep(1)
         self.selenium.capture_page_screenshot()
 
-        #self.eda.shift_to_default_content()
 
 
     def Run_phone_cleanup(self):
         """ Click on the 'Run Phone Cleanup' button """
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["run_cleanup"])
-        time.sleep(1)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["run_cleanup"],
+            timeout=60
+        )
 
         if self.check_if_element_exists(contacts_locators["run_cleanup"]):
             self.selenium.driver.execute_script(
@@ -339,7 +396,10 @@ class ContactsHomePage(BasePage):
             self.builtin.log("Run Cleanup executed")
             time.sleep(1)
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["successful_run"])
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["successful_run"],
+            timeout=60
+        )
         self.selenium.capture_page_screenshot()
 
 
@@ -351,9 +411,11 @@ class ContactsHomePage(BasePage):
             self.builtin.log("Run Cleanup executed")
             time.sleep(1)
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["successful_run"])
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["successful_run"],
+            timeout=60
+        )
         self.selenium.capture_page_screenshot()
-
 
         # Give 'Run Cleanup' fifteen seconds run time, then continue
         time.sleep(15)
@@ -367,8 +429,16 @@ class ContactsHomePage(BasePage):
         """
         self.select_contact(FirstName, LastName)
         # Navigate to Detail tab
-        self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
-        self.open_item(contacts_locators["edit_contact"], "Edit button not found on contact", False)
+        self.open_item(
+            contacts_locators["details_tab"], 
+            "Details tab not found on contact", 
+            True
+        )
+        self.open_item(
+            contacts_locators["edit_contact"], 
+            "Edit button not found on contact", 
+            False
+        )
         self.place_in_view(contacts_locators["phone_home"])
 
         self.selenium.driver.execute_script(
@@ -376,10 +446,18 @@ class ContactsHomePage(BasePage):
         )
         self.selenium.capture_page_screenshot()
 
-        self.open_item(contacts_locators["phone_home"], "Home Phone field not found on contact", False)
+        self.open_item(
+            contacts_locators["phone_home"], 
+            "Home Phone field not found on contact", 
+            False
+        )
 
         self.selenium.get_webelement(contacts_locators["phone_home"]).send_keys("123-123-1234")
-        self.open_item(contacts_locators["footer_save"], "Save button not avaible on EDIT Contact page", False)
+        self.open_item(
+            contacts_locators["footer_save"], 
+            "Save button not avaible on EDIT Contact page", 
+            False
+        )
 
         self.selenium.capture_page_screenshot()
 
@@ -391,29 +469,43 @@ class ContactsHomePage(BasePage):
 
         self.select_contact(FirstName, LastName)
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
-        self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["details_tab"], 
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["details_tab"], 
+            "Details tab not found on contact", 
+            True
+        )
 
-########################################################################
-#        time.sleep(60)
-#        self.selenium.driver.refresh()
-# Choosing to leave this commented code - both lines above - intentional
-########################################################################
-        time.sleep(1)
+        self.selenium.driver.refresh()
         
-        self.selenium.wait_until_page_contains_element(contacts_locators["details_tab"])
-        self.open_item(contacts_locators["details_tab"], "Details tab not found on contact", True)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["details_tab"],
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["details_tab"], 
+            "Details tab not found on contact", 
+            True
+        )
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["phone_verify"])
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["phone_verify"],
+            timeout=60
+        )
 
         self.selenium.driver.execute_script(
             "arguments[0].scrollIntoView()", 
             self.selenium.driver.find_element_by_xpath(contacts_locators["home_phone_verify"])
         )
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["home_phone_verify"])
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["home_phone_verify"],
+            timeout=60
+        )
         self.selenium.capture_page_screenshot()
-
         return
 
     def Enable_enchanced_checkbox(self):
@@ -422,9 +514,15 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already set
         """
         
-        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
-        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
-        time.sleep(1)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["accounts_contacts"],
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["accounts_contacts"],
+            "Cannot find Account and Contacts on EDA Settings page", 
+            True
+        )
 
         # Checkbox for 'Disable Preferred Phone enforcement' needs to be marked as checked
         if self.check_if_element_exists(contacts_locators["enhanced_preferred_set"]):
@@ -438,15 +536,16 @@ class ContactsHomePage(BasePage):
             self.selenium.click_button("Edit")
             self.selenium.capture_page_screenshot()
             self.builtin.log("Setting 'Enable Enhanced Preferred Phone Functionality' checkbox.")
-            time.sleep(1)
 
-            self.selenium.wait_until_page_contains_element(contacts_locators["enhanced_preferred_clear_faux"])
+            self.selenium.wait_until_page_contains_element(
+                contacts_locators["enhanced_preferred_clear_faux"],
+                timeout=60
+            )
             self.selenium.driver.execute_script(
                 "arguments[0].click()", 
                 self.selenium.driver.find_element_by_xpath(contacts_locators["enhanced_preferred_clear_faux"])
             )
             self.selenium.click_button("Save")
-            time.sleep(1)
             self.builtin.log(
                 "Enable Enhanced Preferred Phone Functionality setting has been set.\n" +
                 "Saving changes.\n" +
@@ -461,8 +560,15 @@ class ContactsHomePage(BasePage):
             Do nothing if the checkbox is already empty
         """
 
-        self.selenium.wait_until_page_contains_element(contacts_locators["accounts_contacts"])
-        self.open_item(contacts_locators["accounts_contacts"],"Cannot find Account and Contacts on EDA Settings page", True)
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["accounts_contacts"],
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["accounts_contacts"],
+            "Cannot find Account and Contacts on EDA Settings page", 
+            True
+        )
 
         # Click on Edit button
         self.selenium.click_button("Edit")
@@ -479,7 +585,6 @@ class ContactsHomePage(BasePage):
                 "Opening EDIT mode"
             )
             self.builtin.log("Clearing 'Enable Enhanced Preferred Phone Functionality' checkbox.")
-            time.sleep(1)
 
             # Clear the check in the checkbox
             self.selenium.driver.execute_script(
@@ -491,11 +596,9 @@ class ContactsHomePage(BasePage):
 
         # Click Save
         self.selenium.click_button("Save")
-        time.sleep(1)
         self.builtin.log(
             "Enable Enhanced Preferred Phone Functionality setting has been cleared.\n" +
             "Saving changes.\n" +
             "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
         )
-        time.sleep(1)
         self.selenium.capture_page_screenshot()

@@ -60,7 +60,6 @@ class EDA(object):
         self.selenium.set_focus_to_element(locator)
         button = self.selenium.get_webelement(locator)
         button.click()
-        time.sleep(1)
 
     def click_special_related_list_button(self, heading, button_title):
         """ To Click on a related list button which would open up a new lightning page rather than a modal.
@@ -83,13 +82,12 @@ class EDA(object):
         self.selenium.set_focus_to_element(locator)
         self.selenium.get_webelement(locator).click()
 
-    def select_app_launcher(self, app_name):
+    def my_select_app_launcher(self, app_name):
         """ Navigates to a Salesforce App via the App Launcher
         """
         locator = eda_lex_locators["app_launcher"]["app_link"].format(app_name)
         self.builtin.log("Opening the App Launcher")
         self.salesforce.open_app_launcher()
-        time.sleep(1)
         self.builtin.log("Getting the web element for the app")
         self.selenium.set_focus_to_element(locator)
         elem = self.selenium.get_webelement(locator)
@@ -139,11 +137,13 @@ class EDA(object):
 
         self.builtin.log("locator for select_tab is: " + locator , "INFO")
 
-        self.selenium.wait_until_page_contains_element(locator, timeout=60,
-                                                       error="'" + title + "' list header is not available on the page")
+        self.selenium.wait_until_page_contains_element(
+            locator, 
+            timeout=60,
+            error="List header '{}' is not available on the page".format(title)
+        )
         self.selenium.set_focus_to_element(locator)
         self.selenium.get_webelement(locator).click()
-        time.sleep(1)
 
 
     def delete_icon(self, field_name, value):
@@ -372,7 +372,6 @@ class EDA(object):
         xpath = eda_lex_locators["input_placeholder"].format(loc)
         field = self.selenium.get_webelement(xpath)
         field.send_keys(value)
-        time.sleep(1)
 #         if loc == ("Search Contacts" or "Search Accounts"):
         field.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
 
@@ -486,7 +485,9 @@ class EDA(object):
         return main_loc
 
     def select_navigation_tab(self, tab):
-        """ Selects navigation tab - as passed in to the function """
+        """ Selects navigation tab - as passed in to the function 
+            tab is not a locator, but is a label on a tab.
+        """
         locator_menu = eda_lex_locators["navigation_menu"]
         element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
         locator_tab = eda_lex_locators["navigation_tab"].format(tab)
@@ -514,7 +515,9 @@ class EDA(object):
 
 
     def select_tab(self, tab):
-        """ Selects Contacts tab - as passed in to the function """
+        """ Selects Contacts tab - as passed in to the function
+            tab is a label on menu item, and not a locator.
+        """
         locator_menu = eda_lex_locators["tab_menu"].format(tab)
         element_menu = self.selenium.driver.find_element_by_xpath(locator_menu)
         locator_tab = eda_lex_locators["tab_tab"].format(tab)
@@ -596,9 +599,9 @@ class EDA(object):
         return window_found
 
     def shift_to_default_content(self):
+        """ Returns to main content, and out of iframe """
         self.selenium.driver.switch_to.default_content()
         currentFrame = self.selenium.driver.execute_script("return self.name")
-        #self.selenium.driver.execute_script("arguments[0].scrollIntoView()", element_menu)
         self.builtin.log(
             "Current frame 2: " + currentFrame
         )
