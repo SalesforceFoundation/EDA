@@ -1,106 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Term Grade --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Term Grade --></value>
+    </caseValues>
+    <fields>
       <help><!-- The student for whom the grade is being recorded. --></help>
       <label><!-- Contact --></label>
       <name>Contact__c</name>
       <relationshipLabel><!-- Term Grades --></relationshipLabel>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>La classe en què l'alumne ha rebut aquesta qualificació.</help>
-    <relationshipLabel>Qualificacions del període</relationshipLabel>
-    <label>Connexió del curs</label>
-  </fields>
-  <fields>
-        <help><!-- The Course Offering associated with the grade being recorded. --></help>
-        <label><!-- Course Offering --></label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel><!-- Term Grades --></relationshipLabel>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>
-    <label>Crèdits als quals s'ha assistit</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <help>El nombre de crèdits guanyats per a aquest curs i període de qualificació.</help>
-    <label>Crèdits obtinguts</label>
-  </fields>
-  <fields>
-    <name>Letter_Grade__c</name>
-    <help>La qualificació amb lletres que ha obtingut l’estudiant per aquest curs. Per exemple, "A +" o qualsevol altre valor de text.</help>
-    <label>Qualificació amb lletres</label>
-  </fields>
-  <fields>
-    <name>Numerical_Grade__c</name>
-    <help>La qualificació numèrica que obtingut l’estudiant per a aquest curs, que es pot basar en qualsevol nombre no percentual.</help>
-    <label>Qualificació numèrica</label>
-  </fields>
-  <fields>
-    <name>Percent_Grade__c</name>
-    <help>La qualificació en percentatge que ha obtingut l’estudiant per aquest curs.</help>
-    <label>Qualificació en percentatge</label>
-  </fields>
-  <fields>
-    <name>Result__c</name>
-    <help>El resultat del rendiment de l’estudiant durant aquest període de qualificació.</help>
-    <label>Resultat</label>
-    <picklistValues>
-      <masterLabel>Audit</masterLabel>
-      <translation>Auditoria</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dropped</masterLabel>
-      <translation>Abandonat</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Fail</masterLabel>
-      <translation>Suspès</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Pass</masterLabel>
-      <translation>Aprovat</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term_Grade_Type__c</name>
-    <help>El tipus de període de qualificació en què es registra aquesta qualificació.</help>
-    <label>Tipus de qualificació del període</label>
-    <picklistValues>
-      <masterLabel>Exam Grade</masterLabel>
-      <translation>Qualificació d'examen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Final Grade</masterLabel>
-      <translation>Qualificació final</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grading Period</masterLabel>
-      <translation>Període de qualificació</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mid-Term Grade</masterLabel>
-      <translation>Qualificació de mig període</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <help>El període de qualificació en què es registra aquesta qualificació.</help>
-    <relationshipLabel>Qualificacions del període</relationshipLabel>
-    <label>Període</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Term Grade Layout</layout>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom de qualificació del període</label>
-  </standardFields>
+    </fields>
+    <fields>
+        <help>La classe en què l&apos;alumne ha rebut aquesta qualificació.</help>
+        <label>Connexió del curs</label>
+        <name>Course_Connection__c</name>
+        <relationshipLabel>Qualificacions del període</relationshipLabel>
+    </fields>
+    <fields>
+      <help><!-- The Course Offering associated with the grade being recorded. --></help>
+      <label><!-- Course Offering --></label>
+      <name>Course_Offering__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>
+        <label>Crèdits als quals s&apos;ha assistit</label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <help>El nombre de crèdits guanyats per a aquest curs i període de qualificació.</help>
+        <label>Crèdits obtinguts</label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <help>La qualificació amb lletres que ha obtingut l’estudiant per aquest curs. Per exemple, &quot;A +&quot; o qualsevol altre valor de text.</help>
+        <label>Qualificació amb lletres</label>
+        <name>Letter_Grade__c</name>
+    </fields>
+    <fields>
+        <help>La qualificació numèrica que obtingut l’estudiant per a aquest curs, que es pot basar en qualsevol nombre no percentual.</help>
+        <label>Qualificació numèrica</label>
+        <name>Numerical_Grade__c</name>
+    </fields>
+    <fields>
+        <help>La qualificació en percentatge que ha obtingut l’estudiant per aquest curs.</help>
+        <label>Qualificació en percentatge</label>
+        <name>Percent_Grade__c</name>
+    </fields>
+    <fields>
+        <help>El resultat del rendiment de l’estudiant durant aquest període de qualificació.</help>
+        <label>Resultat</label>
+        <name>Result__c</name>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation>Auditoria</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dropped</masterLabel>
+            <translation>Abandonat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation>Suspès</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation>Aprovat</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>El tipus de període de qualificació en què es registra aquesta qualificació.</help>
+        <label>Tipus de qualificació del període</label>
+        <name>Term_Grade_Type__c</name>
+        <picklistValues>
+            <masterLabel>Exam Grade</masterLabel>
+            <translation>Qualificació d&apos;examen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Grade</masterLabel>
+            <translation>Qualificació final</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grading Period</masterLabel>
+            <translation>Període de qualificació</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Term Grade</masterLabel>
+            <translation>Qualificació de mig període</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>El període de qualificació en què es registra aquesta qualificació.</help>
+        <label>Període</label>
+        <name>Term__c</name>
+        <relationshipLabel>Qualificacions del període</relationshipLabel>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

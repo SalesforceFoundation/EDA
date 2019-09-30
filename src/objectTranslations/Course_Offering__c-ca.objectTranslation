@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Capacity__c</name>
-    <label>Capacitat</label>
-  </fields>
-  <fields>
-    <name>Course__c</name>
-    <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Curs</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <label>Data de finalització</label>
-  </fields>
-  <fields>
-    <name>Facility__c</name>
-    <help>La instal·lació associada a l’oferta de cursos.</help>
-    <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Instal·lació</label>
-  </fields>
-  <fields>
-    <name>Faculty__c</name>
-    <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Facultat primària</label>
-  </fields>
-  <fields>
-    <name>Section_ID__c</name>
-    <label>ID de secció</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <label>Data d'inici</label>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Termini</label>
-  </fields>
-  <fields>
-    <name>Time_Block__c</name>
-    <relationshipLabel>Blocs de temps</relationshipLabel>
-    <label>Bloc de temps</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Offering Layout</layout>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>ID d'oferta del curs</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>ID d'oferta del curs</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Course Offering --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Course Offering --></value>
+    </caseValues>
+    <fields>
+        <label>Capacitat</label>
+        <name>Capacity__c</name>
+    </fields>
+    <fields>
+        <label>Curs</label>
+        <name>Course__c</name>
+        <relationshipLabel>Ofertes de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Data de finalització</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>La instal·lació associada a l’oferta de cursos.</help>
+        <label>Instal·lació</label>
+        <name>Facility__c</name>
+        <relationshipLabel>Ofertes de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Facultat primària</label>
+        <name>Faculty__c</name>
+        <relationshipLabel>Ofertes de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>ID de secció</label>
+        <name>Section_ID__c</name>
+    </fields>
+    <fields>
+        <label>Data d&apos;inici</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Termini</label>
+        <name>Term__c</name>
+        <relationshipLabel>Ofertes de cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Bloc de temps</label>
+        <name>Time_Block__c</name>
+        <relationshipLabel>Blocs de temps</relationshipLabel>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;oferta del curs</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

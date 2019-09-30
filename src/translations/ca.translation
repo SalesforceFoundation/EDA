@@ -1,56 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label>EDA</label>
+        <name>HEDA</name>
+    </customApplications>
     <customLabels>
+        <label>Les afiliacions primàries assignades apareixen en una secció especial d&apos;afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu el</label>
         <name>AfflMappingsDescription</name>
-        <label>Les afiliacions primàries assignades apareixen en una secció especial d'afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu el</label>
     </customLabels>
     <customLabels>
-        <name>AfflProgEnrollDeleted</name>
         <label>Si se selecciona, en suprimir una inscripció de programa, se suprimeix l’afiliació relacionada. En cas contrari, manteniu l’afiliació i establiu el seu estat al valor definit a l’estat especificat per a les afiliacions no suprimides.</label>
+        <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
+        <label>Especifiqueu una connexió del curs que tingui el mateix contacte que heu especificat per a aquest esdeveniment d&apos;assistència.</label>
         <name>AttendanceCourseConnectionContactMismatch</name>
-        <label>Especifiqueu una connexió del curs que tingui el mateix contacte que heu especificat per a aquest esdeveniment d'assistència.</label>
     </customLabels>
     <customLabels>
+        <label>No es pot trobar la configuració de creació automàtica vàlida de relació. Comproveu els paràmetres a Configuració d&apos;EDA | Relacions | Creació automàtica de camps vàlids i torneu-ho a provar.</label>
         <name>AutoCreateFieldError</name>
-        <label>No es pot trobar la configuració de creació automàtica vàlida de relació. Comproveu els paràmetres a Configuració d'EDA | Relacions | Creació automàtica de camps vàlids i torneu-ho a provar.</label>
     </customLabels>
     <customLabels>
+        <label>S&apos;ha produït un problema en iniciar el lot.</label>
         <name>BatchJobRunningProblem</name>
-        <label>S'ha produït un problema en iniciar el lot.</label>
     </customLabels>
     <customLabels>
-        <name>BothFieldAndValue</name>
         <label>Establiu el camp del filtre, o bé el camp del filtre i el valor del filtre.</label>
+        <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
-        <name>CannotDelete</name>
         <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
+        <name>CannotDelete</name>
     </customLabels>
     <customLabels>
-        <name>DefaultAccountName</name>
         <label>Compte</label>
+        <name>DefaultAccountName</name>
     </customLabels>
     <customLabels>
-        <name>DefaultAdminName</name>
         <label>Compte administratiu</label>
+        <name>DefaultAdminName</name>
     </customLabels>
     <customLabels>
-        <name>DefaultHouseholdName</name>
         <label>Llar</label>
+        <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <name>Female</name>
         <label>Dona</label>
+        <name>Female</name>
     </customLabels>
     <customLabels>
-        <name>InvalidFilter</name>
         <label>El valor del camp de filtre no és vàlid definit per a</label>
+        <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <name>Male</name>
         <label>Home</label>
+        <name>Male</name>
     </customLabels>
     <customLabels>
         <label><!-- MultipleCourseConnection --></label>
@@ -77,8 +81,8 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <name>NoneOption</name>
         <label>--Cap--</label>
+        <name>NoneOption</name>
     </customLabels>
     <customLabels>
         <label><!-- OnlyContactPopulated --></label>
@@ -93,819 +97,823 @@
         <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
+        <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l&apos;etiqueta del camp d&apos;un camp de correu electrònic personalitzat existent.</label>
         <name>PreferredEmailMatchMustExist</name>
-        <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l'etiqueta del camp d'un camp de correu electrònic personalitzat existent.</label>
     </customLabels>
     <customLabels>
+        <label>El correu electrònic seleccionat per a l&apos;adreça electrònica preferida no es pot deixar en blanc.</label>
         <name>PreferredEmailMatchNotNull</name>
-        <label>El correu electrònic seleccionat per a l'adreça electrònica preferida no es pot deixar en blanc.</label>
     </customLabels>
     <customLabels>
-        <name>PreferredEmailRequiredError</name>
         <label>Indiqueu el correu electrònic preferit.</label>
+        <name>PreferredEmailRequiredError</name>
     </customLabels>
     <customLabels>
+        <label>No podem trobar el telèfon especificat a Telèfon preferit. Assegureu-vos que esteu introduint l&apos;etiqueta del camp d&apos;un camp de telèfon personalitzat existent.</label>
         <name>PreferredPhoneMatchMustExist</name>
-        <label>No podem trobar el telèfon especificat a Telèfon preferit. Assegureu-vos que esteu introduint l'etiqueta del camp d'un camp de telèfon personalitzat existent.</label>
     </customLabels>
     <customLabels>
-        <name>PreferredPhoneMatchNotNull</name>
         <label>El telèfon seleccionat per al telèfon preferit no es pot deixar en blanc.</label>
+        <name>PreferredPhoneMatchNotNull</name>
     </customLabels>
     <customLabels>
-        <name>PreferredPhoneRequiredError</name>
         <label>Indiqueu el telèfon preferit.</label>
+        <name>PreferredPhoneRequiredError</name>
     </customLabels>
     <customLabels>
-        <name>Relationship_Explanation_Connector</name>
         <label>és</label>
+        <name>Relationship_Explanation_Connector</name>
     </customLabels>
     <customLabels>
-        <name>Relationship_Split</name>
         <label>-</label>
+        <name>Relationship_Split</name>
     </customLabels>
     <customLabels>
+        <label>Les relacions automàtiques permeten identificar els vostres propis camps de cerca personalitzats als objectes de contacte o de campanya que activen la creació d&apos;un nou tipus de relació que vulgueu. Per exemple, una consulta de &quot;Referència&quot; des del membre de la campanya amb qui contactar podria crear una relació de &quot;Referenciant&quot; i un &quot;Referit&quot; entre els dos contactes. (Tingueu en compte que aquesta funció no està disponible per a clients potencials o objectes membre de la campanya que fan referències.)</label>
         <name>RelationshipsAutoDescription</name>
-        <label>Les relacions automàtiques permeten identificar els vostres propis camps de cerca personalitzats als objectes de contacte o de campanya que activen la creació d'un nou tipus de relació que vulgueu. Per exemple, una consulta de "Referència" des del membre de la campanya amb qui contactar podria crear una relació de "Referenciant" i un "Referit" entre els dos contactes. (Tingueu en compte que aquesta funció no està disponible per a clients potencials o objectes membre de la campanya que fan referències.)</label>
     </customLabels>
     <customLabels>
+        <label>Aquesta configuració us permet configurar relacions recíproques o la relació &quot;coincident&quot; entre dos contactes. Per exemple, si un pare està relacionat amb el seu fill, el fill també s&apos;hauria de relacionar amb el pare. Podeu especificar el valor Tipus de nom i, a continuació, especificar en quin valor recíproc s&apos;ha de basar en el sexe del contacte de connexió. Podeu definir un recíproc masculí, un recíproc femení i un recíproc neutre que s&apos;utilitzarà si el sexe no es pot determinar.</label>
         <name>RelationshipsLookupDescription</name>
-        <label>Aquesta configuració us permet configurar relacions recíproques o la relació "coincident" entre dos contactes. Per exemple, si un pare està relacionat amb el seu fill, el fill també s'hauria de relacionar amb el pare. Podeu especificar el valor Tipus de nom i, a continuació, especificar en quin valor recíproc s'ha de basar en el sexe del contacte de connexió. Podeu definir un recíproc masculí, un recíproc femení i un recíproc neutre que s'utilitzarà si el sexe no es pot determinar.</label>
     </customLabels>
     <customLabels>
-        <name>acctNamingOther</name>
         <label>Altres</label>
+        <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
+        <label>Trucada no vàlida. Aquesta funció està reservada per a l&apos;ús de Salesforce.</label>
         <name>adapterException</name>
-        <label>Trucada no vàlida. Aquesta funció està reservada per a l'ús de Salesforce.</label>
     </customLabels>
     <customLabels>
+        <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
         <name>addrHhAdmAccountOnly</name>
-        <label>Els registres d'adreces només s'han de crear com a derivats de compte o de contacte.</label>
     </customLabels>
     <customLabels>
+        <label>La capacitat d’afegir diverses adreces està desactivada per a aquest tipus de registre de comptes. Per activar-la, aneu a Configuració d&apos;EDA, feu clic a Comptes i contactes i seleccioneu la casella apropiada al costat de Tipus de compte amb adreces múltiples activades.</label>
         <name>addrNotEnabledAccount</name>
-        <label>La capacitat d’afegir diverses adreces està desactivada per a aquest tipus de registre de comptes. Per activar-la, aneu a Configuració d'EDA, feu clic a Comptes i contactes i seleccioneu la casella apropiada al costat de Tipus de compte amb adreces múltiples activades.</label>
     </customLabels>
     <customLabels>
+        <label>La capacitat d’afegir diverses adreces està desactivada per a Contactes. Per activar-la, aneu a Configuració d&apos;EDA, feu clic a Comptes i contactes i seleccioneu la casella Adreces múltiples de contacte activades.</label>
         <name>addrNotEnabledContact</name>
-        <label>La capacitat d’afegir diverses adreces està desactivada per a Contactes. Per activar-la, aneu a Configuració d'EDA, feu clic a Comptes i contactes i seleccioneu la casella Adreces múltiples de contacte activades.</label>
     </customLabels>
     <customLabels>
-        <name>addrSeasonalOverlap</name>
         <label>Els intervals de dates per a les adreces estacionals no es poden superposar.</label>
+        <name>addrSeasonalOverlap</name>
     </customLabels>
     <customLabels>
+        <label>Una adreça ha de tenir tots els camps d&apos;inici i finalització del dia i el mes establerts o cap d&apos;ells.</label>
         <name>addrSeasonalPartial</name>
-        <label>Una adreça ha de tenir tots els camps d'inici i finalització del dia i el mes establerts o cap d'ells.</label>
     </customLabels>
     <customLabels>
+        <label>Una adreça ha de tenir tant el conjunt d&apos;inici com a final d&apos;any o cap d&apos;ells.</label>
         <name>addrSeasonalPartialYear</name>
-        <label>Una adreça ha de tenir tant el conjunt d'inici com a final d'any o cap d'ells.</label>
     </customLabels>
     <customLabels>
+        <label>Els registres d&apos;adreces només s&apos;han de crear com a derivats de compte o de contacte.</label>
         <name>addrValidParentObjects</name>
-        <label>Els registres d'adreces només s'han de crear com a derivats de compte o de contacte.</label>
     </customLabels>
     <customLabels>
-        <name>adminAccNameFormat</name>
         <label>Format de noms de compte administratiu;</label>
+        <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <name>adminAccNameFormatHelpText</name>
         <label>El format utilitzat per posar noms als comptes administratius.</label>
+        <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
-        <name>afflAccountNoRecordType</name>
         <label>No podem crear aquesta afiliació perquè el compte especificat no té un tipus de registre.</label>
+        <name>afflAccountNoRecordType</name>
     </customLabels>
     <customLabels>
+        <label>No podem desar aquest registre a causa d’un error de tipus de registre de compte en assignacions d&apos;afiliació. Demaneu-li a l&apos;administrador que verifiqui que els tipus de registre del compte s&apos;assignen correctament per a les afiliacions principals de contacte.</label>
         <name>afflAccoutMappingError</name>
-        <label>No podem desar aquest registre a causa d’un error de tipus de registre de compte en assignacions d'afiliació. Demaneu-li a l'administrador que verifiqui que els tipus de registre del compte s'assignen correctament per a les afiliacions principals de contacte.</label>
     </customLabels>
     <customLabels>
+        <label>El tipus de registre del compte {0} no existeix. Demaneu al vostre administrador que verifiqui els tipus de registre en les assignacions d&apos;afiliació.</label>
         <name>afflNullPointerError</name>
-        <label>El tipus de registre del compte {0} no existeix. Demaneu al vostre administrador que verifiqui els tipus de registre en les assignacions d'afiliació.</label>
     </customLabels>
     <customLabels>
-        <name>afflTypeEnforced</name>
         <label>Activa la validació del tipus de registre:</label>
+        <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
+        <label>Quan se selecciona, si els usuaris especifiquen un compte com a afiliació principal de contacte, EDA requereix que el compte tingui un tipus de registre i que tots els valors del tipus de registre del compte s&apos;assignin correctament als seus camps corresponents d&apos;afiliació de contacte principal en assignacions d&apos;afiliació. Si la validació falla, un error impedeix que es desi l’afiliació.</label>
         <name>afflTypeEnforcedDescription</name>
-        <label>Quan se selecciona, si els usuaris especifiquen un compte com a afiliació principal de contacte, EDA requereix que el compte tingui un tipus de registre i que tots els valors del tipus de registre del compte s'assignin correctament als seus camps corresponents d'afiliació de contacte principal en assignacions d'afiliació. Si la validació falla, un error impedeix que es desi l’afiliació.</label>
     </customLabels>
     <customLabels>
-        <name>automaticHHNaming</name>
         <label>Denominació domèstica automàtica:</label>
+        <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
+        <label>Permet canviar el nom automàticament dels comptes domèstics, segons els noms dels contactes de la llar. Si l&apos;opció està activada, canviarem el nom dels comptes domèstics quan s&apos;afegeix un nou contacte a la llar o es canvia el nom d&apos;un contacte existent, se suprimeix o es trasllada a una altra llar.</label>
         <name>automaticHHNamingHelpText</name>
-        <label>Permet canviar el nom automàticament dels comptes domèstics, segons els noms dels contactes de la llar. Si l'opció està activada, canviarem el nom dels comptes domèstics quan s'afegeix un nou contacte a la llar o es canvia el nom d'un contacte existent, se suprimeix o es trasllada a una altra llar.</label>
     </customLabels>
     <customLabels>
-        <name>defaultNamingConnector</name>
         <label>i</label>
+        <name>defaultNamingConnector</name>
     </customLabels>
     <customLabels>
-        <name>duplicateFieldInFilter</name>
         <label>(Duplicats reconeguts)</label>
+        <name>duplicateFieldInFilter</name>
     </customLabels>
     <customLabels>
+        <label>El valor del camp de filtre posa nom a un duplicat d&apos;un camp d&apos;EDA. Filtrarem segons el valor del camp d&apos;EDA. Per continuar i desar aquest registre, especifiqueu un camp no duplicat o bé confirmeu que accepteu aquesta lògica de filtrat afegint {0} després del nom del camp. Per exemple, si el camp duplicat és Deceased__c, incloeu Deceased__c{0} com a valor de camp de filtre.</label>
         <name>duplicateWithHEDAField</name>
-        <label>El valor del camp de filtre posa nom a un duplicat d'un camp d'EDA. Filtrarem segons el valor del camp d'EDA. Per continuar i desar aquest registre, especifiqueu un camp no duplicat o bé confirmeu que accepteu aquesta lògica de filtrat afegint {0} després del nom del camp. Per exemple, si el camp duplicat és Deceased__c, incloeu Deceased__c{0} com a valor de camp de filtre.</label>
     </customLabels>
     <customLabels>
+        <label>No s&apos;estableix un camp obligatori. Aquest camp podria ser d&apos;aquest registre o d&apos;un registre relacionat.</label>
         <name>exceptionRequiredField</name>
-        <label>No s'estableix un camp obligatori. Aquest camp podria ser d'aquest registre o d'un registre relacionat.</label>
     </customLabels>
     <customLabels>
+        <label>Una regla de validació impedeix que es processi el registre. Això podria ser a causa d&apos;aquest registre o d&apos;un registre relacionat que s&apos;actualitzava. MISSATGE DE VALIDACIÓ:</label>
         <name>exceptionValidationRule</name>
-        <label>Una regla de validació impedeix que es processi el registre. Això podria ser a causa d'aquest registre o d'un registre relacionat que s'actualitzava. MISSATGE DE VALIDACIÓ:</label>
     </customLabels>
     <customLabels>
+        <label>El valor del camp de filtre no pot incloure l’espai de noms d&apos;EDA. Traieu-lo del nom del camp.</label>
         <name>fieldWithHEDANamespace</name>
-        <label>El valor del camp de filtre no pot incloure l’espai de noms d'EDA. Traieu-lo del nom del camp.</label>
     </customLabels>
     <customLabels>
-        <name>firstNameLastNameAdminACC</name>
         <label>Compte administratiu de {!{!FirstName}} {!LastName}</label>
+        <name>firstNameLastNameAdminACC</name>
     </customLabels>
     <customLabels>
-        <name>firstNameLastNameFamily</name>
         <label>Família de {!{!FirstName}} {!LastName}</label>
+        <name>firstNameLastNameFamily</name>
     </customLabels>
     <customLabels>
-        <name>firstNameLastNameHH</name>
         <label>Llar de {!{!FirstName}} {!LastName}</label>
+        <name>firstNameLastNameHH</name>
     </customLabels>
     <customLabels>
-        <name>giftProcessingConfigException</name>
         <label>Esteu intentant accedir al processament de regals sense la informació de configuració necessària. Contacteu amb el vostre administrador per obtenir ajuda.</label>
+        <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <name>hhAccNameFormat</name>
         <label>Format de noms del compte domèstic:</label>
+        <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <name>hhAccNameFormatHelpText</name>
         <label>El format utilitzat per posar noms als comptes domèstics.</label>
+        <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
-        <name>hhFamily</name>
         <label>Família</label>
+        <name>hhFamily</name>
     </customLabels>
     <customLabels>
-        <name>lastNameAdminAcc</name>
         <label>Compte administratiu de {!LastName}</label>
+        <name>lastNameAdminAcc</name>
     </customLabels>
     <customLabels>
-        <name>lastNameFamily</name>
         <label>Família de {!LastName}</label>
+        <name>lastNameFamily</name>
     </customLabels>
     <customLabels>
-        <name>lastNameFirstNameAdminAcc</name>
         <label>Compte administratiu de {!LastName} ({!{!FirstName}})</label>
+        <name>lastNameFirstNameAdminAcc</name>
     </customLabels>
     <customLabels>
-        <name>lastNameFirstNameFamily</name>
         <label>Família de {!LastName} ({!{!FirstName}})</label>
+        <name>lastNameFirstNameFamily</name>
     </customLabels>
     <customLabels>
-        <name>lastNameFirstNameHH</name>
         <label>Llar de {!LastName} ({!{!FirstName}})</label>
+        <name>lastNameFirstNameHH</name>
     </customLabels>
     <customLabels>
-        <name>lastNameHH</name>
         <label>Llar de {!LastName}</label>
+        <name>lastNameHH</name>
     </customLabels>
     <customLabels>
-        <name>nestedPlanRequirementPPExp</name>
         <label>Els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si aquest requisit del pla és derivat d’un altre requisit del pla, especifiqueu només el requisit del pla principal. Si aquest requisit del pla és derivat d’un pla de programa, especifiqueu només un pla de programa.</label>
+        <name>nestedPlanRequirementPPExp</name>
     </customLabels>
     <customLabels>
-        <name>noAccRecType</name>
         <label>El tipus de registre del compte definit no existeix:</label>
+        <name>noAccRecType</name>
     </customLabels>
     <customLabels>
+        <label>Sense assignacions d&apos;afiliació per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
         <name>noAfflMappings</name>
-        <label>Sense assignacions d'afiliació per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
     </customLabels>
     <customLabels>
-        <name>noAutoCreateSettings</name>
         <label>Sense configuracions de creació automàtica per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
+        <name>noAutoCreateSettings</name>
     </customLabels>
     <customLabels>
-        <name>noRecSettings</name>
         <label>Sense configuracions de reciprocitat per mostrar. Intenteu crear-ne de noves utilitzant el formulari següent.</label>
+        <name>noRecSettings</name>
     </customLabels>
     <customLabels>
-        <name>preferredBatchDefaultEmail</name>
         <label>Correu electrònic (estàndard)</label>
+        <name>preferredBatchDefaultEmail</name>
     </customLabels>
     <customLabels>
-        <name>preferredBatchDefaultPhone</name>
         <label>Telèfon (estàndard)</label>
+        <name>preferredBatchDefaultPhone</name>
     </customLabels>
     <customLabels>
-        <name>stgAccModelTitle</name>
         <label>Model de compte predeterminat:</label>
+        <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgAccountRecordTypeSupportsHHAddress</name>
         <label>Tipus de registre del compte domèstic:</label>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <name>stgAccountTypesMultiAddressesEnabled</name>
         <label>Tipus de comptes amb diverses adreces habilitades:</label>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <name>stgAccoutTypesWithoutContactsDelete</name>
         <label>Tipus de compte sense contactes per esborrar:</label>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
+        <label>Afegiu &quot;Hispà o llatí&quot; com a valor de llista de selecció al camp Ètnia si és necessari.</label>
         <name>stgAddHispanicOrLatinoPicklistValue</name>
-        <label>Afegiu "Hispà o llatí" com a valor de llista de selecció al camp Ètnia si és necessari.</label>
     </customLabels>
     <customLabels>
+        <label>Afegiu &quot;No hispà ni llatí&quot; com a valor de llista de selecció al camp Ètnia si és necessari.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
-        <label>Afegiu "No hispà ni llatí" com a valor de llista de selecció al camp Ètnia si és necessari.</label>
     </customLabels>
     <customLabels>
-        <name>stgAdminAccountRecordType</name>
         <label>Tipus de registre del compte administratiu:</label>
+        <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
-        <name>stgAfflCopyProgramEnrollmentEndDate</name>
         <label>Copia la data de finalització de l’afiliació a la inscripció del programa:</label>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
+        <label>Copia la data d&apos;inici de l’afiliació a la inscripció del programa:</label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
-        <label>Copia la data d'inici de l’afiliació a la inscripció del programa:</label>
     </customLabels>
     <customLabels>
-        <name>stgAfflDeleteProgramEnrollment</name>
         <label>Estat especificat per a afiliacions no suprimides:</label>
+        <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
+        <label>Suprimir l&apos;afiliació relacionada en suprimir la inscripció del programa:</label>
         <name>stgAfflProgEnrollDeleteRelated</name>
-        <label>Suprimir l'afiliació relacionada en suprimir la inscripció del programa:</label>
     </customLabels>
     <customLabels>
-        <name>stgAfflProgEnrollSetRole</name>
         <label>Especifica la funció per a afiliacions creades:</label>
+        <name>stgAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <name>stgAfflProgEnrollSetRoleValue</name>
         <label>Funció especificada per a afiliacions creades:</label>
+        <name>stgAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <name>stgAfflProgEnrollSetStatusValue</name>
         <label>Estat especificat per a afiliacions creades:</label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
+        <label>Després d&apos;executar el reenviament:</label>
         <name>stgAfterRunBackfill</name>
-        <label>Després d'executar el reenviament:</label>
     </customLabels>
     <customLabels>
-        <name>stgAutoCompleteEnterChatterGroupName</name>
         <label>Introduïu el nom del grup de Chatter per cercar</label>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
     </customLabels>
     <customLabels>
+        <label>Introduïu el nom de l&apos;usuari per cercar</label>
         <name>stgAutoCompleteEnterUserName</name>
-        <label>Introduïu el nom de l'usuari per cercar</label>
     </customLabels>
     <customLabels>
-        <name>stgAutoCompleteSelectChatterGroup</name>
         <label>Seleccioneu el grup de Chatter</label>
+        <name>stgAutoCompleteSelectChatterGroup</name>
     </customLabels>
     <customLabels>
+        <label>Seleccioneu l&apos;usuari</label>
         <name>stgAutoCompleteSelectUser</name>
-        <label>Seleccioneu l'usuari</label>
     </customLabels>
     <customLabels>
-        <name>stgAutoEnrollment</name>
         <label>Inscripció automàtica</label>
+        <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label>Funció d&apos;inscripció automàtica</label>
         <name>stgAutoEnrollmentRole</name>
-        <label>Funció d'inscripció automàtica</label>
     </customLabels>
     <customLabels>
+        <label>Estat d&apos;inscripció automàtica</label>
         <name>stgAutoEnrollmentStatus</name>
-        <label>Estat d'inscripció automàtica</label>
     </customLabels>
     <customLabels>
+        <label>El reenviament s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
         <name>stgBackfillQueuedEmailSent</name>
-        <label>El reenviament s'ha posat en cua correctament. S'enviarà un correu electrònic en finalitzar el lot.</label>
     </customLabels>
     <customLabels>
+        <label>Abans d&apos;executar el reenviament:</label>
         <name>stgBeforeRunBackfill</name>
-        <label>Abans d'executar el reenviament:</label>
     </customLabels>
     <customLabels>
-        <name>stgBtnAddMapping</name>
         <label>Afegeix una assignació</label>
+        <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
-        <name>stgBtnAddSetting</name>
         <label>Afegeix una configuració</label>
+        <name>stgBtnAddSetting</name>
     </customLabels>
     <customLabels>
-        <name>stgBtnCancel</name>
         <label>Cancel·la</label>
+        <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
-        <name>stgBtnEdit</name>
         <label>Edita</label>
+        <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <name>stgBtnRunBackfill</name>
         <label>Executa el reenviament</label>
+        <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgBtnRunCopy</name>
         <label>Executa la còpia</label>
+        <name>stgBtnRunCopy</name>
     </customLabels>
     <customLabels>
-        <name>stgBtnSave</name>
         <label>Desa</label>
+        <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
+        <label>La neteja s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
         <name>stgCleanupQueuedEmailSent</name>
-        <label>La neteja s'ha posat en cua correctament. S'enviarà un correu electrònic en finalitzar el lot.</label>
     </customLabels>
     <customLabels>
-        <name>stgColAccountRecordType</name>
         <label>Tipus de registre del compte</label>
+        <name>stgColAccountRecordType</name>
     </customLabels>
     <customLabels>
-        <name>stgColActive</name>
         <label>Actiu</label>
+        <name>stgColActive</name>
     </customLabels>
     <customLabels>
-        <name>stgColCampTypes</name>
         <label>Tipus de campanya</label>
+        <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
+        <label>Camp d&apos;afiliació primària de contacte</label>
         <name>stgColContactPrimaryAfflField</name>
-        <label>Camp d'afiliació primària de contacte</label>
     </customLabels>
     <customLabels>
-        <name>stgColFemale</name>
         <label>Dona</label>
+        <name>stgColFemale</name>
     </customLabels>
     <customLabels>
-        <name>stgColField</name>
         <label>Camp</label>
+        <name>stgColField</name>
     </customLabels>
     <customLabels>
-        <name>stgColMale</name>
         <label>Home</label>
+        <name>stgColMale</name>
     </customLabels>
     <customLabels>
-        <name>stgColNeutral</name>
         <label>Neutral</label>
+        <name>stgColNeutral</name>
     </customLabels>
     <customLabels>
-        <name>stgColObject</name>
         <label>Objecte</label>
+        <name>stgColObject</name>
     </customLabels>
     <customLabels>
-        <name>stgColRelType</name>
         <label>Tipus de relació</label>
+        <name>stgColRelType</name>
     </customLabels>
     <customLabels>
-        <name>stgColRole</name>
         <label>Funció</label>
+        <name>stgColRole</name>
     </customLabels>
     <customLabels>
-        <name>stgColStatus</name>
         <label>Estat</label>
+        <name>stgColStatus</name>
     </customLabels>
     <customLabels>
-        <name>stgConfirmReadyRunBackfill</name>
         <label>Entenc i estic preparat per executar el reenviament</label>
+        <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgContactMultiAddressesEnabled</name>
         <label>Contacte amb múltiples adreces activades:</label>
+        <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <name>stgCourseDescriptionCopyEmailBody</name>
         <label>El treball Apex per lots ha processat {0} lots amb {1} errors.</label>
+        <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
     <customLabels>
-        <name>stgCourseDescriptionCopyEmailSubject</name>
         <label>Descripció del curs Còpia Treball Complet amb un estatus de:</label>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
+        <label>Domini predeterminat de l&apos;idioma de contacte</label>
         <name>stgDefaultContactLanguageFluency</name>
-        <label>Domini predeterminat de l'idioma de contacte</label>
     </customLabels>
     <customLabels>
-        <name>stgDefaultFacultyTypeTitle</name>
         <label>Tipus predeterminat de registre de la facultat:</label>
+        <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
+        <label>Tipus predeterminat de registre d&apos;estudiant actiu:</label>
         <name>stgDefaultStudentTypeTitle</name>
-        <label>Tipus predeterminat de registre d'estudiant actiu:</label>
     </customLabels>
     <customLabels>
+        <label>Desactiva el maneig d&apos;errors:</label>
         <name>stgDisableErrorHandlingTitle</name>
-        <label>Desactiva el maneig d'errors:</label>
     </customLabels>
     <customLabels>
+        <label>Desactiva l&apos;aplicació de correu electrònic preferit:</label>
         <name>stgDisablePreferredEmailEnforcement</name>
-        <label>Desactiva l'aplicació de correu electrònic preferit:</label>
     </customLabels>
     <customLabels>
+        <label>Desactiva l&apos;aplicació de telèfon preferit:</label>
         <name>stgDisablePreferredPhoneEnforcement</name>
-        <label>Desactiva l'aplicació de telèfon preferit:</label>
     </customLabels>
     <customLabels>
-        <name>stgEnableCourseConnectionsTitle</name>
         <label>Activa les connexions del curs:</label>
+        <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>Notificacions d&apos;errors a:</label>
         <name>stgErrorNotiTo</name>
-        <label>Notificacions d'errors a:</label>
     </customLabels>
     <customLabels>
+        <label>Destinataris de les notificacions d&apos;errors:</label>
         <name>stgErrorNotifRecipientsTitle</name>
-        <label>Destinataris de les notificacions d'errors:</label>
     </customLabels>
     <customLabels>
-        <name>stgEthnicityRaceBackfillContacts</name>
         <label>Origen ètnic i racial per als contactes</label>
+        <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <name>stgFluent</name>
         <label>Avançat</label>
+        <name>stgFluent</name>
     </customLabels>
     <customLabels>
+        <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte &quot;Llar&quot;.</label>
         <name>stgHelpAccountModel</name>
-        <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte "Llar".</label>
     </customLabels>
     <customLabels>
+        <label>Registre els tipus dels comptes que s&apos;eliminaran automàticament si s&apos;han eliminat tots els contactes dels seus derivats.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
-        <label>Registre els tipus dels comptes que s'eliminaran automàticament si s'han eliminat tots els contactes dels seus derivats.</label>
     </customLabels>
     <customLabels>
+        <label>Els tipus de registre del compte que admeten la gestió d&apos;adreces múltiples.</label>
         <name>stgHelpAddressAccRecType</name>
-        <label>Els tipus de registre del compte que admeten la gestió d'adreces múltiples.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpAdminRecType</name>
         <label>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</label>
+        <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
         <label>Si se selecciona, copieu la data de finalització de la inscripció al programa a l’afiliació creada. En cas contrari, deixeu en blanc la data de finalització de l’afiliació creada.</label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
+        <label>Si se selecciona, copieu la data d&apos;inici de la inscripció al programa a l’afiliació creada. En cas contrari, deixeu en blanc la data d&apos;inici de l’afiliació creada.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-        <label>Si se selecciona, copieu la data d'inici de la inscripció al programa a l’afiliació creada. En cas contrari, deixeu en blanc la data d'inici de l’afiliació creada.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
         <label>Afiliacions creades amb inscripcions al programa</label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
         <label>Quan creeu una inscripció al programa sense cap afiliació relacionada existent, creeu una afiliació amb els valors especificats aquí.</label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
+        <label>El valor d&apos;estat establert a l’afiliació relacionada amb una inscripció al programa suprimida, si l’afiliació relacionada tampoc no se suprimeix.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
-        <label>El valor d'estat establert a l’afiliació relacionada amb una inscripció al programa suprimida, si l’afiliació relacionada tampoc no se suprimeix.</label>
     </customLabels>
     <customLabels>
+        <label>Supressions d&apos;inscripcions al programa</label>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
-        <label>Supressions d'inscripcions al programa</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
         <label>Quan suprimiu una inscripció al programa, l’afiliació relacionada es pot suprimir o bé en pot canviar l’estat.</label>
+        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflProgEnrollSetRole</name>
         <label>Si se selecciona, establiu la funció d’afiliació creada al valor definit a la funció especificada per a les afiliacions creades. En cas contrari, deixeu la funció de l’afiliació en blanc.</label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflProgEnrollSetRoleValue</name>
         <label>El valor de la funció definida a l’afiliació creada amb la inscripció al programa, si se selecciona Especifica la funció per a afiliacions creades.</label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
+        <label>El valor d&apos;estat establert a l’afiliació creada amb la inscripció de programa.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
-        <label>El valor d'estat establert a l’afiliació creada amb la inscripció de programa.</label>
     </customLabels>
     <customLabels>
+        <label>Seleccioneu aquesta opció per activar la gestió d&apos;adreces múltiples per a contactes.</label>
         <name>stgHelpContactAddrs</name>
-        <label>Seleccioneu aquesta opció per activar la gestió d'adreces múltiples per a contactes.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpContactPreferredEmail</name>
         <label>No requereix que els contactes tinguin un correu electrònic preferit.</label>
+        <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpContactPreferredPhone</name>
         <label>No requereix que els contactes tinguin un telèfon preferit.</label>
+        <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <name>stgHelpContactPreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>El procés s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic en finalitzar el treball.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
-        <label>El procés s'ha posat en cua correctament. S'enviarà un correu electrònic en finalitzar el treball.</label>
     </customLabels>
     <customLabels>
+        <label>El reenviament de connexions del curs s&apos;ha d&apos;utilitzar només quan s&apos;activen les connexions del curs per primera vegada i només a les organitzacions on hi ha hagut ofertes per a cursos i connexions per a cursos (inscripcions) abans d&apos;activar la funció. El reenviament converteix tots els contactes que es van incloure com a professors en una connexió de curs (inscripció) o oferta de cursos en el tipus de registre predeterminat del professorat. El reenviament converteix els contactes de les connexions restants del curs (inscripcions) en el tipus predeterminat de registre d&apos;estudiant actiu.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
-        <label>El reenviament de connexions del curs s'ha d'utilitzar només quan s'activen les connexions del curs per primera vegada i només a les organitzacions on hi ha hagut ofertes per a cursos i connexions per a cursos (inscripcions) abans d'activar la funció. El reenviament converteix tots els contactes que es van incloure com a professors en una connexió de curs (inscripció) o oferta de cursos en el tipus de registre predeterminat del professorat. El reenviament converteix els contactes de les connexions restants del curs (inscripcions) en el tipus predeterminat de registre d'estudiant actiu.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigration</name>
         <label>A EDA 1.30, el camp Descripció ampliada s’ha afegit per adaptar-se a les descripcions més llargues del curs.</label>
+        <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigrationCopiesValues</name>
         <label>Aquesta utilitat copia els valors del camp Descripció del curs al camp de Descripció ampliada. Aquest procés pot trigar una mica, però podeu tancar aquesta pàgina amb seguretat i el procés continuarà en segon pla.</label>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
         <label>Si un curs ja té un valor per a la Descripció ampliada, no la sobreescriurem.</label>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
     </customLabels>
     <customLabels>
+        <label>Un cop finalitzat el procés, recordeu actualitzar els dissenys de pàgines i altres àrees de l&apos;aplicació que fan referència als camps de la descripció.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
-        <label>Un cop finalitzat el procés, recordeu actualitzar els dissenys de pàgines i altres àrees de l'aplicació que fan referència als camps de la descripció.</label>
     </customLabels>
     <customLabels>
+        <label>El valor de domini s&apos;estableix automàticament als registres d&apos;idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d&apos;idioma principal en un contacte.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
-        <label>El valor de domini s'estableix automàticament als registres d'idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d'idioma principal en un contacte.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpDefaultFacultyType</name>
         <label>El tipus de gravació predeterminat quan es creen connexions de curs per a un membre de la facultat.</label>
+        <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpDefaultStudentType</name>
         <label>El tipus de gravació predeterminat quan es creen connexions de curs per a estudiants actius.</label>
+        <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
+        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;executar el reenviament de connexions del curs.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
-        <label>Heu d'habilitar les connexions del curs abans d'executar el reenviament de connexions del curs.</label>
     </customLabels>
     <customLabels>
+        <label>Heu d&apos;habilitar les connexions del curs abans d&apos;editar els tipus de registre.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
-        <label>Heu d'habilitar les connexions del curs abans d'editar els tipus de registre.</label>
     </customLabels>
     <customLabels>
+        <label>Les connexions del curs connecten un contacte amb una oferta de cursos. Si activeu aquesta casella de selecció, podeu triar crear la connexió per a un estudiant o professor (els dos tipus de registre predeterminats). Després de seleccionar aquesta casella de verificació, heu d&apos;establir el Tipus predeterminat de registre d&apos;estudiant actiu i el tipus predeterminat de registre de facultat. Si activeu aquesta funció per primera vegada, us recomanem que executeu el reenviament a la vostra organització.</label>
         <name>stgHelpEnableCourseConnections</name>
-        <label>Les connexions del curs connecten un contacte amb una oferta de cursos. Si activeu aquesta casella de selecció, podeu triar crear la connexió per a un estudiant o professor (els dos tipus de registre predeterminats). Després de seleccionar aquesta casella de verificació, heu d'establir el Tipus predeterminat de registre d'estudiant actiu i el tipus predeterminat de registre de facultat. Si activeu aquesta funció per primera vegada, us recomanem que executeu el reenviament a la vostra organització.</label>
     </customLabels>
     <customLabels>
+        <label>Per als contactes existents que no han especificat un correu electrònic preferit o un telèfon preferit, la neteja assegura que una de les adreces de correu electrònic estàndard o un dels números de telèfon preferits personalitzats del contacte s&apos;estableixi com a valor preferit.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
-        <label>Per als contactes existents que no han especificat un correu electrònic preferit o un telèfon preferit, la neteja assegura que una de les adreces de correu electrònic estàndard o un dels números de telèfon preferits personalitzats del contacte s'estableixi com a valor preferit.</label>
     </customLabels>
     <customLabels>
+        <label>Si es marca, el marc de gestió d&apos;errors d&apos;EDA es desactiva.</label>
         <name>stgHelpErrorDisable</name>
-        <label>Si es marca, el marc de gestió d'errors d'EDA es desactiva.</label>
     </customLabels>
     <customLabels>
+        <label>Marqueu això si voleu que el sistema publiqui notificacions per a determinats tipus d&apos;errors.</label>
         <name>stgHelpErrorNotifyOn</name>
-        <label>Marqueu això si voleu que el sistema publiqui notificacions per a determinats tipus d'errors.</label>
     </customLabels>
     <customLabels>
+        <label>Podeu enviar notificacions per correu electrònic a tots els administradors del sistema, a un sol usuari o a un grup de Chatter. Els valors vàlids són &quot;Tots els administradors del sistema&quot;, la identificació d&apos;un usuari a la vostra organització, o la identificació d&apos;un grup de Chatter. Només podeu introduir un valor.</label>
         <name>stgHelpErrorNotifyTo</name>
-        <label>Podeu enviar notificacions per correu electrònic a tots els administradors del sistema, a un sol usuari o a un grup de Chatter. Els valors vàlids són "Tots els administradors del sistema", la identificació d'un usuari a la vostra organització, o la identificació d'un grup de Chatter. Només podeu introduir un valor.</label>
     </customLabels>
     <customLabels>
+        <label>Utilitzeu la reposició d&apos;Ètnia i de Raça només si la vostra organització utilitzava el camp Ètnia abans que EDA afegís el camp Raça i eliminés els valors del camp Ètnia a partir de la versió 1.28 d’EDA. Si el valor del camp Ètnia del contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;Hispà o llatí&quot;, la reposició copia el valor al camp Raça. Es poden copiar tant els valors de la llista de selecció estàndard com els valors personalitzats que hàgiu afegit com a aptes per a copiar.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
-        <label>Utilitzeu la reposició d'Ètnia i de Raça només si la vostra organització utilitzava el camp Ètnia abans que EDA afegís el camp Raça i eliminés els valors del camp Ètnia a partir de la versió 1.28 d’EDA. Si el valor del camp Ètnia del contacte no és igual a "No hispà ni llatí" o "Hispà o llatí", la reposició copia el valor al camp Raça. Es poden copiar tant els valors de la llista de selecció estàndard com els valors personalitzats que hàgiu afegit com a aptes per a copiar.</label>
     </customLabels>
     <customLabels>
+        <label>Activa la gestió d&apos;adreces de comptes administratius i de les llars quan es selecciona.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
-        <label>Activa la gestió d'adreces de comptes administratius i de les llars quan es selecciona.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpHouseholdRecType</name>
         <label>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</label>
+        <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
         <label>Si la vostra organització ha afegit prèviament valors de llista de selecció personalitzats al camp Ètnia que voleu que estigui disponible al camp Raça, copieu els valors de llista de selecció personalitzats al camp Raça.</label>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
+        <label>Quan estigui seleccionada aquesta opció, els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si especifiqueu tant un pla de programa com un requisit de pla principal, un missatge d&apos;error evitarà que es desi fins que no se&apos;n seleccioni només un.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
-        <label>Quan estigui seleccionada aquesta opció, els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si especifiqueu tant un pla de programa com un requisit de pla principal, un missatge d'error evitarà que es desi fins que no se'n seleccioni només un.</label>
     </customLabels>
     <customLabels>
+        <label>Activa la gestió d&apos;adreces dels comptes d&apos;organització quan es selecciona.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
-        <label>Activa la gestió d'adreces dels comptes d'organització quan es selecciona.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpRelAutoCreatedDup</name>
         <label>Les relacions creades automàticament es dedueixen automàticament per evitar que es creïn registres de relacions duplicats entre dos contactes. Marqueu aquesta casella per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</label>
+        <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
+        <label>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe (vegeu la pestanya Relacions recíproques), o la inversió de valor, que inverteix el tipus, si escau (&quot;Principal-Derivat&quot; a &quot;Derivat-Principal&quot;)</label>
         <name>stgHelpRelReciprocalMethod</name>
-        <label>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe (vegeu la pestanya Relacions recíproques), o la inversió de valor, que inverteix el tipus, si escau ("Principal-Derivat" a "Derivat-Principal")</label>
     </customLabels>
     <customLabels>
+        <label>Traieu tots els valors de la llista de selecció del camp Ètnia, excepte &quot;Hispà o llatí&quot; i &quot;No hispà ni llatí&quot;. Us recomanem que substituïu cada valor eliminat per un dels valors vàlids restants, en lloc de suprimir-los directament dels registres existents. A partir de la versió 1.28 d&apos;EDA, els únics valors d&apos;ètnia vàlids són &quot;No hispà ni llatí&quot; i &quot;Hispà o llatí&quot;.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
-        <label>Traieu tots els valors de la llista de selecció del camp Ètnia, excepte "Hispà o llatí" i "No hispà ni llatí". Us recomanem que substituïu cada valor eliminat per un dels valors vàlids restants, en lloc de suprimir-los directament dels registres existents. A partir de la versió 1.28 d'EDA, els únics valors d'ètnia vàlids són "No hispà ni llatí" i "Hispà o llatí".</label>
     </customLabels>
     <customLabels>
+        <label>Tracta els canvis en els camps d&apos;adreça de contacte o un únic compte com a actualitzacions de l&apos;adreça existent (és a dir, no es crea cap nou objecte d&apos;adreça). També provoca que l&apos;espai en blanc i els canvis de cas siguin tractats com a actualitzacions.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
-        <label>Tracta els canvis en els camps d'adreça de contacte o un únic compte com a actualitzacions de l'adreça existent (és a dir, no es crea cap nou objecte d'adreça). També provoca que l'espai en blanc i els canvis de cas siguin tractats com a actualitzacions.</label>
     </customLabels>
     <customLabels>
+        <label>Marqueu això si voleu que s&apos;emmagatzemin els errors a la base de dades.</label>
         <name>stgHelpStoreErrorsOn</name>
-        <label>Marqueu això si voleu que s'emmagatzemin els errors a la base de dades.</label>
     </customLabels>
     <customLabels>
-        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
         <label>Si teniu dependències que es basaven en els valors anteriors del camp Ètnia, com ara els informes, actualitzeu-los.</label>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <name>stgNestedPlanRequirementPP</name>
         <label>Validar el pla del programa per als requisits del pla enclavat</label>
+        <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
+        <label>Nova assignació d&apos;afiliació</label>
         <name>stgNewAfflMapping</name>
-        <label>Nova assignació d'afiliació</label>
     </customLabels>
     <customLabels>
-        <name>stgOptAllSysAdmins</name>
         <label>Tots els administradors de sistemes</label>
+        <name>stgOptAllSysAdmins</name>
     </customLabels>
     <customLabels>
-        <name>stgOptChatterGroup</name>
         <label>Grup de Chatter</label>
+        <name>stgOptChatterGroup</name>
     </customLabels>
     <customLabels>
-        <name>stgOptSelect</name>
         <label>Selecciona...</label>
+        <name>stgOptSelect</name>
     </customLabels>
     <customLabels>
-        <name>stgOptUser</name>
         <label>Usuari</label>
+        <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <name>stgPreferredEmailBatchEmailBody</name>
         <label>El treball Apex per lots ha processat {0} registres amb {1} errors.</label>
+        <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
     <customLabels>
-        <name>stgPreferredEmailBatchEmailSubject</name>
         <label>Treball de correu electrònic/telèfon preferit completat amb un estat de:</label>
+        <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <name>stgPreferredEmailDataCleanup</name>
         <label>Neteja de dades de correu electrònic/telèfon preferit:</label>
+        <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label>Seleccioneu un camp del telèfon preferent per copiar el valor quan el camp del telèfon estàndard no tingui valor o es defineixi més d&apos;un camp &quot;telèfon&quot;.</label>
         <name>stgPreferredPhoneSelection</name>
-        <label>Seleccioneu un camp del telèfon preferent per copiar el valor quan el camp del telèfon estàndard no tingui valor o es defineixi més d'un camp "telèfon".</label>
     </customLabels>
     <customLabels>
-        <name>stgRunCleanUp</name>
         <label>Executa la neteja</label>
+        <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
+        <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
-        <label>Executeu aquest procés de neteja de dades després d'haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d'un període de no compliment del requisit.</label>
     </customLabels>
     <customLabels>
+        <label>La configuració s&apos;ha desat correctament.</label>
         <name>stgSaveSettings</name>
-        <label>La configuració s'ha desat correctament.</label>
     </customLabels>
     <customLabels>
-        <name>stgSelectReciType</name>
         <label>Seleccioneu el tipus de destinatari</label>
+        <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
+        <label>Envia notificacions d&apos;errors:</label>
         <name>stgSendErrorsTitle</name>
-        <label>Envia notificacions d'errors:</label>
     </customLabels>
     <customLabels>
+        <label>Canvi simple d&apos;adreça tractat com a actualització:</label>
         <name>stgSimpleAddressChangeUpdate</name>
-        <label>Canvi simple d'adreça tractat com a actualització:</label>
     </customLabels>
     <customLabels>
+        <label>Errors d&apos;emmagatzematge:</label>
         <name>stgStoreErrorsTitle</name>
-        <label>Errors d'emmagatzematge:</label>
     </customLabels>
     <customLabels>
-        <name>stgSuccess</name>
         <label>Èxit</label>
+        <name>stgSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgTabAccCont</name>
         <label>Comptes i contactes</label>
+        <name>stgTabAccCont</name>
     </customLabels>
     <customLabels>
-        <name>stgTabAffl</name>
         <label>Afiliacions</label>
+        <name>stgTabAffl</name>
     </customLabels>
     <customLabels>
+        <label>Assignacions d&apos;afiliació</label>
         <name>stgTabAfflMappings</name>
-        <label>Assignacions d'afiliació</label>
     </customLabels>
     <customLabels>
-        <name>stgTabAutocreation</name>
         <label>Creació automàtica</label>
+        <name>stgTabAutocreation</name>
     </customLabels>
     <customLabels>
-        <name>stgTabBackfill</name>
         <label>Reenviament</label>
+        <name>stgTabBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgTabCourse</name>
         <label>Cursos</label>
+        <name>stgTabCourse</name>
     </customLabels>
     <customLabels>
-        <name>stgTabCourseConn</name>
         <label>Connexions del curs</label>
+        <name>stgTabCourseConn</name>
     </customLabels>
     <customLabels>
-        <name>stgTabName</name>
         <label>Nom</label>
+        <name>stgTabName</name>
     </customLabels>
     <customLabels>
+        <label>Camp d&apos;afiliació primària</label>
         <name>stgTabPrimaryAfflField</name>
-        <label>Camp d'afiliació primària</label>
     </customLabels>
     <customLabels>
-        <name>stgTabProgramPlan</name>
         <label>Plans del programa</label>
+        <name>stgTabProgramPlan</name>
     </customLabels>
     <customLabels>
-        <name>stgTabReciprocalSettings</name>
         <label>Configuració recíproca</label>
+        <name>stgTabReciprocalSettings</name>
     </customLabels>
     <customLabels>
-        <name>stgTabRel</name>
         <label>Relacions</label>
+        <name>stgTabRel</name>
     </customLabels>
     <customLabels>
+        <label>Configuració</label>
         <name>stgTabSettings</name>
-        <label>Configuració</label>
     </customLabels>
     <customLabels>
-        <name>stgTabSystem</name>
         <label>Sistema</label>
+        <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleAllowAutocreatedDuplicateRel</name>
         <label>Permetre relacions duplicades creades automàticament:</label>
+        <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>
     <customLabels>
+        <label>Configuració a tota l&apos;aplicació</label>
         <name>stgTitleAppwideSettings</name>
-        <label>Configuració a tota l'aplicació</label>
     </customLabels>
     <customLabels>
-        <name>stgTitleCourseConnectionBackfill</name>
         <label>Reenviament de connexió del curs:</label>
+        <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleCoursesDescriptionDataMigration</name>
         <label>Cursos: Migració de dades de descripció</label>
+        <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleHEDAConfig</name>
         <label>Configuració</label>
+        <name>stgTitleHEDAConfig</name>
     </customLabels>
     <customLabels>
+        <label>Configuració d&apos;EDA</label>
         <name>stgTitleHEDASettings</name>
-        <label>Configuració d'EDA</label>
     </customLabels>
     <customLabels>
-        <name>stgTitleNewAutocreateSetting</name>
         <label>Nova configuració de creació automàtica</label>
+        <name>stgTitleNewAutocreateSetting</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleNewReciSetting</name>
         <label>Nova configuració recíproca</label>
+        <name>stgTitleNewReciSetting</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleReciMethod</name>
         <label>Mètode recíproc:</label>
+        <name>stgTitleReciMethod</name>
     </customLabels>
     <customLabels>
-        <name>stgToastError</name>
         <label>Error</label>
+        <name>stgToastError</name>
     </customLabels>
     <customLabels>
+        <label>No podem desar els horaris de l’oferta de cursos perquè l&apos;hora de finalització no coincideix amb l’hora de finalització del bloc de temps associat. Editeu l&apos;hora de finalització, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
         <name>timeBlockEndTimeMismatch</name>
-        <label>No podem desar els horaris de l’oferta de cursos perquè l'hora de finalització no coincideix amb l’hora de finalització del bloc de temps associat. Editeu l'hora de finalització, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
     </customLabels>
     <customLabels>
+        <label>No podem desar els horaris de l’oferta de cursos perquè l&apos;hora d&apos;inici no coincideix amb l’hora d&apos;inici del bloc de temps associat. Editeu l&apos;hora d&apos;inici, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
-        <label>No podem desar els horaris de l’oferta de cursos perquè l'hora d'inici no coincideix amb l’hora d'inici del bloc de temps associat. Editeu l'hora d'inici, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
     </customLabels>
     <customTabs>
+        <label>Configuració d&apos;EDA</label>
         <name>HEDA_Settings</name>
-        <label>Configuració d'EDA</label>
     </customTabs>
-    <customApplications>
-        <name>HEDA</name>
-        <label>EDA</label>
-    </customApplications>
 </Translations>

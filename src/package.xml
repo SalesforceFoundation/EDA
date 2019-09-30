@@ -799,14 +799,17 @@
         <members>Attribute__c-es</members>
         <members>Attribute__c-fr</members>
         <members>Behavior_Involvement__c-ca</members>
+        <members>Behavior_Involvement__c-en_GB</members>
         <members>Behavior_Involvement__c-en_US</members>
         <members>Behavior_Involvement__c-es</members>
         <members>Behavior_Involvement__c-fr</members>
         <members>Behavior_Response__c-ca</members>
+        <members>Behavior_Response__c-en_GB</members>
         <members>Behavior_Response__c-en_US</members>
         <members>Behavior_Response__c-es</members>
         <members>Behavior_Response__c-fr</members>
         <members>Case-ca</members>
+        <members>Case-en_GB</members>
         <members>Case-es</members>
         <members>Case-fr</members>
         <members>Contact-ca</members>
