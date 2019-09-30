@@ -37,7 +37,7 @@ tasks:
         options:
             path: unpackaged/config/dev_delete
 
-    execute_dev_apex:
+    execute_install_apex:
         description: Runs anonymous apex for dev to config settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
@@ -106,13 +106,13 @@ flows:
         description: Configure an org to run apex tests after package metadata is deployed.
         steps:
             3:
-                task: execute_dev_apex
+                task: execute_install_apex
 
     config_dev:
         description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
             3:
-                task: execute_dev_apex
+                task: execute_install_apex
             4:
                 task: deploy_dev_config
 
@@ -128,7 +128,7 @@ flows:
                 options:
                     namespaced_org: True
             3:
-                task: execute_dev_apex
+                task: execute_install_apex
             4:
                 task: deploy_dev_config
 
@@ -144,7 +144,7 @@ flows:
         descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
             3:
-                task: execute_dev_apex
+                task: execute_install_apex
             4:
                 task: execute_qa_apex
             5:
