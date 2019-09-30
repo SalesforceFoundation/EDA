@@ -162,6 +162,20 @@ flows:
                 options:
                     unmanaged: False
 
+    deploy_unmanaged:
+        steps:
+            4:
+                # Disable uninstall_packaged_incremental
+                task: None
+
+    dev_org_namespaced:
+        steps:
+            3:
+                # Configure the config_dev flow for namespaced org
+                options:
+                    update_admin_profile:
+                        namespaced_org: True
+
 services:
     mockaroo:
         description: Configure connection for Mockaroo tasks
