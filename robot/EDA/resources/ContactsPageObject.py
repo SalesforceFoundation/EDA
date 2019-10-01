@@ -145,6 +145,7 @@ class ContactsHomePage(BasePage):
 
         # Save the form - this time successfully
         self.selenium.click_element(contacts_locators["contact_save"])
+        self.eda.close_toast_message()
         self.selenium.driver.switch_to.default_content()
 
     def verify_toast_message(self, value):
@@ -262,6 +263,7 @@ class ContactsHomePage(BasePage):
             self.builtin.log("Removing checkmark from 'Disable Preferred Phone enforcement' checkbox.")
             self.selenium.get_webelement(contacts_locators["disable_checked"]).click()
             self.selenium.click_button("Save")
+            self.eda.close_toast_message()
             self.builtin.log(
                 "Disable Preferred Phone enforcement setting has been cleared.\n" +
                 "Saving changes.\n" +
@@ -307,6 +309,7 @@ class ContactsHomePage(BasePage):
                 self.selenium.driver.find_element_by_xpath(contacts_locators["disable_checked"])
             )
             self.selenium.click_button("Save")
+            self.eda.close_toast_message()
             self.builtin.log(
                 "Disable Preferred Phone enforcement checkbox has been checked.\n" +
                 "Saving changes.\n" +
@@ -369,7 +372,7 @@ class ContactsHomePage(BasePage):
 
         # Click Save
         self.selenium.click_button("Save")
-        time.sleep(1)
+        self.eda.close_toast_message()
         self.builtin.log(
             "Disable Preferred Phone enforcement checkbox has been cleared.\n" +
             "Saving changes.\n" +
@@ -418,6 +421,7 @@ class ContactsHomePage(BasePage):
         self.selenium.capture_page_screenshot()
 
         # Give 'Run Cleanup' fifteen seconds run time, then continue
+        # Need to find a better solution as this may still not be enough
         time.sleep(15)
         return
 
@@ -458,6 +462,7 @@ class ContactsHomePage(BasePage):
             "Save button not avaible on EDIT Contact page", 
             False
         )
+        self.eda.close_toast_message()
 
         self.selenium.capture_page_screenshot()
 
@@ -546,6 +551,7 @@ class ContactsHomePage(BasePage):
                 self.selenium.driver.find_element_by_xpath(contacts_locators["enhanced_preferred_clear_faux"])
             )
             self.selenium.click_button("Save")
+            self.eda.close_toast_message()
             self.builtin.log(
                 "Enable Enhanced Preferred Phone Functionality setting has been set.\n" +
                 "Saving changes.\n" +
@@ -596,6 +602,7 @@ class ContactsHomePage(BasePage):
 
         # Click Save
         self.selenium.click_button("Save")
+        self.eda.close_toast_message()
         self.builtin.log(
             "Enable Enhanced Preferred Phone Functionality setting has been cleared.\n" +
             "Saving changes.\n" +
