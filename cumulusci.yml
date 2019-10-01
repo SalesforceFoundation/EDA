@@ -140,6 +140,15 @@ flows:
                 options:
                     unmanaged: False
 
+    config_packaging:
+        steps:
+            1:
+                # Configure update_admin_profile
+                options:
+                    managed: True
+                    namespaced_org: True
+                    skip_record_types: True
+                    
     config_qa:
         descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
