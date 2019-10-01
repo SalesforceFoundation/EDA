@@ -42,15 +42,13 @@ public class UTIL_ACCT_Naming_DF {
     private static ID defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
 	private static ID hhAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
 	private static ID adminAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
-
     private static String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
-
     private static String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
 
-	//1. KD TO DO: updateAdminAccountsNmae();
+	//TODO: updateAdminAccountsNmae();
 
 
-    //KD TO DO: Need to replace this from ACCT_INdividualAccounts_TDTM and make this method more generic.
+    //TODO: Need to replace this from ACCT_INdividualAccounts_TDTM and make this method more generic.
     public static void updateHHAccountsName(Set<Id> accIdsToRename) {
         List<Account> listAccsToRename = new List<Account>();
 
@@ -91,15 +89,16 @@ public class UTIL_ACCT_Naming_DF {
 		return returnedContacts;
 	}
 	//This replaced strNameAdmAccountForContact && strNameHHAccountForContact && strNameAccountForContact:
-	//KD TO DO :  Need to check ACCT_IndividualAccounts_TDTM and replace the methods it is calling
-	//KD TO DO : updateHHAccountsName --> Need to incorporate this into updateName() to make it generic and update ACCT_IndividualAccounts_TDTM that's referencing this method.
+	//TODO :  Need to check ACCT_IndividualAccounts_TDTM and replace the methods it is calling
+	//TODO : updateHHAccountsName --> Need to incorporate this into updateName() to make it generic and update ACCT_IndividualAccounts_TDTM that's referencing this method.
 	public static String updateName(Contact[] cons) {
 		String accountNamingFormat;
 		String finalAccountName;
 		accountNamingFormat = checkAccountType();
-
+		NameSpec ns;
 		if (accountNamingFormat != NULL) {
-			return buildAccountName(cons, accountNamingFormat);
+			ns = new NameSpec(accountNamingFormat);
+			return buildAccountName(cons, ns);
 		} else {
 			finalAccountName = defaultAccountName(cons, accountNamingFormat);
 
@@ -162,77 +161,99 @@ public class UTIL_ACCT_Naming_DF {
     private static String chRToken = '}';
 
 	private class NameSpec {
-		private String namePrefix = new String();
-        private String nameSuffix = new String();
+		private String namePrefix { get; set; }
+        private String nameSuffix { get; set; }
         private String strFirstNameSpec { get; set; }
         private String strFullNameSpec { get; set; }
         private String strAnd { get; set; }
-        //private string strOverrun { get; set; }
-        //private integer cMaxUseOverrun { get; set; }
         private string strAcctNameFormat { get; set; }
 
 		//accountNamingFormat should return  Household_Account_Naming_Format__c
 		private NameSpec(String accountNamingFormat) {
 			//strNameSpec should return value ie. {!LastName} Family OR {!LastName} {!FirstName} Family
-			String strNameSpec = NULL;
+			//String strNameSpec = String.valueOf()
+			String strNameSpec;
 			if (accountNamingFormat != NULL) {
 				if (accountNamingFormat == hhAccNamingFormat) {
 					strNameSpec = String.valueOf(hhAccNamingFormat);
 				} else if (accountNamingFormat == adminAccNamingFormat) {
 					strNameSpec = String.valueOf(adminAccNamingFormat);
 				}
+				parseNameSpec(strNameSpec);
 			}
 		}
-
-		private void parseNameSpec(String strNameSpec) {
+		//Returns strFullNameSpec && strFirstNameSpec  - the AccountNameFormat Value ie. {!LastName} Family vs. {!LastNAme} Household
+ 		private void parseNameSpec(String strNameSpec) {
 			namePrefix = '';
             nameSuffix = '';
             strFirstNameSpec = '';
             strFullNameSpec = '';
 
-			if (accountNamingFormat == NULL) {
+			if (strNameSpec == NULL) {
 				return;
 			}
 
-			Integer indexFirstParenthesis = accountNamingFormat.indexOf(chLToken); //Should return 0
-			Integer indexAfterLastParenthesis = accountNamingFormat.indexOf(chRToken); //Should return more than 0
+			Integer indexFirstParenthesis = strNameSpec.indexOf(chLToken); //Should return 0
+			Integer indexAfterLastParenthesis = strNameSpec.indexOf(chRToken); //Should return more than 0
 
 			//Retrieving the Prefix
 			if (indexFirstParenthesis > 0) {
-				namePrefix = accountNamingFormat.left(chLToken);
-				strAcctNameFormat = accountNamingFormat.subString(chLToken);
+				namePrefix = strNameSpec.left(indexFirstParenthesis);
+				strAcctNameFormat = strNameSpec.subString(indexFirstParenthesis);
 			}
 			//Retrieving the Suffix
 			if (indexAfterLastParenthesis > 0) {
-				while (indexAfterLastParenthesis < accountNamingFormat.length()-1 && accountNamingFormat.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' ') {
+				while (indexAfterLastParenthesis < strNameSpec.length()-1 && strNameSpec.subString(indexAfterLastParenthesis+1, indexAfterLastParenthesis+2) != ' ') {
 					indexAfterLastParenthesis++;
 				}
-				nameSuffix = indexAfterLastParenthesis.subString(indexAfterLastParenthesis+1); //Retrieves the suffix ie. Family/Household
-				strAcctNameFormat = accountNamingFormat.left(indexAfterLastParenthesis+1); //Retrieves just the format without the suffix ie. {!LastName}
+				nameSuffix = strNameSpec.subString(indexAfterLastParenthesis+1); //Retrieves the suffix ie. Family/Household
+				strAcctNameFormat = strNameSpec.left(indexAfterLastParenthesis+1); //Retrieves just the format without the suffix ie. {!LastName}
 			}
 			//Retrieve FirstNameSpec
-			String strFirstName = strFNameSpecFromStrNameSpec(strAcctNameFormat);
+			String strFirstName = strFNameSpecFromStrNameSpec(strAcctNameFormat); //Returns the format of the FirstName
 			Integer indexOfLeft = strFirstName.indexOf(chLToken); // -1 for {!LastName} Family scenario
-			Integer indexOfRight = strFirstName.lastIndextOf(chRToken); // -1 for {!LastName} Family scenario
+			Integer indexOfRight = strFirstName.lastIndexOf(chRToken); // -1 for {!LastName} Family scenario
 			if (indexOfLeft >= 0 && indexOfRight > 0) {
-				strFirstNameSpec = accountNamingFormat.replace(strFirstName, 'FirstNameSpec');
-				strFullNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
+				strFullNameSpec = strNameSpec.replace(strFirstName, 'FirstNameSpec'); //Return {!LastName} FirstNameSpec or FirstNameSpec
+				strFirstNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
 			} else {
-				strFirstNameSpec = strAcctNameFormat;
+				strFullNameSpec = strAcctNameFormat;
 			}
 		}
 		public set<string> setStrFieldsInNameSpec() {
             System.debug('setStrFieldsInNameSpec Method in NameSpec -->');
             set<string> setStrField = new set<string>();
             if (strFirstNameSpec != null)
-                setStrField.addAll(setStrFieldFromStrFSpec(strFirstNameSpec));
+                setStrField.addAll(setStrFieldFromStrFSpec(strFirstNameSpec)); //Returns {FirstName}
+
             if (strFullNameSpec != null)
-                setStrField.addAll(setStrFieldFromStrFSpec(strFullNameSpec));
+                setStrField.addAll(setStrFieldFromStrFSpec(strFullNameSpec));  //Returns {FirstName, Lastname} if HHNAmeFormat == {!LastName} {!(FirstName)}
             setStrField.add('LastName');
             return setStrField;
         }
 
 	}
+    private static set<string> setStrFieldFromStrFSpec(String strFSpec) {
+        set<string> setStrField = new set<string>();
+		System.debug('setStrFieldFromStrFSpec method -->');
+        // First, instantiate a new Pattern object looking for {...} without any nested {'s.
+        Pattern MyPattern = Pattern.compile('\\{![^\\{!]*\\}');
+        System.debug('setStrFieldFromStrFSpec MyPattern -->' + MyPattern);
+        // Then instantiate a new Matcher object
+        Matcher MyMatcher = MyPattern.matcher(strFSpec);
+        System.debug('setStrFieldFromStrFSpec MyMatcher -->' + MyMatcher);
+
+        while (MyMatcher.find()) {
+            // get the fieldname without the {}'s
+           	System.debug('setStrFieldFromStrFSpec MyMatcherCheck -->' + MyMatcher);
+            string strField = strFSpec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
+            System.debug('setStrFieldFromStrFSpec strField -->' + strField);
+            System.debug('setStrFieldFromStrFSpec strFieldTrim -->' + strField.trim());
+            setStrField.add(strField.trim());
+            System.debug('setStrFieldFromStrFSpec setStrField -->' + setStrField);
+        }
+        return setStrField;
+    }
 	private static String strFNameSpecFromStrNameSpec(String strAcctNameFormat) {
 		Pattern MyPattern = Pattern.compile('\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}');
 		Matcher MyMatcher = MyPattern.matcher(strAcctNameFormat);
@@ -242,5 +263,149 @@ public class UTIL_ACCT_Naming_DF {
 		} else {
 			return '';
 		}
+	}
+
+	private static String buildAccountName(Contact[] cons, NameSpec ns) {
+		Integer conSize = cons.size();
+		Boolean isNoLastnames = ns.strFullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
+		Boolean isLastNameOnlyFormat = !isNoLastnames && ns.setStrFieldsInNameSpec().size() == 1;
+		Set<String> processedLastNames = new Set<String>();
+		String[] finalAccountName = new String[0];
+		//strFirstNameSpec ==> {!FirstName}
+		//strFullNameSpec ==> {!LastName} (FirstNameSpec)
+		for (Integer i = 0, next = 0; i < conSize; i = next) {
+			String strLName = cons[i].LastName;
+			next = i + 1;
+
+			if (isLastNameOnlyFormat && processedLastNames.contains(strLname)) {
+				continue;
+			}
+			//Adds the lastName
+			processedLastNames.add(strLName);
+
+			//TODO: potentially break this into it's own method  - all about firstnames
+			//Retrieves value of FirstName
+			String strFName = strConFspec(cons[i], ns.strFirstNameSpec);
+			//TODO: Need to sort strFName so that it is in order
+			//Retrieves additional FName if there's more than 1
+			List<String> listFName = new List<String>();
+			for (; next < conSize && (isNoLastnames || cons[next].LastName == strLname); next ++) {
+				String nextFName = strConFspec(cons[next], ns.strFirstNameSpec);
+				if (nextFName != '') {
+					listFName.add(nextFname);
+				}
+			}
+			//Strings up the FNames together
+			for (Integer k = 0; k <listFName.size(); k++) {
+				if (k == listFName.size()-1) {
+					strFName += ns.strAnd + listFName[k];
+				} else {
+					strFName += ', ' + listFName[k];
+				}
+
+			}
+
+			//TODO: potentially break this into it's own method - all about lastnames
+			String lastName = strConFspec(cons[i], ns.strFullNameSpec);
+			lastName = lastName.replace('FirstNameSpec', strFname);
+			if (strFname == '') {
+				lastName = lastName.trim();
+			}
+			finalAccountName.add(lastName);
+		}
+		return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
+	}
+    private static string strConFspec(Contact con, string strFspec) {
+        System.debug('strConFspec Method -->'+ strFspec);
+        string str = strFspec;
+
+        // First, instantiate a new Pattern object looking for {...} without any nested {'s.
+        Pattern MyPattern = Pattern.compile('\\{![^\\{!]*\\}');
+        // Then instantiate a new Matcher object
+        Matcher MyMatcher = MyPattern.matcher(strFspec);
+        System.debug('strConFspec MyPattern -->'+ MyPattern);
+        System.debug('strConFspec MyMatcher -->' + MyMatcher);
+
+        while (MyMatcher.find()) {
+            System.debug('strConFspec MyMatcherCheck -->' + MyMatcher);
+            // get the fieldname without the {}'s
+            string strField = strFspec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
+            System.debug('strConFspec strField -->' + strField);  //returns just "LastName" instead of {!LastName}
+
+            //separate cross object references, i.e. account.name
+            list<string> splitField = (strField.split('\\.',0));
+            System.debug('strConFspec splitField -->' + splitField); // returns (LastName)
+
+            //remove the field name itself to only include parent object references
+            string fieldName = splitField[splitField.size()-1].trim();
+            System.debug('strConFspec fieldName -->' + fieldName); //returns LastName
+            splitField.remove(splitField.size()-1);
+            System.debug('strConFspec splitField -->' + splitField); //returns nothing ()
+
+            //use the correct sObject
+            sObject thisObj;
+            if (!splitField.isEmpty()) {
+                System.debug('strConFspec splitField Check-->' + splitField);
+                thisObj = con.getsObject(splitField[0]);
+                System.debug('strConFspec thisObj-->' + thisObj);
+                splitField.remove(0);
+                System.debug('strConFspec splitField-->' + splitField);
+            } else {
+                System.debug('strConFspec splitFieldIsEmpty -->' + splitField);
+                thisObj = con;
+                System.debug('strConFspec thisObj -->' + thisObj); //returns the Contact record
+            }
+
+            //traverse parent relationships until the last one
+            for (string parentObj : splitField) {
+                System.debug('strConFspec parentObj -->' + parentObj);
+                if (thisObj != null) {
+                    System.debug('strConFspec thisObIsNotBlank -->' + thisObj);
+                    thisObj = thisObj.getsObject(parentObj);
+                    System.debug('strConFspec thisObj -->' + thisObj);
+                }
+            }
+
+            string val;
+            if (thisObj != null) {
+                System.debug('strConFspec thisObIsNotBlank -->' + thisObj);
+                val = string.valueOf(thisObj.get(fieldName));
+                System.debug('strConFspec val -->' + val); //returns just the last name value "Pens"
+            }
+
+            System.debug('strConFspec strField -->' + strField);
+            // add back the {}'s for string substitution
+            strField = chLToken + strField + chRToken;
+            System.debug('strConFspec strField -->' + strField); //returns {!LastName}
+            if (val == null) {
+                System.debug('strConFspec valIsBlank -->' + val);
+                // eat potential trailing space
+                System.debug('strConFspec strB4 -->' + str);
+                str = str.replace(strField + ' ', '');
+                System.debug('strConFspec strAfter -->' + str);
+                System.debug('strConFspec strB42-->' + str);
+                // eat potential leading space
+                str = str.replace(' ' + strField, '');
+                System.debug('strConFspec strAfter2-->' + str);
+            }
+            str = str.replace(strField, val == null ? '' : val);
+            System.debug('strConFspec strFinal-->' + str); //returns "Pens" OR // "Thomas (FirstNameSpec)"
+        }
+        return str;
+    }
+	private static String stringAccountName(String[] finalAccountName, NameSpec ns) {
+		String name = '';
+		String delimeter = '';
+		Integer size = finalAccountName.size();
+
+		for (Integer i = 0; i < size; i ++) {
+			if (i > 0 && i == size - 1) {
+				delimeter = ns.strAnd;
+			} else if (i > 0) {
+				delimeter = ', ';
+			}
+			name += delimeter + finalAccountName[i];
+		}
+		return name;
 	}
 }
