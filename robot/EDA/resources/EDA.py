@@ -441,6 +441,15 @@ class EDA(object):
         locator = eda_lex_locators["toast_close"]
         self.click_on_element_if_exists(locator)
 
+    def click_on_element_if_exists(self, path, *args, **kwargs):
+        """ Clicks on the element if it exists
+            by building a locator using the path and args
+            but the keyword will not fail in case the element doesn't exist
+        """
+        main_loc = self.get_eda_locator(path, *args, **kwargs)
+        if self.check_if_element_exists(main_loc):
+            self.selenium.click_element(main_loc)
+
     def convert_time_to_UTC_timezone(self, my_time):
         """ Converts the given datetime to UTC timezone
             my_time should be in the format %Y-%m-%d %H:%M:%S
