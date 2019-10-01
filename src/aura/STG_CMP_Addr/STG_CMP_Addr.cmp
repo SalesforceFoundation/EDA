@@ -87,11 +87,12 @@
                 </div>
             </div>
         </div>
-        <aura:if isTrue="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}">
-            <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-                <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhoneSync}" class="slds-text-body--small" />
-            </div>
         
+        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+            <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhoneSync}" class="slds-text-body--small" />
+        </div>
+
+        <aura:if isTrue="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}">
             <div class="slds-col slds-size--1-of-2 slds-p-left--large">
                 <ui:outputText value="{!$Label.c.stgDisablePreferredPhoneEnforcement}"/>
             </div>
