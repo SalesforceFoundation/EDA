@@ -24,7 +24,7 @@ private static void enableCourseConnections(%%%NAMESPACE%%%Hierarchy_Settings__c
 //Enable Specify Role For Created Affiliations
 private static void enableSpecifyRoleForCreatedAffiliations(%%%NAMESPACE%%%Hierarchy_Settings__c settings) {   
     if (settings.%%%NAMESPACE%%%Affl_ProgEnroll_Set_Role__c == null 
-        || settings.%%%NAMESPACE%%%Enable_New_Preferred_Phone_Sync__c != true) {
+        || settings.%%%NAMESPACE%%%Affl_ProgEnroll_Set_Role__c != true) {
         settings.%%%NAMESPACE%%%Affl_ProgEnroll_Set_Role__c = true;
     }
 }
