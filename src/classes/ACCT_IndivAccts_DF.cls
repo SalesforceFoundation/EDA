@@ -434,7 +434,8 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
                 if(defaultRecTypeID != null
             		&& defaultRecTypeID == userDefinedHHRecordTypeId)
 				{
-                	a.Name = UTIL_ACCT_Naming.strNameHHAccountForContact(new List<Contact>{c});
+                	//a.Name = UTIL_ACCT_Naming.strNameHHAccountForContact(new List<Contact>{c});
+					a.Name = UTIL_ACCT_Naming_DF.updateName(new List<Contact>{c});
                 } else if (defaultRecTypeID != null
                         	&& defaultRecTypeID == userDefinedAdminRecordTypeId) {
                     a.Name = UTIL_ACCT_Naming.strNameAdmAccountForContact(c);
