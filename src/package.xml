@@ -31,6 +31,8 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>CCON_CannotDelete_TDTM</members>
+        <members>CCON_CannotDelete_TEST</members>
         <members>CCON_ConnectionBackfill_BATCH</members>
         <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
@@ -43,6 +45,8 @@
         <members>CMP_SettingsDataProvider_TEST</members>
         <members>COFF_Affiliation_TDTM</members>
         <members>COFF_Affiliation_TEST</members>
+        <members>COFF_CannotDelete_TDTM</members>
+        <members>COFF_CannotDelete_TEST</members>
         <members>CON_CannotDelete_TDTM</members>
         <members>CON_CannotDelete_TEST</members>
         <members>CON_DoNotContact_TDTM</members>
