@@ -1541,7 +1541,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
-        <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one 'Phone' field is defined.</value>
+        <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>

@@ -13,7 +13,7 @@
       <label><!-- Contact --></label>
       <name>Contact__c</name>
       <relationshipLabel><!-- Term Grades --></relationshipLabel>
-  </fields>
+    </fields>
     <fields>
         <help>La classe dans laquelle l&apos;étudiant a reçu cette note.</help>
         <label>Connexion au cours</label>
