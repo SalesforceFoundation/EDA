@@ -2,7 +2,6 @@
 
 Resource        robot/EDA/resources/EDA.robot
 Library         robot/EDA/resources/EDA.py
-Library         SeleniumLibrary
 Suite Setup     Open Test Browser
 Suite Teardown  Delete Records and Close Browser
 

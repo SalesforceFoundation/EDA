@@ -1,16 +1,12 @@
 import logging
 import time
-import datetime
-import pytz
 
 from cumulusci.robotframework.utils import selenium_retry
-from locator import eda_lex_locators
 
 from robot.libraries.BuiltIn import BuiltIn
 from selenium.webdriver.common.keys import Keys
-from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn
-from selenium.webdriver.common.keys import Keys
+from locator import eda_lex_locators
+
 
 @selenium_retry
 class EDA(object):
