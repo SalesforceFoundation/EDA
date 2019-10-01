@@ -44,7 +44,7 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.edit
 
     # Uncheck everything
-   Click on Element                account_types.administrative
+    Click on Element                account_types.administrative
 
     Wait for Locator                account_types.academic
     Click on Element                account_types.academic
@@ -112,4 +112,6 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.household
     Click on Element                account_types.sports
     Click on Element                account_types.university
+
     Click on Element                account_types.save
+    Close toast message

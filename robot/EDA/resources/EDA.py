@@ -363,6 +363,7 @@ class EDA(object):
             
     def click_on_element(self,path, *args, **kwargs):
         main_loc = self.get_eda_locator(path,*args, **kwargs)
+        self.selenium.wait_until_element_is_visible(main_loc)
         self.selenium.click_element(main_loc)
 
     def populate_placeholder(self, loc, value):
@@ -400,11 +401,9 @@ class EDA(object):
 
     def close_toast_message(self):
         """ Close the toast message banner """
-        locator = eda_lex_locators["toast_close"]
-        try:
-            self.selenium.click_element(locator)
-        except Exception:
-            return
+        self.selenium.wait_until_element_is_visible(eda_lex_locators["toast_close"])
+        self.selenium.click_element(eda_lex_locators["toast_close"])
+        self.selenium.capture_page_screenshot()
 
     def get_eda_namespace_prefix(self):
         """ Returns the EDA namespace value if the target org is a managed org else returns blank value """
@@ -436,10 +435,9 @@ class EDA(object):
                 self.selenium.wait_until_element_is_visible(locator)
                 self.selenium.get_webelement(locator).click()
 
-    def close_toast_message(self):
-        """ Closes the toast message by clicking on the close button in the toast window """
-        locator = eda_lex_locators["toast_close"]
-        self.click_on_element_if_exists(locator)
+#    def close_toast_message(self):
+#        """ Closes the toast message by clicking on the close button in the toast window """
+#        self.click_on_element_if_exists(eda_lex_locators["toast_close"])
 
     def click_on_element_if_exists(self, path, *args, **kwargs):
         """ Clicks on the element if it exists

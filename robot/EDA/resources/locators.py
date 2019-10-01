@@ -22,7 +22,7 @@ eda_lex_locators = {
     "tab_menu": "//a[@title='{}']",
     "tab_tab": "//a[@title='Contacts']/../descendant::a[@title='{}']",
     "toast_message": "//span[contains(@class, 'toastMessage') and text()='{}']",
-    "toast_close": "//button[contains(@class, 'slds-button toastClose') and @type='button' and @title='Close']",
+    "toast_close": "//div[contains(@class, 'slds-theme--success')]/button[contains(@class, 'slds-notify__close')]",
     "close_tab": "//*[@data-key='close']/ancestor::button[contains(@class, 'slds-button slds-button_icon-x-small')]",
     "mailing_address": "//*[contains(@placeholder,'{}')]",
     "object_dd": "//h1[contains(@class,'slds-page-header__title')]/a/div[contains(@class,'triggerLinkTextAndIconWrapper')][.//lightning-primitive-icon]",
@@ -179,8 +179,6 @@ eda_lex_locators = {
     "opportunity": {
         "contact_role": '//div[contains(@class,"listItemBody")][./h3//a[text()="{}"]]//parent::h3/following-sibling::ul/li/div[contains(@class,"forceListRecordItem")]/div[@title="Role:"]/following-sibling::div/span[text()="{}"]',
     },
-    "toast_message": "//div[contains(@class, 'slds-notify--toast')]/descendant::h2[contains(@class, 'slds-text-heading') and text()='{}']",
-    "toast_close": "//div[contains(@class, 'slds-theme--success')]/button[contains(@class, 'slds-notify__close')]",
     "input_placeholder": "//input[contains(@placeholder,'{}')]",
     "package": {
         "name": "//table[@class='list']/tbody/tr[{}]/th/a",
