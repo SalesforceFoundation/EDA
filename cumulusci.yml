@@ -113,7 +113,7 @@ tasks:
 
 flows:
     setup_encryption:
-        description: Sets up Shield Platform Encryption in the target Org
+        description: Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
         steps:
             1:
                 task: deploy_encryption_permset
