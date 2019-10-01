@@ -11,7 +11,4 @@
     runCleanUp : function (component, event, helper) {
         helper.runCleanUp(component);
     },
-    handlePhoneSync : function (component, event, helper) {
-        helper.handlePhoneSync(component, event);
-    },
 })

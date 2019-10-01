@@ -17,7 +17,6 @@
     <aura:attribute name="householdRecTypeId" type="String" />
     <aura:attribute name="adminAccRecTypeName" type="String" />
     <aura:attribute name="adminAccRecTypeId" type="String" />
-    <aura:attribute name="prefPhoneErrorsDisabled" type="Boolean" default="false" />
 
     <div class="slds-grid slds-wrap">
 
@@ -36,7 +35,7 @@
         <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpDefaultContactLanguageFluency}" class="slds-text-body--small" />
         </div>
-		<!-- Preferred Email -->
+		<!-- Preferred Email & Phone -->
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
 
         <div class="slds-col slds-size--1-of-2">
@@ -79,8 +78,7 @@
                         <aura:set attribute="else">
                             <ui:inputCheckbox value="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}"
                                               class="contact-preferred-phone-sync-enabled"
-                                              aura:id="enablePrefPhoneEdit" 
-                                              change="{!c.handlePhoneSync}"/>
+                                              aura:id="enablePrefPhoneEdit"/>
                             <span class="slds-checkbox--faux"></span>
                             <span class="slds-form-element__label"></span>
                         </aura:set>
@@ -89,39 +87,42 @@
                 </div>
             </div>
         </div>
+        <aura:if isTrue="{!v.hierarchySettings.Enable_New_Preferred_Phone_Sync__c}">
+            <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhoneSync}" class="slds-text-body--small" />
+            </div>
         
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhoneSync}" class="slds-text-body--small" />
-        </div>
-        
-        <div class="slds-col slds-size--1-of-2 slds-p-left--large">
-            <ui:outputText value="{!$Label.c.stgDisablePreferredPhoneEnforcement}"/>
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <div class="slds-form-element">
-                <div class="slds-form-element__control">
-                    <label class="slds-checkbox">
-                        <aura:if isTrue="{!v.isView}">
-                            <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
-                                               class="contact-addr-enabled"
-                                               aura:id="disablePhoneErrors" />
-                        <aura:set attribute="else">
-                            <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
-                                              class="contact-addr-enabled"
-                                              aura:id="disablePhoneErrorsEdit"
-                                              disabled="{!v.prefPhoneErrorsDisabled}"/>
-                            <span class="slds-checkbox--faux"></span>
-                            <span class="slds-form-element__label"></span>
-                        </aura:set>
-                        </aura:if>
-                    </label>
+            <div class="slds-col slds-size--1-of-2 slds-p-left--large">
+                <ui:outputText value="{!$Label.c.stgDisablePreferredPhoneEnforcement}"/>
+            </div>
+            <div class="slds-col slds-size--1-of-2">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <label class="slds-checkbox">
+                            <aura:if isTrue="{!v.isView}">
+                                <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
+                                                   class="contact-addr-enabled"
+                                                   aura:id="disablePhoneErrors" />
+                            <aura:set attribute="else">
+                                <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Preferred_Phone_Enforcement__c}"
+                                                  class="contact-addr-enabled"
+                                                  aura:id="disablePhoneErrorsEdit"/>
+                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-form-element__label"></span>
+                            </aura:set>
+                            </aura:if>
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium slds-p-left--large">
-            <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhone}" class="slds-text-body--small" />
-        </div>
+            <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium slds-p-left--large">
+                <ui:outputText value="{!$Label.c.stgHelpContactPreferredPhone}" class="slds-text-body--small" />
+            </div>
+        <aura:set attribute="else">
+            <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium"></div>
+        </aura:set>
+        </aura:if>
 
         <div class="slds-col slds-size--1-of-2 slds-p-right--xx-large">
             <h2>
@@ -157,7 +158,7 @@
         
         </div>
         
-	    <!-- End of Preferred Email -->
+	    <!-- End of Preferred Email & Phone -->
         
         <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
         
