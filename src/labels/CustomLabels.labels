@@ -158,7 +158,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoFieldsPopulated</shortDescription>
-        <value>Choose either a Course Connection OR both a Contact and Course Offering.</value>
+        <value>Choose either a Course Connection or both a Contact and Course Offering.</value>
     </labels>
     <labels>
         <fullName>NoneOption</fullName>
@@ -174,7 +174,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>OnlyContactPopulated</shortDescription>
-        <value>Choose either a Course Connection OR both a Contact and Course Offering.</value>
+        <value>Choose either a Course Connection or both a Contact and Course Offering.</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>
@@ -190,7 +190,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>OnlyCourseOfferingPopulated</shortDescription>
-        <value>Choose either a Course Connection OR both a Contact and Course Offering.</value>
+        <value>Choose either a Course Connection or both a Contact and Course Offering.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailMatchMustExist</fullName>
