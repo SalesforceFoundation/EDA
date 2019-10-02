@@ -50,8 +50,7 @@ Validate updation of Plan Requirement - Nested Plan Requirement setting enabled
     Populate placeholder            Search Program Plans...                     &{program_plan}[Name]
 
     Click on element                plan_requirement.program_plan_name          &{program_plan}[Name]
-    Sleep                           0.5
-#    Click on element                modal.save
+    Capture Page Screenshot
     Click Button                    Save
     Wait for locator                plan_requirement.error          Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.
 

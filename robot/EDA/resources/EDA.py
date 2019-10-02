@@ -394,6 +394,7 @@ class EDA(object):
             )
             self.selenium.click_element(locator_checkbox)
             self.selenium.click_element(locator_save)
+            self.selenium.capture_page_screenshot()
             self.verify_toast_message2("Settings Saved Successfully.")
 
     def verify_toast_message(self, value):
