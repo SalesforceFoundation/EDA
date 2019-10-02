@@ -48,13 +48,16 @@ Validate updation of Plan Requirement - Nested Plan Requirement setting enabled
     Wait until modal is open
     Wait for locator                plan_requirement.parent_plan_req_name       &{plan_requirement_1}[Name]
     Populate placeholder            Search Program Plans...                     &{program_plan}[Name]
-    Click on element                modal.save
+
+    Click on element                plan_requirement.program_plan_name          &{program_plan}[Name]
+    Sleep                           0.5
+#    Click on element                modal.save
+    Click Button                    Save
     Wait for locator                plan_requirement.error          Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.
 
     Click on element                plan_requirement.delete_field   Parent Plan Requirement     &{plan_requirement_1}[Name]
     Click on element                plan_requirement.plan_requirement_name
-    Sleep                           0.5
-    Click on element                modal.save
+    Click Button                    Save
     Wait for locator                plan_requirement.toast_message
 
     ${plan_requirement_2} =         API Get ID          ${ns}Plan_Requirement__c        Name        Intro to Literature

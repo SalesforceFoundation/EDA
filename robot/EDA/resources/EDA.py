@@ -388,15 +388,22 @@ class EDA(object):
             return
         else:
             self.selenium.click_element(locator_edit)
-            self.selenium.wait_until_page_contains_element(locator_checkbox,
-                                                           error="Checkbox not found on the page")
+            self.selenium.wait_until_page_contains_element(
+                locator_checkbox,
+                error="Checkbox not found on the page"
+            )
             self.selenium.click_element(locator_checkbox)
             self.selenium.click_element(locator_save)
-            self.verify_toast_message("Settings Saved Successfully.")
+            self.verify_toast_message2("Settings Saved Successfully.")
 
     def verify_toast_message(self, value):
         """ Verifies the toast message """
         locator = eda_lex_locators["toast_message"].format(value)
+        self.selenium.wait_until_page_contains_element(locator)
+
+    def verify_toast_message2(self, value):
+        """ Verifies the toast message """
+        locator = eda_lex_locators["toast_message2"].format(value)
         self.selenium.wait_until_page_contains_element(locator)
 
     def close_toast_message(self):
