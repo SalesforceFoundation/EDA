@@ -219,6 +219,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
         public List<Id> listAccountIdHHToUpdate = new List<Id>();
         public List<Contact> listContactsChangedLastName = new List<Contact>();
 
+
         private HandleUpdateWrapperLogic(Contact c, Contact [] oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContacts[i].AccountId) {
@@ -253,7 +254,8 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
             //If Contact's last name has changed and it is using admin account model
             if (c.LastName != oldContacts[i].LastName && c.AccountId != NULL) {
-                listContactsChangedLastName.add(c);
+                //listContactsChangedLastName.add(c);
+				setAccountIdHHToRenameWP.add(c.AccountId);
             }
 
             //If Contact Name or Exclude_from_Household_Name__c value has changed
@@ -318,7 +320,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
         	}
             //Updates Household Account name
             if (accountIdHHToRename.size() > 0) {
-            	UTIL_ACCT_Naming.updateHHAccountsName(accountIdHHToRename);
+            	UTIL_ACCT_Naming_DF.updateHHAccountsName(accountIdHHToRename);
         	}
         }
 
@@ -333,7 +335,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
             //Updates Household Account name
             if (accountIdHHToRename.size() > 0) {
-            	UTIL_ACCT_Naming.updateHHAccountsName(accountIdHHToRename);
+            	UTIL_ACCT_Naming_DF.updateHHAccountsName(accountIdHHToRename);
         	}
 
             //Updates existing Account Primary Contact
@@ -346,10 +348,11 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
             	updateOwners(mapContactOwnerChange, dmlWrapper);
         	}
 
-        	//Updates Admin Account Name : KD TO DO
-        	if (listContactChangeLastName.size() > 0) {
+        	//Updates Admin Account Name:
+			//TODO: Need to update this to use updateHHAccountsName() so we can make it generic.
+        	/*if (listContactChangeLastName.size() > 0) {
             	dmlWrapper.objectsToUpdate.addAll((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(listContactChangeLastName));
-        	}
+        	}*/
 
         	//Inject Adv logic to handle moving opportunity : KD TO DO
         	if (mapContactIdAccountIdNewMoveOpp.size() > 0 && Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
@@ -362,7 +365,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
 			//Updates Household Account name
 			if (setAccountIdHHToRename.size() > 0) {
-            	UTIL_ACCT_Naming.updateHHAccountsName(setAccountIdHHToRename);
+            	UTIL_ACCT_Naming_DF.updateHHAccountsName(setAccountIdHHToRename);
         	}
 
             //Deletes old Account if they are left hanging around
@@ -431,7 +434,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
                 );
 
                 //Constructs the Account Name
-                if(defaultRecTypeID != null
+                /*if(defaultRecTypeID != null
             		&& defaultRecTypeID == userDefinedHHRecordTypeId)
 				{
                 	//a.Name = UTIL_ACCT_Naming.strNameHHAccountForContact(new List<Contact>{c});
@@ -441,7 +444,11 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
                     a.Name = UTIL_ACCT_Naming.strNameAdmAccountForContact(c);
                 } else {
 					a.Name = UTIL_ACCT_Naming.strNameAccountForContact(c);
-                }
+                }*/
+				if (defaultRecTypeID != NULL) {
+					a.Name = UTIL_ACCT_Naming_DF.updateName(new List<Contact>{c});
+				}
+
 
                 //Sets the Contact as the primary Contact for the newly created Account
                 if (c.Id != NULL) {

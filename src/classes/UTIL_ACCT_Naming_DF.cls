@@ -38,19 +38,37 @@ public class UTIL_ACCT_Naming_DF {
     * @description The user defined Administrative Account record type.
     */
     private static ID userDefinedAdminRecordTypeId = Util_Describe.getAdminAccRecTypeID();
-
     private static ID defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
-	private static ID hhAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
-	private static ID adminAccountRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
-    private static String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
-    private static String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
+	private static ID hhAccountRecordTypeId = UTIL_Describe.getHhAccRecTypeID();
+	private static ID adminAccountRecordTypeId = UTIL_Describe.getAdminAccRecTypeID();
 
-	//TODO: updateAdminAccountsNmae();
+	//TODO: updateAdminAccountsName();
+	/*public static list<Account> updateAdminAccountsName(List<Contact> listContactsChangedLastName) {
+        List<Account> listAccToUpdate = new List<Account>();
+        Map<Id, Contact> mapAccIdToCon = new Map<Id, Contact>();
+        for (Contact con : listContactsChangedLastName) {
+            mapAccIdToCon.put(con.AccountId, con);
+        }
 
+        List<Account> listAcc = [SELECT Id, RecordTypeId
+                                FROM Account
+                                WHERE Id IN :mapAccIdToCon.keySet()];
+        for (Account acc : listAcc) {
+            // only consider Admin Accounts
+            if (acc.RecordTypeId == userDefinedAdminRecordTypeId) {
+                acc.Name = updateName(mapAccIdToCon.get(acc.Id));
+                listAccToUpdate.add(acc);
+            }
+        }
 
-    //TODO: Need to replace this from ACCT_INdividualAccounts_TDTM and make this method more generic.
-    public static void updateHHAccountsName(Set<Id> accIdsToRename) {
-        List<Account> listAccsToRename = new List<Account>();
+        return listAccToUpdate;
+    }*/
+
+	//listAccsToRename() replaces updateHHAccountsName()
+    //TODO: Need to determine how to consolidate this method to just call updateNmae()
+	//TODO: Need to replace updateHHAccountsName() from ACCT_INdividualAccounts_TDTM
+	public static void updateHHAccountsName(Set<Id> accIdsToRename) {
+    	List<Account> listAccsToRename = new List<Account>();
 
 		listAccsToRename = queryContacts(accIdsToRename);
         //Loop through listAccsToRename and modify the name accordingly
@@ -63,7 +81,6 @@ public class UTIL_ACCT_Naming_DF {
         //For now, we use direct DML statement to avoid duplicate id issue
         update listAccsToRename;
     }
-
 	private static List<Account> queryContacts(Set<Id> accIdsToRename) {
 		List<Account> returnedContacts = new List<Account>();
 
@@ -89,51 +106,71 @@ public class UTIL_ACCT_Naming_DF {
 		return returnedContacts;
 	}
 	//This replaced strNameAdmAccountForContact && strNameHHAccountForContact && strNameAccountForContact:
-	//TODO :  Need to check ACCT_IndividualAccounts_TDTM and replace the methods it is calling
-	//TODO : updateHHAccountsName --> Need to incorporate this into updateName() to make it generic and update ACCT_IndividualAccounts_TDTM that's referencing this method.
+	//TODO: Need to check ACCT_IndividualAccounts_TDTM and replace the methods it is calling
+	//TODO: updateHHAccountsName --> Need to incorporate this into updateName() to make it generic and update ACCT_IndividualAccounts_TDTM that's referencing this method.
 	public static String updateName(Contact[] cons) {
 		String accountNamingFormat;
 		String finalAccountName;
-		accountNamingFormat = checkAccountType();
+
+        accountNamingFormat = checkAccountFormat();
+
+		System.debug('updateName accountNamingFormat -->' + accountNamingFormat);
+
 		NameSpec ns;
 		if (accountNamingFormat != NULL) {
 			ns = new NameSpec(accountNamingFormat);
+			System.debug('updateName ns -->' + ns);
 			return buildAccountName(cons, ns);
 		} else {
 			finalAccountName = defaultAccountName(cons, accountNamingFormat);
+			System.debug('updateName finalAccountName -->' + finalAccountName);
 
 		}
 		return finalAccountName;
 	}
 
-	public static String checkAccountType () {
+	public static String checkAccountFormat () {
 		String accountNamingFormat;
+		System.debug('checkAccountType defaultRecTypeId -->' + defaultRecTypeId);
 
 		if (defaultRecTypeId == hhAccountRecordTypeId) {
-			accountNamingFormat = hhAccNamingFormat;
+			System.debug('checkAccountType hhAccountType -->');
 			if (accountNamingFormat == Label.acctNamingOther) {
 				accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Other_Name_Setting__c;
 			}
 		} else if (defaultRecTypeId == adminAccountRecordTypeId) {
-			accountNamingFormat = adminAccNamingFormat;
+			System.debug('checkAccountType adminAccountRecordTypeId -->');
 			if (accountNamingFormat == Label.acctNamingOther) {
 				accountNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Other_Name_Setting__c;
 			}
 		}
+
+		System.debug('checkAccountType finalAcctNamingFOrmat -->' + accountNamingFormat);
 		return accountNamingFormat;
 	}
 
 	public static String defaultAccountName(Contact[] cons, String accountNamingFormat) {
 		Set<String> householdLastNames = new Set<String>();
+        String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
+		String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
 		String finalAccountName;
 
+		System.debug('defaultAccountName Method -->' + accountNamingFormat);
+
 		for (Contact con : cons) {
-			if (accountNamingFormat == hhAccNamingFormat) {
+			System.debug('defaultAccountName Loop1 -->');
+
+            if (defaultRecTypeId == hhAccountRecordTypeId) {
+				System.debug('defaultAccountName HHAccount -->');
 				householdLastNames.add(con.LastName);
-			} else if (accountNamingFormat == adminAccNamingFormat) {
+				System.debug('defaultAccountName HHAccount -->' + householdLastNames);
+			} else if (defaultRecTypeId == adminAccountRecordTypeId) {
+				System.debug('defaultAccountName adminAcct -->');
 				finalAccountName = con.LastName + ' ' + System.label.DefaultAdminName;
+				System.debug('defaultAccountName adminAcct -->' + finalAccountName);
 				break;
 			} else {
+				System.debug('defaultAccountName nonHHAdminAcct -->');
 				finalAccountName = con.LastName + ' ' + System.label.DefaultAccountName;
 				break;
 			}
@@ -142,16 +179,23 @@ public class UTIL_ACCT_Naming_DF {
             String name = '';
 			String strAnd = ' ' + Label.defaultNamingConnector + ' ';
         	Integer counter = 0;
-
+			System.debug('defaultAccountName householdLastNames Check -->');
         	for (String lastName : householdLastNames) {
+				System.debug('defaultAccountName householdLastNames Loop -->');
             	name += lastName;
             	counter++;
+				System.debug('defaultAccountName name -->' + name);
+				System.debug('defaultAccountName counter -->' + counter);
             	if (counter < householdLastNames.size()) {
+ 					System.debug('defaultAccountName countercheck-->');
                 	name += strAnd;
+					System.debug('defaultAccountName name-->' + name);
             	}
         	}
 			if (accountNamingFormat == hhAccNamingFormat) {
+				System.debug('defaultAccountName accountNamingFormat==HH -->');
 				finalAccountName =  name + ' ' + System.label.DefaultHouseholdName;
+				System.debug('defaultAccountName finalAccountName -->' + finalAccountName);
     		}
         }
 		return finalAccountName;
@@ -170,8 +214,12 @@ public class UTIL_ACCT_Naming_DF {
 
 		//accountNamingFormat should return  Household_Account_Naming_Format__c
 		private NameSpec(String accountNamingFormat) {
+            String hhAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
+			String adminAccNamingFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
 			//strNameSpec should return value ie. {!LastName} Family OR {!LastName} {!FirstName} Family
 			//String strNameSpec = String.valueOf()
+
+            //TODO: Fix the acctNamingFormat null result
 			String strNameSpec;
 			if (accountNamingFormat != NULL) {
 				if (accountNamingFormat == hhAccNamingFormat) {
@@ -210,7 +258,7 @@ public class UTIL_ACCT_Naming_DF {
 				strAcctNameFormat = strNameSpec.left(indexAfterLastParenthesis+1); //Retrieves just the format without the suffix ie. {!LastName}
 			}
 			//Retrieve FirstNameSpec
-			String strFirstName = strFNameSpecFromStrNameSpec(strAcctNameFormat); //Returns the format of the FirstName
+			String strFirstName = strFNameSpecFromStrNameSpec(strAcctNameFormat); //Returns the format of the FirstName ie. {!FirstName}
 			Integer indexOfLeft = strFirstName.indexOf(chLToken); // -1 for {!LastName} Family scenario
 			Integer indexOfRight = strFirstName.lastIndexOf(chRToken); // -1 for {!LastName} Family scenario
 			if (indexOfLeft >= 0 && indexOfRight > 0) {
@@ -233,7 +281,9 @@ public class UTIL_ACCT_Naming_DF {
         }
 
 	}
-    private static set<string> setStrFieldFromStrFSpec(String strFSpec) {
+
+	//Returns the a clean String {FirstName} OR {LastName}
+    private static Set<string> setStrFieldFromStrFSpec(String strFSpec) {
         set<string> setStrField = new set<string>();
 		System.debug('setStrFieldFromStrFSpec method -->');
         // First, instantiate a new Pattern object looking for {...} without any nested {'s.
@@ -247,13 +297,14 @@ public class UTIL_ACCT_Naming_DF {
             // get the fieldname without the {}'s
            	System.debug('setStrFieldFromStrFSpec MyMatcherCheck -->' + MyMatcher);
             string strField = strFSpec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
-            System.debug('setStrFieldFromStrFSpec strField -->' + strField);
+            System.debug('setStrFieldFromStrFSpec strField -->' + strField); // Returns just "FirstName/LastName" instead of "{!FirstName}/{!LastName}"
             System.debug('setStrFieldFromStrFSpec strFieldTrim -->' + strField.trim());
-            setStrField.add(strField.trim());
+            setStrField.add(strField.trim()); //Returns {FirstName} OR {LastName} without !
             System.debug('setStrFieldFromStrFSpec setStrField -->' + setStrField);
         }
         return setStrField;
     }
+	//Returns just the {!FirstName} format if it contains additional format
 	private static String strFNameSpecFromStrNameSpec(String strAcctNameFormat) {
 		Pattern MyPattern = Pattern.compile('\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}');
 		Matcher MyMatcher = MyPattern.matcher(strAcctNameFormat);
