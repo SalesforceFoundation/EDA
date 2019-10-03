@@ -110,7 +110,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>MultipleCourseConnection</shortDescription>
-        <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student's enrollment in this Course Offering for this Term Grade.</value>
+        <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
     </labels>
     <labels>
         <fullName>NoContactCOFound</fullName>
@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoContactCOFound</shortDescription>
-        <value>The Contact and Course Offering are not specified or don't match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
+        <value>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
         <fullName>NoCourseConnection</fullName>
@@ -134,7 +134,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>NoDataMatch</shortDescription>
-        <value>The Contact and Course Offering don't match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
+        <value>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
     </labels>
     <labels>
         <fullName>NoFieldsPopulated</fullName>
