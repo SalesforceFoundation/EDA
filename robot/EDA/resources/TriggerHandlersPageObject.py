@@ -47,24 +47,6 @@ class TriggerHandlersHomePage(BasePage):
             error="'Action' button is not available on Contacts page"
         )
         self.selenium.click_element(locator)
-   
-    def open_app_launcher(self, app_name):
-        """ Navigates to a Salesforce App via the App Launcher """
-        locator = eda_lex_locators["app_launcher"]["app_link"].format(app_name)
-        self.builtin.log("Opening the App Launcher")
-        self.salesforce.open_app_launcher()
-        time.sleep(1)
-        self.builtin.log("Getting the web element for the app")
-        self.selenium.set_focus_to_element(locator)
-        elem = self.selenium.get_webelement(locator)
-        self.builtin.log("Getting the parent link from the web element")
-        link = elem.find_element_by_xpath("../../..")
-        self.selenium.set_focus_to_element(link)
-        self.builtin.log("Clicking the link")
-        link.click()
-        self.builtin.log("Waiting for modal to close")
-        self.salesforce.wait_until_modal_is_closed()
-
 
     def select_action(self, action):
         """ Select the action shortcut """

@@ -82,22 +82,6 @@ class EDA(object):
         self.selenium.set_focus_to_element(locator)
         self.selenium.get_webelement(locator).click()
 
-    def my_select_app_launcher(self, app_name):
-        """ Navigates to a Salesforce App via the App Launcher
-        """
-        locator = eda_lex_locators["app_launcher"]["app_link"].format(app_name)
-        self.builtin.log("Opening the App Launcher")
-        self.salesforce.open_app_launcher()
-        self.builtin.log("Getting the web element for the app")
-        self.selenium.set_focus_to_element(locator)
-        elem = self.selenium.get_webelement(locator)
-        self.builtin.log("Getting the parent link from the web element")
-        link = elem.find_element_by_xpath("../../..")
-        self.selenium.set_focus_to_element(link)
-        self.builtin.log("Clicking the link")
-        link.click()
-        self.builtin.log("Waiting for modal to close")
-        self.salesforce.wait_until_modal_is_closed()
 
     def select_frame_with_value(self, value):
         """ Selects frame identified by the given value
@@ -127,7 +111,6 @@ class EDA(object):
                 drop_down = eda_lex_locators["rel_loc_dd"].format(index)
                 self.selenium.get_webelement(drop_down).click()
                 self.selenium.get_webelement(drop_down).click()
-
 
     def select_the_tab(self, title):
         """ Switch between different tabs on a record page like Related, Details, News, Activity and Chatter
@@ -443,9 +426,6 @@ class EDA(object):
                 self.selenium.wait_until_element_is_visible(locator)
                 self.selenium.get_webelement(locator).click()
 
-#    def close_toast_message(self):
-#        """ Closes the toast message by clicking on the close button in the toast window """
-#        self.click_on_element_if_exists(eda_lex_locators["toast_close"])
 
     def click_on_element_if_exists(self, path, *args, **kwargs):
         """ Clicks on the element if it exists
