@@ -209,7 +209,7 @@ public with sharing class TGRD_ValidateData_TDTM extends TDTM_Runnable {
                 if (termGrade.Course_Offering__c == eachEnrollment.Course_Offering__c && eachEnrollment.Contact__c != NULL) {              
                     termGrade.Contact__c = eachEnrollment.Contact__c;                              
                 } else {               
-                    termGrade.addError(Label.NoContactFound);              
+                    termGrade.addError(Label.NoContactCOFound);              
                 }
             }
         }   
@@ -229,7 +229,7 @@ public with sharing class TGRD_ValidateData_TDTM extends TDTM_Runnable {
                 if (termGrade.Contact__c == eachEnrollment.Contact__c && eachEnrollment.Course_Offering__c != NULL) {                
                     termGrade.Course_Offering__c = eachEnrollment.Course_Offering__c;                               
                 } else {               
-                    termGrade.addError(Label.NoCourseOffering);              
+                    termGrade.addError(Label.NoContactCOFound);              
                 }           
             }        
         }    
