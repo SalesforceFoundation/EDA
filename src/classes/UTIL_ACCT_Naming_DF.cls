@@ -111,21 +111,6 @@ public class UTIL_ACCT_Naming_DF {
 		return finalAccountName;
 	}
 
-    private Hierarchy_Settings__c hs {
-        get {
-            if (hs == NULL) {
-                hs = UTIL_CustomSettingsFacade.getSettings();
-                System.debug('hns -->' + hs);
-            }
-            return hs;
-        }
-        set;
-    }
-
-    /*public NameSpec getHouseholdFormalGreeting(list<Contact> listCon) {
-        NameSpec ns = new NameSpec(hs, 'Formal_Greeting_Format__c');
-        return ns;
-    }*/
 	public static String checkAccountFormat () {
 		String accountNamingFormat;
 		System.debug('checkAccountType defaultRecTypeId -->' + defaultRecTypeId);
@@ -256,7 +241,7 @@ public class UTIL_ACCT_Naming_DF {
 			if (strNameSpec == NULL) {
 				return;
 			}
-			// {!FirstName} {!LastName} Household
+			// {!{!FirstName}} {!LastName} Family
 			Integer indexFirstParenthesis = strNameSpec.indexOf(chLToken); //Should return 0
             System.debug('parseNameSpec indexFirstParenthesis -->' + indexFirstParenthesis);
             System.debug('parseNameSpec strNameSpec -->'+ strNameSpec);
@@ -288,11 +273,13 @@ public class UTIL_ACCT_Naming_DF {
             System.debug('NameSpec strFirstName -->' + strFirstName);
 			Integer indexOfLeft = strFirstName.indexOf(chLToken); // -1 for {!LastName} Family scenario
 			Integer indexOfRight = strFirstName.lastIndexOf(chRToken); // -1 for {!LastName} Family scenario
-            System.debug('NameSpec indexOfLeft -->' + indexOfLeft);
-            System.debug('NameSpec indexOfRight -->' + indexOfRight);
+            System.debug('NameSpec indexOfLeft -->' + indexOfLeft);//0
+            System.debug('NameSpec indexOfRight -->' + indexOfRight);//14
 
             if (indexOfLeft >= 0 && indexOfRight > 0) {
-				strFullNameSpec = strNameSpec.replace(strFirstName, 'FirstNameSpec'); //Return {!LastName} FirstNameSpec or FirstNameSpec
+                System.debug('NameSpec strNameSpec check beforesettingstrFullNameSpec --> ' + strNameSpec);
+                System.debug('NameSpec strFirstName -->' + strFirstName);
+				strFullNameSpec = strAcctNameFormat.replace(strFirstName, 'FirstNameSpec'); //Return {!LastName} FirstNameSpec or FirstNameSpec
                 System.debug('NameSpec strFullNameSpec string -->' + strFullNameSpec);
 				strFirstNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
                 System.debug('NameSpec strFirstNameSpec string -->' + strFirstNameSpec);
@@ -340,49 +327,61 @@ public class UTIL_ACCT_Naming_DF {
     }
 	//Returns just the {!FirstName} format if it contains additional format
 	private static String strFNameSpecFromStrNameSpec(String strAcctNameFormat) {
+        System.debug('strFNameSpecFromStrNameSpec Method -->');
 		Pattern MyPattern = Pattern.compile('\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}');
 		Matcher MyMatcher = MyPattern.matcher(strAcctNameFormat);
 
 		if (MyMatcher.find()) {
+            System.debug('strFNameSpecFromStrNameSpec FindCheck -->');
 			return strAcctNameFormat.subString(MyMatcher.start(), MyMatcher.end());
 		} else {
+            System.debug('strFNameSpecFromStrNameSpec FindCheckFail -->');
 			return '';
 		}
 	}
 
 	private static String buildAccountName(Contact[] cons, NameSpec ns) {
-		Integer conSize = cons.size();
-		Boolean isNoLastnames = ns.strFullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
-		Boolean isLastNameOnlyFormat = !isNoLastnames && ns.setStrFieldsInNameSpec().size() == 1;
 		Set<String> processedLastNames = new Set<String>();
 		String[] finalAccountName = new String[0];
+
+        Integer conSize = cons.size();
+		Boolean isNoLastnames = ns.strFullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
+		Boolean isLastNameOnlyFormat = !isNoLastnames && ns.setStrFieldsInNameSpec().size() == 1;
+		Map<Id, List<Contact>> mapLastFirstName = new Map<Id, List<Contact>>();
+
+        cons.sort(); //This sorts it alphabetical.
 
         System.debug('conSize -->' + conSize);
         System.debug('isNoLastnames -->' + isNoLastnames);
         System.debug('isLastNameOnlyFormat -->' + isLastNameOnlyFormat);
 		//strFirstNameSpec ==> {!FirstName}
 		//strFullNameSpec ==> {!LastName} (FirstNameSpec)
-		for (Integer i = 0, next = 0; i < conSize; i = next) {
-			String strLName = cons[i].LastName;
+
+        for (Integer i = 0, next = 0; i < conSize; i = next) {
+            System.debug('buildAcc iCheck -->' + i);
+        	System.debug('buildAcc next -->' + next);
+        	System.debug('buildAcc iConSizeCheck -->' + (i<conSize));
+            System.debug('buildAcc inextCheck -->' + (i=next));
+
+            String strLName = cons[i].LastName;
+            next = i + 1;
             System.debug('strLName -->' + strLName);
-			next = i + 1;
             System.debug('next -->' + next);
 
-			if (isLastNameOnlyFormat && processedLastNames.contains(strLname)) {
+			if (isLastNameOnlyFormat && processedLastNames.contains(strLName)) {
 				continue;
 			}
+
 			//Adds the lastName
 			processedLastNames.add(strLName);
             System.debug('processedLastNames -->' + processedLastNames);
 
-			//TODO: potentially break this into it's own method  - all about firstnames
 			//Retrieves value of FirstName
 			String strFName = strConFspec(cons[i], ns.strFirstNameSpec);
-            System.debug('strFName return -->' + strFName);
-			//TODO: Need to sort strFName so that it is in order
-			//Retrieves additional FName if there's more than 1
+
+            //Retrieves additional FirstName if there are multiple First Names
 			List<String> listFName = new List<String>();
-			for (; next < conSize && (isNoLastnames || cons[next].LastName == strLname); next ++) {
+            for (; next < conSize && (isNoLastnames || cons[next].LastName == strLname); next ++) {
                 System.debug('strFName forloop -->' + strFName);
 				String nextFName = strConFspec(cons[next], ns.strFirstNameSpec);
                 System.debug('nextFName  -->' + nextFName);
@@ -391,6 +390,24 @@ public class UTIL_ACCT_Naming_DF {
                     System.debug('listFName  -->' + listFName);
 				}
 			}
+
+			String lastName = processName(cons, strLname, strFName, listFName, ns, conSize,
+                                      		i, next, isNoLastnames);
+
+            finalAccountName.add(lastName);
+            System.debug('finalAccountName -->' + finalAccountName);
+		}
+        System.debug('buildAcctName prefix -->' + ns.namePrefix);
+        System.debug('buildAcctName suffix -->' + ns.nameSuffix);
+		return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
+	}
+
+    private static String processName( Contact[] cons, String strLName, String strFName, String[] listFName, NameSpec ns, Integer conSize,
+                                      Integer i, Integer next, Boolean isNoLastnames) {
+
+            System.debug('strLname return -->' + strLName);
+            System.debug('strFName return -->' + strFName);
+
 			//Strings up the FNames together
 			for (Integer k = 0; k <listFName.size(); k++) {
                 System.debug('strFName 2ndLoop --->');
@@ -403,11 +420,10 @@ public class UTIL_ACCT_Naming_DF {
 					strFName += ', ' + listFName[k];
                     System.debug('strFName ElseIfAfter -->' + strFName);
 				}
-
 			}
 
-			//TODO: potentially break this into it's own method - all about lastnames
-			String lastName = strConFspec(cons[i], ns.strFullNameSpec);
+            //Handles processing LastNames
+        	String lastName = strConFspec(cons[i], ns.strFullNameSpec);
             System.debug('lastName return -->'+ lastName);
 			lastName = lastName.replace('FirstNameSpec', strFname);
             System.debug('lastName afterReplace -->'+ lastName);
@@ -416,12 +432,12 @@ public class UTIL_ACCT_Naming_DF {
 				lastName = lastName.trim();
                 System.debug('lastname trim -->'+ lastName);
 			}
-			finalAccountName.add(lastName);
-            System.debug('BuildAccount finalAccountName -->'+ finalAccountName);
-		}
-		return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
-	}
-    private static string strConFspec(Contact con, string strFspec) {
+
+            System.debug('BuildAccount lastName -->'+ lastName);
+            return lastName;
+    }
+
+    private static String strConFspec(Contact con, string strFspec) {
         System.debug('strConFspec Method -->'+ strFspec);
         string str = strFspec;
 
@@ -435,15 +451,16 @@ public class UTIL_ACCT_Naming_DF {
         while (MyMatcher.find()) {
             System.debug('strConFspec MyMatcherCheck -->' + MyMatcher);
             // get the fieldname without the {}'s
-            string strField = strFspec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
+            String strField = strFspec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
             System.debug('strConFspec strField -->' + strField);  //returns just "LastName" instead of {!LastName}
 
             //separate cross object references, i.e. account.name
-            list<string> splitField = (strField.split('\\.',0));
+            List<String> splitField = (strField.split('\\.',0));
+            splitField.sort(); //Testing if this will alphabetize the LName
             System.debug('strConFspec splitField -->' + splitField); // returns (LastName)
 
             //remove the field name itself to only include parent object references
-            string fieldName = splitField[splitField.size()-1].trim();
+            String fieldName = splitField[splitField.size()-1].trim();
             System.debug('strConFspec fieldName -->' + fieldName); //returns LastName
             splitField.remove(splitField.size()-1);
             System.debug('strConFspec splitField -->' + splitField); //returns nothing ()
@@ -472,12 +489,15 @@ public class UTIL_ACCT_Naming_DF {
                 }
             }
 
-            string val;
+            String val;
+
             if (thisObj != null) {
                 System.debug('strConFspec thisObIsNotBlank -->' + thisObj);
-                val = string.valueOf(thisObj.get(fieldName));
+                val = String.valueOf(thisObj.get(fieldName));
                 System.debug('strConFspec val -->' + val); //returns just the last name value "Pens"
             }
+
+
 
             System.debug('strConFspec strField -->' + strField);
             // add back the {}'s for string substitution
@@ -499,6 +519,7 @@ public class UTIL_ACCT_Naming_DF {
         }
         return str;
     }
+
 	private static String stringAccountName(String[] finalAccountName, NameSpec ns) {
         System.debug('stringAccountName Method -->');
 		String name = '';
@@ -519,6 +540,7 @@ public class UTIL_ACCT_Naming_DF {
 			name += delimeter + finalAccountName[i];
             System.debug('stringAccountName nameAfter -->' + name);
 		}
+        System.debug('stringAccountName accountNameFinal -->' + name);
 		return name;
 	}
 }
