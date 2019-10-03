@@ -61,16 +61,12 @@
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactFound --></label>
-        <name>NoContactFound</name>
+        <label><!-- NoContactCOFound --></label>
+        <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
         <label><!-- NoCourseConnection --></label>
         <name>NoCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- NoCourseOffering --></label>
-        <name>NoCourseOffering</name>
     </customLabels>
     <customLabels>
         <label><!-- NoDataMatch --></label>
@@ -85,16 +81,8 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label><!-- OnlyContactPopulated --></label>
-        <name>OnlyContactPopulated</name>
-    </customLabels>
-    <customLabels>
         <label><!-- OnlyCourseConnectionPopulated --></label>
         <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- OnlyCourseOfferingPopulated --></label>
-        <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
         <label>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</label>

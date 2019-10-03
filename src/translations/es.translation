@@ -61,16 +61,12 @@
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactFound --></label>
-        <name>NoContactFound</name>
+        <label><!-- NoContactCOFound --></label>
+        <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
         <label><!-- NoCourseConnection --></label>
         <name>NoCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- NoCourseOffering --></label>
-        <name>NoCourseOffering</name>
     </customLabels>
     <customLabels>
         <label><!-- NoDataMatch --></label>
@@ -85,16 +81,8 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label><!-- OnlyContactPopulated --></label>
-        <name>OnlyContactPopulated</name>
-    </customLabels>
-    <customLabels>
         <label><!-- OnlyCourseConnectionPopulated --></label>
         <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- OnlyCourseOfferingPopulated --></label>
-        <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
         <label>No podemos encontrar el correo electrónico especificado en Correo electrónico preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo de correo electrónico personalizado existente.</label>

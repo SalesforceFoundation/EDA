@@ -61,16 +61,12 @@
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactFound --></label>
-        <name>NoContactFound</name>
+        <label><!-- NoContactCOFound --></label>
+        <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
         <label><!-- NoCourseConnection --></label>
         <name>NoCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- NoCourseOffering --></label>
-        <name>NoCourseOffering</name>
     </customLabels>
     <customLabels>
         <label><!-- NoDataMatch --></label>
@@ -85,16 +81,8 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label><!-- OnlyContactPopulated --></label>
-        <name>OnlyContactPopulated</name>
-    </customLabels>
-    <customLabels>
         <label><!-- OnlyCourseConnectionPopulated --></label>
         <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- OnlyCourseOfferingPopulated --></label>
-        <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
         <label>L&apos;e-mail spécifié dans Adresse e-mail préférée est introuvable. Assurez-vous de saisir l&apos;étiquette d&apos;un champ d&apos;adresse e-mail personnalisé existant.</label>

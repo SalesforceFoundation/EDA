@@ -61,16 +61,12 @@
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactFound --></label>
-        <name>NoContactFound</name>
+        <label><!-- NoContactCOFound --></label>
+        <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
         <label><!-- NoCourseConnection --></label>
         <name>NoCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- NoCourseOffering --></label>
-        <name>NoCourseOffering</name>
     </customLabels>
     <customLabels>
         <label><!-- NoDataMatch --></label>
@@ -84,17 +80,9 @@
         <label>--Cap--</label>
         <name>NoneOption</name>
     </customLabels>
-    <customLabels>
-        <label><!-- OnlyContactPopulated --></label>
-        <name>OnlyContactPopulated</name>
-    </customLabels>
         <customLabels>
         <label><!-- OnlyCourseConnectionPopulated --></label>
         <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- OnlyCourseOfferingPopulated --></label>
-        <name>OnlyCourseOfferingPopulated</name>
     </customLabels>
     <customLabels>
         <label>No podem trobar el correu electrònic especificat a Correu electrònic preferit. Assegureu-vos que esteu introduint l&apos;etiqueta del camp d&apos;un camp de correu electrònic personalitzat existent.</label>
