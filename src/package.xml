@@ -523,15 +523,12 @@
         <members>InvalidFilter</members>
         <members>Male</members>
         <members>MultipleCourseConnection</members>
-        <members>NoContactFound</members>
+        <members>NoContactCOFound</members>
         <members>NoCourseConnection</members>
-        <members>NoCourseOffering</members>
         <members>NoDataMatch</members>
         <members>NoFieldsPopulated</members>
         <members>NoneOption</members>
-        <members>OnlyContactPopulated</members>
         <members>OnlyCourseConnectionPopulated</members>
-        <members>OnlyCourseOfferingPopulated</members>
         <members>PreferredEmailMatchMustExist</members>
         <members>PreferredEmailMatchNotNull</members>
         <members>PreferredEmailRequiredError</members>

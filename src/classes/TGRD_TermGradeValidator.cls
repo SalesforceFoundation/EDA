@@ -59,11 +59,11 @@ public class TGRD_TermGradeValidator  {
             return false;
         } else if (this.courseConnectionId == NULL && this.contactId != NULL && this.courseOfferingId == NULL) {
             // Only Contact is populated
-            this.errorMsg = Label.OnlyContactPopulated;
+            this.errorMsg = Label.NoFieldsPopulated;
             return false;
         } else if (this.courseConnectionId == NULL && this.contactId == NULL && this.courseOfferingId != NULL) {
             // Only Course Offering is populated
-            this.errorMsg = Label.OnlyCourseOfferingPopulated;
+            this.errorMsg = Label.NoFieldsPopulated;
             return false;
         }
 

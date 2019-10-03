@@ -83,7 +83,7 @@ private class TGRD_ValidateData_TEST {
             insert termGrade;
             Test.stopTest();            
         }catch(Exception error) {
-             System.assert(error.getMessage().contains(Label.OnlyContactPopulated));
+             System.assert(error.getMessage().contains(Label.NoFieldsPopulated));
         }    
     
     }
@@ -101,7 +101,7 @@ private class TGRD_ValidateData_TEST {
             insert termGrade;    
             Test.stopTest();        
         }catch(Exception error) {
-             System.assert(error.getMessage().contains(Label.OnlyCourseOfferingPopulated));
+             System.assert(error.getMessage().contains(Label.NoFieldsPopulated));
         }    
     
     }
@@ -203,7 +203,7 @@ private class TGRD_ValidateData_TEST {
                 insert termGrade;
                 Test.stopTest();
             }catch(Exception error) {
-                System.assert(error.getMessage().contains(Label.NoCourseOffering));
+                System.assert(error.getMessage().contains(Label.NoContactCOFound));
             
            }  
             
@@ -254,7 +254,7 @@ private class TGRD_ValidateData_TEST {
                 insert termGrade;
                 Test.stopTest();
             }catch(Exception error) {
-                System.assert(error.getMessage().contains(Label.NoContactFound));
+                System.assert(error.getMessage().contains(Label.NoContactCOFound));
             
             }  
            
@@ -505,7 +505,7 @@ private class TGRD_ValidateData_TEST {
         TGRD_TermGradeValidator tgv = new TGRD_TermGradeValidator(tg);
         Test.stopTest();
         System.AssertEquals(false, tgv.hasValidFields());
-        System.assert(tgv.getError().contains(Label.OnlyContactPopulated));
+        System.assert(tgv.getError().contains(Label.NoFieldsPopulated));
             
     }
 
@@ -520,7 +520,7 @@ private class TGRD_ValidateData_TEST {
         TGRD_TermGradeValidator tgv = new TGRD_TermGradeValidator(tg);
         Test.stopTest();
         System.AssertEquals(false, tgv.hasValidFields());
-        System.assert(tgv.getError().contains(Label.OnlyCourseOfferingPopulated));
+        System.assert(tgv.getError().contains(Label.NoFieldsPopulated));
             
     }
     
