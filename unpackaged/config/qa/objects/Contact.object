@@ -39,7 +39,7 @@
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Primary_Academic_Program__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Primary_Language__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Primary_Language__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.REPORTS_TO.NAME</searchResultsAdditionalFields>
     </searchLayouts>
 </CustomObject>
