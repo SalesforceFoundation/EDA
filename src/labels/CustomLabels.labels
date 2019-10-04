@@ -158,7 +158,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>OnlyCourseConnectionPopulated</shortDescription>
-        <value>There is no Contact and Course Offering associated with this Course Connection. Choose a valid Course Connection.</value>
+        <value>There is no Contact or Course Offering associated with this Course Connection. Choose a valid Course Connection.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailMatchMustExist</fullName>
