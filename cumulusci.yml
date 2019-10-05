@@ -68,6 +68,7 @@ tasks:
                 STG_InstallScript.insertMappings();
                 STG_InstallScript.insertRelationshipLookups();
                 TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
+                STG_InstallScript.enablePreferredPhoneSync();
 
     execute_qa_apex:
         description: Runs Apex setup for QA orgs.
