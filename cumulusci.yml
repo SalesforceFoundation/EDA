@@ -91,7 +91,7 @@ tasks:
 
     update_admin_profile:
         description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
-        group: Custom Tasks
+        group: "EDA: Custom Tasks"
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
