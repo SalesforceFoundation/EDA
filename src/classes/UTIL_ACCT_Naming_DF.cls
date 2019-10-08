@@ -303,7 +303,11 @@ public class UTIL_ACCT_Naming_DF {
             if (indexOfLeft >= 0 && indexOfRight > 0) {
                 System.debug('NameSpec strNameSpec check beforesettingstrFullNameSpec --> ' + strNameSpec);
                 System.debug('NameSpec strFirstName -->' + strFirstName);
-				strFullNameSpec = strAcctNameFormat.replace(strFirstName, 'FirstNameSpec'); //Return {!LastName} FirstNameSpec or FirstNameSpec
+               	if (strSalutation == NULL || strSalutation == '') {
+                    strFullNameSpec = strAcctNameFormat.replace(strFirstName, 'FirstNameSpec'); //Return {!LastName} FirstNameSpec or FirstNameSpec
+                } else {
+                    strFullNameSpec = strAcctNameFormat;
+                }
                 System.debug('NameSpec strFullNameSpec string -->' + strFullNameSpec);
                 //Do a check if it's {!{!FirstName}} vs {!FirstName}
                 System.debug('setFNSpec Check -->'  + setFNSpec);
@@ -468,7 +472,7 @@ public class UTIL_ACCT_Naming_DF {
                     System.debug('listFName  -->' + listFName);
 				}
 			}
-            System.debug('FinallistFNameB4 -->' + listFName);
+            System.debug('FinallistFNameB4 -->' + listFName); //Shows additional first names
 
 			String lastName = processName(cons, strLname, strFName, listFName, ns, conSize,
                                       		i, next, isNoLastnames);
@@ -479,7 +483,8 @@ public class UTIL_ACCT_Naming_DF {
         System.debug('buildAcctName prefix -->' + ns.namePrefix);
         System.debug('buildAcctName suffix -->' + ns.nameSuffix);
         System.debug('strSalutationAfter -->' + strSalutation);
-        System.debug('checkB4FinalAcct -->' + (ns.namePrefix + strSalutation + stringAccountName(finalAccountName, ns) + ns.nameSuffix));
+        System.debug('checkB4FinalAcctName -->' + (ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix));
+        System.debug('checkB4FinalAcctAddSalutation -->' + (ns.namePrefix + strSalutation + stringAccountName(finalAccountName, ns) + ns.nameSuffix));
         //Issue is because it does it in order, it's breaking.
 		return ns.namePrefix + strSalutation + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
 	}
@@ -528,7 +533,7 @@ public class UTIL_ACCT_Naming_DF {
     private static String processName( Contact[] cons, String strLName, String strFName, String[] listFName,
                                       NameSpec ns, Integer conSize, Integer i, Integer next, Boolean isNoLastnames) {
 
-            System.debug('strLname return -->' + strLName);
+            System.debug('strLname return -->' + strLName); //0Contact_forTests0
             System.debug('strFName return -->' + strFName);
             System.debug('listFName -->' + listFName);
 
@@ -555,10 +560,11 @@ public class UTIL_ACCT_Naming_DF {
             System.debug('FinalStrFName -->' + strFName);
 
             //Handles processing LastNames
+            System.debug('processName strFullNameSpec -->' + ns.strFullNameSpec);
         	String lastName = strConFspec(cons[i], ns.strFullNameSpec);
             System.debug('lastName return -->'+ lastName);
 			lastName = lastName.replace('FirstNameSpec', strFname);
-            System.debug('lastName afterReplace -->'+ lastName);
+            System.debug('lastName afterReplace -->'+ lastName); //ie. Mr. 0Test0
 
             if (strFname == '') {
                 System.debug('firstNameCheck check -->'+ lastName);
