@@ -100,8 +100,7 @@ Verify batch functionality of preferred phone
 
 
     # Create a new contact and add some phone numbers
-    # Note:  The trigger handler is NOT set to Active, 
-    #        and the 'Disable Preferred Phone enforcement'
+    # Note:  The 'Disable Preferred Phone enforcement'
     #        is NOT being enforced
     Create last contact
     Go To Object Home                       Contact
@@ -110,7 +109,7 @@ Verify batch functionality of preferred phone
     Add home phone to contact and verify    ${CONTACT4.FirstName}
     ...                                     ${CONTACT4.LastName}
 
-    # Now we'll reconfigure the trigger and EDA Setting
+    # Now we'll reconfigure the EDA Setting
     # and run another test to check 'Run Cleanup'
 
     Open EDA Settings Tab menu item
@@ -155,23 +154,6 @@ Create last contact
 
     &{CONTACT4} =   API Create Contact
     Set suite variable          &{CONTACT4}
-
-Deactivate trigger handler
-    Get trigger handler
-    Clear the check on active checkbox
-
-Enable trigger handler
-    Load page object
-    ...                                     Home
-    ...                                     TriggerHandlers
-    Get trigger handler
-
-Get trigger handler
-    Click item     
-    ...                                     //span[text()='Trigger Handlers']
-    ...                                     Trigger Handler item not found
-    ...                                     True
-    Verify trigger handler                  CON_PreferredPhone_TDTM
 
 Open EDA Settings Tab menu item
     Select app launcher tab                 EDA Settings
