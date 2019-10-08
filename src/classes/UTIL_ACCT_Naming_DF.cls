@@ -230,6 +230,7 @@ public class UTIL_ACCT_Naming_DF {
         private String strFullNameSpec { get; set; }
         private String strAnd { get; set; }
         private string strAcctNameFormat { get; set; }
+        private String strSalutation {get; set; }
 
 		//accountNamingFormat should return  Household_Account_Naming_Format__c
 		private NameSpec(String accountNamingFormat) {
@@ -285,9 +286,14 @@ public class UTIL_ACCT_Naming_DF {
 			}
 
 			System.debug('NameSpec strAcctNameFormat -->' + strAcctNameFormat);
-			//Retrieve FirstNameSpec
+
+            //Retrieve FirstNameSpec
 			String strFirstName = strFNameSpecFromStrNameSpec(strAcctNameFormat); //Returns the format of the FirstName ie. {!FirstName}
             System.debug('NameSpec strFirstName -->' + strFirstName);
+
+            //Retrieving Salutation
+            strSalutation = strSalutationFromStrNameSpec(strAcctNameFormat);
+            System.debug('NameSpec strSalutation -->' + strSalutation);
 
             Integer indexOfLeft = strFirstName.indexOf(chLToken); // -1 for {!LastName} Family scenario
 			Integer indexOfRight = strFirstName.lastIndexOf(chRToken); // -1 for {!LastName} Family scenario
@@ -316,17 +322,36 @@ public class UTIL_ACCT_Naming_DF {
 		public set<string> setStrFieldsInNameSpec() {
             System.debug('setStrFieldsInNameSpec Method in NameSpec -->');
             set<string> setStrField = new set<string>();
-            if (strFirstNameSpec != null)
+            if (strFirstNameSpec != null) {
                 setStrField.addAll(setStrFieldFromStrFSpec(strFirstNameSpec)); //Returns {FirstName}
+            }
 
-            if (strFullNameSpec != null)
-                setStrField.addAll(setStrFieldFromStrFSpec(strFullNameSpec));  //Returns {FirstName, Lastname} if HHNAmeFormat == {!LastName} {!(FirstName)}
+            if (strFullNameSpec != null){
+               	setStrField.addAll(setStrFieldFromStrFSpec(strFullNameSpec));  //Returns {FirstName, Lastname} if HHNAmeFormat == {!LastName} {!(FirstName)}
+            }
+
             setStrField.add('LastName');
             return setStrField;
         }
 
 	}
 
+    private static String strSalutationFromStrNameSpec(String strAcctNameFormat) {
+  		String regexPattern = '(?:^|\\W)Salutation(?:$|\\W)';
+      	Pattern MyPattern = Pattern.compile(regexPattern);
+        System.debug('strFNameSpecFromStrNameSpec MyPattern -->' + MyPattern);
+		Matcher MyMatcher = MyPattern.matcher(strAcctNameFormat);
+		System.debug('MyMatcher1 -->' + MyMatcher);
+
+        if (MyMatcher.find()) {
+            System.debug('strFNameSpecFromStrNameSpec FindCheck -->');
+			return strAcctNameFormat.subString(MyMatcher.start()-1, MyMatcher.end());
+		} else {
+            System.debug('strFNameSpecFromStrNameSpec FindCheckFail -->');
+			return '';
+        }
+
+    }
 	//Returns the a clean String {FirstName} OR {LastName}
     private static Set<string> setStrFieldFromStrFSpec(String strFSpec) {
         set<string> setStrField = new set<string>();
@@ -365,6 +390,7 @@ public class UTIL_ACCT_Naming_DF {
 
         Pattern MyPatternCheck = Pattern.compile(regex1);
         Matcher MyMatcher2 = MyPatternCheck.matcher(strAcctNameFormat);
+
         if (MyMatcher2.find()) {
             setFNSpec = true;
         }
@@ -381,14 +407,14 @@ public class UTIL_ACCT_Naming_DF {
 	private static String buildAccountName(Contact[] cons, NameSpec ns) {
 		Set<String> processedLastNames = new Set<String>();
 		String[] finalAccountName = new String[0];
-
+        String strSalutation = '';
         Integer conSize = cons.size();
 		Boolean isNoLastnames = ns.strFullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
 		Boolean isLastNameOnlyFormat = !isNoLastnames && ns.setStrFieldsInNameSpec().size() == 1;
 		Map<Id, List<Contact>> mapLastFirstName = new Map<Id, List<Contact>>();
 
         cons.sort(); //This sorts it alphabetical.
-
+        System.debug('checkContactRecord -->' + cons);
         System.debug('conSize -->' + conSize);
         System.debug('isNoLastnames -->' + isNoLastnames);
         System.debug('isLastNameOnlyFormat -->' + isLastNameOnlyFormat);
@@ -414,6 +440,16 @@ public class UTIL_ACCT_Naming_DF {
 			processedLastNames.add(strLName);
             System.debug('processedLastNames -->' + processedLastNames);
 
+            //Retrieves Salutation
+            System.debug('buildAcctName strSalutation -->' + ns.strSalutation);
+            List<String> listSalutation = new List<String>();
+            strSalutation = strConFspec(cons[i], ns.strSalutation);
+            System.debug('buildAcctName strSalutation -->' + strSalutation);
+            strSalutation = processSalutation(cons, listSalutation, strSalutation,
+                                          ns, next, conSize);
+            System.debug('strSalutationAfter -->' + strSalutation);
+
+
             System.debug('buildAccountName strFirstNameSpec -->' + ns.strFirstNameSpec);
 			//Retrieves value of FirstName
 			String strFName = strConFspec(cons[i], ns.strFirstNameSpec);
@@ -432,6 +468,7 @@ public class UTIL_ACCT_Naming_DF {
                     System.debug('listFName  -->' + listFName);
 				}
 			}
+            System.debug('FinallistFNameB4 -->' + listFName);
 
 			String lastName = processName(cons, strLname, strFName, listFName, ns, conSize,
                                       		i, next, isNoLastnames);
@@ -441,35 +478,89 @@ public class UTIL_ACCT_Naming_DF {
 		}
         System.debug('buildAcctName prefix -->' + ns.namePrefix);
         System.debug('buildAcctName suffix -->' + ns.nameSuffix);
-		return ns.namePrefix + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
+        System.debug('strSalutationAfter -->' + strSalutation);
+        System.debug('checkB4FinalAcct -->' + (ns.namePrefix + strSalutation + stringAccountName(finalAccountName, ns) + ns.nameSuffix));
+        //Issue is because it does it in order, it's breaking.
+		return ns.namePrefix + strSalutation + stringAccountName(finalAccountName, ns) + ns.nameSuffix;
 	}
 
-    private static String processName( Contact[] cons, String strLName, String strFName, String[] listFName, NameSpec ns, Integer conSize,
-                                      Integer i, Integer next, Boolean isNoLastnames) {
+    private static String processSalutation(Contact[] cons, String[] listSalutation, String strSalutation,
+                                          NameSpec ns, Integer next, Integer conSize) {
+
+        //Processing more than 1 Salutation
+        if (strSalutation != NULL || strSalutation != '') {
+            for (; next < conSize; next ++) {
+                String nextSalutation = strConFspec(cons[next], ns.strSalutation);
+                System.debug('InsideSalutation nextSalutation -->' + nextSalutation);
+                if (nextSalutation != '') {
+                    System.debug('InsideSalutation nextSalutation -->' + nextSalutation);
+                    listSalutation.add(nextSalutation);
+                    System.debug('InsideSalutation listSalutation -->' + listSalutation);
+                }
+            }
+        }
+
+        //Strings up the Salutations together
+        for (Integer h = 0; h < listSalutation.size(); h++) {
+            System.debug('InsideSalutation Stringingup -->');
+        	if (h == listSalutation.size()-1) {
+            	System.debug('strSalutation Add AND-->' + strSalutation);
+                if (strSalutation == NULL || strSalutation == '') {
+                	System.debug('strSalutationIsNull -->' + strSalutation);
+                   	strSalutation = listSalutation[h];
+                    System.debug('strSalutationIsNull -->' + strSalutation);
+                } else {
+                    System.debug('strSalutationELSE -->' + strSalutation);
+                    strSalutation += ns.strAnd + listSalutation[h];
+                    System.debug('strSalutationAdd AND-->'+ strSalutation);
+                }
+
+            } else {
+              System.debug('strSalutation Add Comma -->'+ strSalutation);
+              strSalutation += ', '+ listSalutation[h];
+              System.debug('strSalutation Add Comma -->'+ strSalutation);
+           	}
+      	}
+        System.debug('strSalutationfinal -->' + strSalutation);
+        return strSalutation;
+    }
+
+    private static String processName( Contact[] cons, String strLName, String strFName, String[] listFName,
+                                      NameSpec ns, Integer conSize, Integer i, Integer next, Boolean isNoLastnames) {
 
             System.debug('strLname return -->' + strLName);
             System.debug('strFName return -->' + strFName);
+            System.debug('listFName -->' + listFName);
 
-			//Strings up the FNames together
+            //Strings up the FNames together
 			for (Integer k = 0; k <listFName.size(); k++) {
                 System.debug('strFName 2ndLoop --->');
 				if (k == listFName.size()-1) {
                     System.debug('strFName Add -->');
-					strFName += ns.strAnd + listFName[k];
-                    System.debug('strFName Add -->' + strFName);
+                    if (strFName == NULL || strFName == '') {
+                        System.debug('strFName Add isBlank -->' + strFName);
+                        strFName = ' ' + listFName[k];
+                        System.debug('strFName Add isBlank -->' + strFName);
+                    } else {
+                        System.debug('strFName Add NotBlank -->' + strFName);
+                        strFName += ns.strAnd + listFName[k];
+                    	System.debug('strFName Add NotBlank -->' + strFName);
+                    }
 				} else {
                     System.debug('strFName ElseIfB4 -->' + strFName);
 					strFName += ', ' + listFName[k];
                     System.debug('strFName ElseIfAfter -->' + strFName);
 				}
 			}
+            System.debug('FinalStrFName -->' + strFName);
 
             //Handles processing LastNames
         	String lastName = strConFspec(cons[i], ns.strFullNameSpec);
             System.debug('lastName return -->'+ lastName);
 			lastName = lastName.replace('FirstNameSpec', strFname);
             System.debug('lastName afterReplace -->'+ lastName);
-			if (strFname == '') {
+
+            if (strFname == '') {
                 System.debug('firstNameCheck check -->'+ lastName);
 				lastName = lastName.trim();
                 System.debug('lastname trim -->'+ lastName);
