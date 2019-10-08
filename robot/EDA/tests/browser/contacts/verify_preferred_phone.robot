@@ -8,6 +8,8 @@ Library         DateTime
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ContactsPageObject.py
 
+Test Setup      Initialize test setup
+
 Suite Setup     Run keywords
 ...             Initialize test data
 ...             Open test browser
@@ -18,10 +20,6 @@ Suite Teardown  Run keywords
 
 *** Test Cases ***
 Verify basic preferred phone functionality
-
-    Select App Launcher App                 EDA
-    Close all tabs
-
     Current page should be                  Home
     ...                                     Contacts
 
@@ -36,8 +34,6 @@ Verify basic preferred phone functionality
     Validate preferred phone form
 
 Verify disable preferred phone enforcement
-    Select App Launcher App                 EDA
-    Close all tabs
     Current page should be                  Home
     ...                                     Contacts
 
@@ -80,9 +76,6 @@ Verify disable preferred phone enforcement
     ...                                     True 
 
 Verify batch functionality of preferred phone
-    Select App Launcher App                 EDA
-    Close all tabs
-
     Current page should be                  Home           Contacts
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
@@ -127,6 +120,11 @@ Verify batch functionality of preferred phone
     ...                                     ${CONTACT4.LastName}
 
 *** Keywords ***
+
+Initialize test setup
+    Select App Launcher App                 EDA
+    Close all tabs
+
 Initialize test data
     [Documentation]             Create a contact with a randomly generated firstname and lastname via API
 

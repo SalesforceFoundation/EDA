@@ -355,14 +355,6 @@ class EDA(object):
         my_time_utc = my_time_local.astimezone(pytz.utc)
         return datetime.datetime.strftime(my_time_utc, "%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
-    def get_instance_url(self, org=None):
-        """ Returns the instance url of the target salesforce org."""
-        if org is None:
-            org = self.cumulusci.org
-        else:
-            org = self.cumulusci.keychain.get_org(org)
-        return org.instance_url
-
     def get_eda_locator(self, path, *args, **kwargs):
         """ Returns a rendered locator string from the eda_lex_locators
             dictionary. This can be useful if you want to use an element in
