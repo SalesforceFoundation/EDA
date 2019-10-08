@@ -98,7 +98,6 @@ Validate Edit Mode For Accounts and Contacts, Settings
     Click on Element                account_types.university 
     
     Click on Element                account_types.save
-    Close toast message
 
     # Now restore everything back to what it was before the test
     Click on Element                account_types.edit
