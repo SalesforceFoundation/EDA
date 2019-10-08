@@ -54,7 +54,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Cannot Change Contact And Course Offering</shortDescription>
-        <value>Can&apos;t change the Contact or Course Offering on a Course Connection that has associated Term Grades or Attendance Events.</value>
+        <value>Can&apos;t change the Contact or Course Offering on a Course Connection that has associated Term Grades or Attendance Events.If you want a Course Connection with a different Contact or Course Offering, create a new Course Connection.</value>
     </labels>
     <labels>
         <fullName>CannotDelete</fullName>
