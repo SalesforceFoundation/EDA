@@ -20,13 +20,10 @@ Capture SAL and EDA package details
     Wait Until Loading Is Complete
     Go To Setup Home
     Wait For New Window                 Home | Salesforce
-    Select Window                       Home | Salesforce
+    Switch Window                       Home | Salesforce
     Wait Until Loading Is Complete
     Populate Placeholder                Quick Find          Installed Packages
     Wait Until Loading Is Complete
-#    Select Frame With Value             Installed Packages ~ Salesforce -
-#    Print Package Details
-#    Unselect Frame
 
 Capture Screenshot and Close Browser If Tests Passed
     [Documentation]         Captures screenshot if a test fails and closes the browser if all tests pass else leaves the browser open
@@ -39,7 +36,6 @@ Capture Screenshot and Delete Records and Close Browser
     Run Keyword If Any Tests Failed      Capture Page Screenshot
     Close Browser
     Delete Session Records
-
 
 API Create Term
     [Arguments]       ${account_id}  &{fields}
@@ -79,7 +75,9 @@ API Create Course Enrollment
     [return]          &{enrollment}
 
 Populate Create And Return Contact with Address
-    [Arguments]      ${first_name}      ${last_name}      ${mailing_street}      ${mailing_city}      ${mailing_zip}      ${mailing_state}      ${mailing_country}
+    [Arguments]     ${first_name}           ${last_name}      
+    ...             ${mailing_street}       ${mailing_city}
+    ...             ${mailing_zip}          ${mailing_state}      ${mailing_country}
     Go To Object Home         Contact
     Click Object Button       New
     Populate Form
@@ -211,61 +209,6 @@ Create Contact
     ${contact_id} =           Get Current Record Id
     Store Session Record      Contact  ${contact_id}
     [return]                  ${contact_id}
-    
-
-
-
-API Create Advising Or Walkin Appointment
-    [Documentation]
-    ...                     Creates an advising or walkin appointment through API. Returns dictionary representing the created advising appointment
-    ...
-    ...                     Required parameters are:
-    ...
-    ...                     |   location        |   value of Location field. Current existing values: 'In person' and 'By phone'    |
-    ...                     |   advising_type   |   value of Topic field. Ex: 'Academic'    |
-    ...                     |   advising_topic  |   value of Subtopic field. Ex: 'Degree Planning', 'Grade Concerns'    |
-    ...                     |   StartDate       |   Start time of the appointment. Format should be YYYY-MM-DD HH:MI:SS |
-    ...                     |   EndDate         |   End time of the appointment. Format should be YYYY-MM-DD HH:MI:SS   |
-    ...                     |                   |   Any additional field-value pairs can be passed too  |
-
-    [Arguments]             ${location}   ${advising_type}   ${advising_topic}    ${StartDate}    ${EndDate}    &{fields}
-
-    ${ns} =                 Get SAL namespace prefix
-    ${description} =        Generate Random String
-    ${end_date} =           Convert Time To UTC Timezone    ${EndDate}
-    ${name} =               Set Variable    ${advising_type} - ${advising_topic}
-    ${organizer_id} =       API Get Id      User        Name        DevAdmin User
-    ${start_date} =         Convert Time To UTC Timezone    ${StartDate}
-
-    ${advisee_record} =     API Get Id      Case        Subject     Andy Young Advisee Record
-    ${attendee_id} =        API Get Id      User        Name        Andy Young
-
-    ${adv_appt_id} =        Salesforce Insert   ${ns}Appointment__c
-    ...                         ${ns}Description__c=${description}
-    ...                         ${ns}EndDateTime__c=${end_date}
-    ...                         ${ns}Location__c=${location}
-    ...                         Name=${name}
-    ...                         OwnerId=${organizer_id}
-    ...                         ${ns}StartDateTime__c=${start_date}
-    ...                         ${ns}Subtopic__c=${advising_topic}
-    ...                         ${ns}Topic__c=${advising_type}
-    ...                         &{fields}
-    &{adv_appt} =           Salesforce Get      ${ns}Appointment__c   ${adv_appt_id}
-
-    ${adv_attendee_id} =    Salesforce Insert   ${ns}AppointmentAttendee__c
-    ...                         ${ns}AdviseeRecord__c=${advisee_record}
-    ...                         ${ns}Appointment__c=&{adv_appt}[Id]
-    ...                         ${ns}Attendee__c=${attendee_id}
-    ...                         ${ns}Role__c=Attendee
-
-    ${adv_organizer_id} =   Salesforce Insert   ${ns}AppointmentAttendee__c
-    ...                         ${ns}Appointment__c=&{adv_appt}[Id]
-    ...                         ${ns}Attendee__c=${organizer_id}
-    ...                         ${ns}Role__c=Organizer
-
-    [return]                &{adv_appt}
-
-
 
 Create Contact with Email
     ${first_name} =           Generate Random String

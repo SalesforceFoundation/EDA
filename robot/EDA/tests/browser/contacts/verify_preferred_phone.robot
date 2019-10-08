@@ -2,20 +2,23 @@
 Documentation
 ...     Verify Preferred Phone functionality
 
-
 Resource        robot/EDA/resources/EDA.robot
 Library         robot/EDA/resources/EDA.py
 Library         DateTime
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ContactsPageObject.py
-...             robot/EDA/resources/TriggerHandlersPageObject.py
+
 Suite Setup     Run keywords
 ...             Initialize test data
-...             Open test browser and print package details
-Suite Teardown  Capture screenshot and delete records and close browser
+...             Open test browser
+
+Suite Teardown  Run keywords
+...             Restore eda settings
+...   AND       Capture screenshot and delete records and close browser 
 
 *** Test Cases ***
 Verify basic preferred phone functionality
+
     Select App Launcher App                 EDA
     Close all tabs
 
@@ -27,7 +30,7 @@ Verify basic preferred phone functionality
     Clear the disable preferred phone enforcement
     Shift to default content
 
-    Select tab                              Contacts
+    Go To Object Home                       Contact
     Select contact                          ${CONTACT.FirstName}
     ...                                     ${CONTACT.LastName}
     Validate preferred phone form
@@ -47,14 +50,13 @@ Verify disable preferred phone enforcement
     # 1) Disable checkbox is not checked
     # 2) Create a contact and then populate home phone,
     #    office phone, hit save, it should thow an error
-
     Open EDA Settings Tab menu item
     Enable enchanced checkbox
     Clear the disable preferred phone enforcement    
     Shift to default content
 
     Create next contact
-    Select tab                              Contacts
+    Go To Object Home                       Contact
     Add home phone and work phone to contact
     ...                                     ${CONTACT2.FirstName}
     ...                                     ${CONTACT2.LastName}
@@ -66,19 +68,16 @@ Verify disable preferred phone enforcement
     # 2) Create Contact → populate home phone, office phone → hit 
     #    save → Preferred Phone is populated →  It should not throw 
     #    an error
-
-
     Open EDA Settings Tab menu item
     Set the disable preferred phone enforcement
     Shift to default content
 
     Create third contact
-    Select tab                              Contacts
+    Go To Object Home                       Contact
     Add home phone and work phone to contact
     ...                                     ${CONTACT3.FirstName}
     ...                                     ${CONTACT3.LastName}
     ...                                     True 
-
 
 Verify batch functionality of preferred phone
     Select App Launcher App                 EDA
@@ -105,7 +104,7 @@ Verify batch functionality of preferred phone
     #        and the 'Disable Preferred Phone enforcement'
     #        is NOT being enforced
     Create last contact
-    Select tab                              Contacts
+    Go To Object Home                       Contact
     # Note:  look in ContactsPageObject.py to see that the following
     #        test does indeed verify the phone numbers
     Add home phone to contact and verify    ${CONTACT4.FirstName}
@@ -123,15 +122,10 @@ Verify batch functionality of preferred phone
 
     # Verify that 'Run Cleanup' produced correct results
     # The code is found in ContactsPageObject.py
-    Select tab                              Contacts
+    Go To Object Home                       Contact
     Shift to default content
     Verify contact values                   ${CONTACT4.FirstName}
     ...                                     ${CONTACT4.LastName}
-
-    # Restore Settings
-    Open EDA Settings Tab menu item
-    Set the disable preferred phone enforcement
-    Shift to default content
 
 *** Keywords ***
 Initialize test data
@@ -150,13 +144,11 @@ Create next contact
     &{CONTACT2} =   API Create Contact
     Set suite variable          &{CONTACT2}
 
-
 Create third contact
     [Documentation]             Create a new contact with a randomly generated firstname and lastname via API
 
     &{CONTACT3} =   API Create Contact
     Set suite variable          &{CONTACT3}
-
 
 Create last contact
     [Documentation]             Create a new contact with a randomly generated firstname and lastname via API
@@ -185,3 +177,7 @@ Open EDA Settings Tab menu item
     Select app launcher tab                 EDA Settings
     Select frame with title                 accessibility title
 
+Restore eda settings
+    Open EDA Settings Tab menu item
+    Set the disable preferred phone enforcement
+    Shift to default content
