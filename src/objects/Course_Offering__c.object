@@ -157,7 +157,7 @@
         <externalId>false</externalId>
         <label>Time Block</label>
         <referenceTo>Time_Block__c</referenceTo>
-        <relationshipLabel>Time Blocks</relationshipLabel>
+        <relationshipLabel>Course Offerings</relationshipLabel>
         <relationshipName>Time_Blocks</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
