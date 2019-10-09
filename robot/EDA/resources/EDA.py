@@ -400,8 +400,10 @@ class EDA(object):
             timeout=60,
             error="Cannot find the panel tab: " + tab
         )
-        self.selenium.click_element(eda_lex_locators["panel_tab_lookup"].format(tab))
-
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(eda_lex_locators["panel_tab_lookup"].format(tab))
+        )        
 
     def choose_panel_tab(self,tab):
         """ Opens panel tab - as passed in to the function
