@@ -27,13 +27,17 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     Input text                      ${plan_req_name}                Intro to Literature
     Wait for locator                plan_requirement.program_plan   &{program_plan}[Name]
     Populate placeholder            Search Plan Requirements        &{plan_requirement_1}[Name]
+    Wait for locator                modal.save
     Click on element                modal.save
     Wait for locator                plan_requirement.error          Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.
 
+#    Wait for locator                plan_requirement.delete_field   Program Plan    &{program_plan}[Name]
     Click on element                plan_requirement.delete_field   Program Plan    &{program_plan}[Name]
     Click on element                plan_requirement.plan_requirement_name
-    Sleep                           0.5
+
+    Wait for locator                modal.save
     Click on element                modal.save
+
     Wait for locator                plan_requirement.toast_message
 
     ${plan_requirement_2} =         API Get ID          ${ns}Plan_Requirement__c        Name        Intro to Literature
@@ -45,6 +49,7 @@ Validate updation of Plan Requirement - Nested Plan Requirement setting enabled
     [tags]                          unstable
 
     Go to record home               ${plan_requirement_2}
+    Wait for locator                record.actions          Edit
     Click on element                record.actions          Edit
     Wait until modal is open
     Wait for locator                plan_requirement.parent_plan_req_name       &{plan_requirement_1}[Name]
