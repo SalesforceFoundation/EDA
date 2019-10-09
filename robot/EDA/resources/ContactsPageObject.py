@@ -331,6 +331,16 @@ class ContactsHomePage(BasePage):
             contacts_locators["successful_run"],
             timeout=60
         )
+        if self._check_if_element_exists(contacts_locators["run_cleanup"]):
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["run_cleanup"])
+            )
+            self.builtin.log("Run Cleanup executed")
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["successful_run"],
+            timeout=60
+        )
 
         # Give 'Run Cleanup' fifteen seconds run time, then continue
         # Need to find a better solution as this may still not be enough
