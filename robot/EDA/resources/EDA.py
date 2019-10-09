@@ -391,6 +391,18 @@ class EDA(object):
         )
         self.selenium.click_element(locator_tab)
 
+    def open_panel_tab(self,tab):
+        """ Opens specific panel tab, as passed in to function 
+            Note:  this is a label on a menu item, and not a locator
+        """
+        self.selenium.wait_until_page_contains_element(
+            eda_lex_locators["panel_tab_lookup"].format(tab), 
+            timeout=60,
+            error="Cannot find the panel tab: " + tab
+        )
+        self.selenium.click_element(eda_lex_locators["panel_tab_lookup"].format(tab))
+
+
     def choose_panel_tab(self,tab):
         """ Opens panel tab - as passed in to the function
             tab is a label on menu item, and not a locator.

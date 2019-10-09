@@ -21,6 +21,7 @@ eda_lex_locators = {
     "navigation_tab": "//button[@title='Show Navigation Menu']/../descendant::a[@title='{}']",
     "tab_menu": "//a[@title='{}']",
     "choose_tab": " //a[text()='{}']",
+    "panel_tab_lookup": "//a/span[text()='Related']",
     "tab_tab": "//a[@title='Contacts']/../descendant::a[@title='{}']",
     "toast_message": "//span[contains(@class, 'toastMessage') and text()='{}']",
     "success_message": "//div[@id='successToast']//h2[text()='{}']",

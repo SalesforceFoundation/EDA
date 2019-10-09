@@ -19,7 +19,8 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
 
     Go to record home               &{program_plan}[Id]
     Wait until loading is complete
-    Select tab                      Related
+    Open panel tab                  Related
+    Wait for locator                record.related.new              Plan Requirements
     Click on element                record.related.new              Plan Requirements
     Wait until modal is open
     ${plan_req_name} =              Get EDA locator                 plan_requirement.plan_requirement_name
