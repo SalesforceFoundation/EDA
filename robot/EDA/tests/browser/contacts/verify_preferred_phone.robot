@@ -109,7 +109,7 @@ Verify batch functionality of preferred phone
     Enable enchanced checkbox    
     Clear the disable preferred phone enforcement
     Run phone cleanup
-    Capture page screenshot
+
     Shift to default content
 
     # Verify that 'Run Cleanup' produced correct results
@@ -129,7 +129,6 @@ Initialize test data
     [Documentation]             Create a contact with a randomly generated firstname and lastname via API
 
     &{CONTACT} =   API Create Contact
-    #Write To Console            Contact successfully created, with first name: ${CONTACT.FirstName} and last name: ${CONTACT.LastName}
     Set suite variable          &{CONTACT}
 
     ${NAMESPACE} =              Get EDA namespace prefix

@@ -24,6 +24,7 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     Wait until loading is complete
     Wait for locator                record.related.new              Plan Requirements
     Click on element                record.related.new              Plan Requirements
+    
     Wait until modal is open
     ${plan_req_name} =              Get EDA locator                 plan_requirement.plan_requirement_name
     Input text                      ${plan_req_name}                Intro to Literature
