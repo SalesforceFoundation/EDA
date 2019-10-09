@@ -18,7 +18,6 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     Edit EDA settings checkbox      Validate Program Plan for Nested Plan Requirements      true
 
     Go to record home               &{program_plan}[Id]
-    Wait until loading is complete
     Open panel tab                  Related
     Wait for locator                record.related.new              Plan Requirements
     Click on element                record.related.new              Plan Requirements
@@ -31,7 +30,6 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     Click on element                modal.save
     Wait for locator                plan_requirement.error          Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.
 
-#    Wait for locator                plan_requirement.delete_field   Program Plan    &{program_plan}[Name]
     Click on element                plan_requirement.delete_field   Program Plan    &{program_plan}[Name]
     Click on element                plan_requirement.plan_requirement_name
 
