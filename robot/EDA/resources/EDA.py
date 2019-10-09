@@ -292,14 +292,14 @@ class EDA(object):
             )
             self.selenium.click_element(locator_checkbox)
             self.selenium.click_element(locator_save)
-            self.success_message("Settings Saved Successfully.")
+            self.wait_for_toast_message("Settings Saved Successfully.")
 
     def verify_toast_message(self, value):
         """ Verifies the toast message """
         locator = eda_lex_locators["toast_message"].format(value)
         self.selenium.wait_until_page_contains_element(locator)
 
-    def success_message(self, value):
+    def wait_for_toast_message(self, value):
         """ Acknowledges the success message """
         locator = eda_lex_locators["success_message"].format(value)
         self.selenium.wait_until_page_contains_element(locator)
