@@ -44,24 +44,36 @@ public class UTIL_ACCT_Naming_DF {
     public static String hhNameFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
     public static String aaNameFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
 
-	public static list<Account> updateAdminAccountsName(List<Contact> listContactsChangedLastName) {
+	public static List<Account> updateAdminAccountsName(List<Contact> listContactsChangedLastName) {
         List<Account> listAccToUpdate = new List<Account>();
-        Map<Id, Contact> mapAccIdToCon = new Map<Id, Contact>();
+        Map<Id, List<Contact>> mapAccIdToCon = new Map<Id, List<Contact>>();
 
+        System.debug('updateAdminAccountsName Method -->' + listContactsChangedLastName);
         for (Contact con : listContactsChangedLastName) {
-            mapAccIdToCon.put(con.AccountId, con);
+            if (mapAccIdToCon.containsKey(con.AccountId)) {
+                mapAccIdToCon.get(con.AccountId).add(con);
+            } else {
+                mapAccIdToCon.put(con.AccountId, new List<Contact> {con});
+            }
+
         }
+		System.debug('updateAdminAccountsName mapAccIdToCon -->' + mapAccIdToCon);
 
-        List<Account> listAcc = [SELECT Id, RecordTypeId
-                                FROM Account
-                                WHERE Id IN :mapAccIdToCon.keySet()];
-
-        for (Account acc : listAcc) {
+        for (Account acc: [SELECT Id, Name, RecordTypeId,
+                           (SELECT Id, LastName, Salutation, FirstName FROM Contacts WHERE AccountId IN :mapAccIdToCon.keySet())
+                           FROM Account WHERE Id IN: mapAccIdToCon.keySet()])
+        {
+            System.debug('updateAdminAccountsName Account Loop -->' + acc);
             if (acc.RecordTypeId == userDefinedAdminRecordTypeId) {
+                System.debug('updateAdminAccountsName Account LoopConCheck -->' + acc.Contacts);
                 acc.Name = UTIL_ACCT_Naming_DF.updateName(acc.Contacts);
+                System.debug('updateAdminAccountsName Account LoopConCheckAfter -->' + acc.Contacts);
+                listAccToUpdate.add(acc);
+                System.debug('updateAdminAccountsName listAccToUpdate -->'+ listAccToUpdate);
             }
         }
 
+		System.debug('updateAdminAccountsName listAccToUpdate -->'+ listAccToUpdate);
         return listAccToUpdate;
     }
 
@@ -174,7 +186,7 @@ public class UTIL_ACCT_Naming_DF {
 		Set<String> householdLastNames = new Set<String>();
 		String finalAccountName;
 
-		System.debug('defaultAccountName Method -->' + accountNamingFormat);
+		System.debug('defaultAccountName Method -->' + cons);
 
 		for (Contact con : cons) {
 			System.debug('defaultAccountName Loop1 -->');
@@ -218,6 +230,7 @@ public class UTIL_ACCT_Naming_DF {
 				System.debug('defaultAccountName finalAccountName -->' + finalAccountName);
     		}
         }
+        System.debug('defaultAccountName finalAccountName -->' + finalAccountName);
 		return finalAccountName;
 	}
 

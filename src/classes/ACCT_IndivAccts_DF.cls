@@ -186,8 +186,6 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
        	}
 		handleInsertProcessing(insertWrapper, listContactNeedAccount);
         handleUpdateProcessing(updateWrapper, listContactNeedAccount);
-        //handleProcessing(updateWrapper, insertWrapper,listContactNeedAccount, NULL, NULL);
-
     }
 
     private class HandleInsertWrapperLogic {
@@ -230,11 +228,9 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
         	//Updates Household Account name
         	if (accountIdHHToRename.size() > 0) {
             	System.debug('AfterInsert accountIdHHToRename -->' + accountIdHHToRename);
-            	//List<Contact> conToUpdate = queryConWithAccountToRename(setAccountIdHHToRename);
-            	//UTIL_ACCT_Naming_DF.updateName(queryConWithAccountToRename(accountIdHHToRename));
-
             	UTIL_ACCT_Naming_DF.updateHHAccountsName(accountIdHHToRename);
         	}
+
             TDTM_TriggerHandler.processDML(dmlWrapper, true);
 			updateRecursionFlag();
         }
@@ -300,7 +296,6 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
             if (c.LastName != oldContacts[i].LastName && c.AccountId != NULL) {
                 System.debug('HandleUpdateWrapperLogic currentConIsNotTheSameAsPreviousOne -->');
                 listContactsChangedLastName.add(c);
-				//setAccountIdHHToRenameWP.add(c.AccountId);
             }
 
             //If Contact Name or Exclude_from_Household_Name__c value has changed
@@ -336,11 +331,6 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
             //Updates Household Account name
         	if (accountIdHHToRename.size() > 0) {
            		System.debug('AfterUpdate accountIdHHToRename -->' + accountIdHHToRename);
-
-            	//List<Contact> conAccToUpdate = queryConWithAccountToRename(setAccountIdHHToRename);
-            	//UTIL_ACCT_Naming_DF.updateName(conAccToUpdate);
-            	//UTIL_ACCT_Naming_DF.updateName(queryConWithAccountToRename(accountIdHHToRename));
-
             	UTIL_ACCT_Naming_DF.updateHHAccountsName(accountIdHHToRename);
         	}
 
@@ -362,8 +352,8 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
 
        		//Updates Admin Account Name:
         	if (listContactChangeLastName.size() > 0) {
-           		//UTIL_ACCT_Naming_DF.updateName(listContactChangeLastName);
-            	dmlWrapper.objectsToUpdate.addAll((List<SObject>)UTIL_ACCT_Naming.updateAdminAccountsName(listContactChangeLastName));
+                System.debug('listContactChangeLastName -->' + listContactChangeLastName);
+            	dmlWrapper.objectsToUpdate.addAll((List<SObject>)UTIL_ACCT_Naming_DF.updateAdminAccountsName(listContactChangeLastName));
         	}
 
             TDTM_TriggerHandler.processDML(dmlWrapper, true);
@@ -393,8 +383,6 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
                 setAccountIdHHToRename.add(account.Id);
             }
         }
-
-        //handleProcessing(NULL, NULL, NULL, setAccountIdHHToRename, listContactAccountDelete);
         handleDeleteProcessing(setAccountIdHHToRename, listContactAccountDelete);
     }
 
@@ -404,9 +392,7 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             //Updates Household Account name
 			if (setAccountIdHHToRename.size() > 0) {
-            	//queryConWithAccountToRename(setAccountIdHHToRename);
-            	//UTIL_ACCT_Naming_DF.updateName(queryConWithAccountToRename(setAccountIdHHToRename));
-            	UTIL_ACCT_Naming.updateHHAccountsName(setAccountIdHHToRename);
+            	UTIL_ACCT_Naming_DF.updateHHAccountsName(setAccountIdHHToRename);
         	}
 
         	//Deletes old Account if they are left hanging around
@@ -428,42 +414,6 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
        } else if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             	TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, false);
        }
-    }
-    private List<Contact> queryConWithAccountToRename(Set<Id> accountIdHHToRename) {
-        List<Account> listAccsToRename = new List<Account>();
-        List<Contact> consAccountToRename = new List<Contact>();
-		System.debug('queryConWithAccountToRename Method -->' + accountIdHHToRename);
-        //Build dynamic query string
-        string strSoql = 'SELECT id, RecordTypeId, ';
-        strSoql += '(SELECT id, AccountId,' +
-                'Account.RecordTypeID, ' +
-                'Account.Primary_Contact__c, Account.Name,' +
-                'firstname, lastname, OwnerId, Salutation,' +
-                'MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, ' +
-                'OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, ';
-
-        if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled)
-            strSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
-
-        strSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true)';
-        strSoql += 'FROM Account WHERE Id IN :accountIdHHToRename';
-
-		System.debug('strSoql -->' + strSoql);
-        List<String> bulkStrSOQL = new List<String>();
-        bulkStrSOQL.add(strSoql);
-        //Re-query to get correct Account values (and all the other fields we will look at)
-        listAccsToRename = Database.query(strSoql);
-        System.debug('listAccsToRename -->' + listAccsToRename);
-
-        if (listAccsToRename.size()>0) {
-            System.debug('listAccsToRenameIsNotNUll -->' + listAccsToRename);
-            for (Account acc : listAccsToRename) {
-            	System.debug('acc -->' + acc);
-            	consAccountToRename.add(acc.Contacts);
-        	}
-            System.debug('consAccountToRename -->' + consAccountToRename);
-        }
-        return consAccountToRename;
     }
 
     /*******************************************************************************************************
@@ -519,23 +469,10 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
                     OwnerId = c.OwnerId
                 );
 
-                //Constructs the Account Name
-                /*if(defaultRecTypeID != null
-            		&& defaultRecTypeID == userDefinedHHRecordTypeId)
-				{
-                	//a.Name = UTIL_ACCT_Naming.strNameHHAccountForContact(new List<Contact>{c});
-					a.Name = UTIL_ACCT_Naming_DF.updateName(new List<Contact>{c});
-                } else if (defaultRecTypeID != null
-                        	&& defaultRecTypeID == userDefinedAdminRecordTypeId) {
-                    a.Name = UTIL_ACCT_Naming.strNameAdmAccountForContact(c);
-                } else {
-					a.Name = UTIL_ACCT_Naming.strNameAccountForContact(c);
-                }*/
 				if (defaultRecTypeID != NULL) {
                     System.debug('Acc RecordTypeCheck -->');
 					a.Name = UTIL_ACCT_Naming_DF.updateName(new List<Contact>{c});
 				}
-
 
                 //Sets the Contact as the primary Contact for the newly created Account
                 if (c.Id != NULL) {
@@ -587,8 +524,6 @@ public class ACCT_IndivAccts_DF extends TDTM_Runnable {
             System.debug('insertContactAccount contactsToUpdateB4Update -->' + contactsToUpdate);
             update contactsToUpdate;
             System.debug('insertContactAccount contactsToUpdateAfterUpdate -->' + contactsToUpdate);
-
-
         }
     }
 
