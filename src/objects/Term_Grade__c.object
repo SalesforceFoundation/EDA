@@ -56,9 +56,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The student for whom the grade is being recorded.</description>
+        <description>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The student for whom the grade is being recorded.</inlineHelpText>
+        <inlineHelpText>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
@@ -84,9 +84,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Course Offering associated with the grade being recorded.</description>
+        <description>The Course Offering associated with the grade being recorded. When left blank, CourseOffering autopopulates from the valid Course Connection on save.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Course Offering associated with the grade being recorded.</inlineHelpText>
+        <inlineHelpText>The Course Offering associated with the grade being recorded. When left blank, CourseOffering autopopulates from the valid Course Connection on save.</inlineHelpText>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
