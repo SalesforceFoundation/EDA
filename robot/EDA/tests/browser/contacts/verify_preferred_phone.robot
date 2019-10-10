@@ -97,6 +97,7 @@ Verify batch functionality of preferred phone
     #        is NOT being enforced
     Create last contact
     Go To Object Home                       Contact
+    
     # Note:  look in ContactsPageObject.py to see that the following
     #        test does indeed verify the phone numbers
     Add home phone to contact and verify    ${CONTACT4.FirstName}

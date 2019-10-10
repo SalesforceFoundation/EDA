@@ -317,10 +317,6 @@ class ContactsHomePage(BasePage):
             Also verifies that the 'Run Phone Cleanup' was queued to run.
         """
 
-        self.selenium.wait_until_page_contains_element(
-            contacts_locators["run_cleanup"],
-            timeout=60
-        )
         if self._check_if_element_exists(contacts_locators["run_cleanup"]):
             self.selenium.driver.execute_script(
                 "arguments[0].click()", 
@@ -330,14 +326,8 @@ class ContactsHomePage(BasePage):
             contacts_locators["successful_run"],
             timeout=60
         )
-        # Intentional redundancy 
-        if self._check_if_element_exists(contacts_locators["run_cleanup"]):
-            self.selenium.driver.execute_script(
-                "arguments[0].click()", 
-                self.selenium.driver.find_element_by_xpath(contacts_locators["run_cleanup"])
-            )
 
-            self.builtin.log("Run Cleanup executed")
+        self.builtin.log("Run Cleanup executed")
 
         # Give 'Run Cleanup' fifteen seconds run time, then continue
         # Need to find a better solution as this may still not be enough
@@ -354,7 +344,7 @@ class ContactsHomePage(BasePage):
         self.open_item(
             contacts_locators["details_tab"], 
             "Details tab not found on contact", 
-            True
+            False
         )
         self.open_item(
             contacts_locators["edit_contact"], 
