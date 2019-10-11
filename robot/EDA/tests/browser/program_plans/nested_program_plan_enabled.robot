@@ -30,7 +30,7 @@ Validate creation of Plan Requirement - Nested Plan Requirement setting enabled
     Input text                      ${plan_req_name}                Intro to Literature
     Wait for locator                plan_requirement.program_plan   &{program_plan}[Name]
     Populate placeholder            Search Plan Requirements        &{plan_requirement_1}[Name]
-    Java click on element           modal.save
+    Click on element                modal.save
 
     Wait for locator                plan_requirement.error          Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If this Plan Requirement is a child of another Plan Requirement, specify a parent Plan Requirement only. If this Plan Requirement is a child of a Program Plan, specify a Program Plan only.
     Java click on element           plan_requirement.delete_field   Program Plan    &{program_plan}[Name]
