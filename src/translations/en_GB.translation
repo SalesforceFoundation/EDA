@@ -57,8 +57,32 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
+        <label><!-- MultipleCourseConnection --></label>
+        <name>MultipleCourseConnection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoContactCOFound --></label>
+        <name>NoContactCOFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoCourseConnection --></label>
+        <name>NoCourseConnection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoDataMatch --></label>
+        <name>NoDataMatch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoFieldsPopulated --></label>
+        <name>NoFieldsPopulated</name>
+    </customLabels>
+    <customLabels>
         <label>--None--</label>
         <name>NoneOption</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OnlyCourseConnectionPopulated --></label>
+        <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
         <label>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</label>

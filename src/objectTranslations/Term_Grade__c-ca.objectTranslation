@@ -9,10 +9,22 @@
         <value><!-- Term Grade --></value>
     </caseValues>
     <fields>
+      <help><!-- The student for whom the grade is being recorded. --></help>
+      <label><!-- Contact --></label>
+      <name>Contact__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+    </fields>
+    <fields>
         <help>La classe en què l&apos;alumne ha rebut aquesta qualificació.</help>
         <label>Connexió del curs</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Qualificacions del període</relationshipLabel>
+    </fields>
+    <fields>
+      <help><!-- The Course Offering associated with the grade being recorded. --></help>
+      <label><!-- Course Offering --></label>
+      <name>Course_Offering__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
         <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>

@@ -9,10 +9,22 @@
         <value>Evaluaciones de periodo</value>
     </caseValues>
     <fields>
+      <help><!-- The student for whom the grade is being recorded. --></help>
+      <label><!-- Contact --></label>
+      <name>Contact__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+    </fields>
+    <fields>
         <help>La clase en que el estudiante recibió este evaluación.</help>
         <label>Enlace de cursos</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    </fields>
+    <fields>
+      <help><!-- The Course Offering associated with the grade being recorded. --></help>
+      <label><!-- Course Offering --></label>
+      <name>Course_Offering__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
         <help>El número de créditos intentados para este curso y periodo de evaluación.</help>
