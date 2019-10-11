@@ -264,6 +264,18 @@ class EDA(object):
         self.selenium.wait_until_element_is_visible(main_loc)
         self.selenium.click_element(main_loc)
 
+    def java_click_on_element(self,path, *args, **kwargs):
+        main_loc = self.get_eda_locator(path,*args, **kwargs)
+        self.selenium.wait_until_element_is_visible(main_loc)
+        # javascript is being used here because the usual selenium click is highly unstable for this element on MetaCI
+                
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(main_loc))
+        time.sleep(1)
+
+
+
     def populate_placeholder(self, loc, value):
         """ Populate placeholder element as a locator
             and actual value of the place holder.

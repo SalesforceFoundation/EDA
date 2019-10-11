@@ -322,6 +322,7 @@ class ContactsHomePage(BasePage):
                 "arguments[0].click()", 
                 self.selenium.driver.find_element_by_xpath(contacts_locators["run_cleanup"])
             )
+        self.selenium.wait_until_page_contains("The process was queued successfully")
         self.selenium.wait_until_page_contains_element(
             contacts_locators["successful_run"],
             timeout=60
@@ -436,6 +437,7 @@ class ContactsHomePage(BasePage):
         """ Verify that the Home Phone number is copied to Phone field """
 
         self.select_contact(FirstName, LastName)
+        self.selenium.wait_until_page_contains("Details")
         self.selenium.wait_until_page_contains_element(
             contacts_locators["details_tab"], 
             timeout=60
