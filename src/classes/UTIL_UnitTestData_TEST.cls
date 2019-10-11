@@ -526,4 +526,16 @@ public class UTIL_UnitTestData_TEST {
         Facility__c facility = new Facility__c(Name = 'Test Facility ' + Datetime.now().getTime());
         return facility;
     }
+    
+    /*********************************************************************************************************
+    * @description Creates fake Ids for given sObject.
+    * @return The fake Id.
+    **********************************************************************************************************/
+    static Integer s_num = 1;
+    
+    public static String getFakeId(Schema.SObjectType sot) {
+      String result = String.valueOf(s_num++);
+      return sot.getDescribe().getKeyPrefix() + 
+         '0'.repeat(12-result.length()) + result;
+   }
 }
