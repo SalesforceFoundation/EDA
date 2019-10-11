@@ -70,9 +70,9 @@
     <fields>
         <fullName>Course_Connection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The class in which the student received this grade.</description>
+        <description>The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The class in which the student received this grade.</inlineHelpText>
+        <inlineHelpText>The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record.</inlineHelpText>
         <label>Course Connection</label>
         <referenceTo>Course_Enrollment__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
@@ -84,9 +84,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Course Offering associated with the grade being recorded. When left blank, CourseOffering autopopulates from the valid Course Connection on save.</description>
+        <description>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Course Offering associated with the grade being recorded. When left blank, CourseOffering autopopulates from the valid Course Connection on save.</inlineHelpText>
+        <inlineHelpText>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</inlineHelpText>
         <label>Course Offering</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Term Grades</relationshipLabel>
