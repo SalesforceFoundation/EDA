@@ -57,8 +57,32 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
+        <label><!-- MultipleCourseConnection --></label>
+        <name>MultipleCourseConnection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoContactCOFound --></label>
+        <name>NoContactCOFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoCourseConnection --></label>
+        <name>NoCourseConnection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoDataMatch --></label>
+        <name>NoDataMatch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoFieldsPopulated --></label>
+        <name>NoFieldsPopulated</name>
+    </customLabels>
+    <customLabels>
         <label>- Aucun -</label>
         <name>NoneOption</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OnlyCourseConnectionPopulated --></label>
+        <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
         <label>L&apos;e-mail spécifié dans Adresse e-mail préférée est introuvable. Assurez-vous de saisir l&apos;étiquette d&apos;un champ d&apos;adresse e-mail personnalisé existant.</label>
