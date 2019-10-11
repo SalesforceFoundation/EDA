@@ -1,9 +1,42 @@
 *** Settings ***
 
-Resource       cumulusci/robotframework/Salesforce.robot
-Library        EDA.py
+Resource        cumulusci/robotframework/Salesforce.robot
+Library         robot/EDA/resources/EDA.py
+Library         DateTime
+
+*** Variables ***
+${PRINT_PACKAGE}        true
 
 *** Keywords ***
+Open Test Browser And Print Package Details
+    [Documentation]         Opens the test browser and runs a keyword that prints package details from setup
+    Open Test Browser
+    Run Keyword If          '${PRINT_PACKAGE.lower()}' == 'true'     Capture SAL and EDA package details
+
+
+Capture SAL and EDA package details
+    [Documentation]         Captures the package details from SAL setup page and prints it to console
+    Set Global Variable                 ${PRINT_PACKAGE}            false
+    Wait Until Loading Is Complete
+    Go To Setup Home
+    Wait For New Window                 Home | Salesforce
+    Switch Window                       Home | Salesforce
+    Wait Until Loading Is Complete
+    Populate Placeholder                Quick Find          Installed Packages
+    Wait Until Loading Is Complete
+
+Capture Screenshot and Close Browser If Tests Passed
+    [Documentation]         Captures screenshot if a test fails and closes the browser if all tests pass else leaves the browser open
+    Run Keyword If Any Tests Failed     Capture Page Screenshot
+    Run Keyword If All Tests Passed     Close Browser
+    Run Keyword If All Tests Passed     Delete Session Records
+
+Capture Screenshot and Delete Records and Close Browser
+    [Documentation]         Captures screenshot if a test fails, deletes session records and closes the browser
+    Run Keyword If Any Tests Failed      Capture Page Screenshot
+    Close Browser
+    Delete Session Records
+
 API Create Term
     [Arguments]       ${account_id}  &{fields}
     ${term_name} =    Generate Random String
@@ -42,7 +75,9 @@ API Create Course Enrollment
     [return]          &{enrollment}
 
 Populate Create And Return Contact with Address
-    [Arguments]      ${first_name}      ${last_name}      ${mailing_street}      ${mailing_city}      ${mailing_zip}      ${mailing_state}      ${mailing_country}
+    [Arguments]     ${first_name}           ${last_name}      
+    ...             ${mailing_street}       ${mailing_city}
+    ...             ${mailing_zip}          ${mailing_state}      ${mailing_country}
     Go To Object Home         Contact
     Click Object Button       New
     Populate Form
@@ -174,7 +209,7 @@ Create Contact
     ${contact_id} =           Get Current Record Id
     Store Session Record      Contact  ${contact_id}
     [return]                  ${contact_id}
-    
+
 Create Contact with Email
     ${first_name} =           Generate Random String
     ${last_name} =            Generate Random String
