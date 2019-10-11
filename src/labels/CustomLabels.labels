@@ -105,12 +105,60 @@
         <value>Male</value>
     </labels>
     <labels>
+        <fullName>MultipleCourseConnection</fullName>
+        <categories>TermGrade</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MultipleCourseConnection</shortDescription>
+        <value>More than one Course Connection is associated with this Contact and this Course Offering. Specify the Course Connection that represents the student&apos;s enrollment in this Course Offering for this Term Grade.</value>
+    </labels>
+    <labels>
+        <fullName>NoContactCOFound</fullName>
+        <categories>TermGrade</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoContactCOFound</shortDescription>
+        <value>The Contact and Course Offering are not specified or don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
+    </labels>
+    <labels>
+        <fullName>NoCourseConnection</fullName>
+        <categories>TermGrade</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoCourseConnection</shortDescription>
+        <value>There is no Course Connection associated with this Contact and Course Offering. If this student is enrolled in this Course Offering, create a Course Connection.</value>
+    </labels>
+    <labels>
+        <fullName>NoDataMatch</fullName>
+        <categories>TermGrade</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoDataMatch</shortDescription>
+        <value>The Contact and Course Offering don&apos;t match the Course Connection. Either specify only a Course Connection or both a Contact and a Course Offering, so we can save this record with the correct data.</value>
+    </labels>
+    <labels>
+        <fullName>NoFieldsPopulated</fullName>
+        <categories>TermGrade</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoFieldsPopulated</shortDescription>
+        <value>Either specify only a Course Connection or both a Contact and a Course Offering.</value>
+    </labels>
+    <labels>
         <fullName>NoneOption</fullName>
         <categories>Picklist Options</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
         <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>OnlyCourseConnectionPopulated</fullName>
+        <categories>TermGrade</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>OnlyCourseConnectionPopulated</shortDescription>
+        <value>There is no Contact or Course Offering associated with this Course Connection. Choose a valid Course Connection.</value>
     </labels>
     <labels>
         <fullName>PreferredEmailMatchMustExist</fullName>
