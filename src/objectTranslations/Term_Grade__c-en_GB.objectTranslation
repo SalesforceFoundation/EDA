@@ -9,10 +9,22 @@
         <value>Term Grades</value>
     </caseValues>
     <fields>
+      <help><!-- The student for whom the grade is being recorded. --></help>
+      <label><!-- Contact --></label>
+      <name>Contact__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+    </fields>
+    <fields>
         <help>The class in which the student received this grade.</help>
         <label>Course Connection</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Term Grades</relationshipLabel>
+    </fields>
+    <fields>
+      <help><!-- The Course Offering associated with the grade being recorded. --></help>
+      <label><!-- Course Offering --></label>
+      <name>Course_Offering__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
         <help>The number of credits attempted for this course and grading period.</help>
