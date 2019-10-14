@@ -281,11 +281,24 @@ public class CON_Email {
                 'Work Email' => 'Work',
                 'Alternate Email' => 'Alternate'
             };
-
+                     
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+            List<Schema.PicklistEntry> preferredEmailPicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'Preferred_Email__c');
+            List<String> preferredEmailValues = new List<String>();
+            
+            for (Schema.PicklistEntry eachValue: preferredEmailPicklist) {
+                preferredEmailValues.add(eachValue.getValue());
+            }
+             
             this.value = val;
             this.label = lbl;
             this.apiName = api;
-            this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
+            if (!preferredEmailValues.contains(lbl)) {
+                this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
+            } else {
+                this.prefLabel = lbl;
+            }    
         }
 
         public Boolean hasValue(){

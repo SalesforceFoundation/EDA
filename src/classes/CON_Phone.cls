@@ -314,11 +314,28 @@ public with sharing class CON_Phone {
                 'Mobile Phone' => 'Mobile',
                 'Other Phone' => 'Other'
             };
-
+            
             this.value = val;
             this.label = lbl;
             this.apiName = api;
-            this.prefLabel = (preferredPhoneMappings.containsKey(lbl)) ? preferredPhoneMappings.get(lbl) : lbl;
+            
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+            List<Schema.PicklistEntry> preferredPhonePicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'PreferredPhone__c');
+            List<String> preferredPhoneValues = new List<String>();
+            for (Schema.PicklistEntry eachValue: preferredPhonePicklist) {
+                preferredPhoneValues.add(eachValue.getValue());
+            }
+             
+            if (!preferredPhoneValues.contains(lbl)) {
+                this.prefLabel = (preferredPhoneMappings.containsKey(lbl)) ? preferredPhoneMappings.get(lbl) : lbl;
+                System.debug('11111111 lbl'+this.prefLabel);
+            } else {            
+                 this.prefLabel = lbl;
+                 System.debug('2222222 lbl'+this.prefLabel);
+            }
+            
+            System.debug('******** this.prefLabel'+this.prefLabel);
         }
         
     }   
