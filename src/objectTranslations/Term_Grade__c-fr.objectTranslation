@@ -9,10 +9,22 @@
         <value>Notes</value>
     </caseValues>
     <fields>
+      <help><!-- The student for whom the grade is being recorded. --></help>
+      <label><!-- Contact --></label>
+      <name>Contact__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+    </fields>
+    <fields>
         <help>La classe dans laquelle l&apos;étudiant a reçu cette note.</help>
         <label>Connexion au cours</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Notes</relationshipLabel>
+    </fields>
+    <fields>
+      <help><!-- The Course Offering associated with the grade being recorded. --></help>
+      <label><!-- Course Offering --></label>
+      <name>Course_Offering__c</name>
+      <relationshipLabel><!-- Term Grades --></relationshipLabel>
     </fields>
     <fields>
         <help>Le nombre de crédits tentés pour ce cours et la période de notation.</help>
