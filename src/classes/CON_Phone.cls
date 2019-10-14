@@ -329,13 +329,10 @@ public with sharing class CON_Phone {
              
             if (!preferredPhoneValues.contains(lbl)) {
                 this.prefLabel = (preferredPhoneMappings.containsKey(lbl)) ? preferredPhoneMappings.get(lbl) : lbl;
-                System.debug('11111111 lbl'+this.prefLabel);
             } else {            
                  this.prefLabel = lbl;
-                 System.debug('2222222 lbl'+this.prefLabel);
             }
             
-            System.debug('******** this.prefLabel'+this.prefLabel);
         }
         
     }   
