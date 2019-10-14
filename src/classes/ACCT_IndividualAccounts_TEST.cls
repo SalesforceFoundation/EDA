@@ -962,9 +962,14 @@ private class ACCT_IndividualAccounts_TEST {
         System.assertEquals(UTIL_Describe_API.getAdminAccRecTypeID(), updatedContacts[0].Account.RecordTypeId);
     }
 
+    /*********************************************************************************************************
+    * @description Test Method for when a Contact's owner change the Account's Owner
+    * should match the Contact's new owner.
+    */
     @isTest
     private static void contactOwnerChange() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                      (Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
 		Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
         User adminUser = new User(LastName = 'TestAdmin', Email = 'testAdminUser@emailtest.edatest',
@@ -983,6 +988,133 @@ private class ACCT_IndividualAccounts_TEST {
 
 		Contact updatedContact = [SELECT Id, Account.OwnerId FROM Contact WHERE Id =: con.Id];
 		System.assertEquals(adminUser.Id, updatedContact.Account.OwnerId);
+    }
 
+    /*********************************************************************************************************
+    * @description Test Method to test the queryContact() method in ACCT_IndividualAccounts_TDTM
+    */
+    @isTest
+    public static void testQueryContacts() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                       (Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+
+        Test.startTest();
+        insert contacts;
+        Test.stopTest();
+
+        List<Contact> contactReturned = [SELECT Id, AccountId, FirstName, LastName
+                                        FROM Contact WHERE Id = :contacts];
+        System.assertEquals(2, contactReturned.size());
+        System.assertEquals(contacts[0].FirstName, contactReturned[0].FirstName);
+        System.assertEquals(contacts[1].FirstName, contactReturned[1].FirstName);
+	}
+
+    /*********************************************************************************************************
+    * @description Test Method to test the handlesAfterInsertUpdate() method in ACCT_IndividualAccounts_TDTM
+    */
+    @isTest
+    public static void testHandleAfterInsertUpdate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                       (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+
+        Test.startTest();
+        insert con;
+        Test.stopTest();
+
+      	Contact contactReturned = [SELECT Id, AccountId, Account.RecordTypeId,
+                                        Account.Primary_Contact__c,FirstName, LastName
+                                        FROM Contact WHERE Id = :con.Id];
+
+        System.assertEquals(UTIL_Describe_API.getHhAccRecTypeID(), contactReturned.Account.RecordTypeId);
+        System.assertEquals(con.Id, contactReturned.Account.Primary_Contact__c);
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to test the HandleInsertWrapperLogic() method in ACCT_IndividualAccounts_TDTM
+    */
+    @isTest
+    public static void testHandleInsertWrapperLogic() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                      (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                        Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
+                                                        Automatic_Household_Naming__c = true));
+
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        insert acct;
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.AccountId = acct.id;
+        insert con;
+
+        Contact returnedContact = [SELECT Id, FirstName, LastName,
+                                  AccountId, Account.Name,
+                                  Account.Primary_Contact__c, Account.RecordTypeId
+                                  FROM Contact WHERE Id = :con.Id];
+
+        System.assertNotEquals(NULL, returnedContact.Account.Primary_Contact__c);
+        System.assertEquals(con.FirstName + ' ' + con.LastName + ' ' + 'Household', returnedContact.Account.Name);
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to test the HandleUpdateWrapperLogic() method in ACCT_IndividualAccounts_TDTM
+    */
+    @isTest
+    public static void testHandleUpdateWrapperLogic() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                      (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                        Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
+                                                        Automatic_Household_Naming__c = true));
+        Contact con = UTIL_UnitTestData_API.getContact();
+        insert con;
+
+        Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User adminUser = new User(LastName = 'TestAdmin', Email = 'testAdminUser@emailtest.edatest',
+									ProfileId = sysAdminProfileId, isActive = true, UserName = 'testAdminUser@emailtest.edatest',
+         							Alias = 'tAdmin0', TimeZoneSidKey = 'America/Los_Angeles',
+                					LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+        insert adminUser;
+
+        con.FirstName = 'Samantha';
+        con.LastName = 'Smith';
+        con.OwnerId = adminUser.Id;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+       	Contact returnedContact = [SELECT Id, FirstName, LastName,
+                                  OwnerId, AccountId, Account.OwnerId,
+                                  Account.Name
+                                  FROM Contact WHERE Id = :con.Id];
+
+        System.assertEquals(con.OwnerId, returnedContact.Account.OwnerId);
+        System.assertEquals(con.FirstName + ' ' + con.LastName + ' ' + 'Household', returnedContact.Account.Name);
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to test the handlesAfterDelete() && handleDeleteProcessing() method in ACCT_IndividualAccounts_TDTM
+    */
+    @isTest
+    public static void testHandlesAfterDelete() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                      (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                        Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
+                                                        Automatic_Household_Naming__c = true));
+        Contact con = UTIL_UnitTestData_API.getContact();
+        insert con;
+
+        Contact returnedContact = [SELECT Id, AccountId FROM Contact WHERE Id = :con.Id];
+        Account returnedAccount = [SELECT Id, Name, Primary_Contact__c
+                                  FROM Account WHERE Id = :returnedContact.AccountId];
+        Test.startTest();
+        delete con;
+        Test.stopTest();
+
+        List<Contact> returnedContactDelete = [SELECT Id, IsDeleted FROM Contact WHERE Id = :con.Id];
+        System.assertEquals(0, returnedContactDelete.size());
     }
 }

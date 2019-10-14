@@ -759,7 +759,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return boolean.
     */
     public static boolean checkHouseholdNaming(Id accRecordTypeId) {
-
         if (accRecordTypeId != null
             && accRecordTypeId == userDefinedHHRecordTypeId
             && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true)
