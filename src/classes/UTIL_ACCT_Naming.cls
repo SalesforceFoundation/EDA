@@ -408,7 +408,7 @@ public class UTIL_ACCT_Naming {
         Pattern MyPattern = Pattern.compile(regexPattern);
         Matcher MyMatcher = MyPattern.matcher(acctNameFormat);
 
-        //Checks {!{FirstName}}
+        //Checks {!{!FirstName}}
         String regexPatternDoubleToken = '\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}';
         Pattern MyPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
         Matcher MyMatcherDoubleTokenCheck = MyPatternDoubleTokenCheck.matcher(acctNameFormat);
@@ -550,7 +550,6 @@ public class UTIL_ACCT_Naming {
         }
 
         //Handles processing fullNameSpec
-        System.debug('processNames checkFullNameSpec -->' + ns.fullNameSpec);
         String acctName = stringConNames(cons[i], ns.fullNameSpec);
         acctName = acctName.replace('FirstNameSpec', firstName);
 
@@ -569,9 +568,7 @@ public class UTIL_ACCT_Naming {
     * return String
     */
     private static String stringConNames(Contact con, String fullNameSpec) {
-        System.debug('stringConNames Method -->' + fullNameSpec);
         String currentFormatValue = fullNameSpec;
-        System.debug('stringConNames currentFormatValue -->' + currentFormatValue);
 
         // First, instantiate a new Pattern object looking for {...} without any nested {'s.
         Pattern MyPattern = Pattern.compile('\\{![^\\{!]*\\}');
@@ -582,16 +579,13 @@ public class UTIL_ACCT_Naming {
         while (MyMatcher.find()) {
             //Get the fieldname without the {}'s, ie. {!LastName} -> LastName
             String strField = fullNameSpec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
-            System.debug('stringConNames strField -->' + strField);
 
             //Separate cross object references, ie. (LastName)
             List<String> splitField = (strField.split('\\.',0));
-            System.debug('stringConNames splitField -->' + splitField);
 
             //Remove the field name itself to only include parent object references. ie.  {!LastName} -> LastName
             String fieldName = splitField[splitField.size()-1].trim();
             splitField.remove(splitField.size()-1);
-            System.debug('stringConNames fieldNameCheck -->' + fieldName);
 
             //Use the correct sObject
             sObject thisObj;
@@ -601,7 +595,6 @@ public class UTIL_ACCT_Naming {
             } else {
                 thisObj = con;
             }
-            System.debug('stringConNames sObject -->' + thisObj);
 
             //Traverse parent relationships until the last one
             for (String parentObj : splitField) {
@@ -609,14 +602,11 @@ public class UTIL_ACCT_Naming {
                     thisObj = thisObj.getsObject(parentObj);
                 }
             }
-			System.debug('stringConNames sObject2 -->' + thisObj);
 
             String val;
             if (thisObj != null) {
                 //Assigns the actual value of the Salutation/FN/LN to val
-                System.debug('stringConNames val -->' + val);
                 val = String.valueOf(thisObj.get(fieldName));
-                System.debug('stringConNames valAfter -->' + val);
             }
 
             //Add back the {}'s for string substitution
