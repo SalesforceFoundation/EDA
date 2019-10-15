@@ -275,7 +275,8 @@ public class CON_Email {
         public String prefLabel {get;set;}
 
         public CON_EmailField(String val, String lbl, String api ) {
-            // Store default email field mappings to preferred email pick list.
+            // Store default email field mappings to preferred email picklist values prior to EDA 1.86.
+            // The mapping is used when Preferred Email picklist values do not match corresponding the field labels.
             Map<String,String> preferredEmailMappings = new Map<String,String>{
                 'University Email' => 'University',
                 'Work Email' => 'Work',

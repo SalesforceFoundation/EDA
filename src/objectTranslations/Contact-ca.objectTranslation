@@ -3510,7 +3510,7 @@
         <name>Preferred_Email__c</name>
         <picklistValues>
             <masterLabel>Alternate</masterLabel>
-            <translation>orreu electrònic alternatiu</translation>
+            <translation>Correu electrònic alternatiu</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>University</masterLabel>

@@ -307,7 +307,8 @@ public with sharing class CON_Phone {
         * @param api The API name of the phone field
         */
         public CON_PhoneField(String val, String lbl, String api ) {
-            // Store default phone field mappings to preferred phone pick list.
+            // Store default phone field mappings to Preferred Phone picklist values prior to EDA 1.86.
+            // The mapping is used when Preferred Phone picklist values do not match corresponding the field labels.
             Map<String,String> preferredPhoneMappings = new Map<String,String>{
                 'Home Phone' => 'Home',
                 'Work Phone' => 'Work',
