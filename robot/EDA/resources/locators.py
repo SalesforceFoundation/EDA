@@ -144,7 +144,7 @@ eda_lex_locators = {
     "eda_tile": "//div[@class='slds-app-launcher__tile-body']//a[contains(text(),'EDA')]/../..",
     "new_account": "//span[@title='New Account']",
     "new_account_next_button": "//button[contains(@class, 'slds-button')]//span[@class=' label bBody' and text()='Next']",
-    "new_account_name": "//input[@class='input uiInput uiInputText uiInput--default uiInput--input']",
+    "new_account_name": "//label/span[text()='Account Name']/following-sibling::span/following::input[1]",
     "new_account_save_button": "//div[contains(@class, 'slds-modal__footer')]/descendant::button[@title='Save']",
     "academic_program": "//span[contains(text(), 'Academic Program')]",
     "new_program_enrollment_save_button": "//div[contains(@class, 'inlineFooter')]/descendant::button[@title='Save']",
