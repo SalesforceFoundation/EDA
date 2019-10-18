@@ -118,7 +118,9 @@ public class UTIL_ACCT_Naming {
     */
     private static List<Account> queryContacts(Set<Id> accIdsToRename) {
         List<Account> returnedContacts = new List<Account>();
-
+        String sortByLastName = 'LastName'; 
+        String sortByFirstName = 'FirstName'; 
+        
         //Build dynamic query string
         String dynamicSoql = 'SELECT id, RecordTypeId, ';
         dynamicSoql += '(SELECT Id, AccountId,' +
@@ -135,16 +137,29 @@ public class UTIL_ACCT_Naming {
         }
 
         if (defaultRecTypeId == hhAccountRecordTypeId) {
-            dynamicSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true ORDER BY LastName, FirstName)';
+            dynamicSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true)';
         } else {
-            dynamicSoql += 'FROM Contacts ORDER BY LastName, FirstName)';
+            dynamicSoql += 'FROM Contacts)'; 
         }
+        
+        //dynamicSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true ORDER BY' + sortByLastName + sortByFirstName')';
 
         dynamicSoql += 'FROM Account WHERE Id IN :accIdsToRename';
+        
+        System.debug('queryContacts dynamicSoql -->' + dynamicSoql); 
+        
 
         //Re-query to get correct Account values (and all the other fields we will look at)
         returnedContacts = database.query(dynamicSoql);
-
+        
+        /*if (returnedContacts.size() > 0) {
+            UITL_SortContacts sortCons; 
+            List<Contact> sortedContacts = New List<Contact>(); 
+            for (Contact c : returnedContacts) {
+				sortCons = new UITL_SortContacts(c); 
+            }
+        }*/
+        
         return returnedContacts;
     }
 
@@ -156,21 +171,41 @@ public class UTIL_ACCT_Naming {
     public static String updateName(Contact[] cons) {
         String accountNamingFormat;
         String finalAccountName;
-
+        
         accountNamingFormat = checkAccountFormat();
 
         NameSpec ns;
+        
+        
+   		List<UITL_SortContacts> sortedContacts = new List<UITL_SortContacts>(); 
+        UITL_SortContacts sortCons; 
+        for (Contact c : cons) {
+            sortCons = new UITL_SortContacts(c); 
+            sortedContacts.add(sortCons); 
+            System.debug('sortedContactsB4 Sorted -->' + sortedContacts); 
+            
+            System.debug('sortedContactsAfter Sorted -->' + sortedContacts);
+        }
+        sortedContacts.sort(); 
+        System.debug('sortedContacts Check -->' + sortedContacts); 
+        List<Contact> finalSortedContacts = new List<Contact>(); 
+        for (UITL_SortContacts us : sortedContacts) {
+            finalSortedContacts.add(us.contactRecord); 
+        }
+        
+        System.debug('finalSortedContacts Check -->' + finalSortedContacts); 
         if (accountNamingFormat != NULL) {
             ns = new NameSpec(accountNamingFormat);
-            finalAccountName = buildAccountName(cons, ns);
+            finalAccountName = buildAccountName(finalSortedContacts, ns);
+            
         } else {
-            finalAccountName = defaultAccountName(cons, accountNamingFormat);
+            finalAccountName = defaultAccountName(finalSortedContacts, accountNamingFormat);
 
         }
 
         return finalAccountName;
     }
-
+    
     /*******************************************************************************************************
     * @description This checks and returns the current Account Model and Account name format.
     * @return String.
@@ -314,7 +349,7 @@ public class UTIL_ACCT_Naming {
 
             Integer indexOfLeft = strFirstName.indexOf(chLToken);
             Integer indexOfRight = strFirstName.lastIndexOf(chRToken);
-
+			
             //Retrieve full Account name format with a token
             if (indexOfLeft >= 0 && indexOfRight > 0) {
                 if (salutationSpec == NULL || salutationSpec == '') {
@@ -401,8 +436,8 @@ public class UTIL_ACCT_Naming {
     * @return String.
     */
     private static String cleanFirstNameFormat(String acctNameFormat) {
-        String firstNameFormat = '';
-
+        String firstNameFormat = ''; 
+        
         //Checks {!FirstName}
         String regexPattern = '(?:^|\\W)FirstName(?:$|\\W)';
         Pattern MyPattern = Pattern.compile(regexPattern);
@@ -412,7 +447,7 @@ public class UTIL_ACCT_Naming {
         String regexPatternDoubleToken = '\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}';
         Pattern MyPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
         Matcher MyMatcherDoubleTokenCheck = MyPatternDoubleTokenCheck.matcher(acctNameFormat);
-
+        
         if (MyMatcherDoubleTokenCheck.find()) {
             //If it finds {!{!FirstName}}
             setFNSpec = true;
@@ -421,10 +456,10 @@ public class UTIL_ACCT_Naming {
             //If it finds  {!FirstName}
             firstNameFormat = acctNameFormat.subString(MyMatcher.start()-1, MyMatcher.end());
         } else {
-            firstNameFormat = '';
+            firstNameFormat = ''; 
         }
-
-        return firstNameFormat;
+  
+        return firstNameFormat; 
     }
 
     /*******************************************************************************************************
@@ -442,7 +477,9 @@ public class UTIL_ACCT_Naming {
         Integer conSize = cons.size();
         Boolean isNoLastnames = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
         Boolean isLastNameOnlyFormat = !isNoLastnames && ns.returnNameFormat().size() == 1;
-
+		
+        System.debug('buildAcctName sortedContacts -->' + cons); 
+        
         for (Integer i = 0, next = 0; i < conSize; i = next) {
             String lastName = cons[i].LastName;
             next = i + 1;
@@ -602,7 +639,7 @@ public class UTIL_ACCT_Naming {
                     thisObj = thisObj.getsObject(parentObj);
                 }
             }
-
+            
             String val;
             if (thisObj != null) {
                 //Assigns the actual value of the Salutation/FN/LN to val
