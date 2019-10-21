@@ -144,9 +144,6 @@ public class UTIL_ACCT_Naming {
 
         dynamicSoql += 'FROM Account WHERE Id IN :accIdsToRename';
 
-        System.debug('queryContacts dynamicSoql -->' + dynamicSoql);
-
-
         //Re-query to get correct Account values (and all the other fields we will look at)
         returnedContacts = database.query(dynamicSoql);
 
@@ -169,23 +166,6 @@ public class UTIL_ACCT_Naming {
         List<Contact> returnSortedContacts = new List<Contact>();
 		returnSortedContacts = sortContacts(cons);
 
-   		/*List<UITL_SortContacts> sortedContacts = new List<UITL_SortContacts>();
-        UITL_SortContacts sortCons;
-        for (Contact c : cons) {
-            sortCons = new UITL_SortContacts(c);
-            sortedContacts.add(sortCons);
-            System.debug('sortedContactsB4 Sorted -->' + sortedContacts);
-
-            System.debug('sortedContactsAfter Sorted -->' + sortedContacts);
-        }
-        sortedContacts.sort();
-        System.debug('sortedContacts Check -->' + sortedContacts);
-        List<Contact> finalSortedContacts = new List<Contact>();
-        for (UITL_SortContacts us : sortedContacts) {
-            finalSortedContacts.add(us.contactRecord);
-        }*/
-
-        System.debug('finalSortedContacts Check -->' + returnSortedContacts);
         if (accountNamingFormat != NULL) {
             ns = new NameSpec(accountNamingFormat);
             finalAccountName = buildAccountName(returnSortedContacts, ns);
@@ -239,13 +219,8 @@ public class UTIL_ACCT_Naming {
         for (Contact c : cons) {
             sortCons = new UITL_SortContacts(c);
             sortedContacts.add(sortCons);
-            System.debug('sortedContactsB4 Sorted -->' + sortedContacts);
-
-            System.debug('sortedContactsAfter Sorted -->' + sortedContacts);
         }
         sortedContacts.sort();
-
-        System.debug('sortedContacts Check -->' + sortedContacts);
 
         for (UITL_SortContacts us : sortedContacts) {
             finalSortedContacts.add(us.contactRecord);
