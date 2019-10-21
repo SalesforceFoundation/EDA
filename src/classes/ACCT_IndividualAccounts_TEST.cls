@@ -36,44 +36,6 @@
 */
 @isTest
 private class ACCT_IndividualAccounts_TEST {
-
-    /*private static void testSetup() {
-    	List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(9);
-
-
-        contacts[0].Email = 'wZapTest@sortConTest.com' + 0;
-        contacts[1].Email = 'willZapTest@sortConTest.com' + 1;
-
-        contacts[0].FirstName = 'Will';
-        contacts[0].LastName = 'Zap';
-
-
-        contacts[2].Email = 'aZapTest@sortConTest.com' + 2;
-        contacts[3].Email = 'tBrettTest@sortConTest.com' + 3;
-        contacts[4].Email = 'bBrettTest@sortConTest.com' + 4;
-        contacts[5].Email = 'cBrettTest@sortConTest.com' + 5;
-        contacts[6].Email = 'cPierreTest@sortConTest.com' + 6;
-        contacts[7].Email = 'lPierreTest@sortConTest.com' + 7;
-        contacts[8].Email = 'aPierreTest@sortConTest.com' + 8;
-
-        contacts[1].FirstName = 'William';
-        contacts[1].LastName = 'Zap';
-        contacts[2].FirstName = 'Abigail';
-        contacts[2].LastName = 'Zap';
-        contacts[3].FirstName = 'Tammy';
-        contacts[3].LastName = 'Brett';
-        contacts[4].FirstName = 'Betty';
-        contacts[4].LastName = 'Brett';
-        contacts[5].FirstName = 'Charles';
-        contacts[5].LastName = 'Brett';
-        contacts[6].FirstName = 'Cat';
-        contacts[6].LastName = 'Pierre';
-        contacts[7].FirstName = 'Lyla';
-        contacts[7].LastName = 'Pierre';
-        contacts[8].FirstName = 'Annie';
-        contacts[8].LastName = 'Pierre';
-    }*/
-
     /*********************************************************************************************************
     * @description Create a Contact with TDTM triggers off
     */
