@@ -475,8 +475,6 @@ public class UTIL_ACCT_Naming {
         Boolean isNoLastnames = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
         Boolean isLastNameOnlyFormat = !isNoLastnames && ns.returnNameFormat().size() == 1;
 
-        System.debug('buildAcctName sortedContacts -->' + cons);
-
         for (Integer i = 0, next = 0; i < conSize; i = next) {
             String lastName = cons[i].LastName;
             next = i + 1;
