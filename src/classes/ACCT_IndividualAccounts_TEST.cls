@@ -1126,7 +1126,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!{!FirstName}} {!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
         insert acct;
@@ -1162,10 +1162,10 @@ private class ACCT_IndividualAccounts_TEST {
         List<Contact> returnSortedContacts = [SELECT Id, FirstName, LastName, Account.Name
                                              FROM Contact WHERE Id = :contacts];
         System.assertEquals(contacts[4].FirstName + ', ' + contacts[5].FirstName + ' and ' + contacts[3].FirstName +
-                            ' ' + contacts[3].LastName + ', ' + contacts[8].FirstName + ', ' + contacts[6].FirstName +
-                            ' and ' + contacts[7].FirstName + ' ' + contacts[7].LastName + ' and ' +
-                            contacts[2].FirstName + ', ' + contacts[0].FirstName + ' and ' + contacts[1].FirstName +
-                            ' ' + contacts[1].LastName + ' ' + 'Household',
+                            ' ' + contacts[3].LastName + ', ' + contacts[8].FirstName + ', '
+                            + contacts[6].FirstName + ' and ' + contacts[7].FirstName + ' ' + contacts[7].LastName +
+                            ' and ' + contacts[2].FirstName + ', ' + contacts[0].FirstName + ' and ' +
+                            contacts[1].FirstName + ' ' + contacts[1].LastName + ' ' + 'Household',
                             returnSortedContacts[0].Account.Name);
 
     }
@@ -1179,7 +1179,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
         insert acct;
@@ -1214,12 +1214,12 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<Contact> returnSortedContacts = [SELECT Id, FirstName, LastName, Account.Name
                                              FROM Contact WHERE Id = :contacts];
-        System.assertEquals(contacts[3].LastName + ' ('+ contacts[4].FirstName + ', ' + contacts[5].FirstName + ' and ' +
-                            contacts[3].FirstName + ')'+ ', ' + contacts[8].LastName + ' (' + contacts[8].FirstName +
-                            ', ' + contacts[6].FirstName + ' and ' + contacts[7].FirstName + ')'+
-                            ' and ' + contacts[2].LastName + ' (' + contacts[2].FirstName + ', ' +
-                            contacts[0].FirstName + ' and ' + contacts[1].FirstName + ')'
-                            + ' ' + 'Household',
+        System.assertEquals(contacts[3].LastName + ' ('+ contacts[4].FirstName + ', ' + contacts[5].FirstName +
+                            ' and ' + contacts[3].FirstName + ')'+ ', ' + contacts[8].LastName +
+                            ' (' + contacts[8].FirstName + ', ' + contacts[6].FirstName + ' and ' +
+                            contacts[7].FirstName + ')'+ ' and ' + contacts[2].LastName + ' (' +
+                            contacts[2].FirstName + ', ' + contacts[0].FirstName + ' and ' + contacts[1].FirstName +
+                            ')' + ' ' + 'Household',
                             returnSortedContacts[0].Account.Name);
 
     }
@@ -1262,6 +1262,4 @@ private class ACCT_IndividualAccounts_TEST {
                             returnSortedContacts[0].Account.Name);
 
     }
-
-
 }
