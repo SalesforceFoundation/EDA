@@ -149,7 +149,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @return void.
     */
-    private void handlesAfterInsertUpdate(Contact [] newContacts, Contact [] oldContacts, TDTM_Runnable.Action triggerAction) {
+    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction) {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
@@ -223,7 +223,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param contactsNeedAccounts a list of Contacts that needs new Accounts or an update.
     * @return void.
     */
-    private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, Contact[] contactsNeedAccounts) {
+    private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
         //Creates new Account
@@ -268,7 +268,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public List<Contact> contactsChangedLastName = new List<Contact>();
 
 
-        private HandleUpdateWrapperLogic(Contact c, Contact [] oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
+        private HandleUpdateWrapperLogic(Contact c, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
 
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContacts[i].AccountId) {
@@ -325,7 +325,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * param contactsNeedAccounts a list of Contacts that needs new Accounts or an update.
     * @return void.
     */
-    private void handleUpdateProcessing(HandleUpdateWrapperLogic updateWrapper, Contact[] contactsNeedAccounts) {
+    private void handleUpdateProcessing(HandleUpdateWrapperLogic updateWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
         //Creates new Account
@@ -378,7 +378,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param oldContacts is a list of Contacts from trigger old.
     * @return void.
     */
-    private void handlesAfterDelete(Contact[] oldContacts) {
+    private void handlesAfterDelete(List<Contact> oldContacts) {
         List<Contact> contactAccountDelete = new List<Contact>();
         List<Account> relatedAccounts = new List<Account>();
         Set<Id> accountIdsToRename = new Set<Id>();
@@ -409,7 +409,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param accountIdsToRename a set of AccountIds that needs Name update.
     * @return void.
     */
-    private void handleDeleteProcessing(Set<Id> accountIdsToRename, Contact[] contactAccountDelete) {
+    private void handleDeleteProcessing(Set<Id> accountIdsToRename, List<Contact> contactAccountDelete) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
@@ -450,7 +450,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Contacts that needs update.
     * @return void.
     */
-    private void insertContactAccount(Contact[] contacts, DmlWrapper dmlWrapper) {
+    private void insertContactAccount(List<Contact> contacts, DmlWrapper dmlWrapper) {
         List<Id> contactIds = new List<Id>();
         List<Account> accountInserts = new List<Account>();
         List<Contact> contactsToUpdate = new List<Contact>();
@@ -660,7 +660,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Contacts that need update.
     * @return void
     */
-    private void updateOwners(map<Id, Contact> contactOwnerChange, DmlWrapper dmlWrapper) {
+    private void updateOwners(Map<Id,Contact> contactOwnerChange, DmlWrapper dmlWrapper) {
         List<Account> accountsToUpdate = new List<Account>();
         Set<Id> contactsAccountId = new Set<Id>();
 
@@ -705,7 +705,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param dmlWrapper to hold the Accounts that needs update.
     * @return void.
     */
-    public void deleteContactAccountsIfEmpty(Contact[] contactAccountDelete, DmlWrapper dmlWrapper) {
+    public void deleteContactAccountsIfEmpty(List<Contact> contactAccountDelete, DmlWrapper dmlWrapper) {
         List<Id> accountIds = new List<Id>();
         List<Id> accountIdsUpdate = new list<Id>();
         List<Account> accountsOnContacts = new List<Account>();
