@@ -34,72 +34,72 @@
 * @description Utility for Sorting Contacts
 */
 public class UTIL_SortContacts implements Comparable {
-    public String FirstName; 
-    public String LastName; 
-    public Contact contactRecord; 
-    
+    public String FirstName;
+    public String LastName;
+    public Contact contactRecord;
+
     /*******************************************************************************************************
-    * @description Constructor that sets the Contact's First and Last Name and the Contact record itself. 
-    * @param c is the Contact record 
+    * @description Constructor that sets the Contact's First and Last Name and the Contact record itself.
+    * @param c is the Contact record
     */
     public UTIL_SortContacts(Contact c) {
         FirstName = c.FirstName;
         LastName = c.LastName;
-        contactRecord = c; 
+        contactRecord = c;
     }
-    
+
     /*******************************************************************************************************
     * @description method that returns an Integer value based on LastName/FirstName comparison.
-    * @param compareTo is the object that is being passed for comparison. 
-    * @return Integer 
+    * @param compareTo is the object that is being passed for comparison.
+    * @return Integer
     */
     public Integer compareTo(Object compareTo) {
-        return sortByLastNameFirstName(compareTo); 
+        return sortByLastNameFirstName(compareTo);
     }
-    
+
     /*******************************************************************************************************
-    * @description sorts Contact by LastName and FirstName. 
-    * @param compareTo is the object that is being passed for comparison. 
-    * @return Integer 
+    * @description sorts Contact by LastName and FirstName.
+    * @param compareTo is the object that is being passed for comparison.
+    * @return Integer
     */
     private Integer sortByLastNameFirstName(Object compareTo) {
-        UTIL_SortContacts contactToCompare = (UTIL_SortContacts)compareTo; 
-		
+        UTIL_SortContacts contactToCompare = (UTIL_SortContacts)compareTo;
+
         if (this.LastName == contactToCompare.LastName) {
-            return sortByFirstName(contactToCompare); 
+            return sortByFirstName(contactToCompare);
         } else {
-            return sortByLastName(contactToCompare); 
+            return sortByLastName(contactToCompare);
         }
-             
+
     }
-    
+
     /*******************************************************************************************************
     * @description sorts Contact by FirstName.
     * @param contactToCompare is the record that needs to be compared
-    * @return Integer 
+    * @return Integer
     */
     private Integer sortByFirstName(UTIL_SortContacts contactToCompare) {
         if (this.FirstName == contactToCompare.FirstName) {
-            return 0; 
+            return 0;
         } else if (this.FirstName > contactToCompare.FirstName) {
-            return 1; 
+            return 1;
         } else {
-            return -1; 
+            return -1;
         }
     }
-    
+
     /*******************************************************************************************************
     * @description sorts Contact by LastName.
     * @param contactToCompare is the record that needs to be compared
-    * @return Integer 
+    * @return Integer
     */
     private Integer sortByLastName(UTIL_SortContacts contactToCompare) {
         if (this.LastName == contactToCompare.LastName) {
             return 0;
         } else if (this.LastName > contactToCompare.LastName) {
-            return 1; 
+            return 1;
         } else {
-            return -1; 
+            return -1;
         }
     }
 }

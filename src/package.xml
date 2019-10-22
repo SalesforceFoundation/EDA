@@ -143,6 +143,7 @@
         <members>UTIL_Profile</members>
         <members>UTIL_Profile_TEST</members>
         <members>UTIL_SortContacts</members>
+        <members>UTIL_SortContacts_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
@@ -383,7 +384,6 @@
         <members>Facility__c.Account__c</members>
         <members>Facility__c.Capacity__c</members>
         <members>Facility__c.Description__c</members>
-        <members>Facility__c.Display_Name__c</members>
         <members>Facility__c.Facility_Type__c</members>
         <members>Facility__c.Parent_Facility__c</members>
         <members>Hierarchy_Settings__c.Account_Processor__c</members>
@@ -568,6 +568,7 @@
         <members>giftProcessingConfigException</members>
         <members>hhAccNameFormat</members>
         <members>hhAccNameFormatHelpText</members>
+        <members>hhFamily</members>
         <members>lastNameAdminAcc</members>
         <members>lastNameFamily</members>
         <members>lastNameFirstNameAdminAcc</members>
@@ -1026,9 +1027,6 @@
     <types>
         <members>Attribute__c.Credential</members>
         <members>Attribute__c.Student_Characteristic</members>
-        <members>Course_Enrollment__c.Default</members>
-        <members>Course_Enrollment__c.Faculty</members>
-        <members>Course_Enrollment__c.Student</members>
         <name>RecordType</name>
     </types>
     <types>
