@@ -36,7 +36,6 @@
 */
 @isTest
 private class ACCT_IndividualAccounts_TEST {
-
     /*********************************************************************************************************
     * @description Create a Contact with TDTM triggers off
     */
@@ -1116,5 +1115,190 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<Contact> returnedContactDelete = [SELECT Id, IsDeleted FROM Contact WHERE Id = :con.Id];
         System.assertEquals(0, returnedContactDelete.size());
+    }
+    
+    /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically by LastName FirstName 
+    * with {!{!FirstName}} {!LastName} Household format. 
+    */
+    @isTest
+    private static void sortContactsFirstLastNames() {  
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!{!FirstName}} {!LastName} Household',
+                                                     Automatic_Household_Naming__c = true));
+        
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        insert acct;
+        
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(9); 
+        for (Contact c : contacts) {
+            c.AccountId = acct.Id; 
+        }
+        
+        contacts[0].FirstName = 'Will';
+        contacts[0].LastName = 'Zap';
+        contacts[1].FirstName = 'William';
+        contacts[1].LastName = 'Zap';
+        contacts[2].FirstName = 'Abigail';
+        contacts[2].LastName = 'Zap';
+        contacts[3].FirstName = 'Tammy';
+        contacts[3].LastName = 'Brett';
+        contacts[4].FirstName = 'Betty';
+        contacts[4].LastName = 'Brett';
+        contacts[5].FirstName = 'Charles';
+        contacts[5].LastName = 'Brett';
+        contacts[6].FirstName = 'Cat';
+        contacts[6].LastName = 'Pierre';
+        contacts[7].FirstName = 'Lyla';
+        contacts[7].LastName = 'Pierre';
+        contacts[8].FirstName = 'Annie';
+        contacts[8].LastName = 'Pierre';
+        
+        Test.startTest(); 
+        insert contacts; 
+        Test.stopTest(); 
+        
+        List<Contact> returnSortedContacts = [SELECT Id, FirstName, LastName, Account.Name
+                                             FROM Contact WHERE Id = :contacts]; 
+        System.assertEquals(contacts[4].FirstName + ', ' + contacts[5].FirstName + ' and ' + contacts[3].FirstName + 
+                            ' ' + contacts[3].LastName + ', ' + contacts[8].FirstName + ', ' 
+                            + contacts[6].FirstName + ' and ' + contacts[7].FirstName + ' ' + contacts[7].LastName + 
+                            ' and ' + contacts[2].FirstName + ', ' + contacts[0].FirstName + ' and ' + 
+                            contacts[1].FirstName + ' ' + contacts[1].LastName + ' ' + 'Household', 
+                            returnSortedContacts[0].Account.Name); 
+ 		
+    }
+   
+    /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically by LastName FirstName 
+    * with {!LastName} ({!{!FirstName}}) Household format. 
+    */
+    @isTest
+    private static void sortContactsLastFirstNames() {  
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                                                     Automatic_Household_Naming__c = true));
+        
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        insert acct;
+        
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(9); 
+        for (Contact c : contacts) {
+            c.AccountId = acct.Id; 
+        }
+        
+        contacts[0].FirstName = 'Will';
+        contacts[0].LastName = 'Zap';
+        contacts[1].FirstName = 'William';
+        contacts[1].LastName = 'Zap';
+        contacts[2].FirstName = 'Abigail';
+        contacts[2].LastName = 'Zap';
+        contacts[3].FirstName = 'Tammy';
+        contacts[3].LastName = 'Brett';
+        contacts[4].FirstName = 'Betty';
+        contacts[4].LastName = 'Brett';
+        contacts[5].FirstName = 'Charles';
+        contacts[5].LastName = 'Brett';
+        contacts[6].FirstName = 'Cat';
+        contacts[6].LastName = 'Pierre';
+        contacts[7].FirstName = 'Lyla';
+        contacts[7].LastName = 'Pierre';
+        contacts[8].FirstName = 'Annie';
+        contacts[8].LastName = 'Pierre';
+        
+        Test.startTest(); 
+        insert contacts; 
+        Test.stopTest(); 
+        
+        List<Contact> returnSortedContacts = [SELECT Id, FirstName, LastName, Account.Name
+                                             FROM Contact WHERE Id = :contacts]; 
+        System.assertEquals(contacts[3].LastName + ' ('+ contacts[4].FirstName + ', ' + contacts[5].FirstName + 
+                            ' and ' + contacts[3].FirstName + ')'+ ', ' + contacts[8].LastName + 
+                            ' (' + contacts[8].FirstName + ', ' + contacts[6].FirstName + ' and ' + 
+                            contacts[7].FirstName + ')'+ ' and ' + contacts[2].LastName + ' (' + 
+                            contacts[2].FirstName + ', ' + contacts[0].FirstName + ' and ' + contacts[1].FirstName + 
+                            ')' + ' ' + 'Household', 
+                            returnSortedContacts[0].Account.Name); 
+ 		
+    }
+    
+    /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically by LastName FirstName 
+    * with {!LastName} Household format. 
+    */
+    @isTest
+    private static void sortContactsLastNameOnly() {  
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+        
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        insert acct;
+        
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(3); 
+        for (Contact c : contacts) {
+            c.AccountId = acct.Id; 
+        }
+        
+        contacts[0].FirstName = 'Will';
+        contacts[0].LastName = 'Zap';
+        contacts[1].FirstName = 'Betty';
+        contacts[1].LastName = 'Brett';
+        contacts[2].FirstName = 'Abigail';
+        contacts[2].LastName = 'Pierre';
+        
+        
+        Test.startTest(); 
+        insert contacts; 
+        Test.stopTest(); 
+        
+        List<Contact> returnSortedContacts = [SELECT Id, FirstName, LastName, Account.Name
+                                             FROM Contact WHERE Id = :contacts]; 
+        System.assertEquals(contacts[1].LastName + ', ' + contacts[2].LastName + ' and ' + 
+                            contacts[0].LastName + ' ' + 'Household',
+                            returnSortedContacts[0].Account.Name); 
+ 		
+    }
+    
+    /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically by LastName FirstName  
+    * with {!{!FirstName}} {!LastName} Household format and blank FirstNames.
+    */
+    @isTest
+    private static void sortContactsWithoutFirstNames() {  
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!{!FirstName}} {!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+        
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        insert acct;
+        
+        List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(3); 
+        for (Contact c : contacts) {
+            c.AccountId = acct.Id; 
+        }
+        
+        contacts[0].FirstName = '';
+        contacts[0].LastName = 'Zap';
+        contacts[1].FirstName = '';
+        contacts[1].LastName = 'Brett';
+        contacts[2].FirstName = '';
+        contacts[2].LastName = 'Pierre';
+        
+        
+        Test.startTest(); 
+        insert contacts; 
+        Test.stopTest(); 
+        
+        List<Contact> returnSortedContacts = [SELECT Id, FirstName, LastName, Account.Name
+                                             FROM Contact WHERE Id = :contacts]; 
+        System.assertEquals(contacts[1].LastName + ', ' + contacts[2].LastName + ' and ' + 
+                            contacts[0].LastName + ' ' + 'Household',
+                            returnSortedContacts[0].Account.Name); 
+ 		
     }
 }

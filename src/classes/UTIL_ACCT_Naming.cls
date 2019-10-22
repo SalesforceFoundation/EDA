@@ -118,6 +118,8 @@ public class UTIL_ACCT_Naming {
     */
     private static List<Account> queryContacts(Set<Id> accIdsToRename) {
         List<Account> returnedContacts = new List<Account>();
+        String sortByLastName = 'LastName';
+        String sortByFirstName = 'FirstName';
 
         //Build dynamic query string
         String dynamicSoql = 'SELECT id, RecordTypeId, ';
@@ -136,6 +138,8 @@ public class UTIL_ACCT_Naming {
 
         if (defaultRecTypeId == hhAccountRecordTypeId) {
             dynamicSoql += 'Phone, Fax FROM Contacts WHERE Exclude_from_Household_Name__c != true)';
+        } else {
+            dynamicSoql += 'FROM Contacts)';
         }
 
         dynamicSoql += 'FROM Account WHERE Id IN :accIdsToRename';
@@ -151,18 +155,22 @@ public class UTIL_ACCT_Naming {
     * @param cons a set of Contacts whose Account needs Name update.
     * @return String.
     */
-    public static String updateName(Contact[] cons) {
+    public static String updateName(List<Contact> cons) {
         String accountNamingFormat;
         String finalAccountName;
 
         accountNamingFormat = checkAccountFormat();
 
         NameSpec ns;
+
+        List<Contact> returnSortedContacts = sortContacts(cons);
+
         if (accountNamingFormat != NULL) {
             ns = new NameSpec(accountNamingFormat);
-            finalAccountName = buildAccountName(cons, ns);
+            finalAccountName = buildAccountName(returnSortedContacts, ns);
+
         } else {
-            finalAccountName = defaultAccountName(cons, accountNamingFormat);
+            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
 
         }
 
@@ -173,7 +181,7 @@ public class UTIL_ACCT_Naming {
     * @description This checks and returns the current Account Model and Account name format.
     * @return String.
     */
-    public static String checkAccountFormat () {
+    private static String checkAccountFormat () {
         String accountNamingFormat;
 
         if (defaultRecTypeId == hhAccountRecordTypeId) {
@@ -196,12 +204,34 @@ public class UTIL_ACCT_Naming {
     }
 
     /*******************************************************************************************************
+    * @description This calls the UTIL_SortContacts to sort Contacts in alphabetical order.
+    * @param cons a list of Contacts that needs to be alphabetized.
+    * @return List<Contact>.
+    */
+
+    private static List<Contact> sortContacts(List<Contact> cons) {
+        List<UTIL_SortContacts> sortedContacts = new List<UTIL_SortContacts>();
+        List<Contact> finalSortedContacts = new List<Contact>();
+
+        for (Contact c : cons) {
+            sortedContacts.add(new UTIL_SortContacts(c));
+        }
+        sortedContacts.sort();
+
+        for (UTIL_SortContacts us : sortedContacts) {
+            finalSortedContacts.add(us.contactRecord);
+        }
+
+        return finalSortedContacts;
+    }
+
+    /*******************************************************************************************************
     * @description This sets the default Account name for each respective Account model.
     * @param cons a list of Contacts whose Account needs Name update.
     * @param accountNamingFormat is a string of the Account name format currently set in the org.
     * @return String.
     */
-    public static String defaultAccountName(Contact[] cons, String accountNamingFormat) {
+    private static String defaultAccountName(List<Contact> cons, String accountNamingFormat) {
         Set<String> householdLastNames = new Set<String>();
         String finalAccountName;
 
@@ -372,7 +402,6 @@ public class UTIL_ACCT_Naming {
             string strField = firstNameSpec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
             nameFormat.add(strField.trim());
         }
-
         return nameFormat;
     }
 
@@ -400,26 +429,30 @@ public class UTIL_ACCT_Naming {
     * @return String.
     */
     private static String cleanFirstNameFormat(String acctNameFormat) {
+        String firstNameFormat = '';
+
         //Checks {!FirstName}
         String regexPattern = '(?:^|\\W)FirstName(?:$|\\W)';
         Pattern MyPattern = Pattern.compile(regexPattern);
         Matcher MyMatcher = MyPattern.matcher(acctNameFormat);
 
-        //Checks {!{FirstName}}
+        //Checks {!{!FirstName}}
         String regexPatternDoubleToken = '\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}';
         Pattern MyPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
         Matcher MyMatcherDoubleTokenCheck = MyPatternDoubleTokenCheck.matcher(acctNameFormat);
 
-        //Set setFNSpec if it finds {!{FirstName}}
         if (MyMatcherDoubleTokenCheck.find()) {
+            //If it finds {!{!FirstName}}
             setFNSpec = true;
+            firstNameFormat = acctNameFormat.subString(MyMatcherDoubleTokenCheck.start(), MyMatcherDoubleTokenCheck.end());
+        } else if (MyMatcher.find()) {
+            //If it finds  {!FirstName}
+            firstNameFormat = acctNameFormat.subString(MyMatcher.start()-1, MyMatcher.end());
+        } else {
+            firstNameFormat = '';
         }
 
-        if (MyMatcher.find()) {
-            return acctNameFormat.subString(MyMatcher.start()-1, MyMatcher.end());
-        } else {
-            return '';
-        }
+        return firstNameFormat;
     }
 
     /*******************************************************************************************************
@@ -430,7 +463,7 @@ public class UTIL_ACCT_Naming {
     * @param cons is the list of Contacts
     * return String.
     */
-    private static String buildAccountName(Contact[] cons, NameSpec ns) {
+    private static String buildAccountName(List<Contact> cons, NameSpec ns) {
         Set<String> processedLastNames = new Set<String>();
         String[] finalAccountName = new String[0];
         String salutationSpec = '';
@@ -511,8 +544,8 @@ public class UTIL_ACCT_Naming {
     * @param cons is the list of Contacts
     * return String.
     */
-    private static String processName( Contact[] cons, String lastName, String firstName, String salutationSpec,
-                                      String[] additionalFirstNames, String[] additionalSalutations, NameSpec ns, Integer conSize,
+    private static String processName(List<Contact> cons, String lastName, String firstName, String salutationSpec,
+                                      List<String> additionalFirstNames, List<String> additionalSalutations, NameSpec ns, Integer conSize,
                                       Integer i, Integer next)
     {
 
@@ -629,7 +662,7 @@ public class UTIL_ACCT_Naming {
     * return String, concatented string where names are separated by comma except
     * the last string is linked with the namespec's AND delimiter
     */
-    private static String stringAccountName(String[] finalAccountName, NameSpec ns) {
+    private static String stringAccountName(List<String> finalAccountName, NameSpec ns) {
         String name = '';
         String delimeter = '';
         Integer size = finalAccountName.size();
