@@ -33,7 +33,7 @@
 * @group Utilities
 * @description Utility for Sorting Contacts
 */
-public class UITL_SortContacts implements Comparable{
+public class UTIL_SortContacts implements Comparable{
     public String FirstName;
     public String LastName;
     public Contact contactRecord;
