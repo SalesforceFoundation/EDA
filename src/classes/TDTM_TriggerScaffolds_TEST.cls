@@ -48,57 +48,57 @@ public with sharing class TDTM_TriggerScaffolds_TEST {
     
     public static testmethod void tdtmCampaign() {
     	//Currently we don't have any Trigger_Handler__c record for Campaign. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Campaign(Name = 'Test');
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Campaign(Name = 'Test');
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 
     public static testmethod void tdtmAttribute() {
     	//Currently we don't have any Trigger_Handler__c record for Attribute. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Attribute__c(Name = 'Test');
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Attribute__c(Name = 'Test');
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 
     public static testmethod void tdtmBehavior_Involvement() {
     	//Currently we don't have any Trigger_Handler__c record for Behavior_Involvement. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Behavior_Involvement__c();
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Behavior_Involvement__c();
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 
     public static testmethod void tdtmBehavior_Response() {
     	//Currently we don't have any Trigger_Handler__c record for Behavior_Response. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Behavior_Response__c();
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Behavior_Response__c();
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 
     public static testmethod void tdtmCase() {
     	//Currently we don't have any Trigger_Handler__c record for Case. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Case();
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Case();
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 
     public static testmethod void tdtmFacility() {
     	//Currently we don't have any Trigger_Handler__c record for Facility. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Facility__c(Capacity__c = 50);
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Facility__c(Capacity__c = 50);
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 
     public static testmethod void tdtmLanguage() {
     	//Currently we don't have any Trigger_Handler__c record for Language. This test is 
-        //just for test coverage, and to verify no exception gets thrown.
-        insert new Language__c(Name = 'Spanish');
+      //just for test coverage, and to verify no exception gets thrown.
+      insert new Language__c(Name = 'Spanish');
         
-        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
+      System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown 
     }
 }
