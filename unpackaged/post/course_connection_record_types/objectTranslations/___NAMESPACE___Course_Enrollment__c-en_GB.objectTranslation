@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Faculty</name>
+    <label>Faculty</label>
+    <description>A Faculty Course Connection</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Student</name>
+    <label>Student</label>
+    <description>A Student Course Connection</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Default</name>
+    <label>Default</label>
+    <description>A Default Record Type for use in testing. This Record Type should only be enabled and visible for System Administrators.</description>
+  </recordTypes>
+</CustomObjectTranslation>
