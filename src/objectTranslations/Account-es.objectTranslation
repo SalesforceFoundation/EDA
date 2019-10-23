@@ -7,7 +7,7 @@
         <relationshipLabel>Cuentas (Dirección actual)</relationshipLabel>
     </fields>
     <fields>
-        <label>_SYSTEM: One2OneContact</label>
+        <label>Primary Contact</label>
         <name>Primary_Contact__c</name>
         <relationshipLabel>Cuenta</relationshipLabel>
     </fields>
