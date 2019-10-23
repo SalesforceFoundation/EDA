@@ -26,7 +26,7 @@
         <fullName>Primary_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>_SYSTEM: One2OneContact</label>
+        <label>Primary Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Account</relationshipLabel>
         <relationshipName>Organizations</relationshipName>
