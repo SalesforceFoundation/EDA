@@ -86,7 +86,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         this.triggerAction = triggerAction;
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        System.debug('TriggerActionCheck -->' + triggerAction);
 
         //Requery Contacts to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
@@ -119,6 +118,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param newContacts a list of Contacts from trigger new.
     * @return list.
     */
+    @TestVisible
     private static List<Contact> queryContacts(List<Contact> newContacts) {
         List<Contact> returnedContacts = new List<Contact>();
 
@@ -154,7 +154,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
 
-        Integer i = 0;
+        Integer conProcessed = 0;
         for (Contact c : newContacts) {
 
             //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
@@ -163,17 +163,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
 
             //AFTER INSERT
-            if (triggerAction == TDTM_Runnable.Action.AfterInsert /*&&
-                !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)*/) {
+            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                     insertWrapper = new HandleInsertWrapperLogic(c);
                 }
 
             //AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate /*&&
-                !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)*/) {
-                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts, triggerAction, i);
+            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts[conProcessed], triggerAction);
                 }
-            i += 1;
+            conProcessed += 1;
         }
 
         //Set recursion flag
@@ -268,10 +266,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     	* @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     	* @param i is an integer counter.
     	*/
-        private HandleUpdateWrapperLogic(Contact c, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Integer i) {
+        private HandleUpdateWrapperLogic(Contact c, Contact oldContacts, TDTM_Runnable.Action triggerAction) {
 
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
-            if (c.AccountId != oldContacts[i].AccountId) {
+            if (c.AccountId != oldContacts.AccountId) {
                 if(c.AccountId != NULL) {
                     accountIdToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
@@ -279,37 +277,37 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                         accountIdToRename.add(c.AccountId);
 
-                        if(oldContacts[i].AccountId != NULL) {
-                            accountIdToRename.add(oldContacts[i].AccountId);
+                        if(oldContacts.AccountId != NULL) {
+                            accountIdToRename.add(oldContacts.AccountId);
                         }
                     }
                 }  else {
                     if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == TRUE) {
-                        accountIdToRename.add(oldContacts[i].AccountId);
+                        accountIdToRename.add(oldContacts.AccountId);
                     }
                 }
 
                 //Old HH Accounts that don't get deleted still need to have name redone
-                if (oldContacts[i].AccountId != NULL) {
-                    accountIdToupdate.add(oldContacts[i].AccountId);
-                    contactIdAccountIdOldOppsToMove.put(c.Id, oldContacts[i].AccountId);
+                if (oldContacts.AccountId != NULL) {
+                    accountIdToupdate.add(oldContacts.AccountId);
+                    contactIdAccountIdOldOppsToMove.put(c.Id, oldContacts.AccountId);
                 }
             }
 
             //If Ownership has changed
-            if (c.OwnerId != oldContacts[i].OwnerId) {
+            if (c.OwnerId != oldContacts.OwnerId) {
                 contactIdContactOwnerChange.put(c.Id, c);
             }
 
             //If Contact's last name has changed and it is using admin account model
-            if (c.LastName != oldContacts[i].LastName && c.AccountId != NULL) {
+            if (c.LastName != oldContacts.LastName && c.AccountId != NULL) {
                 contactsChangedLastName.add(c);
             }
 
             //If Contact Name or Exclude_from_Household_Name__c value has changed
-            if ((c.LastName != oldContacts[i].LastName ||
-                 c.FirstName != oldContacts[i].FirstName ||
-                 c.Exclude_from_Household_Name__c != oldContacts[i].Exclude_from_Household_Name__c) &&
+            if ((c.LastName != oldContacts.LastName ||
+                 c.FirstName != oldContacts.FirstName ||
+                 c.Exclude_from_Household_Name__c != oldContacts.Exclude_from_Household_Name__c) &&
                 c.AccountId != NULL &&
                 checkHouseholdNaming(c.Account.RecordTypeId))
             {
@@ -595,9 +593,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             return;
         }
 
+        accountsToResetIds.addAll(accountIdsToUpdate);
+
         //For each account that needs to be reset
         for (Account acc : listAccount) {
-            accountsToResetIds.addAll(accountIdsToUpdate);
             if (accountsToResetIds.contains(acc.Id)) {
                 if (acc.Contacts.size() > 0) {
                     //If any child contact exists, use one as primary contact
@@ -664,20 +663,19 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                  WHERE Id IN :contactsAccountId];
 
         for (Account acc : listAcc) {
-        //TODO: use setting to determine if Account owner should be changed (W-009780)
-            if (acc.RecordTypeId != NULL
-                && (acc.RecordTypeId == userDefinedHHRecordTypeId
+            //TODO: use setting to determine if Account owner should be changed (W-009780)
+            if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != NULL &&
+                acc.RecordTypeId != NULL && (acc.RecordTypeId == userDefinedHHRecordTypeId
                 || acc.RecordTypeId == userDefinedAdminRecordTypeId))
             {
-                if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != NULL) {
-                    Contact c = contactOwnerChange.get(acc.Primary_Contact__c);
-                    Id ownerIdContact = (c != NULL ? c.OwnerId : NULL);
+                Contact c = contactOwnerChange.get(acc.Primary_Contact__c);
+                Id ownerIdContact = (c != NULL ? c.OwnerId : NULL);
 
-                    if (acc.OwnerId != ownerIdContact) {
-                        acc.OwnerId = ownerIdContact;
-                        accountsToUpdate.add(acc);
-                    }
+                if (acc.OwnerId != ownerIdContact) {
+                    acc.OwnerId = ownerIdContact;
+                    accountsToUpdate.add(acc);
                 }
+
              }
         }
 
@@ -746,13 +744,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @return boolean.
     */
     public static boolean checkHouseholdNaming(Id accRecordTypeId) {
-        if (accRecordTypeId != null
-            && accRecordTypeId == userDefinedHHRecordTypeId
-            && UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true)
-        {
-            return true;
-        } else {
-            return false;
-        }
+        return (accRecordTypeId != null &&
+                accRecordTypeId == userDefinedHHRecordTypeId &&
+                UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true);
+
     }
 }

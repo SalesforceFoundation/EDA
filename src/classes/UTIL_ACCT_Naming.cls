@@ -52,12 +52,12 @@ public class UTIL_ACCT_Naming {
     /*******************************************************************************************************
     * @description The default/selected Household Account name format.
     */
-    public static String hhNameFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
+    private static String hhNameFormat = UTIL_CustomSettingsFacade.getSettings().Household_Account_Naming_Format__c;
 
     /*******************************************************************************************************
     * @description The default/selected Administrative Account name format.
     */
-    public static String aaNameFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
+    private static String aaNameFormat = UTIL_CustomSettingsFacade.getSettings().Admin_Account_Naming_Format__c;
 
     /*******************************************************************************************************
     * @description Update admin Account names if any changes made to Contacts' lastname.
@@ -65,7 +65,7 @@ public class UTIL_ACCT_Naming {
     * @return List<Account>.
     */
     public static List<Account> updateAdminAccountsName(List<Contact> contactsChangedLastName) {
-        List<Account> accountToUpdate = new List<Account>();
+        List<Account> accountsToUpdate = new List<Account>();
         Map<Id, List<Contact>> accountIdPrimaryContactId = new Map<Id, List<Contact>>();
 
         for (Contact con : contactsChangedLastName) {
@@ -83,11 +83,11 @@ public class UTIL_ACCT_Naming {
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
                 acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
-                accountToUpdate.add(acc);
+                accountsToUpdate.add(acc);
             }
         }
 
-        return accountToUpdate;
+        return accountsToUpdate;
     }
 
     /*******************************************************************************************************
@@ -181,7 +181,7 @@ public class UTIL_ACCT_Naming {
     * @description This checks and returns the current Account Model and Account name format.
     * @return String.
     */
-    private static String checkAccountFormat () {
+    private static String checkAccountFormat() {
         String accountNamingFormat;
 
         if (defaultRecTypeId == hhAccountRecordTypeId) {
@@ -234,6 +234,9 @@ public class UTIL_ACCT_Naming {
     private static String defaultAccountName(List<Contact> cons, String accountNamingFormat) {
         Set<String> householdLastNames = new Set<String>();
         String finalAccountName;
+		String name = '';
+        String strAnd = ' ' + Label.defaultNamingConnector + ' ';
+        Integer counter = 0;
 
         for (Contact con : cons) {
             if (defaultRecTypeId == hhAccountRecordTypeId) {
@@ -248,10 +251,6 @@ public class UTIL_ACCT_Naming {
         }
 
         if (householdLastNames.size() > 0) {
-            String name = '';
-            String strAnd = ' ' + Label.defaultNamingConnector + ' ';
-            Integer counter = 0;
-
             for (String lastName : householdLastNames) {
                 name += lastName;
                 counter++;
@@ -270,7 +269,7 @@ public class UTIL_ACCT_Naming {
 
     private static String chLToken = '{!';
     private static String chRToken = '}';
-    public static Boolean setFNSpec = false;
+    private static Boolean setFNSpec = false;
 
     /*******************************************************************************************************
     * @description Class that supports the parsing of Account name format set in the current org and Account model.
@@ -393,13 +392,13 @@ public class UTIL_ACCT_Naming {
         Set<String> nameFormat = new Set<String>();
 
         // First, instantiate a new Pattern object looking for {...} without any nested {'s.
-        Pattern MyPattern = Pattern.compile('\\{![^\\{!]*\\}');
+        Pattern myPattern = Pattern.compile('\\{![^\\{!]*\\}');
         // Then instantiate a new Matcher object
-        Matcher MyMatcher = MyPattern.matcher(firstNameSpec);
+        Matcher myMatcher = myPattern.matcher(firstNameSpec);
 
         while (MyMatcher.find()) {
             // get the fieldname without the {!}'s
-            string strField = firstNameSpec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
+            string strField = firstNameSpec.substring(myMatcher.start() + chLToken.length(), myMatcher.end()-chRToken.length());
             nameFormat.add(strField.trim());
         }
         return nameFormat;
@@ -412,11 +411,11 @@ public class UTIL_ACCT_Naming {
     */
     private static String cleanSalutationFormat(String acctNameFormat) {
         String regexPattern = '(?:^|\\W)Salutation(?:$|\\W)';
-        Pattern MyPattern = Pattern.compile(regexPattern);
-        Matcher MyMatcher = MyPattern.matcher(acctNameFormat);
+        Pattern myPattern = Pattern.compile(regexPattern);
+        Matcher myMatcher = myPattern.matcher(acctNameFormat);
 
-        if (MyMatcher.find()) {
-            return acctNameFormat.subString(MyMatcher.start()-1, MyMatcher.end());
+        if (myMatcher.find()) {
+            return acctNameFormat.subString(myMatcher.start()-1, myMatcher.end());
         } else {
             return '';
         }
@@ -433,21 +432,21 @@ public class UTIL_ACCT_Naming {
 
         //Checks {!FirstName}
         String regexPattern = '(?:^|\\W)FirstName(?:$|\\W)';
-        Pattern MyPattern = Pattern.compile(regexPattern);
-        Matcher MyMatcher = MyPattern.matcher(acctNameFormat);
+        Pattern myPattern = Pattern.compile(regexPattern);
+        Matcher myMatcher = myPattern.matcher(acctNameFormat);
 
         //Checks {!{!FirstName}}
         String regexPatternDoubleToken = '\\{![^\\}]*\\{!.*\\}[^\\{!]*\\}';
-        Pattern MyPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
-        Matcher MyMatcherDoubleTokenCheck = MyPatternDoubleTokenCheck.matcher(acctNameFormat);
+        Pattern myPatternDoubleTokenCheck = Pattern.compile(regexPatternDoubleToken);
+        Matcher myMatcherDoubleTokenCheck = myPatternDoubleTokenCheck.matcher(acctNameFormat);
 
-        if (MyMatcherDoubleTokenCheck.find()) {
+        if (myMatcherDoubleTokenCheck.find()) {
             //If it finds {!{!FirstName}}
             setFNSpec = true;
-            firstNameFormat = acctNameFormat.subString(MyMatcherDoubleTokenCheck.start(), MyMatcherDoubleTokenCheck.end());
-        } else if (MyMatcher.find()) {
+            firstNameFormat = acctNameFormat.subString(myMatcherDoubleTokenCheck.start(), myMatcherDoubleTokenCheck.end());
+        } else if (myMatcher.find()) {
             //If it finds  {!FirstName}
-            firstNameFormat = acctNameFormat.subString(MyMatcher.start()-1, MyMatcher.end());
+            firstNameFormat = acctNameFormat.subString(myMatcher.start()-1, myMatcher.end());
         } else {
             firstNameFormat = '';
         }
@@ -459,13 +458,13 @@ public class UTIL_ACCT_Naming {
     * @description Given a NameSpec and a list of Contacts (assumed from a single household),
     * return the formated Account name.
     * This can be used for any of the household strings (name, formal greeting, informal greeting).
-    * @param ns the NameSpec class
     * @param cons is the list of Contacts
+    * @param ns the NameSpec class
     * return String.
     */
     private static String buildAccountName(List<Contact> cons, NameSpec ns) {
         Set<String> processedLastNames = new Set<String>();
-        String[] finalAccountName = new String[0];
+        List<String> finalAccountName = new String[0];
         String salutationSpec = '';
         Integer conSize = cons.size();
         Boolean isNoLastnames = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
@@ -517,8 +516,8 @@ public class UTIL_ACCT_Naming {
             }
 
             //Put together the Account name
-            String name = processName(cons, lastName, firstName, salutationSpec, additionalFirstNames,
-                                      additionalSalutations, ns, conSize, i, next);
+            String name = processName(cons[i], lastName, firstName, salutationSpec, additionalFirstNames,
+                                      additionalSalutations, ns);
 
             if (String.isNotBlank(name)) {
                 finalAccountName.add(name);
@@ -535,18 +534,15 @@ public class UTIL_ACCT_Naming {
     * @param lastName is the string for the current LastName that is in process.
     * @param firstName is the string for the current FirstName that is in process.
     * @param salutationSpec is the string for the current salutationSpec that is in process.
-    * @param additionalFirstNames is the list of string for the additional Contacts' FirtNames.
+    * @param additionalFirstNames is the list of string for the additional Contacts' FirstNames.
     * @param additionalSalutations is the list of string for the additional Contacts' Salutations.
     * @param ns is the NameSpec class.
-    * @param conSize is an integer that holds the number of Contacts.
     * @param i is an integer that holds the current iteration.
-    * @param next is an integer that holds the next iteration.
-    * @param cons is the list of Contacts
     * return String.
     */
-    private static String processName(List<Contact> cons, String lastName, String firstName, String salutationSpec,
-                                      List<String> additionalFirstNames, List<String> additionalSalutations, NameSpec ns, Integer conSize,
-                                      Integer i, Integer next)
+    private static String processName(Contact con, String lastName, String firstName, String salutationSpec,
+                                      List<String> additionalFirstNames, List<String> additionalSalutations, NameSpec ns
+                                      )
     {
 
         //Strings up the Salutations together
@@ -559,7 +555,12 @@ public class UTIL_ACCT_Naming {
                     salutationSpec += ns.andConnector + additionalSalutations[h];
                 }
             } else {
-                salutationSpec += ', '+ additionalSalutations[h];
+                if (salutationSpec == NULL || salutationSpec == '') {
+                    salutationSpec = additionalSalutations[h];
+                } else {
+                    salutationSpec += ', '+ additionalSalutations[h];
+                }
+
             }
         }
 
@@ -573,12 +574,16 @@ public class UTIL_ACCT_Naming {
                     firstName += ns.andConnector + additionalFirstNames[k];
                 }
             } else {
-                firstName += ', ' + additionalFirstNames[k];
+                if (firstName == NULL || firstName == '') {
+                    firstName = ' ' + additionalFirstNames[k];
+                } else {
+                    firstName += ', ' + additionalFirstNames[k];
+                }
             }
         }
 
         //Handles processing fullNameSpec
-        String acctName = stringConNames(cons[i], ns.fullNameSpec);
+        String acctName = stringConNames(con, ns.fullNameSpec);
         acctName = acctName.replace('FirstNameSpec', firstName);
 
         if (firstName == '') {
@@ -599,14 +604,14 @@ public class UTIL_ACCT_Naming {
         String currentFormatValue = fullNameSpec;
 
         // First, instantiate a new Pattern object looking for {...} without any nested {'s.
-        Pattern MyPattern = Pattern.compile('\\{![^\\{!]*\\}');
+        Pattern myPattern = Pattern.compile('\\{![^\\{!]*\\}');
         // Then instantiate a new Matcher object
-        Matcher MyMatcher = MyPattern.matcher(fullNameSpec);
+        Matcher myMatcher = myPattern.matcher(fullNameSpec);
 
 
-        while (MyMatcher.find()) {
+        while (myMatcher.find()) {
             //Get the fieldname without the {}'s, ie. {!LastName} -> LastName
-            String strField = fullNameSpec.substring(MyMatcher.start() + chLToken.length(), MyMatcher.end()-chRToken.length());
+            String strField = fullNameSpec.substring(myMatcher.start() + chLToken.length(), myMatcher.end()-chRToken.length());
 
             //Separate cross object references, ie. (LastName)
             List<String> splitField = (strField.split('\\.',0));
@@ -657,8 +662,8 @@ public class UTIL_ACCT_Naming {
 
     /*******************************************************************************************************
     * @description Concatenate string out of individual formatted names.
-    * @param ns the NameSpec class
     * @param finalAccountName is the list of strings of the Account name.
+    * @param ns the NameSpec class
     * return String, concatented string where names are separated by comma except
     * the last string is linked with the namespec's AND delimiter
     */
