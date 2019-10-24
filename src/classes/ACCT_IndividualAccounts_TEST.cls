@@ -99,7 +99,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         Contact[] insertedContacts = [SELECT FirstName, LastName, AccountId,
                                       Account.Name,Account.Primary_Contact__c,MailingStreet,
-        				              Account.BillingStreet
+                                      Account.BillingStreet
                                       FROM Contact
                                       WHERE Id = :con.Id];
 
@@ -923,9 +923,9 @@ private class ACCT_IndividualAccounts_TEST {
         // Create a single new User
         Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
         User tempUser = new User(LastName = 'TestSysAdminUserA', Email = 'test_insertAsOtherUser@email.npsp',
-       								ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
-         							Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
-                					LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+                                       ProfileId = sysAdminProfileId, isActive = true, UserName = 'test_insertAsOtherUser@email.npsp',
+                                     Alias = 'tu08534', TimeZoneSidKey = 'America/Los_Angeles',
+                                    LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
         insert tempUser;
 
         Id currUserId = UserInfo.getUserId();
@@ -1103,15 +1103,15 @@ private class ACCT_IndividualAccounts_TEST {
         Contact con = UTIL_UnitTestData_API.getContact();
         insert con;
 
-		con.OwnerId = adminUser.Id;
-		Test.startTest();
-		update con;
-		Test.stopTest();
+        con.OwnerId = adminUser.Id;
+        Test.startTest();
+        update con;
+        Test.stopTest();
 
-		Contact updatedContact = [SELECT Id, Account.OwnerId
+        Contact updatedContact = [SELECT Id, Account.OwnerId
                                   FROM Contact
                                   WHERE Id = :con.Id];
-		System.assertEquals(adminUser.Id, updatedContact.Account.OwnerId);
+        System.assertEquals(adminUser.Id, updatedContact.Account.OwnerId);
     }
 
     /*********************************************************************************************************
@@ -1123,10 +1123,10 @@ private class ACCT_IndividualAccounts_TEST {
                                                        (Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID()));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
-		insert contacts;
+        insert contacts;
 
         Test.startTest();
-     	List<Contact> contactReturned  = ACCT_IndividualAccounts_TDTM.queryContacts(contacts);
+         List<Contact> contactReturned  = ACCT_IndividualAccounts_TDTM.queryContacts(contacts);
 
         Test.stopTest();
 
@@ -1135,7 +1135,7 @@ private class ACCT_IndividualAccounts_TEST {
             System.assertNotEquals(NULL, c.AccountId);
             System.assertNotEquals(NULL, c.Account.Name);
         }
-	}
+    }
 
     /*********************************************************************************************************
     * @description Test Method to test the handlesAfterInsertUpdate() method in ACCT_IndividualAccounts_TDTM
@@ -1151,7 +1151,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
         Test.stopTest();
 
-      	Contact contactReturned = [SELECT Id, AccountId, Account.RecordTypeId,
+          Contact contactReturned = [SELECT Id, AccountId, Account.RecordTypeId,
                                  Account.Primary_Contact__c,FirstName, LastName
                                  FROM Contact
                                  WHERE Id = :con.Id];
@@ -1201,9 +1201,9 @@ private class ACCT_IndividualAccounts_TEST {
 
         Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
         User adminUser = new User(LastName = 'TestAdmin', Email = 'testAdminUser@emailtest.edatest',
-									ProfileId = sysAdminProfileId, isActive = true, UserName = 'testAdminUser@emailtest.edatest',
-         							Alias = 'tAdmin0', TimeZoneSidKey = 'America/Los_Angeles',
-                					LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+                                    ProfileId = sysAdminProfileId, isActive = true, UserName = 'testAdminUser@emailtest.edatest',
+                                     Alias = 'tAdmin0', TimeZoneSidKey = 'America/Los_Angeles',
+                                    LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
         insert adminUser;
 
         con.FirstName = 'Samantha';
@@ -1214,7 +1214,7 @@ private class ACCT_IndividualAccounts_TEST {
         update con;
         Test.stopTest();
 
-       	Contact returnedContact = [SELECT Id, FirstName, LastName,
+           Contact returnedContact = [SELECT Id, FirstName, LastName,
                                   OwnerId, AccountId, Account.OwnerId,
                                   Account.Name
                                   FROM Contact

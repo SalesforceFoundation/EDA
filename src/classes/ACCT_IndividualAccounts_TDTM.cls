@@ -59,7 +59,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     private static String orgLanguage {
         get {
-    	    if (orgLanguage == null) {
+            if (orgLanguage == null) {
                 orgLanguage = UserInfo.getLocale();
             }
             return orgLanguage;
@@ -128,7 +128,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                            'MailingStreet, MailingCity, MailingState, ' +
                            'MailingPostalCode, MailingCountry, MailingLatitude, ' +
                            'MailingLongitude, OtherStreet, OtherCity, ' +
-            			   'OtherState, OtherPostalCode, OtherCountry, ' +
+                           'OtherState, OtherPostalCode, OtherCountry, ' +
                            'OtherLatitude, OtherLongitude, Exclude_from_Household_Name__c,';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
@@ -199,8 +199,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public Set<Id> accountIdToRename = new Set<Id>();
 
         /*******************************************************************************************************
-    	* @description Constructor that processes after insert logic.
-    	*/
+        * @description Constructor that processes after insert logic.
+        */
         private HandleInsertWrapperLogic(Contact c) {
             if (c.AccountId != NULL) {
                 //(1) If the Contact is connected to an Account but Primary_Contact__c on Account is NULL
@@ -235,7 +235,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //Updates the Primary Contact Field on New Account
             if (insertWrapper.accIdConIdToUpdate.size() > 0) {
-            	updateAccountPrimaryContact(insertWrapper.accIdConIdToUpdate, dmlWrapper);
+                updateAccountPrimaryContact(insertWrapper.accIdConIdToUpdate, dmlWrapper);
             }
 
             //Updates Household Account name
@@ -259,13 +259,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public List<Id> accountIdToUpdate = new List<Id>();
         public List<Contact> contactsChangedLastName = new List<Contact>();
 
-		/*******************************************************************************************************
-    	* @description Processes after update logic.
-    	* @param c is a Contact record from trigger new.
-    	* @param oldContacts is a list of Contacts from trigger old.
-    	* @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    	* @param i is an integer counter.
-    	*/
+        /*******************************************************************************************************
+        * @description Processes after update logic.
+        * @param c is a Contact record from trigger new.
+        * @param oldContacts is a list of Contacts from trigger old.
+        * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+        * @param i is an integer counter.
+        */
         private HandleUpdateWrapperLogic(Contact c, Contact oldContacts, TDTM_Runnable.Action triggerAction) {
 
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
@@ -342,7 +342,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             if (updateWrapper.accountIdToUpdate.size() > 0) {
                 updateParentAcc(updateWrapper.accountIdToUpdate, dmlWrapper);
             }
-
 
             //Updates Account Owner to match Contact Owner change
             if (updateWrapper.contactIdContactOwnerChange.size() > 0) {
@@ -725,7 +724,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                   }
             }
         }
-
 
         //Delete the accounts
         if (accountsForDeletion.size() > 0) {

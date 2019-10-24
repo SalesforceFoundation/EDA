@@ -208,7 +208,6 @@ public class UTIL_ACCT_Naming {
     * @param cons a list of Contacts that needs to be alphabetized.
     * @return List<Contact>.
     */
-
     private static List<Contact> sortContacts(List<Contact> cons) {
         List<UTIL_SortContacts> sortedContacts = new List<UTIL_SortContacts>();
         List<Contact> finalSortedContacts = new List<Contact>();
@@ -234,7 +233,7 @@ public class UTIL_ACCT_Naming {
     private static String defaultAccountName(List<Contact> cons, String accountNamingFormat) {
         Set<String> householdLastNames = new Set<String>();
         String finalAccountName;
-		String name = '';
+        String name = '';
         String strAnd = ' ' + Label.defaultNamingConnector + ' ';
         Integer counter = 0;
 
