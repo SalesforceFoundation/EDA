@@ -69,9 +69,9 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Academic Program the student is enrolled in.</description>
+        <description>The Academic Program that the Contact is associated with.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Academic Program the student is enrolled in.</inlineHelpText>
+        <inlineHelpText>The Academic Program that the Contact is associated with.</inlineHelpText>
         <label>Contact&apos;s Academic Program</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>
@@ -83,7 +83,9 @@
     <fields>
         <fullName>Affiliation__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
         <label>Affiliation</label>
         <referenceTo>Affiliation__c</referenceTo>
         <relationshipLabel>Course Connection</relationshipLabel>
@@ -109,9 +111,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</description>
+        <description>Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</inlineHelpText>
+        <inlineHelpText>Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term.</inlineHelpText>
         <label>Course Offering ID</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Course Connection</relationshipLabel>
