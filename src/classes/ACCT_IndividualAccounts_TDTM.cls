@@ -262,14 +262,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         /*******************************************************************************************************
         * @description Processes after update logic.
         * @param c is a Contact record from trigger new.
-        * @param oldContacts is a list of Contacts from trigger old.
+        * @param oldContact is a list of Contacts from trigger old.
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-        * @param i is an integer counter.
         */
-        private HandleUpdateWrapperLogic(Contact c, Contact oldContacts, TDTM_Runnable.Action triggerAction) {
+        private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction) {
 
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
-            if (c.AccountId != oldContacts.AccountId) {
+            if (c.AccountId != oldContact.AccountId) {
                 if(c.AccountId != NULL) {
                     accountIdToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
@@ -277,37 +276,37 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                         accountIdToRename.add(c.AccountId);
 
-                        if(oldContacts.AccountId != NULL) {
-                            accountIdToRename.add(oldContacts.AccountId);
+                        if(oldContact.AccountId != NULL) {
+                            accountIdToRename.add(oldContact.AccountId);
                         }
                     }
                 }  else {
                     if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == TRUE) {
-                        accountIdToRename.add(oldContacts.AccountId);
+                        accountIdToRename.add(oldContact.AccountId);
                     }
                 }
 
                 //Old HH Accounts that don't get deleted still need to have name redone
-                if (oldContacts.AccountId != NULL) {
-                    accountIdToupdate.add(oldContacts.AccountId);
-                    contactIdAccountIdOldOppsToMove.put(c.Id, oldContacts.AccountId);
+                if (oldContact.AccountId != NULL) {
+                    accountIdToupdate.add(oldContact.AccountId);
+                    contactIdAccountIdOldOppsToMove.put(c.Id, oldContact.AccountId);
                 }
             }
 
             //If Ownership has changed
-            if (c.OwnerId != oldContacts.OwnerId) {
+            if (c.OwnerId != oldContact.OwnerId) {
                 contactIdContactOwnerChange.put(c.Id, c);
             }
 
             //If Contact's last name has changed and it is using admin account model
-            if (c.LastName != oldContacts.LastName && c.AccountId != NULL) {
+            if (c.LastName != oldContact.LastName && c.AccountId != NULL) {
                 contactsChangedLastName.add(c);
             }
 
             //If Contact Name or Exclude_from_Household_Name__c value has changed
-            if ((c.LastName != oldContacts.LastName ||
-                 c.FirstName != oldContacts.FirstName ||
-                 c.Exclude_from_Household_Name__c != oldContacts.Exclude_from_Household_Name__c) &&
+            if ((c.LastName != oldContact.LastName ||
+                 c.FirstName != oldContact.FirstName ||
+                 c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c) &&
                 c.AccountId != NULL &&
                 checkHouseholdNaming(c.Account.RecordTypeId))
             {

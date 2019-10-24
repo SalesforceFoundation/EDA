@@ -529,14 +529,13 @@ public class UTIL_ACCT_Naming {
     /*******************************************************************************************************
     * @description This method is reponsbile for concatenating all additional Salutations, FirstNames, and LastName
     * into a string to return the final Account name.
-    * @param cons is the list of Contacts in the current trigger context.
+    * @param con is the list of Contacts in the current trigger context.
     * @param lastName is the string for the current LastName that is in process.
     * @param firstName is the string for the current FirstName that is in process.
     * @param salutationSpec is the string for the current salutationSpec that is in process.
     * @param additionalFirstNames is the list of string for the additional Contacts' FirstNames.
     * @param additionalSalutations is the list of string for the additional Contacts' Salutations.
     * @param ns is the NameSpec class.
-    * @param i is an integer that holds the current iteration.
     * return String.
     */
     private static String processName(Contact con, String lastName, String firstName, String salutationSpec,
