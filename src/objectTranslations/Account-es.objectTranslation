@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Current_Address__c</name>
-    <help>La dirección actual con la que se completan campos de facturación de la Cuenta.</help>
-    <relationshipLabel>Cuentas (Dirección actual)</relationshipLabel>
-    <label>Dirección actual</label>
-  </fields>
-  <fields>
-    <name>Primary_Contact__c</name>
-    <relationshipLabel>Cuenta</relationshipLabel>
-    <label>_SYSTEM: One2OneContact</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Organization Layout</layout>
-    <sections>
-      <label>Campos</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Dirección</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Descripción</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <layouts>
-    <layout>HEDA Household Layout</layout>
-    <sections>
-      <label>Campos</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Dirección</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Descripción</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
+    <fields>
+        <help>La dirección actual con la que se completan campos de facturación de la Cuenta.</help>
+        <label>Dirección actual</label>
+        <name>Current_Address__c</name>
+        <relationshipLabel>Cuentas (Dirección actual)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Primary Contact</label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel>Cuenta</relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>HEDA Household Layout</layout>
+        <sections>
+            <label>Dirección</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Descripción</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Campos</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HEDA Organization Layout</layout>
+        <sections>
+            <label>Dirección</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Descripción</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Campos</label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
 </CustomObjectTranslation>
