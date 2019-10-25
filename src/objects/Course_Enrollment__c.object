@@ -97,9 +97,9 @@
     <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The student taking the course.</description>
+        <description>The Contact connected to the Course Offering, as either a student or faculty.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The student taking the course.</inlineHelpText>
+        <inlineHelpText>The Contact connected to the Course Offering, as either a student or faculty.</inlineHelpText>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Connections</relationshipLabel>
