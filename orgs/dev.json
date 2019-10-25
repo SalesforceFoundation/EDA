@@ -1,11 +1,15 @@
 {
   "orgName": "EDA - Dev Workspace",
   "edition": "Developer",
-  "settings" : {
-    "orgPreferenceSettings": {
-        "s1DesktopEnabled": true,
-        "translation": true,
-        "chatterEnabled": true
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
     }
   }
 }
