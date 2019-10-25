@@ -31,16 +31,16 @@
 * @author Salesforce.org
 * @date 2019
 * @group Utilities
-* @description Test for UTIL_SortContacts
+* @description Test for UTIL_SortContact
 */
 @isTest
-private class UTIL_SortContacts_TEST {
+private class UTIL_SortContact_TEST {
 	/*********************************************************************************************************
     * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
     */
     @isTest()
     private static void sortContactsLastFirstName() {
-        List<UTIL_SortContacts> utilSortCons = new List<UTIL_SortContacts>();
+        List<UTIL_SortContact> utilSortCons = new List<UTIL_SortContact>();
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(9);
 
         contacts[0].FirstName = 'Will';
@@ -63,20 +63,20 @@ private class UTIL_SortContacts_TEST {
         contacts[8].LastName = 'Pierre';
 
         Test.startTest();
-        utilSortCons.add(new UTIL_SortContacts(contacts[0]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[1]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[2]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[3]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[4]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[5]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[6]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[7]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[8]));
-        Test.stopTest();
+        utilSortCons.add(new UTIL_SortContact(contacts[0]));
+        utilSortCons.add(new UTIL_SortContact(contacts[1]));
+        utilSortCons.add(new UTIL_SortContact(contacts[2]));
+        utilSortCons.add(new UTIL_SortContact(contacts[3]));
+        utilSortCons.add(new UTIL_SortContact(contacts[4]));
+        utilSortCons.add(new UTIL_SortContact(contacts[5]));
+        utilSortCons.add(new UTIL_SortContact(contacts[6]));
+        utilSortCons.add(new UTIL_SortContact(contacts[7]));
+        utilSortCons.add(new UTIL_SortContact(contacts[8]));
         utilSortCons.sort();
+        Test.stopTest();
 
         List<Contact> sortedContacts = new List<Contact>();
-        for (UTIL_SortContacts us : utilSortCons) {
+        for (UTIL_SortContact us : utilSortCons) {
             sortedContacts.add(us.contactRecord);
         }
 
@@ -97,7 +97,7 @@ private class UTIL_SortContacts_TEST {
     */
     @isTest
     private static void sortContactsLastName() {
-        List<UTIL_SortContacts> utilSortCons = new List<UTIL_SortContacts>();
+        List<UTIL_SortContact> utilSortCons = new List<UTIL_SortContact>();
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
 
         contacts[0].FirstName = 'Will';
@@ -107,16 +107,15 @@ private class UTIL_SortContacts_TEST {
         contacts[2].FirstName = 'Abigail';
         contacts[2].LastName = 'Pierre';
 
-
         Test.startTest();
-        utilSortCons.add(new UTIL_SortContacts(contacts[0]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[1]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[2]));
-        Test.stopTest();
+        utilSortCons.add(new UTIL_SortContact(contacts[0]));
+        utilSortCons.add(new UTIL_SortContact(contacts[1]));
+        utilSortCons.add(new UTIL_SortContact(contacts[2]));
         utilSortCons.sort();
+        Test.stopTest();
 
         List<Contact> sortedContacts = new List<Contact>();
-        for (UTIL_SortContacts us : utilSortCons) {
+        for (UTIL_SortContact us : utilSortCons) {
             sortedContacts.add(us.contactRecord);
         }
 
@@ -130,7 +129,7 @@ private class UTIL_SortContacts_TEST {
     */
     @isTest
     private static void sortContactsFirstName() {
-        List<UTIL_SortContacts> utilSortCons = new List<UTIL_SortContacts>();
+        List<UTIL_SortContact> utilSortCons = new List<UTIL_SortContact>();
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
 
         contacts[0].FirstName = 'Will';
@@ -140,16 +139,15 @@ private class UTIL_SortContacts_TEST {
         contacts[2].FirstName = 'Abigail';
         contacts[2].LastName = 'Zap';
 
-
         Test.startTest();
-        utilSortCons.add(new UTIL_SortContacts(contacts[0]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[1]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[2]));
-        Test.stopTest();
+        utilSortCons.add(new UTIL_SortContact(contacts[0]));
+        utilSortCons.add(new UTIL_SortContact(contacts[1]));
+        utilSortCons.add(new UTIL_SortContact(contacts[2]));
         utilSortCons.sort();
+        Test.stopTest();
 
         List<Contact> sortedContacts = new List<Contact>();
-        for (UTIL_SortContacts us : utilSortCons) {
+        for (UTIL_SortContact us : utilSortCons) {
             sortedContacts.add(us.contactRecord);
         }
 
@@ -163,7 +161,7 @@ private class UTIL_SortContacts_TEST {
     */
     @isTest
     private static void sortContactsWithoutFirstNames() {
-        List<UTIL_SortContacts> utilSortCons = new List<UTIL_SortContacts>();
+        List<UTIL_SortContact> utilSortCons = new List<UTIL_SortContact>();
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
 
         contacts[0].FirstName = '';
@@ -173,16 +171,15 @@ private class UTIL_SortContacts_TEST {
         contacts[2].FirstName = '';
         contacts[2].LastName = 'Pierre';
 
-
         Test.startTest();
-        utilSortCons.add(new UTIL_SortContacts(contacts[0]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[1]));
-        utilSortCons.add(new UTIL_SortContacts(contacts[2]));
-        Test.stopTest();
+        utilSortCons.add(new UTIL_SortContact(contacts[0]));
+        utilSortCons.add(new UTIL_SortContact(contacts[1]));
+        utilSortCons.add(new UTIL_SortContact(contacts[2]));
         utilSortCons.sort();
+        Test.stopTest();
 
         List<Contact> sortedContacts = new List<Contact>();
-        for (UTIL_SortContacts us : utilSortCons) {
+        for (UTIL_SortContact us : utilSortCons) {
             sortedContacts.add(us.contactRecord);
         }
 

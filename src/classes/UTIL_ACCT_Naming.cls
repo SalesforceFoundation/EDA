@@ -204,20 +204,20 @@ public class UTIL_ACCT_Naming {
     }
 
     /*******************************************************************************************************
-    * @description This calls the UTIL_SortContacts to sort Contacts in alphabetical order.
+    * @description This calls the UTIL_SortContact to sort Contacts in alphabetical order.
     * @param cons a list of Contacts that needs to be alphabetized.
     * @return List<Contact>.
     */
     private static List<Contact> sortContacts(List<Contact> cons) {
-        List<UTIL_SortContacts> sortedContacts = new List<UTIL_SortContacts>();
+        List<UTIL_SortContact> sortedContacts = new List<UTIL_SortContact>();
         List<Contact> finalSortedContacts = new List<Contact>();
 
         for (Contact c : cons) {
-            sortedContacts.add(new UTIL_SortContacts(c));
+            sortedContacts.add(new UTIL_SortContact(c));
         }
         sortedContacts.sort();
 
-        for (UTIL_SortContacts us : sortedContacts) {
+        for (UTIL_SortContact us : sortedContacts) {
             finalSortedContacts.add(us.contactRecord);
         }
 
@@ -529,7 +529,7 @@ public class UTIL_ACCT_Naming {
     /*******************************************************************************************************
     * @description This method is reponsbile for concatenating all additional Salutations, FirstNames, and LastName
     * into a string to return the final Account name.
-    * @param con is the list of Contacts in the current trigger context.
+    * @param con is the Contact in the current trigger context.
     * @param lastName is the string for the current LastName that is in process.
     * @param firstName is the string for the current FirstName that is in process.
     * @param salutationSpec is the string for the current salutationSpec that is in process.

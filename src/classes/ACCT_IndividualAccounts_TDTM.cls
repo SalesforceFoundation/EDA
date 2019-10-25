@@ -262,7 +262,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         /*******************************************************************************************************
         * @description Processes after update logic.
         * @param c is a Contact record from trigger new.
-        * @param oldContact is a list of Contacts from trigger old.
+        * @param oldContact is a Contact from trigger old.
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
         */
         private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction) {
