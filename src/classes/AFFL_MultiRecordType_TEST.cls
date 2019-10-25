@@ -466,4 +466,47 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(0, allAffiliationList.size()); 
 
 	}	
+
+	 // Test the usage of custom API field name for affiliation mapping for multi-language support
+    
+    @isTest
+    public static void customFieldAPIInMappings() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
+
+        // insert custom api field name as an affiliation mapping    
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        insert mappings;
+        
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;           
+                
+        test.startTest(); 
+            //Insert an affiliation
+            Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+            insert affl; 
+        test.stopTest();
+        
+        //Verify 1 affiliation is created
+        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
+                                                WHERE Contact__c = :contact.Id 
+                                                AND Account__c = :bizAcc.Id] ;
+        System.assertEquals(1, affiliationList.size());
+        System.assertEquals(true, affiliationList[0].Primary__c);
+        
+        //Verify Primary Organization is populated
+        Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
+        
+        System.assertEquals(bizAcc.Id, updatedContact.Primary_Organization__c);   
+    }
 }

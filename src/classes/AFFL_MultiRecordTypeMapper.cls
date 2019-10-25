@@ -147,7 +147,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		List<SObjectField> primaryFields = new List<SObjectField>();
 		primaryAfflFieldNames = new List<String>();
 		for(SObjectField field : cf) {
-			if(primaryAfflFieldLabelsSet.contains(field.getDescribe().getLabel())) {
+			if (primaryAfflFieldLabelsSet.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsSet.contains(field.getDescribe().getName())) {
 				primaryAfflFieldNames.add(field.getDescribe().getName());
 				primaryFields.add(field);
 			}

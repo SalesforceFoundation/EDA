@@ -76,6 +76,15 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
 					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
+          
+					/* Check if affiliation mapping has custom API field in affl mappings and assign the field api to lookupFieldName
+					   This code is to make sure that Primay Affiliation look up is populated on contact even when language is not English
+					*/	
+					if ((lookupFieldLabel != NULL && lookupFieldLabel != '') && (lookupFieldName == '' || lookupFieldName == NULL)) {                     
+              if (afflMapper.contactLabelNames.values().contains(lookupFieldLabel)) {
+                  lookupFieldName = lookupFieldLabel;                            
+              }                        
+          }
 
 					if (isAfflTypeEnforced == true) {
 						ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
