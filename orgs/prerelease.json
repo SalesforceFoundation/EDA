@@ -2,11 +2,15 @@
   "orgName": "EDA - Prerelease Dev Workspace",
   "edition": "Developer",
   "instance": "CS46",
-  "settings" : {
-    "orgPreferenceSettings": {
-        "s1DesktopEnabled": true,
-        "translation": true,
-        "chatterEnabled": true
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
     }
   }
 }
