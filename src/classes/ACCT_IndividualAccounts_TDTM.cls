@@ -318,8 +318,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description This method checks if any of the after update collections are not empty.
     * If not empty, it calls the appropriate methods to process the list/set/map.
-    * param updateWrapper contains the collections processed from after update context.
-    * param contactsNeedAccounts a list of Contacts that needs new Accounts or an update.
+    * @param updateWrapper contains the collections processed from after update context.
+    * @param contactsNeedAccounts a list of Contacts that needs new Accounts or an update.
     */
     private void handleUpdateProcessing(HandleUpdateWrapperLogic updateWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
