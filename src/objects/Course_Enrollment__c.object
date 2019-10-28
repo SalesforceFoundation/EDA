@@ -111,9 +111,9 @@
     <fields>
         <fullName>Course_Offering__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</description>
+        <description>Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The Course Offering the student is enrolled in. It&apos;s a Course offered at a specific Term.</inlineHelpText>
+        <inlineHelpText>Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term.</inlineHelpText>
         <label>Course Offering ID</label>
         <referenceTo>Course_Offering__c</referenceTo>
         <relationshipLabel>Course Connection</relationshipLabel>
