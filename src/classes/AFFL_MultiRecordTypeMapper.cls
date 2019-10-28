@@ -136,18 +136,18 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		}
 	}
 	
-	/*******************************************************************************************************
-    * @description Returns those fields from the provided list that are in the provided list of labels. 
-    * @param cf List of fields.
-    * @param primaryAfflFieldLabels List of field labels.
+	/***************************************************************************************************************
+    * @description Returns those fields from the provided list that are in the provided list of labels or API names. 
+    * @param contactFieldsList List of fields on Contact.
+    * @param primaryAfflFieldLabels List of field labels or API Names.
     * @return List<SObjectField> List of fields in object that are in the provided list of labels.
-    ********************************************************************************************************/
-	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> cf, List<String> primaryAfflFieldLabels) {
-		Set<String> primaryAfflFieldLabelsSet = new Set<String>(primaryAfflFieldLabels);
+    ****************************************************************************************************************/
+	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFieldsList, List<String> primaryAfflFieldLabelsOrAPINames) {
+		Set<String> primaryAfflFieldLabelsOrAPINamesSet = new Set<String>(primaryAfflFieldLabelsOrAPINames);
 		List<SObjectField> primaryFields = new List<SObjectField>();
 		primaryAfflFieldNames = new List<String>();
-		for(SObjectField field : cf) {
-			if (primaryAfflFieldLabelsSet.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsSet.contains(field.getDescribe().getName())) {
+		for(SObjectField field : contactFieldsList) {
+			if (primaryAfflFieldLabelsOrAPINamesSet.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsOrAPINamesSet.contains(field.getDescribe().getName())) {
 				primaryAfflFieldNames.add(field.getDescribe().getName());
 				primaryFields.add(field);
 			}

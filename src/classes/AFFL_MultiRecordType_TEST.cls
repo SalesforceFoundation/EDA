@@ -493,16 +493,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         test.startTest(); 
             //Insert an affiliation
             Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
-            TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
             insert affl; 
         test.stopTest();
-        
-        //Verify 1 affiliation is created
-        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
-                                                WHERE Contact__c = :contact.Id 
-                                                AND Account__c = :bizAcc.Id] ;
-        System.assertEquals(1, affiliationList.size());
-        System.assertEquals(true, affiliationList[0].Primary__c);
         
         //Verify Primary Organization is populated
         Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 

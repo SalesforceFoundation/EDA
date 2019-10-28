@@ -74,15 +74,16 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				for (SObject so : newlist) {
 					Affiliation__c affl = (Affiliation__c)so;
 
-					String lookupFieldLabel = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
+					String lookupLabelOrAPINameFromMapping = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+					String lookupFieldName = afflMapper.contactLabelNames.get(lookupLabelOrAPINameFromMapping);
           
-					/* Check if affiliation mapping has custom API field in affl mappings and assign the field api to lookupFieldName
-					   This code is to make sure that Primay Affiliation look up is populated on contact even when language is not English
-					*/	
-					if ((lookupFieldLabel != NULL && lookupFieldLabel != '') && (lookupFieldName == '' || lookupFieldName == NULL)) {                     
-              if (afflMapper.contactLabelNames.values().contains(lookupFieldLabel)) {
-                  lookupFieldName = lookupFieldLabel;                            
+					// If lookupFieldName of the Contact is not found, check if lookupLabelOrAPINameFromMapping is an API, if yes assign it to lookupFieldName
+					// This code block below is to make sure that Primay Affiliation lookup is populated on contact even when language is not English
+						
+          if ((lookupLabelOrAPINameFromMapping != NULL && lookupLabelOrAPINameFromMapping != '') && (lookupFieldName == '' || lookupFieldName == NULL)) {
+						  List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();                     
+              if (contactFieldAPINamesList.contains(lookupLabelOrAPINameFromMapping)) {
+                  lookupFieldName = lookupLabelOrAPINameFromMapping;                            
               }                        
           }
 
