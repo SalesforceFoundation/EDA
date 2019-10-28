@@ -138,16 +138,16 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 	
 	/***************************************************************************************************************
     * @description Returns those fields from the provided list that are in the provided list of labels or API names. 
-    * @param contactFieldsList List of fields on Contact.
+    * @param contactFields List of fields on Contact.
     * @param primaryAfflFieldLabels List of field labels or API Names.
     * @return List<SObjectField> List of fields in object that are in the provided list of labels.
     ****************************************************************************************************************/
-	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFieldsList, List<String> primaryAfflFieldLabelsOrAPINames) {
-		Set<String> primaryAfflFieldLabelsOrAPINamesSet = new Set<String>(primaryAfflFieldLabelsOrAPINames);
+	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldLabelsOrAPINames) {
+		Set<String> primaryAfflFieldLabelsOrAPIs = new Set<String>(primaryAfflFieldLabelsOrAPINames);
 		List<SObjectField> primaryFields = new List<SObjectField>();
 		primaryAfflFieldNames = new List<String>();
-		for(SObjectField field : contactFieldsList) {
-			if (primaryAfflFieldLabelsOrAPINamesSet.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsOrAPINamesSet.contains(field.getDescribe().getName())) {
+		for(SObjectField field : contactFields) {
+			if (primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getLabel()) || primaryAfflFieldLabelsOrAPIs.contains(field.getDescribe().getName())) {
 				primaryAfflFieldNames.add(field.getDescribe().getName());
 				primaryFields.add(field);
 			}

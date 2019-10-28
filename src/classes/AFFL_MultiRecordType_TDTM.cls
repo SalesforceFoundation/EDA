@@ -74,18 +74,18 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				for (SObject so : newlist) {
 					Affiliation__c affl = (Affiliation__c)so;
 
-					String lookupLabelOrAPINameFromMapping = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-					String lookupFieldName = afflMapper.contactLabelNames.get(lookupLabelOrAPINameFromMapping);
+					String lookupLabelOrAPIName = afflMapper.mapAccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+					String lookupFieldName = afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
           
-					// If lookupFieldName of the Contact is not found, check if lookupLabelOrAPINameFromMapping is an API, if yes assign it to lookupFieldName
-					// This code block below is to make sure that Primay Affiliation lookup is populated on contact even when language is not English
+					// If lookupFieldName of the Contact is not found, check if lookupLabelOrAPIName is an API, if yes assign it to lookupFieldName
+					// such that the API name can be used to populate primay Affiliation lookup is populated on contact even when language is not English
 						
-          if ((lookupLabelOrAPINameFromMapping != NULL && lookupLabelOrAPINameFromMapping != '') && (lookupFieldName == '' || lookupFieldName == NULL)) {
-						  List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();                     
-              if (contactFieldAPINamesList.contains(lookupLabelOrAPINameFromMapping)) {
-                  lookupFieldName = lookupLabelOrAPINameFromMapping;                            
-              }                        
-          }
+      if ((lookupLabelOrAPIName != NULL && lookupLabelOrAPIName != '') && (lookupFieldName == '' || lookupFieldName == NULL)) {
+          List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();                     
+          if (contactFieldAPINamesList.contains(lookupLabelOrAPIName)) {
+             lookupFieldName = lookupLabelOrAPIName;                            
+          }                        
+      }
 
 					if (isAfflTypeEnforced == true) {
 						ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
