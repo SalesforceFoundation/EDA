@@ -74,7 +74,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				for (SObject so : newlist) {
 					Affiliation__c affl = (Affiliation__c)so;
 
-					String lookupLabelOrAPIName = afflMapper.AccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+					String lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
           
 					// If lookupFieldName of the Contact is not found, check if lookupLabelOrAPIName is an API, if yes assign it to lookupFieldName
@@ -145,7 +145,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			if(oldlist != null && oldlist.size() > 0) {
 				for(SObject so : oldlist) {
 					Affiliation__c afflOld = (Affiliation__c)so;
-					String lookupFieldLabel = afflMapper.AccRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
+					String lookupFieldLabel = afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
 					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
 
 					Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);

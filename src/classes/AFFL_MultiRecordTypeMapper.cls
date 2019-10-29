@@ -45,7 +45,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
     * @description Affiliation Account-record-type-to-Contact-field mappings.
     ********************************************************************************************************/
-    public Map<String, String> AccRecTypeToContactLabel;
+    public Map<String, String> accRecTypeToContactLabel;
     
     /*******************************************************************************************************
     * @description Affiliation Account-record-type-to-Academic-auto-create-field mappings.
@@ -86,7 +86,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		populateMaps();
 		
 		//List of primary affiliation lookup fields labels.
-		List<String> primaryAfflFieldLabels = AccRecTypeToContactLabel.values();
+		List<String> primaryAfflFieldLabels = accRecTypeToContactLabel.values();
 		
 		//List of primary affiliation Contact fields.
 		List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldLabels);
@@ -116,7 +116,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     }
     
     private void populateMaps() {
-    	AccRecTypeToContactLabel = new Map<String, String>();
+    	accRecTypeToContactLabel = new Map<String, String>();
     	accTypeToEnrollCreate = new Map<String, Boolean>();
     	accTypeToEnrollCreateRole = new Map<String, String>();
     	accTypeToEnrollCreateStatus = new Map<String, String>();
@@ -125,7 +125,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
 		//Put affl mappings in a map.
 		for(Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
 			if(!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
-				AccRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
+				accRecTypeToContactLabel.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
 				accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
 				accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
 				accTypeToEnrollCreateStatus.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Status__c);
@@ -159,12 +159,12 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @return String The name of the key affiliation Contact field.
     ********************************************************************************************************/
 	public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
-		for(String recTypeName : AccRecTypeToContactLabel.keySet()) {
+		for(String recTypeName : accRecTypeToContactLabel.keySet()) {
             if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null)
             {
         		ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
         		if(rcId == recordTypeId) {
-        			String fieldLabel = AccRecTypeToContactLabel.get(recTypeName);
+        			String fieldLabel = accRecTypeToContactLabel.get(recTypeName);
         			String fieldName = contactLabelNames.get(fieldLabel);
         			return fieldName;
         		}

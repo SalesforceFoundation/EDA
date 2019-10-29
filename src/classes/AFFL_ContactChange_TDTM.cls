@@ -82,7 +82,7 @@ public with sharing class AFFL_ContactChange_TDTM extends TDTM_Runnable {
                		if(oldlist[i] != null)
                    		afflOld = (Affiliation__c)oldlist[i];
 
-	               	String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.AccRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+	               	String lookupFieldLabel = AFFL_MultiRecordType_TDTM.afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
 	               	String lookupFieldName = AFFL_MultiRecordType_TDTM.afflMapper.contactLabelNames.get(lookupFieldLabel);
 
 					if (isAfflTypeEnforced == true) {
