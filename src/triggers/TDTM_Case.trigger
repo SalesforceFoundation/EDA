@@ -30,6 +30,7 @@
 trigger TDTM_Case on Case (after delete, after insert, after undelete, 
 after update, before delete, before insert, before update) {
 
-    TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
-        Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Case);
+    //Commenting out for now to prevent TDTM class in SAL from running twice.
+    //TDTM_Global_API.run(Trigger.isBefore, Trigger.isAfter, Trigger.isInsert, Trigger.isUpdate, Trigger.isDelete, 
+    //    Trigger.isUnDelete, Trigger.new, Trigger.old, Schema.Sobjecttype.Case);
 }
