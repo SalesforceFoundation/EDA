@@ -94,7 +94,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					}
 
 					// AFTER UPDATE
-					if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)) {
+					if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
 						Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
 						//If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
