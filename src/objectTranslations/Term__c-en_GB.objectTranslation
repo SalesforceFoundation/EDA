@@ -1,66 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Term</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Terms</value>
-    </caseValues>
-    <fields>
-        <label>Account</label>
-        <name>Account__c</name>
-        <relationshipLabel>Terms</relationshipLabel>
-    </fields>
-    <fields>
-        <label>End Date</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <label>Grading Period Sequence</label>
-        <name>Grading_Period_Sequence__c</name>
-    </fields>
-    <fields>
-        <label>Instructional Days</label>
-        <name>Instructional_Days__c</name>
-    </fields>
-    <fields>
-        <label>Parent Term</label>
-        <name>Parent_Term__c</name>
-        <relationshipLabel>Terms</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Start Date</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Type</label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Part of Term</masterLabel>
-            <translation>Part of Term</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quarter</masterLabel>
-            <translation>Quarter</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Year</masterLabel>
-            <translation>School Year</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Semester</masterLabel>
-            <translation>Semester</translation>
-        </picklistValues>
-    </fields>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Term Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Terms</relationshipLabel>
+    <label>Account</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>End Date</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <label>Grading Period Sequence</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <label>Instructional Days</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <relationshipLabel>Terms</relationshipLabel>
+    <label>Parent Term</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Start Date</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <label>Type</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>Quarter</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>Semester</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>School Year</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>Part of Term</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>Custom Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Term Name</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Term Name</label>
+  </standardFields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Term</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Terms</value>
+  </caseValues>
 </CustomObjectTranslation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Faculty</name>
+    <label>Facultat</label>
+    <description>Connexió a un curs de facultat</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Student</name>
+    <label>Estudiant</label>
+    <description>Connexió a un curs d'estudiant</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Default</name>
+    <label>Predeterminat</label>
+    <description>Un tipus de registre predeterminat per al seu ús en proves. Aquest tipus de registre només ha de ser habilitat i visible per als administradors del sistema.</description>
+  </recordTypes>
+</CustomObjectTranslation>

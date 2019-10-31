@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Contact__c</name>
+    <help>El estudiante para el que se está registrando la evaluación. Cuando se deja en blanco, Contacto se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Course_Connection__c</name>
+    <help>La clase en la que el estudiante recibió esta evaluación. Contacto y Oferta de curso en Evaluación de periodo debe coincidir con Contacto y Oferta de curso en el registro Conexión de curso</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Enlace de cursos</label>
+  </fields>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>La Oferta de curso asociada con la evaluación que se está registrando. Cuando se deja en blanco, Oferta de curso se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Oferta de curso</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <help>El número de créditos intentados para este curso y periodo de evaluación.</help>
+    <label>Créditos intentados</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <help>El número de créditos obtenidos para este curso y periodo de evaluación.</help>
+    <label>Créditos obtenidos</label>
+  </fields>
+  <fields>
+    <name>Letter_Grade__c</name>
+    <help>La evaluación de letra que obtuvo el estudiante para este curso. Por ejemplo "A+" u otro valor de texto.</help>
+    <label>Evaluación de letra</label>
+  </fields>
+  <fields>
+    <name>Numerical_Grade__c</name>
+    <help>La evaluación numérica que obtuvo el estudiante para este curso, que puede ser basada en cualquier número no de porcentaje.</help>
+    <label>Evaluación numérica</label>
+  </fields>
+  <fields>
+    <name>Percent_Grade__c</name>
+    <help>La evaluación de porcentaje que el estudiante obtuvo para este curso.</help>
+    <label>Evaluación de porcentaje</label>
+  </fields>
+  <fields>
+    <name>Result__c</name>
+    <help>El resultado del desempeño del estudiante para este periodo de evaluación.</help>
+    <label>Resultado</label>
+    <picklistValues>
+      <masterLabel>Audit</masterLabel>
+      <translation>Auditoría</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Dropped</masterLabel>
+      <translation>Eliminado</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fail</masterLabel>
+      <translation>Fracaso</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pass</masterLabel>
+      <translation>Aprobado</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term_Grade_Type__c</name>
+    <help>El tipo de periodo de evaluación o plazo para el que se registró esta evaluación.</help>
+    <label>Tipo de evaluación de periodo</label>
+    <picklistValues>
+      <masterLabel>Exam Grade</masterLabel>
+      <translation>Evaluación de examen</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Final Grade</masterLabel>
+      <translation>Evaluación final</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Grading Period</masterLabel>
+      <translation>Periodo de evaluación</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mid-Term Grade</masterLabel>
+      <translation>Evaluación a medio plazo</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Term__c</name>
+    <help>El periodo de evaluación o plazo para el que se registró esta evaluación.</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Plazo</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Grade Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de evaluación de periodo</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de evaluación de periodo</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Evaluación de periodo</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Evaluaciones de periodo</value>
+  </caseValues>
+</CustomObjectTranslation>

@@ -1,85 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Behavior Response --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Behavior Response --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The system-generated number associated with this event. Format: BI-{0000}. --></help>
-        <label><!-- Behavior Involvement --></label>
-        <name>Behavior_Involvement__c</name>
-        <relationshipLabel><!-- Behavior Responses --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The recipient of this response. --></help>
-        <label><!-- Contact --></label>
-        <name>Contact__c</name>
-    </fields>
-    <fields>
-        <help><!-- A description of the Behavior Response. --></help>
-        <label><!-- Description --></label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help><!-- The date when the response ends. --></help>
-        <label><!-- End Date --></label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- The date when the response starts. --></help>
-        <label><!-- Start Date --></label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <help><!-- The status of the response taken. --></help>
-        <label><!-- Status --></label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Completed</masterLabel>
-            <translation><!-- Completed --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Postponed</masterLabel>
-            <translation><!-- Postponed --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- The type of response taken. --></help>
-        <label><!-- Type --></label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Academic Probation</masterLabel>
-            <translation><!-- Academic Probation --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Expulsion</masterLabel>
-            <translation><!-- Expulsion --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>EDA Behavior Response Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Behavior Response Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Behavior_Involvement__c</name>
+    <help>Le numéro généré par le système associé à cet événement. Format : BI-{0000}.</help>
+    <relationshipLabel>Réactions comportementales</relationshipLabel>
+    <label>Implication du comportement</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Le destinataire de cette réponse.</help>
+    <label>Contact</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Une description de la réaction comportementale.</help>
+    <label>Description</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La date à laquelle la réaction se termine.</help>
+    <label>Date de fin</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>La date à laquelle la réaction commence.</help>
+    <label>Date de début</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>Le statut de la réaction.</help>
+    <label>Statut</label>
+    <picklistValues>
+      <masterLabel>Completed</masterLabel>
+      <translation>Terminé</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>In Progress</masterLabel>
+      <translation>En cours</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Postponed</masterLabel>
+      <translation>Reporté</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Autre</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>Le type de réaction.</help>
+    <label>Type</label>
+    <picklistValues>
+      <masterLabel>Academic Probation</masterLabel>
+      <translation>Probation académique</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Expulsion</masterLabel>
+      <translation>Expulsion</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Autre</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>EDA Behavior Response Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de la réaction comportementale</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de la réaction comportementale</label>
+  </standardFields>
 </CustomObjectTranslation>

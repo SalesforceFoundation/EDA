@@ -1,65 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Error</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Errores</value>
-    </caseValues>
-    <fields>
-        <help>Contexto que generó el error, si es conocido.</help>
-        <label>Tipo de contexto</label>
-        <name>Context_Type__c</name>
-    </fields>
-    <fields>
-        <help>Fecha y hora en que se produjo el error</help>
-        <label>Fecha y hora</label>
-        <name>Datetime__c</name>
-    </fields>
-    <fields>
-        <help>Indica si se envió una notificación de correo electrónico acerca de este error.</help>
-        <label>Correo electrónico enviado</label>
-        <name>Email_Sent__c</name>
-    </fields>
-    <fields>
-        <help>Tipo de error que se ha producido</help>
-        <label>Tipo de error</label>
-        <name>Error_Type__c</name>
-    </fields>
-    <fields>
-        <help>Texto completo del mensaje de error</help>
-        <label>Mensaje completo</label>
-        <name>Full_Message__c</name>
-    </fields>
-    <fields>
-        <help>Tipo de objeto en el que se produjo el error, si es conocido.</help>
-        <label>Tipo de objeto</label>
-        <name>Object_Type__c</name>
-    </fields>
-    <fields>
-        <help>Indica si el error se publicó en Chatter.</help>
-        <label>Publicado en Chatter</label>
-        <name>Posted_in_Chatter__c</name>
-    </fields>
-    <fields>
-        <help>Un vínculo al registro que causó el error, si disponible.</help>
-        <label>URL de registro</label>
-        <name>Record_URL__c</name>
-    </fields>
-    <fields>
-        <help>Rastreo de pila para el error arrojado, si disponible en el tiempo de ejecución.</help>
-        <label>Rastreo de pila</label>
-        <name>Stack_Trace__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Error Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Número de error</nameFieldLabel>
+  <fields>
+    <name>Context_Type__c</name>
+    <help>Contexto que generó el error, si es conocido.</help>
+    <label>Tipo de contexto</label>
+  </fields>
+  <fields>
+    <name>Datetime__c</name>
+    <help>Fecha y hora en que se produjo el error</help>
+    <label>Fecha y hora</label>
+  </fields>
+  <fields>
+    <name>Email_Sent__c</name>
+    <help>Indica si se envió una notificación de correo electrónico acerca de este error.</help>
+    <label>Correo electrónico enviado</label>
+  </fields>
+  <fields>
+    <name>Error_Type__c</name>
+    <help>Tipo de error que se ha producido</help>
+    <label>Tipo de error</label>
+  </fields>
+  <fields>
+    <name>Full_Message__c</name>
+    <help>Texto completo del mensaje de error</help>
+    <label>Mensaje completo</label>
+  </fields>
+  <fields>
+    <name>Object_Type__c</name>
+    <help>Tipo de objeto en el que se produjo el error, si es conocido.</help>
+    <label>Tipo de objeto</label>
+  </fields>
+  <fields>
+    <name>Posted_in_Chatter__c</name>
+    <help>Indica si el error se publicó en Chatter.</help>
+    <label>Publicado en Chatter</label>
+  </fields>
+  <fields>
+    <name>Record_URL__c</name>
+    <help>Un vínculo al registro que causó el error, si disponible.</help>
+    <label>URL de registro</label>
+  </fields>
+  <fields>
+    <name>Stack_Trace__c</name>
+    <help>Rastreo de pila para el error arrojado, si disponible en el tiempo de ejecución.</help>
+    <label>Rastreo de pila</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Error Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Número de error</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Número de error</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Error</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Errores</value>
+  </caseValues>
 </CustomObjectTranslation>

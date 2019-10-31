@@ -1,103 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Trigger Handler --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Trigger Handler --></value>
-    </caseValues>
-    <fields>
-        <help>Indica que aquest mòdul està actiu</help>
-        <label>Actiu</label>
-        <name>Active__c</name>
-    </fields>
-    <fields>
-        <help>Indica que aquest mòdul s&apos;ha d&apos;executar de forma asíncrona en aquesta transacció</help>
-        <label>Asíncron</label>
-        <name>Asynchronous__c</name>
-    </fields>
-    <fields>
-        <help>Nom de la classe a executar</help>
-        <label>Classe</label>
-        <name>Class__c</name>
-    </fields>
-    <fields>
-        <help>Nom del camp utilitzat per filtrar.</help>
-        <label>Camp de filtre</label>
-        <name>Filter_Field__c</name>
-    </fields>
-    <fields>
-        <help>Valor del camp utilitzat per al filtratge.</help>
-        <label>Valor del filtre</label>
-        <name>Filter_Value__c</name>
-    </fields>
-    <fields>
-        <help>L&apos;ordre en què s&apos;ha d&apos;executar aquest mòdul, ajuda a mantenir les dependències en els mòduls i les dades.</help>
-        <label>Ordre de càrrega</label>
-        <name>Load_Order__c</name>
-    </fields>
-    <fields>
-        <help>Nom de l&apos;objecte per al qual s&apos;ha d&apos;executar aquest controlador</help>
-        <label>Objecte</label>
-        <name>Object__c</name>
-    </fields>
-    <fields>
-        <label>Propietat per l&apos;espai de noms</label>
-        <name>Owned_by_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>Acció d&apos;activació en què aquest mòdul s&apos;hauria de disparar</help>
-        <label>Acció d&apos;activació</label>
-        <name>Trigger_Action__c</name>
-        <picklistValues>
-            <masterLabel>AfterDelete</masterLabel>
-            <translation>Després de suprimir</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterInsert</masterLabel>
-            <translation>Després d&apos;inserir</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterUndelete</masterLabel>
-            <translation>Després de recuperar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterUpdate</masterLabel>
-            <translation>Després d&apos;actualitzar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeDelete</masterLabel>
-            <translation>Abans de suprimir</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeInsert</masterLabel>
-            <translation>Abans d&apos;inserir</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeUpdate</masterLabel>
-            <translation>Abans d&apos;actualitzar</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Comproveu si voleu administrar el registre per si mateix. Tingueu en compte que les actualitzacions del paquet no actualitzaran el registre.</help>
-        <label>Usuari gestionat</label>
-        <name>User_Managed__c</name>
-    </fields>
-    <fields>
-        <help>Llista dels noms d&apos;usuari de Salesforce, separats per punt i coma, per als quals aquest activador NO s&apos;executarà. Deixeu el camp en blanc per executar-lo per a tots els usuaris.</help>
-        <label>Noms d&apos;usuari per excloure</label>
-        <name>Usernames_to_Exclude__c</name>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom del controlador d&apos;activació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Active__c</name>
+    <help>Indica que aquest mòdul està actiu</help>
+    <label>Actiu</label>
+  </fields>
+  <fields>
+    <name>Asynchronous__c</name>
+    <help>Indica que aquest mòdul s'ha d'executar de forma asíncrona en aquesta transacció</help>
+    <label>Asíncron</label>
+  </fields>
+  <fields>
+    <name>Class__c</name>
+    <help>Nom de la classe a executar</help>
+    <label>Classe</label>
+  </fields>
+  <fields>
+    <name>Filter_Field__c</name>
+    <help>Nom del camp utilitzat per filtrar.</help>
+    <label>Camp de filtre</label>
+  </fields>
+  <fields>
+    <name>Filter_Value__c</name>
+    <help>Valor del camp utilitzat per al filtratge.</help>
+    <label>Valor del filtre</label>
+  </fields>
+  <fields>
+    <name>Load_Order__c</name>
+    <help>L'ordre en què s'ha d'executar aquest mòdul, ajuda a mantenir les dependències en els mòduls i les dades.</help>
+    <label>Ordre de càrrega</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>Nom de l'objecte per al qual s'ha d'executar aquest controlador</help>
+    <label>Objecte</label>
+  </fields>
+  <fields>
+    <name>Owned_by_Namespace__c</name>
+    <label>Propietat per l'espai de noms</label>
+  </fields>
+  <fields>
+    <name>Trigger_Action__c</name>
+    <help>Acció d'activació en què aquest mòdul s'hauria de disparar</help>
+    <label>Acció d'activació</label>
+    <picklistValues>
+      <masterLabel>BeforeInsert</masterLabel>
+      <translation>Abans d'inserir</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeUpdate</masterLabel>
+      <translation>Abans d'actualitzar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeDelete</masterLabel>
+      <translation>Abans de suprimir</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterInsert</masterLabel>
+      <translation>Després d'inserir</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUpdate</masterLabel>
+      <translation>Després d'actualitzar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterDelete</masterLabel>
+      <translation>Després de suprimir</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUndelete</masterLabel>
+      <translation>Després de recuperar</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>User_Managed__c</name>
+    <help>Comproveu si voleu administrar el registre per si mateix. Tingueu en compte que les actualitzacions del paquet no actualitzaran el registre.</help>
+    <label>Usuari gestionat</label>
+  </fields>
+  <fields>
+    <name>Usernames_to_Exclude__c</name>
+    <help>Llista dels noms d'usuari de Salesforce, separats per punt i coma, per als quals aquest activador NO s'executarà. Deixeu el camp en blanc per executar-lo per a tots els usuaris.</help>
+    <label>Noms d'usuari per excloure</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Trigger Handler Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom del controlador d'activació</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom del controlador d'activació</label>
+  </standardFields>
 </CustomObjectTranslation>

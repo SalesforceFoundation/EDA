@@ -1,208 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <fields>
-        <help>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</help>
-        <label>Account Processor</label>
-        <name>Account_Processor__c</name>
-    </fields>
-    <fields>
-        <help>Record Types of those Accounts that should have multi-addresses enabled.</help>
-        <label>Multi-Address Accounts</label>
-        <name>Accounts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>Record Types of those Accounts that should be deleted if all its children Contacts have been deleted.</help>
-        <label>Accounts to Delete</label>
-        <name>Accounts_to_Delete__c</name>
-    </fields>
-    <fields>
-        <help>This is the setting for admin account naming format</help>
-        <label>Admin Account Naming Format</label>
-        <name>Admin_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>To store other naming setting for admin account</help>
-        <label>Admin Other Name Setting</label>
-        <name>Admin_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</help>
-        <label>Administrative Account Record Type</label>
-        <name>Administrative_Account_Record_Type__c</name>
-    </fields>
-    <fields>
-        <help>The namespace of the Gift Entry Management managed package.</help>
-        <label>GEM Namespace</label>
-        <name>Advancement_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</help>
-        <label>Affiliation Record Type Enforced</label>
-        <name>Affiliation_Record_Type_Enforced__c</name>
-    </fields>
-    <fields>
-        <help>Indicates whether to set the End Date of the Affiliation created with a Program Enrolment. If enabled, set the End Date to the Program Enrolment&apos;s End Date. If disabled, don&apos;t specify the Affiliation&apos;s End Date.</help>
-        <label>Affil End Date Copy from Prog Enrol</label>
-        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Indicates whether to set the Start Date of the Affiliation created with a Program Enrolment. If enabled, set the Start Date to the Program Enrolment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</help>
-        <label>Affil Start Date Copy from Prog Enrol</label>
-        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>If the related setting, Affil Delete When Delete Prog Enrol, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrolment is deleted.</help>
-        <label>Affil Status When Delete Prog Enrol</label>
-        <name>Affl_ProgEnroll_Del_Status__c</name>
-    </fields>
-    <fields>
-        <help>Indicates whether to delete an Affiliation when its related Program Enrolment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation&apos;s Status to the value specified in the related setting, Affil Status When Delete Prog Enrol.</help>
-        <label>Affil Delete When Delete Prog Enrol</label>
-        <name>Affl_ProgEnroll_Del__c</name>
-    </fields>
-    <fields>
-        <help>If the related setting, Affil Set Role When Create Prog Enrol, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrolment.</help>
-        <label>Affil Role When Create Prog Enrol</label>
-        <name>Affl_ProgEnroll_Role_Map__c</name>
-    </fields>
-    <fields>
-        <help>Indicates whether to specify a Role for the Affiliation created with a Program Enrolment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enrol. If disabled, don&apos;t specify a Role.</help>
-        <label>Affil Set Role When Create Prog Enrol</label>
-        <name>Affl_ProgEnroll_Set_Role__c</name>
-    </fields>
-    <fields>
-        <help>The Status value set on the Affiliation created with a Program Enrolment.</help>
-        <label>Affil Status When Create Prog Enrol</label>
-        <name>Affl_ProgEnroll_Status_Map__c</name>
-    </fields>
-    <fields>
-        <help>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behaviour &amp; allow multiple Relationships of the same Type to be created between two Contacts</help>
-        <label>Allow Auto-Created Duplicate Relations</label>
-        <name>Allow_AutoCreated_Duplicates__c</name>
-    </fields>
-    <fields>
-        <label>Async Error Check Last Run</label>
-        <name>Async_Error_Check_Last_Run__c</name>
-    </fields>
-    <fields>
-        <help>If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings.</help>
-        <label>Automatic Household Naming</label>
-        <name>Automatic_Household_Naming__c</name>
-    </fields>
-    <fields>
-        <help>Address management support for Contacts.</help>
-        <label>Address management support for Contacts.</label>
-        <name>Contacts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</help>
-        <label>Default Contact Language Fluency</label>
-        <name>Default_Contact_Language_Fluency__c</name>
-    </fields>
-    <fields>
-        <help>If checked, EDA&apos;s error handling framework is disabled.</help>
-        <label>Disable Error Handling</label>
-        <name>Disable_Error_Handling__c</name>
-    </fields>
-    <fields>
-        <help>Select this box to disable the enforcement of the Preferred Email field for Contacts.</help>
-        <label>Disable Preferred Email Enforcement</label>
-        <name>Disable_Preferred_Email_Enforcement__c</name>
-    </fields>
-    <fields>
-        <help>Select this box to disable the enforcement of the Preferred Phone field for Contacts.</help>
-        <label>Disable Preferred Phone Enforcement</label>
-        <name>Disable_Preferred_Phone_Enforcement__c</name>
-    </fields>
-    <fields>
-        <label>Enable Course Connections</label>
-        <name>Enable_Course_Connections__c</name>
-    </fields>
-    <fields>
-        <help>Turn this on to enable debug statements in managed package code.</help>
-        <label>Enable Debug</label>
-        <name>Enable_Debug__c</name>
-    </fields>
-    <fields>
-        <help><!-- Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value. --></help>
-        <label><!-- Enable New Preferred Phone Sync --></label>
-        <name>Enable_New_Preferred_Phone_Sync__c</name>
-    </fields>
-    <fields>
-        <help>Check this if you&apos;d like the system to post notifications for certain type of errors.</help>
-        <label>Error Notifications</label>
-        <name>Error_Notifications_On__c</name>
-    </fields>
-    <fields>
-        <help>Select the type of user to send notifications to.</help>
-        <label>Error Notification Recipients</label>
-        <name>Error_Notifications_To__c</name>
-    </fields>
-    <fields>
-        <label>Faculty Record Type</label>
-        <name>Faculty_RecType__c</name>
-    </fields>
-    <fields>
-        <help>This is the setting for household account naming format</help>
-        <label>Household Account Naming Format</label>
-        <name>Household_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</help>
-        <label>Household Addresses Acc Record Type</label>
-        <name>Household_Addresses_RecType__c</name>
-    </fields>
-    <fields>
-        <help>To store other name setting for household account</help>
-        <label>Household Other Name Setting</label>
-        <name>Household_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>Select a desired Preferred Phone when the Batch Job runs.</help>
-        <label>Preferred Phone Selection</label>
-        <name>Preferred_Phone_Selection__c</name>
-    </fields>
-    <fields>
-        <help>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</help>
-        <label>Reciprocal Method</label>
-        <name>Reciprocal_Method__c</name>
-    </fields>
-    <fields>
-        <help>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</help>
-        <label>Relationship Name Field Id</label>
-        <name>Relationship_Name_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</help>
-        <label>Relationship Name Id Field Id</label>
-        <name>Relationship_Name_Id_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</help>
-        <label>Simple Address Change Treated as Update</label>
-        <name>Simple_Address_Change_Treated_as_Update__c</name>
-    </fields>
-    <fields>
-        <help>Check this if you&apos;d like errors to be stored in the database.</help>
-        <label>Store Errors</label>
-        <name>Store_Errors_On__c</name>
-    </fields>
-    <fields>
-        <label>Student Record Type</label>
-        <name>Student_RecType__c</name>
-    </fields>
-    <fields>
-        <help>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</help>
-        <label>Validate Program Plan for Nested PR</label>
-        <name>Validate_Program_Plan_for_Nested_PR__c</name>
-    </fields>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account_Processor__c</name>
+    <help>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</help>
+    <label>Account Processor</label>
+  </fields>
+  <fields>
+    <name>Accounts_Addresses_Enabled__c</name>
+    <help>Record Types of those Accounts that should have multi-addresses enabled.</help>
+    <label>Multi-Address Accounts</label>
+  </fields>
+  <fields>
+    <name>Accounts_to_Delete__c</name>
+    <help>Record Types of those Accounts that should be deleted if all its children Contacts have been deleted.</help>
+    <label>Accounts to Delete</label>
+  </fields>
+  <fields>
+    <name>Admin_Account_Naming_Format__c</name>
+    <help>This is the setting for admin account naming format</help>
+    <label>Admin Account Naming Format</label>
+  </fields>
+  <fields>
+    <name>Admin_Other_Name_Setting__c</name>
+    <help>To store other naming setting for admin account</help>
+    <label>Admin Other Name Setting</label>
+  </fields>
+  <fields>
+    <name>Administrative_Account_Record_Type__c</name>
+    <help>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</help>
+    <label>Administrative Account Record Type</label>
+  </fields>
+  <fields>
+    <name>Advancement_Namespace__c</name>
+    <help>The namespace of the Gift Entry Management managed package.</help>
+    <label>GEM Namespace</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Record_Type_Enforced__c</name>
+    <help>If checked, an error results when users populate a primary field on Contact with an Account that has a record type mismatch to the record type defined in EDA Settings. The Affiliation record is not created and primary fields on Contact are not corrected</help>
+    <label>Affiliation Record Type Enforced</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    <help>Indicates whether to set the End Date of the Affiliation created with a Program Enrolment. If enabled, set the End Date to the Program Enrolment's End Date. If disabled, don't specify the Affiliation's End Date.</help>
+    <label>Affil End Date Copy from Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    <help>Indicates whether to set the Start Date of the Affiliation created with a Program Enrolment. If enabled, set the Start Date to the Program Enrolment's Start Date. If disabled, don't specify the Affiliation's Start Date.</help>
+    <label>Affil Start Date Copy from Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
+    <help>If the related setting, Affil Delete When Delete Prog Enrol, is disabled, this setting specifies the value to set for the Affiliation's Status, when its related Program Enrolment is deleted.</help>
+    <label>Affil Status When Delete Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del__c</name>
+    <help>Indicates whether to delete an Affiliation when its related Program Enrolment is deleted. If enabled, delete the Affiliation. If disabled, set the Affiliation's Status to the value specified in the related setting, Affil Status When Delete Prog Enrol.</help>
+    <label>Affil Delete When Delete Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
+    <help>If the related setting, Affil Set Role When Create Prog Enrol, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrolment.</help>
+    <label>Affil Role When Create Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
+    <help>Indicates whether to specify a Role for the Affiliation created with a Program Enrolment. If enabled, set the Affiliation's Role to the value specified in the related setting, Affil Role When Create Prog Enrol. If disabled, don't specify a Role.</help>
+    <label>Affil Set Role When Create Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
+    <help>The Status value set on the Affiliation created with a Program Enrolment.</help>
+    <label>Affil Status When Create Prog Enrol</label>
+  </fields>
+  <fields>
+    <name>Allow_AutoCreated_Duplicates__c</name>
+    <help>Auto-created Relationships are auto-deduplicated to prevent duplicate Relationship records from being created between two Contacts.  Check this box to disable this behaviour &amp; allow multiple Relationships of the same Type to be created between two Contacts</help>
+    <label>Allow Auto-Created Duplicate Relations</label>
+  </fields>
+  <fields>
+    <name>Async_Error_Check_Last_Run__c</name>
+    <label>Async Error Check Last Run</label>
+  </fields>
+  <fields>
+    <name>Automatic_Household_Naming__c</name>
+    <help>If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings.</help>
+    <label>Automatic Household Naming</label>
+  </fields>
+  <fields>
+    <name>Contacts_Addresses_Enabled__c</name>
+    <help>Address management support for Contacts.</help>
+    <label>Address management support for Contacts.</label>
+  </fields>
+  <fields>
+    <name>Default_Contact_Language_Fluency__c</name>
+    <help>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</help>
+    <label>Default Contact Language Fluency</label>
+  </fields>
+  <fields>
+    <name>Disable_Error_Handling__c</name>
+    <help>If checked, EDA's error handling framework is disabled.</help>
+    <label>Disable Error Handling</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
+    <help>Select this box to disable the enforcement of the Preferred Email field for Contacts.</help>
+    <label>Disable Preferred Email Enforcement</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
+    <help>Select this box to disable the enforcement of the Preferred Phone field for Contacts.</help>
+    <label>Disable Preferred Phone Enforcement</label>
+  </fields>
+  <fields>
+    <name>Enable_Course_Connections__c</name>
+    <label>Enable Course Connections</label>
+  </fields>
+  <fields>
+    <name>Enable_Debug__c</name>
+    <help>Turn this on to enable debug statements in managed package code.</help>
+    <label>Enable Debug</label>
+  </fields>
+  <fields>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
+    <help>Sync the Preferred Phone field to the Contact's standard Phone field and validate that the value in Preferred Phone exists and has a value.</help>
+    <label>Enable New Preferred Phone Sync</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_On__c</name>
+    <help>Check this if you'd like the system to post notifications for certain type of errors.</help>
+    <label>Error Notifications</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_To__c</name>
+    <help>Select the type of user to send notifications to.</help>
+    <label>Error Notification Recipients</label>
+  </fields>
+  <fields>
+    <name>Faculty_RecType__c</name>
+    <label>Faculty Record Type</label>
+  </fields>
+  <fields>
+    <name>Household_Account_Naming_Format__c</name>
+    <help>This is the setting for household account naming format</help>
+    <label>Household Account Naming Format</label>
+  </fields>
+  <fields>
+    <name>Household_Addresses_RecType__c</name>
+    <help>The Account record type used for Household Accounts. This setting affects management of address records and the naming format of Household Accounts.</help>
+    <label>Household Addresses Acc Record Type</label>
+  </fields>
+  <fields>
+    <name>Household_Other_Name_Setting__c</name>
+    <help>To store other name setting for household account</help>
+    <label>Household Other Name Setting</label>
+  </fields>
+  <fields>
+    <name>Preferred_Phone_Selection__c</name>
+    <help>Select a desired Preferred Phone when the Batch Job runs.</help>
+    <label>Preferred Phone Selection</label>
+  </fields>
+  <fields>
+    <name>Reciprocal_Method__c</name>
+    <help>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate ("Parent-Child" to "Child-Parent")</help>
+    <label>Reciprocal Method</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Field_Id__c</name>
+    <help>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</help>
+    <label>Relationship Name Field Id</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Id_Field_Id__c</name>
+    <help>Populating this value will allow the field to pre-populate when creating new Relationships from the Relationship Viewer (see description for more information)</help>
+    <label>Relationship Name Id Field Id</label>
+  </fields>
+  <fields>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
+    <help>If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address.</help>
+    <label>Simple Address Change Treated as Update</label>
+  </fields>
+  <fields>
+    <name>Store_Errors_On__c</name>
+    <help>Check this if you'd like errors to be stored in the database.</help>
+    <label>Store Errors</label>
+  </fields>
+  <fields>
+    <name>Student_RecType__c</name>
+    <label>Student Record Type</label>
+  </fields>
+  <fields>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
+    <help>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</help>
+    <label>Validate Program Plan for Nested PR</label>
+  </fields>
 </CustomObjectTranslation>

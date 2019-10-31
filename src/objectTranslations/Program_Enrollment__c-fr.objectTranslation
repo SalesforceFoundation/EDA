@@ -1,117 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Inscription au programme</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Inscriptions au programme</value>
-    </caseValues>
-    <fields>
-        <help>Le programme auquel l&apos;étudiant est inscrit.</help>
-        <label>Programme</label>
-        <name>Account__c</name>
-        <relationshipLabel>Inscriptions au programme</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date d&apos;admission</label>
-        <name>Admission_Date__c</name>
-    </fields>
-    <fields>
-        <help>La relation contact-compte à laquelle cette information académique est associée.</help>
-        <label>Affiliation</label>
-        <name>Affiliation__c</name>
-        <relationshipLabel>Inscriptions au programme</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date de soumission de la candidature</label>
-        <name>Application_Submitted_Date__c</name>
-    </fields>
-    <fields>
-        <label>Année d&apos;étude</label>
-        <name>Class_Standing__c</name>
-        <picklistValues>
-            <masterLabel>Freshman</masterLabel>
-            <translation>Première année</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Junior</masterLabel>
-            <translation>Troisième année</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Senior</masterLabel>
-            <translation>Quatrième année</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sophomore</masterLabel>
-            <translation>Deuxième année</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Le contact parent.</help>
-        <label>Contact</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Inscriptions au programme</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Crédits tentés</label>
-        <name>Credits_Attempted__c</name>
-    </fields>
-    <fields>
-        <label>Crédits obtenus</label>
-        <name>Credits_Earned__c</name>
-    </fields>
-    <fields>
-        <label>Éligible à l&apos;inscription</label>
-        <name>Eligible_to_Enroll__c</name>
-    </fields>
-    <fields>
-        <label>Date de fin</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <label>Statut d&apos;inscription</label>
-        <name>Enrollment_Status__c</name>
-        <picklistValues>
-            <masterLabel>Full-time</masterLabel>
-            <translation>Temps complet</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Half-time</masterLabel>
-            <translation>Mi-temps</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Less than half-time</masterLabel>
-            <translation>Inférieur à mi-temps</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label>Moyenne générale</label>
-        <name>GPA__c</name>
-    </fields>
-    <fields>
-        <label>Année de la classe</label>
-        <name>Graduation_Year__c</name>
-    </fields>
-    <fields>
-        <help>Cliquez pour sélectionner un plan de programme qu&apos;un étudiant doit suivre pour cette inscription au programme.</help>
-        <label>Plan du programme</label>
-        <name>Program_Plan__c</name>
-        <relationshipLabel>Inscriptions au programme</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Date de début</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <gender>Feminine</gender>
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>ID d&apos;inscription au programme</nameFieldLabel>
-    <startsWith>Vowel</startsWith>
+  <fields>
+    <name>Account__c</name>
+    <help>Le programme auquel l'étudiant est inscrit.</help>
+    <relationshipLabel>Inscriptions au programme</relationshipLabel>
+    <label>Programme</label>
+  </fields>
+  <fields>
+    <name>Admission_Date__c</name>
+    <label>Date d'admission</label>
+  </fields>
+  <fields>
+    <name>Affiliation__c</name>
+    <help>La relation contact-compte à laquelle cette information académique est associée.</help>
+    <relationshipLabel>Inscriptions au programme</relationshipLabel>
+    <label>Affiliation</label>
+  </fields>
+  <fields>
+    <name>Application_Submitted_Date__c</name>
+    <label>Date de soumission de la candidature</label>
+  </fields>
+  <fields>
+    <name>Class_Standing__c</name>
+    <label>Année d'étude</label>
+    <picklistValues>
+      <masterLabel>Freshman</masterLabel>
+      <translation>Première année</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sophomore</masterLabel>
+      <translation>Deuxième année</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Junior</masterLabel>
+      <translation>Troisième année</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Senior</masterLabel>
+      <translation>Quatrième année</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Le contact parent.</help>
+    <relationshipLabel>Inscriptions au programme</relationshipLabel>
+    <label>Contact</label>
+  </fields>
+  <fields>
+    <name>Credits_Attempted__c</name>
+    <label>Crédits tentés</label>
+  </fields>
+  <fields>
+    <name>Credits_Earned__c</name>
+    <label>Crédits obtenus</label>
+  </fields>
+  <fields>
+    <name>Eligible_to_Enroll__c</name>
+    <label>Éligible à l'inscription</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>Date de fin</label>
+  </fields>
+  <fields>
+    <name>Enrollment_Status__c</name>
+    <label>Statut d'inscription</label>
+    <picklistValues>
+      <masterLabel>Full-time</masterLabel>
+      <translation>Temps complet</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Half-time</masterLabel>
+      <translation>Mi-temps</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Less than half-time</masterLabel>
+      <translation>Inférieur à mi-temps</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>GPA__c</name>
+    <label>Moyenne générale</label>
+  </fields>
+  <fields>
+    <name>Graduation_Year__c</name>
+    <label>Année de la classe</label>
+  </fields>
+  <fields>
+    <name>Program_Plan__c</name>
+    <help>Cliquez pour sélectionner un plan de programme qu'un étudiant doit suivre pour cette inscription au programme.</help>
+    <relationshipLabel>Inscriptions au programme</relationshipLabel>
+    <label>Plan du programme</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Date de début</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Program Enrollment Layout</layout>
+    <sections>
+      <label>Liens personnalisés</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>ID d'inscription au programme</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>ID d'inscription au programme</label>
+  </standardFields>
+  <gender>Feminine</gender>
+  <startsWith>Vowel</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Inscription au programme</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Inscriptions au programme</value>
+  </caseValues>
 </CustomObjectTranslation>

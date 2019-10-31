@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Academic_Program</name>
+    <label>Programa acadèmic</label>
+    <description>Un programa acadèmic ofert a la institució educativa.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Administrative</name>
+    <label>Administratiu</label>
+    <description>Un compte administratiu.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Business_Organization</name>
+    <label>Organització empresarial</label>
+    <description>Una organització empresarial.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Educational_Institution</name>
+    <label>Institució educativa</label>
+    <description>Una institució educativa.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>HH_Account</name>
+    <label>Compte domèstic</label>
+    <description>Una llar que conté una o més persones.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Sports_Organization</name>
+    <label>Organització esportiva</label>
+    <description>Una organització esportiva.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>University_Department</name>
+    <label>Departament de la Universitat</label>
+    <description>Un departament de la institució educativa.</description>
+  </recordTypes>
+</CustomObjectTranslation>

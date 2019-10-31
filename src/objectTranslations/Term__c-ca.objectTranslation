@@ -1,67 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Term --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Term --></value>
-    </caseValues>
-    <fields>
-        <label>Compte</label>
-        <name>Account__c</name>
-        <relationshipLabel>Períodes</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Data de finalització</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <label>Seqüència de qualificació del període</label>
-        <name>Grading_Period_Sequence__c</name>
-    </fields>
-    <fields>
-        <label>Jornades didàctiques</label>
-        <name>Instructional_Days__c</name>
-    </fields>
-    <fields>
-        <label>Període principal</label>
-        <name>Parent_Term__c</name>
-        <relationshipLabel>Períodes</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Data d&apos;inici</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <label>Tipus</label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Part of Term</masterLabel>
-            <translation>Part del període</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Quarter</masterLabel>
-            <translation>Trimestre</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School Year</masterLabel>
-            <translation>Any acadèmic</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Semester</masterLabel>
-            <translation>Semestre</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Term Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom del període</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Períodes</relationshipLabel>
+    <label>Compte</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <label>Data de finalització</label>
+  </fields>
+  <fields>
+    <name>Grading_Period_Sequence__c</name>
+    <label>Seqüència de qualificació del període</label>
+  </fields>
+  <fields>
+    <name>Instructional_Days__c</name>
+    <label>Jornades didàctiques</label>
+  </fields>
+  <fields>
+    <name>Parent_Term__c</name>
+    <relationshipLabel>Períodes</relationshipLabel>
+    <label>Període principal</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <label>Data d'inici</label>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <label>Tipus</label>
+    <picklistValues>
+      <masterLabel>Quarter</masterLabel>
+      <translation>Trimestre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Semester</masterLabel>
+      <translation>Semestre</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>School Year</masterLabel>
+      <translation>Any acadèmic</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Part of Term</masterLabel>
+      <translation>Part del període</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Term Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom del període</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom del període</label>
+  </standardFields>
 </CustomObjectTranslation>

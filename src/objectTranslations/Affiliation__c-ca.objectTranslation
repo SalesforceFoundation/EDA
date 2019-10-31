@@ -1,92 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Affiliation --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Affiliation --></value>
-    </caseValues>
-    <fields>
-        <label>Organització</label>
-        <name>Account__c</name>
-        <relationshipLabel>Contactes afiliats</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Tipus d&apos;afiliació</label>
-        <name>Affiliation_Type__c</name>
-    </fields>
-    <fields>
-        <label>Contacte</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Comptes afiliats</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Descripció</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <label>Data de finalització</label>
-        <name>EndDate__c</name>
-    </fields>
-    <fields>
-        <help>Si es marca, l&apos;organització d&apos;afiliació es desa al Registre de contactes.</help>
-        <label>Primari</label>
-        <name>Primary__c</name>
-    </fields>
-    <fields>
-        <label>Funció</label>
-        <name>Role__c</name>
-        <picklistValues>
-            <masterLabel>Applicant</masterLabel>
-            <translation>Sol·licitant</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Employee</masterLabel>
-            <translation>Empleat</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Faculty</masterLabel>
-            <translation>Facultat</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Prospect</masterLabel>
-            <translation>Perspectiva</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Student</masterLabel>
-            <translation>Estudiant</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label>Data d&apos;inici</label>
-        <name>StartDate__c</name>
-    </fields>
-    <fields>
-        <label>Estat</label>
-        <name>Status__c</name>
-        <picklistValues>
-            <masterLabel>Current</masterLabel>
-            <translation>Actual</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Former</masterLabel>
-            <translation>Antic</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Affiliation Layout</layout>
-        <sections>
-            <label>Informació d&apos;afiliació</label>
-            <section>Affiliation Information</section>
-        </sections>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account__c</name>
+    <relationshipLabel>Contactes afiliats</relationshipLabel>
+    <label>Organització</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Type__c</name>
+    <label>Tipus d'afiliació</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <relationshipLabel>Comptes afiliats</relationshipLabel>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <label>Descripció</label>
+  </fields>
+  <fields>
+    <name>EndDate__c</name>
+    <label>Data de finalització</label>
+  </fields>
+  <fields>
+    <name>Primary__c</name>
+    <help>Si es marca, l'organització d'afiliació es desa al Registre de contactes.</help>
+    <label>Primari</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <label>Funció</label>
+    <picklistValues>
+      <masterLabel>Student</masterLabel>
+      <translation>Estudiant</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Prospect</masterLabel>
+      <translation>Perspectiva</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Applicant</masterLabel>
+      <translation>Sol·licitant</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Faculty</masterLabel>
+      <translation>Facultat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Employee</masterLabel>
+      <translation>Empleat</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>StartDate__c</name>
+    <label>Data d'inici</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <label>Estat</label>
+    <picklistValues>
+      <masterLabel>Current</masterLabel>
+      <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Former</masterLabel>
+      <translation>Antic</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>HEDA Affiliation Layout</layout>
+    <sections>
+      <label>Informació d'afiliació</label>
+      <section>Affiliation Information</section>
+    </sections>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Clau d’afiliació</label>
+  </standardFields>
 </CustomObjectTranslation>

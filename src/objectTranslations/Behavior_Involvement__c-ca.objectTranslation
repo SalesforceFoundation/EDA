@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Behavior Involvement --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Behavior Involvement --></value>
-    </caseValues>
-    <fields>
-        <help><!-- The Case that represents the event being reported. --></help>
-        <label><!-- Case --></label>
-        <name>Case__c</name>
-        <relationshipLabel><!-- Behavior Involvements --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- The student or faculty Contact who was directly involved in the event. --></help>
-        <label><!-- Contact --></label>
-        <name>Contact__c</name>
-        <relationshipLabel><!-- Behavior Involvements --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- A description of a person&apos;s involvement in a behavior event. --></help>
-        <label><!-- Description --></label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help><!-- The role this person played in the event. --></help>
-        <label><!-- Role --></label>
-        <name>Role__c</name>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Perpetrator</masterLabel>
-            <translation><!-- Perpetrator --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Reporter</masterLabel>
-            <translation><!-- Reporter --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Victim</masterLabel>
-            <translation><!-- Victim --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Witness</masterLabel>
-            <translation><!-- Witness --></translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Behavior Involvement Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel><!-- Behavior Involvement Name --></nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Case__c</name>
+    <help>El cas que representa l’esdeveniment denunciat.</help>
+    <relationshipLabel>Implicacions de comportament</relationshipLabel>
+    <label>Cas</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>Contacte de l'estudiant o de facultat que va participar directament en l'esdeveniment.</help>
+    <relationshipLabel>Implicacions de comportament</relationshipLabel>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Una descripció de la participació d'una persona en un esdeveniment de comportament.</help>
+    <label>Descripció</label>
+  </fields>
+  <fields>
+    <name>Role__c</name>
+    <help>El paper que va jugar aquesta persona en l’esdeveniment.</help>
+    <label>Funció</label>
+    <picklistValues>
+      <masterLabel>Perpetrator</masterLabel>
+      <translation>Perpetrador</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Reporter</masterLabel>
+      <translation>Denunciant</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Victim</masterLabel>
+      <translation>Víctima</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Witness</masterLabel>
+      <translation>Testimoni</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Altres</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>EDA Behavior Involvement Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de la implicació de comportament</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de la implicació de comportament</label>
+  </standardFields>
 </CustomObjectTranslation>

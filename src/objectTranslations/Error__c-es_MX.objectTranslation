@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Context_Type__c</name>
+    <help>Contexto en el que se generó el error, si se conoce.</help>
+    <label>Tipo de contexto</label>
+  </fields>
+  <fields>
+    <name>Datetime__c</name>
+    <help>Fecha y hora en las que ocurrió el error.</help>
+    <label>Fecha y hora</label>
+  </fields>
+  <fields>
+    <name>Email_Sent__c</name>
+    <help>Indica si se envío el email de notificación sobre este error.</help>
+    <label>Email enviado</label>
+  </fields>
+  <fields>
+    <name>Error_Type__c</name>
+    <help>Tipo de error que ocurrió.</help>
+    <label>Tipo de error</label>
+  </fields>
+  <fields>
+    <name>Full_Message__c</name>
+    <help>Texto completo del mensaje de error.</help>
+    <label>Mensaje completo</label>
+  </fields>
+  <fields>
+    <name>Object_Type__c</name>
+    <help>Tipo de objeto en el que ocurre el error, si se conoce.</help>
+    <label>Tipo de objeto</label>
+  </fields>
+  <fields>
+    <name>Posted_in_Chatter__c</name>
+    <help>Indica si el error fue publicado en Chatter</help>
+    <label>Publicado en Chatter</label>
+  </fields>
+  <fields>
+    <name>Record_URL__c</name>
+    <help>Un vínculo al registro que provocó el error, si está disponible.</help>
+    <label>URL del registro</label>
+  </fields>
+  <fields>
+    <name>Stack_Trace__c</name>
+    <help>Seguimiento de pila del error, si está disponible en tiempo de ejecución.</help>
+    <label>Seguimiento de pila</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Error Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Número de error</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Número de error</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Error</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Errores</value>
+  </caseValues>
+</CustomObjectTranslation>
