@@ -341,6 +341,10 @@
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAfflNotInserted --></label>
+        <name>stgAfflNotInserted</name>
+    </customLabels>
+    <customLabels>
         <label>Delete Related Affiliation When Deleting Program Enrolment:</label>
         <name>stgAfflProgEnrollDeleteRelated</name>
     </customLabels>

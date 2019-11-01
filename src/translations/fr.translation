@@ -341,6 +341,10 @@
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgAfflNotInserted --></label>
+        <name>stgAfflNotInserted</name>
+    </customLabels>
+    <customLabels>
         <label>Supprimer l&apos;affiliation associée lorsque l&apos;inscription au programme est supprimée :</label>
         <name>stgAfflProgEnrollDeleteRelated</name>
     </customLabels>

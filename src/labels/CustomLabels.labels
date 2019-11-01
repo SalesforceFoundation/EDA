@@ -672,6 +672,14 @@
         <value>Status Specified for Affiliations Not Deleted:</value>
     </labels>
     <labels>
+        <fullName>stgAfflNotInserted</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflNotInserted</shortDescription>
+        <value>There is already an item in the &apos;Affl Mapping&apos; Custom settings with the same name as this Account record type name, please add a different record type.</value>
+    </labels>
+    <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

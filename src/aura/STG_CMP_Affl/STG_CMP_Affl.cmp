@@ -12,6 +12,7 @@
     <aura:attribute name="affiliationStatusMapLabel" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapValue" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapLabel" type="String" />
+    <aura:attribute name="showAfflError" type="Boolean" default = "false"/>
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}"/>
@@ -393,7 +394,11 @@
 
                         <ui:button aura:id="newAfflMappingBtn" class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" press="{!c.newAfflMapping}" disabled="true">
                             <ui:outputText value="{!$Label.c.stgBtnAddMapping}" />
-                        </ui:button>
+                        </ui:button>                       
+                        <br/>
+                        <aura:if isTrue="{!v.showAfflError}">
+                            <ui:outputText aura:id="insertFailedMsg" value="{!$Label.c.stgAfflNotInserted}" />
+                        </aura:if>    
                     </fieldset>
                 </div>
             </div>

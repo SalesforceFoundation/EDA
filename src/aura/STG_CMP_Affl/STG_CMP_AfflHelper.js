@@ -94,7 +94,14 @@
                 
                 // Re-Disable Add Setting button after successful completion
                 component.find("newAfflMappingBtn").set("v.disabled", true);
+                
+                // Re-Hide error message
+                component.set("v.showAfflError", false);
             } else if(response.getState() === "ERROR") {
+                var errors = JSON.stringify(response.getError());
+                if (errors.includes('There is already an item in this list with the name')) {                
+                    component.set("v.showAfflError", true);
+                }    
                 this.displayError(response);
             }
         });
