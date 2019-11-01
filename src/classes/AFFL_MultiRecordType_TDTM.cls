@@ -85,7 +85,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
 					//BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for
 					//affls of the same type.
-					if (triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert)) {
+					if (triggerAction == TDTM_Runnable.Action.BeforeInsert 
+					    && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert)) {
 						if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null && affl.Affiliation_Type__c != null && lookupFieldName != null) {
 							afflsMadePrimary.add(affl);
 							TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
@@ -93,8 +94,12 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 						}
 					}
 
-					// AFTER UPDATE
-					if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
+					// AFTER UPDATE - Runs when AFTER UPDATE Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
+					// And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) so that values
+					// populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
+					if (triggerAction == TDTM_Runnable.Action.AfterUpdate 
+					    && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) 
+							&& !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
 						Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
 						//If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
@@ -148,7 +153,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 			}
 		}
 
-		//AFTER INSERT
+		//AFTER INSERT - Runs when AFTER INSERT Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert)
 		if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert) && triggerAction == TDTM_Runnable.Action.AfterInsert) {
 			if(newlist != null && newlist.size() > 0) {
 				for (SObject so : newlist) {

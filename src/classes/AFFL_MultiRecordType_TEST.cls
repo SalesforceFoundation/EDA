@@ -106,6 +106,16 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		//The business organization lookup should point to the account that is part of the second affiliation we created
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(bizOrg2.ID, Contact.Primary_Organization__c);
+
+		//  Test addition of a new affiliation with the same Account doesn't erase the Primary field on Contact
+
+		// Insert another primary Affiliaiton on the Contact with same Account 
+		Affiliation__c bizAffl3 = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg2.ID, Primary__c = true);
+        insert bizAffl3;            
+
+        // Verify Primary Buisness Organization on the Contact is not erased         
+        Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
+        System.assertEquals(bizOrg2.ID, updatedContact.Primary_Organization__c);  
 	}
 	
 	@isTest
@@ -466,38 +476,4 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(0, allAffiliationList.size()); 
 
 	}
-
-    // Test addition of a new affiliation with the same Account doesn't erase the Primary field on Contact
-
-    @isTest
-    public static void newAffiliationInsertTest() {
-
-        setup();
-
-        // Insert a Business Account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
-        insert bizAcc;
-
-        // Insert a Contact 
-        Contact contact = UTIL_UnitTestData_API.getContact();
-        insert contact;           
-
-        // Insert an Affiliation with business Account as the Organization
-        Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
-        insert affl;
-
-        // Verify Primary Buisness Organization is populated on the Contact
-        Contact contactAfterAfflInsert = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
-        System.assertEquals(bizAcc.Id, contactAfterAfflInsert.Primary_Organization__c); 
-        
-        // Insert another Affiliation on the Contact with the same Account as the Organization
-        test.startTest();                   
-            Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
-            insert affl2;            
-        test.stopTest();
-
-        // Verify Primary Buisness Organization on the Contact is not erased         
-        Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
-        System.assertEquals(bizAcc.Id, updatedContact.Primary_Organization__c);   
-    }	
 }
