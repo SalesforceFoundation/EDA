@@ -95,12 +95,19 @@
                 // Re-Disable Add Setting button after successful completion
                 component.find("newAfflMappingBtn").set("v.disabled", true);
                 
-                // Re-Hide error message
-                component.set("v.showAfflError", false);
             } else if(response.getState() === "ERROR") {
                 var errors = JSON.stringify(response.getError());
-                if (errors.includes('There is already an item in this list with the name')) {                
-                    component.set("v.showAfflError", true);
+                if (errors.includes('FIELD_INTEGRITY_EXCEPTION')) {                
+                    var tst = component.find("failureToast");
+                    $A.util.removeClass(tst, "slds-hide");
+                    $A.util.addClass(tst, "slds-show");
+                
+                    window.setTimeout(
+                        $A.getCallback(function() {
+                            $A.util.removeClass(tst, "slds-show");
+                            $A.util.addClass(tst, "slds-hide");    
+                        }), 8000
+                    );
                 }    
                 this.displayError(response);
             }

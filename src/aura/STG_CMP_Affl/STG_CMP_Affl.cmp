@@ -12,11 +12,31 @@
     <aura:attribute name="affiliationStatusMapLabel" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapValue" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapLabel" type="String" />
-    <aura:attribute name="showAfflError" type="Boolean" default = "false"/>
     
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
     <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}"/>
     <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
+
+    <div class="slds-hide" id="failureToast" aura:id="failureToast">
+        <div class="slds-box">
+            <div class="slds-notify_container slds-notify_container--inline">
+                <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                    <span class="slds-assistive-text">{!$Label.c.stgAfflNotInserted}</span>
+                    <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" class="slds-icon slds-color_white" />
+                    </button>
+                    <div class="slds-notify__content slds-grid slds-gutters">
+                        <div class="slds-col slds-align-left">
+                            <c:svgIcon name="error" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" class="slds-icon slds-color_white"/>
+                        </div>
+                        <div class="slds-col slds-align-middle slds-gutters">
+                            <h2 class="slds-text-heading_small">{!$Label.c.stgAfflNotInserted}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="afflTabs" class="slds-tabs--scoped">
         <ul class="slds-tabs--scoped__nav" role="tablist">
@@ -395,10 +415,7 @@
                         <ui:button aura:id="newAfflMappingBtn" class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" press="{!c.newAfflMapping}" disabled="true">
                             <ui:outputText value="{!$Label.c.stgBtnAddMapping}" />
                         </ui:button>                       
-                        <br/>
-                        <aura:if isTrue="{!v.showAfflError}">
-                            <ui:outputText aura:id="insertFailedMsg" value="{!$Label.c.stgAfflNotInserted}" />
-                        </aura:if>    
+                        <br/>   
                     </fieldset>
                 </div>
             </div>
