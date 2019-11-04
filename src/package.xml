@@ -35,6 +35,8 @@
         <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
         <members>CCON_Faculty_TEST</members>
+        <members>CCON_PreventUpdate_TDTM</members>
+        <members>CCON_PreventUpdate_TEST</members>
         <members>CENR_AcademicProgram_TDTM</members>
         <members>CENR_AcademicProgram_TEST</members>
         <members>CLAN_PrimaryLanguage_TDTM</members>
@@ -518,6 +520,7 @@
         <members>AutoCreateFieldError</members>
         <members>BatchJobRunningProblem</members>
         <members>BothFieldAndValue</members>
+        <members>CannotChangeContactAndCourseOffering</members>
         <members>CannotDelete</members>
         <members>DefaultAccountName</members>
         <members>DefaultAdminName</members>
