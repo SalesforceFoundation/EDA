@@ -29,6 +29,10 @@
         <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cannot Change Contact And Course Offering --></label>
+        <name>CannotChangeContactAndCourseOffering</name>
+    </customLabels>
+    <customLabels>
         <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
         <name>CannotDelete</name>
     </customLabels>

@@ -29,6 +29,10 @@
         <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cannot Change Contact And Course Offering --></label>
+        <name>CannotChangeContactAndCourseOffering</name>
+    </customLabels>  
+    <customLabels>
         <label>Record cannot be deleted because children records exist. Delete children first.</label>
         <name>CannotDelete</name>
     </customLabels>

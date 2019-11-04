@@ -29,6 +29,10 @@
         <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cannot Change Contact And Course Offering --></label>
+        <name>CannotChangeContactAndCourseOffering</name>
+    </customLabels>
+    <customLabels>
         <label>Impossible de supprimer l&apos;enregistrement, car des enregistrements enfants existent. Supprimez d&apos;abord les enregistrements enfants.</label>
         <name>CannotDelete</name>
     </customLabels>
