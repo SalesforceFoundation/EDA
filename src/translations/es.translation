@@ -29,6 +29,10 @@
         <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cannot Change Contact And Course Offering --></label>
+        <name>CannotChangeContactAndCourseOffering</name>
+    </customLabels>
+    <customLabels>
         <label>No se puede eliminar el registro porque existen registros secundarios. Elimine los secundarios primero.</label>
         <name>CannotDelete</name>
     </customLabels>
