@@ -677,7 +677,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgAfflNotInserted</shortDescription>
-        <value>There is already an item in the &apos;Affl Mapping&apos; Custom settings with the same name as this Account record type name, please add a different record type.</value>
+        <value>We can&apos;t&apos; map this Affiliation because it references a record type that is already referenced by another Affiliation Mapping. If you want to add this mapping so the Affiliation is translated, modify the existing mapping. From Setup, enter Custom Settings in the Quick Find box, click Manage for Affl Mappings, and click Edit for the required mapping. In Primary Affl Field, specify the field API name. Do not change Account Record Type.</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
