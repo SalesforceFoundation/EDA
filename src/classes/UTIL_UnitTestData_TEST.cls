@@ -77,6 +77,21 @@ public class UTIL_UnitTestData_TEST {
         return contact;
     }
     
+    /*********************************************************************************************************
+    * @description Gets a Unique Contact for testing based on the parameter.
+    * @param n An integer to create unique Contact records.
+    * @return The Contact record.
+    **********************************************************************************************************/
+
+    public static Contact getUniqueContact(Integer n) {
+    	Contact contact =  new Contact(FirstName = 'TestNew'+n, LastName = 'LastNew'+n , 
+    	                   Email = 'last'+n+'@sfdo.com', Phone = '979578'+n);
+    	Database.DMLOptions dmo = new Database.DMLOptions();
+        dmo.DuplicateRuleHeader.AllowSave = true;
+        contact.setOptions(dmo);
+        return contact;
+    }
+    
     public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = new List<contact>();
         for(Integer i=0; i<n; i++) {
@@ -510,11 +525,44 @@ public class UTIL_UnitTestData_TEST {
     }
     
     /*********************************************************************************************************
+    * @description Gets a Term Grade for testing.
+    * @param contactId The Contact of the Course Term Grade.
+    * @param courseOfferingId The Course Offering of the Term Grade.
+    * @param courseConnectionId The Course Connection of the Term Grade.
+    * @return The Term Grade record.
+    **********************************************************************************************************/
+    public static Term_Grade__c getTermGrade(Id contactId, Id courseOfferingId, Id courseConnectionId) {
+        Term_Grade__c termGrade = new Term_Grade__c(
+            Contact__c = contactId, 
+            Course_Offering__c = courseOfferingId,
+            Course_Connection__c = courseConnectionId
+        );
+        return termGrade;
+    }
+    
+    /*********************************************************************************************************
     * @description Gets a Attendance Event for testing.
     * @return The Attendance Event record.
     **********************************************************************************************************/
     public static Attendance_Event__c getAttendanceEvent() {
         Attendance_Event__c attd = new Attendance_Event__c();
+        return attd;
+    }
+
+    /*********************************************************************************************************
+    * @description Gets a Attendance Event with fields for testing.
+    * @param contactId The contact to be associated with the Attendance Event
+    * @param courseConnectionID The Course Connection to be associated with the Attendance Event
+    * @param attendanceType The type of Attendance Event
+    * @param reason The reason for Attendance Event
+    * @return The Attendance Event record.
+    **********************************************************************************************************/
+    public static Attendance_Event__c getAttendanceEvent(Id contactId, Id courseConnectionID, String attendanceType, String reason) {
+        Attendance_Event__c attd = new Attendance_Event__c();
+        attd.Contact__c = contactId;
+        attd.Course_Connection__c = courseConnectionID;
+        attd.Attendance_Type__c = attendanceType;
+        attd.Reason__c = reason;
         return attd;
     }
 
