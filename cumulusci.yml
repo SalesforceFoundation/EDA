@@ -238,6 +238,8 @@ orgs:
         prerelease_namespaced:
             config_file: orgs/prerelease.json
             namespaced: True
+        trial:
+            config_file: orgs/trial.json
 
 plans:
     install:
