@@ -1,0 +1,12 @@
+{
+  "orgName": "EDA - Trial Org",
+  "template": "0TT1Q000004XHA5",
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    }
+  }
+}
