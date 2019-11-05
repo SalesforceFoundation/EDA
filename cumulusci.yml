@@ -67,7 +67,7 @@ tasks:
                 UTIL_CustomSettingsFacade.getSettings();
                 STG_InstallScript.insertMappings();
                 STG_InstallScript.insertRelationshipLookups();
-                TDTM_Global_API.setTdtmConfig( TDTM_Global_API.getTdtmConfig() );
+                TDTM_Global_API.setTdtmConfig(TDTM_Global_API.getDefaultTdtmConfig(), 'hed');
                 STG_InstallScript.enablePreferredPhoneSync();
 
     execute_qa_apex:
