@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016, Salesforce.org
+    Copyright (c) 2019, Salesforce.org
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
@@ -14,7 +14,7 @@
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
  
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORSå
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
     FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
@@ -29,48 +29,48 @@
 */
 /**
 * @author Salesforce.org
-* @date 2016
-* @group Contacts
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests for CON_CannotDelete_TDTM.
+* @date 2019
+* @group Course Offering
+* @group-content ../../ApexDocContent/CourseOfferings.htm
+* @description Tests for COFF_CannotDelete_TDTM.
 */
 @isTest
-private with sharing class CON_CannotDelete_TEST {
-
+private with sharing class COFF_CannotDelete_TEST {
     @isTest
     private static void cannotDelete() {
-        STG_InstallScript.insertMappings();
-
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
         
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(4);
         insert contacts;
-
-        Affiliation__c affl = new Affiliation__c(Contact__c = contacts[0].ID, Account__c = acc.ID);
-        Program_Enrollment__c programEnroll = new Program_Enrollment__c(Contact__c = contacts[1].ID, Account__c = acc.ID);
-        insert new SObject[] {affl, programEnroll}; 
-            
-        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL); 
-        Course_Enrollment__c courseEnroll = new Course_Enrollment__c(Contact__c = contacts[2].ID, Account__c = acc.ID, Course_Offering__c = courseOffering.Id);
-        Attendance_Event__c attendanceEvent = new Attendance_Event__c(Contact__c = contacts[2].Id, Date__c = System.today(), Course_Connection__c = courseEnroll.Id); 
-		    insert new SObject[] {courseEnroll, attendanceEvent}; 
+		
+        List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>(); 
+        for(Integer i=0; i<2; i++){
+          Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
+          courseOfferings.add(courseOffering); 
+        }
         
-        Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
+        List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>{
+          new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOfferings[0].Id),
+          new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = courseOfferings[1].Id)};
+        insert courseConnections; 
+        
+     	  Term_Grade__c termGrade = new Term_Grade__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOfferings[0].Id, Course_Connection__c = courseConnections[0].Id);
+        insert termGrade; 
+
+		    Test.startTest();
+        Database.DeleteResult[] results = Database.delete(courseOfferings, false);
         Test.stopTest();
         UTIL_Debug.debug('****Delete results: ' + JSON.serializePretty(results));
         
-        //Verify only c4 was successfully deleted
-        contacts = [select ID from Contact where ID in :contacts];
-        System.assertEquals(3, contacts.size());
+        //Verifies only 1 Course Offering was deleted 
+        List<Course_Offering__c> returnCourseOfferings = [SELECT Id FROM Course_Offering__c WHERE Id in: courseOfferings];
+        System.assertEquals(1, returnCourseOfferings.size()); 
         
+        //Verifies Course Offering with Term Grade was not deleted 
         System.assertEquals(false, results[0].success);
-        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
-        System.assertEquals(false, results[1].success);
-        System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
-        System.assertEquals(false, results[2].success);
-        System.assertEquals(Label.CannotDelete, results[2].errors[0].message);
-        System.assertEquals(true, results[3].success);
+        System.assertEquals(Label.CannotDelete, results[0].errors[0].message); 
+        
+
     }
 }
