@@ -73,17 +73,21 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				Integer i = 0;
 				for (SObject so : newlist) {
 					Affiliation__c affl = (Affiliation__c)so;
-
-					String lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
-					String lookupFieldName = afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
           
-					// If lookupFieldName of the Contact is not found, check if lookupLabelOrAPIName is an API, if yes assign it to lookupFieldName
-					// such that the API name can be used to populate primay Affiliation lookup is populated on contact even when language is not English
+					// Get the 'Primary Affl Field' value(could be Lookup Label or the Lookup API name) that is stored in 'Affl Mapping' Custom Settings
+					String lookupLabelOrAPIName = afflMapper.accRecTypeToContactLabel.get(affl.Affiliation_Type__c);
+
+					// Get the API name of the lookup field if lookupLabelOrAPIName is actually a Label and assig it to lookupFieldAPIName
+					String lookupFieldAPIName = afflMapper.contactLabelNames.get(lookupLabelOrAPIName);
+          
+					// If lookupFieldAPIName of the Contact is not found, check if lookupLabelOrAPIName is actually a field API Name, if yes assign it to lookupFieldAPIName.
+					// This way the API name can be used to populate primay Affiliation lookup on contact even when language is not English
 						
-            if ((lookupLabelOrAPIName != NULL && lookupLabelOrAPIName != '') && (lookupFieldName == '' || lookupFieldName == NULL)) {
+            if ((lookupLabelOrAPIName != NULL && lookupLabelOrAPIName != '') && (lookupFieldAPIName == '' || lookupFieldAPIName == NULL)) {
+							  // Check if lookupLabelOrAPIName is in the List of Contact field API names, if yes assign lookupLabelOrAPIName to lookupFieldAPIName
                 List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();                     
                 if (contactFieldAPINamesList.contains(lookupLabelOrAPIName)) {
-                    lookupFieldName = lookupLabelOrAPIName;                            
+                    lookupFieldAPIName = lookupLabelOrAPIName;                            
                 }                        
             }
 
@@ -96,10 +100,10 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					//BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for
 					//affls of the same type.
 					if (triggerAction == TDTM_Runnable.Action.BeforeInsert && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert)) {
-						if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null && affl.Affiliation_Type__c != null && lookupFieldName != null) {
+						if (affl.Primary__c && affl.Contact__c != null && affl.Account__c != null && affl.Affiliation_Type__c != null && lookupFieldAPIName != null) {
 							afflsMadePrimary.add(affl);
 							TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
-							populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
+							populateKeyAffls(affl, lookupFieldAPIName, relatedContact, dmlWrapper);
 						}
 					}
 
@@ -110,21 +114,20 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 						//If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
 						if (afflOld.Primary__c
 								&& !affl.Primary__c
-								&& lookupFieldName != null
-								&& relatedContact.get(lookupFieldName) == affl.Account__c) {
-							UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
+								&& lookupFieldAPIName != null
+								&& relatedContact.get(lookupFieldAPIName) == affl.Account__c) {
 							if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
-								relatedContact.put(lookupFieldName, null);
+								relatedContact.put(lookupFieldAPIName, null);
 								dmlWrapper.objectsToUpdate.add(relatedContact);
 							}
 						}
 
 						//If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
 						//an any other primary affiliation of the same type needs to be made non-primary.
-						if (affl.Primary__c && !afflOld.Primary__c && affl.Contact__c != null && affl.Account__c != null && lookupFieldName != null) {
+						if (affl.Primary__c && !afflOld.Primary__c && affl.Contact__c != null && affl.Account__c != null && lookupFieldAPIName != null) {
 							afflsMadePrimary.add(affl);
 							TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, true);
-							populateKeyAffls(affl, lookupFieldName, relatedContact, dmlWrapper);
+							populateKeyAffls(affl, lookupFieldAPIName, relatedContact, dmlWrapper);
 						}
 					}
 					i++;
@@ -146,13 +149,13 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				for(SObject so : oldlist) {
 					Affiliation__c afflOld = (Affiliation__c)so;
 					String lookupFieldLabel = afflMapper.accRecTypeToContactLabel.get(afflOld.Affiliation_Type__c);
-					String lookupFieldName = afflMapper.contactLabelNames.get(lookupFieldLabel);
+					String lookupFieldAPIName = afflMapper.contactLabelNames.get(lookupFieldLabel);
 
 					Contact relatedContact = relatedContactsMap.get(afflOld.Contact__c);
 
 					//AFTER DELETE - delete lookup relationship, if necessary
-					if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldName != null ) {
-						processAfflDeleted(afflOld, relatedContact, lookupFieldName, dmlWrapper);
+					if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldAPIName != null ) {
+						processAfflDeleted(afflOld, relatedContact, lookupFieldAPIName, dmlWrapper);
 					}
 				}
 			}
@@ -183,11 +186,11 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		return dmlWrapper;
 	}
 
-	public void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldName, DmlWrapper dmlWrapper) {
+	public void processAfflDeleted(Affiliation__c afflOld, Contact relatedContact, String lookupFieldAPIName, DmlWrapper dmlWrapper) {
 		//If the affl is primary, and the lookup field of this type is pointing to the account that is part of the affl ==> clear the lookup
-		if(afflOld.Primary__c && lookupFieldName != null && relatedContact != null && relatedContact.get(lookupFieldName) == afflOld.Account__c) {
+		if(afflOld.Primary__c && lookupFieldAPIName != null && relatedContact != null && relatedContact.get(lookupFieldAPIName) == afflOld.Account__c) {
 			if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
-				relatedContact.put(lookupFieldName, null);
+				relatedContact.put(lookupFieldAPIName, null);
 				dmlWrapper.objectsToUpdate.add(relatedContact);
 			}
 		}
@@ -227,14 +230,13 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 		return relatedContactsMap;
 	}
 
-	private void populateKeyAffls(Affiliation__c affl, String lookupFieldName, Contact relatedContact, DmlWrapper dmlWrapper) {
+	private void populateKeyAffls(Affiliation__c affl, String lookupFieldAPIName, Contact relatedContact, DmlWrapper dmlWrapper) {
 		//If the reason why Affiliations have been made primary is that key affiliation fields on Contact have been populated,
 		//we don't need to try populating them. In fact, this causes an error notification to be sent (W-009272).
 		if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
 			//If we have a mapping, populate the lookup field defined in the mapping.
-			if(!String.isBlank(lookupFieldName)) {
-				UTIL_Debug.debug('****MRT: populating lookup field ' + lookupFieldName + ' on contact');
-				relatedContact.put(lookupFieldName, affl.Account__c);
+			if(!String.isBlank(lookupFieldAPIName)) {
+				relatedContact.put(lookupFieldAPIName, affl.Account__c);
 				dmlWrapper.objectsToUpdate.add(relatedContact);
 			}
 		}

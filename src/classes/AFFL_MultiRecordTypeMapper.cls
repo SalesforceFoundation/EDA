@@ -138,7 +138,7 @@ public with sharing class AFFL_MultiRecordTypeMapper {
     * @description Returns those fields from the provided list that are in the provided list of labels or API names. 
     * @param contactFields List of fields on Contact.
     * @param primaryAfflFieldLabels List of field labels or API Names.
-    * @return List<SObjectField> List of fields in object that are in the provided list of labels.
+    * @return List<SObjectField> List of fields in object that are in the provided list of labels or API names.
     ****************************************************************************************************************/
 	private List<SObjectField> getPrimaryAfflFields(List<SObjectField> contactFields, List<String> primaryAfflFieldLabelsOrAPINames) {
 		Set<String> primaryAfflFieldLabelsOrAPIs = new Set<String>(primaryAfflFieldLabelsOrAPINames);
