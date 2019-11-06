@@ -85,23 +85,25 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Contact> oldContacts = (List<Contact>)oldlist;
         this.triggerAction = triggerAction;
         DmlWrapper dmlWrapper = new DmlWrapper();
+        Id accountId;
 
 
         //Requery Contacts to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             if (newContacts.size() > 0) {
                 newContacts = queryContacts(newContacts);
+                accountId = retrieveAccountId(newContacts);
             }
         }
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction);
+                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction);
+                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
@@ -143,16 +145,33 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
+    * @description Retrieves the AccountId
+    * @param newContacts is a list of Contacts from trigger new.
+    * @return Id.
+    */
+    private Id retrieveAccountId(List<Contact> newContacts) {
+        Id accountId;
+        for (Contact c : newContacts) {
+            accountId = c.AccountId;
+        }
+
+        return accountId;
+    }
+
+    /*******************************************************************************************************
     * @description Calls correct methods to process after insert and after update
     * logic and sets recursion flag.
     * @param newContacts a list of Contacts from trigger new.
     * @param oldContacts a list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @param accountId is the AccountId of Contact.
     */
-    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction) {
+    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Id accountId) {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
+
+        Integer numOfContactsLeft = checkDeceasedContact(accountId);
 
         Integer conProcessed = 0;
         for (Contact c : newContacts) {
@@ -169,7 +188,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts[conProcessed], triggerAction);
+                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
                 }
             conProcessed += 1;
         }
@@ -189,6 +208,19 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         handleInsertProcessing(insertWrapper, contactsNeedAccounts);
         handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
+    }
+
+    /********************************************************************************************************
+    * @description This method checks if there are any Contacts associated to the Account that is not
+    * marked deceased.
+    * @param accountId is the AccountId of Contact.
+    */
+    private Integer checkDeceasedContact(Id accountId) {
+        Integer numOfContacts = [SELECT Count()
+                                FROM Contact
+                                WHERE AccountId = :accountId AND Deceased__c != TRUE];
+
+        return numOfContacts;
     }
 
     /*******************************************************************************************************
@@ -263,8 +295,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * @param c is a Contact record from trigger new.
         * @param oldContact is a Contact from trigger old.
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+        * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts associated
+        * with the Account.
         */
-        private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction) {
+        private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
                 if(c.AccountId != NULL) {
@@ -302,8 +336,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
 
 
-            Integer numOfContactsLeft = checkDeceasedContact(c);
-
             //If Contact Name or Exclude_from_Household_Name__c value has changed
             if ((c.LastName != oldContact.LastName ||
                  c.FirstName != oldContact.FirstName ||
@@ -312,23 +344,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                  c.AccountId != NULL &&
                  checkHouseholdNaming(c.Account.RecordTypeId))
             {
-                System.debug('ACCT_TDTM InsideExcludeConCHeck -->');
                 accountIdToRename.add(c.AccountId);
-                System.debug('ACCT_TDTM InsideExcludeConCHeck -->' + accountIdToRename);
             }
-        }
-
-        /*******************************************************************************************************
-        * @description This method checks if there are any Contacts associated to the Account that is not
-        * marked deceased.
-        * @param c is a Contact record from trigger new.
-        */
-        private Integer checkDeceasedContact(Contact con) {
-            Integer numOfContacts = [SELECT Count()
-                                    FROM Contact
-                                    WHERE AccountId = :con.AccountId AND Deceased__c != TRUE];
-
-            return numOfContacts;
         }
     }
 
