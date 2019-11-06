@@ -37,6 +37,17 @@ tasks:
         options:
             path: unpackaged/config/dev_delete
 
+    deploy_einstein_templates:
+        group: 'EDA: Custom Tasks'
+        description: Deploys Einstein Analytics Templates
+        class_path: cumulusci.tasks.salesforce.Deploy
+        ui_options:
+            name: Deploy Einstein Analytics Templates
+        options:
+            path: unpackaged/config/analytics
+            namespace_inject: $project_config.project__package__namespace
+            unmanaged: False
+
     deploy_encryption_permset:
         group: 'Shield Platform Encryption'
         description: Deploys "Manage Encryption Keys" permission set.
