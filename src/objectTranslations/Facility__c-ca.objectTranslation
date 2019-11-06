@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>L'organització responsable de la instal·lació.</help>
-    <relationshipLabel>Instal·lacions</relationshipLabel>
     <label>Compte</label>
+    <name>Account__c</name>
+    <relationshipLabel>Instal·lacions</relationshipLabel>
   </fields>
   <fields>
-    <name>Capacity__c</name>
     <help>El nombre màxim d'ocupants que pot acollir la instal·lació.</help>
     <label>Capacitat</label>
+    <name>Capacity__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Una descripció d’aquesta instal·lació.</help>
     <label>Descripció</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Facility_Type__c</name>
     <help>El tipus d'instal·lació.</help>
     <label>Tipus d'instal·lació</label>
+    <name>Facility_Type__c</name>
     <picklistValues>
       <masterLabel>Building</masterLabel>
       <translation>Edifici</translation>
@@ -58,10 +58,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Parent_Facility__c</name>
     <help>Si la instal·lació forma part d’una més gran, s'especifica la instal·lació principal. Per exemple, un edifici pot ser la instal·lació principal d’una classe.</help>
-    <relationshipLabel>Instal·lacions</relationshipLabel>
     <label>Instal·lació principal</label>
+    <name>Parent_Facility__c</name>
+    <relationshipLabel>Instal·lacions</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Facility Layout</layout>

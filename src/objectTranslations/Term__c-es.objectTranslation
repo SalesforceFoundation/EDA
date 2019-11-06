@@ -1,34 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
+    <label>Cuenta</label>
     <name>Account__c</name>
     <relationshipLabel>Plazos</relationshipLabel>
-    <label>Cuenta</label>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <label>Fecha de finalización</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Grading_Period_Sequence__c</name>
     <label>Secuencia de periodo de evaluación</label>
+    <name>Grading_Period_Sequence__c</name>
   </fields>
   <fields>
-    <name>Instructional_Days__c</name>
     <label>Jornadas didácticas</label>
+    <name>Instructional_Days__c</name>
   </fields>
   <fields>
+    <label>Plazo principal</label>
     <name>Parent_Term__c</name>
     <relationshipLabel>Plazos</relationshipLabel>
-    <label>Plazo principal</label>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <label>Fecha de inicio</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Type__c</name>
     <label>Tipo</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Quarter</masterLabel>
       <translation>Trimestre</translation>

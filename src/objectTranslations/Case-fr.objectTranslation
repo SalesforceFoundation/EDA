@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Category__c</name>
     <help>Le type de requête suivi.</help>
     <label>Catégorie</label>
+    <name>Category__c</name>
     <picklistValues>
       <masterLabel>School Code of Conduct</masterLabel>
       <translation>Code de conduite de l’école</translation>
@@ -22,9 +22,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Location__c</name>
     <help>L’endroit où la requête a eu lieu.</help>
     <label>Lieu</label>
+    <name>Location__c</name>
     <picklistValues>
       <masterLabel>Off Campus</masterLabel>
       <translation>Hors campus</translation>
@@ -39,9 +39,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Occurrence_Date__c</name>
     <help>La date et l’heure d’occurrence de l’événement lié au comportement qui a déclenché la requête.</help>
     <label>Date de l’événement</label>
+    <name>Occurrence_Date__c</name>
   </fields>
   <layouts>
     <layout>EDA Incident Layout</layout>

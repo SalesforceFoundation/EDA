@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Campaign_Types__c</name>
     <help>Els tipus de campanya elegibles per a aquest membre de la campanya es creen automàticament. (Estarà en blanc per crear automàticament el contacte)</help>
     <label>Tipus de campanya</label>
+    <name>Campaign_Types__c</name>
   </fields>
   <fields>
-    <name>Field__c</name>
     <help>La inserció o actualització de camp que activa la creació d'aquesta relació</help>
     <label>Camp</label>
+    <name>Field__c</name>
   </fields>
   <fields>
-    <name>Object__c</name>
     <help>L'objecte al qual està associada aquesta relació automàtica</help>
     <label>Objecte</label>
+    <name>Object__c</name>
   </fields>
   <fields>
-    <name>Relationship_Type__c</name>
     <help>El tipus de relació que es crearà entre l'objecte base i l'objecte de cerca. L'objecte de cerca rebrà la relació recíproca, si n'hi ha disponible.</help>
     <label>Tipus de relació</label>
+    <name>Relationship_Type__c</name>
   </fields>
 </CustomObjectTranslation>

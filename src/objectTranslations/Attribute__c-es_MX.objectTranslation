@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Agency__c</name>
     <help>La agencia que proporcionó o certificó la credencial.</help>
-    <relationshipLabel>Atributos</relationshipLabel>
     <label>Agencia</label>
+    <name>Agency__c</name>
+    <relationshipLabel>Atributos</relationshipLabel>
   </fields>
   <fields>
-    <name>Attribute_Type__c</name>
     <help>El tipo de credencial o atributo.</help>
     <label>Tipo de atributo</label>
+    <name>Attribute_Type__c</name>
     <picklistValues>
       <masterLabel>Certification</masterLabel>
       <translation>Certificación</translation>
@@ -88,35 +88,35 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>El contacto al que está asignado el atributo.</help>
-    <relationshipLabel>Atributos</relationshipLabel>
     <label>Contacto</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Atributos</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Una descripción de la credencial o atributo.</help>
     <label>Descripción</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>La fecha cuando la credencial o atributo caduca o requiere renovación.</help>
     <label>Fecha de Finalización</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Expired__c</name>
     <help>Indica si el atributo caducó. Se marca automáticamente cuando la fecha de finalización del atributo es anterior a la fecha actual.</help>
     <label>Caducado</label>
+    <name>Expired__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>La fecha de emisión de la credencial o atributo</help>
     <label>Fecha de Inicio</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Subject_Area__c</name>
     <help>El área temática o de contenido para la que es una credencial.</help>
     <label>Área temática</label>
+    <name>Subject_Area__c</name>
     <picklistValues>
       <masterLabel>Biology</masterLabel>
       <translation>Biología</translation>

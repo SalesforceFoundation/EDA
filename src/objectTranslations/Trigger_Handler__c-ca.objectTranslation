@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Active__c</name>
     <help>Indica que aquest mòdul està actiu</help>
     <label>Actiu</label>
+    <name>Active__c</name>
   </fields>
   <fields>
-    <name>Asynchronous__c</name>
     <help>Indica que aquest mòdul s'ha d'executar de forma asíncrona en aquesta transacció</help>
     <label>Asíncron</label>
+    <name>Asynchronous__c</name>
   </fields>
   <fields>
-    <name>Class__c</name>
     <help>Nom de la classe a executar</help>
     <label>Classe</label>
+    <name>Class__c</name>
   </fields>
   <fields>
-    <name>Filter_Field__c</name>
     <help>Nom del camp utilitzat per filtrar.</help>
     <label>Camp de filtre</label>
+    <name>Filter_Field__c</name>
   </fields>
   <fields>
-    <name>Filter_Value__c</name>
     <help>Valor del camp utilitzat per al filtratge.</help>
     <label>Valor del filtre</label>
+    <name>Filter_Value__c</name>
   </fields>
   <fields>
-    <name>Load_Order__c</name>
     <help>L'ordre en què s'ha d'executar aquest mòdul, ajuda a mantenir les dependències en els mòduls i les dades.</help>
     <label>Ordre de càrrega</label>
+    <name>Load_Order__c</name>
   </fields>
   <fields>
-    <name>Object__c</name>
     <help>Nom de l'objecte per al qual s'ha d'executar aquest controlador</help>
     <label>Objecte</label>
+    <name>Object__c</name>
   </fields>
   <fields>
-    <name>Owned_by_Namespace__c</name>
     <label>Propietat per l'espai de noms</label>
+    <name>Owned_by_Namespace__c</name>
   </fields>
   <fields>
-    <name>Trigger_Action__c</name>
     <help>Acció d'activació en què aquest mòdul s'hauria de disparar</help>
     <label>Acció d'activació</label>
+    <name>Trigger_Action__c</name>
     <picklistValues>
       <masterLabel>BeforeInsert</masterLabel>
       <translation>Abans d'inserir</translation>
@@ -73,14 +73,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>User_Managed__c</name>
     <help>Comproveu si voleu administrar el registre per si mateix. Tingueu en compte que les actualitzacions del paquet no actualitzaran el registre.</help>
     <label>Usuari gestionat</label>
+    <name>User_Managed__c</name>
   </fields>
   <fields>
-    <name>Usernames_to_Exclude__c</name>
     <help>Llista dels noms d'usuari de Salesforce, separats per punt i coma, per als quals aquest activador NO s'executarà. Deixeu el camp en blanc per executar-lo per a tots els usuaris.</help>
     <label>Noms d'usuari per excloure</label>
+    <name>Usernames_to_Exclude__c</name>
   </fields>
   <layouts>
     <layout>HEDA Trigger Handler Layout</layout>

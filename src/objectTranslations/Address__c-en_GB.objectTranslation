@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Address_Type__c</name>
     <label>Address Type</label>
+    <name>Address_Type__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Home</translation>
@@ -21,73 +21,73 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Default_Address__c</name>
     <help>Is this the Default Address to use for the Account and its Contacts?</help>
     <label>Default Address</label>
+    <name>Default_Address__c</name>
   </fields>
   <fields>
-    <name>Formula_MailingAddress__c</name>
     <label>Postal Address</label>
+    <name>Formula_MailingAddress__c</name>
   </fields>
   <fields>
-    <name>Formula_MailingStreetAddress__c</name>
     <label>Postal Street Address</label>
+    <name>Formula_MailingStreetAddress__c</name>
   </fields>
   <fields>
-    <name>Geolocation__c</name>
     <help>Location expressed as latitude and longitude.</help>
     <label>Geolocation</label>
+    <name>Geolocation__c</name>
   </fields>
   <fields>
-    <name>Latest_End_Date__c</name>
     <help>The most recent ending date this Address was used.</help>
     <label>Latest End Date</label>
+    <name>Latest_End_Date__c</name>
   </fields>
   <fields>
-    <name>Latest_Start_Date__c</name>
     <help>The most recent starting date this Address was used.</help>
     <label>Latest Start Date</label>
+    <name>Latest_Start_Date__c</name>
   </fields>
   <fields>
-    <name>MailingCity__c</name>
     <label>Postal City</label>
+    <name>MailingCity__c</name>
   </fields>
   <fields>
-    <name>MailingCountry__c</name>
     <label>Postal Country</label>
+    <name>MailingCountry__c</name>
   </fields>
   <fields>
-    <name>MailingPostalCode__c</name>
     <label>Zip/Postal Code</label>
+    <name>MailingPostalCode__c</name>
   </fields>
   <fields>
-    <name>MailingState__c</name>
     <label>Postal State/Province</label>
+    <name>MailingState__c</name>
   </fields>
   <fields>
-    <name>MailingStreet2__c</name>
     <label>Postal Street2</label>
+    <name>MailingStreet2__c</name>
   </fields>
   <fields>
-    <name>MailingStreet__c</name>
     <label>Postal Street</label>
+    <name>MailingStreet__c</name>
   </fields>
   <fields>
-    <name>Parent_Account__c</name>
     <help>The Account this Address is for.</help>
-    <relationshipLabel>Addresses</relationshipLabel>
     <label>Parent Account</label>
-  </fields>
-  <fields>
-    <name>Parent_Contact__c</name>
-    <help>The Contact this address is for.</help>
+    <name>Parent_Account__c</name>
     <relationshipLabel>Addresses</relationshipLabel>
-    <label>Parent Contact</label>
   </fields>
   <fields>
-    <name>Seasonal_End_Day__c</name>
+    <help>The Contact this address is for.</help>
+    <label>Parent Contact</label>
+    <name>Parent_Contact__c</name>
+    <relationshipLabel>Addresses</relationshipLabel>
+  </fields>
+  <fields>
     <help>The day of the month when this address no longer replaces the default address.</help>
     <label>Seasonal End Day</label>
+    <name>Seasonal_End_Day__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -214,9 +214,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_End_Month__c</name>
     <help>The month of the year when this address no longer replaces the default address.</help>
     <label>Seasonal End Month</label>
+    <name>Seasonal_End_Month__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -267,14 +267,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_End_Year__c</name>
     <help>The year when this address no longer replaces the default address.</help>
     <label>Seasonal End Year</label>
+    <name>Seasonal_End_Year__c</name>
   </fields>
   <fields>
-    <name>Seasonal_Start_Day__c</name>
     <help>The day of the month when this address replaces the default address.</help>
     <label>Seasonal Start Day</label>
+    <name>Seasonal_Start_Day__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -401,9 +401,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_Start_Month__c</name>
     <help>The month of the year when this address replaces the default address.</help>
     <label>Seasonal Start Month</label>
+    <name>Seasonal_Start_Month__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -454,9 +454,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_Start_Year__c</name>
     <help>The year when this address replaces the default address.</help>
     <label>Seasonal Start Year</label>
+    <name>Seasonal_Start_Year__c</name>
   </fields>
   <layouts>
     <layout>HEDA Address Layout</layout>

@@ -1,49 +1,49 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Context_Type__c</name>
     <help>S'il est connu, contexte dans lequel l'erreur a été générée.</help>
     <label>Type de contexte</label>
+    <name>Context_Type__c</name>
   </fields>
   <fields>
-    <name>Datetime__c</name>
     <help>Date et heure auxquelles l’erreur s’est produite</help>
     <label>Date et heure</label>
+    <name>Datetime__c</name>
   </fields>
   <fields>
-    <name>Email_Sent__c</name>
     <help>Indique si une notification par e-mail concernant cette erreur a été envoyée.</help>
     <label>E-mail envoyé</label>
+    <name>Email_Sent__c</name>
   </fields>
   <fields>
-    <name>Error_Type__c</name>
     <help>Type de l’erreur qui s'est produite</help>
     <label>Type d’erreur</label>
+    <name>Error_Type__c</name>
   </fields>
   <fields>
-    <name>Full_Message__c</name>
     <help>Texte complet du message d’erreur</help>
     <label>Message complet</label>
+    <name>Full_Message__c</name>
   </fields>
   <fields>
-    <name>Object_Type__c</name>
     <help>S'il est connu, type de l’objet sur lequel l’erreur s’est produite.</help>
     <label>Type d’objet</label>
+    <name>Object_Type__c</name>
   </fields>
   <fields>
-    <name>Posted_in_Chatter__c</name>
     <help>Indique si l’erreur a été publiée dans Chatter.</help>
     <label>Publiée dans Chatter</label>
+    <name>Posted_in_Chatter__c</name>
   </fields>
   <fields>
-    <name>Record_URL__c</name>
     <help>S'il est disponible, lien vers l’enregistrement qui a entraîné l’erreur.</help>
     <label>URL de l’enregistrement</label>
+    <name>Record_URL__c</name>
   </fields>
   <fields>
-    <name>Stack_Trace__c</name>
     <help>Trace de la pile de l’erreur déclenchée, si elle disponible à l'exécution.</help>
     <label>Trace de la pile</label>
+    <name>Stack_Trace__c</name>
   </fields>
   <layouts>
     <layout>HEDA Error Layout</layout>

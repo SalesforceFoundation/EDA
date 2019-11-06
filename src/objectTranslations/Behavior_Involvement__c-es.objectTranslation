@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Case__c</name>
     <help>El caso que representa el evento del que se está informando.</help>
-    <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
     <label>Caso</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>El contacto estudiantil o del profesorado que estuvo involucrado directamente en el evento.</help>
+    <name>Case__c</name>
     <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
-    <label>Contacto</label>
   </fields>
   <fields>
-    <name>Description__c</name>
+    <help>El contacto estudiantil o del profesorado que estuvo involucrado directamente en el evento.</help>
+    <label>Contacto</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Implicaciones de comportamiento</relationshipLabel>
+  </fields>
+  <fields>
     <help>Una descripción de la implicación de una persona en un evento del comportamiento.</help>
     <label>Descripción</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Role__c</name>
     <help>La función que jugó esta persona en el evento.</help>
     <label>Función</label>
+    <name>Role__c</name>
     <picklistValues>
       <masterLabel>Perpetrator</masterLabel>
       <translation>Autor material</translation>

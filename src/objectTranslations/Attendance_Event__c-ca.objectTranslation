@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Arrival_Time__c</name>
     <help>Per als esdeveniments de retards, el moment en què va arribar l’alumne.</help>
     <label>Hora d'arribada</label>
+    <name>Arrival_Time__c</name>
   </fields>
   <fields>
-    <name>Attendance_Type__c</name>
     <help>El tipus de retard o d'absència.</help>
     <label>Tipus d'assistència</label>
+    <name>Attendance_Type__c</name>
     <picklistValues>
       <masterLabel>Class Absence</masterLabel>
       <translation>Absència d'una classe</translation>
@@ -27,41 +27,41 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>L’estudiant que ha arribat tard o està absent.</help>
-    <relationshipLabel>Esdeveniments d'assistència</relationshipLabel>
     <label>Contacte</label>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>La classe i el període en què l’alumne va arribar tard o va estar absent.</help>
+    <name>Contact__c</name>
     <relationshipLabel>Esdeveniments d'assistència</relationshipLabel>
-    <label>Connexió del curs</label>
   </fields>
   <fields>
-    <name>Course_Name__c</name>
+    <help>La classe i el període en què l’alumne va arribar tard o va estar absent.</help>
+    <label>Connexió del curs</label>
+    <name>Course_Connection__c</name>
+    <relationshipLabel>Esdeveniments d'assistència</relationshipLabel>
+  </fields>
+  <fields>
     <help>El nom del curs en què l’alumne va arribar tard o va estar absent.</help>
     <label>Nom del curs</label>
+    <name>Course_Name__c</name>
   </fields>
   <fields>
-    <name>Date__c</name>
     <help>Data en què es va produir el retard o l'absència.</help>
     <label>Data</label>
+    <name>Date__c</name>
   </fields>
   <fields>
-    <name>End_Time__c</name>
     <help>En cas d’absències justificades, l'hora en què va finalitzar l’absència.</help>
     <label>Hora de finalització</label>
+    <name>End_Time__c</name>
   </fields>
   <fields>
-    <name>Reason_Description__c</name>
     <help>Una descripció del motiu pel qual l’alumne va arribar tard o va estar absent.</help>
     <label>Descripció del motiu</label>
+    <name>Reason_Description__c</name>
   </fields>
   <fields>
-    <name>Reason__c</name>
     <help>El motiu pel qual l’alumne va arribar tard o va estar absent.</help>
     <label>Motiu</label>
+    <name>Reason__c</name>
     <picklistValues>
       <masterLabel>Family</masterLabel>
       <translation>Família</translation>
@@ -80,14 +80,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Start_Time__c</name>
     <help>En cas d’absències justificades, l'hora en què va començar l’absència.</help>
     <label>Hora inicial</label>
+    <name>Start_Time__c</name>
   </fields>
   <fields>
-    <name>Unexcused__c</name>
     <help>Indica un retard o una absència no justificats.</help>
     <label>No justificat</label>
+    <name>Unexcused__c</name>
   </fields>
   <layouts>
     <layout>EDA Attendance Event Layout</layout>

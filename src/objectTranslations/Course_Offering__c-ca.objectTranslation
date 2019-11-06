@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Capacity__c</name>
     <label>Capacitat</label>
+    <name>Capacity__c</name>
   </fields>
   <fields>
+    <label>Curs</label>
     <name>Course__c</name>
     <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Curs</label>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <label>Data de finalització</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Facility__c</name>
     <help>La instal·lació associada a l’oferta de cursos.</help>
-    <relationshipLabel>Ofertes de cursos</relationshipLabel>
     <label>Instal·lació</label>
+    <name>Facility__c</name>
+    <relationshipLabel>Ofertes de cursos</relationshipLabel>
   </fields>
   <fields>
+    <label>Facultat primària</label>
     <name>Faculty__c</name>
     <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Facultat primària</label>
   </fields>
   <fields>
-    <name>Section_ID__c</name>
     <label>ID de secció</label>
+    <name>Section_ID__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <label>Data d'inici</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
+    <label>Termini</label>
     <name>Term__c</name>
     <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Termini</label>
   </fields>
   <fields>
+    <label>Bloc de temps</label>
     <name>Time_Block__c</name>
     <relationshipLabel>Ofertes de cursos</relationshipLabel>
-    <label>Bloc de temps</label>
   </fields>
   <layouts>
     <layout>HEDA Course Offering Layout</layout>

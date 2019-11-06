@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>The organisation that is responsible for the Facility.</help>
-    <relationshipLabel>Facilities</relationshipLabel>
     <label>Account</label>
+    <name>Account__c</name>
+    <relationshipLabel>Facilities</relationshipLabel>
   </fields>
   <fields>
-    <name>Capacity__c</name>
     <help>The maximum number of occupants the Facility can hold.</help>
     <label>Capacity</label>
+    <name>Capacity__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>A description of this Facility.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Facility_Type__c</name>
     <help>The type of Facility.</help>
     <label>Facility Type</label>
+    <name>Facility_Type__c</name>
     <picklistValues>
       <masterLabel>Building</masterLabel>
       <translation>Building</translation>
@@ -58,10 +58,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Parent_Facility__c</name>
     <help>If the Facility is part of a larger one, specifies the parent Facility. For example, a building might be a parent of a classroom.</help>
-    <relationshipLabel>Facilities</relationshipLabel>
     <label>Parent Facility</label>
+    <name>Parent_Facility__c</name>
+    <relationshipLabel>Facilities</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Facility Layout</layout>

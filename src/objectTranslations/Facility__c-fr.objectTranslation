@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>L'organisation responsable de l'établissement.</help>
-    <relationshipLabel>Établissement</relationshipLabel>
     <label>Compte</label>
+    <name>Account__c</name>
+    <relationshipLabel>Établissement</relationshipLabel>
   </fields>
   <fields>
-    <name>Capacity__c</name>
     <help>Le nombre maximal de personnes que l'établissement peut accueillir.</help>
     <label>Capacité</label>
+    <name>Capacity__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Une description de cet établissement.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Facility_Type__c</name>
     <help>Le type de l'établissement.</help>
     <label>Type d'établissement</label>
+    <name>Facility_Type__c</name>
     <picklistValues>
       <masterLabel>Building</masterLabel>
       <translation>Bâtiment</translation>
@@ -58,10 +58,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Parent_Facility__c</name>
     <help>Si l'établissement fait partie d'une structure plus importante, spécifie l'établissement parent. Par exemple, un bâtiment peut être le parent d'une classe.</help>
-    <relationshipLabel>Établissement</relationshipLabel>
     <label>Établissement parent</label>
+    <name>Parent_Facility__c</name>
+    <relationshipLabel>Établissement</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Facility Layout</layout>

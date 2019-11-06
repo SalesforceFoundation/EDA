@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Category__c</name>
     <help>El tipo de caso que se está siguiendo.</help>
     <label>Categoría</label>
+    <name>Category__c</name>
     <picklistValues>
       <masterLabel>School Code of Conduct</masterLabel>
       <translation>Código de conducta de centro de enseñanza</translation>
@@ -22,9 +22,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Location__c</name>
     <help>La ubicación donde tuvo lugar el caso.</help>
     <label>Ubicación</label>
+    <name>Location__c</name>
     <picklistValues>
       <masterLabel>Off Campus</masterLabel>
       <translation>Fuera del campus</translation>
@@ -39,9 +39,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Occurrence_Date__c</name>
     <help>La fecha y la hora donde el evento del comportamiento que desencadenó el caso tuvo lugar.</help>
     <label>Fecha de los hechos</label>
+    <name>Occurrence_Date__c</name>
   </fields>
   <layouts>
     <layout>EDA Incident Layout</layout>

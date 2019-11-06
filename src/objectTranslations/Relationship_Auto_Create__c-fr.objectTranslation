@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Campaign_Types__c</name>
     <help>Types de campagne éligibles pour cette création automatique de membres de campagne (reste vide pour la création automatique de contacts)</help>
     <label>Types de campagne</label>
+    <name>Campaign_Types__c</name>
   </fields>
   <fields>
-    <name>Field__c</name>
     <help>L’insertion ou la modification de champ qui déclenche la création de cette relation</help>
     <label>Champ</label>
+    <name>Field__c</name>
   </fields>
   <fields>
-    <name>Object__c</name>
     <help>L’objet auquel cette relation automatique est associée</help>
     <label>Objet</label>
+    <name>Object__c</name>
   </fields>
   <fields>
-    <name>Relationship_Type__c</name>
     <help>Le type de relation à créer entre l’objet de base et l’objet lié. L’objet lié reçoit la relation réciproque, si elle disponible.</help>
     <label>Type de relation</label>
+    <name>Relationship_Type__c</name>
   </fields>
 </CustomObjectTranslation>

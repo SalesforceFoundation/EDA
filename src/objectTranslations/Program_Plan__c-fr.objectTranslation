@@ -1,35 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>Cliquez pour rechercher un compte (souvent un programme académique) à associer au plan du programme.</help>
-    <relationshipLabel>Plans du programme</relationshipLabel>
     <label>Compte</label>
+    <name>Account__c</name>
+    <relationshipLabel>Plans du programme</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Décrit le plan du programme.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>La date de fin du plan du programme.</help>
     <label>Date de fin</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Is_Primary__c</name>
     <help>Case à cocher indiquant que ce plan doit être attribué à l'étudiant lors de la création d'une inscription au programme.</help>
     <label>Principal</label>
+    <name>Is_Primary__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>La date à laquelle le plan du programme prend effet.</help>
     <label>Date de début</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Le statut du plan du programme.</help>
     <label>Statut</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>En cours</translation>
@@ -40,14 +40,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Total_Required_Credits__c</name>
     <help>Spécifiez le nombre total de crédits qu'un étudiant doit obtenir pour satisfaire ce plan de programme.</help>
     <label>Nombre total de crédit requis</label>
+    <name>Total_Required_Credits__c</name>
   </fields>
   <fields>
-    <name>Version__c</name>
     <help>La version du plan du programme, par exemple, « Spring 2019 ».</help>
     <label>Version</label>
+    <name>Version__c</name>
   </fields>
   <layouts>
     <layout>HEDA Program Plan Layout</layout>

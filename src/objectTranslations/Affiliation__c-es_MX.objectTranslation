@@ -1,35 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
+    <label>Organización</label>
     <name>Account__c</name>
     <relationshipLabel>Contactos afiliados</relationshipLabel>
-    <label>Organización</label>
   </fields>
   <fields>
-    <name>Affiliation_Type__c</name>
     <label>Tipo de afiliación</label>
+    <name>Affiliation_Type__c</name>
   </fields>
   <fields>
+    <label>Contacto</label>
     <name>Contact__c</name>
     <relationshipLabel>Cuentas afiliadas</relationshipLabel>
-    <label>Contacto</label>
   </fields>
   <fields>
-    <name>Description__c</name>
     <label>Descripción</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>EndDate__c</name>
     <label>Fecha de Finalización</label>
+    <name>EndDate__c</name>
   </fields>
   <fields>
-    <name>Primary__c</name>
     <help>Si se selecciona, la cuenta en la afiliación se guardará en el contacto.</help>
     <label>Principal</label>
+    <name>Primary__c</name>
   </fields>
   <fields>
-    <name>Role__c</name>
     <label>Función</label>
+    <name>Role__c</name>
     <picklistValues>
       <masterLabel>Student</masterLabel>
       <translation>Estudiante</translation>
@@ -52,12 +52,12 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>StartDate__c</name>
     <label>Fecha de Inicio</label>
+    <name>StartDate__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <label>Estado</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Vigente</translation>

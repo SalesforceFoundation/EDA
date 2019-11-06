@@ -1,34 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
+    <label>Account</label>
     <name>Account__c</name>
     <relationshipLabel>Terms</relationshipLabel>
-    <label>Account</label>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <label>End Date</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Grading_Period_Sequence__c</name>
     <label>Grading Period Sequence</label>
+    <name>Grading_Period_Sequence__c</name>
   </fields>
   <fields>
-    <name>Instructional_Days__c</name>
     <label>Instructional Days</label>
+    <name>Instructional_Days__c</name>
   </fields>
   <fields>
+    <label>Parent Term</label>
     <name>Parent_Term__c</name>
     <relationshipLabel>Terms</relationshipLabel>
-    <label>Parent Term</label>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <label>Start Date</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Type__c</name>
     <label>Type</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Quarter</masterLabel>
       <translation>Quarter</translation>

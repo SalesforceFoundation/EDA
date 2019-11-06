@@ -1,46 +1,46 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>Le contact associé est le ______ de ce contact.</help>
-    <relationshipLabel>Relations</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Relations</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Informations supplémentaires sur cette relation</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Emergency_Contact__c</name>
     <help>Contact à utiliser en cas d'urgence.</help>
     <label>Contact d'urgence</label>
+    <name>Emergency_Contact__c</name>
   </fields>
   <fields>
-    <name>ReciprocalRelationship__c</name>
     <help>Champ système qui relie les deux côtés d’une relation. Ce champ ne doit pas être modifié directement. La relation réciproque est de type opposé à cette relation, si le type existe.</help>
-    <relationshipLabel>Relations</relationshipLabel>
     <label>Relation réciproque</label>
+    <name>ReciprocalRelationship__c</name>
+    <relationshipLabel>Relations</relationshipLabel>
   </fields>
   <fields>
+    <label>Contact associé</label>
     <name>RelatedContact__c</name>
     <relationshipLabel>Liste des relations masquées</relationshipLabel>
-    <label>Contact associé</label>
   </fields>
   <fields>
-    <name>Relationship_Explanation__c</name>
     <help>Formule de texte qui construit une phrase expliquant la relation entre les deux contacts</help>
     <label>Explication de la relation</label>
+    <name>Relationship_Explanation__c</name>
   </fields>
   <fields>
-    <name>SYSTEM_SystemCreated__c</name>
     <help>Champ système qui indique si cette relation a été automatiquement créée en tant que relation réciproque d’une autre relation.</help>
     <label>_SYSTEM: SystemCreated</label>
+    <name>SYSTEM_SystemCreated__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Statut de la relation.</help>
     <label>Statut</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Actuel</translation>
@@ -51,9 +51,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Type__c</name>
     <help>Champ qui décrit comment le contact associé est connecté au contact.</help>
     <label>Type</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Friend</masterLabel>
       <translation>Ami</translation>

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>Feu clic per cercar un compte (sovint un programa acadèmic) per associar al pla del programa.</help>
-    <relationshipLabel>Plans del programa</relationshipLabel>
     <label>Compte</label>
+    <name>Account__c</name>
+    <relationshipLabel>Plans del programa</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Descriu el pla del programa.</help>
     <label>Descripció</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>La data final del pla del programa.</help>
     <label>Data de finalització</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Is_Primary__c</name>
     <help>Casella de selecció per designar aquest pla com el que s'ha d'assignar a un estudiant quan es crea una inscripció de programa</help>
     <label>És principal</label>
+    <name>Is_Primary__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>La data en què va entrar en vigor el pla del programa.</help>
     <label>Data d'inici</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>L'estat del pla del programa.</help>
     <label>Estat</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Actual</translation>
@@ -40,14 +40,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Total_Required_Credits__c</name>
     <help>Especifiqueu el nombre total de crèdits que ha de complir un estudiant per satisfer aquest pla del programa.</help>
     <label>Total de crèdits necessaris</label>
+    <name>Total_Required_Credits__c</name>
   </fields>
   <fields>
-    <name>Version__c</name>
     <help>La versió del pla del programa. Per exemple, "Primavera 2019".</help>
     <label>Versió</label>
+    <name>Version__c</name>
   </fields>
   <layouts>
     <layout>HEDA Program Plan Layout</layout>

@@ -1,52 +1,52 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>L’étudiant pour qui la note est enregistrée. Lorsqu’il est laissé vide, le champ Contact est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
-    <relationshipLabel>Notes de la période</relationshipLabel>
     <label>Contact</label>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>Le module pour lequel l’étudiant a reçu cette note. Les champs Contact et Choix de modules dans Notes de la période doivent correspondre aux champs Contact et Choix de modules dans l’enregistrement Inscription à un module.</help>
+    <name>Contact__c</name>
     <relationshipLabel>Notes de la période</relationshipLabel>
+  </fields>
+  <fields>
+    <help>Le module pour lequel l’étudiant a reçu cette note. Les champs Contact et Choix de modules dans Notes de la période doivent correspondre aux champs Contact et Choix de modules dans l’enregistrement Inscription à un module.</help>
     <label>Connexion au cours</label>
+    <name>Course_Connection__c</name>
+    <relationshipLabel>Notes de la période</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Offering__c</name>
     <help>L’offre de cours associée à la note enregistrée. Lorsqu’il est laissé vide, le champ Offre de cours est rempli automatiquement à partir de la connexion de cours valide lors de l’enregistrement.</help>
-    <relationshipLabel>Notes à la classe</relationshipLabel>
     <label>Offre de cours</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Notes à la classe</relationshipLabel>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
     <help>Le nombre de crédits tentés pour ce cours et la période de notation.</help>
     <label>Crédits tentés</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <help>Le nombre de crédits obtenus pour ce cours et la période de notation.</help>
     <label>Crédits obtenus</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Letter_Grade__c</name>
     <help>La lettre correspondant à la note que l'étudiant a gagnée pour ce cours, par exemple « A+ » ou une autre valeur de texte.</help>
     <label>Note en lettre</label>
+    <name>Letter_Grade__c</name>
   </fields>
   <fields>
-    <name>Numerical_Grade__c</name>
     <help>La note numérique obtenue par l'étudiant pour ce cours, qui peut être basée sur n'importe quel chiffre autre qu'un pourcentage.</help>
     <label>Note numérique</label>
+    <name>Numerical_Grade__c</name>
   </fields>
   <fields>
-    <name>Percent_Grade__c</name>
     <help>La note en pourcentage obtenue par l'étudiant pour ce cours.</help>
     <label>Note en pourcentage</label>
+    <name>Percent_Grade__c</name>
   </fields>
   <fields>
-    <name>Result__c</name>
     <help>Le résultat de l'étudiant pendant cette période de notation.</help>
     <label>Résultat</label>
+    <name>Result__c</name>
     <picklistValues>
       <masterLabel>Audit</masterLabel>
       <translation>Audit</translation>
@@ -65,9 +65,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term_Grade_Type__c</name>
     <help>Le type de la période pour laquelle cette note est enregistrée.</help>
     <label>Type de note de la période</label>
+    <name>Term_Grade_Type__c</name>
     <picklistValues>
       <masterLabel>Exam Grade</masterLabel>
       <translation>Note à l'examen</translation>
@@ -86,10 +86,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term__c</name>
     <help>La période pour laquelle cette note est enregistrée.</help>
-    <relationshipLabel>Notes de la période</relationshipLabel>
     <label>Période</label>
+    <name>Term__c</name>
+    <relationshipLabel>Notes de la période</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Term Grade Layout</layout>

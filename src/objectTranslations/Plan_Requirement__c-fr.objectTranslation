@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Category__c</name>
     <help>Spécifiez une catégorie pour l'Exigence du plan.</help>
     <label>Catégorie</label>
+    <name>Category__c</name>
     <picklistValues>
       <masterLabel>Required</masterLabel>
       <translation>Obligatoire</translation>
@@ -14,37 +14,37 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Course__c</name>
     <help>Cliquez pour rechercher un cours.</help>
-    <relationshipLabel>Exigences du plan</relationshipLabel>
     <label>Cours</label>
+    <name>Course__c</name>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
   </fields>
   <fields>
-    <name>Credits__c</name>
     <help>Spécifiez le nombre de crédits qu'un étudiant reçoit lorsqu'il satisfait à cette exigence.</help>
     <label>Crédits</label>
+    <name>Credits__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Description de l'exigence du plan.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Plan_Requirement__c</name>
     <help>Cliquez pour rechercher une exigence de plan.</help>
-    <relationshipLabel>Exigences du plan</relationshipLabel>
     <label>Exigence du plan parente</label>
-  </fields>
-  <fields>
-    <name>Program_Plan__c</name>
-    <help>Cliquez pour rechercher un plan de programme.</help>
+    <name>Plan_Requirement__c</name>
     <relationshipLabel>Exigences du plan</relationshipLabel>
-    <label>Plan du programme</label>
   </fields>
   <fields>
-    <name>Sequence__c</name>
+    <help>Cliquez pour rechercher un plan de programme.</help>
+    <label>Plan du programme</label>
+    <name>Program_Plan__c</name>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
+  </fields>
+  <fields>
     <help>La progression des modules</help>
     <label>Séquence</label>
+    <name>Sequence__c</name>
   </fields>
   <layouts>
     <layout>HEDA Plan Requirement Layout</layout>

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Behavior_Involvement__c</name>
     <help>Le numéro généré par le système associé à cet événement. Format : BI-{0000}.</help>
-    <relationshipLabel>Réactions comportementales</relationshipLabel>
     <label>Implication du comportement</label>
+    <name>Behavior_Involvement__c</name>
+    <relationshipLabel>Réactions comportementales</relationshipLabel>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>Le destinataire de cette réponse.</help>
     <label>Contact</label>
+    <name>Contact__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Une description de la réaction comportementale.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>La date à laquelle la réaction se termine.</help>
     <label>Date de fin</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>La date à laquelle la réaction commence.</help>
     <label>Date de début</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Le statut de la réaction.</help>
     <label>Statut</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Completed</masterLabel>
       <translation>Terminé</translation>
@@ -48,9 +48,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Type__c</name>
     <help>Le type de réaction.</help>
     <label>Type</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Academic Probation</masterLabel>
       <translation>Probation académique</translation>

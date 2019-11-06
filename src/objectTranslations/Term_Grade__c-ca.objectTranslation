@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>L’alumne per al qual es registra la qualificació. Quan es deixa en blanc, el Contacte es copia automàticament de la connexió de curs vàlida en desar-lo.</help>
-    <relationshipLabel>Qualificacions del període</relationshipLabel>
     <label>Contacte</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Qualificacions del període</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Connection__c</name>
     <help>La classe en què l'estudiant ha rebut aquesta qualificació. El contacte i l’oferta curs de la qualificació del període ha de coincidir amb el contacte i l’oferta de curs del registre de connexió del curs.</help>
-    <relationshipLabel>Qualificacions del període</relationshipLabel>
     <label>Connexió del curs</label>
-  </fields>
-  <fields>
-    <name>Course_Offering__c</name>
-    <help>Oferta de curs associada al registre de la qualificació. Quan es deixa en blanc, l'oferta de curs es copia automàticament de la connexió de curs vàlida.</help>
+    <name>Course_Connection__c</name>
     <relationshipLabel>Qualificacions del període</relationshipLabel>
-    <label>Oferta de curs</label>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
+    <help>Oferta de curs associada al registre de la qualificació. Quan es deixa en blanc, l'oferta de curs es copia automàticament de la connexió de curs vàlida.</help>
+    <label>Oferta de curs</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Qualificacions del període</relationshipLabel>
+  </fields>
+  <fields>
     <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>
     <label>Crèdits als quals s'ha assistit</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <help>El nombre de crèdits guanyats per a aquest curs i període de qualificació.</help>
     <label>Crèdits obtinguts</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Letter_Grade__c</name>
     <help>La qualificació amb lletres que ha obtingut l’estudiant per aquest curs. Per exemple, "A +" o qualsevol altre valor de text.</help>
     <label>Qualificació amb lletres</label>
+    <name>Letter_Grade__c</name>
   </fields>
   <fields>
-    <name>Numerical_Grade__c</name>
     <help>La qualificació numèrica que obtingut l’estudiant per a aquest curs, que es pot basar en qualsevol nombre no percentual.</help>
     <label>Qualificació numèrica</label>
+    <name>Numerical_Grade__c</name>
   </fields>
   <fields>
-    <name>Percent_Grade__c</name>
     <help>La qualificació en percentatge que ha obtingut l’estudiant per aquest curs.</help>
     <label>Qualificació en percentatge</label>
+    <name>Percent_Grade__c</name>
   </fields>
   <fields>
-    <name>Result__c</name>
     <help>El resultat del rendiment de l’estudiant durant aquest període de qualificació.</help>
     <label>Resultat</label>
+    <name>Result__c</name>
     <picklistValues>
       <masterLabel>Audit</masterLabel>
       <translation>Auditoria</translation>
@@ -65,9 +65,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term_Grade_Type__c</name>
     <help>El tipus de període de qualificació en què es registra aquesta qualificació.</help>
     <label>Tipus de qualificació del període</label>
+    <name>Term_Grade_Type__c</name>
     <picklistValues>
       <masterLabel>Exam Grade</masterLabel>
       <translation>Qualificació d'examen</translation>
@@ -86,10 +86,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term__c</name>
     <help>El període de qualificació en què es registra aquesta qualificació.</help>
-    <relationshipLabel>Qualificacions del període</relationshipLabel>
     <label>Període</label>
+    <name>Term__c</name>
+    <relationshipLabel>Qualificacions del període</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Term Grade Layout</layout>

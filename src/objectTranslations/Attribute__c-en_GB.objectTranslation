@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Agency__c</name>
     <help>The agency that provided or certified the credential.</help>
-    <relationshipLabel>Attributes</relationshipLabel>
     <label>Agency</label>
+    <name>Agency__c</name>
+    <relationshipLabel>Attributes</relationshipLabel>
   </fields>
   <fields>
-    <name>Attribute_Type__c</name>
     <help>The type of credential or Attribute.</help>
     <label>Attribute Type</label>
+    <name>Attribute_Type__c</name>
     <picklistValues>
       <masterLabel>Certification</masterLabel>
       <translation>Certification</translation>
@@ -88,35 +88,35 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>The Contact the Attribute is assigned to.</help>
-    <relationshipLabel>Attributes</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Attributes</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>A description of the credential or Attribute.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>The date when the credential or Attribute expires or requires renewal.</help>
     <label>End Date</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Expired__c</name>
     <help>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</help>
     <label>Expired</label>
+    <name>Expired__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>The issue date for the credential or Attribute.</help>
     <label>Start Date</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Subject_Area__c</name>
     <help>The content or subject area that a credential is for.</help>
     <label>Subject Area</label>
+    <name>Subject_Area__c</name>
     <picklistValues>
       <masterLabel>Biology</masterLabel>
       <translation>Biology</translation>

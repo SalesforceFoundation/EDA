@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>AlternateEmail__c</name>
     <help>E-mail alternatif est une adresse e-mail facultative qui n'est pas capturée dans d'autres champs de messagerie.</help>
     <label>E-mail alternatif</label>
+    <name>AlternateEmail__c</name>
   </fields>
   <fields>
-    <name>Chosen_Full_Name__c</name>
     <help>Le nom complet que le contact préfère utiliser au lieu d’un nom légal ou officiel.</help>
     <label>Nom complet choisi</label>
+    <name>Chosen_Full_Name__c</name>
   </fields>
   <fields>
-    <name>Citizenship__c</name>
     <label>Citoyenneté</label>
+    <name>Citizenship__c</name>
     <picklistValues>
       <masterLabel>Afghanistan</masterLabel>
       <translation>Afghanistan</translation>
@@ -1131,8 +1131,8 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Country_of_Origin__c</name>
     <label>Pays d'origine</label>
+    <name>Country_of_Origin__c</name>
     <picklistValues>
       <masterLabel>Afghanistan</masterLabel>
       <translation>Afghanistan</translation>
@@ -2251,25 +2251,25 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Current_Address__c</name>
     <help>L’adresse actuellement renseignée dans les champs d'adresse du contact.</help>
-    <relationshipLabel>Contacts (adresse actuelle)</relationshipLabel>
     <label>Adresse actuelle</label>
+    <name>Current_Address__c</name>
+    <relationshipLabel>Contacts (adresse actuelle)</relationshipLabel>
   </fields>
   <fields>
-    <name>Deceased__c</name>
     <help>Cette option marque le contact comme décédé, et l’exclut de la dénomination du foyer, des e-mails et des appels téléphoniques.</help>
     <label>Décédé</label>
+    <name>Deceased__c</name>
   </fields>
   <fields>
-    <name>Do_Not_Contact__c</name>
     <help>Cette option exclut le contact des e-mails et des appels téléphoniques.</help>
     <label>Ne pas contacter</label>
+    <name>Do_Not_Contact__c</name>
   </fields>
   <fields>
-    <name>Dual_Citizenship__c</name>
     <help>Si ce contact a plusieurs nationalités, elles peuvent être enregistrées ici.</help>
     <label>Double nationalité</label>
+    <name>Dual_Citizenship__c</name>
     <picklistValues>
       <masterLabel>Afghanistan</masterLabel>
       <translation>Afghanistan</translation>
@@ -3388,8 +3388,8 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Ethnicity__c</name>
     <label>Appartenance ethnique</label>
+    <name>Ethnicity__c</name>
     <picklistValues>
       <masterLabel>Hispanic or Latino</masterLabel>
       <translation>Hispanique ou Latino-Américain</translation>
@@ -3400,31 +3400,31 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Exclude_from_Household_Formal_Greeting__c</name>
     <help>Cochez cette case pour exclure ce contact de la salutation formelle du foyer.</help>
     <label>Exclure de la salutation formelle du foyer</label>
+    <name>Exclude_from_Household_Formal_Greeting__c</name>
   </fields>
   <fields>
-    <name>Exclude_from_Household_Informal_Greeting__c</name>
     <help>Cochez cette case pour exclure ce contact de la salutation informelle du foyer.</help>
     <label>Exclure de la salutation informelle du foyer</label>
+    <name>Exclude_from_Household_Informal_Greeting__c</name>
   </fields>
   <fields>
-    <name>Exclude_from_Household_Name__c</name>
     <help>Cochez cette case pour exclure ce contact du nom du foyer.</help>
     <label>Exclure du nom du foyer</label>
+    <name>Exclude_from_Household_Name__c</name>
   </fields>
   <fields>
-    <name>FERPA__c</name>
     <label>Loi FERPA aux États-Unis</label>
+    <name>FERPA__c</name>
   </fields>
   <fields>
-    <name>Financial_Aid_Applicant__c</name>
     <label>Candidat à une aide financière</label>
+    <name>Financial_Aid_Applicant__c</name>
   </fields>
   <fields>
-    <name>Gender__c</name>
     <label>Sexe</label>
+    <name>Gender__c</name>
     <picklistValues>
       <masterLabel>Female</masterLabel>
       <translation>Féminin</translation>
@@ -3435,25 +3435,25 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>HIPAA_Detail__c</name>
     <label>Détails de la loi HIPAA portant sur la transférabilité et la responsabilité en matière d'assurance-maladie</label>
+    <name>HIPAA_Detail__c</name>
   </fields>
   <fields>
-    <name>HIPAA__c</name>
     <label>Loi HIPAA aux États-Unis</label>
+    <name>HIPAA__c</name>
   </fields>
   <fields>
-    <name>Military_Background__c</name>
     <label>Antécédents militaires</label>
+    <name>Military_Background__c</name>
   </fields>
   <fields>
-    <name>Military_Service__c</name>
     <label>Service militaire</label>
+    <name>Military_Service__c</name>
   </fields>
   <fields>
-    <name>Naming_Exclusions__c</name>
     <help>Détermine les noms de foyer dont ce contact ne fait PAS partie.</help>
     <label>Exclusions de dénomination</label>
+    <name>Naming_Exclusions__c</name>
     <picklistValues>
       <masterLabel>Household__c.Name</masterLabel>
       <translation>Household__c.Name</translation>
@@ -3468,9 +3468,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>PreferredPhone__c</name>
     <help>Quel numéro de téléphone doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
     <label>Téléphone préféré</label>
+    <name>PreferredPhone__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Domicile</translation>
@@ -3489,9 +3489,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Preferred_Email__c</name>
     <help>Quel e-mail doit être utilisé pour la plupart des communications impliquant ce contact ?</help>
     <label>Adresse e-mail préférée</label>
+    <name>Preferred_Email__c</name>
     <picklistValues>
       <masterLabel>University</masterLabel>
       <translation>Université</translation>
@@ -3506,9 +3506,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Primary_Address_Type__c</name>
     <help>Quel est le type de l’adresse postale ?</help>
     <label>Type d'adresse principal</label>
+    <name>Primary_Address_Type__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Domicile</translation>
@@ -3523,24 +3523,24 @@
     </picklistValues>
   </fields>
   <fields>
+    <label>Foyer principal</label>
     <name>Primary_Household__c</name>
     <relationshipLabel>Contacts (foyer principal)</relationshipLabel>
-    <label>Foyer principal</label>
   </fields>
   <fields>
-    <name>Primary_Language__c</name>
     <help>La langue que le contact préfère utiliser.</help>
-    <relationshipLabel>Contacts</relationshipLabel>
     <label>Langue principale</label>
+    <name>Primary_Language__c</name>
+    <relationshipLabel>Contacts</relationshipLabel>
   </fields>
   <fields>
+    <label>Organisation professionnelle principale</label>
     <name>Primary_Organization__c</name>
     <relationshipLabel>Contacts (organisation principale)</relationshipLabel>
-    <label>Organisation professionnelle principale</label>
   </fields>
   <fields>
-    <name>Race__c</name>
     <label>Race</label>
+    <name>Race__c</name>
     <picklistValues>
       <masterLabel>American Indian or Alaska Native</masterLabel>
       <translation>Amérindien ou natif d'Alaska</translation>
@@ -3567,8 +3567,8 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Religion__c</name>
     <label>Religion</label>
+    <name>Religion__c</name>
     <picklistValues>
       <masterLabel>Atheist</masterLabel>
       <translation>Athée</translation>
@@ -3599,9 +3599,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Secondary_Address_Type__c</name>
     <help>Quel est le type de l’autre adresse ?</help>
     <label>Type d'adresse secondaire</label>
+    <name>Secondary_Address_Type__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Domicile</translation>
@@ -3616,33 +3616,33 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Social_Security_Number__c</name>
     <label>Numéro de sécurité sociale</label>
+    <name>Social_Security_Number__c</name>
   </fields>
   <fields>
-    <name>UniversityEmail__c</name>
     <help>Adresse e-mail officielle de l'université.</help>
     <label>Adresse e-mail de l'université</label>
+    <name>UniversityEmail__c</name>
   </fields>
   <fields>
-    <name>WorkEmail__c</name>
     <help>Afficher le champ Adresse e-mail préférée.</help>
     <label>Adresse e-mail professionnelle</label>
+    <name>WorkEmail__c</name>
   </fields>
   <fields>
-    <name>WorkPhone__c</name>
     <help>Afficher le champ « Téléphone préféré ».</help>
     <label>Téléphone professionnel</label>
+    <name>WorkPhone__c</name>
   </fields>
   <fields>
-    <name>Work_Address__c</name>
     <help>Formule : l'adresse postale si le Type d’adresse principale est Professionnel, l'autre adresse si le Type d’adresse secondaire est Professionnel.</help>
     <label>Adresse professionnelle</label>
+    <name>Work_Address__c</name>
   </fields>
   <fields>
-    <name>is_Address_Override__c</name>
     <help>Si cette case est cochée, l'adresse actuelle du contact remplace toutes les adresses nouvelles ou saisonnières (s'applique uniquement aux contacts du foyer).</help>
     <label>Ne pas mettre à jour automatiquement</label>
+    <name>is_Address_Override__c</name>
   </fields>
   <layouts>
     <layout>HEDA Contact Layout</layout>

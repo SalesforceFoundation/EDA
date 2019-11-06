@@ -1,52 +1,52 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>El estudiante para el que se está registrando la evaluación. Cuando se deja en blanco, Contacto se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
-    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     <label>Contacto</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Connection__c</name>
     <help>La clase en la que el estudiante recibió esta evaluación. Contacto y Oferta de curso en Evaluación de periodo debe coincidir con Contacto y Oferta de curso en el registro Conexión de curso</help>
-    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     <label>Enlace de cursos</label>
-  </fields>
-  <fields>
-    <name>Course_Offering__c</name>
-    <help>La Oferta de curso asociada con la evaluación que se está registrando. Cuando se deja en blanco, Oferta de curso se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
+    <name>Course_Connection__c</name>
     <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
-    <label>Oferta de curso</label>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
+    <help>La Oferta de curso asociada con la evaluación que se está registrando. Cuando se deja en blanco, Oferta de curso se cumplimenta automáticamente desde la Conexión de curso válida al guardar.</help>
+    <label>Oferta de curso</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+  </fields>
+  <fields>
     <help>El número de créditos intentados para este curso y periodo de evaluación.</help>
     <label>Créditos intentados</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <help>El número de créditos obtenidos para este curso y periodo de evaluación.</help>
     <label>Créditos obtenidos</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Letter_Grade__c</name>
     <help>La evaluación de letra que obtuvo el estudiante para este curso. Por ejemplo "A+" u otro valor de texto.</help>
     <label>Evaluación de letra</label>
+    <name>Letter_Grade__c</name>
   </fields>
   <fields>
-    <name>Numerical_Grade__c</name>
     <help>La evaluación numérica que obtuvo el estudiante para este curso, que puede ser basada en cualquier número no de porcentaje.</help>
     <label>Evaluación numérica</label>
+    <name>Numerical_Grade__c</name>
   </fields>
   <fields>
-    <name>Percent_Grade__c</name>
     <help>La evaluación de porcentaje que el estudiante obtuvo para este curso.</help>
     <label>Evaluación de porcentaje</label>
+    <name>Percent_Grade__c</name>
   </fields>
   <fields>
-    <name>Result__c</name>
     <help>El resultado del desempeño del estudiante para este periodo de evaluación.</help>
     <label>Resultado</label>
+    <name>Result__c</name>
     <picklistValues>
       <masterLabel>Audit</masterLabel>
       <translation>Auditoría</translation>
@@ -65,9 +65,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term_Grade_Type__c</name>
     <help>El tipo de periodo de evaluación o plazo para el que se registró esta evaluación.</help>
     <label>Tipo de evaluación de periodo</label>
+    <name>Term_Grade_Type__c</name>
     <picklistValues>
       <masterLabel>Exam Grade</masterLabel>
       <translation>Evaluación de examen</translation>
@@ -86,10 +86,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term__c</name>
     <help>El periodo de evaluación o plazo para el que se registró esta evaluación.</help>
-    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
     <label>Plazo</label>
+    <name>Term__c</name>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Term Grade Layout</layout>

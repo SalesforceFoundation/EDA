@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Agency__c</name>
     <help>L’agence qui a fourni ou certifié les informations d’authentification.</help>
-    <relationshipLabel>Attributs</relationshipLabel>
     <label>Agence</label>
+    <name>Agency__c</name>
+    <relationshipLabel>Attributs</relationshipLabel>
   </fields>
   <fields>
-    <name>Attribute_Type__c</name>
     <help>Le type d’informations d’authentification ou attribut.</help>
     <label>Type d’attribut</label>
+    <name>Attribute_Type__c</name>
     <picklistValues>
       <masterLabel>Certification</masterLabel>
       <translation>Certification</translation>
@@ -88,35 +88,35 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>Le contact auquel l’attribut est attribué.</help>
-    <relationshipLabel>Attributs</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Attributs</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Description des informations d’authentification ou attribut.</help>
     <label>Descriptif</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>Date d’expiration ou de renouvellement des informations d’authentification ou attribut.</help>
     <label>Date de clôture</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Expired__c</name>
     <help>Indique si l’attribut a expiré. Coché automatiquement lorsque la date de fin de l’attribut est antérieure à la date actuelle.</help>
     <label>Expiré</label>
+    <name>Expired__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>La date d’émission des informations d’authentification ou attribut.</help>
     <label>Date de début</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Subject_Area__c</name>
     <help>Le contenu ou le domaine auquel les informations d’authentification se rapportent.</help>
     <label>Domaine</label>
+    <name>Subject_Area__c</name>
     <picklistValues>
       <masterLabel>Biology</masterLabel>
       <translation>Biologie</translation>

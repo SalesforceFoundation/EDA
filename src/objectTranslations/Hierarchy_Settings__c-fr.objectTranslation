@@ -1,199 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account_Processor__c</name>
     <help>ID du type d'enregistrement par défaut du compte. Par exemple, si vous spécifiez Administratif (le modèle Compte recommandé), saisissez l'ID du type d'enregistrement Administratif pour l'objet Compte.</help>
     <label>Processeur de compte</label>
+    <name>Account_Processor__c</name>
   </fields>
   <fields>
-    <name>Accounts_Addresses_Enabled__c</name>
     <help>Type d'enregistrement des comptes dans lesquels plusieurs adresses doivent être activées.</help>
     <label>Comptes à adresses multiples</label>
+    <name>Accounts_Addresses_Enabled__c</name>
   </fields>
   <fields>
-    <name>Accounts_to_Delete__c</name>
     <help>Type d'enregistrement des comptes qui doivent être supprimés si tous les contacts enfants ont été supprimés.</help>
     <label>Comptes à supprimer</label>
+    <name>Accounts_to_Delete__c</name>
   </fields>
   <fields>
-    <name>Admin_Account_Naming_Format__c</name>
     <help>Ce paramètre définit le format de nommage du compte administratif</help>
     <label>Format de nommage compte administratif</label>
+    <name>Admin_Account_Naming_Format__c</name>
   </fields>
   <fields>
-    <name>Admin_Other_Name_Setting__c</name>
     <help>Permet de stocker un autre paramètre de nommage pour le compte administratif</help>
     <label>Autre paramètre de nommage administratif</label>
+    <name>Admin_Other_Name_Setting__c</name>
   </fields>
   <fields>
-    <name>Administrative_Account_Record_Type__c</name>
     <help>Le type d'enregistrement Compte utilisé pour des Comptes administratifs. Ce paramètre affecte la gestion des enregistrements d'adresse et le format de nommage des comptes administratifs.</help>
     <label>Type enregistrement compte administratif</label>
+    <name>Administrative_Account_Record_Type__c</name>
   </fields>
   <fields>
-    <name>Advancement_Namespace__c</name>
     <help>L'espace de noms du package géré Gift Entry Management.</help>
     <label>Espace de noms GEM</label>
+    <name>Advancement_Namespace__c</name>
   </fields>
   <fields>
-    <name>Affiliation_Record_Type_Enforced__c</name>
     <help>Si cette case cochée, une erreur est renvoyée lorsque les utilisateurs remplissent un champ principal dans Contact avec un Compte dont le type d'enregistrement ne correspond pas au type défini dans les paramètres EDA. L'enregistrement Affiliation n'est pas créé et les champs principaux du contact ne sont pas corrects.</help>
     <label>Type enregistrement affiliation appliqué</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     <help>Indique si la Date de fin de l'Affiliation créée lors de l'inscription au programme doit être définie. Si cette case est activée, définissez la date de fin sur celle de l'inscription au programme. Si elle est désactivée, ne spécifiez pas la date de fin de l'affiliation.</help>
     <label>Copie date fin affiliation inscr. prog.</label>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     <help>Indique si la Date de début de l'Affiliation créée lors de l'inscription au programme doit être définie. Si cette case est activée, définissez la date de début sur celle de l'inscription au programme. Si elle est désactivée, ne spécifiez pas la date de début de l'affiliation.</help>
     <label>Copie date début affiliation inscr. prog</label>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Del_Status__c</name>
     <help>Si le paramètre associé (Suppr. affiliation qd inscr. prog. suppr) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l'affiliation lors de la suppression de son inscription au programme associée.</help>
     <label>Statut affiliation qd inscr. prog. suppr</label>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>Indique si une affiliation doit être supprimée lors de la suppression de son inscription au programme associée. Si cette case est activée, supprimez l'affiliation. Si elle est désactivée, définissez le statut de l'affiliation sur la valeur spécifiée dans le paramètre associé (Statut affiliation qd inscr. prog. suppr).</help>
     <label>Suppr. affiliation qd inscr. prog. suppr</label>
+    <name>Affl_ProgEnroll_Del__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Si le paramètre associé (Rôle affiliation défini qd inscr. prog.) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l'affiliation lors de la suppression de son inscription au programme associée.</help>
     <label>Rôle affiliation qd inscr. prog. créée</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Indique si un rôle doit être spécifié pour l'affiliation créée lors de l'inscription au programme. Cette case est activée, définissez le rôle de l'affiliation sur la valeur spécifiée dans le paramètre associé (Rôle affiliation qd inscr. prog. créée). Si elle est désactivée, ne spécifiez pas de rôle.</help>
     <label>Rôle affiliation défini qd inscr. prog.</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
   </fields>
   <fields>
-    <name>Affl_ProgEnroll_Status_Map__c</name>
     <help>La valeur de statut définie dans l'affiliation créée lors de l'inscription au programme.</help>
     <label>Statut affiliation qd inscr. prog. créée</label>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
   </fields>
   <fields>
-    <name>Allow_AutoCreated_Duplicates__c</name>
     <help>Les relations automatiquement créées sont automatiquement dédupliquées afin d'empêcher la création d’enregistrements de relation en double entre deux contacts. Cochez cette case pour désactiver ce comportement et autoriser plusieurs relations de même type entre deux contacts.</help>
     <label>Autoris relations dupliquées auto créées</label>
+    <name>Allow_AutoCreated_Duplicates__c</name>
   </fields>
   <fields>
-    <name>Async_Error_Check_Last_Run__c</name>
     <label>Dernière exéc. vérif erreur asynchrone</label>
+    <name>Async_Error_Check_Last_Run__c</name>
   </fields>
   <fields>
-    <name>Automatic_Household_Naming__c</name>
     <help>Si cette case est cochée, le système fournit automatiquement un nom pour les noms de foyer et les salutations formelles et informelles.</help>
     <label>Nommage automatique du foyer</label>
+    <name>Automatic_Household_Naming__c</name>
   </fields>
   <fields>
-    <name>Contacts_Addresses_Enabled__c</name>
     <help>Prise en charge de la gestion des adresses des contacts.</help>
     <label>Prise en charge gestion adresses contact</label>
+    <name>Contacts_Addresses_Enabled__c</name>
   </fields>
   <fields>
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>La valeur Maîtrise linguistique automatiquement définie dans les enregistrements de langue du contact créés lorsque les utilisateurs définissent le champ Langue principale dans un contact.</help>
     <label>Maîtrise linguistique contact par défaut</label>
+    <name>Default_Contact_Language_Fluency__c</name>
   </fields>
   <fields>
-    <name>Disable_Error_Handling__c</name>
     <help>Si cette case est cochée, l'infrastructure de gestion des erreurs de l'architecture EDA est désactivée.</help>
     <label>Désactiver la gestion des erreurs</label>
+    <name>Disable_Error_Handling__c</name>
   </fields>
   <fields>
-    <name>Disable_Preferred_Email_Enforcement__c</name>
     <help>Sélectionnez cette case afin de désactiver l'application du champ Adresse e-mail préférée pour les contacts.</help>
     <label>Désactiver application e-mail préféré</label>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
   </fields>
   <fields>
-    <name>Disable_Preferred_Phone_Enforcement__c</name>
     <help>Sélectionnez cette case afin de désactiver l'application du champ téléphone préféré pour les contacts.</help>
     <label>Désactiver applic. du téléphone préféré</label>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
   </fields>
   <fields>
-    <name>Enable_Course_Connections__c</name>
     <label>Activer les inscriptions à des modules</label>
+    <name>Enable_Course_Connections__c</name>
   </fields>
   <fields>
-    <name>Enable_Debug__c</name>
     <help>Cochez cette case pour activer les instructions de débogage dans le code du package géré.</help>
     <label>Activer le débogage</label>
+    <name>Enable_Debug__c</name>
   </fields>
   <fields>
-    <name>Enable_New_Preferred_Phone_Sync__c</name>
     <help>Synchronisez le champ Téléphone préféré avec le champ Téléphone standard du contact et vérifiez que la valeur dans Téléphone préféré existe et a une valeur.</help>
     <label>Activer nouv. synchr. téléphone préféré</label>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
   </fields>
   <fields>
-    <name>Error_Notifications_On__c</name>
     <help>Cochez cette case si vous souhaitez que le système publie des notifications pour certains types d’erreur.</help>
     <label>Notifications d’erreur</label>
+    <name>Error_Notifications_On__c</name>
   </fields>
   <fields>
-    <name>Error_Notifications_To__c</name>
     <help>Sélectionnez le type d’utilisateur auquel les notifications sont envoyées.</help>
     <label>Destinataires des notifications d’erreur</label>
+    <name>Error_Notifications_To__c</name>
   </fields>
   <fields>
-    <name>Faculty_RecType__c</name>
     <label>Type d'enregistrement de professeur</label>
+    <name>Faculty_RecType__c</name>
   </fields>
   <fields>
-    <name>Household_Account_Naming_Format__c</name>
     <help>Ce paramètre définit le format de nommage du compte du foyer</help>
     <label>Format de nommage du compte du foyer</label>
+    <name>Household_Account_Naming_Format__c</name>
   </fields>
   <fields>
-    <name>Household_Addresses_RecType__c</name>
     <help>Le type d'enregistrement Compte utilisé pour des Comptes de foyer. Ce paramètre affecte la gestion des enregistrements d'adresse et le format de nommage des comptes de foyer.</help>
     <label>Type enreg. de compte adresses du foyer</label>
+    <name>Household_Addresses_RecType__c</name>
   </fields>
   <fields>
-    <name>Household_Other_Name_Setting__c</name>
     <help>Permet de stocker un autre paramètre de nommage pour le compte du foyer</help>
     <label>Autre paramètre de nommage du foyer</label>
+    <name>Household_Other_Name_Setting__c</name>
   </fields>
   <fields>
-    <name>Preferred_Phone_Selection__c</name>
     <help>Sélectionnez un téléphone préféré souhaité lors de l’exécution du traitement par lot.</help>
     <label>Sélection du téléphone préféré</label>
+    <name>Preferred_Phone_Selection__c</name>
   </fields>
   <fields>
-    <name>Reciprocal_Method__c</name>
     <help>Détermine la méthode de génération de la relation réciproque. Elle correspond à un paramètre de liste qui utilise des paramètres personnalisés par sexe ou à une inversion de valeur (de « Parent-Enfant » à « Enfant-Parent »)</help>
     <label>Méthode de réciprocité</label>
+    <name>Reciprocal_Method__c</name>
   </fields>
   <fields>
-    <name>Relationship_Name_Field_Id__c</name>
     <help>Si cette valeur est renseignée, le champ est prérempli lors de la création de relations depuis le visualiseur de relations (pour en savoir plus, reportez-vous à la description)</help>
     <label>ID du champ Nom de la relation</label>
+    <name>Relationship_Name_Field_Id__c</name>
   </fields>
   <fields>
-    <name>Relationship_Name_Id_Field_Id__c</name>
     <help>Si cette valeur est renseignée, le champ est prérempli lors de la création de relations depuis le visualiseur de relations (pour en savoir plus, reportez-vous à la description)</help>
     <label>ID du champ ID de nom de la relation</label>
+    <name>Relationship_Name_Id_Field_Id__c</name>
   </fields>
   <fields>
-    <name>Simple_Address_Change_Treated_as_Update__c</name>
     <help>Si cette case est cochée, les modifications d’un champ d’adresse d’un contact ou d’un compte entraînent la mise à jour de l’adresse existante, au lieu de créer une autre adresse.</help>
     <label>Simple changement adresse en mise à jour</label>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
   </fields>
   <fields>
-    <name>Store_Errors_On__c</name>
     <help>Cochez cette case si vous souhaitez enregistrer les erreurs dans la base de données.</help>
     <label>Enregistrer les erreurs</label>
+    <name>Store_Errors_On__c</name>
   </fields>
   <fields>
-    <name>Student_RecType__c</name>
     <label>Type d'enregistrement d'étudiant</label>
+    <name>Student_RecType__c</name>
   </fields>
   <fields>
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>Une fois sélectionnées, les exigences du plan peuvent spécifier un plan du prog. ou une EP parente, mais pas les deux. Si vous spécifiez un plan du prog. et une EP parente, un message d’erreur empêchera leur enregi. jusqu’à ce qu’un seul soit sélectionné.</help>
     <label>Valider plan prog. pour EP imbriquée</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
   </fields>
 </CustomObjectTranslation>

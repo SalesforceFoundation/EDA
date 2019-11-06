@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>La persona que parla aquest idioma.</help>
-    <relationshipLabel>Idiomes de contacte</relationshipLabel>
     <label>Contacte</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Idiomes de contacte</relationshipLabel>
   </fields>
   <fields>
-    <name>Fluency__c</name>
     <help>La fluïdesa amb què aquesta persona parla aquest idioma.</help>
     <label>Domini</label>
+    <name>Fluency__c</name>
     <picklistValues>
       <masterLabel>Fluent</masterLabel>
       <translation>Avançat</translation>
@@ -24,15 +24,15 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Language__c</name>
     <help>L'idioma associat a aquest contacte.</help>
-    <relationshipLabel>Idiomes de contacte</relationshipLabel>
     <label>Idiomes</label>
+    <name>Language__c</name>
+    <relationshipLabel>Idiomes de contacte</relationshipLabel>
   </fields>
   <fields>
-    <name>Primary_Language__c</name>
     <help>Indica que aquest és l'idioma preferit per aquest contacte.</help>
     <label>Idioma principal</label>
+    <name>Primary_Language__c</name>
   </fields>
   <layouts>
     <layout>HEDA Contact Language Layout</layout>

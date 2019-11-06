@@ -1,52 +1,52 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>The student for whom the grade is being recorded. When left blank, Contact autopopulates from the valid Course Connection on save.</help>
-    <relationshipLabel>Term Grades</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Term Grades</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Connection__c</name>
     <help>The class in which the student received this grade. The Contact and Course Offering on Term Grade must match the Contact and Course Offering on the Course Connection record.</help>
-    <relationshipLabel>Term Grades</relationshipLabel>
     <label>Course Connection</label>
-  </fields>
-  <fields>
-    <name>Course_Offering__c</name>
-    <help>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</help>
+    <name>Course_Connection__c</name>
     <relationshipLabel>Term Grades</relationshipLabel>
-    <label>Course Offering</label>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
+    <help>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</help>
+    <label>Course Offering</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Term Grades</relationshipLabel>
+  </fields>
+  <fields>
     <help>The number of credits attempted for this course and grading period.</help>
     <label>Credits Attempted</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <help>The number of credits earned for this course and grading period.</help>
     <label>Credits Earned</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Letter_Grade__c</name>
     <help>The letter grade the student earned for this course. For example, "A+" or any other text value.</help>
     <label>Letter Grade</label>
+    <name>Letter_Grade__c</name>
   </fields>
   <fields>
-    <name>Numerical_Grade__c</name>
     <help>The numerical grade the student earned for this course, which can be based on any non-percentage number.</help>
     <label>Numerical Grade</label>
+    <name>Numerical_Grade__c</name>
   </fields>
   <fields>
-    <name>Percent_Grade__c</name>
     <help>The percentage grade the student earned for this course.</help>
     <label>Percent Grade</label>
+    <name>Percent_Grade__c</name>
   </fields>
   <fields>
-    <name>Result__c</name>
     <help>The result of the student's performance for this grading period.</help>
     <label>Result</label>
+    <name>Result__c</name>
     <picklistValues>
       <masterLabel>Audit</masterLabel>
       <translation>Audit</translation>
@@ -65,9 +65,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term_Grade_Type__c</name>
     <help>The type of term or grading period for which this grade is being recorded.</help>
     <label>Term Grade Type</label>
+    <name>Term_Grade_Type__c</name>
     <picklistValues>
       <masterLabel>Exam Grade</masterLabel>
       <translation>Exam Grade</translation>
@@ -86,10 +86,10 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Term__c</name>
     <help>The term or grading period for which this grade is being recorded.</help>
-    <relationshipLabel>Term Grades</relationshipLabel>
     <label>Term</label>
+    <name>Term__c</name>
+    <relationshipLabel>Term Grades</relationshipLabel>
   </fields>
   <layouts>
     <layout>HEDA Term Grade Layout</layout>

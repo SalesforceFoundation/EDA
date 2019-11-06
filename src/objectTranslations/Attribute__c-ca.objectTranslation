@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Agency__c</name>
     <help>L’agència que va proporcionar o certificar la credencial.</help>
-    <relationshipLabel>Atributs</relationshipLabel>
     <label>Agència</label>
+    <name>Agency__c</name>
+    <relationshipLabel>Atributs</relationshipLabel>
   </fields>
   <fields>
-    <name>Attribute_Type__c</name>
     <help>El tipus de credencial o atribut.</help>
     <label>Tipus d'atribut</label>
+    <name>Attribute_Type__c</name>
     <picklistValues>
       <masterLabel>Certification</masterLabel>
       <translation>Certificació</translation>
@@ -88,35 +88,35 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>El contacte al qual està assignat l'atribut.</help>
-    <relationshipLabel>Atributs</relationshipLabel>
     <label>Contacte</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Atributs</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Una descripció de la credencial o de l'atribut.</help>
     <label>Descripció</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>La data en què la credencial o l'atribut caduca o requereix renovació.</help>
     <label>Data de finalització</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Expired__c</name>
     <help>Indica si l'atribut ha caducat. Es comprova automàticament quan la data de finalització de l’atribut és anterior a la data actual.</help>
     <label>Caducat</label>
+    <name>Expired__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>Data d’emissió de la credencial o de l'atribut.</help>
     <label>Data d'inici</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Subject_Area__c</name>
     <help>El contingut o l’àrea temàtica per a què serveix una credencial.</help>
     <label>Àrea temàtica</label>
+    <name>Subject_Area__c</name>
     <picklistValues>
       <masterLabel>Biology</masterLabel>
       <translation>Biologia</translation>

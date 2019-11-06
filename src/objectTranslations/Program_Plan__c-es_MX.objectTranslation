@@ -1,35 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>Haga clic para buscar una cuenta (a menudo un Programa académico) para asociar con el plan de programa.</help>
-    <relationshipLabel>Planes del programa</relationshipLabel>
     <label>Cuenta</label>
+    <name>Account__c</name>
+    <relationshipLabel>Planes del programa</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Describa el plan de programa.</help>
     <label>Descripción</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>La fecha de finalización del plan de programa.</help>
     <label>Fecha de Finalización</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Is_Primary__c</name>
     <help>Casilla de verificación para designar este plan como el plan para asignar a un estudiante al crear una Inscripción de programa.</help>
     <label>Es Principal</label>
+    <name>Is_Primary__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>La fecha en que entró en vigor el plan de programa.</help>
     <label>Fecha de Inicio</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>El estado del plan de programa.</help>
     <label>Estado</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Vigente</translation>
@@ -40,14 +40,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Total_Required_Credits__c</name>
     <help>Especifique el número total de créditos que debe completar un estudiante para satisfacer este plan de programa.</help>
     <label>Total de créditos obligatorios</label>
+    <name>Total_Required_Credits__c</name>
   </fields>
   <fields>
-    <name>Version__c</name>
     <help>La versión del plan de programa. Por ejemplo, “Spring 2019”.</help>
     <label>Versión</label>
+    <name>Version__c</name>
   </fields>
   <layouts>
     <layout>HEDA Program Plan Layout</layout>

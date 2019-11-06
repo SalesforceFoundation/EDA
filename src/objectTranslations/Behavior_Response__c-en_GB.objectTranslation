@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Behavior_Involvement__c</name>
     <help>The system-generated number associated with this event. Format: BI-{0000}.</help>
-    <relationshipLabel>Behaviour Responses</relationshipLabel>
     <label>Behaviour Involvement</label>
+    <name>Behavior_Involvement__c</name>
+    <relationshipLabel>Behaviour Responses</relationshipLabel>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>The recipient of this response.</help>
     <label>Contact</label>
+    <name>Contact__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>A description of the Behaviour Response.</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>The date when the response ends.</help>
     <label>End Date</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>The date when the response starts.</help>
     <label>Start Date</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>The status of the response taken.</help>
     <label>Status</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Completed</masterLabel>
       <translation>Completed</translation>
@@ -48,9 +48,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Type__c</name>
     <help>The type of response taken.</help>
     <label>Type</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Academic Probation</masterLabel>
       <translation>Academic Probation</translation>

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Address_Type__c</name>
     <label>Tipo de dirección</label>
+    <name>Address_Type__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Particular</translation>
@@ -21,73 +21,73 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Default_Address__c</name>
     <help>¿Es esta la Dirección predeterminada para utilizar para la Cuenta y sus Contactos?</help>
     <label>Dirección predeterminada</label>
+    <name>Default_Address__c</name>
   </fields>
   <fields>
-    <name>Formula_MailingAddress__c</name>
     <label>Dirección de postal</label>
+    <name>Formula_MailingAddress__c</name>
   </fields>
   <fields>
-    <name>Formula_MailingStreetAddress__c</name>
     <label>Número postal de calle</label>
+    <name>Formula_MailingStreetAddress__c</name>
   </fields>
   <fields>
-    <name>Geolocation__c</name>
     <help>Locación expresada en latitud y longitud.</help>
     <label>Geolocalización</label>
+    <name>Geolocation__c</name>
   </fields>
   <fields>
-    <name>Latest_End_Date__c</name>
     <help>La fecha de finalización más reciente en que se utilizó esta Dirección.</help>
     <label>Fecha de finalización más reciente</label>
+    <name>Latest_End_Date__c</name>
   </fields>
   <fields>
-    <name>Latest_Start_Date__c</name>
     <help>La fecha de inicio más reciente en que se utilizó esta Dirección.</help>
     <label>Fecha de inicio más reciente</label>
+    <name>Latest_Start_Date__c</name>
   </fields>
   <fields>
-    <name>MailingCity__c</name>
     <label>Ciudad postal</label>
+    <name>MailingCity__c</name>
   </fields>
   <fields>
-    <name>MailingCountry__c</name>
     <label>País postal</label>
+    <name>MailingCountry__c</name>
   </fields>
   <fields>
-    <name>MailingPostalCode__c</name>
     <label>Código postal</label>
+    <name>MailingPostalCode__c</name>
   </fields>
   <fields>
-    <name>MailingState__c</name>
     <label>Estado/Provincia postal</label>
+    <name>MailingState__c</name>
   </fields>
   <fields>
-    <name>MailingStreet2__c</name>
     <label>Calle2 postal</label>
+    <name>MailingStreet2__c</name>
   </fields>
   <fields>
-    <name>MailingStreet__c</name>
     <label>Calle postal</label>
+    <name>MailingStreet__c</name>
   </fields>
   <fields>
-    <name>Parent_Account__c</name>
     <help>La Cuenta para la que es esta dirección.</help>
-    <relationshipLabel>Direcciones</relationshipLabel>
     <label>Cuenta principal</label>
-  </fields>
-  <fields>
-    <name>Parent_Contact__c</name>
-    <help>El Contacto para el que es esta dirección.</help>
+    <name>Parent_Account__c</name>
     <relationshipLabel>Direcciones</relationshipLabel>
-    <label>Contacto principal</label>
   </fields>
   <fields>
-    <name>Seasonal_End_Day__c</name>
+    <help>El Contacto para el que es esta dirección.</help>
+    <label>Contacto principal</label>
+    <name>Parent_Contact__c</name>
+    <relationshipLabel>Direcciones</relationshipLabel>
+  </fields>
+  <fields>
     <help>El día del mes cuando esta dirección ya no sustituye la dirección predeterminada.</help>
     <label>Día de finalización de estación</label>
+    <name>Seasonal_End_Day__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -214,9 +214,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_End_Month__c</name>
     <help>El mes del año cuando esta dirección ya no sustituye la dirección predeterminada.</help>
     <label>Mes de finalización de estación</label>
+    <name>Seasonal_End_Month__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -267,14 +267,14 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_End_Year__c</name>
     <help>El año cuando esta dirección ya no sustituye la dirección predeterminada.</help>
     <label>Año de fin de temporada</label>
+    <name>Seasonal_End_Year__c</name>
   </fields>
   <fields>
-    <name>Seasonal_Start_Day__c</name>
     <help>El día del mes cuando esta dirección sustituye la dirección predeterminada.</help>
     <label>Día de inicio de estación</label>
+    <name>Seasonal_Start_Day__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -401,9 +401,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_Start_Month__c</name>
     <help>El mes del año cuando esta dirección sustituye la dirección predeterminada.</help>
     <label>Mes de inicio de estación</label>
+    <name>Seasonal_Start_Month__c</name>
     <picklistValues>
       <masterLabel>1</masterLabel>
       <translation>1</translation>
@@ -454,9 +454,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Seasonal_Start_Year__c</name>
     <help>El año cuando esta dirección sustituye la dirección predeterminada.</help>
     <label>Año de inicio de temporada</label>
+    <name>Seasonal_Start_Year__c</name>
   </fields>
   <layouts>
     <layout>HEDA Address Layout</layout>

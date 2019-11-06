@@ -1,55 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>El Programa académico en el que está inscrito el estudiante.</help>
-    <relationshipLabel>Enlaces de cursos</relationshipLabel>
     <label>Programa académico del contacto</label>
+    <name>Account__c</name>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
   </fields>
   <fields>
+    <label>Afiliación</label>
     <name>Affiliation__c</name>
     <relationshipLabel>Enlace de cursos</relationshipLabel>
-    <label>Afiliación</label>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>El estudiante siguiendo el curso.</help>
-    <relationshipLabel>Enlaces de cursos</relationshipLabel>
     <label>Contacto</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Offering__c</name>
     <help>La Oferta de cursos en la que el estudiante está inscrito. Es un curso ofrecido en un plazo determinado.</help>
-    <relationshipLabel>Enlace de cursos</relationshipLabel>
     <label>Id. de Oferta de curso</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Enlace de cursos</relationshipLabel>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
     <label>Créditos intentados</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <label>Créditos obtenidos</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Grade__c</name>
     <label>Grado</label>
+    <name>Grade__c</name>
   </fields>
   <fields>
-    <name>Primary__c</name>
     <help>Representa un enlace de curso principal.</help>
     <label>Principal</label>
+    <name>Primary__c</name>
   </fields>
   <fields>
-    <name>Program_Enrollment__c</name>
     <help>El número de registro de Inscripción del programa para el programa en el que está inscrito el estudiante. Vincula un estudiante con un Programa académico.</help>
-    <relationshipLabel>Enlaces de cursos</relationshipLabel>
     <label>Id. de inscripción del programa</label>
+    <name>Program_Enrollment__c</name>
+    <relationshipLabel>Enlaces de cursos</relationshipLabel>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Representa el estado del enlace de curso.</help>
     <label>Estado</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Current</translation>

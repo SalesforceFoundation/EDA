@@ -1,55 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>The Academic Program the student is enroled in.</help>
-    <relationshipLabel>Course Connections</relationshipLabel>
     <label>Contact's Academic Program</label>
+    <name>Account__c</name>
+    <relationshipLabel>Course Connections</relationshipLabel>
   </fields>
   <fields>
+    <label>Affiliation</label>
     <name>Affiliation__c</name>
     <relationshipLabel>Course Connection</relationshipLabel>
-    <label>Affiliation</label>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>The student taking the course.</help>
-    <relationshipLabel>Course Connections</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Course Connections</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Offering__c</name>
     <help>The Course Offering the student is enroled in. It's a Course offered at a specific Term.</help>
-    <relationshipLabel>Course Connection</relationshipLabel>
     <label>Course Offering ID</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Course Connection</relationshipLabel>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
     <label>Credits Attempted</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <label>Credits Earned</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Grade__c</name>
     <label>Grade</label>
+    <name>Grade__c</name>
   </fields>
   <fields>
-    <name>Primary__c</name>
     <help>Represents a Primary Course Connection.</help>
     <label>Primary</label>
+    <name>Primary__c</name>
   </fields>
   <fields>
-    <name>Program_Enrollment__c</name>
     <help>The Program Enrolment record number for the Program the student is enroled in. Links a student with an Academic Program.</help>
-    <relationshipLabel>Course Connections</relationshipLabel>
     <label>Program Enrolment ID</label>
+    <name>Program_Enrollment__c</name>
+    <relationshipLabel>Course Connections</relationshipLabel>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Represents the Status of the Course Connection.</help>
     <label>Status</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Current</translation>

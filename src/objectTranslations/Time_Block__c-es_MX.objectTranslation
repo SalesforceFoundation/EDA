@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Educational_Institution__c</name>
     <help>La institución educativa asociada con este bloque de tiempo. Por ejemplo, una escuela en un distrito.</help>
-    <relationshipLabel>Bloques de tiempo</relationshipLabel>
     <label>Institución educativa</label>
+    <name>Educational_Institution__c</name>
+    <relationshipLabel>Bloques de tiempo</relationshipLabel>
   </fields>
   <fields>
-    <name>End_Time__c</name>
     <help>La hora del día en que finaliza el bloque de tiempo.</help>
     <label>Hora de finalización</label>
+    <name>End_Time__c</name>
   </fields>
   <fields>
-    <name>Start_Time__c</name>
     <help>La hora del día en que se inicia el bloque de tiempo.</help>
     <label>Hora de inicio</label>
+    <name>Start_Time__c</name>
   </fields>
   <layouts>
     <layout>EDA Time Block Layout</layout>

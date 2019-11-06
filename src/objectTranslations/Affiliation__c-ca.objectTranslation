@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
+    <label>Organització</label>
     <name>Account__c</name>
     <relationshipLabel>Contactes afiliats</relationshipLabel>
-    <label>Organització</label>
   </fields>
   <fields>
-    <name>Affiliation_Type__c</name>
     <label>Tipus d'afiliació</label>
+    <name>Affiliation_Type__c</name>
   </fields>
   <fields>
+    <label>Contacte</label>
     <name>Contact__c</name>
     <relationshipLabel>Comptes afiliats</relationshipLabel>
-    <label>Contacte</label>
   </fields>
   <fields>
-    <name>Description__c</name>
     <label>Descripció</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>EndDate__c</name>
     <label>Data de finalització</label>
+    <name>EndDate__c</name>
   </fields>
   <fields>
-    <name>Primary__c</name>
     <help>Si es marca, l'organització d'afiliació es desa al Registre de contactes.</help>
     <label>Primari</label>
+    <name>Primary__c</name>
   </fields>
   <fields>
-    <name>Role__c</name>
     <label>Funció</label>
+    <name>Role__c</name>
     <picklistValues>
       <masterLabel>Student</masterLabel>
       <translation>Estudiant</translation>
@@ -52,12 +52,12 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>StartDate__c</name>
     <label>Data d'inici</label>
+    <name>StartDate__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <label>Estat</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Actual</translation>

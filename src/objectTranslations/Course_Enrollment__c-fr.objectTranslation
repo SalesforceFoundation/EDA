@@ -1,55 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Account__c</name>
     <help>Le programme académique auquel l'étudiant est inscrit.</help>
-    <relationshipLabel>Inscriptions aux modules</relationshipLabel>
     <label>Programme académique du contact</label>
+    <name>Account__c</name>
+    <relationshipLabel>Inscriptions aux modules</relationshipLabel>
   </fields>
   <fields>
+    <label>Affiliation</label>
     <name>Affiliation__c</name>
     <relationshipLabel>Connexion au cours</relationshipLabel>
-    <label>Affiliation</label>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>L'étudiant inscrit au cours.</help>
-    <relationshipLabel>Inscriptions aux modules</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Inscriptions aux modules</relationshipLabel>
   </fields>
   <fields>
-    <name>Course_Offering__c</name>
     <help>Le choix du module auquel l'étudiant est inscrit. Le module est offert pour une période spécifique.</help>
-    <relationshipLabel>Connexion au cours</relationshipLabel>
     <label>ID d'offre de cours</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Connexion au cours</relationshipLabel>
   </fields>
   <fields>
-    <name>Credits_Attempted__c</name>
     <label>Crédits tentés</label>
+    <name>Credits_Attempted__c</name>
   </fields>
   <fields>
-    <name>Credits_Earned__c</name>
     <label>Crédits gagnés</label>
+    <name>Credits_Earned__c</name>
   </fields>
   <fields>
-    <name>Grade__c</name>
     <label>Niveau</label>
+    <name>Grade__c</name>
   </fields>
   <fields>
-    <name>Primary__c</name>
     <help>Représente la connexion principale du cours.</help>
     <label>Principal</label>
+    <name>Primary__c</name>
   </fields>
   <fields>
-    <name>Program_Enrollment__c</name>
     <help>Le numéro d'enregistrement d'inscription au programme auquel l'étudiant est inscrit. Associe un étudiant à un programme académique.</help>
-    <relationshipLabel>Inscriptions aux modules</relationshipLabel>
     <label>ID d'inscription au programme</label>
+    <name>Program_Enrollment__c</name>
+    <relationshipLabel>Inscriptions aux modules</relationshipLabel>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Représente le statut de connexion au cours.</help>
     <label>Statut</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Actuel</translation>

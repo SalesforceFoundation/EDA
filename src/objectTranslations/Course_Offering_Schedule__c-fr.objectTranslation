@@ -1,60 +1,60 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Course_Offering__c</name>
     <help>L'offre de cours à laquelle cet enregistrement appartient.</help>
-    <relationshipLabel>Calendriers de l'offre de cours</relationshipLabel>
     <label>Offre de cours</label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel>Calendriers de l'offre de cours</relationshipLabel>
   </fields>
   <fields>
-    <name>End_Time__c</name>
     <help>L'heure à laquelle l’offre de cours se termine.</help>
     <label>Heure de fin</label>
+    <name>End_Time__c</name>
   </fields>
   <fields>
-    <name>Facility__c</name>
     <help>L'établissement associé à cette offre de cours avec l'heure et le jour de la semaine spécifiés.</help>
-    <relationshipLabel>Calendriers de l'offre de cours</relationshipLabel>
     <label>Établissement</label>
+    <name>Facility__c</name>
+    <relationshipLabel>Calendriers de l'offre de cours</relationshipLabel>
   </fields>
   <fields>
-    <name>Friday__c</name>
     <label>Vendredi</label>
+    <name>Friday__c</name>
   </fields>
   <fields>
-    <name>Monday__c</name>
     <label>Lundi</label>
+    <name>Monday__c</name>
   </fields>
   <fields>
-    <name>Saturday__c</name>
     <label>Samedi</label>
+    <name>Saturday__c</name>
   </fields>
   <fields>
-    <name>Start_Time__c</name>
     <help>L'heure à laquelle l’offre de cours commence.</help>
     <label>Heure de début</label>
+    <name>Start_Time__c</name>
   </fields>
   <fields>
-    <name>Sunday__c</name>
     <label>Dimanche</label>
+    <name>Sunday__c</name>
   </fields>
   <fields>
-    <name>Thursday__c</name>
     <label>Jeudi</label>
+    <name>Thursday__c</name>
   </fields>
   <fields>
-    <name>Time_Block__c</name>
     <help>Le bloc de temps auquel cette offre de cours a été retenue.</help>
-    <relationshipLabel>Calendriers de l'offre de cours</relationshipLabel>
     <label>Bloc de temps</label>
+    <name>Time_Block__c</name>
+    <relationshipLabel>Calendriers de l'offre de cours</relationshipLabel>
   </fields>
   <fields>
-    <name>Tuesday__c</name>
     <label>Mardi</label>
+    <name>Tuesday__c</name>
   </fields>
   <fields>
-    <name>Wednesday__c</name>
     <label>Mercredi</label>
+    <name>Wednesday__c</name>
   </fields>
   <layouts>
     <layout>EDA Course Offering Schedule Layout</layout>

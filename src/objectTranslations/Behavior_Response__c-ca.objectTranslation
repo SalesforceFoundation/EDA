@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Behavior_Involvement__c</name>
     <help>El número generat pel sistema associat a aquest esdeveniment. Format: BI-{0000}.</help>
-    <relationshipLabel>Resposta de comportament</relationshipLabel>
     <label>Implicació de comportament</label>
+    <name>Behavior_Involvement__c</name>
+    <relationshipLabel>Resposta de comportament</relationshipLabel>
   </fields>
   <fields>
-    <name>Contact__c</name>
     <help>El destinatari d'aquesta resposta.</help>
     <label>Contacte</label>
+    <name>Contact__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Una descripció de la resposta al comportament.</help>
     <label>Descripció</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>End_Date__c</name>
     <help>Data en què finalitza la resposta.</help>
     <label>Data de finalització</label>
+    <name>End_Date__c</name>
   </fields>
   <fields>
-    <name>Start_Date__c</name>
     <help>Data en què s'inicia la resposta.</help>
     <label>Data d'inici</label>
+    <name>Start_Date__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>L'estat de la resposta adoptada.</help>
     <label>Estat</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Completed</masterLabel>
       <translation>Completada</translation>
@@ -48,9 +48,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Type__c</name>
     <help>El tipus de resposta adoptada.</help>
     <label>Tipus</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Academic Probation</masterLabel>
       <translation>Període de prova acadèmica</translation>

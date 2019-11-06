@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
+    <label>Departamento</label>
     <name>Account__c</name>
     <relationshipLabel>Cursos</relationshipLabel>
-    <label>Departamento</label>
   </fields>
   <fields>
-    <name>Course_ID__c</name>
     <label>Id. de curso</label>
+    <name>Course_ID__c</name>
   </fields>
   <fields>
-    <name>Credit_Hours__c</name>
     <label>Horas de crédito</label>
+    <name>Credit_Hours__c</name>
   </fields>
   <fields>
-    <name>Description__c</name>
     <label>Descripción</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Extended_Description__c</name>
     <label>Descripción ampliada</label>
+    <name>Extended_Description__c</name>
   </fields>
   <layouts>
     <layout>HEDA Course Layout</layout>

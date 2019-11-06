@@ -1,46 +1,46 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Contact__c</name>
     <help>Related Contact is this Contact's ______.</help>
-    <relationshipLabel>Relationships</relationshipLabel>
     <label>Contact</label>
+    <name>Contact__c</name>
+    <relationshipLabel>Relationships</relationshipLabel>
   </fields>
   <fields>
-    <name>Description__c</name>
     <help>Additional information about this Relationship</help>
     <label>Description</label>
+    <name>Description__c</name>
   </fields>
   <fields>
-    <name>Emergency_Contact__c</name>
     <help>Is this an emergency contact.</help>
     <label>Emergency Contact</label>
+    <name>Emergency_Contact__c</name>
   </fields>
   <fields>
-    <name>ReciprocalRelationship__c</name>
     <help>System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship.</help>
-    <relationshipLabel>Relationships</relationshipLabel>
     <label>Reciprocal Relationship</label>
+    <name>ReciprocalRelationship__c</name>
+    <relationshipLabel>Relationships</relationshipLabel>
   </fields>
   <fields>
+    <label>Related Contact</label>
     <name>RelatedContact__c</name>
     <relationshipLabel>Hidden Relationships List</relationshipLabel>
-    <label>Related Contact</label>
   </fields>
   <fields>
-    <name>Relationship_Explanation__c</name>
     <help>Text formula that constructs a sentence explaining the relationship between the two Contacts</help>
     <label>Relationship Explanation</label>
+    <name>Relationship_Explanation__c</name>
   </fields>
   <fields>
-    <name>SYSTEM_SystemCreated__c</name>
     <help>System field that indicates if this Relationship was created automatically as the reciprocal to another Relationships.</help>
     <label>_SYSTEM: SystemCreated</label>
+    <name>SYSTEM_SystemCreated__c</name>
   </fields>
   <fields>
-    <name>Status__c</name>
     <help>Status of the Relationship.</help>
     <label>Status</label>
+    <name>Status__c</name>
     <picklistValues>
       <masterLabel>Current</masterLabel>
       <translation>Current</translation>
@@ -51,9 +51,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Type__c</name>
     <help>Field that describes how the Related Contact is connected to the Contact.</help>
     <label>Type</label>
+    <name>Type__c</name>
     <picklistValues>
       <masterLabel>Friend</masterLabel>
       <translation>Friend</translation>

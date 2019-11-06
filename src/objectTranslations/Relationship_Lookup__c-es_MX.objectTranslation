@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>Active__c</name>
     <help>Indica si esta relación reciproca esta activa</help>
     <label>Activa</label>
+    <name>Active__c</name>
   </fields>
   <fields>
-    <name>Female__c</name>
     <help>El valor usado si el campo de genero del contacto es igual al valor de la etiqueta personalizado de Femenino o si el saludo del contacto indica el genero.</help>
     <label>Femenino</label>
+    <name>Female__c</name>
   </fields>
   <fields>
-    <name>Male__c</name>
     <help>El valor usado si el campo de genero del contacto es igual al valor de la etiqueta personalizado de Masculino o si el saludo del contacto indica el genero.</help>
     <label>Masculino</label>
+    <name>Male__c</name>
   </fields>
   <fields>
-    <name>Neutral__c</name>
     <help>El valor usado si el campo de genero del contacto no es igual al valor de la etiqueta personalizado de Masculino o Femenino, y el saludo del contacto no infiere el genero.</help>
     <label>Neutro</label>
+    <name>Neutral__c</name>
   </fields>
 </CustomObjectTranslation>

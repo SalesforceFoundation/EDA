@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
   <fields>
-    <name>AlternateEmail__c</name>
     <help>El correu electrònic alternatiu és un correu electrònic opcional no inclòs en altres camps de correu electrònic.</help>
     <label>Correu electrònic alternatiu</label>
+    <name>AlternateEmail__c</name>
   </fields>
   <fields>
-    <name>Chosen_Full_Name__c</name>
     <help>El nom complet que prefereix utilitzar el contacte en lloc del nom oficial o legal.</help>
     <label>Nom complet escollit</label>
+    <name>Chosen_Full_Name__c</name>
   </fields>
   <fields>
-    <name>Citizenship__c</name>
     <label>Ciutadania</label>
+    <name>Citizenship__c</name>
     <picklistValues>
       <masterLabel>Afghanistan</masterLabel>
       <translation>Afganistan</translation>
@@ -1131,8 +1131,8 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Country_of_Origin__c</name>
     <label>País d'origen</label>
+    <name>Country_of_Origin__c</name>
     <picklistValues>
       <masterLabel>Afghanistan</masterLabel>
       <translation>Afganistan</translation>
@@ -2251,25 +2251,25 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Current_Address__c</name>
     <help>L'adreça actual que consta als camps de correu del contacte.</help>
-    <relationshipLabel>Contactes (adreça actual)</relationshipLabel>
     <label>Adreça actual</label>
+    <name>Current_Address__c</name>
+    <relationshipLabel>Contactes (adreça actual)</relationshipLabel>
   </fields>
   <fields>
-    <name>Deceased__c</name>
     <help>Quan estigui seleccionada, aquesta opció marca el contacte com a difunt, i els exclou del nomenament de la llar, de correus electrònics i de trucades telefòniques.</help>
     <label>Difunt</label>
+    <name>Deceased__c</name>
   </fields>
   <fields>
-    <name>Do_Not_Contact__c</name>
     <help>Quan estigui seleccionada, aquesta opció exclou el contacte dels correus electrònics i de les trucades telefòniques.</help>
     <label>No contactar</label>
+    <name>Do_Not_Contact__c</name>
   </fields>
   <fields>
-    <name>Dual_Citizenship__c</name>
     <help>Si aquest contacte té una ciutadania múltiple, es pot registrar aquí.</help>
     <label>Ciutadania dual</label>
+    <name>Dual_Citizenship__c</name>
     <picklistValues>
       <masterLabel>Afghanistan</masterLabel>
       <translation>Afganistan</translation>
@@ -3388,8 +3388,8 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Ethnicity__c</name>
     <label>Ètnia</label>
+    <name>Ethnicity__c</name>
     <picklistValues>
       <masterLabel>Hispanic or Latino</masterLabel>
       <translation>Hispà o llatí</translation>
@@ -3400,31 +3400,31 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Exclude_from_Household_Formal_Greeting__c</name>
     <help>Si marques aquesta casella s'exclou aquest contacte de la Salutació formal de la llar.</help>
     <label>Exclou de la salutació formal de la llar</label>
+    <name>Exclude_from_Household_Formal_Greeting__c</name>
   </fields>
   <fields>
-    <name>Exclude_from_Household_Informal_Greeting__c</name>
     <help>Si marques aquesta casella s'exclou aquest contacte de la Salutació informal de la llar.</help>
     <label>Exclou de la salutació informal de la llar</label>
+    <name>Exclude_from_Household_Informal_Greeting__c</name>
   </fields>
   <fields>
-    <name>Exclude_from_Household_Name__c</name>
     <help>Si marques aquesta casella s'exclou aquest contacte del Nom de la llar.</help>
     <label>Exclou del nom de la llar</label>
+    <name>Exclude_from_Household_Name__c</name>
   </fields>
   <fields>
-    <name>FERPA__c</name>
     <label>FERPA</label>
+    <name>FERPA__c</name>
   </fields>
   <fields>
-    <name>Financial_Aid_Applicant__c</name>
     <label>Sol·licitant d'ajuda financera</label>
+    <name>Financial_Aid_Applicant__c</name>
   </fields>
   <fields>
-    <name>Gender__c</name>
     <label>Sexe</label>
+    <name>Gender__c</name>
     <picklistValues>
       <masterLabel>Female</masterLabel>
       <translation>Dona</translation>
@@ -3435,25 +3435,25 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>HIPAA_Detail__c</name>
     <label>Detall de HIPAA</label>
+    <name>HIPAA_Detail__c</name>
   </fields>
   <fields>
-    <name>HIPAA__c</name>
     <label>HIPAA</label>
+    <name>HIPAA__c</name>
   </fields>
   <fields>
-    <name>Military_Background__c</name>
     <label>Antecedents militars</label>
+    <name>Military_Background__c</name>
   </fields>
   <fields>
-    <name>Military_Service__c</name>
     <label>Servei militar</label>
+    <name>Military_Service__c</name>
   </fields>
   <fields>
-    <name>Naming_Exclusions__c</name>
     <help>Determina a quins noms de les famílies no s'inclou aquest contacte com a part.</help>
     <label>Exclusions de nomenaments</label>
+    <name>Naming_Exclusions__c</name>
     <picklistValues>
       <masterLabel>Household__c.Name</masterLabel>
       <translation>Household__c.Name</translation>
@@ -3468,9 +3468,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>PreferredPhone__c</name>
     <help>Quin número de telèfon s'hauria d'utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
     <label>Telèfon preferit</label>
+    <name>PreferredPhone__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Llar</translation>
@@ -3489,9 +3489,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Preferred_Email__c</name>
     <help>Quin correu electrònic s'hauria d'utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
     <label>Correu preferit</label>
+    <name>Preferred_Email__c</name>
     <picklistValues>
       <masterLabel>University</masterLabel>
       <translation>Universitat</translation>
@@ -3506,9 +3506,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Primary_Address_Type__c</name>
     <help>Quin tipus d'adreça és l'adreça de correu?</help>
     <label>Tipus d'adreça primari</label>
+    <name>Primary_Address_Type__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Llar</translation>
@@ -3523,24 +3523,24 @@
     </picklistValues>
   </fields>
   <fields>
+    <label>Llar primària</label>
     <name>Primary_Household__c</name>
     <relationshipLabel>Contactes (llar primària)</relationshipLabel>
-    <label>Llar primària</label>
   </fields>
   <fields>
-    <name>Primary_Language__c</name>
     <help>L’idioma que el contacte prefereix utilitzar.</help>
-    <relationshipLabel>Contactes</relationshipLabel>
     <label>Idioma principal</label>
+    <name>Primary_Language__c</name>
+    <relationshipLabel>Contactes</relationshipLabel>
   </fields>
   <fields>
+    <label>Organització empresarial primària</label>
     <name>Primary_Organization__c</name>
     <relationshipLabel>Contactes (Organització primària)</relationshipLabel>
-    <label>Organització empresarial primària</label>
   </fields>
   <fields>
-    <name>Race__c</name>
     <label>Raça</label>
+    <name>Race__c</name>
     <picklistValues>
       <masterLabel>American Indian or Alaska Native</masterLabel>
       <translation>Indi americà o nadiu d'Alaska</translation>
@@ -3567,8 +3567,8 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Religion__c</name>
     <label>Religió</label>
+    <name>Religion__c</name>
     <picklistValues>
       <masterLabel>Atheist</masterLabel>
       <translation>Ateu</translation>
@@ -3599,9 +3599,9 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Secondary_Address_Type__c</name>
     <help>Quin tipus d'adreça és l'altra adreça?</help>
     <label>Tipus d'adreça secundària</label>
+    <name>Secondary_Address_Type__c</name>
     <picklistValues>
       <masterLabel>Home</masterLabel>
       <translation>Llar</translation>
@@ -3616,33 +3616,33 @@
     </picklistValues>
   </fields>
   <fields>
-    <name>Social_Security_Number__c</name>
     <label>Número de la Seguretat Social</label>
+    <name>Social_Security_Number__c</name>
   </fields>
   <fields>
-    <name>UniversityEmail__c</name>
     <help>Adreça de correu electrònic de la Universitat Oficial.</help>
     <label>Correu electrònic universitari</label>
+    <name>UniversityEmail__c</name>
   </fields>
   <fields>
-    <name>WorkEmail__c</name>
     <help>Vegeu el camp de correu electrònic preferit.</help>
     <label>Correu electrònic de la feina</label>
+    <name>WorkEmail__c</name>
   </fields>
   <fields>
-    <name>WorkPhone__c</name>
     <help>Vegeu el camp "Telèfon preferit".</help>
     <label>Telèfon de la feina</label>
+    <name>WorkPhone__c</name>
   </fields>
   <fields>
-    <name>Work_Address__c</name>
     <help>Fórmula: si el tipus d'adreça principal és Feina, l'adreça de correu postal. Si el tipus d'adreça secundària és Feina, l'altra adreça.</help>
     <label>Direcció de la feina</label>
+    <name>Work_Address__c</name>
   </fields>
   <fields>
-    <name>is_Address_Override__c</name>
     <help>Si està marcada, l'adreça actual del contacte substitueix qualsevol adreça nova o estacional. (S’utilitza només per a contactes domèstics.)</help>
     <label>No actualitzis automàticament</label>
+    <name>is_Address_Override__c</name>
   </fields>
   <layouts>
     <layout>HEDA Contact Layout</layout>
