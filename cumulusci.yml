@@ -286,9 +286,11 @@ plans:
                     case_behavior_record_types:
                         name: EDA - Case Behavior Record Types
                 options:
-                    unmanaged: false
+                    unmanaged: False
             4:
                 task: deploy_einstein_templates
+                ui_options:
+                    is_required: False
                 checks:
                     - when: "tasks.check_einstein_licenses()"
                       action: skip
