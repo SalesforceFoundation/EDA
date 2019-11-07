@@ -15,17 +15,6 @@ project:
         repo_dir: ApexDocumentation
 
 tasks:
-    check_einstein_licenses:
-        group: 'EDA: Einstein Templates'
-        description: Queries the target org for the existence of required permsets
-        class_path: tasks.check_einstein.CheckPermSetLicenses
-        options:
-            permission_sets:
-                - EinsteinAnalyticsUser
-                - EinsteinAnalyticsAdmin
-                - EinsteinAnalyticsPlusAdmin
-                - EinsteinAnalyticsPlusUser
-
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -98,6 +87,17 @@ tasks:
         options:
             path: scripts/setup.cls
             apex: qaSetup();
+
+    has_einstein_licenses:
+        group: 'EDA: Einstein Templates'
+        description: Queries the target org for the existence of required permsets and returns true if found.
+        class_path: tasks.check_einstein.CheckPermSetLicenses
+        options:
+            permission_sets:
+                - EinsteinAnalyticsUser
+                - EinsteinAnalyticsAdmin
+                - EinsteinAnalyticsPlusAdmin
+                - EinsteinAnalyticsPlusUser
 
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev
@@ -292,7 +292,7 @@ plans:
                 ui_options:
                     is_required: False
                 checks:
-                    - when: "tasks.check_einstein_licenses()"
+                    - when: "not tasks.has_einstein_licenses()"
                       action: skip
                       message: Skipped because Einstein Analytics permission sets are not available.
 
@@ -306,6 +306,6 @@ plans:
             1:
                 task: deploy_einstein_templates
         checks:
-            - when: "tasks.check_einstein_licenses()"
+            - when: "not tasks.has_einstein_licenses()"
               action: error
               message: Einstein Analytics permission sets are not available.
