@@ -1,6 +1,7 @@
 {
   "orgName": "EDA - Beta Test Org",
   "edition": "Enterprise",
+  "features": ["DevelopmentWave"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
