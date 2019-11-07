@@ -1,6 +1,7 @@
 {
   "orgName": "EDA - Dev Workspace",
   "edition": "Developer",
+  "features": ["DevelopmentWave"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
