@@ -12,7 +12,6 @@ class CheckPermSetLicenses(BaseSalesforceApiTask):
 
     def _run_task(self):
         query = self._get_query()
-        print(query)
         result = self.tooling.query(query)
         return result["size"] > 0
 
