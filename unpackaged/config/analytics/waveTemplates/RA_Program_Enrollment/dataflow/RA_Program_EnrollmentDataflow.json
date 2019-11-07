@@ -1,0 +1,1876 @@
+{
+  "notificationLevel": "",
+  "workflowDefinition": {
+    "augment_User_10_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Language__c_0",
+        "left_key": ["hed__Primary_Language__c.OwnerId"],
+        "right_select": ["Username"],
+        "right": "sfdcDigest_User_0",
+        "relationship": "hed__Primary_Language__c.OwnerId"
+      }
+    },
+    "augment_RecordType_6_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_12_0",
+        "left_key": ["Primary_Sports_Organization__c.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Description",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "Primary_Sports_Organization__c.RecordTypeId"
+      }
+    },
+    "sfdcDigest_RecordType": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Id"},
+          {"name": "DeveloperName"},
+          {"name": "Name"}
+        ],
+        "object": "RecordType"
+      }
+    },
+    "sfdcDigest_hed__Address__c": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Name"},
+          {"name": "hed__Address_Type__c"},
+          {"name": "hed__Default_Address__c"},
+          {"name": "hed__Formula_MailingAddress__c"},
+          {"name": "hed__MailingCity__c"},
+          {"name": "hed__MailingCountry__c"},
+          {"name": "hed__MailingState__c"},
+          {"name": "hed__MailingStreet__c"},
+          {"name": "hed__Formula_MailingStreetAddress__c"},
+          {"name": "hed__MailingStreet2__c"},
+          {"name": "hed__MailingPostalCode__c"},
+          {"name": "Id"},
+          {"name": "hed__Seasonal_End_Day__c"},
+          {"name": "hed__Seasonal_End_Month__c"},
+          {"name": "hed__Seasonal_End_Year__c"},
+          {"name": "hed__Seasonal_Start_Day__c"},
+          {"name": "hed__Seasonal_Start_Month__c"},
+          {"name": "hed__Seasonal_Start_Year__c"},
+          {"name": "hed__Parent_Contact__c"}
+        ],
+        "object": "hed__Address__c"
+      }
+    },
+    "augment_Account_12_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_11_0",
+        "left_key": ["Primary_Sports_Organization__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Name",
+          "Id"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Sports_Organization__c.ParentId"
+      }
+    },
+    "augment_hed__Affiliation__c": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_12",
+        "left_key": ["hed__Affiliation__c"],
+        "right_select": [
+          "hed__Affiliation_Type__c",
+          "Name",
+          "CreatedDate",
+          "hed__Description__c",
+          "hed__EndDate__c",
+          "hed__Primary__c",
+          "Id",
+          "hed__Role__c",
+          "hed__StartDate__c",
+          "hed__Status__c",
+          "hed__Account__c"
+        ],
+        "right": "sfdcDigest_hed__Affiliation__c",
+        "relationship": "hed__Affiliation__c"
+      }
+    },
+    "sfdcDigest_User_0": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Id"},
+          {"name": "Name"},
+          {"name": "FirstName"},
+          {"name": "LastName"},
+          {"name": "Phone"},
+          {"name": "MobilePhone"},
+          {"name": "Email"},
+          {"name": "Department"},
+          {"name": "CompanyName"},
+          {"name": "Username"},
+          {"name": "Fax"}
+        ],
+        "object": "User"
+      }
+    },
+    "augment_Account_10_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_9_0",
+        "left_key": ["hed__Primary_Household__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "hed__Primary_Household__c.ParentId"
+      }
+    },
+    "augment_Contact_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_6_0",
+        "left_key": ["ReportsToId"],
+        "right_select": [
+          "Id",
+          "FirstName",
+          "LastName",
+          "Name"
+        ],
+        "right": "sfdcDigest_Contact_0",
+        "relationship": "ReportsToId"
+      }
+    },
+    "augment_User_8_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_7_0",
+        "left_key": ["Primary_Educational_Institution__c.OwnerId"],
+        "right_select": [
+          "CompanyName",
+          "FirstName",
+          "Name",
+          "LastName",
+          "Username",
+          "Phone",
+          "Department",
+          "Email"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "Primary_Educational_Institution__c.OwnerId"
+      }
+    },
+    "augment_hed__Language__c_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_5_0",
+        "left_key": ["hed__Primary_Language__c"],
+        "right_select": [
+          "CreatedDate",
+          "IsDeleted",
+          "Name",
+          "LastModifiedDate",
+          "LastReferencedDate",
+          "LastViewedDate",
+          "Id",
+          "OwnerId"
+        ],
+        "right": "sfdcDigest_hed__Language__c_0",
+        "relationship": "hed__Primary_Language__c"
+      }
+    },
+    "augment_User_6_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_3_0",
+        "left_key": ["hed__Primary_Organization__c.OwnerId"],
+        "right_select": [
+          "Name",
+          "FirstName",
+          "LastName",
+          "MobilePhone",
+          "Phone",
+          "Department",
+          "CompanyName",
+          "Email"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "hed__Primary_Organization__c.OwnerId"
+      }
+    },
+    "augment_Account": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Program_Enrollment__c_Contact",
+        "left_key": ["hed__Contact__c.Primary_Academic_Program__c"],
+        "right_select": [
+          "Name",
+          "Id",
+          "ParentId",
+          "Description",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Academic_Program__c"
+      }
+    },
+    "augment_Account_11": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_10",
+        "left_key": ["hed__Contact__c.Primary_Sports_Organization__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Sports_Organization__c.ParentId"
+      }
+    },
+    "augment_Account_5_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_4_0",
+        "left_key": ["Primary_Department__c"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Type",
+          "Name",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "ShippingCity",
+          "ShippingCountry",
+          "ShippingGeocodeAccuracy",
+          "ShippingLatitude",
+          "ShippingLongitude",
+          "ShippingState",
+          "ShippingStreet",
+          "ShippingPostalCode",
+          "OwnerId",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Department__c"
+      }
+    },
+    "augment_Account_12": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Contact",
+        "left_key": ["hed__Contact__c.AccountId"],
+        "right_select": [
+          "Id",
+          "Name",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.AccountId"
+      }
+    },
+    "augment_Account_13": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Affiliation__c",
+        "left_key": ["hed__Affiliation__c.hed__Account__c"],
+        "right_select": [
+          "Description",
+          "Name",
+          "AccountNumber",
+          "ParentId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Affiliation__c.hed__Account__c"
+      }
+    },
+    "augment_Account_3_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_5_0",
+        "left_key": ["hed__Primary_Organization__c"],
+        "right_select": [
+          "Id",
+          "Description",
+          "Name",
+          "OwnerId",
+          "RecordTypeId",
+          "ParentId",
+          "ShippingCity",
+          "ShippingCountry",
+          "ShippingGeocodeAccuracy",
+          "ShippingLatitude",
+          "ShippingLongitude",
+          "ShippingState",
+          "ShippingStreet",
+          "ShippingPostalCode",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "Type"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "hed__Primary_Organization__c"
+      }
+    },
+    "augment_Account_14": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_13",
+        "left_key": ["hed__Affiliation__c.hed__Account__c.ParentId"],
+        "right_select": [
+          "Name",
+          "Description",
+          "Id"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Affiliation__c.hed__Account__c.ParentId"
+      }
+    },
+    "augment_Account_15": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_14",
+        "left_key": ["hed__Account__c"],
+        "right_select": [
+          "Id",
+          "Description",
+          "Name",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Account__c"
+      }
+    },
+    "augment_Account_1_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_4_0",
+        "left_key": ["Primary_Academic_Program__c"],
+        "right_select": [
+          "ParentId",
+          "RecordTypeId",
+          "OwnerId",
+          "Name",
+          "Description",
+          "Type",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "Id",
+          "ShippingCity",
+          "ShippingCountry",
+          "ShippingGeocodeAccuracy",
+          "ShippingLatitude",
+          "ShippingLongitude",
+          "ShippingState",
+          "ShippingStreet",
+          "ShippingPostalCode"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Academic_Program__c"
+      }
+    },
+    "augment_Account_16": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_15",
+        "left_key": ["hed__Account__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Name",
+          "AccountNumber"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Account__c.ParentId"
+      }
+    },
+    "augment_Account_17": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Program_Plan__c",
+        "left_key": ["hed__Program_Plan__c.hed__Account__c"],
+        "right_select": [
+          "Name",
+          "Id",
+          "Description",
+          "ParentId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Program_Plan__c.hed__Account__c"
+      }
+    },
+    "sfdcDigest_Contact_0": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "AccountId"},
+          {"name": "hed__Current_Address__c"},
+          {"name": "OwnerId"},
+          {"name": "CreatedById"},
+          {"name": "LastModifiedById"},
+          {"name": "Primary_Academic_Program__c"},
+          {"name": "hed__Primary_Organization__c"},
+          {"name": "Primary_Department__c"},
+          {"name": "Primary_Educational_Institution__c"},
+          {"name": "hed__Primary_Household__c"},
+          {"name": "hed__Primary_Language__c"},
+          {"name": "Primary_Sports_Organization__c"},
+          {"name": "ReportsToId"},
+          {"name": "hed__AlternateEmail__c"},
+          {"name": "AssistantName"},
+          {"name": "AssistantPhone"},
+          {"name": "Birthdate"},
+          {"name": "Fax"},
+          {"name": "Phone"},
+          {"name": "hed__Chosen_Full_Name__c"},
+          {"name": "hed__Citizenship__c"},
+          {"name": "Description"},
+          {"name": "Id"},
+          {"name": "hed__Country_of_Origin__c"},
+          {"name": "CreatedDate"},
+          {"name": "Jigsaw"},
+          {"name": "hed__Deceased__c"},
+          {"name": "IsDeleted"},
+          {"name": "Department"},
+          {"name": "hed__is_Address_Override__c"},
+          {"name": "hed__Do_Not_Contact__c"},
+          {"name": "hed__Dual_Citizenship__c"},
+          {"name": "Email"},
+          {"name": "EmailBouncedDate"},
+          {"name": "EmailBouncedReason"},
+          {"name": "hed__Ethnicity__c"},
+          {"name": "hed__Exclude_from_Household_Formal_Greeting__c"},
+          {"name": "hed__Exclude_from_Household_Informal_Greeting__c"},
+          {"name": "hed__Exclude_from_Household_Name__c"},
+          {"name": "hed__FERPA__c"},
+          {"name": "hed__Financial_Aid_Applicant__c"},
+          {"name": "FirstName"},
+          {"name": "Name"},
+          {"name": "hed__Gender__c"},
+          {"name": "hed__HIPAA__c"},
+          {"name": "hed__HIPAA_Detail__c"},
+          {"name": "HomePhone"},
+          {"name": "IsEmailBounced"},
+          {"name": "JigsawContactId"},
+          {"name": "LastActivityDate"},
+          {"name": "LastModifiedDate"},
+          {"name": "LastName"},
+          {"name": "LastReferencedDate"},
+          {"name": "LastCURequestDate"},
+          {"name": "LastCUUpdateDate"},
+          {"name": "LastViewedDate"},
+          {"name": "LeadSource"},
+          {"name": "MailingCity"},
+          {"name": "MailingGeocodeAccuracy"},
+          {"name": "MailingCountry"},
+          {"name": "MailingLatitude"},
+          {"name": "MailingLongitude"},
+          {"name": "MailingState"},
+          {"name": "MailingStreet"},
+          {"name": "MailingPostalCode"},
+          {"name": "hed__Military_Background__c"},
+          {"name": "hed__Military_Service__c"},
+          {"name": "MobilePhone"},
+          {"name": "hed__Naming_Exclusions__c"},
+          {"name": "OtherCity"},
+          {"name": "OtherCountry"},
+          {"name": "OtherGeocodeAccuracy"},
+          {"name": "OtherLatitude"},
+          {"name": "OtherLongitude"},
+          {"name": "OtherPhone"},
+          {"name": "OtherState"},
+          {"name": "OtherStreet"},
+          {"name": "OtherPostalCode"},
+          {"name": "hed__Preferred_Email__c"},
+          {"name": "hed__PreferredPhone__c"},
+          {"name": "hed__Primary_Address_Type__c"},
+          {"name": "hed__Race__c"},
+          {"name": "hed__Religion__c"},
+          {"name": "Salutation"},
+          {"name": "hed__Secondary_Address_Type__c"},
+          {"name": "Title"},
+          {"name": "hed__UniversityEmail__c"},
+          {"name": "hed__Work_Address__c"},
+          {"name": "hed__WorkEmail__c"},
+          {"name": "hed__WorkPhone__c"}
+        ],
+        "object": "Contact"
+      }
+    },
+    "augment_Account_18": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_17",
+        "left_key": ["hed__Program_Plan__c.hed__Account__c.ParentId"],
+        "right_select": [
+          "Id",
+          "Description",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Program_Plan__c.hed__Account__c.ParentId"
+      }
+    },
+    "augment_User_3_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_2_0",
+        "left_key": ["CreatedById"],
+        "right_select": [
+          "Name",
+          "FirstName",
+          "LastName",
+          "Username",
+          "Email",
+          "Fax",
+          "CompanyName",
+          "Department"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "CreatedById"
+      }
+    },
+    "augment_User_1_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Address__c_0",
+        "left_key": ["hed__Current_Address__c.OwnerId"],
+        "right_select": [
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "hed__Current_Address__c.OwnerId"
+      }
+    },
+    "augment_hed__Program_Enrollment__c_Contact": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "sfdcDigest_hed__Program_Enrollment__c",
+        "left_key": ["hed__Contact__c"],
+        "right_select": [
+          "Primary_Academic_Program__c",
+          "hed__Primary_Organization__c",
+          "Primary_Department__c",
+          "Primary_Educational_Institution__c",
+          "hed__Primary_Household__c",
+          "OwnerId",
+          "Primary_Sports_Organization__c",
+          "hed__Primary_Language__c",
+          "hed__Current_Address__c",
+          "AccountId",
+          "hed__AlternateEmail__c",
+          "AssistantName",
+          "AssistantPhone",
+          "Birthdate",
+          "Fax",
+          "Phone",
+          "hed__Chosen_Full_Name__c",
+          "hed__Citizenship__c",
+          "Description",
+          "Id",
+          "hed__Country_of_Origin__c",
+          "CreatedDate",
+          "Jigsaw",
+          "hed__Deceased__c",
+          "IsDeleted",
+          "Department",
+          "hed__is_Address_Override__c",
+          "hed__Do_Not_Contact__c",
+          "hed__Dual_Citizenship__c",
+          "Email",
+          "EmailBouncedDate",
+          "EmailBouncedReason",
+          "hed__Ethnicity__c",
+          "hed__Exclude_from_Household_Formal_Greeting__c",
+          "hed__Exclude_from_Household_Informal_Greeting__c",
+          "hed__Exclude_from_Household_Name__c",
+          "hed__FERPA__c",
+          "hed__Financial_Aid_Applicant__c",
+          "FirstName",
+          "Name",
+          "hed__Gender__c",
+          "hed__HIPAA__c",
+          "hed__HIPAA_Detail__c",
+          "HomePhone",
+          "IsEmailBounced",
+          "JigsawContactId",
+          "LastActivityDate",
+          "LastModifiedDate",
+          "LastName",
+          "LastReferencedDate",
+          "LastCURequestDate",
+          "LastCUUpdateDate",
+          "LastViewedDate",
+          "LeadSource",
+          "MailingCity",
+          "MailingCountry",
+          "MailingState",
+          "MailingStreet",
+          "MailingPostalCode",
+          "hed__Military_Background__c",
+          "hed__Military_Service__c",
+          "MobilePhone",
+          "hed__Naming_Exclusions__c",
+          "OtherCity",
+          "OtherCountry",
+          "OtherGeocodeAccuracy",
+          "OtherPhone",
+          "OtherState",
+          "OtherStreet",
+          "OtherPostalCode",
+          "PhotoUrl",
+          "hed__Preferred_Email__c",
+          "hed__PreferredPhone__c",
+          "hed__Primary_Address_Type__c",
+          "hed__Race__c",
+          "hed__Religion__c",
+          "Salutation",
+          "hed__Secondary_Address_Type__c",
+          "SystemModstamp",
+          "Title",
+          "hed__UniversityEmail__c",
+          "hed__Work_Address__c",
+          "hed__WorkEmail__c",
+          "hed__WorkPhone__c"
+        ],
+        "right": "sfdcDigest_Contact",
+        "relationship": "hed__Contact__c"
+      }
+    },
+    "augment_Account_9_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_8_0",
+        "left_key": ["hed__Primary_Household__c"],
+        "right_select": [
+          "OwnerId",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "hed__Primary_Household__c"
+      }
+    },
+    "augment_Account_7_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_3_0",
+        "left_key": ["Primary_Educational_Institution__c"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name",
+          "Type",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "ShippingCity",
+          "ShippingCountry",
+          "ShippingGeocodeAccuracy",
+          "ShippingLatitude",
+          "ShippingLongitude",
+          "ShippingState",
+          "ShippingStreet",
+          "ShippingPostalCode",
+          "OwnerId",
+          "RecordTypeId",
+          "ParentId"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Educational_Institution__c"
+      }
+    },
+    "augment_Contact_Account_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "sfdcDigest_Contact_0",
+        "left_key": ["AccountId"],
+        "right_select": [
+          "Id",
+          "Name",
+          "ParentId",
+          "OwnerId",
+          "Type",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "AccountId"
+      }
+    },
+    "augment_RecordType_2_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_6_0",
+        "left_key": ["hed__Primary_Organization__c.RecordTypeId"],
+        "right_select": [
+          "Name",
+          "Id",
+          "DeveloperName"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "hed__Primary_Organization__c.RecordTypeId"
+      }
+    },
+    "augment_RecordType_4_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_8_0",
+        "left_key": ["Primary_Educational_Institution__c.RecordTypeId"],
+        "right_select": [
+          "DeveloperName",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "Primary_Educational_Institution__c.RecordTypeId"
+      }
+    },
+    "augment_User_11_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_11_0",
+        "left_key": ["Primary_Sports_Organization__c.OwnerId"],
+        "right_select": [
+          "CompanyName",
+          "FirstName",
+          "Name",
+          "LastName",
+          "Username",
+          "Department",
+          "Email",
+          "Phone"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "Primary_Sports_Organization__c.OwnerId"
+      }
+    },
+    "sfdcDigest_User": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "FirstName"},
+          {"name": "Name"},
+          {"name": "Username"},
+          {"name": "LastName"},
+          {"name": "CompanyName"},
+          {"name": "Department"},
+          {"name": "Email"},
+          {"name": "Phone"},
+          {"name": "Id"}
+        ],
+        "object": "User"
+      }
+    },
+    "augment_RecordType_5_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_10_0",
+        "left_key": ["hed__Primary_Household__c.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Description"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "hed__Primary_Household__c.RecordTypeId"
+      }
+    },
+    "sfdcDigest_Account": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Name"},
+          {"name": "Id"},
+          {"name": "ParentId"},
+          {"name": "Description"},
+          {"name": "RecordTypeId"},
+          {"name": "BillingCity"},
+          {"name": "BillingCountry"},
+          {"name": "BillingGeocodeAccuracy"},
+          {"name": "BillingLatitude"},
+          {"name": "BillingLongitude"},
+          {"name": "BillingState"},
+          {"name": "BillingStreet"},
+          {"name": "BillingPostalCode"},
+          {"name": "AccountNumber"}
+        ],
+        "object": "Account"
+      }
+    },
+    "augment_User": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_4",
+        "left_key": ["hed__Contact__c.OwnerId"],
+        "right_select": [
+          "FirstName",
+          "Name",
+          "Username",
+          "LastName",
+          "CompanyName",
+          "Department",
+          "Email",
+          "Phone"
+        ],
+        "right": "sfdcDigest_User",
+        "relationship": "hed__Contact__c.OwnerId"
+      }
+    },
+    "augment_hed__Program_Plan__c": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_6",
+        "left_key": ["hed__Program_Plan__c"],
+        "right_select": [
+          "CreatedDate",
+          "hed__Description__c",
+          "hed__End_Date__c",
+          "hed__Is_Primary__c",
+          "LastModifiedDate",
+          "LastReferencedDate",
+          "Name",
+          "Id",
+          "hed__Start_Date__c",
+          "hed__Status__c",
+          "hed__Total_Required_Credits__c",
+          "hed__Version__c",
+          "hed__Account__c"
+        ],
+        "right": "sfdcDigest_hed__Program_Plan__c",
+        "relationship": "hed__Program_Plan__c"
+      }
+    },
+    "sfdcDigest_hed__Program_Plan__c": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "CreatedDate"},
+          {"name": "hed__Description__c"},
+          {"name": "hed__End_Date__c"},
+          {"name": "hed__Is_Primary__c"},
+          {"name": "LastModifiedDate"},
+          {"name": "LastReferencedDate"},
+          {"name": "Name"},
+          {"name": "Id"},
+          {"name": "hed__Start_Date__c"},
+          {"name": "hed__Status__c"},
+          {"name": "hed__Total_Required_Credits__c"},
+          {"name": "hed__Version__c"},
+          {"name": "hed__Account__c"}
+        ],
+        "object": "hed__Program_Plan__c"
+      }
+    },
+    "sfdcDigest_hed__Language__c_0": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "CreatedDate"},
+          {"name": "IsDeleted"},
+          {"name": "Name"},
+          {"name": "LastModifiedDate"},
+          {"name": "LastReferencedDate"},
+          {"name": "LastViewedDate"},
+          {"name": "Id"},
+          {"name": "OwnerId"}
+        ],
+        "object": "hed__Language__c"
+      }
+    },
+    "sfdcDigest_hed__Language__c": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Name"},
+          {"name": "CreatedDate"},
+          {"name": "LastModifiedDate"},
+          {"name": "LastReferencedDate"},
+          {"name": "LastViewedDate"},
+          {"name": "Id"}
+        ],
+        "object": "hed__Language__c"
+      }
+    },
+    "register_RA Program Enrollment": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "name": "RA Program Enrollment",
+        "alias": "${App.Datasets.RA_Program_Enrollment_tp.FullyQualifiedName}",
+        "source": "augment_User_1"
+      }
+    },
+    "augment_hed__Language__c": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_5",
+        "left_key": ["hed__Contact__c.hed__Primary_Language__c"],
+        "right_select": [
+          "Name",
+          "CreatedDate",
+          "LastModifiedDate",
+          "LastReferencedDate",
+          "LastViewedDate",
+          "Id"
+        ],
+        "right": "sfdcDigest_hed__Language__c",
+        "relationship": "hed__Contact__c.hed__Primary_Language__c"
+      }
+    },
+    "augment_hed__Address__c_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_0",
+        "left_key": ["hed__Current_Address__c"],
+        "right_select": [
+          "OwnerId",
+          "hed__Address_Type__c",
+          "Name",
+          "CreatedDate",
+          "hed__Geolocation__Latitude__s",
+          "hed__Geolocation__Longitude__s",
+          "hed__Latest_End_Date__c",
+          "hed__Latest_Start_Date__c",
+          "hed__Formula_MailingAddress__c",
+          "hed__MailingCity__c",
+          "hed__MailingCountry__c",
+          "hed__MailingState__c",
+          "hed__MailingStreet__c",
+          "hed__Formula_MailingStreetAddress__c",
+          "hed__MailingStreet2__c",
+          "hed__MailingPostalCode__c",
+          "Id"
+        ],
+        "right": "sfdcDigest_hed__Address__c_0",
+        "relationship": "hed__Current_Address__c"
+      }
+    },
+    "register_RA Contact_0": {
+      "action": "sfdcRegister",
+      "parameters": {
+        "name": "RA Contact",
+        "alias": "${App.Datasets.RA_Contact_tp.FullyQualifiedName}",
+        "source": "augment_Contact_0"
+      }
+    },
+    "sfdcDigest_Contact": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Primary_Academic_Program__c"},
+          {"name": "hed__Primary_Organization__c"},
+          {"name": "Primary_Department__c"},
+          {"name": "Primary_Educational_Institution__c"},
+          {"name": "hed__Primary_Household__c"},
+          {"name": "OwnerId"},
+          {"name": "Primary_Sports_Organization__c"},
+          {"name": "hed__Primary_Language__c"},
+          {"name": "hed__Current_Address__c"},
+          {"name": "AccountId"},
+          {"name": "hed__AlternateEmail__c"},
+          {"name": "AssistantName"},
+          {"name": "AssistantPhone"},
+          {"name": "Birthdate"},
+          {"name": "Fax"},
+          {"name": "Phone"},
+          {"name": "hed__Chosen_Full_Name__c"},
+          {"name": "hed__Citizenship__c"},
+          {"name": "Description"},
+          {"name": "Id"},
+          {"name": "hed__Country_of_Origin__c"},
+          {"name": "CreatedDate"},
+          {"name": "Jigsaw"},
+          {"name": "hed__Deceased__c"},
+          {"name": "IsDeleted"},
+          {"name": "Department"},
+          {"name": "hed__is_Address_Override__c"},
+          {"name": "hed__Do_Not_Contact__c"},
+          {"name": "hed__Dual_Citizenship__c"},
+          {"name": "Email"},
+          {"name": "EmailBouncedDate"},
+          {"name": "EmailBouncedReason"},
+          {"name": "hed__Ethnicity__c"},
+          {"name": "hed__Exclude_from_Household_Formal_Greeting__c"},
+          {"name": "hed__Exclude_from_Household_Informal_Greeting__c"},
+          {"name": "hed__Exclude_from_Household_Name__c"},
+          {"name": "hed__FERPA__c"},
+          {"name": "hed__Financial_Aid_Applicant__c"},
+          {"name": "FirstName"},
+          {"name": "Name"},
+          {"name": "hed__Gender__c"},
+          {"name": "hed__HIPAA__c"},
+          {"name": "hed__HIPAA_Detail__c"},
+          {"name": "HomePhone"},
+          {"name": "IsEmailBounced"},
+          {"name": "JigsawContactId"},
+          {"name": "LastActivityDate"},
+          {"name": "LastModifiedDate"},
+          {"name": "LastName"},
+          {"name": "LastReferencedDate"},
+          {"name": "LastCURequestDate"},
+          {"name": "LastCUUpdateDate"},
+          {"name": "LastViewedDate"},
+          {"name": "LeadSource"},
+          {"name": "MailingCity"},
+          {"name": "MailingCountry"},
+          {"name": "MailingState"},
+          {"name": "MailingStreet"},
+          {"name": "MailingPostalCode"},
+          {"name": "hed__Military_Background__c"},
+          {"name": "hed__Military_Service__c"},
+          {"name": "MobilePhone"},
+          {"name": "hed__Naming_Exclusions__c"},
+          {"name": "OtherCity"},
+          {"name": "OtherCountry"},
+          {"name": "OtherGeocodeAccuracy"},
+          {"name": "OtherPhone"},
+          {"name": "OtherState"},
+          {"name": "OtherStreet"},
+          {"name": "OtherPostalCode"},
+          {"name": "PhotoUrl"},
+          {"name": "hed__Preferred_Email__c"},
+          {"name": "hed__PreferredPhone__c"},
+          {"name": "hed__Primary_Address_Type__c"},
+          {"name": "hed__Race__c"},
+          {"name": "hed__Religion__c"},
+          {"name": "Salutation"},
+          {"name": "hed__Secondary_Address_Type__c"},
+          {"name": "SystemModstamp"},
+          {"name": "Title"},
+          {"name": "hed__UniversityEmail__c"},
+          {"name": "hed__Work_Address__c"},
+          {"name": "hed__WorkEmail__c"},
+          {"name": "hed__WorkPhone__c"}
+        ],
+        "object": "Contact"
+      }
+    },
+    "sfdcDigest_hed__Address__c_0": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "OwnerId"},
+          {"name": "hed__Address_Type__c"},
+          {"name": "Name"},
+          {"name": "CreatedDate"},
+          {"name": "hed__Geolocation__Latitude__s"},
+          {"name": "hed__Geolocation__Longitude__s"},
+          {"name": "hed__Latest_End_Date__c"},
+          {"name": "hed__Latest_Start_Date__c"},
+          {"name": "hed__Formula_MailingAddress__c"},
+          {"name": "hed__MailingCity__c"},
+          {"name": "hed__MailingCountry__c"},
+          {"name": "hed__MailingState__c"},
+          {"name": "hed__MailingStreet__c"},
+          {"name": "hed__Formula_MailingStreetAddress__c"},
+          {"name": "hed__MailingStreet2__c"},
+          {"name": "hed__MailingPostalCode__c"},
+          {"name": "Id"}
+        ],
+        "object": "hed__Address__c"
+      }
+    },
+    "augment_User_9_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_9_0",
+        "left_key": ["hed__Primary_Household__c.OwnerId"],
+        "right_select": [
+          "CompanyName",
+          "FirstName",
+          "Name",
+          "LastName",
+          "Username",
+          "Email",
+          "Phone",
+          "MobilePhone"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "hed__Primary_Household__c.OwnerId"
+      }
+    },
+    "augment_Account_11_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_10_0",
+        "left_key": ["Primary_Sports_Organization__c"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name",
+          "Type",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "ShippingCity",
+          "ShippingCountry",
+          "ShippingGeocodeAccuracy",
+          "ShippingLatitude",
+          "ShippingLongitude",
+          "ShippingState",
+          "ShippingStreet",
+          "ShippingPostalCode",
+          "OwnerId",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Sports_Organization__c"
+      }
+    },
+    "augment_hed__Address__c": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Language__c",
+        "left_key": ["hed__Contact__c.hed__Current_Address__c"],
+        "right_select": [
+          "Name",
+          "hed__Address_Type__c",
+          "hed__Default_Address__c",
+          "hed__Formula_MailingAddress__c",
+          "hed__MailingCity__c",
+          "hed__MailingCountry__c",
+          "hed__MailingState__c",
+          "hed__MailingStreet__c",
+          "hed__Formula_MailingStreetAddress__c",
+          "hed__MailingStreet2__c",
+          "hed__MailingPostalCode__c",
+          "Id",
+          "hed__Seasonal_End_Day__c",
+          "hed__Seasonal_End_Month__c",
+          "hed__Seasonal_End_Year__c",
+          "hed__Seasonal_Start_Day__c",
+          "hed__Seasonal_Start_Month__c",
+          "hed__Seasonal_Start_Year__c",
+          "hed__Parent_Contact__c"
+        ],
+        "right": "sfdcDigest_hed__Address__c",
+        "relationship": "hed__Contact__c.hed__Current_Address__c"
+      }
+    },
+    "augment_User_7_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_5_0",
+        "left_key": ["Primary_Department__c.OwnerId"],
+        "right_select": [
+          "Username",
+          "Name",
+          "FirstName",
+          "LastName",
+          "MobilePhone",
+          "Phone",
+          "Email",
+          "CompanyName",
+          "Department"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "Primary_Department__c.OwnerId"
+      }
+    },
+    "sfdcDigest_RecordType_0": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Id"},
+          {"name": "DeveloperName"},
+          {"name": "Name"},
+          {"name": "Description"}
+        ],
+        "object": "RecordType"
+      }
+    },
+    "augment_User_5_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_1_0",
+        "left_key": ["Primary_Academic_Program__c.OwnerId"],
+        "right_select": [
+          "CompanyName",
+          "Department",
+          "Username",
+          "FirstName",
+          "LastName",
+          "Name",
+          "Email",
+          "Phone"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "Primary_Academic_Program__c.OwnerId"
+      }
+    },
+    "sfdcDigest_hed__Affiliation__c": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "hed__Affiliation_Type__c"},
+          {"name": "Name"},
+          {"name": "CreatedDate"},
+          {"name": "hed__Description__c"},
+          {"name": "hed__EndDate__c"},
+          {"name": "hed__Primary__c"},
+          {"name": "Id"},
+          {"name": "hed__Role__c"},
+          {"name": "hed__StartDate__c"},
+          {"name": "hed__Status__c"},
+          {"name": "hed__Account__c"}
+        ],
+        "object": "hed__Affiliation__c"
+      }
+    },
+    "sfdcDigest_Account_0": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "Id"},
+          {"name": "Name"},
+          {"name": "ParentId"},
+          {"name": "OwnerId"},
+          {"name": "Type"},
+          {"name": "RecordTypeId"},
+          {"name": "Description"},
+          {"name": "BillingCity"},
+          {"name": "BillingCountry"},
+          {"name": "BillingGeocodeAccuracy"},
+          {"name": "BillingLatitude"},
+          {"name": "BillingLongitude"},
+          {"name": "BillingState"},
+          {"name": "BillingStreet"},
+          {"name": "BillingPostalCode"},
+          {"name": "ShippingCity"},
+          {"name": "ShippingCountry"},
+          {"name": "ShippingGeocodeAccuracy"},
+          {"name": "ShippingLatitude"},
+          {"name": "ShippingLongitude"},
+          {"name": "ShippingState"},
+          {"name": "ShippingStreet"},
+          {"name": "ShippingPostalCode"}
+        ],
+        "object": "Account"
+      }
+    },
+    "augment_Account_10": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User",
+        "left_key": ["hed__Contact__c.Primary_Sports_Organization__c"],
+        "right_select": [
+          "Id",
+          "Name",
+          "Description",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Sports_Organization__c"
+      }
+    },
+    "augment_Account_2": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType",
+        "left_key": ["hed__Contact__c.hed__Primary_Organization__c"],
+        "right_select": [
+          "Id",
+          "Name",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "ParentId",
+          "Description",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.hed__Primary_Organization__c"
+      }
+    },
+    "augment_Account_3": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_2",
+        "left_key": ["hed__Contact__c.hed__Primary_Organization__c.ParentId"],
+        "right_select": [
+          "Name",
+          "Id",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.hed__Primary_Organization__c.ParentId"
+      }
+    },
+    "augment_Account_6_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_7_0",
+        "left_key": ["Primary_Department__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Department__c.ParentId"
+      }
+    },
+    "augment_Account_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Contact_Account_0",
+        "left_key": ["AccountId.ParentId"],
+        "right_select": [
+          "Id",
+          "Name",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "AccountId.ParentId"
+      }
+    },
+    "augment_Account_1": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account",
+        "left_key": ["hed__Contact__c.Primary_Academic_Program__c.ParentId"],
+        "right_select": [
+          "Name",
+          "Id",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Academic_Program__c.ParentId"
+      }
+    },
+    "augment_Account_4_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_2_0",
+        "left_key": ["hed__Primary_Organization__c.ParentId"],
+        "right_select": [
+          "Id",
+          "Name",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "hed__Primary_Organization__c.ParentId"
+      }
+    },
+    "augment_Account_6": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_2",
+        "left_key": ["hed__Contact__c.Primary_Educational_Institution__c"],
+        "right_select": [
+          "Id",
+          "Name",
+          "Description",
+          "BillingCity",
+          "BillingCountry",
+          "BillingGeocodeAccuracy",
+          "BillingLatitude",
+          "BillingLongitude",
+          "BillingState",
+          "BillingStreet",
+          "BillingPostalCode",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Educational_Institution__c"
+      }
+    },
+    "augment_User_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_0",
+        "left_key": ["AccountId.OwnerId"],
+        "right_select": [
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "AccountId.OwnerId"
+      }
+    },
+    "augment_Account_7": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_6",
+        "left_key": ["hed__Contact__c.Primary_Educational_Institution__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Educational_Institution__c.ParentId"
+      }
+    },
+    "augment_User_1": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_18",
+        "left_key": ["OwnerId"],
+        "right_select": [
+          "Name",
+          "FirstName",
+          "LastName",
+          "Email",
+          "Username"
+        ],
+        "right": "sfdcDigest_User",
+        "relationship": "OwnerId"
+      }
+    },
+    "augment_Account_2_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_1_0",
+        "left_key": ["Primary_Academic_Program__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Academic_Program__c.ParentId"
+      }
+    },
+    "augment_Account_4": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_1",
+        "left_key": ["hed__Contact__c.Primary_Department__c"],
+        "right_select": [
+          "Id",
+          "Name",
+          "Description",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Department__c"
+      }
+    },
+    "sfdcDigest_hed__Program_Enrollment__c": {
+      "action": "sfdcDigest",
+      "parameters": {
+        "fields": [
+          {"name": "hed__Contact__c"},
+          {"name": "hed__Affiliation__c"},
+          {"name": "hed__Account__c"},
+          {"name": "hed__Program_Plan__c"},
+          {"name": "OwnerId"},
+          {"name": "hed__Admission_Date__c"},
+          {"name": "hed__Application_Submitted_Date__c"},
+          {"name": "hed__Class_Standing__c"},
+          {"name": "hed__Graduation_Year__c"},
+          {"name": "CreatedDate"},
+          {"name": "hed__Credits_Attempted__c"},
+          {"name": "hed__Credits_Earned__c"},
+          {"name": "IsDeleted"},
+          {"name": "hed__Eligible_to_Enroll__c"},
+          {"name": "hed__End_Date__c"},
+          {"name": "hed__Enrollment_Status__c"},
+          {"name": "hed__GPA__c"},
+          {"name": "LastModifiedDate"},
+          {"name": "LastReferencedDate"},
+          {"name": "LastViewedDate"},
+          {"name": "Name"},
+          {"name": "Id"},
+          {"name": "hed__Start_Date__c"},
+          {"name": "SystemModstamp"}
+        ],
+        "object": "hed__Program_Enrollment__c"
+      }
+    },
+    "augment_Account_5": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_4",
+        "left_key": ["hed__Contact__c.Primary_Department__c.ParentId"],
+        "right_select": [
+          "Name",
+          "Id",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.Primary_Department__c.ParentId"
+      }
+    },
+    "augment_RecordType_5": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_11",
+        "left_key": ["hed__Contact__c.Primary_Sports_Organization__c.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Contact__c.Primary_Sports_Organization__c.RecordTypeId"
+      }
+    },
+    "augment_RecordType_4": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_9",
+        "left_key": ["hed__Contact__c.hed__Primary_Household__c.RecordTypeId"],
+        "right_select": [
+          "DeveloperName",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Contact__c.hed__Primary_Household__c.RecordTypeId"
+      }
+    },
+    "augment_User_4_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_3_0",
+        "left_key": ["LastModifiedById"],
+        "right_select": [
+          "Username",
+          "FirstName",
+          "Name",
+          "LastName",
+          "Phone",
+          "Email",
+          "Department",
+          "CompanyName"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "LastModifiedById"
+      }
+    },
+    "augment_RecordType_3": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_7",
+        "left_key": ["hed__Contact__c.Primary_Educational_Institution__c.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Contact__c.Primary_Educational_Institution__c.RecordTypeId"
+      }
+    },
+    "augment_Account_8": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_3",
+        "left_key": ["hed__Contact__c.hed__Primary_Household__c"],
+        "right_select": [
+          "Description",
+          "Name",
+          "Id",
+          "ParentId",
+          "RecordTypeId"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.hed__Primary_Household__c"
+      }
+    },
+    "augment_RecordType_2": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_5",
+        "left_key": ["hed__Contact__c.Primary_Department__c.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Contact__c.Primary_Department__c.RecordTypeId"
+      }
+    },
+    "augment_Account_9": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_8",
+        "left_key": ["hed__Contact__c.hed__Primary_Household__c.ParentId"],
+        "right_select": [
+          "Description",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_Account",
+        "relationship": "hed__Contact__c.hed__Primary_Household__c.ParentId"
+      }
+    },
+    "augment_User_2_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_1_0",
+        "left_key": ["OwnerId"],
+        "right_select": [
+          "Name",
+          "FirstName",
+          "LastName",
+          "Phone",
+          "MobilePhone",
+          "Email",
+          "Department",
+          "CompanyName"
+        ],
+        "right": "sfdcDigest_User_0",
+        "relationship": "OwnerId"
+      }
+    },
+    "augment_RecordType_1": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_3",
+        "left_key": ["hed__Contact__c.hed__Primary_Organization__c.RecordTypeId"],
+        "right_select": [
+          "Name",
+          "DeveloperName",
+          "Id"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Contact__c.hed__Primary_Organization__c.RecordTypeId"
+      }
+    },
+    "augment_RecordType_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_User_0",
+        "left_key": ["AccountId.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "AccountId.RecordTypeId"
+      }
+    },
+    "augment_Account_8_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_RecordType_4_0",
+        "left_key": ["Primary_Educational_Institution__c.ParentId"],
+        "right_select": [
+          "Name",
+          "Id",
+          "Description"
+        ],
+        "right": "sfdcDigest_Account_0",
+        "relationship": "Primary_Educational_Institution__c.ParentId"
+      }
+    },
+    "augment_Contact": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_hed__Address__c",
+        "left_key": ["hed__Contact__c.hed__Current_Address__c.hed__Parent_Contact__c"],
+        "right_select": ["Id"],
+        "right": "sfdcDigest_Contact",
+        "relationship": "hed__Contact__c.hed__Current_Address__c.hed__Parent_Contact__c"
+      }
+    },
+    "augment_RecordType": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_1",
+        "left_key": ["hed__Contact__c.Primary_Academic_Program__c.RecordTypeId"],
+        "right_select": [
+          "Id",
+          "DeveloperName",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Contact__c.Primary_Academic_Program__c.RecordTypeId"
+      }
+    },
+    "augment_RecordType_6": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_16",
+        "left_key": ["hed__Account__c.RecordTypeId"],
+        "right_select": [
+          "DeveloperName",
+          "Id",
+          "Name"
+        ],
+        "right": "sfdcDigest_RecordType",
+        "relationship": "hed__Account__c.RecordTypeId"
+      }
+    },
+    "augment_RecordType_1_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_2_0",
+        "left_key": ["Primary_Academic_Program__c.RecordTypeId"],
+        "right_select": [
+          "Name",
+          "Id",
+          "DeveloperName"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "Primary_Academic_Program__c.RecordTypeId"
+      }
+    },
+    "augment_RecordType_3_0": {
+      "action": "augment",
+      "parameters": {
+        "right_key": ["Id"],
+        "left": "augment_Account_6_0",
+        "left_key": ["Primary_Department__c.RecordTypeId"],
+        "right_select": [
+          "Name",
+          "DeveloperName",
+          "Id"
+        ],
+        "right": "sfdcDigest_RecordType_0",
+        "relationship": "Primary_Department__c.RecordTypeId"
+      }
+    }
+  },
+  "_type": "dataflow",
+  "description": "RA Program Enrollment",
+  "MasterLabel": "RA Program Enrollment",
+  "nextRun": "2019-10-02T01:15:00.000Z",
+  "frequency": "hour",
+  "WorkflowStatus": "Inactive",
+  "isDeletable": true,
+  "longRunningAlertInMins": "",
+  "scheduleAttributes": {
+    "scheduleType": "hourly",
+    "hourlyInterval": 4,
+    "timeZone": "America/Indiana/Indianapolis",
+    "startTime": {
+      "hour": 1,
+      "minute": 15
+    },
+    "daysOfWeek": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  "DataflowType": "USER",
+  "name": "RA_Program_Enrollment",
+  "RefreshFrequencySec": 86400,
+  "interval": 4,
+  "_url": "/insights/internal_api/v1.0/esObject/workflow//json",
+  "_uid": ""
+}
