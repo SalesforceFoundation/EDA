@@ -1,0 +1,80 @@
+{
+  "templateType" : "app",
+  "label" : "Education Cloud: Recruiting",
+  "name" : "RA_Program_Enrollment",
+  "description" : "The Recruiting and Admissions template allows you to quickly create insightful dashboards to help you better understand your recruiting and admissions data. Requires EDA.",
+  "assetVersion" : 46.0,
+  "variableDefinition" : "variables.json",
+  "uiDefinition" : "ui.json",
+  "rules" : [
+    {
+      "type" : "templateToApp",
+      "file" : "template-to-app-rules.json"
+    },
+    {
+      "type" : "appToTemplate",
+      "file" : "app-to-template-rules.json"
+    }
+  ],
+  "releaseInfo" : {
+    "templateVersion" : "1.4",
+    "notesFile" : "releaseNotes.html"
+  },
+  "folderDefinition" : "folder.json",
+  "externalFiles" : [ ],
+  "lenses" : [ ],
+  "dashboards" : [
+    {
+      "label" : "Recruiting and Admissions - Contact",
+      "name" : "Recruiting_Admissions_Contact_tp",
+      "condition" : "${Variables.Overrides.createAllDashboards}",
+      "file" : "dashboards/Recruiting_Admissions_Contact.json"
+    },
+    {
+      "label" : "Recruiting and Admissions - Contact (Requires Customization)",
+      "name" : "RA_Contact_tp",
+      "condition" : "${Variables.Overrides.createAllDashboards}",
+      "file" : "dashboards/RA_Contact.json"
+    },
+    {
+      "label" : "Recruiting and Admissions - Program Enrollment",
+      "name" : "RA_Program_Enrollment_tp",
+      "condition" : "${Variables.Overrides.createAllDashboards}",
+      "file" : "dashboards/RA_Program_Enrollment.json"
+    }
+  ],
+  "eltDataflows" : [
+    {
+      "label" : "RA Program Enrollment",
+      "name" : "RA_Program_Enrollment",
+      "condition" : "${Variables.Overrides.createDataflow}",
+      "file" : "dataflow/RA_Program_EnrollmentDataflow.json"
+    }
+  ],
+  "datasetFiles" : [
+    {
+      "label" : "RA Contact",
+      "name" : "RA_Contact_tp",
+      "condition" : "${Variables.Overrides.createAllDatasetFiles}",
+      "userXmd" : "dataset_files/RA_Contact_XMD.json"
+    },
+    {
+      "label" : "EDA Program Enrollment",
+      "name" : "RA_Program_Enrollment_tp",
+      "condition" : "${Variables.Overrides.createAllDatasetFiles}",
+      "userXmd" : "dataset_files/RA_Program_Enrollment_XMD.json"
+    }
+  ],
+  "storedQueries" : [ ],
+  "imageFiles" : [ ],
+  "extendedTypes" : { },
+  "templateDependencies" : [ ],
+  "icons" : {
+    "appBadge" : {
+      "name" : "16.png"
+    },
+    "templateBadge" : {
+      "name" : "default.png"
+    }
+  }
+}
