@@ -37,6 +37,17 @@ tasks:
         options:
             path: unpackaged/config/dev_delete
 
+    deploy_einstein_templates:
+        group: 'EDA: Einstein Templates'
+        description: Deploys Einstein Analytics Templates
+        class_path: cumulusci.tasks.salesforce.Deploy
+        ui_options:
+            name: Deploy Einstein Analytics Templates
+        options:
+            path: unpackaged/config/analytics
+            namespace_inject: $project_config.project__package__namespace
+            unmanaged: False
+
     deploy_encryption_permset:
         group: 'Shield Platform Encryption'
         description: Deploys "Manage Encryption Keys" permission set.
@@ -76,6 +87,17 @@ tasks:
         options:
             path: scripts/setup.cls
             apex: qaSetup();
+
+    has_einstein_licenses:
+        group: 'EDA: Einstein Templates'
+        description: Queries the target org for the existence of required permsets and returns true if found.
+        class_path: tasks.check_einstein.CheckPermSetLicenses
+        options:
+            permission_sets:
+                - EinsteinAnalyticsUser
+                - EinsteinAnalyticsAdmin
+                - EinsteinAnalyticsPlusAdmin
+                - EinsteinAnalyticsPlusUser
 
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
@@ -172,6 +194,8 @@ flows:
                 task: deploy_dev_config
                 options:
                     unmanaged: False
+            4:
+                task: deploy_einstein_templates
 
     config_packaging:
         steps:
@@ -267,4 +291,17 @@ plans:
                     case_behavior_record_types:
                         name: EDA - Case Behavior Record Types
                 options:
-                    unmanaged: false
+                    unmanaged: False
+
+    ra_einstein_template:
+        slug: ra_template
+        title: Install Education Cloud Recruiting Analytics Template
+        is_listed: False
+        tier: additional
+        steps:
+            1:
+                task: deploy_einstein_templates
+        checks:
+            - when: "not tasks.has_einstein_licenses()"
+              action: error
+              message: Einstein Analytics permission sets are not available.
