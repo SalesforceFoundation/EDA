@@ -287,15 +287,6 @@ plans:
                         name: EDA - Case Behavior Record Types
                 options:
                     unmanaged: False
-            4:
-                task: deploy_einstein_templates
-                ui_options:
-                    is_required: False
-                checks:
-                    - when: "not tasks.has_einstein_licenses()"
-                      action: skip
-                      message: Skipped because Einstein Analytics permission sets are not available.
-
 
     ra_einstein_template:
         slug: ra_template
