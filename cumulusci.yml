@@ -23,14 +23,6 @@ tasks:
             path: unpackaged/config/dev
             unmanaged: True
 
-    deploy_qa_config:
-        description: Deploys configuration for QA.
-        class_path: cumulusci.tasks.salesforce.Deploy
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/config/qa
-            unmanaged: True
-
     delete_dev_config:
         description: Removes Development configuration. Sets page layouts, compact layouts to system defaults. Removes record type visibilites.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -62,7 +54,7 @@ tasks:
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: 'force:user:permset:assign -n Encryption'
-    
+
     create_tenant_secret:
         group: 'Shield Platform Encryption'
         description: Creates a new tenant secret for Shield Platform Encryption testing.
@@ -104,13 +96,6 @@ tasks:
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/dev
-            namespace_tokenize: $project_config.project__package__namespace
-
-    retrieve_config_qa:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/qa
-        class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
-        options:
-            path: unpackaged/config/qa
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_trial:
