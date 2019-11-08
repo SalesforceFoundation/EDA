@@ -13,7 +13,8 @@ class CheckPermSetLicenses(BaseSalesforceApiTask):
     def _run_task(self):
         query = self._get_query()
         result = self.tooling.query(query)
-        return result["size"] > 0
+        if result["size"] > 0:
+            self.return_values["has_einstein_perms"] = True
 
     def _get_query(self):
         where_targets = [f"'{name}'" for name in self.options["permission_sets"]]
