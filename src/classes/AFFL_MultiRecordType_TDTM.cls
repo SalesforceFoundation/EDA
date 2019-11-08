@@ -83,13 +83,13 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					// If lookupFieldAPIName of the Contact is not found, check if lookupLabelOrAPIName is actually a field API Name, if yes assign it to lookupFieldAPIName.
 					// This way the API name can be used to populate primay Affiliation lookup on contact even when language is not English
 						
-            if ((lookupLabelOrAPIName != NULL && lookupLabelOrAPIName != '') && (lookupFieldAPIName == '' || lookupFieldAPIName == NULL)) {
-							  // Check if lookupLabelOrAPIName is in the List of Contact field API names, if yes assign lookupLabelOrAPIName to lookupFieldAPIName
-                List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();                     
-                if (contactFieldAPINamesList.contains(lookupLabelOrAPIName)) {
-                    lookupFieldAPIName = lookupLabelOrAPIName;                            
-                }                        
-            }
+                    if ((lookupLabelOrAPIName != NULL && lookupLabelOrAPIName != '') && (lookupFieldAPIName == '' || lookupFieldAPIName == NULL)) {
+                        // Check if lookupLabelOrAPIName is in the List of Contact field API names, if yes assign lookupLabelOrAPIName to lookupFieldAPIName
+                        List<String> contactFieldAPINamesList = afflMapper.contactLabelNames.values();                     
+                        if (contactFieldAPINamesList.contains(lookupLabelOrAPIName)) {
+                            lookupFieldAPIName = lookupLabelOrAPIName;                            
+                        }                        
+                    }
 
 					if (isAfflTypeEnforced == true) {
 						ERR_ExceptionHandler.handleAfflNullRecordTypeException(affl, afflMapper.validAccRecordTypesInMappings);
