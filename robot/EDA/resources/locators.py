@@ -86,7 +86,7 @@ eda_lex_locators = {
         "batch_processing": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td[text()='Processing'])[1]",
         "just_batch": "(//td/following-sibling::td[text()='Batch Apex'])[1]",
         "batch_watch": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
-        "wait_frame": "//iframe[@title='Apex Jobs ~ Salesforce - Developer Edition']",
+        "wait_frame": "//iframe[contains(@title,'Apex Jobs ~ Salesforce')]",
         "wait_loc_text": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
     },
     "tabs": {
