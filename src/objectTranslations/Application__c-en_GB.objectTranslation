@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Application --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Application --></value>
+    </caseValues>
+    <fields>
+        <help><!-- Date/Time Application was submitted --></help>
+        <label><!-- Application Date --></label>
+        <name>Application_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date/Time institution made or will make decision about acceptance --></help>
+        <label><!-- Application Decision Date --></label>
+        <name>Application_Decision_Date__c</name>
+    </fields>
+    <nameFieldLabel><!-- Application Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
