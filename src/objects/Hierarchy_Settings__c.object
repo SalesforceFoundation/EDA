@@ -356,6 +356,105 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Prevent_Account_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates an Account should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Account.</inlineHelpText>
+        <label>Prevent Account Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Behavior_Involvement_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Behavior Involvment should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Behavior Involvment.</inlineHelpText>
+        <label>Prevent Behavior Involvement Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Case_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Case should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Case.</inlineHelpText>
+        <label>Prevent Case Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Contact_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Contact should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Contact.</inlineHelpText>
+        <label>Prevent Contact Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Connection_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Course Connection should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Course Connection.</inlineHelpText>
+        <label>Prevent Course Connection Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Offering_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Course Offering should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Course Offering.</inlineHelpText>
+        <label>Prevent Course Offering Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Plan_Requirement_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Plan Requirement should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Plan Requirement.</inlineHelpText>
+        <label>Prevent Plan Requirement Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Program_Plan_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Program Plan should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Program Plan.</inlineHelpText>
+        <label>Prevent Program Plan Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Term_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag that indicates a Term should not be deleted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this if you&apos;d like to prevent deletion of Term.</inlineHelpText>
+        <label>Prevent Term Deletion</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Reciprocal_Method__c</fullName>
         <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
