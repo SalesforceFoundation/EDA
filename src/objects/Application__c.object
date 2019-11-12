@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Application_Date__c</fullName>
+        <description>Date/Time Application was submitted</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date/Time Application was submitted</inlineHelpText>
+        <label>Application Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+</CustomObject>

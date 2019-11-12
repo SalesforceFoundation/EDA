@@ -270,6 +270,7 @@
         <members>Affl_Mappings__c.Auto_Program_Enrollment_Status__c</members>
         <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
         <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
+        <members>Application__c.Application_Date__c</members>
         <members>Attendance_Event__c.Arrival_Time__c</members>
         <members>Attendance_Event__c.Attendance_Type__c</members>
         <members>Attendance_Event__c.Contact__c</members>
@@ -749,6 +750,7 @@
         <members>Address__c</members>
         <members>Affiliation__c</members>
         <members>Affl_Mappings__c</members>
+        <members>Application__c</members>
         <members>Attendance_Event__c</members>
         <members>Attribute__c</members>
         <members>Behavior_Involvement__c</members>
@@ -980,6 +982,7 @@
         <members>Account-HEDA Organization Layout</members>
         <members>Address__c-HEDA Address Layout</members>
         <members>Affiliation__c-HEDA Affiliation Layout</members>
+        <members>Application__c-EDA Application Layout</members>
         <members>Attendance_Event__c-EDA Attendance Event Layout</members>
         <members>Attribute__c-EDA Credential Layout</members>
         <members>Attribute__c-EDA Student Characteristic Layout</members>
