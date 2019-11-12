@@ -98,16 +98,9 @@
             } else if(response.getState() === "ERROR") {
                 var errors = JSON.stringify(response.getError());
                 if (errors.includes('FIELD_INTEGRITY_EXCEPTION')) {                
-                    var tst = component.find("failureToast");
+                    var tst = component.find("errorToast");
                     $A.util.removeClass(tst, "slds-hide");
                     $A.util.addClass(tst, "slds-show");
-                
-                    window.setTimeout(
-                        $A.getCallback(function() {
-                            $A.util.removeClass(tst, "slds-show");
-                            $A.util.addClass(tst, "slds-hide");    
-                        }), 8000
-                    );
                 }    
                 this.displayError(response);
             }
@@ -118,5 +111,11 @@
     deleteAfflMappingRow : function(component, id, position) {
         this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position, "v.noAfflMappings", "noAfflMappings",
                 component.get("v.namespacePrefix"));
-    }
+    },
+
+    closeErrorToast: function(component) {
+        var tst = component.find("errorToast");
+        $A.util.removeClass(tst, "slds-show");
+        $A.util.addClass(tst, "slds-hide");
+   }
 })

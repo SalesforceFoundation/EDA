@@ -1,0 +1,8 @@
+.THIS #errorToast .slds-notify__close .slds-icon{
+    fill: #ffffff;
+    border: 1px solid #bdbdbd;
+}
+
+.THIS #errorToast .slds-icon{
+    fill: #ffffff;
+}

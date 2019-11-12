@@ -34,6 +34,9 @@
 			helper.deleteAfflMappingRow(component, id, position);
 		}
 	},
+    closeErrorToast: function(component, event, helper) {
+        helper.closeErrorToast(component);
+    },	
 
 	newAfflMappingKeyup : function (component, event) {
 		// accRecType && primaryField are  required fields
