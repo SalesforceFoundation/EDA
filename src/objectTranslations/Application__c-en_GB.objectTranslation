@@ -9,6 +9,12 @@
         <value><!-- Application --></value>
     </caseValues>
     <fields>
+        <help><!-- The contact applying to the specified program. --></help>
+        <label><!-- Applicant --></label>
+        <name>Applicant__c</name>
+        <relationshipLabel><!-- Applications --></relationshipLabel>
+    </fields>
+    <fields>
         <help><!-- Date/Time Application was submitted --></help>
         <label><!-- Application Date --></label>
         <name>Application_Date__c</name>
@@ -17,6 +23,94 @@
         <help><!-- Date/Time institution made or will make decision about acceptance --></help>
         <label><!-- Application Decision Date --></label>
         <name>Application_Decision_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status for application review process --></help>
+        <label><!-- Application Status --></label>
+        <name>Application_Status__c</name>
+        <picklistValues>
+            <masterLabel>Admit</masterLabel>
+            <translation><!-- Admit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deferred</masterLabel>
+            <translation><!-- Deferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deny</masterLabel>
+            <translation><!-- Deny --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Review</masterLabel>
+            <translation><!-- In Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incomplete</masterLabel>
+            <translation><!-- Incomplete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Received</masterLabel>
+            <translation><!-- Received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waitlist</masterLabel>
+            <translation><!-- Waitlist --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Describes the type of program or track that the applicant is applying to, such as Undergrad vs. Grad or Transfer Student. --></help>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+        <picklistValues>
+            <masterLabel>First Year</masterLabel>
+            <translation><!-- First Year --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Graduate</masterLabel>
+            <translation><!-- Graduate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honors Program</masterLabel>
+            <translation><!-- Honors Program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Post-Doc</masterLabel>
+            <translation><!-- Post-Doc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RA Position</masterLabel>
+            <translation><!-- RA Position --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer</masterLabel>
+            <translation><!-- Transfer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undergrad</masterLabel>
+            <translation><!-- Undergrad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>or Year Abroad</masterLabel>
+            <translation><!-- or Year Abroad --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Academic program/major to which the applicant is applying --></help>
+        <label><!-- Applying To --></label>
+        <name>Applying_To__c</name>
+        <relationshipLabel><!-- Applications --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The contact filling out the application. In some cases this may be a parent or an assistant to someone with special needs. --></help>
+        <label><!-- Preparer --></label>
+        <name>Preparer__c</name>
+        <relationshipLabel><!-- Applications (Preparer) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Term in which the applicant would like to begin --></help>
+        <label><!-- Term --></label>
+        <name>Term__c</name>
+        <relationshipLabel><!-- Applications --></relationshipLabel>
     </fields>
     <nameFieldLabel><!-- Application Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>

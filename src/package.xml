@@ -270,8 +270,14 @@
         <members>Affl_Mappings__c.Auto_Program_Enrollment_Status__c</members>
         <members>Affl_Mappings__c.Auto_Program_Enrollment__c</members>
         <members>Affl_Mappings__c.Primary_Affl_Field__c</members>
+        <members>Application__c.Applicant__c</members>
         <members>Application__c.Application_Date__c</members>
         <members>Application__c.Application_Decision_Date__c</members>
+        <members>Application__c.Application_Status__c</members>
+        <members>Application__c.Application_Type__c</members>
+        <members>Application__c.Applying_To__c</members>
+        <members>Application__c.Preparer__c</members>
+        <members>Application__c.Term__c</members>
         <members>Attendance_Event__c.Arrival_Time__c</members>
         <members>Attendance_Event__c.Attendance_Type__c</members>
         <members>Attendance_Event__c.Contact__c</members>

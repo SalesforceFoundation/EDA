@@ -53,6 +53,21 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Applicant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Applicant (Contact) name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The contact applying to the specified program.</inlineHelpText>
+        <label>Applicant</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Applications</relationshipLabel>
+        <relationshipName>Applications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Application_Date__c</fullName>
         <description>Date/Time Application was submitted</description>
         <externalId>false</externalId>
@@ -73,6 +88,160 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Application_Status__c</fullName>
+        <description>Status for application review process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status for application review process</inlineHelpText>
+        <label>Application Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Received</fullName>
+                    <default>false</default>
+                    <label>Received</label>
+                </value>
+                <value>
+                    <fullName>Waitlist</fullName>
+                    <default>false</default>
+                    <label>Waitlist</label>
+                </value>
+                <value>
+                    <fullName>Admit</fullName>
+                    <default>false</default>
+                    <label>Admit</label>
+                </value>
+                <value>
+                    <fullName>Deny</fullName>
+                    <default>false</default>
+                    <label>Deny</label>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                    <label>In Review</label>
+                </value>
+                <value>
+                    <fullName>Deferred</fullName>
+                    <default>false</default>
+                    <label>Deferred</label>
+                </value>
+                <value>
+                    <fullName>Incomplete</fullName>
+                    <default>false</default>
+                    <label>Incomplete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Application_Type__c</fullName>
+        <description>Describes the type of program or track that the applicant is applying to, such as Undergrad vs. Grad or Transfer Student.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Describes the type of program or track that the applicant is applying to, such as Undergrad vs. Grad or Transfer Student.</inlineHelpText>
+        <label>Application Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Undergrad</fullName>
+                    <default>false</default>
+                    <label>Undergrad</label>
+                </value>
+                <value>
+                    <fullName>Graduate</fullName>
+                    <default>false</default>
+                    <label>Graduate</label>
+                </value>
+                <value>
+                    <fullName>Post-Doc</fullName>
+                    <default>false</default>
+                    <label>Post-Doc</label>
+                </value>
+                <value>
+                    <fullName>First Year</fullName>
+                    <default>false</default>
+                    <label>First Year</label>
+                </value>
+                <value>
+                    <fullName>Transfer</fullName>
+                    <default>false</default>
+                    <label>Transfer</label>
+                </value>
+                <value>
+                    <fullName>or Year Abroad</fullName>
+                    <default>false</default>
+                    <label>or Year Abroad</label>
+                </value>
+                <value>
+                    <fullName>Honors Program</fullName>
+                    <default>false</default>
+                    <label>Honors Program</label>
+                </value>
+                <value>
+                    <fullName>RA Position</fullName>
+                    <default>false</default>
+                    <label>RA Position</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Applying_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Academic program/major to which the applicant is applying</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Academic program/major to which the applicant is applying</inlineHelpText>
+        <label>Applying To</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Applications</relationshipLabel>
+        <relationshipName>Applications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Preparer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Application preparer (often a guardian)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The contact filling out the application. In some cases this may be a parent or an assistant to someone with special needs.</inlineHelpText>
+        <label>Preparer</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Applications (Preparer)</relationshipLabel>
+        <relationshipName>Applications1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Term in which the applicant would like to begin</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Term in which the applicant would like to begin</inlineHelpText>
+        <label>Term</label>
+        <referenceTo>Term__c</referenceTo>
+        <relationshipLabel>Applications</relationshipLabel>
+        <relationshipName>Applications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <label>Application</label>
     <nameField>
