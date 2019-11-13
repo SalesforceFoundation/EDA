@@ -156,6 +156,7 @@
         <members>TDTM_Account</members>
         <members>TDTM_Address</members>
         <members>TDTM_Affiliation</members>
+        <members>TDTM_Application</members>
         <members>TDTM_AttendanceEvent</members>
         <members>TDTM_Attribute</members>
         <members>TDTM_Behavior_Involvement</members>
