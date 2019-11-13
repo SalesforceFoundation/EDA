@@ -9,6 +9,11 @@
         <value><!-- Application --></value>
     </caseValues>
     <fields>
+        <help><!-- Date/Time student submits or is due to submit decision about enrollment --></help>
+        <label><!-- Applicant Decision Date --></label>
+        <name>Applicant_Decision_Date__c</name>
+    </fields>
+    <fields>
         <help><!-- The contact applying to the specified program. --></help>
         <label><!-- Applicant --></label>
         <name>Applicant__c</name>
@@ -113,5 +118,12 @@
         <relationshipLabel><!-- Applications --></relationshipLabel>
     </fields>
     <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>EDA Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Application Name --></nameFieldLabel>
 </CustomObjectTranslation>
