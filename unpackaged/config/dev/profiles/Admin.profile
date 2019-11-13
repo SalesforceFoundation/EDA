@@ -37,6 +37,9 @@
         <recordType>Account.%%%NAMESPACED_ORG%%%University_Department</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>%%%NAMESPACE%%%Application__c-%%%NAMESPACE%%%EDA Application Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
         <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
     </layoutAssignments>
@@ -72,6 +75,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Affiliation__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Application__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
