@@ -187,7 +187,7 @@
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <label>Primary Program Plan</label>
+        <label>Primary Program Plans</label>
     </listViews>
     <nameField>
         <label>Program Plan Name</label>
