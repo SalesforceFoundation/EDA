@@ -101,4 +101,13 @@ public with sharing class TDTM_TriggerScaffolds_TEST {
 
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
+
+
+    public static testmethod void tdtmApplication() {
+        //Currently we don't have any Trigger_Handler__c record for Application. This test is
+        //just for test coverage, and to verify no exception gets thrown.
+        insert new Application__c();
+
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
 }
