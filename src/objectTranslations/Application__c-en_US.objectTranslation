@@ -95,8 +95,8 @@
             <translation><!-- Undergrad --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>or Year Abroad</masterLabel>
-            <translation><!-- or Year Abroad --></translation>
+            <masterLabel>Year Abroad</masterLabel>
+            <translation><!-- Year Abroad --></translation>
         </picklistValues>
     </fields>
     <fields>

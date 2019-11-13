@@ -53,6 +53,17 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Applicant_Decision_Date__c</fullName>
+        <description>Date/Time student submits or is due to submit decision about enrollment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date/Time student submits or is due to submit decision about enrollment</inlineHelpText>
+        <label>Applicant Decision Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Applicant__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Applicant (Contact) name</description>
@@ -181,9 +192,9 @@
                     <label>Transfer</label>
                 </value>
                 <value>
-                    <fullName>or Year Abroad</fullName>
+                    <fullName>Year Abroad</fullName>
                     <default>false</default>
-                    <label>or Year Abroad</label>
+                    <label>Year Abroad</label>
                 </value>
                 <value>
                     <fullName>Honors Program</fullName>
