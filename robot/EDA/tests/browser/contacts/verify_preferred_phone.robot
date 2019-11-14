@@ -2,6 +2,7 @@
 Documentation
 ...     Verify Preferred Phone functionality
 
+Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
 Library         robot/EDA/resources/EDA.py
 Library         DateTime
@@ -15,8 +16,7 @@ Suite Setup     Run keywords
 ...             Open test browser
 
 Suite Teardown  Run keywords
-...             Restore eda settings
-...   AND       Capture screenshot and delete records and close browser 
+...             Capture screenshot and delete records and close browser 
 
 *** Test Cases ***
 Verify basic preferred phone functionality
@@ -76,7 +76,6 @@ Verify disable preferred phone enforcement
     ...                                     True 
 
 Verify batch functionality of preferred phone
-    [tags]                          unstable
     Current page should be                  Home           Contacts
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
@@ -91,7 +90,6 @@ Verify batch functionality of preferred phone
     Set the disable preferred phone enforcement
     Disable enchanced checkbox    
     Shift to default content
-
 
     # Create a new contact and add some phone numbers
     # Note:  The 'Disable Preferred Phone enforcement'
@@ -111,8 +109,27 @@ Verify batch functionality of preferred phone
     Enable enchanced checkbox    
     Clear the disable preferred phone enforcement
     Run phone cleanup
-
     Shift to default content
+
+    Go To Setup Home
+    Wait For New Window                         Home | Salesforce
+    Select window                               Home | Salesforce
+    Wait Until Loading Is Complete
+    Populate Placeholder                        Quick Find          Apex Jobs
+
+    Open Apex                                   Apex Jobs
+    ...                                         Cannot find Apex Jobs page
+    ...                                         false
+
+    ${wait_frame} =                             Get Eda Locator     eda_settings.wait_frame
+    ${wait_loc_text} =                          Get Eda Locator     eda_settings.wait_loc_text
+
+    Wait and refresh static page until text     Completed
+    ...                                         5
+    ...                                         ${wait_frame}
+    ...                                         ${wait_loc_text}
+
+    Unselect Frame
 
     # Verify that 'Run Cleanup' produced correct results
     # The code is found in ContactsPageObject.py
@@ -128,31 +145,31 @@ Initialize test setup
     Close all tabs
 
 Initialize test data
-    [Documentation]             Create a contact with a randomly generated firstname and lastname via API
+    [Documentation]                         Create a contact with a randomly generated firstname and lastname via API
 
-    &{CONTACT} =   API Create Contact
-    Set suite variable          &{CONTACT}
+    &{CONTACT} =                            API Create Contact
+    Set suite variable                      &{CONTACT}
 
-    ${NAMESPACE} =              Get EDA namespace prefix
-    Set suite variable          ${NAMESPACE}
+    ${NAMESPACE} =                          Get EDA namespace prefix
+    Set suite variable                      ${NAMESPACE}
 
 Create next contact
-    [Documentation]             Create a new contact with a randomly generated firstname and lastname via API
+    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
 
-    &{CONTACT2} =   API Create Contact
-    Set suite variable          &{CONTACT2}
+    &{CONTACT2} =                           API Create Contact
+    Set suite variable                      &{CONTACT2}
 
 Create third contact
-    [Documentation]             Create a new contact with a randomly generated firstname and lastname via API
+    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
 
-    &{CONTACT3} =   API Create Contact
-    Set suite variable          &{CONTACT3}
+    &{CONTACT3} =                           API Create Contact
+    Set suite variable                      &{CONTACT3}
 
 Create last contact
-    [Documentation]             Create a new contact with a randomly generated firstname and lastname via API
+    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
 
-    &{CONTACT4} =   API Create Contact
-    Set suite variable          &{CONTACT4}
+    &{CONTACT4} =                           API Create Contact
+    Set suite variable                      &{CONTACT4}
 
 Open EDA Settings Tab menu item
     Select app launcher tab                 EDA Settings
@@ -162,3 +179,31 @@ Restore eda settings
     Open EDA Settings Tab menu item
     Set the disable preferred phone enforcement
     Shift to default content
+
+Switch to successful
+    Go To Setup Home
+    Wait For New Window                     Home | Salesforce
+    Select window                           Home | Salesforce
+    Wait Until Loading Is Complete
+    Populate Placeholder                    Quick Find          Apex Jobs
+    Open Apex                               Apex Jobs
+    ...                                     Cannot find Apex Jobs page
+    ...                                     false
+
+    Select frame with title                 Apex Jobs ~ Salesforce - Developer Edition
+    
+    ${LOCATOR} =                            Get Eda Locator     eda_settings.batch_successful
+
+    Set focus to element                    ${LOCATOR}
+    Mouse Over                              ${LOCATOR}
+
+    Wait until page contains element        ${LOCATOR}           timeout=1240     error="Apex Jobs Batch Completed element not found"
+    Capture Page Screenshot
+    Unselect Frame
+
+    Go To Object Home                       Contact
+    Shift to default content
+    Verify contact values                   ${CONTACT4.FirstName}
+    ...                                     ${CONTACT4.LastName}
+
+
