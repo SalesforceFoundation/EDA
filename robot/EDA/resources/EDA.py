@@ -255,6 +255,29 @@ class EDA(object):
         main_loc = locator.format(*args, **kwargs)
         return main_loc   
         
+    def wait_for_new_window(self, title):
+        """ Waits for specified window to be available
+            by checking every 1 seconds for 25 times
+        """
+        window_found = False
+
+        for i in range(25):
+            i += 1
+            time.sleep(1)
+            titles = self.selenium.get_window_titles()
+            for j in titles:
+                if j == title:
+                    window_found = True
+                    return window_found
+
+            if window_found:
+                return
+            else:
+                continue
+
+        self.builtin.log("Timed out waiting for window with title " + title)
+        return window_found
+
     def wait_for_locator(self, path, *args, **kwargs):
         main_loc = self.get_eda_locator(path,*args, **kwargs)    
         self.selenium.wait_until_element_is_visible(main_loc)
@@ -274,7 +297,38 @@ class EDA(object):
             self.selenium.driver.find_element_by_xpath(main_loc))
         time.sleep(1)
 
+    def select_frame_with_value(self, value):
+        """ Selects frame identified by the given value
+            value should be the 'id', 'title' or 'name' attribute value of the webelement used to identify the frame
+        """
+        locator = eda_lex_locators["frame"]
+        locator = self.format_all(locator, value)
+        self.selenium.select_frame(locator)
 
+    def format_all(self, loc, value):
+        """ Formats the given locator with the value for all {} occurrences """
+        count = 0
+        for s in loc:
+            if s is '{':
+                count += 1
+
+        if count == 1:
+            return loc.format(value)
+        elif count == 2:
+            return loc.format(value, value)
+        elif count == 3:
+            return loc.format(value, value, value)
+
+    def Send_keys_to_page(self, loc):
+        """ Send keys to current page """
+
+        xpath = eda_lex_locators["input_placeholder"].format(loc)
+        field = self.selenium.get_webelement(xpath)
+        field.send_keys(Keys.ENTER)
+        field.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
+
+        self.selenium.capture_page_screenshot()
+        return
 
     def populate_placeholder(self, loc, value):
         """ Populate placeholder element as a locator
@@ -457,3 +511,6 @@ class EDA(object):
         )
         return
 
+    def write_to_console(self, message):
+        """ Writes a message to console on a new line """
+        logger.console("\n" + message)
