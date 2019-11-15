@@ -344,6 +344,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Populate_Affiliation_on_Couse_Connection__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this checkbox if you want to auto populate Affiliation on new  Student Course Connection.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this checkbox if you want to auto populate Affiliation on new Student Course Connection.</inlineHelpText>
+        <label>Populate Affiliation on Couse Connection</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Preferred_Phone_Selection__c</fullName>
         <description>To select a desired Preferred Phone when Phone clean up Batch job runs</description>
         <externalId>false</externalId>
