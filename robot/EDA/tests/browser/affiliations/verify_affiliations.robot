@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation
-...     Verify Preferred Phone functionality
+...     Verify Create Affiliations functionality
 
 Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
