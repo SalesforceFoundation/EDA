@@ -151,14 +151,15 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Copy_End_Date__c = mySettings.Affl_ProgEnroll_Copy_End_Date__c;
         settings.Affl_ProgEnroll_Copy_Start_Date__c = mySettings.Affl_ProgEnroll_Copy_Start_Date__c;
         settings.Affl_ProgEnroll_Role_Map__c = mySettings.Affl_ProgEnroll_Role_Map__c;
-        settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c; 
+        settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c;
         settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
         settings.Default_Contact_Language_Fluency__c = mySettings.Default_Contact_Language_Fluency__c;
         settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
-        settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;   
+        settings.Preferred_Phone_Selection__c = mySettings.Preferred_Phone_Selection__c;
         settings.Household_Other_Name_Setting__c = mySettings.Household_Other_Name_Setting__c;
+        settings.Populate_Affiliation_on_Couse_Connection__c = mySettings.Populate_Affiliation_on_Couse_Connection__c;
         orgSettings = settings;
         return settings;
     }
