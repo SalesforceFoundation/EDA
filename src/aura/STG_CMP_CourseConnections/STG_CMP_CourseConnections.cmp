@@ -1,7 +1,17 @@
+<!--
+  @File Name          : STG_CMP_CourseConnections.cmp
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 11/15/2019, 11:57:38 AM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    11/15/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
 
   <aura:attribute name="courseConnectionRecTypes" type="Map" />
-
   <aura:attribute name="studentRecTypeId" type="String" />
   <aura:attribute name="facultyRecTypeId" type="String" />
   <aura:attribute name="studentRecTypeName" type="String" />
@@ -93,6 +103,34 @@
           <div class="slds-col slds-size--1-of-1">
             <ui:outputText value="{!$Label.c.stgHelpDefaultFacultyType}" class="slds-text-body--small" />
           </div>
+
+
+          <div class="slds-col slds-grid slds-m-top--medium">
+        	<div class="slds-col slds-size--1-of-2">
+                {!$Label.c.stgAutoPopulateAffiliationTitle}
+                <div class="slds-col slds-size--1-of-1">
+            		<ui:outputText value="{!$Label.c.stgHelpAutoPopulateAffiliation}" class="slds-text-body--small" />
+          		</div>
+
+            </div>
+
+            <div class="slds-col slds-size--1-of-2">
+            	<label class="slds-checkbox">
+              		<aura:if isTrue="{!v.isView}">
+                  		<span style="margin-right: 8px">
+                      		<ui:outputCheckbox value="{!v.hierarchySettings.Populate_Affiliation_on_Couse_Connection__c}" class="slds-checkbox course-cons-outputcheck" />
+                  		</span>
+              		<aura:set attribute="else">
+                  		<ui:inputCheckbox value="{!v.hierarchySettings.Populate_Affiliation_on_Couse_Connection__c}" class="slds-checkbox course-cons-inputcheck"
+                                    aura:id="affiliationCheckbox" text="" />
+                  		<span class="slds-checkbox--faux"></span>
+              		</aura:set>
+              		</aura:if>
+            	</label>
+          	</div>
+
+          </div>
+
       </div>
     </div>
 
@@ -109,16 +147,19 @@
           </div>
         </div>
       </span>
+
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">
           <ui:outputText value="{!$Label.c.stgTitleCourseConnectionBackfill}" class="slds-text-body--small" />
         </div>
       </div>
+
       <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size--1-of-1">
           <ui:outputText value="{!$Label.c.stgHelpCourseConnBackfillDescription}" class="slds-text-body--small" />
         </div>
       </div>
+
       <div class="slds-grid slds-grid--align-center">
         <div>
           <label class="slds-checkbox">
@@ -129,16 +170,20 @@
           </label>
         </div>
       </div>
+
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.c.stgBtnRunBackfill}" press="{!c.startBackfill}"/>
         </div>
       </div>
+
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
         </div>
       </div>
+
     </div>
+
   </div>
 </aura:component>

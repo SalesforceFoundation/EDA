@@ -47,57 +47,94 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
     
-         DmlWrapper dmlWrapper = new DmlWrapper();
-         
-         //To store the IDs of those Program Enrollments we need to get Academic Programs from.
-         Set<Id> pEnrollIDsToQuery = new Set<Id>();
-         
-         if(newlist != null && newlist.size() > 0) {
+        DmlWrapper dmlWrapper = new DmlWrapper();
+        List<Course_Enrollment__c> newCourseEnrollments = (List<Course_Enrollment__c>)newlist;
+        List<Course_Enrollment__c> oldCourseEnrollments = (List<Course_Enrollment__c>)oldList; 
+        
+        Boolean affiliationIsEnabled = checkAffiliationEnabled(); 
             
-            for (Integer i = 0; i < newlist.size(); i++) {
-                Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
-                
-                //BEFORE INSERT AND BEFORE UPDATE
-                if(triggerAction == TDTM_Runnable.Action.BeforeInsert 
-                || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    //Get the ID of each parent Program Enrollment
-                    if(enroll.Program_Enrollment__c != null) {
-                        pEnrollIDsToQuery.add(enroll.Program_Enrollment__c);
-                    }
-                }
+        if (affiliationIsEnabled) {
+            
+            if (triggerAction == TDTM_Runnable.Action.BeforeInsert || 
+                triggerAction == TDTM_Runnable.Action.BeforeUpdate) 
+            {
+                handleBeforeTrigger(newCourseEnrollments, oldCourseEnrollments, triggerAction); 
+            }
+         }
+            
+         return dmlWrapper;
+    }
+   	
+    private Boolean checkAffiliationEnabled() {
+        return UTIL_CustomSettingsFacade.getSettings().Populate_Affiliation_on_Couse_Connection__c;
+    }
+    
+    private void handleBeforeTrigger(List<Course_Enrollment__c> newCourseEnrollments, List<Course_Enrollment__c> oldCourseEnrollments, 
+                                     TDTM_Runnable.Action triggerAction) {
+        Set<Id> pEnrollIDsToQuery = new Set<Id>();
+        List<Program_Enrollment__c> pEnrollments = new List<Program_Enrollment__c>(); 
+        //Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(); 
+        if (newCourseEnrollments.size() > 0 && newCourseEnrollments != NULL) {
+            for (Integer i = 0; i < newCourseEnrollments.size(); i++) {
+                Course_Enrollment__c enroll = (Course_Enrollment__c)newCourseEnrollments[i];
+                //Get the ID of each parent Program Enrollment
+                if (enroll.Program_Enrollment__c != null) {
+                    pEnrollIDsToQuery.add(enroll.Program_Enrollment__c);
+                }     
             }
             
-            //Query the parent Account (Academic Program) of each Program Enrollment, since that field
-            //wasn't in the trigger for being two levels up.
-            List<Program_Enrollment__c> pEnrollments = [select Account__c from Program_Enrollment__c 
-                                                    where Account__c != null and ID in :pEnrollIDsToQuery];
-            Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(pEnrollments); 
+            if (pEnrollIDsToQuery.size() > 0) {
+                pEnrollments = queryProgramEnrollments(pEnrollIDsToQuery); 
+            }
             
-            for (Integer i = 0; i < newlist.size(); i++) {
-                Course_Enrollment__c enroll = (Course_Enrollment__c)newlist[i];
+            for (Integer i = 0; i < newCourseEnrollments.size(); i++) {
+                Map<Id, Program_Enrollment__c> pEnrollmentsMap = new Map<Id, Program_Enrollment__c>(pEnrollments); 
+                Course_Enrollment__c enroll = (Course_Enrollment__c)newCourseEnrollments[i];
+                
                 
                 //BEFORE INSERT
-                if(triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                    //set Academic Program if we can get it through Program Enrollment
-                    if(enroll.Program_Enrollment__c != null) {
-                        Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-                        if(pEnroll != null) //shouldn't really happen... we already queried for this...
-                            enroll.Account__c = pEnroll.Account__c; 
-                    }
+                if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
+                    processBeforeInsert(enroll, pEnrollmentsMap); 
                 }
                 
                 //BEFORE UPDATE
-                if(triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldList[i];
-                    //set Academic Program if we can get it through Program Enrollment
-                    if(oldEnroll.Program_Enrollment__c == null && enroll.Program_Enrollment__c != null) {
-                        Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
-                        if(pEnroll != null) //shouldn't really happen... we already queried for this...
-                            enroll.Account__c = pEnroll.Account__c;
-                    }
+                if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
+                    Course_Enrollment__c oldEnroll = (Course_Enrollment__c)oldCourseEnrollments[i];
+                    processBeforeUpdate(enroll, oldEnroll, pEnrollmentsMap); 
                 }
             }
-         }
-         return dmlWrapper;
+        }
+        
+        
+        
+    }
+    private List<Program_Enrollment__c> queryProgramEnrollments(Set<Id> pEnrollIDsToQuery) {
+        //Query the parent Account (Academic Program) of each Program Enrollment, since that field
+        //wasn't in the trigger for being two levels up.
+        List<Program_Enrollment__c> pEnrollments = [SELECT Account__c, Affiliation__c 
+                                                            FROM Program_Enrollment__c 
+                                                            WHERE Account__c != NULL AND ID IN :pEnrollIDsToQuery];
+        return pEnrollments; 
+    }
+    
+    private void processBeforeInsert(Course_Enrollment__c enroll, Map<Id, Program_Enrollment__c> pEnrollmentsMap) {
+        if(enroll.Program_Enrollment__c != null) {
+            Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
+                if (pEnroll != null) {
+                    enroll.Account__c = pEnroll.Account__c; 
+                    enroll.Affiliation__c = pEnroll.Affiliation__c; 
+                }
+        }
+    }
+    
+    private void processBeforeUpdate(Course_Enrollment__c enroll, Course_Enrollment__c oldEnroll,
+                                     Map<Id, Program_Enrollment__c> pEnrollmentsMap) {
+        if(oldEnroll.Program_Enrollment__c == null && enroll.Program_Enrollment__c != null) {
+            Program_Enrollment__c pEnroll = pEnrollmentsMap.get(enroll.Program_Enrollment__c);
+                if (pEnroll != null) {
+                    enroll.Account__c = pEnroll.Account__c;
+                    enroll.Affiliation__c = pEnroll.Affiliation__c; 
+                }
+        }
     }
 }
