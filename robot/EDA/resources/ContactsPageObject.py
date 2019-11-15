@@ -599,3 +599,30 @@ class ContactsHomePage(BasePage):
             self.selenium.driver.refresh()
             self.selenium.select_frame(loc_frame)
             textPortion = self.selenium.get_text(loc_text)
+
+    def Go_to_affiliations_edit_mode(self, loc):
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(loc)
+        )
+
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["delete_icon"])
+        )
+
+        self.selenium.driver.execute_script(
+            "arguments[0].scrollIntoView()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["primary_business_organization"])
+        )
+        
+        xpath = contacts_locators["primary_business_organization"]
+        field = self.selenium.get_webelement(xpath)
+        field.send_keys("Robot Academic Program Account" + Keys.ARROW_DOWN + Keys.ENTER)
+
+        self.selenium.click_element(contacts_locators["button_save_affiliation"])
+        self.eda.close_toast_message()
+
+
+
+

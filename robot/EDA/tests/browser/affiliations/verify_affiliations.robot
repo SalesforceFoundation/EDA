@@ -55,17 +55,34 @@ Verify affiliations with contacts
     Wait for Locator                        eda_settings.affiliation_match
 
 Verify affiliations with blank record types and mismatched primary affiliations
-    Open EDA Settings Tab menu item
 
-    # Enable Record Type Validation
-    Wait for Locator                        eda_settings.edit_button
-    Click on Element                        eda_settings.edit_button
+    # Comment out for now, but later Modify this such that it ensures that the checkbox for 
+    # Enable Record Type Validation is cleared.
+    #Open EDA Settings Tab menu item
+    #
+    ## Enable Record Type Validation
+    #Wait for Locator                        eda_settings.edit_button
+    #Click on Element                        eda_settings.edit_button
+    #
+    #Wait for Locator                        eda_settings.enable_record_type_validation
+    #Click on Element                        eda_settings.enable_record_type_validation
+    #
+    #Wait for Locator                        eda_settings.save_button
+    #Click on Element                        eda_settings.save_button
 
-    Wait for Locator                        eda_settings.enable_record_type_validation
-    Click on Element                        eda_settings.enable_record_type_validation
+    # Create a new contact and populate the Primary Business Organization and Lastname
+    Create next contact
+    Go To Object Home                       Contact
+    Select contact                          ${CONTACT2.FirstName}
+    ...                                     ${CONTACT2.LastName}
 
-    Wait for Locator                        eda_settings.save_button
-    Click on Element                        eda_settings.save_button
+    Wait for Locator                        eda_settings.administrative_account     ${CONTACT2.LastName}
+    Click on Element                        eda_settings.administrative_account     ${CONTACT2.LastName}
+
+    ${edit_mode} =                          Get eda Locator                         eda_settings.contact_edit
+    Go to affiliations edit mode            ${edit_mode}
+
+    # Select the new affiliation on this newly created contact and remove the organization
 
 
 
