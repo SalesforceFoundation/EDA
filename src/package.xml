@@ -424,6 +424,7 @@
         <members>Hierarchy_Settings__c.Household_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Populate_Affil_on_Student_Couse_Cxn__c</members>
         <members>Hierarchy_Settings__c.Preferred_Phone_Selection__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
@@ -689,6 +690,7 @@
         <members>stgHelpIfCustomValuesEthnicityCopyRace</members>
         <members>stgHelpNestedPlanRequirementPP</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
+        <members>stgHelpPopulateAffiliationOnStudentCourseConnection</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
         <members>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</members>
@@ -701,6 +703,7 @@
         <members>stgOptChatterGroup</members>
         <members>stgOptSelect</members>
         <members>stgOptUser</members>
+        <members>stgPopulateAffiliationOnStudentCourseConnectionTitle</members>
         <members>stgPreferredEmailBatchEmailBody</members>
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>

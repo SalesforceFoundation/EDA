@@ -55,6 +55,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
             // Enable new Preferred Phone sync functionality
             enablePreferredPhoneSync();
 
+            // Enable auto population of Affiliation on Student Course Connection
+            enableAutoPopulationOfAffilOnStudentCourseCxn();
+
             // Format existing contact email addresses
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
             Database.executeBatch( contbatch );
@@ -66,7 +69,9 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             disablePreferredEmailEnforcement(previousVersion);
 
-            disablePreferredPhoneEnforcement(previousVersion);            
+            disablePreferredPhoneEnforcement(previousVersion);
+
+            disableAutoPopulationOfAffilOnStudentCourseCxn(previousVersion);
 
             populateAdminRecordTypeSetting(previousVersion);
 
@@ -229,6 +234,33 @@ global without sharing class STG_InstallScript implements InstallHandler {
     }
 
     /*******************************************************************************************************
+    * @description Enabled Auto Population of Affiliation on Student Course Connection.
+    * @return void
+    */
+    global static void enableAutoPopulationOfAffilOnStudentCourseCxn() {
+        Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+        if (orgSettings.Populate_Affil_on_Student_Couse_Cxn__c == null || orgSettings.Populate_Affil_on_Student_Couse_Cxn__c != true) {
+            orgSettings.Populate_Affil_on_Student_Couse_Cxn__c = true;
+        }
+        upsert orgSettings;
+    }
+
+    /*******************************************************************************************************
+    * @description Disable Auto Population of Affiliation on Student Course Connection for push upgrade.
+    * @return void
+    */
+    global static void disableAutoPopulationOfAffilOnStudentCourseCxn(Version previousVersion) {
+        if(previousVersion != null && previousVersion.compareTo(new Version(1,89)) < 0) {
+            UTIL_Debug.debug('***Upgrading to version 1.82');
+            Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+            if(orgSettings.Populate_Affil_on_Student_Couse_Cxn__c == null || orgSettings.Disable_Preferred_Phone_Enforcement__c == true) {
+                orgSettings.Populate_Affil_on_Student_Couse_Cxn__c = false;
+            }
+            upsert orgSettings;
+        }
+    }
+
+    /*******************************************************************************************************
     * @description DEPRECATED: Inserts the default TDTM records, if necessary. Updates those that need to be updated, since the last package
     * upgrade.
     * @param defaultTdtmConfig The default TDTM configuration. Using DI just so it's easier to test it. Only includes items from TDTM_DefaultConfig
@@ -252,7 +284,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             upsert orgSettings;
         }
     }
-    
+
     /*******************************************************************************************************
     * @description Populate Default Contact Language Fluency custom setting when upgrading to 1.75
     * @return void
@@ -322,7 +354,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     private static Boolean sendTelemetryDataMethodCalled = false;
 
     /*******************************************************************************************************
-    * @description Calls the UTIL_OrgTelemetry_BATCH class to collect information about the current org and 
+    * @description Calls the UTIL_OrgTelemetry_BATCH class to collect information about the current org and
     * EDA setup information and sends it back to the EDA License Management Application to assist with better
     * understanding of how our customers use our application.
     */

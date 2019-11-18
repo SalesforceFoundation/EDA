@@ -40,8 +40,8 @@ public with sharing class CENR_AcademicProgram_TEST {
     @isTest
     public static void testInsert() {
         STG_InstallScript.insertMappings();
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                               Populate_Affiliation_on_Couse_Connection__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+        Populate_Affil_on_Student_Couse_Cxn__c = true));
 
         Contact c = new Contact(LastName = 'Testerson');
         insert c;
@@ -81,8 +81,9 @@ public with sharing class CENR_AcademicProgram_TEST {
     @isTest
     public static void testUpdate() {
         STG_InstallScript.insertMappings();
-		UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                                               Populate_Affiliation_on_Couse_Connection__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c =          UTIL_Describe_API.getAdminAccRecTypeID(),
+        Populate_Affil_on_Student_Couse_Cxn__c = true));
+
         Contact c = new Contact(LastName = 'Testerson');
         insert c;
 

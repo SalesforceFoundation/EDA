@@ -344,12 +344,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Populate_Affiliation_on_Couse_Connection__c</fullName>
+        <fullName>Populate_Affil_on_Student_Couse_Cxn__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Check this checkbox if you want to auto populate Affiliation on new  Student Course Connection.</description>
         <externalId>false</externalId>
         <inlineHelpText>Check this checkbox if you want to auto populate Affiliation on new Student Course Connection.</inlineHelpText>
-        <label>Populate Affiliation on Couse Connection</label>
+        <label>Populate Affil on Student Couse Cxn</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
