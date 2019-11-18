@@ -720,11 +720,11 @@
         <value>Status Specified for Created Affiliations:</value>
     </labels>
     <labels>
-        <fullName>stgAffliationBackfilTitle</fullName>
+        <fullName>stgAffiliationBackfillTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgAffliationBackfilTitle</shortDescription>
+        <shortDescription>stgAffiliationBackfillTitle</shortDescription>
         <value>Affiliation Backfill on Student Course Connection:</value>
     </labels>
     <labels>
