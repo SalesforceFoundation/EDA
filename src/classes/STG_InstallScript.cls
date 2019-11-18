@@ -237,7 +237,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @description Enabled Auto Population of Affiliation on Student Course Connection.
     * @return void
     */
-    global static void enableAutoPopulateOfAffilOnStudentCourseCxn() {
+    global static void enableAutoPopulationOfAffilOnStudentCourseCxn() {
         Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
         if (orgSettings.Populate_Affil_on_Student_Couse_Cxn__c == null || orgSettings.Populate_Affil_on_Student_Couse_Cxn__c != true) {
             orgSettings.Populate_Affil_on_Student_Couse_Cxn__c = true;
@@ -249,7 +249,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
     * @description Disable Auto Population of Affiliation on Student Course Connection for push upgrade.
     * @return void
     */
-    global static void disablePreferredPhoneEnforcement(Version previousVersion) {
+    global static void disableAutoPopulationOfAffilOnStudentCourseCxn(Version previousVersion) {
         if(previousVersion != null && previousVersion.compareTo(new Version(1,89)) < 0) {
             UTIL_Debug.debug('***Upgrading to version 1.82');
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
