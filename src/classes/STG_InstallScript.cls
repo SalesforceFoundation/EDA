@@ -56,7 +56,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
             enablePreferredPhoneSync();
 
             // Enable auto population of Affiliation on Student Course Connection
-            enableAutoPopulateOfAffilOnStudentCourseCxn();
+            enableAutoPopulationOfAffilOnStudentCourseCxn();
 
             // Format existing contact email addresses
             CON_Email_BATCH contbatch = new CON_Email_BATCH(context);
@@ -71,7 +71,7 @@ global without sharing class STG_InstallScript implements InstallHandler {
 
             disablePreferredPhoneEnforcement(previousVersion);
 
-            disableAutoPopulateOfAffilOnStudentCourseCxn(previousVersion);
+            disableAutoPopulationOfAffilOnStudentCourseCxn(previousVersion);
 
             populateAdminRecordTypeSetting(previousVersion);
 
