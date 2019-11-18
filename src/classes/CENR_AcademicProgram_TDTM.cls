@@ -63,7 +63,7 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
     }
 
     private Boolean checkAffiliationEnabled() {
-        return UTIL_CustomSettingsFacade.getSettings().Populate_Affiliation_on_Couse_Connection__c;
+        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Couse_Cxn__c;
     }
 
     private void handleBeforeTrigger(List<Course_Enrollment__c> newCourseEnrollments, List<Course_Enrollment__c> oldCourseEnrollments,

@@ -424,6 +424,7 @@
         <members>Hierarchy_Settings__c.Household_Account_Naming_Format__c</members>
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
+        <members>Hierarchy_Settings__c.Populate_Affil_on_Student_Couse_Cxn__c</members>
         <members>Hierarchy_Settings__c.Preferred_Phone_Selection__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
@@ -611,6 +612,7 @@
         <members>stgAutoEnrollment</members>
         <members>stgAutoEnrollmentRole</members>
         <members>stgAutoEnrollmentStatus</members>
+        <members>stgAutoPopulateAffiliationTitle</members>
         <members>stgBackfillQueuedEmailSent</members>
         <members>stgBeforeRunBackfill</members>
         <members>stgBtnAddMapping</members>
@@ -663,6 +665,7 @@
         <members>stgHelpAfflProgEnrollSetRole</members>
         <members>stgHelpAfflProgEnrollSetRoleValue</members>
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
+        <members>stgHelpAutoPopulateAffiliation</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpContactPreferredPhone</members>
