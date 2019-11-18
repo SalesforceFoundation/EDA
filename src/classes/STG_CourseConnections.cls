@@ -44,13 +44,17 @@ public class STG_CourseConnections {
         Id ApexJobId = Database.executeBatch(batch, 200);
         return ApexJobId;
     }
-	
+
     @AuraEnabled
     public static Id executeAffiliationBackfillOnCourseConnection() {
-        CCON_AffiliationBackfill_BATCH batch = new CCON_AffiliationBackfill_BATCH(); 
-        Id ApexJobId = Database.executeBatch(batch, 200);
-        return ApexJobId; 
-        
+        Id jobId;
+        Boolean courseConnectionEnabled = UTIL_CustomSettingsFacade.getSettings().Enable_Course_Connections__c;
+        if (courseConnectionEnabled) {
+            CCON_AffiliationBackfill_BATCH batch = new CCON_AffiliationBackfill_BATCH();
+        	Id ApexJobId = Database.executeBatch(batch, 200);
+            jobId = ApexJobId;
+        }
+        return jobId;
     }
-    
+
 }

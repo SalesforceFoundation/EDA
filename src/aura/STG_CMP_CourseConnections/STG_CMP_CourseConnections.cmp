@@ -205,7 +205,9 @@
         	</div>
       	 </div>
       </div>
-
+      <div class="slds-align_absolute-center">
+      	<ui:outputText value="{!v.startBackfillMessageForAffiliation}" class="slds-text-body--small" />
+      </div>
 
     </div>
 
