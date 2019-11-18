@@ -612,7 +612,6 @@
         <members>stgAutoEnrollment</members>
         <members>stgAutoEnrollmentRole</members>
         <members>stgAutoEnrollmentStatus</members>
-        <members>stgAutoPopulateAffiliationTitle</members>
         <members>stgBackfillQueuedEmailSent</members>
         <members>stgBeforeRunBackfill</members>
         <members>stgBtnAddMapping</members>
@@ -665,7 +664,6 @@
         <members>stgHelpAfflProgEnrollSetRole</members>
         <members>stgHelpAfflProgEnrollSetRoleValue</members>
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
-        <members>stgHelpAutoPopulateAffiliation</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpContactPreferredPhone</members>
@@ -692,6 +690,7 @@
         <members>stgHelpIfCustomValuesEthnicityCopyRace</members>
         <members>stgHelpNestedPlanRequirementPP</members>
         <members>stgHelpOrgAccountAddressMgmt</members>
+        <members>stgHelpPopulateAffiliationOnStudentCourseConnection</members>
         <members>stgHelpRelAutoCreatedDup</members>
         <members>stgHelpRelReciprocalMethod</members>
         <members>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</members>
@@ -704,6 +703,7 @@
         <members>stgOptChatterGroup</members>
         <members>stgOptSelect</members>
         <members>stgOptUser</members>
+        <members>stgPopulateAffiliationOnStudentCourseConnectionTitle</members>
         <members>stgPreferredEmailBatchEmailBody</members>
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>

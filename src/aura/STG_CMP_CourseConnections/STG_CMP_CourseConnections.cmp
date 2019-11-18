@@ -4,7 +4,7 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/18/2019, 11:03:18 AM
+  @Last Modified On   : 11/18/2019, 11:42:23 AM
   @Modification Log   :
   Ver       Date            Author      		    Modification
   1.0    11/15/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
@@ -107,9 +107,9 @@
 
           <div class="slds-col slds-grid slds-m-top--medium">
         	<div class="slds-col slds-size--1-of-2">
-                {!$Label.c.stgAutoPopulateAffiliationTitle}
+                {!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle}
                 <div class="slds-col slds-size--1-of-1">
-            		<ui:outputText value="{!$Label.c.stgHelpAutoPopulateAffiliation}" class="slds-text-body--small" />
+            		<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
           		</div>
 
             </div>
