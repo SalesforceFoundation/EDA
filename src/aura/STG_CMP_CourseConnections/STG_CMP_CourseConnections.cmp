@@ -4,10 +4,8 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/18/2019, 11:42:23 AM
-  @Modification Log   :
   Ver       Date            Author      		    Modification
-  1.0    11/15/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+  1.0    11/18/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
 
@@ -19,6 +17,7 @@
   <aura:attribute name="allowBackfill" type="Boolean" default="false" />
   <aura:attribute name="backfillStarted" type="Boolean" default="false" />
   <aura:attribute name="startBackfillMessage" type="String" default="" />
+  <aura:attribute name="startBackfillMessageForAffiliation" type="String" default=""/>
 
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
@@ -104,7 +103,7 @@
             <ui:outputText value="{!$Label.c.stgHelpDefaultFacultyType}" class="slds-text-body--small" />
           </div>
 
-
+          <!--KIM UPDATE-->
           <div class="slds-col slds-grid slds-m-top--medium">
         	<div class="slds-col slds-size--1-of-2">
                 {!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle}
@@ -182,6 +181,31 @@
           <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
         </div>
       </div>
+
+      <hr/>
+
+      <div class="slds-grid slds-wrap">
+		<div class="slds-col slds-size--1-of-2">
+                {!$Label.c.stgAffiliationBackfillTitle}
+                <div class="slds-col slds-size--1-of-1">
+            		<ui:outputText value="{!$Label.c.stgAffiliationBackfillDesc}" class="slds-text-body--small" />
+          		</div>
+         </div>
+
+         <div class="slds-grid slds-grid--align-center slds-m-top--medium">
+               	<lightning:button
+                                  label="Backfill Missing Affiliation"
+                                  title="backfillAffiliation"
+                                  onclick="{!c.handleAffiliationBackfill}"/>
+         </div>
+
+       	 <div class="slds-grid slds-grid--align-bottom slds-m-top--medium">
+        	<div>
+          		<ui:outputText value="{!v.startBackfillMessageForAffiliation}" class="slds-text-body--small" />
+        	</div>
+      	 </div>
+      </div>
+
 
     </div>
 

@@ -656,6 +656,14 @@
         <value>Administrative Account Record Type:</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationBackfillDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffiliationBackfillDesc</shortDescription>
+        <value>This backfill allows you to pre-populate Affiliation on existing Student Course Connection if it is missing. If Affiliation record does not exist, the Affiliation lookup field on the existing Student Course Connection will not be pre-populated.</value>
+    </labels>
+    <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -710,6 +718,14 @@
         <protected>true</protected>
         <shortDescription>stgAfflProgEnrollSetStatusValue</shortDescription>
         <value>Status Specified for Created Affiliations:</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationBackfillTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffiliationBackfillTitle</shortDescription>
+        <value>Affiliation Backfill on Student Course Connection:</value>
     </labels>
     <labels>
         <fullName>stgAfterRunBackfill</fullName>
