@@ -37,11 +37,16 @@
 @isTest
 public with sharing class CENR_AcademicProgram_TEST {
 
-    @isTest
-    public static void testInsert() {
-        STG_InstallScript.insertMappings();
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-        Populate_Affil_on_Student_Couse_Cxn__c = true));
+	/*******************************************************************************************************
+  * @description This tests when a new Course Connection is inserted, the Account__c and Affiliation__c
+  * fields are auto populated and matches the Account and Affiliation records from the Program Enrollment.
+  ********************************************************************************************************/
+  @isTest
+  public static void testInsert() {
+      STG_InstallScript.insertMappings();
+      UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+          Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+          Populate_Affil_on_Student_Couse_Cxn__c = true));
 
         Contact c = new Contact(LastName = 'Testerson');
         insert c;
@@ -54,7 +59,7 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert affil;
 
         Program_Enrollment__c pEnroll = new Program_Enrollment__c(Contact__c = c.Id, Account__c = academicProgram.Id,
-                                                                 Affiliation__c = affil.Id);
+                                                                Affiliation__c = affil.Id);
         insert pEnroll;
 
         Course__c course = new Course__c(Account__c = department.Id);
@@ -67,7 +72,7 @@ public with sharing class CENR_AcademicProgram_TEST {
         insert cOffering;
 
         Course_Enrollment__c cEnroll = new Course_Enrollment__c(Contact__c = c.Id, Program_Enrollment__c = pEnroll.Id,
-                                        Course_Offering__c = cOffering.Id);
+                                                              Course_Offering__c = cOffering.Id);
         Test.startTest();
         insert cEnroll;
         Test.stopTest();
@@ -75,50 +80,53 @@ public with sharing class CENR_AcademicProgram_TEST {
         cEnroll = [SELECT Account__c, Affiliation__c FROM Course_Enrollment__c WHERE ID = :cEnroll.Id];
         System.assertEquals(academicProgram.Id, cEnroll.Account__c);
         System.assertEquals(affil.Id, cEnroll.Affiliation__c);
-
     }
 
-    @isTest
-    public static void testUpdate() {
-        STG_InstallScript.insertMappings();
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c =          UTIL_Describe_API.getAdminAccRecTypeID(),
-        Populate_Affil_on_Student_Couse_Cxn__c = true));
+    /*******************************************************************************************************
+    * @description This tests when an existing Course Connection is updated, the Account__c and Affiliation__c
+    * fields are auto populated and matches the Account and Affiliation records from the Program Enrollment.
+    ********************************************************************************************************/
+  @isTest
+  public static void testUpdate() {
+      STG_InstallScript.insertMappings();
+		  UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+          Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+          Populate_Affil_on_Student_Couse_Cxn__c = true));
 
-        Contact c = new Contact(LastName = 'Testerson');
-        insert c;
+      Contact c = new Contact(LastName = 'Testerson');
+      insert c;
 
-        Account academicProgram = new Account(Name = 'BS in Biology', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
-        Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
-        insert new Account[]{academicProgram, department};
+      Account academicProgram = new Account(Name = 'BS in Biology', RecordTypeId = UTIL_Describe.getAcademicAccRecTypeID());
+      Account department = new Account(Name = 'Biology Department', RecordTypeId = UTIL_Describe.getDepAccRecTypeID());
+      insert new Account[]{academicProgram, department};
 
-        Affiliation__c affil = new Affiliation__c(Contact__c = c.Id, Account__c = department.Id);
-        insert affil;
+      Affiliation__c affil = new Affiliation__c(Contact__c = c.Id, Account__c = department.Id);
+      insert affil;
 
-        Program_Enrollment__c pEnroll = new Program_Enrollment__c(Contact__c = c.Id, Account__c = academicProgram.Id,
-                                                                 Affiliation__c = affil.Id);
-        insert pEnroll;
+      Program_Enrollment__c pEnroll = new Program_Enrollment__c(Contact__c = c.Id, Account__c = academicProgram.Id,
+                                                                  Affiliation__c = affil.Id);
+      insert pEnroll;
 
-        Course__c course = new Course__c(Account__c = department.Id);
-        insert course;
+      Course__c course = new Course__c(Account__c = department.Id);
+      insert course;
 
-        Term__c term = new Term__c(Account__c = department.Id);
-        insert term;
+      Term__c term = new Term__c(Account__c = department.Id);
+      insert term;
 
-        Course_Offering__c cOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
-        insert cOffering;
+      Course_Offering__c cOffering = new Course_Offering__c(Course__c = course.Id, Term__c = term.Id);
+      insert cOffering;
 
-        Course_Enrollment__c cEnroll = new Course_Enrollment__c(Contact__c = c.Id, Course_Offering__c = cOffering.Id,
-                                                               Program_Enrollment__c = pEnroll.Id);
-        insert cEnroll;
+      Course_Enrollment__c cEnroll = new Course_Enrollment__c(Contact__c = c.Id, Course_Offering__c = cOffering.Id,
+                                                                  Program_Enrollment__c = pEnroll.Id);
+      insert cEnroll;
 
-        cEnroll.Program_Enrollment__c = pEnroll.Id;
-        Test.startTest();
-        update cEnroll;
-        Test.stopTest();
+      cEnroll.Program_Enrollment__c = pEnroll.Id;
+      Test.startTest();
+      update cEnroll;
+      Test.stopTest();
 
-        cEnroll = [SELECT Account__c, Affiliation__c FROM Course_Enrollment__c WHERE ID = :cEnroll.Id];
-        System.assertEquals(academicProgram.Id, cEnroll.Account__c);
-        System.assertEquals(affil.Id, cEnroll.Affiliation__c);
-    }
-
+      cEnroll = [SELECT Account__c, Affiliation__c FROM Course_Enrollment__c WHERE ID = :cEnroll.Id];
+      System.assertEquals(academicProgram.Id, cEnroll.Account__c);
+      System.assertEquals(affil.Id, cEnroll.Affiliation__c);
+  }
 }

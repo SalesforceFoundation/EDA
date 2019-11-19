@@ -37,12 +37,13 @@
 public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
-    * @description Updates key affiliation lookups on contact, and any other primary affiliation of the new type.
-    * @param listNew the list of Course Enrollments from trigger new.
-    * @param listOld the list of Coursen Enrollments from trigger old.
+    * @description Updates key affiliation lookups on contact, and any other primary affiliation
+    * of the new type.
+    * @param listNew the list of Course Connections from trigger new.
+    * @param listOld the list of Coursen Connections from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param objResult the describe for Course Enrollments.
-    * @return dmlWrapper
+    * @return dmlWrapper.
     ********************************************************************************************************/
     public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist,
         TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -62,10 +63,24 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
         return dmlWrapper;
     }
 
+	/*******************************************************************************************************
+    * @description This method checks if auto population of Affiliation on new Student Course Connection is
+    * enabled in the org.
+    * @return Boolean.
+    ********************************************************************************************************/
     private Boolean checkAffiliationEnabled() {
-        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Couse_Cxn__c;
+        return UTIL_CustomSettingsFacade.getSettings().Populate_Affil_on_Student_Couse_Cxn__c ;
     }
 
+	/*******************************************************************************************************
+    * @description This method handles beforeTrigger processes.
+    * @param newCourseEnrollments is a list of Course Connections from trigger new.
+    * @param oldCourseEnrollments is a list of Course Connections from trigger old.
+    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @param affiliationIsEnabled is a boolean that denotes if auto population of Affiliation on
+    * Student Course Connection is enabled in org.
+    * @return Boolean.
+    ********************************************************************************************************/
     private void handleBeforeTrigger(List<Course_Enrollment__c> newCourseEnrollments, List<Course_Enrollment__c> oldCourseEnrollments,
                                      TDTM_Runnable.Action triggerAction, Boolean affiliationIsEnabled) {
         Set<Id> pEnrollIDsToQuery = new Set<Id>();
@@ -100,10 +115,15 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
                 }
             }
         }
-
-
-
     }
+
+    /*******************************************************************************************************
+    * @description This method queries all Program Enrollments associated to the new
+    * Student Course Connection.
+    * @param pEnrollIDsToQuery is a list of Program Enrollment Ids associated to
+    * the new Student Course Connection.
+    * @return list of Program Enrollments.
+    ********************************************************************************************************/
     private List<Program_Enrollment__c> queryProgramEnrollments(Set<Id> pEnrollIDsToQuery) {
         //Query the parent Account (Academic Program) of each Program Enrollment, since that field
         //wasn't in the trigger for being two levels up.
@@ -113,6 +133,13 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
         return pEnrollments;
     }
 
+    /*******************************************************************************************************
+    * @description This method handles specifically beforeInsert processes.
+    * @param enroll is the Course Connection from trigger new.
+    * @param pEnrollmentsMap is a map of Program Enrollment Id's to Program Enrollment records.
+    * @param affiliationIsEnabled is a boolean that denotes if auto population of Affiliation on
+    * Student Course Connection is enabled in org.
+    ********************************************************************************************************/
     private void processBeforeInsert(Course_Enrollment__c enroll, Map<Id, Program_Enrollment__c> pEnrollmentsMap,
                                     Boolean affiliationIsEnabled) {
         if(enroll.Program_Enrollment__c != null) {
@@ -126,6 +153,14 @@ public with sharing class CENR_AcademicProgram_TDTM extends TDTM_Runnable {
         }
     }
 
+	/*******************************************************************************************************
+    * @description This method handles specifically beforeUpdate processes.
+    * @param enroll is the Course Connection from trigger new.
+    * @param oldEnroll is the Course Connection from trigger old.
+    * @param pEnrollmentsMap is a map of Program Enrollment Id's to Program Enrollment records.
+    * @param affiliationIsEnabled is a boolean that denotes if auto population of Affiliation on
+    * Student Course Connection is enabled in org.
+    ********************************************************************************************************/
     private void processBeforeUpdate(Course_Enrollment__c enroll, Course_Enrollment__c oldEnroll,
                                      Map<Id, Program_Enrollment__c> pEnrollmentsMap, Boolean affiliationIsEnabled) {
         if(oldEnroll.Program_Enrollment__c == null && enroll.Program_Enrollment__c != null) {
