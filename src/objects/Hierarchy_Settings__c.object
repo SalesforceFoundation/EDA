@@ -346,9 +346,9 @@
     <fields>
         <fullName>Populate_Affil_on_Student_Couse_Cxn__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Check this checkbox if you want to auto populate Affiliation on new  Student Course Connection.</description>
+        <description>If enabled, the Affiliation field on new Student Course Connection records automatically syncs with the Affiliation record associated with the Program Enrollment on the Student Course Connection.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Check this checkbox if you want to auto populate Affiliation on new Student Course Connection.</inlineHelpText>
+        <inlineHelpText>If enabled, the Affiliation field on new Student Course Connection records automatically syncs with the Affiliation record associated with the Program Enrollment on the Student Course Connection.</inlineHelpText>
         <label>Populate Affil on Student Couse Cxn</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
