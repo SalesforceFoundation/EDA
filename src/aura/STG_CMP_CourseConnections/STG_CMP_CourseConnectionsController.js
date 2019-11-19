@@ -12,7 +12,6 @@
   },
 
   handleAffiliationBackfill : function(component, event, helper) {
-    console.log('affiliationBackfill JS -->'); 
-    helper.handleAffiliationBackfill(component); 
+    helper.handleAffiliationBackfill(component);
   },
 })

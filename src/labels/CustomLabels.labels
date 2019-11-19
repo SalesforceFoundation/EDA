@@ -1560,6 +1560,15 @@
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
     </labels>
     <labels>
+        <fullName>stgRunBackfillMissingAffilOnStudentCourseCxn</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success message for running backfill of missing Affiliation on Student Course Connection.</shortDescription>
+        <value>Successfully started backfill of Affiliation on existing Student Course Connection.
+        </value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

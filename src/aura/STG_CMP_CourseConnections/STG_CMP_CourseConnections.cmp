@@ -19,6 +19,27 @@
   <aura:attribute name="startBackfillMessage" type="String" default="" />
   <aura:attribute name="startBackfillMessageForAffiliation" type="String" default=""/>
 
+  <div aura:id="successToast" class="slds-hide">
+    <div class="slds-box">
+      <div class="slds-notify_container slds-notify_container--inline">
+        <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+          <span class="slds-assistive-text">{!$Label.c.stgSuccess}</span>
+            <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
+              <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+            </button>
+            <div class="slds-notify__content slds-grid slds-gutters">
+              <div class="slds-col slds-align-left">
+                <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+              </div>
+            <div class="slds-col slds-align-middle slds-gutters">
+              <h2 class="slds-text-heading_small">{!$Label.c.stgRunBackfillMissingAffilOnStudentCourseCxn}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
       <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label slds-active" title="Settings" role="tab">

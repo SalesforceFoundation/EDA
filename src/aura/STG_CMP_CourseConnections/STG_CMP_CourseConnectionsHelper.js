@@ -37,19 +37,20 @@
       });
       $A.enqueueAction(action);
   },
-  
+
   handleAffiliationBackfill : function(component, event, helper) {
-      console.log('affiliationBackfill HS -->'); 
-     var action = component.get("c.executeAffiliationBackfillOnCourseConnection"); 
-     action.setCallback(this, function(response) {
-     	if(response.getState() === "SUCCESS") {
-            console.log('affiliationBackfill HS SUCCES -->'); 
-          component.set('v.startBackfillMessageForAffiliation', 'Backfill was successfully started.');
-        } else if(response.getState() === "ERROR") {
-            console.log('affiliationBackfill HS ERROR -->'); 
-          component.set('v.startBackfillMessageForAffiliation', 'There was an error when starting the backfill.');
+    console.log('affiliationBackfill HS -->');
+    var action = component.get("c.executeAffiliationBackfillOnCourseConnection");
+    action.setCallback(this, function(response) {
+    if(response.getState() === "SUCCESS") {
+        var toast = component.find("successToast");
+        $A.util.removeClass(toast,'slds-hide');
+        $A.util.addClass(toast, 'slds-show');
+      } else if(response.getState() === "ERROR") {
+        console.log('affiliationBackfill HS ERROR -->');
+        component.set('v.startBackfillMessageForAffiliation', 'There was an error when starting the backfill.');
       }
-      });
-      $A.enqueueAction(action);
+    });
+    $A.enqueueAction(action);
   }
 })
