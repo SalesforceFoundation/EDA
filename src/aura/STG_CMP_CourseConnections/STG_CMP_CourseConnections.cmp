@@ -32,7 +32,7 @@
                 <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
               </div>
             <div class="slds-col slds-align-middle slds-gutters">
-              <h2 class="slds-text-heading_small">{!$Label.c.stgRunBackfillMissingAffilOnStudentCourseCxn}</h2>
+              <h2 class="slds-text-heading_small">{!$Label.c.stgRunBackfillAffilOnStudentCourseCxn}</h2>
             </div>
           </div>
         </div>
