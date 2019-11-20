@@ -12,12 +12,12 @@
   },
 
   handleAffiliationBackfill : function(component, event, helper) {
-    helper.handleAffiliationBackfill(component);
+    console.log('affiliationBackfill JS -->'); 
+    helper.handleAffiliationBackfill(component); 
   },
-
+    
   closeToast : function(component, event, helper) {
-    helper.closeToast(component);
-
+    helper.closeToast(component); 
+        
   },
-
 })
