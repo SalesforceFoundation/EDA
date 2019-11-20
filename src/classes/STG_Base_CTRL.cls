@@ -279,5 +279,29 @@ public with sharing class STG_Base_CTRL {
             return jobId;
         }
     }
+    
+    /*******************************************************************************************************
+    * @description Executes Batch to refresh all Household Account Name. 
+    * @return Id of Batch Job
+    */
+    @AuraEnabled
+    public static Id executeRefreshHouseholdAccountBatch() {
+        System.debug('STG_Base_CTRL executeAccountNameRefreshBatch Method -->'); 
+        Boolean enabledAutomaticNaming = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
+        System.debug('STG_Base_CTRL executeAccountNameRefreshBatch enabledAutomaticNaming -->' + enabledAutomaticNaming); 
+        Id jobId; 
+        if (enabledAutomaticNaming) {
+            System.debug('STG_Base_CTRL executeAccountNameRefreshBatch B4Batch -->'); 
+        	ACCT_NameRefresh_Batch accountRefresh = new ACCT_NameRefresh_Batch();
+        	jobId = Database.executeBatch( accountRefresh , 200 );
+            System.debug('STG_Base_CTRL executeAccountNameRefreshBatch AfterBatch -->' + jobId); 
+        	if (jobId == null) {
+            	throw new AuraHandledException(Label.BatchJobRunningProblem);
+        	} else {
+           		return jobId;
+        	}  
+        }
+        return jobId;
+    }
        
 }

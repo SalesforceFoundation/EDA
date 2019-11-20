@@ -26,5 +26,24 @@
     handleAutocomplete: function(component, event) {
         var selOpt = event.getParam('value');
         component.set("v.hierarchySettings.Error_Notifications_To__c", selOpt.value);
+    },
+    
+    settsLinkClicked: function(component, event, helper) {
+        console.log('InsideJS settsclicked');
+        helper.settsLinkClicked(component, event, helper);
+    }, 
+    bulkProcessLinkClicked: function(component, helper) {
+        console.log('InsideJS bulkProcessLinkClicked');
+        helper.bulkProcessLinkClicked(component, helper);
+    },
+    
+    handleRefreshHouseholdAccount: function(component, event, helper) {
+        console.log('InsideJS handleRefresh');
+        helper.handleRefreshHouseholdAccount(component, event, helper); 
+    }, 
+    
+    handleRefreshAdminAccount: function(component, event, helper) {
+        console.log('InsideJS handleAcctRefresh');
+        helper.handleRefreshAdminAccount(component, event, helper); 
     }
 })

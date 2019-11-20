@@ -1,3 +1,14 @@
+<!--
+  @File Name          : STG_CMP_System.cmp
+  @Description        :
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              :
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 11/12/2019, 3:20:46 PM
+  @Modification Log   :
+  Ver       Date            Author      		    Modification
+  1.0    11/12/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
 
@@ -6,233 +17,342 @@
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
     <aura:attribute name="accRecTypeName" type="String" />
-    
+
     <aura:attribute name="errorNotificationType" type="String"  />
 
-    <aura:attribute name="adminNameFormat" type="String" />    
+    <aura:attribute name="adminNameFormat" type="String" />
     <aura:attribute name="hhNameFormat" type="String" />
-    <aura:attribute name="adminOtherDisplay" type="Boolean"/> 
-    <aura:attribute name="hhOtherDisplay" type="Boolean"/> 
-
-        <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.stgAccModelTitle}" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <c:CMP_RecTypes_Dropdown class="default-account-model-record-type"
-              setting="{!v.hierarchySettings.Account_Processor__c}"
-              isView="{!v.isView}"
-              recTypeId="{!v.accRecTypeId}"
-              recTypeName="{!v.accRecTypeName}"
-              recTypes="{!v.accRecTypes}"
-            />
-        </div>
-
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpAccountModel}" class="slds-text-body--small" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.stgStoreErrorsTitle}" />
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <div class="slds-form-element">
-                <div class="slds-form-element__control">
-                    <label class="slds-checkbox">
-			            <aura:if isTrue="{!v.isView}">
-			                <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}" class="store-errors" />
-			            <aura:set attribute="else">
-			                <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}"
-			                                  class="store-errors" />
-			                <span class="slds-checkbox--faux"></span>
-			                <span class="slds-form-element__label"></span>
-			            </aura:set>
-			            </aura:if>
-			        </label>
-                </div>
-            </div>
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpStoreErrorsOn}" class="slds-text-body--small" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.stgSendErrorsTitle}" />
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <div class="slds-form-element">
-                <div class="slds-form-element__control">
-                    <label class="slds-checkbox">
-			            <aura:if isTrue="{!v.isView}">
-			                <ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" class="send-errors" />
-			            <aura:set attribute="else">
-			                <ui:inputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" class="send-errors" />
-			                <span class="slds-checkbox--faux"></span>
-                            <span class="slds-form-element__label"></span>
-			            </aura:set>
-			            </aura:if>
-			        </label>
-                </div>
-            </div>
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpErrorNotifyOn}" class="slds-text-body--small" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.stgErrorNotifRecipientsTitle}" />
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <aura:if isTrue="{!v.isView}">
-                <ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}" class="errors-recepient" />
-
-            <aura:set attribute="else">
-
-                <div class="slds-form-element slds-size--1-of-3">
-                    <lightning:select value="{!v.errorNotificationType}" name="error_to_type" label="{!$Label.c.stgSelectReciType}" onchange="{!c.errorToSelect}">
-                        <option value="">
-                            <ui:outputText value="{!$Label.c.stgOptSelect}" />
-                        </option>
-                        <option value="All Sys Admins">
-                            <ui:outputText value="{!$Label.c.stgOptAllSysAdmins}" />
-                        </option>
-                        <option value="Chatter Group">
-                            <ui:outputText value="{!$Label.c.stgOptChatterGroup}" />
-                        </option>
-                        <option value="User">
-                            <ui:outputText value="{!$Label.c.stgOptUser}" />
-                        </option>
-                    </lightning:select>
-                </div>
-
-                <div class="slds-hide slds-form-element slds-size--1-of-3" aura:id="errNoticeUserId" >
-                    <c:autocomplete aura:id="autocomplete"
-                                        label="{!$Label.c.stgAutoCompleteSelectUser}"
-                                        placeholder="{!$Label.c.stgAutoCompleteEnterUserName}"
-                                        searchContext="">
-                        <aura:set attribute="dataProvider">
-                            <c:autocompleteDataProvider sObjectType="User" />
-                        </aura:set>
-                        <aura:set attribute="itemTemplate">
-                            <c:autocompleteOption value="{!item}" displayValue="{!item.label}" iconSprite="standard" iconName="user"/>
-                        </aura:set>
-                    </c:autocomplete> 
-                </div>
-
-                <div class="slds-hide slds-form-element slds-size--1-of-3" aura:id="errNoticeChatter">
-                    <c:autocomplete aura:id="autocomplete"
-                                    label="{!$Label.c.stgAutoCompleteSelectChatterGroup}"
-                                    placeholder="{!$Label.c.stgAutoCompleteEnterChatterGroupName}"
-                                    searchContext="">
-                        <aura:set attribute="dataProvider">
-                            <c:autocompleteDataProvider sObjectType="CollaborationGroup" />
-                        </aura:set>
-                        <aura:set attribute="itemTemplate">
-                            <c:autocompleteOption value="{!item}" displayValue="{!item.label}" iconSprite="standard" iconName="groups"/>
-                        </aura:set>
-                    </c:autocomplete>
-                </div>
-
-                <div class="slds-form-element slds-size--1-of-3 slds-m-top--small">
-                    <div class="slds-form-element__control">
-                        <ui:inputText value="{!v.hierarchySettings.Error_Notifications_To__c}"
-                                      class="errors-recepient slds-input" label="{!$Label.c.stgErrorNotiTo}" labelClass="slds-form-element__label" disabled="true" />
+    <aura:attribute name="adminOtherDisplay" type="Boolean"/>
+    <aura:attribute name="hhOtherDisplay" type="Boolean"/>
+    
+	
+	<div aura:id="successToast" class="slds-hide">
+        <div class="slds-box">
+            <div class="slds-notify_container slds-notify_container--inline">
+                <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                    <span class="slds-assistive-text">{!$Label.c.stgSuccess}</span>
+                    <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                    </button>
+                    <div class="slds-notify__content slds-grid slds-gutters">
+                        <div class="slds-col slds-align-left">
+                            <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                        </div>
+                        <div class="slds-col slds-align-middle slds-gutters">
+                        	<h2 class="slds-text-heading_small">{!$Label.c.stgSuccessAccountNameRefresh}</h2>
+                       	</div>
                     </div>
                 </div>
-
-            </aura:set>
-            </aura:if>
-
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpErrorNotifyTo}" class="slds-text-body--small" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.stgDisableErrorHandlingTitle}" />
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <div class="slds-form-element">
-                <div class="slds-form-element__control">
-                    <label class="slds-checkbox">
-				        <aura:if isTrue="{!v.isView}">
-			                <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" class="disable-error-handling" />
-			            <aura:set attribute="else">
-			                <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" class="disable-error-handling" />
-			                <span class="slds-checkbox--faux"></span>
-                            <span class="slds-form-element__label"></span>
-			            </aura:set>
-			            </aura:if>
-				    </label>
-                </div>
             </div>
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.stgHelpErrorDisable}" class="slds-text-body--small" />
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.automaticHHNaming}" />
-        </div>
-        <div class="slds-col slds-size--1-of-2">
-            <div class="slds-form-element">
-                <div class="slds-form-element__control">
-                    <label class="slds-checkbox">
-                        <aura:if isTrue="{!v.isView}">
-                            <ui:outputCheckbox value="{!v.hierarchySettings.Automatic_Household_Naming__c}" class="automatic-hh-acc" />
-                            <aura:set attribute="else">
-                                <ui:inputCheckbox aura:id="automaticHHAcc" value="{!v.hierarchySettings.Automatic_Household_Naming__c}"
-                                                  class="automatic-hh-acc" />
-                                <span class="slds-checkbox--faux"></span>
-                                <span class="slds-form-element__label"></span>
-                            </aura:set>
-                        </aura:if>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
-        </div>
-        
-        <div class="slds-col slds-size--1-of-2" >
-            <c:CMP_Acc_Naming_Dropdown 
-                class="admin-account-naming"
-                isView="{!v.isView}"
-                setting="{!v.hierarchySettings.Admin_Account_Naming_Format__c}"
-                nameFormat="{!v.adminNameFormat}"
-                targetSetting="Admin_Account_Naming_Format__c"
-                namespacePrefix="{!v.namespacePrefix}"
-                otherDisplay="{!v.adminOtherDisplay}"
-                otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
-            />
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.adminAccNameFormatHelpText}" class="slds-text-body--small" />
-        </div>
-
-        <div class="slds-col slds-size--1-of-2">
-            <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
-        </div>
-        
-        <div class="slds-col slds-size--1-of-2">
-            <c:CMP_Acc_Naming_Dropdown 
-                class="household-account-naming"
-                isView="{!v.isView}"
-                setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
-                nameFormat="{!v.hhNameFormat}"
-                targetSetting="Household_Account_Naming_Format__c"
-                namespacePrefix="{!v.namespacePrefix}"
-                otherDisplay="{!v.hhOtherDisplay}"
-                otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
-            />
-        </div>
-        <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-            <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
         </div>
     </div>
+    
+    <div id="systemTabs" class="slds-tabs--scoped">
+        
+        <!--Sub Tab bar-->
+       <!--<ul class="slds-tabs__scoped__nav" role="tablist">
+           	<li aura:id="settingsTab" class="slds-tabs__item slds-text-heading__label" title="Settings" role="tab">
+                <ui:outputURL value="#" label="{!$Label.c.stgTabSettings}" click="{!c.settsLinkClicked}" class="system-settings-menulink" />
+            </li>
+            
+            <li aura:id="bulkTab" class="slds-tabs__item slds-text-heading__label" title="Bulk Processing" role="tab">
+                <ui:outputURL value="#" label="BULK PROCESSING" click="{!c.bulkProcessLinkClicked}" class="system-bulk-menulink"/>
+            </li>
+        </ul>-->
+        
+        <!--Settings tab -->
+		<div aura:id="settingsContent" class="slds-tabs__content" role="tabpanel">
+
+        	<div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
+                
+                <!--Account Model drop down-->
+                <div class="slds-col slds-size--1-of-2">
+            		<ui:outputText value="{!$Label.c.stgAccModelTitle}" />
+        		</div>
+                
+                <div class="slds-col slds-size--1-of-2">
+                    <c:CMP_RecTypes_Dropdown class="default-account-model-record-type"
+                      setting="{!v.hierarchySettings.Account_Processor__c}"
+                      isView="{!v.isView}"
+                      recTypeId="{!v.accRecTypeId}"
+                      recTypeName="{!v.accRecTypeName}"
+                      recTypes="{!v.accRecTypes}"
+                    />
+                </div>
+				               
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.stgHelpAccountModel}" class="slds-text-body--small" />
+                </div>
+				
+                 <!--Store Errors -->
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgStoreErrorsTitle}" />
+                </div>
+                
+                <div class="slds-col slds-size--1-of-2">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputCheckbox value="{!v.hierarchySettings.Store_Errors_On__c}" class="store-errors" />
+                                <aura:set attribute="else">
+                                    <ui:inputCheckbox aura:id="storeErrors" value="{!v.hierarchySettings.Store_Errors_On__c}"
+                                                      class="store-errors" />
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                </aura:set>
+                                </aura:if>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.stgHelpStoreErrorsOn}" class="slds-text-body--small" />
+                </div>
+                
+                <!--Send Error -->
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgSendErrorsTitle}" />
+                </div>
+                
+                <div class="slds-col slds-size--1-of-2">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" class="send-errors" />
+                                <aura:set attribute="else">
+                                    <ui:inputCheckbox value="{!v.hierarchySettings.Error_Notifications_On__c}" class="send-errors" />
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                </aura:set>
+                                </aura:if>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.stgHelpErrorNotifyOn}" class="slds-text-body--small" />
+                </div>
+				
+                <!--Receipient -->
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgErrorNotifRecipientsTitle}" />
+                </div>
+                
+                <div class="slds-col slds-size--1-of-2">
+                    <aura:if isTrue="{!v.isView}">
+                        <ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}" class="errors-recepient" />
+
+                    <aura:set attribute="else">
+
+                        <div class="slds-form-element slds-size--1-of-3">
+                            <lightning:select value="{!v.errorNotificationType}" name="error_to_type" label="{!$Label.c.stgSelectReciType}" onchange="{!c.errorToSelect}">
+                                <option value="">
+                                    <ui:outputText value="{!$Label.c.stgOptSelect}" />
+                                </option>
+                                <option value="All Sys Admins">
+                                    <ui:outputText value="{!$Label.c.stgOptAllSysAdmins}" />
+                                </option>
+                                <option value="Chatter Group">
+                                    <ui:outputText value="{!$Label.c.stgOptChatterGroup}" />
+                                </option>
+                                <option value="User">
+                                    <ui:outputText value="{!$Label.c.stgOptUser}" />
+                                </option>
+                            </lightning:select>
+                        </div>
+
+                        <div class="slds-hide slds-form-element slds-size--1-of-3" aura:id="errNoticeUserId" >
+                            <c:autocomplete aura:id="autocomplete"
+                                                label="{!$Label.c.stgAutoCompleteSelectUser}"
+                                                placeholder="{!$Label.c.stgAutoCompleteEnterUserName}"
+                                                searchContext="">
+                                <aura:set attribute="dataProvider">
+                                    <c:autocompleteDataProvider sObjectType="User" />
+                                </aura:set>
+                                <aura:set attribute="itemTemplate">
+                                    <c:autocompleteOption value="{!item}" displayValue="{!item.label}" iconSprite="standard" iconName="user"/>
+                                </aura:set>
+                            </c:autocomplete>
+                        </div>
+
+                        <div class="slds-hide slds-form-element slds-size--1-of-3" aura:id="errNoticeChatter">
+                            <c:autocomplete aura:id="autocomplete"
+                                            label="{!$Label.c.stgAutoCompleteSelectChatterGroup}"
+                                            placeholder="{!$Label.c.stgAutoCompleteEnterChatterGroupName}"
+                                            searchContext="">
+                                <aura:set attribute="dataProvider">
+                                    <c:autocompleteDataProvider sObjectType="CollaborationGroup" />
+                                </aura:set>
+                                <aura:set attribute="itemTemplate">
+                                    <c:autocompleteOption value="{!item}" displayValue="{!item.label}" iconSprite="standard" iconName="groups"/>
+                                </aura:set>
+                            </c:autocomplete>
+                        </div>
+
+                        <div class="slds-form-element slds-size--1-of-3 slds-m-top--small">
+                            <div class="slds-form-element__control">
+                                <ui:inputText value="{!v.hierarchySettings.Error_Notifications_To__c}"
+                                              class="errors-recepient slds-input" label="{!$Label.c.stgErrorNotiTo}" labelClass="slds-form-element__label" disabled="true" />
+                            </div>
+                        </div>
+
+                    </aura:set>
+                    </aura:if>
+
+                </div>
+                
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.stgHelpErrorNotifyTo}" class="slds-text-body--small" />
+                </div>
+				
+                <!--Disable Error --> 
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.stgDisableErrorHandlingTitle}" />
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" class="disable-error-handling" />
+                                <aura:set attribute="else">
+                                    <ui:inputCheckbox value="{!v.hierarchySettings.Disable_Error_Handling__c}" class="disable-error-handling" />
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                </aura:set>
+                                </aura:if>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.stgHelpErrorDisable}" class="slds-text-body--small" />
+                </div>
+                
+                <!--Automatic Name -->
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.automaticHHNaming}" />
+                </div>
+                <div class="slds-col slds-size--1-of-2">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputCheckbox value="{!v.hierarchySettings.Automatic_Household_Naming__c}" class="automatic-hh-acc" />
+                                    <aura:set attribute="else">
+                                        <ui:inputCheckbox aura:id="automaticHHAcc" value="{!v.hierarchySettings.Automatic_Household_Naming__c}"
+                                                          class="automatic-hh-acc" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                    </aura:set>
+                                </aura:if>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
+                </div>
+
+                <!--Admin Acct-->
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
+                </div>
+
+                <div class="slds-col slds-size--1-of-2" >
+                    <c:CMP_Acc_Naming_Dropdown
+                        class="admin-account-naming"
+                        isView="{!v.isView}"
+                        setting="{!v.hierarchySettings.Admin_Account_Naming_Format__c}"
+                        nameFormat="{!v.adminNameFormat}"
+                        targetSetting="Admin_Account_Naming_Format__c"
+                        namespacePrefix="{!v.namespacePrefix}"
+                        otherDisplay="{!v.adminOtherDisplay}"
+                        otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
+                    />
+                </div>
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.adminAccNameFormatHelpText}" class="slds-text-body--small" />
+                </div>
+				
+                <!--HHAccount -->
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
+                </div>
+
+                <div class="slds-col slds-size--1-of-2">
+                    <c:CMP_Acc_Naming_Dropdown
+                        class="household-account-naming"
+                        isView="{!v.isView}"
+                        setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
+                        nameFormat="{!v.hhNameFormat}"
+                        targetSetting="Household_Account_Naming_Format__c"
+                        namespacePrefix="{!v.namespacePrefix}"
+                        otherDisplay="{!v.hhOtherDisplay}"
+                        otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
+                    />
+                </div>
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
+                </div>
+                
+                <div class="slds-col slds-size--1-of-2">
+                    {!$Label.c.stgRefreshHHAcctNameTitle}
+                    <div class="slds-col slds-size--1-of-1">
+                    	<ui:outputText value="{!$Label.c.stgRefreshHHAcctNameDesc}" class="slds-text-body--small" />
+                    </div>
+                </div>
+        		
+                
+                <div class="slds-col slds-size--1-of-2">
+               	<lightning:button
+                                  label="Refresh Household Names" 
+                                  title="refreshHouseholdAccountButton"
+                                  onclick="{! c.handleRefreshHouseholdAccount}"/>
+                </div>
+                
+                <div class="slds-col slds-size--1-of-2">
+                    {!$Label.c.stgRefreshAdminAcctNameTitle}
+                    <div class="slds-col slds-size--1-of-1">
+                    	<ui:outputText value="{!$Label.c.stgRefreshAdminAcctNameDesc}" class="slds-text-body--small" />
+                    </div>
+                </div>
+        		
+                
+                <div class="slds-col slds-size--1-of-2">
+               	<lightning:button
+                                  label="Refresh Administrative Names" 
+                                  title="refreshButton"
+                                  onclick="{! c.handleRefreshAdminAccount}"/>
+                </div>
+            </div>
+        </div>
+        
+        <!--Bulk Tab -->
+        <!--<div aura:id="bulkContent" class="slds-tabs__content" role="tabpanel">
+    		<div class="slds-col slds-size__1-of-1 slds-m-bottom__medium">
+				
+                <div class="slds-col slds-size__1-of-2">
+                    <ui:outputText value="Click the button to refresh Account Name." class="slds-text-body__small" />
+                </div>
+        		
+                
+                <div class="slds-col slds-size__1-of-2">
+               	<lightning:button
+                                  label="Refresh All Account Name" 
+                                  title="refreshButton"
+                                  onclick="{! c.handleRefreshAccount}"/>
+                </div>
+           	 
+       	 	</div>
+   	 	</div>-->
+        
+    </div>
+    
+
+	
 </aura:component>
