@@ -1564,7 +1564,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Message for successfully starting the backfill for Affiliation on Student Course Cxn.</shortDescription>
+        <shortDescription>Message for successfully starting the backfill for Affiliation on Student Course Cxn.
+        </shortDescription>
         <value>Successfully started backfill of Affiliation on existing Student Course Connection.
         </value>
     </labels>
