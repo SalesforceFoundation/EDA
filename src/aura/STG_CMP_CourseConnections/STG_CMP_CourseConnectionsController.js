@@ -14,4 +14,10 @@
   handleAffiliationBackfill : function(component, event, helper) {
     helper.handleAffiliationBackfill(component);
   },
+
+  closeToast : function(component, event, helper) {
+    helper.closeToast(component);
+
+  },
+
 })

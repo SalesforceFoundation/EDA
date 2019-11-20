@@ -52,5 +52,12 @@
       }
     });
     $A.enqueueAction(action);
-  }
+  },
+
+  closeToast: function(component) {
+    var tst = component.find("successToast");
+    $A.util.removeClass(tst, "slds-show");
+    $A.util.addClass(tst, "slds-hide");
+  },
+
 })
