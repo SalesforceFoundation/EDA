@@ -136,14 +136,13 @@ public class CCON_AffiliationBackfill_TEST {
     * @param students is a list of Contacts.
     */
     private static void createCourseConnections(List<Contact> students) {
-        Id studentCCRecordTypeId = UTIL_CustomSettingsFacade.getSettings().Student_RecType__c;
         for (Integer i=0; i<students.size(); i++) {
             Course_Enrollment__c conn = new Course_Enrollment__c(
                 Contact__c = students[i].Id,
                 Program_Enrollment__c = programEnrollments[i].Id,
-                Course_Offering__c = offeringsList[i].Id,
-                RecordTypeId = studentCCRecordTypeId
+                Course_Offering__c = offeringsList[i].Id
             );
+            conn.put('RecordTypeId', UTIL_CustomSettingsFacade.getSettings().Student_RecType__c);
             studentConnections.add(conn);
         }
     }
