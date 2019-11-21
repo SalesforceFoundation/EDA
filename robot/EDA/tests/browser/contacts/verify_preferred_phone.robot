@@ -19,6 +19,7 @@ Suite Teardown  Run keywords
 ...   AND       Capture screenshot and delete records and close browser 
 
 *** Test Cases ***
+[tags]  unstable
 Verify basic preferred phone functionality
     Current page should be                  Home
     ...                                     Contacts
