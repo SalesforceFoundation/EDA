@@ -464,16 +464,6 @@ class ContactsHomePage(BasePage):
             "Details tab not found on contact", 
             False
         )
-#        self.selenium.driver.refresh()
-#        self.selenium.wait_until_page_contains_element(
-#            contacts_locators["details_tab"],
-#            timeout=60
-#        )
-#        self.open_item(
-#            contacts_locators["details_tab"], 
-#            "Details tab not found on contact", 
-#            False
-#        )
 
         self.selenium.wait_until_page_contains_element(
             contacts_locators["phone_verify"],
@@ -577,15 +567,6 @@ class ContactsHomePage(BasePage):
             "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
         )
 
-    def Find_the_frame(self, loc):
-        """ Switch to the iFrame specified """
-
-        self.selenium.driver.switch_to.frame(loc)
-        self.selenium.driver.execute_script(
-            "arguments[0].click()", 
-            self.selenium.driver.find_element_by_xpath(eda_settings.batch_successful)
-        )
-
     def Wait_and_refresh_static_page_until_text(self, search_text, wait_time, loc_frame, loc_text):
         """ Wait for text to appear on static page.  Note that the page is refreshed each 'wait_time' until
             the specified text 'search_text' appears. 
@@ -623,6 +604,48 @@ class ContactsHomePage(BasePage):
         self.selenium.click_element(contacts_locators["button_save_affiliation"])
         self.eda.close_toast_message()
 
+    def Enable_enable_record_type_validation_checkbox(self):
+        """ Ensure that the Enhanced Preferred Phone Functionality checkbox is checked 
+            Set the checkbox if it is not set
+            Do nothing if the checkbox is already set
+        """
+        
+        self.selenium.wait_until_page_contains_element(
+            contacts_locators["accounts_contacts"],
+            timeout=60
+        )
+        self.open_item(
+            contacts_locators["accounts_contacts"],
+            "Cannot find Account and Contacts on EDA Settings page", 
+            True
+        )
+
+        # Checkbox for 'Disable Preferred Phone enforcement' needs to be marked as checked
+        if self._check_if_element_exists(contacts_locators["enhanced_preferred_set"]):
+            self.builtin.log("Enable Enhanced Preferred Phone Functionality is checked.")
+            return
+        else: 
+            self.builtin.log(
+                "Enable Enhanced Preferred Phone Functionality is NOT checked.\n" +
+                "Opening EDIT mode"
+            )
+            self.selenium.click_button("Edit")
+            self.builtin.log("Setting 'Enable Enhanced Preferred Phone Functionality' checkbox.")
+            self.selenium.wait_until_page_contains_element(
+                contacts_locators["enhanced_preferred_clear_faux"],
+                timeout=60
+            )
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(contacts_locators["enhanced_preferred_clear_faux"])
+            )
+            self.selenium.click_button("Save")
+            self.eda.close_toast_message()
+            self.builtin.log(
+                "Enable Enhanced Preferred Phone Functionality setting has been set.\n" +
+                "Saving changes.\n" +
+                "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
+            )
 
 
 
