@@ -1205,7 +1205,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgHelpPopulateAffiliationOnStudentCourseConnection</shortDescription>
-        <value>When a new Student Course Connection record is created for a Contact that has an Affiliation record, enabling this checkbox matches the Affiliation field on the new record to the Contact specified on the Affiliation record. If enabling this feature for the first time in an existing org, it is highly recommended that you run the Backfill in your org.</value>
+        <value>When a new Student Course Connection is created for a Contact that has an Affiliation record, enabling this checkbox matches the Affiliation to the Program Enrollment associated to the new Student Course Connection. If enabling this feature for the first time in an existing org, it is highly recommended that you run the Backfill in your org.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>
