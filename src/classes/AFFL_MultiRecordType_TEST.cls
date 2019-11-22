@@ -106,6 +106,16 @@ public with sharing class AFFL_MultiRecordType_TEST {
 		//The business organization lookup should point to the account that is part of the second affiliation we created
 		contact = [select Primary_Organization__c from Contact where ID = :contact.ID];
 		System.assertEquals(bizOrg2.ID, Contact.Primary_Organization__c);
+
+		//  Test addition of a new affiliation with the same Account doesn't erase the Primary field on Contact
+
+		// Insert another primary Affiliaiton on the Contact with same Account 
+		Affiliation__c bizAffl3 = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg2.ID, Primary__c = true);
+        insert bizAffl3;            
+
+        // Verify Primary Buisness Organization on the Contact is not erased         
+        Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
+        System.assertEquals(bizOrg2.ID, updatedContact.Primary_Organization__c);  
 	}
 	
 	@isTest
