@@ -4,7 +4,7 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/20/2019, 4:19:48 PM
+  @Last Modified On   : 11/22/2019, 11:54:40 AM
   @Modification Log   :
   Ver       Date            Author      		    Modification
   1.0    11/18/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
@@ -130,7 +130,7 @@
         	<div class="slds-col slds-size--1-of-2">
                 {!$Label.c.stgAutoPopulateAffiliationTitle}
                 <div class="slds-col slds-size--1-of-1">
-            		<ui:outputText value="{!$Label.c.stgHelpAutoPopulateAffiliation}" class="slds-text-body--small" />
+            		<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
           		</div>
 
             </div>
