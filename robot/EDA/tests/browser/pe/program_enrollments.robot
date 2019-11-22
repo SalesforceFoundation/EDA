@@ -30,6 +30,7 @@ Verify EDA Settings
 
 
 Create A Contact
+    [tags]  unstable
     Set Window Size                         1024    1024
     Go To Object Home                       Contact
 
