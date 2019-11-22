@@ -30,6 +30,7 @@ Verify affiliations with contacts. Creates affiliations with blank record types 
 
     Wait for Locator                        eda_settings.affiliations_new
     Click on Element                        eda_settings.affiliations_new
+    
     Wait for Locator                        eda_settings.new_account
     Click on Element                        eda_settings.new_account
 
