@@ -19,7 +19,7 @@ Suite Teardown  Run keywords
 ...             Close Browser 
 
 *** Test Cases ***
-Verify affiliations with contacts
+Verify affiliations with contacts. Creates affiliations with blank record types and mismatched primary affiliations 
     [tags]                          unstable
     Current page should be                  Home
     ...                                     Contacts
