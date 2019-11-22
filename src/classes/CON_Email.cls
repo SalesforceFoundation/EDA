@@ -286,19 +286,21 @@ public class CON_Email {
             String namespace = UTIL_Namespace.getNamespace();
             String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
             List<Schema.PicklistEntry> preferredEmailPicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'Preferred_Email__c');
-            List<String> preferredEmailValues = new List<String>();
-            
+            Map<String, String> preferredLabelToApi = new Map<String, String>();
             for (Schema.PicklistEntry eachValue: preferredEmailPicklist) {
-                preferredEmailValues.add(eachValue.getValue());
+                PreferredLabelToApi.put(eachValue.getLabel(), eachValue.getValue());
             }
              
             this.value = val;
             this.label = lbl;
             this.apiName = api;
-            if (!preferredEmailValues.contains(lbl)) {
+
+            /* If the field label is not in Preferrred Email picklist API values then check if it is in PreferredEmailMappings, if yes then take the value from mappings
+             else keep the label as label. If the field label is in the Preferrred Email picklist API values then assign the picklist API value that matches the field label. */
+            if (!PreferredLabelToApi.keySet().contains(lbl)) {
                 this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
             } else {
-                this.prefLabel = lbl;
+                this.prefLabel = PreferredLabelToApi.get(lbl);
             }    
         }
 
