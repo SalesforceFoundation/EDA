@@ -23,13 +23,11 @@ Suite Teardown  Run keywords
 Enable Household Account
     [tags]                              unstable
     Go To Eda Settings
-
+    Wait for Locator                    tabs.accountsandcontacts
+    Click on Element                    tabs.accountsandcontacts
 
     Wait for Locator                    account_types.edit
     Click on Element                    account_types.edit
-
-    Wait for Locator                    tabs.accountsandcontacts
-    Click on Element                    tabs.accountsandcontacts
 
     # Check Household Account
     Wait for Locator                    account_types.household 
