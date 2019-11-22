@@ -1,6 +1,14 @@
 *** Settings ***
 Documentation
-...     Verify Create Affiliations functionality
+...     Verify Create Affiliations and functionality of
+...     Enable Record Type Validation
+...     When selected, if users specify an Account as a 
+...     Contact's Primary Affiliation, EDA requires that 
+...     the Account have a record type and that all 
+...     Account Record Type values are correctly mapped 
+...     to their respective Contact Primary Affl Fields 
+...     in Affiliation Mappings. If validation fails, 
+...     an error prevents the Affiliation from being saved.
 
 Resource        cumulusci/robotframework/Salesforce.robot
 Resource        robot/EDA/resources/EDA.robot
@@ -19,8 +27,9 @@ Suite Teardown  Run keywords
 ...             Close Browser 
 
 *** Test Cases ***
-Verify affiliations with contacts. Creates affiliations with blank record types and mismatched primary affiliations 
+Verify affiliations with contacts
     [tags]                          unstable
+
     Current page should be                  Home
     ...                                     Contacts
 
@@ -92,25 +101,5 @@ Create next contact
     &{CONTACT2} =                           API Create Contact
     Set suite variable                      &{CONTACT2}
 
-Create third contact
-    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
-
-    &{CONTACT3} =                           API Create Contact
-    Set suite variable                      &{CONTACT3}
-
-Create last contact
-    [Documentation]                         Create a new contact with a randomly generated firstname and lastname via API
-
-    &{CONTACT4} =                           API Create Contact
-    Set suite variable                      &{CONTACT4}
-
-Open EDA Settings Tab menu item
-    Select app launcher tab                 EDA Settings
-    Select frame with title                 accessibility title
-
-Restore eda settings
-    Open EDA Settings Tab menu item
-    Set the disable preferred phone enforcement
-    Shift to default content
 
 
