@@ -1,11 +1,11 @@
 <!--
   @File Name          : STG_CMP_CourseConnections.cmp
-  @Description        : 
+  @Description        :
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Group              : 
+  @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/18/2019, 11:47:59 AM
-  @Modification Log   : 
+  @Last Modified On   : 11/20/2019, 4:19:48 PM
+  @Modification Log   :
   Ver       Date            Author      		    Modification
   1.0    11/18/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
@@ -20,7 +20,7 @@
   <aura:attribute name="backfillStarted" type="Boolean" default="false" />
   <aura:attribute name="startBackfillMessage" type="String" default="" />
   <aura:attribute name="startBackfillMessageForAffiliation" type="String" default=""/>
-    
+
   <div aura:id="successToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
@@ -216,18 +216,18 @@
 
          <div class="slds-grid slds-grid--align-center slds-m-top--medium">
                	<lightning:button
-                                  label="Backfill Missing Affiliation"
+                                  label="Run Affiliation Backfill"
                                   title="backfillAffiliation"
                                   onclick="{!c.handleAffiliationBackfill}"/>
-             	
-             	
+
+
          </div>
       </div>
-        
+
       <div class="slds-align_absolute-center">
-      	
+
       	<ui:outputText value="{!v.startBackfillMessageForAffiliation}" class="slds-text-body--small" />
-           	
+
       </div>
 
 

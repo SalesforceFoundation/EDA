@@ -1581,7 +1581,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgRunBackfillMissingAffilOnStudentCourseCxn</shortDescription>
-        <value>Successfully started backfill of Affiliation on existing Student Course Connection.</value>
+        <value>The backfill was queued successfully. An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
