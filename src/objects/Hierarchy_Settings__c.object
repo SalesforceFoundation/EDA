@@ -360,7 +360,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Account Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -370,7 +369,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Behavior Involvement Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -380,7 +378,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Case Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -390,7 +387,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Contact Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -400,7 +396,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Course Connection Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -410,7 +405,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Course Offering Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -420,7 +414,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Plan Requirement Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -430,7 +423,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Program Plan Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -440,7 +432,6 @@
         <defaultValue>false</defaultValue>
         <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Term Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
