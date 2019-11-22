@@ -31,6 +31,8 @@
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>CCON_AffiliationBackfill_BATCH</members>
+        <members>CCON_AffiliationBackfill_TEST</members>
         <members>CCON_ConnectionBackfill_BATCH</members>
         <members>CCON_ConnectionBackfill_TEST</members>
         <members>CCON_Faculty_TDTM</members>
@@ -597,6 +599,8 @@
         <members>stgAddHispanicOrLatinoPicklistValue</members>
         <members>stgAddNotHispanicOrLatinoPicklistValue</members>
         <members>stgAdminAccountRecordType</members>
+        <members>stgAffiliationBackfillDesc</members>
+        <members>stgAffiliationBackfillTitle</members>
         <members>stgAfflCopyProgramEnrollmentEndDate</members>
         <members>stgAfflCopyProgramEnrollmentStartDate</members>
         <members>stgAfflDeleteProgramEnrollment</members>
@@ -612,6 +616,7 @@
         <members>stgAutoEnrollment</members>
         <members>stgAutoEnrollmentRole</members>
         <members>stgAutoEnrollmentStatus</members>
+        <members>stgAutoPopulateAffiliationTitle</members>
         <members>stgBackfillQueuedEmailSent</members>
         <members>stgBeforeRunBackfill</members>
         <members>stgBtnAddMapping</members>
@@ -664,6 +669,7 @@
         <members>stgHelpAfflProgEnrollSetRole</members>
         <members>stgHelpAfflProgEnrollSetRoleValue</members>
         <members>stgHelpAfflProgEnrollSetStatusValue</members>
+        <members>stgHelpAutoPopulateAffiliation</members>
         <members>stgHelpContactAddrs</members>
         <members>stgHelpContactPreferredEmail</members>
         <members>stgHelpContactPreferredPhone</members>
@@ -708,6 +714,7 @@
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
         <members>stgPreferredPhoneSelection</members>
+        <members>stgRunBackfillMissingAffilOnStudentCourseCxn</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
         <members>stgSaveSettings</members>

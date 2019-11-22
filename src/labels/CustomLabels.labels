@@ -656,6 +656,22 @@
         <value>Administrative Account Record Type:</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationBackfillDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffiliationBackfillDesc</shortDescription>
+        <value>This backfill allows you to auto-populate the Affiliation field on existing Student Course Connection records with the Affiliation that connects it to an Academic Program. If the Course Connection isn't affiliated with an Academic Program, the field on existing Student Course Connections won&apos;t auto-populate.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationBackfillTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAffiliationBackfillTitle</shortDescription>
+        <value>Affiliation Backfill on Student Course Connection:</value>
+    </labels>
+    <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -776,11 +792,11 @@
         <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
-        <fullName>stgPopulateAffiliationOnStudentCourseConnectionTitle</fullName>
+        <fullName>stgAutoPopulateAffiliationTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle</shortDescription>
+        <shortDescription>stgAutoPopulateAffiliationTitle</shortDescription>
         <value>Populate Affiliation on Student Course Connections:</value>
     </labels>
     <labels>
@@ -1416,6 +1432,14 @@
         <value>Enables Address management for Organizational Accounts when selected.</value>
     </labels>
     <labels>
+        <fullName>stgHelpPopulateAffiliationOnStudentCourseConnection</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgHelpPopulateAffiliationOnStudentCourseConnection</shortDescription>
+        <value>When a new Student Course Connection is created for a Contact that has an Affiliation record, enabling this checkbox matches the Affiliation to the Program Enrollment associated to the new Student Course Connection. If enabling this feature for the first time in an existing org, it is highly recommended that you run the Backfill in your org.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpRelAutoCreatedDup</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1512,6 +1536,14 @@
         <value>User</value>
     </labels>
     <labels>
+        <fullName>stgPopulateAffiliationOnStudentCourseConnectionTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgPopulateAffiliationOnStudentCourseConnectionTitle</shortDescription>
+        <value>Populate Affiliation on Student Course Connections:</value>
+    </labels>
+    <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>
@@ -1542,6 +1574,14 @@
         <protected>true</protected>
         <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
+    </labels>
+    <labels>
+        <fullName>stgRunBackfillMissingAffilOnStudentCourseCxn</fullName>
+        <categories>Setting</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRunBackfillMissingAffilOnStudentCourseCxn</shortDescription>
+        <value>The backfill was queued successfully. An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>

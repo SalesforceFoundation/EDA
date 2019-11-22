@@ -4,10 +4,9 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/22/2019, 11:31:13 AM
   @Modification Log   :
   Ver       Date            Author      		    Modification
-  1.0    11/15/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+  1.0    11/18/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
 <aura:component extends="c:STG_CMP_Base" controller="STG_CourseConnections">
 
@@ -19,6 +18,28 @@
   <aura:attribute name="allowBackfill" type="Boolean" default="false" />
   <aura:attribute name="backfillStarted" type="Boolean" default="false" />
   <aura:attribute name="startBackfillMessage" type="String" default="" />
+  <aura:attribute name="startBackfillMessageForAffiliation" type="String" default=""/>
+
+  <div aura:id="successToast" class="slds-hide">
+        <div class="slds-box">
+            <div class="slds-notify_container slds-notify_container--inline">
+                <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                    <span class="slds-assistive-text">{!$Label.c.stgSuccess}</span>
+                    <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                    </button>
+                    <div class="slds-notify__content slds-grid slds-gutters">
+                        <div class="slds-col slds-align-left">
+                            <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                        </div>
+                        <div class="slds-col slds-align-middle slds-gutters">
+                        	<h2 class="slds-text-heading_small">{!$Label.c.stgRunBackfillMissingAffilOnStudentCourseCxn}</h2>
+                       	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
 
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
@@ -104,10 +125,9 @@
             <ui:outputText value="{!$Label.c.stgHelpDefaultFacultyType}" class="slds-text-body--small" />
           </div>
 
-
           <div class="slds-col slds-grid slds-m-top--medium">
         	<div class="slds-col slds-size--1-of-2">
-                {!$Label.c.stgPopulateAffiliationOnStudentCourseConnectionTitle}
+                {!$Label.c.stgAutoPopulateAffiliationTitle}
                 <div class="slds-col slds-size--1-of-1">
             		<ui:outputText value="{!$Label.c.stgHelpPopulateAffiliationOnStudentCourseConnection}" class="slds-text-body--small" />
           		</div>
@@ -118,10 +138,10 @@
             	<label class="slds-checkbox">
               		<aura:if isTrue="{!v.isView}">
                   		<span style="margin-right: 8px">
-                      		<ui:outputCheckbox value="{!v.hierarchySettings.Populate_Affil_on_Student_Couse_Cxn__c}" class="slds-checkbox course-cons-outputcheck" />
+                      		<ui:outputCheckbox value="{!v.hierarchySettings.Populate_Affiliation_on_Couse_Connection__c}" class="slds-checkbox course-cons-outputcheck" />
                   		</span>
               		<aura:set attribute="else">
-                  		<ui:inputCheckbox value="{!v.hierarchySettings.Populate_Affil_on_Student_Couse_Cxn__c}" class="slds-checkbox course-cons-inputcheck"
+                  		<ui:inputCheckbox value="{!v.hierarchySettings.Populate_Affiliation_on_Couse_Connection__c}" class="slds-checkbox course-cons-inputcheck"
                                     aura:id="affiliationCheckbox" text="" />
                   		<span class="slds-checkbox--faux"></span>
               		</aura:set>
@@ -182,6 +202,33 @@
           <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
         </div>
       </div>
+
+      <hr/>
+
+      <div class="slds-grid slds-wrap">
+		<div class="slds-col slds-size--1-of-2">
+                {!$Label.c.stgAffiliationBackfillTitle}
+                <div class="slds-col slds-size--1-of-1">
+            		<ui:outputText value="{!$Label.c.stgAffiliationBackfillDesc}" class="slds-text-body--small" />
+          		</div>
+         </div>
+
+         <div class="slds-grid slds-grid--align-center slds-m-top--medium">
+               	<lightning:button
+                                  label="Run Affiliation Backfill"
+                                  title="backfillAffiliation"
+                                  onclick="{!c.handleAffiliationBackfill}"/>
+
+
+         </div>
+      </div>
+
+      <div class="slds-align_absolute-center">
+
+      	<ui:outputText value="{!v.startBackfillMessageForAffiliation}" class="slds-text-body--small" />
+
+      </div>
+
 
     </div>
 

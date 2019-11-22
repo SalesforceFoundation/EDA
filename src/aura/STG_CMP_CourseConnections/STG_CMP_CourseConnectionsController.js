@@ -11,4 +11,13 @@
     helper.startBackfill(component);
   },
 
+  handleAffiliationBackfill : function(component, event, helper) {
+    console.log('affiliationBackfill JS -->'); 
+    helper.handleAffiliationBackfill(component); 
+  },
+    
+  closeToast : function(component, event, helper) {
+    helper.closeToast(component); 
+        
+  },
 })

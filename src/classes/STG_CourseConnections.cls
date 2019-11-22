@@ -44,4 +44,21 @@ public class STG_CourseConnections {
         Id ApexJobId = Database.executeBatch(batch, 200);
         return ApexJobId;
     }
+    /***********************************************************************************************
+    * @description Enqueues and returns a Job Id for existing Student Course Connections
+    * with missing Affiliation backfill.
+    * @return Id of Student Course Connection Backfill Job
+    */
+    @AuraEnabled
+    public static Id executeAffiliationBackfillOnCourseConnection() {
+        Id jobId;
+        Boolean courseConnectionEnabled = UTIL_CustomSettingsFacade.getSettings().Enable_Course_Connections__c;
+        if (courseConnectionEnabled) {
+            CCON_AffiliationBackfill_BATCH batch = new CCON_AffiliationBackfill_BATCH();
+        	Id ApexJobId = Database.executeBatch(batch, 200);
+            jobId = ApexJobId;
+        }
+        return jobId;
+    }
+
 }
