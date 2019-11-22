@@ -358,9 +358,9 @@
     <fields>
         <fullName>Prevent_Account_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent an Account from being deleted if it has any related records (for example, Affiliation, Program Enrollment, or Course Connection records).</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent an Account from being deleted if it has any related records (for example, Affiliation, Program Enrollment, or Course Connection records).</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Account Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -368,9 +368,9 @@
     <fields>
         <fullName>Prevent_Behavior_Involvement_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Behavior Involvement record from being deleted if it has any related Behavior Response records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Behavior Involvement record from being deleted if it has any related Behavior Response records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Behavior Involvement Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -378,9 +378,9 @@
     <fields>
         <fullName>Prevent_Case_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Case record from being deleted if it has any related Behavior Involvement records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Case record from being deleted if it has any related Behavior Involvement records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Case Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -388,9 +388,9 @@
     <fields>
         <fullName>Prevent_Contact_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Contact record from being deleted if it has any related records (for example, Affiliation, Program Enrollment or Course, Connection records).</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Contact record from being deleted if it has any related records (for example, Affiliation, Program Enrollment or Course, Connection records).</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Contact Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -398,9 +398,9 @@
     <fields>
         <fullName>Prevent_Course_Connection_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Course Connection record from being deleted if it has any related Attendance Event  or Term Grade records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Course Connection record from being deleted if it has any related Attendance Event  or Term Grade records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Course Connection Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -408,9 +408,9 @@
     <fields>
         <fullName>Prevent_Course_Offering_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Course Offering record from being deleted if it has any related Course Connection records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Course Offering record from being deleted if it has any related Course Connection records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Course Offering Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -418,9 +418,9 @@
     <fields>
         <fullName>Prevent_Plan_Requirement_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Plan Requirement record from being deleted if it has any related Plan Requirement or Program Enrollment records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Plan Requirement record from being deleted if it has any related Plan Requirement or Program Enrollment records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Plan Requirement Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -428,9 +428,9 @@
     <fields>
         <fullName>Prevent_Program_Plan_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Program Plan record from being deleted if it has any related Plan Requirement or Program Enrollment records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Program Plan record from being deleted if it has any related Plan Requirement or Program Enrollment records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Program Plan Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -438,9 +438,9 @@
     <fields>
         <fullName>Prevent_Term_Deletion__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Prevent a Term record from being deleted if it has any related Term Grade records.</description>
+        <description>Reserved for future use.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Prevent a Term record from being deleted if it has any related Term Grade records.</inlineHelpText>
+        <inlineHelpText>Reserved for future use.</inlineHelpText>
         <label>Prevent Term Deletion</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
