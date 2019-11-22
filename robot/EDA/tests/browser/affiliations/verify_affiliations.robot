@@ -20,6 +20,7 @@ Suite Teardown  Run keywords
 
 *** Test Cases ***
 Verify affiliations with contacts
+    [tags]                          unstable
     Current page should be                  Home
     ...                                     Contacts
 
@@ -55,7 +56,7 @@ Verify affiliations with contacts
     Wait for Locator                        eda_settings.affiliation_match
 
 Verify affiliations with blank record types and mismatched primary affiliations
-
+    [tags]                          unstable
     # Create a new contact and populate the Primary Business Organization and Lastname
     Create next contact
     Go To Object Home                       Contact
