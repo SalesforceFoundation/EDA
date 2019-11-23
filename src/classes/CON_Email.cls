@@ -296,7 +296,8 @@ public class CON_Email {
             this.apiName = api;
 
             /* If the field label is not in Preferrred Email picklist API values then check if it is in PreferredEmailMappings, if yes then take the value from mappings
-             else keep the label as label. If the field label is in the Preferrred Email picklist API values then assign the picklist API value that matches the field label. */
+             else keep the label as label. If the field label is in the Preferrred Email picklist API values then assign the picklist API value that matches the field label 
+             such that Preferred Email field will reflect the translated value when users use a language that is not English. */
             if (!PreferredLabelToApi.keySet().contains(lbl)) {
                 this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
             } else {
