@@ -25,5 +25,9 @@
         <searchResultsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>%%%NAMESPACE%%%Capacity__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Display_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Parent_Facility__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Facility_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>%%%NAMESPACE%%%Capacity__c</searchResultsAdditionalFields>
     </searchLayouts>
 </CustomObject>

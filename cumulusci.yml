@@ -16,7 +16,7 @@ project:
 
 tasks:
     deploy_dev_config:
-        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set the update_admin_profile task
+        description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
@@ -71,7 +71,7 @@ tasks:
             command: 'force:data:record:create -s TenantSecret -v "Description=Testing"'
 
     execute_install_apex:
-        description: Runs most of the install script methods from STG_InstallScript class
+        description: Runs anonymous apex for dev to configure settings, insert Affiliation mappings, insert Relationship lookups and insert default tdtm trigger handlers.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             apex: >
@@ -82,7 +82,7 @@ tasks:
                 STG_InstallScript.enablePreferredPhoneSync();
 
     execute_qa_apex:
-        description: Runs Apex setup for QA orgs.
+        description: Runs anonymous apex for qa to configure settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             path: scripts/setup.cls
@@ -100,38 +100,42 @@ tasks:
                 - EinsteinAnalyticsPlusUser
 
     retrieve_config_dev:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/dev
+        description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/dev
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_qa:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/qa
+        description: Retrieves the current changes in the scratch org into unpackaged/config/qa.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/qa
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_trial:
-        description: Retrieves the current changes in the scratch org into unpackaged/config/trial
+        description: Retrieves the current changes in the scratch org into unpackaged/config/trial.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/trial
             namespace_tokenize: $project_config.project__package__namespace
 
     robot:
+        # description: Runs a Robot Framework test from a .robot file.
         options:
             suites: robot/EDA/tests
             options:
                 outputdir: robot/EDA/results
 
     robot_libdoc:
+        # description: Generates documentation for project keyword files.
         options:
             path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
             output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
+        description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
+        group: "EDA: Custom Tasks"
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
@@ -146,7 +150,7 @@ flows:
                 task: create_tenant_secret
 
     edaectomy:
-        description: Remove all the EDA metadata in the target Org
+        description: Remove all the EDA metadata in the target Org.
         steps:
             1:
                 task: delete_dev_config
@@ -154,11 +158,13 @@ flows:
                 task: uninstall_packaged
 
     config_apextest:
+        # description: Configure an org to run apex tests after package metadata is deployed.
         steps:
             3:
                 task: execute_install_apex
 
     config_dev:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
             3:
                 task: execute_install_apex
@@ -166,6 +172,7 @@ flows:
                 task: deploy_dev_config
 
     config_dev_namespaced:
+        # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
         steps:
             1:
                 task: deploy_post
@@ -181,11 +188,8 @@ flows:
                 task: deploy_dev_config
 
     config_managed:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
-            2:
-                # Configure update_admin_profile
-                options:
-                    managed: True
             3:
                 task: deploy_dev_config
                 options:
@@ -203,6 +207,7 @@ flows:
                     skip_record_types: True
 
     config_qa:
+        # descripton: Configure an org for use as a QA org after package metadata is deployed.
         steps:
             3:
                 task: execute_install_apex
@@ -214,6 +219,7 @@ flows:
                 task: deploy_qa_config
 
     config_regression:
+        # description: Configure an org for QA regression after the package is installed.
         steps:
             2:
                 task: execute_qa_apex
@@ -237,7 +243,6 @@ flows:
                 options:
                     update_admin_profile:
                         namespaced_org: True
-
 
 services:
     mockaroo:
