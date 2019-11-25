@@ -218,7 +218,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private Integer checkDeceasedContact(Id accountId) {
         Integer numOfContacts = [SELECT Count()
                                 FROM Contact
-                                WHERE AccountId = :accountId AND Deceased__c != TRUE];
+                                WHERE AccountId = :accountId AND Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE];
 
         return numOfContacts;
     }
