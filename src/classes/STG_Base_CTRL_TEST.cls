@@ -67,11 +67,11 @@ private class STG_Base_CTRL_TEST {
         List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
         afflMappings.add(
         	new Affl_Mappings__c(
-        		Name = 'edu', 
+        		Name = 'edu',
         		Account_Record_Type__c = 'educational institution',
-            	Primary_Affl_Field__c = 'primary educational institution', 
+            	Primary_Affl_Field__c = 'primary educational institution',
             	Auto_Program_Enrollment__c = true,
-            	Auto_Program_Enrollment_Role__c = 'student', 
+            	Auto_Program_Enrollment_Role__c = 'student',
             	Auto_Program_Enrollment_Status__c = 'current'
             )
         );
@@ -100,11 +100,11 @@ private class STG_Base_CTRL_TEST {
     public static void deleteAfflMappings() {
         STG_Base_CTRL.newAfflMpg('Educational Institution', 'Primary Educational Institution', true, 'student','current');
         List<Affl_Mappings__c> afflMappings = [select Account_Record_Type__c from Affl_Mappings__c where Primary_Affl_Field__c = 'Primary Educational Institution'];
-        
+
         Test.startTest();
         STG_Base_CTRL.deleteAfflMappingRecord(afflMappings[0].Id);
 		Test.stopTest();
-        
+
         afflMappings = [select Account_Record_Type__c from Affl_Mappings__c where Primary_Affl_Field__c = 'Primary Educational Institution'];
         System.assertEquals(0, afflMappings.size());
     }
@@ -240,5 +240,31 @@ private class STG_Base_CTRL_TEST {
 
         // Make sure an Apex Job Id is returned.
         System.assertEquals('AsyncApexJob', String.valueOf( batchId.getSobjectType() ) );
+    }
+
+    /*********************************************************************************************************
+    * @description Tests if refresh Household Account name batch class is successfully run.
+    */
+    @isTest
+    public static void checkRefreshHouseholdAccountBatch() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        												Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+            											Household_Account_Naming_Format__c = '{!LastName} Household'
+        												));
+        Id apexJobId = STG_Base_CTRL.executeRefreshHouseholdAccountBatch();
+        System.assertNotEquals(null, apexJobId);
+    }
+
+    /*********************************************************************************************************
+    * @description Tests if refresh Administrative Account name batch class is successfully run.
+    */
+    @isTest
+    public static void checkRefreshAdministrativeAccountBatch() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
+        												Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            											Household_Account_Naming_Format__c = '{!LastName} Administrative'
+        												));
+        Id apexJobId = STG_Base_CTRL.executeRefreshAdminAccountBatch();
+        System.assertNotEquals(null, apexJobId);
     }
 }
