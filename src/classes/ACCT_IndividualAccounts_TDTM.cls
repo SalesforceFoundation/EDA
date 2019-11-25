@@ -108,7 +108,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
             !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
-                handlesAfterDelete(oldContacts);
+                accountId = retrieveAccountId(oldContacts);
+                handlesAfterDelete(oldContacts, accountId);
             }
 
         dmlWrapper = null;
@@ -171,7 +172,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
 
-        Integer numOfContactsLeft = checkDeceasedContact(accountId);
+        Integer numOfContactsLeft = checkContactState(accountId);
 
         Integer conProcessed = 0;
         for (Contact c : newContacts) {
@@ -212,13 +213,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
     /********************************************************************************************************
     * @description This method checks if there are any Contacts associated to the Account that is not
-    * marked deceased.
+    * marked deceased and excluded from household name.
     * @param accountId is the AccountId of Contact.
     */
-    private Integer checkDeceasedContact(Id accountId) {
+    private Integer checkContactState(Id accountId) {
         Integer numOfContacts = [SELECT Count()
-                                FROM Contact
-                                WHERE AccountId = :accountId AND Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE];
+        						FROM Contact
+                                WHERE AccountId = :accountId
+                                AND Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE];
 
         return numOfContacts;
     }
@@ -400,16 +402,26 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Processes after delete logic.
     * @param oldContacts is a list of Contacts from trigger old.
+    * @param accountId is the AccountId of Contact.
     */
-    private void handlesAfterDelete(List<Contact> oldContacts) {
+    private void handlesAfterDelete(List<Contact> oldContacts, Id accountId) {
         List<Contact> contactAccountDelete = new List<Contact>();
         List<Account> relatedAccounts = new List<Account>();
         Set<Id> accountIdsToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
 
+        Integer numOfContactsLeft = checkContactState(accountId);
+
         for (Contact c : oldContacts) {
-            contactAccountDelete.add(c);
-            relatedAccountIds.add(c.AccountId);
+            if (numOfContactsLeft == 0) {
+                if (c.AccountId != accountId) {
+                    contactAccountDelete.add(c);
+                    relatedAccountIds.add(c.AccountId);
+                }
+            } else {
+                contactAccountDelete.add(c);
+                relatedAccountIds.add(c.AccountId);
+            }
         }
 
         //Requery to retrieve correct Account value
@@ -422,6 +434,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 accountIdsToRename.add(account.Id);
             }
         }
+
         handleDeleteProcessing(accountIdsToRename, contactAccountDelete);
     }
 

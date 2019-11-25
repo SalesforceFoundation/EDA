@@ -1522,4 +1522,170 @@ private class ACCT_IndividualAccounts_TEST {
         System.assertEquals('Thomas Household', returnAccount.Name);
     }
 
+    /*********************************************************************************************************
+    * @description Test Method to check if all Contacts associated to the Account are marked exclude from
+    * Household Name, do not update the Account's Name to "Household".
+    */
+    @isTest
+    public static void contactMarkedExcludedFromHHNaming() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = new Contact(LastName = 'Thomas');
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        insert con2;
+
+        con.Exclude_from_Household_Name__c = TRUE;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Pens Household', returnAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if a Contact is marked excluded from HH Naming, the Account name is updated properly.
+    */
+    @isTest
+    public static void allContactsMarkedExcludedFromHHNaming() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = new Contact(LastName = 'Thomas');
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        insert con2;
+
+        con2.Exclude_from_Household_Name__c = TRUE;
+        update con2;
+
+        con.Exclude_from_Household_Name__c = TRUE;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Thomas Household', returnAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if the last Contact is deleted should not update the Account name.
+    */
+    @isTest
+    public static void lastContactIsDeleted() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = new Contact(LastName = 'Thomas');
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        insert con2;
+
+        con2.Exclude_from_Household_Name__c = TRUE;
+        update con2;
+
+        //con.Exclude_from_Household_Name__c = TRUE;
+
+        Test.startTest();
+        delete con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Thomas Household', returnAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if one of many Contacts associated to an Account is deleted,
+    * it should update the Account name properly based on the existing Contacts left that's not marked
+    * deceased or exclude from Household naming.
+    */
+    @isTest
+    public static void contactDeleted() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = new Contact(LastName = 'Thomas');
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        insert con2;
+
+        con2.Exclude_from_Household_Name__c = TRUE;
+        update con2;
+
+        Contact con3 = new Contact(LastName = 'James', AccountId = a.Id);
+        insert con3;
+
+        con3.Deceased__c = TRUE;
+        update con3;
+
+        Contact con4 = new Contact(LastName = 'Bond', AccountId = a.Id);
+        insert con4;
+
+        Contact con5 = new Contact(LastName = 'Legend', AccountId = a.Id);
+        insert con5;
+
+        Test.startTest();
+        delete con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Bond and Legend Household', returnAccount.Name);
+
+    }
+
 }
