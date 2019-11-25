@@ -514,3 +514,15 @@ class EDA(object):
     def write_to_console(self, message):
         """ Writes a message to console on a new line """
         logger.console("\n" + message)
+
+    def open_custom_settings(self, title, error_message, capture_screen):
+        """ Performs a wait until the element shows on the page, and clicks the element """
+        self.selenium.wait_until_page_contains_element(
+            eda_lex_locators["custom_settings_title"].format(title), 
+            timeout=60,
+            error=error_message
+        )
+        self.selenium.click_element(eda_lex_locators["custom_settings_title"].format(title))
+        if capture_screen:
+            self.selenium.capture_page_screenshot()
+
