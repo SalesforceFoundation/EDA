@@ -20,6 +20,7 @@ Suite Teardown  Run keywords
 
 *** Test Cases ***
 Verify basic preferred phone functionality
+    [tags]                          unstable
     Current page should be                  Home
     ...                                     Contacts
 
@@ -34,6 +35,7 @@ Verify basic preferred phone functionality
     Validate preferred phone form
 
 Verify disable preferred phone enforcement
+    [tags]                          unstable
     Current page should be                  Home
     ...                                     Contacts
 
@@ -76,6 +78,7 @@ Verify disable preferred phone enforcement
     ...                                     True 
 
 Verify batch functionality of preferred phone
+    [tags]                          unstable
     Current page should be                  Home           Contacts
 
     # Verify the EDA Setting 'Disable Preferred Phone enforcement'
