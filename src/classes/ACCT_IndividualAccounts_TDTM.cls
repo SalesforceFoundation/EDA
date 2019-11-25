@@ -411,17 +411,24 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Set<Id> relatedAccountIds = new Set<Id>();
 
         Integer numOfContactsLeft = checkContactState(accountId);
+        Id accRecordTypeId = returnAccountRecordTypeId(accountId);
 
         for (Contact c : oldContacts) {
             if (numOfContactsLeft == 0) {
-                if (c.AccountId != accountId) {
+                if (checkHouseholdNaming(accRecordTypeId)) {
+                    if (c.AccountId != accountId) {
+                    	contactAccountDelete.add(c);
+                    	relatedAccountIds.add(c.AccountId);
+                	}
+                } else {
                     contactAccountDelete.add(c);
-                    relatedAccountIds.add(c.AccountId);
+                	relatedAccountIds.add(c.AccountId);
                 }
             } else {
                 contactAccountDelete.add(c);
                 relatedAccountIds.add(c.AccountId);
             }
+
         }
 
         //Requery to retrieve correct Account value
@@ -436,6 +443,15 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         handleDeleteProcessing(accountIdsToRename, contactAccountDelete);
+    }
+
+    /*******************************************************************************************************
+    * @description This method retrieves the recordTypeId of the Account.
+  	* @param accountId is the Id of the Account.
+	* @return Id.
+    */
+    private Id returnAccountRecordTypeId(Id accountId){
+        return [SELECT Id, RecordTypeId FROM Account WHERE Id = :accountId].RecordTypeId;
     }
 
     /*******************************************************************************************************
