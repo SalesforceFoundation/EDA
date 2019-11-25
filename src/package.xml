@@ -427,6 +427,15 @@
         <members>Hierarchy_Settings__c.Household_Addresses_RecType__c</members>
         <members>Hierarchy_Settings__c.Household_Other_Name_Setting__c</members>
         <members>Hierarchy_Settings__c.Preferred_Phone_Selection__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Account_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Behavior_Involvement_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Case_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Contact_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Course_Connection_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Course_Offering_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Plan_Requirement_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Program_Plan_Deletion__c</members>
+        <members>Hierarchy_Settings__c.Prevent_Term_Deletion__c</members>
         <members>Hierarchy_Settings__c.Reciprocal_Method__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Field_Id__c</members>
         <members>Hierarchy_Settings__c.Relationship_Name_Id_Field_Id__c</members>
