@@ -4,7 +4,7 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/12/2019, 3:20:46 PM
+  @Last Modified On   : 11/25/2019, 11:31:28 AM
   @Modification Log   :
   Ver       Date            Author      		    Modification
   1.0    11/12/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
@@ -24,8 +24,8 @@
     <aura:attribute name="hhNameFormat" type="String" />
     <aura:attribute name="adminOtherDisplay" type="Boolean"/>
     <aura:attribute name="hhOtherDisplay" type="Boolean"/>
-    
-	
+
+
 	<div aura:id="successToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
@@ -46,30 +46,15 @@
             </div>
         </div>
     </div>
-    
-    <div id="systemTabs" class="slds-tabs--scoped">
-        
-        <!--Sub Tab bar-->
-       <!--<ul class="slds-tabs__scoped__nav" role="tablist">
-           	<li aura:id="settingsTab" class="slds-tabs__item slds-text-heading__label" title="Settings" role="tab">
-                <ui:outputURL value="#" label="{!$Label.c.stgTabSettings}" click="{!c.settsLinkClicked}" class="system-settings-menulink" />
-            </li>
-            
-            <li aura:id="bulkTab" class="slds-tabs__item slds-text-heading__label" title="Bulk Processing" role="tab">
-                <ui:outputURL value="#" label="BULK PROCESSING" click="{!c.bulkProcessLinkClicked}" class="system-bulk-menulink"/>
-            </li>
-        </ul>-->
-        
-        <!--Settings tab -->
-		<div aura:id="settingsContent" class="slds-tabs__content" role="tabpanel">
 
+    <div id="systemTabs" class="slds-tabs--scoped">
+		<div aura:id="settingsContent" class="slds-tabs__content" role="tabpanel">
         	<div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
-                
-                <!--Account Model drop down-->
+
                 <div class="slds-col slds-size--1-of-2">
             		<ui:outputText value="{!$Label.c.stgAccModelTitle}" />
         		</div>
-                
+
                 <div class="slds-col slds-size--1-of-2">
                     <c:CMP_RecTypes_Dropdown class="default-account-model-record-type"
                       setting="{!v.hierarchySettings.Account_Processor__c}"
@@ -79,16 +64,15 @@
                       recTypes="{!v.accRecTypes}"
                     />
                 </div>
-				               
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.stgHelpAccountModel}" class="slds-text-body--small" />
                 </div>
-				
-                 <!--Store Errors -->
+
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.stgStoreErrorsTitle}" />
                 </div>
-                
+
                 <div class="slds-col slds-size--1-of-2">
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
@@ -106,16 +90,15 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.stgHelpStoreErrorsOn}" class="slds-text-body--small" />
                 </div>
-                
-                <!--Send Error -->
+
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.stgSendErrorsTitle}" />
                 </div>
-                
+
                 <div class="slds-col slds-size--1-of-2">
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
@@ -132,22 +115,20 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.stgHelpErrorNotifyOn}" class="slds-text-body--small" />
                 </div>
-				
-                <!--Receipient -->
+
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.stgErrorNotifRecipientsTitle}" />
                 </div>
-                
+
                 <div class="slds-col slds-size--1-of-2">
                     <aura:if isTrue="{!v.isView}">
                         <ui:outputText value="{!v.hierarchySettings.Error_Notifications_To__c}" class="errors-recepient" />
 
                     <aura:set attribute="else">
-
                         <div class="slds-form-element slds-size--1-of-3">
                             <lightning:select value="{!v.errorNotificationType}" name="error_to_type" label="{!$Label.c.stgSelectReciType}" onchange="{!c.errorToSelect}">
                                 <option value="">
@@ -202,17 +183,16 @@
 
                     </aura:set>
                     </aura:if>
-
                 </div>
-                
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.stgHelpErrorNotifyTo}" class="slds-text-body--small" />
                 </div>
-				
-                <!--Disable Error --> 
+
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.stgDisableErrorHandlingTitle}" />
                 </div>
+
                 <div class="slds-col slds-size--1-of-2">
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
@@ -229,14 +209,15 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.stgHelpErrorDisable}" class="slds-text-body--small" />
                 </div>
-                
-                <!--Automatic Name -->
+
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.automaticHHNaming}" />
                 </div>
+
                 <div class="slds-col slds-size--1-of-2">
                     <div class="slds-form-element">
                         <div class="slds-form-element__control">
@@ -254,11 +235,11 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
                 </div>
 
-                <!--Admin Acct-->
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
                 </div>
@@ -275,11 +256,11 @@
                         otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
                     />
                 </div>
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.adminAccNameFormatHelpText}" class="slds-text-body--small" />
                 </div>
-				
-                <!--HHAccount -->
+
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
                 </div>
@@ -296,63 +277,40 @@
                         otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
                     />
                 </div>
+
                 <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                     <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
                 </div>
-                
-                <div class="slds-col slds-size--1-of-2">
+
+                <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
                     {!$Label.c.stgRefreshHHAcctNameTitle}
                     <div class="slds-col slds-size--1-of-1">
                     	<ui:outputText value="{!$Label.c.stgRefreshHHAcctNameDesc}" class="slds-text-body--small" />
                     </div>
                 </div>
-        		
-                
+
                 <div class="slds-col slds-size--1-of-2">
                	<lightning:button
-                                  label="Refresh Household Names" 
+                                  label="Refresh Household Names"
                                   title="refreshHouseholdAccountButton"
                                   onclick="{! c.handleRefreshHouseholdAccount}"/>
                 </div>
-                
-                <div class="slds-col slds-size--1-of-2">
+
+                <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
                     {!$Label.c.stgRefreshAdminAcctNameTitle}
                     <div class="slds-col slds-size--1-of-1">
                     	<ui:outputText value="{!$Label.c.stgRefreshAdminAcctNameDesc}" class="slds-text-body--small" />
                     </div>
                 </div>
-        		
-                
+
+
                 <div class="slds-col slds-size--1-of-2">
                	<lightning:button
-                                  label="Refresh Administrative Names" 
+                                  label="Refresh Administrative Names"
                                   title="refreshButton"
                                   onclick="{! c.handleRefreshAdminAccount}"/>
                 </div>
             </div>
         </div>
-        
-        <!--Bulk Tab -->
-        <!--<div aura:id="bulkContent" class="slds-tabs__content" role="tabpanel">
-    		<div class="slds-col slds-size__1-of-1 slds-m-bottom__medium">
-				
-                <div class="slds-col slds-size__1-of-2">
-                    <ui:outputText value="Click the button to refresh Account Name." class="slds-text-body__small" />
-                </div>
-        		
-                
-                <div class="slds-col slds-size__1-of-2">
-               	<lightning:button
-                                  label="Refresh All Account Name" 
-                                  title="refreshButton"
-                                  onclick="{! c.handleRefreshAccount}"/>
-                </div>
-           	 
-       	 	</div>
-   	 	</div>-->
-        
     </div>
-    
-
-	
 </aura:component>
