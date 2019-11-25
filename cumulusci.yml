@@ -14,6 +14,11 @@ project:
         branch: gh-pages
         repo_dir: ApexDocumentation
 
+sources:
+    latest_release:
+        github: https://github.com/SalesforceFoundation/EDA
+        release: latest
+
 tasks:
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
@@ -243,6 +248,23 @@ flows:
                 options:
                     update_admin_profile:
                         namespaced_org: True
+
+    upgraded_org:
+        description: Simulate an org that has been push-upgraded to the latest releases of EDA and any dependencies.
+        steps:
+            1:
+                flow: latest_release:dependencies
+            2:
+                task: install_managed
+            3:
+                flow: latest_release:config_regression
+            4:
+                task: update_dependencies
+                options:
+                    include_beta: True
+            5:
+                task: install_managed_beta
+
 
 services:
     mockaroo:
