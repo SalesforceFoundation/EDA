@@ -366,6 +366,87 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Prevent_Account_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Account Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Behavior_Involvement_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Behavior Involvement Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Case_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Case Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Contact_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Contact Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Connection_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Course Connection Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Course_Offering_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Course Offering Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Plan_Requirement_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Plan Requirement Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Program_Plan_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Program Plan Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Prevent_Term_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reserved for future use.</description>
+        <externalId>false</externalId>
+        <label>Prevent Term Deletion</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Reciprocal_Method__c</fullName>
         <description>Determines method used to generate the reciprocal relationship.  Either List Setting which uses custom settings by gender, or Value Inversion, which inverts the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</description>
         <externalId>false</externalId>
