@@ -145,7 +145,7 @@ public class UTIL_ACCT_Naming {
         dynamicSoql += 'FROM Account WHERE Id IN :accIdsToRename';
 
         //Re-query to get correct Account values (and all the other fields we will look at)
-        returnedContacts = database.query(dynamicSoql);
+        returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
 
         return returnedContacts;
     }
