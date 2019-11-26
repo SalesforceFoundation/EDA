@@ -464,16 +464,6 @@ class ContactsHomePage(BasePage):
             "Details tab not found on contact", 
             False
         )
-#        self.selenium.driver.refresh()
-#        self.selenium.wait_until_page_contains_element(
-#            contacts_locators["details_tab"],
-#            timeout=60
-#        )
-#        self.open_item(
-#            contacts_locators["details_tab"], 
-#            "Details tab not found on contact", 
-#            False
-#        )
 
         self.selenium.wait_until_page_contains_element(
             contacts_locators["phone_verify"],
@@ -577,15 +567,6 @@ class ContactsHomePage(BasePage):
             "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
         )
 
-    def Find_the_frame(self, loc):
-        """ Switch to the iFrame specified """
-
-        self.selenium.driver.switch_to.frame(loc)
-        self.selenium.driver.execute_script(
-            "arguments[0].click()", 
-            self.selenium.driver.find_element_by_xpath(eda_settings.batch_successful)
-        )
-
     def Wait_and_refresh_static_page_until_text(self, search_text, wait_time, loc_frame, loc_text):
         """ Wait for text to appear on static page.  Note that the page is refreshed each 'wait_time' until
             the specified text 'search_text' appears. 
@@ -599,3 +580,29 @@ class ContactsHomePage(BasePage):
             self.selenium.driver.refresh()
             self.selenium.select_frame(loc_frame)
             textPortion = self.selenium.get_text(loc_text)
+
+    def Go_to_affiliations_edit_mode(self, loc):
+        """ Go into Edit mode and remove the con
+        """    
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(loc)
+        )
+
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["delete_icon"])
+        )
+
+        self.selenium.driver.execute_script(
+            "arguments[0].scrollIntoView()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["primary_business_organization"])
+        )
+        
+        xpath = contacts_locators["primary_business_organization"]
+        field = self.selenium.get_webelement(xpath)
+        field.send_keys("Robot Academic Program Account" + Keys.ARROW_DOWN + Keys.ENTER)
+
+        self.selenium.click_element(contacts_locators["button_save_affiliation"])
+        self.eda.close_toast_message()
+
