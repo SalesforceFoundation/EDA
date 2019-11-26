@@ -59,6 +59,7 @@ eda_lex_locators = {
         "checkbox": "//span[text()='{}']/../following-sibling::div/descendant::label[contains(@class,'slds-checkbox')]/span[contains(@class, 'slds-checkbox--faux')]",
         "save": "//div[contains(@class, 'slds-page-header')]/descendant::button[contains(@class, 'settings-save-bttn')]",
         "system_tab": "//a[contains(text(),'System')]",
+        "affiliations_new": "//span[@title='Affiliated Accounts']/following::a[@title='New'][1]",
         "affiliations_tab": "//a[contains(text(),'Affiliations')]",
         "affiliations_check": "//span[text()='Specify Role for Created Affiliations:']/../following-sibling::div/div/div/label/span/img[@class = 'copy-start-date checked' and @alt='True']",
         "affiliations_role_checkbox": "//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
@@ -88,6 +89,14 @@ eda_lex_locators = {
         "batch_watch": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
         "wait_frame": "//iframe[contains(@title,'Apex Jobs ~ Salesforce')]",
         "wait_loc_text": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
+        "new_account": "//span[@title='New Account']",
+        "affiliated_accounts": "//span[@title='Affiliated Accounts']",
+        "affiliation_match": "//span/a[@title='Robot Academic Program Account']",
+        "enable_record_type_validation": "//input[contains(@class,'affl-record-type-enforced')]/parent::label",
+        "edit_button": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
+        "save_button": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
+        "administrative_account": "//div/a[text()='{} Administrative Account']",
+        "contact_edit": "//a[@title='Edit']",
     },
     "tabs": {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",
@@ -253,4 +262,10 @@ contacts_locators = {
     "enhanced_preferred_set": "//span[text()='Enable Enhanced Preferred Phone Functionality:']/following::div[1]/div/div/label/span/img[@alt='True']",
     "enhanced_preferred_set_faux": "//span[text()='Enable Enhanced Preferred Phone Functionality:']/following::div[1]/div/div/label/input/following::span[1]",
     "apex_jobs": "//a/mark[text()='{}']",
+    "primary_business_organization": "(//span[text()='Primary Business Organization']/following::div/div/div/div/input[@title='Search Accounts'])[1]",
+    "button_save_affiliation": "//button[@title='Save']//span[text()='Save']",
+    "delete_icon": "//span[@class='deleteIcon']",
+}
+
+affiliations_locators = {
 }
