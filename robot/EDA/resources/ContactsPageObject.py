@@ -582,6 +582,8 @@ class ContactsHomePage(BasePage):
             textPortion = self.selenium.get_text(loc_text)
 
     def Go_to_affiliations_edit_mode(self, loc):
+        """ Go into Edit mode and remove the con
+        """    
         self.selenium.driver.execute_script(
             "arguments[0].click()", 
             self.selenium.driver.find_element_by_xpath(loc)
