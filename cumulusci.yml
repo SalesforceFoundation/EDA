@@ -98,14 +98,12 @@ tasks:
             path: unpackaged/config/dev
             namespace_tokenize: $project_config.project__package__namespace
 
-
     retrieve_config_qa:
         description: Retrieves the current changes in the scratch org into unpackaged/config/qa.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
             path: unpackaged/config/qa
             namespace_tokenize: $project_config.project__package__namespace
-
 
     retrieve_config_trial:
         description: Retrieves the current changes in the scratch org into unpackaged/config/trial.
