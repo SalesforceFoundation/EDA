@@ -212,7 +212,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         Contact[] insertedContacts = [SELECT Account.Name, AccountId
                                       FROM Contact
-                                      WHERE id = :con.Id];
+                                      WHERE Id = :con.Id];
 
         //the contact should be connected to the account
         System.assertEquals(accts[0].id,insertedContacts[0].AccountId);
@@ -588,7 +588,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
@@ -664,7 +664,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
@@ -774,7 +774,7 @@ private class ACCT_IndividualAccounts_TEST {
         //After remove the Account lookup for con2, system will create a new Account for con2. So, we need to query the Account of con in order to verify the Account Name.
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account
-                         WHERE Id =: assertAccount.Id];
+                         WHERE Id = :assertAccount.Id];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
     }
@@ -792,17 +792,20 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         Contact con = contacts[0];
+        con.FirstName = 'James';
+        con.LastName = 'Bond';
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
                                  FROM Account LIMIT 1];
+
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
         Contact con2 = contacts[1];
         con2.AccountId = assertAccount.Id;
-        con2.FirstName = 'Test2';
-        con2.LastName = con.LastName + '2';
+        con2.FirstName = 'John';
+        con2.LastName = 'Legend';
         insert con2;
 
         assertAccount = [SELECT Id, RecordType.Name, Name
@@ -819,7 +822,7 @@ private class ACCT_IndividualAccounts_TEST {
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
-        System.assertEquals('Household', assertAccount.Name);
+        System.assertEquals('James Bond Household', assertAccount.Name);
     }
 
     /*********************************************************************************************************
@@ -1081,7 +1084,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<Contact> updatedContacts = [SELECT Account.Name, AccountId, Account.RecordTypeId
                                          FROM Contact
-                                         WHERE Id =:con.Id];
+                                         WHERE Id = :con.Id];
 
         //The account should not be the one we started with
         System.assertNotEquals(NULL, updatedContacts[0].AccountId);
@@ -1614,17 +1617,16 @@ private class ACCT_IndividualAccounts_TEST {
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
                                       WHERE Id = :con.Id];
-        Account a = [SELECT Id, Name
+        Account a = [SELECT Id, Name, RecordTypeId, RecordType.Name
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
+        System.debug('lastContact Acct -->' + a);
         Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
         insert con2;
 
         con2.Exclude_from_Household_Name__c = TRUE;
         update con2;
-
-        //con.Exclude_from_Household_Name__c = TRUE;
 
         Test.startTest();
         delete con;
@@ -1687,5 +1689,4 @@ private class ACCT_IndividualAccounts_TEST {
         System.assertEquals('Bond and Legend Household', returnAccount.Name);
 
     }
-
 }
