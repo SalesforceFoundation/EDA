@@ -466,8 +466,10 @@ public class UTIL_ACCT_Naming {
         List<String> finalAccountName = new String[0];
         String salutationSpec = '';
         Integer conSize = cons.size();
+        Boolean isSalutationFormat = ns.salutationSpec == '' ? False : True;
         Boolean isNoLastnames = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
         Boolean isLastNameOnlyFormat = !isNoLastnames && ns.returnNameFormat().size() == 1;
+        Boolean lastNameNotIncludedInFormat = ns.acctNameFormat.indexOf(chLToken + 'LastName' + chRToken) == -1;
 
         for (Integer i = 0, next = 0; i < conSize; i = next) {
             String lastName = cons[i].LastName;
@@ -482,7 +484,9 @@ public class UTIL_ACCT_Naming {
 
             //Retrieves Salutation
             List<String> additionalSalutations = new List<String>();
-            salutationSpec = stringConNames(cons[i], ns.salutationSpec);
+            if (isSalutationFormat) {
+                salutationSpec = stringConNames(cons[i], ns.salutationSpec);
+            }
 
             //Retrieves value of FirstName
             String firstName = stringConNames(cons[i], ns.firstNameSpec);
@@ -493,12 +497,13 @@ public class UTIL_ACCT_Naming {
 
             for (; next < conSize && (isNoLastnames || cons[next].LastName == lastName); next++) {
 
-                String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
-                if (nextSalutation != '') {
-                    additionalSalutations.add(nextSalutation);
-                    additionalSalutations.sort();
+                if (isSalutationFormat) {
+                    String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
+                        if (nextSalutation != '') {
+                            additionalSalutations.add(nextSalutation);
+                            additionalSalutations.sort();
+                        }
                 }
-
 
                 String nextFName = stringConNames(cons[next], ns.firstNameSpec);
                 if (nextFName != '') {
@@ -506,10 +511,11 @@ public class UTIL_ACCT_Naming {
                     additionalFirstNames.sort();
                 }
 
-                //This is critical if the current Account name format is not set to process {!LastName}, then
+                //This is critical if the current Account name format does not contain {!LastName}, then
                 //all Contacts inserted will enter this loop and will need to stop the iteration of next so
-                //that the next Contact will enter the outer loop.
-                if (isNoLastnames) {
+                //that the next Contact will enter the outer loop. In short, this helps prevent deduplication
+                //of Contacts on the Account name.
+                if (lastNameNotIncludedInFormat) {
                     break;
                 }
             }
