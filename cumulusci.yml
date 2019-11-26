@@ -106,17 +106,20 @@ tasks:
             namespace_tokenize: $project_config.project__package__namespace
 
     robot:
+        #description: Runs a Robot Framework test from a .robot file
         options:
             suites: robot/EDA/tests
             options:
                 outputdir: robot/EDA/results
 
     robot_libdoc:
+        #description: Generates documentation for project keyword files
         options:
             path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
             output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
+        #description: Retrieves, edits, and redeploys the Admin.profile with full FLS perms for all objects/fields
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
@@ -139,11 +142,13 @@ flows:
                 task: uninstall_packaged
 
     config_apextest:
+        #description: Configure an org to run apex tests after package metadata is deployed
         steps:
             3:
                 task: execute_install_apex
 
     config_dev:
+        #description: Configure an org for use as a dev org after package metadata is deployed
         steps:
             3:
                 task: execute_install_apex
@@ -151,6 +156,7 @@ flows:
                 task: deploy_dev_config
 
     config_dev_namespaced:
+        #description: Configure a namespaced org for use as a dev org after package metadata is deployed
         steps:
             1:
                 task: deploy_post
@@ -166,6 +172,7 @@ flows:
                 task: deploy_dev_config
 
     config_managed:
+        #description: Configure an org for use as a dev org after package metadata is deployed
         steps:
             2:
                 # Configure update_admin_profile
@@ -179,6 +186,7 @@ flows:
                 task: deploy_einstein_templates
 
     config_packaging:
+        #description: Configure packaging org for upload after package metadata is deployed
         steps:
             1:
                 # Configure update_admin_profile
@@ -188,6 +196,7 @@ flows:
                     skip_record_types: True
 
     config_qa:
+        #description: Configure an org for use as a QA org after package metadata is deployed
         steps:
             3:
                 task: execute_install_apex
@@ -199,6 +208,7 @@ flows:
                 task: deploy_qa_config
 
     config_regression:
+        #description: Configure an org for QA regression after the package is installed
         steps:
             2:
                 task: execute_qa_apex
@@ -210,12 +220,14 @@ flows:
                     unmanaged: False
 
     deploy_unmanaged:
+        #description: Deploy the unmanaged metadata from the package
         steps:
             4:
                 # Disable uninstall_packaged_incremental
                 task: None
 
     dev_org_namespaced:
+        #description: Set up a namespaced scratch org as a development environment for unmanaged metadata
         steps:
             3:
                 # Configure the config_dev flow for namespaced org
