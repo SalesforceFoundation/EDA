@@ -162,6 +162,21 @@ public class CON_Email {
         }
     }
 
+    /*******************************************************************************************************
+    * @description Creates a map with Preferred Email picklist value's label as key and picklist API as value
+    * @retun Map<String, String> A key value pair of Preferred Email picklist value's picklist label and API respectively
+    */
+    private static Map<String, String> createPreferredLabelToAPIMap() {        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        List<Schema.PicklistEntry> preferredEmailPicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'Preferred_Email__c');
+        Map<String, String> preferredEmailLabelToApi = new Map<String, String>();
+        for (Schema.PicklistEntry eachValue: preferredEmailPicklist) {
+            PreferredEmailLabelToApi.put(eachValue.getLabel(), eachValue.getValue());
+        }
+        return PreferredEmailLabelToApi;
+    }
+
     private static Map<String, Schema.DescribeFieldResult> contactEmailFieldMap;
 
     /*******************************************************************************************************
@@ -283,13 +298,7 @@ public class CON_Email {
                 'Alternate Email' => 'Alternate'
             };
                      
-            String namespace = UTIL_Namespace.getNamespace();
-            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-            List<Schema.PicklistEntry> preferredEmailPicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'Preferred_Email__c');
-            Map<String, String> preferredLabelToApi = new Map<String, String>();
-            for (Schema.PicklistEntry eachValue: preferredEmailPicklist) {
-                PreferredLabelToApi.put(eachValue.getLabel(), eachValue.getValue());
-            }
+            Map<String, String> preferredLabelToApi = createPreferredLabelToAPIMap();
              
             this.value = val;
             this.label = lbl;

@@ -183,6 +183,21 @@ public with sharing class CON_Phone {
                 contact.OtherPhone = contact.Phone;          
         }
     }
+
+    /*******************************************************************************************************
+    * @description Creates a map with Preferred Phone picklist value's label as key and picklist API as value
+    * @retun Map<String, String> A key value pair of Preferred Phone picklist value's label and API respectively
+    */
+    private static Map<String, String> createPreferredLabelToAPIMap() {        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+        List<Schema.PicklistEntry> preferredPhonePicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'PreferredPhone__c');
+        Map<String, String> preferredPhoneLabelToApi = new Map<String, String>();  
+        for (Schema.PicklistEntry eachValue: preferredPhonePicklist) {
+            preferredPhoneLabelToApi.put(eachValue.getLabel(),eachValue.getValue());
+        }
+        return preferredPhoneLabelToApi;
+    }
     
     /*******************************************************************************************************
     * @description Copies the value of the standard Phone field to the Other Phone field if Phone has a value and no other phones.
@@ -320,14 +335,7 @@ public with sharing class CON_Phone {
             this.label = lbl;
             this.apiName = api;
             
-            String namespace = UTIL_Namespace.getNamespace();
-            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-            List<Schema.PicklistEntry> preferredPhonePicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'PreferredPhone__c');
-            List<String> preferredPhoneValues = new List<String>();
-            Map<String, String> preferredLabelToApi = new Map<String, String>();  
-            for (Schema.PicklistEntry eachValue: preferredPhonePicklist) {
-                PreferredLabelToApi.put(eachValue.getLabel(),eachValue.getValue());
-            }
+            Map<String, String> preferredLabelToApi = createPreferredLabelToAPIMap();
             
             /* If the field label is not in Preferrred Phone picklist API values then check if it is in PreferredPhoneMappings, if yes then take the value from mappings
              else keep the label as label. If the field label is in the Preferrred Phone picklist API values then assign the picklist API value that matches the field label
