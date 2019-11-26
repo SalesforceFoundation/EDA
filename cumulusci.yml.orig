@@ -99,6 +99,7 @@ tasks:
             namespace_tokenize: $project_config.project__package__namespace
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     retrieve_config_qa:
         description: Retrieves the current changes in the scratch org into unpackaged/config/qa.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
@@ -108,6 +109,8 @@ tasks:
 
 =======
 >>>>>>> Removed retrieve_config_qa as this is a duplicate of the built retrieve_qa_config task.
+=======
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
     retrieve_config_trial:
         description: Retrieves the current changes in the scratch org into unpackaged/config/trial.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
@@ -117,10 +120,14 @@ tasks:
 
     robot:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Runs a Robot Framework test from a .robot file.
 =======
         #description: Runs a Robot Framework test from a .robot file
 >>>>>>> added missing descriptions
+=======
+        #description: Runs a Robot Framework test from a .robot file
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         options:
             suites: robot/EDA/tests
             options:
@@ -128,21 +135,29 @@ tasks:
 
     robot_libdoc:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Generates documentation for project keyword files.
 =======
         #description: Generates documentation for project keyword files
 >>>>>>> added missing descriptions
+=======
+        #description: Generates documentation for project keyword files
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         options:
             path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot
             output: robot/EDA/doc/Keywords.html
 
     update_admin_profile:
 <<<<<<< HEAD
+<<<<<<< HEAD
         description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
         group: "EDA: Custom Tasks"
 =======
         #description: Retrieves, edits, and redeploys the Admin.profile with full FLS perms for all objects/fields
 >>>>>>> added missing descriptions
+=======
+        #description: Retrieves, edits, and redeploys the Admin.profile with full FLS perms for all objects/fields
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         class_path: tasks.salesforce.UpdateAdminProfile
 
 flows:
@@ -166,20 +181,28 @@ flows:
 
     config_apextest:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Configure an org to run apex tests after package metadata is deployed.
 =======
         #description: Configure an org to run apex tests after package metadata is deployed
 >>>>>>> added missing descriptions
+=======
+        #description: Configure an org to run apex tests after package metadata is deployed
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         steps:
             3:
                 task: execute_install_apex
 
     config_dev:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Configure an org for use as a dev org after package metadata is deployed.
 =======
         #description: Configure an org for use as a dev org after package metadata is deployed
 >>>>>>> added missing descriptions
+=======
+        #description: Configure an org for use as a dev org after package metadata is deployed
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         steps:
             3:
                 task: execute_install_apex
@@ -188,10 +211,14 @@ flows:
 
     config_dev_namespaced:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
 =======
         #description: Configure a namespaced org for use as a dev org after package metadata is deployed
 >>>>>>> added missing descriptions
+=======
+        #description: Configure a namespaced org for use as a dev org after package metadata is deployed
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         steps:
             1:
                 task: deploy_post
@@ -208,10 +235,14 @@ flows:
 
     config_managed:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Configure an org for use as a dev org after package metadata is deployed.
 =======
         #description: Configure an org for use as a dev org after package metadata is deployed
 >>>>>>> added missing descriptions
+=======
+        #description: Configure an org for use as a dev org after package metadata is deployed
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         steps:
             3:
                 task: deploy_dev_config
@@ -232,10 +263,14 @@ flows:
 
     config_qa:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
 =======
         #description: Configure an org for use as a QA org after package metadata is deployed
 >>>>>>> added missing descriptions
+=======
+        #description: Configure an org for use as a QA org after package metadata is deployed
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         steps:
             3:
                 task: execute_install_apex
@@ -248,10 +283,14 @@ flows:
 
     config_regression:
 <<<<<<< HEAD
+<<<<<<< HEAD
         # description: Configure an org for QA regression after the package is installed.
 =======
         #description: Configure an org for QA regression after the package is installed
 >>>>>>> added missing descriptions
+=======
+        #description: Configure an org for QA regression after the package is installed
+>>>>>>> fff26b09d5439c998e9dac1f7c18275ddaedb00b
         steps:
             2:
                 task: execute_qa_apex
