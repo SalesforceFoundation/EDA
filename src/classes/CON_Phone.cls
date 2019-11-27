@@ -185,18 +185,13 @@ public with sharing class CON_Phone {
     }
 
     /*******************************************************************************************************
-    * @description Creates a map with Preferred Phone picklist value's label as key and picklist API as value
-    * @retun Map<String, String> A key value pair of Preferred Phone picklist value's label and API respectively
+    * @description Returns a map with Preferred Phone picklist entry's label as key and API as value
+    * @retun Map<String, String> A key value pair of Preferred Phone picklist entrys's label and API respectively
     */
-    private static Map<String, String> createPreferredLabelToAPIMap() {        
+    private static Map<String, String> createPreferredLabelToAPIMap() {             
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-        List<Schema.PicklistEntry> preferredPhonePicklist = UTIL_Describe.getFieldPicklistEntries('Contact', prefix+'PreferredPhone__c');
-        Map<String, String> preferredPhoneLabelToApi = new Map<String, String>();  
-        for (Schema.PicklistEntry eachValue: preferredPhonePicklist) {
-            preferredPhoneLabelToApi.put(eachValue.getLabel(),eachValue.getValue());
-        }
-        return preferredPhoneLabelToApi;
+        return UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'preferredPhone__c');        
     }
     
     /*******************************************************************************************************

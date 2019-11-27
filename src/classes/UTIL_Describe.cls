@@ -368,6 +368,21 @@ public class UTIL_Describe {
 
         return fieldPicklistEntries.get(objectName).get(fieldName);
     }
+    
+    /*******************************************************************************************************
+    * @description Returns picklist value's Label to API map
+    * @param objectName the name of the object to look up
+    * @param fieldName the name of the field to look up
+    * @return Map<String, String> A key value pair of picklist value's label and API respectively
+    */
+    public static Map<String, String> getpicklistEntriesLabelToAPIMap(String objectName, String fieldName) {
+        List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, fieldName);
+        Map<String, String> picklistLabelToApi = new Map<String, String>();
+        for (Schema.PicklistEntry eachValue: picklistEntries) {
+            picklistLabelToApi.put(eachValue.getLabel(), eachValue.getValue());
+        }
+        return picklistLabelToApi;
+    }
 
     /*******************************************************************************************************
     * @description checks whether the field exists
