@@ -22,7 +22,7 @@ Suite Teardown  Run keywords
 ...             Close Browser 
 
 *** Test Cases ***
-Affiliations Settings checkboxes checked
+Affiliations Settings checkboxes checked and dropdowns selected
     [tags]                          unstable
 
     Current page should be                  Home
@@ -92,15 +92,23 @@ Affiliations Settings checkboxes checked
     ${status_current_picklist_affl} =           Get Eda Locator         eda_settings.status_current_picklist_affl
     Select From List By Label                   ${status_current_picklist_affl}             Current
 
-
-
     #Save settings
     Click save button                       ${settings_tab}
+    Go To Object Home                       Contact
+
+
+
+Affiliations Settings checkboxes unchecked and dropdowns at None
+    [tags]                          unstable
+    Current page should be                  Home           Contacts
+    
+    Open EDA Settings Tab menu item
 
 
 *** Keywords ***
 
 Initialize test setup
+    Shift to default content
     Select App Launcher App                 EDA
     Close all tabs
 
@@ -113,5 +121,6 @@ Initialize test data
 Open EDA Settings Tab menu item
     Select app launcher tab                 EDA Settings
     Select frame with title                 accessibility title
+
 
 
