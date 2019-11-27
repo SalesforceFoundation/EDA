@@ -183,15 +183,20 @@ public with sharing class CON_Phone {
                 contact.OtherPhone = contact.Phone;          
         }
     }
+    
+    private static Map<String, String> preferredPhoneLabelToAPI;
 
     /*******************************************************************************************************
     * @description Returns a map with Preferred Phone picklist entry's label as key and API as value
-    * @retun Map<String, String> A key value pair of Preferred Phone picklist entrys's label and API respectively
+    * @return  preferredPhoneLabelToAPI A Map<String, String> with key value pair of Preferred Phone picklist entrys's label and API respectively
     */
-    private static Map<String, String> createPreferredLabelToAPIMap() {             
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-        return UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'preferredPhone__c');        
+    private static Map<String, String> createPreferredLabelToAPIMap() {   
+        if (preferredPhoneLabelToAPI == NULL) {          
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+            preferredPhoneLabelToAPI =  UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'preferredPhone__c');
+        }
+        return preferredPhoneLabelToAPI;            
     }
     
     /*******************************************************************************************************

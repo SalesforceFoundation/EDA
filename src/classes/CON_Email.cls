@@ -161,15 +161,20 @@ public class CON_Email {
             contact.AlternateEmail__c = contact.Email;
         }
     }
+    
+    private static Map<String, String> preferredEmailLabelToAPI;
 
     /*******************************************************************************************************
     * @description Returns a map with Preferred Email picklist entry's label as key and API as value
-    * @retun Map<String, String> A key value pair of Preferred Email picklist entry's label and API respectively
+    * @return preferredEmailLabelToAPI A Map<String, String> with key value pair of Preferred Email picklist entry's label and API respectively
     */
-    private static Map<String, String> createPreferredLabelToAPIMap() {        
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-        return UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'Preferred_Email__c');       
+    private static Map<String, String> createPreferredLabelToAPIMap() {
+        if (preferredEmailLabelToAPI == NULL) {        
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+            preferredEmailLabelToAPI = UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'Preferred_Email__c');
+        }
+        return preferredEmailLabelToAPI;           
     }
 
     private static Map<String, Schema.DescribeFieldResult> contactEmailFieldMap;

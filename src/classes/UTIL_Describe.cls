@@ -373,7 +373,7 @@ public class UTIL_Describe {
     * @description Returns picklist value's Label to API map
     * @param objectName the name of the object to look up
     * @param fieldName the name of the field to look up
-    * @return Map<String, String> A key value pair of picklist value's label and API respectively
+    * @return picklistLabelToApi A Map<String, String> with key value pair of picklist value's label and API respectively
     */
     public static Map<String, String> getpicklistEntriesLabelToAPIMap(String objectName, String fieldName) {
         List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, fieldName);
