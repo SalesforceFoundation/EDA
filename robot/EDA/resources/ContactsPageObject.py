@@ -606,3 +606,74 @@ class ContactsHomePage(BasePage):
         self.selenium.click_element(contacts_locators["button_save_affiliation"])
         self.eda.close_toast_message()
 
+    def Click_edit_button(self, page):
+        self.selenium.wait_until_page_contains_element(
+            page,
+            timeout=60
+        )
+        self.open_item(
+            page,
+            "Cannot find Settings Tab on EDA Settings page", 
+            True
+        )
+        self.selenium.click_button("Edit")
+
+    def Click_save_button(self, page):
+        self.selenium.wait_until_page_contains_element(
+            page,
+            timeout=60
+        )
+        self.open_item(
+            page,
+            "Cannot find Settings Tab on EDA Settings page", 
+            True
+        )
+        self.selenium.click_button("Save")
+
+
+    def Enable_the_checkbox(self, tab, loc_checkbox, loc_checkbox_edit):
+        """ Ensure that the Enable Record Type Validation checkbox is checked 
+            Set the checkbox if it is not set
+            Do nothing if the checkbox is already set
+        """
+        
+        self.selenium.wait_until_page_contains_element(
+            tab,
+            timeout=60
+        )
+        self.open_item(
+            tab,
+            "Cannot find Settings Tab on EDA Settings page", 
+            True
+        )
+
+        #  If we need to move into the iframe, then this is the correct frame:
+        #  self.selenium.select_frame(eda_lex_locators["eda_settings"]["a11y_frame"])
+
+
+        # Checkbox for 'Enable Record Type Validation' needs to be marked as checked
+        if self._check_if_element_exists(loc_checkbox):
+            self.builtin.log("Enable Record Type Validation checkbox is checked.")
+            return
+        else: 
+            self.builtin.log(
+                "Enable Record Type Validation checkbox is NOT checked.\n" +
+                "Opening EDIT mode"
+            )
+            self.selenium.click_button("Edit")
+            self.builtin.log("Setting the 'Enable Record Type Validation' checkbox.")
+            self.selenium.wait_until_page_contains_element(
+                loc_checkbox_edit,
+                timeout=60
+            )
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(loc_checkbox_edit)
+            )
+            self.selenium.click_button("Save")
+            self.eda.close_toast_message()
+            self.builtin.log(
+                "Enable Enhanced Preferred Phone Functionality setting has been set.\n" +
+                "Saving changes.\n" +
+                "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
+            )
