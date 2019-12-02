@@ -1487,7 +1487,7 @@ private class ACCT_IndividualAccounts_TEST {
         Account requeryFinalAccount = [SELECT Id, Name
                                   	   FROM Account
                                        WHERE Id = :requeryInsertedCon.AccountId];
-        System.assertEquals('Marvin Johnston and Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
+        System.assertEquals('Marvin Johnston, Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
 
     }
 
@@ -1501,7 +1501,8 @@ private class ACCT_IndividualAccounts_TEST {
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
                                                     Automatic_Household_Naming__c = true));
 
-        Contact con = new Contact(LastName = 'Thomas');
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
         insert con;
 
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
@@ -1511,7 +1512,9 @@ private class ACCT_IndividualAccounts_TEST {
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
-        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
         insert con2;
 
         con.Deceased__c = TRUE;
@@ -1538,8 +1541,9 @@ private class ACCT_IndividualAccounts_TEST {
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
                                                     Automatic_Household_Naming__c = true));
 
-        Contact con = new Contact(LastName = 'Thomas');
-        insert con;
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
 
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
@@ -1548,7 +1552,9 @@ private class ACCT_IndividualAccounts_TEST {
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
-        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
         insert con2;
 
         con2.Deceased__c = TRUE;
@@ -1577,8 +1583,9 @@ private class ACCT_IndividualAccounts_TEST {
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
                                                     Automatic_Household_Naming__c = true));
 
-        Contact con = new Contact(LastName = 'Thomas');
-        insert con;
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
 
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
@@ -1587,7 +1594,9 @@ private class ACCT_IndividualAccounts_TEST {
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
-        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
         insert con2;
 
         con.Exclude_from_Household_Name__c = TRUE;
@@ -1613,8 +1622,9 @@ private class ACCT_IndividualAccounts_TEST {
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
                                                     Automatic_Household_Naming__c = true));
 
-        Contact con = new Contact(LastName = 'Thomas');
-        insert con;
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
 
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
@@ -1623,7 +1633,9 @@ private class ACCT_IndividualAccounts_TEST {
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
-        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
         insert con2;
 
         con2.Exclude_from_Household_Name__c = TRUE;
@@ -1652,8 +1664,9 @@ private class ACCT_IndividualAccounts_TEST {
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
                                                     Automatic_Household_Naming__c = true));
 
-        Contact con = new Contact(LastName = 'Thomas');
-        insert con;
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
 
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
@@ -1662,8 +1675,9 @@ private class ACCT_IndividualAccounts_TEST {
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
-        System.debug('lastContact Acct -->' + a);
-        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
         insert con2;
 
         con2.Exclude_from_Household_Name__c = TRUE;
@@ -1692,8 +1706,9 @@ private class ACCT_IndividualAccounts_TEST {
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
                                                     Automatic_Household_Naming__c = true));
 
-        Contact con = new Contact(LastName = 'Thomas');
-        insert con;
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
 
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
@@ -1702,22 +1717,30 @@ private class ACCT_IndividualAccounts_TEST {
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
 
-        Contact con2 = new Contact(LastName = 'Pens', AccountId = a.Id);
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
         insert con2;
 
         con2.Exclude_from_Household_Name__c = TRUE;
         update con2;
 
-        Contact con3 = new Contact(LastName = 'James', AccountId = a.Id);
+        Contact con3 = UTIL_UnitTestData_API.getContact();
+        con3.LastName = 'James';
+        con3.AccountId = a.Id;
         insert con3;
 
         con3.Deceased__c = TRUE;
         update con3;
 
-        Contact con4 = new Contact(LastName = 'Bond', AccountId = a.Id);
+        Contact con4 = UTIL_UnitTestData_API.getContact();
+        con4.LastName = 'Bond';
+        con4.AccountId = a.Id;
         insert con4;
 
-        Contact con5 = new Contact(LastName = 'Legend', AccountId = a.Id);
+        Contact con5 = UTIL_UnitTestData_API.getContact();
+        con5.LastName = 'Legend';
+        con5.AccountId = a.Id;
         insert con5;
 
         Test.startTest();
