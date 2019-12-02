@@ -96,24 +96,52 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             }
         }
 
+        Boolean recursionAfterInsertCheck = triggerActionAfterInsert();
+        Boolean recursionAfterUpdateCheck = triggerActionAfterUpdate();
+        Boolean recursionAfterDeleteCheck = triggerActionAfterDelete();
+
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
+            !recursionAfterInsertCheck) {
                 handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
+            !recursionAfterUpdateCheck) {
                 handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
+            !recursionAfterDeleteCheck) {
                 accountId = retrieveAccountId(oldContacts);
                 handlesAfterDelete(oldContacts, accountId);
             }
 
         dmlWrapper = null;
         return dmlWrapper;
+    }
+
+    /*******************************************************************************************************
+    * @description Checks after insert recursion flag for this class.
+    * @return Boolean.
+    */
+    private Boolean triggerActionAfterInsert() {
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert);
+    }
+
+    /*******************************************************************************************************
+    * @description Checks after update recursion flag for this class.
+    * @return Boolean.
+    */
+    private Boolean triggerActionAfterUpdate() {
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update);
+    }
+
+    /*******************************************************************************************************
+    * @description Checks after delete recursion flag for this class.
+    * @return Boolean.
+    */
+    private Boolean triggerActionAfterDelete() {
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete);
     }
 
     /*******************************************************************************************************
@@ -140,7 +168,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
 
-        returnedContacts = database.query(dynamicSoql);
+        returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
 
         return returnedContacts;
     }
@@ -301,16 +329,23 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * with the Account.
         */
         private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {
+            Boolean conAccountIdNotNull = (c.AccountId != NULL) ? True : False;
+            Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL) ? True : False;
+            Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId) ? True : False;
+            Boolean conLastNameChanged = (c.LastName != oldContact.LastName) ? True : False;
+            Boolean conFirstNameChanged = (c.FirstName != oldContact.FirstName) ? True : False;
+            Boolean conExcludeFromHHNameChanged = (c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c) ? True : False;
+
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
-                if(c.AccountId != NULL) {
+                if(conAccountIdNotNull) {
                     accountIdToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
 
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                         accountIdToRename.add(c.AccountId);
 
-                        if(oldContact.AccountId != NULL) {
+                        if(oldConAccountIdNotNull) {
                             accountIdToRename.add(oldContact.AccountId);
                         }
                     }
@@ -321,29 +356,29 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
 
                 //Old HH Accounts that don't get deleted still need to have name redone
-                if (oldContact.AccountId != NULL) {
+                if (oldConAccountIdNotNull) {
                     accountIdToupdate.add(oldContact.AccountId);
                     contactIdAccountIdOldOppsToMove.put(c.Id, oldContact.AccountId);
                 }
             }
 
             //If Ownership has changed
-            if (c.OwnerId != oldContact.OwnerId) {
+            if (conOwnerChanged) {
                 contactIdContactOwnerChange.put(c.Id, c);
             }
 
             //If Contact's last name has changed and it is using admin account model
-            if (c.LastName != oldContact.LastName && c.AccountId != NULL) {
+            if (conLastNameChanged && conAccountIdNotNull) {
                 contactsChangedLastName.add(c);
             }
 
 
             //If Contact Name or Exclude_from_Household_Name__c value has changed
-            if ((c.LastName != oldContact.LastName ||
-                 c.FirstName != oldContact.FirstName ||
-                 c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c) &&
+            if ((conLastNameChanged ||
+                 conFirstNameChanged ||
+                 conExcludeFromHHNameChanged) &&
                  numOfContactsLeft != 0 &&
-                 c.AccountId != NULL &&
+                 conAccountIdNotNull &&
                  checkHouseholdNaming(c.Account.RecordTypeId))
             {
                 accountIdToRename.add(c.AccountId);
