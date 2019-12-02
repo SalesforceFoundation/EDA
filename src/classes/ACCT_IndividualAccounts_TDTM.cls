@@ -137,7 +137,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
 
-        returnedContacts = String.escapeSingleQuotes(dynamicSoql);
+        returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
 
         return returnedContacts;
     }
