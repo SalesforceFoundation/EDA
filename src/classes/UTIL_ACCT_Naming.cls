@@ -495,7 +495,7 @@ public class UTIL_ACCT_Naming {
             //if Contacts do not have same last name && the Account name format is not set to process {!LastName}.
             List<String> additionalFirstNames = new List<String>();
 
-            for (; next < conSize && (lastNameNotIncludedInFormat || cons[next].LastName == lastName); next++) {
+            for (; next < conSize && (lastNameOnFullNameSpec || cons[next].LastName == lastName); next++) {
 
                 if (isSalutationFormat == TRUE) {
                     String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
@@ -508,7 +508,6 @@ public class UTIL_ACCT_Naming {
                 String nextFName = stringConNames(cons[next], ns.firstNameSpec);
                 if (nextFName != '') {
                     additionalFirstNames.add(nextFname);
-                    additionalFirstNames.sort();
                 }
 
                 //This is critical if the current Account name format is not set to process {!LastName}, then
