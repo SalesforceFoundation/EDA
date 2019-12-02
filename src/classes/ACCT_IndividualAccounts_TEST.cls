@@ -1451,6 +1451,47 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically with custom format.
+    * {!{!FirstName} {!LastName}} House
+    */
+    @isTest
+    private static void sortContactsWithCustomFormat() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!{!FirstName} {!LastName}} House',
+                                                    Automatic_Household_Naming__c = true));
+
+		Contact con = UTIL_UnitTestData_API.getContact();
+        con.FirstName = 'Marvin';
+        con.LastName = 'Johnston';
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'Johnston', FirstName = 'Tyrone', AccountId = a.Id);
+        insert con2;
+
+        Account requeryAccount = [SELECT Id, Name
+                                  FROM Account
+                                  WHERE Id = :requeryInsertedCon.AccountId];
+        System.assertEquals('Marvin Johnston and Tyrone Johnston House', requeryAccount.Name);
+
+        Contact con3 = new Contact(LastName = 'Phillips', FirstName = 'Crystal', AccountId = a.Id);
+        insert con3;
+
+        Account requeryFinalAccount = [SELECT Id, Name
+                                  	   FROM Account
+                                       WHERE Id = :requeryInsertedCon.AccountId];
+        System.assertEquals('Marvin Johnston and Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
     * @description Test Method to check if a Contact is marked deceased, the Account name is updated properly.
     */
     @isTest
