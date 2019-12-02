@@ -1484,7 +1484,6 @@ private class ACCT_IndividualAccounts_TEST {
         Account requeryFinalAccount = [SELECT Id, Name
                                   	   FROM Account
                                        WHERE Id = :requeryInsertedCon.AccountId];
-        System.assertEquals('Marvin Johnston and Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
-
+        System.assertEquals('Marvin Johnston, Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
     }
 }

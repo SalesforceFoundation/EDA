@@ -495,13 +495,12 @@ public class UTIL_ACCT_Naming {
             //if Contacts do not have same last name && the Account name format is not set to process {!LastName}.
             List<String> additionalFirstNames = new List<String>();
 
-            for (; next < conSize && (lastNameNotIncludedInFormat || cons[next].LastName == lastName); next++) {
+            for (; next < conSize && (lastNameOnFullNameSpec || cons[next].LastName == lastName); next++) {
 
                 if (isSalutationFormat) {
                     String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
                         if (nextSalutation != '') {
                             additionalSalutations.add(nextSalutation);
-                            additionalSalutations.sort();
                         }
                 }
 
