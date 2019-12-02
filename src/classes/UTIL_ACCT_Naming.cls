@@ -507,7 +507,6 @@ public class UTIL_ACCT_Naming {
                 String nextFName = stringConNames(cons[next], ns.firstNameSpec);
                 if (nextFName != '') {
                     additionalFirstNames.add(nextFname);
-                    additionalFirstNames.sort();
                 }
 
                 //This is critical if the current Account name format does not contain {!LastName}, then
