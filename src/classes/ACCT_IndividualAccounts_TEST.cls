@@ -212,7 +212,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         Contact[] insertedContacts = [SELECT Account.Name, AccountId
                                       FROM Contact
-                                      WHERE id = :con.Id];
+                                      WHERE Id = :con.Id];
 
         //the contact should be connected to the account
         System.assertEquals(accts[0].id,insertedContacts[0].AccountId);
@@ -246,7 +246,7 @@ private class ACCT_IndividualAccounts_TEST {
                                           FROM Contact
                                           WHERE Id = :con.Id];
         //the contact should be connected to the account
-        System.assertEquals(acct.id, insertedContacts[0].AccountId);
+        System.assertEquals(acct.Id, insertedContacts[0].AccountId);
 
         con.AccountId = NULL;
         Test.startTest();
@@ -477,7 +477,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.LastName + ' (' + con.FirstName + ') Household', assertAccount.Name);
 
@@ -544,7 +544,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
@@ -588,7 +588,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
@@ -664,7 +664,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
@@ -774,7 +774,7 @@ private class ACCT_IndividualAccounts_TEST {
         //After remove the Account lookup for con2, system will create a new Account for con2. So, we need to query the Account of con in order to verify the Account Name.
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account
-                         WHERE Id =: assertAccount.Id];
+                         WHERE Id = :assertAccount.Id];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
     }
@@ -1081,7 +1081,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<Contact> updatedContacts = [SELECT Account.Name, AccountId, Account.RecordTypeId
                                          FROM Contact
-                                         WHERE Id =:con.Id];
+                                         WHERE Id = :con.Id];
 
         //The account should not be the one we started with
         System.assertNotEquals(NULL, updatedContacts[0].AccountId);
@@ -1444,6 +1444,47 @@ private class ACCT_IndividualAccounts_TEST {
         System.assertEquals(contacts[1].LastName + ', ' + contacts[2].LastName + ' and ' +
                             contacts[0].LastName + ' ' + 'Household',
                             returnSortedContacts[0].Account.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically with custom format.
+    * {!{!FirstName} {!LastName}} House
+    */
+    @isTest
+    private static void sortContactsWithCustomFormat() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!{!FirstName} {!LastName}} House',
+                                                    Automatic_Household_Naming__c = true));
+
+		Contact con = UTIL_UnitTestData_API.getContact();
+        con.FirstName = 'Marvin';
+        con.LastName = 'Johnston';
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'Johnston', FirstName = 'Tyrone', AccountId = a.Id);
+        insert con2;
+
+        Account requeryAccount = [SELECT Id, Name
+                                  FROM Account
+                                  WHERE Id = :requeryInsertedCon.AccountId];
+        System.assertEquals('Marvin Johnston and Tyrone Johnston House', requeryAccount.Name);
+
+        Contact con3 = new Contact(LastName = 'Phillips', FirstName = 'Crystal', AccountId = a.Id);
+        insert con3;
+
+        Account requeryFinalAccount = [SELECT Id, Name
+                                  	   FROM Account
+                                       WHERE Id = :requeryInsertedCon.AccountId];
+        System.assertEquals('Marvin Johnston and Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
 
     }
 }
