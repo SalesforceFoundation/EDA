@@ -667,7 +667,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             accounts.add(a);
         }
 
-        //Checks if the Primary_Contact__c, AccountId field on the Contact record is associated to the same Account
+        //Checks if the Primary_Contact__c's AccountId field on the Contact record is associated to the same Account
         if (primaryContactId.size() > 0) {
             List<Contact> cons = [SELECT Id, AccountId, Account.Primary_Contact__c
                                   FROM Contact
