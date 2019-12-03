@@ -656,7 +656,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Account> accounts = new List<Account>();
         List<Account> accountsToUpdate = new List<Account>();
 
-        //Retrieves the Primary_Contact from Account and retrieves any Contact associated to the Account
+        //Retrieves the Primary_Contact__c from Account and retrieves any Contact associated to the Account
         for (Account a : [SELECT Id, Primary_Contact__c,
                          (SELECT Id FROM Contacts LIMIT 1)
                           FROM Account
@@ -745,7 +745,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         List<Account> listAcc = [SELECT Id, RecordTypeId, Primary_Contact__c, OwnerId,
-                                (SELECT Id FROM Contacts limit 2)
+                                (SELECT Id FROM Contacts LIMIT 2)
                                  FROM Account
                                  WHERE Id IN :contactsAccountId];
 
