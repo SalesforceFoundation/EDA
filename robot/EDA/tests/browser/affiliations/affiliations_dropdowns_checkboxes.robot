@@ -58,17 +58,17 @@ Affiliations Settings checkboxes checked and dropdowns selected
     Enable the checkbox   
     ...                                 ${settings_tab}
     ...                                 ${specify_role_for_c_affl}
-    ...                                 ${specify_r_checkbox}
+    ...                                         ${specify_r_checkbox}
 
     # Copy Affiliation End Date from Program Enrollment
-    ${settings_tab} =                   Get Eda Locator     eda_settings.settings_tab
-    ${copy_affl_end_date} =             Get Eda Locator     eda_settings.copy_affl_end_date
-    ${copy_affliation_end_checkbox} =   Get Eda Locator     eda_settings.copy_affliation_end_checkbox
+    ${settings_tab} =                           Get Eda Locator     eda_settings.settings_tab
+    ${copy_affl_end_date} =                     Get Eda Locator     eda_settings.copy_affl_end_date
+    ${copy_affliation_end_checkbox} =           Get Eda Locator     eda_settings.copy_affliation_end_checkbox
 
     Enable the checkbox   
-    ...                                 ${settings_tab}
-    ...                                 ${copy_affl_end_date}
-    ...                                 ${copy_affliation_end_checkbox}
+    ...                                         ${settings_tab}
+    ...                                         ${copy_affl_end_date}
+    ...                                         ${copy_affliation_end_checkbox}
 
     # Copy Affiliation Start Date from Program Enrollment
     ${settings_tab} =                           Get Eda Locator     eda_settings.settings_tab
@@ -93,8 +93,8 @@ Affiliations Settings checkboxes checked and dropdowns selected
     Select From List By Label                   ${status_current_picklist_affl}             Current
 
     #Save settings
-    Click save button                       ${settings_tab}
-    Go To Object Home                       Contact
+    Click save button                           ${settings_tab}
+    Go To Object Home                           Contact
 
 
 
