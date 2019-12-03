@@ -653,56 +653,47 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void resetPrimaryContactForAccount(List<Id> accountIdsToUpdate, DmlWrapper dmlWrapper) {
         Set<Id> primaryContactId = new Set<Id>();
         Set<Id> accountsToResetIds = new Set<Id>();
+        List<Account> accounts = new List<Account>();
         List<Account> accountsToUpdate = new List<Account>();
 
-        //Builds a set of primary Contact Ids from the Account given existing AccountIds
-        List<Account> listAccount = [SELECT Primary_Contact__c,
-                                     (SELECT Id, Name FROM Contacts LIMIT 1)
-                                     FROM Account
-                                     WHERE Id IN :accountIdsToUpdate];
-
-        //Retrieves the Primary_Contact__c from the Account
-        for (Account acc : listAccount) {
-            if (acc.Primary_Contact__c != NULL)
-                primaryContactId.add(acc.Primary_Contact__c);
+        //Retrieves the Primary_Contact from Account and retrieves any Contact associated to the Account
+        for (Account a : [SELECT Id, Primary_Contact__c,
+                         (SELECT Id FROM Contacts LIMIT 1)
+                          FROM Account
+                          WHERE Id IN :accountIdsToUpdate]) {
+            if (a.Primary_Contact__c != NULL) {
+                primaryContactId.add(a.Primary_Contact__c);
+            }
+            accounts.add(a);
         }
 
+        //Checks if the Primary_Contact__c, AccountId field on the Contact record is associated to the same Account
         if (primaryContactId.size() > 0) {
-            for (Account acc : [SELECT Primary_Contact__c,
-                                (SELECT Id, Name FROM Contacts WHERE Id IN :primaryContactId LIMIT 1)
-                                FROM Account
-                                WHERE Id IN :accountIdsToUpdate])
-            {
-                //There are two cases account primary contact needs reset
-                //1. An account has no child contact but is used to have primary contact
-                //2. An account used to have no child contact but a child contact was just assigned to it
-                if (acc.Contacts.size() == 0 || acc.Primary_Contact__c == NULL) {
-                    accountsToResetIds.add(acc.Id);
+            List<Contact> cons = [SELECT Id, AccountId, Account.Primary_Contact__c
+                                  FROM Contact
+                                  WHERE Id = :primaryContactId];
+            if (cons.size() > 0) {
+                for (Contact c : cons) {
+                    if (c.Account.Primary_Contact__c != NULL) {
+                        accountsToResetIds.add(c.AccountId);
+                    }
                 }
             }
         } else {
             accountsToResetIds.addAll(accountIdsToUpdate);
         }
 
-        //If accountsToResetIds is empty, skip dml and return
-        if (accountsToResetIds.size() == 0) {
-            return;
-        }
-
-        accountsToResetIds.addAll(accountIdsToUpdate);
-
-        //For each account that needs to be reset
-        for (Account acc : listAccount) {
+        //Checks if the AccountId is in the account list and contains Contacts that it can use to set as
+        //the Primary_Contact__c on the Account record. If there's no Contact records associated to the Account,
+        //it sets the Primary_Contact__c on the Account record to null.
+        for (Account acc : accounts) {
             if (accountsToResetIds.contains(acc.Id)) {
                 if (acc.Contacts.size() > 0) {
-                    //If any child contact exists, use one as primary contact
                     acc.Primary_Contact__c = acc.contacts[0].Id;
-                    //Inject Adv logic to handle npsp primary contact of the Account
                     if (Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != NULL) {
                         Advancement_Info.getApiHEDA().primaryContact(acc, acc.contacts[0].Id);
                     }
                 } else {
-                    //If no child contact exists, clear up primary contact
                     acc.Primary_Contact__c = NULL;
                 }
                 accountsToUpdate.add(acc);
@@ -759,15 +750,20 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                  WHERE Id IN :contactsAccountId];
 
         for (Account acc : listAcc) {
-            //TODO: use setting to determine if Account owner should be changed (W-009780)
-            if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != NULL &&
-                acc.RecordTypeId != NULL && (acc.RecordTypeId == userDefinedHHRecordTypeId
-                || acc.RecordTypeId == userDefinedAdminRecordTypeId))
+            Boolean accHasContact = (acc.Contacts.size() == 1) ? True : False;
+            Boolean accHasPrimaryContact = (acc.Primary_Contact__c != NULL) ? True : False;
+            Boolean accRecordTypeIsNotNull = (acc.RecordTypeId != NULL) ? True : False;
+            Boolean accRecordTypeHHOrAdmin = (acc.RecordTypeId == userDefinedHHRecordTypeId || acc.RecordTypeId == userDefinedAdminRecordTypeId) ? True : False;
+
+
+            if (accHasContact && accHasPrimaryContact &&
+                accRecordTypeIsNotNull && accRecordTypeHHOrAdmin)
             {
                 Contact c = contactOwnerChange.get(acc.Primary_Contact__c);
                 Id ownerIdContact = (c != NULL ? c.OwnerId : NULL);
+				Boolean accOwnerHasChanged = (acc.OwnerId != ownerIdContact) ? True : False;
 
-                if (acc.OwnerId != ownerIdContact) {
+                if (accOwnerHasChanged) {
                     acc.OwnerId = ownerIdContact;
                     accountsToUpdate.add(acc);
                 }
@@ -800,10 +796,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         accountsOnContacts = [SELECT Id, Type, RecordTypeId,
-                            (SELECT Id FROM Opportunities LIMIT 1),
-                            (SELECT Id FROM Contacts LIMIT 1)
-                            FROM Account
-                            WHERE Id IN :accountIds];
+                               (SELECT Id FROM Opportunities LIMIT 1),
+                               (SELECT Id FROM Contacts LIMIT 1)
+       	                        FROM Account
+                                WHERE Id IN :accountIds];
 
         for (Account thisAccount : accountsOnContacts) {
             //Looking at setting to determine which account types can be deleted (W-009779)
@@ -813,9 +809,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 // If there are no Opportunities && Contacts for this Account, add the Account for deletion
                 if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                     accountsForDeletion.add(thisAccount);
-                } else if (thisAccount.RecordTypeId != null
-                           && (thisAccount.RecordTypeId == userDefinedHHRecordTypeId
-                           || thisAccount.RecordTypeId == userDefinedAdminRecordTypeId))
+                } else if (thisAccount.RecordTypeId != null &&
+                           (thisAccount.RecordTypeId == userDefinedHHRecordTypeId ||
+                            thisAccount.RecordTypeId == userDefinedAdminRecordTypeId))
                   {
                          accountIdsUpdate.add(thisAccount.Id);
                   }
