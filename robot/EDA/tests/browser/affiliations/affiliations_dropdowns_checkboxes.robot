@@ -24,11 +24,11 @@ Suite Teardown  Run keywords
 
 *** Test Cases ***
 
-Affiliations Settings checkboxes unchecked and dropdowns at None
+Affiliations settings verify standard values
     [tags]                                      unstable
 
-
     Current page should be                      Home                    Contacts
+
     Open EDA Settings Tab menu item
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
@@ -81,25 +81,14 @@ Affiliations Settings checkboxes unchecked and dropdowns at None
     ...                                         ${un_copy_affl_start_date}
     ...                                         ${copy_affliation_start_checkbox}
 
-    # Edit the dropdowns
-    Click button on location                    Edit                    ${settings_tab}
+    Wait for locator                            eda_settings.affiliations_former
+    Wait for locator                            eda_settings.affiliations_student
+    Wait for locator                            eda_settings.affiliations_current
 
-    ${status_student_affl} =                    Get Eda Locator         eda_settings.status_student_affl
-    Select From List By Label                   ${status_student_affl}                      --None--
-
-    ${status_spec_affl_not_deleted_former} =    Get Eda Locator         eda_settings.status_spec_affl_not_deleted_former
-    Select From List By Label                   ${status_spec_affl_not_deleted_former}      --None--
-
-    ${status_current_picklist_affl} =           Get Eda Locator         eda_settings.status_current_picklist_affl
-    Select From List By Label                   ${status_current_picklist_affl}             --None--
-
-    #Save settings
-    Click button on location                    Save                    ${settings_tab}
     Go To Object Home                           Contact
     Close all tabs
 
-
-Affiliations Settings checkboxes checked and dropdowns selected
+Affiliations settings checkboxes checked and dropdowns selected
     [tags]                                      unstable
 
     Current page should be                      Home
@@ -171,11 +160,83 @@ Affiliations Settings checkboxes checked and dropdowns selected
 
     #Save settings
     Click button on location                    Save                    ${settings_tab}
+    Close toast message
+    Go To Object Home                           Contact
+    Close all tabs
+
+Affiliations settings checkboxes unchecked and dropdowns at None
+    [tags]                                      unstable
+
+    Current page should be                      Home                    Contacts
+    Open EDA Settings Tab menu item
+
+    ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
+    ${un_ert_validation_checkbox} =             Get Eda Locator         eda_settings.un_ert_validation
+    ${ert_edit_validation_checkbox} =           Get Eda Locator         eda_settings.en_re_type_validation
 
 
+    Disable the checkbox                        Enable Record Type Validation
+    ...                                         ${settings_tab}
+    ...                                         ${un_ert_validation_checkbox}
+    ...                                         ${ert_edit_validation_checkbox}
 
+    # Delete Related Affiliation When Deleting Program Enrollment
+    ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
+    ${un_delete_rec_affl} =                     Get Eda Locator         eda_settings.un_delete_rec_affl
+    ${del_rel_affl} =                           Get Eda Locator         eda_settings.del_rel_affl
 
+    Disable the checkbox                        Delete Related Affiliation When Deleting Program Enrollment
+    ...                                         ${settings_tab}
+    ...                                         ${un_delete_rec_affl}
+    ...                                         ${del_rel_affl}
 
+    # Specify Role for Created Affiliations
+    ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
+    ${un_specify_role_for_c_affl} =             Get Eda Locator         eda_settings.un_specify_role_for_c_affl
+    ${specify_r_checkbox} =                     Get Eda Locator         eda_settings.specify_r_checkbox
+
+    Disable the checkbox                        Specify Role for Created Affiliations
+    ...                                         ${settings_tab}
+    ...                                         ${un_specify_role_for_c_affl}
+    ...                                         ${specify_r_checkbox}
+
+    # Copy Affiliation End Date from Program Enrollment
+    ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
+    ${un_copy_affl_end_date} =                  Get Eda Locator         eda_settings.un_copy_affl_end_date
+    ${copy_affliation_end_checkbox} =           Get Eda Locator         eda_settings.copy_affliation_end_checkbox
+
+    Disable the checkbox                        Copy Affiliation End Date from Program Enrollment
+    ...                                         ${settings_tab}
+    ...                                         ${un_copy_affl_end_date}
+    ...                                         ${copy_affliation_end_checkbox}
+
+    # Copy Affiliation Start Date from Program Enrollment
+    ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
+    ${un_copy_affl_start_date} =                Get Eda Locator         eda_settings.un_copy_affl_start_date
+    ${copy_affliation_start_checkbox} =         Get Eda Locator         eda_settings.copy_affliation_start_checkbox
+
+    Disable the checkbox                        Copy Affiliation Start Date from Program Enrollment
+    ...                                         ${settings_tab}
+    ...                                         ${un_copy_affl_start_date}
+    ...                                         ${copy_affliation_start_checkbox}
+
+    # Edit the dropdowns
+    Click button on location                    Edit                    ${settings_tab}
+
+    ${status_student_affl} =                    Get Eda Locator         eda_settings.status_student_affl
+    Select From List By Label                   ${status_student_affl}                      --None--
+
+    ${status_spec_affl_not_deleted_former} =    Get Eda Locator         eda_settings.status_spec_affl_not_deleted_former
+    Select From List By Label                   ${status_spec_affl_not_deleted_former}      --None--
+
+    ${status_current_picklist_affl} =           Get Eda Locator         eda_settings.status_current_picklist_affl
+    Select From List By Label                   ${status_current_picklist_affl}             --None--
+
+    #Save settings
+    Click button on location                    Save                    ${settings_tab}
+    Close toast message
+    Go To Object Home                           Contact
+    Close all tabs
 
 *** Keywords ***
 

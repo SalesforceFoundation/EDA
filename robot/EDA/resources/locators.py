@@ -117,6 +117,9 @@ eda_lex_locators = {
         "copy_affliation_start_checkbox":   "(//div/span[text()='Copy Affiliation Start Date from Program Enrollment:']/following::div)[1]/div/div/label/span[@class='slds-checkbox--faux']",
         "a11y_frame":                       "//iframe[contains(@title,'accessibility title')]",
         "settings_tab":                     "(//li[@class='slds-tabs__item slds-text-heading--label slds-active' and @role='tab' and @title='Settings'])[1]/a[contains(text(),'Settings')]",
+        "affiliations_former":              "//div/div/following::div/span[text()='Former']",
+        "affiliations_student":             "(//div/div/span[@class='uiOutputText' and text()='Role Specified for Created Affiliations: ']/following::div[@class='slds-col slds-size--1-of-2'])[1]/span[text()='Student']",
+        "affiliations_current":             "//div/div/following::div[@class='slds-col slds-size--1-of-2']/span[text()='Current']",
     },
     "tabs": {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",

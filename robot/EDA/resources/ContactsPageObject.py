@@ -607,6 +607,7 @@ class ContactsHomePage(BasePage):
         self.eda.close_toast_message()
 
     def Click_button_on_location(self, button, page):
+        """ Select the specified button from the page that is specified """
         self.selenium.wait_until_page_contains_element(
             page,
             timeout=60
