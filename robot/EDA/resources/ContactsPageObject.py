@@ -606,33 +606,20 @@ class ContactsHomePage(BasePage):
         self.selenium.click_element(contacts_locators["button_save_affiliation"])
         self.eda.close_toast_message()
 
-    def Click_edit_button(self, page):
+    def Click_button_on_location(self, button, page):
         self.selenium.wait_until_page_contains_element(
             page,
             timeout=60
         )
         self.open_item(
             page,
-            "Cannot find Settings Tab on EDA Settings page", 
+            "Cannot find {} ".format(page), 
             True
         )
-        self.selenium.click_button("Edit")
+        self.selenium.click_button(button)
 
-    def Click_save_button(self, page):
-        self.selenium.wait_until_page_contains_element(
-            page,
-            timeout=60
-        )
-        self.open_item(
-            page,
-            "Cannot find Settings Tab on EDA Settings page", 
-            True
-        )
-        self.selenium.click_button("Save")
-
-
-    def Enable_the_checkbox(self, tab, loc_checkbox, loc_checkbox_edit):
-        """ Ensure that the Enable Record Type Validation checkbox is checked 
+    def Enable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
+        """ Ensure that the specified checkbox is checked 
             Set the checkbox if it is not set
             Do nothing if the checkbox is already set
         """
@@ -643,25 +630,21 @@ class ContactsHomePage(BasePage):
         )
         self.open_item(
             tab,
-            "Cannot find Settings Tab on EDA Settings page", 
-            True
+            "Cannot find {} tab".format(tab), 
+            False
         )
 
-        #  If we need to move into the iframe, then this is the correct frame:
-        #  self.selenium.select_frame(eda_lex_locators["eda_settings"]["a11y_frame"])
-
-
-        # Checkbox for 'Enable Record Type Validation' needs to be marked as checked
+        # Checkbox needs to be marked as checked
         if self._check_if_element_exists(loc_checkbox):
-            self.builtin.log("Enable Record Type Validation checkbox is checked.")
+            self.builtin.log("{} checkbox is checked.".format(title))
             return
         else: 
             self.builtin.log(
-                "Enable Record Type Validation checkbox is NOT checked.\n" +
+                "{} checkbox is NOT checked.\n".format(title) +
                 "Opening EDIT mode"
             )
             self.selenium.click_button("Edit")
-            self.builtin.log("Setting the 'Enable Record Type Validation' checkbox.")
+            self.builtin.log("Setting the {} checkbox.".format(title))
             self.selenium.wait_until_page_contains_element(
                 loc_checkbox_edit,
                 timeout=60
@@ -673,7 +656,46 @@ class ContactsHomePage(BasePage):
             self.selenium.click_button("Save")
             self.eda.close_toast_message()
             self.builtin.log(
-                "Enable Enhanced Preferred Phone Functionality setting has been set.\n" +
-                "Saving changes.\n" +
-                "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
+                "Checkbox for {} setting has been set.\n".format(title) 
             )
+
+
+    def Disable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
+        """ Ensure that the specified checkbox is NOT checked 
+            Uncheck the checkbox if it is checked
+            Do nothing if the checkbox is already clear
+        """
+        
+        self.selenium.wait_until_page_contains_element(
+            tab,
+            timeout=60
+        )
+        self.open_item(
+            tab,
+            "Cannot find {} tab".format(tab), 
+            False
+        )
+
+        # Checkbox needs to be unchecked
+        if self._check_if_element_exists(loc_checkbox):
+            self.builtin.log("{} checkbox is already clear.".format(title))
+            return
+        else: 
+            self.builtin.log(
+                "{} checkbox is checked.\n" +
+                "Opening EDIT mode"
+            )
+            self.selenium.click_button("Edit")
+            self.builtin.log("Clearing the {} checkbox.".format(title))
+            self.selenium.wait_until_page_contains_element(
+                loc_checkbox_edit,
+                timeout=60
+            )
+            self.selenium.driver.execute_script(
+                "arguments[0].click()", 
+                self.selenium.driver.find_element_by_xpath(loc_checkbox_edit)
+            )
+            self.selenium.click_button("Save")
+            self.eda.close_toast_message()
+            self.builtin.log("{} checkbox has been cleared.".format(title))
+
