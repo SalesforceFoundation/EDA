@@ -120,6 +120,7 @@ eda_lex_locators = {
         "affiliations_former":              "//div/div/following::div/span[text()='Former']",
         "affiliations_student":             "(//div/div/span[@class='uiOutputText' and text()='Role Specified for Created Affiliations: ']/following::div[@class='slds-col slds-size--1-of-2'])[1]/span[text()='Student']",
         "affiliations_current":             "//div/div/following::div[@class='slds-col slds-size--1-of-2']/span[text()='Current']",
+        "eda_tile":                         "//div[@class='slds-app-launcher__tile-body']//a[contains(text(),'EDA')]",
     },
     "tabs": {
         "accountsandcontacts" : "//a[contains(text(),'Accounts and Contacts')]",
