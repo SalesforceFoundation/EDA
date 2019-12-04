@@ -456,6 +456,32 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Gets a Term for testing.
+    * @param accountId Account to associate Term with.
+    * @param termName The Term.
+    * @return The Term record.
+    **********************************************************************************************************/
+    public static Term__c getTerm(Id accountID, String termName) {
+        Term__c term = new Term__c();
+        term.Account__c = accountID;
+        term.Name = termName;
+        return term;
+    }
+
+    /*********************************************************************************************************
+    * @description Gets a TermGrade with Term and Course Connection for testing.
+    * @param termID Term to associate Term Grade with.
+    * @param courseConnectionId CourseConnection to associate Term Grade with. 
+    * @return The Term Grade record.
+    **********************************************************************************************************/
+    public static Term_Grade__c getTermGradeWTermCourseConn(Id termID, Id courseConnectionId) {
+        Term_Grade__c termGrade = new Term_Grade__c();
+        termGrade.Term__c = termId;
+        termGrade.Course_Connection__c = courseConnectionId;
+        return termGrade;
+    }
+
+    /*********************************************************************************************************
     * @description Inserts a new Course Offering record for testing.
     * @param courseId The Course to which the Course Offering will be associated. If blank, a new Course record
     * will be inserted.
