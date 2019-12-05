@@ -4461,24 +4461,24 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Home</fullName>
+                    <fullName>Home Phone</fullName>
                     <default>false</default>
-                    <label>Home</label>
+                    <label>Home Phone</label>
                 </value>
                 <value>
-                    <fullName>Work</fullName>
+                    <fullName>Work Phone</fullName>
                     <default>false</default>
-                    <label>Work</label>
+                    <label>Work Phone</label>
                 </value>
                 <value>
-                    <fullName>Mobile</fullName>
+                    <fullName>Mobile Phone</fullName>
                     <default>false</default>
-                    <label>Mobile</label>
+                    <label>Mobile Phone</label>
                 </value>
                 <value>
-                    <fullName>Other</fullName>
+                    <fullName>Other Phone</fullName>
                     <default>false</default>
-                    <label>Other</label>
+                    <label>Other Phone</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -4496,19 +4496,19 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>University</fullName>
+                    <fullName>University Email</fullName>
                     <default>false</default>
-                    <label>University</label>
+                    <label>University Email</label>
                 </value>
                 <value>
-                    <fullName>Work</fullName>
+                    <fullName>Work Email</fullName>
                     <default>false</default>
-                    <label>Work</label>
+                    <label>Work Email</label>
                 </value>
                 <value>
-                    <fullName>Alternate</fullName>
+                    <fullName>Alternate Email</fullName>
                     <default>false</default>
-                    <label>Alternate</label>
+                    <label>Alternate Email</label>
                 </value>
             </valueSetDefinition>
         </valueSet>

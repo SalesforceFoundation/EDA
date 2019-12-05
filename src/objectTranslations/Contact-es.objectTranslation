@@ -3473,19 +3473,35 @@
         <name>PreferredPhone__c</name>
         <picklistValues>
             <masterLabel>Home</masterLabel>
-            <translation>Particular</translation>
+            <translation>Teléfono particular</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mobile</masterLabel>
-            <translation>Móvil</translation>
+            <translation>Teléfono móvil</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation>Otros</translation>
+            <translation>Otro teléfono</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work</masterLabel>
-            <translation>Laboral</translation>
+            <translation>Teléfono laboral</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Phone</masterLabel>
+            <translation>Teléfono particular</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile Phone</masterLabel>
+            <translation>Teléfono móvil</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Phone</masterLabel>
+            <translation>Otro teléfono</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Phone</masterLabel>
+            <translation>Teléfono laboral</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -3494,15 +3510,27 @@
         <name>Preferred_Email__c</name>
         <picklistValues>
             <masterLabel>Alternate</masterLabel>
-            <translation>Alternativo</translation>
+            <translation>Correo electrónico alternativo</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>University</masterLabel>
-            <translation>Universidad</translation>
+            <translation>Correo electrónico de la universidad</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work</masterLabel>
-            <translation>Laboral</translation>
+            <translation>Correo electrónico laboral</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alternate Email</masterLabel>
+            <translation>Correo electrónico alternativo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University Email</masterLabel>
+            <translation>Correo electrónico de la universidad</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Email</masterLabel>
+            <translation>Correo electrónico laboral</translation>
         </picklistValues>
     </fields>
     <fields>

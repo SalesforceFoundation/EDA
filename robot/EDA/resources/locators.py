@@ -230,7 +230,7 @@ contacts_locators = {
     "edit_contact": "//div[contains(@class,'windowViewMode-normal')]/descendant::div//a[@title='Edit']//div[@title='Edit']",
     "preferred_phone": "//span//span[contains(text(),'Preferred Phone')]",
     "preferred_phone_home_dropdown": "//span//span[contains(text(),'Preferred Phone')]/following::span/following::a",
-    "preferred_tab": "//div[@class='select-options']/descendant::a[@title='Home']",
+    "preferred_tab": "//div[@class='select-options']/descendant::a[@title='Home Phone']",
     "home_phone": "//input[@type='tel']/preceding-sibling::label/span[contains(text(),'Home Phone')]",
     "phone_verify_has_number": "(//div//span[text()='Phone']/../following-sibling::div//span[not( text()='123-123-1234')])[1]",
     "preferred_error_message": "//li[contains(text(), 'The phone selected for Preferred Phone can')]",
