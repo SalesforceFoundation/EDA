@@ -11,7 +11,7 @@ Resource        robot/EDA/resources/EDA.robot
 Library         robot/EDA/resources/EDA.py
 Library         DateTime
 Library         cumulusci.robotframework.PageObjects
-...             robot/EDA/resources/ContactsPageObject.py
+...             robot/EDA/resources/AffiliationsPageObject.py
 
 Test Setup      Initialize test setup
 
@@ -27,31 +27,39 @@ Suite Teardown  Run keywords
 Affiliations settings verify standard values
     [tags]                                      unstable
 
-    Current page should be                      Home                    Contacts
+    Current page should be                      Listing                    
+    ...                                         hed__HEDA_Settings
 
     # Ensure you're on Affiliations > Settings
-    Open EDA Settings Tab menu item
+    Go to EDA settings    
 
-    # Verify the default values for the checkboxes
-    Wait for locator                            eda_settings.un_ert_validation
-    Wait for locator                            eda_settings.un_delete_rec_affl
-    Wait for locator                            eda_settings.un_specify_role_for_c_affl
-    Wait for locator                            eda_settings.un_copy_affl_end_date
-    Wait for locator                            eda_settings.un_copy_affl_start_date
+    process_default_values
 
-    # Verify the default values for the dropdowns
-    Wait for locator                            eda_settings.affiliations_former
-    Wait for locator                            eda_settings.affiliations_student
-    Wait for locator                            eda_settings.affiliations_current
 
-    Go To Object Home                           Contact
+    Shift to default content
+
+
+    Go To Object Home                           Account
+
+#    Go To Custom Object Home                           hed__HEDA_Settings
     Close all tabs
 
 Affiliations settings dropdowns at --None--
     [tags]                                      unstable
 
-    Current page should be                      Home                    Contacts
-    Open EDA Settings Tab menu item
+#    Select App Launcher App                     EDA
+
+#    Shift to default content
+#    Click element                       //a[@class='appTileTitle' and text()='EDA']
+
+#   Select App Launcher App                     EDA
+
+
+    Current page should be                      Listing                 
+    ...                                         hed__HEDA_Settings
+
+    # Ensure you're on Affiliations > Settings
+    Go to EDA settings    
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
 
@@ -70,14 +78,14 @@ Affiliations settings dropdowns at --None--
     #Save settings
     Click button on location                    Save                    ${settings_tab}
     Close toast message
-    Go To Object Home                           Contact
+    Go To Object Home                           Account
     Close all tabs
 
 Affiliations settings put dropdowns at defaults
     [tags]                                      unstable
 
-    Current page should be                      Home                    Contacts
-    Open EDA Settings Tab menu item
+    Current page should be                      Listing                 hed__HEDA_Settings
+    Go to EDA settings    
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
 
@@ -96,13 +104,13 @@ Affiliations settings put dropdowns at defaults
     #Save settings
     Click button on location                    Save                    ${settings_tab}
     Close toast message
-    Go To Object Home                           Contact
+    Go To Object Home                           Account
     Close all tabs
 
 
 Affiliations settings checkboxes toggle
-    Current page should be                      Home                    Contacts
-    Open EDA Settings Tab menu item
+    Current page should be                      Listing                 hed__HEDA_Settings
+    Go to EDA settings    
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
     ${ert_validation_checkbox} =                Get Eda Locator         eda_settings.ert_validation
@@ -184,7 +192,7 @@ Affiliations settings checkboxes toggle
     ...                                         ${settings_tab}
     ...                                         ${un_copy_affl_start_date}
     ...                                         ${copy_affliation_start_checkbox}
-    Go To Object Home                           Contact
+    Go To Object Home                           Account
     Close all tabs
 
 *** Keywords ***
@@ -203,8 +211,18 @@ Initialize test data
 Open EDA Settings Tab menu item
     Select app launcher tab                     EDA Settings
     Select frame with title                     accessibility title
+
+#    Open item                                   eda_settings.affiliations_tab
+#    ...                                         Cannot find the Affiliations tab
+#    ...                                         False
+
+
     Wait for locator                            eda_settings.affiliations_tab
     Click on element                            eda_settings.affiliations_tab
+
+#    Open item                                   eda_settings.affiliations_settings_tab
+#    ...                                         Cannot find the Settings tab in the Affiliations page
+#    ...                                         False
 
     Wait for locator                            eda_settings.affiliations_settings_tab
     Click on element                            eda_settings.affiliations_settings_tab
