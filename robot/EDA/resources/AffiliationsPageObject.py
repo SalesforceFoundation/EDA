@@ -23,6 +23,14 @@ class EDASettingsPage(ListingPage):
     def eda(self):
         return self.builtin.get_library_instance('EDA')
 
+#    @property
+#    def cumulusci(self):
+#        return self.builtin.get_library_instance("cumulusci.robotframework.CumlusCI")
+
+    @property
+    def pageobjects(self):
+        return self.builtin.get_library_instance("cumulusci.robotframework.PageObjects")
+
     def _is_current_page(self):
         """ Verify we are on the EDA Settings page
             by verifying that the header title is 'EDA Settings'
@@ -32,6 +40,17 @@ class EDASettingsPage(ListingPage):
             locator,
             message="Header with text 'EDA Settings' is not available on the page"
         )
+
+    def _go_to_page(self, filter_name=None):
+        url_pattern = "{root}/lightning/n/{object}"
+        name = self._object_name
+        object_name = "{}{}".format(self.cumulusci.get_namespace_prefix(), name)
+        url = url_pattern.format(root=self.cumulusci.org.lightning_base_url, object=object_name)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+        self.eda.wait_for_locator("frame", "accessibility title")
+        self.salesforce.select_frame_with_title("accessibility title")
+
 
     def _check_if_element_exists(self, xpath):
         """ Checks if the given xpath exists """
@@ -73,25 +92,19 @@ class EDASettingsPage(ListingPage):
         if capture_screen:
             self.selenium.capture_page_screenshot()
 
-    def go_to_custom_object_home(self, obj_name):
-        """ Navigates to the Home view of a Salesforce Object """
-        url = self.cumulusci.org.lightning_base_url
-        url = '{}/one/one.app#/n/{}'.format(url, obj_name)
-        self.selenium.go_to(url)
-        time.sleep(5)
-        self._wait_until_loading_is_complete()
-#        self.salesforce.wait_until_loading_is_complete()
-
-    def _wait_until_loading_is_complete(self):
-        self.selenium.wait_until_element_is_not_visible(
-            affiliations_locators['loading_box'],
+    def go_to_affiliation_settings(self):
+        self.open_item(
+            affiliations_locators["affiliations_tab"],
+            "Cannot find the Affiliations tab",
+            False
         )
-        self.selenium.wait_until_element_is_not_visible(
-            affiliations_locators['spinner'],
+        self.open_item(
+            affiliations_locators["affiliations_settings_tab"],
+            "Cannot find the Settings tab in the Affiliations page",
+            False
         )
-        self.salesforce.wait_for_aura()
-
-
+        return
+        
     def Click_button_on_location(self, button, page):
         """ Select the specified button from the page that is specified """
         self.selenium.wait_until_page_contains_element(

@@ -33,26 +33,15 @@ Affiliations settings verify standard values
     # Ensure you're on Affiliations > Settings
     Go to EDA settings    
 
+    # Verify that we have the correct defaults
     process_default_values
 
-
     Shift to default content
-
-
     Go To Object Home                           Account
-
-#    Go To Custom Object Home                           hed__HEDA_Settings
     Close all tabs
 
 Affiliations settings dropdowns at --None--
     [tags]                                      unstable
-
-#    Select App Launcher App                     EDA
-
-#    Shift to default content
-#    Click element                       //a[@class='appTileTitle' and text()='EDA']
-
-#   Select App Launcher App                     EDA
 
 
     Current page should be                      Listing                 
@@ -60,6 +49,7 @@ Affiliations settings dropdowns at --None--
 
     # Ensure you're on Affiliations > Settings
     Go to EDA settings    
+    Go to affiliation settings
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
 
@@ -86,6 +76,7 @@ Affiliations settings put dropdowns at defaults
 
     Current page should be                      Listing                 hed__HEDA_Settings
     Go to EDA settings    
+    Go to affiliation settings
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
 
@@ -111,6 +102,7 @@ Affiliations settings put dropdowns at defaults
 Affiliations settings checkboxes toggle
     Current page should be                      Listing                 hed__HEDA_Settings
     Go to EDA settings    
+    Go to affiliation settings
 
     ${settings_tab} =                           Get Eda Locator         eda_settings.settings_tab
     ${ert_validation_checkbox} =                Get Eda Locator         eda_settings.ert_validation
