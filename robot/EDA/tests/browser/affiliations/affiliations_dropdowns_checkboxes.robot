@@ -43,7 +43,6 @@ Affiliations settings verify standard values
 Affiliations settings dropdowns at --None--
     [tags]                                      unstable
 
-
     Current page should be                      Listing                 
     ...                                         hed__HEDA_Settings
 
@@ -107,7 +106,6 @@ Affiliations settings checkboxes toggle
     ${ert_validation_checkbox} =                Get Eda Locator         eda_settings.ert_validation
     ${un_ert_validation_checkbox} =             Get Eda Locator         eda_settings.un_ert_validation
     ${ert_edit_validation_checkbox} =           Get Eda Locator         eda_settings.en_re_type_validation
-
 
     # Enable Record Type Validation
     Enable the checkbox                         Enable Record Type Validation
