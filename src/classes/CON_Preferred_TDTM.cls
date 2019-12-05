@@ -60,13 +60,13 @@ public class CON_Preferred_TDTM extends TDTM_Runnable {
                 
                 // Process the Preferred Phone if there's a Preferred Phone value set and the new Preferred Phone functionality is disabled.
                 if(!String.isBlank(contact.PreferredPhone__c) && !isNewPreferredPhoneFunctionalityEnabled) {
-                    if(contact.PreferredPhone__c == 'Home') {
+                    if(contact.PreferredPhone__c == 'Home' || contact.PreferredPhone__c == 'Home Phone') {
                         contact.Phone = contact.HomePhone;
-                    } else if(contact.PreferredPhone__c == 'Work') {
+                    } else if(contact.PreferredPhone__c == 'Work' || contact.PreferredPhone__c == 'Work Phone') {
                         contact.Phone = contact.WorkPhone__c;
-                    } else if(contact.PreferredPhone__c == 'Mobile') {
+                    } else if(contact.PreferredPhone__c == 'Mobile' || contact.PreferredPhone__c == 'Mobile Phone') {
                         contact.Phone = contact.MobilePhone;
-                    } else if(contact.PreferredPhone__c == 'Other') {
+                    } else if(contact.PreferredPhone__c == 'Other' || contact.PreferredPhone__c == 'Other Phone') {
                         contact.Phone = contact.OtherPhone;
                     }
                 }

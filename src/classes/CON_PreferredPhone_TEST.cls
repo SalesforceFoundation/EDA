@@ -76,7 +76,7 @@ private class CON_PreferredPhone_TEST {
         Contact newContAfter = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
         
         System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
-        System.assertEquals('Work', newContAfter.PreferredPhone__c);
+        System.assertEquals('Work Phone', newContAfter.PreferredPhone__c);
     }
     
     /* When Standard Phone is not null and Preferred Phone is enforced update Preferred Phone
@@ -100,7 +100,7 @@ private class CON_PreferredPhone_TEST {
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, Phone, PreferredPhone__c FROM Contact WHERE Id =: newCont.Id];
         
         System.assertEquals('0000000000', newContAfterList.OtherPhone);
-        System.assertEquals('Other', newContAfterList.PreferredPhone__c);
+        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
     }
     
     /* Clear the value in Standard Phone when the other valued Phone is cleared */
@@ -139,7 +139,7 @@ private class CON_PreferredPhone_TEST {
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             WorkPhone__c  = '111111111',
-            PreferredPhone__c = 'Work',
+            PreferredPhone__c = 'Work Phone',
             OtherPhone = '0000000000'
         );
         insert newCont;
@@ -153,7 +153,7 @@ private class CON_PreferredPhone_TEST {
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
                 
-        System.assertEquals('Other', newContAfterList.PreferredPhone__c);
+        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
         System.assertEquals('0000000000', newContAfterList.Phone);
 
     } 
@@ -210,7 +210,7 @@ private class CON_PreferredPhone_TEST {
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c FROM Contact];
                 
-        System.assertEquals('Other', newContAfterList.PreferredPhone__c);
+        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
        
     }   
     
@@ -308,7 +308,7 @@ private class CON_PreferredPhone_TEST {
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
         
-        System.assertEquals('Home', newContAfterList.PreferredPhone__c);
+        System.assertEquals('Home Phone', newContAfterList.PreferredPhone__c);
         System.assertEquals('111111111', newContAfterList.Phone);
 
     }   
@@ -396,7 +396,7 @@ private class CON_PreferredPhone_TEST {
 
         Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, PreferredPhone__c FROM Contact];
         
-        System.assertEquals('Other', newContAfterList.PreferredPhone__c);
+        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
         System.assert(newContAfterList.OtherPhone == '0000000000');
 
     } 
@@ -426,7 +426,7 @@ private class CON_PreferredPhone_TEST {
         
         for (Contact each : newContAfterList) { 
             System.assertEquals('0000000000', each.OtherPhone);
-            System.assertEquals('Other', each.PreferredPhone__c);
+            System.assertEquals('Other Phone', each.PreferredPhone__c);
         }
     }
 }
