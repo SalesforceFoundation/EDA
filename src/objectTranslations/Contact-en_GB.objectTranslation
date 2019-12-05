@@ -3473,19 +3473,35 @@
         <name>PreferredPhone__c</name>
         <picklistValues>
             <masterLabel>Home</masterLabel>
-            <translation>Home</translation>
+            <translation>Home Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mobile</masterLabel>
-            <translation>Mobile</translation>
+            <translation>Mobile Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation>Other</translation>
+            <translation>Other Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work</masterLabel>
-            <translation>Work</translation>
+            <translation>Work Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Phone</masterLabel>
+            <translation>Home Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile Phone</masterLabel>
+            <translation>Mobile Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Phone</masterLabel>
+            <translation>Other Phone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Phone</masterLabel>
+            <translation>Work Phone</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -3494,15 +3510,27 @@
         <name>Preferred_Email__c</name>
         <picklistValues>
             <masterLabel>Alternate</masterLabel>
-            <translation>Alternate</translation>
+            <translation>Alternate Email</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>University</masterLabel>
-            <translation>University</translation>
+            <translation>University Email</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work</masterLabel>
-            <translation>Work</translation>
+            <translation>Work Email</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alternate Email</masterLabel>
+            <translation>Alternate Email</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University Email</masterLabel>
+            <translation>University Email</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Email</masterLabel>
+            <translation>Work Email</translation>
         </picklistValues>
     </fields>
     <fields>
