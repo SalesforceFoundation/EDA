@@ -23,10 +23,6 @@ class EDASettingsPage(ListingPage):
     def eda(self):
         return self.builtin.get_library_instance('EDA')
 
-#    @property
-#    def cumulusci(self):
-#        return self.builtin.get_library_instance("cumulusci.robotframework.CumlusCI")
-
     @property
     def pageobjects(self):
         return self.builtin.get_library_instance("cumulusci.robotframework.PageObjects")
@@ -158,7 +154,6 @@ class EDASettingsPage(ListingPage):
             self.builtin.log(
                 "Checkbox for {} setting has been set.\n".format(title) 
             )
-
 
     def Disable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
         """ Ensure that the specified checkbox is NOT checked 

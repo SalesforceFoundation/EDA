@@ -199,22 +199,3 @@ Initialize test data
     ${NAMESPACE} =                              Get EDA namespace prefix
     Set suite variable                          ${NAMESPACE}
 
-Open EDA Settings Tab menu item
-    Select app launcher tab                     EDA Settings
-    Select frame with title                     accessibility title
-
-#    Open item                                   eda_settings.affiliations_tab
-#    ...                                         Cannot find the Affiliations tab
-#    ...                                         False
-
-
-    Wait for locator                            eda_settings.affiliations_tab
-    Click on element                            eda_settings.affiliations_tab
-
-#    Open item                                   eda_settings.affiliations_settings_tab
-#    ...                                         Cannot find the Settings tab in the Affiliations page
-#    ...                                         False
-
-    Wait for locator                            eda_settings.affiliations_settings_tab
-    Click on element                            eda_settings.affiliations_settings_tab
-
