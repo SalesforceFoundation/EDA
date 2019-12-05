@@ -53,14 +53,6 @@ class EDASettingsPage(ListingPage):
         elements = int(self.selenium.get_matching_xpath_count(xpath))
         return True if elements > 0 else False
 
-    def verify_timezone(self):
-        """ Verify that a timezone value exists
-            there is currently an open bug on this,
-            once fixed, the keyword needs to be modified to check for a specific timezone
-        """
-        self.selenium.page_should_contain_element(affiliations_locators["timezone"])
-        self.builtin.log("Actual timezone isn't checked; waiting for bug to be fixed", "WARN")
-
     def verify_toast_message(self, value):
         """ Verifies the toast message """
         self.selenium.wait_until_page_contains_element(affiliations_locators["toast_message"].format(value))
