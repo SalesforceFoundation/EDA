@@ -104,7 +104,7 @@ private class CON_Email_TEST {
 		
 		Contact newContAfter = contactsByLastName.get('JohnnyTest');
         System.assertEquals(newContAfter.Email, newContAfter.WorkEmail__c);
-        System.assertEquals('Work', newContAfter.Preferred_Email__c);
+        System.assertEquals('Work Email', newContAfter.Preferred_Email__c);
 	}
 
 	@isTest static void testPrefferedEmailInsertNoStd() {
@@ -121,7 +121,7 @@ private class CON_Email_TEST {
 		List<String> contIds = new List<String>();
 
         for (Integer i = 0; i < contacts.size(); i++) {
-			contacts[i].Preferred_Email__c = 'Alternate';
+			contacts[i].Preferred_Email__c = 'Alternate Email';
 			contacts[i].AlternateEmail__c = 'alternetemailtest' + i + '@domainemail.com';
 			contIds.add(contacts[i].Id);
         }
@@ -147,7 +147,7 @@ private class CON_Email_TEST {
 		// Process the contact for testing
         if(contacts.size()>0) {
         	contacts[0].WorkEmail__c = 'testworkemail@domain.com';
-        	contacts[0].Preferred_Email__c = 'Work';
+        	contacts[0].Preferred_Email__c = 'Work Email';
 	        update contacts;
 
 	        Contact contactOne = [SELECT Id, Name, Preferred_Email__c, Email, AlternateEmail__c,UniversityEmail__c, WorkEmail__c FROM Contact WHERE Id =:contacts[0].Id LIMIT 1];
@@ -235,7 +235,7 @@ private class CON_Email_TEST {
 	    // Check special Case 2
 		Contact contactTwo = [SELECT Id, Name, Email, AlternateEmail__c, Preferred_Email__c FROM Contact WHERE Id =:caseTwoId LIMIT 1];
 		System.assertEquals(contactTwo.Email, contactTwo.AlternateEmail__c);
-		System.assertEquals('Alternate', contactTwo.Preferred_Email__c);
+		System.assertEquals('Alternate Email', contactTwo.Preferred_Email__c);
 
 	}
 

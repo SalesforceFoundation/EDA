@@ -161,6 +161,21 @@ public class CON_Email {
             contact.AlternateEmail__c = contact.Email;
         }
     }
+    
+    private static Map<String, String> preferredEmailLabelToAPI;
+
+    /*******************************************************************************************************
+    * @description Returns a map with Preferred Email picklist entry's label as key and API as value
+    * @return preferredEmailLabelToAPI A Map<String, String> with key value pair of Preferred Email picklist entry's label and API respectively
+    */
+    private static Map<String, String> createPreferredLabelToAPIMap() {
+        if (preferredEmailLabelToAPI == NULL) {        
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+            preferredEmailLabelToAPI = UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'Preferred_Email__c');
+        }
+        return preferredEmailLabelToAPI;           
+    }
 
     private static Map<String, Schema.DescribeFieldResult> contactEmailFieldMap;
 
@@ -275,17 +290,28 @@ public class CON_Email {
         public String prefLabel {get;set;}
 
         public CON_EmailField(String val, String lbl, String api ) {
-            // Store default email field mappings to preferred email pick list.
+            // Store default email field mappings to preferred email picklist values prior to EDA 1.86.
+            // The mapping is used when Preferred Email picklist values do not match corresponding the field labels.
             Map<String,String> preferredEmailMappings = new Map<String,String>{
                 'University Email' => 'University',
                 'Work Email' => 'Work',
                 'Alternate Email' => 'Alternate'
             };
-
+                     
+            Map<String, String> preferredLabelToApi = createPreferredLabelToAPIMap();
+             
             this.value = val;
             this.label = lbl;
             this.apiName = api;
-            this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
+
+            /* If the field label is not in Preferrred Email picklist API values then check if it is in PreferredEmailMappings, if yes then take the value from mappings
+             else keep the label as label. If the field label is in the Preferrred Email picklist API values then assign the picklist API value that matches the field label 
+             such that Preferred Email field will reflect the translated value when users use a language that is not English. */
+            if (!PreferredLabelToApi.keySet().contains(lbl)) {
+                this.prefLabel = (preferredEmailMappings.containsKey(lbl)) ? preferredEmailMappings.get(lbl) : lbl;
+            } else {
+                this.prefLabel = PreferredLabelToApi.get(lbl);
+            }    
         }
 
         public Boolean hasValue(){
