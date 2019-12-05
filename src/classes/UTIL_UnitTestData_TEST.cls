@@ -69,8 +69,8 @@ public class UTIL_UnitTestData_TEST {
     
     public static Contact getContact() {
     	Contact contact =  new Contact(FirstName = 'Test', LastName = 'Testerson' + Datetime.now().getTime(), 
-    	                   WorkEmail__c = 'fakeemail@salesforce.org', Preferred_Email__c = 'Work', 
-    	                   WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work',OtherCity = 'Seattle');
+    	                   WorkEmail__c = 'fakeemail@salesforce.org', Preferred_Email__c = 'Work Email', 
+    	                   WorkPhone__c = '206-777-8888', PreferredPhone__c = 'Work Phone',OtherCity = 'Seattle');
     	Database.DMLOptions dmo = new Database.DMLOptions();
         dmo.DuplicateRuleHeader.AllowSave = true;
         contact.setOptions(dmo);
@@ -96,7 +96,7 @@ public class UTIL_UnitTestData_TEST {
         List<contact> ContactsToAdd = new List<contact>();
         for(Integer i=0; i<n; i++) {
             Contact newCon = new Contact(FirstName = i + 'Test' + i, LastName = i + 'Contact_forTests' + i, WorkEmail__c = 'fakeemail' + i + '@salesforce.org', 
-                             Preferred_Email__c = 'Work', WorkPhone__c = i + '06-777-888' + i, PreferredPhone__c = 'Work', OtherCity = 'Seattle');
+                             Preferred_Email__c = 'Work Email', WorkPhone__c = i + '06-777-888' + i, PreferredPhone__c = 'Work Phone', OtherCity = 'Seattle');
             Database.DMLOptions dmo = new Database.DMLOptions();
             dmo.DuplicateRuleHeader.AllowSave = true;
             newCon.setOptions(dmo);
