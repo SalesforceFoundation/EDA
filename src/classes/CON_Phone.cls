@@ -184,6 +184,21 @@ public with sharing class CON_Phone {
         }
     }
     
+    private static Map<String, String> preferredPhoneLabelToAPI;
+
+    /*******************************************************************************************************
+    * @description Returns a map with Preferred Phone picklist entry's label as key and API as value
+    * @return  preferredPhoneLabelToAPI A Map<String, String> with key value pair of Preferred Phone picklist entrys's label and API respectively
+    */
+    private static Map<String, String> createPreferredLabelToAPIMap() {   
+        if (preferredPhoneLabelToAPI == NULL) {          
+            String namespace = UTIL_Namespace.getNamespace();
+            String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
+            preferredPhoneLabelToAPI =  UTIL_Describe.getpicklistEntriesLabelToAPIMap('Contact', prefix+'preferredPhone__c');
+        }
+        return preferredPhoneLabelToAPI;            
+    }
+    
     /*******************************************************************************************************
     * @description Copies the value of the standard Phone field to the Other Phone field if Phone has a value and no other phones.
     * @param contact the contact to change
@@ -307,18 +322,30 @@ public with sharing class CON_Phone {
         * @param api The API name of the phone field
         */
         public CON_PhoneField(String val, String lbl, String api ) {
-            // Store default phone field mappings to preferred phone pick list.
+            // Store default phone field mappings to Preferred Phone picklist values prior to EDA 1.86.
+            // The mapping is used when Preferred Phone picklist values do not match corresponding the field labels.
             Map<String,String> preferredPhoneMappings = new Map<String,String>{
                 'Home Phone' => 'Home',
                 'Work Phone' => 'Work',
                 'Mobile Phone' => 'Mobile',
                 'Other Phone' => 'Other'
             };
-
+            
             this.value = val;
             this.label = lbl;
             this.apiName = api;
-            this.prefLabel = (preferredPhoneMappings.containsKey(lbl)) ? preferredPhoneMappings.get(lbl) : lbl;
+            
+            Map<String, String> preferredLabelToApi = createPreferredLabelToAPIMap();
+            
+            /* If the field label is not in Preferrred Phone picklist API values then check if it is in PreferredPhoneMappings, if yes then take the value from mappings
+             else keep the label as label. If the field label is in the Preferrred Phone picklist API values then assign the picklist API value that matches the field label
+             such that Preferred Phone field will reflect the translated value when users use a language that is not English. */
+            if (!PreferredLabelToApi.keySet().contains(lbl)) {
+                this.prefLabel = (preferredPhoneMappings.containsKey(lbl)) ? preferredPhoneMappings.get(lbl) : lbl;
+            } else {            
+                 this.prefLabel = PreferredLabelToApi.get(lbl);
+            }
+            
         }
         
     }   
