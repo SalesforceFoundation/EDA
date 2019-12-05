@@ -40,14 +40,14 @@ public with sharing class CON_Preferred_TEST {
     @isTest
     public static void preferredEmailPhoneInsert() {
         
-        Contact contact1 = new Contact(LastName = 'TestersonA', UniversityEmail__c = 'fake@test1.com', Preferred_Email__c = 'University', 
-            HomePhone = '555-432-4433', PreferredPhone__c = 'Home');
-        Contact contact2 = new Contact(LastName = 'TestersonB', WorkEmail__c = 'fake@test2.com', Preferred_Email__c = 'Work', 
-            WorkPhone__c = '555-432-4433', PreferredPhone__c = 'Work');
-        Contact contact3 = new Contact(LastName = 'TestersonC', AlternateEmail__c = 'fake@test3.com', Preferred_Email__c = 'Alternate', 
-            OtherPhone = '555-432-4433', PreferredPhone__c = 'Other');
-        Contact contact4 = new Contact(LastName = 'TestersonD', AlternateEmail__c = 'fake@test4.com',Preferred_Email__c = 'Alternate',
-            MobilePhone = '555-432-4433', PreferredPhone__c = 'Mobile');
+        Contact contact1 = new Contact(LastName = 'TestersonA', UniversityEmail__c = 'fake@test1.com', Preferred_Email__c = 'University Email', 
+            HomePhone = '555-432-4433', PreferredPhone__c = 'Home Phone');
+        Contact contact2 = new Contact(LastName = 'TestersonB', WorkEmail__c = 'fake@test2.com', Preferred_Email__c = 'Work Email', 
+            WorkPhone__c = '555-432-4433', PreferredPhone__c = 'Work Phone');
+        Contact contact3 = new Contact(LastName = 'TestersonC', AlternateEmail__c = 'fake@test3.com', Preferred_Email__c = 'Alternate Email', 
+            OtherPhone = '555-432-4433', PreferredPhone__c = 'Other Phone');
+        Contact contact4 = new Contact(LastName = 'TestersonD', AlternateEmail__c = 'fake@test4.com',Preferred_Email__c = 'Alternate Email',
+            MobilePhone = '555-432-4433', PreferredPhone__c = 'Mobile Phone');
             
         List<Contact> contacts = new Contact[]{contact1, contact2, contact3, contact4};
         Test.startTest();
@@ -82,21 +82,21 @@ public with sharing class CON_Preferred_TEST {
     public static void preferredEmailPhoneUpdate() {
         
         // Preferred email is required to pass checks in preferred trigger
-        Contact contact1 = new Contact(LastName = 'TestersonE', UniversityEmail__c = 'fake@test5.com', HomePhone = '555-432-4433',Preferred_Email__c = 'University');
-        Contact contact2 = new Contact(LastName = 'TestersonF', WorkEmail__c = 'fake@test6.com', WorkPhone__c = '555-432-4433',Preferred_Email__c = 'Work');
-        Contact contact3 = new Contact(LastName = 'TestersonG', AlternateEmail__c = 'fake@test7.com', OtherPhone = '555-432-4433',Preferred_Email__c = 'Alternate');
+        Contact contact1 = new Contact(LastName = 'TestersonE', UniversityEmail__c = 'fake@test5.com', HomePhone = '555-432-4433',Preferred_Email__c = 'University Email');
+        Contact contact2 = new Contact(LastName = 'TestersonF', WorkEmail__c = 'fake@test6.com', WorkPhone__c = '555-432-4433',Preferred_Email__c = 'Work Email');
+        Contact contact3 = new Contact(LastName = 'TestersonG', AlternateEmail__c = 'fake@test7.com', OtherPhone = '555-432-4433',Preferred_Email__c = 'Alternate Email');
         Contact contact4 = new Contact(LastName = 'TestersonH', MobilePhone = '555-432-4433');
             
         List<Contact> contacts = new Contact[]{contact1, contact2, contact3, contact4};
         insert contacts;
 
-        contact1.Preferred_Email__c = 'University'; 
-        contact1.PreferredPhone__c = 'Home';
-        contact2.Preferred_Email__c = 'Work';
-        contact2.PreferredPhone__c = 'Work';
-        contact3.Preferred_Email__c = 'Alternate';
-        contact3.PreferredPhone__c = 'Other';
-        contact4.PreferredPhone__c = 'Mobile';
+        contact1.Preferred_Email__c = 'University Email'; 
+        contact1.PreferredPhone__c = 'Home Phone';
+        contact2.Preferred_Email__c = 'Work Email';
+        contact2.PreferredPhone__c = 'Work Phone';
+        contact3.Preferred_Email__c = 'Alternate Email';
+        contact3.PreferredPhone__c = 'Other Phone';
+        contact4.PreferredPhone__c = 'Mobile Phone';
 
         Test.startTest();
         update contacts;
