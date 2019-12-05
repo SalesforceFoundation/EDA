@@ -61,6 +61,7 @@ eda_lex_locators = {
         "system_tab": "//a[contains(text(),'System')]",
         "affiliations_new": "//span[@title='Affiliated Accounts']/following::a[@title='New'][1]",
         "affiliations_tab": "//a[contains(text(),'Affiliations')]",
+        "affiliations_settings_tab": "//a[contains(text(),'Settings')]",
         "affiliations_check": "//span[text()='Specify Role for Created Affiliations:']/../following-sibling::div/div/div/label/span/img[@class = 'copy-start-date checked' and @alt='True']",
         "affiliations_role_checkbox": "//input[@class='copy-start-date uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
         "affiliations_role_checkbox1": "(//label[@class='slds-checkbox']//span[@class='uiImage uiOutputCheckbox'])[3]//img",
