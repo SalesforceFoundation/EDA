@@ -89,6 +89,7 @@ class EDASettingsPage(ListingPage):
             self.selenium.capture_page_screenshot()
 
     def go_to_affiliation_settings(self):
+        """ Navigate to the Affiliations and Settings pages """
         self.open_item(
             affiliations_locators["affiliations_tab"],
             "Cannot find the Affiliations tab",
