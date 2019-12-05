@@ -98,7 +98,6 @@ Affiliations settings put dropdowns at defaults
     Go To Object Home                           Account
     Close all tabs
 
-
 Affiliations settings checkboxes toggle
     Current page should be                      Listing                 hed__HEDA_Settings
     Go to EDA settings    
