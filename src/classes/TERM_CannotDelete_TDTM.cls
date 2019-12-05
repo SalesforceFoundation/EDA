@@ -36,6 +36,11 @@
 */
 public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
+    * @description Get the setting of preventing term deletion
+    */
+    private static Boolean enabledPreventTermDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Term_Deletion__c;
+
+    /*******************************************************************************************************
     * @description Prevents Term records from being deleted if it has any Term Grade associations.   
     * @param newList the list of Terms from trigger new. 
     * @param oldList the list of Terms from trigger old. 
@@ -45,6 +50,9 @@ public with sharing class TERM_CannotDelete_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
      public override DmlWrapper run(List<SObject> newList, List<SObject> oldList, 
      TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+        if (!enabledPreventTermDeletion) {
+            return new DmlWrapper();
+        }
 
         Map<ID, Term__c> oldmap = new Map<ID, Term__c>((List<Term__c>)oldlist);
 
