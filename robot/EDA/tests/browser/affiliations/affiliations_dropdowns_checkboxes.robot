@@ -34,7 +34,7 @@ Affiliations settings verify standard values
     Go to EDA settings    
 
     # Verify that we have the correct defaults
-    process_default_values
+    Process default values
 
     Shift to default content
     Go To Object Home                           Account
