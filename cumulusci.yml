@@ -230,6 +230,7 @@ flows:
                 task: execute_qa_apex
                 options:
                     managed: True
+                    namespaced: True
             3:
                 task: deploy_qa_config
                 options:
