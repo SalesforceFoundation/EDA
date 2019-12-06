@@ -54,6 +54,7 @@ private class TERM_CannotDelete_TEST {
     */
     @isTest 
     static void testDeleteTermsWithTermGrades() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
         
         Term__c term = [SELECT Id FROM Term__c LIMIT 1];
 
@@ -85,8 +86,7 @@ private class TERM_CannotDelete_TEST {
     * @description Test deletion of Terms with no Term Grades
     */
     @isTest 
-    static void testDeleteTermsWithNoTermGrades() {  
-        
+    static void testDeleteTermsWithNoTermGrades() {          
         Term__c term = [SELECT Id FROM Term__c LIMIT 1];
                
         Test.startTest();
@@ -102,10 +102,25 @@ private class TERM_CannotDelete_TEST {
     */
     @isTest 
     static void testDeleteTermsWithTermGradesSettingOff() {  
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = FALSE));
 
         Term__c term = [SELECT Id FROM Term__c LIMIT 1];
-               
+
+        // Insert Course Offering
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, term.Id);
+        
+        // Insert Contact
+        Contact student = UTIL_UnitTestData_TEST.getContact();  
+        insert student;
+        
+        // Insert Course Connection
+        Course_Enrollment__c courseConnection = UTIL_UnitTestData_TEST.getCourseConnection(student.Id, courseOffering.Id);
+        insert courseConnection;
+        
+        // Insert Term Grade
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGradeWTermCourseConn(term.Id, courseConnection.Id);
+        insert termGrade;
+        
         Test.startTest();
             delete term;
         Test.stopTest();
