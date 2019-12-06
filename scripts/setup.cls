@@ -4,7 +4,7 @@ public static void qaSetup() {
 
 //Wrapper class to config QA custom settings
 private static void configQACustomSettings() {
-    %%%NAMESPACE%%%Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
+    %%%NAMESPACE%%%Hierarchy_Settings__c orgSettings = %%%NAMESPACED_RT%%%UTIL_CustomSettings_API.getSettings();
     enableCourseConnections(orgSettings);
     enableSpecifyRoleForCreatedAffiliations(orgSettings);
     enableCopyAffiliationStartDateFromProgramEnrollment(orgSettings);
