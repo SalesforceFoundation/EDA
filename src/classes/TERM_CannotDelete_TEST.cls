@@ -49,8 +49,9 @@ private class TERM_CannotDelete_TEST {
         insert term;
     }
     
-    // Test deletion of Terms with Term Grades
-
+    /*********************************************************************************************************
+    * @description Test deletion of Terms with Term Grades
+    */
     @isTest 
     static void testDeleteTermsWithTermGrades() {
         
@@ -80,8 +81,9 @@ private class TERM_CannotDelete_TEST {
         }
     }
 
-    // Test deletion of Terms with no Term Grades
-
+    /*********************************************************************************************************
+    * @description Test deletion of Terms with no Term Grades
+    */
     @isTest 
     static void testDeleteTermsWithNoTermGrades() {  
         
@@ -93,5 +95,22 @@ private class TERM_CannotDelete_TEST {
         
         List<Term__c> termsList = [SELECT Id FROM Term__c];      
         System.assertEquals(0, termsList.size());       
-    }    
+    }
+
+    /*********************************************************************************************************
+    * @description Test deletion of Terms with Term Grades and preventing deletion setting is turned off
+    */
+    @isTest 
+    static void testDeleteTermsWithTermGradesSettingOff() {  
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Term_Deletion__c = TRUE));
+
+        Term__c term = [SELECT Id FROM Term__c LIMIT 1];
+               
+        Test.startTest();
+            delete term;
+        Test.stopTest();
+        
+        List<Term__c> termsList = [SELECT Id FROM Term__c];      
+        System.assertEquals(0, termsList.size());       
+    }     
 }
