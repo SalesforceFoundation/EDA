@@ -329,12 +329,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * with the Account.
         */
         private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {
-            Boolean conAccountIdNotNull = (c.AccountId != NULL) ? True : False;
-            Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL) ? True : False;
-            Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId) ? True : False;
-            Boolean conLastNameChanged = (c.LastName != oldContact.LastName) ? True : False;
-            Boolean conFirstNameChanged = (c.FirstName != oldContact.FirstName) ? True : False;
-            Boolean conExcludeFromHHNameChanged = (c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c) ? True : False;
+            Boolean conAccountIdNotNull = (c.AccountId != NULL);
+            Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL);
+            Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId);
+            Boolean conLastNameChanged = (c.LastName != oldContact.LastName);
+            Boolean conFirstNameChanged = (c.FirstName != oldContact.FirstName);
+            Boolean conExcludeFromHHNameChanged = (c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c);
 
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
@@ -765,10 +765,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                  WHERE Id IN :contactsAccountId];
 
         for (Account acc : listAcc) {
-            Boolean accHasContact = (acc.Contacts.size() == 1) ? True : False;
-            Boolean accHasPrimaryContact = (acc.Primary_Contact__c != NULL) ? True : False;
-            Boolean accRecordTypeIsNotNull = (acc.RecordTypeId != NULL) ? True : False;
-            Boolean accRecordTypeHHOrAdmin = (acc.RecordTypeId == userDefinedHHRecordTypeId || acc.RecordTypeId == userDefinedAdminRecordTypeId) ? True : False;
+            Boolean accHasContact = (acc.Contacts.size() == 1);
+            Boolean accHasPrimaryContact = (acc.Primary_Contact__c != NULL);
+            Boolean accRecordTypeIsNotNull = (acc.RecordTypeId != NULL);
+            Boolean accRecordTypeHHOrAdmin = (acc.RecordTypeId == userDefinedHHRecordTypeId || acc.RecordTypeId == userDefinedAdminRecordTypeId);
 
 
             if (accHasContact && accHasPrimaryContact &&
@@ -776,7 +776,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             {
                 Contact c = contactOwnerChange.get(acc.Primary_Contact__c);
                 Id ownerIdContact = (c != NULL ? c.OwnerId : NULL);
-				Boolean accOwnerHasChanged = (acc.OwnerId != ownerIdContact) ? True : False;
+				Boolean accOwnerHasChanged = (acc.OwnerId != ownerIdContact);
 
                 if (accOwnerHasChanged) {
                     acc.OwnerId = ownerIdContact;
