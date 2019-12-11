@@ -2,8 +2,10 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EDA</fullName>
     <types>
+        <members>ACCT_AdministrativeNameRefresh_BATCH</members>
         <members>ACCT_CannotDelete_TDTM</members>
         <members>ACCT_CannotDelete_TEST</members>
+        <members>ACCT_HouseholdNameRefresh_BATCH</members>
         <members>ACCT_IndividualAccounts_TDTM</members>
         <members>ACCT_IndividualAccounts_TEST</members>
         <members>ADDR_Account_TDTM</members>
@@ -144,6 +146,7 @@
         <members>UTIL_OrgTelemetry_TEST</members>
         <members>UTIL_Profile</members>
         <members>UTIL_Profile_TEST</members>
+        <members>UTIL_SortContact</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
@@ -714,6 +717,10 @@
         <members>stgPreferredEmailBatchEmailSubject</members>
         <members>stgPreferredEmailDataCleanup</members>
         <members>stgPreferredPhoneSelection</members>
+        <members>stgRefreshAdminAcctNameDesc</members>
+        <members>stgRefreshAdminAcctNameTitle</members>
+        <members>stgRefreshHHAcctNameDesc</members>
+        <members>stgRefreshHHAcctNameTitle</members>
         <members>stgRunCleanUp</members>
         <members>stgRunCleanUpEnableFirstTime</members>
         <members>stgSaveSettings</members>
@@ -722,6 +729,8 @@
         <members>stgSimpleAddressChangeUpdate</members>
         <members>stgStoreErrorsTitle</members>
         <members>stgSuccess</members>
+        <members>stgSuccessAdminAccountNameRefresh</members>
+        <members>stgSuccessHHAccountNameRefresh</members>
         <members>stgTabAccCont</members>
         <members>stgTabAffl</members>
         <members>stgTabAfflMappings</members>

@@ -488,6 +488,14 @@
         <value>The format used for naming Household Accounts.</value>
     </labels>
     <labels>
+        <fullName>hhFamily</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>hhFamily</shortDescription>
+        <value>Family</value>
+    </labels>
+    <labels>
         <fullName>lastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
