@@ -488,14 +488,6 @@
         <value>The format used for naming Household Accounts.</value>
     </labels>
     <labels>
-        <fullName>hhFamily</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>hhFamily</shortDescription>
-        <value>Family</value>
-    </labels>
-    <labels>
         <fullName>lastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1528,6 +1520,52 @@
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
     </labels>
     <labels>
+        <fullName>stgRefreshAdminAcctNameDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshAdminAcctNameDesc</shortDescription>
+        <value>Warning: Clicking this button will activate Automatic Account Naming, and populate your existing Administrative Names according to the format you&apos;ve chosen.
+
+        Before starting this process, we recommend disabling the following when they affect Administrative Accounts:
+        - Custom Validation Rules
+        - Workflow Rules
+        - Process Builder
+        - Visual Workflows
+        - Custom Triggers</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminAcctNameTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshAdminAcctNameTitle</shortDescription>
+        <value>Refresh All Administrative Account Names:</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHHAcctNameDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshHHAcctNameDesc</shortDescription>
+        <value>Warning: Clicking this button will activate Automatic Account Naming, and populate your existing Households Names according to the format you&apos;ve chosen.
+
+        Before starting this process, we recommend disabling the following when they affect Households Accounts:
+        - Custom Validation Rules
+        - Workflow Rules
+        - Process Builder
+        - Visual Workflows
+        - Custom Triggers</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHHAcctNameTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgRefreshHHAcctNameTitle</shortDescription>
+        <value>Refresh All Household Account Names:</value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1590,6 +1628,24 @@
         <protected>false</protected>
         <shortDescription>stgSuccess</shortDescription>
         <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>stgSuccessAdminAccountNameRefresh</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgSuccessAdminAccountNameRefresh</shortDescription>
+        <value>Refreshing Admininistrative Account names was successfully started!
+        An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
+        <fullName>stgSuccessHHAccountNameRefresh</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgSuccessHHAccountNameRefresh</shortDescription>
+        <value>Refreshing Household Account names was successfully started!
+        An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>

@@ -1,32 +1,28 @@
 <!--
   @File Name          : STG_CMP_System.cmp
-  @Description        :
+  @Description        : 
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Group              :
+  @Group              : 
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 11/25/2019, 11:31:28 AM
-  @Modification Log   :
+  @Last Modified On   : 12/11/2019, 5:08:05 PM
+  @Modification Log   : 
   Ver       Date            Author      		    Modification
-  1.0    11/12/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+  1.0    12/11/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
 <aura:component extends="c:STG_CMP_Base">
     <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-
     <aura:handler event="c:autocompleteSelectListOption" name="optionSelected" action="{!c.handleAutocomplete}" />
 
     <aura:attribute name="accRecTypes" type="Map" />
     <aura:attribute name="accRecTypeId" type="String" />
     <aura:attribute name="accRecTypeName" type="String" />
-
-    <aura:attribute name="errorNotificationType" type="String"  />
-
+    <aura:attribute name="errorNotificationType" type="String" />
     <aura:attribute name="adminNameFormat" type="String" />
     <aura:attribute name="hhNameFormat" type="String" />
-    <aura:attribute name="adminOtherDisplay" type="Boolean"/>
-    <aura:attribute name="hhOtherDisplay" type="Boolean"/>
+    <aura:attribute name="adminOtherDisplay" type="Boolean" />
+    <aura:attribute name="hhOtherDisplay" type="Boolean" />
 
-
-	<div aura:id="successToast" class="slds-hide">
+	<div aura:id="hhSuccessToast" class="slds-hide">
         <div class="slds-box">
             <div class="slds-notify_container slds-notify_container--inline">
                 <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
@@ -38,9 +34,32 @@
                         <div class="slds-col slds-align-left">
                             <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
                         </div>
-                        <div class="slds-col slds-align-middle slds-gutters">
-                        	<h2 class="slds-text-heading_small">{!$Label.c.stgSuccessAccountNameRefresh}</h2>
+                         <div class="slds-col slds-align-middle slds-gutters">
+                        	<h2 class="slds-text-heading_small">{!$Label.c.stgSuccessHHAccountNameRefresh}</h2>
                        	</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aura:id="adminSuccessToast" class="slds-hide">
+        <div class="slds-box">
+            <div class="slds-notify_container slds-notify_container--inline">
+                <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                    <span class="slds-assistive-text">{!$Label.c.stgSuccess}</span>
+                    <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
+                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                    </button>
+                    <div class="slds-notify__content slds-grid slds-gutters">
+                        <div class="slds-col slds-align-left">
+                            <c:svgIcon name="success" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeToast}" containerClass="toast-icon" />
+                        </div>
+
+                         <div class="slds-col slds-align-middle slds-gutters">
+                        	<h2 class="slds-text-heading_small">{!$Label.c.stgSuccessAdminAccountNameRefresh}</h2>
+                       	</div>
+
                     </div>
                 </div>
             </div>
@@ -240,26 +259,7 @@
                     <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
                 </div>
 
-                <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
-                </div>
-
-                <div class="slds-col slds-size--1-of-2" >
-                    <c:CMP_Acc_Naming_Dropdown
-                        class="admin-account-naming"
-                        isView="{!v.isView}"
-                        setting="{!v.hierarchySettings.Admin_Account_Naming_Format__c}"
-                        nameFormat="{!v.adminNameFormat}"
-                        targetSetting="Admin_Account_Naming_Format__c"
-                        namespacePrefix="{!v.namespacePrefix}"
-                        otherDisplay="{!v.adminOtherDisplay}"
-                        otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
-                    />
-                </div>
-
-                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-                    <ui:outputText value="{!$Label.c.adminAccNameFormatHelpText}" class="slds-text-body--small" />
-                </div>
+                <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
 
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
@@ -289,11 +289,34 @@
                     </div>
                 </div>
 
-                <div class="slds-col slds-size--1-of-2">
+                <div class="slds-col slds-size--1-of-2 slds-m-vertical_xx-large">
                	<lightning:button
-                                  label="Refresh Household Names"
-                                  title="refreshHouseholdAccountButton"
-                                  onclick="{! c.handleRefreshHouseholdAccount}"/>
+                                variant="brand"
+                                disabled="{!!v.isView}"
+                                label="Refresh All Household Names"
+                                title="refreshHouseholdAccountButton"
+                                onclick="{! c.handleRefreshHouseholdAccount}"/>
+                </div>
+
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
+                </div>
+
+                <div class="slds-col slds-size--1-of-2" >
+                    <c:CMP_Acc_Naming_Dropdown
+                        class="admin-account-naming"
+                        isView="{!v.isView}"
+                        setting="{!v.hierarchySettings.Admin_Account_Naming_Format__c}"
+                        nameFormat="{!v.adminNameFormat}"
+                        targetSetting="Admin_Account_Naming_Format__c"
+                        namespacePrefix="{!v.namespacePrefix}"
+                        otherDisplay="{!v.adminOtherDisplay}"
+                        otherSetting="{!v.hierarchySettings.Admin_Other_Name_Setting__c}"
+                    />
+                </div>
+
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.adminAccNameFormatHelpText}" class="slds-text-body--small" />
                 </div>
 
                 <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
@@ -303,13 +326,16 @@
                     </div>
                 </div>
 
+              <div class="slds-col slds-size--1-of-2 slds-m-vertical_xx-large">
+              		<lightning:button
+                                disabled="{!!v.isView}"
+                        	    variant="brand"
+                    		    label="Refresh All Administrative Names"
+                        	    title="refreshButton"
+                        	    onclick="{! c.handleRefreshAdminAccount}"/>
 
-                <div class="slds-col slds-size--1-of-2">
-               	<lightning:button
-                                  label="Refresh Administrative Names"
-                                  title="refreshButton"
-                                  onclick="{! c.handleRefreshAdminAccount}"/>
-                </div>
+              </div>
+
             </div>
         </div>
     </div>
