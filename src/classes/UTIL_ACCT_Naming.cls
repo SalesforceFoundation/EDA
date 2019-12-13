@@ -79,7 +79,7 @@ public class UTIL_ACCT_Naming {
 
         for (Account acc: [SELECT Id, Name, RecordTypeId,
                            (SELECT Id, LastName, Salutation, FirstName FROM Contacts WHERE AccountId IN :accountIdPrimaryContactId.keySet())
-                           FROM Account WHERE Id IN: accountIdPrimaryContactId.keySet()])
+                           FROM Account WHERE Id IN :accountIdPrimaryContactId.keySet()])
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
                 acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
@@ -479,7 +479,7 @@ public class UTIL_ACCT_Naming {
 
             //Retrieves Salutation
             List<String> additionalSalutations = new List<String>();
-            if (isSalutationFormat == TRUE) {
+            if (isSalutationFormat) {
                 salutationSpec = stringConNames(cons[i], ns.salutationSpec);
             }
 
@@ -492,7 +492,7 @@ public class UTIL_ACCT_Naming {
 
             for (; next < conSize && (lastNameOnFullNameSpec || cons[next].LastName == lastName); next++) {
 
-                if (isSalutationFormat == TRUE) {
+                if (isSalutationFormat) {
                     String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
                     if (nextSalutation != '') {
                         additionalSalutations.add(nextSalutation);
@@ -508,7 +508,8 @@ public class UTIL_ACCT_Naming {
 
                 //This is critical if the current Account name format is not set to process {!LastName}, then
                 //all Contacts inserted will enter this loop and will need to stop the iteration of next so
-                //that the next Contact will enter the outer loop.
+                //that the next Contact will enter the outer loop. In short, this helps prevent deduplication
+                //of Contacts on the Account name.
                 if (lastNameNotIncludedInFormat) {
                     break;
                 }
