@@ -40,6 +40,11 @@ public class UTIL_ACCT_Naming {
     private static ID defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
 
     /*******************************************************************************************************
+    * @description Retrieves the value of Automatic_Household_Naming__c.
+    */
+    private static Boolean automaticHHNaming = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
+
+    /*******************************************************************************************************
     * @description The Household Account record type.
     */
     private static ID hhAccountRecordTypeId = UTIL_Describe.getHhAccRecTypeID();
@@ -97,20 +102,56 @@ public class UTIL_ACCT_Naming {
     */
     public static void updateHHAccountsName(Set<Id> accIdsToRename) {
         List<Account> accountsToRename = new List<Account>();
-        System.debug('UTIL_ACCT updateHHAccountsName Method -->');
 
-        accountsToRename = queryContacts(accIdsToRename);
-
-        //Loop through accountsToRename and modify the name accordingly
-        if (accountsToRename.size() > 0) {
-            for (Account acc : accountsToRename) {
-                acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
-                System.debug('UTIL_ACCT updateHHAccountsName finalName -->' + acc.Name);
+        //If this current process is triggered by a batch class and the Automatic Household Naming is disabled
+        //then call queryContactForNonAutomaticHHNaming() instead of queryContacts().
+        if (!automaticHHNaming && System.isBatch()) {
+           	List<Contact> consToProcess = queryContactForNonAutomaticHHNaming(accIdsToRename);
+            if (consToProcess.size() > 0) {
+                UTIL_ACCT_Naming.updateName(consToProcess);
             }
+        } else {
+            accountsToRename = queryContacts(accIdsToRename);
+            //Loop through accountsToRename and modify the name accordingly
+        	if (accountsToRename.size() > 0) {
+            	for (Account acc : accountsToRename) {
+                	acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
+            	}
+        	}
         }
 
-        //For now, we use direct DML statement to avoid duplicate id issue
+        //For now, we use direct DML statement to avoid duplicate Id issue
         update accountsToRename;
+    }
+
+    /*******************************************************************************************************
+    * @description Retrieves the Primary Contact from the Account.
+    * @param accIdsToRename a set of AccountIds that needs Name update.
+    * @return List<Account>.
+    */
+    private static List<Contact> queryContactForNonAutomaticHHNaming(Set<Id> accIdsToRename) {
+        List<Contact> returnedContacts = new List<Contact>();
+        List<Id> primaryConIds = new List<Id>();
+
+        List<Account> accounts = [SELECT Id, Primary_Contact__c
+                                  FROM Account
+                                  WHERE Id IN :accIdsToRename];
+
+        for (Account acc : accounts){
+            if(acc.Primary_Contact__c != NULL) {
+                primaryConIds.add(acc.Primary_Contact__c);
+            }
+		}
+
+        if (primaryConIds.size() > 0) {
+           	returnedContacts = [SELECT Id, FirstName, LastName,
+                                 Salutation, AccountId
+                                 FROM Contact
+                                 WHERE Id IN :primaryConIds];
+
+        }
+
+        return returnedContacts;
     }
 
     /*******************************************************************************************************

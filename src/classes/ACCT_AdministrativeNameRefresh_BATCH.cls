@@ -40,7 +40,7 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
         System.debug('ACCT_AdminBATCH Method -->');
         Id adminRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
         System.debug('ACCT_AdminBATCH RecordType -->' + adminRecordTypeId);
-        String query = 'SELECT Id, RecordTypeId ' +
+        String query = 'SELECT Id, RecordTypeId, Primary_Contact__c' +
             		    'FROM Account ' +
             		    'WHERE RecordTypeId = :adminRecordTypeId' ;
         System.debug('ACCT_AdminBATCH Method -->' + query);
@@ -49,25 +49,27 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
 
     public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
         System.debug('ACCT_AdminBATCH Main -->' + returnAccounts);
-        Set<Id> dedupedAccountIds = new Set<Id>();
+        Set<Id> primaryConId = new Set<Id>();
       	List<Account> accountsToRename = new List<Account>();
+        List<Contact> contactsToProcess = new List<Contact>();
+
         if (returnAccounts.size() > 0) {
             System.debug('ACCT_AdminBATCH Main Method -->' + returnAccounts);
 
             for (Account a : returnAccounts) {
-                dedupedAccountIds.add(a.Id);
-                System.debug('ACCT_AdminBATCH Main dedupedAccountIds -->' + dedupedAccountIds);
+                if (a.Primary_Contact__c != NULL) {
+                    primaryConId.add(a.Primary_Contact__c);
+                }
             }
 
-            List<Contact> contactsToProcess = [SELECT Id, FirstName, LastName, Salutation, AccountId
-                                              FROM Contact WHERE AccountId = :dedupedAccountIds];
-            if (contactsToProcess.size() > 0) {
-                System.debug('ACCT_AdminBATCH contactsToProcess -->' + contactsToProcess);
+            if (primaryConId.size() > 0) {
+                contactsToProcess = [SELECT Id, FirstName, LastName,
+                                     Salutation, AccountId
+                                     FROM Contact
+                                     WHERE Id IN :primaryConId];
                 for (Account a : returnAccounts) {
-                    a.Name = UTIL_ACCT_Naming.updateName(contactsToProcess);
-                    System.debug('ACCT_AdminBATCH accCheck -->' + a.Name);
+                	a.Name = UTIL_ACCT_Naming.updateName(contactsToProcess);
                     accountsToRename.add(a);
-                    System.debug('ACCT_AdminBATCH accList -->' + accountsToRename);
                 }
             }
 

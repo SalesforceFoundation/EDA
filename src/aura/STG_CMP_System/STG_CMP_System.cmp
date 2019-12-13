@@ -1,11 +1,11 @@
 <!--
   @File Name          : STG_CMP_System.cmp
-  @Description        : 
+  @Description        :
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Group              : 
+  @Group              :
   @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 12/11/2019, 5:08:05 PM
-  @Modification Log   : 
+  @Last Modified On   : 12/13/2019, 4:22:52 PM
+  @Modification Log   :
   Ver       Date            Author      		    Modification
   1.0    12/11/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
@@ -233,70 +233,7 @@
                     <ui:outputText value="{!$Label.c.stgHelpErrorDisable}" class="slds-text-body--small" />
                 </div>
 
-                <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.automaticHHNaming}" />
-                </div>
-
-                <div class="slds-col slds-size--1-of-2">
-                    <div class="slds-form-element">
-                        <div class="slds-form-element__control">
-                            <label class="slds-checkbox">
-                                <aura:if isTrue="{!v.isView}">
-                                    <ui:outputCheckbox value="{!v.hierarchySettings.Automatic_Household_Naming__c}" class="automatic-hh-acc" />
-                                    <aura:set attribute="else">
-                                        <ui:inputCheckbox aura:id="automaticHHAcc" value="{!v.hierarchySettings.Automatic_Household_Naming__c}"
-                                                          class="automatic-hh-acc" />
-                                        <span class="slds-checkbox--faux"></span>
-                                        <span class="slds-form-element__label"></span>
-                                    </aura:set>
-                                </aura:if>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-                    <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
-                </div>
-
                 <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
-
-                <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
-                </div>
-
-                <div class="slds-col slds-size--1-of-2">
-                    <c:CMP_Acc_Naming_Dropdown
-                        class="household-account-naming"
-                        isView="{!v.isView}"
-                        setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
-                        nameFormat="{!v.hhNameFormat}"
-                        targetSetting="Household_Account_Naming_Format__c"
-                        namespacePrefix="{!v.namespacePrefix}"
-                        otherDisplay="{!v.hhOtherDisplay}"
-                        otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
-                    />
-                </div>
-
-                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
-                    <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
-                </div>
-
-                <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
-                    {!$Label.c.stgRefreshHHAcctNameTitle}
-                    <div class="slds-col slds-size--1-of-1">
-                    	<ui:outputText value="{!$Label.c.stgRefreshHHAcctNameDesc}" class="slds-text-body--small" />
-                    </div>
-                </div>
-
-                <div class="slds-col slds-size--1-of-2 slds-m-vertical_xx-large">
-               	<lightning:button
-                                variant="brand"
-                                disabled="{!!v.isView}"
-                                label="Refresh All Household Names"
-                                title="refreshHouseholdAccountButton"
-                                onclick="{! c.handleRefreshHouseholdAccount}"/>
-                </div>
 
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.adminAccNameFormat}"/>
@@ -326,7 +263,7 @@
                     </div>
                 </div>
 
-              <div class="slds-col slds-size--1-of-2 slds-m-vertical_xx-large">
+              	<div class="slds-col slds-size--1-of-2">
               		<lightning:button
                                 disabled="{!!v.isView}"
                         	    variant="brand"
@@ -334,7 +271,72 @@
                         	    title="refreshButton"
                         	    onclick="{! c.handleRefreshAdminAccount}"/>
 
-              </div>
+              	</div>
+
+                <hr class="slds-border--top slds-m-top--medium slds-m-bottom--medium" style="width:100%;" />
+
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.automaticHHNaming}" />
+                </div>
+
+                <div class="slds-col slds-size--1-of-2">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
+                                <aura:if isTrue="{!v.isView}">
+                                    <ui:outputCheckbox value="{!v.hierarchySettings.Automatic_Household_Naming__c}" class="automatic-hh-acc" />
+                                    <aura:set attribute="else">
+                                        <ui:inputCheckbox aura:id="automaticHHAcc" value="{!v.hierarchySettings.Automatic_Household_Naming__c}"
+                                                          class="automatic-hh-acc" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                    </aura:set>
+                                </aura:if>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.automaticHHNamingHelpText}" class="slds-text-body--small" />
+                </div>
+
+                <div class="slds-col slds-size--1-of-2">
+                    <ui:outputText value="{!$Label.c.hhAccNameFormat}"/>
+                </div>
+
+                <div class="slds-col slds-size--1-of-2">
+                    <c:CMP_Acc_Naming_Dropdown
+                        class="household-account-naming"
+                        isView="{!v.isView}"
+                        setting="{!v.hierarchySettings.Household_Account_Naming_Format__c}"
+                        nameFormat="{!v.hhNameFormat}"
+                        targetSetting="Household_Account_Naming_Format__c"
+                        namespacePrefix="{!v.namespacePrefix}"
+                        otherDisplay="{!v.hhOtherDisplay}"
+                        otherSetting="{!v.hierarchySettings.Household_Other_Name_Setting__c}"
+                    />
+                </div>
+
+                <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
+                    <ui:outputText value="{!$Label.c.hhAccNameFormatHelpText}" class="slds-text-body--small" />
+                </div>
+
+                <div class="slds-col slds-size--1-of-2 slds-m-bottom--medium">
+                    {!$Label.c.stgRefreshHHAcctNameTitle}
+                    <div class="slds-col slds-size--1-of-1">
+                    	<ui:outputText value="{!$Label.c.stgRefreshHHAcctNameDesc}" class="slds-text-body--small" />
+                    </div>
+                </div>
+
+                <div class="slds-col slds-size--1-of-2">
+               	<lightning:button
+                                variant="brand"
+                                disabled="{!!v.isView}"
+                                label="Refresh All Household Names"
+                                title="refreshHouseholdAccountButton"
+                                onclick="{! c.handleRefreshHouseholdAccount}"/>
+                </div>
 
             </div>
         </div>
