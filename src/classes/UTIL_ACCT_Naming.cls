@@ -496,10 +496,9 @@ public class UTIL_ACCT_Naming {
                     String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
                     if (nextSalutation != '') {
                         additionalSalutations.add(nextSalutation);
-                        additionalSalutations.sort();
                     }
                 }
-                if (!lastNameOnFullNameSpec) {
+                if (!lastNameNotIncludedInFormat) {
                     String nextFName = stringConNames(cons[next], ns.firstNameSpec);
                     if (nextFName != '') {
                         additionalFirstNames.add(nextFname);
