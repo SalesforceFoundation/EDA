@@ -40,7 +40,7 @@ public class ACCT_AdministrativeNameRefresh_BATCH implements Database.Batchable<
         System.debug('ACCT_AdminBATCH Method -->');
         Id adminRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Administrative').getRecordTypeId();
         System.debug('ACCT_AdminBATCH RecordType -->' + adminRecordTypeId);
-        String query = 'SELECT Id, RecordTypeId, Primary_Contact__c' +
+        String query = 'SELECT Id, RecordTypeId, Primary_Contact__c ' +
             		    'FROM Account ' +
             		    'WHERE RecordTypeId = :adminRecordTypeId' ;
         System.debug('ACCT_AdminBATCH Method -->' + query);
