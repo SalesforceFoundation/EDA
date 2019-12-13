@@ -343,12 +343,7 @@ public class UTIL_ACCT_Naming {
 
             //Retrieve full Account name format with a token
             if (indexOfLeft >= 0 && indexOfRight > 0) {
-                if (salutationSpec == NULL || salutationSpec == '') {
-                    fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
-                } else {
-                    fullNameSpec = acctNameFormat;
-                }
-
+                fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
                 //Do a check if it's {!{!FirstName}} instead of {!FirstName}
                 if (setFNSpec) {
                     firstNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
@@ -504,10 +499,11 @@ public class UTIL_ACCT_Naming {
                         additionalSalutations.sort();
                     }
                 }
-
-                String nextFName = stringConNames(cons[next], ns.firstNameSpec);
-                if (nextFName != '') {
-                    additionalFirstNames.add(nextFname);
+                if (!lastNameOnFullNameSpec) {
+                    String nextFName = stringConNames(cons[next], ns.firstNameSpec);
+                    if (nextFName != '') {
+                        additionalFirstNames.add(nextFname);
+                    }
                 }
 
                 //This is critical if the current Account name format is not set to process {!LastName}, then

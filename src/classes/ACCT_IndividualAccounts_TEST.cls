@@ -1492,6 +1492,48 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test Method to test sorting Contacts alphabetically with custom format.
+    * {!Salutation} {!{!FirstName}} {!LastName} Family
+    */
+    @isTest
+    private static void sortContactsWithCustomFormat2() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!Salutation} {!{!FirstName}} {!LastName} Family',
+                                                    Automatic_Household_Naming__c = true));
+
+		Contact con = UTIL_UnitTestData_API.getContact();
+        con.Salutation = 'Ms.';
+        con.FirstName = 'Betty';
+        con.LastName = 'White';
+        insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = new Contact(LastName = 'White', FirstName = 'Lily', Salutation = 'Ms.', AccountId = a.Id);
+        insert con2;
+
+        Account requeryAccount = [SELECT Id, Name
+                                  FROM Account
+                                  WHERE Id = :requeryInsertedCon.AccountId];
+        System.assertEquals('Ms. Betty and Lily White Family', requeryAccount.Name);
+
+        Contact con3 = new Contact(LastName = 'White', FirstName = 'Tom', Salutation = 'Mr.', AccountId = a.Id);
+        insert con3;
+
+        Account requeryFinalAccount = [SELECT Id, Name
+                                  	   FROM Account
+                                       WHERE Id = :requeryInsertedCon.AccountId];
+        System.assertEquals('Ms. Betty, Lily and Tom White Family', requeryFinalAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
     * @description Test Method to check if a Contact is marked deceased, the Account name is updated properly.
     */
     @isTest
