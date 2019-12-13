@@ -343,11 +343,7 @@ public class UTIL_ACCT_Naming {
 
             //Retrieve full Account name format with a token
             if (indexOfLeft >= 0 && indexOfRight > 0) {
-                if (salutationSpec == NULL || salutationSpec == '') {
-                    fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
-                } else {
-                    fullNameSpec = acctNameFormat;
-                }
+                fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
 
                 //Do a check if it's {!{!FirstName}} instead of {!FirstName}
                 if (setFNSpec) {
@@ -469,7 +465,7 @@ public class UTIL_ACCT_Naming {
         Boolean isSalutationFormat = ns.salutationSpec == '' ? False : True;
         Boolean lastNameOnFullNameSpec = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
         Boolean lastNameOnlyFormat = !lastNameOnFullNameSpec && ns.returnNameFormat().size() == 1;
-        Boolean lastNameNotIncludedInFormat = ns.acctNameFormat.indexOf(chLToken + 'LastName' + chRToken) == -1;
+        Boolean lastNameNotIncludedInFormat = ns.acctNameFormat.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
 
         for (Integer i = 0, next = 0; i < conSize; i = next) {
             String lastName = cons[i].LastName;
@@ -504,9 +500,11 @@ public class UTIL_ACCT_Naming {
                         }
                 }
 
-                String nextFName = stringConNames(cons[next], ns.firstNameSpec);
-                if (nextFName != '') {
-                    additionalFirstNames.add(nextFname);
+                if (!lastNameNotIncludedInFormat) {
+                    String nextFName = stringConNames(cons[next], ns.firstNameSpec);
+                    if (nextFName != '') {
+                        additionalFirstNames.add(nextFname);
+                    }
                 }
 
                 //This is critical if the current Account name format does not contain {!LastName}, then
