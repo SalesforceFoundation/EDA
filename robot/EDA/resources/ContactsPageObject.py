@@ -479,6 +479,32 @@ class ContactsHomePage(BasePage):
         )
         return
 
+    def Go_to_affiliations_edit_mode(self, loc):
+        """ Go into Edit mode and remove the con
+        """    
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(loc)
+        )
+
+        self.selenium.driver.execute_script(
+            "arguments[0].click()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["delete_icon"])
+        )
+
+        self.selenium.driver.execute_script(
+            "arguments[0].scrollIntoView()", 
+            self.selenium.driver.find_element_by_xpath(contacts_locators["primary_business_organization"])
+        )
+        
+        xpath = contacts_locators["primary_business_organization"]
+        field = self.selenium.get_webelement(xpath)
+        field.send_keys("Robot Academic Program Account" + Keys.ARROW_DOWN + Keys.ENTER)
+
+        self.selenium.click_element(contacts_locators["button_save_affiliation"])
+        self.eda.close_toast_message()
+
+
     def Enable_enchanced_checkbox(self):
         """ Ensure that the Enhanced Preferred Phone Functionality checkbox is checked 
             Set the checkbox if it is not set
