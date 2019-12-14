@@ -324,8 +324,8 @@ class ContactsHomePage(BasePage):
         )
 
     def Run_phone_cleanup(self):
-        """ Click on the 'Run Phone Cleanup' button.
-            Also verifies that the 'Run Phone Cleanup' was queued to run.
+        """ Click on the 'Run Cleanup' button.
+            Also verifies that the 'Run Cleanup' was queued to run.
         """
 
         if self._check_if_element_exists(contacts_locators["run_cleanup"]):
