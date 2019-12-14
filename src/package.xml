@@ -144,6 +144,8 @@
         <members>UTIL_OrgTelemetry_TEST</members>
         <members>UTIL_Profile</members>
         <members>UTIL_Profile_TEST</members>
+        <members>UTIL_SortContact</members>
+        <members>UTIL_SortContact_TEST</members>
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
