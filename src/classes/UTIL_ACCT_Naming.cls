@@ -84,7 +84,7 @@ public class UTIL_ACCT_Naming {
 
         for (Account acc: [SELECT Id, Name, RecordTypeId,
                            (SELECT Id, LastName, Salutation, FirstName FROM Contacts WHERE AccountId IN :accountIdPrimaryContactId.keySet())
-                           FROM Account WHERE Id IN: accountIdPrimaryContactId.keySet()])
+                           FROM Account WHERE Id IN :accountIdPrimaryContactId.keySet()])
         {
             if (acc.RecordTypeId == adminAccountRecordTypeId) {
                 acc.Name = UTIL_ACCT_Naming.updateName(acc.Contacts);
@@ -188,7 +188,7 @@ public class UTIL_ACCT_Naming {
         dynamicSoql += 'FROM Account WHERE Id IN :accIdsToRename';
 
         //Re-query to get correct Account values (and all the other fields we will look at)
-        returnedContacts = database.query(dynamicSoql);
+        returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
 
         return returnedContacts;
     }
@@ -386,11 +386,7 @@ public class UTIL_ACCT_Naming {
 
             //Retrieve full Account name format with a token
             if (indexOfLeft >= 0 && indexOfRight > 0) {
-                if (salutationSpec == NULL || salutationSpec == '') {
-                    fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
-                } else {
-                    fullNameSpec = acctNameFormat;
-                }
+                fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
 
                 //Do a check if it's {!{!FirstName}} instead of {!FirstName}
                 if (setFNSpec) {
@@ -509,14 +505,16 @@ public class UTIL_ACCT_Naming {
         List<String> finalAccountName = new String[0];
         String salutationSpec = '';
         Integer conSize = cons.size();
-        Boolean isNoLastnames = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
-        Boolean isLastNameOnlyFormat = !isNoLastnames && ns.returnNameFormat().size() == 1;
+        Boolean isSalutationFormat = ns.salutationSpec == '' ? False : True;
+        Boolean lastNameOnFullNameSpec = ns.fullNameSpec.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
+        Boolean lastNameOnlyFormat = !lastNameOnFullNameSpec && ns.returnNameFormat().size() == 1;
+        Boolean lastNameNotIncludedInFormat = ns.acctNameFormat.toUpperCase().indexOf(chLToken + 'LASTNAME' + chRToken) == -1;
 
         for (Integer i = 0, next = 0; i < conSize; i = next) {
             String lastName = cons[i].LastName;
             next = i + 1;
 
-            if (isLastNameOnlyFormat && processedLastNames.contains(lastName)) {
+            if (lastNameOnlyFormat && processedLastNames.contains(lastName)) {
                 continue;
             }
 
@@ -525,7 +523,9 @@ public class UTIL_ACCT_Naming {
 
             //Retrieves Salutation
             List<String> additionalSalutations = new List<String>();
-            salutationSpec = stringConNames(cons[i], ns.salutationSpec);
+            if (isSalutationFormat) {
+                salutationSpec = stringConNames(cons[i], ns.salutationSpec);
+            }
 
             //Retrieves value of FirstName
             String firstName = stringConNames(cons[i], ns.firstNameSpec);
@@ -534,25 +534,27 @@ public class UTIL_ACCT_Naming {
             //if Contacts do not have same last name && the Account name format is not set to process {!LastName}.
             List<String> additionalFirstNames = new List<String>();
 
-            for (; next < conSize && (isNoLastnames || cons[next].LastName == lastName); next++) {
+            for (; next < conSize && (lastNameOnFullNameSpec || cons[next].LastName == lastName); next++) {
 
-                String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
-                if (nextSalutation != '') {
-                    additionalSalutations.add(nextSalutation);
-                    additionalSalutations.sort();
+                if (isSalutationFormat) {
+                    String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
+                        if (nextSalutation != '') {
+                            additionalSalutations.add(nextSalutation);
+                        }
                 }
 
-
-                String nextFName = stringConNames(cons[next], ns.firstNameSpec);
-                if (nextFName != '') {
-                    additionalFirstNames.add(nextFname);
-                    additionalFirstNames.sort();
+                if (!lastNameNotIncludedInFormat) {
+                    String nextFName = stringConNames(cons[next], ns.firstNameSpec);
+                    if (nextFName != '') {
+                        additionalFirstNames.add(nextFname);
+                    }
                 }
 
-                //This is critical if the current Account name format is not set to process {!LastName}, then
+                //This is critical if the current Account name format does not contain {!LastName}, then
                 //all Contacts inserted will enter this loop and will need to stop the iteration of next so
-                //that the next Contact will enter the outer loop.
-                if (isNoLastnames) {
+                //that the next Contact will enter the outer loop. In short, this helps prevent deduplication
+                //of Contacts on the Account name.
+                if (lastNameNotIncludedInFormat) {
                     break;
                 }
             }

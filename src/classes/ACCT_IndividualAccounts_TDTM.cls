@@ -137,7 +137,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
 
-        returnedContacts = database.query(dynamicSoql);
+        returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
 
         return returnedContacts;
     }
@@ -381,7 +381,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         //Requery to retrieve correct Account value
         relatedAccounts = [SELECT Id, RecordTypeID
                            FROM Account
-                           WHERE Id IN : relatedAccountIds];
+                           WHERE Id IN :relatedAccountIds];
 
         for (Account account : relatedAccounts) {
             if (checkHouseholdNaming(account.RecordTypeID)) {
@@ -453,7 +453,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         //Retrieves all Accounts that have a connected Primary Contact
         for (Account acc : [SELECT Id, Primary_Contact__c, RecordTypeId
                             FROM Account
-                            WHERE Primary_Contact__c IN : contactIds])
+                            WHERE Primary_Contact__c IN :contactIds])
         {
             primaryConIdForAccount.put(acc.Primary_Contact__c, acc);
 
@@ -573,7 +573,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             for (Account acc : [SELECT Primary_Contact__c,
                                 (SELECT Id, Name FROM Contacts WHERE Id IN :primaryContactId LIMIT 1)
                                 FROM Account
-                                WHERE Id IN : accountIdsToUpdate])
+                                WHERE Id IN :accountIdsToUpdate])
             {
                 //There are two cases account primary contact needs reset
                 //1. An account has no child contact but is used to have primary contact

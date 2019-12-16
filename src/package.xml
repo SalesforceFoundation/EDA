@@ -147,6 +147,10 @@
         <members>UTIL_Profile</members>
         <members>UTIL_Profile_TEST</members>
         <members>UTIL_SortContact</members>
+<<<<<<< HEAD
+=======
+        <members>UTIL_SortContact_TEST</members>
+>>>>>>> 90c93bbe2d212a0b775c9532e5bd0e36df12270e
         <members>UTIL_UnitTestData_API</members>
         <members>UTIL_UnitTestData_TEST</members>
         <name>ApexClass</name>
