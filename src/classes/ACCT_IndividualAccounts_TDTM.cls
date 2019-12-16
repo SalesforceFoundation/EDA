@@ -239,19 +239,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
     }
 
-    /*******************************************************************************************************
-    * @description This method checks if any of the after update collections are not empty.
-    * If not empty, it calls the appropriate methods to process the list/set/map.
-    * @param accountIdsToRename a set of AccountIds that needs Name update.
-    * @param contactAccountDelete a list of Contacts whose Accounts needs deletion.
-    */
-    private void handleDeleteProcessing(Set<Id> accountIdsToRename, List<Contact> contactAccountDelete) {
-        DmlWrapper dmlWrapper = new DmlWrapper();
-
-        handleInsertProcessing(insertWrapper, contactsNeedAccounts);
-        handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
-    }
-
     /********************************************************************************************************
     * @description This method checks if there are any Contacts associated to the Account that is not
     * marked deceased and excluded from household name.
