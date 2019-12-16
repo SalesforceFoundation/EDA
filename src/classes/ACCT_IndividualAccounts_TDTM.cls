@@ -221,6 +221,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
             conProcessed += 1;
         }
+    }
 
         //Set recursion flag
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
@@ -234,6 +235,17 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
         }
+        handleDeleteProcessing(accountIdsToRename, contactAccountDelete);
+    }
+
+    /*******************************************************************************************************
+    * @description This method checks if any of the after update collections are not empty.
+    * If not empty, it calls the appropriate methods to process the list/set/map.
+    * @param accountIdsToRename a set of AccountIds that needs Name update.
+    * @param contactAccountDelete a list of Contacts whose Accounts needs deletion.
+    */
+    private void handleDeleteProcessing(Set<Id> accountIdsToRename, List<Contact> contactAccountDelete) {
+        DmlWrapper dmlWrapper = new DmlWrapper();
 
         handleInsertProcessing(insertWrapper, contactsNeedAccounts);
         handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
@@ -276,7 +288,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
             }
         }
-    }
 
     /*******************************************************************************************************
     * @description This method checks if any of the after insert collections are not empty.

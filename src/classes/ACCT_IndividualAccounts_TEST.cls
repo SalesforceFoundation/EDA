@@ -246,7 +246,7 @@ private class ACCT_IndividualAccounts_TEST {
                                           FROM Contact
                                           WHERE Id = :con.Id];
         //the contact should be connected to the account
-        System.assertEquals(acct.id, insertedContacts[0].AccountId);
+        System.assertEquals(acct.Id, insertedContacts[0].AccountId);
 
         con.AccountId = NULL;
         Test.startTest();
@@ -477,7 +477,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.LastName + ' (' + con.FirstName + ') Household', assertAccount.Name);
 
@@ -544,7 +544,7 @@ private class ACCT_IndividualAccounts_TEST {
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
-                                 FROM Account limit 1];
+                                 FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
@@ -798,7 +798,6 @@ private class ACCT_IndividualAccounts_TEST {
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
                                  FROM Account LIMIT 1];
-
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 

@@ -512,6 +512,7 @@ public class UTIL_ACCT_Naming {
                 if (lastNameNotIncludedInFormat) {
                     break;
                 }
+
             }
 
             //Put together the Account name
