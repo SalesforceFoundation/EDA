@@ -221,7 +221,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
             conProcessed += 1;
         }
-    }
 
         //Set recursion flag
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
@@ -235,7 +234,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
         }
-        handleDeleteProcessing(accountIdsToRename, contactAccountDelete);
+
+        handleInsertProcessing(insertWrapper, contactsNeedAccounts);
+        handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
     }
 
     /*******************************************************************************************************
