@@ -289,6 +289,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
             }
         }
+    }
 
     /*******************************************************************************************************
     * @description This method checks if any of the after insert collections are not empty.
@@ -497,7 +498,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
   	* @param accountId is the Id of the Account.
 	* @return Id.
     */
-    private Id returnAccountRecordTypeId(Id accountId){
+    private Id returnAccountRecordTypeId(Id accountId) {
         return [SELECT Id, RecordTypeId FROM Account WHERE Id = :accountId].RecordTypeId;
     }
 
