@@ -5,9 +5,5 @@
    
     saveSetting : function(component, event, helper) {
         helper.saveSetting(component);
-    },
-
-    init : function(component, event, helper) {
-        helper.init(component);
     }
 })
