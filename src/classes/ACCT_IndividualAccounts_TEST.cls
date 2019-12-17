@@ -1536,6 +1536,7 @@ private class ACCT_IndividualAccounts_TEST {
     @isTest
     private static void insertContactMultiCurrencyEnabled() {
         if (UserInfo.isMultiCurrencyOrganization()) {
+            //Test data setup
             String nonDefaultCurrencyCode = '';
             String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
             List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
@@ -1545,7 +1546,6 @@ private class ACCT_IndividualAccounts_TEST {
                 return;
             }
 
-            //Test data setup
             UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
                                                         Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
 
@@ -1570,7 +1570,7 @@ private class ACCT_IndividualAccounts_TEST {
     * Make sure that the account automatically created and the contact have the same currency.
     */
     @isTest
-    private static void updateContactMultiCurrencyEnabled() {
+    private static void updateContactWithoutAccountMultiCurrencyEnabled() {
         if (UserInfo.isMultiCurrencyOrganization()) {
             //Test data setup
             String nonDefaultCurrencyCode = '';
@@ -1593,7 +1593,7 @@ private class ACCT_IndividualAccounts_TEST {
 
             //Run the logic
             Test.startTest();
-            testContact.put('CurrencyIsoCode', 'EUR');
+            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);            
             update testContact;
             Test.stopTest();
 
@@ -1601,7 +1601,7 @@ private class ACCT_IndividualAccounts_TEST {
             String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
             List<Account> resultAccounts = Database.query(qryString);
             system.assertEQUALS(1, resultAccounts.size(), 'More than one Account were created.');
-            system.assertEQUALS('EUR', resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
+            system.assertEQUALS(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
         }
     }
 }
