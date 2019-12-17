@@ -20,7 +20,7 @@ Capture SAL and EDA package details
     Wait Until Loading Is Complete
     Go To Setup Home
     Wait For New Window                 Home | Salesforce
-    Switch Window                       Home | Salesforce
+    Select window                       Home | Salesforce
     Wait Until Loading Is Complete
     Populate Placeholder                Quick Find          Installed Packages
     Wait Until Loading Is Complete
