@@ -133,19 +133,6 @@ class EDASettingsPage(ListingPage):
         self.selenium.click_element(affiliations_locators["button_save_affiliation"])
         self.eda.close_toast_message()
 
-    def _expandShadowRoot(self, element):
-        shadow_root = self.selenium.driver.execute_script('return arguments[0].shadowRoot', element)
-        return shadow_root
-
-
-    def expand_shadow_root(self):
-        """ Expand the shadow DOM in order to traverse the element """
-        root1 = self.selenium.driver.find_element_by_xpath(affiliations_locators["del_xpath_arm"])
-        shadow_root_1 = self._expandShadowRoot(root1)
-        self.builtin.log("shadow root 1 is:  {} .".format(shadow_root_1))
-        shadowRoot = root1.shadowRoot
-       
-
     def Click_button_on_location(self, button, page):
         """ Select the specified button from the page that is specified """
         self.selenium.wait_until_page_contains_element(
@@ -426,7 +413,3 @@ class EDASettingsPage(ListingPage):
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ud_aes_em_empty"]).send_keys("22")
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ud_aer_em_empty"]).send_keys("23")
 
-
-    def Remove_mapping(self, locator):
-        """ Locate the specified button and click on it to remove the Affiliation Mapping """
-        self.selenium.driver.execute_script("arguments[0].click()", self.selenium.driver.find_element_by_xpath(locator))
