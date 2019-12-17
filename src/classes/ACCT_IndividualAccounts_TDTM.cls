@@ -29,7 +29,18 @@
 * @date 2011 (1.x)
 * @group Accounts
 * @group-content ../../ApexDocContent/Accounts.htm
-* @description Implements Household or Administrative account model - controls syncing within the model
+* @description This class implements the Administrative Account model. 
+    When you create a Contact and leave the Account Name field blank, 
+    this class creates an Administrative Account. 
+    If you change the Owner of the Contact, 
+    this class updates the related Account to the same Owner.
+    
+    In addition, when an Account is created 
+    because you create a Contact without one 
+    (or an Account is created because you update a Contact 
+    that doesn't already have an Account linked to it) 
+    the new Account will be populated with the currency setting specified 
+    for the Contact.
 */
 public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
@@ -133,6 +144,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             dynamicSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
+        }
+
+        if (UserInfo.isMultiCurrencyOrganization()) {
+            dynamicSoql += 'CurrencyIsoCode, ';
         }
 
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
@@ -506,6 +521,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 //Inject Advancement logic to populate NPSP Account fields of the Contact
                 if (Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != NULL) {
                     Advancement_Info.getApiHEDA().configAccountForContact(a);
+                }
+
+                //Update account's currency with contact's if multi-currency is enabled for an org
+                if (UserInfo.isMultiCurrencyOrganization()) {
+                    if (a.RecordTypeId == userDefinedHHRecordTypeId) {
+                        a.put('CurrencyIsoCode', (String)c.get('CurrencyIsoCode'));
+                    }
                 }
 
                 accountInserts.add(a);
