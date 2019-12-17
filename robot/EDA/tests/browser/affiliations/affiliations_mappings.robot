@@ -243,20 +243,9 @@ All mappings can be deleted
     # Edit the dropdowns - go into Edit mode
     Click button on location                    Edit                    ${affl_mappings_tab}
 
-
-    #${shadow_root} =                            Get Eda Locator         eda_settings.del_xpath_arm
-    #${shadow_root} =                            expandShadowRoot        del_xpath_arm
-
     Expand shadow root
 
-    #Open item                                   eda_settings.del_xpath_short
-    #...                                         Cannot find Delete icon for Academic Program mapping
-    #...                                         False
-
     ${mappings_1} =                             Get Eda Locator         eda_settings.del_xpath_arm
-
-
-#    Remove mapping                              ${mappings_1}
 
     #Save settings
     Click button on location                    Save                    ${affl_mappings_tab}
