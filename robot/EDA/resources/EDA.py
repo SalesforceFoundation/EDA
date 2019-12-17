@@ -241,7 +241,7 @@ class EDA(object):
             return
 
     def check_if_element_exists(self, xpath):
-        elements = int(self.selenium.get_matching_xpath_count(xpath))
+        elements = int(self.selenium.get_element_count(xpath))
         return True if elements > 0 else False
 
     def get_eda_locator(self, path, *args, **kwargs):
@@ -397,7 +397,7 @@ class EDA(object):
     def close_all_tabs(self):
         """ Gets the count of the tabs that are open and closes them all """
         locator = eda_lex_locators["close_tab"]
-        count = int(self.selenium.get_matching_xpath_count(locator))
+        count = int(self.selenium.get_element_count(locator))
         for i in range(count):
             self.selenium.wait_until_element_is_visible(locator)
             self.selenium.get_webelement(locator).click()
