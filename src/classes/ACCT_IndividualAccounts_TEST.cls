@@ -1537,7 +1537,8 @@ private class ACCT_IndividualAccounts_TEST {
     private static void insertContactMultiCurrencyEnabled() {
         if (UserInfo.isMultiCurrencyOrganization()) {
             String nonDefaultCurrencyCode = '';
-            List<SObject> nonDefaultCurrencies = [SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1];
+            String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
+            List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
             if (nonDefaultCurrencies.size() > 0) {
                 nonDefaultCurrencyCode = (String)nonDefaultCurrencies[0].get('IsoCode');
             } else {
@@ -1573,7 +1574,8 @@ private class ACCT_IndividualAccounts_TEST {
         if (UserInfo.isMultiCurrencyOrganization()) {
             //Test data setup
             String nonDefaultCurrencyCode = '';
-            List<SObject> nonDefaultCurrencies = [SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1];
+            String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
+            List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
             if (nonDefaultCurrencies.size() > 0) {
                 nonDefaultCurrencyCode = (String)nonDefaultCurrencies[0].get('IsoCode');
             } else {
