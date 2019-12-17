@@ -228,31 +228,6 @@ All checkbox fields can retain unchecked values on save
     Go To Object Home                           Account
     Close all tabs
 
-All mappings can be deleted
-    [tags]                                      unstable
-
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
-    Go to affiliation settings
-
-    ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
-
-    # Edit the dropdowns - go into Edit mode
-    Click button on location                    Edit                    ${affl_mappings_tab}
-
-    Expand shadow root
-
-    ${mappings_1} =                             Get Eda Locator         eda_settings.del_xpath_arm
-
-    #Save settings
-    Click button on location                    Save                    ${affl_mappings_tab}
-    Close toast message
-    Go To Object Home                           Account
-    Close all tabs
-
 
 
 *** Keywords ***
