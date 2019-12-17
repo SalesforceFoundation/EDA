@@ -48,7 +48,7 @@ class ContactsHomePage(BasePage):
         )
     def _check_if_element_exists(self, xpath):
         """ Checks if the given xpath exists """
-        elements = int(self.selenium.get_matching_xpath_count(xpath))
+        elements = int(self.selenium.get_element_count(xpath))
         return True if elements > 0 else False
 
 
