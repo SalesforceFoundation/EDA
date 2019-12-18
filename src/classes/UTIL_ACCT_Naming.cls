@@ -387,7 +387,6 @@ public class UTIL_ACCT_Naming {
             //Retrieve full Account name format with a token
             if (indexOfLeft >= 0 && indexOfRight > 0) {
                 fullNameSpec = acctNameFormat.replace(strFirstName, 'FirstNameSpec');
-
                 //Do a check if it's {!{!FirstName}} instead of {!FirstName}
                 if (setFNSpec) {
                     firstNameSpec = strFirstName.subString(indexOfLeft + chLToken.length(), indexOfRight);
@@ -538,11 +537,10 @@ public class UTIL_ACCT_Naming {
 
                 if (isSalutationFormat) {
                     String nextSalutation = stringConNames(cons[next], ns.salutationSpec);
-                        if (nextSalutation != '') {
-                            additionalSalutations.add(nextSalutation);
-                        }
+                    if (nextSalutation != '') {
+                        additionalSalutations.add(nextSalutation);
+                    }
                 }
-
                 if (!lastNameNotIncludedInFormat) {
                     String nextFName = stringConNames(cons[next], ns.firstNameSpec);
                     if (nextFName != '') {
@@ -550,13 +548,14 @@ public class UTIL_ACCT_Naming {
                     }
                 }
 
-                //This is critical if the current Account name format does not contain {!LastName}, then
+                //This is critical if the current Account name format is not set to process {!LastName}, then
                 //all Contacts inserted will enter this loop and will need to stop the iteration of next so
                 //that the next Contact will enter the outer loop. In short, this helps prevent deduplication
                 //of Contacts on the Account name.
                 if (lastNameNotIncludedInFormat) {
                     break;
                 }
+
             }
 
             //Put together the Account name
