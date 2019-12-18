@@ -949,6 +949,7 @@
     <types>
         <members>Address__c</members>
         <members>Affiliation__c</members>
+        <members>Application__c</members>
         <members>Attendance_Event__c</members>
         <members>Attribute__c</members>
         <members>Behavior_Involvement__c</members>
@@ -1036,6 +1037,7 @@
     <types>
         <members>Address__c.All</members>
         <members>Affiliation__c.All</members>
+        <members>Application__c.All</members>
         <members>Attendance_Event__c.All</members>
         <members>Attribute__c.All</members>
         <members>Behavior_Involvement__c.All</members>
