@@ -525,9 +525,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
                 //Update account's currency with contact's if multi-currency is enabled for an org
                 if (UserInfo.isMultiCurrencyOrganization()) {
-                    if (a.RecordTypeId == userDefinedHHRecordTypeId) {
-                        a.put('CurrencyIsoCode', (String)c.get('CurrencyIsoCode'));
-                    }
+                    a.put('CurrencyIsoCode', (String)c.get('CurrencyIsoCode'));
                 }
 
                 accountInserts.add(a);
