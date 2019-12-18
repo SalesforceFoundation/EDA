@@ -1560,8 +1560,8 @@ private class ACCT_IndividualAccounts_TEST {
             //Assert the result
             String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
             List<Account> resultAccounts = Database.query(qryString);
-            system.assertEQUALS(1, resultAccounts.size(), 'More than one Account were created.');
-            system.assertEQUALS(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
+            system.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
+            system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
         }
     }
 
@@ -1600,8 +1600,8 @@ private class ACCT_IndividualAccounts_TEST {
             //Assert the result
             String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
             List<Account> resultAccounts = Database.query(qryString);
-            system.assertEQUALS(1, resultAccounts.size(), 'More than one Account were created.');
-            system.assertEQUALS(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
+            system.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
+            system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
         }
     }
 }
