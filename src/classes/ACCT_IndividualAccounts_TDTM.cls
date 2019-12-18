@@ -85,32 +85,63 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Contact> oldContacts = (List<Contact>)oldlist;
         this.triggerAction = triggerAction;
         DmlWrapper dmlWrapper = new DmlWrapper();
+        Id accountId;
 
 
         //Requery Contacts to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             if (newContacts.size() > 0) {
                 newContacts = queryContacts(newContacts);
+                accountId = retrieveAccountId(newContacts);
             }
         }
 
+        Boolean recursionAfterInsertCheck = triggerActionAfterInsert();
+        Boolean recursionAfterUpdateCheck = triggerActionAfterUpdate();
+        Boolean recursionAfterDeleteCheck = triggerActionAfterDelete();
+
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert)) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction);
+            !recursionAfterInsertCheck) {
+                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update)) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction);
+            !recursionAfterUpdateCheck) {
+                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
-            !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete)) {
-                handlesAfterDelete(oldContacts);
+            !recursionAfterDeleteCheck) {
+                accountId = retrieveAccountId(oldContacts);
+                handlesAfterDelete(oldContacts, accountId);
             }
 
         dmlWrapper = null;
         return dmlWrapper;
+    }
+
+    /*******************************************************************************************************
+    * @description Checks after insert recursion flag for this class.
+    * @return Boolean.
+    */
+    private Boolean triggerActionAfterInsert() {
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert);
+    }
+
+    /*******************************************************************************************************
+    * @description Checks after update recursion flag for this class.
+    * @return Boolean.
+    */
+    private Boolean triggerActionAfterUpdate() {
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update);
+    }
+
+    /*******************************************************************************************************
+    * @description Checks after delete recursion flag for this class.
+    * @return Boolean.
+    */
+    private Boolean triggerActionAfterDelete() {
+        return TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete);
     }
 
     /*******************************************************************************************************
@@ -143,16 +174,33 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     }
 
     /*******************************************************************************************************
+    * @description Retrieves the AccountId
+    * @param newContacts is a list of Contacts from trigger new.
+    * @return Id.
+    */
+    private Id retrieveAccountId(List<Contact> newContacts) {
+        Id accountId;
+        for (Contact c : newContacts) {
+            accountId = c.AccountId;
+        }
+
+        return accountId;
+    }
+
+    /*******************************************************************************************************
     * @description Calls correct methods to process after insert and after update
     * logic and sets recursion flag.
     * @param newContacts a list of Contacts from trigger new.
     * @param oldContacts a list of Contacts from trigger old.
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+    * @param accountId is the AccountId of Contact.
     */
-    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction) {
+    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Id accountId) {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
+
+        Integer numOfContactsLeft = checkContactState(accountId);
 
         Integer conProcessed = 0;
         for (Contact c : newContacts) {
@@ -169,7 +217,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts[conProcessed], triggerAction);
+                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
                 }
             conProcessed += 1;
         }
@@ -189,6 +237,20 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         handleInsertProcessing(insertWrapper, contactsNeedAccounts);
         handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
+    }
+
+    /********************************************************************************************************
+    * @description This method checks if there are any Contacts associated to the Account that is not
+    * marked deceased and excluded from household name.
+    * @param accountId is the AccountId of Contact.
+    */
+    private Integer checkContactState(Id accountId) {
+        Integer numOfContacts = [SELECT Count()
+        						FROM Contact
+                                WHERE AccountId = :accountId
+                                AND Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE];
+
+        return numOfContacts;
     }
 
     /*******************************************************************************************************
@@ -224,7 +286,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     */
     private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
-
         //Creates new Account
         if (contactsNeedAccounts.size() > 0) {
             UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
@@ -264,19 +325,27 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * @param c is a Contact record from trigger new.
         * @param oldContact is a Contact from trigger old.
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+        * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts associated
+        * with the Account.
         */
-        private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction) {
+        private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {
+            Boolean conAccountIdNotNull = (c.AccountId != NULL);
+            Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL);
+            Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId);
+            Boolean conLastNameChanged = (c.LastName != oldContact.LastName);
+            Boolean conFirstNameChanged = (c.FirstName != oldContact.FirstName);
+            Boolean conExcludeFromHHNameChanged = (c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c);
 
             //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
-                if(c.AccountId != NULL) {
+                if(conAccountIdNotNull) {
                     accountIdToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
 
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                         accountIdToRename.add(c.AccountId);
 
-                        if(oldContact.AccountId != NULL) {
+                        if(oldConAccountIdNotNull) {
                             accountIdToRename.add(oldContact.AccountId);
                         }
                     }
@@ -287,28 +356,30 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 }
 
                 //Old HH Accounts that don't get deleted still need to have name redone
-                if (oldContact.AccountId != NULL) {
+                if (oldConAccountIdNotNull) {
                     accountIdToupdate.add(oldContact.AccountId);
                     contactIdAccountIdOldOppsToMove.put(c.Id, oldContact.AccountId);
                 }
             }
 
             //If Ownership has changed
-            if (c.OwnerId != oldContact.OwnerId) {
+            if (conOwnerChanged) {
                 contactIdContactOwnerChange.put(c.Id, c);
             }
 
             //If Contact's last name has changed and it is using admin account model
-            if (c.LastName != oldContact.LastName && c.AccountId != NULL) {
+            if (conLastNameChanged && conAccountIdNotNull) {
                 contactsChangedLastName.add(c);
             }
 
+
             //If Contact Name or Exclude_from_Household_Name__c value has changed
-            if ((c.LastName != oldContact.LastName ||
-                 c.FirstName != oldContact.FirstName ||
-                 c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c) &&
-                c.AccountId != NULL &&
-                checkHouseholdNaming(c.Account.RecordTypeId))
+            if ((conLastNameChanged ||
+                 conFirstNameChanged ||
+                 conExcludeFromHHNameChanged) &&
+                 numOfContactsLeft != 0 &&
+                 conAccountIdNotNull &&
+                 checkHouseholdNaming(c.Account.RecordTypeId))
             {
                 accountIdToRename.add(c.AccountId);
             }
@@ -366,16 +437,33 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
     * @description Processes after delete logic.
     * @param oldContacts is a list of Contacts from trigger old.
+    * @param accountId is the AccountId of Contact.
     */
-    private void handlesAfterDelete(List<Contact> oldContacts) {
+    private void handlesAfterDelete(List<Contact> oldContacts, Id accountId) {
         List<Contact> contactAccountDelete = new List<Contact>();
         List<Account> relatedAccounts = new List<Account>();
         Set<Id> accountIdsToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
 
+        Integer numOfContactsLeft = checkContactState(accountId);
+        Id accRecordTypeId = returnAccountRecordTypeId(accountId);
+
         for (Contact c : oldContacts) {
-            contactAccountDelete.add(c);
-            relatedAccountIds.add(c.AccountId);
+            if (numOfContactsLeft == 0) {
+                if (checkHouseholdNaming(accRecordTypeId)) {
+                    if (c.AccountId != accountId) {
+                    	contactAccountDelete.add(c);
+                    	relatedAccountIds.add(c.AccountId);
+                	}
+                } else {
+                    contactAccountDelete.add(c);
+                	relatedAccountIds.add(c.AccountId);
+                }
+            } else {
+                contactAccountDelete.add(c);
+                relatedAccountIds.add(c.AccountId);
+            }
+
         }
 
         //Requery to retrieve correct Account value
@@ -388,7 +476,17 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 accountIdsToRename.add(account.Id);
             }
         }
+
         handleDeleteProcessing(accountIdsToRename, contactAccountDelete);
+    }
+
+    /*******************************************************************************************************
+    * @description This method retrieves the recordTypeId of the Account.
+  	* @param accountId is the Id of the Account.
+	* @return Id.
+    */
+    private Id returnAccountRecordTypeId(Id accountId) {
+        return [SELECT Id, RecordTypeId FROM Account WHERE Id = :accountId].RecordTypeId;
     }
 
     /*******************************************************************************************************
@@ -557,9 +655,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Set<Id> accountsToResetIds = new Set<Id>();
         List<Account> accountsToUpdate = new List<Account>();
 
-        //Builds a set of primary Contact Ids from the Account given existing AccountIds
+        //Builds a set of Primary Contact Ids from the Account given existing AccountIds
+        //and retrieves Contacts associated to the Account - later used to set as the Primary Contact.
         List<Account> listAccount = [SELECT Primary_Contact__c,
-                                     (SELECT Id, Name FROM Contacts LIMIT 1)
+                                     (SELECT Id FROM Contacts LIMIT 1)
                                      FROM Account
                                      WHERE Id IN :accountIdsToUpdate];
 
@@ -570,19 +669,24 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         if (primaryContactId.size() > 0) {
+            //Loop through the Account to check if the Primary Contact record is associated
+            //to the Account on the Contact record
             for (Account acc : [SELECT Primary_Contact__c,
-                                (SELECT Id, Name FROM Contacts WHERE Id IN :primaryContactId LIMIT 1)
+                                (SELECT Id FROM Contacts WHERE Id IN :primaryContactId LIMIT 1)
                                 FROM Account
                                 WHERE Id IN :accountIdsToUpdate])
             {
                 //There are two cases account primary contact needs reset
-                //1. An account has no child contact but is used to have primary contact
-                //2. An account used to have no child contact but a child contact was just assigned to it
+                //(1)If the Primary Contact's record (actual Contact record) is not associated to the Account
+                //(2)If the Primary_Contact__c on Account record is blank
+                //Then we will need to update this Account record's Primary_Contact__c field
                 if (acc.Contacts.size() == 0 || acc.Primary_Contact__c == NULL) {
                     accountsToResetIds.add(acc.Id);
                 }
             }
         } else {
+            //If the Account record does not have a Primary_Contact__c then update this
+            //Account record's Primary_Contact__c field.
             accountsToResetIds.addAll(accountIdsToUpdate);
         }
 
@@ -656,20 +760,25 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         List<Account> listAcc = [SELECT Id, RecordTypeId, Primary_Contact__c, OwnerId,
-                                (SELECT Id FROM Contacts limit 2)
+                                (SELECT Id FROM Contacts LIMIT 2)
                                  FROM Account
                                  WHERE Id IN :contactsAccountId];
 
         for (Account acc : listAcc) {
-            //TODO: use setting to determine if Account owner should be changed (W-009780)
-            if (acc.Contacts.size() == 1 && acc.Primary_Contact__c != NULL &&
-                acc.RecordTypeId != NULL && (acc.RecordTypeId == userDefinedHHRecordTypeId
-                || acc.RecordTypeId == userDefinedAdminRecordTypeId))
+            Boolean accHasContact = (acc.Contacts.size() == 1);
+            Boolean accHasPrimaryContact = (acc.Primary_Contact__c != NULL);
+            Boolean accRecordTypeIsNotNull = (acc.RecordTypeId != NULL);
+            Boolean accRecordTypeHHOrAdmin = (acc.RecordTypeId == userDefinedHHRecordTypeId || acc.RecordTypeId == userDefinedAdminRecordTypeId);
+
+
+            if (accHasContact && accHasPrimaryContact &&
+                accRecordTypeIsNotNull && accRecordTypeHHOrAdmin)
             {
                 Contact c = contactOwnerChange.get(acc.Primary_Contact__c);
                 Id ownerIdContact = (c != NULL ? c.OwnerId : NULL);
+				Boolean accOwnerHasChanged = (acc.OwnerId != ownerIdContact);
 
-                if (acc.OwnerId != ownerIdContact) {
+                if (accOwnerHasChanged) {
                     acc.OwnerId = ownerIdContact;
                     accountsToUpdate.add(acc);
                 }
@@ -702,10 +811,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         accountsOnContacts = [SELECT Id, Type, RecordTypeId,
-                            (SELECT Id FROM Opportunities LIMIT 1),
-                            (SELECT Id FROM Contacts LIMIT 1)
-                            FROM Account
-                            WHERE Id IN :accountIds];
+                               (SELECT Id FROM Opportunities LIMIT 1),
+                               (SELECT Id FROM Contacts LIMIT 1)
+       	                        FROM Account
+                                WHERE Id IN :accountIds];
 
         for (Account thisAccount : accountsOnContacts) {
             //Looking at setting to determine which account types can be deleted (W-009779)
@@ -715,9 +824,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 // If there are no Opportunities && Contacts for this Account, add the Account for deletion
                 if (thisAccount.Opportunities.size() == 0 && thisAccount.Contacts.size() == 0) {
                     accountsForDeletion.add(thisAccount);
-                } else if (thisAccount.RecordTypeId != null
-                           && (thisAccount.RecordTypeId == userDefinedHHRecordTypeId
-                           || thisAccount.RecordTypeId == userDefinedAdminRecordTypeId))
+                } else if (thisAccount.RecordTypeId != null &&
+                           (thisAccount.RecordTypeId == userDefinedHHRecordTypeId ||
+                            thisAccount.RecordTypeId == userDefinedAdminRecordTypeId))
                   {
                          accountIdsUpdate.add(thisAccount.Id);
                   }
