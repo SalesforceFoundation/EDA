@@ -54,9 +54,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Applicant_Decision_Date__c</fullName>
-        <description>Date/Time student submits or is due to submit decision about enrollment</description>
+        <description>The date and time when the student decides whether to enroll.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Date/Time student submits or is due to submit decision about enrollment</inlineHelpText>
+        <inlineHelpText>The date and time when the student decides whether to enroll.</inlineHelpText>
         <label>Applicant Decision Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -66,9 +66,9 @@
     <fields>
         <fullName>Applicant__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Applicant (Contact) name</description>
+        <description>The Contact applying to the institution or program.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The contact applying to the specified program.</inlineHelpText>
+        <inlineHelpText>The Contact applying to the institution or program.</inlineHelpText>
         <label>Applicant</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Applications</relationshipLabel>
@@ -80,9 +80,9 @@
     </fields>
     <fields>
         <fullName>Application_Date__c</fullName>
-        <description>Date/Time Application was submitted</description>
+        <description>The date and time when the application was submitted.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Date/Time Application was submitted</inlineHelpText>
+        <inlineHelpText>The date and time when the application was submitted.</inlineHelpText>
         <label>Application Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -91,9 +91,9 @@
     </fields>
     <fields>
         <fullName>Application_Decision_Date__c</fullName>
-        <description>Date/Time institution made or will make decision about acceptance</description>
+        <description>The date and time when the institution decides whether to accept the applicant.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Date/Time institution made or will make decision about acceptance</inlineHelpText>
+        <inlineHelpText>The date and time when the institution decides whether to accept the applicant.</inlineHelpText>
         <label>Application Decision Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -102,9 +102,9 @@
     </fields>
     <fields>
         <fullName>Application_Status__c</fullName>
-        <description>Status for application review process</description>
+        <description>The status of the application review process.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Status for application review process</inlineHelpText>
+        <inlineHelpText>The status of the application review process.</inlineHelpText>
         <label>Application Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -140,23 +140,38 @@
                     <label>In Review</label>
                 </value>
                 <value>
-                    <fullName>Deferred</fullName>
+                    <fullName>Deferred Offer</fullName>
                     <default>false</default>
-                    <label>Deferred</label>
+                    <label>Deferred Offer</label>
                 </value>
                 <value>
                     <fullName>Incomplete</fullName>
                     <default>false</default>
                     <label>Incomplete</label>
                 </value>
+                <value>
+                    <fullName>Accepted Offer</fullName>
+                    <default>false</default>
+                    <label>Accepted Offer</label>
+                </value>
+                <value>
+                    <fullName>Declined Offer</fullName>
+                    <default>false</default>
+                    <label>Declined Offer</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
-        <description>Describes the type of program or track that the applicant is applying to, such as Undergrad vs. Grad or Transfer Student.</description>
+        <description>The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Describes the type of program or track that the applicant is applying to, such as Undergrad vs. Grad or Transfer Student.</inlineHelpText>
+        <inlineHelpText>The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer.</inlineHelpText>
         <label>Application Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -182,29 +197,9 @@
                     <label>Post-Doc</label>
                 </value>
                 <value>
-                    <fullName>First Year</fullName>
-                    <default>false</default>
-                    <label>First Year</label>
-                </value>
-                <value>
                     <fullName>Transfer</fullName>
                     <default>false</default>
                     <label>Transfer</label>
-                </value>
-                <value>
-                    <fullName>Year Abroad</fullName>
-                    <default>false</default>
-                    <label>Year Abroad</label>
-                </value>
-                <value>
-                    <fullName>Honors Program</fullName>
-                    <default>false</default>
-                    <label>Honors Program</label>
-                </value>
-                <value>
-                    <fullName>RA Position</fullName>
-                    <default>false</default>
-                    <label>RA Position</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -212,9 +207,9 @@
     <fields>
         <fullName>Applying_To__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Academic program/major to which the applicant is applying</description>
+        <description>The academic program or major the applicant is applying to.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Academic program/major to which the applicant is applying</inlineHelpText>
+        <inlineHelpText>The academic program or major the applicant is applying to.</inlineHelpText>
         <label>Applying To</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Applications</relationshipLabel>
@@ -227,9 +222,9 @@
     <fields>
         <fullName>Preparer__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Application preparer (often a guardian)</description>
+        <description>The Contact preparing the application, often a guardian.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The contact filling out the application. In some cases this may be a parent or an assistant to someone with special needs.</inlineHelpText>
+        <inlineHelpText>The Contact preparing the application. For example, a guardian or a person assisting someone with special needs.</inlineHelpText>
         <label>Preparer</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Applications (Preparer)</relationshipLabel>
@@ -242,9 +237,9 @@
     <fields>
         <fullName>Term__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Term in which the applicant would like to begin</description>
+        <description>The term when the applicant wants to enroll.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Term in which the applicant would like to begin</inlineHelpText>
+        <inlineHelpText>The term when the applicant wants to enroll.</inlineHelpText>
         <label>Term</label>
         <referenceTo>Term__c</referenceTo>
         <relationshipLabel>Applications</relationshipLabel>
