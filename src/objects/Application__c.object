@@ -115,9 +115,24 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Incomplete</fullName>
+                    <default>false</default>
+                    <label>Incomplete</label>
+                </value>
+                <value>
                     <fullName>Received</fullName>
                     <default>false</default>
                     <label>Received</label>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                    <label>In Review</label>
                 </value>
                 <value>
                     <fullName>Waitlist</fullName>
@@ -135,19 +150,9 @@
                     <label>Deny</label>
                 </value>
                 <value>
-                    <fullName>In Review</fullName>
-                    <default>false</default>
-                    <label>In Review</label>
-                </value>
-                <value>
                     <fullName>Deferred Offer</fullName>
                     <default>false</default>
                     <label>Deferred Offer</label>
-                </value>
-                <value>
-                    <fullName>Incomplete</fullName>
-                    <default>false</default>
-                    <label>Incomplete</label>
                 </value>
                 <value>
                     <fullName>Accepted Offer</fullName>
@@ -158,11 +163,6 @@
                     <fullName>Declined Offer</fullName>
                     <default>false</default>
                     <label>Declined Offer</label>
-                </value>
-                <value>
-                    <fullName>Submitted</fullName>
-                    <default>false</default>
-                    <label>Submitted</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -187,6 +187,11 @@
                     <label>Undergrad</label>
                 </value>
                 <value>
+                    <fullName>Transfer</fullName>
+                    <default>false</default>
+                    <label>Transfer</label>
+                </value>
+                <value>
                     <fullName>Graduate</fullName>
                     <default>false</default>
                     <label>Graduate</label>
@@ -195,11 +200,6 @@
                     <fullName>Post-Doc</fullName>
                     <default>false</default>
                     <label>Post-Doc</label>
-                </value>
-                <value>
-                    <fullName>Transfer</fullName>
-                    <default>false</default>
-                    <label>Transfer</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
