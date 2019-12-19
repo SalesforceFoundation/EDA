@@ -792,6 +792,8 @@ private class ACCT_IndividualAccounts_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         Contact con = contacts[0];
+        con.FirstName = 'James';
+        con.LastName = 'Bond';
         insert con;
 
         Account assertAccount = [SELECT Id, RecordType.Name, Name
@@ -801,8 +803,8 @@ private class ACCT_IndividualAccounts_TEST {
 
         Contact con2 = contacts[1];
         con2.AccountId = assertAccount.Id;
-        con2.FirstName = 'Test2';
-        con2.LastName = con.LastName + '2';
+        con2.FirstName = 'John';
+        con2.LastName = 'Legend';
         insert con2;
 
         assertAccount = [SELECT Id, RecordType.Name, Name
@@ -819,7 +821,7 @@ private class ACCT_IndividualAccounts_TEST {
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
-        System.assertEquals('Household', assertAccount.Name);
+        System.assertEquals('James Bond Household', assertAccount.Name);
     }
 
     /*********************************************************************************************************
@@ -1485,6 +1487,7 @@ private class ACCT_IndividualAccounts_TEST {
                                   	   FROM Account
                                        WHERE Id = :requeryInsertedCon.AccountId];
         System.assertEquals('Marvin Johnston, Tyrone Johnston and Crystal Phillips House', requeryFinalAccount.Name);
+
     }
 
     /*********************************************************************************************************
@@ -1530,78 +1533,265 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-    * @description In a multi-currency enabled org, create a contact with different currency than the default one.
-    * Make sure that the account automatically created and the contact have the same currency.
+    * @description Test Method to check if a Contact is marked deceased, the Account name is updated properly.
     */
     @isTest
-    private static void insertContactMultiCurrencyEnabled() {
-        if (UserInfo.isMultiCurrencyOrganization()) {
-            //Test data setup
-            String nonDefaultCurrencyCode = '';
-            String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
-            List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
-            if (nonDefaultCurrencies.size() > 0) {
-                nonDefaultCurrencyCode = (String)nonDefaultCurrencies[0].get('IsoCode');
-            } else {
-                return;
-            }
+    public static void contactMarkedDeceased() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
 
-            UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-                                                        Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+        insert con;
 
-            Contact testContact = UTIL_UnitTestData_TEST.getContact();
-            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
 
-            //Run the logic
-            Test.startTest();
-            insert testContact;
-            Test.stopTest();
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
+        insert con2;
 
-            //Assert the result
-            String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
-            List<Account> resultAccounts = Database.query(qryString);
-            system.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
-            system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
-        }
+        con.Deceased__c = TRUE;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Pens Household', returnAccount.Name);
+
     }
 
     /*********************************************************************************************************
-    * @description In a multi-currency enabled org, update a contact who does not have a related account with different currency than the default one.
-    * Make sure that the account automatically created and the contact have the same currency.
+    * @description Test Method to test if all Contacts associated to the Account are deceased, do not update
+    * the Account's Name to "Household".
     */
     @isTest
-    private static void updateContactWithoutAccountMultiCurrencyEnabled() {
-        if (UserInfo.isMultiCurrencyOrganization()) {
-            //Test data setup
-            String nonDefaultCurrencyCode = '';
-            String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
-            List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
-            if (nonDefaultCurrencies.size() > 0) {
-                nonDefaultCurrencyCode = (String)nonDefaultCurrencies[0].get('IsoCode');
-            } else {
-                return;
-            }
+    public static void deceasedContacts() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
 
-            UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(
-                                                        Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
 
-            Contact testContact = UTIL_UnitTestData_TEST.getContact();           
-            insert testContact;
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
 
-            Account testAccount = [SELECT Id FROM Account LIMIT 1];
-            delete testAccount;
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
+        insert con2;
 
-            //Run the logic
-            Test.startTest();
-            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);            
-            update testContact;
-            Test.stopTest();
+        con2.Deceased__c = TRUE;
+        update con2;
 
-            //Assert the result
-            String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
-            List<Account> resultAccounts = Database.query(qryString);
-            system.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
-            system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
-        }
+        con.Deceased__c = TRUE;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Thomas Household', returnAccount.Name);
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if all Contacts associated to the Account are marked exclude from
+    * Household Name, do not update the Account's Name to "Household".
+    */
+    @isTest
+    public static void contactMarkedExcludedFromHHNaming() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
+        insert con2;
+
+        con.Exclude_from_Household_Name__c = TRUE;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Pens Household', returnAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if a Contact is marked excluded from HH Naming, the Account name is updated properly.
+    */
+    @isTest
+    public static void allContactsMarkedExcludedFromHHNaming() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
+        insert con2;
+
+        con2.Exclude_from_Household_Name__c = TRUE;
+        update con2;
+
+        con.Exclude_from_Household_Name__c = TRUE;
+
+        Test.startTest();
+        update con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Thomas Household', returnAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if the last Contact is deleted should not update the Account name.
+    */
+    @isTest
+    public static void lastContactIsDeleted() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name, RecordTypeId, RecordType.Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
+        insert con2;
+
+        con2.Exclude_from_Household_Name__c = TRUE;
+        update con2;
+
+        Test.startTest();
+        delete con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Thomas Household', returnAccount.Name);
+
+    }
+
+    /*********************************************************************************************************
+    * @description Test Method to check if one of many Contacts associated to an Account is deleted,
+    * it should update the Account name properly based on the existing Contacts left that's not marked
+    * deceased or exclude from Household naming.
+    */
+    @isTest
+    public static void contactDeleted() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} Household',
+                                                    Automatic_Household_Naming__c = true));
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Thomas';
+		insert con;
+
+        Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id = :con.Id];
+        Account a = [SELECT Id, Name
+                     FROM Account
+                     WHERE Id = :requeryInsertedCon.AccountId];
+
+        Contact con2 = UTIL_UnitTestData_API.getContact();
+        con2.LastName = 'Pens';
+        con2.AccountId = a.Id;
+        insert con2;
+
+        con2.Exclude_from_Household_Name__c = TRUE;
+        update con2;
+
+        Contact con3 = UTIL_UnitTestData_API.getContact();
+        con3.LastName = 'James';
+        con3.AccountId = a.Id;
+        insert con3;
+
+        con3.Deceased__c = TRUE;
+        update con3;
+
+        Contact con4 = UTIL_UnitTestData_API.getContact();
+        con4.LastName = 'Bond';
+        con4.AccountId = a.Id;
+        insert con4;
+
+        Contact con5 = UTIL_UnitTestData_API.getContact();
+        con5.LastName = 'Legend';
+        con5.AccountId = a.Id;
+        insert con5;
+
+        Test.startTest();
+        delete con;
+        Test.stopTest();
+
+        Account returnAccount = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id = :a.Id];
+        System.assertEquals('Bond and Legend Household', returnAccount.Name);
+
     }
 }
