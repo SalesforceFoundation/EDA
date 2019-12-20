@@ -9,7 +9,7 @@
         <value>Applications</value>
     </caseValues>
     <fields>
-        <help><!-- The date and time when the student decides whether to enroll. --></help>
+        <help><!-- The date when the student decides whether to enroll. --></help>
         <label><!-- Applicant Decision Date --></label>
         <name>Applicant_Decision_Date__c</name>
     </fields>
@@ -25,7 +25,7 @@
         <name>Application_Date__c</name>
     </fields>
     <fields>
-        <help><!-- The date and time when the institution decides whether to accept the applicant. --></help>
+        <help><!-- The date when the institution decides whether to accept the applicant. --></help>
         <label><!-- Application Decision Date --></label>
         <name>Application_Decision_Date__c</name>
     </fields>

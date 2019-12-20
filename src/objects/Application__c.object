@@ -54,14 +54,14 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Applicant_Decision_Date__c</fullName>
-        <description>The date and time when the student decides whether to enroll.</description>
+        <description>The date when the student decides whether to enroll.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date and time when the student decides whether to enroll.</inlineHelpText>
+        <inlineHelpText>The date when the student decides whether to enroll.</inlineHelpText>
         <label>Applicant Decision Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>DateTime</type>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Applicant__c</fullName>
@@ -91,14 +91,14 @@
     </fields>
     <fields>
         <fullName>Application_Decision_Date__c</fullName>
-        <description>The date and time when the institution decides whether to accept the applicant.</description>
+        <description>The date when the institution decides whether to accept the applicant.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The date and time when the institution decides whether to accept the applicant.</inlineHelpText>
+        <inlineHelpText>The date when the institution decides whether to accept the applicant.</inlineHelpText>
         <label>Application Decision Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>DateTime</type>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Application_Status__c</fullName>
