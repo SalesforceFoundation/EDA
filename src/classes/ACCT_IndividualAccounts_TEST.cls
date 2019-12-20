@@ -1794,4 +1794,74 @@ private class ACCT_IndividualAccounts_TEST {
         System.assertEquals('Bond and Legend Household', returnAccount.Name);
 
     }
+
+    /*********************************************************************************************************
+    * @description In a multi-currency enabled org, create a contact with different currency than the default one.
+    * Make sure that the account automatically created and the contact have the same currency.
+    */
+    @isTest
+    private static void insertContactMultiCurrencyEnabled() {
+        if (UserInfo.isMultiCurrencyOrganization()) {
+            //Test data setup
+            String nonDefaultCurrencyCode = '';
+            String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
+            List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
+            if (nonDefaultCurrencies.size() > 0) {
+                nonDefaultCurrencyCode = (String)nonDefaultCurrencies[0].get('IsoCode');
+            } else {
+                return;
+            }
+
+            Contact testContact = UTIL_UnitTestData_TEST.getContact();
+            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);
+
+            //Run the logic
+            Test.startTest();
+            insert testContact;
+            Test.stopTest();
+
+            //Assert the result
+            String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
+            List<Account> resultAccounts = Database.query(qryString);
+            system.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
+            system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
+        }
+    }
+
+    /*********************************************************************************************************
+    * @description In a multi-currency enabled org, update a contact who does not have a related account with different currency than the default one.
+    * Make sure that the account automatically created and the contact have the same currency.
+    */
+    @isTest
+    private static void updateContactWithoutAccountMultiCurrencyEnabled() {
+        if (UserInfo.isMultiCurrencyOrganization()) {
+            //Test data setup
+            String nonDefaultCurrencyCode = '';
+            String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
+            List<SObject> nonDefaultCurrencies = Database.query(qryCurrencyTypeString);
+            if (nonDefaultCurrencies.size() > 0) {
+                nonDefaultCurrencyCode = (String)nonDefaultCurrencies[0].get('IsoCode');
+            } else {
+                return;
+            }
+
+            Contact testContact = UTIL_UnitTestData_TEST.getContact();           
+            insert testContact;
+
+            Account testAccount = [SELECT Id FROM Account LIMIT 1];
+            delete testAccount;
+
+            //Run the logic
+            Test.startTest();
+            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);            
+            update testContact;
+            Test.stopTest();
+
+            //Assert the result
+            String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
+            List<Account> resultAccounts = Database.query(qryString);
+            system.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
+            system.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'), 'The currency between contact and account mismatch.');
+        }
+    }
 }
