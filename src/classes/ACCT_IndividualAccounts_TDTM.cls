@@ -606,6 +606,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     Advancement_Info.getApiHEDA().configAccountForContact(a);
                 }
 
+                //Update account's currency with contact's if multi-currency is enabled for an org
+                if (UserInfo.isMultiCurrencyOrganization()) {
+                    a.put('CurrencyIsoCode', (String)c.get('CurrencyIsoCode'));
+                }
+
                 accountInserts.add(a);
                 contactsWithNewAccount.add(c);
             }
