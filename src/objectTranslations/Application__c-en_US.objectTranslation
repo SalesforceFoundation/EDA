@@ -83,10 +83,6 @@
             <translation><!-- Graduate --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Post-Doc</masterLabel>
-            <translation><!-- Post-Doc --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Transfer</masterLabel>
             <translation><!-- Transfer --></translation>
         </picklistValues>

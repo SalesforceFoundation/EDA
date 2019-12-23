@@ -187,11 +187,6 @@
                     <label>Graduate</label>
                 </value>
                 <value>
-                    <fullName>Post-Doc</fullName>
-                    <default>false</default>
-                    <label>Post-Doc</label>
-                </value>
-                <value>
                     <fullName>Transfer</fullName>
                     <default>false</default>
                     <label>Transfer</label>
