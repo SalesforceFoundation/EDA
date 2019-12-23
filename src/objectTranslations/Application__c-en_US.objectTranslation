@@ -17,7 +17,7 @@
         <help><!-- The Contact applying to the institution or program. --></help>
         <label><!-- Applicant --></label>
         <name>Applicant__c</name>
-        <relationshipLabel><!-- Applications --></relationshipLabel>
+        <relationshipLabel><!-- Applications (Applicant) --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- The date and time when the application was submitted. --></help>

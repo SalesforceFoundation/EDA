@@ -43,7 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -71,7 +71,7 @@
         <inlineHelpText>The Contact applying to the institution or program.</inlineHelpText>
         <label>Applicant</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Applications</relationshipLabel>
+        <relationshipLabel>Applications (Applicant)</relationshipLabel>
         <relationshipName>Applications</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -113,31 +113,11 @@
         <valueSet>
             <restricted>true</restricted>
             <valueSetDefinition>
-                <sorted>false</sorted>
+                <sorted>true</sorted>
                 <value>
-                    <fullName>Submitted</fullName>
+                    <fullName>Accepted Offer</fullName>
                     <default>false</default>
-                    <label>Submitted</label>
-                </value>
-                <value>
-                    <fullName>Incomplete</fullName>
-                    <default>false</default>
-                    <label>Incomplete</label>
-                </value>
-                <value>
-                    <fullName>Received</fullName>
-                    <default>false</default>
-                    <label>Received</label>
-                </value>
-                <value>
-                    <fullName>In Review</fullName>
-                    <default>false</default>
-                    <label>In Review</label>
-                </value>
-                <value>
-                    <fullName>Waitlist</fullName>
-                    <default>false</default>
-                    <label>Waitlist</label>
+                    <label>Accepted Offer</label>
                 </value>
                 <value>
                     <fullName>Admit</fullName>
@@ -145,9 +125,9 @@
                     <label>Admit</label>
                 </value>
                 <value>
-                    <fullName>Deny</fullName>
+                    <fullName>Declined Offer</fullName>
                     <default>false</default>
-                    <label>Deny</label>
+                    <label>Declined Offer</label>
                 </value>
                 <value>
                     <fullName>Deferred Offer</fullName>
@@ -155,14 +135,34 @@
                     <label>Deferred Offer</label>
                 </value>
                 <value>
-                    <fullName>Accepted Offer</fullName>
+                    <fullName>Deny</fullName>
                     <default>false</default>
-                    <label>Accepted Offer</label>
+                    <label>Deny</label>
                 </value>
                 <value>
-                    <fullName>Declined Offer</fullName>
+                    <fullName>Incomplete</fullName>
                     <default>false</default>
-                    <label>Declined Offer</label>
+                    <label>Incomplete</label>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                    <label>In Review</label>
+                </value>
+                <value>
+                    <fullName>Received</fullName>
+                    <default>false</default>
+                    <label>Received</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Waitlist</fullName>
+                    <default>false</default>
+                    <label>Waitlist</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -256,7 +256,7 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>App-{0000}</displayFormat>
+        <displayFormat>APP-{0000}</displayFormat>
         <label>Application Name</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
