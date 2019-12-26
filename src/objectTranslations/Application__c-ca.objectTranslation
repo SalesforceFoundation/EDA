@@ -87,8 +87,8 @@
             <translation><!-- Transfer --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Undergrad</masterLabel>
-            <translation><!-- Undergrad --></translation>
+            <masterLabel>Undergraduate</masterLabel>
+            <translation><!-- Undergraduate --></translation>
         </picklistValues>
     </fields>
     <fields>

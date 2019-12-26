@@ -192,9 +192,9 @@
                     <label>Transfer</label>
                 </value>
                 <value>
-                    <fullName>Undergrad</fullName>
+                    <fullName>Undergraduate</fullName>
                     <default>false</default>
-                    <label>Undergrad</label>
+                    <label>Undergraduate</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
