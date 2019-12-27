@@ -29,12 +29,43 @@
     component.set('v.backfillStarted', true);
     var action = component.get("c.getEnqueueCourseConnectionsBackfill");
     action.setCallback(this, function(response) {
-        if(response.getState() === "SUCCESS") {
-          component.set('v.startBackfillMessage', 'Backfill was successfully started.');
-        } else if(response.getState() === "ERROR") {
+      if(response.getState() === "SUCCESS") {
+        component.set('v.startBackfillMessage', 'Backfill was started successfully.');
+        component.set('v.backFillToastIcon', 'success');
+        component.set('v.backFillToastClass', 'slds-notify slds-notify_toast slds-theme_success');
+        var tst = component.find("backFillToast");
+        $A.util.removeClass(tst, "slds-hide");
+        $A.util.addClass(tst, "slds-show");
+        
+        window.setTimeout(
+          $A.getCallback(function() {
+              $A.util.removeClass(tst, "slds-show");
+              $A.util.addClass(tst, "slds-hide");    
+          }), 5000
+        );
+
+      } else if(response.getState() === "ERROR") {
           component.set('v.startBackfillMessage', 'There was an error when starting the backfill.');
-      }
+          component.set('v.backFillToastIcon', 'error');
+          component.set('v.backFillToastClass', 'slds-notify slds-notify_toast slds-theme_error');
+          var tst = component.find("backFillToast");
+          $A.util.removeClass(tst, "slds-hide");
+          $A.util.addClass(tst, "slds-show");
+
+          window.setTimeout(
+            $A.getCallback(function() {
+                $A.util.removeClass(tst, "slds-show");
+                $A.util.addClass(tst, "slds-hide");    
+            }), 5000
+          );
+          
+        }
       });
       $A.enqueueAction(action);
+  },
+  closeBackFillToast: function(component) {
+    var tst = component.find("backFillToast");
+    $A.util.removeClass(tst, "slds-show");
+    $A.util.addClass(tst, "slds-hide");
   },
 })
