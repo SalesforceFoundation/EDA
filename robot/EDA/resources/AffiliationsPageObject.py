@@ -69,7 +69,10 @@ class EDASettingsPage(ListingPage):
         )
 
     def open_item(self, locator, error_message, capture_screen):
-        """ Performs a wait until the element shows on the page, and clicks the element """
+        """ Performs a wait until the element shows on the page, and clicks the element.
+            Pass capture_screen as False to turn off screen capture and True to turn on 
+            screen capture
+        """
         self.selenium.wait_until_page_contains_element(
             locator, 
             timeout=60,
