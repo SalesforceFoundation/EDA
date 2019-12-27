@@ -182,6 +182,8 @@
         <members>TDTM_Relationship</members>
         <members>TDTM_Term</members>
         <members>TDTM_TermGrade</members>
+        <members>TDTM_Test</members>
+        <members>TDTM_Test_Score</members>
         <members>TDTM_TimeBlock</members>
         <members>TDTM_TriggerHandler</members>
         <name>ApexTrigger</name>
@@ -510,6 +512,16 @@
         <members>Term__c.Parent_Term__c</members>
         <members>Term__c.Start_Date__c</members>
         <members>Term__c.Type__c</members>
+        <members>Test_Score__c.Percentile__c</members>
+        <members>Test_Score__c.Score__c</members>
+        <members>Test_Score__c.Subject_Area__c</members>
+        <members>Test_Score__c.Test_Type__c</members>
+        <members>Test_Score__c.Test__c</members>
+        <members>Test__c.Contact__c</members>
+        <members>Test__c.Date_Received__c</members>
+        <members>Test__c.Source__c</members>
+        <members>Test__c.Test_Date__c</members>
+        <members>Test__c.Test_Type__c</members>
         <members>Time_Block__c.Educational_Institution__c</members>
         <members>Time_Block__c.End_Time__c</members>
         <members>Time_Block__c.Start_Time__c</members>
