@@ -84,7 +84,7 @@
         <label>--Cap--</label>
         <name>NoneOption</name>
     </customLabels>
-        <customLabels>
+    <customLabels>
         <label><!-- OnlyCourseConnectionPopulated --></label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
@@ -487,6 +487,14 @@
     <customLabels>
         <label>Contacte amb múltiples adreces activades:</label>
         <name>stgContactMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
         <label>El treball Apex per lots ha processat {0} lots amb {1} errors.</label>

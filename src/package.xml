@@ -648,6 +648,8 @@
         <members>stgColStatus</members>
         <members>stgConfirmReadyRunBackfill</members>
         <members>stgContactMultiAddressesEnabled</members>
+        <members>stgCourseConnBackFillError</members>
+        <members>stgCourseConnBackFillSuccess</members>
         <members>stgCourseDescriptionCopyEmailBody</members>
         <members>stgCourseDescriptionCopyEmailSubject</members>
         <members>stgDefaultContactLanguageFluency</members>

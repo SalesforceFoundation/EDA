@@ -489,6 +489,14 @@
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
         <label>La tâche Apex par lot a traité {0} lots avec {1} échecs.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>

@@ -489,6 +489,14 @@
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
         <label>The batch Apex job processed {0} batches with {1} failures.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
