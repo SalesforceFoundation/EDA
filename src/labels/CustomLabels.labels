@@ -981,7 +981,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>stgCourseConnBackFillSuccess</shortDescription>
-        <value>Backfill was started successfully.</value>
+        <value>The backfill was queued successfully.</value>
     </labels>
     <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
