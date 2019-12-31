@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores information about a student&apos;s application to an educational institution or program.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -255,7 +256,17 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Applications</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Applicant__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applying_To__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Term__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applicant_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Preparer__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
