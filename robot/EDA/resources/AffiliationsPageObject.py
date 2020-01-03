@@ -47,7 +47,6 @@ class EDASettingsPage(ListingPage):
         self.eda.wait_for_locator("frame", "accessibility title")
         self.salesforce.select_frame_with_title("accessibility title")
 
-
     def _check_if_element_exists(self, xpath):
         """ Checks if the given xpath exists """
         elements = int(self.selenium.get_element_count(xpath))
@@ -70,19 +69,16 @@ class EDASettingsPage(ListingPage):
         )
 
     def open_item(self, locator, error_message, capture_screen):
-        """ Performs a wait until the element shows on the page, and clicks the element """
+        """ Performs a wait until the element shows on the page, and clicks the element.
+            Pass capture_screen as False to turn off screen capture and True to turn on 
+            screen capture
+        """
         self.selenium.wait_until_page_contains_element(
             locator, 
             timeout=60,
             error=error_message
         )
-#        self.selenium.click_element(locator)
-
-        self.selenium.driver.execute_script(
-            "arguments[0].click()", 
-            self.selenium.driver.find_element_by_xpath(locator)
-        )
-
+        self.selenium.click_element(locator)
 
         if capture_screen:
             self.selenium.capture_page_screenshot()
@@ -139,20 +135,6 @@ class EDASettingsPage(ListingPage):
 
         self.selenium.click_element(affiliations_locators["button_save_affiliation"])
         self.eda.close_toast_message()
-
-    def _expandShadowRoot(self, element):
-        shadow_root = self.selenium.driver.execute_script('return arguments[0].shadowRoot', element)
-        return shadow_root
-
-
-    def expand_shadow_root(self):
-        root1 = self.selenium.driver.find_element_by_xpath(affiliations_locators["del_xpath_arm"])
-        shadow_root_1 = self._expandShadowRoot(root1)
-        #delete_button = shadow_root_1.find_element_by_css_selector("#delete")
-        #delete_button.click()
-        self.builtin.log("shadow root 1 is:  {} .".format(shadow_root_1))
-
-
 
     def Click_button_on_location(self, button, page):
         """ Select the specified button from the page that is specified """
@@ -263,9 +245,9 @@ class EDASettingsPage(ListingPage):
         # Verify the default values for the checkboxes
         self.selenium.driver.find_element_by_xpath(affiliations_locators["un_ert_validation"])
         self.selenium.driver.find_element_by_xpath(affiliations_locators["un_delete_rec_affl"])
-        self.selenium.driver.find_element_by_xpath(affiliations_locators["un_specify_role_for_c_affl"])
-        self.selenium.driver.find_element_by_xpath(affiliations_locators["un_copy_affl_end_date"])
-        self.selenium.driver.find_element_by_xpath(affiliations_locators["un_copy_affl_start_date"])
+        self.selenium.driver.find_element_by_xpath(affiliations_locators["specify_role_for_c_affl"])
+        self.selenium.driver.find_element_by_xpath(affiliations_locators["copy_affl_end_date"])
+        self.selenium.driver.find_element_by_xpath(affiliations_locators["copy_affl_start_date"])
 
         # Verify the default values for the dropdowns
         self.selenium.driver.find_element_by_xpath(affiliations_locators["affiliations_former"])
@@ -370,65 +352,39 @@ class EDASettingsPage(ListingPage):
     def Clear_everything_on_affiliation_mappings(self):
         """ Clears all values from every field and checkbox on the Affiliation Mappings page """
 
-
         # Academic Program
         self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_academic_program"])
         self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_academic_program"])
-
         self.selenium.clear_element_text(affiliations_locators["art_ap_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_pap_input_affl"])
-        #self.selenium.clear_element_text(affiliations_locators["auto_enroll_academic_program"])
-
-
 
         # Business Organization
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_business_organization"])
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_business_organization"])
         self.selenium.clear_element_text(affiliations_locators["art_bo_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_pbo_input_affl"])
-        #self.selenium.clear_element_text(affiliations_locators["auto_enroll_business_organization"])
 
         # Educational Institution
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_educational_institution"])
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_educational_institution"])
         self.selenium.clear_element_text(affiliations_locators["art_ei_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_pei_input_affl"])
-        #self.selenium.clear_element_text(affiliations_locators["auto_enroll_educational_institution"])
 
         # Household Account
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_household_account"])
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_household_account"])
         self.selenium.clear_element_text(affiliations_locators["art_ha_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_ph_input_affl"])
-        #self.selenium.clear_element_text(affiliations_locators["auto_enroll_household_account"])
 
         # Sports Organization
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_sports_organization"])
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_sports_organization"])
         self.selenium.clear_element_text(affiliations_locators["art_so_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_pso_input_affl"])
-        #self.selenium.clear_element_text(affiliations_locators["auto_enroll_sports_organization"])
 
         # University Department
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_status_university_department"])
-#        self.selenium.clear_element_text(affiliations_locators["auto_enrollment_edit_mode_role_university_department"])
         self.selenium.clear_element_text(affiliations_locators["art_ud_input_affl"])
         self.selenium.clear_element_text(affiliations_locators["paf_pd_input_affl"])
-        #self.selenium.clear_element_text(affiliations_locators["auto_enroll_university_department"])
 
     def Add_text_to_all_text_fields(self):
-        #self.selenium.driver.find_element_by_name('foo').send_keys(Keys.CONTROL + "a");
-        #driver.find_element_by_name('foo').send_keys(Keys.DELETE);
-
-
-
+        """ Add sample text to each text field to verify that populated fields may be saved properly """
         # Academic Program
         self.selenium.driver.find_element_by_xpath(affiliations_locators["art_ap_input_affl_empty"]).send_keys("Academic Program")
         self.selenium.driver.find_element_by_xpath(affiliations_locators["paf_pap_input_affl_empty"]).send_keys("Primary Academic Program")
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ae_em_status_empty"]).send_keys("Current")
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ae_em_role_empty"]).send_keys("Student")
-
-
 
         # Business Organization
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ae_em_bo_empty"]).send_keys("Business Organization")
@@ -460,7 +416,3 @@ class EDASettingsPage(ListingPage):
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ud_aes_em_empty"]).send_keys("22")
         self.selenium.driver.find_element_by_xpath(affiliations_locators["ud_aer_em_empty"]).send_keys("23")
 
-
-    def Remove_mapping(self, locator):
-
-        self.selenium.driver.execute_script("arguments[0].click()", self.selenium.driver.find_element_by_xpath(locator))

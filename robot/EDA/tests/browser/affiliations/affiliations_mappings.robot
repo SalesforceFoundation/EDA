@@ -228,42 +228,6 @@ All checkbox fields can retain unchecked values on save
     Go To Object Home                           Account
     Close all tabs
 
-All mappings can be deleted
-    [tags]                                      unstable
-
-    Current page should be                      Listing                 
-    ...                                         hed__HEDA_Settings
-
-    # Ensure you're on Affiliations > Settings
-    Go to EDA settings    
-    Go to affiliation settings
-
-    ${affl_mappings_tab} =                      Get Eda Locator         eda_settings.affl_mappings_tab
-
-    # Edit the dropdowns - go into Edit mode
-    Click button on location                    Edit                    ${affl_mappings_tab}
-
-
-    #${shadow_root} =                            Get Eda Locator         eda_settings.del_xpath_arm
-    #${shadow_root} =                            expandShadowRoot        del_xpath_arm
-
-    Expand shadow root
-
-    #Open item                                   eda_settings.del_xpath_short
-    #...                                         Cannot find Delete icon for Academic Program mapping
-    #...                                         False
-
-    ${mappings_1} =                             Get Eda Locator         eda_settings.del_xpath_arm
-
-
-#    Remove mapping                              ${mappings_1}
-
-    #Save settings
-    Click button on location                    Save                    ${affl_mappings_tab}
-    Close toast message
-    Go To Object Home                           Account
-    Close all tabs
-
 
 
 *** Keywords ***
