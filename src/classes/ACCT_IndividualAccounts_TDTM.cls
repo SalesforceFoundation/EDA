@@ -166,6 +166,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             dynamicSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
         }
 
+        if (UserInfo.isMultiCurrencyOrganization()) {
+            dynamicSoql += 'CurrencyIsoCode, ';
+        }
+
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
 
         returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
