@@ -234,6 +234,12 @@ public without sharing class TDTM_DefaultConfig {
                 Class__c = 'CCON_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Course_Enrollment__c',
                 Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
 
+        // Prevents deletion of Course Offering when the records have associated child records
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+                Class__c = 'COFF_CannotDelete_TDTM', Load_Order__c = 1, Object__c = 'Course_Offering__c',
+                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeDelete'));
+
         return handlers;
+
     }
 }
