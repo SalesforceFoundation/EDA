@@ -44,7 +44,7 @@ private with sharing class CCON_CannotDelete_TEST {
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
 
-        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(4);
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
         insert contacts;
 
         Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
@@ -52,21 +52,31 @@ private with sharing class CCON_CannotDelete_TEST {
         List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>{
             new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering.Id),
             new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = courseOffering.Id),
-            new Course_Enrollment__c(Contact__c = contacts[2].Id, Course_Offering__c = courseOffering.Id)};
+            new Course_Enrollment__c(Contact__c = contacts[2].Id, Course_Offering__c = courseOffering.Id),
+            new Course_Enrollment__c(Contact__c = contacts[3].Id, Course_Offering__c = courseOffering.Id),
+            new Course_Enrollment__c(Contact__c = contacts[4].Id, Course_Offering__c = courseOffering.Id)};
         insert courseConnections;
 
-        Term_Grade__c termGrade = new Term_Grade__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering.Id, Course_Connection__c = courseConnections[0].Id);
-        Attendance_Event__c attendanceEvent = new Attendance_Event__c(Contact__c = contacts[1].Id, Date__c = System.today(), Course_Connection__c = courseConnections[1].Id);
-        insert new SObject[]{termGrade, attendanceEvent};
+        List<Term_Grade__c> termGrades = new List<Term_Grade__c>{
+            new Term_Grade__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering.Id, Course_Connection__c = courseConnections[0].Id),
+            new Term_Grade__c(Contact__c = contacts[2].Id, Course_Offering__c = courseOffering.Id, Course_Connection__c = courseConnections[2].Id)
+        };
+
+        List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>{
+			new Attendance_Event__c(Contact__c = contacts[1].Id, Date__c = System.today(), Course_Connection__c = courseConnections[1].Id),
+            new Attendance_Event__c(Contact__c = contacts[2].Id, Date__c = System.today(), Course_Connection__c = courseConnections[2].Id)
+        };
+        insert termGrades;
+        insert attendanceEvents;
 
         Test.startTest();
         Database.DeleteResult[] results = Database.delete(courseConnections, false);
         Test.stopTest();
         UTIL_Debug.debug('****Delete results: ' + JSON.serializePretty(results));
 
-        //Verifies only 1 Course Connection was deleted
+        //Verifies only 2 Course Connection was deleted
         List<Course_Enrollment__c> returnCourseConnections = [SELECT Id FROM Course_Enrollment__c WHERE Id in: courseConnections];
-        System.assertEquals(2, returnCourseConnections.size());
+        System.assertEquals(3, returnCourseConnections.size());
 
         //Verifies Course Connection with Term Grade was not deleted
         System.assertEquals(false, results[0].success);
@@ -75,5 +85,53 @@ private with sharing class CCON_CannotDelete_TEST {
         //Verifies Course Connection with Attendance Event was not deleted
         System.assertEquals(false, results[1].success);
         System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
+
+        //Verifies Course Connection with Attendance Event and Term Grade was not deleted.
+        System.assertEquals(false, results[2].success);
+        System.assertEquals(Label.CannotDelete, results[2].errors[0].message);
+
+    }
+
+    @isTest
+    private static void testAllowDeletionOfCourseConnection() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+        																		Prevent_Course_Connection_Deletion__c = false));
+
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
+        insert contacts;
+
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
+
+        List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>{
+            new Course_Enrollment__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering.Id),
+            new Course_Enrollment__c(Contact__c = contacts[1].Id, Course_Offering__c = courseOffering.Id),
+            new Course_Enrollment__c(Contact__c = contacts[2].Id, Course_Offering__c = courseOffering.Id),
+            new Course_Enrollment__c(Contact__c = contacts[3].Id, Course_Offering__c = courseOffering.Id),
+            new Course_Enrollment__c(Contact__c = contacts[4].Id, Course_Offering__c = courseOffering.Id)};
+        insert courseConnections;
+
+        List<Term_Grade__c> termGrades = new List<Term_Grade__c>{
+            new Term_Grade__c(Contact__c = contacts[0].Id, Course_Offering__c = courseOffering.Id, Course_Connection__c = courseConnections[0].Id),
+            new Term_Grade__c(Contact__c = contacts[2].Id, Course_Offering__c = courseOffering.Id, Course_Connection__c = courseConnections[2].Id)
+        };
+
+        List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>{
+			new Attendance_Event__c(Contact__c = contacts[1].Id, Date__c = System.today(), Course_Connection__c = courseConnections[1].Id),
+            new Attendance_Event__c(Contact__c = contacts[2].Id, Date__c = System.today(), Course_Connection__c = courseConnections[2].Id)
+        };
+        insert termGrades;
+        insert attendanceEvents;
+
+        Test.startTest();
+        Database.DeleteResult[] results = Database.delete(courseConnections, false);
+        Test.stopTest();
+        UTIL_Debug.debug('****Delete results: ' + JSON.serializePretty(results));
+
+        //Verifies only all Course Connections were deleted
+        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id FROM Course_Enrollment__c WHERE Id in: courseConnections];
+        System.assertEquals(0, returnCourseConnections.size());
     }
 }
