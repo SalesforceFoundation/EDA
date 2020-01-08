@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019, Salesforce.org
+    Copyright (c) 2020, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 */
 /**
 * @author Salesforce.org
-* @date 2019
+* @date 2020
 * @group Course Enrollments
 * @group-content ../../ApexDocContent/CourseEnrollments.htm
 * @description This class prevents the Course Connection record from being deleted if it has any Term Grade or Attendance Event association.
@@ -46,16 +46,16 @@ public with sharing class CCON_CannotDelete_TDTM extends TDTM_Runnable {
      public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
      TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
-        Boolean isCourseConnectionDeletionEnabled = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Connection_Deletion__c;
+        Map<Id, Course_Enrollment__c> oldMap = new Map<Id, Course_Enrollment__c>((List<Course_Enrollment__c>)oldList);
+        Boolean isCConnDeletionPreventionEnabled = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Connection_Deletion__c;
 
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCourseConnectionDeletionEnabled) {
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCConnDeletionPreventionEnabled) {
             for(Course_Enrollment__c ce : [SELECT Id,
                                           (SELECT Id FROM Term_Grades__r LIMIT 1),
                                           (SELECT Id FROM Attendance_Events__r LIMIT 1)
-                                          FROM Course_Enrollment__c WHERE Id in: oldlist]) {
+                                          FROM Course_Enrollment__c WHERE Id IN :oldlist]) {
               if(ce.Term_Grades__r.size() > 0 || ce.Attendance_Events__r.size() > 0) {
-                  Course_Enrollment__c courseEnrollmentInContext = (Course_Enrollment__c)oldmap.get(ce.ID);
+                  Course_Enrollment__c courseEnrollmentInContext = oldmap.get(ce.ID);
                   courseEnrollmentInContext.addError(Label.CannotDelete);
               }
             }
