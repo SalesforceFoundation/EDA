@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019, Salesforce.org
+    Copyright (c) 2020, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 /**
  * @author Salesforce.org
- * @date 2019
+ * @date 2020
  * @group Course Offering
  * @group-content ../../ApexDocContent/CourseOfferings.htm
  * @description This class prevents the Course Offering record from being deleted
@@ -48,10 +48,10 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
 	public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-		Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
-        Boolean isCourseOfferingDeletionEnabled = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
+		Map<Id, Course_Offering__c> oldMap = new Map<Id, Course_Offering__c>((List<Course_Offering__c>)oldList);
+        Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
 
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCourseOfferingDeletionEnabled) {
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCofDeletionPreventionEnabled) {
 			for(Course_Offering__c co : [SELECT Id,
 		                             (SELECT Id FROM Term_Grades__r LIMIT 1),
 									 (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
@@ -59,7 +59,7 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
 		                             FROM Course_Offering__c WHERE Id in : oldlist]) {
 				if(co.Term_Grades__r.size() > 0 || co.Course_Offering_Schedules__r.size() > 0 ||
                   co.Course_Enrollment__r.size() > 0) {
-					Course_Offering__c courseOfferingInContext = (Course_Offering__c)oldmap.get(co.Id);
+					Course_Offering__c courseOfferingInContext = oldmap.get(co.Id);
 					courseOfferingInContext.addError(Label.CannotDelete);
 				}
 			}
