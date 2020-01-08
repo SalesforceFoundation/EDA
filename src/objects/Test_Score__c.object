@@ -89,7 +89,7 @@
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>true</sorted>
+                <sorted>false</sorted>
                 <value>
                     <fullName>Language</fullName>
                     <default>false</default>
@@ -99,11 +99,6 @@
                     <fullName>Mathematics</fullName>
                     <default>false</default>
                     <label>Mathematics</label>
-                </value>
-                <value>
-                    <fullName>Overall</fullName>
-                    <default>false</default>
-                    <label>Overall</label>
                 </value>
                 <value>
                     <fullName>Reading</fullName>
@@ -119,6 +114,11 @@
                     <fullName>Writing</fullName>
                     <default>false</default>
                     <label>Writing</label>
+                </value>
+                <value>
+                    <fullName>Overall</fullName>
+                    <default>false</default>
+                    <label>Overall</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
