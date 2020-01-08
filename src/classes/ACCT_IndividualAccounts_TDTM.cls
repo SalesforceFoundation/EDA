@@ -274,13 +274,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public Map<Id,Id> accIdConIdToUpdate = new Map<Id,Id>();
         public Set<Id> accountIdToRename = new Set<Id>();
 
-        /*******************************************************************************************************
-        * @description Constructor that processes after insert logic.
-        */
         private HandleInsertWrapperLogic() {
             //constructor does nothing
         }
 
+        /*******************************************************************************************************
+        * @description Constructor that processes after insert logic.
+        */
         public void handleInsertData(Contact c) {
             if (c.AccountId != NULL) {
                 //(1) If the Contact is connected to an Account but Primary_Contact__c on Account is NULL
@@ -338,6 +338,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public List<Id> accountIdToUpdate = new List<Id>();
         public List<Contact> contactsChangedLastName = new List<Contact>();
 
+        private HandleUpdateWrapperLogic() {
+            //constructor does nothing
+        }
+
         /*******************************************************************************************************
         * @description Processes after update logic.
         * @param c is a Contact record from trigger new.
@@ -345,11 +349,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
         * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts associated
         * with the Account.
-        */
-        private HandleUpdateWrapperLogic() {
-            //constructor does nothing
-        }
-            
+        */    
         private void handleUpdateData(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {    
             Boolean conAccountIdNotNull = (c.AccountId != NULL);
             Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL);
