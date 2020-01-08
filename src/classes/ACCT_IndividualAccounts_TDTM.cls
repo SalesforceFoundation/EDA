@@ -216,13 +216,23 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-                    insertWrapper = new HandleInsertWrapperLogic(c);
-                }
+                if(insertWrapper == null) {
+                    insertWrapper = new HandleInsertWrapperLogic();
+                } 
+
+                insertWrapper.handleInsertData(c);
+                
+            }
 
             //AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                    updateWrapper = new HandleUpdateWrapperLogic(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
+                if(updateWrapper == null) {
+                    updateWrapper = new HandleUpdateWrapperLogic();
                 }
+
+                updateWrapper.handleUpdateData(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
+                
+            }
             conProcessed += 1;
         }
 
@@ -264,10 +274,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public Map<Id,Id> accIdConIdToUpdate = new Map<Id,Id>();
         public Set<Id> accountIdToRename = new Set<Id>();
 
+        private HandleInsertWrapperLogic() {
+            //constructor does nothing
+        }
+
         /*******************************************************************************************************
         * @description Constructor that processes after insert logic.
         */
-        private HandleInsertWrapperLogic(Contact c) {
+        private void handleInsertData(Contact c) {
             if (c.AccountId != NULL) {
                 //(1) If the Contact is connected to an Account but Primary_Contact__c on Account is NULL
                 if (c.Account.Primary_Contact__c == NULL) {
@@ -324,6 +338,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public List<Id> accountIdToUpdate = new List<Id>();
         public List<Contact> contactsChangedLastName = new List<Contact>();
 
+        private HandleUpdateWrapperLogic() {
+            //constructor does nothing
+        }
+
         /*******************************************************************************************************
         * @description Processes after update logic.
         * @param c is a Contact record from trigger new.
@@ -331,8 +349,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
         * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts associated
         * with the Account.
-        */
-        private HandleUpdateWrapperLogic(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {
+        */    
+        private void handleUpdateData(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {    
             Boolean conAccountIdNotNull = (c.AccountId != NULL);
             Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL);
             Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId);
