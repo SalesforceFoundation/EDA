@@ -1,18 +1,18 @@
 /*
-    Copyright (c) 2019, Salesforce.org
+    Copyright (c) 2020, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of Salesforce.org nor the names of
-      its contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
+ * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ * Neither the name of Salesforce.org nor the names of
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
 
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,40 +26,44 @@
     LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 /**
-* @author Salesforce.org
-* @date 2019
-* @group Course Enrollments
-* @group-content ../../ApexDocContent/CourseEnrollments.htm
-* @description This class prevents the Course Connection record from being deleted if it has any Term Grade or Attendance Event association.
-*/
-public with sharing class CCON_CannotDelete_TDTM extends TDTM_Runnable {
-    /*******************************************************************************************************
-    * @description Stops a Course Connections from being deleted if it has any Attendance Event or Term Grade association.
-    * @param listNew the list of Course Connections from trigger new.
-    * @param listOld the list of Course Connections from trigger old.
-    * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-    * @param objResult the describe for Course Connection
-    * @return dmlWrapper.
-    ********************************************************************************************************/
-     public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
-     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+ * @author Salesforce.org
+ * @date 2020
+ * @group Course Offering
+ * @group-content ../../ApexDocContent/CourseOfferings.htm
+ * @description This class prevents the Course Offering record from being deleted
+ * if it has any associated Term Grades, Course Offering Schedules, and Course Connections.
+ */
+public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
+/*******************************************************************************************************
+ * @description Stops a Course Offering from being deleted
+ * if it has any associated Term Gradesm, Course Offering Schedules, and Course Connections.
+ * @param listNew the list of Course Offering from trigger new.
+ * @param listOld the list of Course Offering from trigger old.
+ * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+ * @param objResult the describe for Course Offering
+ * @return dmlWrapper.
+ ********************************************************************************************************/
+	public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
+    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-        Map<ID, SObject> oldmap = new Map<ID, SObject>(oldlist);
-        Boolean isCourseConnectionDeletionEnabled = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Connection_Deletion__c;
+		Map<Id, Course_Offering__c> oldMap = new Map<Id, Course_Offering__c>((List<Course_Offering__c>)oldList);
+        Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
 
-        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCourseConnectionDeletionEnabled) {
-            for(Course_Enrollment__c ce : [SELECT Id,
-                                          (SELECT Id FROM Term_Grades__r LIMIT 1),
-                                          (SELECT Id FROM Attendance_Events__r LIMIT 1)
-                                          FROM Course_Enrollment__c WHERE Id in: oldlist]) {
-              if(ce.Term_Grades__r.size() > 0 || ce.Attendance_Events__r.size() > 0) {
-                  Course_Enrollment__c courseEnrollmentInContext = (Course_Enrollment__c)oldmap.get(ce.ID);
-                  courseEnrollmentInContext.addError(Label.CannotDelete);
-              }
-            }
-         }
-      return new DmlWrapper();
-    }
+        if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCofDeletionPreventionEnabled) {
+			for(Course_Offering__c co : [SELECT Id,
+		                             (SELECT Id FROM Term_Grades__r LIMIT 1),
+									 (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
+                                     (SELECT Id FROM Course_Enrollment__r  LIMIT 1)
+		                             FROM Course_Offering__c WHERE Id in : oldlist]) {
+				if(co.Term_Grades__r.size() > 0 || co.Course_Offering_Schedules__r.size() > 0 ||
+                  co.Course_Enrollment__r.size() > 0) {
+					Course_Offering__c courseOfferingInContext = oldmap.get(co.Id);
+					courseOfferingInContext.addError(Label.CannotDelete);
+				}
+			}
+		}
+		return new DmlWrapper();
+	}
 }
