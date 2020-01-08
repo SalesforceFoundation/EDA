@@ -281,7 +281,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         /*******************************************************************************************************
         * @description Constructor that processes after insert logic.
         */
-        public void handleInsertData(Contact c) {
+        private void handleInsertData(Contact c) {
             if (c.AccountId != NULL) {
                 //(1) If the Contact is connected to an Account but Primary_Contact__c on Account is NULL
                 if (c.Account.Primary_Contact__c == NULL) {
