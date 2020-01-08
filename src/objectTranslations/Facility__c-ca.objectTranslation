@@ -1,84 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Facility --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Facility --></value>
-    </caseValues>
-    <fields>
-        <help>L&apos;organització responsable de la instal·lació.</help>
-        <label>Compte</label>
-        <name>Account__c</name>
-        <relationshipLabel>Instal·lacions</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El nombre màxim d&apos;ocupants que pot acollir la instal·lació.</help>
-        <label>Capacitat</label>
-        <name>Capacity__c</name>
-    </fields>
-    <fields>
-        <help>Una descripció d’aquesta instal·lació.</help>
-        <label>Descripció</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>El tipus d&apos;instal·lació.</help>
-        <label>Tipus d&apos;instal·lació</label>
-        <name>Facility_Type__c</name>
-        <picklistValues>
-            <masterLabel>Building</masterLabel>
-            <translation>Edifici</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Cafeteria/Food Hall</masterLabel>
-            <translation>Cafeteria/Hall de restauració</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Classroom</masterLabel>
-            <translation>Aula</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Computer Lab</masterLabel>
-            <translation>Aula d&apos;informàtica</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Gymnasium</masterLabel>
-            <translation>Gimnàs</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Health Center</masterLabel>
-            <translation>Centre de salut</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Laboratory</masterLabel>
-            <translation>Laboratori</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Lecture Hall</masterLabel>
-            <translation>Sala de conferències</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Library</masterLabel>
-            <translation>Biblioteca</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Si la instal·lació forma part d’una més gran, s&apos;especifica la instal·lació principal. Per exemple, un edifici pot ser la instal·lació principal d’una classe.</help>
-        <label>Instal·lació principal</label>
-        <name>Parent_Facility__c</name>
-        <relationshipLabel>Instal·lacions</relationshipLabel>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>HEDA Facility Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de la instal·lació</nameFieldLabel>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account__c</name>
+    <help>L'organització responsable de la instal·lació.</help>
+    <relationshipLabel>Instal·lacions</relationshipLabel>
+    <label>Compte</label>
+  </fields>
+  <fields>
+    <name>Capacity__c</name>
+    <help>El nombre màxim d'ocupants que pot acollir la instal·lació.</help>
+    <label>Capacitat</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Una descripció d’aquesta instal·lació.</help>
+    <label>Descripció</label>
+  </fields>
+  <fields>
+    <name>Facility_Type__c</name>
+    <help>El tipus d'instal·lació.</help>
+    <label>Tipus d'instal·lació</label>
+    <picklistValues>
+      <masterLabel>Building</masterLabel>
+      <translation>Edifici</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Cafeteria/Food Hall</masterLabel>
+      <translation>Cafeteria/Hall de restauració</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Classroom</masterLabel>
+      <translation>Aula</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Computer Lab</masterLabel>
+      <translation>Aula d'informàtica</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Gymnasium</masterLabel>
+      <translation>Gimnàs</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Health Center</masterLabel>
+      <translation>Centre de salut</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Laboratory</masterLabel>
+      <translation>Laboratori</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Lecture Hall</masterLabel>
+      <translation>Sala de conferències</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Library</masterLabel>
+      <translation>Biblioteca</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Parent_Facility__c</name>
+    <help>Si la instal·lació forma part d’una més gran, s'especifica la instal·lació principal. Per exemple, un edifici pot ser la instal·lació principal d’una classe.</help>
+    <relationshipLabel>Instal·lacions</relationshipLabel>
+    <label>Instal·lació principal</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Facility Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de la instal·lació</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de la instal·lació</label>
+  </standardFields>
 </CustomObjectTranslation>

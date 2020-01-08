@@ -1,209 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Hierarchy Settings --></value>
-    </caseValues>
-    <fields>
-        <help>ID del tipus de registre predeterminat del compte. Per exemple, si s&apos;especifica Administratiu (el model de compte recomanat), introduïu l&apos;ID del tipus de registre administratiu per a l&apos;objecte Compte.</help>
-        <label>Processador de compte</label>
-        <name>Account_Processor__c</name>
-    </fields>
-    <fields>
-        <help>Els tipus de registres d&apos;aquells comptes que haurien de tenir diverses adreces habilitades.</help>
-        <label>Comptes d&apos;adreces múltiples</label>
-        <name>Accounts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>Els tipus de registres d&apos;aquells comptes que s&apos;han d&apos;eliminar si s&apos;han eliminat tots els contactes derivats.</help>
-        <label>Comptes per esborrar</label>
-        <name>Accounts_to_Delete__c</name>
-    </fields>
-    <fields>
-        <help>Aquesta és la configuració per al format de denominació del compte administratiu.</help>
-        <label>Format de noms del compte administratiu</label>
-        <name>Admin_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>Per emmagatzemar altres paràmetres de denominació per al compte d’administrador</help>
-        <label>Altres paràmetres de noms administratiu</label>
-        <name>Admin_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</help>
-        <label>Tipus de registre del compte administratiu</label>
-        <name>Administrative_Account_Record_Type__c</name>
-    </fields>
-    <fields>
-        <help>L’espai de noms del paquet gestionat de Gestió de registre de regals.</help>
-        <label>Espai de noms de GEM</label>
-        <name>Advancement_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>Si es marca, es produeix un error quan els usuaris omplen un camp principal al Contacte amb un compte el tipus de registre del qual no coincideixi amb el tipus de registre definit a la Configuració EDA. No es crea el registre d’afiliació i no es corregeixen els camps principals del Contacte.</help>
-        <label>Tipus de registre d’afiliació forçat</label>
-        <name>Affiliation_Record_Type_Enforced__c</name>
-    </fields>
-    <fields>
-        <help>Indica si s&apos;ha de definir la data de finalització de l’afiliació creada amb una inscripció de programa. Si està activada, definiu la data de finalització a la data de finalització de la inscripció del programa. Si està desactivada, no especifiqueu la data de finalització de l’afiliació.</help>
-        <label>Copia data fi afili. d&apos;inscrip. programa</label>
-        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Indica si s&apos;ha de definir la data d&apos;inici de l’afiliació creada amb una inscripció de programa. Si està activada, definiu la data d&apos;inici a la data d&apos;inici de la inscripció del programa. Si està desactivada, no especifiqueu la data d&apos;inici de l’afiliació.</help>
-        <label>Copia data inici afili. d&apos;inscrip. progr</label>
-        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>Si la configuració relacionada, Estat afili. en suprimir inscrip. progr, està desactivada, aquest paràmetre especifica el valor que s&apos;ha d&apos;establir per a l&apos;estat de l&apos;afiliació quan se suprimeix la inscripció del programa relacionada.</help>
-        <label>Estat afili. en suprimir inscrip. progr</label>
-        <name>Affl_ProgEnroll_Del_Status__c</name>
-    </fields>
-    <fields>
-        <help>Indica si s&apos;ha de suprimir una afiliació quan se suprimeix la inscripció del programa relacionada. Si l&apos;opció està activada, se suprimeix l’afiliació. Si està desactivada, s&apos;estableix l’estat d’afiliació al valor especificat en la configuració relacionada, Estat afili. en suprimir inscrip. progr.</help>
-        <label>Supr. afili. en suprimir inscrip. progr</label>
-        <name>Affl_ProgEnroll_Del__c</name>
-    </fields>
-    <fields>
-        <help>Si la configuració relacionada, Func. def. afili. en crear inscr. progr., està activada, aquest paràmetre especifica el valor que s&apos;ha d&apos;establir per a la funció de l&apos;afiliació creada amb una inscripció del programa.</help>
-        <label>Funció afilia. en crear inscrip. program</label>
-        <name>Affl_ProgEnroll_Role_Map__c</name>
-    </fields>
-    <fields>
-        <help>Indica si cal especificar una funció per a l’afiliació creada amb una inscripció de programa. Si està activada, definiu la funció d’afiliació amb el valor especificat a la configuració relacionada, Funció afilia. en crear inscrip. program. Si està desactivada, no especifiqueu cap funció.</help>
-        <label>Func. def. afili. en crear inscr. progr.</label>
-        <name>Affl_ProgEnroll_Set_Role__c</name>
-    </fields>
-    <fields>
-        <help>El valor d&apos;estat establert a l’afiliació creada amb una inscripció de programa.</help>
-        <label>Estat afilia. en crear inscrip. programa</label>
-        <name>Affl_ProgEnroll_Status_Map__c</name>
-    </fields>
-    <fields>
-        <help>Les relacions creades automàticament es dedueixen automàticament per evitar que es creïn registres de relacions duplicats entre dos contactes. Marqueu aquesta casella per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</help>
-        <label>Permetre relacions duplicades creades automàticament</label>
-        <name>Allow_AutoCreated_Duplicates__c</name>
-    </fields>
-    <fields>
-        <label>Darrera execució de la comprovació d&apos;errors asíncrons</label>
-        <name>Async_Error_Check_Last_Run__c</name>
-    </fields>
-    <fields>
-        <help>Si es marca, el sistema proporcionarà un nom automàtic per als noms domèstics i per a les salutacions informals i formals.</help>
-        <label>Denominació domèstica automàtica</label>
-        <name>Automatic_Household_Naming__c</name>
-    </fields>
-    <fields>
-        <help>Suport de gestió d&apos;adreces per a contactes.</help>
-        <label>Suport de gestió d&apos;adreces per a contactes.</label>
-        <name>Contacts_Addresses_Enabled__c</name>
-    </fields>
-    <fields>
-        <help>El valor de domini s&apos;estableix automàticament als registres d&apos;idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d&apos;idioma principal en un contacte.</help>
-        <label>Domini predeterminat de l&apos;idioma de contacte</label>
-        <name>Default_Contact_Language_Fluency__c</name>
-    </fields>
-    <fields>
-        <help>Si es marca, el marc de gestió d&apos;errors d&apos;EDA es desactiva.</help>
-        <label>Desactiva el maneig d&apos;errors</label>
-        <name>Disable_Error_Handling__c</name>
-    </fields>
-    <fields>
-        <help>Seleccioneu aquesta casella per desactivar l&apos;aplicació del camp de correu electrònic preferit per a contactes.</help>
-        <label>Desactiva l&apos;aplicació de correu electrònic preferit</label>
-        <name>Disable_Preferred_Email_Enforcement__c</name>
-    </fields>
-    <fields>
-        <help>Seleccioneu aquesta casella per desactivar l&apos;aplicació del camp de telèfon preferit per a contactes.</help>
-        <label>Desactiva l&apos;aplicació de telèfon preferit</label>
-        <name>Disable_Preferred_Phone_Enforcement__c</name>
-    </fields>
-    <fields>
-        <label>Activa les connexions del curs</label>
-        <name>Enable_Course_Connections__c</name>
-    </fields>
-    <fields>
-        <help>Activeu aquesta opció per activar les declaracions de depuració en el codi del paquet gestionat.</help>
-        <label>Activa la depuració</label>
-        <name>Enable_Debug__c</name>
-    </fields>
-    <fields>
-        <help><!-- Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value. --></help>
-        <label><!-- Enable New Preferred Phone Sync --></label>
-        <name>Enable_New_Preferred_Phone_Sync__c</name>
-    </fields>
-    <fields>
-        <help>Marqueu això si voleu que el sistema publiqui notificacions per a determinats tipus d&apos;errors.</help>
-        <label>Notificacions d&apos;errors</label>
-        <name>Error_Notifications_On__c</name>
-    </fields>
-    <fields>
-        <help>Seleccioneu el tipus d&apos;usuari per enviar notificacions.</help>
-        <label>Destinataris notificacions d&apos;errors</label>
-        <name>Error_Notifications_To__c</name>
-    </fields>
-    <fields>
-        <label>Tipus de registre de la facultat</label>
-        <name>Faculty_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Aquesta és la configuració per al format de denominació del compte domèstic.</help>
-        <label>Format de noms del compte domèstic</label>
-        <name>Household_Account_Naming_Format__c</name>
-    </fields>
-    <fields>
-        <help>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</help>
-        <label>Tipus de registre de compte d&apos;adreces de la llar</label>
-        <name>Household_Addresses_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Per emmagatzemar altres paràmetres de denominació per al compte domèstic</help>
-        <label>Altres paràmetres de noms domèstics</label>
-        <name>Household_Other_Name_Setting__c</name>
-    </fields>
-    <fields>
-        <help>Seleccioneu un telèfon preferent desitjat quan s&apos;executi la tasca per lots.</help>
-        <label>Selecció de telèfon preferit</label>
-        <name>Preferred_Phone_Selection__c</name>
-    </fields>
-    <fields>
-        <help>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe, o la inversió de valor, que inverteix el tipus, si escau (&quot;Principal-Derivat&quot; a &quot;Derivat-Principal&quot;)</help>
-        <label>Mètode recíproc</label>
-        <name>Reciprocal_Method__c</name>
-    </fields>
-    <fields>
-        <help>El fet d&apos;omplir aquest valor permetrà que el camp s&apos;ompli a l&apos;hora de crear relacions noves del Visor de relacions (vegeu la descripció per obtenir més informació).</help>
-        <label>Identificador de camp de nom de relació</label>
-        <name>Relationship_Name_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>El fet d&apos;omplir aquest valor permetrà que el camp s&apos;ompli a l&apos;hora de crear relacions noves del Visor de relacions (vegeu la descripció per obtenir més informació).</help>
-        <label>Id. de camp de l&apos;id. de nom de relació</label>
-        <name>Relationship_Name_Id_Field_Id__c</name>
-    </fields>
-    <fields>
-        <help>Si està marcada, els canvis en un camp d&apos;adreça de contacte o de compte actualitzen l&apos;adreça existent, en lloc de crear una nova adreça.</help>
-        <label>Canvi simple d&apos;adreça tractat com a actualització</label>
-        <name>Simple_Address_Change_Treated_as_Update__c</name>
-    </fields>
-    <fields>
-        <help>Marqueu això si voleu que s&apos;emmagatzemin els errors a la base de dades.</help>
-        <label>Errors d&apos;emmagatzematge</label>
-        <name>Store_Errors_On__c</name>
-    </fields>
-    <fields>
-        <label>Tipus de registre d&apos;estudiant</label>
-        <name>Student_RecType__c</name>
-    </fields>
-    <fields>
-        <help>Quan estigui seleccionada aquesta opció, els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si especifiqueu tant un pla de programa com un requisit de pla principal, un missatge d&apos;error evitarà que es desi fins que no se&apos;n seleccioni només un.</help>
-        <label>Valida el pla del programa per als requisits del pla enclavat</label>
-        <name>Validate_Program_Plan_for_Nested_PR__c</name>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account_Processor__c</name>
+    <help>ID del tipus de registre predeterminat del compte. Per exemple, si s'especifica Administratiu (el model de compte recomanat), introduïu l'ID del tipus de registre administratiu per a l'objecte Compte.</help>
+    <label>Processador de compte</label>
+  </fields>
+  <fields>
+    <name>Accounts_Addresses_Enabled__c</name>
+    <help>Els tipus de registres d'aquells comptes que haurien de tenir diverses adreces habilitades.</help>
+    <label>Comptes d'adreces múltiples</label>
+  </fields>
+  <fields>
+    <name>Accounts_to_Delete__c</name>
+    <help>Els tipus de registres d'aquells comptes que s'han d'eliminar si s'han eliminat tots els contactes derivats.</help>
+    <label>Comptes per esborrar</label>
+  </fields>
+  <fields>
+    <name>Admin_Account_Naming_Format__c</name>
+    <help>Aquesta és la configuració per al format de denominació del compte administratiu.</help>
+    <label>Format de noms del compte administratiu</label>
+  </fields>
+  <fields>
+    <name>Admin_Other_Name_Setting__c</name>
+    <help>Per emmagatzemar altres paràmetres de denominació per al compte d’administrador</help>
+    <label>Altres paràmetres de noms administratiu</label>
+  </fields>
+  <fields>
+    <name>Administrative_Account_Record_Type__c</name>
+    <help>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</help>
+    <label>Tipus de registre del compte administratiu</label>
+  </fields>
+  <fields>
+    <name>Advancement_Namespace__c</name>
+    <help>L’espai de noms del paquet gestionat de Gestió de registre de regals.</help>
+    <label>Espai de noms de GEM</label>
+  </fields>
+  <fields>
+    <name>Affiliation_Record_Type_Enforced__c</name>
+    <help>Si es marca, es produeix un error quan els usuaris omplen un camp principal al Contacte amb un compte el tipus de registre del qual no coincideixi amb el tipus de registre definit a la Configuració EDA. No es crea el registre d’afiliació i no es corregeixen els camps principals del Contacte.</help>
+    <label>Tipus de registre d’afiliació forçat</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+    <help>Indica si s'ha de definir la data de finalització de l’afiliació creada amb una inscripció de programa. Si està activada, definiu la data de finalització a la data de finalització de la inscripció del programa. Si està desactivada, no especifiqueu la data de finalització de l’afiliació.</help>
+    <label>Copia data fi afili. d'inscrip. programa</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+    <help>Indica si s'ha de definir la data d'inici de l’afiliació creada amb una inscripció de programa. Si està activada, definiu la data d'inici a la data d'inici de la inscripció del programa. Si està desactivada, no especifiqueu la data d'inici de l’afiliació.</help>
+    <label>Copia data inici afili. d'inscrip. progr</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
+    <help>Si la configuració relacionada, Estat afili. en suprimir inscrip. progr, està desactivada, aquest paràmetre especifica el valor que s'ha d'establir per a l'estat de l'afiliació quan se suprimeix la inscripció del programa relacionada.</help>
+    <label>Estat afili. en suprimir inscrip. progr</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Del__c</name>
+    <help>Indica si s'ha de suprimir una afiliació quan se suprimeix la inscripció del programa relacionada. Si l'opció està activada, se suprimeix l’afiliació. Si està desactivada, s'estableix l’estat d’afiliació al valor especificat en la configuració relacionada, Estat afili. en suprimir inscrip. progr.</help>
+    <label>Supr. afili. en suprimir inscrip. progr</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
+    <help>Si la configuració relacionada, Func. def. afili. en crear inscr. progr., està activada, aquest paràmetre especifica el valor que s'ha d'establir per a la funció de l'afiliació creada amb una inscripció del programa.</help>
+    <label>Funció afilia. en crear inscrip. program</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
+    <help>Indica si cal especificar una funció per a l’afiliació creada amb una inscripció de programa. Si està activada, definiu la funció d’afiliació amb el valor especificat a la configuració relacionada, Funció afilia. en crear inscrip. program. Si està desactivada, no especifiqueu cap funció.</help>
+    <label>Func. def. afili. en crear inscr. progr.</label>
+  </fields>
+  <fields>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
+    <help>El valor d'estat establert a l’afiliació creada amb una inscripció de programa.</help>
+    <label>Estat afilia. en crear inscrip. programa</label>
+  </fields>
+  <fields>
+    <name>Allow_AutoCreated_Duplicates__c</name>
+    <help>Les relacions creades automàticament es dedueixen automàticament per evitar que es creïn registres de relacions duplicats entre dos contactes. Marqueu aquesta casella per desactivar aquest comportament i permetre que es creïn diverses relacions del mateix tipus entre dos Contactes.</help>
+    <label>Permetre relacions duplicades creades automàticament</label>
+  </fields>
+  <fields>
+    <name>Async_Error_Check_Last_Run__c</name>
+    <label>Darrera execució de la comprovació d'errors asíncrons</label>
+  </fields>
+  <fields>
+    <name>Automatic_Household_Naming__c</name>
+    <help>Si es marca, el sistema proporcionarà un nom automàtic per als noms domèstics i per a les salutacions informals i formals.</help>
+    <label>Denominació domèstica automàtica</label>
+  </fields>
+  <fields>
+    <name>Contacts_Addresses_Enabled__c</name>
+    <help>Suport de gestió d'adreces per a contactes.</help>
+    <label>Suport de gestió d'adreces per a contactes.</label>
+  </fields>
+  <fields>
+    <name>Default_Contact_Language_Fluency__c</name>
+    <help>El valor de domini s'estableix automàticament als registres d'idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d'idioma principal en un contacte.</help>
+    <label>Domini predeterminat de l'idioma de contacte</label>
+  </fields>
+  <fields>
+    <name>Disable_Error_Handling__c</name>
+    <help>Si es marca, el marc de gestió d'errors d'EDA es desactiva.</help>
+    <label>Desactiva el maneig d'errors</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
+    <help>Seleccioneu aquesta casella per desactivar l'aplicació del camp de correu electrònic preferit per a contactes.</help>
+    <label>Desactiva l'aplicació de correu electrònic preferit</label>
+  </fields>
+  <fields>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
+    <help>Seleccioneu aquesta casella per desactivar l'aplicació del camp de telèfon preferit per a contactes.</help>
+    <label>Desactiva l'aplicació de telèfon preferit</label>
+  </fields>
+  <fields>
+    <name>Enable_Course_Connections__c</name>
+    <label>Activa les connexions del curs</label>
+  </fields>
+  <fields>
+    <name>Enable_Debug__c</name>
+    <help>Activeu aquesta opció per activar les declaracions de depuració en el codi del paquet gestionat.</help>
+    <label>Activa la depuració</label>
+  </fields>
+  <fields>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
+    <help>Sincronitza el camp del telèfon preferit amb el camp de telèfon estàndard del contacte i valida que el valor del telèfon preferent existeixi i que tingui un valor.</help>
+    <label>Activa la nova funcionalitat de telèfon preferit:</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_On__c</name>
+    <help>Marqueu això si voleu que el sistema publiqui notificacions per a determinats tipus d'errors.</help>
+    <label>Notificacions d'errors</label>
+  </fields>
+  <fields>
+    <name>Error_Notifications_To__c</name>
+    <help>Seleccioneu el tipus d'usuari per enviar notificacions.</help>
+    <label>Destinataris notificacions d'errors</label>
+  </fields>
+  <fields>
+    <name>Faculty_RecType__c</name>
+    <label>Tipus de registre de la facultat</label>
+  </fields>
+  <fields>
+    <name>Household_Account_Naming_Format__c</name>
+    <help>Aquesta és la configuració per al format de denominació del compte domèstic.</help>
+    <label>Format de noms del compte domèstic</label>
+  </fields>
+  <fields>
+    <name>Household_Addresses_RecType__c</name>
+    <help>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</help>
+    <label>Tipus de registre de compte d'adreces de la llar</label>
+  </fields>
+  <fields>
+    <name>Household_Other_Name_Setting__c</name>
+    <help>Per emmagatzemar altres paràmetres de denominació per al compte domèstic</help>
+    <label>Altres paràmetres de noms domèstics</label>
+  </fields>
+  <fields>
+    <name>Preferred_Phone_Selection__c</name>
+    <help>Seleccioneu un telèfon preferent desitjat quan s'executi la tasca per lots.</help>
+    <label>Selecció de telèfon preferit</label>
+  </fields>
+  <fields>
+    <name>Reciprocal_Method__c</name>
+    <help>Determina el mètode utilitzat per generar la relació recíproca. Configuració de la llista que utilitza la configuració personalitzada per sexe, o la inversió de valor, que inverteix el tipus, si escau ("Principal-Derivat" a "Derivat-Principal")</help>
+    <label>Mètode recíproc</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Field_Id__c</name>
+    <help>El fet d'omplir aquest valor permetrà que el camp s'ompli a l'hora de crear relacions noves del Visor de relacions (vegeu la descripció per obtenir més informació).</help>
+    <label>Identificador de camp de nom de relació</label>
+  </fields>
+  <fields>
+    <name>Relationship_Name_Id_Field_Id__c</name>
+    <help>El fet d'omplir aquest valor permetrà que el camp s'ompli a l'hora de crear relacions noves del Visor de relacions (vegeu la descripció per obtenir més informació).</help>
+    <label>Id. de camp de l'id. de nom de relació</label>
+  </fields>
+  <fields>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
+    <help>Si està marcada, els canvis en un camp d'adreça de contacte o de compte actualitzen l'adreça existent, en lloc de crear una nova adreça.</help>
+    <label>Canvi simple d'adreça tractat com a actualització</label>
+  </fields>
+  <fields>
+    <name>Store_Errors_On__c</name>
+    <help>Marqueu això si voleu que s'emmagatzemin els errors a la base de dades.</help>
+    <label>Errors d'emmagatzematge</label>
+  </fields>
+  <fields>
+    <name>Student_RecType__c</name>
+    <label>Tipus de registre d'estudiant</label>
+  </fields>
+  <fields>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
+    <help>Quan estigui seleccionada aquesta opció, els requisits del pla poden especificar un pla del programa o un requisit del pla principal, però no tots dos. Si especifiqueu tant un pla de programa com un requisit de pla principal, un missatge d'error evitarà que es desi fins que no se'n seleccioni només un.</help>
+    <label>Valida el pla del programa per als requisits del pla enclavat</label>
+  </fields>
 </CustomObjectTranslation>

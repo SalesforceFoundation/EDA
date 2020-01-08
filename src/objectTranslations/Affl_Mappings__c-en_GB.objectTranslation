@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Affl Mappings --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Affl Mappings --></value>
-    </caseValues>
-    <fields>
-        <help>The Account Record Type label.</help>
-        <label>Account Record Type</label>
-        <name>Account_Record_Type__c</name>
-    </fields>
-    <fields>
-        <label>Auto Enrolment Role</label>
-        <name>Auto_Program_Enrollment_Role__c</name>
-    </fields>
-    <fields>
-        <label>Auto Enrolment Status</label>
-        <name>Auto_Program_Enrollment_Status__c</name>
-    </fields>
-    <fields>
-        <help>If checked, a Program Enrolment record will be automatically created when the user creates an Affiliation to an Account of this type.</help>
-        <label>Auto Enrolment</label>
-        <name>Auto_Program_Enrollment__c</name>
-    </fields>
-    <fields>
-        <help>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</help>
-        <label>Primary Affl Field</label>
-        <name>Primary_Affl_Field__c</name>
-    </fields>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Account_Record_Type__c</name>
+    <help>The Account Record Type label.</help>
+    <label>Account Record Type</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment_Role__c</name>
+    <label>Auto Enrolment Role</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment_Status__c</name>
+    <label>Auto Enrolment Status</label>
+  </fields>
+  <fields>
+    <name>Auto_Program_Enrollment__c</name>
+    <help>If checked, a Program Enrolment record will be automatically created when the user creates an Affiliation to an Account of this type.</help>
+    <label>Auto Enrolment</label>
+  </fields>
+  <fields>
+    <name>Primary_Affl_Field__c</name>
+    <help>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</help>
+    <label>Primary Affl Field</label>
+  </fields>
 </CustomObjectTranslation>

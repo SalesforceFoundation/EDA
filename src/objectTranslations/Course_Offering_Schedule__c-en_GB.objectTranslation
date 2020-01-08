@@ -1,80 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Course Offering Schedule</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Course Offering Schedules</value>
-    </caseValues>
-    <fields>
-        <help>The Course Offering to which this record belongs.</help>
-        <label>Course Offering</label>
-        <name>Course_Offering__c</name>
-        <relationshipLabel>Course Offering Schedules</relationshipLabel>
-    </fields>
-    <fields>
-        <help>The time of day the Course Offering ends.</help>
-        <label>End Time</label>
-        <name>End_Time__c</name>
-    </fields>
-    <fields>
-        <help>The Facility associated with the Course Offering for the specified time and day of week.</help>
-        <label>Facility</label>
-        <name>Facility__c</name>
-        <relationshipLabel>Course Offering Schedules</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Friday</label>
-        <name>Friday__c</name>
-    </fields>
-    <fields>
-        <label>Monday</label>
-        <name>Monday__c</name>
-    </fields>
-    <fields>
-        <label>Saturday</label>
-        <name>Saturday__c</name>
-    </fields>
-    <fields>
-        <help>The time of day the Course Offering starts.</help>
-        <label>Start Time</label>
-        <name>Start_Time__c</name>
-    </fields>
-    <fields>
-        <label>Sunday</label>
-        <name>Sunday__c</name>
-    </fields>
-    <fields>
-        <label>Thursday</label>
-        <name>Thursday__c</name>
-    </fields>
-    <fields>
-        <help>The Time Block in which this Course Offering is being held.</help>
-        <label>Time Block</label>
-        <name>Time_Block__c</name>
-        <relationshipLabel>Course Offering Schedules</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Tuesday</label>
-        <name>Tuesday__c</name>
-    </fields>
-    <fields>
-        <label>Wednesday</label>
-        <name>Wednesday__c</name>
-    </fields>
-    <layouts>
-        <layout>EDA Course Offering Schedule Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label>Days of Week</label>
-            <section>Days of Week</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Course Offering Schedule Name</nameFieldLabel>
-    <startsWith>Consonant</startsWith>
+  <fields>
+    <name>Course_Offering__c</name>
+    <help>The Course Offering to which this record belongs.</help>
+    <relationshipLabel>Course Offering Schedules</relationshipLabel>
+    <label>Course Offering</label>
+  </fields>
+  <fields>
+    <name>End_Time__c</name>
+    <help>The time of day the Course Offering ends.</help>
+    <label>End Time</label>
+  </fields>
+  <fields>
+    <name>Facility__c</name>
+    <help>The Facility associated with the Course Offering for the specified time and day of week.</help>
+    <relationshipLabel>Course Offering Schedules</relationshipLabel>
+    <label>Facility</label>
+  </fields>
+  <fields>
+    <name>Friday__c</name>
+    <label>Friday</label>
+  </fields>
+  <fields>
+    <name>Monday__c</name>
+    <label>Monday</label>
+  </fields>
+  <fields>
+    <name>Saturday__c</name>
+    <label>Saturday</label>
+  </fields>
+  <fields>
+    <name>Start_Time__c</name>
+    <help>The time of day the Course Offering starts.</help>
+    <label>Start Time</label>
+  </fields>
+  <fields>
+    <name>Sunday__c</name>
+    <label>Sunday</label>
+  </fields>
+  <fields>
+    <name>Thursday__c</name>
+    <label>Thursday</label>
+  </fields>
+  <fields>
+    <name>Time_Block__c</name>
+    <help>The Time Block in which this Course Offering is being held.</help>
+    <relationshipLabel>Course Offering Schedules</relationshipLabel>
+    <label>Time Block</label>
+  </fields>
+  <fields>
+    <name>Tuesday__c</name>
+    <label>Tuesday</label>
+  </fields>
+  <fields>
+    <name>Wednesday__c</name>
+    <label>Wednesday</label>
+  </fields>
+  <layouts>
+    <layout>EDA Course Offering Schedule Layout</layout>
+    <sections>
+      <label>Days of Week</label>
+      <section>Days of Week</section>
+    </sections>
+    <sections>
+      <label>Custom Links</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Course Offering Schedule Name</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Course Offering Schedule Name</label>
+  </standardFields>
+  <startsWith>Consonant</startsWith>
+  <caseValues>
+    <plural>false</plural>
+    <value>Course Offering Schedule</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Course Offering Schedules</value>
+  </caseValues>
 </CustomObjectTranslation>

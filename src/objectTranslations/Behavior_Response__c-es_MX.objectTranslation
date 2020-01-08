@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Behavior_Involvement__c</name>
+    <help>El número generado por el sistema asociado con este evento. Formato: BI-{0000}.</help>
+    <relationshipLabel>Respuestas de comportamiento</relationshipLabel>
+    <label>Implicación de comportamiento</label>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>El destinatario de esta respuesta.</help>
+    <label>Contacto</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Una descripción de la respuesta del comportamiento.</help>
+    <label>Descripción</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La fecha cuando finaliza la respuesta.</help>
+    <label>Fecha de Finalización</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>La fecha cuando se inicia la respuesta.</help>
+    <label>Fecha de Inicio</label>
+  </fields>
+  <fields>
+    <name>Status__c</name>
+    <help>El estado de la respuesta realizada.</help>
+    <label>Estado</label>
+    <picklistValues>
+      <masterLabel>Completed</masterLabel>
+      <translation>Completado</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>In Progress</masterLabel>
+      <translation>En curso</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Postponed</masterLabel>
+      <translation>Pospuesto</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Otro</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Type__c</name>
+    <help>El tipo de la respuesta realizada.</help>
+    <label>Tipo</label>
+    <picklistValues>
+      <masterLabel>Academic Probation</masterLabel>
+      <translation>Periodo de prueba académico</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Expulsion</masterLabel>
+      <translation>Expulsión</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Otro</translation>
+    </picklistValues>
+  </fields>
+  <layouts>
+    <layout>EDA Behavior Response Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de respuesta de comportamiento</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de respuesta de comportamiento</label>
+  </standardFields>
+</CustomObjectTranslation>

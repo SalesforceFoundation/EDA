@@ -1,102 +1,106 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Controlador de desencadenador</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Controladores de desencadenador</value>
-    </caseValues>
-    <fields>
-        <help>Indica que este módulo es activo</help>
-        <label>Activo</label>
-        <name>Active__c</name>
-    </fields>
-    <fields>
-        <help>Indica que este módulo debe ejecutarse de forma asíncrona en esta transacción</help>
-        <label>Asíncrono</label>
-        <name>Asynchronous__c</name>
-    </fields>
-    <fields>
-        <help>Nombre de la clase para ejecutar</help>
-        <label>Clase</label>
-        <name>Class__c</name>
-    </fields>
-    <fields>
-        <help>Nombre del campo utilizado para el filtrado.</help>
-        <label>Campo de filtro</label>
-        <name>Filter_Field__c</name>
-    </fields>
-    <fields>
-        <help>Valor del campo utilizado para el filtrado.</help>
-        <label>Valor de filtro</label>
-        <name>Filter_Value__c</name>
-    </fields>
-    <fields>
-        <help>Orden en el que se debe ejecutar este módulo, ayuda a mantener dependencias en los módulos y datos.</help>
-        <label>Orden de carga</label>
-        <name>Load_Order__c</name>
-    </fields>
-    <fields>
-        <help>Nombre del objeto para el que se debe ejecutar este controlador</help>
-        <label>Objeto</label>
-        <name>Object__c</name>
-    </fields>
-    <fields>
-        <label>Propiedad de Espacio de nombres</label>
-        <name>Owned_by_Namespace__c</name>
-    </fields>
-    <fields>
-        <help>Acción de desencadenamiento en que se debe desencadenarse este módulo</help>
-        <label>Acción de desencadenamiento</label>
-        <name>Trigger_Action__c</name>
-        <picklistValues>
-            <masterLabel>AfterDelete</masterLabel>
-            <translation>AfterDelete</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterInsert</masterLabel>
-            <translation>AfterInsert</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterUndelete</masterLabel>
-            <translation>AfterUndelete</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>AfterUpdate</masterLabel>
-            <translation>AfterUpdate</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeDelete</masterLabel>
-            <translation>BeforeDelete</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeInsert</masterLabel>
-            <translation>BeforeInsert</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>BeforeUpdate</masterLabel>
-            <translation>BeforeUpdate</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>Selecciónelo si piensa gestionar el registro por sí mismo. Tenga en cuenta que las actualizaciones en el paquete no actualizarán el registro.</help>
-        <label>Usuario gestionado</label>
-        <name>User_Managed__c</name>
-    </fields>
-    <fields>
-        <help>Lista de nombres de usuario de Salesforce separados por punto y coma para los que NO se ejecutará este desencadenador. Dejar en blanco para ejecutar para todos los usuarios.</help>
-        <label>Nombres de usuario para excluir</label>
-        <name>Usernames_to_Exclude__c</name>
-    </fields>
-    <gender>Masculine</gender>
-    <layouts>
-        <layout>HEDA Trigger Handler Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de controlador de desencadenador</nameFieldLabel>
+  <fields>
+    <name>Active__c</name>
+    <help>Indica que este módulo es activo</help>
+    <label>Activo</label>
+  </fields>
+  <fields>
+    <name>Asynchronous__c</name>
+    <help>Indica que este módulo debe ejecutarse de forma asíncrona en esta transacción</help>
+    <label>Asíncrono</label>
+  </fields>
+  <fields>
+    <name>Class__c</name>
+    <help>Nombre de la clase para ejecutar</help>
+    <label>Clase</label>
+  </fields>
+  <fields>
+    <name>Filter_Field__c</name>
+    <help>Nombre del campo utilizado para el filtrado.</help>
+    <label>Campo de filtro</label>
+  </fields>
+  <fields>
+    <name>Filter_Value__c</name>
+    <help>Valor del campo utilizado para el filtrado.</help>
+    <label>Valor de filtro</label>
+  </fields>
+  <fields>
+    <name>Load_Order__c</name>
+    <help>Orden en el que se debe ejecutar este módulo, ayuda a mantener dependencias en los módulos y datos.</help>
+    <label>Orden de carga</label>
+  </fields>
+  <fields>
+    <name>Object__c</name>
+    <help>Nombre del objeto para el que se debe ejecutar este controlador</help>
+    <label>Objeto</label>
+  </fields>
+  <fields>
+    <name>Owned_by_Namespace__c</name>
+    <label>Propiedad de Espacio de nombres</label>
+  </fields>
+  <fields>
+    <name>Trigger_Action__c</name>
+    <help>Acción de desencadenamiento en que se debe desencadenarse este módulo</help>
+    <label>Acción de desencadenamiento</label>
+    <picklistValues>
+      <masterLabel>BeforeInsert</masterLabel>
+      <translation>BeforeInsert</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeUpdate</masterLabel>
+      <translation>BeforeUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>BeforeDelete</masterLabel>
+      <translation>BeforeDelete</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterInsert</masterLabel>
+      <translation>AfterInsert</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUpdate</masterLabel>
+      <translation>AfterUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterDelete</masterLabel>
+      <translation>AfterDelete</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>AfterUndelete</masterLabel>
+      <translation>AfterUndelete</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>User_Managed__c</name>
+    <help>Selecciónelo si piensa gestionar el registro por sí mismo. Tenga en cuenta que las actualizaciones en el paquete no actualizarán el registro.</help>
+    <label>Usuario gestionado</label>
+  </fields>
+  <fields>
+    <name>Usernames_to_Exclude__c</name>
+    <help>Lista de nombres de usuario de Salesforce separados por punto y coma para los que NO se ejecutará este desencadenador. Dejar en blanco para ejecutar para todos los usuarios.</help>
+    <label>Nombres de usuario para excluir</label>
+  </fields>
+  <layouts>
+    <layout>HEDA Trigger Handler Layout</layout>
+    <sections>
+      <label>Vínculos personalizados</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nombre de controlador de desencadenador</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nombre de controlador de desencadenador</label>
+  </standardFields>
+  <gender>Masculine</gender>
+  <caseValues>
+    <plural>false</plural>
+    <value>Controlador de desencadenador</value>
+  </caseValues>
+  <caseValues>
+    <plural>true</plural>
+    <value>Controladores de desencadenador</value>
+  </caseValues>
 </CustomObjectTranslation>

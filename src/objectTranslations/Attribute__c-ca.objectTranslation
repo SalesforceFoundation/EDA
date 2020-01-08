@@ -1,220 +1,214 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value><!-- Attribute --></value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value><!-- Attribute --></value>
-    </caseValues>
-    <fields>
-        <help>L’agència que va proporcionar o certificar la credencial.</help>
-        <label>Agència</label>
-        <name>Agency__c</name>
-        <relationshipLabel>Atributs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>El tipus de credencial o atribut.</help>
-        <label>Tipus d&apos;atribut</label>
-        <name>Attribute_Type__c</name>
-        <picklistValues>
-            <masterLabel>Accommodation</masterLabel>
-            <translation>Allotjament</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Asylee</masterLabel>
-            <translation>Asilat</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Certification</masterLabel>
-            <translation>Certificació</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Economically Disadvantaged</masterLabel>
-            <translation>Desfavorit econòmicament</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Endorsement</masterLabel>
-            <translation>Aprovació</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>English Learners</masterLabel>
-            <translation>Estudiants d&apos;anglès</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Family Consideration</masterLabel>
-            <translation>Consideració familiar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Foster Care</masterLabel>
-            <translation>Acollida temporal</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Free Lunch</masterLabel>
-            <translation>Dinar gratuït</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Homeless</masterLabel>
-            <translation>Sense llar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Immigrant</masterLabel>
-            <translation>Immigrant</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>International Student</masterLabel>
-            <translation>Estudiant internacional</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Licensure</masterLabel>
-            <translation>Llicència</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Altres</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Parent in Military</masterLabel>
-            <translation>Pare o mare militar</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Pregnant</masterLabel>
-            <translation>Embarassada</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Reduced Price Lunch</masterLabel>
-            <translation>Preu de dinar reduït</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Refugee</masterLabel>
-            <translation>Refugiat</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Section 504 Handicapped</masterLabel>
-            <translation>Minusvàlid de secció 504</translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help>El contacte al qual està assignat l&apos;atribut.</help>
-        <label>Contacte</label>
-        <name>Contact__c</name>
-        <relationshipLabel>Atributs</relationshipLabel>
-    </fields>
-    <fields>
-        <help>Una descripció de la credencial o de l&apos;atribut.</help>
-        <label>Descripció</label>
-        <name>Description__c</name>
-    </fields>
-    <fields>
-        <help>La data en què la credencial o l&apos;atribut caduca o requereix renovació.</help>
-        <label>Data de finalització</label>
-        <name>End_Date__c</name>
-    </fields>
-    <fields>
-        <help>Indica si l&apos;atribut ha caducat. Es comprova automàticament quan la data de finalització de l’atribut és anterior a la data actual.</help>
-        <label>Caducat</label>
-        <name>Expired__c</name>
-    </fields>
-    <fields>
-        <help>Data d’emissió de la credencial o de l&apos;atribut.</help>
-        <label>Data d&apos;inici</label>
-        <name>Start_Date__c</name>
-    </fields>
-    <fields>
-        <help>El contingut o l’àrea temàtica per a què serveix una credencial.</help>
-        <label>Àrea temàtica</label>
-        <name>Subject_Area__c</name>
-        <picklistValues>
-            <masterLabel>Biology</masterLabel>
-            <translation>Biologia</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Career and Technical Education</masterLabel>
-            <translation>Educació tècnica i professional</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Economics</masterLabel>
-            <translation>Economia</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>English Language Arts</masterLabel>
-            <translation>Filologia anglesa</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fine and Performing Arts</masterLabel>
-            <translation>Belles arts i arts escèniques</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Foreign Language</masterLabel>
-            <translation>Llengua estrangera</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>History</masterLabel>
-            <translation>Història</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Life and Physical Sciences</masterLabel>
-            <translation>Ciències socials i naturals</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Mathematics</masterLabel>
-            <translation>Matemàtiques</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation>Altres</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Physical, Health, and Safety Education</masterLabel>
-            <translation>Educació física, sanitària i de seguretat</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Physics</masterLabel>
-            <translation>Física</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Psychology</masterLabel>
-            <translation>Psicologia</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Science</masterLabel>
-            <translation>Ciències</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Social Studies</masterLabel>
-            <translation>Ciències socials</translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sociology</masterLabel>
-            <translation>Sociologia</translation>
-        </picklistValues>
-    </fields>
-    <gender><!-- Feminine --></gender>
-    <layouts>
-        <layout>EDA Credential Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>EDA Student Characteristic Layout</layout>
-        <sections>
-            <label>Enllaços personalitzats</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom de l&apos;atribut</nameFieldLabel>
-    <recordTypes>
-        <description>Permet a les institucions educatives fer un seguiment de les llicències, les certificacions o les aprovacions obtingudes pel personal o pels estudiants.</description>
-        <label>Credencial</label>
-        <name>Credential</name>
-    </recordTypes>
-    <recordTypes>
-        <description>Permet a les institucions educatives fer un seguiment de característiques importants dels estudiants que poden afectar l&apos;educació dels estudiants.</description>
-        <label>Característica de l’alumne</label>
-        <name>Student_Characteristic</name>
-    </recordTypes>
-    <startsWith><!-- Consonant --></startsWith>
+  <fields>
+    <name>Agency__c</name>
+    <help>L’agència que va proporcionar o certificar la credencial.</help>
+    <relationshipLabel>Atributs</relationshipLabel>
+    <label>Agència</label>
+  </fields>
+  <fields>
+    <name>Attribute_Type__c</name>
+    <help>El tipus de credencial o atribut.</help>
+    <label>Tipus d'atribut</label>
+    <picklistValues>
+      <masterLabel>Certification</masterLabel>
+      <translation>Certificació</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Endorsement</masterLabel>
+      <translation>Aprovació</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Licensure</masterLabel>
+      <translation>Llicència</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Accommodation</masterLabel>
+      <translation>Allotjament</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Asylee</masterLabel>
+      <translation>Asilat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Economically Disadvantaged</masterLabel>
+      <translation>Desfavorit econòmicament</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>English Learners</masterLabel>
+      <translation>Estudiants d'anglès</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Family Consideration</masterLabel>
+      <translation>Consideració familiar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Foster Care</masterLabel>
+      <translation>Acollida temporal</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Free Lunch</masterLabel>
+      <translation>Dinar gratuït</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Homeless</masterLabel>
+      <translation>Sense llar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Immigrant</masterLabel>
+      <translation>Immigrant</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>International Student</masterLabel>
+      <translation>Estudiant internacional</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Altres</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Parent in Military</masterLabel>
+      <translation>Pare o mare militar</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Pregnant</masterLabel>
+      <translation>Embarassada</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Reduced Price Lunch</masterLabel>
+      <translation>Preu de dinar reduït</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Refugee</masterLabel>
+      <translation>Refugiat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Section 504 Handicapped</masterLabel>
+      <translation>Minusvàlid de secció 504</translation>
+    </picklistValues>
+  </fields>
+  <fields>
+    <name>Contact__c</name>
+    <help>El contacte al qual està assignat l'atribut.</help>
+    <relationshipLabel>Atributs</relationshipLabel>
+    <label>Contacte</label>
+  </fields>
+  <fields>
+    <name>Description__c</name>
+    <help>Una descripció de la credencial o de l'atribut.</help>
+    <label>Descripció</label>
+  </fields>
+  <fields>
+    <name>End_Date__c</name>
+    <help>La data en què la credencial o l'atribut caduca o requereix renovació.</help>
+    <label>Data de finalització</label>
+  </fields>
+  <fields>
+    <name>Expired__c</name>
+    <help>Indica si l'atribut ha caducat. Es comprova automàticament quan la data de finalització de l’atribut és anterior a la data actual.</help>
+    <label>Caducat</label>
+  </fields>
+  <fields>
+    <name>Start_Date__c</name>
+    <help>Data d’emissió de la credencial o de l'atribut.</help>
+    <label>Data d'inici</label>
+  </fields>
+  <fields>
+    <name>Subject_Area__c</name>
+    <help>El contingut o l’àrea temàtica per a què serveix una credencial.</help>
+    <label>Àrea temàtica</label>
+    <picklistValues>
+      <masterLabel>Biology</masterLabel>
+      <translation>Biologia</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Career and Technical Education</masterLabel>
+      <translation>Educació tècnica i professional</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Economics</masterLabel>
+      <translation>Economia</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>English Language Arts</masterLabel>
+      <translation>Filologia anglesa</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Fine and Performing Arts</masterLabel>
+      <translation>Belles arts i arts escèniques</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Foreign Language</masterLabel>
+      <translation>Llengua estrangera</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>History</masterLabel>
+      <translation>Història</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Life and Physical Sciences</masterLabel>
+      <translation>Ciències socials i naturals</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Mathematics</masterLabel>
+      <translation>Matemàtiques</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Other</masterLabel>
+      <translation>Altres</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Physical, Health, and Safety Education</masterLabel>
+      <translation>Educació física, sanitària i de seguretat</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Physics</masterLabel>
+      <translation>Física</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Psychology</masterLabel>
+      <translation>Psicologia</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Science</masterLabel>
+      <translation>Ciències</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Social Studies</masterLabel>
+      <translation>Ciències socials</translation>
+    </picklistValues>
+    <picklistValues>
+      <masterLabel>Sociology</masterLabel>
+      <translation>Sociologia</translation>
+    </picklistValues>
+  </fields>
+  <recordTypes>
+    <name>Credential</name>
+    <label>Credencial</label>
+    <description>Permet a les institucions educatives fer un seguiment de les llicències, les certificacions o les aprovacions obtingudes pel personal o pels estudiants.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Student_Characteristic</name>
+    <label>Característica de l’alumne</label>
+    <description>Permet a les institucions educatives fer un seguiment de característiques importants dels estudiants que poden afectar l'educació dels estudiants.</description>
+  </recordTypes>
+  <layouts>
+    <layout>EDA Student Characteristic Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <layouts>
+    <layout>EDA Credential Layout</layout>
+    <sections>
+      <label>Enllaços personalitzats</label>
+      <section>Custom Links</section>
+    </sections>
+  </layouts>
+  <nameFieldLabel>Nom de l'atribut</nameFieldLabel>
+  <standardFields>
+    <name>Name</name>
+    <label>Nom de l'atribut</label>
+  </standardFields>
 </CustomObjectTranslation>
