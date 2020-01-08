@@ -1253,6 +1253,51 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test Method to test that bulk update of contact names affect account name
+    */
+    @isTest
+    public static void testBulkUpdateContactNames() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                      (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                        Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
+                                                        Automatic_Household_Naming__c = true));
+        List<Contact> cons = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        insert cons;
+        List<Account> hhAccounts = [SELECT Id, Name FROM Account];
+        System.assertEquals(2, hhAccounts.size(), 'expected number of accounts does not match 2');
+        for(Account a : hhAccounts) {
+            System.assert(a.Name.contains('Contact_forTests'), 'unexpected default account name');
+        }
+
+        Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User adminUser = new User(LastName = 'TestAdmin', Email = 'testAdminUser@emailtest.edatest',
+                                    ProfileId = sysAdminProfileId, isActive = true, UserName = 'testAdminUser@emailtest.edatest',
+                                     Alias = 'tAdmin0', TimeZoneSidKey = 'America/Los_Angeles',
+                                    LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
+        insert adminUser;
+
+        cons[0].FirstName = 'Samantha';
+        cons[0].LastName = 'Smith';
+        cons[0].OwnerId = adminUser.Id;
+
+        cons[1].FirstName = 'Jenny';
+        cons[1].LastName = 'Johnson';
+        cons[1].OwnerId = adminUser.Id;
+
+        Test.startTest();
+        update cons;
+        Test.stopTest();
+        
+        //Account name should now be named for the contact that belongs to it
+        List<Account> johnsonAccount = [SELECT Id, Name FROM Account WHERE Name = 'Jenny Johnson Household'];
+        System.assertEquals(1, johnsonAccount.size(), 'number of accounts after name update does not match expected value of 1');
+        System.assertEquals('Jenny Johnson Household', johnsonAccount[0].Name, 'account name does not match expected name');
+        List<Account> smithAccount = [SELECT Id, Name FROM Account WHERE Name = 'Samantha Smith Household'];
+        System.assertEquals(1, smithAccount.size(), 'number of accounts after name update does not match expected value of 1');
+        System.assertEquals('Samantha Smith Household', smithAccount[0].Name, 'account name does not match expected name');
+    }
+
+    /*********************************************************************************************************
     * @description Test Method to test the handlesAfterDelete() && handleDeleteProcessing() method in ACCT_IndividualAccounts_TDTM
     */
     @isTest
