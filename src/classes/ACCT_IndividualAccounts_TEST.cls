@@ -1178,21 +1178,29 @@ private class ACCT_IndividualAccounts_TEST {
                                                         Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                                                         Automatic_Household_Naming__c = true));
 
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
-        insert acct;
+        List<Account> accts = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getHhAccRecTypeID());
+        insert accts;
 
-        Contact con = UTIL_UnitTestData_API.getContact();
-        con.AccountId = acct.id;
-        insert con;
+        List<Contact> cons = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        cons[0].AccountId = accts[0].Id;
+        cons[1].AccountId = accts[1].Id;
+        insert cons;
 
-        Contact returnedContact = [SELECT Id, FirstName, LastName,
+        List<Contact> returnedContacts = [SELECT Id, FirstName, LastName,
                                   AccountId, Account.Name,
                                   Account.Primary_Contact__c, Account.RecordTypeId
                                   FROM Contact
-                                  WHERE Id = :con.Id];
+                                  WHERE Id IN :cons];
 
-        System.assertNotEquals(NULL, returnedContact.Account.Primary_Contact__c);
-        System.assertEquals(con.FirstName + ' ' + con.LastName + ' ' + 'Household', returnedContact.Account.Name);
+        for (Contact con : returnedContacts) {
+            if (con.Id == cons[0].Id) {
+                System.assertEquals(cons[0].Id, con.Account.Primary_Contact__c);
+                System.assertEquals(cons[0].FirstName + ' ' + cons[0].LastName + ' ' + 'Household', con.Account.Name);
+            } else {
+                System.assertEquals(cons[1].Id, con.Account.Primary_Contact__c);
+                System.assertEquals(cons[1].FirstName + ' ' + cons[1].LastName + ' ' + 'Household', con.Account.Name);
+            }
+        }
     }
 
     /*********************************************************************************************************
@@ -1204,8 +1212,8 @@ private class ACCT_IndividualAccounts_TEST {
                                                       (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                         Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                                                         Automatic_Household_Naming__c = true));
-        Contact con = UTIL_UnitTestData_API.getContact();
-        insert con;
+        List<Contact> cons = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        insert cons;
 
         Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
         User adminUser = new User(LastName = 'TestAdmin', Email = 'testAdminUser@emailtest.edatest',
@@ -1214,22 +1222,34 @@ private class ACCT_IndividualAccounts_TEST {
                                     LocaleSidKey = 'en_US', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'ISO-8859-1');
         insert adminUser;
 
-        con.FirstName = 'Samantha';
-        con.LastName = 'Smith';
-        con.OwnerId = adminUser.Id;
+        cons[0].FirstName = 'Samantha';
+        cons[0].LastName = 'Smith';
+        cons[0].OwnerId = adminUser.Id;
+
+        cons[1].FirstName = 'Samuel';
+        cons[1].LastName = 'Smith';
+        cons[1].OwnerId = adminUser.Id;
 
         Test.startTest();
-        update con;
+        update cons;
         Test.stopTest();
 
-           Contact returnedContact = [SELECT Id, FirstName, LastName,
+        List<Contact> returnedContacts = [SELECT Id, FirstName, LastName,
                                   OwnerId, AccountId, Account.OwnerId,
                                   Account.Name
                                   FROM Contact
-                                  WHERE Id = :con.Id];
+                                  WHERE Id IN :cons];
 
-        System.assertEquals(con.OwnerId, returnedContact.Account.OwnerId);
-        System.assertEquals(con.FirstName + ' ' + con.LastName + ' ' + 'Household', returnedContact.Account.Name);
+        for (Contact con : returnedContacts) {
+            System.assertEquals(adminUser.Id, con.Account.OwnerId);
+            System.assertEquals(adminUser.Id, con.OwnerId);
+
+            if (con.Id == cons[0].Id) {
+                System.assertEquals(cons[0].FirstName + ' ' + cons[0].LastName + ' ' + 'Household', con.Account.Name);
+            } else {
+                System.assertEquals(cons[1].FirstName + ' ' + cons[1].LastName + ' ' + 'Household', con.Account.Name);
+            }
+        }
     }
 
     /*********************************************************************************************************
