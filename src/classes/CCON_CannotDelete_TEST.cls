@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2019, Salesforce.org
+	Copyright (c) 2020, Salesforce.org
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -29,13 +29,20 @@
 */
 /**
 * @author Salesforce.org
-* @date 2019
+* @date 2020
 * @group Course Enrollments
 * @group-content ../../ApexDocContent/CourseEnrollments.htm
 * @description Tests for CCON_CannotDelete_TDTM.
 */
 @isTest
 private with sharing class CCON_CannotDelete_TEST {
+    /*********************************************************************************************************
+    * @description Test method to test the following:
+    * (1) If Prevent_Course_Connection_Deletion__c is enabled in Hierarchy Settings, and a Course Connection
+    * has child records, it should not be deleted.
+    * (2) If Prevent_Course_Connection_Deletion__c is enabled in Hierarchy Settings, and a Course Connection
+    * does not have any child records, it can be deleted.
+    */
     @isTest
     private static void testPreventDeletionCourseConnectionLogic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
@@ -69,12 +76,8 @@ private with sharing class CCON_CannotDelete_TEST {
         termGrades.add(termGrade2);
 
         List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>();
-        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent();
-        attendanceEvent1.Contact__c = contacts[1].Id;
-        attendanceEvent1.Course_Connection__c = courseConnections[1].Id;
-        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent();
-        attendanceEvent2.Contact__c = contacts[2].Id;
-        attendanceEvent2.Course_Connection__c = courseConnections[2].Id;
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[1].Id, courseConnections[1].Id, NULL, NULL);
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[2].Id, courseConnections[2].Id, NULL, NULL);
         attendanceEvents.add(attendanceEvent1);
         attendanceEvents.add(attendanceEvent2);
 
@@ -87,7 +90,9 @@ private with sharing class CCON_CannotDelete_TEST {
 
 
         //Verifies only 2 Course Connection was deleted
-        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id FROM Course_Enrollment__c WHERE Id in: courseConnections];
+        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id
+                                                              FROM Course_Enrollment__c
+                                                              WHERE Id IN :courseConnections];
         System.assertEquals(3, returnCourseConnections.size());
 
         //Verifies Course Connection with Term Grade was not deleted
@@ -104,6 +109,13 @@ private with sharing class CCON_CannotDelete_TEST {
 
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test the following:
+    * (1) If Prevent_Course_Connection_Deletion__c is disabled in Hierarchy Settings, and a Course Connection
+    * has child records, it can be deleted.
+    * (2) If Prevent_Course_Connection_Deletion__c is disabled in Hierarchy Settings, and a Course Connection
+    * does not have any child records, it can be deleted.
+    */
     @isTest
     private static void testAllowDeletionOfCourseConnection() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
@@ -154,7 +166,9 @@ private with sharing class CCON_CannotDelete_TEST {
         Test.stopTest();
 
         //Verifies only all Course Connections were deleted
-        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id FROM Course_Enrollment__c WHERE Id IN :courseConnections];
+        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id
+                                                              FROM Course_Enrollment__c
+                                                              WHERE Id IN :courseConnections];
         System.assertEquals(0, returnCourseConnections.size());
     }
 }
