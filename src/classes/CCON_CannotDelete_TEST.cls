@@ -149,12 +149,8 @@ private with sharing class CCON_CannotDelete_TEST {
         termGrades.add(termGrade2);
 
         List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>();
-        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent();
-        attendanceEvent1.Contact__c = contacts[1].Id;
-        attendanceEvent1.Course_Connection__c = courseConnections[1].Id;
-        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent();
-        attendanceEvent2.Contact__c = contacts[2].Id;
-        attendanceEvent2.Course_Connection__c = courseConnections[2].Id;
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[1].Id, courseConnections[1].Id, NULL, NULL);
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[2].Id, courseConnections[2].Id, NULL, NULL);
         attendanceEvents.add(attendanceEvent1);
         attendanceEvents.add(attendanceEvent2);
 
