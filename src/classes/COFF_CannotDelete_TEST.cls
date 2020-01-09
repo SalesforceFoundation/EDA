@@ -36,6 +36,13 @@
 */
 @isTest
 private with sharing class COFF_CannotDelete_TEST {
+    /*********************************************************************************************************
+    * @description Test method to test the following:
+    * (1) If Prevent_Course_Offering_Deletion__c is enabled in Hierarchy Settings, and a Course Offering
+    * has child records, it cannot be deleted.
+    * (2) If Prevent_Course_Offering_Deletion__c is enabled in Hierarchy Settings, and a Course Offering
+    * does not have any child records, it can be deleted.
+    */
     @isTest
     private static void testPreventCourseOfferingDeletion() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
@@ -121,6 +128,13 @@ private with sharing class COFF_CannotDelete_TEST {
         System.assertEquals(Label.CannotDelete, results[1].errors[0].message);
     }
 
+    /*********************************************************************************************************
+    * @description Test method to test the following:
+    * (1) If Prevent_Course_Offering_Deletion__c is disabled in Hierarchy Settings, and a Course Offering
+    * has child records, it can be deleted.
+    * (2) If Prevent_Course_Offering_Deletion__c is disabled in Hierarchy Settings, and a Course Offering
+    * does not have any child records, it can be deleted.
+    */
     @isTest
     private static void testAllowCourseOfferingDeletion() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
