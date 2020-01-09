@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Applications</value>
+    </caseValues>
+    <fields>
+        <help><!-- The date when the student decides whether to enroll. --></help>
+        <label><!-- Applicant Decision Date --></label>
+        <name>Applicant_Decision_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Contact applying to the institution or program. --></help>
+        <label><!-- Applicant --></label>
+        <name>Applicant__c</name>
+        <relationshipLabel><!-- Applications (Applicant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The date and time when the application was submitted. --></help>
+        <label><!-- Application Date --></label>
+        <name>Application_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date when the institution decides whether to accept the applicant. --></help>
+        <label><!-- Application Decision Date --></label>
+        <name>Application_Decision_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The status of the application review process. --></help>
+        <label><!-- Application Status --></label>
+        <name>Application_Status__c</name>
+        <picklistValues>
+            <masterLabel>Accepted Offer</masterLabel>
+            <translation><!-- Accepted Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Admit</masterLabel>
+            <translation><!-- Admit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined Offer</masterLabel>
+            <translation><!-- Declined Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deferred Offer</masterLabel>
+            <translation><!-- Deferred Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deny</masterLabel>
+            <translation><!-- Deny --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Review</masterLabel>
+            <translation><!-- In Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incomplete</masterLabel>
+            <translation><!-- Incomplete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Received</masterLabel>
+            <translation><!-- Received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waitlist</masterLabel>
+            <translation><!-- Waitlist --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer. --></help>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+        <picklistValues>
+            <masterLabel>Graduate</masterLabel>
+            <translation><!-- Graduate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer</masterLabel>
+            <translation><!-- Transfer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undergraduate</masterLabel>
+            <translation><!-- Undergraduate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The academic program or major the applicant is applying to. --></help>
+        <label><!-- Applying To --></label>
+        <name>Applying_To__c</name>
+        <relationshipLabel><!-- Applications --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The Contact preparing the application. For example, a guardian or a person assisting someone with special needs. --></help>
+        <label><!-- Preparer --></label>
+        <name>Preparer__c</name>
+        <relationshipLabel><!-- Applications (Preparer) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The term when the applicant wants to enroll. --></help>
+        <label><!-- Term --></label>
+        <name>Term__c</name>
+        <relationshipLabel><!-- Applications --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>EDA Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
