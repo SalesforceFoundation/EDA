@@ -1,0 +1,14 @@
+{
+  "orgName": "EDA - Prerelease Beta Test Org",
+  "edition": "Enterprise",
+  "instance": "CS46",
+  "features": ["DevelopmentWave"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    }
+  }
+}
