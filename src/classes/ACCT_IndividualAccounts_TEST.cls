@@ -624,6 +624,7 @@ private class ACCT_IndividualAccounts_TEST {
                                  FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
+		System.debug('TestClass Accountname Check -->' + assertAccount);
 
         Contact con2 = contacts[1];
         con2.AccountId = assertAccount.Id;
@@ -631,19 +632,20 @@ private class ACCT_IndividualAccounts_TEST {
         con2.LastName = con.LastName + '2';
         con2.Exclude_From_Household_Name__c = true;
         insert con2;
+		System.debug('TestClass con2 Check -->' + con2);
 
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
-
+		System.debug('TestClass assertAccount Check -->' + assertAccount);
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
 
         con2.Exclude_From_Household_Name__c = false;
         update con2;
-
+		System.debug('TestClass con2 Check -->' + con2);
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
-
+		System.debug('TestClass assertAccount Check -->' + assertAccount);
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' and ' + con2.FirstName + ' ' + con2.LastName + ' Household', assertAccount.Name);
     }
@@ -795,21 +797,21 @@ private class ACCT_IndividualAccounts_TEST {
         con.FirstName = 'James';
         con.LastName = 'Bond';
         insert con;
-
+		System.debug('testClass contact1 -->' + con);
         Account assertAccount = [SELECT Id, RecordType.Name, Name
                                  FROM Account LIMIT 1];
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' Household', assertAccount.Name);
-
+		System.debug('testClass assertAccount -->' + assertAccount);
         Contact con2 = contacts[1];
         con2.AccountId = assertAccount.Id;
         con2.FirstName = 'John';
         con2.LastName = 'Legend';
         insert con2;
-
+		System.debug('testClass contact2 -->' + con2);
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
-
+		System.debug('testClass assertAccount -->' + assertAccount);
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals(con.FirstName + ' ' + con.LastName + ' and ' + con2.FirstName + ' ' + con2.LastName + ' Household', assertAccount.Name);
 
@@ -818,8 +820,10 @@ private class ACCT_IndividualAccounts_TEST {
         delete con;
         Test.stopTest();
 
+
         assertAccount = [SELECT Id, RecordType.Name, Name
                          FROM Account];
+        System.debug('testClass assertAccount -->' + assertAccount);
         System.assertEquals('Household Account', assertAccount.RecordType.Name);
         System.assertEquals('James Bond Household', assertAccount.Name);
     }
@@ -1287,7 +1291,7 @@ private class ACCT_IndividualAccounts_TEST {
         Test.startTest();
         update cons;
         Test.stopTest();
-        
+
         //Account name should now be named for the contact that belongs to it
         List<Account> johnsonAccount = [SELECT Id, Name FROM Account WHERE Name = 'Jenny Johnson Household'];
         System.assertEquals(1, johnsonAccount.size(), 'number of accounts after name update does not match expected value of 1');
@@ -1564,7 +1568,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!Salutation} {!{!FirstName}} {!LastName} Family',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
 		Contact con = UTIL_UnitTestData_API.getContact();
         con.Salutation = 'Ms.';
@@ -1605,7 +1609,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'Thomas';
@@ -1637,6 +1641,155 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+    * @description Test Method to check if multiple Contacts are marked deceased, Account names are updated
+    * properly.
+    */
+    @isTest
+    public static void contactMarkedDeceasedBulked() {
+         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                                                     Automatic_Household_Naming__c = true));
+
+        List<Contact> newContacts = UTIL_UnitTestData_API.getMultipleTestContacts(50);
+        for (Integer i = 0; i<newContacts.size(); i++) {
+            for (Contact c : newContacts) {
+            	c.FirstName = 'ConFirstName ' + i;
+                c.LastName = 'ConLastName ' + i;
+            }
+        }
+        insert newContacts;
+
+        List<Contact> requeryInsertedCon = [SELECT Id, AccountId, Account.Name
+                                      FROM Contact
+                                      WHERE Id IN :newContacts];
+        System.debug('check1Contact -->' + requeryInsertedCon);
+
+        List<Id> accountIds = new List<Id>();
+
+        for (Contact cAccountId : requeryInsertedCon) {
+            accountIds.add(cAccountId.Id);
+        }
+
+        List<Account> accounts = [SELECT Id, Name
+                                 FROM Account
+                                 WHERE Id IN :accountIds];
+
+        System.debug('checkAccounts -->' + accounts);
+
+        List<Contact> addSecondContacts = new List<Contact>();
+        for (Integer i = 0; i<accounts.size(); i++){
+            Contact con2 = new Contact(
+                AccountId = accounts[i].Id,
+                FirstName = 'ConSecondName ' + i,
+                LastName = 'ConLastName ' + i
+            );
+            addSecondContacts.add(con2);
+        }
+        insert addSecondContacts;
+
+
+        List<Contact> addThirdContacts = new List<Contact>();
+        for (Integer i = 0; i<accounts.size(); i++){
+            Contact con3 = new Contact(
+                AccountId = accounts[i].Id,
+                FirstName = 'ConThirdName ' + i,
+                LastName = 'ConLastName ' + i
+            );
+            addThirdContacts.add(con3);
+        }
+        insert addThirdContacts;
+
+        List<Contact> returnSecondContacts = [SELECT Id, FirstName, Deceased__c
+                                             FROM Contact
+                                             WHERE FirstName LIKE 'ConSecondName%'];
+        for (Contact con : returnSecondContacts) {
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        update returnSecondContacts;
+        Test.stopTest();
+
+
+        List<Account> returnAccounts = [SELECT Id, Name
+                                       FROM Account
+                                       WHERE Id IN :accounts];
+
+        System.debug('returnAccounts check -->' + returnAccounts);
+
+        for (Integer i = 0; i<returnAccounts.size(); i++){
+                String FirstName1= 'ConFirstName ' + i;
+                String FirstName3= 'ConThirdName ' + i;
+                String LastName = 'ConLastName ' + i;
+
+            	System.assertEquals(LastName + ' (' + FirstName1 + ' and ' +
+                					FirstName3 + ') ' + ' Household', returnAccounts[i].Name);
+        }
+
+        List<Contact> returnThirdContacts = [SELECT Id, FirstName, Deceased__c
+                                             FROM Contact
+                                             WHERE FirstName LIKE 'ConThirdName%'];
+        for (Contact conThree : returnThirdContacts) {
+            conThree.Deceased__c = true;
+        }
+
+        update returnThirdContacts;
+
+        List<Account> returnAccounts2 = [SELECT Id, Name
+                                       FROM Account
+                                       WHERE Id IN :accounts];
+
+        System.debug('returnAccounts check -->' + returnAccounts2);
+
+        for (Integer i = 0; i<returnAccounts2.size(); i++){
+                String FirstName1= 'ConFirstName ' + i;
+                String LastName = 'ConLastName ' + i;
+
+            	System.assertEquals(LastName + ' (' + FirstName1 + ') ' + ' Household', returnAccounts[i].Name);
+        }
+    }
+
+    @isTest
+    public static void contactMarkedDeceasedandNonDeceased(){
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                    (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                     Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                                                     Automatic_Household_Naming__c = true));
+
+        List<Contact> newContacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
+        newContacts[0].FirstName = 'Joe';
+        newContacts[0].LastName = 'Wagon';
+        newContacts[1].FirstName = 'Lilian';
+        newContacts[1].LastName = 'Watts';
+        insert newContacts;
+        System.debug('testClass ConCheck -->' + newContacts);
+        List<Contact> requeryInsertedCon = [SELECT Id, FirstName, LastName, AccountId, Account.Name
+                                      		FROM Contact
+                                      		WHERE Id IN :newContacts];
+
+        System.debug('testClass requeryInsertedCon -->' + requeryInsertedCon[0].Account.Name);
+        System.debug('testClass requeryInsertedCon -->' + requeryInsertedCon[1].Account.Name);
+        requeryInsertedCon[0].Deceased__c = true;
+        requeryInsertedCon[1].FirstName = 'Betty';
+
+        Test.startTest();
+        update requeryInsertedCon;
+        Test.stopTest();
+
+        List<Contact> returnContacts = [SELECT Id, AccountId, Account.Name,
+                                        FirstName, LastName
+                                        FROM Contact
+                                        WHERE Id IN :newContacts];
+        System.debug('testClass returnContacts -->' + returnContacts);
+
+        System.assertEquals(returnContacts[0].LastName + ' (' + returnContacts[0].FirstName + ') ' + 'Household',
+                            returnContacts[0].Account.Name);
+        System.assertEquals(returnContacts[1].LastName + ' (' + returnContacts[1].FirstName + ') ' + 'Household',
+                            returnContacts[1].Account.Name);
+    }
+
+    /*********************************************************************************************************
     * @description Test Method to test if all Contacts associated to the Account are deceased, do not update
     * the Account's Name to "Household".
     */
@@ -1645,7 +1798,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'Thomas';
@@ -1687,7 +1840,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'Thomas';
@@ -1726,36 +1879,42 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'Thomas';
 		insert con;
-
+		System.debug('TestClass contact -->' + con);
         Contact requeryInsertedCon = [SELECT Id, AccountId, Account.Name
                                       FROM Contact
                                       WHERE Id = :con.Id];
         Account a = [SELECT Id, Name
                      FROM Account
                      WHERE Id = :requeryInsertedCon.AccountId];
-
+		System.debug('TestClass account -->' + a);
         Contact con2 = UTIL_UnitTestData_API.getContact();
         con2.LastName = 'Pens';
         con2.AccountId = a.Id;
         insert con2;
+		System.debug('TestClass contact2 -->' + con2);
 
         con2.Exclude_from_Household_Name__c = TRUE;
         update con2;
+		System.debug('TestClass contact2 -->' + con2);
+        System.debug('TestClass contact2accountId -->' + con2.AccountId);
+        System.debug('TestClass contact2accountId -->' + a.Name);
 
         con.Exclude_from_Household_Name__c = TRUE;
 
         Test.startTest();
         update con;
+        System.debug('TestClass finalConUpdate -->' + con);
         Test.stopTest();
 
         Account returnAccount = [SELECT Id, Name
                                  FROM Account
                                  WHERE Id = :a.Id];
+        System.debug('TestClass returnAccount -->' + returnAccount);
         System.assertEquals('Thomas Household', returnAccount.Name);
 
     }
@@ -1768,7 +1927,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'Thomas';
@@ -1810,7 +1969,7 @@ private class ACCT_IndividualAccounts_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
                                                     (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
                                                      Household_Account_Naming_Format__c = '{!LastName} Household',
-                                                    Automatic_Household_Naming__c = true));
+                                                     Automatic_Household_Naming__c = true));
 
         Contact con = UTIL_UnitTestData_API.getContact();
         con.LastName = 'Thomas';
@@ -1910,7 +2069,7 @@ private class ACCT_IndividualAccounts_TEST {
                 return;
             }
 
-            Contact testContact = UTIL_UnitTestData_TEST.getContact();           
+            Contact testContact = UTIL_UnitTestData_TEST.getContact();
             insert testContact;
 
             Account testAccount = [SELECT Id FROM Account LIMIT 1];
@@ -1918,7 +2077,7 @@ private class ACCT_IndividualAccounts_TEST {
 
             //Run the logic
             Test.startTest();
-            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);            
+            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);
             update testContact;
             Test.stopTest();
 

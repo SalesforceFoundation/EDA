@@ -86,34 +86,49 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         this.triggerAction = triggerAction;
         DmlWrapper dmlWrapper = new DmlWrapper();
         Id accountId;
+        //List<Id> accountIds = new List<Id>();
+        Map<Id, Integer> accountIdNumOfCons = new Map<Id, Integer>();
 
 
         //Requery Contacts to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterInsert || triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             if (newContacts.size() > 0) {
                 newContacts = queryContacts(newContacts);
-                accountId = retrieveAccountId(newContacts);
+                //accountIdNumOfCons = retrieveAccountId(newContacts);
             }
         }
-
+		System.debug('ACCT_Indiv accountIds -->'  );
         Boolean recursionAfterInsertCheck = triggerActionAfterInsert();
         Boolean recursionAfterUpdateCheck = triggerActionAfterUpdate();
         Boolean recursionAfterDeleteCheck = triggerActionAfterDelete();
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             !recursionAfterInsertCheck) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
+                System.debug('ACCT_Indiv AfterInsert Check -->');
+                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, NULL);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             !recursionAfterUpdateCheck) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountId);
+                System.debug('ACCT_Indiv AfterUpdate Check -->');
+                accountIdNumOfCons = retrieveAccountIds(newContacts);
+                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountIdNumOfCons);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
             !recursionAfterDeleteCheck) {
-                accountId = retrieveAccountId(oldContacts);
-                handlesAfterDelete(oldContacts, accountId);
+                System.debug('ACCT_Indiv AfterDelete Check -->');
+
+                accountIdNumOfCons = retrieveAccountIds(oldContacts);
+                /*for (Id accId : accountIdNumOfCons.keySet()){
+                    for (Contact c : newContacts){
+                        if (c.AccountId == accId){
+                            accountId = accId;
+                        }
+                    }
+                }*/
+
+                handlesAfterDelete(oldContacts, accountIdNumOfCons, accountId);
             }
 
         dmlWrapper = null;
@@ -160,7 +175,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                            'MailingPostalCode, MailingCountry, MailingLatitude, ' +
                            'MailingLongitude, OtherStreet, OtherCity, ' +
                            'OtherState, OtherPostalCode, OtherCountry, ' +
-                           'OtherLatitude, OtherLongitude, Exclude_from_Household_Name__c,';
+                           'OtherLatitude, OtherLongitude, Deceased__c, Exclude_from_Household_Name__c,';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             dynamicSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';
@@ -182,13 +197,30 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param newContacts is a list of Contacts from trigger new.
     * @return Id.
     */
-    private Id retrieveAccountId(List<Contact> newContacts) {
-        Id accountId;
-        for (Contact c : newContacts) {
-            accountId = c.AccountId;
+    private Map<Id, Integer> retrieveAccountIds(List<Contact> newContacts) {
+        System.debug('ACCT_Indiv retrieveAccountId Method -->');
+        Map<Id, Integer> accountIdNumOfCons = new Map<Id, Integer>();
+        List<Id> accountIds = new List<Id>();
+        for (Contact c : newContacts){
+            if (c.AccountId != NULL){
+                accountIds.add(c.AccountId);
+            }
         }
 
-        return accountId;
+        AggregateResult[] groupAccountIdNumOfCon = [SELECT AccountId, Count(Id)
+                                                   FROM Contact
+                                                   WHERE AccountId = :accountIds AND
+                                                   (Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE)
+                                                   Group By AccountId];
+		List<Contact> cons = [SELECT Id, Name, AccountId, Account.Name,Deceased__c, Exclude_from_Household_Name__c FROM Contact
+                             WHERE Id =:newContacts];
+        System.debug('ACCT_Indiv retrieveAccountId cons-->' + cons);
+        for(AggregateResult ar : groupAccountIdNumOfCon){
+            accountIdNumOfCons.put((Id)ar.get('AccountId'), (Integer)ar.get('expr0'));
+        }
+
+        System.debug('ACCT_Indiv retrieveAccountId accountIdNumOfCons -->' + accountIdNumOfCons);
+        return accountIdNumOfCons;
     }
 
     /*******************************************************************************************************
@@ -199,13 +231,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
     * @param accountId is the AccountId of Contact.
     */
-    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Id accountId) {
+    private void handlesAfterInsertUpdate(List<Contact> newContacts, List<Contact> oldContacts, TDTM_Runnable.Action triggerAction, Map<Id, Integer> accountIdNumOfCons) {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
 
-        Integer numOfContactsLeft = checkContactState(accountId);
 
+		//System.debug('ACCT_Indiv handlesAfterInsertUpdate Method -->' + numOfContactsLeft);
         Integer conProcessed = 0;
         for (Contact c : newContacts) {
 
@@ -218,10 +250,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 if(insertWrapper == null) {
                     insertWrapper = new HandleInsertWrapperLogic();
-                } 
-
+                }
+                System.debug('ACCT_Indiv handlesAfterInsertUpdate AfterInsert -->' );
                 insertWrapper.handleInsertData(c);
-                
             }
 
             //AFTER UPDATE
@@ -230,8 +261,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     updateWrapper = new HandleUpdateWrapperLogic();
                 }
 
-                updateWrapper.handleUpdateData(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
-                
+                Integer numOfContactsLeft = 0;
+                if (accountIdNumOfCons.containsKey(c.AccountId)) {
+                    numOfContactsLeft = accountIdNumOfCons.get(c.AccountId);
+                }
+                System.debug('ACCT_Indiv handlesAfterInsertUpdate AfterUpdate -->' );
+                updateWrapper.handleUpdateData(c, oldContacts[conProcessed], triggerAction, accountIdNumOfCons, numOfContactsLeft);
             }
             conProcessed += 1;
         }
@@ -249,6 +284,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Delete, true);
         }
 
+        System.debug('ACCT_Indiv handlesAfterInsertUpdate AfterRecursionSetTrue -->' );
         handleInsertProcessing(insertWrapper, contactsNeedAccounts);
         handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
     }
@@ -258,11 +294,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * marked deceased and excluded from household name.
     * @param accountId is the AccountId of Contact.
     */
-    private Integer checkContactState(Id accountId) {
+    private Integer checkContactState(List<Id> accountIds) {
+        System.debug('ACCT_Indiv checkContactState -->' + accountIds);
         Integer numOfContacts = [SELECT Count()
         						FROM Contact
-                                WHERE AccountId = :accountId
-                                AND Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE];
+                                WHERE AccountId IN :accountIds
+                                AND (Deceased__c != TRUE OR Exclude_from_Household_Name__c != TRUE)];
+
+        System.debug('ACCT_Indiv checkContactState numOfContacts -->' + numOfContacts);
 
         return numOfContacts;
     }
@@ -349,16 +388,19 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
         * @param numOfContactsLeft is an interger that represents the number of non deceased Contacts associated
         * with the Account.
-        */    
-        private void handleUpdateData(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Integer numOfContactsLeft) {    
+        */
+        private void handleUpdateData(Contact c, Contact oldContact, TDTM_Runnable.Action triggerAction, Map<Id, Integer> accountIdNumOfCons, Integer numOfContactsLeft) {
             Boolean conAccountIdNotNull = (c.AccountId != NULL);
             Boolean oldConAccountIdNotNull = (oldContact.AccountId != NULL);
             Boolean conOwnerChanged = (c.OwnerId != oldContact.OwnerId);
             Boolean conLastNameChanged = (c.LastName != oldContact.LastName);
             Boolean conFirstNameChanged = (c.FirstName != oldContact.FirstName);
             Boolean conExcludeFromHHNameChanged = (c.Exclude_from_Household_Name__c != oldContact.Exclude_from_Household_Name__c);
+            Boolean conDeceasedHasChanged = (c.Deceased__c != oldContact.Deceased__c);
 
-            //If Account has changed :  (1) Update the Account's name (2) Move Opportunity
+            System.debug('ACCT_Indiv handleUpdateData Method -->' + numOfContactsLeft);
+
+            //If Account has changed: (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
                 if(conAccountIdNotNull) {
                     accountIdToUpdate.add(c.AccountId);
@@ -394,17 +436,27 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 contactsChangedLastName.add(c);
             }
 
-
-            //If Contact Name or Exclude_from_Household_Name__c value has changed
-            if ((conLastNameChanged ||
-                 conFirstNameChanged ||
-                 conExcludeFromHHNameChanged) &&
+            //If Contact Name or Exclude_from_Household_Name__c or Deceased value has changed
+            if (conAccountIdNotNull && checkHouseholdNaming(c.Account.RecordTypeId)) {
+                System.debug('ACCT_Indiv handleUpdateData 1st If check -->' + numOfContactsLeft);
+                if (((conLastNameChanged || conFirstNameChanged ||
+                      conExcludeFromHHNameChanged || conDeceasedHasChanged) &&
+                 		numOfContactsLeft != 0)
+                   )
+                {
+                    System.debug('ACCT_Indiv handleUpdateData If check -->' + accountIdToRename);
+                	accountIdToRename.add(c.AccountId);
+                    System.debug('ACCT_Indiv handleUpdateData If check -->' + accountIdToRename);
+                }
+            }
+                /*((conLastNameChanged || conFirstNameChanged || conExcludeFromHHNameChanged ) &&
                  numOfContactsLeft != 0 &&
                  conAccountIdNotNull &&
                  checkHouseholdNaming(c.Account.RecordTypeId))
             {
+                System.debug('ACCT_Indiv handleUpdateData NumConCheck Final Check -->' + c);
                 accountIdToRename.add(c.AccountId);
-            }
+            }*/
         }
     }
 
@@ -427,6 +479,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //Updates Household Account name
             if (updateWrapper.accountIdToRename.size() > 0) {
+                System.debug('ACCT_Indiv handleUpdateProcessing accountIdToRename -->');
                 UTIL_ACCT_Naming.updateHHAccountsName(updateWrapper.accountIdToRename);
             }
 
@@ -461,29 +514,35 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     * @param oldContacts is a list of Contacts from trigger old.
     * @param accountId is the AccountId of Contact.
     */
-    private void handlesAfterDelete(List<Contact> oldContacts, Id accountId) {
+    private void handlesAfterDelete(List<Contact> oldContacts, Map<Id, Integer> accountIdNumOfCons, Id accountId) {
         List<Contact> contactAccountDelete = new List<Contact>();
         List<Account> relatedAccounts = new List<Account>();
         Set<Id> accountIdsToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
 
-        Integer numOfContactsLeft = checkContactState(accountId);
-        Id accRecordTypeId = returnAccountRecordTypeId(accountId);
+		Integer numOfContactsLeft = 0;
+        //Id accRecordTypeId;
 
+        System.debug('ACCT_Indiv handlesAfterDelete Method -->' + accountIdNumOfCons);
         for (Contact c : oldContacts) {
-            if (numOfContactsLeft == 0) {
-                if (checkHouseholdNaming(accRecordTypeId)) {
-                    if (c.AccountId != accountId) {
-                    	contactAccountDelete.add(c);
-                    	relatedAccountIds.add(c.AccountId);
-                	}
-                } else {
-                    contactAccountDelete.add(c);
-                	relatedAccountIds.add(c.AccountId);
+            if (c.AccountId != NULL){
+                 System.debug('ACCT_Indiv handlesAfterDelete AccountId -->' + c.AccountId);
+                //accRecordTypeId = c.Account.RecordTypeId;
+                if (accountIdNumOfCons.containsKey(c.AccountId)){
+                    System.debug('ACCT_Indiv handlesAfterDelete accountIdNumOfCons Check -->');
+                    numOfContactsLeft = accountIdNumOfCons.get(c.AccountId);
+                    System.debug('ACCT_Indiv handlesAfterDelete numOfContactsLeft Check -->' + numOfContactsLeft);
                 }
-            } else {
+            }
+
+            if (numOfContactsLeft == 0) {
+            	System.debug('ACCT_Indiv handlesAfterDelete numOfContactsLeft Check -->' + numOfContactsLeft);
                 contactAccountDelete.add(c);
+                System.debug('ACCT_Indiv handlesAfterDelete contactAccountDelete Check -->' + contactAccountDelete);
+            } else {
+                System.debug('ACCT_Indiv handlesAfterDelete numOfContactsLeftNot Check -->' + numOfContactsLeft);
                 relatedAccountIds.add(c.AccountId);
+                System.debug('ACCT_Indiv handlesAfterDelete relatedAccountIds Check -->' + relatedAccountIds);
             }
 
         }
@@ -492,10 +551,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         relatedAccounts = [SELECT Id, RecordTypeID
                            FROM Account
                            WHERE Id IN :relatedAccountIds];
-
+		System.debug('ACCT_Indiv handlesAfterDelete relatedAccountIds Check -->' + relatedAccountIds);
         for (Account account : relatedAccounts) {
+            System.debug('ACCT_Indiv handlesAfterDelete Loop Check -->' + account);
             if (checkHouseholdNaming(account.RecordTypeID)) {
+                System.debug('ACCT_Indiv handlesAfterDelete accountIdsToRename Check -->' + accountIdsToRename);
                 accountIdsToRename.add(account.Id);
+                System.debug('ACCT_Indiv handlesAfterDelete accountIdsToRename Check -->' + accountIdsToRename);
             }
         }
 
@@ -523,6 +585,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
             //Updates Household Account name
             if (accountIdsToRename.size() > 0) {
+                System.debug('ACCT_Indiv handleDeleteProcessing accountIdsToRename -->' + accountIdsToRename);
                 UTIL_ACCT_Naming.updateHHAccountsName(accountIdsToRename);
             }
 
@@ -828,7 +891,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Id> accountIdsUpdate = new list<Id>();
         List<Account> accountsOnContacts = new List<Account>();
         List<SObject> accountsForDeletion = new List<SObject>();
-
+		System.debug('ACCT_Indiv deleteContactAccountsIfEmpty Method -->');
         if (contactAccountDelete.size() == 0) {
             return;
         }
@@ -862,11 +925,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         //Delete the accounts
         if (accountsForDeletion.size() > 0) {
+            System.debug('ACCT_Indiv deleteContactAccountsIfEmpty DEleteACCT -->');
             dmlWrapper.objectsToDelete.addAll(accountsForDeletion);
         }
 
         //Update any HH accounts that just lost a contact
         if (accountIdsUpdate.size() > 0) {
+            System.debug('ACCT_Indiv deleteContactAccountsIfEmpty UpdateACCNAMe -->');
             updateParentAcc(accountIdsUpdate, dmlWrapper);
         }
     }
