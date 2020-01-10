@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Context_Type__c</name>
-    <help>Context en què es generava l'error, si es coneix.</help>
-    <label>Tipus de context</label>
-  </fields>
-  <fields>
-    <name>Datetime__c</name>
-    <help>Data i hora en què s'ha produït l'error</help>
-    <label>Data i hora</label>
-  </fields>
-  <fields>
-    <name>Email_Sent__c</name>
-    <help>Indica si s'ha enviat una notificació per correu electrònic sobre aquest error.</help>
-    <label>Correu electrònic enviat</label>
-  </fields>
-  <fields>
-    <name>Error_Type__c</name>
-    <help>Tipus d'error que s'ha produït</help>
-    <label>Tipus d'error</label>
-  </fields>
-  <fields>
-    <name>Full_Message__c</name>
-    <help>Text complet del missatge d'error</help>
-    <label>Missatge complet</label>
-  </fields>
-  <fields>
-    <name>Object_Type__c</name>
-    <help>Tipus d'objecte en què s'ha produït l'error, si es coneix.</help>
-    <label>Tipus d'objecte</label>
-  </fields>
-  <fields>
-    <name>Posted_in_Chatter__c</name>
-    <help>Indica si l'error s'ha publicat a Chatter.</help>
-    <label>Publicat a Chatter</label>
-  </fields>
-  <fields>
-    <name>Record_URL__c</name>
-    <help>Un enllaç del registre que va provocar l'error, si està disponible.</help>
-    <label>URL del registre</label>
-  </fields>
-  <fields>
-    <name>Stack_Trace__c</name>
-    <help>Seguiment de pila per a l'error llançat, si està disponible en temps d'execució.</help>
-    <label>Seguiment de pila</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Error Layout</layout>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Número d'error</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Número d'error</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Error --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Error --></value>
+    </caseValues>
+    <fields>
+        <help>Context en què es generava l&apos;error, si es coneix.</help>
+        <label>Tipus de context</label>
+        <name>Context_Type__c</name>
+    </fields>
+    <fields>
+        <help>Data i hora en què s&apos;ha produït l&apos;error</help>
+        <label>Data i hora</label>
+        <name>Datetime__c</name>
+    </fields>
+    <fields>
+        <help>Indica si s&apos;ha enviat una notificació per correu electrònic sobre aquest error.</help>
+        <label>Correu electrònic enviat</label>
+        <name>Email_Sent__c</name>
+    </fields>
+    <fields>
+        <help>Tipus d&apos;error que s&apos;ha produït</help>
+        <label>Tipus d&apos;error</label>
+        <name>Error_Type__c</name>
+    </fields>
+    <fields>
+        <help>Text complet del missatge d&apos;error</help>
+        <label>Missatge complet</label>
+        <name>Full_Message__c</name>
+    </fields>
+    <fields>
+        <help>Tipus d&apos;objecte en què s&apos;ha produït l&apos;error, si es coneix.</help>
+        <label>Tipus d&apos;objecte</label>
+        <name>Object_Type__c</name>
+    </fields>
+    <fields>
+        <help>Indica si l&apos;error s&apos;ha publicat a Chatter.</help>
+        <label>Publicat a Chatter</label>
+        <name>Posted_in_Chatter__c</name>
+    </fields>
+    <fields>
+        <help>Un enllaç del registre que va provocar l&apos;error, si està disponible.</help>
+        <label>URL del registre</label>
+        <name>Record_URL__c</name>
+    </fields>
+    <fields>
+        <help>Seguiment de pila per a l&apos;error llançat, si està disponible en temps d&apos;execució.</help>
+        <label>Seguiment de pila</label>
+        <name>Stack_Trace__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Error Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Número d&apos;error</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

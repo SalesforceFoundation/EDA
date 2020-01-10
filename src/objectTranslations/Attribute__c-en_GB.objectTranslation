@@ -1,223 +1,219 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Agency__c</name>
-    <help>The agency that provided or certified the credential.</help>
-    <relationshipLabel>Attributes</relationshipLabel>
-    <label>Agency</label>
-  </fields>
-  <fields>
-    <name>Attribute_Type__c</name>
-    <help>The type of credential or Attribute.</help>
-    <label>Attribute Type</label>
-    <picklistValues>
-      <masterLabel>Certification</masterLabel>
-      <translation>Certification</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Endorsement</masterLabel>
-      <translation>Endorsement</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Licensure</masterLabel>
-      <translation>Licensure</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Accommodation</masterLabel>
-      <translation>Accommodation</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Asylee</masterLabel>
-      <translation>Asylee</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Economically Disadvantaged</masterLabel>
-      <translation>Economically Disadvantaged</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>English Learners</masterLabel>
-      <translation>English Learners</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Family Consideration</masterLabel>
-      <translation>Family Consideration</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Care</masterLabel>
-      <translation>Foster Care</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Free Lunch</masterLabel>
-      <translation>Free Lunch</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Homeless</masterLabel>
-      <translation>Homeless</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Immigrant</masterLabel>
-      <translation>Immigrant</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>International Student</masterLabel>
-      <translation>International Student</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Other</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent in Military</masterLabel>
-      <translation>Parent in Military</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Pregnant</masterLabel>
-      <translation>Pregnant</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Reduced Price Lunch</masterLabel>
-      <translation>Reduced Price Lunch</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Refugee</masterLabel>
-      <translation>Refugee</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Section 504 Handicapped</masterLabel>
-      <translation>Section 504 Handicapped</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>The Contact the Attribute is assigned to.</help>
-    <relationshipLabel>Attributes</relationshipLabel>
-    <label>Contact</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>A description of the credential or Attribute.</help>
-    <label>Description</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>The date when the credential or Attribute expires or requires renewal.</help>
-    <label>End Date</label>
-  </fields>
-  <fields>
-    <name>Expired__c</name>
-    <help>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</help>
-    <label>Expired</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>The issue date for the credential or Attribute.</help>
-    <label>Start Date</label>
-  </fields>
-  <fields>
-    <name>Subject_Area__c</name>
-    <help>The content or subject area that a credential is for.</help>
-    <label>Subject Area</label>
-    <picklistValues>
-      <masterLabel>Biology</masterLabel>
-      <translation>Biology</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Career and Technical Education</masterLabel>
-      <translation>Career and Technical Education</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Economics</masterLabel>
-      <translation>Economics</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>English Language Arts</masterLabel>
-      <translation>English Language Arts</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Fine and Performing Arts</masterLabel>
-      <translation>Fine and Performing Arts</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foreign Language</masterLabel>
-      <translation>Foreign Language</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>History</masterLabel>
-      <translation>History</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Life and Physical Sciences</masterLabel>
-      <translation>Life and Physical Sciences</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mathematics</masterLabel>
-      <translation>Mathematics</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Other</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Physical, Health, and Safety Education</masterLabel>
-      <translation>Physical, Health, and Safety Education</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Physics</masterLabel>
-      <translation>Physics</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Psychology</masterLabel>
-      <translation>Psychology</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Science</masterLabel>
-      <translation>Science</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Social Studies</masterLabel>
-      <translation>Social Studies</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sociology</masterLabel>
-      <translation>Sociology</translation>
-    </picklistValues>
-  </fields>
-  <recordTypes>
-    <name>Credential</name>
-    <label>Credential</label>
-    <description>Allows educational institutions to track licences, certifications, or endorsements earned by staff or students.</description>
-  </recordTypes>
-  <recordTypes>
-    <name>Student_Characteristic</name>
-    <label>Student Characteristic</label>
-    <description>Allows educational institutions to track important student characteristics that might affect students' education.</description>
-  </recordTypes>
-  <layouts>
-    <layout>EDA Student Characteristic Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <layouts>
-    <layout>EDA Credential Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Attribute Name</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Attribute Name</label>
-  </standardFields>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Attribute</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Attributes</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Attribute</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Attributes</value>
+    </caseValues>
+    <fields>
+        <help>The agency that provided or certified the credential.</help>
+        <label>Agency</label>
+        <name>Agency__c</name>
+        <relationshipLabel>Attributes</relationshipLabel>
+    </fields>
+    <fields>
+        <help>The type of credential or Attribute.</help>
+        <label>Attribute Type</label>
+        <name>Attribute_Type__c</name>
+        <picklistValues>
+            <masterLabel>Accommodation</masterLabel>
+            <translation>Accommodation</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asylee</masterLabel>
+            <translation>Asylee</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Certification</masterLabel>
+            <translation>Certification</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economically Disadvantaged</masterLabel>
+            <translation>Economically Disadvantaged</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Endorsement</masterLabel>
+            <translation>Endorsement</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English Learners</masterLabel>
+            <translation>English Learners</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family Consideration</masterLabel>
+            <translation>Family Consideration</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Care</masterLabel>
+            <translation>Foster Care</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Lunch</masterLabel>
+            <translation>Free Lunch</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homeless</masterLabel>
+            <translation>Homeless</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Immigrant</masterLabel>
+            <translation>Immigrant</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International Student</masterLabel>
+            <translation>International Student</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Licensure</masterLabel>
+            <translation>Licensure</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Other</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent in Military</masterLabel>
+            <translation>Parent in Military</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pregnant</masterLabel>
+            <translation>Pregnant</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reduced Price Lunch</masterLabel>
+            <translation>Reduced Price Lunch</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refugee</masterLabel>
+            <translation>Refugee</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Section 504 Handicapped</masterLabel>
+            <translation>Section 504 Handicapped</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>The Contact the Attribute is assigned to.</help>
+        <label>Contact</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Attributes</relationshipLabel>
+    </fields>
+    <fields>
+        <help>A description of the credential or Attribute.</help>
+        <label>Description</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help>The date when the credential or Attribute expires or requires renewal.</help>
+        <label>End Date</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <help>Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date.</help>
+        <label>Expired</label>
+        <name>Expired__c</name>
+    </fields>
+    <fields>
+        <help>The issue date for the credential or Attribute.</help>
+        <label>Start Date</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help>The content or subject area that a credential is for.</help>
+        <label>Subject Area</label>
+        <name>Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>Biology</masterLabel>
+            <translation>Biology</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Career and Technical Education</masterLabel>
+            <translation>Career and Technical Education</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economics</masterLabel>
+            <translation>Economics</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English Language Arts</masterLabel>
+            <translation>English Language Arts</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine and Performing Arts</masterLabel>
+            <translation>Fine and Performing Arts</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign Language</masterLabel>
+            <translation>Foreign Language</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>History</masterLabel>
+            <translation>History</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Life and Physical Sciences</masterLabel>
+            <translation>Life and Physical Sciences</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics</masterLabel>
+            <translation>Mathematics</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Other</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physical, Health, and Safety Education</masterLabel>
+            <translation>Physical, Health, and Safety Education</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physics</masterLabel>
+            <translation>Physics</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Psychology</masterLabel>
+            <translation>Psychology</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation>Science</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Studies</masterLabel>
+            <translation>Social Studies</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sociology</masterLabel>
+            <translation>Sociology</translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Attribute Name</nameFieldLabel>
+    <recordTypes>
+        <description>Allows educational institutions to track licences, certifications, or endorsements earned by staff or students.</description>
+        <label>Credential</label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Allows educational institutions to track important student characteristics that might affect students&apos; education.</description>
+        <label>Student Characteristic</label>
+        <name>Student_Characteristic</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

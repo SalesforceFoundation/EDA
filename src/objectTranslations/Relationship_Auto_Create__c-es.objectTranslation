@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Campaign_Types__c</name>
-    <help>Tipos de campaña aptos para la creación automática de este miembro de campaña. (Estará en blanco para la creación automática de contactos)</help>
-    <label>Tipos de campaña</label>
-  </fields>
-  <fields>
-    <name>Field__c</name>
-    <help>La actualización o inserción de campo que desencadena la creación de esta relación.</help>
-    <label>Campo</label>
-  </fields>
-  <fields>
-    <name>Object__c</name>
-    <help>El objeto con el que está asociada esta relación automática.</help>
-    <label>Objeto</label>
-  </fields>
-  <fields>
-    <name>Relationship_Type__c</name>
-    <help>El tipo de relación a crear entre el objeto base y el objeto de búsqueda. El objeto de búsqueda recibirá la relación recíproca, si una está disponible.</help>
-    <label>Tipo de relación</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Relationship Auto-Create --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Relationship Auto-Create --></value>
+    </caseValues>
+    <fields>
+        <help>Tipos de campaña aptos para la creación automática de este miembro de campaña. (Estará en blanco para la creación automática de contactos)</help>
+        <label>Tipos de campaña</label>
+        <name>Campaign_Types__c</name>
+    </fields>
+    <fields>
+        <help>La actualización o inserción de campo que desencadena la creación de esta relación.</help>
+        <label>Campo</label>
+        <name>Field__c</name>
+    </fields>
+    <fields>
+        <help>El objeto con el que está asociada esta relación automática.</help>
+        <label>Objeto</label>
+        <name>Object__c</name>
+    </fields>
+    <fields>
+        <help>El tipo de relación a crear entre el objeto base y el objeto de búsqueda. El objeto de búsqueda recibirá la relación recíproca, si una está disponible.</help>
+        <label>Tipo de relación</label>
+        <name>Relationship_Type__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
 </CustomObjectTranslation>

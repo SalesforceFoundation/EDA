@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Cursos</relationshipLabel>
-    <label>Departament</label>
-  </fields>
-  <fields>
-    <name>Course_ID__c</name>
-    <label>ID de curs</label>
-  </fields>
-  <fields>
-    <name>Credit_Hours__c</name>
-    <label>Hores del crèdit</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Descripció</label>
-  </fields>
-  <fields>
-    <name>Extended_Description__c</name>
-    <label>Descripció ampliada</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Layout</layout>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom del curs</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom del curs</label>
-  </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Course --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Course --></value>
+    </caseValues>
+    <fields>
+        <label>Departament</label>
+        <name>Account__c</name>
+        <relationshipLabel>Cursos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>ID de curs</label>
+        <name>Course_ID__c</name>
+    </fields>
+    <fields>
+        <label>Hores del crèdit</label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label>Descripció</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Descripció ampliada</label>
+        <name>Extended_Description__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom del curs</nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

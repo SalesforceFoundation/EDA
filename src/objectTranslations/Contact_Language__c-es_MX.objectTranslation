@@ -1,58 +1,54 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>La persona que habla este idioma.</help>
-    <relationshipLabel>Idiomas de contacto</relationshipLabel>
-    <label>Contacto</label>
-  </fields>
-  <fields>
-    <name>Fluency__c</name>
-    <help>La fluidez con la que esta persona habla este idioma.</help>
-    <label>Fluidez</label>
-    <picklistValues>
-      <masterLabel>Fluent</masterLabel>
-      <translation>Fluido</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Intermediate</masterLabel>
-      <translation>Intermedio</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Beginner</masterLabel>
-      <translation>Principiante</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Language__c</name>
-    <help>El idioma asociado con este contacto.</help>
-    <relationshipLabel>Idiomas de contacto</relationshipLabel>
-    <label>Idioma</label>
-  </fields>
-  <fields>
-    <name>Primary_Language__c</name>
-    <help>Indica que es el idioma de elección para este contacto.</help>
-    <label>Idioma principal</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Contact Language Layout</layout>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nombre de idioma de contacto</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nombre de idioma de contacto</label>
-  </standardFields>
-  <gender>Masculine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Idioma de contacto</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Idiomas de contacto</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Idioma de contacto</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Idiomas de contacto</value>
+    </caseValues>
+    <fields>
+        <help>La persona que habla este idioma.</help>
+        <label>Contacto</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Idiomas de contacto</relationshipLabel>
+    </fields>
+    <fields>
+        <help>La fluidez con la que esta persona habla este idioma.</help>
+        <label>Fluidez</label>
+        <name>Fluency__c</name>
+        <picklistValues>
+            <masterLabel>Beginner</masterLabel>
+            <translation>Principiante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fluent</masterLabel>
+            <translation>Fluido</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intermediate</masterLabel>
+            <translation>Intermedio</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>El idioma asociado con este contacto.</help>
+        <label>Idioma</label>
+        <name>Language__c</name>
+        <relationshipLabel>Idiomas de contacto</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Indica que es el idioma de elección para este contacto.</help>
+        <label>Idioma principal</label>
+        <name>Primary_Language__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de idioma de contacto</nameFieldLabel>
 </CustomObjectTranslation>

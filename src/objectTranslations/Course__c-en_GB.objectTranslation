@@ -1,45 +1,41 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Courses</relationshipLabel>
-    <label>Department</label>
-  </fields>
-  <fields>
-    <name>Course_ID__c</name>
-    <label>Course ID</label>
-  </fields>
-  <fields>
-    <name>Credit_Hours__c</name>
-    <label>Credit Hours</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Description</label>
-  </fields>
-  <fields>
-    <name>Extended_Description__c</name>
-    <label>Extended Description</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Course Name</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Course Name</label>
-  </standardFields>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Course</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Courses</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Course</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Courses</value>
+    </caseValues>
+    <fields>
+        <label>Department</label>
+        <name>Account__c</name>
+        <relationshipLabel>Courses</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Course ID</label>
+        <name>Course_ID__c</name>
+    </fields>
+    <fields>
+        <label>Credit Hours</label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label>Description</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Extended Description</label>
+        <name>Extended_Description__c</name>
+    </fields>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Course Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

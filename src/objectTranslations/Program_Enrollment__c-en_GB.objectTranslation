@@ -1,120 +1,116 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>The program the student is enroled in.</help>
-    <relationshipLabel>Program Enrolments</relationshipLabel>
-    <label>Program</label>
-  </fields>
-  <fields>
-    <name>Admission_Date__c</name>
-    <label>Admission Date</label>
-  </fields>
-  <fields>
-    <name>Affiliation__c</name>
-    <help>The Contact-Account relationship this academic information is related to.</help>
-    <relationshipLabel>Program Enrolments</relationshipLabel>
-    <label>Affiliation</label>
-  </fields>
-  <fields>
-    <name>Application_Submitted_Date__c</name>
-    <label>Application Submitted Date</label>
-  </fields>
-  <fields>
-    <name>Class_Standing__c</name>
-    <label>Class Standing</label>
-    <picklistValues>
-      <masterLabel>Freshman</masterLabel>
-      <translation>Freshman</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sophomore</masterLabel>
-      <translation>Sophomore</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Junior</masterLabel>
-      <translation>Junior</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Senior</masterLabel>
-      <translation>Senior</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>The parent Contact.</help>
-    <relationshipLabel>Program Enrolments</relationshipLabel>
-    <label>Contact</label>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <label>Credits Attempted</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <label>Credits Earned</label>
-  </fields>
-  <fields>
-    <name>Eligible_to_Enroll__c</name>
-    <label>Eligible to Enrol</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <label>End Date</label>
-  </fields>
-  <fields>
-    <name>Enrollment_Status__c</name>
-    <label>Enrolment Status</label>
-    <picklistValues>
-      <masterLabel>Full-time</masterLabel>
-      <translation>Full-time</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Half-time</masterLabel>
-      <translation>Half-time</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Less than half-time</masterLabel>
-      <translation>Less than half-time</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA__c</name>
-    <label>GPA</label>
-  </fields>
-  <fields>
-    <name>Graduation_Year__c</name>
-    <label>Class Year</label>
-  </fields>
-  <fields>
-    <name>Program_Plan__c</name>
-    <help>Click to select a Program Plan that a student should follow for this Program Enrolment.</help>
-    <relationshipLabel>Program Enrolments</relationshipLabel>
-    <label>Program Plan</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <label>Start Date</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Program Enrollment Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Program Enrolment ID</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Program Enrolment ID</label>
-  </standardFields>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Program Enrolment</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Program Enrolments</value>
-  </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <value>Program Enrolment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Program Enrolments</value>
+    </caseValues>
+    <fields>
+        <help>The program the student is enroled in.</help>
+        <label>Program</label>
+        <name>Account__c</name>
+        <relationshipLabel>Program Enrolments</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Admission Date</label>
+        <name>Admission_Date__c</name>
+    </fields>
+    <fields>
+        <help>The Contact-Account relationship this academic information is related to.</help>
+        <label>Affiliation</label>
+        <name>Affiliation__c</name>
+        <relationshipLabel>Program Enrolments</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Application Submitted Date</label>
+        <name>Application_Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label>Class Standing</label>
+        <name>Class_Standing__c</name>
+        <picklistValues>
+            <masterLabel>Freshman</masterLabel>
+            <translation>Freshman</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior</masterLabel>
+            <translation>Junior</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior</masterLabel>
+            <translation>Senior</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sophomore</masterLabel>
+            <translation>Sophomore</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>The parent Contact.</help>
+        <label>Contact</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Program Enrolments</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Credits Attempted</label>
+        <name>Credits_Attempted__c</name>
+    </fields>
+    <fields>
+        <label>Credits Earned</label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <label>Eligible to Enrol</label>
+        <name>Eligible_to_Enroll__c</name>
+    </fields>
+    <fields>
+        <label>End Date</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Enrolment Status</label>
+        <name>Enrollment_Status__c</name>
+        <picklistValues>
+            <masterLabel>Full-time</masterLabel>
+            <translation>Full-time</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Half-time</masterLabel>
+            <translation>Half-time</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Less than half-time</masterLabel>
+            <translation>Less than half-time</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>GPA</label>
+        <name>GPA__c</name>
+    </fields>
+    <fields>
+        <label>Class Year</label>
+        <name>Graduation_Year__c</name>
+    </fields>
+    <fields>
+        <help>Click to select a Program Plan that a student should follow for this Program Enrolment.</help>
+        <label>Program Plan</label>
+        <name>Program_Plan__c</name>
+        <relationshipLabel>Program Enrolments</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Start Date</label>
+        <name>Start_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Program Enrolment ID</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
