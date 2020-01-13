@@ -5,12 +5,12 @@
     <name>CustomObject</name>
   </types>
   <types>
-    <members>Contact-cs</members>
+    <members>Contact-ca</members>
     <members>Contact-en_GB</members>
     <members>Contact-es_MX</members>
     <members>Contact-es</members>
     <members>Contact-fr</members>
-    <name>CustomObjectTranslations</name>
+    <name>CustomObjectTranslation</name>
   </types>
   <version>45.0</version>
 </Package>
