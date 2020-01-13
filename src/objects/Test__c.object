@@ -164,7 +164,11 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Tests</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

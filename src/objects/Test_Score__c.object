@@ -59,7 +59,7 @@
         <externalId>false</externalId>
         <inlineHelpText>The percentile ranking for this score.</inlineHelpText>
         <label>Percentile</label>
-        <precision>6</precision>
+        <precision>5</precision>
         <required>false</required>
         <scale>3</scale>
         <trackTrending>false</trackTrending>
@@ -162,7 +162,13 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Test Scores</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Subject_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Score__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Percentile__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
