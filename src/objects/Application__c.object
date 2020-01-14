@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores information about a student&apos;s application to an educational institution or program.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Applicant_Decision_Date__c</fullName>
+        <description>The date when the student decides whether to enroll.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the student decides whether to enroll.</inlineHelpText>
+        <label>Applicant Decision Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Applicant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Contact applying to the institution or program.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact applying to the institution or program.</inlineHelpText>
+        <label>Applicant</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Applications (Applicant)</relationshipLabel>
+        <relationshipName>Applications_Applicant</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Application_Date__c</fullName>
+        <description>The date and time when the application was submitted.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date and time when the application was submitted.</inlineHelpText>
+        <label>Application Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Application_Decision_Date__c</fullName>
+        <description>The date when the institution decides whether to accept the applicant.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the institution decides whether to accept the applicant.</inlineHelpText>
+        <label>Application Decision Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Application_Status__c</fullName>
+        <description>The status of the application review process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The status of the application review process.</inlineHelpText>
+        <label>Application Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Incomplete</fullName>
+                    <default>false</default>
+                    <label>Incomplete</label>
+                </value>
+                <value>
+                    <fullName>Received</fullName>
+                    <default>false</default>
+                    <label>Received</label>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                    <label>In Review</label>
+                </value>
+                <value>
+                    <fullName>Waitlist</fullName>
+                    <default>false</default>
+                    <label>Waitlist</label>
+                </value>
+                <value>
+                    <fullName>Admit</fullName>
+                    <default>false</default>
+                    <label>Admit</label>
+                </value>
+                <value>
+                    <fullName>Deny</fullName>
+                    <default>false</default>
+                    <label>Deny</label>
+                </value>
+                <value>
+                    <fullName>Deferred Offer</fullName>
+                    <default>false</default>
+                    <label>Deferred Offer</label>
+                </value>
+                <value>
+                    <fullName>Accepted Offer</fullName>
+                    <default>false</default>
+                    <label>Accepted Offer</label>
+                </value>
+                <value>
+                    <fullName>Declined Offer</fullName>
+                    <default>false</default>
+                    <label>Declined Offer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Application_Type__c</fullName>
+        <description>The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of program or track the applicant is applying to. For example, Undergraduate, Graduate, or Transfer.</inlineHelpText>
+        <label>Application Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Graduate</fullName>
+                    <default>false</default>
+                    <label>Graduate</label>
+                </value>
+                <value>
+                    <fullName>Transfer</fullName>
+                    <default>false</default>
+                    <label>Transfer</label>
+                </value>
+                <value>
+                    <fullName>Undergraduate</fullName>
+                    <default>false</default>
+                    <label>Undergraduate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Applying_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The academic program or major the applicant is applying to.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The academic program or major the applicant is applying to.</inlineHelpText>
+        <label>Applying To</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Applications</relationshipLabel>
+        <relationshipName>Applications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Preparer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Contact preparing the application, often a guardian.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Contact preparing the application. For example, a guardian or a person assisting someone with special needs.</inlineHelpText>
+        <label>Preparer</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Applications (Preparer)</relationshipLabel>
+        <relationshipName>Applications_Preparer</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The term when the applicant wants to enroll.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The term when the applicant wants to enroll.</inlineHelpText>
+        <label>Term</label>
+        <referenceTo>Term__c</referenceTo>
+        <relationshipLabel>Applications</relationshipLabel>
+        <relationshipName>Applications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Application</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>APP-{0000}</displayFormat>
+        <label>Application Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Applications</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Applicant__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applying_To__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Term__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Application_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applicant_Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Preparer__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
