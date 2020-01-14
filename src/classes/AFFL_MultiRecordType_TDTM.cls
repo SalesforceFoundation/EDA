@@ -95,11 +95,10 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 					}
 
 					// AFTER UPDATE - Runs when AFTER UPDATE Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
-					// And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) so that values
+					// And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary) so that values
 					// populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
 					if (triggerAction == TDTM_Runnable.Action.AfterUpdate 
-					    && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update) 
-							&& !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
+					    && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)) {
 						Affiliation__c afflOld = (Affiliation__c)oldlist[i];
 
 						//If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
@@ -108,12 +107,13 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 								&& lookupFieldName != null
 								&& relatedContact.get(lookupFieldName) == affl.Account__c) {
 							UTIL_Debug.debug('****AFFL_MultiRecordType_TDTM - clearing field ' + lookupFieldName);
-							if(!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated)) {
-								relatedContact.put(lookupFieldName, null);
-								dmlWrapper.objectsToUpdate.add(relatedContact);
-							}
-						}
-
+						    if (!TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated) && 
+								    !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary)) {
+								        relatedContact.put(lookupFieldName, null);
+								        dmlWrapper.objectsToUpdate.add(relatedContact);													
+							      }
+						    }
+					  }
 						//If a non-primary affiliation is made primary the key affiliation field on the contact needs to be filled,
 						//an any other primary affiliation of the same type needs to be made non-primary.
 						if (affl.Primary__c && !afflOld.Primary__c && affl.Contact__c != null && affl.Account__c != null && lookupFieldName != null) {
@@ -130,6 +130,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 				}else if (triggerAction == TDTM_Runnable.Action.AfterUpdate)
 				{
 					TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update, true);
+					
 
 				}
 				if(afflsMadePrimary.size() > 0) {
