@@ -622,6 +622,7 @@
         <members>stgAfflCopyProgramEnrollmentEndDate</members>
         <members>stgAfflCopyProgramEnrollmentStartDate</members>
         <members>stgAfflDeleteProgramEnrollment</members>
+        <members>stgAfflNotInserted</members>
         <members>stgAfflProgEnrollDeleteRelated</members>
         <members>stgAfflProgEnrollSetRole</members>
         <members>stgAfflProgEnrollSetRoleValue</members>
