@@ -46,9 +46,9 @@
     </fields>
     <fields>
         <fullName>Primary_Affl_Field__c</fullName>
-        <description>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</description>
+        <description>The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The label of the lookup field in Contact that points to the primary Account of the specified Record Type.</inlineHelpText>
+        <inlineHelpText>The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type.</inlineHelpText>
         <label>Primary Affl Field</label>
         <length>255</length>
         <required>false</required>
