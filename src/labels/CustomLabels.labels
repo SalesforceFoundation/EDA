@@ -680,6 +680,14 @@
         <value>Status Specified for Affiliations Not Deleted:</value>
     </labels>
     <labels>
+        <fullName>stgAfflNotInserted</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stgAfflNotInserted</shortDescription>
+        <value>We can&apos;t map this Affiliation because it references a record type that is already referenced by another Affiliation Mapping. If you want to add this mapping so the Affiliation is translated, click Edit to modify the existing mapping. Then, specify the field API name under Contact Primary Affl Field. Do not change the name specified for Account Record Type.</value>
+    </labels>
+    <labels>
         <fullName>stgAfflProgEnrollDeleteRelated</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
