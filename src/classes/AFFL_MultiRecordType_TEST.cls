@@ -654,8 +654,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Contact conAfterUpdate = [SELECT Id, Primary_Household__c, Primary_Academic_Program__c FROM Contact WHERE Id = :contact2.Id];
         System.assertEquals(hhAcc.Id, conAfterUpdate.Primary_Household__c);
         System.assertEquals(NULL, conAfterUpdate.Primary_Academic_Program__c);
-    }  	
-	}	
+    }  		
 
 	 // Test the usage of custom API field name for affiliation mapping for multi-language support
     
