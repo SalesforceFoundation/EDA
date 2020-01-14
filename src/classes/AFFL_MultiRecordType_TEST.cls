@@ -475,5 +475,40 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         System.assertEquals(0, allAffiliationList.size()); 
 
-	}
+	}	
+
+	 // Test the usage of custom API field name for affiliation mapping for multi-language support
+    
+    @isTest
+    public static void customFieldAPIInMappings() {
+        
+        String namespace = UTIL_Namespace.getNamespace();
+        String prefix = ( String.isNotBlank(namespace) ) ? namespace + '__' : '';
+
+        // insert custom api field name as an affiliation mapping    
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(new Affl_Mappings__c(Name = 'Business Organization', Account_Record_Type__c = 'Business Organization', Primary_Affl_Field__c = prefix + 'Primary_Organization__c'));
+        insert mappings;
+        
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        
+        // Insert a business account
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizAcc;
+
+        // Insert a contact with business account as Primary business organization
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;           
+                
+        test.startTest(); 
+            //Insert an affiliation
+            Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
+            insert affl; 
+        test.stopTest();
+        
+        //Verify Primary Organization is populated
+        Contact updatedContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact.Id]; 
+        
+        System.assertEquals(bizAcc.Id, updatedContact.Primary_Organization__c);   
+    }
 }
