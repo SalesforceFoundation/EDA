@@ -48,7 +48,7 @@
     <fields>
         <label>Bloque de tiempo</label>
         <name>Time_Block__c</name>
-        <relationshipLabel>Ofertas de cursos</relationshipLabel>
+        <relationshipLabel>Bloques de tiempo</relationshipLabel>
     </fields>
     <gender>Feminine</gender>
     <layouts>
