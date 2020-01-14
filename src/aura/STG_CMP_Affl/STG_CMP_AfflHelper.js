@@ -94,7 +94,14 @@
                 
                 // Re-Disable Add Setting button after successful completion
                 component.find("newAfflMappingBtn").set("v.disabled", true);
+                
             } else if(response.getState() === "ERROR") {
+                var errors = JSON.stringify(response.getError());
+                if (errors.includes('FIELD_INTEGRITY_EXCEPTION')) {                
+                    var tst = component.find("errorToast");
+                    $A.util.removeClass(tst, "slds-hide");
+                    $A.util.addClass(tst, "slds-show");
+                }    
                 this.displayError(response);
             }
         });
@@ -104,5 +111,11 @@
     deleteAfflMappingRow : function(component, id, position) {
         this.deleteRow(component, "c.deleteAfflMappingRecord", "v.afflMappings", id, position, "v.noAfflMappings", "noAfflMappings",
                 component.get("v.namespacePrefix"));
-    }
+    },
+
+    closeErrorToast: function(component) {
+        var tst = component.find("errorToast");
+        $A.util.removeClass(tst, "slds-show");
+        $A.util.addClass(tst, "slds-hide");
+   }
 })
