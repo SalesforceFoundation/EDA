@@ -183,6 +183,8 @@
         <members>TDTM_Relationship</members>
         <members>TDTM_Term</members>
         <members>TDTM_TermGrade</members>
+        <members>TDTM_Test</members>
+        <members>TDTM_Test_Score</members>
         <members>TDTM_TimeBlock</members>
         <members>TDTM_TriggerHandler</members>
         <name>ApexTrigger</name>
@@ -520,6 +522,16 @@
         <members>Term__c.Parent_Term__c</members>
         <members>Term__c.Start_Date__c</members>
         <members>Term__c.Type__c</members>
+        <members>Test_Score__c.Percentile__c</members>
+        <members>Test_Score__c.Score__c</members>
+        <members>Test_Score__c.Subject_Area__c</members>
+        <members>Test_Score__c.Test_Type__c</members>
+        <members>Test_Score__c.Test__c</members>
+        <members>Test__c.Contact__c</members>
+        <members>Test__c.Date_Received__c</members>
+        <members>Test__c.Source__c</members>
+        <members>Test__c.Test_Date__c</members>
+        <members>Test__c.Test_Type__c</members>
         <members>Time_Block__c.Educational_Institution__c</members>
         <members>Time_Block__c.End_Time__c</members>
         <members>Time_Block__c.Start_Time__c</members>
@@ -795,6 +807,8 @@
         <members>Relationship__c</members>
         <members>Term_Grade__c</members>
         <members>Term__c</members>
+        <members>Test_Score__c</members>
+        <members>Test__c</members>
         <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
         <name>CustomObject</name>
@@ -937,6 +951,16 @@
         <members>Term__c-en_US</members>
         <members>Term__c-es</members>
         <members>Term__c-fr</members>
+        <members>Test_Score__c-ca</members>
+        <members>Test_Score__c-en_GB</members>
+        <members>Test_Score__c-en_US</members>
+        <members>Test_Score__c-es</members>
+        <members>Test_Score__c-fr</members>
+        <members>Test__c-ca</members>
+        <members>Test__c-en_GB</members>
+        <members>Test__c-en_US</members>
+        <members>Test__c-es</members>
+        <members>Test__c-fr</members>
         <members>Time_Block__c-ca</members>
         <members>Time_Block__c-en_GB</members>
         <members>Time_Block__c-en_US</members>
@@ -971,6 +995,8 @@
         <members>Relationship__c</members>
         <members>Term_Grade__c</members>
         <members>Term__c</members>
+        <members>Test_Score__c</members>
+        <members>Test__c</members>
         <members>Time_Block__c</members>
         <members>Trigger_Handler__c</members>
         <name>CustomTab</name>
@@ -1033,6 +1059,8 @@
         <members>Relationship__c-HEDA Relationship Layout</members>
         <members>Term_Grade__c-HEDA Term Grade Layout</members>
         <members>Term__c-HEDA Term Layout</members>
+        <members>Test_Score__c-EDA Test Score Layout</members>
+        <members>Test__c-EDA Test Layout</members>
         <members>Time_Block__c-EDA Time Block Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
         <name>Layout</name>
@@ -1059,6 +1087,8 @@
         <members>Relationship__c.All</members>
         <members>Term_Grade__c.All</members>
         <members>Term__c.All</members>
+        <members>Test_Score__c.All</members>
+        <members>Test__c.All</members>
         <members>Time_Block__c.All</members>
         <members>Trigger_Handler__c.All</members>
         <members>Trigger_Handler__c.All_Main_Fields</members>
