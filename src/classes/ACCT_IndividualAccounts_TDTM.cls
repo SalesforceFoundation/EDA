@@ -339,8 +339,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         public Map<Id,Id> contactIdAccountIdNewOppsToMove = new Map<Id,Id>();
         public Map<Id,Id> contactIdAccountIdOldOppsToMove = new Map<Id,Id>();
         public Map<Id,Contact> contactIdContactOwnerChange = new Map<Id,Contact>();
-        public Set<Id> accountIdToRename = new Set<Id>();
-        public List<Id> accountIdToUpdate = new List<Id>();
+        public Set<Id> accountIdsToRename = new Set<Id>();
+        public List<Id> accountIdsToUpdate = new List<Id>();
         public List<Contact> contactsChangedLastName = new List<Contact>();
 
         private HandleUpdateWrapperLogic() {
@@ -367,25 +367,25 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             //If Account has changed: (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
                 if(conAccountIdNotNull) {
-                    accountIdToUpdate.add(c.AccountId);
+                    accountIdsToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
 
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
-                        accountIdToRename.add(c.AccountId);
+                        accountIdsToRename.add(c.AccountId);
 
                         if(oldConAccountIdNotNull) {
-                            accountIdToRename.add(oldContact.AccountId);
+                            accountIdsToRename.add(oldContact.AccountId);
                         }
                     }
                 }  else {
                     if (UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == TRUE) {
-                        accountIdToRename.add(oldContact.AccountId);
+                        accountIdsToRename.add(oldContact.AccountId);
                     }
                 }
 
                 //Old HH Accounts that don't get deleted still need to have name redone
                 if (oldConAccountIdNotNull) {
-                    accountIdToupdate.add(oldContact.AccountId);
+                    accountIdsToUpdate.add(oldContact.AccountId);
                     contactIdAccountIdOldOppsToMove.put(c.Id, oldContact.AccountId);
                 }
             }
@@ -410,7 +410,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                  	  numOfContactsLeft != 0)
                    )
                 {
-                	accountIdToRename.add(c.AccountId);
+                	accountIdsToRename.add(c.AccountId);
                 }
             }
         }
@@ -434,13 +434,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
 
             //Updates Household Account name
-            if (updateWrapper.accountIdToRename.size() > 0) {
-                UTIL_ACCT_Naming.updateHHAccountsName(updateWrapper.accountIdToRename);
+            if (updateWrapper.accountIdsToRename.size() > 0) {
+                UTIL_ACCT_Naming.updateHHAccountsName(updateWrapper.accountIdsToRename);
             }
 
             //Updates existing Account Primary Contact
-            if (updateWrapper.accountIdToUpdate.size() > 0) {
-                updateParentAcc(updateWrapper.accountIdToUpdate, dmlWrapper);
+            if (updateWrapper.accountIdsToUpdate.size() > 0) {
+                updateParentAcc(updateWrapper.accountIdsToUpdate, dmlWrapper);
             }
 
             //Updates Account Owner to match Contact Owner change
@@ -476,7 +476,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Set<Id> accountIdsToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
 
-		Integer numOfContactsLeft = 0;
+	    Integer numOfContactsLeft = 0;
 
         for (Contact c : oldContacts) {
             //Checks if there are any Contacts associated to the Contact that are not
