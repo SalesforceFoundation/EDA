@@ -109,8 +109,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                     }
 
                     // AFTER UPDATE - Runs when AFTER UPDATE Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
-					          // And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary) so that values
-					          // populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
+                    // And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary) so that values
+                    // populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
                     if (triggerAction == TDTM_Runnable.Action.AfterUpdate 
                         && !TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)) {
                         Affiliation__c afflOld = (Affiliation__c)oldlist[i];
