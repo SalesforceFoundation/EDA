@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Test Score --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Test Score --></value>
+    </caseValues>
+    <fields>
+        <help><!-- The percentile ranking for this score. --></help>
+        <label><!-- Percentile --></label>
+        <name>Percentile__c</name>
+    </fields>
+    <fields>
+        <help><!-- The numeric value of the score received. --></help>
+        <label><!-- Score --></label>
+        <name>Score__c</name>
+    </fields>
+    <fields>
+        <help><!-- The subject matter or category for this test score. --></help>
+        <label><!-- Subject Area --></label>
+        <name>Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>Language</masterLabel>
+            <translation><!-- Language --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics</masterLabel>
+            <translation><!-- Mathematics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overall</masterLabel>
+            <translation><!-- Overall --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading</masterLabel>
+            <translation><!-- Reading --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation><!-- Science --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Writing</masterLabel>
+            <translation><!-- Writing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Displays the Test Type name from the associated Test record. For example, SAT or GRE. --></help>
+        <label><!-- Test Type --></label>
+        <name>Test_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Test for which this score is being recorded. --></help>
+        <label><!-- Test --></label>
+        <name>Test__c</name>
+        <relationshipLabel><!-- Test Scores --></relationshipLabel>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Test Score Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
