@@ -528,12 +528,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
         
         for (Contact eachCon: [SELECT Id, Primary_Organization__c, Primary_Household__c, Primary_Academic_Program__c FROM Contact]) {
         
-			// Ensure Primary fields on Contact are populated
+                // Ensure Primary fields on Contact are populated
         	System.assertEquals(eachCon.Primary_Organization__c, bizAcc1.Id);
         	System.assertEquals(eachCon.Primary_Household__c, hhAcc1.Id);
         	System.assertEquals(eachCon.Primary_Academic_Program__c, acadAcc1.Id);
         }
-		// Make non-primary Affliations as primary
+        // Make non-primary Affliations as primary
         Test.startTest();
             List<Affiliation__c> afflList = new List<Affiliation__c>();
             for (Affiliation__c eachAffl : [SELECT Id, Primary__c FROM Affiliation__c WHERE Primary__c = False]) {
