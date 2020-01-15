@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>An instance of a student taking a test.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The student who took the test.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The student who took the test.</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Tests</relationshipLabel>
+        <relationshipName>Tests</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Date_Received__c</fullName>
+        <description>The date the test score is added to the system, either by manual upload or directly from an official source.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the test score is added to the system, either by manual upload or directly from an official source.</inlineHelpText>
+        <label>Date Received</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <description>Indicates whether the applicant or an official source reported this test.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the applicant or an official source reported this test.</inlineHelpText>
+        <label>Source</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Self Reported</fullName>
+                    <default>false</default>
+                    <label>Self Reported</label>
+                </value>
+                <value>
+                    <fullName>Official</fullName>
+                    <default>false</default>
+                    <label>Official</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Test_Date__c</fullName>
+        <description>The date the applicant or official source indicates the test was started.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the applicant or official source indicates the test was started.</inlineHelpText>
+        <label>Test Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Test_Type__c</fullName>
+        <description>The formal name for the test taken.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The formal name for the test taken.</inlineHelpText>
+        <label>Test Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SAT</fullName>
+                    <default>false</default>
+                    <label>SAT</label>
+                </value>
+                <value>
+                    <fullName>ACT</fullName>
+                    <default>false</default>
+                    <label>ACT</label>
+                </value>
+                <value>
+                    <fullName>GRE</fullName>
+                    <default>false</default>
+                    <label>GRE</label>
+                </value>
+                <value>
+                    <fullName>GMAT</fullName>
+                    <default>false</default>
+                    <label>GMAT</label>
+                </value>
+                <value>
+                    <fullName>TOEFL</fullName>
+                    <default>false</default>
+                    <label>TOEFL</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Test</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TST-{0000}</displayFormat>
+        <label>Test Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Tests</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
