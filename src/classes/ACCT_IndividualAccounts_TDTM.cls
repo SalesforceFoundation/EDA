@@ -476,7 +476,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Set<Id> accountIdsToRename = new Set<Id>();
         Set<Id> relatedAccountIds = new Set<Id>();
 
-	    Integer numOfContactsLeft = 0;
+        Integer numOfContactsLeft = 0;
 
         for (Contact c : oldContacts) {
             //Checks if there are any Contacts associated to the Contact that are not
