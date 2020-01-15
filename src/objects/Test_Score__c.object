@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The score on a section of a specific test or a composite score.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Percentile__c</fullName>
+        <description>The percentile ranking for this score.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The percentile ranking for this score.</inlineHelpText>
+        <label>Percentile</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score__c</fullName>
+        <description>The numeric value of the score received.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The numeric value of the score received.</inlineHelpText>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Subject_Area__c</fullName>
+        <description>The subject matter or category for this test score.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The subject matter or category for this test score.</inlineHelpText>
+        <label>Subject Area</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Language</fullName>
+                    <default>false</default>
+                    <label>Language</label>
+                </value>
+                <value>
+                    <fullName>Mathematics</fullName>
+                    <default>false</default>
+                    <label>Mathematics</label>
+                </value>
+                <value>
+                    <fullName>Reading</fullName>
+                    <default>false</default>
+                    <label>Reading</label>
+                </value>
+                <value>
+                    <fullName>Science</fullName>
+                    <default>false</default>
+                    <label>Science</label>
+                </value>
+                <value>
+                    <fullName>Writing</fullName>
+                    <default>false</default>
+                    <label>Writing</label>
+                </value>
+                <value>
+                    <fullName>Overall</fullName>
+                    <default>false</default>
+                    <label>Overall</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Test_Type__c</fullName>
+        <description>Displays the Test Type name from the associated Test record. For example, SAT or GRE.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Test__r.Test_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Displays the Test Type name from the associated Test record. For example, SAT or GRE.</inlineHelpText>
+        <label>Test Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Test for which this score is being recorded.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Test for which this score is being recorded.</inlineHelpText>
+        <label>Test</label>
+        <referenceTo>Test__c</referenceTo>
+        <relationshipLabel>Test Scores</relationshipLabel>
+        <relationshipName>Test_Scores</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Test Score</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>SCR-{0000}</displayFormat>
+        <label>Test Score Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Scores</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Test_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Subject_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Score__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Percentile__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
