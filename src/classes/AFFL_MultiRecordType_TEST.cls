@@ -634,7 +634,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
                 Affiliation__c affl1 = UTIL_UnitTestData_TEST.getAffiliation(each.Id, bizAcc.Id, True);
                 afflListNew.add(affl1);
             }
-        	Affiliation__c afflhh = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, True);
+            Affiliation__c afflhh = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, hhAcc.Id, True);
             Affiliation__c afflBiz = UTIL_UnitTestData_TEST.getAffiliation(contact2.Id, bizAcc.Id, True);
             afflListNew.add(afflhh);
             afflListNew.add(afflBiz);
