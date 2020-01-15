@@ -63,7 +63,8 @@
         <required>false</required>
         <scale>3</scale>
         <trackTrending>false</trackTrending>
-        <type>Percent</type>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Score__c</fullName>
