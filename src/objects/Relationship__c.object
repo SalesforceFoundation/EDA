@@ -67,7 +67,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <deleteConstraint>Cascade</deleteConstraint>
         <description>Related Contact is this Contact&apos;s ______.</description>
         <externalId>false</externalId>
         <inlineHelpText>Related Contact is this Contact&apos;s ______.</inlineHelpText>
