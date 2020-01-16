@@ -48,18 +48,18 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
 	public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
-		Map<Id, Course_Offering__c> oldMap = new Map<Id, Course_Offering__c>((List<Course_Offering__c>)oldList);
-      Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
+	    Map<Id, Course_Offering__c> oldMap = new Map<Id, Course_Offering__c>((List<Course_Offering__c>)oldList);
+        Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCofDeletionPreventionEnabled) {
 			for(Course_Offering__c co : [SELECT Id,
-		                              (SELECT Id FROM Term_Grades__r LIMIT 1),
-									         (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
-                                    (SELECT Id FROM Course_Enrollment__r  LIMIT 1)
-		                              FROM Course_Offering__c WHERE Id IN :oldlist]) {
+		                                (SELECT Id FROM Term_Grades__r LIMIT 1),
+									    (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
+                                        (SELECT Id FROM Course_Enrollment__r  LIMIT 1)
+		                                FROM Course_Offering__c WHERE Id IN :oldlist]) {
 				if(co.Term_Grades__r.size() > 0 || co.Course_Offering_Schedules__r.size() > 0 ||
-                  co.Course_Enrollment__r.size() > 0) {
-					Course_Offering__c courseOfferingInContext = oldmap.get(co.Id);
+                    co.Course_Enrollment__r.size() > 0) {
+				    Course_Offering__c courseOfferingInContext = oldmap.get(co.Id);
 					courseOfferingInContext.addError(Label.CannotDelete);
 				}
 			}
