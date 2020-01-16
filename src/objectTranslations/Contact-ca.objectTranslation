@@ -3472,37 +3472,65 @@
         <label>Telèfon preferit</label>
         <name>PreferredPhone__c</name>
         <picklistValues>
+            <masterLabel>Home</masterLabel>	
+            <translation>Home Phone</translation>
+        </picklistValues>    
+        <picklistValues>	
+            <masterLabel>Mobile</masterLabel>	
+            <translation>Mobile Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Other</masterLabel>	
+            <translation>Other Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Telèfon de la feina</translation>	
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Home Phone</masterLabel>
-            <translation><!-- Home Phone --></translation>
+            <translation>Home Phone </translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mobile Phone</masterLabel>
-            <translation><!-- Mobile Phone --></translation>
+            <translation>Mobile Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other Phone</masterLabel>
-            <translation><!-- Other Phone --></translation>
+            <translation>Other Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work Phone</masterLabel>
-            <translation><!-- Work Phone --></translation>
+            <translation>Telèfon de la feina</translation>
         </picklistValues>
     </fields>
     <fields>
         <help>Quin correu electrònic s&apos;hauria d&apos;utilitzar per a la majoria de comunicacions que incloguin aquest contacte?</help>
         <label>Correu preferit</label>
         <name>Preferred_Email__c</name>
+        <picklistValues>	
+            <masterLabel>Alternate</masterLabel>	
+            <translation>Correu electrònic alternatiu</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>University</masterLabel>	
+            <translation>Correu electrònic universitari</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Correu electrònic de la feina</translation>	
+        </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
-            <translation><!-- Alternate Email --></translation>
+            <translation>Correu electrònic alternatiu</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>University Email</masterLabel>
-            <translation><!-- University Email --></translation>
+            <translation>Correu electrònic universitari</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work Email</masterLabel>
-            <translation><!-- Work Email --></translation>
+            <translation>Correu electrònic de la feina</translation>
         </picklistValues>
     </fields>
     <fields>

@@ -3471,38 +3471,66 @@
         <help>Which phone number should be used for most communications involving this Contact?</help>
         <label>Preferred Phone</label>
         <name>PreferredPhone__c</name>
+        <picklistValues>	
+            <masterLabel>Home</masterLabel>	
+            <translation>Home Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Mobile</masterLabel>	
+            <translation>Mobile Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Other</masterLabel>	
+            <translation>Other Phone</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Work Phone</translation>	
+        </picklistValues>
         <picklistValues>
             <masterLabel>Home Phone</masterLabel>
-            <translation><!-- Home Phone --></translation>
+            <translation>Home Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mobile Phone</masterLabel>
-            <translation><!-- Mobile Phone --></translation>
+            <translation>Mobile Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other Phone</masterLabel>
-            <translation><!-- Other Phone --></translation>
+            <translation>Other Phone</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work Phone</masterLabel>
-            <translation><!-- Work Phone --></translation>
+            <translation>Work Phone</translation>
         </picklistValues>
     </fields>
     <fields>
         <help>Which email should be used for most communications involving this Contact?</help>
         <label>Preferred Email</label>
         <name>Preferred_Email__c</name>
+        <picklistValues>	
+            <masterLabel>Alternate</masterLabel>	
+            <translation>Alternate Email</translation>	
+        </picklistValues>	
+        <picklistValues>	
+            <masterLabel>University</masterLabel>	
+            <translation>University Email</translation>	
+        </picklistValues>	
+            <picklistValues>	
+            <masterLabel>Work</masterLabel>	
+            <translation>Work Email</translation>	
+        </picklistValues>
         <picklistValues>
             <masterLabel>Alternate Email</masterLabel>
-            <translation><!-- Alternate Email --></translation>
+            <translation>Alternate Email</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>University Email</masterLabel>
-            <translation><!-- University Email --></translation>
+            <translation>University Email</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Work Email</masterLabel>
-            <translation><!-- Work Email --></translation>
+            <translation>Work Email</translation>
         </picklistValues>
     </fields>
     <fields>
