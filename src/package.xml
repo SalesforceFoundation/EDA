@@ -1126,9 +1126,6 @@
     <types>
         <members>Attribute__c.Credential</members>
         <members>Attribute__c.Student_Characteristic</members>
-        <members>Course_Enrollment__c.Default</members>
-        <members>Course_Enrollment__c.Faculty</members>
-        <members>Course_Enrollment__c.Student</members>
         <name>RecordType</name>
     </types>
     <types>
