@@ -45,14 +45,14 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
  * @param objResult the describe for Course Offering
  * @return dmlWrapper.
  ********************************************************************************************************/
-	public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
+    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
 	    Map<Id, Course_Offering__c> oldMap = new Map<Id, Course_Offering__c>((List<Course_Offering__c>)oldList);
         Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCofDeletionPreventionEnabled) {
-			for(Course_Offering__c co : [SELECT Id,
+		    for(Course_Offering__c co : [SELECT Id,
 		                                (SELECT Id FROM Term_Grades__r LIMIT 1),
 									    (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
                                         (SELECT Id FROM Course_Enrollment__r  LIMIT 1)
