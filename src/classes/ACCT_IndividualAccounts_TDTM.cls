@@ -100,21 +100,21 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             !recursionAfterInsertCheck) {
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, NULL);
+            handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, NULL);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             !recursionAfterUpdateCheck) {
-                //Retrieves a map of AccountIds to the number of Contacts associated to the
-                //Account that is not marked deceased or Excluded_from_Household_Naming__c
-                accountIdNumOfCons = retrieveAccountIds(newContacts);
-                handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountIdNumOfCons);
+            //Retrieves a map of AccountIds to the number of Contacts associated to the
+            //Account that is not marked deceased or Excluded_from_Household_Naming__c
+            accountIdNumOfCons = retrieveAccountIds(newContacts);
+            handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountIdNumOfCons);
             }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
             !recursionAfterDeleteCheck) {
-                accountIdNumOfCons = retrieveAccountIds(oldContacts);
-                handlesAfterDelete(oldContacts, accountIdNumOfCons);
+            accountIdNumOfCons = retrieveAccountIds(oldContacts);
+            handlesAfterDelete(oldContacts, accountIdNumOfCons);
             }
 
         dmlWrapper = null;
@@ -188,7 +188,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Map<Id,Integer> accountIdNumOfCons = new Map<Id, Integer>();
         List<Id> accountIds = new List<Id>();
 
-        for (Contact c : newContacts){
+        for (Contact c : newContacts) {
             if (c.AccountId != NULL){
                 accountIds.add(c.AccountId);
             }
@@ -200,7 +200,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                                                    (Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE)
                                                    Group By AccountId];
 
-        for(AggregateResult ar : groupAccountIdNumOfCon){
+        for(AggregateResult ar : groupAccountIdNumOfCon) {
             accountIdNumOfCons.put((Id)ar.get('AccountId'), (Integer)ar.get('expr0'));
         }
 
@@ -366,14 +366,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //If Account has changed: (1) Update the Account's name (2) Move Opportunity
             if (c.AccountId != oldContact.AccountId) {
-                if(conAccountIdNotNull) {
+                if (conAccountIdNotNull) {
                     accountIdsToUpdate.add(c.AccountId);
                     contactIdAccountIdNewOppsToMove.put(c.Id, c.AccountId);
 
                     if (checkHouseholdNaming(c.Account.RecordTypeId)) {
                         accountIdsToRename.add(c.AccountId);
 
-                        if(oldConAccountIdNotNull) {
+                        if (oldConAccountIdNotNull) {
                             accountIdsToRename.add(oldContact.AccountId);
                         }
                     }
@@ -404,10 +404,10 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             //and numOfContactsLeft is not 0, rename the Account record
             if (conAccountIdNotNull && checkHouseholdNaming(c.Account.RecordTypeId)) {
                 if (((conLastNameChanged ||
-                      conFirstNameChanged ||
-                      conExcludeFromHHNameChanged ||
-                      conDeceasedHasChanged) &&
-                 	  numOfContactsLeft != 0)
+                    conFirstNameChanged ||
+                    conExcludeFromHHNameChanged ||
+                    conDeceasedHasChanged) &&
+                 	numOfContactsLeft != 0)
                    )
                 {
                 	accountIdsToRename.add(c.AccountId);
