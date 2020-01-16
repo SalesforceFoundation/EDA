@@ -38,7 +38,7 @@
 public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
 /*******************************************************************************************************
  * @description Stops a Course Offering from being deleted
- * if it has any associated Term Gradesm, Course Offering Schedules, and Course Connections.
+ * if it has any associated Term Grades, Course Offering Schedules, and Course Connections.
  * @param listNew the list of Course Offering from trigger new.
  * @param listOld the list of Course Offering from trigger old.
  * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
@@ -49,14 +49,14 @@ public with sharing class COFF_CannotDelete_TDTM extends TDTM_Runnable {
     TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
 
 		Map<Id, Course_Offering__c> oldMap = new Map<Id, Course_Offering__c>((List<Course_Offering__c>)oldList);
-        Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
+      Boolean isCofDeletionPreventionEnabled  = UTIL_CustomSettingsFacade.getSettings().Prevent_Course_Offering_Deletion__c;
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete && isCofDeletionPreventionEnabled) {
 			for(Course_Offering__c co : [SELECT Id,
-		                             (SELECT Id FROM Term_Grades__r LIMIT 1),
-									 (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
-                                     (SELECT Id FROM Course_Enrollment__r  LIMIT 1)
-		                             FROM Course_Offering__c WHERE Id in : oldlist]) {
+		                              (SELECT Id FROM Term_Grades__r LIMIT 1),
+									         (SELECT Id FROM Course_Offering_Schedules__r LIMIT 1),
+                                    (SELECT Id FROM Course_Enrollment__r  LIMIT 1)
+		                              FROM Course_Offering__c WHERE Id IN :oldlist]) {
 				if(co.Term_Grades__r.size() > 0 || co.Course_Offering_Schedules__r.size() > 0 ||
                   co.Course_Enrollment__r.size() > 0) {
 					Course_Offering__c courseOfferingInContext = oldmap.get(co.Id);

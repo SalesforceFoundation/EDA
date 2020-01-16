@@ -46,14 +46,14 @@ private with sharing class COFF_CannotDelete_TEST {
     @isTest
     private static void testPreventCourseOfferingDeletion() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                         (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                          Prevent_Course_Offering_Deletion__c = true));
+                                                        (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                        Prevent_Course_Offering_Deletion__c = true));
 
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
         insert contacts;
 
         List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
-        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
+        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
         Course_Offering__c courseOffering2 = UTIL_UnitTestdata_TEST.createCourseOffering(NULL, NULL);
         Course_Offering__c courseOffering3 = UTIL_UnitTestdata_TEST.createCourseOffering(NULL, NULL);
         Course_Offering__c courseOffering4 = UTIL_UnitTestdata_TEST.createCourseOffering(NULL, NULL);
@@ -137,14 +137,15 @@ private with sharing class COFF_CannotDelete_TEST {
     */
     @isTest
     private static void testAllowCourseOfferingDeletion() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                                                Prevent_Course_Offering_Deletion__c = false));
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
+                                                        (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                                                        Prevent_Course_Offering_Deletion__c = false));
 
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
         insert contacts;
 
         List<Course_Offering__c> courseOfferings = new List<Course_Offering__c>();
-        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
+        Course_Offering__c courseOffering1 = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
         Course_Offering__c courseOffering2 = UTIL_UnitTestdata_TEST.createCourseOffering(NULL, NULL);
         Course_Offering__c courseOffering3 = UTIL_UnitTestdata_TEST.createCourseOffering(NULL, NULL);
         Course_Offering__c courseOffering4 = UTIL_UnitTestdata_TEST.createCourseOffering(NULL, NULL);
