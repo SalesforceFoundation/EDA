@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <recordTypes>
+    <name>Academic_Program</name>
+    <label>Academic Program</label>
+    <description>An Academic Program offered at the educational institution.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Administrative</name>
+    <label>Administrative</label>
+    <description>An administrative account.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Business_Organization</name>
+    <label>Business Organisation</label>
+    <description>A business organisation.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Educational_Institution</name>
+    <label>Educational Institution</label>
+    <description>An educational institution.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>HH_Account</name>
+    <label>Household Account</label>
+    <description>A Household containing one or more individuals.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>Sports_Organization</name>
+    <label>Sports Organisation</label>
+    <description>A sports organisation.</description>
+  </recordTypes>
+  <recordTypes>
+    <name>University_Department</name>
+    <label>University Department</label>
+    <description>A department in the educational institution.</description>
+  </recordTypes>
+</CustomObjectTranslation>

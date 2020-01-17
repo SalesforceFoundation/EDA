@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>No es pot esborrar el registre perquè hi ha registres derivats. Elimineu primer els derivats.</label>
+        <label>Aquest registre no es pot suprimir perquè té associat un o més registres relacionats. Suprimeix primer els registres associats i, a continuació, suprimeix aquest registre. Per determinar quins registres s’han de suprimir primer, fes clic a la pestanya Relacionats. Si no veus cap registre relacionat o no pots eliminar-los, posa&apos;t en contacte amb l&apos;administrador del sistema per obtenir ajuda.</label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -61,31 +61,31 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label><!-- MultipleCourseConnection --></label>
+        <label>Més d&apos;una connexió de curs està associada a aquest contacte i a aquesta oferta de cursos. Especifiqueu la connexió del curs que representa la inscripció de l&apos;estudiant en aquesta oferta de curs per a aquesta qualificació del període.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoContactCOFound --></label>
+        <label>L’oferta de contacte i el curs no s’han especificat o no coincideixen amb la connexió del curs. Especifica només una connexió de curs o bé un contacte i una oferta de curs, de manera que podem desar aquest registre amb les dades correctes.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoCourseConnection --></label>
+        <label>No hi ha cap connexió de curs associada a aquest contacte i oferta de curs. Si aquest estudiant està inscrit en aquesta oferta de curs, crea una connexió de curs.</label>
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoDataMatch --></label>
+        <label>L’oferta de contacte i el curs no coincideixen amb la connexió del curs. Especifica només una connexió de curs o bé un contacte i una oferta de curs, de manera que podem desar aquest registre amb les dades correctes.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label><!-- NoFieldsPopulated --></label>
+        <label>Especifica només una connexió de curs o bé un contacte i una oferta de curs.</label>
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
         <label>--Cap--</label>
         <name>NoneOption</name>
     </customLabels>
-        <customLabels>
-        <label><!-- OnlyCourseConnectionPopulated --></label>
+    <customLabels>
+        <label>No hi ha cap contacte o oferta de curs associat a aquesta connexió de curs. Tria una connexió de curs vàlida.</label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
@@ -493,6 +493,14 @@
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
+        <label><!-- stgCourseConnBackFillError --></label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- stgCourseConnBackFillSuccess --></label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
         <label>El treball Apex per lots ha processat {0} lots amb {1} errors.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -529,7 +537,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgEnablePreferredPhoneSync --></label>
+        <label>Activa la funcionalitat de telèfon preferit millorada:</label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -617,7 +625,7 @@
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- stgHelpContactPreferredPhoneSync --></label>
+        <label>Sincronitza el camp del telèfon preferit amb el camp de telèfon estàndard del contacte i valida que el valor del telèfon preferent existeixi i que tingui un valor.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
