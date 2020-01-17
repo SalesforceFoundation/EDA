@@ -101,7 +101,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (triggerAction == TDTM_Runnable.Action.AfterInsert &&
             !recursionAfterInsertCheck) {
             handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, NULL);
-            }
+        }
 
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate &&
             !recursionAfterUpdateCheck) {
@@ -109,13 +109,13 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             //Account that is not marked deceased or Excluded_from_Household_Naming__c
             accountIdNumOfCons = retrieveAccountIds(newContacts);
             handlesAfterInsertUpdate(newContacts, oldContacts, triggerAction, accountIdNumOfCons);
-            }
+        }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete &&
             !recursionAfterDeleteCheck) {
             accountIdNumOfCons = retrieveAccountIds(oldContacts);
             handlesAfterDelete(oldContacts, accountIdNumOfCons);
-            }
+        }
 
         dmlWrapper = null;
         return dmlWrapper;
@@ -231,26 +231,32 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
             //AFTER INSERT
             if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+                
                 if(insertWrapper == null) {
                     insertWrapper = new HandleInsertWrapperLogic();
                 }
+                
                 insertWrapper.handleInsertData(c);
             }
 
             //AFTER UPDATE
             if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+                
                 if(updateWrapper == null) {
                     updateWrapper = new HandleUpdateWrapperLogic();
                 }
-               	//Checks if the current Contact's AccountId matches the
+
+                //Checks if the current Contact's AccountId matches the
                	//AccountId in the map. If it does, assign the number of
                	//Contacts left that are not deceased or Excluded_from_Household_Naming__c
                 Integer numOfContactsLeft = 0;
                 if (accountIdNumOfCons.containsKey(c.AccountId)) {
                     numOfContactsLeft = accountIdNumOfCons.get(c.AccountId);
                 }
+                
                 updateWrapper.handleUpdateData(c, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
             }
+            
             conProcessed += 1;
         }
 
