@@ -30,11 +30,44 @@
     var action = component.get("c.getEnqueueCourseConnectionsBackfill");
     action.setCallback(this, function(response) {
         if(response.getState() === "SUCCESS") {
-          component.set('v.startBackfillMessage', 'Backfill was successfully started.');
+            var successMessage = $A.get("$Label.c.stgCourseConnBackFillSuccess");
+            component.set('v.startBackfillMessage', successMessage);           
+            component.set('v.backFillToastIcon', 'success');
+            component.set('v.backFillToastClass', 'slds-notify slds-notify_toast slds-theme_success');
+            var tst = component.find("backFillToast");
+            $A.util.removeClass(tst, "slds-hide");
+            $A.util.addClass(tst, "slds-show");
+        
+            window.setTimeout(
+                $A.getCallback(function() {
+                $A.util.removeClass(tst, "slds-show");
+                $A.util.addClass(tst, "slds-hide");    
+                }), 5000
+            );
+
         } else if(response.getState() === "ERROR") {
-          component.set('v.startBackfillMessage', 'There was an error when starting the backfill.');
-      }
-      });
-      $A.enqueueAction(action);
+              var errorMessage = $A.get("$Label.c.stgCourseConnBackFillError");
+              component.set('v.startBackfillMessage', errorMessage);
+              component.set('v.backFillToastIcon', 'error');
+              component.set('v.backFillToastClass', 'slds-notify slds-notify_toast slds-theme_error');
+              var tst = component.find("backFillToast");
+              $A.util.removeClass(tst, "slds-hide");
+              $A.util.addClass(tst, "slds-show");
+
+              window.setTimeout(
+                  $A.getCallback(function() {
+                  $A.util.removeClass(tst, "slds-show");
+                  $A.util.addClass(tst, "slds-hide");    
+                  }), 5000
+              );
+          }
+    });
+    $A.enqueueAction(action);
+  },
+  
+  closeBackFillToast: function(component) {
+    var tst = component.find("backFillToast");
+    $A.util.removeClass(tst, "slds-show");
+    $A.util.addClass(tst, "slds-hide");
   },
 })
