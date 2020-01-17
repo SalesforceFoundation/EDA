@@ -4,5 +4,13 @@
     <members>*</members>
     <name>CustomObject</name>
   </types>
-  <version>32.0</version>
+  <types>
+    <members>Account-ca</members>
+    <members>Account-en_GB</members>
+    <members>Account-es_MX</members>
+    <members>Account-es</members>
+    <members>Account-fr</members>
+    <name>CustomObjectTranslation</name>
+  </types>
+  <version>45.0</version>
 </Package>

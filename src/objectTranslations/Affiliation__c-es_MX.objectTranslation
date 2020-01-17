@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Afiliación</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Afiliaciones</value>
+    </caseValues>
+    <fields>
+        <label>Organización</label>
+        <name>Account__c</name>
+        <relationshipLabel>Contactos afiliados</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Tipo de afiliación</label>
+        <name>Affiliation_Type__c</name>
+    </fields>
+    <fields>
+        <label>Contacto</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Cuentas afiliadas</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Descripción</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Fecha de Finalización</label>
+        <name>EndDate__c</name>
+    </fields>
+    <fields>
+        <help>Si se selecciona, la cuenta en la afiliación se guardará en el contacto.</help>
+        <label>Principal</label>
+        <name>Primary__c</name>
+    </fields>
+    <fields>
+        <label>Función</label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>Applicant</masterLabel>
+            <translation>Solicitante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation>Empleador</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Faculty</masterLabel>
+            <translation>Facultad</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect</masterLabel>
+            <translation>Posibilidad</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student</masterLabel>
+            <translation>Estudiante</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Fecha de Inicio</label>
+        <name>StartDate__c</name>
+    </fields>
+    <fields>
+        <label>Estado</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Vigente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Antiguo</translation>
+        </picklistValues>
+    </fields>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Información de la afiliación</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clave de afiliación</nameFieldLabel>
+</CustomObjectTranslation>

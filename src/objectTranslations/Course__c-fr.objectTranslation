@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Cours</value>
+        <value>Module</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Cours</value>
+        <value>Modules</value>
     </caseValues>
     <fields>
         <label>Service</label>
@@ -14,7 +14,7 @@
         <relationshipLabel>Cours</relationshipLabel>
     </fields>
     <fields>
-        <label>ID du cours</label>
+        <label>ID du modules</label>
         <name>Course_ID__c</name>
     </fields>
     <fields>
@@ -37,6 +37,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel>Nom du cours</nameFieldLabel>
+    <nameFieldLabel>Nom du modules</nameFieldLabel>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

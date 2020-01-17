@@ -9,22 +9,22 @@
         <value><!-- Term Grade --></value>
     </caseValues>
     <fields>
-      <help><!-- The student for whom the grade is being recorded. --></help>
-      <label><!-- Contact --></label>
-      <name>Contact__c</name>
-      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+        <help>L’alumne per al qual es registra la qualificació. Quan es deixa en blanc, el Contacte es copia automàticament de la connexió de curs vàlida en desar-lo.</help>
+        <label>Contacte</label>
+        <name>Contact__c</name>
+        <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
     <fields>
-        <help>La classe en què l&apos;alumne ha rebut aquesta qualificació.</help>
+        <help>La classe en què l&apos;estudiant ha rebut aquesta qualificació. El contacte i l’oferta curs de la qualificació del període ha de coincidir amb el contacte i l’oferta de curs del registre de connexió del curs.</help>
         <label>Connexió del curs</label>
         <name>Course_Connection__c</name>
         <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
     <fields>
-      <help><!-- The Course Offering associated with the grade being recorded. --></help>
-      <label><!-- Course Offering --></label>
-      <name>Course_Offering__c</name>
-      <relationshipLabel><!-- Term Grades --></relationshipLabel>
+        <help>Oferta de curs associada al registre de la qualificació. Quan es deixa en blanc, l&apos;oferta de curs es copia automàticament de la connexió de curs vàlida.</help>
+        <label>Oferta de curs</label>
+        <name>Course_Offering__c</name>
+        <relationshipLabel>Qualificacions del període</relationshipLabel>
     </fields>
     <fields>
         <help>El nombre de crèdits intentats per a aquest curs i període de qualificació.</help>
