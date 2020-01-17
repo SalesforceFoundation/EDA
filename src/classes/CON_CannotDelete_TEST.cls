@@ -528,44 +528,6 @@ private with sharing class CON_CannotDelete_TEST {
 
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and
-    * Contact has a Relationship record associated to it, that it cannot be deleted.
-    */
-    @isTest
-    private static void conCannotDeleteWithRelationship() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                         (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                          Prevent_Contact_Deletion__c = true));
-
-        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
-        insert acc;
-
-        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
-        insert contacts;
-
-        Contact con = UTIL_UnitTestData_TEST.getContact();
-        insert con;
-
-        List<Relationship__c> relationships = new List<Relationship__c>{
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[0].Id),
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[1].Id)
-        };
-        insert relationships;
-
-        Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
-        Test.stopTest();
-
-        List<Contact> returnContacts = [SELECT Id
-                                       FROM Contact
-                                       WHERE Id IN :contacts];
-
-        //Verfies that none of the Contact records were deleted
-        System.assertEquals(2, returnContacts.size());
-        System.assertEquals(Label.CannotDelete, results[0].errors[0].message);
-    }
-
-    /*********************************************************************************************************
-    * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings, and
     * Contact has a Term Grade record associated to it, that it cannot be deleted.
     */
     @isTest
@@ -1139,44 +1101,6 @@ private with sharing class CON_CannotDelete_TEST {
 
     /*********************************************************************************************************
     * @description Test method to test if Prevent_Contact_Deletion__c is disabled in Hierarchy Settings, and
-    * Contact has a Relationship record associated to it, that it can be deleted.
-    */
-    @isTest
-    private static void conCanDeleteWithRelationship() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c
-                                                         (Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                          Prevent_Contact_Deletion__c = false));
-
-        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
-        insert acc;
-
-        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
-        insert contacts;
-
-        Contact con = UTIL_UnitTestData_TEST.getContact();
-        insert con;
-
-        List<Relationship__c> relationships = new List<Relationship__c>{
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[0].Id),
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[1].Id)
-        };
-        insert relationships;
-
-        Test.startTest();
-        Database.DeleteResult[] results = Database.delete(contacts, false);
-        Test.stopTest();
-
-        List<Contact> returnContacts = [SELECT Id
-                                       FROM Contact
-                                       WHERE Id IN :contacts];
-
-        //Verfies that all of Contact records were deleted
-        System.assertEquals(0, returnContacts.size());
-
-    }
-
-    /*********************************************************************************************************
-    * @description Test method to test if Prevent_Contact_Deletion__c is disabled in Hierarchy Settings, and
     * Contact has a Term Grade record associated to it, that it can be deleted.
     */
     @isTest
@@ -1274,9 +1198,6 @@ private with sharing class CON_CannotDelete_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
 
-        Contact con = UTIL_UnitTestData_TEST.getContact();
-        insert con;
-
         Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
         insert term;
 
@@ -1348,12 +1269,6 @@ private with sharing class CON_CannotDelete_TEST {
         };
         insert programEnrollments;
 
-        List<Relationship__c> relationships = new List<Relationship__c>{
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[0].Id),
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[1].Id)
-        };
-        insert relationships;
-
         List<Test__c> tests = new List<Test__c>{
             new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id),
             new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[1].Id)
@@ -1390,9 +1305,6 @@ private with sharing class CON_CannotDelete_TEST {
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts;
-
-        Contact con = UTIL_UnitTestData_TEST.getContact();
-        insert con;
 
         Term__c term = new Term__c(Name = 'Fall', Account__c = acc.Id);
         insert term;
@@ -1470,12 +1382,6 @@ private with sharing class CON_CannotDelete_TEST {
             new Program_Enrollment__c(Account__c = acc.Id, Contact__c = contacts[1].Id)
         };
         insert programEnrollments;
-
-        List<Relationship__c> relationships = new List<Relationship__c>{
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[0].Id),
-            new Relationship__c(Status__c = 'Current', RelatedContact__c = con.Id, Contact__c = contacts[1].Id)
-        };
-        insert relationships;
 
         List<Test__c> tests = new List<Test__c>{
             new Test__c(Test_Type__c = 'SAT', Test_Date__c = System.today(), Contact__c = contacts[0].Id),
