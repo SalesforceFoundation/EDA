@@ -4,5 +4,13 @@
       <members>%%%NAMESPACE%%%Facility__c.Display_Name__c</members>
       <name>CustomField</name>
   </types>
+  <types>
+    <members>%%%NAMESPACE%%%Facility__c-ca</members>
+    <members>%%%NAMESPACE%%%Facility__c-en_GB</members>
+    <members>%%%NAMESPACE%%%Facility__c-es_MX</members>
+    <members>%%%NAMESPACE%%%Facility__c-es</members>
+    <members>%%%NAMESPACE%%%Facility__c-fr</members>
+    <name>CustomObjectTranslation</name>
+  </types>
   <version>45.0</version>
 </Package>

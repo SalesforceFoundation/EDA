@@ -27,7 +27,7 @@
         <name>Auto_Program_Enrollment__c</name>
     </fields>
     <fields>
-        <help><!-- The label of the lookup field in Contact that points to the primary Account of the specified Record Type. --></help>
+        <help><!-- The label of the lookup field or the API name of the lookup field in Contact that points to the primary Account of the specified Record Type. --></help>
         <label><!-- Primary Affl Field --></label>
         <name>Primary_Affl_Field__c</name>
     </fields>

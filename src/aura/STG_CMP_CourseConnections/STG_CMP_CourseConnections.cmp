@@ -9,6 +9,29 @@
   <aura:attribute name="allowBackfill" type="Boolean" default="false" />
   <aura:attribute name="backfillStarted" type="Boolean" default="false" />
   <aura:attribute name="startBackfillMessage" type="String" default="" />
+  <aura:attribute name="backFillToastIcon" type="String" default="" />
+  <aura:attribute name="backFillToastClass" type="String" default="" />
+  
+  <div class="slds-hide" id="backFillToast" aura:id="backFillToast">
+      <div class="slds-box">
+          <div class="slds-notify_container slds-notify_container--inline">
+              <div class="{!v.backFillToastClass}" role="status">
+                  <span class="slds-assistive-text">{!v.startBackfillMessage}</span>
+                      <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
+                          <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeBackFillToast}" containerClass="toast-icon" />
+                      </button>
+                  <div class="slds-notify__content slds-grid slds-gutters">
+                      <div class="slds-col slds-align-left">
+                          <c:svgIcon name="{!v.backFillToastIcon}" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeBackFillToast}" containerClass="toast-icon" />
+                      </div>
+                      <div class="slds-col slds-align-middle slds-gutters">
+                          <h2 class="slds-text-heading_small">{!v.startBackfillMessage}</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>  
 
   <div id="relTabs" class="slds-tabs--scoped">
     <ul class="slds-tabs--scoped__nav" role="tablist">
@@ -132,11 +155,6 @@
       <div class="slds-grid slds-grid--align-center slds-m-top--medium">
         <div>
           <ui:button class="slds-button slds-button--neutral settings-edit-bttn" disabled="{!or(not(v.allowBackfill), v.backfillStarted)}" label="{!$Label.c.stgBtnRunBackfill}" press="{!c.startBackfill}"/>
-        </div>
-      </div>
-      <div class="slds-grid slds-grid--align-center slds-m-top--medium">
-        <div>
-          <ui:outputText value="{!v.startBackfillMessage}" class="slds-text-body--small" />
         </div>
       </div>
     </div>

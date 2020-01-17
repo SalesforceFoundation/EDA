@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
-        <help><!-- The type of Case being tracked. --></help>
-        <label><!-- Category --></label>
+        <help>El tipus de cas del qual es fa el seguiment.</help>
+        <label>Categoria</label>
         <name>Category__c</name>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>Altres</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>School Code of Conduct</masterLabel>
-            <translation><!-- School Code of Conduct --></translation>
+            <translation>Codi de conducta de l&apos;escola</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>School Violation</masterLabel>
-            <translation><!-- School Violation --></translation>
+            <translation>Infracció de l&apos;escola</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>State Offense</masterLabel>
-            <translation><!-- State Offense --></translation>
+            <translation>Infracció de l&apos;estat</translation>
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The location where the Case took place. --></help>
-        <label><!-- Location --></label>
+        <help>La ubicació on va tenir lloc el cas.</help>
+        <label>Ubicació</label>
         <name>Location__c</name>
         <picklistValues>
             <masterLabel>Off Campus</masterLabel>
-            <translation><!-- Off Campus --></translation>
+            <translation>Fora del campus</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Campus</masterLabel>
-            <translation><!-- On Campus --></translation>
+            <translation>Dins el campus</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>Altres</translation>
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- The date and time when the behavior event that triggered the Case occurred. --></help>
-        <label><!-- Occurrence Date --></label>
+        <help>La data i l&apos;hora en què es va produir l&apos;esdeveniment de comportament que va activar el cas.</help>
+        <label>Data dels fets</label>
         <name>Occurrence_Date__c</name>
     </fields>
     <layouts>
         <layout>EDA Incident Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>Enllaços personalitzats</label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Fields --></label>
+            <label>Camps</label>
             <section>Fields</section>
         </sections>
     </layouts>
