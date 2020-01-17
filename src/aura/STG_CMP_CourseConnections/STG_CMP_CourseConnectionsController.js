@@ -11,4 +11,8 @@
     helper.startBackfill(component);
   },
 
+  closeBackFillToast: function(component, event, helper) {
+    helper.closeBackFillToast(component);
+  },
+
 })
