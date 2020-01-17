@@ -50,7 +50,7 @@
         <relationshipLabel>Exigences du plan</relationshipLabel>
     </fields>
     <fields>
-        <help>La progression des cours</help>
+        <help>La progression des modules</help>
         <label>Séquence</label>
         <name>Sequence__c</name>
     </fields>

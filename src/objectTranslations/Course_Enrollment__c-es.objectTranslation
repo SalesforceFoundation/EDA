@@ -15,6 +15,7 @@
         <relationshipLabel>Enlaces de cursos</relationshipLabel>
     </fields>
     <fields>
+        <help><!-- The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation. --></help>
         <label>Afiliación</label>
         <name>Affiliation__c</name>
         <relationshipLabel>Enlace de cursos</relationshipLabel>
