@@ -62,6 +62,7 @@
             <translation><!-- TOEFL --></translation>
         </picklistValues>
     </fields>
+    <gender>Masculine</gender>
     <layouts>
         <layout>EDA Test Layout</layout>
         <sections>
@@ -69,5 +70,4 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
